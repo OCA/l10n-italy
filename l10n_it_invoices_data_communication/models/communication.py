@@ -44,7 +44,7 @@ def check_normalized_string(value):
 
 class ComunicazioneDatiIva(models.Model):
     _name = 'comunicazione.dati.iva'
-    _description = 'Comunicazione Dati IVA'
+    _description = 'Invoices data communication'
 
     @api.model
     def _default_company(self):
@@ -58,7 +58,7 @@ class ComunicazioneDatiIva(models.Model):
         dichiarazioni = self.search(domain)
         if len(dichiarazioni) > 1:
             raise ValidationError(
-                _("Dichiarazione già esiste con identificativo {}"
+                _("Statement already exists with ID {}"
                   ).format(self.identificativo))
 
     def _get_identificativo(self):
@@ -71,180 +71,151 @@ class ComunicazioneDatiIva(models.Model):
     company_id = fields.Many2one(
         'res.company', string='Company', required=True,
         default=_default_company)
-    identificativo = fields.Integer(string='Identificativo',
+    identificativo = fields.Integer(string='Identifier',
                                     default=_get_identificativo)
     id_comunicazione = fields.Char(
-        string='Id Comunicazione',
-        help='Identificativo fornito dall\'Agenzia delle Entrate '
-             'nel momento in cui si effettua la comunicazione '
-             'mediante file XML')
-    name = fields.Char(string='Name', compute="_compute_name")
+        string='Communication ID',
+        help='Identifier provided by the Revenue Agency after performing the '
+             'communication by XML file')
+    name = fields.Char(string='Name')
     declarant_fiscalcode = fields.Char(
-        string='Codice Fiscale Dichiarante',
-        help="Codice fiscale del soggetto che comunica i dati fattura")
+        string='Declarant fiscal code',
+        help="Fiscal code of the person communicating the invoices data")
     codice_carica_id = fields.Many2one(
-        'codice.carica', string='Codice carica')
+        'codice.carica', string='Role code')
     date_start = fields.Date(string='Date start', required=True)
     date_end = fields.Date(string='Date end', required=True)
     fatture_emesse_ids = fields.One2many(
         'comunicazione.dati.iva.fatture.emesse', 'comunicazione_id',
-        string='Fatture Emesse')
+        string='Customer invoices')
     fatture_ricevute_ids = fields.One2many(
         'comunicazione.dati.iva.fatture.ricevute', 'comunicazione_id',
-        string='Fatture Ricevute')
-    fatture_emesse = fields.Boolean(string="Fatture Emesse")
-    fatture_ricevute = fields.Boolean(string="Fatture Ricevute")
+        string='Supplier bills')
+    fatture_emesse = fields.Boolean(string="Customer invoices")
+    fatture_ricevute = fields.Boolean(string="Supplier bills")
     dati_trasmissione = fields.Selection(
-        [('DTE', 'Fatture Emesse'),
-         ('DTR', 'Fatture Ricevute'),
-         ('ANN', 'Annullamento dati inviati in precedenza')],
-        string='Trasmissione dati', required=True)
+        [('DTE', 'Customer invoices'),
+         ('DTR', 'Supplier bills'),
+         ('ANN', 'Cancellation previously sent data')],
+        string='Data transmission', required=True)
     # Cedente
     partner_cedente_id = fields.Many2one('res.partner', string='Partner')
     cedente_IdFiscaleIVA_IdPaese = fields.Char(
-        string='Id Paese', size=2, help="Codice della nazione espresso secondo\
-         lo standard ISO 3166-1 alpha-2 code")
+        string='Country ID', size=2,
+        help="Country code, expressed using the 3166-1 alpha-2 standard")
     cedente_IdFiscaleIVA_IdCodice = fields.Char(
-        string='Codice identificativo fiscale', size=28)
-    cedente_CodiceFiscale = fields.Char(
-        string='Codice Fiscale', size=16)
+        string='Fiscal identifier', size=28)
+    cedente_CodiceFiscale = fields.Char(string='Fiscal code', size=16)
     cedente_Denominazione = fields.Char(
-        string='Ditta, denominazione o ragione sociale', size=80)
+        string='Company, denomination or business name', size=80)
     cedente_Nome = fields.Char(
-        string='Nome della persona fisica', size=60, help="Obbligatorio ma da\
-         valorizzare insieme all'elemento 2.1.2.3 <Cognome>  ed in \
-         alternativa all'elemento 2.1.2.1 <Denominazione> ")
+        string='Natural person name', size=60,
+        help="To fill along with 2.1.2.3 <Cognome> and alternatively to "
+             "2.1.2.1 <Denominazione>")
     cedente_Cognome = fields.Char(
-        string='Cognome della persona fisica', size=60, help="Obbligatorio \
-        ma da valorizzare insieme all'elemento 2.1.2.2 <Nome>  ed in \
-        alternativa all'elemento 2.1.2.1 <Denominazione>")
+        string='Natural person surname', size=60,
+        help="To fill along with 2.1.2.2 <Nome> and alternatively to "
+             "2.1.2.1 <Denominazione>")
     cedente_sede_Indirizzo = fields.Char(
-        string='Indirizzo della sede', size=60)
+        string='Headquarters address', size=60)
     cedente_sede_NumeroCivico = fields.Char(
-        string='Numero civico', size=8)
+        string='Street number', size=8)
     cedente_sede_Cap = fields.Char(
-        string='CAP', size=5)
+        string='ZIP', size=5)
     cedente_sede_Comune = fields.Char(
-        string='Comune', size=60)
+        string='City', size=60)
     cedente_sede_Provincia = fields.Char(
-        string='Provincia', size=2)
+        string='State', size=2)
     cedente_sede_Nazione = fields.Char(
-        string='Nazione', size=2, help="Codice della nazione espresso secondo\
-         lo standard ISO 3166-1 alpha-2 code")
+        string='Country', size=2,
+        help="Country code, expressed using the 3166-1 alpha-2 standard")
     cedente_so_Indirizzo = fields.Char(
-        string='Indirizzo della stabile organizzazione in Italia', size=60)
+        string='Permanent establishment address', size=60)
     cedente_so_NumeroCivico = fields.Char(
-        string='Numero civico', size=8)
+        string='Street number', size=8)
     cedente_so_Cap = fields.Char(
-        string='CAP', size=5)
+        string='ZIP', size=5)
     cedente_so_Comune = fields.Char(
-        string='Comune', size=60)
+        string='City', size=60)
     cedente_so_Provincia = fields.Char(
-        string='Provincia', size=2)
+        string='State', size=2)
     cedente_so_Nazione = fields.Char(
-        string='Nazione', size=2, help="Codice della nazione espresso secondo\
-         lo standard ISO 3166-1 alpha-2 code")
+        string='Country', size=2,
+        help="Country code, expressed using the 3166-1 alpha-2 standard")
     cedente_rf_IdFiscaleIVA_IdPaese = fields.Char(
-        string='Id Paese', size=2, help="Accetta solo IT")
+        string='Country ID', size=2, help="Only IT is accepted")
     cedente_rf_IdFiscaleIVA_IdCodice = fields.Char(
-        string='Codice identificativo fiscale', size=11)
+        string='Fiscal identifier', size=11)
     cedente_rf_Denominazione = fields.Char(
-        string='Ditta, denominazione o ragione sociale', size=80,
-        help="Ditta, denominazione o ragione sociale (ditta, impresa, \
-        società, ente) del rappresentante fiscale. Obbligatorio ma da \
-        valorizzare in alternativa agli elementi 2.1.2.6.3 <Nome>  e  \
-        2.1.2.6.4 <Cognome>")
+        string='Company, denomination or business name', size=80)
     cedente_rf_Nome = fields.Char(
-        string='Nome della persona fisica', size=60, help="Nome del \
-        rappresentante fiscale persona fisica Obbligatorio ma da valorizzare\
-         insieme all'elemento 2.1.2.6.4 <Cognome>  ed in alternativa \
-         all'elemento 2.1.2.6.2 <Denominazione>")
+        string='Natural person name', size=60,
+        help="To fill along with 2.1.2.3 <Cognome> and alternatively to "
+             "2.1.2.1 <Denominazione>")
     cedente_rf_Cognome = fields.Char(
-        string='Cognome della persona fisica', size=60, help="Cognome del \
-        rappresentante fiscale persona fisica. Obbligatorio ma da valorizzare\
-         insieme all'elemento 2.1.2.6.3 <Nome>  ed in alternativa \
-         all'elemento 2.1.2.6.2 <Denominazione>")
+        string='Natural person surname', size=60,
+        help="To fill along with 2.1.2.2 <Nome> and alternatively to "
+             "2.1.2.1 <Denominazione>")
     # Cessionario
     partner_cessionario_id = fields.Many2one('res.partner', string='Partner')
     cessionario_IdFiscaleIVA_IdPaese = fields.Char(
-        string='Id Paese', size=2, help="Codice della nazione espresso secondo\
-         lo standard ISO 3166-1 alpha-2 code")
+        string='Country ID', size=2,
+        help="Country code, expressed using the 3166-1 alpha-2 standard")
     cessionario_IdFiscaleIVA_IdCodice = fields.Char(
-        string='Codice identificativo fiscale', size=28)
+        string='Fiscal identifier', size=28)
     cessionario_CodiceFiscale = fields.Char(
-        string='Codice Fiscale', size=16)
+        string='Fiscal code', size=16)
     cessionario_Denominazione = fields.Char(
-        string='Ditta, denominazione o ragione sociale', size=80)
+        string='Company, denomination or business name', size=80)
     cessionario_Nome = fields.Char(
-        string='Nome della persona fisica', size=60, help="Obbligatorio ma da\
-         valorizzare insieme all'elemento 3.1.2.3 <Cognome>  ed in \
-         alternativa all'elemento 3.1.2.1 <Denominazione> ")
+        string='Natural person name', size=60,
+        help="To fill along with 3.1.2.3 <Cognome> and alternatively to "
+             "3.1.2.1 <Denominazione>")
     cessionario_Cognome = fields.Char(
-        string='Cognome della persona fisica', size=60, help="Obbligatorio \
-        ma da valorizzare insieme all'elemento 3.1.2.2 <Nome>  ed in \
-        alternativa all'elemento 3.1.2.1 <Denominazione>")
+        string='Natural person surname', size=60,
+        help="To fill along with 3.1.2.3 <Nome> and alternatively to "
+             "3.1.2.1 <Denominazione>")
     cessionario_sede_Indirizzo = fields.Char(
-        string='Indirizzo della sede', size=60)
+        string='Headquarters address', size=60)
     cessionario_sede_NumeroCivico = fields.Char(
-        string='Numero civico', size=8)
+        string='Street number', size=8)
     cessionario_sede_Cap = fields.Char(
-        string='CAP', size=5)
+        string='ZIP', size=5)
     cessionario_sede_Comune = fields.Char(
-        string='Comune', size=60)
+        string='City', size=60)
     cessionario_sede_Provincia = fields.Char(
-        string='Provincia', size=2)
+        string='State', size=2)
     cessionario_sede_Nazione = fields.Char(
-        string='Nazione', size=2, help="Codice della nazione espresso secondo\
-         lo standard ISO 3166-1 alpha-2 code")
+        string='Country', size=2,
+        help="Country code, expressed using the 3166-1 alpha-2 standard")
     cessionario_so_Indirizzo = fields.Char(
-        string='Indirizzo della stabile organizzazione in Italia', size=60)
+        string='Permanent establishment address', size=60)
     cessionario_so_NumeroCivico = fields.Char(
-        string='Numero civico', size=8)
+        string='Street number', size=8)
     cessionario_so_Cap = fields.Char(
-        string='Numero civico', size=5)
+        string='ZIP', size=5)
     cessionario_so_Comune = fields.Char(
-        string='Comune', size=60)
+        string='City', size=60)
     cessionario_so_Provincia = fields.Char(
-        string='Provincia', size=2)
+        string='State', size=2)
     cessionario_so_Nazione = fields.Char(
-        string='Nazione', size=2, help="Codice della nazione espresso secondo\
-         lo standard ISO 3166-1 alpha-2 code")
+        string='Country', size=2,
+        help="Country code, expressed using the 3166-1 alpha-2 standard")
     cessionario_rf_IdFiscaleIVA_IdPaese = fields.Char(
-        string='Id Paese', size=2, help="Accetta solo IT")
+        string='Country ID', size=2, help="Only IT is accepted")
     cessionario_rf_IdFiscaleIVA_IdCodice = fields.Char(
-        string='Codice identificativo fiscale', size=11)
+        string='Fiscal identifier', size=11)
     cessionario_rf_Denominazione = fields.Char(
-        string='Ditta, denominazione o ragione sociale', size=80,
-        help="Ditta, denominazione o ragione sociale (ditta, impresa, \
-        società, ente) del rappresentante fiscale. Obbligatorio ma da \
-        valorizzare in alternativa agli elementi 3.1.2.6.3 <Nome>  e  \
-        3.1.2.6.4 <Cognome>")
+        string='Company, denomination or business name', size=80)
     cessionario_rf_Nome = fields.Char(
-        string='Nome della persona fisica', size=60, help="Nome del \
-        rappresentante fiscale persona fisica Obbligatorio ma da valorizzare\
-         insieme all'elemento 3.1.2.6.4 <Cognome>  ed in alternativa \
-         all'elemento 3.1.2.6.2 <Denominazione>")
+        string='Natural person name', size=60,
+        help="To fill along with 2.1.2.3 <Cognome> and alternatively to "
+             "2.1.2.1 <Denominazione>")
     cessionario_rf_Cognome = fields.Char(
-        string='Cognome della persona fisica', size=60, help="Cognome del \
-        rappresentante fiscale persona fisica. Obbligatorio ma da valorizzare\
-         insieme all'elemento 3.1.2.6.3 <Nome>  ed in alternativa \
-         all'elemento 3.1.2.6.2 <Denominazione>")
+        string='Natural person surname', size=60,
+        help="To fill along with 2.1.2.2 <Nome> and alternatively to "
+             "2.1.2.1 <Denominazione>")
     errors = fields.Text()
-
-    @api.multi
-    def _compute_name(self):
-        name = ""
-        for dich in self:
-            """
-            for quadro in dich.quadri_vp_ids:
-                if not name:
-                    name += '{} {}'.format(str(dich.year),
-                                           quadro.period_type)
-                if quadro.period_type == 'month':
-                    name += ', {}'.format(str(quadro.month))
-                else:
-                    name += ', {}'.format(str(quadro.quarter))"""
-            dich.name = name
 
     @api.onchange('company_id')
     def onchange_company_id(self):
@@ -407,7 +378,8 @@ class ComunicazioneDatiIva(models.Model):
 
     def _normalizza_dati_partner(self, partner, vals):
         # Paesi Esteri :
-        # - Rimuovo CAP/provincia che potrebbero dare problemi nella validazione
+        # - Rimuovo CAP/provincia che potrebbero dare problemi nella
+        #   validazione
         # Paesi UE :
         # - No codice fiscale se presente partita iva
         # Paesi EXTRA-UE :
@@ -498,24 +470,26 @@ class ComunicazioneDatiIva(models.Model):
                 dati_fatture.append((0, 0, val_cessionario))
             self.fatture_emesse_ids = dati_fatture
 
-    def _get_fatture_emesse(self):
-        invoices = False
+    def _get_fatture_emesse_domain(self):
         domain = [('comunicazione_dati_iva_escludi', '=', True)]
         no_journal_ids = self.env['account.journal'].search(domain).ids
-        for comunicazione in self:
-            domain = [('type', 'in', ['out_invoice', 'out_refund']),
-                      ('comunicazione_dati_iva_escludi', '=', False),
-                      ('move_id', '!=', False),
-                      ('move_id.journal_id', 'not in', no_journal_ids),
-                      ('company_id', '=', comunicazione.company_id.id),
-                      ('date_invoice', '>=', comunicazione.date_start),
-                      ('date_invoice', '<=', comunicazione.date_end),
-                      '|',
-                      ('fiscal_document_type_id.out_invoice', '=', True),
-                      ('fiscal_document_type_id.out_refund', '=', True),
-                      ]
-            invoices = self.env['account.invoice'].search(domain)
-        return invoices
+        domain = [('type', 'in', ['out_invoice', 'out_refund']),
+                  ('comunicazione_dati_iva_escludi', '=', False),
+                  ('move_id', '!=', False),
+                  ('move_id.journal_id', 'not in', no_journal_ids),
+                  ('company_id', '=', self.company_id.id),
+                  ('date_invoice', '>=', self.date_start),
+                  ('date_invoice', '<=', self.date_end),
+                  '|',
+                  ('fiscal_document_type_id.out_invoice', '=', True),
+                  ('fiscal_document_type_id.out_refund', '=', True),
+                  ]
+        return domain
+
+    def _get_fatture_emesse(self):
+        self.ensure_one()
+        domain = self._get_fatture_emesse_domain()
+        return self.env['account.invoice'].search(domain)
 
     @api.one
     def compute_fatture_ricevute(self):
@@ -565,23 +539,25 @@ class ComunicazioneDatiIva(models.Model):
                 dati_fatture.append((0, 0, val_cedente))
             self.fatture_ricevute_ids = dati_fatture
 
+    def _get_fatture_ricevute_domain(self):
+        domain = [('comunicazione_dati_iva_escludi', '=', True)]
+        no_journal_ids = self.env['account.journal'].search(domain).ids
+        domain = [('type', 'in', ['in_invoice', 'in_refund']),
+                  ('comunicazione_dati_iva_escludi', '=', False),
+                  ('move_id', '!=', False),
+                  ('move_id.journal_id', 'not in', no_journal_ids),
+                  ('company_id', '=', self.company_id.id),
+                  ('date', '>=', self.date_start),
+                  ('date', '<=', self.date_end),
+                  '|',
+                  ('fiscal_document_type_id.in_invoice', '=', True),
+                  ('fiscal_document_type_id.in_refund', '=', True), ]
+        return domain
+
     def _get_fatture_ricevute(self):
-        invoices = False
-        for comunicazione in self:
-            domain = [('comunicazione_dati_iva_escludi', '=', True)]
-            no_journal_ids = self.env['account.journal'].search(domain).ids
-            domain = [('type', 'in', ['in_invoice', 'in_refund']),
-                      ('comunicazione_dati_iva_escludi', '=', False),
-                      ('move_id', '!=', False),
-                      ('move_id.journal_id', 'not in', no_journal_ids),
-                      ('company_id', '=', comunicazione.company_id.id),
-                      ('date', '>=', comunicazione.date_start),
-                      ('date', '<=', comunicazione.date_end),
-                      '|',
-                      ('fiscal_document_type_id.in_invoice', '=', True),
-                      ('fiscal_document_type_id.in_refund', '=', True), ]
-            invoices = self.env['account.invoice'].search(domain)
-        return invoices
+        self.ensure_one()
+        domain = self._get_fatture_ricevute_domain()
+        return self.env['account.invoice'].search(domain)
 
     def _unlink_sections(self):
         for comunicazione in self:
@@ -602,183 +578,204 @@ class ComunicazioneDatiIva(models.Model):
             invoices_limit = len(line.fatture_emesse_body_ids)
             if invoices_limit > 1000:
                 errors += [
-                    'Superato il limite di 1000 fatture per cessionario (%s)'
-                    % line.partner_id.name]
+                    _('Limit of 1000 invoices per assignee (%s) exceeded')
+                    % line.partner_id.display_name]
         if partner_limit > 1000:
             errors += [
-                'Superato il limite di 1000 cessionari per comunicazione']
+                _('Limit of 1000 assignees per communication exceeded')]
         # ----- Cedente
         # -----     Normalizzazione delle stringhe
         if not check_normalized_string(comunicazione.cedente_Denominazione):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Denominazione del cedente')
+                _('Remove empty characters around seller\'s denomination'))
         if not check_normalized_string(comunicazione.cedente_Nome):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Nome del cedente')
+                _('Remove empty characters around seller\'s name'))
         if not check_normalized_string(comunicazione.cedente_Cognome):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Cognome del cedente')
+                _('Remove empty characters around seller\'s surname'))
         if not check_normalized_string(comunicazione.cedente_sede_Indirizzo):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Indirizzo della Sede del cedente')
-        if not check_normalized_string(comunicazione.cedente_sede_NumeroCivico):
+                _('Remove empty characters around seller\'s headquarters '
+                  'address'))
+        if not check_normalized_string(
+                comunicazione.cedente_sede_NumeroCivico):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Numero Civico della Sede del cedente')
+                _('Remove empty characters around seller\'s street number'))
         if not check_normalized_string(comunicazione.cedente_sede_Comune):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Numero Civico della Sede del cedente')
+                _('Remove empty characters around seller\'s city'))
         if not check_normalized_string(comunicazione.cedente_so_Indirizzo):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Indirizzo dello Stabile Organizzazione del cedente')
+                _('Remove empty characters around address of permanent '
+                  'establishment'))
         if not check_normalized_string(comunicazione.cedente_so_NumeroCivico):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Numero Civico dello Stabile Organizzazione del cedente')
+                _('Remove empty characters around street number of permanent '
+                  'establishment'))
         if not check_normalized_string(comunicazione.cedente_so_Comune):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Numero Civico dello Stabile Organizzazione del cedente')
+                _('Remove empty characters around city of permanent '
+                  'establishment'))
         if not check_normalized_string(comunicazione.cedente_rf_Denominazione):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Denominazione del Rappresentante Fiscale del cedente')
+                _('Remove empty characters around denomination of fiscal '
+                  'representative'))
         if not check_normalized_string(comunicazione.cedente_rf_Nome):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Nome del Rappresentante Fiscale del cedente')
+                _('Remove empty characters around name of fiscal '
+                  'representative'))
         if not check_normalized_string(comunicazione.cedente_rf_Cognome):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Cognome del Rappresentante Fiscale del cedente')
+                _('Remove empty characters around surname of fiscal '
+                  'representative'))
         # ----- Cessionario
-        for partner in comunicazione.fatture_emesse_ids:
+        for invoices_partner in comunicazione.fatture_emesse_ids:
             # -----     Normalizzazione delle stringhe
-            if not check_normalized_string(partner.cessionario_Denominazione):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Denominazione del '
-                    u'cessionario %s' % partner.partner_id.name)
-            if not check_normalized_string(partner.cessionario_Nome):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Nome del '
-                    u'cessionario %s' % partner.partner_id.name)
-            if not check_normalized_string(partner.cessionario_Cognome):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Cognome del '
-                    u'cessionario %s' % partner.partner_id.name)
-            if not check_normalized_string(partner.cessionario_sede_Indirizzo):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Indirizzo della Sede del '
-                    u'cessionario %s' % partner.partner_id.name)
-            if not check_normalized_string(partner.cessionario_sede_NumeroCivico):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Numero Civico della Sede del '
-                    u'cessionario %s' % partner.partner_id.name)
-            if not check_normalized_string(partner.cessionario_sede_Comune):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Numero Civico della Sede del '
-                    u'cessionario %s' % partner.partner_id.name)
-            if not check_normalized_string(partner.cessionario_so_Indirizzo):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Indirizzo dello Stabile Organizzazione del '
-                    u'cessionario %s' % partner.partner_id.name)
-            if not check_normalized_string(partner.cessionario_so_NumeroCivico):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Numero Civico dello Stabile Organizzazione del'
-                    u'cessionario %s' % partner.partner_id.name)
-            if not check_normalized_string(partner.cessionario_so_Comune):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Numero Civico dello Stabile Organizzazione del '
-                    u'cessionario %s' % partner.partner_id.name)
             if not check_normalized_string(
-                    partner.cessionario_rf_Denominazione):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Denominazione del Rappresentante Fiscale del '
-                    u'cessionario %s' % partner.partner_id.name)
-            if not check_normalized_string(partner.cessionario_rf_Nome):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Nome del Rappresentante Fiscale del '
-                    u'cessionario %s' % partner.partner_id.name)
-            if not check_normalized_string(partner.cessionario_rf_Cognome):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Cognome del Rappresentante Fiscale del '
-                    u'cessionario %s' % partner.partner_id.name)
+                invoices_partner.cessionario_Denominazione
+            ):
+                errors.append(_(
+                    u'Remove empty characters around denomination of assignee '
+                    u'%s'
+                ) % invoices_partner.partner_id.display_name)
+            if not check_normalized_string(invoices_partner.cessionario_Nome):
+                errors.append(_(
+                    u'Remove empty characters around name of assignee '
+                    u'%s'
+                ) % invoices_partner.partner_id.display_name)
+            if not check_normalized_string(
+                invoices_partner.cessionario_Cognome
+            ):
+                errors.append(_(
+                    u'Remove empty characters around surname of assignee '
+                    u'%s'
+                ) % invoices_partner.partner_id.display_name)
+            if not check_normalized_string(
+                invoices_partner.cessionario_sede_Indirizzo
+            ):
+                errors.append(_(
+                    u'Remove empty characters around headquarters address of '
+                    u'assignee %s'
+                ) % invoices_partner.partner_id.display_name)
+            if not check_normalized_string(
+                invoices_partner.cessionario_sede_NumeroCivico
+            ):
+                errors.append(_(
+                    u'Remove empty characters around street number of assignee'
+                    u' %s'
+                ) % invoices_partner.partner_id.display_name)
+            if not check_normalized_string(
+                invoices_partner.cessionario_sede_Comune
+            ):
+                errors.append(_(
+                    u'Remove empty characters around city of assignee '
+                    u'%s'
+                ) % invoices_partner.partner_id.display_name)
+            if not check_normalized_string(
+                invoices_partner.cessionario_so_Indirizzo
+            ):
+                errors.append(_(
+                    u'Remove empty characters around address of permanent '
+                    u'establishment %s'
+                ) % invoices_partner.partner_id.display_name)
+            if not check_normalized_string(
+                invoices_partner.cessionario_so_NumeroCivico
+            ):
+                errors.append(_(
+                    u'Remove empty characters around street number of '
+                    u'permanent establishment %s'
+                ) % invoices_partner.partner_id.display_name)
+            if not check_normalized_string(
+                invoices_partner.cessionario_so_Comune
+            ):
+                errors.append(_(
+                    u'Remove empty characters around city of permanent '
+                    u'establishment %s'
+                ) % invoices_partner.partner_id.display_name)
+            if not check_normalized_string(
+                    invoices_partner.cessionario_rf_Denominazione):
+                errors.append(_(
+                    u'Remove empty characters around denomination of fiscal '
+                    u'representative %s'
+                ) % invoices_partner.partner_id.display_name)
+            if not check_normalized_string(
+                invoices_partner.cessionario_rf_Nome
+            ):
+                errors.append(_(
+                    u'Remove empty characters around name of fiscal '
+                    u'representative %s'
+                ) % invoices_partner.partner_id.display_name)
+            if not check_normalized_string(
+                invoices_partner.cessionario_rf_Cognome
+            ):
+                errors.append(_(
+                    u'Remove empty characters around surname of fiscal '
+                    u'representative %s'
+                ) % invoices_partner.partner_id.display_name)
             # ----- Dati fiscali
-            if not partner.cessionario_IdFiscaleIVA_IdPaese and \
-                    partner.cessionario_IdFiscaleIVA_IdCodice:
-                errors.append(
-                    u'Definire un id paese '
-                    u'per il cessionario %s' % partner.partner_id.name)
+            if not invoices_partner.cessionario_IdFiscaleIVA_IdPaese and \
+                    invoices_partner.cessionario_IdFiscaleIVA_IdCodice:
+                errors.append(_(
+                    u'Define a country ID for assignee %s'
+                ) % invoices_partner.partner_id.display_name)
             # ----- Dati Sede
-            if not all([partner.cessionario_sede_Indirizzo,
-                        partner.cessionario_sede_Comune,
-                        partner.cessionario_sede_Nazione, ]):
-                errors.append(
-                    u'I valori Indirizzo, Comune e Nazione della Sede del '
-                    u'Cessionario %s sono '
-                    u'obbligatori' % partner.partner_id.name)
+            if not all([invoices_partner.cessionario_sede_Indirizzo,
+                        invoices_partner.cessionario_sede_Comune,
+                        invoices_partner.cessionario_sede_Nazione, ]):
+                errors.append(_(
+                    u'Address, city, country of %s are mandatory'
+                ) % invoices_partner.partner_id.display_name)
             # ----- Dati Stabile Organizzazione
-            if any([partner.cessionario_so_Indirizzo,
-                    partner.cessionario_so_NumeroCivico,
-                    partner.cessionario_so_Cap,
-                    partner.cessionario_so_Comune,
-                    partner.cessionario_so_Provincia,
-                    partner.cessionario_so_Nazione,
-                    ]) and not all([partner.cessionario_so_Indirizzo,
-                                    partner.cessionario_so_Comune,
-                                    partner.cessionario_so_Cap,
-                                    partner.cessionario_so_Nazione, ]):
-                errors.append(
-                    u'I valori Indirizzo, Comune, CAP e Nazione dello Stabile '
-                    u'Organizzazione %s sono obbligatori se almeno '
-                    u'uno dei dati è definito' % partner.partner_id.name)
+            if any([invoices_partner.cessionario_so_Indirizzo,
+                    invoices_partner.cessionario_so_NumeroCivico,
+                    invoices_partner.cessionario_so_Cap,
+                    invoices_partner.cessionario_so_Comune,
+                    invoices_partner.cessionario_so_Provincia,
+                    invoices_partner.cessionario_so_Nazione,
+                    ]) and not all([invoices_partner.cessionario_so_Indirizzo,
+                                    invoices_partner.cessionario_so_Comune,
+                                    invoices_partner.cessionario_so_Cap,
+                                    invoices_partner.cessionario_so_Nazione,
+                                    ]):
+                errors.append(_(
+                    u'Address, city, ZIP and country of permanent '
+                    u'establishment %s are mandatory, when at least one value '
+                    u'is defined'
+                ) % invoices_partner.partner_id.display_name)
             # ----- Rappresentante Fiscale
-            if any([partner.cessionario_rf_IdFiscaleIVA_IdPaese,
-                    partner.cessionario_rf_IdFiscaleIVA_IdCodice,
-                    partner.cessionario_rf_Denominazione,
-                    partner.cessionario_rf_Nome,
-                    partner.cessionario_rf_Cognome,
+            if any([invoices_partner.cessionario_rf_IdFiscaleIVA_IdPaese,
+                    invoices_partner.cessionario_rf_IdFiscaleIVA_IdCodice,
+                    invoices_partner.cessionario_rf_Denominazione,
+                    invoices_partner.cessionario_rf_Nome,
+                    invoices_partner.cessionario_rf_Cognome,
                     ]) and not all([
-                        partner.cessionario_rf_IdFiscaleIVA_IdPaese,
-                        partner.cessionario_rf_IdFiscaleIVA_IdCodice, ]):
-                errors.append(
-                    u'I valori Id Paese e Codice identificativo fiscale '
-                    u' del Rappresentante Fiscale %s sono obbligatori '
-                    u'se almeno uno dei dati è '
-                    u'definito' % partner.partner_id.name)
+                        invoices_partner.cessionario_rf_IdFiscaleIVA_IdPaese,
+                        invoices_partner.cessionario_rf_IdFiscaleIVA_IdCodice,
+                    ]):
+                errors.append(_(
+                    u'Country ID and fiscal identifier of fiscal '
+                    u'representative %s are mandatory, when at least one '
+                    u'value is defined'
+                ) % invoices_partner.partner_id.display_name)
             # ----- CAP
-            if partner.cessionario_sede_Cap and \
-                    not re.match('[0-9]{5}', partner.cessionario_sede_Cap):
-                errors.append(
-                    u'Il CAP %s del cessionario %s non rispetta '
-                    u'il formato desiderato (numerico lunghezza 5)' % (
-                        partner.cessionario_sede_Cap,
-                        partner.partner_id.name))
+            if invoices_partner.cessionario_sede_Cap and \
+                    not re.match(
+                        '[0-9]{5}', invoices_partner.cessionario_sede_Cap):
+                errors.append(_(
+                    u'ZIP %s of assignee %s is not 5 numeric characters'
+                ) % (
+                    invoices_partner.cessionario_sede_Cap,
+                    invoices_partner.partner_id.display_name
+                ))
             # ----- Dettagli IVA
-            for invoice in partner.fatture_emesse_body_ids:
+            for invoice in invoices_partner.fatture_emesse_body_ids:
                 if not invoice.dati_fattura_iva_ids:
-                    errors.append(
-                        u'Nessun dato IVA definito per la fattura %s del '
-                        u'partner %s' % (invoice.invoice_id.number,
-                                         partner.partner_id.name))
+                    errors.append(_(
+                        u'No VAT data defined for invoice %s of partner %s'
+                    ) % (
+                        invoice.invoice_id.number,
+                        invoices_partner.partner_id.display_name))
         return errors
 
     @api.multi
@@ -793,195 +790,207 @@ class ComunicazioneDatiIva(models.Model):
             invoices_limit = len(line.fatture_ricevute_body_ids)
             if invoices_limit > 1000:
                 errors += [
-                    'Superato il limite di 1000 fatture per cessionario (%s)'
-                    % line.partner_id.name]
+                    _('Limit of 1000 invoices per assignee (%s) exceeded')
+                    % line.partner_id.display_name]
         if partner_limit > 1000:
             errors += [
-                'Superato il limite di 1000 cessionari per comunicazione']
+                _('Limit of 1000 assignees per communication exceeded')]
         # ----- Cessionario
         # -----     Normalizzazione delle stringhe
         if not check_normalized_string(
                 comunicazione.cessionario_Denominazione):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Denominazione del cessionario')
+                _('Remove empty characters around assignee\'s denomination'))
         if not check_normalized_string(comunicazione.cessionario_Nome):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Nome del cessionario')
+                _('Remove empty characters around assignee\'s name'))
         if not check_normalized_string(comunicazione.cessionario_Cognome):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Cognome del cessionario')
+                _('Remove empty characters around assignee\'s surname'))
         if not check_normalized_string(
                 comunicazione.cessionario_sede_Indirizzo):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Indirizzo della Sede del cessionario')
+                _('Remove empty characters around assignee\'s headquarters '
+                  'address'))
         if not check_normalized_string(
                 comunicazione.cessionario_sede_NumeroCivico):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Numero Civico della Sede del cessionario')
+                _('Remove empty characters around assignee\'s street number'))
         if not check_normalized_string(comunicazione.cessionario_sede_Comune):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Numero Civico della Sede del cessionario')
+                _('Remove empty characters around assignee\'s city'))
         if not check_normalized_string(comunicazione.cessionario_so_Indirizzo):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Indirizzo dello Stabile Organizzazione del cessionario')
+                _('Remove empty characters around address of permanent '
+                  'establishment'))
         if not check_normalized_string(
                 comunicazione.cessionario_so_NumeroCivico):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Numero Civico dello Stabile Organizzazione del cessionario')
+                _('Remove empty characters around street number of permanent '
+                  'establishment'))
         if not check_normalized_string(comunicazione.cessionario_so_Comune):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Numero Civico dello Stabile Organizzazione del cessionario')
+                _('Remove empty characters around city of permanent '
+                  'establishment'))
         if not check_normalized_string(
                 comunicazione.cessionario_rf_Denominazione):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Denominazione del Rappresentante Fiscale del cessionario')
+                _('Remove empty characters around denomination of fiscal '
+                  'representative'))
         if not check_normalized_string(comunicazione.cessionario_rf_Nome):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Nome del Rappresentante Fiscale del cessionario')
+                _('Remove empty characters around name of fiscal '
+                  'representative'))
         if not check_normalized_string(comunicazione.cessionario_rf_Cognome):
             errors.append(
-                'Eliminare i caratteri vuoti ai limiti del valore '
-                'Cognome del Rappresentante Fiscale del cessionario')
+                _('Remove empty characters around surname of fiscal '
+                  'representative'))
         # ----- Cedente
-        for partner in comunicazione.fatture_ricevute_ids:
+        for invoices_partner in comunicazione.fatture_ricevute_ids:
             # -----     Normalizzazione delle stringhe
-            if not check_normalized_string(partner.cedente_Denominazione):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Denominazione del '
-                    u'cedente %s' % partner.partner_id.name)
-            if not check_normalized_string(partner.cedente_Nome):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Nome del '
-                    u'cedente %s' % partner.partner_id.name)
-            if not check_normalized_string(partner.cedente_Cognome):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Cognome del '
-                    u'cedente %s' % partner.partner_id.name)
-            if not check_normalized_string(partner.cedente_sede_Indirizzo):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Indirizzo della Sede del '
-                    u'cedente %s' % partner.partner_id.name)
-            if not check_normalized_string(partner.cedente_sede_NumeroCivico):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Numero Civico della Sede del '
-                    u'cedente %s' % partner.partner_id.name)
-            if not check_normalized_string(partner.cedente_sede_Comune):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Numero Civico della Sede del '
-                    u'cedente %s' % partner.partner_id.name)
-            if not check_normalized_string(partner.cedente_so_Indirizzo):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Indirizzo dello Stabile Organizzazione del '
-                    u'cedente %s' % partner.partner_id.name)
-            if not check_normalized_string(partner.cedente_so_NumeroCivico):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Numero Civico dello Stabile Organizzazione del'
-                    u'cedente %s' % partner.partner_id.name)
-            if not check_normalized_string(partner.cedente_so_Comune):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Numero Civico dello Stabile Organizzazione del '
-                    u'cedente %s' % partner.partner_id.name)
             if not check_normalized_string(
-                    partner.cedente_rf_Denominazione):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Denominazione del Rappresentante Fiscale del '
-                    u'cedente %s' % partner.partner_id.name)
-            if not check_normalized_string(partner.cedente_rf_Nome):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Nome del Rappresentante Fiscale del '
-                    u'cedente %s' % partner.partner_id.name)
-            if not check_normalized_string(partner.cedente_rf_Cognome):
-                errors.append(
-                    u'Eliminare i caratteri vuoti ai limiti del valore '
-                    u'Cognome del Rappresentante Fiscale del '
-                    u'cedente %s' % partner.partner_id.name)
+                invoices_partner.cedente_Denominazione
+            ):
+                errors.append(_(
+                    u'Remove empty characters around denomination of seller '
+                    u'%s'
+                ) % invoices_partner.partner_id.display_name)
+            if not check_normalized_string(invoices_partner.cedente_Nome):
+                errors.append(_(
+                    u'Remove empty characters around name of seller '
+                    u'%s'
+                ) % invoices_partner.partner_id.display_name)
+            if not check_normalized_string(invoices_partner.cedente_Cognome):
+                errors.append(_(
+                    u'Remove empty characters around surname of seller '
+                    u'%s'
+                ) % invoices_partner.partner_id.display_name)
+            if not check_normalized_string(
+                invoices_partner.cedente_sede_Indirizzo
+            ):
+                errors.append(_(
+                    u'Remove empty characters around headquarters address of '
+                    u'seller %s'
+                ) % invoices_partner.partner_id.display_name)
+            if not check_normalized_string(
+                invoices_partner.cedente_sede_NumeroCivico
+            ):
+                errors.append(_(
+                    u'Remove empty characters around street number of seller '
+                    u'%s'
+                ) % invoices_partner.partner_id.display_name)
+            if not check_normalized_string(
+                invoices_partner.cedente_sede_Comune
+            ):
+                errors.append(_(
+                    u'Remove empty characters around city of seller '
+                    u'%s'
+                ) % invoices_partner.partner_id.display_name)
+            if not check_normalized_string(
+                invoices_partner.cedente_so_Indirizzo
+            ):
+                errors.append(_(
+                    u'Remove empty characters around address of permanent '
+                    u'establishment %s'
+                ) % invoices_partner.partner_id.display_name)
+            if not check_normalized_string(
+                invoices_partner.cedente_so_NumeroCivico
+            ):
+                errors.append(_(
+                    u'Remove empty characters around street number of '
+                    u'permanent establishment %s'
+                ) % invoices_partner.partner_id.display_name)
+            if not check_normalized_string(invoices_partner.cedente_so_Comune):
+                errors.append(_(
+                    u'Remove empty characters around city of permanent '
+                    u'establishment %s'
+                ) % invoices_partner.partner_id.display_name)
+            if not check_normalized_string(
+                    invoices_partner.cedente_rf_Denominazione):
+                errors.append(_(
+                    u'Remove empty characters around denomination of fiscal '
+                    u'representative %s'
+                ) % invoices_partner.partner_id.display_name)
+            if not check_normalized_string(invoices_partner.cedente_rf_Nome):
+                errors.append(_(
+                    u'Remove empty characters around name of fiscal '
+                    u'representative %s'
+                ) % invoices_partner.partner_id.display_name)
+            if not check_normalized_string(
+                invoices_partner.cedente_rf_Cognome
+            ):
+                errors.append(_(
+                    u'Remove empty characters around surname of fiscal '
+                    u'representative %s'
+                ) % invoices_partner.partner_id.display_name)
             # ----- Dati fiscali
-            if not partner.cedente_IdFiscaleIVA_IdPaese and \
-                    partner.cedente_IdFiscaleIVA_IdCodice:
-                errors.append(
-                    u'Definire un id paese '
-                    u'per il cedente %s' % partner.partner_id.name)
+            if not invoices_partner.cedente_IdFiscaleIVA_IdPaese and \
+                    invoices_partner.cedente_IdFiscaleIVA_IdCodice:
+                errors.append(_(
+                    u'Define a country ID for seller %s'
+                ) % invoices_partner.partner_id.display_name)
             # ----- Dati Sede
-            if not all([partner.cedente_sede_Indirizzo,
-                        partner.cedente_sede_Comune,
-                        partner.cedente_sede_Nazione, ]):
-                errors.append(
-                    u'I valori Indirizzo, Comune e Nazione della Sede del '
-                    u'cedente %s sono '
-                    u'obbligatori' % partner.partner_id.name)
+            if not all([invoices_partner.cedente_sede_Indirizzo,
+                        invoices_partner.cedente_sede_Comune,
+                        invoices_partner.cedente_sede_Nazione, ]):
+                errors.append(_(
+                    u'Address, city, country of %s are mandatory'
+                ) % invoices_partner.partner_id.display_name)
             # ----- Dati Stabile Organizzazione
-            if any([partner.cedente_so_Indirizzo,
-                    partner.cedente_so_NumeroCivico,
-                    partner.cedente_so_Cap,
-                    partner.cedente_so_Comune,
-                    partner.cedente_so_Provincia,
-                    partner.cedente_so_Nazione,
-                    ]) and not all([partner.cedente_so_Indirizzo,
-                                    partner.cedente_so_Comune,
-                                    partner.cedente_so_Cap,
-                                    partner.cedente_so_Nazione, ]):
-                errors.append(
-                    u'I valori Indirizzo, Comune, CAP e Nazione dello Stabile '
-                    u'Organizzazione %s sono obbligatori se almeno '
-                    u'uno dei dati è definito' % partner.partner_id.name)
+            if any([invoices_partner.cedente_so_Indirizzo,
+                    invoices_partner.cedente_so_NumeroCivico,
+                    invoices_partner.cedente_so_Cap,
+                    invoices_partner.cedente_so_Comune,
+                    invoices_partner.cedente_so_Provincia,
+                    invoices_partner.cedente_so_Nazione,
+                    ]) and not all([invoices_partner.cedente_so_Indirizzo,
+                                    invoices_partner.cedente_so_Comune,
+                                    invoices_partner.cedente_so_Cap,
+                                    invoices_partner.cedente_so_Nazione, ]):
+                errors.append(_(
+                    u'Address, city, ZIP and country of permanent '
+                    u'establishment %s are mandatory, when at least one value '
+                    u'is defined'
+                ) % invoices_partner.partner_id.display_name)
             # ----- Rappresentante Fiscale
-            if any([partner.cedente_rf_IdFiscaleIVA_IdPaese,
-                    partner.cedente_rf_IdFiscaleIVA_IdCodice,
-                    partner.cedente_rf_Denominazione,
-                    partner.cedente_rf_Nome,
-                    partner.cedente_rf_Cognome,
+            if any([invoices_partner.cedente_rf_IdFiscaleIVA_IdPaese,
+                    invoices_partner.cedente_rf_IdFiscaleIVA_IdCodice,
+                    invoices_partner.cedente_rf_Denominazione,
+                    invoices_partner.cedente_rf_Nome,
+                    invoices_partner.cedente_rf_Cognome,
                     ]) and not all([
-                        partner.cedente_rf_IdFiscaleIVA_IdPaese,
-                        partner.cedente_rf_IdFiscaleIVA_IdCodice, ]):
-                errors.append(
-                    u'I valori Id Paese e Codice identificativo fiscale '
-                    u' del Rappresentante Fiscale %s sono obbligatori '
-                    u'se almeno uno dei dati è '
-                    u'definito' % partner.partner_id.name)
+                        invoices_partner.cedente_rf_IdFiscaleIVA_IdPaese,
+                        invoices_partner.cedente_rf_IdFiscaleIVA_IdCodice, ]):
+                errors.append(_(
+                    u'Country ID and fiscal identifier of fiscal '
+                    u'representative %s are mandatory, when at least one '
+                    u'value is defined'
+                ) % invoices_partner.partner_id.display_name)
             # ----- CAP
-            if partner.cedente_sede_Cap and \
-                    not re.match('[0-9]{5}', partner.cedente_sede_Cap):
-                errors.append(
-                    u'Il CAP %s del cedente %s non rispetta '
-                    u'il formato desiderato (numerico lunghezza 5)' % (
-                        partner.cedente_sede_Cap,
-                        partner.partner_id.name))
+            if invoices_partner.cedente_sede_Cap and \
+                    not re.match(
+                        '[0-9]{5}', invoices_partner.cedente_sede_Cap):
+                errors.append(_(
+                    u'ZIP %s of seller %s is not 5 characters'
+                ) % (
+                    invoices_partner.cessionario_sede_Cap,
+                    invoices_partner.partner_id.display_name
+                ))
             # ----- Dettagli IVA
-            for invoice in partner.fatture_ricevute_body_ids:
+            for invoice in invoices_partner.fatture_ricevute_body_ids:
                 if not invoice.dati_fattura_iva_ids:
-                    errors.append(
-                        u'Nessun dato IVA definito per la fattura %s del '
-                        u'partner %s' % (invoice.invoice_id.number,
-                                         partner.partner_id.name))
+                    errors.append(_(
+                        u'No VAT data defined for invoice %s of partner %s'
+                    ) % (
+                        invoice.invoice_id.number,
+                        invoices_partner.partner_id.display_name))
                 if not invoice.dati_fattura_Numero:
                     errors.append(
-                        u'Nessun numero fornitore per la fattura %s' % (
+                        _(u'No invoice number for supplier bill %s') % (
                             invoice.invoice_id.number))
                 if not invoice.dati_fattura_DataRegistrazione:
                     errors.append(
-                        u'Nessuna data di registrazione per la fattura %s' % (
+                        _(u'No registration date for supplier bill %s') % (
                             invoice.invoice_id.number))
         return errors
 
@@ -994,10 +1003,10 @@ class ComunicazioneDatiIva(models.Model):
             elif comunicazione.dati_trasmissione == 'DTR':
                 errors += comunicazione._check_errors_dtr()
             if not errors:
-                errors = [u'Tutti i Dati risultano essere corretti!\n'
-                          u'È possibile esportare il file XML']
+                errors = [_(u'All data are correct.\nIt possible to export '
+                            u'XML file')]
             else:
-                errors = ['Errori:'] + errors
+                errors = [_('Errors:')] + errors
             comunicazione.errors = u'\n - '.join(errors)
 
     def _validate(self):
@@ -1025,19 +1034,17 @@ class ComunicazioneDatiIva(models.Model):
             etree.QName("ProgressivoInvio"))
         x_1_1_progressivo_invio.text = str(self.identificativo)
 
-        '''
-        Nota del file excel: 
-        Questo blocco va valorizzato solo se il soggetto obbligato 
-        alla comunicazione dei dati fattura non coincide con 
-        il soggetto passivo IVA al quale i dati si riferiscono. 
-        NON deve essere valorizzato se per il soggetto trasmittente 
-        è vera una delle seguenti affermazioni:
-        - coincide  con il soggetto IVA al quale i dati si riferiscono;
-        - è legato da vincolo di incarico con il soggetto IVA al quale i dati 
-            si riferiscono;
-        - è un intermediario.
-        In tutti gli altri casi questo blocco DEVE essere valorizzato.
-        '''
+        # Nota del file excel:
+        # Questo blocco va valorizzato solo se il soggetto obbligato
+        # alla comunicazione dei dati fattura non coincide con
+        # il soggetto passivo IVA al quale i dati si riferiscono.
+        # NON deve essere valorizzato se per il soggetto trasmittente
+        # è vera una delle seguenti affermazioni:
+        # - coincide  con il soggetto IVA al quale i dati si riferiscono;
+        # - è legato da vincolo di incarico con il soggetto IVA al quale i dati
+        #     si riferiscono;
+        # - è un intermediario.
+        # In tutti gli altri casi questo blocco DEVE essere valorizzato.
 
         # ----- 1.2 - Dichiarante
         x_1_2_dichiarante = etree.SubElement(
@@ -1186,7 +1193,8 @@ class ComunicazioneDatiIva(models.Model):
         x_2_1_2_6_1_1_id_paese = etree.SubElement(
             x_2_1_2_6_1_id_fiscale_iva,
             etree.QName("IdPaese"))
-        x_2_1_2_6_1_1_id_paese.text = self.cedente_rf_IdFiscaleIVA_IdPaese or ''
+        x_2_1_2_6_1_1_id_paese.text = (
+            self.cedente_rf_IdFiscaleIVA_IdPaese or '')
         # -----                     2.1.2.6.1.2 - Id Codice
         x_2_1_2_6_1_2_id_codice = etree.SubElement(
             x_2_1_2_6_1_id_fiscale_iva,
@@ -1460,26 +1468,6 @@ class ComunicazioneDatiIva(models.Model):
                         etree.QName("EsigibilitaIVA"))
                     x_2_2_3_2_6_esagibilita_iva.text = tax.EsigibilitaIVA or ''
 
-        '''
-        TODO: Not implemented yet
-        # -----     2.3 - Rettifica
-        x_2_3_rettifica = etree.SubElement(
-            x_2_dte,
-            etree.QName("Rettifica"))
-        # -----         2.3.1 - Id File
-        x_2_3_1_id_file = etree.SubElement(
-            x_2_3_rettifica,
-            etree.QName("IdFile"))
-        # x_2_3_1_id_file.text = self.rettifica_IdFIle \
-        #     if self.rettifica_IdFIle else ''
-        # -----         2.3.2 - Posizione
-        x_2_3_2_posizione = etree.SubElement(
-            x_2_3_rettifica,
-            etree.QName("Posizione"))
-        # x_2_3_2_posizione.text = self.rettifica_Posizione \
-        #     if self.rettifica_Posizione else ''
-        '''
-
         return x_2_dte
 
     def _export_xml_get_dtr(self):
@@ -1507,7 +1495,8 @@ class ComunicazioneDatiIva(models.Model):
         x_3_1_1_1_2_id_codice = etree.SubElement(
             x_3_1_1_1_id_fiscale_iva,
             etree.QName("IdCodice"))
-        x_3_1_1_1_2_id_codice.text = self.cessionario_IdFiscaleIVA_IdCodice or ''
+        x_3_1_1_1_2_id_codice.text = (
+            self.cessionario_IdFiscaleIVA_IdCodice or '')
         # -----             2.1.1.2 - Codice Fiscale
         x_3_1_1_2_codice_fiscale = etree.SubElement(
             x_3_1_1_identificativi_fiscali,
@@ -1545,7 +1534,8 @@ class ComunicazioneDatiIva(models.Model):
         x_3_1_2_4_2_numero_civico = etree.SubElement(
             x_3_1_2_4_sede,
             etree.QName("NumeroCivico"))
-        x_3_1_2_4_2_numero_civico.text = self.cessionario_sede_NumeroCivico or ''
+        x_3_1_2_4_2_numero_civico.text = (
+            self.cessionario_sede_NumeroCivico or '')
         # -----                 2.1.2.4.3 - CAP
         x_3_1_2_4_3_cap = etree.SubElement(
             x_3_1_2_4_sede,
@@ -1612,7 +1602,8 @@ class ComunicazioneDatiIva(models.Model):
         x_3_1_2_6_1_1_id_paese = etree.SubElement(
             x_3_1_2_6_1_id_fiscale_iva,
             etree.QName("IdPaese"))
-        x_3_1_2_6_1_1_id_paese.text = self.cessionario_rf_IdFiscaleIVA_IdPaese or ''
+        x_3_1_2_6_1_1_id_paese.text = (
+            self.cessionario_rf_IdFiscaleIVA_IdPaese or '')
         # -----                     2.1.2.6.1.2 - Id Codice
         x_3_1_2_6_1_2_id_codice = etree.SubElement(
             x_3_1_2_6_1_id_fiscale_iva,
@@ -1892,26 +1883,6 @@ class ComunicazioneDatiIva(models.Model):
                         etree.QName("EsigibilitaIVA"))
                     x_3_2_3_2_6_esagibilita_iva.text = tax.EsigibilitaIVA or ''
 
-        '''
-        TODO: Not implemented yet
-        # -----     2.3 - Rettifica
-        x_3_3_rettifica = etree.SubElement(
-            x_3_dtr,
-            etree.QName("Rettifica"))
-        # -----         2.3.1 - Id File
-        x_3_3_1_id_file = etree.SubElement(
-            x_3_3_rettifica,
-            etree.QName("IdFile"))
-        # x_3_3_1_id_file.text = self.rettifica_IdFIle \
-        #     if self.rettifica_IdFIle else ''
-        # -----         2.3.2 - Posizione
-        x_3_3_2_posizione = etree.SubElement(
-            x_3_3_rettifica,
-            etree.QName("Posizione"))
-        # x_3_3_2_posizione.text = self.rettifica_Posizione \
-        #     if self.rettifica_Posizione else ''
-        '''
-
         return x_3_dtr
 
     def _export_xml_get_ann(self):
@@ -1924,12 +1895,11 @@ class ComunicazioneDatiIva(models.Model):
             etree.QName("IdFile"))
         x_4_1_id_file.text = self.id_comunicazione
         # ----- 4.2 - Posizione
-        '''
-        If this node is empty, cancel all invoices of previous comunication
-        x_4_2_posizione = etree.SubElement(
-            x_4_ann,
-            etree.QName("Posizione"))
-        '''
+
+        # If this node is empty, cancel all invoices of previous comunication
+        # x_4_2_posizione = etree.SubElement(
+        #     x_4_ann,
+        #     etree.QName("Posizione"))
         return x_4_ann
 
     @api.multi
@@ -1952,7 +1922,8 @@ class ComunicazioneDatiIva(models.Model):
         x_0_dati_fattura = self._export_xml_get_dati_fattura()
         # ----- 1 - Dati Fattura header
         if self.dati_trasmissione in ('DTE', 'DTR'):
-            x_1_dati_fattura_header = self._export_xml_get_dati_fattura_header()
+            x_1_dati_fattura_header = (
+                self._export_xml_get_dati_fattura_header())
             x_0_dati_fattura.append(x_1_dati_fattura_header)
         # ----- 2 - DTE
         if self.dati_trasmissione == 'DTE':
@@ -1976,94 +1947,82 @@ class ComunicazioneDatiIva(models.Model):
 
 class ComunicazioneDatiIvaFattureEmesse(models.Model):
     _name = 'comunicazione.dati.iva.fatture.emesse'
-    _description = 'Comunicazione Dati IVA - Fatture Emesse'
+    _description = 'Invoices data communication - Customer invoices'
 
     comunicazione_id = fields.Many2one(
-        'comunicazione.dati.iva', string='Comunicazione', readonly=True,
+        'comunicazione.dati.iva', string='Communication', readonly=True,
         ondelete="cascade")
     # Cedente
     partner_id = fields.Many2one('res.partner', string='Partner')
     cessionario_IdFiscaleIVA_IdPaese = fields.Char(
-        string='Id Paese', size=2, help="Codice della nazione espresso secondo\
-             lo standard ISO 3166-1 alpha-2 code")
+        string='Country ID', size=2,
+        help="Country code, expressed using the 3166-1 alpha-2 standard")
     cessionario_IdFiscaleIVA_IdCodice = fields.Char(
-        string='Codice identificativo fiscale', size=28)
+        string='Fiscal identifier', size=28)
     cessionario_CodiceFiscale = fields.Char(
-        string='Codice Fiscale', size=16)
+        string='Fiscal code', size=16)
     cessionario_Denominazione = fields.Char(
-        string='Ditta, denominazione o ragione sociale', size=80)
+        string='Company, denomination or business name', size=80)
     cessionario_Nome = fields.Char(
-        string='Nome della persona fisica', size=60, help="Obbligatorio ma da\
-             valorizzare insieme all'elemento 2.1.2.3 <Cognome>  ed in \
-             alternativa all'elemento 2.1.2.1 <Denominazione> ")
+        string='Natural person name', size=60,
+        help="To fill along with 2.1.2.3 <Cognome> and alternatively to "
+             "2.1.2.1 <Denominazione>")
     cessionario_Cognome = fields.Char(
-        string='Cognome della persona fisica', size=60, help="Obbligatorio \
-            ma da valorizzare insieme all'elemento 2.1.2.2 <Nome>  ed in \
-            alternativa all'elemento 2.1.2.1 <Denominazione>")
+        string='Natural person surname', size=60,
+        help="To fill along with 2.1.2.2 <Nome> and alternatively to "
+             "2.1.2.1 <Denominazione>")
     cessionario_sede_Indirizzo = fields.Char(
-        string='Indirizzo della sede', size=60)
+        string='Headquarters address', size=60)
     cessionario_sede_NumeroCivico = fields.Char(
-        string='Numero civico', size=8)
+        string='Street number', size=8)
     cessionario_sede_Cap = fields.Char(
-        string='Numero civico', size=5)
+        string='ZIP', size=5)
     cessionario_sede_Comune = fields.Char(
-        string='Comune', size=60)
+        string='City', size=60)
     cessionario_sede_Provincia = fields.Char(
-        string='Provincia', size=2)
+        string='State', size=2)
     cessionario_sede_Nazione = fields.Char(
-        string='Nazione', size=2, help="Codice della nazione espresso secondo\
-             lo standard ISO 3166-1 alpha-2 code")
+        string='Country', size=2,
+        help="Country code, expressed using the 3166-1 alpha-2 standard")
     cessionario_so_Indirizzo = fields.Char(
-        string='Indirizzo della stabile organizzazione in Italia', size=60)
+        string='Permanent establishment address', size=60)
     cessionario_so_NumeroCivico = fields.Char(
-        string='Numero civico', size=8)
+        string='Street number', size=8)
     cessionario_so_Cap = fields.Char(
-        string='Numero civico', size=5)
+        string='ZIP', size=5)
     cessionario_so_Comune = fields.Char(
-        string='Comune', size=60)
+        string='City', size=60)
     cessionario_so_Provincia = fields.Char(
-        string='Provincia', size=2)
+        string='State', size=2)
     cessionario_so_Nazione = fields.Char(
-        string='Nazione', size=2, help="Codice della nazione espresso secondo\
-             lo standard ISO 3166-1 alpha-2 code")
+        string='Country', size=2,
+        help="Country code, expressed using the 3166-1 alpha-2 standard")
     cessionario_rf_IdFiscaleIVA_IdPaese = fields.Char(
-        string='Id Paese', size=2, help="Accetta solo IT")
+        string='Country ID', size=2, help="Only IT is accepted")
     cessionario_rf_IdFiscaleIVA_IdCodice = fields.Char(
-        string='Codice identificativo fiscale', size=11)
+        string='Fiscal identifier', size=11)
     cessionario_rf_Denominazione = fields.Char(
-        string='Ditta, denominazione o ragione sociale', size=80,
-        help="Ditta, denominazione o ragione sociale (ditta, impresa, \
-            società, ente) del rappresentante fiscale. Obbligatorio ma da \
-            valorizzare in alternativa agli elementi 2.1.2.6.3 <Nome>  e  \
-            2.1.2.6.4 <Cognome>")
+        string='Company, denomination or business name', size=80)
     cessionario_rf_Nome = fields.Char(
-        string='Nome della persona fisica', size=60, help="Nome del \
-            rappresentante fiscale persona fisica Obbligatorio ma da valorizzare\
-             insieme all'elemento 2.1.2.6.4 <Cognome>  ed in alternativa \
-             all'elemento 2.1.2.6.2 <Denominazione>")
+        string='Natural person name', size=60)
     cessionario_rf_Cognome = fields.Char(
-        string='Cognome della persona fisica', size=60, help="Cognome del \
-            rappresentante fiscale persona fisica. Obbligatorio ma da valorizzare\
-             insieme all'elemento 2.1.2.6.3 <Nome>  ed in alternativa \
-             all'elemento 2.1.2.6.2 <Denominazione>")
+        string='Natural person surname', size=60)
     # Dati Cessionario e Fattura
     fatture_emesse_body_ids = fields.One2many(
         'comunicazione.dati.iva.fatture.emesse.body', 'fattura_emessa_id',
-        string='Body Fatture Emesse')
+        string='Customer invoices body')
 
     # Rettifica
     rettifica_IdFile = fields.Char(
-        string='Identificativo del file',
-        help="Identificativo del file contenente i dati fattura che si vogliono\
-         rettificare. E' l'identificativo comunicato dal sistema in fase di \
-         trasmissione del file")
+        string='File identifier',
+        help="Identifier of file to be amended. This identifer is "
+             "communicated by the system after transmission")
     rettifica_Posizione = fields.Integer(
-        string='Posizione', help="Posizione della fattura all'interno del \
-        file trasmesso")
+        string='Position', help="Invoice position within transmitted file")
     # totali
-    totale_imponibile = fields.Float('Totale Imponibile',
+    totale_imponibile = fields.Float('Total untaxed amount',
                                      compute="_compute_total", store=True)
-    totale_iva = fields.Float('Totale IVA',
+    totale_iva = fields.Float('Total VAT',
                               compute="_compute_total", store=True)
 
     @api.depends('fatture_emesse_body_ids.totale_imponibile',
@@ -2108,7 +2067,7 @@ class ComunicazioneDatiIvaFattureEmesse(models.Model):
 
 class ComunicazioneDatiIvaFattureEmesseBody(models.Model):
     _name = 'comunicazione.dati.iva.fatture.emesse.body'
-    _description = 'Comunicazione Dati IVA - Body Fatture Emesse'
+    _description = 'Invoices data communication - Customer invoices body'
 
     @api.depends('dati_fattura_iva_ids.ImponibileImporto',
                  'dati_fattura_iva_ids.Imposta')
@@ -2123,22 +2082,22 @@ class ComunicazioneDatiIvaFattureEmesseBody(models.Model):
             ft.totale_iva = totale_iva
 
     fattura_emessa_id = fields.Many2one(
-        'comunicazione.dati.iva.fatture.emesse', string="Fattura Emessa",
+        'comunicazione.dati.iva.fatture.emesse', string="Customer invoice",
         ondelete="cascade")
     posizione = fields.Integer(
-        "Posizione", help="della fattura all'interno del file trasmesso",
+        "Position", help="Invoice position within transmitted file",
         required=True)
     invoice_id = fields.Many2one('account.invoice', string='Invoice')
     dati_fattura_TipoDocumento = fields.Many2one(
-        'fiscal.document.type', string='Tipo Documento', required=True)
-    dati_fattura_Data = fields.Date(string='Data Documento', required=True)
-    dati_fattura_Numero = fields.Char(string='Numero Documento', required=True)
+        'fiscal.document.type', string='Document type', required=True)
+    dati_fattura_Data = fields.Date(string='Document date', required=True)
+    dati_fattura_Numero = fields.Char(string='Document number', required=True)
     dati_fattura_iva_ids = fields.One2many(
         'comunicazione.dati.iva.fatture.emesse.iva', 'fattura_emessa_body_id',
-        string='Riepilogo Iva')
-    totale_imponibile = fields.Float('Totale Imponibile',
+        string='VAT summary')
+    totale_imponibile = fields.Float('Total untaxed amount',
                                      compute="_compute_total", store=True)
-    totale_iva = fields.Float('Totale IVA',
+    totale_iva = fields.Float('Total VAT',
                               compute="_compute_total", store=True)
 
     @api.onchange('invoice_id')
@@ -2156,134 +2115,112 @@ class ComunicazioneDatiIvaFattureEmesseBody(models.Model):
 
 class ComunicazioneDatiIvaFattureEmesseIva(models.Model):
     _name = 'comunicazione.dati.iva.fatture.emesse.iva'
-    _description = 'Comunicazione Dati IVA - Fatture Emesse Iva'
+    _description = 'Invoices data communication - Customer invoices VAT'
 
     fattura_emessa_body_id = fields.Many2one(
         'comunicazione.dati.iva.fatture.emesse.body',
-        string='Body Fattura Emessa', readonly=True, ondelete="cascade")
+        string='Customer invoice body', readonly=True, ondelete="cascade")
     ImponibileImporto = fields.Float(
-        string='Base imponibile', help="Ammontare (base) imponibile ( per le\
-         operazioni soggette ad IVA )  o importo non imponibile (per le \
-         operazioni per le quali il cedente/prestatore [FORNITORE] non deve \
-         indicare l'imposta in fattura ) o somma di imponibile e imposta \
-         (per le operazioni soggette ai regimi che prevedono questa \
-         rappresentazione). Per le fatture SEMPLIFICATE  (elemento 2.2.3.1.1 \
-         <TipoDocumento>  =  'TD07'  o 'TD08'), ospita l'importo risultante\
-          dalla somma di imponibile ed imposta")
+        string='Base amount',
+        help="Base amount (for operations VAT subjected) or not taxable amount"
+             " (for operations where seller does not indicate VAT) or sum of "
+             "taxable and tax amounts, when expected, like for simplified "
+             "invoices (TD07 or TD08)")
     Imposta = fields.Float(
-        string='Imposta', help="Se l'elemento 2.2.3.1.1 \
-        <TipoDocumento> vale 'TD07' o 'TD08' (fattura semplificata), si può \
-        indicare in alternativa all'elemento 2.2.3.2.2.2 <Aliquota>. Per tutti\
-         gli altri valori dell'elemento 2.2.3.1.1 <TipoDocumento> deve essere\
-          valorizzato.")
+        string='VAT',
+        help="If element 2.2.3.1.1 is TD07 or TD08, this can be used instead "
+             "of 2.2.3.2.2.2 <Aliquota>")
     Aliquota = fields.Float(
-        string='Aliquota', help="Aliquota IVA, espressa in percentuale\
-         (da valorizzare a 0.00 nel caso di operazioni per le quali il \
-         cedente/prestatore [FORNITORE] non deve indicare l'imposta in fattura\
-         ). Se l'elemento 2.2.3.1.1 <TipoDocumento> vale 'TD07' o 'TD08' \
-         (fattura semplificata), si può indicare in alternativa all'elemento \
-         2.2.3.2.2.1 <Imposta>. Per tutti gli altri valori dell'elemento \
-         2.2.3.1.1 <TipoDocumento> deve essere valorizzata.")
-    Natura_id = fields.Many2one('account.tax.kind', string='Natura')
-    Detraibile = fields.Float(string='Detraibile %')
-    Deducibile = fields.Char(string='Deducibile', size=2,
-                             help="valori ammessi: [SI] = spesa deducibile")
+        string='Tax rate',
+        help="VAT rate, in percentage")
+    Natura_id = fields.Many2one('account.tax.kind', string='Exemption kind')
+    Detraibile = fields.Float(string='Deductible %')
+    Deducibile = fields.Char(string='Deductible', size=2,
+                             help="Possible value: [SI] = deductible expense")
     EsigibilitaIVA = fields.Selection(
-        [('I', 'Immediata'), ('D', 'Differita'),
-         ('S', 'Scissione dei pagamenti')], string='Esigibilità IVA')
+        [('I', 'Immediate'), ('D', 'Deferred'),
+         ('S', 'Split payment')], string='VAT payability')
 
 
 class ComunicazioneDatiIvaFattureRicevute(models.Model):
     _name = 'comunicazione.dati.iva.fatture.ricevute'
-    _description = 'Comunicazione Dati IVA - Fatture Ricevute'
+    _description = 'Invoices data communication - Supplier bills'
 
     comunicazione_id = fields.Many2one(
-        'comunicazione.dati.iva', string='Comunicazione', readonly=True,
+        'comunicazione.dati.iva', string='Communication', readonly=True,
         ondelete="cascade")
     # Cessionario
     partner_id = fields.Many2one('res.partner', string='Partner')
     cedente_IdFiscaleIVA_IdPaese = fields.Char(
-        string='Id Paese', size=2, help="Codice della nazione espresso secondo\
-             lo standard ISO 3166-1 alpha-2 code")
+        string='Country ID', size=2,
+        help="Country code, expressed using the 3166-1 alpha-2 standard")
     cedente_IdFiscaleIVA_IdCodice = fields.Char(
-        string='Codice identificativo fiscale', size=28)
+        string='Fiscal identifier', size=28)
     cedente_CodiceFiscale = fields.Char(
-        string='Codice Fiscale', size=16)
+        string='Fiscal code', size=16)
     cedente_Denominazione = fields.Char(
-        string='Ditta, denominazione o ragione sociale', size=80)
+        string='Company, denomination or business name', size=80)
     cedente_Nome = fields.Char(
-        string='Nome della persona fisica', size=60, help="Obbligatorio ma da\
-             valorizzare insieme all'elemento 3.2.2.3 <Cognome>  ed in \
-             alternativa all'elemento 3.2.2.1 <Denominazione> ")
+        string='Natural person name', size=60,
+        help="To fill along with 3.2.2.3 <Cognome> and alternatively to "
+             "3.2.2.1 <Denominazione>")
     cedente_Cognome = fields.Char(
-        string='Cognome della persona fisica', size=60, help="Obbligatorio \
-            ma da valorizzare insieme all'elemento 3.2.2.2 <Nome>  ed in \
-            alternativa all'elemento 3.2.2.1 <Denominazione>")
+        string='Natural person surname', size=60,
+        help="To fill along with 3.2.2.2 <Nome> and alternatively to "
+             "3.2.2.1 <Denominazione>")
     cedente_sede_Indirizzo = fields.Char(
-        string='Indirizzo della sede', size=60)
+        string='Headquarters address', size=60)
     cedente_sede_NumeroCivico = fields.Char(
-        string='Numero civico', size=8)
+        string='Street number', size=8)
     cedente_sede_Cap = fields.Char(
-        string='Numero civico', size=5)
+        string='ZIP', size=5)
     cedente_sede_Comune = fields.Char(
-        string='Comune', size=60)
+        string='City', size=60)
     cedente_sede_Provincia = fields.Char(
-        string='Provincia', size=2)
+        string='State', size=2)
     cedente_sede_Nazione = fields.Char(
-        string='Nazione', size=2, help="Codice della nazione espresso secondo\
-             lo standard ISO 3166-1 alpha-2 code")
+        string='Country', size=2,
+        help="Country code, expressed using the 3166-1 alpha-2 standard")
     cedente_so_Indirizzo = fields.Char(
-        string='Indirizzo della stabile organizzazione in Italia', size=60)
+        string='Permanent establishment address', size=60)
     cedente_so_NumeroCivico = fields.Char(
-        string='Numero civico', size=8)
+        string='Street number', size=8)
     cedente_so_Cap = fields.Char(
-        string='Numero civico', size=5)
+        string='ZIP', size=5)
     cedente_so_Comune = fields.Char(
-        string='Comune', size=60)
+        string='City', size=60)
     cedente_so_Provincia = fields.Char(
-        string='Provincia', size=2)
+        string='State', size=2)
     cedente_so_Nazione = fields.Char(
-        string='Nazione', size=2, help="Codice della nazione espresso secondo\
-             lo standard ISO 3166-1 alpha-2 code")
+        string='Country', size=2,
+        help="Country code, expressed using the 3166-1 alpha-2 standard")
     cedente_rf_IdFiscaleIVA_IdPaese = fields.Char(
-        string='Id Paese', size=2, help="Accetta solo IT")
+        string='Country ID', size=2, help="Only IT is accepted")
     cedente_rf_IdFiscaleIVA_IdCodice = fields.Char(
-        string='Codice identificativo fiscale', size=11)
+        string='Fiscal identifier', size=11)
     cedente_rf_Denominazione = fields.Char(
-        string='Ditta, denominazione o ragione sociale', size=80,
-        help="Ditta, denominazione o ragione sociale (ditta, impresa, \
-            società, ente) del rappresentante fiscale. Obbligatorio ma da \
-            valorizzare in alternativa agli elementi 3.2.2.6.3 <Nome>  e  \
-            3.2.2.6.4 <Cognome>")
+        string='Company, denomination or business name', size=80)
     cedente_rf_Nome = fields.Char(
-        string='Nome della persona fisica', size=60, help="Nome del \
-            rappresentante fiscale persona fisica Obbligatorio ma da valorizzare\
-             insieme all'elemento 3.2.2.6.4 <Cognome>  ed in alternativa \
-             all'elemento 3.2.2.6.2 <Denominazione>")
+        string='Natural person name', size=60)
     cedente_rf_Cognome = fields.Char(
-        string='Cognome della persona fisica', size=60, help="Cognome del \
-            rappresentante fiscale persona fisica. Obbligatorio ma da valorizzare\
-             insieme all'elemento 3.2.2.6.3 <Nome>  ed in alternativa \
-             all'elemento 3.2.2.6.2 <Denominazione>")
+        string='Natural person surname', size=60)
 
     # Dati Cedente e Fattura
     fatture_ricevute_body_ids = fields.One2many(
         'comunicazione.dati.iva.fatture.ricevute.body', 'fattura_ricevuta_id',
-        string='Body Fatture Ricevute')
+        string='Supplier bills body')
 
     # Rettifica
     rettifica_IdFile = fields.Char(
-        string='Identificativo del file',
-        help="Identificativo del file contenente i dati fattura che si vogliono\
-         rettificare. E' l'identificativo comunicato dal sistema in fase di \
-         trasmissione del file")
+        string='File identifier',
+        help="Identifier of file to be amended. This identifer is "
+             "communicated by the system after transmission")
     rettifica_Posizione = fields.Integer(
-        string='Posizione', help="Posizione della fattura all'interno del \
-        file trasmesso")
+        string='Position', help="Invoice position within transmitted file")
     # totali
-    totale_imponibile = fields.Float('Totale Imponibile',
+    totale_imponibile = fields.Float('Total untaxed amount',
                                      compute="_compute_total", store=True)
-    totale_iva = fields.Float('Totale IVA',
+    totale_iva = fields.Float('Total VAT',
                               compute="_compute_total", store=True)
 
     @api.depends('fatture_ricevute_body_ids.totale_imponibile',
@@ -2329,7 +2266,7 @@ class ComunicazioneDatiIvaFattureRicevute(models.Model):
 
 class ComunicazioneDatiIvaFattureRicevuteBody(models.Model):
     _name = 'comunicazione.dati.iva.fatture.ricevute.body'
-    _description = 'Comunicazione Dati IVA - Body Fatture Ricevute'
+    _description = 'Invoices data communication - Supplier bills body'
 
     @api.depends('dati_fattura_iva_ids.ImponibileImporto',
                  'dati_fattura_iva_ids.Imposta')
@@ -2344,25 +2281,25 @@ class ComunicazioneDatiIvaFattureRicevuteBody(models.Model):
             ft.totale_iva = totale_iva
 
     fattura_ricevuta_id = fields.Many2one(
-        'comunicazione.dati.iva.fatture.ricevute', string="Fattura Ricevuta",
+        'comunicazione.dati.iva.fatture.ricevute', string="Supplier bill",
         ondelete="cascade")
     posizione = fields.Integer(
-        "Posizione", help="della fattura all'interno del file trasmesso",
+        "Position", help="Invoice position within transmitted file",
         required=True)
     invoice_id = fields.Many2one('account.invoice', string='Invoice')
     dati_fattura_TipoDocumento = fields.Many2one(
-        'fiscal.document.type', string='Tipo Documento', required=True)
-    dati_fattura_Data = fields.Date(string='Data Documento', required=True)
-    dati_fattura_Numero = fields.Char(string='Numero Documento', required=True)
-    dati_fattura_DataRegistrazione = fields.Date(string='Data Registrazione',
+        'fiscal.document.type', string='Document type', required=True)
+    dati_fattura_Data = fields.Date(string='Document date', required=True)
+    dati_fattura_Numero = fields.Char(string='Document number', required=True)
+    dati_fattura_DataRegistrazione = fields.Date(string='Registration date',
                                                  required=True)
     dati_fattura_iva_ids = fields.One2many(
         'comunicazione.dati.iva.fatture.ricevute.iva',
         'fattura_ricevuta_body_id',
-        string='Riepilogo Iva')
-    totale_imponibile = fields.Float('Totale Imponibile',
+        string='VAT summary')
+    totale_imponibile = fields.Float('Total untaxed amount',
                                      compute="_compute_total", store=True)
-    totale_iva = fields.Float('Totale IVA',
+    totale_iva = fields.Float('Total VAT',
                               compute="_compute_total", store=True)
 
     @api.onchange('invoice_id')
@@ -2397,39 +2334,29 @@ class ComunicazioneDatiIvaFattureRicevuteBody(models.Model):
 
 class ComunicazioneDatiIvaFattureRicevuteIva(models.Model):
     _name = 'comunicazione.dati.iva.fatture.ricevute.iva'
-    _description = 'Comunicazione Dati IVA - Fatture Ricevute Iva'
+    _description = 'Invoices data communication - Supplier bills VAT'
 
     fattura_ricevuta_body_id = fields.Many2one(
         'comunicazione.dati.iva.fatture.ricevute.body',
-        string='Body Fattura Ricevuta', readonly=True, ondelete="cascade")
+        string='Supplier bill body', readonly=True, ondelete="cascade")
     ImponibileImporto = fields.Float(
-        string='Base imponibile', help="Ammontare (base) imponibile ( per le\
-         operazioni soggette ad IVA )  o importo non imponibile (per le \
-         operazioni per le quali il cedente/prestatore [FORNITORE] non deve \
-         indicare l'imposta in fattura ) o somma di imponibile e imposta \
-         (per le operazioni soggette ai regimi che prevedono questa \
-         rappresentazione). Per le fatture SEMPLIFICATE  (elemento 3.2.3.1.1 \
-         <TipoDocumento>  =  'TD07'  o 'TD08'), ospita l'importo risultante\
-          dalla somma di imponibile ed imposta")
+        string='Base amount',
+        help="Base amount (for operations VAT subjected) or not taxable amount"
+             " (for operations where seller does not indicate VAT) or sum of "
+             "taxable and tax amounts, when expected, like for simplified "
+             "invoices (TD07 or TD08)")
     Imposta = fields.Float(
-        string='Imposta', help="Se l'elemento 3.2.3.1.1 \
-        <TipoDocumento> vale 'TD07' o 'TD08' (fattura semplificata), si può \
-        indicare in alternativa all'elemento 3.2.3.2.2.2 <Aliquota>. Per tutti\
-         gli altri valori dell'elemento 3.2.3.1.1 <TipoDocumento> deve essere\
-          valorizzato.")
+        string='VAT',
+        help="If element 2.2.3.1.1 is TD07 or TD08, this can be used instead "
+             "of 2.2.3.2.2.2 <Aliquota>")
     Aliquota = fields.Float(
-        string='Aliquota', help="Aliquota IVA, espressa in percentuale\
-         (da valorizzare a 0.00 nel caso di operazioni per le quali il \
-         cedente/prestatore [FORNITORE] non deve indicare l'imposta in fattura\
-         ). Se l'elemento 3.2.3.1.1 <TipoDocumento> vale 'TD07' o 'TD08' \
-         (fattura semplificata), si può indicare in alternativa all'elemento \
-         3.2.3.2.2.1 <Imposta>. Per tutti gli altri valori dell'elemento \
-         3.2.3.1.1 <TipoDocumento> deve essere valorizzata.")
-    Natura_id = fields.Many2one('account.tax.kind', string='Natura')
-    Detraibile = fields.Float(string='Detraibile %')
-    Deducibile = fields.Char(string='Deducibile', size=2,
-                             help="valori ammessi: [SI] = spesa deducibile")
-    EsigibilitaIVA = fields.Selection([('I', 'Immediata'),
-                                       ('D', 'Differita'),
-                                       ('S', 'Scissione dei pagamenti')],
-                                      string='Esigibilità IVA')
+        string='Tax rate',
+        help="VAT rate, in percentage")
+    Natura_id = fields.Many2one('account.tax.kind', string='Exemption kind')
+    Detraibile = fields.Float(string='Deductible %')
+    Deducibile = fields.Char(string='Deductible', size=2,
+                             help="Possible value: [SI] = deductible expense")
+    EsigibilitaIVA = fields.Selection([('I', 'Immediate'),
+                                       ('D', 'Deferred'),
+                                       ('S', 'Split payment')],
+                                      string='VAT payability')

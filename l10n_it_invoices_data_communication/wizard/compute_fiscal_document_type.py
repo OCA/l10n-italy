@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 
-import base64
-from odoo import api, fields, models, exceptions
+from odoo import api, models
 
 
 class ComunicazioneDatiIvaRicalcoloTipoDocumentoFiscale(models.TransientModel):
     _name = "comunicazione.dati.iva.ricalcolo.tipo.document.fiscale"
-    _description = "Ricalcolo tipo documento fiscale su fatture"
+    _description = "Recompute invoices document type"
 
     @api.multi
     def compute(self):
