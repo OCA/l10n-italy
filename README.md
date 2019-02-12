@@ -39,8 +39,8 @@ addon | version | summary
 [l10n_it_ddt](l10n_it_ddt/) | 8.0.1.0.1 | Documento di Trasporto
 [l10n_it_ddt_delivery](l10n_it_ddt_delivery/) | 8.0.1.0.0 | Copy carrier from picking and from sale order
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 8.0.1.0.0 | Esigibilità IVA
-[l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.2.2.2 | Electronic invoices
-[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 8.0.1.1.2 | Electronic invoices reception
+[l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.2.2.3 | Electronic invoices
+[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 8.0.1.1.3 | Electronic invoices reception
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.3.1.0 | Electronic invoices emission
 [l10n_it_fatturapa_out_stamp](l10n_it_fatturapa_out_stamp/) | 8.0.1.0.0 | Modulo ponte tra emissione fatture elettroniche e imposta di bollo
 [l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 8.0.1.2.0 | Send electronic invoices via PEC
