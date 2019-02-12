@@ -35,8 +35,8 @@ msgid ""
 "<p>PEC server %s has been reset. Last error message is</p><p><strong>%s</"
 "strong></p>"
 msgstr ""
-"<p>Il server PEC %s è stato ripristinato. L'ultimo messaggio di errore "
-"è</p><p><strong>%s</strong></p>"
+"<p>Il server PEC %s è stato ripristinato. L'ultimo messaggio di errore è</"
+"p><p><strong>%s</strong></p>"
 
 #. module: l10n_it_fatturapa_pec
 #: selection:account.invoice,fatturapa_state:0
@@ -141,6 +141,12 @@ msgstr "Errore"
 #, python-format
 msgid "Fetchmail PEC server [%s] reset"
 msgstr "Ripristino server PEC fetchmail [%s]"
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:73
+#, python-format
+msgid "File content and file name are mandatory"
+msgstr ""
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec_id
@@ -306,7 +312,7 @@ msgid "Wizard to send multiple e-invoice PEC"
 msgstr "Procedura per inviare PEC e-fattura multiple"
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:246
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:248
 #, python-format
 msgid "You can only delete files in 'Ready to Send' state."
 msgstr "È possibile eliminare solo file con stato «Pronto per l'invio»."
