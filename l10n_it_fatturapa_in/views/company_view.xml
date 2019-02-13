@@ -8,6 +8,10 @@
         <field name="arch" type="xml">
             <xpath expr="//div[@id='fatturapa_settings']" position="inside">
                 <div>
+                    <label for="cassa_previdenziale_product_id"/>
+                    <field name="cassa_previdenziale_product_id" class="oe_inline"/>
+                </div>
+                <div>
                     <label for="sconto_maggiorazione_product_id"/>
                     <field name="sconto_maggiorazione_product_id" class="oe_inline"/>
                 </div>
