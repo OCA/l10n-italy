@@ -186,7 +186,8 @@ class WizardImportFatturapa(orm.TransientModel):
                     ],
                     context=context)
         if partner_ids:
-            commercial_partner = partner_ids[0]
+            if not commercial_partner:
+                commercial_partner = partner_ids[0]
             self.check_partner_base_data(
                 cr, uid, commercial_partner, DatiAnagrafici, context=context)
             return commercial_partner
@@ -230,19 +231,28 @@ class WizardImportFatturapa(orm.TransientModel):
         fiscalPosModel = self.pool['fatturapa.fiscal_position']
         vals = {}
         if partner_id:
-            vals = {
-                'street': cedPrest.Sede.Indirizzo,
-                'zip': cedPrest.Sede.CAP,
-                'city': cedPrest.Sede.Comune,
-                'register': cedPrest.DatiAnagrafici.AlboProfessionale or ''
-            }
+            if cedPrest.StabileOrganizzazione:
+                vals = {
+                    'street': cedPrest.StabileOrganizzazione.Indirizzo,
+                    'zip': cedPrest.StabileOrganizzazione.CAP,
+                    'city': cedPrest.StabileOrganizzazione.Comune,
+                    'register': cedPrest.DatiAnagrafici.AlboProfessionale or ''
+                }
+            else:
+                vals = {
+                    'street': cedPrest.Sede.Indirizzo,
+                    'zip': cedPrest.Sede.CAP,
+                    'city': cedPrest.Sede.Comune,
+                    'register': cedPrest.DatiAnagrafici.AlboProfessionale or ''
+                }
             if cedPrest.DatiAnagrafici.ProvinciaAlbo:
                 ProvinciaAlbo = cedPrest.DatiAnagrafici.ProvinciaAlbo
                 prov_ids = self.ProvinceByCode(
                     cr, uid, ProvinciaAlbo, context=context)
                 if not prov_ids:
-                    raise orm.except_orm(
-                        _('Error !'),
+                    if context.get('inconsistencies'):
+                        context['inconsistencies'] += '\n'
+                    context['inconsistencies'] += (
                         _('ProvinciaAlbo ( %s ) not present in system') %
                         ProvinciaAlbo
                         )
@@ -285,8 +295,9 @@ class WizardImportFatturapa(orm.TransientModel):
                 office_ids = self.ProvinceByCode(
                     cr, uid, REA.Ufficio, context=context)
                 if not office_ids:
-                    raise orm.except_orm(
-                        _('Error !'),
+                    if context.get('inconsistencies'):
+                        context['inconsistencies'] += '\n'
+                    context['inconsistencies'] += (
                         _('REA Office Code ( %s ) not present in system') %
                         REA.Ufficio
                         )
@@ -342,14 +353,16 @@ class WizardImportFatturapa(orm.TransientModel):
                     ('amount', '=', 0.0),
                 ], context=context)
             if not account_tax_ids:
-                raise orm.except_orm(
-                    _('Error!'),
+                if context.get('inconsistencies'):
+                    context['inconsistencies'] += '\n'
+                context['inconsistencies'] += (
                     _('No tax with percentage '
                       '%s and nature %s found')
                     % (line.AliquotaIVA, line.Natura))
             if len(account_tax_ids) > 1:
-                raise orm.except_orm(
-                    _('Error!'),
+                if context.get('inconsistencies'):
+                    context['inconsistencies'] += '\n'
+                context['inconsistencies'] += (
                     _('Too many taxes with percentage '
                       '%s and nature %s found')
                     % (line.AliquotaIVA, line.Natura))

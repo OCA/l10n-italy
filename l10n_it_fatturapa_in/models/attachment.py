@@ -19,7 +19,9 @@
 #
 ##############################################################################
 
+import base64
 from openerp.osv import fields, orm
+from openerp.tools.translate import _
 
 
 class FatturaPAAttachmentIn(orm.Model):
@@ -84,7 +86,7 @@ class FatturaPAAttachmentIn(orm.Model):
                  "del cessionario / committente"),
         'registered': fields.function(_compute_registered,
                                            string="Registered", 
-                                           type="boolean"),
+                                           type="boolean", store=True),
     }
 
     def get_xml_string(self, cr, uid, ids, context={}):
@@ -95,3 +97,21 @@ class FatturaPAAttachmentIn(orm.Model):
     def set_name(self, cr, uid, ids, datas_fname, context=None):
         return {'value': {'name': datas_fname}}
 
+    def extract_attachments(self, cr, uid, AttachmentsData, invoice_id):
+        AttachModel = self.pool['fatturapa.attachments']
+        for attach in AttachmentsData:
+            if not attach.NomeAttachment:
+                name = _("Attachment without name")
+            else:
+                name = attach.NomeAttachment
+            content = attach.Attachment
+            _attach_dict = {
+                'name': name,
+                'datas': base64.b64encode(str(content)),
+                'datas_fname': name,
+                'description': attach.DescrizioneAttachment or '',
+                'compression': attach.AlgoritmoCompressione or '',
+                'format': attach.FormatoAttachment or '',
+                'invoice_id': invoice_id,
+            }
+            AttachModel.create(cr, uid, _attach_dict)

@@ -19,6 +19,7 @@
 ##############################################################################
 
 from openerp.osv import fields, orm
+from openerp.tools.translate import _
 
 
 class FatturaPAAttachment(orm.Model):

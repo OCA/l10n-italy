@@ -68,7 +68,7 @@ class res_partner(orm.Model):
 
     def _check_ftpa_partner_data(self, cr, uid, ids, context={}):
         for partner in self.browse(cr, uid, ids):
-            if partner.electronic_invoice_subjected:
+            if partner.electronic_invoice_subjected and partner.customer:
                 if partner.is_pa and (
                     not partner.ipa_code or len(partner.ipa_code) != 6
                 ):
