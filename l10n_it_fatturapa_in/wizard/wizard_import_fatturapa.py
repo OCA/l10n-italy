@@ -1289,7 +1289,7 @@ class WizardImportFatturapa(orm.TransientModel):
             invoice.stamp_amount = float(Stamps.ImportoBollo)
             for wizardBrws in self.browse(cr, uid, ids):
                 if wizardBrws.e_invoice_detail_level == '2':
-                    journal = self.get_purchase_journal(invoice.company_id)
+                    journal = self.get_purchase_journal(cr, uid, invoice.company_id, context)
                     credit_account_id = journal.default_credit_account_id.id
                     line_vals = {
                         'invoice_id': invoice.id,
