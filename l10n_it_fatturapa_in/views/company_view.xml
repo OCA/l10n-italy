@@ -20,6 +20,10 @@
                             </div>
                             <div class="content-group">
                                 <div class="row">
+                                    <label for="cassa_previdenziale_product_id" class="col-lg-6 o_light_label"/>
+                                    <field name="cassa_previdenziale_product_id" class="col-lg-6"/>
+                                </div>
+                                <div class="row">
                                     <label for="sconto_maggiorazione_product_id" class="col-lg-6 o_light_label"/>
                                     <field name="sconto_maggiorazione_product_id" class="col-lg-6"/>
                                 </div>
