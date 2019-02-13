@@ -77,11 +77,13 @@ class WizardImportFatturapa(orm.TransientModel):
         return res
 
     def CountryByCode(self, cr, uid, CountryCode, context=None):
+        logging.info('Get CountryCode %r' % (CountryCode))
         country_model = self.pool['res.country']
         return country_model.search(
             cr, uid, [('code', '=', CountryCode)], context=context)
 
     def ProvinceByCode(self, cr, uid, provinceCode, context=None):
+        logging.info('Get provinceCode %r' % (provinceCode))
         province_model = self.pool['res.province']
         return province_model.search(
             cr, uid, [('code', '=', provinceCode)], context=context)
