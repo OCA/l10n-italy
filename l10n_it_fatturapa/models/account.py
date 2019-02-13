@@ -339,7 +339,7 @@ class AccountInvoice(models.Model):
     delivery_address = fields.Text(
         'Delivery Address for E-invoice', copy=False)
     delivery_datetime = fields.Datetime('Delivery Date Time', copy=False)
-    ftpa_incoterms = fields.Char(string="Incoterms", copy=False)
+    ftpa_incoterms = fields.Char(string="E-inv Incoterms", copy=False)
     #  2.1.10
     related_invoice_code = fields.Char('Related Invoice Code', copy=False)
     related_invoice_date = fields.Date('Related Invoice Date', copy=False)
