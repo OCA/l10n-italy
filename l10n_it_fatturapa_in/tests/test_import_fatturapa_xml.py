@@ -126,7 +126,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(
             invoice.inconsistencies,
             u"Company Name field contains 'Societa\' "
-            "Alpha SRL'. Your System contains 'SOCIETA\' ALPHA SRL'\n\n")
+            u"Alpha SRL'. Your System contains 'SOCIETA\' ALPHA SRL'\n\n")
 
     def test_05_xml_import(self):
         res = self.run_wizard('test5', 'IT05979361218_003.xml')
@@ -251,11 +251,11 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(
             invoice1.inconsistencies,
             u"Company Name field contains 'Societa\' "
-            "Alpha SRL'. Your System contains 'SOCIETA\' ALPHA SRL'\n\n")
+            u"Alpha SRL'. Your System contains 'SOCIETA\' ALPHA SRL'\n\n")
         self.assertEqual(
             invoice2.inconsistencies,
             u"Company Name field contains 'Societa\' "
-            "Alpha SRL'. Your System contains 'SOCIETA\' ALPHA SRL'\n\n")
+            u"Alpha SRL'. Your System contains 'SOCIETA\' ALPHA SRL'\n\n")
 
     def test_14_xml_import(self):
         # check: no tax code found , write inconsisteance and anyway
