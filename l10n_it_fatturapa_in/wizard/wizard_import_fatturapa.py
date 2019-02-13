@@ -1301,7 +1301,7 @@ class WizardImportFatturapa(orm.TransientModel):
                         'price_unit': invoice.stamp_amount,
                         'quantity': 1,
                         }
-                    if self.pool.user.company_id.dati_bollo_product_id:
+                    if self.pool['res.users'].browse(cr, uid, uid).company_id.dati_bollo_product_id:
                         dati_bollo_product = (
                             self.pool.user.company_id.dati_bollo_product_id)
                         line_vals['product_id'] = dati_bollo_product.id
