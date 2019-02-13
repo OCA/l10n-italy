@@ -650,7 +650,7 @@ class WizardExportFatturapa(models.TransientModel):
     def setDatiRiepilogo(self, invoice, body):
         model_tax = self.env['account.tax']
         for tax_line in invoice.tax_line:
-            tax = model_tax.get_tax_by_invoice_tax(tax_line.name)
+            tax = model_tax.get_tax_by_invoice_tax(tax_line.name, tax_line.company_id.id)
             riepilogo = DatiRiepilogoType(
                 AliquotaIVA='%.2f' % (tax.amount * 100),
                 ImponibileImporto='%.2f' % tax_line.base,

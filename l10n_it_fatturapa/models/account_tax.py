@@ -26,13 +26,19 @@ from openerp import models, exceptions, _
 class AccountTax(models.Model):
     _inherit = 'account.tax'
 
-    def get_tax_by_invoice_tax(self, invoice_tax):
-        tax_ids = []
+    def get_tax_by_invoice_tax(self, invoice_tax, company_id=False):
+        tax_ids = []		
         if ' - ' in invoice_tax:
             tax_descr = invoice_tax.split(' - ')[0]
-            tax_ids = self.search([('description', '=', tax_descr)])
+            domain_tax = [('description', '=', tax_descr)]
+            if company_id:
+                domain_tax.append(('company_id', '=', company_id))
+            tax_ids = self.search(domain_tax)
         if not tax_ids or len(tax_ids) > 1:
-            tax_ids = self.search([('name', '=', invoice_tax)])
+            domain_tax = [('name', '=', invoice_tax)]
+            if company_id:
+                domain_tax.append(('company_id', '=', company_id))
+            tax_ids = self.search(domain_tax)
         if not tax_ids:
             raise exceptions.Warning(
                 _('Error'), _('No tax %s found') % invoice_tax)
