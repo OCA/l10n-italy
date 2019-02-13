@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Form: Invoice Customer -->
+        <record id="invoice_form_stamp" model="ir.ui.view">
+            <field name="name">account.invoice.form.stamp</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='invoice_line']/tree/field[@name='sequence']" position="after">
+                    <field name="is_stamp_line" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='invoice_line']/tree" position="attributes">
+                    <attribute name="colors">CadetBlue:is_stamp_line==True;</attribute>
+                </xpath>
+
+                <field name="date_due" position="after">
+                    <field name="tax_stamp"/>
+                </field>
+
+                <field name="invoice_line" position="after">
+                    <button type="object" string="Add tax stamp line"
+                            name="add_tax_stamp_line" attrs="{'invisible': [('tax_stamp', '=', False)]}"/>
+                </field>
+
+            </field>
+        </record>
+
+        <!-- Form: Invoice Supplier -->
+        <record id="invoice_supplier_form_stamp" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form.stamp</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='invoice_line']/tree/field[@name='sequence']" position="after">
+                    <field name="is_stamp_line" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='invoice_line']/tree" position="attributes">
+                    <attribute name="colors">CadetBlue:is_stamp_line==True;</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+        <!-- Form: Invoice line -->
+        <record id="view_invoice_line_form_stamp" model="ir.ui.view">
+            <field name="name">view_invoice_line_form_stamp</field>
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="account.view_invoice_line_form"/>
+            <field name="arch" type="xml">
+                <field name="product_id" position="after">
+                    <field name="is_stamp_line" invisible="1"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

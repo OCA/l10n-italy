@@ -1,0 +1,134 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_account_stamp
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-01-29 07:06+0000\n"
+"PO-Revision-Date: 2019-01-29 08:15+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: it\n"
+"X-Generator: Poedit 1.8.12\n"
+
+#. module: l10n_it_account_stamp
+#: model:ir.model,name:l10n_it_account_stamp.model_account_config_settings
+msgid "account.config.settings"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: constraint:product.template:0
+msgid "The product taxes must have a base code!"
+msgstr "Le tasse del prodotto devono avere un conto imponibile!"
+
+#. module: l10n_it_account_stamp
+#: model:product.template,name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
+msgid "Tax stamp 2 euro"
+msgstr "Marca da bollo da 2 euro"
+
+#. module: l10n_it_account_stamp
+#: field:product.template,is_stamp:0
+msgid "Is stamp"
+msgstr "È una marca da bollo"
+
+#. module: l10n_it_account_stamp
+#: view:account.invoice:0
+msgid "Add tax stamp line"
+msgstr "Aggiungi riga marca da bollo"
+
+#. module: l10n_it_account_stamp
+#: constraint:product.template:0
+msgid "The product must be a stamp to set apply taxes!"
+msgstr "Il prodotto deve essere una marca da bollo per impostare le imposte sul quale si applica."
+
+#. module: l10n_it_account_stamp
+#: field:account.invoice.line,is_stamp_line:0
+msgid "Is stamp line"
+msgstr "È una riga marca da bollo"
+
+#. module: l10n_it_account_stamp
+#: field:product.template,stamp_apply_min_total_base:0
+msgid "Stamp apply min total base"
+msgstr "Imponibile minimo applicazione marca da bollo"
+
+#. module: l10n_it_account_stamp
+#: view:product.product:0
+msgid "{'required': [('is_stamp', '=', True)]}"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: view:account.config.settings:0
+#: field:account.config.settings,tax_stamp_product_id:0
+#: field:res.company,tax_stamp_product_id:0
+msgid "Tax Stamp Product"
+msgstr "Prodotto Marca da Bollo"
+
+#. module: l10n_it_account_stamp
+#: help:account.config.settings,tax_stamp_product_id:0
+#: help:res.company,tax_stamp_product_id:0
+msgid "Product used to model DatiBollo XML element on bills."
+msgstr "Prodotto usato per campo DatiBollo nell'elemento XML nelle fatture."
+
+#. module: l10n_it_account_stamp
+#: model:ir.model,name:l10n_it_account_stamp.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: l10n_it_account_stamp
+#: model:ir.model,name:l10n_it_account_stamp.model_product_template
+msgid "Product Template"
+msgstr "Modello Prodotto"
+
+#. module: l10n_it_account_stamp
+#: model:product.template,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
+msgid ""
+"Tax stamp payment under the terms of Art. 6, Subsection 2 of MEF Decree July"
+"17, 2014"
+msgstr ""
+"Marca da bollo ai sensi dell'art. 6, sottosezione 2 del decreto MEF del 17 luglio 2014."
+
+#. module: l10n_it_account_stamp
+#: view:product.product:0
+msgid "Account stamp"
+msgstr "Marca da bollo"
+
+#. module: l10n_it_account_stamp
+#: field:product.template,stamp_apply_tax_ids:0
+msgid "Stamp taxes"
+msgstr "Imposte marca da bollo"
+
+#. module: l10n_it_account_stamp
+#: view:product.product:0
+msgid "For each invoice, the base amount for each selected tax code account will be added up and used to determine the application of the account stamp."
+msgstr "Per ciascuna fattura, la base imponibile per ogni conto imposta verrà sommata e utilizzata per determinare l'applicabilità della marca da bollo."
+
+#. module: l10n_it_account_stamp
+#: field:account.invoice,tax_stamp:0
+msgid "Tax Stamp"
+msgstr "Marca da bollo"
+
+#. module: l10n_it_account_stamp
+#: model:ir.model,name:l10n_it_account_stamp.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Righe Fattura"
+
+#. module: l10n_it_account_stamp
+#: view:account.invoice:0
+msgid "CadetBlue:is_stamp_line==True;"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model,name:l10n_it_account_stamp.model_account_invoice
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: l10n_it_account_stamp
+#: view:product.product:0
+msgid "{'readonly': [('is_stamp', '=', True)]}"
+msgstr ""

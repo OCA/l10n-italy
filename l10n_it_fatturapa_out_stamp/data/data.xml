@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="l10n_it_stamp_duty_2_euro" model="product.product">
+            <field name="name">Stamp duty 2 euro</field>
+            <field name="type">service</field>
+            <field name="list_price" eval="2.0"/>
+            <field name="standard_price" eval="2.0"/>
+            <field name="description_sale">Stamp duty paid in accordance with the Decree of December 28, 2018.</field>
+            <field name="is_stamp" eval="True"/>
+            <field name="stamp_apply_min_total_base" eval="77.47"/>
+            <field name="taxes_id" eval="[(6, 0, [])]"/>
+            <field name="supplier_taxes_id" eval="[(6, 0, [])]"/>
+        </record>
+
+    </data>
+</openerp>

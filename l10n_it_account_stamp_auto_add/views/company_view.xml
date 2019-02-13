@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_account_config_settings">
+            <field name="name">view_account_config_settings</field>
+            <field name="model">account.config.settings</field>
+            <field name="inherit_id" ref="l10n_it_account_stamp.view_account_config_settings"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//div[@id='tax_stamp']" position="inside">
+                    <div>
+                        <label for="automatic_tax_stamp_on_customer_invoices"/>
+                        <field name="automatic_tax_stamp_on_customer_invoices" class="oe_inline"/>
+                    </div>
+                    <div>
+                        <label for="automatic_tax_stamp_on_supplier_invoices"/>
+                        <field name="automatic_tax_stamp_on_supplier_invoices" class="oe_inline"/>
+                    </div>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</openerp>

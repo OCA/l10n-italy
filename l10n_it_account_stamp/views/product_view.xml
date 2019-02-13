@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="product_normal_form_view" model="ir.ui.view">
+            <field name="name">product.normal.form.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="account.product_normal_form_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//page/group[@name='properties']/group/field[@name='supplier_taxes_id']/../.." position="after">
+                    <div>
+                        <group string="Account stamp">
+                            <field name="is_stamp"/>
+                            <field name="stamp_apply_min_total_base" attrs="{'invisible': [('is_stamp', '=', False)], 'required': [('is_stamp', '=', True)]}"/>
+                            <field name="stamp_apply_tax_ids" attrs="{'invisible': [('is_stamp', '=', False)]}">
+                                <tree>
+                                    <field name="description"/>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <p attrs="{'invisible': [('is_stamp', '=', False)]}">
+                            For each invoice, the base amount for each selected tax code account will be added up and used to determine the application of the account stamp.
+                        </p>
+                    </div>
+                </xpath>
+
+                <xpath expr="//page/group[@name='properties']/group/field[@name='property_account_income']" position="attributes">
+                    <attribute name="attrs">{'required': [('is_stamp', '=', True)]}</attribute>
+                </xpath>
+
+                <xpath expr="//page/group[@name='properties']/group/field[@name='property_account_expense']" position="attributes">
+                    <attribute name="attrs">{'required': [('is_stamp', '=', True)]}</attribute>
+                </xpath>
+
+                <xpath expr="//notebook/page/group/group/field[@name='list_price']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('is_stamp', '=', True)]}</attribute>
+                </xpath>
+
+                <xpath expr="//notebook/page/group/group/field[@name='standard_price']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('is_stamp', '=', True)]}</attribute>
+                </xpath>
+
+                <xpath expr="//notebook/page/group/group/field[@name='type']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('is_stamp', '=', True)]}</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</openerp>
