@@ -969,7 +969,7 @@ class WizardImportFatturapa(orm.TransientModel):
         invoice_id = invoice_model.create(
             cr, uid, invoice_data, context=context)
 
-        self.add_dati_bollo(cr, uid, 
+        self.add_dati_bollo(cr, uid, ids,
             invoice_id, FatturaBody.DatiGenerali.DatiGeneraliDocumento)
         
         invoice = invoice_model.browse(cr, uid, invoice_id, context=context)
@@ -1280,14 +1280,14 @@ class WizardImportFatturapa(orm.TransientModel):
                 )
         return self.pool['einvoice.line'].browse(cr, uid, einvoiceline)
 
-    def add_dati_bollo(self, cr, uid, invoice, DatiGeneraliDocumento, context={}):
+    def add_dati_bollo(self, cr, uid, ids, invoice, DatiGeneraliDocumento, context={}):
         # 2.1.1.6
         Stamps = DatiGeneraliDocumento.DatiBollo
         if Stamps:
             invoice = self.pool['account.invoice'].browse(cr, uid, invoice)
             invoice.virtual_stamp = Stamps.BolloVirtuale
             invoice.stamp_amount = float(Stamps.ImportoBollo)
-            if self.e_invoice_detail_level == '2':
+            if self.browse(cr, uid, ids).e_invoice_detail_level == '2':
                 journal = self.get_purchase_journal(invoice.company_id)
                 credit_account_id = journal.default_credit_account_id.id
                 line_vals = {
