@@ -1284,7 +1284,7 @@ class WizardImportFatturapa(orm.TransientModel):
         # 2.1.1.6
         Stamps = DatiGeneraliDocumento.DatiBollo
         if Stamps:
-            invoice = self.pool['account.invoice'].browse(invoice)
+            invoice = self.pool['account.invoice'].browse(cr, uid, invoice)
             invoice.virtual_stamp = Stamps.BolloVirtuale
             invoice.stamp_amount = float(Stamps.ImportoBollo)
             if self.e_invoice_detail_level == '2':
