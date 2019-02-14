@@ -1219,7 +1219,7 @@ class String35Type (pyxb.binding.datatypes.normalizedString):
         2)
     _Documentation = None
 String35Type._CF_pattern = pyxb.binding.facets.CF_pattern()
-String35Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,35})')
+String35Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{0,35})')
 String35Type._InitializeFacetMap(String35Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String35Type', String35Type)
 _module_typeBindings.String35Type = String35Type

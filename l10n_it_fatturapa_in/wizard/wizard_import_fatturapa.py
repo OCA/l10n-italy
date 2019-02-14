@@ -1485,37 +1485,7 @@ class WizardImportFatturapa(orm.TransientModel):
             if fatturapa_attachment.in_invoice_ids:
                 raise orm.except_orm(
                     _("Error"), _("File is linked to invoices yet"))
-            # decrypt  p7m file
-            if fatturapa_attachment.datas_fname.lower().endswith('.p7m'):
-                temp_file_name = (
-                    '/tmp/%s' % fatturapa_attachment.datas_fname.lower())
-                temp_der_file_name = (
-                    '/tmp/%s_tmp' % fatturapa_attachment.datas_fname.lower())
-                with open(temp_file_name, 'w') as p7m_file:
-                    p7m_file.write(fatturapa_attachment.datas.decode('base64'))
-                xml_file_name = os.path.splitext(temp_file_name)[0]
-
-                # check if temp_file_name is a PEM file
-                file_is_pem = self.check_file_is_pem(temp_file_name)
-
-                # if temp_file_name is a PEM file
-                # parse it in a DER file
-                if file_is_pem:
-                    temp_file_name = self.parse_pem_2_der(
-                        temp_file_name, temp_der_file_name)
-
-                # decrypt signed DER file in XML readable
-                xml_file_name = self.decrypt_to_xml(
-                    temp_file_name, xml_file_name)
-
-                with open(xml_file_name, 'r') as fatt_file:
-                    file_content = fatt_file.read()
-                xml_string = file_content
-            elif fatturapa_attachment.datas_fname.lower().endswith('.xml'):
-                xml_string = fatturapa_attachment.datas.decode('base64')
-            xml_string = self.remove_xades_sign(xml_string)
-            xml_string = self.strip_xml_content(xml_string)
-            fatt = fatturapa_v_1_2.CreateFromDocument(xml_string)
+            fatt = self.get_invoice_obj(cr, uid, fatturapa_attachment)
             
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             # 1.2
