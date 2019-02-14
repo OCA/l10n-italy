@@ -32,12 +32,6 @@ msgid "ABI"
 msgstr "ABI"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:68
-#, python-format
-msgid "ASN.1 structure is not parsable in DER"
-msgstr "ASN.1 structure is not parsable in DER"
-
-#. module: l10n_it_fatturapa
 #: field:faturapa.activity.progress,fatturapa_activity_progress:0
 msgid "Activity Progress"
 msgstr "Progresso Attività"
@@ -71,12 +65,6 @@ msgstr "Importo imposte"
 #: field:faturapa.summary.data,amount_untaxed:0
 msgid "Amount untaxed"
 msgstr "Importo imponibile"
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:43
-#, python-format
-msgid "An error with command \"openssl asn1parse\" occurred: %s"
-msgstr "An error with command \"openssl asn1parse\" occurred: %s"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,efatt_rounding:0
@@ -121,6 +109,12 @@ msgstr "BIC"
 #: field:fatturapa.payment.detail,payment_bank_name:0
 msgid "Bank name"
 msgstr "Nome Banca"
+
+#. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:86
+#, python-format
+msgid "Base64 encoded file %s."
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: help:fatturapa.attachments,type:0
@@ -260,6 +254,12 @@ msgstr "Tipo Documento"
 #: selection:fatturapa.related_document_type,type:0
 msgid "Contract"
 msgstr "Contratto"
+
+#. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:76
+#, python-format
+msgid "Corrupted attachment %s."
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: field:discount.rise.price,create_uid:0
@@ -664,6 +664,12 @@ msgid "Intermediary"
 msgstr "Intermediario"
 
 #. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:110
+#, python-format
+msgid "Invalid xml %s."
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:account.tax,name:l10n_it_fatturapa.tax_00_rc
 #, fuzzy
 msgid "Inversione Contabile"
@@ -862,12 +868,6 @@ msgstr "Riferimento Amministrazione"
 #: field:res.partner,pec_destinatario:0
 msgid "PEC destinatario"
 msgstr "PEC destinatario"
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:62
-#, python-format
-msgid "Parsing PEM to DER  file %s"
-msgstr "Parsing PEM to DER  file %s"
 
 #. module: l10n_it_fatturapa
 #: field:fatturapa.attachments,partner_id:0
@@ -1152,18 +1152,6 @@ msgstr ""
 "1.2.3.6 <Nazione> e' uguale a IT"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:104
-#, python-format
-msgid "Signed Xml file %s"
-msgstr "Signed Xml file %s"
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:110
-#, python-format
-msgid "Signed Xml file not decryptable"
-msgstr "Signed Xml file not decryptable"
-
-#. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,payability:0
 msgid "Split payment"
 msgstr "Scissione pagamenti"
@@ -1391,6 +1379,21 @@ msgstr "Terzo"
 #: model:ir.model,name:l10n_it_fatturapa.model_welfare_fund_type
 msgid "welfare fund type"
 msgstr "Tipo cassa previdenziale"
+
+#~ msgid "ASN.1 structure is not parsable in DER"
+#~ msgstr "ASN.1 structure is not parsable in DER"
+
+#~ msgid "An error with command \"openssl asn1parse\" occurred: %s"
+#~ msgstr "An error with command \"openssl asn1parse\" occurred: %s"
+
+#~ msgid "Parsing PEM to DER  file %s"
+#~ msgstr "Parsing PEM to DER  file %s"
+
+#~ msgid "Signed Xml file %s"
+#~ msgstr "Signed Xml file %s"
+
+#~ msgid "Signed Xml file not decryptable"
+#~ msgstr "Signed Xml file not decryptable"
 
 #~ msgid "Stamp Amount"
 #~ msgstr "Importo bollo"

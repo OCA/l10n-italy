@@ -36,12 +36,6 @@ msgid "ABI"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:68
-#, python-format
-msgid "ASN.1 structure is not parsable in DER"
-msgstr ""
-
-#. module: l10n_it_fatturapa
 #: field:faturapa.activity.progress,fatturapa_activity_progress:0
 msgid "Activity Progress"
 msgstr ""
@@ -74,12 +68,6 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: field:faturapa.summary.data,amount_untaxed:0
 msgid "Amount untaxed"
-msgstr ""
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:43
-#, python-format
-msgid "An error with command \"openssl asn1parse\" occurred: %s"
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -124,6 +112,12 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: field:fatturapa.payment.detail,payment_bank_name:0
 msgid "Bank name"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:86
+#, python-format
+msgid "Base64 encoded file %s."
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -254,6 +248,12 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: selection:fatturapa.related_document_type,type:0
 msgid "Contract"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:76
+#, python-format
+msgid "Corrupted attachment %s."
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -642,6 +642,12 @@ msgid "Intermediary"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:110
+#, python-format
+msgid "Invalid xml %s."
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:account.tax,name:l10n_it_fatturapa.tax_00_rc
 msgid "Inversione Contabile"
 msgstr ""
@@ -834,12 +840,6 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: field:res.partner,pec_destinatario:0
 msgid "PEC destinatario"
-msgstr ""
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:62
-#, python-format
-msgid "Parsing PEM to DER  file %s"
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -1119,18 +1119,6 @@ msgid ""
 "Sigla della provincia di appartenenza del comune indicato nell'elemento "
 "informativo 1.2.3.4 <Comune>. Da valorizzare se l'elemento informativo "
 "1.2.3.6 <Nazione> e' uguale a IT"
-msgstr ""
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:104
-#, python-format
-msgid "Signed Xml file %s"
-msgstr ""
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:110
-#, python-format
-msgid "Signed Xml file not decryptable"
 msgstr ""
 
 #. module: l10n_it_fatturapa
