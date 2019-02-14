@@ -34,7 +34,7 @@ addon | version | summary
 [l10n_it_ddt](l10n_it_ddt/) | 10.0.1.7.1 | Documento di Trasporto
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 10.0.1.0.0 | Esigibilità IVA
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 10.0.2.3.6 | Fatture elettroniche
-[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 10.0.1.4.5 | Ricezione fatture elettroniche
+[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 10.0.1.4.6 | Ricezione fatture elettroniche
 [l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 10.0.1.0.0 | Modulo ponte tra ricezione fatture elettroniche e acquisti
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 10.0.1.3.3 | Emissione fatture elettroniche
 [l10n_it_fatturapa_out_ddt](l10n_it_fatturapa_out_ddt/) | 10.0.1.0.2 | Modulo ponte tra emissione fatture elettroniche e DDT
