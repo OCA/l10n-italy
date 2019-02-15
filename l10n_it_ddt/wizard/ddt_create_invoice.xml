@@ -4,12 +4,12 @@
 <odoo>
 
         <record id="view_ddt_create_invoice" model="ir.ui.view">
-            <field name="name">DdT Create Invoice</field>
+            <field name="name">TD Create Invoice</field>
             <field name="model">ddt.create.invoice</field>
             <field name="arch" type="xml">
-              <form string="DDT Create Invoice">
-                <separator string="DDT" />
-                    <field string="DDT" name="ddt_ids" readonly="0">
+              <form string="TD Create Invoice">
+                <separator string="TD" />
+                    <field string="TD" name="ddt_ids" readonly="0">
                         <tree create="false">
                             <field name="ddt_number"/>
                             <field name="partner_id"/>
@@ -30,7 +30,7 @@
         </record>
 
         <record id="action_ddt_create_invoice" model="ir.actions.act_window">
-            <field name="name">DDT Create Invoice</field>
+            <field name="name">TD Create Invoice</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">ddt.create.invoice</field>
             <field name="view_type">form</field>

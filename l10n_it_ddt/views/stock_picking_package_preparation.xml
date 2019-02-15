@@ -39,7 +39,7 @@
             </field>
             <field name="model">stock.picking.package.preparation</field>
             <field name="arch" type="xml">
-                <search string="Search DDT">
+                <search string="Search TD">
                     <field name="ddt_number"/>
                     <field name="partner_id"/>
                     <field name="partner_shipping_id"/>
@@ -54,11 +54,11 @@
                         <filter name="group_by_partner" string="Partner"
                                 domain="[]"
                                 context="{'group_by': 'partner_id'}"/>
-                        <filter string="DDT Date" name="group_by_ddt_date"
+                        <filter string="TD Date" name="group_by_ddt_date"
                                 context="{'group_by': 'date'}"/>
                         <filter string="State" name="group_by_state"
                                 context="{'group_by': 'state'}"/>
-                        <filter string="DDT Type" name="group_by_ddt_type"
+                        <filter string="TD Type" name="group_by_ddt_type"
                                 context="{'group_by': 'ddt_type_id'}"/>
                     </group>
                 </search>
@@ -171,17 +171,16 @@
             </field>
         </record>
 
-        <!-- Only show original menuitem to admin user as a work around to fix translation issue -->
-        <menuitem
-                id="stock_picking_package_preparation.menu_stock_picking_package_preparation"
-                parent="stock.menu_stock_warehouse_mgmt"
-                groups="base.group_erp_manager"/>
+        <!-- Hide original menuitem to show the correct DDT label -->
+        <record model="ir.ui.menu" id="stock_picking_package_preparation.menu_stock_picking_package_preparation">
+            <field name="active" eval="False"/>
+        </record>
         <!-- Create a new menuitem DDT calling the same action of the original menuitem -->
         <menuitem
                 action="stock_picking_package_preparation.action_stock_picking_package_preparation"
                 id="menu_ddt_preparation"
                 parent="stock.menu_stock_warehouse_mgmt"
-                name="DDT"
+                name="Transport Document"
                 sequence="3"/>
 
 

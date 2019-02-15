@@ -16,11 +16,7 @@ class SaleOrder(models.Model):
     @api.multi
     def _compute_ddt_ids(self):
         for so in self:
-            ddt_ids = []
-            for picking in so.picking_ids:
-                for ddt in picking.ddt_ids:
-                    ddt_ids.append(ddt.id)
-            so.ddt_ids = ddt_ids
+            so.ddt_ids = so.mapped('picking_ids.ddt_ids').ids
 
     carriage_condition_id = fields.Many2one(
         'stock.picking.carriage_condition', string='Carriage Condition')
@@ -41,14 +37,14 @@ class SaleOrder(models.Model):
     volume = fields.Float('Volume')
     ddt_ids = fields.Many2many(
         'stock.picking.package.preparation',
-        string='Related DdTs',
+        string='Related TDs',
         compute='_compute_ddt_ids')
-    create_ddt = fields.Boolean('Automatically create the DDT')
+    create_ddt = fields.Boolean('Automatically create the TD')
     ddt_invoicing_group = fields.Selection(
-        [('nothing', 'One DDT - One Invoice'),
+        [('nothing', 'One TD - One Invoice'),
          ('billing_partner', 'Billing Partner'),
-         ('shipping_partner', 'Shipping Partners'),
-         ('code_group', 'Code group')], 'DDT invoicing group',
+         ('shipping_partner', 'Shipping Partner'),
+         ('code_group', 'Code group')], 'TD invoicing group',
         default='billing_partner')
 
     @api.multi
@@ -84,7 +80,7 @@ class SaleOrder(models.Model):
         return vals
 
     def _preparare_ddt_data(self):
-        picking_ids = [p.id for p in self.picking_ids]
+        picking_ids = self.picking_ids.ids
         return {
             'partner_id': self.partner_id.id,
             'partner_shipping_id': self.partner_shipping_id.id,

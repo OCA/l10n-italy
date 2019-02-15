@@ -4,11 +4,11 @@
 <odoo>
 
     <record id="view_ddt_invoicing" model="ir.ui.view">
-        <field name="name">DdT Invoicing</field>
+        <field name="name">TD Invoicing</field>
         <field name="model">ddt.invoicing</field>
         <field name="arch" type="xml">
-            <form string="DDT Invoicing">
-                <separator string="DDT"/>
+            <form string="TD Invoicing">
+                <separator string="TD"/>
                 <group>
                     <field name="date_from"/>
                     <field name="date_to"/>
@@ -29,7 +29,7 @@
     </record>
 
     <record id="action_ddt_invoicing" model="ir.actions.act_window">
-        <field name="name">DDT Invoicing</field>
+        <field name="name">TD Invoicing</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">ddt.invoicing</field>
         <field name="view_type">form</field>

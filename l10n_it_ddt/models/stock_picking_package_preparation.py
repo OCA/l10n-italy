@@ -53,7 +53,7 @@ class StockPickingTransportationMethod(models.Model):
 class StockDdtType(models.Model):
 
     _name = 'stock.ddt.type'
-    _description = 'Stock DdT Type'
+    _description = 'Stock TD Type'
 
     name = fields.Char(required=True)
     sequence_id = fields.Many2one('ir.sequence', required=True)
@@ -90,8 +90,8 @@ class StockPickingPackagePreparation(models.Model):
         return self.env['stock.ddt.type'].search([], limit=1)
 
     ddt_type_id = fields.Many2one(
-        'stock.ddt.type', string='DdT Type', default=_default_ddt_type)
-    ddt_number = fields.Char(string='DdT Number', copy=False)
+        'stock.ddt.type', string='TD Type', default=_default_ddt_type)
+    ddt_number = fields.Char(string='TD Number', copy=False)
     partner_shipping_id = fields.Many2one(
         'res.partner', string="Shipping Address")
     carriage_condition_id = fields.Many2one(
@@ -116,7 +116,7 @@ class StockPickingPackagePreparation(models.Model):
     to_be_invoiced = fields.Boolean(
         string='To be Invoiced',
         help="This depends on 'To be Invoiced' field of the Reason for "
-             "Transportation of this DDT")
+             "Transportation of this TD")
     show_price = fields.Boolean(string='Show prices on report')
     weight_manual = fields.Float(
         string="Force Net Weight",
@@ -165,7 +165,7 @@ class StockPickingPackagePreparation(models.Model):
         ddt = self.search([('picking_ids', '=', picking.id)])
         if ddt:
             raise UserError(
-                _("Selected Picking is already linked to DDT: %s")
+                _("Selected Picking is already linked to TD: %s")
                 % ddt.display_name
             )
 

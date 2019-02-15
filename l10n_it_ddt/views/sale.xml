@@ -31,7 +31,7 @@
                                 <field name="ddt_invoicing_group"/>
                             </group>
                         </group>
-                        <group string="Related DDTs">
+                        <group string="Related TDs">
                             <field name="ddt_ids" nolabel="1"/>
                         </group>
                     </page>
@@ -50,7 +50,7 @@
                        class="oe_stat_button"
                        icon="fa-truck"
                        attrs="{'invisible': ['|',('ddt_ids','=',False),('ddt_ids','=',[])]}" groups="base.group_user"
-                       string="View DdT">
+                       string="View TD">
                    </button>
                 </xpath>
             </field>

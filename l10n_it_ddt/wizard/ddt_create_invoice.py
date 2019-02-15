@@ -11,7 +11,7 @@ from odoo import fields, models, api, _
 
 class DdtCreateInvoice(models.TransientModel):
     _name = "ddt.create.invoice"
-    _description = "Create invoice from DDT"
+    _description = "Create invoice from TD"
 
     def _get_ddt_ids(self):
         return self.env['stock.picking.package.preparation'].browse(
@@ -34,7 +34,7 @@ class DdtCreateInvoice(models.TransientModel):
                     'account', 'invoice_tree')
                 tree_id = tree_res and tree_res[1] or False
                 return {
-                    'name': _('Invoices from DDT'),
+                    'name': _('Invoices from TD'),
                     'view_type': 'form',
                     'view_mode': 'form,tree',
                     'res_model': 'account.invoice',

@@ -12,7 +12,7 @@ from odoo.exceptions import Warning as UserError
 
 class DdTFromPickings(models.TransientModel):
     _name = "ddt.from.pickings"
-    _description = 'DDT from pickings'
+    _description = 'TD from pickings'
 
     def _get_picking_ids(self):
         return self.env['stock.picking'].browse(self.env.context['active_ids'])
@@ -181,7 +181,7 @@ class DdTFromPickings(models.TransientModel):
             values['gross_weight'] = self.picking_ids[0].sale_id.gross_weight
             values['volume'] = self.picking_ids[0].sale_id.volume
 
-        picking_ids = [p.id for p in self.picking_ids]
+        picking_ids = self.picking_ids.ids
         values.update({'picking_ids': [(6, 0, picking_ids)]})
         ddt = self.env['stock.picking.package.preparation'].create(values)
         # ----- Show new ddt
@@ -195,7 +195,7 @@ class DdTFromPickings(models.TransientModel):
             'stock_picking_package_preparation_tree')
         tree_id = tree_res and tree_res[1] or False
         return {
-            'name': 'DdT',
+            'name': _('TD'),
             'view_type': 'form',
             'view_mode': 'form,tree',
             'res_model': 'stock.picking.package.preparation',

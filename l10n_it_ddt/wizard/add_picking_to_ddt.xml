@@ -4,14 +4,14 @@
 <odoo>
 
         <record id="view_add_pickings_to_ddt" model="ir.ui.view">
-            <field name="name">Add Pickings to DDT</field>
+            <field name="name">Add Pickings to TD</field>
             <field name="model">add.pickings.to.ddt</field>
             <field name="arch" type="xml">
-                <form string="Add Pickings to DDT">
-                    <separator string="DDT" />
+                <form string="Add Pickings to TD">
+                    <separator string="TD" />
                     <field name="ddt_id" domain="[('state', 'in', ['draft', 'confirmed'])]"/>
                     <footer>
-                        <button name="add_to_ddt" string="Add to DDT" type="object" class="oe_highlight"/>
+                        <button name="add_to_ddt" string="Add to TD" type="object" class="oe_highlight"/>
                         or
                         <button string="Cancel" class="oe_link" special="cancel" />
                     </footer>
@@ -20,7 +20,7 @@
         </record>
 
         <record id="action_pickings_to_ddt" model="ir.actions.act_window">
-            <field name="name">Add Pickings to DDT</field>
+            <field name="name">Add Pickings to TD</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">add.pickings.to.ddt</field>
             <field name="binding_model_id" ref="stock.model_stock_picking"/>

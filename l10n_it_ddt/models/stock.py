@@ -19,7 +19,7 @@ class StockPicking(models.Model):
         relation='stock_picking_pack_prepare_rel',
         column1='stock_picking_id',
         column2='stock_picking_package_preparation_id',
-        string='DdT',
+        string='TD',
         copy=False, )
 
     @api.multi
