@@ -26,7 +26,7 @@
                             <field name="volume" />
                         </group>
                         <newline/>
-                        <group string="DDT" name="ddt">
+                        <group string="TD" name="ddt">
                             <field name="ddt_ids" nolabel="1"/>
                         </group>
                     </page>

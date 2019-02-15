@@ -4,7 +4,7 @@
 
         <!--Email template -->
         <record id="email_template_edi_ddt" model="mail.template">
-            <field name="name">DDT- Send by Email</field>
+            <field name="name">TD- Send by Email</field>
             <field name="email_from">
                 ${(object.company_id.email and '%s &lt;%s&gt;' % (object.company_id.name, object.company_id.email) or '')|safe}
             </field>
@@ -37,7 +37,7 @@ from ${object.company_id.name}.
         </record>
 
         <record id="mail_template_data_notification_email_ddt" model="mail.template">
-            <field name="name">DDT Notification Email</field>
+            <field name="name">TD Notification Email</field>
             <field name="subject">${object.subject}</field>
             <field name="model_id" ref="mail.model_mail_message"/>
             <field name="auto_delete" eval="True"/>

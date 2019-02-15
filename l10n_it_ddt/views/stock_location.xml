@@ -11,7 +11,7 @@
         <field name="arch" type="xml">
             <xpath expr="//form/group/group[3]"
                    position="after">
-                <group string="DDT" name="ddt">
+                <group string="TD" name="ddt">
                     <field name="type_ddt_id"/>
                 </group>
             </xpath>

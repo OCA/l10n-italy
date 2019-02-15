@@ -12,4 +12,4 @@ from odoo import fields, models
 class StockLocationTypeDdt(models.Model):
     _inherit = 'stock.location'
 
-    type_ddt_id = fields.Many2one('stock.ddt.type', string='Type DDT')
+    type_ddt_id = fields.Many2one('stock.ddt.type', string='TD type')

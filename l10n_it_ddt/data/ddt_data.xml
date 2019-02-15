@@ -13,7 +13,7 @@
 
     <!-- DdT Type -->
     <record id="ddt_type_ddt" model="stock.ddt.type">
-        <field name="name">DdT</field>
+        <field name="name">DDT</field>
         <field name="sequence_id" ref="seq_ddt" />
     </record>
 

@@ -11,7 +11,7 @@
         <field name="inherit_id" ref="stock.vpicktree"/>
         <field name="arch" type="xml">
             <field name="name" position="after">
-                    <field name="ddt_ids" string="DDT"/>
+                    <field name="ddt_ids" string="TD"/>
             </field>
         </field>
     </record>

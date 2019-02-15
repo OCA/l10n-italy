@@ -106,7 +106,7 @@
                         </div>
                     </div>
                     <br/>
-                    <h1>DDT number: <span t-field="o.ddt_number"></span></h1>
+                    <h1>TD number: <span t-field="o.ddt_number"></span></h1>
                     <table class="table table-condensed">
                         <t t-set="has_serial_number"
                            t-value="o.line_ids.filtered('lot_ids')"
@@ -159,7 +159,7 @@
         </template>
 
         <report
-            string="DDT"
+            string="TD"
             id="action_report_ddt"
             model="stock.picking.package.preparation"
             report_type="qweb-pdf"

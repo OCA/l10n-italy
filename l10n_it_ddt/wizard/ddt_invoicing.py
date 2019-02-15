@@ -12,7 +12,7 @@ from odoo.exceptions import Warning as UserError
 
 class DdtInvoicing(models.TransientModel):
     _name = "ddt.invoicing"
-    _description = "Invoicing DDT"
+    _description = "Invoicing TD"
 
     @api.model
     def _default_journal(self):
@@ -49,7 +49,7 @@ class DdtInvoicing(models.TransientModel):
                                      invoice_journal_id=wizard.journal_id.id,
                                      )
             return {
-                'name': _('DDT Invoicing'),
+                'name': _('TD Invoicing'),
                 'context': self._context,
                 'type': 'ir.actions.act_window',
                 'view_mode': 'form',

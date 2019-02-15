@@ -13,7 +13,7 @@ from odoo.exceptions import Warning as UserError
 class AddPickingToDdt(models.TransientModel):
 
     _name = "add.pickings.to.ddt"
-    _description = 'Add picking to DDT'
+    _description = 'Add picking to TD'
 
     ddt_id = fields.Many2one('stock.picking.package.preparation')
 
@@ -29,7 +29,7 @@ class AddPickingToDdt(models.TransientModel):
             if picking.ddt_ids and \
                     self.ddt_id.id in [d.id for d in picking.ddt_ids]:
                 raise UserError(
-                    _("Picking %s already in ddt") % picking.name)
+                    _("Picking %s already in TD") % picking.name)
             elif (
                 current_ddt_shipping_partner != self.ddt_id.partner_shipping_id
             ):
@@ -68,7 +68,7 @@ class AddPickingToDdt(models.TransientModel):
             'stock_picking_package_preparation_tree')
         tree_id = tree_res and tree_res[1] or False
         return {
-            'name': 'DdT',
+            'name': _('TD'),
             'view_type': 'form',
             'view_mode': 'form,tree',
             'res_model': 'stock.picking.package.preparation',
