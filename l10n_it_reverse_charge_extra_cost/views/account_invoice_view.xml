@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<!-- Copyright 2019 Marco Calcagni - Dinamiche Aziendali srl
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html). -->
+<odoo>
+    <record id="view_invoice_supplier_form_rc" model="ir.ui.view">
+        <field name="name">account.invoice.supplier.form.rc</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/sheet/notebook/page[2]/group" position="after">
+                <group string="Extra cost on self invoice">
+                    <field name="extra_cost_desc"
+                           context="{'form_view_ref': 'account.supplier_invoice_form'}"/>
+                    <field name="extra_self_invoice_cost"
+                           context="{'form_view_ref': 'account.supplier_invoice_form'}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
