@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-19 13:26+0000\n"
-"PO-Revision-Date: 2019-02-07 19:50+0000\n"
+"PO-Revision-Date: 2019-02-18 09:57+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -21,8 +21,8 @@ msgstr ""
 #: model:ir.actions.act_window,help:l10n_it_vat_registries.action_account_tax_registry_form
 msgid "A VAT registry is used to group several journals in one registry."
 msgstr ""
-"Un registro IVA è usato per raggruppare diversi registri contabili in uno "
-"unico."
+"Un registro IVA viene usato per raggruppare insieme diversi registri "
+"contabili."
 
 #. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
@@ -369,8 +369,8 @@ msgid ""
 "will be able to select the registry in order to load that group of journals"
 msgstr ""
 "È possibile raggruppare più registri contabili in un unico registro IVA. "
-"Nella procedura guidata di stampa, è possibile selezionare il registro IVA "
-"per caricare i relativi registri ."
+"Nella procedura guidata di stampa, selezionare il registro IVA per caricare "
+"i relativi registri ."
 
 #. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
