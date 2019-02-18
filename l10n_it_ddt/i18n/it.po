@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-25 05:17+0000\n"
-"PO-Revision-Date: 2019-02-18 09:57+0000\n"
+"PO-Revision-Date: 2019-02-18 10:09+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -437,7 +437,7 @@ msgstr "Condizioni di trasporto predefinite"
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_default_goods_description_id
 msgid "Default Description of Goods"
-msgstr "Aspetto dei beni predefinito"
+msgstr "Descrizione beni predefinita"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_default_transportation_method_id
@@ -459,14 +459,14 @@ msgstr "Causale trasporto predefinita"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_goods_description_id
 #: model:ir.ui.view,arch_db:l10n_it_ddt.stock_goods_description_form
 msgid "Description of Goods"
-msgstr "Aspetto dei beni"
+msgstr "Descrizione dei beni"
 
 #. module: l10n_it_ddt
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_goods_description_tree
 #: model:ir.ui.menu,name:l10n_it_ddt.menu_action_good_description_tree
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_goods_description_tree
 msgid "Descriptions of Goods"
-msgstr "Aspetto dei beni"
+msgstr "Descrizioni dei beni"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
@@ -530,7 +530,7 @@ msgstr "Forza peso netto"
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Goods Description"
-msgstr "Aspetto esteriore dei beni"
+msgstr "Descrizione beni"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice_gross_weight
@@ -836,7 +836,7 @@ msgstr "Il prelievo %s selezionato ha una condizione di trasporto diversa"
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:47
 #, python-format
 msgid "Selected Picking %s have different goods description"
-msgstr "Il prelievo %s selezionato ha una descrizione merci diversa"
+msgstr "Il prelievo %s selezionato ha una descrizione beni diversa"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:57
@@ -872,7 +872,7 @@ msgstr "I prelievi selezionati hanno condizioni di trasporto diverse"
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:104
 #, python-format
 msgid "Selected Pickings have different goods description"
-msgstr "I prelievi selezionati hanno una descrizione merci diversa"
+msgstr "I prelievi selezionati hanno una descrizione beni diversa"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:69
