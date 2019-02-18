@@ -57,8 +57,6 @@ Configuration
 
 Consultare il modulo `l10n_it_sdi_channel`.
 
-Lo stato dell'esportazione XML può essere forzato assegnando all'utente il gruppo 'permetti di forzare lo stato dell'esportazione e-fattura'.
-
 In caso di multi azienda, specificare, in
 
 Contabilità → Configurazione → Impostazioni → Fattura elettronica
@@ -70,9 +68,6 @@ Lo stato dell'esportazione XML può essere forzato impostando 'Permettere di for
 **English**
 
 See `l10n_it_sdi_channel` module.
-
-XML export state can ba forced giving the user the group 'Allow to force e-invoice export state'.
-
 
 In case of multi company, in
 
