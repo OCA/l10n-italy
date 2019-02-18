@@ -394,7 +394,8 @@ class WizardImportFatturapa(models.TransientModel):
         if line.Quantita:
             retLine['quantity'] = float(line.Quantita)
         if (
-            line.PrezzoTotale and line.PrezzoUnitario and line.Quantita and
+            float(line.PrezzoTotale) and float(line.PrezzoUnitario) and
+            line.Quantita and float(line.Quantita) and  # Quantita not required
             line.ScontoMaggiorazione
         ):
             retLine['discount'] = self._computeDiscount(line)
