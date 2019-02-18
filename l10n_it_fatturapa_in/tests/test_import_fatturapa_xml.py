@@ -450,3 +450,15 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
+
+    def test_21_xml_import(self):
+        supplier = self.env['res.partner'].search(
+            [('vat', '=', 'IT02780790107')])[0]
+        # in order to make the system create the invoice lines
+        supplier.e_invoice_detail_level = '2'
+        res = self.run_wizard('test21', 'IT01234567890_FPR04.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.inconsistencies, '')
+        self.assertEqual(invoice.invoice_line_ids[2].price_unit, 0.0)
+        self.assertEqual(invoice.invoice_line_ids[2].discount, 0.0)
