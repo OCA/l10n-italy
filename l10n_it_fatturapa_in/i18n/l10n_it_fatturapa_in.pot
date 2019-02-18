@@ -68,7 +68,7 @@ msgid "Bill"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1140
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1141
 #, python-format
 msgid "Bill total %s is different from document total amount %s"
 msgstr ""
@@ -126,7 +126,7 @@ msgid "Company Name field contains '%s'. Your System contains '%s'"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1155
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1156
 #, python-format
 msgid "Computed amount untaxed %s is different from summary data %s"
 msgstr ""
@@ -297,7 +297,7 @@ msgid "File Size"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1178
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1179
 #, python-format
 msgid "File is linked to bills yet."
 msgstr ""
@@ -541,13 +541,13 @@ msgid "Payment method %s is not defined in your system."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1093
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1094
 #, python-format
 msgid "Payment method code %s is incorrect."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1088
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1089
 #, python-format
 msgid "Payment method code not found in document."
 msgstr ""
