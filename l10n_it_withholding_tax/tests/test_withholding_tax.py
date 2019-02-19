@@ -28,8 +28,8 @@ class TestWithholdingTax(TransactionCase):
         # Journals
         self.journal_misc = self.env['account.journal'].search(
             [('type', '=', 'general')])[0]
-        self.journal_bank = self.env['account.journal'].create(
-            {'name': 'Bank', 'type': 'bank', 'code': 'BNK67'})
+        self.journal_bank = self.env['account.journal'].search(
+            [('type', '=', 'bank')])[0]
 
         # Payments
         vals_payment = {
@@ -82,7 +82,7 @@ class TestWithholdingTax(TransactionCase):
         self.invoice._onchange_invoice_line_wt_ids()
         self.invoice.action_invoice_open()
 
-    def test_withholding_tax(self):
+    def test_1_withholding_tax(self):
         domain = [('name', '=', 'Code 1040')]
         wts = self.env['withholding.tax'].search(domain)
         self.assertEqual(len(wts), 1, msg="Withholding tax was not created")
@@ -141,7 +141,7 @@ class TestWithholdingTax(TransactionCase):
         self.assertEqual(self.invoice.amount_net_pay, 800)
         # self.assertEqual(self.invoice.amount_net_pay_residual, 0)
 
-    def test_partial_payment(self):
+    def test_2_partial_payment(self):
         self.assertEqual(self.invoice.amount_net_pay, 800)
         # self.assertEqual(self.invoice.amount_net_pay_residual, 800)
         ctx = {
@@ -164,7 +164,7 @@ class TestWithholdingTax(TransactionCase):
         # WT amount in payment move lines
         self.assertTrue(
             set(self.invoice.payment_move_line_ids.mapped('debit')) ==
-            [600, 150]
+            set([600, 150])
         )
 
         # WT aomunt applied in statement
