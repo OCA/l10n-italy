@@ -347,7 +347,10 @@ class WithholdingTaxMove(models.Model):
                 break
         if line_to_reconcile:
             if self.credit_debit_line_id.invoice_id.type in\
-                    ['in_refund', 'out_invoice']:
+                ['in_refund', 'out_invoice'] or (
+                        self.credit_debit_line_id.invoice_id.type in
+                        ['out_refund', 'in_invoice'] and self.amount < 0
+                    ):
                 debit_move_id = self.credit_debit_line_id.id
                 credit_move_id = line_to_reconcile.id
             else:
@@ -357,7 +360,7 @@ class WithholdingTaxMove(models.Model):
                 with_context(no_generate_wt_move=True).create({
                     'debit_move_id': debit_move_id,
                     'credit_move_id': credit_move_id,
-                    'amount': self.amount,
+                    'amount': abs(self.amount),
                 })
 
     def _compute_display_name(self):
