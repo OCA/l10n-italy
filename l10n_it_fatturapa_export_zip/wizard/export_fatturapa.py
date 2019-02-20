@@ -1,56 +1,58 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, api, fields, _
 import base64
 import io
 import zipfile
+from datetime import datetime
+from odoo import models, api, fields, _
+from odoo.exceptions import UserError
 
 
 class WizardAccountInvoiceExport(models.TransientModel):
     _name = "wizard.fatturapa.export"
 
+    @api.model
+    def _default_name(self):
+        return "%s_%s" % (
+            _("E-invoice-export"), datetime.now().strftime('%Y%m%d%H%M'))
+
     data = fields.Binary("File", readonly=True)
-    name = fields.Char('Filename', size=32)
-    mark_as_exported = fields.Boolean('Mark as exported', default=True)
+    name = fields.Char('Filename', default=_default_name, required=True)
 
     @api.multi
     def export_zip(self):
-        attachments = []
-        for att in self.env[self._context['active_model']].browse(
-                self._context['active_ids']):
-            attachments += [att]
+        self.ensure_one()
+        attachments = self.env[self.env.context['active_model']].browse(
+            self.env.context['active_ids'])
+        for att in attachments:
+            if att.exported_zip:
+                raise UserError(_(
+                    "Attachment %s already exported. Remove ZIP file first"
+                ) % att.display_name)
+            if not att.datas or not att.datas_fname:
+                raise UserError(
+                    _("Attachment %s does not have XML file")
+                    % att.display_name)
 
         fp = io.BytesIO()
-        zf = zipfile.ZipFile(fp, mode="w")
-
-        for att in attachments:
-            zf.writestr(att.datas_fname, base64.b64decode(att.datas))
-        zf.close()
+        with zipfile.ZipFile(fp, mode="w") as zf:
+            for att in attachments:
+                zf.writestr(att.datas_fname, base64.b64decode(att.datas))
         fp.seek(0)
         data = fp.read()
-        export_report_name = _('E-Invoices XML')
-        if self.name:
-            export_report_name = self.name
         attach_vals = {
-            'name': export_report_name + '.zip',
-            'datas_fname': export_report_name + '.zip',
+            'name': self.name + '.zip',
+            'datas_fname': self.name + '.zip',
             'datas': base64.encodestring(data),
         }
-        att_id = self.env['ir.attachment'].create(attach_vals)
-        model_data_obj = self.env['ir.model.data']
-        view_rec = model_data_obj.get_object_reference(
-            'base', 'view_attachment_form')
-        view_id = view_rec and view_rec[1] or False
-        if self.mark_as_exported:
-            for attachment in attachments:
-                attachment.zip_exported = True
+        zip_att = self.env['ir.attachment'].create(attach_vals)
+        for att in attachments:
+            att.exported_zip = zip_att
         return {
             'view_type': 'form',
             'name': _("Export E-Invoices"),
-            'view_id': [view_id],
-            'res_id': att_id.id,
+            'res_id': zip_att.id,
             'view_mode': 'form',
             'res_model': 'ir.attachment',
             'type': 'ir.actions.act_window',
-            'context': self._context,
         }

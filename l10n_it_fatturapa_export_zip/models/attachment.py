@@ -6,10 +6,12 @@ from odoo import models, fields
 class FatturaAttachmentOut(models.Model):
     _inherit = ['fatturapa.attachment.out']
 
-    zip_exported = fields.Boolean('Zip Exported')
+    exported_zip = fields.Many2one(
+        'ir.attachment', 'Exported ZIP', readonly=True)
 
 
 class FatturaAttachmentIn(models.Model):
     _inherit = ['fatturapa.attachment.in']
 
-    zip_exported = fields.Boolean('Zip Exported')
+    exported_zip = fields.Many2one(
+        'ir.attachment', 'Exported ZIP', readonly=True)
