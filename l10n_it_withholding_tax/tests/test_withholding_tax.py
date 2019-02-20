@@ -105,7 +105,6 @@ class TestWithholdingTax(TransactionCase):
             wt_statement.amount_paid, 0, msg='WT statement Base paid')
 
         self.assertEqual(self.invoice.amount_net_pay, 800)
-        # self.assertEqual(self.invoice.amount_net_pay_residual, 800)
 
         ctx = {
             'active_model': 'account.invoice',
@@ -139,7 +138,6 @@ class TestWithholdingTax(TransactionCase):
         self.assertEqual(wt_statement.amount, 200)
         self.assertEqual(self.invoice.state, 'paid')
         self.assertEqual(self.invoice.amount_net_pay, 800)
-        # self.assertEqual(self.invoice.amount_net_pay_residual, 0)
 
     def test_2_partial_payment(self):
         self.assertEqual(self.invoice.amount_net_pay, 800)
@@ -173,6 +171,5 @@ class TestWithholdingTax(TransactionCase):
         wt_statement = self.env['withholding.tax.statement'].search(domain)
         self.assertEqual(wt_statement.amount, 150)
         self.assertEqual(self.invoice.amount_net_pay, 800)
-        # self.assertEqual(self.invoice.amount_net_pay_residual, 200)
         self.assertEqual(self.invoice.residual, 250)
         self.assertEqual(self.invoice.state, 'open')
