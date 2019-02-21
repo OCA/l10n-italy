@@ -292,7 +292,7 @@ class WizardExportFatturapa(models.TransientModel):
 
         if (
             company.fatturapa_rea_office and company.fatturapa_rea_number and
-            company.company.fatturapa_rea_liquidation
+            company.fatturapa_rea_liquidation
         ):
             # The required fields for IscrizioneREA (not required) are
             # Ufficio, NumeroREA and StatoLiquidazione
