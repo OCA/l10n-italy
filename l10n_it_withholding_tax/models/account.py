@@ -33,8 +33,8 @@ class AccountPartialReconcile(models.Model):
             # Note that this is always executed, for every reconciliation.
             # Thus, we must not change amount when not in withholding tax case
             amount = vals.get('amount_currency') or vals.get('amount')
-            if amount > invoice.amount_net_pay:
-                vals.update({'amount': invoice.amount_net_pay})
+            if amount > abs(invoice.amount_net_pay):
+                vals.update({'amount': abs(invoice.amount_net_pay)})
 
         # Create reconciliation
         reconcile = super(AccountPartialReconcile, self).create(vals)
