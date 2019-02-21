@@ -210,8 +210,14 @@ class WithholdingTaxStatement(models.Model):
                     base = round(amount_base * wt_inv.base_coeff, 5)
                     amount_wt = round(base * wt_inv.tax_coeff,
                                       dp_obj.precision_get('Account'))
-                if st.invoice_id.type in ['in_refund', 'out_refund']:
-                    amount_wt = -1 * amount_wt
+                # fix: get original sign
+                invoice_type = st.invoice_id.type
+                original_residual_signed = st.invoice_id.amount_untaxed_signed\
+                    * (-1 if invoice_type in [
+                        'in_invoice', 'out_refund'] else 1)
+                if invoice_type in ['in_refund', 'out_refund']:
+                    if original_residual_signed > 0:
+                        amount_wt = -1 * amount_wt
             elif st.move_id:
                 tax_data = st.withholding_tax_id.compute_tax(amount_reconcile)
                 amount_wt = tax_data['tax']
@@ -344,13 +350,26 @@ class WithholdingTaxMove(models.Model):
                 line_to_reconcile = line
                 break
         if line_to_reconcile:
-            if self.credit_debit_line_id.invoice_id.type in\
-                    ['in_refund', 'out_invoice']:
-                debit_move_id = self.credit_debit_line_id.id
-                credit_move_id = line_to_reconcile.id
+            # get correct debit and credit lines
+            invoice = self.credit_debit_line_id.invoice_id
+            original_untaxed_signed = invoice.amount_untaxed_signed * (
+                -1 if invoice['type'] in ['in_invoice', 'out_refund'] else 1)
+            if original_untaxed_signed < 0:
+                # invert values
+                if invoice.type in ['in_refund', 'out_invoice']:
+                    debit_move_id = line_to_reconcile.id
+                    credit_move_id = self.credit_debit_line_id.id
+                else:
+                    debit_move_id = self.credit_debit_line_id.id
+                    credit_move_id = line_to_reconcile.id
             else:
-                debit_move_id = line_to_reconcile.id
-                credit_move_id = self.credit_debit_line_id.id
+                # use default behaviour
+                if invoice.type in ['in_refund', 'out_invoice']:
+                    debit_move_id = self.credit_debit_line_id.id
+                    credit_move_id = line_to_reconcile.id
+                else:
+                    debit_move_id = line_to_reconcile.id
+                    credit_move_id = self.credit_debit_line_id.id
             self.env['account.partial.reconcile'].\
                 with_context(no_generate_wt_move=True).create({
                     'debit_move_id': debit_move_id,

@@ -247,8 +247,8 @@ class TestWithholdingTax(TransactionCase):
 
         # WT amount in payment move lines
         self.assertTrue(
-            set(self.customer_invoice.payment_move_line_ids.mapped('debit')) ==
-            set([800, 200])
+            set(self.customer_invoice.payment_move_line_ids.mapped('credit'))
+            == set([800, 200])
         )
 
         # WT aomunt applied in statement
@@ -259,7 +259,7 @@ class TestWithholdingTax(TransactionCase):
         self.assertEqual(self.customer_invoice.state, 'paid')
         self.assertEqual(self.customer_invoice.amount_net_pay, 800)
 
-    def test_2_partial_payment(self):
+    def test_4_partial_payment(self):
         self.assertEqual(self.customer_invoice.amount_net_pay, 800)
         ctx = {
             'active_model': 'account.invoice',
@@ -280,8 +280,8 @@ class TestWithholdingTax(TransactionCase):
 
         # WT amount in payment move lines
         self.assertTrue(
-            set(self.customer_invoice.payment_move_line_ids.mapped('debit')) ==
-            set([600, 150])
+            set(self.customer_invoice.payment_move_line_ids.mapped('credit'))
+            == set([600, 150])
         )
 
         # WT aomunt applied in statement
