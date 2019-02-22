@@ -73,8 +73,7 @@ class TestWithholdingTax(TransactionCase):
                 [('type', '=', 'purchase')])[0].id,
             'partner_id': self.env.ref('base.res_partner_12').id,
             'account_id': self.env['account.account'].search(
-                [('user_type_id', '=', self.env.ref(
-                    'account.data_account_type_receivable').id)],
+                [('user_type_id', '=', type_payable.id)],
                 limit=1, order='id').id,
             'invoice_line_ids': invoice_line_vals,
             'type': 'in_invoice',
@@ -100,8 +99,7 @@ class TestWithholdingTax(TransactionCase):
                 [('type', '=', 'sale')])[0].id,
             'partner_id': self.env.ref('base.res_partner_2').id,
             'account_id': self.env['account.account'].search(
-                [('user_type_id', '=', self.env.ref(
-                    'account.data_account_type_payable').id)],
+                [('user_type_id', '=', type_receivable.id)],
                 limit=1, order='id').id,
             'invoice_line_ids': invoice_line_vals,
             'type': 'out_invoice',
