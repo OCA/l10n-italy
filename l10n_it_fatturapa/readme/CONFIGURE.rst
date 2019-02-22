@@ -5,6 +5,8 @@
 * Gli altri devono avere il codice destinatario o la PEC
 * Configurare le imposte riguardo a "Natura non imponibile", "Riferimento normativo" ed "Esigibilità IVA"
 * Configurare i dati della fattura elettronica nella configurazione della contabilità, dove necessario
+* Opzionalmente configurare lo stile dell'anteprima della fattura elettronica, selezionando "Stile del formato di anteprima" in "Configurazione Contabilità"
+
 
 **English**
 
@@ -13,3 +15,4 @@
 * Others must have Addressee Code or PEC
 * Configure taxes about 'Non taxable nature', 'Law reference' and 'VAT payability'
 * Configure Electronic Invoice data in Accounting Configuration, where needed
+* Optionally configure the Electronic Invoice preview format style by selecting 'Preview Format Style' in 'Accounting Configuration'
