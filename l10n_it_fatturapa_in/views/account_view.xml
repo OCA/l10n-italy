@@ -73,7 +73,8 @@
             <field name="model">fatturapa.attachment.in</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name="name"></field>
+                    <field name="name"/>
+                    <field name="xml_supplier_id"/>
                     <filter name="to_register" string="To Register" domain="[('registered','=',False)]"/>
                 </search>
             </field>
