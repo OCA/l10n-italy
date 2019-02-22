@@ -57,8 +57,8 @@
         <field name="model">fatturapa.attachment.in</field>
         <field name="arch" type="xml">
             <tree string="Xml Attachment">
-                <field name="name"></field>
-                <field name="create_date"></field>
+                <field name="name"/>
+                <field name="create_date"/>
                 <field name="xml_supplier_id"/>
                 <field name="invoices_number"/>
                 <field name="registered"/>
@@ -71,7 +71,8 @@
         <field name="model">fatturapa.attachment.in</field>
         <field name="arch" type="xml">
             <search>
-                <field name="name"></field>
+                <field name="name"/>
+                <field name="xml_supplier_id"/>
                 <filter name="to_register" string="To Register" domain="[('registered','=',False)]"/>
             </search>
         </field>
@@ -82,15 +83,15 @@
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="context">{'search_default_to_register': True}</field>
-        <field name="view_id" ref="view_fatturapa_in_attachment_tree"></field>
+        <field name="view_id" ref="view_fatturapa_in_attachment_tree"/>
     </record>
     <menuitem action="action_fattura_pa_in" id="menu_fattura_pa_in_tree"
-                          parent="l10n_it_fatturapa.menu_fattura_pa_payables"></menuitem>
+                          parent="l10n_it_fatturapa.menu_fattura_pa_payables"/>
     <!-- Extend purchase invoice line -->
     <record id="view_invoice_line_form_fatturapa_in" model="ir.ui.view">
         <field name="name">account.invoice.line.fatturapa.in</field>
         <field name="model">account.invoice.line</field>
-        <field name="inherit_id" ref="l10n_it_fatturapa.view_invoice_line_form_fatturapa"></field>
+        <field name="inherit_id" ref="l10n_it_fatturapa.view_invoice_line_form_fatturapa"/>
         <field name="arch" type="xml">
             <field name="product_id" position="after">
                 <field name="fatturapa_attachment_in_id" invisible="1"/>
