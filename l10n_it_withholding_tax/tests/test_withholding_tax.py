@@ -156,6 +156,14 @@ class TestWithholdingTax(TransactionCase):
             set(self.invoice.payment_move_line_ids.mapped('debit')) ==
             set([800, 200])
         )
+        partial_rec = self.env['account.partial.reconcile'].search([
+            ('debit_move_id', '=',
+             self.invoice.payment_move_line_ids.filtered(
+                 lambda x: x.debit == 200).id)])
+        self.assertEqual(
+            partial_rec.credit_move_id.account_id,
+            self.invoice.partner_id.property_account_payable_id,
+            msg='Partial reconcile uncorrect payable account')
         # check 1 moveline has to have the account_id of payable of wt
         # withholding_tax_id.account_payable_id
         # as this one is the supplier invoice, of the amount of 200
@@ -201,7 +209,14 @@ class TestWithholdingTax(TransactionCase):
             set(self.invoice.payment_move_line_ids.mapped('debit')) ==
             set([600, 150])
         )
-
+        partial_rec = self.env['account.partial.reconcile'].search([
+            ('debit_move_id', '=',
+             self.invoice.payment_move_line_ids.filtered(
+                 lambda x: x.debit == 150).id)])
+        self.assertEqual(
+            partial_rec.credit_move_id.account_id,
+            self.invoice.partner_id.property_account_payable_id,
+            msg='Partial reconcile uncorrect payable account')
         # check 1 moveline has to have the account_id of payable of wt
         # withholding_tax_id.account_payable_id
         # as this one is the supplier invoice, of the amount of 200
@@ -275,6 +290,15 @@ class TestWithholdingTax(TransactionCase):
             == set([800, 200])
         )
 
+        partial_rec = self.env['account.partial.reconcile'].search([
+            ('credit_move_id', '=',
+             self.customer_invoice.payment_move_line_ids.filtered(
+                 lambda x: x.credit == 200).id)])
+        self.assertEqual(
+            partial_rec.credit_move_id.account_id,
+            self.customer_invoice.partner_id.property_account_receivable_id,
+            msg='Partial reconcile uncorrect receivable account')
+
         # check 1 moveline has to have the account_id receivable
         # as this one is the customer invoice, of the amount of 200
         wt_move_line = self.env['account.move.line'].search([
@@ -319,6 +343,15 @@ class TestWithholdingTax(TransactionCase):
             set(self.customer_invoice.payment_move_line_ids.mapped('credit'))
             == set([600, 150])
         )
+
+        partial_rec = self.env['account.partial.reconcile'].search([
+            ('credit_move_id', '=',
+             self.customer_invoice.payment_move_line_ids.filtered(
+                 lambda x: x.credit == 150).id)])
+        self.assertEqual(
+            partial_rec.credit_move_id.account_id,
+            self.customer_invoice.partner_id.property_account_receivable_id,
+            msg='Partial reconcile uncorrect receivable account')
 
         # check 1 moveline has to have the account_id receivable
         # as this one is the customer invoice, of the amount of 200
