@@ -91,7 +91,7 @@ class TestWithholdingTax(TransactionCase):
                         'account.data_account_type_revenue').id)],
                     limit=1).id,
                 'name': 'Advice',
-                'price_unit': 1000.00,
+                'price_unit': 2000.00,
                 'invoice_line_tax_wt_ids': [(6, 0, [self.wt1040.id])]
                 })]
         self.customer_invoice = self.env['account.invoice'].create({
@@ -219,7 +219,7 @@ class TestWithholdingTax(TransactionCase):
             msg='Partial reconcile uncorrect payable account')
         # check 1 moveline has to have the account_id of payable of wt
         # withholding_tax_id.account_payable_id
-        # as this one is the supplier invoice, of the amount of 200
+        # as this one is the supplier invoice, of the amount of 150
         wt_move_line = self.env['account.move.line'].search([
             ('account_id', '=', self.wt_account_payable.id),
             ('credit', '=', 150.0),
@@ -246,10 +246,10 @@ class TestWithholdingTax(TransactionCase):
 
         self.assertEqual(
             self.customer_invoice.withholding_tax_amount,
-            200, msg='Invoice WT amount')
+            400, msg='Invoice WT amount')
         self.assertEqual(
             self.customer_invoice.amount_net_pay,
-            800, msg='Invoice WT amount net pay')
+            1600, msg='Invoice WT amount net pay')
 
         domain = [('invoice_id', '=', self.customer_invoice.id),
                   ('withholding_tax_id', '=', self.wt1040.id)]
@@ -257,13 +257,13 @@ class TestWithholdingTax(TransactionCase):
         self.assertEqual(
             len(wt_statement), 1, msg='WT statement was not created')
         self.assertEqual(
-            wt_statement.base, 1000, msg='WT statement Base amount')
+            wt_statement.base, 2000, msg='WT statement Base amount')
         self.assertEqual(
             wt_statement.amount, 0, msg='WT statement amount applied')
         self.assertEqual(
             wt_statement.amount_paid, 0, msg='WT statement Base paid')
 
-        self.assertEqual(self.customer_invoice.amount_net_pay, 800)
+        self.assertEqual(self.customer_invoice.amount_net_pay, 1600)
 
         ctx = {
             'active_model': 'account.invoice',
@@ -272,7 +272,7 @@ class TestWithholdingTax(TransactionCase):
         register_payments = self.env['account.register.payments']\
             .with_context(ctx).create({
                 'payment_date': time.strftime('%Y') + '-07-15',
-                'amount': 800,
+                'amount': 1600,
                 'journal_id': self.journal_bank.id,
                 'payment_method_id': self.env.ref(
                     "account.account_payment_method_manual_out").id,
@@ -287,23 +287,23 @@ class TestWithholdingTax(TransactionCase):
         # WT amount in payment move lines
         self.assertTrue(
             set(self.customer_invoice.payment_move_line_ids.mapped('credit'))
-            == set([800, 200])
+            == set([1600, 400])
         )
 
         partial_rec = self.env['account.partial.reconcile'].search([
             ('credit_move_id', '=',
              self.customer_invoice.payment_move_line_ids.filtered(
-                 lambda x: x.credit == 200).id)])
+                 lambda x: x.credit == 400).id)])
         self.assertEqual(
             partial_rec.credit_move_id.account_id,
             self.customer_invoice.partner_id.property_account_receivable_id,
             msg='Partial reconcile uncorrect receivable account')
 
         # check 1 moveline has to have the account_id receivable
-        # as this one is the customer invoice, of the amount of 200
+        # as this one is the customer invoice, of the amount of 400
         wt_move_line = self.env['account.move.line'].search([
             ('account_id', '=', self.wt_account_receivable.id),
-            ('debit', '=', 200.0),
+            ('debit', '=', 400.0),
             ('name', '=', '%s - %s' % (
                 self.wt1040.code, self.customer_invoice.move_id.name
             ))
@@ -315,12 +315,12 @@ class TestWithholdingTax(TransactionCase):
         domain = [('invoice_id', '=', self.customer_invoice.id),
                   ('withholding_tax_id', '=', self.wt1040.id)]
         wt_statement = self.env['withholding.tax.statement'].search(domain)
-        self.assertEqual(wt_statement.amount, 200)
+        self.assertEqual(wt_statement.amount, 400)
         self.assertEqual(self.customer_invoice.state, 'paid')
-        self.assertEqual(self.customer_invoice.amount_net_pay, 800)
+        self.assertEqual(self.customer_invoice.amount_net_pay, 1600)
 
     def test_4_partial_payment(self):
-        self.assertEqual(self.customer_invoice.amount_net_pay, 800)
+        self.assertEqual(self.customer_invoice.amount_net_pay, 1600)
         ctx = {
             'active_model': 'account.invoice',
             'active_ids': [self.customer_invoice.id],
@@ -331,7 +331,7 @@ class TestWithholdingTax(TransactionCase):
             ctx
         ).create({
             'payment_date': time.strftime('%Y') + '-07-15',
-            'amount': 600,
+            'amount': 1200,
             'journal_id': self.journal_bank.id,
             'payment_method_id': self.env.ref(
                 "account.account_payment_method_manual_out").id,
@@ -341,13 +341,13 @@ class TestWithholdingTax(TransactionCase):
         # WT amount in payment move lines
         self.assertTrue(
             set(self.customer_invoice.payment_move_line_ids.mapped('credit'))
-            == set([600, 150])
+            == set([1200, 300])
         )
 
         partial_rec = self.env['account.partial.reconcile'].search([
             ('credit_move_id', '=',
              self.customer_invoice.payment_move_line_ids.filtered(
-                 lambda x: x.credit == 150).id)])
+                 lambda x: x.credit == 300).id)])
         self.assertEqual(
             partial_rec.credit_move_id.account_id,
             self.customer_invoice.partner_id.property_account_receivable_id,
@@ -357,7 +357,7 @@ class TestWithholdingTax(TransactionCase):
         # as this one is the customer invoice, of the amount of 200
         wt_move_line = self.env['account.move.line'].search([
             ('account_id', '=', self.wt_account_receivable.id),
-            ('debit', '=', 150.0),
+            ('debit', '=', 300.0),
             ('name', '=', '%s - %s' % (
                 self.wt1040.code, self.customer_invoice.move_id.name
             ))
@@ -369,7 +369,7 @@ class TestWithholdingTax(TransactionCase):
         domain = [('invoice_id', '=', self.customer_invoice.id),
                   ('withholding_tax_id', '=', self.wt1040.id)]
         wt_statement = self.env['withholding.tax.statement'].search(domain)
-        self.assertEqual(wt_statement.amount, 150)
-        self.assertEqual(self.customer_invoice.amount_net_pay, 800)
-        self.assertEqual(self.customer_invoice.residual, 250)
+        self.assertEqual(wt_statement.amount, 300)
+        self.assertEqual(self.customer_invoice.amount_net_pay, 1600)
+        self.assertEqual(self.customer_invoice.residual, 500)
         self.assertEqual(self.customer_invoice.state, 'open')
