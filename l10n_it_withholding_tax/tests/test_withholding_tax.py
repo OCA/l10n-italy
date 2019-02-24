@@ -1,4 +1,5 @@
 # Copyright 2018 Lorenzo Battistini (https://github.com/eLBati)
+# Copyright 2019 Sergio Corato (https://github.com/sergiocorato)
 
 from odoo.tests.common import TransactionCase
 import time
@@ -155,6 +156,18 @@ class TestWithholdingTax(TransactionCase):
             set(self.invoice.payment_move_line_ids.mapped('debit')) ==
             set([800, 200])
         )
+        # check 1 moveline has to have the account_id of payable of wt
+        # withholding_tax_id.account_payable_id
+        # as this one is the supplier invoice, of the amount of 200
+        wt_move_line = self.env['account.move.line'].search([
+            ('account_id', '=', self.wt_account_payable.id),
+            ('credit', '=', 200.0),
+            ('name', '=', '%s - %s' % (
+                self.wt1040.code, self.invoice.move_id.name
+            ))
+        ])
+        self.assertEqual(len(wt_move_line),
+                         1, msg='Missing correct debit wt move line')
 
         # WT aomunt applied in statement
         domain = [('invoice_id', '=', self.invoice.id),
@@ -188,6 +201,19 @@ class TestWithholdingTax(TransactionCase):
             set(self.invoice.payment_move_line_ids.mapped('debit')) ==
             set([600, 150])
         )
+
+        # check 1 moveline has to have the account_id of payable of wt
+        # withholding_tax_id.account_payable_id
+        # as this one is the supplier invoice, of the amount of 200
+        wt_move_line = self.env['account.move.line'].search([
+            ('account_id', '=', self.wt_account_payable.id),
+            ('credit', '=', 150.0),
+            ('name', '=', '%s - %s' % (
+                self.wt1040.code, self.invoice.move_id.name
+            ))
+        ])
+        self.assertEqual(len(wt_move_line),
+                         1, msg='Missing correct debit wt move line')
 
         # WT aomunt applied in statement
         domain = [('invoice_id', '=', self.invoice.id),
@@ -249,6 +275,18 @@ class TestWithholdingTax(TransactionCase):
             == set([800, 200])
         )
 
+        # check 1 moveline has to have the account_id receivable
+        # as this one is the customer invoice, of the amount of 200
+        wt_move_line = self.env['account.move.line'].search([
+            ('account_id', '=', self.wt_account_receivable.id),
+            ('debit', '=', 200.0),
+            ('name', '=', '%s - %s' % (
+                self.wt1040.code, self.customer_invoice.move_id.name
+            ))
+        ])
+        self.assertEqual(len(wt_move_line),
+                         1, msg='Missing correct credit wt move line')
+
         # WT aomunt applied in statement
         domain = [('invoice_id', '=', self.customer_invoice.id),
                   ('withholding_tax_id', '=', self.wt1040.id)]
@@ -281,6 +319,18 @@ class TestWithholdingTax(TransactionCase):
             set(self.customer_invoice.payment_move_line_ids.mapped('credit'))
             == set([600, 150])
         )
+
+        # check 1 moveline has to have the account_id receivable
+        # as this one is the customer invoice, of the amount of 200
+        wt_move_line = self.env['account.move.line'].search([
+            ('account_id', '=', self.wt_account_receivable.id),
+            ('debit', '=', 150.0),
+            ('name', '=', '%s - %s' % (
+                self.wt1040.code, self.customer_invoice.move_id.name
+            ))
+        ])
+        self.assertEqual(len(wt_move_line),
+                         1, msg='Missing correct credit wt move line')
 
         # WT aomunt applied in statement
         domain = [('invoice_id', '=', self.customer_invoice.id),
