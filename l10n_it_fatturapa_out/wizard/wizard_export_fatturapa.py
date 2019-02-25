@@ -600,7 +600,8 @@ class WizardExportFatturapa(models.TransientModel):
                 # see https://tinyurl.com/ycem923t
                 # and '&#10;' would not be correctly visualized anyway
                 # (for example firefox replaces '&#10;' with space
-                Descrizione=line.name.replace('\n', ' ').encode(
+                Descrizione=line.name.replace('\n', ' ').replace
+                ('\t', ' ').replace('\r', ' ').encode(
                     'latin', 'ignore').decode('latin'),
                 PrezzoUnitario=('%.' + str(
                     price_precision
