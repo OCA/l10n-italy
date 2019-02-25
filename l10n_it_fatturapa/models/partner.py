@@ -70,6 +70,11 @@ class ResPartner(models.Model):
                         "As a natural person, partner %s "
                         "must have Name and Surname"
                     ) % partner.name)
+                if not partner.country_id:
+                    raise ValidationError(_(
+                        'Customer %s: country is needed for XML'
+                        ' generation.'
+                    ) % partner.name)
                 if (
                     not partner.is_pa
                     and partner.codice_destinatario
@@ -98,11 +103,6 @@ class ResPartner(models.Model):
                 if not partner.city:
                     raise ValidationError(_(
                         'Customer %s: city is needed for XML generation.'
-                    ) % partner.name)
-                if not partner.country_id:
-                    raise ValidationError(_(
-                        'Customer %s: country is needed for XML'
-                        ' generation.'
                     ) % partner.name)
 
     @api.onchange('country_id')
