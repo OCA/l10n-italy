@@ -161,8 +161,8 @@ class TestWithholdingTax(TransactionCase):
              self.invoice.payment_move_line_ids.filtered(
                  lambda x: x.debit == 200).id)])
         self.assertEqual(
-            partial_rec.credit_move_id.account_id,
-            self.invoice.partner_id.property_account_payable_id,
+            partial_rec.credit_move_id,
+            self.invoice.move_id.line_ids.filtered('credit'),
             msg='Partial reconcile uncorrect payable account')
         # check 1 moveline has to have the account_id of payable of wt
         # withholding_tax_id.account_payable_id
@@ -214,8 +214,8 @@ class TestWithholdingTax(TransactionCase):
              self.invoice.payment_move_line_ids.filtered(
                  lambda x: x.debit == 150).id)])
         self.assertEqual(
-            partial_rec.credit_move_id.account_id,
-            self.invoice.partner_id.property_account_payable_id,
+            partial_rec.credit_move_id,
+            self.invoice.move_id.line_ids.filtered('credit'),
             msg='Partial reconcile uncorrect payable account')
         # check 1 moveline has to have the account_id of payable of wt
         # withholding_tax_id.account_payable_id
@@ -295,9 +295,9 @@ class TestWithholdingTax(TransactionCase):
              self.customer_invoice.payment_move_line_ids.filtered(
                  lambda x: x.credit == 400).id)])
         self.assertEqual(
-            partial_rec.credit_move_id.account_id,
-            self.customer_invoice.partner_id.property_account_receivable_id,
-            msg='Partial reconcile uncorrect receivable account')
+            partial_rec.debit_move_id,
+            self.customer_invoice.move_id.line_ids.filtered('debit'),
+            msg='Partial reconcile uncorrect payable account')
 
         # check 1 moveline has to have the account_id receivable
         # as this one is the customer invoice, of the amount of 400
@@ -349,9 +349,9 @@ class TestWithholdingTax(TransactionCase):
              self.customer_invoice.payment_move_line_ids.filtered(
                  lambda x: x.credit == 300).id)])
         self.assertEqual(
-            partial_rec.credit_move_id.account_id,
-            self.customer_invoice.partner_id.property_account_receivable_id,
-            msg='Partial reconcile uncorrect receivable account')
+            partial_rec.debit_move_id,
+            self.customer_invoice.move_id.line_ids.filtered('debit'),
+            msg='Partial reconcile uncorrect payable account')
 
         # check 1 moveline has to have the account_id receivable
         # as this one is the customer invoice, of the amount of 200
