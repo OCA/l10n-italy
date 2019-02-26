@@ -23,7 +23,7 @@
 
 {
     'name': 'Split Payment - Liquidazione IVA',
-    'version': '11.0.1.0.0',
+    'version': '11.0.1.0.1',
     'category': 'Accounting & Finance',
     'description': """
             Improvements to end period VAT statements through implementation of split payments
