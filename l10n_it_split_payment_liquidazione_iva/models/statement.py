@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 ##############################################################################
 #
@@ -50,7 +49,6 @@ class AccountVatPeriodEndStatement(models.Model):
 
                 if not acc_move_lines:
                     continue
-
                 grouped_lines = acc_move_lines.group_by_account_and_tax()
 
                 generic_line_obj = self.env['statement.generic.account.line']
@@ -73,8 +71,8 @@ class AccountVatPeriodEndStatement(models.Model):
                         name = self.env.user.company_id.sp_description
                     else:
                         name = _("Write-off tax amount on tax ")
-                    name += _(f"{group_key[1].description} - from"
-                              f" {date_start_str} to {date_end_str}")
+
+                    name += _("{} - from {} to {}".format(group_key[1].description, date_start_str, date_end_str))
 
                     statement_id = statement.id
 
