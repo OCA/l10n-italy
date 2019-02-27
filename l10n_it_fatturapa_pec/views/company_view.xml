@@ -8,10 +8,10 @@
             <field name="inherit_id" ref="l10n_it_fatturapa.view_account_config_settings"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[@id='fatturapa_settings']" position="inside">
-                    <div>
-                        <label for="e_invoice_user_id"/>
-                        <field name="e_invoice_user_id" class="oe_inline"/>
-                    </div>
+                    <group>
+                        <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." groups="base.group_multi_company"/>
+                        <field name="e_invoice_user_id"/>
+                    </group>
                 </xpath>
             </field>
         </record>
