@@ -338,8 +338,22 @@ class WizardExportFatturapa(models.TransientModel):
         fatturapa.FatturaElettronicaHeader.CessionarioCommittente. \
             DatiAnagrafici = DatiAnagraficiCessionarioType()
         if not partner.vat and not partner.fiscalcode:
-            raise UserError(
-                _('VAT and Fiscalcode not set for %s') % partner.name)
+            if (
+                    partner.codice_destinatario == 'XXXXXXX'
+                    and partner.country_id.code
+                    and partner.country_id.code != 'IT'
+            ):
+                # SDI accepts missing VAT# for foreign customers by setting a
+                # fake IdCodice and a valid IdPaese
+                # Otherwise raise error if we have no VAT# and no Fiscal code
+                fatturapa.FatturaElettronicaHeader.CessionarioCommittente. \
+                    DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
+                    IdPaese=partner.country_id.code,
+                    IdCodice='99999999999')
+            else:
+                raise UserError(
+                    _('VAT number and fiscal code are not set for %s.') %
+                    partner.name)
         if partner.fiscalcode:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente. \
                 DatiAnagrafici.CodiceFiscale = partner.fiscalcode
@@ -426,9 +440,6 @@ class WizardExportFatturapa(models.TransientModel):
         if not partner.street:
             raise UserError(
                 _('Customer street not set.'))
-        if not partner.zip:
-            raise UserError(
-                _('Customer ZIP not set.'))
         if not partner.city:
             raise UserError(
                 _('Customer city not set.'))
@@ -437,15 +448,27 @@ class WizardExportFatturapa(models.TransientModel):
                 _('Customer country not set.'))
 
         # TODO: manage address number in <NumeroCivico>
-        fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede = (
-            IndirizzoType(
-                Indirizzo=partner.street,
-                CAP=partner.zip,
-                Comune=partner.city,
-                Nazione=partner.country_id.code))
-        if partner.state_id:
-            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede.\
-                Provincia = partner.state_id.code
+        if partner.codice_destinatario == 'XXXXXXX':
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede = (
+                IndirizzoType(
+                    Indirizzo=partner.street,
+                    CAP='00000',
+                    Comune=partner.city,
+                    Provincia='EE',
+                    Nazione=partner.country_id.code))
+        else:
+            if not partner.zip:
+                raise UserError(
+                    _('Customer ZIP not set.'))
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede = (
+                IndirizzoType(
+                    Indirizzo=partner.street,
+                    CAP=partner.zip,
+                    Comune=partner.city,
+                    Nazione=partner.country_id.code))
+            if partner.state_id:
+                fatturapa.FatturaElettronicaHeader.CessionarioCommittente. \
+                    Sede.Provincia = partner.state_id.code
         return True
 
     def setRappresentanteFiscale(self, company, fatturapa):
@@ -695,7 +718,8 @@ class WizardExportFatturapa(models.TransientModel):
             payment_line_ids = invoice.move_line_id_payment_get()
             for move_line_id in payment_line_ids:
                 move_line = move_line_pool.browse(move_line_id)
-                ImportoPagamento = '%.2f' % move_line.debit
+                ImportoPagamento = '%.2f' % (
+                    move_line.amount_currency or move_line.debit)
                 DettaglioPagamento = DettaglioPagamentoType(
                     ModalitaPagamento=(
                         invoice.payment_term.fatturapa_pm_id.code),
