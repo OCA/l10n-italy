@@ -1,11 +1,11 @@
 # Copyright 2014 Davide Corio <davide.corio@abstract.it>
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
-# Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
+# Copyright 2018-2019 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2019 Gianluigi Tiesi - Netfarm S.r.l.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Italian Localization - Fattura elettronica - Base',
+    'name': 'ITA - Fattura elettronica - Base',
     'version': '12.0.1.9.0',
     'category': 'Localization/Italy',
     'summary': 'Fatture elettroniche',
