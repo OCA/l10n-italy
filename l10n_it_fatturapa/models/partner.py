@@ -1,4 +1,5 @@
 # Copyright 2014 Davide Corio <davide.corio@abstract.it>
+# Copyright 2019 Sergio Zanchetta <https://github.com/primes2h>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import fields, models, api, _
@@ -45,6 +46,8 @@ class ResPartner(models.Model):
     )
     electronic_invoice_subjected = fields.Boolean(
         "Enable electronic invoicing")
+    electronic_invoice_obliged_subject = fields.Boolean(
+        "Obliged Subject")
     electronic_invoice_data_complete = fields.Boolean(
         compute="_compute_electronic_invoice_data_complete")
 
@@ -149,3 +152,19 @@ class ResPartner(models.Model):
             self.codice_destinatario = STANDARD_ADDRESSEE_CODE
         else:
             self.codice_destinatario = 'XXXXXXX'
+
+    @api.onchange('electronic_invoice_subjected')
+    def onchange_electronic_invoice_subjected(self):
+        if not self.electronic_invoice_subjected:
+            self.electronic_invoice_obliged_subject = False
+        else:
+            if self.supplier:
+                self.onchange_country_id_e_inv()
+                self.electronic_invoice_obliged_subject = True
+
+    @api.onchange('electronic_invoice_obliged_subject')
+    def onchange_e_inv_obliged_subject(self):
+        if not self.electronic_invoice_obliged_subject:
+            self.onchange_country_id_e_inv()
+            self.pec_destinatario = ''
+            self.eori_code = ''
