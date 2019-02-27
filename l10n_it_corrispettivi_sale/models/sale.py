@@ -10,8 +10,9 @@ class SaleOrder(models.Model):
 
     @api.onchange('partner_id')
     def onchange_partner_corrispettivi_sale(self):
-        self.corrispettivi = self.partner_id.use_corrispettivi
-
+        self.update({
+            'corrispettivi': self.partner_id.use_corrispettivi
+        })
     corrispettivi = fields.Boolean()
 
     @api.multi

@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016 Lorenzo Battistini - Agile Business Group
 # Copyright 2018 Simone Rubino - Agile Business Group
+# Copyright 2019 Giovanni - GSLabIt
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     'name': 'Italian Localization - Corrispettivi e ordini di vendita',
-    'version': '10.0.1.0.1',
+    'version': '10.0.1.0.2',
     'category': 'Accounting & Finance',
     'summary': 'Modulo per integrare i corrispettivi in odoo '
                'con gli ordini di vendita.',
