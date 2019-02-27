@@ -103,22 +103,32 @@ class WizardImportFatturapa(models.TransientModel):
                 % (DatiAnagrafici.Anagrafica.Cognome, partner.lastname)
             )
 
-    def getPartnerBase(self, DatiAnagrafici):
-        if not DatiAnagrafici:
+    def getPartnerBase(self, cedPrest):
+        if not cedPrest.DatiAnagrafici:
             return False
+        DatiAnagrafici = cedPrest.DatiAnagrafici
         partner_model = self.env['res.partner']
         cf = DatiAnagrafici.CodiceFiscale or False
         vat = False
+        rea_code = False
         if DatiAnagrafici.IdFiscaleIVA:
             vat = "%s%s" % (
                 DatiAnagrafici.IdFiscaleIVA.IdPaese,
                 DatiAnagrafici.IdFiscaleIVA.IdCodice
             )
-        partners = partner_model.search([
-            '|',
-            ('vat', '=', vat or 0),
-            ('fiscalcode', '=', cf or 0),
-        ])
+        partners = partner_model
+        if cedPrest.IscrizioneREA:
+            rea_code = cedPrest.IscrizioneREA.NumeroREA
+        if rea_code or vat:
+            partners = partner_model.search([
+                '|',
+                ('vat', '=', vat or 0),
+                ('rea_code', '=', rea_code or 0),
+            ])
+        if not partners and cf:
+            partners = partner_model.search([
+                ('fiscalcode', '=', cf),
+            ])
         commercial_partner = False
         if len(partners) > 1:
             for partner in partners:
@@ -128,8 +138,9 @@ class WizardImportFatturapa(models.TransientModel):
                 ):
                     raise UserError(
                         _("Two distinct partners with "
-                          "Vat %s and Fiscalcode %s already present in db" %
-                          (vat, cf))
+                          "Vat %s and Fiscalcode %s or REA code %s already"
+                          " present in db" %
+                          (vat, cf, rea_code))
                         )
         if partners:
             commercial_partner_id = partners[0].id
@@ -168,7 +179,7 @@ class WizardImportFatturapa(models.TransientModel):
 
     def getCedPrest(self, cedPrest):
         partner_model = self.env['res.partner']
-        partner_id = self.getPartnerBase(cedPrest.DatiAnagrafici)
+        partner_id = self.getPartnerBase(cedPrest)
         fiscalPosModel = self.env['fatturapa.fiscal_position']
         if partner_id:
             vals = {
