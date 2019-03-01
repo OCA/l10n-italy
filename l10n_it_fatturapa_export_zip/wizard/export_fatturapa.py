@@ -10,6 +10,7 @@ from odoo.exceptions import UserError
 
 class WizardAccountInvoiceExport(models.TransientModel):
     _name = "wizard.fatturapa.export"
+    _description = 'Wizard e-invoice export ZIP'
 
     @api.model
     def _default_name(self):
