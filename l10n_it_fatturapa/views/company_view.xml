@@ -30,6 +30,10 @@
                                     <label for="fatturapa_sender_partner" class="col-lg-3 o_light_label"/>
                                     <field name="fatturapa_sender_partner"/>
                                 </div>
+                                <div class="row">
+                                    <label for="fatturapa_preview_style" class="col-lg-3 o_light_label"/>
+                                    <field name="fatturapa_preview_style"/>
+                                </div>
                             </div>
                         </div>
                     </div>
