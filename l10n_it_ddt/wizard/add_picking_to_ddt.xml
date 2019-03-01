@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Simone Rubino - Agile Business Group
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+        <record id="view_add_pickings_to_ddt" model="ir.ui.view">
+            <field name="name">Add Pickings to TD</field>
+            <field name="model">add.pickings.to.ddt</field>
+            <field name="arch" type="xml">
+                <form string="Add Pickings to TD">
+                    <separator string="TD" />
+                    <field name="ddt_id" domain="[('state', 'in', ['draft', 'confirmed'])]"/>
+                    <footer>
+                        <button name="add_to_ddt" string="Add to TD" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_pickings_to_ddt" model="ir.actions.act_window">
+            <field name="name">Add Pickings to TD</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">add.pickings.to.ddt</field>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_add_pickings_to_ddt"/>
+            <field name="target">new</field>
+        </record>
+
+</odoo>

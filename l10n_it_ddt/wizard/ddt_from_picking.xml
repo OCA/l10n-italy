@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Simone Rubino - Agile Business Group
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+        <record id="view_ddt_from_pickings" model="ir.ui.view">
+            <field name="name">TD from Pickings</field>
+            <field name="model">ddt.from.pickings</field>
+            <field name="arch" type="xml">
+              <form string="TD from Pickings">
+                <separator string="Picking" />
+                    <field string="Pickings" name="picking_ids">
+                    <tree edit="false" delete="true" create="false">
+                        <field name="name"/>
+                        <field name="ddt_ids"/>
+                        <field name="ddt_type"/>
+                        <field name="location_dest_id"/>
+                        <field name="partner_id"/>
+                        <field name="origin"/>
+                        <field name="backorder_id"/>
+                        <field name="state"/>
+                    </tree>
+                    </field>
+                    <footer>
+                        <button name="create_ddt" string="Create" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+            </form>
+            </field>
+        </record>
+
+        <record id="action_ddt_from_pickings" model="ir.actions.act_window">
+            <field name="name">TD from Pickings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ddt.from.pickings</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_ddt_from_pickings"/>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        </record>
+
+</odoo>
