@@ -22,6 +22,7 @@
 import base64
 import logging
 import phonenumbers
+import os
 from openerp.osv import orm
 from openerp.osv import fields
 from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
