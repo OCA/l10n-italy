@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo12-addon-l10n_it_codici_carica',
         'odoo12-addon-l10n_it_corrispettivi',
         'odoo12-addon-l10n_it_corrispettivi_fatturapa_out',
+        'odoo12-addon-l10n_it_ddt',
         'odoo12-addon-l10n_it_esigibilita_iva',
         'odoo12-addon-l10n_it_fatturapa',
         'odoo12-addon-l10n_it_fatturapa_in',
