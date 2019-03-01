@@ -342,6 +342,11 @@ msgid "Document Type"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__ftpa_incoterms
+msgid "E-inv Incoterms"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa.view_company_form_e_invoice
 msgid "E-invoice"
 msgstr ""
@@ -538,11 +543,6 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_summary_data__incidental_charges
 msgid "Incidental Charges"
-msgstr ""
-
-#. module: l10n_it_fatturapa
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__ftpa_incoterms
-msgid "Incoterms"
 msgstr ""
 
 #. module: l10n_it_fatturapa
