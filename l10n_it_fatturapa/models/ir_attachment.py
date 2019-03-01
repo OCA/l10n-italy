@@ -33,7 +33,7 @@ class Attachment(models.Model):
     @api.multi
     def _compute_ftpa_preview_link(self):
         for att in self:
-            att.ftpa_preview_link = '/fatturapa/preview/%s' % self.id
+            att.ftpa_preview_link = '/fatturapa/preview/%s' % att.id
 
     def remove_xades_sign(self, xml):
         # Recovering parser is needed for files where strings like
