@@ -20,77 +20,86 @@ msgstr ""
 "X-Generator: Weblate 3.4\n"
 
 #. module: l10n_it_codici_carica
-#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica_code
+#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica__code
 msgid "Code"
 msgstr "Codice"
 
 #. module: l10n_it_codici_carica
-#: model:ir.model,name:l10n_it_codici_carica.model_codice_carica
-#, fuzzy
-msgid "Codice Carica"
-msgstr "Codice carica"
-
-#. module: l10n_it_codici_carica
-#: model:ir.ui.view,arch_db:l10n_it_codici_carica.view_codice_carica_form
-#: model:ir.ui.view,arch_db:l10n_it_codici_carica.view_codice_carica_tree
-#, fuzzy
-msgid "Codice carica"
-msgstr "Codice carica"
-
-#. module: l10n_it_codici_carica
-#: model:ir.ui.menu,name:l10n_it_codici_carica.menu_codice_carica
-#, fuzzy
-msgid "Codici Carica"
-msgstr "Codici carica"
-
-#. module: l10n_it_codici_carica
-#: model:ir.actions.act_window,name:l10n_it_codici_carica.action_codice_carica
-#, fuzzy
-msgid "Codici carica"
-msgstr "Codici carica"
-
-#. module: l10n_it_codici_carica
-#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica_create_uid
+#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica__create_uid
 msgid "Created by"
 msgstr "Creato da"
 
 #. module: l10n_it_codici_carica
-#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica_create_date
+#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica__create_date
 msgid "Created on"
 msgstr "Creato il"
 
 #. module: l10n_it_codici_carica
-#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica_display_name
+#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: l10n_it_codici_carica
-#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica_id
+#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica__id
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_codici_carica
-#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica___last_update
+#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
 #. module: l10n_it_codici_carica
-#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica_write_uid
+#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica__write_uid
 msgid "Last Updated by"
 msgstr "Ultimo aggiornamento di"
 
 #. module: l10n_it_codici_carica
-#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica_write_date
+#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica__write_date
 msgid "Last Updated on"
 msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_codici_carica
-#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica_name
+#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica__name
 msgid "Name"
 msgstr "Nome"
 
 #. module: l10n_it_codici_carica
-#: code:addons/l10n_it_codici_carica/models/codice_carica.py:19
+#: model:ir.model,name:l10n_it_codici_carica.model_codice_carica
+#: model_terms:ir.ui.view,arch_db:l10n_it_codici_carica.view_codice_carica_form
+#, fuzzy
+msgid "Role Code"
+msgstr "Codice"
+
+#. module: l10n_it_codici_carica
+#: model:ir.actions.act_window,name:l10n_it_codici_carica.action_codice_carica
+#: model:ir.ui.menu,name:l10n_it_codici_carica.menu_codice_carica
+msgid "Role Codes"
+msgstr ""
+
+#. module: l10n_it_codici_carica
+#: model_terms:ir.ui.view,arch_db:l10n_it_codici_carica.view_codice_carica_tree
+msgid "Role code"
+msgstr ""
+
+#. module: l10n_it_codici_carica
+#: code:addons/l10n_it_codici_carica/models/codice_carica.py:20
 #, python-format
 msgid "The element with code %s already exists"
 msgstr "L'elemento con codice %s esiste già"
+
+#, fuzzy
+#~ msgid "Codice Carica"
+#~ msgstr "Codice carica"
+
+#, fuzzy
+#~ msgid "Codice carica"
+#~ msgstr "Codice carica"
+
+#, fuzzy
+#~ msgid "Codici Carica"
+#~ msgstr "Codici carica"
+
+#, fuzzy
+#~ msgid "Codici carica"
+#~ msgstr "Codici carica"
