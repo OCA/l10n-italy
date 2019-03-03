@@ -42,7 +42,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: l10n_it_sdi_channel
-#: code:addons/l10n_it_sdi_channel/models/sdi.py:70
+#: code:addons/l10n_it_sdi_channel/models/sdi.py:78
 #, python-format
 msgid "Email %s is not valid"
 msgstr ""
@@ -63,6 +63,11 @@ msgstr ""
 #. module: l10n_it_sdi_channel
 #: field:sdi.channel,id:0
 msgid "ID"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: field:sdi.channel,fetch_pec_server_id:0
+msgid "Incoming PEC server"
 msgstr ""
 
 #. module: l10n_it_sdi_channel
@@ -149,7 +154,8 @@ msgid "Sender Email Address"
 msgstr "Sender Email Address for FatturaPA"
 
 #. module: l10n_it_sdi_channel
-#: code:addons/l10n_it_sdi_channel/models/sdi.py:62
+#: code:addons/l10n_it_sdi_channel/models/sdi.py:60
+#: code:addons/l10n_it_sdi_channel/models/sdi.py:70
 #, python-format
 msgid "The channel %s with pec server %s already exists"
 msgstr ""
