@@ -73,12 +73,6 @@ msgid "ABI"
 msgstr "ABI"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:66
-#, python-format
-msgid "ASN.1 structure is not parsable in DER."
-msgstr "La struttura ASN.1 non può essere analizzata con DER."
-
-#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_access_token
 msgid "Access Token"
 msgstr "Token di accesso"
@@ -142,12 +136,6 @@ msgid "Amount of Penalty"
 msgstr "Importo della sanzione"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:41
-#, python-format
-msgid "An error with command 'openssl asn1parse' occurred: %s."
-msgstr "Errore del comando \"openssl asn1parse\": %s."
-
-#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_art73
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company_fatturapa_art73
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_config_settings_fatturapa_art73
@@ -201,6 +189,12 @@ msgid "Bank Name"
 msgstr "Nome banca"
 
 #. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:84
+#, python-format
+msgid "Base64 encoded file %s."
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_payment_bank_cab
 msgid "CAB"
 msgstr "CAB"
@@ -251,6 +245,12 @@ msgstr "Contatto"
 #: selection:fatturapa.related_document_type,type:0
 msgid "Contract"
 msgstr "Contatto"
+
+#. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:74
+#, fuzzy, python-format
+msgid "Corrupted attachment %s."
+msgstr "Allegati e-fattura"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_invoice_efatt_stabile_organizzazione_nazione
@@ -639,6 +639,12 @@ msgid "Intermediary"
 msgstr "Intermediario"
 
 #. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:108
+#, python-format
+msgid "Invalid xml %s."
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_account_invoice
 msgid "Invoice"
 msgstr "Fattura"
@@ -877,12 +883,6 @@ msgid ""
 msgstr ""
 "Indirizzo PEC al quale inviare la fattura elettronica. Da valorizzare SOLO "
 "nei casi in cui l'elemento informativo <CodiceDestinatario> vale \"0000000\""
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:60
-#, python-format
-msgid "Parsing PEM to DER file %s."
-msgstr "Analisi file da PEM a DER  %s."
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/partner.py:81
@@ -1199,18 +1199,6 @@ msgid "Sequence %s can't use subsequences."
 msgstr "La sequenza %s non può usare sottosequenze."
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:102
-#, python-format
-msgid "Signed Xml file %s."
-msgstr "File XML firmato %s."
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:108
-#, python-format
-msgid "Signed Xml file not decryptable."
-msgstr "File XML firmato non decifrabile."
-
-#. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,payability:0
 msgid "Split payment"
 msgstr "Scissione pagamenti"
@@ -1482,6 +1470,21 @@ msgstr "res.config.settings"
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "reverse charge"
 msgstr "inversione contabile"
+
+#~ msgid "ASN.1 structure is not parsable in DER."
+#~ msgstr "La struttura ASN.1 non può essere analizzata con DER."
+
+#~ msgid "An error with command 'openssl asn1parse' occurred: %s."
+#~ msgstr "Errore del comando \"openssl asn1parse\": %s."
+
+#~ msgid "Parsing PEM to DER file %s."
+#~ msgstr "Analisi file da PEM a DER  %s."
+
+#~ msgid "Signed Xml file %s."
+#~ msgstr "File XML firmato %s."
+
+#~ msgid "Signed Xml file not decryptable."
+#~ msgstr "File XML firmato non decifrabile."
 
 #~ msgid "Art73"
 #~ msgstr "Art. 73"
