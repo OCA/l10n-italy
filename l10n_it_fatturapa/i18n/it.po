@@ -34,12 +34,6 @@ msgid "ABI"
 msgstr "ABI"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:66
-#, python-format
-msgid "ASN.1 structure is not parsable in DER."
-msgstr "La struttura ASN.1 non può essere analizzata con DER."
-
-#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__access_token
 msgid "Access Token"
 msgstr "Token di accesso"
@@ -108,12 +102,6 @@ msgid "Amount of Penalty"
 msgstr "Importo della sanzione"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:41
-#, python-format
-msgid "An error with command 'openssl asn1parse' occurred: %s."
-msgstr "Errore del comando \"openssl asn1parse\": %s."
-
-#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__art73
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company__fatturapa_art73
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_config_settings__fatturapa_art73
@@ -160,6 +148,12 @@ msgstr "BIC"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail__payment_bank_name
 msgid "Bank Name"
 msgstr "Nome banca"
+
+#. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:84
+#, python-format
+msgid "Base64 encoded file %s."
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail__payment_bank_cab
@@ -222,6 +216,12 @@ msgstr "Contatto"
 #: selection:fatturapa.related_document_type,type:0
 msgid "Contract"
 msgstr "Contratto"
+
+#. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:74
+#, fuzzy, python-format
+msgid "Corrupted attachment %s."
+msgstr "Allegati e-fattura"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_invoice__efatt_stabile_organizzazione_nazione
@@ -366,6 +366,12 @@ msgid "Document Type"
 msgstr "Tipo documento"
 
 #. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__ftpa_incoterms
+#, fuzzy
+msgid "E-inv Incoterms"
+msgstr "Incoterm"
+
+#. module: l10n_it_fatturapa
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa.view_company_form_e_invoice
 msgid "E-invoice"
 msgstr "E-fattura"
@@ -485,6 +491,13 @@ msgid "Electronic Invoices"
 msgstr "Fatture elettroniche"
 
 #. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__electronic_invoice_subjected
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__electronic_invoice_subjected
+#, fuzzy
+msgid "Enable electronic invoicing"
+msgstr "Fattura elettronica"
+
+#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__datas
 msgid "File Content"
 msgstr "Contenuto file"
@@ -559,11 +572,6 @@ msgid "Incidental Charges"
 msgstr "Spese accessorie"
 
 #. module: l10n_it_fatturapa
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__ftpa_incoterms
-msgid "Incoterms"
-msgstr "Incoterm"
-
-#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__index_content
 msgid "Indexed Content"
 msgstr "Contenuto indicizzato"
@@ -598,6 +606,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__intermediary
 msgid "Intermediary"
 msgstr "Intermediario"
+
+#. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:108
+#, python-format
+msgid "Invalid xml %s."
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_account_invoice
@@ -822,12 +836,6 @@ msgid ""
 msgstr ""
 "Indirizzo PEC al quale inviare la fattura elettronica. Da valorizzare SOLO "
 "nei casi in cui l'elemento informativo <CodiceDestinatario> vale \"0000000\""
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:60
-#, python-format
-msgid "Parsing PEM to DER file %s."
-msgstr "Analisi file da PEM a DER  %s."
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/partner.py:81
@@ -1124,18 +1132,6 @@ msgid "Sequence %s can't use subsequences."
 msgstr "La sequenza %s non può usare sottosequenze."
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:102
-#, python-format
-msgid "Signed Xml file %s."
-msgstr "File XML firmato %s."
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:108
-#, python-format
-msgid "Signed Xml file not decryptable."
-msgstr "File XML firmato non decifrabile."
-
-#. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,payability:0
 msgid "Split payment"
 msgstr "Scissione pagamenti"
@@ -1162,8 +1158,6 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__electronic_invoice_subjected
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__electronic_invoice_subjected
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__electronic_invoice_subjected
 msgid "Subjected to Electronic Invoice"
 msgstr "Soggetto a fattura elettronica"
 
@@ -1415,6 +1409,21 @@ msgstr "non imponibili"
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "reverse charge"
 msgstr "inversione contabile"
+
+#~ msgid "ASN.1 structure is not parsable in DER."
+#~ msgstr "La struttura ASN.1 non può essere analizzata con DER."
+
+#~ msgid "An error with command 'openssl asn1parse' occurred: %s."
+#~ msgstr "Errore del comando \"openssl asn1parse\": %s."
+
+#~ msgid "Parsing PEM to DER file %s."
+#~ msgstr "Analisi file da PEM a DER  %s."
+
+#~ msgid "Signed Xml file %s."
+#~ msgstr "File XML firmato %s."
+
+#~ msgid "Signed Xml file not decryptable."
+#~ msgstr "File XML firmato non decifrabile."
 
 #~ msgid "Stamp Amount"
 #~ msgstr "Importo bollo"
