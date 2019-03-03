@@ -20,73 +20,69 @@ msgstr ""
 "%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. module: l10n_it_codici_carica
-#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica_code
+#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica__code
 msgid "Code"
 msgstr ""
 
 #. module: l10n_it_codici_carica
-#: model:ir.model,name:l10n_it_codici_carica.model_codice_carica
-msgid "Codice Carica"
-msgstr ""
-
-#. module: l10n_it_codici_carica
-#: model:ir.ui.view,arch_db:l10n_it_codici_carica.view_codice_carica_form
-#: model:ir.ui.view,arch_db:l10n_it_codici_carica.view_codice_carica_tree
-msgid "Codice carica"
-msgstr ""
-
-#. module: l10n_it_codici_carica
-#: model:ir.ui.menu,name:l10n_it_codici_carica.menu_codice_carica
-msgid "Codici Carica"
-msgstr ""
-
-#. module: l10n_it_codici_carica
-#: model:ir.actions.act_window,name:l10n_it_codici_carica.action_codice_carica
-msgid "Codici carica"
-msgstr ""
-
-#. module: l10n_it_codici_carica
-#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica_create_uid
+#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica__create_uid
 msgid "Created by"
 msgstr "Sukūrė"
 
 #. module: l10n_it_codici_carica
-#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica_create_date
+#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica__create_date
 msgid "Created on"
 msgstr "Sukurta"
 
 #. module: l10n_it_codici_carica
-#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica_display_name
+#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica__display_name
 msgid "Display Name"
 msgstr "Vaizduojamas pavadinimas"
 
 #. module: l10n_it_codici_carica
-#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica_id
+#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica__id
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_codici_carica
-#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica___last_update
+#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica____last_update
 msgid "Last Modified on"
 msgstr "Paskutinį kartą keista"
 
 #. module: l10n_it_codici_carica
-#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica_write_uid
+#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica__write_uid
 msgid "Last Updated by"
 msgstr "Paskutinį kartą atnaujino"
 
 #. module: l10n_it_codici_carica
-#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica_write_date
+#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica__write_date
 msgid "Last Updated on"
 msgstr "Paskutinį kartą atnaujinta"
 
 #. module: l10n_it_codici_carica
-#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica_name
+#: model:ir.model.fields,field_description:l10n_it_codici_carica.field_codice_carica__name
 msgid "Name"
 msgstr "Pavadinimas"
 
 #. module: l10n_it_codici_carica
-#: code:addons/l10n_it_codici_carica/models/codice_carica.py:19
+#: model:ir.model,name:l10n_it_codici_carica.model_codice_carica
+#: model_terms:ir.ui.view,arch_db:l10n_it_codici_carica.view_codice_carica_form
+msgid "Role Code"
+msgstr ""
+
+#. module: l10n_it_codici_carica
+#: model:ir.actions.act_window,name:l10n_it_codici_carica.action_codice_carica
+#: model:ir.ui.menu,name:l10n_it_codici_carica.menu_codice_carica
+msgid "Role Codes"
+msgstr ""
+
+#. module: l10n_it_codici_carica
+#: model_terms:ir.ui.view,arch_db:l10n_it_codici_carica.view_codice_carica_tree
+msgid "Role code"
+msgstr ""
+
+#. module: l10n_it_codici_carica
+#: code:addons/l10n_it_codici_carica/models/codice_carica.py:20
 #, python-format
 msgid "The element with code %s already exists"
 msgstr ""
