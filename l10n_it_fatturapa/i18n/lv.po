@@ -33,12 +33,6 @@ msgid "ABI"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:66
-#, python-format
-msgid "ASN.1 structure is not parsable in DER."
-msgstr ""
-
-#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__access_token
 msgid "Access Token"
 msgstr ""
@@ -104,12 +98,6 @@ msgid "Amount of Penalty"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:41
-#, python-format
-msgid "An error with command 'openssl asn1parse' occurred: %s."
-msgstr ""
-
-#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__art73
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company__fatturapa_art73
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_config_settings__fatturapa_art73
@@ -153,6 +141,12 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail__payment_bank_name
 msgid "Bank Name"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:84
+#, python-format
+msgid "Base64 encoded file %s."
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -215,6 +209,12 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: selection:fatturapa.related_document_type,type:0
 msgid "Contract"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:74
+#, python-format
+msgid "Corrupted attachment %s."
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -357,6 +357,11 @@ msgid "Document Type"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__ftpa_incoterms
+msgid "E-inv Incoterms"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa.view_company_form_e_invoice
 msgid "E-invoice"
 msgstr ""
@@ -476,6 +481,12 @@ msgid "Electronic Invoices"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__electronic_invoice_subjected
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__electronic_invoice_subjected
+msgid "Enable electronic invoicing"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__datas
 msgid "File Content"
 msgstr ""
@@ -550,11 +561,6 @@ msgid "Incidental Charges"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__ftpa_incoterms
-msgid "Incoterms"
-msgstr ""
-
-#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__index_content
 msgid "Indexed Content"
 msgstr ""
@@ -580,6 +586,12 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__intermediary
 msgid "Intermediary"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:108
+#, python-format
+msgid "Invalid xml %s."
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -802,12 +814,6 @@ msgstr ""
 msgid ""
 "PEC to which the electronic invoice will be sent. Must be filled ONLY when "
 "the information element <CodiceDestinatario> is '0000000'"
-msgstr ""
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:60
-#, python-format
-msgid "Parsing PEM to DER file %s."
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -1104,18 +1110,6 @@ msgid "Sequence %s can't use subsequences."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:102
-#, python-format
-msgid "Signed Xml file %s."
-msgstr ""
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:108
-#, python-format
-msgid "Signed Xml file not decryptable."
-msgstr ""
-
-#. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,payability:0
 msgid "Split payment"
 msgstr ""
@@ -1140,8 +1134,6 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__electronic_invoice_subjected
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__electronic_invoice_subjected
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__electronic_invoice_subjected
 msgid "Subjected to Electronic Invoice"
 msgstr ""
 
