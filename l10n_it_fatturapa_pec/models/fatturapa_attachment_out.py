@@ -189,7 +189,7 @@ class FatturaPAAttachmentOut(orm.Model):
                     })
                 elif message_type == 'MC':  # 3A. Mancata consegna
                     missed_delivery_note = root.find('Descrizione').text
-                    missed_delivery_note = unidecode(unicode(missed_delivery_note, 'utf-8', errors='ignore'))
+                    missed_delivery_note = unidecode(missed_delivery_note)
                     fatturapa_attachment_out.write({
                         'state': 'recipient_error',
                         'last_sdi_response': 'SdI ID: {}; '
