@@ -13,10 +13,15 @@ from odoo.tools.translate import _
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
+    @api.multi
+    def _set_rc_flag(self, invoice):
+        self.ensure_one()
+        fposition = invoice.fiscal_position_id
+        self.rc = bool(fposition.rc_type_id)
+
     @api.onchange('invoice_line_tax_ids')
     def onchange_invoice_line_tax_id(self):
-        fposition = self.invoice_id.fiscal_position_id
-        self.rc = True if fposition.rc_type_id else False
+        self._set_rc_flag(self.invoice_id)
 
     rc = fields.Boolean("RC")
 
@@ -34,6 +39,11 @@ class AccountInvoice(models.Model):
     rc_self_purchase_invoice_id = fields.Many2one(
         comodel_name='account.invoice',
         string='RC Self Purchase Invoice', copy=False, readonly=True)
+
+    @api.onchange('fiscal_position_id')
+    def onchange_rc_fiscal_position_id(self):
+        for line in self.invoice_line_ids:
+            line._set_rc_flag(self)
 
     def rc_inv_line_vals(self, line):
         return {
