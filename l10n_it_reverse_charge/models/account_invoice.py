@@ -13,12 +13,23 @@ from odoo.tools.translate import _
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
+    @api.multi
+    def _set_rc_flag(self, invoice):
+        self.ensure_one()
+        if invoice.type == 'in_invoice':
+            fposition = invoice.fiscal_position_id
+            self.rc = bool(fposition.rc_type_id)
+
     @api.onchange('invoice_line_tax_ids')
     def onchange_invoice_line_tax_id(self):
-        fposition = self.invoice_id.fiscal_position_id
-        self.rc = True if fposition.rc_type_id else False
+        self._set_rc_flag(self.invoice_id)
 
     rc = fields.Boolean("RC")
+
+    def _set_additional_fields(self, invoice):
+        res = super(AccountInvoiceLine, self)._set_additional_fields(invoice)
+        self._set_rc_flag(invoice)
+        return res
 
 
 class AccountInvoice(models.Model):
@@ -34,6 +45,20 @@ class AccountInvoice(models.Model):
     rc_self_purchase_invoice_id = fields.Many2one(
         comodel_name='account.invoice',
         string='RC Self Purchase Invoice', copy=False, readonly=True)
+
+    @api.onchange('fiscal_position_id')
+    def onchange_rc_fiscal_position_id(self):
+        for line in self.invoice_line_ids:
+            line._set_rc_flag(self)
+
+    @api.onchange('partner_id', 'company_id')
+    def _onchange_partner_id(self):
+        res = super(AccountInvoice, self)._onchange_partner_id()
+        # In some cases (like creating the invoice from PO),
+        # fiscal position's onchange is triggered
+        # before than being changed by this method.
+        self.onchange_rc_fiscal_position_id()
+        return res
 
     def rc_inv_line_vals(self, line):
         return {
