@@ -28,6 +28,7 @@ class DdTFromPickings(models.TransientModel):
             'goods_description_id': False,
             'transportation_reason_id': False,
             'transportation_method_id': False,
+            'carrier_id': False,
         }
         type_list = []
         partner = False
@@ -171,6 +172,18 @@ class DdTFromPickings(models.TransientModel):
                     picking.ddt_type.default_transportation_method_id)
                 values['transportation_method_id'] = (
                     transportation_method_id.id)
+        carrier_id = False
+        for picking in self.picking_ids:
+            if picking.sale_id and picking.sale_id.ddt_carrier_id:
+                if carrier_id and (
+                    carrier_id != (
+                        picking.sale_id.ddt_carrier_id)):
+                    raise UserError(
+                        _("Selected Pickings have "
+                          "different carrier"))
+                carrier_id = picking.sale_id.ddt_carrier_id
+                values['carrier_id'] = (
+                    carrier_id.id)
 
         if transportation_reason_id:
             values['to_be_invoiced'] = transportation_reason_id.to_be_invoiced
