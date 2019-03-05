@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-25 05:17+0000\n"
-"PO-Revision-Date: 2018-11-26 09:14+0000\n"
+"PO-Revision-Date: 2019-03-05 12:53+0000\n"
 "Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.2.2\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: l10n_it_ddt
 #: model:mail.template,body_html:l10n_it_ddt.email_template_edi_ddt
@@ -180,9 +180,8 @@ msgstr "<strong>Quantità</strong>"
 #. module: l10n_it_ddt
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_pickings_to_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
-#, fuzzy
 msgid "Add Pickings to TD"
-msgstr "Aggiungi Picking al DDT"
+msgstr "Aggiungi consegne al DDT"
 
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_form
@@ -191,26 +190,23 @@ msgstr "Aggiungi una nota interna..."
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_add_pickings_to_ddt
-#, fuzzy
 msgid "Add picking to TD"
-msgstr "Aggiungi Picking al DDT"
+msgstr "Aggiungi consegna al DDT"
 
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
-#, fuzzy
 msgid "Add to TD"
 msgstr "Aggiungi al DDT"
 
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
 msgid "Assignee"
-msgstr ""
+msgstr "Cessionario"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order__create_ddt
-#, fuzzy
 msgid "Automatically create the TD"
-msgstr "Crea automaticamente il DdT"
+msgstr "Creare automaticamente il DDT"
 
 #. module: l10n_it_ddt
 #: selection:res.partner,ddt_invoicing_group:0
@@ -276,17 +272,17 @@ msgstr "Codice Raggruppamento"
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type__company_id
 msgid "Company"
-msgstr ""
+msgstr "Azienda"
 
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
 msgid "Consignee"
-msgstr ""
+msgstr "Destinatario"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contatto"
 
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
@@ -301,9 +297,8 @@ msgstr "Crea fattura"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_ddt_create_invoice
-#, fuzzy
 msgid "Create invoice from TD"
-msgstr "Crea fattura"
+msgstr "Creare fattura dal DDT"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt__create_uid
@@ -504,13 +499,12 @@ msgstr "Fatturato"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:37
-#, fuzzy, python-format
+#, python-format
 msgid "Invoices from TD"
 msgstr "Fatture da DDT"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_ddt_invoicing
-#, fuzzy
 msgid "Invoicing TD"
 msgstr "Fatturazione DDT"
 
@@ -617,14 +611,13 @@ msgstr "Non ci sono DDT da fatturare"
 #. module: l10n_it_ddt
 #: selection:res.partner,ddt_invoicing_group:0
 #: selection:sale.order,ddt_invoicing_group:0
-#, fuzzy
 msgid "One TD - One Invoice"
 msgstr "Un DDT - Una fattura"
 
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_form
 msgid "Open full-screen"
-msgstr ""
+msgstr "Apri a schermo intero"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking_package_preparation
@@ -662,9 +655,9 @@ msgstr "Picking"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:32
-#, fuzzy, python-format
+#, python-format
 msgid "Picking %s already in TD"
-msgstr "Ordine di consegna %s già nel ddt"
+msgstr "Ordine di consegna %s già nel DDT"
 
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
@@ -718,19 +711,17 @@ msgstr "Firma destinatario"
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order__ddt_ids
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.sale_order_form_view_ddt
-#, fuzzy
 msgid "Related TDs"
-msgstr "DdT collegati"
+msgstr "DDT collegati"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:274
 #, python-format
 msgid "Relevant period:"
-msgstr ""
+msgstr "Periodo di competenza:"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_sale_order
-#, fuzzy
 msgid "Sale Order"
 msgstr "Ordine di vendita"
 
@@ -741,7 +732,6 @@ msgstr "Riga ordine di vendita"
 
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
-#, fuzzy
 msgid "Search TD"
 msgstr "Cerca DDT"
 
@@ -779,9 +769,9 @@ msgstr "I Picking selezionati %s hanno Causali di trasporto differenti"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:168
-#, fuzzy, python-format
+#, python-format
 msgid "Selected Picking is already linked to TD: %s"
-msgstr "I Picking selezionati sono già collegati al DDT: %s"
+msgstr "La consegna selezionata è già collegata al DDT: %s"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:41
@@ -830,13 +820,12 @@ msgstr "I Picking selezionati hanno destinazioni differenti"
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_form
 msgid "Send by Mail"
-msgstr ""
+msgstr "Invia per email"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type__sequence_id
-#, fuzzy
 msgid "Sequence"
-msgstr "Sequence id"
+msgstr "Sequenza"
 
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_form
@@ -870,9 +859,8 @@ msgstr "Partner di consegna"
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_res_partner__ddt_show_price
 #: model:ir.model.fields,help:l10n_it_ddt.field_res_users__ddt_show_price
-#, fuzzy
 msgid "Show prices and         discounts in TD report"
-msgstr "Mostra prezzi e sconti sulla stampa del ddt"
+msgstr "Mostrare prezzi e         sconti nel report DDT"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__show_price
@@ -896,9 +884,8 @@ msgstr "Stato"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_ddt_type
-#, fuzzy
 msgid "Stock TD Type"
-msgstr "Stock DdT Type"
+msgstr "Tipo DDT"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:71
@@ -915,18 +902,16 @@ msgstr "Stock DdT Type"
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_invoicing
 #, python-format
 msgid "TD"
-msgstr ""
+msgstr "DDT"
 
 #. module: l10n_it_ddt
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_ddt_create_invoice
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_create_invoice
-#, fuzzy
 msgid "TD Create Invoice"
 msgstr "DDT Crea fattura"
 
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
-#, fuzzy
 msgid "TD Date"
 msgstr "Data DDT"
 
@@ -935,72 +920,62 @@ msgstr "Data DDT"
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_ddt_invoicing
 #: model:ir.ui.menu,name:l10n_it_ddt.menu_ddt_invoicing
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_invoicing
-#, fuzzy, python-format
+#, python-format
 msgid "TD Invoicing"
 msgstr "Fatturazione DDT"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__ddt_number
-#, fuzzy
 msgid "TD Number"
 msgstr "Numero DDT"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__ddt_type_id
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
-#, fuzzy
 msgid "TD Type"
 msgstr "Tipo DDT"
 
 #. module: l10n_it_ddt
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_ddt_from_pickings
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
-#, fuzzy
 msgid "TD from Pickings"
-msgstr "DDT da Picking"
+msgstr "DDT da consegne"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_ddt_from_pickings
-#, fuzzy
 msgid "TD from pickings"
-msgstr "DDT da Picking"
+msgstr "DDT da consegne"
 
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.view_partner_form_ddt
-#, fuzzy
 msgid "TD info"
-msgstr "DDT info"
+msgstr "Info DDT"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_res_partner__ddt_invoicing_group
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_res_users__ddt_invoicing_group
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order__ddt_invoicing_group
-#, fuzzy
 msgid "TD invoicing group"
 msgstr "DDT Raggr. fatture"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice_line__ddt_line_id
-#, fuzzy
 msgid "TD line"
 msgstr "Riga DDT"
 
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
-#, fuzzy
 msgid "TD number:"
 msgstr "Numero DDT:"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice_line__ddt_sequence
-#, fuzzy
 msgid "TD sequence"
 msgstr "Sequenza DDT"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_res_partner__ddt_show_price
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_res_users__ddt_show_price
-#, fuzzy
 msgid "TD show prices"
 msgstr "DDT mostra prezzi"
 
@@ -1008,7 +983,7 @@ msgstr "DDT mostra prezzi"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_location__type_ddt_id
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking__ddt_type
 msgid "TD type"
-msgstr ""
+msgstr "Tipo DDT"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_line__tax_ids
@@ -1018,13 +993,12 @@ msgstr "Imposte"
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:413
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:421
-#, fuzzy, python-format
+#, python-format
 msgid "There is no invoiceable line."
-msgstr "Non ci sono righe fatturabili"
+msgstr "Non ci sono righe fatturabili."
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_stock_picking_package_preparation__to_be_invoiced
-#, fuzzy
 msgid ""
 "This depends on 'To be Invoiced' field of the Reason for Transportation of "
 "this TD"
@@ -1050,9 +1024,8 @@ msgstr "Trasferimento"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.menu,name:l10n_it_ddt.menu_ddt_preparation
-#, fuzzy
 msgid "Transport Document"
-msgstr "Trasporto a mezzo"
+msgstr "Documento di trasporto"
 
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
@@ -1084,9 +1057,8 @@ msgstr "Partita IVA:"
 
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.view_order_form_view_ddt
-#, fuzzy
 msgid "View TD"
-msgstr "Vedi DdT"
+msgstr "Vedi DDT"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice__volume
