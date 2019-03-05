@@ -854,43 +854,49 @@ msgid "Selected Picking is already linked to DDT: %s"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:40
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:41
 #, python-format
 msgid "Selected Pickings have different Partner"
 msgstr "Izbrani zbirniki imajo različne partnerje"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:79
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:80
 #, python-format
 msgid "Selected Pickings have different carriage condition"
 msgstr "Izbrani zbirniki imajo različne prevozne pogoje"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:104
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:181
+#, fuzzy, python-format
+msgid "Selected Pickings have different carrier"
+msgstr "Izbrani zbirniki imajo različne partnerje"
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:105
 #, python-format
 msgid "Selected Pickings have different goods description"
 msgstr "Izbrani zbirniki imajo različne opise blaga"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:69
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:70
 #, python-format
 msgid "Selected Pickings have different parcels"
 msgstr "Izbrani zbirniki imajo različne pošiljke"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:155
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:156
 #, python-format
 msgid "Selected Pickings have different transportation method"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:129
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:130
 #, python-format
 msgid "Selected Pickings have different transportation reason"
 msgstr "Izbrani zbirniki imajo različne razloge prevoza"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:57
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:58
 #, python-format
 msgid "Selected pickings have different destinations"
 msgstr ""

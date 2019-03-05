@@ -857,43 +857,49 @@ msgid "Selected Picking is already linked to DDT: %s"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:40
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:41
 #, python-format
 msgid "Selected Pickings have different Partner"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:79
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:80
 #, python-format
 msgid "Selected Pickings have different carriage condition"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:104
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:181
+#, python-format
+msgid "Selected Pickings have different carrier"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:105
 #, python-format
 msgid "Selected Pickings have different goods description"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:69
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:70
 #, python-format
 msgid "Selected Pickings have different parcels"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:155
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:156
 #, python-format
 msgid "Selected Pickings have different transportation method"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:129
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:130
 #, python-format
 msgid "Selected Pickings have different transportation reason"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:57
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:58
 #, python-format
 msgid "Selected pickings have different destinations"
 msgstr ""
