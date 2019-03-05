@@ -7,7 +7,7 @@
 
 {
     'name': 'Reverse Charge IVA',
-    'version': '10.0.1.1.3',
+    'version': '10.0.1.1.4',
     'category': 'Localization/Italy',
     'summary': 'Reverse Charge for Italy',
     'author': 'Odoo Italia Network,Odoo Community Association (OCA)',
