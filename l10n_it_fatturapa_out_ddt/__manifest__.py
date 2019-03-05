@@ -6,10 +6,10 @@
 {
     'name': 'Italian Localization - Fattura elettronica - Integrazione DDT',
     "summary": "Modulo ponte tra emissione fatture elettroniche e DDT",
-    "version": "11.0.1.0.0",
+    "version": "12.0.1.0.0",
     "development_status": "Beta",
     "category": "Hidden",
-    'website': 'https://github.com/OCA/l10n-italy/tree/11.0/'
+    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
                'l10n_it_fatturapa_out_ddt',
     "author": "Agile Business Group, Odoo Community Association (OCA)",
     "maintainers": [],

@@ -50,7 +50,7 @@ class WizardExportFatturapa(models.TransientModel):
                 ):
                     key = (
                         line.ddt_line_id.package_preparation_id.ddt_number,
-                        line.ddt_line_id.package_preparation_id.date[:10]
+                        line.ddt_line_id.package_preparation_id.date
                     )
                     if key not in inv_lines_by_ddt:
                         inv_lines_by_ddt[key] = []
