@@ -313,7 +313,7 @@ class WizardImportFatturapa(models.TransientModel):
                 _logger.warning(_(
                     "Line '%s': Too many taxes with percentage equals "
                     "to '%s'.\nFix it if required"
-                ) % (line.Descrizione, line.AliquotaIVA))
+                ) % (getattr('line', 'Descrizione', ''), line.AliquotaIVA))
                 # if there are multiple taxes with same percentage
                 # and there is a default tax with this percentage,
                 # set taxes list equal to supplier_taxes_id, loaded before
