@@ -1,0 +1,133 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_fatturapa_export_zip
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_fatturapa_export_zip
+#: code:addons/l10n_it_fatturapa_export_zip/wizard/export_fatturapa.py:29
+#, python-format
+msgid "Attachment %s already exported. Remove ZIP file first"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: code:addons/l10n_it_fatturapa_export_zip/wizard/export_fatturapa.py:34
+#, python-format
+msgid "Attachment %s does not have XML file"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: view:wizard.fatturapa.export:l10n_it_fatturapa_export_zip.wizard_fatturapa_export
+msgid "Cancel"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: field:wizard.fatturapa.export,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: field:wizard.fatturapa.export,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: field:wizard.fatturapa.export,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: view:wizard.fatturapa.export:l10n_it_fatturapa_export_zip.wizard_fatturapa_export
+msgid "Download ZIP E-Invoices XML"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: model:ir.actions.act_window,name:l10n_it_fatturapa_export_zip.action_fatturapa_in_export
+#: model:ir.actions.act_window,name:l10n_it_fatturapa_export_zip.action_fatturapa_out_export
+msgid "Download ZIP e-invoice XML"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: model:ir.model,name:l10n_it_fatturapa_export_zip.model_fatturapa_attachment_out
+msgid "E-invoice Export File"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: code:addons/l10n_it_fatturapa_export_zip/wizard/export_fatturapa.py:17
+#, python-format
+msgid "E-invoice-export"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: code:addons/l10n_it_fatturapa_export_zip/wizard/export_fatturapa.py:53
+#, python-format
+msgid "Export E-Invoices"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: view:wizard.fatturapa.export:l10n_it_fatturapa_export_zip.wizard_fatturapa_export
+msgid "Export zip"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: field:fatturapa.attachment.in,exported_zip:0
+#: field:fatturapa.attachment.out,exported_zip:0
+msgid "Exported ZIP"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: model:ir.model,name:l10n_it_fatturapa_export_zip.model_fatturapa_attachment_in
+msgid "FatturaPA import File"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: field:wizard.fatturapa.export,data:0
+msgid "File"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: field:wizard.fatturapa.export,name:0
+msgid "Filename"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: field:wizard.fatturapa.export,id:0
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: field:wizard.fatturapa.export,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: field:wizard.fatturapa.export,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: field:wizard.fatturapa.export,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: view:fatturapa.attachment.in:l10n_it_fatturapa_export_zip.view_fatturapa_in_attachment_search
+#: view:fatturapa.attachment.out:l10n_it_fatturapa_export_zip.view_fatturapa_out_attachment_search
+msgid "ZIP Exported"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: view:fatturapa.attachment.in:l10n_it_fatturapa_export_zip.view_fatturapa_in_attachment_search
+#: view:fatturapa.attachment.out:l10n_it_fatturapa_export_zip.view_fatturapa_out_attachment_search
+msgid "ZIP Not Exported"
+msgstr ""
+
