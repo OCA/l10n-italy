@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, api, fields
+from odoo import models
 
 
 class WizardImportFatturapa(models.TransientModel):
