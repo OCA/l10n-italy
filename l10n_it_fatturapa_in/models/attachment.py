@@ -53,10 +53,20 @@ class FatturaPAAttachmentIn(orm.Model):
             ret[att.id] = vals.get(name, False)
         return ret
 
+    def _search_is_registered(self, cr, uid, obj, name, args, context=None):
+        operator = 'not in'
+        domain = [('in_invoice_ids', '!=', False)]
+        ids = self.search(cr, uid, domain, context=context)
+        res = []
+        for att in self.browse(cr, uid, ids, context):
+            if len(att.in_invoice_ids) == att.invoices_number:
+                res.append(att.id)
+        return [('id', operator, res)]
+
     def _compute_registered(self, cr, uid, ids, name, unknow_none, context=None):
         ret = {}
         for att in self.browse(cr, uid, ids, context):
-            if (att.in_invoice_ids and len(att.in_invoice_ids) == att.invoices_number):
+            if att.in_invoice_ids and len(att.in_invoice_ids) == att.invoices_number:
                 ret[att.id] = True
             else:
                 ret[att.id] = False
@@ -85,8 +95,7 @@ class FatturaPAAttachmentIn(orm.Model):
                  "netto dell'eventuale sconto e comprensivo di imposta a debito "
                  "del cessionario / committente"),
         'registered': fields.function(_compute_registered,
-                                           string="Registered", 
-                                           type="boolean", store=True),
+            string="Registered", type="boolean", fnct_search=_search_is_registered, store=False),
     }
 
     def get_xml_string(self, cr, uid, ids, context={}):
