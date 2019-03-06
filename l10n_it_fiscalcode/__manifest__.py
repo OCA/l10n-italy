@@ -6,7 +6,7 @@
 # noinspection PyStatementEffect
 {
     'name': 'Italian Localisation - Fiscal Code',
-    'version': '11.0.1.1.0',
+    'version': '11.0.1.1.1',
     'category': 'Localisation/Italy',
     'author': "Link IT s.r.l., "
               "Apulia Software, "
