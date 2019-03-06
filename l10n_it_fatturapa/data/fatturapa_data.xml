@@ -106,12 +106,5 @@
             <field name="name">Regime forfettario (art.1, c.54-89, L. 190/2014)</field>
         </record>
 
-        <!-- Invoice Bundle Sequence -->
-        <record id="seq_fatturapa" model="ir.sequence">
-            <field name="name">Electronic Invoices</field>
-            <field name="code">account.invoice.fatturapa</field>
-            <field name="padding">5</field>
-        </record>
-
     </data>
 </odoo>
