@@ -19,10 +19,6 @@
                                     <field name="fatturapa_fiscal_position_id"/>
                                 </div>
                                 <div class="row">
-                                    <label for="fatturapa_sequence_id" class="col-lg-3 o_light_label"/>
-                                    <field name="fatturapa_sequence_id"/>
-                                </div>
-                                <div class="row">
                                     <label for="fatturapa_tax_representative" class="col-lg-3 o_light_label"/>
                                     <field name="fatturapa_tax_representative"/>
                                 </div>
@@ -84,8 +80,6 @@
                     <group>
                         <group>
                             <field name="fatturapa_fiscal_position_id" required="1"/>
-                            <field name="fatturapa_sequence_id" required="1"
-                                   domain="[('code', '=', 'account.invoice.fatturapa')]"/>
                         </group>
                     </group>
                 </page>
