@@ -84,7 +84,7 @@ class TestInvoiceWT(FatturaPACommon):
         self.inps = self.env['withholding.tax'].create(wt_vals)
 
     def test_e_invoice_wt(self):
-        self.set_sequences(11, 11, '2019-01-07')
+        self.set_sequences(13, '2019')
         invoice = self.invoice_model.create({
             'date_invoice': '2019-01-07',
             'partner_id': self.res_partner_fatturapa_2.id,
@@ -112,7 +112,7 @@ class TestInvoiceWT(FatturaPACommon):
         res = self.run_wizard(invoice.id)
 
         attachment = self.attach_model.browse(res['res_id'])
-        self.assertEqual(attachment.datas_fname, 'IT06363391001_00011.xml')
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00011.xml')
 
         # XML doc to be validated
         xml_content = attachment.datas.decode('base64')
@@ -121,7 +121,7 @@ class TestInvoiceWT(FatturaPACommon):
             module_name='l10n_it_fatturapa_out_wt')
 
     def test_e_invoice_wt_enas_0(self):
-        self.set_sequences(14, 14, '2019-01-07')
+        self.set_sequences(14, '2019')
         invoice = self.invoice_model.create({
             'date_invoice': '2019-01-07',
             'partner_id': self.res_partner_fatturapa_2.id,
@@ -152,7 +152,7 @@ class TestInvoiceWT(FatturaPACommon):
         res = self.run_wizard(invoice.id)
 
         attachment = self.attach_model.browse(res['res_id'])
-        self.assertEqual(attachment.datas_fname, 'IT06363391001_00014.xml')
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00014.xml')
 
         # XML doc to be validated
         xml_content = attachment.datas.decode('base64')
@@ -164,7 +164,7 @@ class TestInvoiceWT(FatturaPACommon):
         """
         Fill DatiCassaPrevidenziale with Enasarco data
         """
-        self.set_sequences(15, 15, '2019-01-07')
+        self.set_sequences(15, '2019')
         self.enasarco.use_daticassaprev = True
         self.enasarco.daticassprev_tax_id = self.tax_0
         invoice = self.invoice_model.create({
@@ -197,7 +197,7 @@ class TestInvoiceWT(FatturaPACommon):
         res = self.run_wizard(invoice.id)
 
         attachment = self.attach_model.browse(res['res_id'])
-        self.assertEqual(attachment.datas_fname, 'IT06363391001_00015.xml')
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00015.xml')
 
         # XML doc to be validated
         xml_content = attachment.datas.decode('base64')
@@ -210,7 +210,7 @@ class TestInvoiceWT(FatturaPACommon):
         Fill DatiCassaPrevidenziale with Enasarco data,
         when DatiRiepilogo already has 0 VAT
         """
-        self.set_sequences(16, 16, '2019-01-07')
+        self.set_sequences(16, '2019')
         self.enasarco.use_daticassaprev = True
         self.enasarco.daticassprev_tax_id = self.tax_0
         invoice = self.invoice_model.create({
@@ -243,7 +243,7 @@ class TestInvoiceWT(FatturaPACommon):
         res = self.run_wizard(invoice.id)
 
         attachment = self.attach_model.browse(res['res_id'])
-        self.assertEqual(attachment.datas_fname, 'IT06363391001_00016.xml')
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00016.xml')
 
         # XML doc to be validated
         xml_content = attachment.datas.decode('base64')
@@ -252,7 +252,7 @@ class TestInvoiceWT(FatturaPACommon):
             module_name='l10n_it_fatturapa_out_wt')
 
     def test_e_invoice_wt_inps_0(self):
-        self.set_sequences(17, 17, '2019-01-07')
+        self.set_sequences(17, '2019')
         invoice = self.invoice_model.create({
             'date_invoice': '2019-01-07',
             'partner_id': self.res_partner_fatturapa_2.id,
@@ -283,7 +283,7 @@ class TestInvoiceWT(FatturaPACommon):
         res = self.run_wizard(invoice.id)
 
         attachment = self.attach_model.browse(res['res_id'])
-        self.assertEqual(attachment.datas_fname, 'IT06363391001_00017.xml')
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00017.xml')
 
         # XML doc to be validated
         xml_content = attachment.datas.decode('base64')
@@ -295,7 +295,7 @@ def test_e_invoice_wt_inps_1(self):
         """
         Fill DatiCassaPrevidenziale with INPS data
         """
-        self.set_sequences(18, 18, '2019-01-07')
+        self.set_sequences(18, '2019')
         self.inps.use_daticassaprev = True
         self.inps.daticassprev_tax_id = self.tax_0
         invoice = self.invoice_model.create({
@@ -328,7 +328,7 @@ def test_e_invoice_wt_inps_1(self):
         res = self.run_wizard(invoice.id)
 
         attachment = self.attach_model.browse(res['res_id'])
-        self.assertEqual(attachment.datas_fname, 'IT06363391001_00018.xml')
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00018.xml')
 
         # XML doc to be validated
         xml_content = attachment.datas.decode('base64')
@@ -341,7 +341,7 @@ def test_e_invoice_wt_inps_2(self):
         Fill DatiCassaPrevidenziale with INPS data,
         when DatiRiepilogo already has 0 VAT
         """
-        self.set_sequences(19, 19, '2019-01-07')
+        self.set_sequences(19, '2019')
         self.inps.use_daticassaprev = True
         self.inps.daticassprev_tax_id = self.tax_0
         invoice = self.invoice_model.create({
@@ -373,7 +373,7 @@ def test_e_invoice_wt_inps_2(self):
         res = self.run_wizard(invoice.id)
 
         attachment = self.attach_model.browse(res['res_id'])
-        self.assertEqual(attachment.datas_fname, 'IT06363391001_00019.xml')
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00019.xml')
 
         # XML doc to be validated
         xml_content = attachment.datas.decode('base64')
