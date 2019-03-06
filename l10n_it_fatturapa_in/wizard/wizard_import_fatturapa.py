@@ -177,12 +177,31 @@ class WizardImportFatturapa(models.TransientModel):
         partner_id = self.getPartnerBase(cedPrest.DatiAnagrafici)
         fiscalPosModel = self.env['fatturapa.fiscal_position']
         if partner_id:
-            vals = {
-                'street': cedPrest.Sede.Indirizzo,
-                'zip': cedPrest.Sede.CAP,
-                'city': cedPrest.Sede.Comune,
-                'register': cedPrest.DatiAnagrafici.AlboProfessionale or ''
-            }
+            if cedPrest.StabileOrganizzazione:
+                vals = {
+                    'street': cedPrest.StabileOrganizzazione.Indirizzo,
+                    'zip': cedPrest.StabileOrganizzazione.CAP,
+                    'city': cedPrest.StabileOrganizzazione.Comune,
+                    'register': cedPrest.DatiAnagrafici.AlboProfessionale or ''
+                }
+                if cedPrest.StabileOrganizzazione.NumeroCivico:
+                    vals['street'] = ' '.join(
+                        [vals['street'], cedPrest.StabileOrganizzazione.
+                            NumeroCivico])
+                countries = self.CountryByCode(
+                    cedPrest.StabileOrganizzazione.Nazione)
+                if countries:
+                    vals['country_id'] = countries[0].id
+            else:
+                vals = {
+                    'street': cedPrest.Sede.Indirizzo,
+                    'zip': cedPrest.Sede.CAP,
+                    'city': cedPrest.Sede.Comune,
+                    'register': cedPrest.DatiAnagrafici.AlboProfessionale or ''
+                }
+                if cedPrest.Sede.NumeroCivico:
+                    vals['street'] = ' '.join(
+                        [vals['street'], cedPrest.Sede.NumeroCivico])
             if cedPrest.DatiAnagrafici.ProvinciaAlbo:
                 ProvinciaAlbo = cedPrest.DatiAnagrafici.ProvinciaAlbo
                 prov = self.ProvinceByCode(ProvinciaAlbo)
@@ -193,8 +212,13 @@ class WizardImportFatturapa(models.TransientModel):
                     )
                 else:
                     vals['register_province'] = prov[0].id
-            if cedPrest.Sede.Provincia:
+            Provincia = False
+            if cedPrest.StabileOrganizzazione and \
+                    cedPrest.StabileOrganizzazione.Provincia:
+                Provincia = cedPrest.StabileOrganizzazione.Provincia
+            elif cedPrest.Sede.Provincia:
                 Provincia = cedPrest.Sede.Provincia
+            if Provincia:
                 prov_sede = self.ProvinceByCode(Provincia)
                 if not prov_sede:
                     self.log_inconsistency(
