@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 # Copyright 2014 Davide Corio <davide.corio@abstract.it>
 # Copyright 2018 Gianmarco Conte, Marco Calcagni - Dinamiche Aziendali srl
+# Copyright 2019 Sergio Corato (https://efatto.it)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from openerp import fields, models, api, _
 from openerp.exceptions import ValidationError
+
+STANDARD_ADDRESSEE_CODE = '0000000'
 
 
 class ResPartner(models.Model):
@@ -29,19 +32,19 @@ class ResPartner(models.Model):
         string="Register Fiscal Position")
     # 1.1.4
     codice_destinatario = fields.Char(
-        "Codice Destinatario",
-        help="Il codice, di 7 caratteri, assegnato dal Sdi ai soggetti che "
-             "hanno accreditato un canale; qualora il destinatario non abbia "
-             "accreditato un canale presso Sdi e riceva via PEC le fatture, "
-             "l'elemento deve essere valorizzato con tutti zeri ('0000000'). ",
-        default='0000000')
+        "Addressee Code",
+        help="The code, 7 characters long, assigned by ES to subjects with an "
+             "accredited channel; if the addressee didn't accredit a channel "
+             "to ES and invoices are received by PEC, the field must be "
+             "the standard value ('%s')." % STANDARD_ADDRESSEE_CODE,
+        default=STANDARD_ADDRESSEE_CODE)
     # 1.1.6
     pec_destinatario = fields.Char(
-        "PEC destinatario",
-        help="Indirizzo PEC al quale inviare la fattura elettronica. "
-             "Da valorizzare "
-             "SOLO nei casi in cui l'elemento informativo "
-             "<CodiceDestinatario> vale '0000000'"
+        "Addressee PEC",
+        help="PEC to which the electronic invoice will be sent. "
+             "Must be filled "
+             "ONLY when the information element "
+             "<CodiceDestinatario> is '%s'" % STANDARD_ADDRESSEE_CODE
     )
     electronic_invoice_subjected = fields.Boolean(
         "Subjected to electronic invoice")
@@ -84,6 +87,14 @@ class ResPartner(models.Model):
                         "Partner %s Addressee Code "
                         "must be 7 characters long."
                     ) % partner.name)
+                if partner.pec_destinatario:
+                    if partner.codice_destinatario != STANDARD_ADDRESSEE_CODE:
+                        raise ValidationError(_(
+                            "Partner %s has Addressee PEC %s, "
+                            "the Addresse Code must be %s."
+                        ) % (partner.name,
+                             partner.pec_destinatario,
+                             STANDARD_ADDRESSEE_CODE))
                 if (
                     not partner.vat and not partner.fiscalcode and
                     partner.country_id.code == 'IT'
@@ -108,6 +119,6 @@ class ResPartner(models.Model):
     @api.onchange('country_id')
     def onchange_country_id_e_inv(self):
         if self.country_id.code == 'IT':
-            self.codice_destinatario = '0000000'
+            self.codice_destinatario = STANDARD_ADDRESSEE_CODE
         else:
             self.codice_destinatario = 'XXXXXXX'
