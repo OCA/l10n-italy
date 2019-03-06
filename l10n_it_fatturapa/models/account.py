@@ -98,9 +98,23 @@ class WelfareFundType(models.Model):
     # _position = ['2.1.1.7.1']
     _name = "welfare.fund.type"
     _description = 'Welfare Fund Type'
+    _rec_name = 'display_name'
 
     name = fields.Char('Name')
     description = fields.Char('Description')
+    display_name = fields.Char(string='Name',
+                               compute='_compute_clean_display_name')
+
+    @api.multi
+    @api.depends(
+        'description', 'name'
+    )
+    def _compute_clean_display_name(self):
+        for record in self:
+            name = record.name
+            if record.name and record.description:
+                name = u'[%s] %s' % (record.name, record.description)
+            record.display_name = name
 
 
 class WelfareFundDataLine(models.Model):
