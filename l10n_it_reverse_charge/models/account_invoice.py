@@ -46,6 +46,15 @@ class AccountInvoice(models.Model):
         for line in self.invoice_line_ids:
             line._set_rc_flag(self)
 
+    @api.onchange('partner_id', 'company_id')
+    def _onchange_partner_id(self):
+        res = super(AccountInvoice, self)._onchange_partner_id()
+        # In some cases (like creating the invoice from PO),
+        # fiscal position's onchange is triggered
+        # before than being changed by this method.
+        self.onchange_rc_fiscal_position_id()
+        return res
+
     def rc_inv_line_vals(self, line):
         return {
             'product_id': line.product_id.id,
