@@ -289,25 +289,19 @@ msgid "Created on"
 msgstr "נוצר ב-"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:88
-#, python-format
-msgid "Customer %s: ZIP is needed for XML generation."
-msgstr ""
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:92
+#: code:addons/l10n_it_fatturapa/models/partner.py:99
 #, python-format
 msgid "Customer %s: city is needed for XML generation."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:96
+#: code:addons/l10n_it_fatturapa/models/partner.py:103
 #, python-format
 msgid "Customer %s: country is needed for XML generation."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:84
+#: code:addons/l10n_it_fatturapa/models/partner.py:91
 #, python-format
 msgid "Customer %s: street is needed for XML generation."
 msgstr ""
@@ -661,6 +655,18 @@ msgid "Invoice Line"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/partner.py:86
+#, python-format
+msgid "Italian Partner %s, must have VAT Number or Fiscal Code"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/partner.py:95
+#, python-format
+msgid "Italian Partner %s: ZIP is needed for XML generation."
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: field:discount.rise.price,__last_update:0
 #: field:fatturapa.attachments,__last_update:0
 #: field:fatturapa.document_type,__last_update:0
@@ -847,15 +853,9 @@ msgid "Partner"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:76
+#: code:addons/l10n_it_fatturapa/models/partner.py:78
 #, python-format
-msgid "Partner %s Addressee Code must be 7 characters long"
-msgstr ""
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:80
-#, python-format
-msgid "Partner %s, must have VAT Number or Fiscal Code"
+msgid "Partner %s Addressee Code must be 7 characters long."
 msgstr ""
 
 #. module: l10n_it_fatturapa
