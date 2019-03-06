@@ -5,6 +5,8 @@
 from odoo import fields, models, api, _
 from odoo.exceptions import ValidationError
 
+STANDARD_ADDRESSEE_CODE = '0000000'
+
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
@@ -32,15 +34,15 @@ class ResPartner(models.Model):
         help="The code, 7 characters long, assigned by ES to subjects with an "
              "accredited channel; if the addressee didn't accredit a channel "
              "to ES and invoices are received by PEC, the field must be "
-             "filled with zeros ('0000000').",
-        default='0000000')
+             "the standard value ('%s')." % STANDARD_ADDRESSEE_CODE,
+        default=STANDARD_ADDRESSEE_CODE)
     # 1.1.6
     pec_destinatario = fields.Char(
         "Addressee PEC",
         help="PEC to which the electronic invoice will be sent. "
              "Must be filled "
              "ONLY when the information element "
-             "<CodiceDestinatario> is '0000000'"
+             "<CodiceDestinatario> is '%s'" % STANDARD_ADDRESSEE_CODE
     )
     electronic_invoice_subjected = fields.Boolean(
         "Subjected to Electronic Invoice")
@@ -83,6 +85,14 @@ class ResPartner(models.Model):
                         "Partner %s Addressee Code "
                         "must be 7 characters long."
                     ) % partner.name)
+                if partner.pec_destinatario:
+                    if partner.codice_destinatario != STANDARD_ADDRESSEE_CODE:
+                        raise ValidationError(_(
+                            "Partner %s has Addressee PEC %s, "
+                            "the Addresse Code must be %s."
+                        ) % (partner.name,
+                             partner.pec_destinatario,
+                             STANDARD_ADDRESSEE_CODE))
                 if (
                     not partner.vat and not partner.fiscalcode and
                     partner.country_id.code == 'IT'
@@ -112,6 +122,6 @@ class ResPartner(models.Model):
     @api.onchange('country_id')
     def onchange_country_id_e_inv(self):
         if self.country_id.code == 'IT':
-            self.codice_destinatario = '0000000'
+            self.codice_destinatario = STANDARD_ADDRESSEE_CODE
         else:
             self.codice_destinatario = 'XXXXXXX'
