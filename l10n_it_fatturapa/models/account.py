@@ -99,6 +99,7 @@ class WelfareFundType(models.Model):
     # _position = ['2.1.1.7.1']
     _name = "welfare.fund.type"
     _description = 'welfare fund type'
+    _rec_name = 'display_name'
 
     name = fields.Char('name')
     description = fields.Char('description')
