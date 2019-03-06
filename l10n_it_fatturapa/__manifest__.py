@@ -4,7 +4,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Italian Localization - Fattura Elettronica - Base',
+    'name': 'ITA - Fattura elettronica - Base',
     'version': '11.0.1.0.5',
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices',
