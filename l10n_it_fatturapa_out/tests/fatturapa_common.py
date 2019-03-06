@@ -84,14 +84,8 @@ class FatturaPACommon(AccountTestUsers):
             }
         )
 
-    def set_sequences(self, file_number, invoice_number, dt):
+    def set_sequences(self, invoice_number, dt):
         seq_pool = self.env['ir.sequence']
-        seq_id = self.data_model.xmlid_to_res_id(
-            'l10n_it_fatturapa.seq_fatturapa')
-        ftpa_seq = seq_pool.browse(seq_id)
-        ftpa_seq.write({
-            'implementation': 'no_gap',
-            'number_next_actual': file_number, })
         inv_seq = seq_pool.search([('name', '=', 'Customer Invoices')])[0]
         seq_date = self.env['ir.sequence.date_range'].search([
             ('sequence_id', '=', inv_seq.id),
@@ -106,6 +100,18 @@ class FatturaPACommon(AccountTestUsers):
         wizard = self.wizard_model.create({})
         return wizard.with_context(
             {'active_ids': [invoice_id]}).exportFatturaPA()
+
+    def set_e_invoice_file_id(self, e_invoice, file_name):
+        # We need this because file name is random and we can't predict it
+        partial_file_name = file_name.replace('.xml', '')
+        test_file_id = partial_file_name.split('_')[1]
+        xml_content = e_invoice.datas.decode('base64')
+        parser = etree.XMLParser(remove_blank_text=True)
+        xml = etree.fromstring(xml_content, parser)
+        file_id = xml.findall('.//ProgressivoInvio')
+        file_id[0].text = test_file_id
+        e_invoice.datas = etree.tostring(xml).encode('base64')
+        e_invoice.datas_fname = file_name
 
     def check_content(self, xml_content, file_name, module_name=None):
         parser = etree.XMLParser(remove_blank_text=True)
