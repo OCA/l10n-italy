@@ -5,7 +5,7 @@
 
 {
     'name': 'Italian Localisation - Fiscal Code',
-    'version': '10.0.1.2.0',
+    'version': '10.0.1.3.0',
     'category': 'Localisation/Italy',
     'author': "Odoo Italia Network, Odoo Community Association (OCA)",
     'website': 'https://odoo-community.org/',
