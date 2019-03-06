@@ -16,8 +16,9 @@ class AccountInvoiceLine(models.Model):
     @api.multi
     def _set_rc_flag(self, invoice):
         self.ensure_one()
-        fposition = invoice.fiscal_position_id
-        self.rc = bool(fposition.rc_type_id)
+        if invoice.type == 'in_invoice':
+            fposition = invoice.fiscal_position_id
+            self.rc = bool(fposition.rc_type_id)
 
     @api.onchange('invoice_line_tax_ids')
     def onchange_invoice_line_tax_id(self):
