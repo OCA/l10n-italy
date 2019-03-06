@@ -26,6 +26,11 @@ class AccountInvoiceLine(models.Model):
 
     rc = fields.Boolean("RC")
 
+    def _set_additional_fields(self, invoice):
+        res = super(AccountInvoiceLine, self)._set_additional_fields(invoice)
+        self._set_rc_flag(invoice)
+        return res
+
 
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
