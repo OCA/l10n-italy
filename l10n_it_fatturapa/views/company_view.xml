@@ -17,10 +17,6 @@
                                 <field name="fatturapa_fiscal_position_id" required="1" class="oe_inline"/>
                             </div>
                             <div>
-                                <label for="fatturapa_sequence_id"/>
-                                <field name="fatturapa_sequence_id" required="1" class="oe_inline"/>
-                            </div>
-                            <div>
                                 <label for="fatturapa_art73"/>
                                 <field name="fatturapa_art73" class="oe_inline"/>
                             </div>
