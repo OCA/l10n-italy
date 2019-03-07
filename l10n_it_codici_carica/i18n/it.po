@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-08 02:42+0000\n"
-"PO-Revision-Date: 2019-01-28 00:04+0000\n"
+"PO-Revision-Date: 2019-03-07 11:50+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -67,20 +67,19 @@ msgstr "Nome"
 #. module: l10n_it_codici_carica
 #: model:ir.model,name:l10n_it_codici_carica.model_codice_carica
 #: model_terms:ir.ui.view,arch_db:l10n_it_codici_carica.view_codice_carica_form
-#, fuzzy
 msgid "Role Code"
-msgstr "Codice"
+msgstr "Codice carica"
 
 #. module: l10n_it_codici_carica
 #: model:ir.actions.act_window,name:l10n_it_codici_carica.action_codice_carica
 #: model:ir.ui.menu,name:l10n_it_codici_carica.menu_codice_carica
 msgid "Role Codes"
-msgstr ""
+msgstr "Codici carica"
 
 #. module: l10n_it_codici_carica
 #: model_terms:ir.ui.view,arch_db:l10n_it_codici_carica.view_codice_carica_tree
 msgid "Role code"
-msgstr ""
+msgstr "Codice carica"
 
 #. module: l10n_it_codici_carica
 #: code:addons/l10n_it_codici_carica/models/codice_carica.py:20
