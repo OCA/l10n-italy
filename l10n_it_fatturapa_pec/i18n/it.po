@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-02-08 11:50+0000\n"
+"PO-Revision-Date: 2019-03-07 11:50+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -48,7 +48,7 @@ msgstr "Accettato"
 #. module: l10n_it_fatturapa_pec
 #: model:res.groups,name:l10n_it_fatturapa_pec.group_force_e_inv_export_state
 msgid "Allow to force e-invoice export state"
-msgstr ""
+msgstr "Consentire forzatura dello stato di esportazione e-fattura"
 
 #. module: l10n_it_fatturapa_pec
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
@@ -137,7 +137,7 @@ msgstr "Ripristino server PEC fetchmail [%s]"
 #: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:73
 #, python-format
 msgid "File content and file name are mandatory"
-msgstr ""
+msgstr "Il contenuto e il nome del file sono obbligatori"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__id
