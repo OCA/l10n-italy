@@ -12,56 +12,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
 
     def setUp(self):
         super(TestFatturaPAXMLValidation, self).setUp()
-        obj_acc_fiscalyear = self.env['account.fiscalyear']
-        self.fiscalyear = obj_acc_fiscalyear.create(
-            vals={
-                'name': '2016',
-                'code': '2016',
-                'date_start': '2016-01-01',
-                'date_stop': '2016-12-31',
-            }
-        )
-        self.fiscalyear1 = obj_acc_fiscalyear.create(
-            vals={
-                'name': '2018',
-                'code': '2018',
-                'date_start': '2018-01-01',
-                'date_stop': '2018-12-31',
-            }
-        )
-        period_obj = self.env['account.period']
-        self.period = period_obj.create({
-            'name': "Period 01/2016",
-            'code': '01/2016',
-            'date_start': '2016-01-01',
-            'date_stop': '2016-01-31',
-            'special': False,
-            'fiscalyear_id': self.fiscalyear.id,
-        })
-        self.period1 = period_obj.create({
-            'name': "Period 06/2016",
-            'code': '06/2016',
-            'date_start': '2016-06-01',
-            'date_stop': '2016-06-30',
-            'special': False,
-            'fiscalyear_id': self.fiscalyear.id,
-        })
-        self.period2 = period_obj.create({
-            'name': "Period 01/2018",
-            'code': '01/2018',
-            'date_start': '2018-01-01',
-            'date_stop': '2018-01-31',
-            'special': False,
-            'fiscalyear_id': self.fiscalyear1.id,
-        })
-        self.period3 = period_obj.create({
-            'name': "Period 02/2018",
-            'code': '02/2018',
-            'date_start': '2018-02-01',
-            'date_stop': '2018-02-28',
-            'special': False,
-            'fiscalyear_id': self.fiscalyear1.id,
-        })
 
     def test_1_xml_export(self):
         self.set_sequences(1, 13, '2016')
