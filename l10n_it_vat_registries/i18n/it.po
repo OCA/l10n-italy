@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-19 13:26+0000\n"
-"PO-Revision-Date: 2019-02-18 08:57+0000\n"
+"PO-Revision-Date: 2019-05-14 14:09+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.4\n"
+"X-Generator: Weblate 3.6.1\n"
 
 #. module: l10n_it_vat_registries
 #: model_terms:ir.actions.act_window,help:l10n_it_vat_registries.action_account_tax_registry_form
@@ -27,7 +27,7 @@ msgstr ""
 #. module: l10n_it_vat_registries
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "BUSINESS NAME"
-msgstr ""
+msgstr "RAGIONE SOCIALE"
 
 #. module: l10n_it_vat_registries
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
@@ -70,11 +70,10 @@ msgstr "Intervallo data"
 #. module: l10n_it_vat_registries
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "Deductible"
-msgstr ""
+msgstr "Deducibile"
 
 #. module: l10n_it_vat_registries
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
-#, fuzzy
 msgid "Description"
 msgstr "Descrizione"
 
@@ -98,7 +97,7 @@ msgstr "Dalla data"
 #. module: l10n_it_vat_registries
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "General Total EUR"
-msgstr ""
+msgstr "Totale generale EUR"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__id
@@ -110,12 +109,12 @@ msgstr "ID"
 #. module: l10n_it_vat_registries
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "INV. DATE"
-msgstr ""
+msgstr "DATA FATT."
 
 #. module: l10n_it_vat_registries
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "INV. NUM."
-msgstr ""
+msgstr "NUM. FATT."
 
 #. module: l10n_it_vat_registries
 #: model:ir.actions.report,name:l10n_it_vat_registries.action_report_registro_iva
@@ -197,12 +196,12 @@ msgid ""
 "Please load them before to retry!"
 msgstr ""
 "Nessun registro trovato nella selezione corrente.\n"
-"Caricarne prima di riprovare!"
+"Caricarne qualcuno prima di riprovare!"
 
 #. module: l10n_it_vat_registries
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "Non-Deductible"
-msgstr ""
+msgstr "Non deducibile"
 
 #. module: l10n_it_vat_registries
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
@@ -217,23 +216,22 @@ msgstr "Stampa solo i totali"
 #. module: l10n_it_vat_registries
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "REASON"
-msgstr ""
+msgstr "MOTIVO"
 
 #. module: l10n_it_vat_registries
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "REG. DATE"
-msgstr ""
+msgstr "DATA REG."
 
 #. module: l10n_it_vat_registries
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "REG. NUM."
-msgstr ""
+msgstr "NUM. REG."
 
 #. module: l10n_it_vat_registries
 #: model:ir.model,name:l10n_it_vat_registries.model_report_l10n_it_vat_registries_report_registro_iva
-#, fuzzy
 msgid "Report VAT registry"
-msgstr "Registro IVA"
+msgstr "Resoconto registro IVA"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model,name:l10n_it_vat_registries.model_wizard_registro_iva
@@ -250,7 +248,7 @@ msgstr "Selezionare i registri dai quali prelevare i documenti"
 #: selection:account.tax.registry,layout_type:0
 #: selection:wizard.registro.iva,layout_type:0
 msgid "Sums due"
-msgstr ""
+msgstr "Corrispettivi"
 
 #. module: l10n_it_vat_registries
 #: selection:account.tax.registry,layout_type:0
@@ -265,7 +263,6 @@ msgstr ""
 
 #. module: l10n_it_vat_registries
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
-#, fuzzy
 msgid "TOTAL"
 msgstr "TOTALE"
 
@@ -282,20 +279,18 @@ msgstr "Registro imposta"
 
 #. module: l10n_it_vat_registries
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
-#, fuzzy
 msgid "Tax description"
-msgstr "Descrizione"
+msgstr "Descrizione imposta"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model,name:l10n_it_vat_registries.model_account_tax_registry
-#, fuzzy
 msgid "Tax registry"
-msgstr "Registro IVA"
+msgstr "Registro imposta"
 
 #. module: l10n_it_vat_registries
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "Taxable"
-msgstr ""
+msgstr "Imponibile"
 
 #. module: l10n_it_vat_registries
 #: model:ir.ui.menu,name:l10n_it_vat_registries.menu_finance_legal_statement_taxes
@@ -309,7 +304,6 @@ msgstr "Alla data"
 
 #. module: l10n_it_vat_registries
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
-#, fuzzy
 msgid "Totals"
 msgstr "Totali"
 
@@ -338,12 +332,12 @@ msgstr "Registro IVA"
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,help:l10n_it_vat_registries.field_wizard_registro_iva__year_footer
 msgid "Value printed near number of page in the footer"
-msgstr ""
+msgstr "Valore stampato nel piè di pagina a fianco del numero pagina"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__year_footer
 msgid "Year for Footer"
-msgstr ""
+msgstr "Anno per il piè di pagina"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,help:l10n_it_vat_registries.field_account_journal__tax_registry_id
@@ -353,7 +347,7 @@ msgid ""
 msgstr ""
 "È possibile raggruppare più registri contabili in un unico registro IVA. "
 "Nella procedura guidata di stampa, selezionare il registro IVA per caricare "
-"i relativi registri ."
+"i relativi registri"
 
 #. module: l10n_it_vat_registries
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
