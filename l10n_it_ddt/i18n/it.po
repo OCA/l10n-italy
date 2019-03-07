@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-25 05:17+0000\n"
-"PO-Revision-Date: 2019-03-07 16:53+0000\n"
+"PO-Revision-Date: 2019-03-07 17:23+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -659,7 +659,7 @@ msgstr "Prelievo"
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:32
 #, python-format
 msgid "Picking %s already in TD"
-msgstr "Ordine di consegna %s già nel DDT"
+msgstr "Prelievo %s già presente nel DDT"
 
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
@@ -771,7 +771,7 @@ msgstr "Il prelievo %s selezionato ha una causale di trasporto diversa"
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:168
 #, python-format
 msgid "Selected Picking is already linked to TD: %s"
-msgstr "La consegna selezionata è già collegata al DDT: %s"
+msgstr "Il prelievo selezionato è già collegato al DDT: %s"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:41
