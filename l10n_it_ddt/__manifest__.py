@@ -4,7 +4,6 @@
 # Copyright 2015 Apulia Software s.r.l. (http://www.apuliasoftware.it)
 # Copyright Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 # Copyright 2018 Simone Rubino - Agile Business Group
-# Copyright 2019 Giovanni - GSLabIt
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
