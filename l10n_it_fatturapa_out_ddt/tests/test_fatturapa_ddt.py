@@ -75,7 +75,7 @@ class TestInvoiceDDT(FatturaPACommon):
         action = invoice_wizard.create_invoice()
         invoice_ids = action['domain'][0][2]
         invoice = self.env['account.invoice'].browse(invoice_ids[0])
-        self.set_sequences(6, 13, '2018-01-07')
+        self.set_sequences(13, '2018-01-07')
         invoice.date_invoice = '2018-01-07'
         invoice.action_invoice_open()
         wizard = self.wizard_model.with_context(
@@ -85,6 +85,7 @@ class TestInvoiceDDT(FatturaPACommon):
         self.assertEqual(wizard.include_ddt_data, 'dati_ddt')
         res = wizard.exportFatturaPA()
         attachment = self.attach_model.browse(res['res_id'])
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00006.xml')
         xml_content = codecs.decode(attachment.datas, 'base64')
         self.assertEqual(
             attachment.datas_fname, 'IT06363391001_00006.xml')
@@ -124,7 +125,7 @@ class TestInvoiceDDT(FatturaPACommon):
         action = invoice_wizard.create_invoice()
         invoice_ids = action['domain'][0][2]
         invoice = self.env['account.invoice'].browse(invoice_ids[0])
-        self.set_sequences(7, 14, '2018-01-07')
+        self.set_sequences(14, '2018-01-07')
         invoice.date_invoice = '2018-01-07'
         invoice.action_invoice_open()
         wizard = self.wizard_model.with_context(
@@ -133,6 +134,7 @@ class TestInvoiceDDT(FatturaPACommon):
         wizard.include_ddt_data = 'dati_trasporto'
         res = wizard.exportFatturaPA()
         attachment = self.attach_model.browse(res['res_id'])
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00007.xml')
         xml_content = codecs.decode(attachment.datas, 'base64')
         self.assertEqual(
             attachment.datas_fname, 'IT06363391001_00007.xml')
