@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-08 09:34+0000\n"
-"PO-Revision-Date: 2019-02-12 17:18+0000\n"
+"PO-Revision-Date: 2019-03-07 11:50+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -153,7 +153,7 @@ msgstr "Nome banca"
 #: code:addons/l10n_it_fatturapa/models/ir_attachment.py:84
 #, python-format
 msgid "Base64 encoded file %s."
-msgstr ""
+msgstr "File %s codificato in base64."
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail__payment_bank_cab
@@ -219,9 +219,9 @@ msgstr "Contratto"
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/ir_attachment.py:74
-#, fuzzy, python-format
+#, python-format
 msgid "Corrupted attachment %s."
-msgstr "Allegati e-fattura"
+msgstr "Allegato danneggiato %s."
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_invoice__efatt_stabile_organizzazione_nazione
@@ -367,9 +367,8 @@ msgstr "Tipo documento"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__ftpa_incoterms
-#, fuzzy
 msgid "E-inv Incoterms"
-msgstr "Incoterm"
+msgstr "Incoterm e-fatt"
 
 #. module: l10n_it_fatturapa
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa.view_company_form_e_invoice
@@ -493,9 +492,8 @@ msgstr "Fatture elettroniche"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__electronic_invoice_subjected
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__electronic_invoice_subjected
-#, fuzzy
 msgid "Enable electronic invoicing"
-msgstr "Fattura elettronica"
+msgstr "Abilitare fatturazione elettronica"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__datas
@@ -611,7 +609,7 @@ msgstr "Intermediario"
 #: code:addons/l10n_it_fatturapa/models/ir_attachment.py:108
 #, python-format
 msgid "Invalid xml %s."
-msgstr ""
+msgstr "Xml %s non valido."
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_account_invoice
