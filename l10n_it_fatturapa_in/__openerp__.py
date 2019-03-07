@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015 AgileBG SAGL <http://www.agilebg.com>
 # Copyright 2015 innoviu Srl <http://www.innoviu.com>
-# Copyright 2018 Lorenzo Battistini
+# Copyright 2018-2019 Lorenzo Battistini
+# Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2018 Gianmarco Conte, Marco Calcagni - Dinamiche Aziendali srl
-# Copyright 2018 Sergio Corato
+# Copyright 2018-2019 Sergio Corato
 
 {
     'name': 'Italian Localization - Fattura elettronica - Ricezione',
-    'version': '8.0.1.1.4',
+    'version': '8.0.1.1.5',
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices reception',
     'author': 'Agile Business Group, Innoviu, '
