@@ -56,7 +56,7 @@ msgid "Attachments"
 msgstr "Allegati"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:669
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:663
 #, python-format
 msgid ""
 "BIC is required and not exist in Xml\n"
@@ -76,7 +76,7 @@ msgid "Bill"
 msgstr "Fattura"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1142
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1136
 #, python-format
 msgid "Bill total %s is different from document total amount %s"
 msgstr ""
@@ -135,7 +135,7 @@ msgid "Company Name field contains '%s'. Your System contains '%s'"
 msgstr "Il campo nome azienda contiene \"%s\", il sistema contiene \"%s\""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1157
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1151
 #, python-format
 msgid "Computed amount untaxed %s is different from summary data %s"
 msgstr "L'imponibile calcolato %s è diverso da quello dei dati di riepilogo %s"
@@ -187,7 +187,7 @@ msgid "Date Reference"
 msgstr "Riferimento data"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:724
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:718
 #, python-format
 msgid "Define a purchase journal for this company: '%s' (id: %d)."
 msgstr "Definire un registro di acquisto per questa azienda: \"%s\" (id: %d)."
@@ -230,7 +230,7 @@ msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:830
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:824
 #, python-format
 msgid "Document type %s not handled."
 msgstr "Tipo documento %s non gestito."
@@ -306,7 +306,7 @@ msgid "File Size"
 msgstr "Dimensione file"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1180
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1174
 #, python-format
 msgid "File is linked to bills yet."
 msgstr "Il file è già collegato alle fatture."
@@ -317,7 +317,7 @@ msgid "General Data"
 msgstr "Dati generali"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:557
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:551
 #, python-format
 msgid "Global bill discount from document general data"
 msgstr "Sconto globale fattura dai dati generali del documento"
@@ -434,7 +434,7 @@ msgid "Last Updated on"
 msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:314
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:308
 #, python-format
 msgid ""
 "Line '%s': Too many taxes with percentage equals to '%s'.\n"
@@ -514,7 +514,7 @@ msgid "Name field contains '%s'. Your System contains '%s'"
 msgstr "Il campo nome contiene \"%s\", il sistema contiene \"%s\""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:645
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:639
 #, python-format
 msgid "Name of Bank with BIC '%s' is not set. Can't create bank"
 msgstr "Impossibile creare la banca con BIC \"%s\", il nome non è impostato."
@@ -525,7 +525,7 @@ msgid "Nature"
 msgstr "Natura"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:807
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:801
 #, python-format
 msgid "No currency found with code %s."
 msgstr "Valuta con codice %s non trovata."
@@ -539,7 +539,7 @@ msgstr ""
 "Imposta con aliquota %s e natura %s non trovata, configurare questa imposta."
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:891
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:885
 #, python-format
 msgid "No withholding tax found with document payment reason %s and rate %s."
 msgstr "Ritenuta con causale documento %s e aliquota %s non trovata."
@@ -561,19 +561,19 @@ msgid "Partner"
 msgstr "Partner"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:587
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:581
 #, python-format
 msgid "Payment method %s is not defined in your system."
 msgstr "Modalità di pagamento %s non definita nel sistema."
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1095
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1089
 #, python-format
 msgid "Payment method code %s is incorrect."
 msgstr "Codice modalità di pagamento %s non corretto."
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1090
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1084
 #, python-format
 msgid "Payment method code not found in document."
 msgstr "Codice modalità di pagamento non trovato nel documento."
@@ -729,7 +729,7 @@ msgid "Tax Withholding"
 msgstr "Ritenuta"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:478
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:472
 #, python-format
 msgid "Tax kind %s not found"
 msgstr "Tipo imposta %s non trovato"
@@ -740,7 +740,7 @@ msgid "Text Reference"
 msgstr "Riferimento testo"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:879
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:873
 #, python-format
 msgid ""
 "The bill contains withholding tax with payment reason %s, but such a tax is "
@@ -763,12 +763,6 @@ msgstr "L'ID del record a cui questo è collegato."
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_search
 msgid "To Register"
 msgstr "Da registrare"
-
-#. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:290
-#, python-format
-msgid "Too many taxes with percentage %s and nature %s found."
-msgstr "Rilevate troppe imposte con aliquota %s e natura %s."
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_total_price
@@ -827,7 +821,7 @@ msgid "Welfare Fund"
 msgstr "Cassa previdenziale"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:505
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:499
 #, python-format
 msgid "Welfare Fund %s not present in your system."
 msgstr "Cassa previdenziale %s non presente nel sistema."
@@ -838,13 +832,13 @@ msgid "Welfare Fund Details"
 msgstr "Dettagli cassa previdenziale"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:487
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:481
 #, python-format
 msgid "Welfare Fund is not defined."
 msgstr "Cassa previdenziale non definita."
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:376
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:370
 #, python-format
 msgid "XML contains tax %s. Product %s has tax %s. Using the XML one"
 msgstr ""
@@ -852,7 +846,7 @@ msgstr ""
 "quella dell'XML."
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:305
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:299
 #, python-format
 msgid ""
 "XML contains tax with percentage '%s' but it does not exist in your system"
@@ -899,6 +893,9 @@ msgstr "einvoice.line.other.data"
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
 msgid "on"
 msgstr "il"
+
+#~ msgid "Too many taxes with percentage %s and nature %s found."
+#~ msgstr "Rilevate troppe imposte con aliquota %s e natura %s."
 
 #~ msgid "Product used to model DatiBollo XML element on bills."
 #~ msgstr ""
