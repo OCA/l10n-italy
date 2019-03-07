@@ -40,10 +40,13 @@ class EInvoiceCommon(FatturaPACommon):
             'invoice_line_tax_id': [
                 (6, 0, [self.ref('l10n_it_fatturapa.tax_22')])]
         }
+        recent_date = self.invoice_model.search(
+            [('date_invoice', '!=', False)], order='date_invoice desc',
+            limit=1).date_invoice
         invoice = self.invoice_model.create(
             dict(
                 name='Test Invoice',
-                date_invoice='2019-02-15',
+                date_invoice=recent_date,
                 account_id=self.account_receivable_id.id,
                 invoice_line=[(0, 0, invoice_line_data)],
                 partner_id=self.partner.id
