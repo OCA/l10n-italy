@@ -12,7 +12,7 @@ class TestInvoiceTripleDiscount(FatturaPACommon):
         super(TestInvoiceTripleDiscount, self).setUp()
 
     def test_xml_export_triple_discount(self):
-        self.set_sequences(1, 13, '2016-01-07')
+        self.set_sequences(13, '2016-01-07')
         invoice = self.invoice_model.create({
             'date_invoice': '2016-01-07',
             'partner_id': self.res_partner_fatturapa_0.id,
@@ -42,7 +42,7 @@ class TestInvoiceTripleDiscount(FatturaPACommon):
 
         self.assertTrue(res)
         attachment = self.attach_model.browse(res['res_id'])
-        self.assertEqual(attachment.datas_fname, 'IT06363391001_00001.xml')
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00001.xml')
 
         # XML doc to be validated
         xml_content = attachment.datas.decode('base64')
