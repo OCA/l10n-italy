@@ -278,16 +278,11 @@ class WizardImportFatturapa(models.TransientModel):
                     ('type_tax_use', '=', 'purchase'),
                     ('kind_id.code', '=', line.Natura),
                     ('amount', '=', 0.0),
-                ])
+                ], order='sequence', limit=1)
             if not account_taxes:
                 self.log_inconsistency(
                     _('No tax with percentage '
                       '%s and nature %s found. Please configure this tax.')
-                    % (line.AliquotaIVA, line.Natura))
-            if len(account_taxes) > 1:
-                self.log_inconsistency(
-                    _('Too many taxes with percentage '
-                      '%s and nature %s found.')
                     % (line.AliquotaIVA, line.Natura))
         else:
             account_taxes = account_tax_model.search(
@@ -297,8 +292,7 @@ class WizardImportFatturapa(models.TransientModel):
                     ('price_include', '=', False),
                     # partially deductible VAT must be set by user
                     ('children_tax_ids', '=', False),
-                ]
-            )
+                ], order='sequence')
             if not account_taxes:
                 self.log_inconsistency(
                     _(
