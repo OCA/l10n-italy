@@ -29,6 +29,7 @@ setuptools.setup(
         'odoo8-addon-l10n_it_fatturapa_export_zip',
         'odoo8-addon-l10n_it_fatturapa_in',
         'odoo8-addon-l10n_it_fatturapa_out',
+        'odoo8-addon-l10n_it_fatturapa_out_ddt',
         'odoo8-addon-l10n_it_fatturapa_out_stamp',
         'odoo8-addon-l10n_it_fatturapa_pec',
         'odoo8-addon-l10n_it_fiscal_document_type',
