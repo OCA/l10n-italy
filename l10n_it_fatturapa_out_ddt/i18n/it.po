@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Weblate 3.3\n"
 
 #. module: l10n_it_fatturapa_out_ddt
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_ddt.field_wizard_export_fatturapa_include_ddt_data
+#: field:wizard.export.fatturapa,include_ddt_data:0
 msgid "DDT Data"
 msgstr "Dati DDT"
 
@@ -33,7 +33,7 @@ msgid "Include DDT Data"
 msgstr "Includere dati DDT"
 
 #. module: l10n_it_fatturapa_out_ddt
-#: model:ir.model.fields,help:l10n_it_fatturapa_out_ddt.field_wizard_export_fatturapa_include_ddt_data
+#: help:wizard.export.fatturapa,include_ddt_data:0
 msgid ""
 "Include DDT data: The field must be entered when a transport document "
 "associated with a deferred invoice is present\n"
@@ -51,7 +51,7 @@ msgid "Include transport data"
 msgstr "Includere dati trasporto"
 
 #. module: l10n_it_fatturapa_out_ddt
-#: code:addons/l10n_it_fatturapa_out_ddt/wizard/wizard_export_fatturapa.py:80
+#: code:addons/l10n_it_fatturapa_out_ddt/wizard/wizard_export_fatturapa.py:83
 #, python-format
 msgid "TIN not set for %s."
 msgstr "Partita IVA non impostata per %s."

@@ -1,0 +1,47 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_fatturapa_out_ddt
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_fatturapa_out_ddt
+#: field:wizard.export.fatturapa,include_ddt_data:0
+msgid "DDT Data"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_wizard_export_fatturapa
+msgid "Export E-invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_ddt
+#: selection:wizard.export.fatturapa,include_ddt_data:0
+msgid "Include DDT Data"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_ddt
+#: help:wizard.export.fatturapa,include_ddt_data:0
+msgid "Include DDT data: The field must be entered when a transport document associated with a deferred invoice is present\n"
+"Include transport data: The field must be entered when a shipping invoice to be filled with transport data is present"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_ddt
+#: selection:wizard.export.fatturapa,include_ddt_data:0
+msgid "Include transport data"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_ddt
+#: code:addons/l10n_it_fatturapa_out_ddt/wizard/wizard_export_fatturapa.py:83
+#, python-format
+msgid "TIN not set for %s."
+msgstr ""
+
