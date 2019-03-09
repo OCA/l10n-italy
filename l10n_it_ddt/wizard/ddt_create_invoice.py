@@ -97,6 +97,7 @@ class DdTCreateInvoice(models.TransientModel):
                 ctx['ddt_partner_id'] = partner_id
                 ctx['inv_type'] = 'out_invoice'
                 ctx['date_inv'] = self.date
+                ctx['skip_update_line_ids'] = True
                 picking_list = [p.picking_ids for p in ddt_partner[partner_id]]
                 for pll in picking_list:
                     for p in pll:
