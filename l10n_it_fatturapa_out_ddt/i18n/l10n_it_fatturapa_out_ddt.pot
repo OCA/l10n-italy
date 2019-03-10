@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_fatturapa_out_ddt
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_ddt.field_wizard_export_fatturapa_include_ddt_data
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_ddt.field_wizard_export_fatturapa__include_ddt_data
 msgid "DDT Data"
 msgstr ""
 
@@ -29,7 +29,7 @@ msgid "Include DDT Data"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_ddt
-#: model:ir.model.fields,help:l10n_it_fatturapa_out_ddt.field_wizard_export_fatturapa_include_ddt_data
+#: model:ir.model.fields,help:l10n_it_fatturapa_out_ddt.field_wizard_export_fatturapa__include_ddt_data
 msgid "Include DDT data: The field must be entered when a transport document associated with a deferred invoice is present\n"
 "Include transport data: The field must be entered when a shipping invoice to be filled with transport data is present"
 msgstr ""
