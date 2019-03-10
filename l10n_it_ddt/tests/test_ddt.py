@@ -214,11 +214,10 @@ class TestDdt(TransactionCase):
         self.picking.action_confirm()
         self.picking.action_assign()
         wiz_vals = self.picking.button_validate()
-        if wiz_vals:
-            # The picking might require further approval
-            wiz = self.env[wiz_vals['res_model']] \
-                .browse(wiz_vals['res_id'])
-            wiz.process()
+        # The picking requires further approval
+        wiz = self.env[wiz_vals['res_model']] \
+            .browse(wiz_vals['res_id'])
+        wiz.process()
         self.ddt.picking_ids = [(6, 0, [self.picking.id, ])]
         self.picking.action_done()
         self.assertTrue(self.ddt.check_if_picking_done)
@@ -311,12 +310,10 @@ class TestDdt(TransactionCase):
         order3.picking_ids.action_assign()
         for picking in order3.picking_ids:
             wiz_vals = picking.button_validate()
-            if wiz_vals:
-                # The picking might require further approval
-                wiz = self.env[wiz_vals['res_model']] \
-                    .browse(wiz_vals['res_id'])
-                wiz.process()
-            picking.button_validate()
+            # The picking might require further approval
+            wiz = self.env[wiz_vals['res_model']] \
+                .browse(wiz_vals['res_id'])
+            wiz.process()
 
         # test invoice
         wizard = self.env['sale.advance.payment.inv'].with_context({
@@ -400,12 +397,10 @@ class TestDdt(TransactionCase):
         picking1.action_assign()
         ddt = self._create_ddt(picking1)
         wiz_vals = picking1.button_validate()
-        if wiz_vals:
-            # The picking might require further approval
-            wiz = self.env[wiz_vals['res_model']] \
-                .browse(wiz_vals['res_id'])
-            wiz.process()
-        picking1.button_validate()
+        # The picking might require further approval
+        wiz = self.env[wiz_vals['res_model']] \
+            .browse(wiz_vals['res_id'])
+        wiz.process()
         ddt.set_done()
         self.assertTrue('DDT' in ddt.display_name)
         self.assertEqual(ddt.weight, 0)
