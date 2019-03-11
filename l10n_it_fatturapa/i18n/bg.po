@@ -376,7 +376,6 @@ msgstr ""
 #: field:faturapa.activity.progress,display_name:0
 #: field:faturapa.summary.data,display_name:0
 #: field:welfare.fund.data.line,display_name:0
-#: field:welfare.fund.type,display_name:0
 msgid "Display Name"
 msgstr "Име за показване"
 
@@ -760,6 +759,11 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: field:res.company,fatturapa_rea_partner:0
 msgid "Member Type"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: field:welfare.fund.type,display_name:0
+msgid "Name"
 msgstr ""
 
 #. module: l10n_it_fatturapa

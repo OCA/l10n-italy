@@ -385,7 +385,6 @@ msgstr "Dettagli sconto e maggiorazione"
 #: field:faturapa.activity.progress,display_name:0
 #: field:faturapa.summary.data,display_name:0
 #: field:welfare.fund.data.line,display_name:0
-#: field:welfare.fund.type,display_name:0
 msgid "Display Name"
 msgstr "Nome Visualizzato"
 
@@ -786,6 +785,12 @@ msgstr "Data massima per il pagamento"
 #: field:res.company,fatturapa_rea_partner:0
 msgid "Member Type"
 msgstr "Tipo Socio"
+
+#. module: l10n_it_fatturapa
+#: field:welfare.fund.type,display_name:0
+#, fuzzy
+msgid "Name"
+msgstr "Nome File"
 
 #. module: l10n_it_fatturapa
 #: selection:account.invoice,ftpa_withholding_type:0
