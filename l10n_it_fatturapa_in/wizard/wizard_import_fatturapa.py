@@ -396,8 +396,8 @@ class WizardImportFatturapa(models.TransientModel):
             retLine['discount'] = self._computeDiscount(line)
         if line.RiferimentoAmministrazione:
             retLine['admin_ref'] = line.RiferimentoAmministrazione
-        if wt_found and line.Ritenuta:
-            retLine['invoice_line_tax_wt_ids'] = [(6, 0, [wt_found.id])]
+        if wt_found:
+            retLine['invoice_line_tax_wt_ids'] = [(6, 0, wt_found.ids)]
 
         return retLine
 
