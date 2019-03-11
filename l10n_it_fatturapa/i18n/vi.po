@@ -356,7 +356,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_activity_progress_display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_summary_data_display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_display_name
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type_display_name
 msgid "Display Name"
 msgstr "Tên hiển thị"
 
@@ -726,6 +725,7 @@ msgid "Municipality or city to which the Stable Organization refers"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type_display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type_name
 msgid "Name"
 msgstr ""
