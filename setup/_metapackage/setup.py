@@ -33,6 +33,7 @@ setuptools.setup(
         'odoo10-addon-l10n_it_fatturapa_out_ddt',
         'odoo10-addon-l10n_it_fatturapa_out_stamp',
         'odoo10-addon-l10n_it_fatturapa_out_triple_discount',
+        'odoo10-addon-l10n_it_fatturapa_out_wt',
         'odoo10-addon-l10n_it_fatturapa_pec',
         'odoo10-addon-l10n_it_fiscal_document_type',
         'odoo10-addon-l10n_it_fiscal_payment_term',
