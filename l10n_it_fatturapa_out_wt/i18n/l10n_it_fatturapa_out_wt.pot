@@ -1,0 +1,63 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_fatturapa_out_wt
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_fatturapa_out_wt
+#: selection:withholding.tax,wt_types:0
+msgid "Enasarco tax"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_wt
+#: model:ir.model,name:l10n_it_fatturapa_out_wt.model_wizard_export_fatturapa
+msgid "Export E-invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_wt
+#: code:addons/l10n_it_fatturapa_out_wt/wizard/wizard_export_fatturapa.py:26
+#, python-format
+msgid "Missing causale pagamento for withholding tax %s!"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_wt
+#: code:addons/l10n_it_fatturapa_out_wt/wizard/wizard_export_fatturapa.py:48
+#, python-format
+msgid "More than one Enasarco tax in invoice!"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_wt
+#: code:addons/l10n_it_fatturapa_out_wt/wizard/wizard_export_fatturapa.py:23
+#, python-format
+msgid "More than one withholding tax in invoice!"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_wt
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_wt.field_withholding_tax_welfare_fund_type_id
+msgid "Welfare Fund Type"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_wt
+#: model:ir.model,name:l10n_it_fatturapa_out_wt.model_withholding_tax
+msgid "Withholding Tax"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_wt
+#: selection:withholding.tax,wt_types:0
+msgid "Withholding tax"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_wt
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_wt.field_withholding_tax_wt_types
+msgid "Withholding tax type"
+msgstr ""
+
