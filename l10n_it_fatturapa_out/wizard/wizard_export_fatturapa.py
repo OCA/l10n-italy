@@ -682,7 +682,7 @@ class WizardExportFatturapa(orm.TransientModel):
 
         return True
 
-    def setDatiDDT(self, cr, uid, invoice, body):
+    def setDatiDDT(self, cr, uid, ids, invoice, body, context={}):
         return True
 
     def _get_prezzo_unitario(self, cr, uid, line):
@@ -726,6 +726,7 @@ class WizardExportFatturapa(orm.TransientModel):
                     _("Too many taxes for invoice line %s") % line.name)
             aliquota = line.invoice_line_tax_id[0].amount * 100
             AliquotaIVA = '%.2f' % (aliquota)
+            line.ftpa_line_number = line_no
             prezzo_unitario = self._get_prezzo_unitario(cr, uid, line)
             DettaglioLinea = DettaglioLineeType(
                 NumeroLinea=str(line_no),
@@ -889,7 +890,7 @@ class WizardExportFatturapa(orm.TransientModel):
         self.setSoggettoEmittente(cr, uid, context=context)
 
     def setFatturaElettronicaBody(
-        self, cr, uid, inv, FatturaElettronicaBody, context=None
+        self, cr, uid, ids, inv, FatturaElettronicaBody, context=None
     ):
         if context is None:
             context = {}
@@ -902,6 +903,7 @@ class WizardExportFatturapa(orm.TransientModel):
             cr, uid, inv, FatturaElettronicaBody, context=context)
         self.setDettaglioLinee(
             cr, uid, inv, FatturaElettronicaBody, context=context)
+        self.setDatiDDT(cr, uid, ids, inv, FatturaElettronicaBody, context=context)
         self.setDatiRiepilogo(
             cr, uid, inv, FatturaElettronicaBody, context=context)
         self.setDatiPagamento(
@@ -976,7 +978,7 @@ class WizardExportFatturapa(orm.TransientModel):
                     invoice_body = FatturaElettronicaBodyType()
                     invoice_obj.preventive_checks(cr, uid, inv.id)
                     self.setFatturaElettronicaBody(
-                        cr, uid, inv, invoice_body, context=context_partner)
+                        cr, uid, ids, inv, invoice_body, context=context_partner)
                     fatturapa.FatturaElettronicaBody.append(invoice_body)
                     # TODO DatiVeicoli
     
