@@ -21,6 +21,7 @@
     'data': [
         'security/ir.model.access.csv',
         'wizard/compute_fiscal_document_type_view.xml',
+        'wizard/split_big_communication_view.xml',
         'views/comunicazione.xml',
         'views/account.xml',
         'views/account_invoice_view.xml',

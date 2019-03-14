@@ -45,6 +45,7 @@ def check_normalized_string(value):
 class ComunicazioneDatiIva(models.Model):
     _name = 'comunicazione.dati.iva'
     _description = 'Invoices data communication'
+    _rec_name = 'identificativo'
 
     @api.model
     def _default_company(self):
@@ -71,13 +72,13 @@ class ComunicazioneDatiIva(models.Model):
     company_id = fields.Many2one(
         'res.company', string='Company', required=True,
         default=_default_company)
-    identificativo = fields.Integer(string='Identifier',
+    identificativo = fields.Integer(string='Identifier', copy=False,
                                     default=_get_identificativo)
     id_comunicazione = fields.Char(
         string='Communication ID',
         help='Identifier provided by the Revenue Agency after performing the '
              'communication by XML file')
-    name = fields.Char(string='Name')
+    splitting_note = fields.Text("Splitting note", readonly=True, copy=False)
     declarant_fiscalcode = fields.Char(
         string='Declarant fiscal code',
         help="Fiscal code of the person communicating the invoices data")
@@ -215,7 +216,7 @@ class ComunicazioneDatiIva(models.Model):
         string='Natural person surname', size=60,
         help="To fill along with 2.1.2.2 <Nome> and alternatively to "
              "2.1.2.1 <Denominazione>")
-    errors = fields.Text()
+    errors = fields.Text(copy=False)
 
     @api.onchange('company_id')
     def onchange_company_id(self):
@@ -417,6 +418,7 @@ class ComunicazioneDatiIva(models.Model):
         # Unlink existing lines
         self._unlink_sections()
         for comunicazione in self:
+            comunicazione.splitting_note = ''
             # Fatture Emesse
             if comunicazione.dati_trasmissione == 'DTE':
                 comunicazione.compute_fatture_emesse()
@@ -424,50 +426,52 @@ class ComunicazioneDatiIva(models.Model):
             if comunicazione.dati_trasmissione == 'DTR':
                 comunicazione.compute_fatture_ricevute()
 
-    @api.one
+    def _prepare_cessionari_dati_fatture(self, fatture_emesse, cessionari):
+        dati_fatture = []
+        posizione = 0
+        for cessionario in cessionari:
+            fatture = fatture_emesse.filtered(
+                lambda fe: fe.partner_id.id == cessionario.id)
+            vals_fatture = []
+            for fattura in fatture:
+                posizione += 1
+                val = {
+                    'posizione': posizione,
+                    'invoice_id': fattura.id,
+                    'dati_fattura_TipoDocumento':
+                        fattura.fiscal_document_type_id.id,
+                    'dati_fattura_Data': fattura.date_invoice,
+                    'dati_fattura_Numero': self._parse_fattura_numero(
+                        fattura.number),
+                    'dati_fattura_iva_ids':
+                        fattura._get_tax_comunicazione_dati_iva()
+                }
+                val = self._prepare_fattura_emessa(val, fattura)
+                vals_fatture.append((0, 0, val))
+
+            val_cessionario = {
+                'partner_id': cessionario.id,
+                'fatture_emesse_body_ids': vals_fatture
+            }
+            vals = self._prepare_cessionario_partner_id(
+                cessionario)
+            val_cessionario.update(vals)
+            dati_fatture.append((0, 0, val_cessionario))
+        return dati_fatture
+
     def compute_fatture_emesse(self):
+        self.ensure_one()
         fatture_emesse = self._get_fatture_emesse()
         if fatture_emesse:
-            dati_fatture = []
             # Cedente
             self.partner_cedente_id = \
                 fatture_emesse[0].company_id.partner_id.id
             self.onchange_partner_cedente_id()
 
             # Cessionari
-            posizione = 0
             cessionari = fatture_emesse.mapped('partner_id')
-            for cessionario in cessionari:
-                # Fatture
-                fatture = fatture_emesse.filtered(
-                    lambda fatture_emesse:
-                    fatture_emesse.partner_id.id ==
-                        cessionario.id)
-                vals_fatture = []
-                for fattura in fatture:
-                    posizione += 1
-                    val = {
-                        'posizione': posizione,
-                        'invoice_id': fattura.id,
-                        'dati_fattura_TipoDocumento':
-                            fattura.fiscal_document_type_id.id,
-                        'dati_fattura_Data': fattura.date_invoice,
-                        'dati_fattura_Numero': self._parse_fattura_numero(
-                            fattura.number),
-                        'dati_fattura_iva_ids':
-                            fattura._get_tax_comunicazione_dati_iva()
-                    }
-                    val = self._prepare_fattura_emessa(val, fattura)
-                    vals_fatture.append((0, 0, val))
-
-                val_cessionario = {
-                    'partner_id': cessionario.id,
-                    'fatture_emesse_body_ids': vals_fatture
-                }
-                vals = self._prepare_cessionario_partner_id(
-                    cessionario)
-                val_cessionario.update(vals)
-                dati_fatture.append((0, 0, val_cessionario))
+            dati_fatture = self._prepare_cessionari_dati_fatture(
+                fatture_emesse, cessionari)
             self.fatture_emesse_ids = dati_fatture
 
     def _get_fatture_emesse_domain(self):
@@ -491,52 +495,53 @@ class ComunicazioneDatiIva(models.Model):
         domain = self._get_fatture_emesse_domain()
         return self.env['account.invoice'].search(domain)
 
-    @api.one
+    def _prepare_cedenti_dati_fatture(self, fatture_ricevute, cedenti):
+        dati_fatture = []
+        posizione = 0
+        for cedente in cedenti:
+            # Fatture
+            fatture = fatture_ricevute.filtered(
+                lambda fr: fr.partner_id.id == cedente.id)
+            vals_fatture = []
+            for fattura in fatture:
+                posizione += 1
+                val = {
+                    'posizione': posizione,
+                    'invoice_id': fattura.id,
+                    'dati_fattura_TipoDocumento':
+                        fattura.fiscal_document_type_id.id,
+                    'dati_fattura_Data': fattura.date_invoice,
+                    'dati_fattura_DataRegistrazione':
+                        fattura.date,
+                    'dati_fattura_Numero': self._parse_fattura_numero(
+                        fattura.reference) or '',
+                    'dati_fattura_iva_ids':
+                        fattura._get_tax_comunicazione_dati_iva()
+                }
+                val = self._prepare_fattura_ricevuta(val, fattura)
+                vals_fatture.append((0, 0, val))
+
+            val_cedente = {
+                'partner_id': cedente.id,
+                'fatture_ricevute_body_ids': vals_fatture
+            }
+            vals = self._prepare_cedente_partner_id(
+                cedente)
+            val_cedente.update(vals)
+            dati_fatture.append((0, 0, val_cedente))
+        return dati_fatture
+
     def compute_fatture_ricevute(self):
+        self.ensure_one()
         fatture_ricevute = self._get_fatture_ricevute()
         if fatture_ricevute:
-            dati_fatture = []
-            # Cedente
             self.partner_cessionario_id = \
                 fatture_ricevute[0].company_id.partner_id.id
             self.onchange_partner_cessionario_id()
 
-            # Cedenti
-            posizione = 0
             cedenti = fatture_ricevute.mapped('partner_id')
-            for cedente in cedenti:
-                # Fatture
-                fatture = fatture_ricevute.filtered(
-                    lambda fatture_ricevute:
-                    fatture_ricevute.partner_id.id ==
-                        cedente.id)
-                vals_fatture = []
-                for fattura in fatture:
-                    posizione += 1
-                    val = {
-                        'posizione': posizione,
-                        'invoice_id': fattura.id,
-                        'dati_fattura_TipoDocumento':
-                            fattura.fiscal_document_type_id.id,
-                        'dati_fattura_Data': fattura.date_invoice,
-                        'dati_fattura_DataRegistrazione':
-                            fattura.date,
-                        'dati_fattura_Numero': self._parse_fattura_numero(
-                            fattura.reference) or '',
-                        'dati_fattura_iva_ids':
-                            fattura._get_tax_comunicazione_dati_iva()
-                    }
-                    val = self._prepare_fattura_ricevuta(val, fattura)
-                    vals_fatture.append((0, 0, val))
-
-                val_cedente = {
-                    'partner_id': cedente.id,
-                    'fatture_ricevute_body_ids': vals_fatture
-                }
-                vals = self._prepare_cedente_partner_id(
-                    cedente)
-                val_cedente.update(vals)
-                dati_fatture.append((0, 0, val_cedente))
+            dati_fatture = self._prepare_cedenti_dati_fatture(
+                fatture_ricevute, cedenti)
             self.fatture_ricevute_ids = dati_fatture
 
     def _get_fatture_ricevute_domain(self):
@@ -564,6 +569,177 @@ class ComunicazioneDatiIva(models.Model):
             comunicazione.fatture_emesse_ids.unlink()
             comunicazione.fatture_ricevute_ids.unlink()
 
+        return True
+
+    def split_communication(self):
+        self.ensure_one()
+        if self.dati_trasmissione == 'DTE':
+            if not self.check_fatture_emesse_partners():
+                fatture_emesse = self.mapped(
+                    'fatture_emesse_ids.fatture_emesse_body_ids.invoice_id')
+                cessionari = fatture_emesse.mapped('partner_id')
+                first_set_ids = cessionari.ids[:len(cessionari)/2]
+                second_set_ids = cessionari.ids[len(cessionari)/2:]
+                first_set_cessionari = self.env['res.partner'].browse(
+                    first_set_ids)
+                second_set_cessionari = self.env['res.partner'].browse(
+                    second_set_ids)
+                self._unlink_sections()
+                dati_fatture_1 = self._prepare_cessionari_dati_fatture(
+                    fatture_emesse, first_set_cessionari)
+                self.fatture_emesse_ids = dati_fatture_1
+                self.splitting_note = _(
+                    "Splitted considering partners\n%s"
+                    % '\n'.join(first_set_cessionari.mapped('name')))
+                comm_2 = self.copy()
+                comm_2._unlink_sections()
+                dati_fatture_2 = self._prepare_cessionari_dati_fatture(
+                    fatture_emesse, second_set_cessionari)
+                comm_2.fatture_emesse_ids = dati_fatture_2
+                comm_2.splitting_note = _(
+                    "Splitted considering partners\n%s"
+                    % '\n'.join(second_set_cessionari.mapped('name')))
+                return self | comm_2
+            elif not self.check_fatture_emesse_body():
+                fatture_emesse = self.mapped(
+                    'fatture_emesse_ids.fatture_emesse_body_ids.invoice_id')
+                cessionari = fatture_emesse.mapped('partner_id')
+                new_set = self.env['account.invoice']
+                old_set = fatture_emesse
+                for cessionario in cessionari:
+                    fatture = fatture_emesse.filtered(
+                        lambda fe: fe.partner_id.id == cessionario.id)
+                    if len(fatture) > 1000:
+                        new_set_ids = fatture.ids[:len(fatture)/2]
+                        new_partial_set = self.env['account.invoice'].browse(
+                            new_set_ids)
+                        new_set |= new_partial_set
+                        old_set -= new_partial_set
+                self._unlink_sections()
+                cessionari_1 = old_set.mapped('partner_id')
+                dati_fatture_1 = self._prepare_cessionari_dati_fatture(
+                    old_set, cessionari_1)
+                self.fatture_emesse_ids = dati_fatture_1
+                self.splitting_note = _(
+                    "Splitted considering invoices\n%s"
+                    % '\n'.join(old_set.mapped('number')))
+                comm_2 = self.copy()
+                comm_2._unlink_sections()
+                cessionari_2 = new_set.mapped('partner_id')
+                dati_fatture_2 = self._prepare_cessionari_dati_fatture(
+                    new_set, cessionari_2)
+                comm_2.fatture_emesse_ids = dati_fatture_2
+                comm_2.splitting_note = _(
+                    "Splitted considering invoices\n%s"
+                    % '\n'.join(new_set.mapped('number')))
+                return self | comm_2
+
+        elif self.dati_trasmissione == 'DTR':
+            if not self.check_fatture_ricevute_partners():
+                fatture_ricevute = self.mapped(
+                    'fatture_ricevute_ids.fatture_ricevute_body_ids.'
+                    'invoice_id')
+                cedenti = fatture_ricevute.mapped('partner_id')
+                first_set_ids = cedenti.ids[:len(cedenti)/2]
+                second_set_ids = cedenti.ids[len(cedenti)/2:]
+                first_set_cedenti = self.env['res.partner'].browse(
+                    first_set_ids)
+                second_set_cedenti = self.env['res.partner'].browse(
+                    second_set_ids)
+                self._unlink_sections()
+                dati_fatture_1 = self._prepare_cedenti_dati_fatture(
+                    fatture_ricevute, first_set_cedenti)
+                self.fatture_ricevute_ids = dati_fatture_1
+                self.splitting_note = _(
+                    "Splitted considering partners\n%s"
+                    % '\n'.join(first_set_cedenti.mapped('name')))
+                comm_2 = self.copy()
+                comm_2._unlink_sections()
+                dati_fatture_2 = self._prepare_cedenti_dati_fatture(
+                    fatture_ricevute, second_set_cedenti)
+                comm_2.fatture_ricevute_ids = dati_fatture_2
+                comm_2.splitting_note = _(
+                    "Splitted considering partners\n%s"
+                    % '\n'.join(second_set_cedenti.mapped('name')))
+                return self | comm_2
+            elif not self.check_fatture_ricevute_body():
+                fatture_ricevute = self.mapped(
+                    'fatture_ricevute_ids.fatture_ricevute_body_ids.'
+                    'invoice_id')
+                cedenti = fatture_ricevute.mapped('partner_id')
+                new_set = self.env['account.invoice']
+                old_set = fatture_ricevute
+                for cedente in cedenti:
+                    fatture = fatture_ricevute.filtered(
+                        lambda fr: fr.partner_id.id == cedente.id)
+                    if len(fatture) > 1000:
+                        new_set_ids = fatture.ids[:len(fatture)/2]
+                        new_partial_set = self.env['account.invoice'].browse(
+                            new_set_ids)
+                        new_set |= new_partial_set
+                        old_set -= new_partial_set
+                self._unlink_sections()
+                cedenti_1 = old_set.mapped('partner_id')
+                dati_fatture_1 = self._prepare_cedenti_dati_fatture(
+                    old_set, cedenti_1)
+                self.fatture_ricevute_ids = dati_fatture_1
+                self.splitting_note = _(
+                    "Splitted considering invoices\n%s"
+                    % '\n'.join(old_set.mapped('number')))
+                comm_2 = self.copy()
+                comm_2._unlink_sections()
+                cedenti_2 = new_set.mapped('partner_id')
+                dati_fatture_2 = self._prepare_cedenti_dati_fatture(
+                    new_set, cedenti_2)
+                comm_2.fatture_ricevute_ids = dati_fatture_2
+                comm_2.splitting_note = _(
+                    "Splitted considering invoices\n%s"
+                    % '\n'.join(new_set.mapped('number')))
+                return self | comm_2
+
+    def split_communications(self):
+        res = self.env['comunicazione.dati.iva']
+        for com in self:
+            if com.check_1k_limit():
+                res |= com
+            else:
+                new_communications = com.split_communication()
+                res |= new_communications.split_communications()
+        return res
+
+    def check_1k_limit(self):
+        self.ensure_one()
+        if (
+            self.check_fatture_emesse_body() and
+            self.check_fatture_emesse_partners() and
+            self.check_fatture_ricevute_body() and
+            self.check_fatture_ricevute_partners()
+        ):
+            return True
+        return False
+
+    def check_fatture_emesse_body(self):
+        for line in self.fatture_emesse_ids:
+            invoices_limit = len(line.fatture_emesse_body_ids)
+            if invoices_limit > 1000:
+                return False
+        return True
+
+    def check_fatture_emesse_partners(self):
+        if len(self.fatture_emesse_ids) > 1000:
+            return False
+        return True
+
+    def check_fatture_ricevute_body(self):
+        for line in self.fatture_ricevute_ids:
+            invoices_limit = len(line.fatture_ricevute_body_ids)
+            if invoices_limit > 1000:
+                return False
+        return True
+
+    def check_fatture_ricevute_partners(self):
+        if len(self.fatture_ricevute_ids) > 1000:
+            return False
         return True
 
     @api.multi
