@@ -30,6 +30,9 @@
                                 attrs="{'invisible':[('dati_trasmissione', '=', 'ANN')]}"/>
                         <button name="check_errors" string="Check errors" type="object"
                                 attrs="{'invisible':[('dati_trasmissione', '=', 'ANN')]}"/>
+                        <button type="action" name="%(action_wizard_split_big_communication)d"
+                                string="Split big communication"
+                                attrs="{'invisible':[('dati_trasmissione', '=', 'ANN')]}"/>
                     </header>
                     <sheet>
                         <group name="company">
@@ -158,6 +161,11 @@
                             <page string="Errors">
                                 <group>
                                     <field name="errors" nolabel="1"/>
+                                </group>
+                            </page>
+                            <page string="Splitting note" attrs="{'invisible': [('splitting_note', '=', False)]}">
+                                <group>
+                                    <field name="splitting_note" nolabel="1"/>
                                 </group>
                             </page>
                         </notebook>

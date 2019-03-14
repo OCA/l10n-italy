@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="wizard_split_big_communication" model="ir.ui.view">
+        <field name="name">Split big communication</field>
+        <field name="model">wizard.split.big.invoices.communication</field>
+        <field name="arch" type="xml">
+            <form string="Split communication">
+                <div>
+                    <p>
+                    If the communication contains more than 1000 partners or more than 1000 invoices per partner, it will be (recursively) splitted in smaller communications.
+                    </p>
+                </div>
+                <footer>
+                    <button name="split"
+                            string="Split"
+                            type="object"
+                            class="oe_highlight"  />
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_wizard_split_big_communication" model="ir.actions.act_window">
+        <field name="name">Split big communication</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">wizard.split.big.invoices.communication</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_split_big_communication"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
