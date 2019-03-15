@@ -691,7 +691,7 @@ class WizardImportFatturapa(models.TransientModel):
                         dline.CodicePagamento or '',
                     'payment_data_id': payment_id
                 }
-                bankid = False
+                bank = False
                 payment_bank_id = False
                 if dline.BIC:
                     banks = BankModel.search(
@@ -704,14 +704,14 @@ class WizardImportFatturapa(models.TransientModel):
                                   " Can't create bank") % dline.BIC
                             )
                         else:
-                            bankid = BankModel.create(
+                            bank = BankModel.create(
                                 {
                                     'name': dline.IstitutoFinanziario,
                                     'bic': dline.BIC,
                                 }
-                            ).id
+                            )
                     else:
-                        bankid = banks[0].id
+                        bank = banks[0]
                 if dline.IBAN:
                     SearchDom = [
                         (
@@ -722,7 +722,7 @@ class WizardImportFatturapa(models.TransientModel):
                     ]
                     payment_bank_id = False
                     payment_banks = PartnerBankModel.search(SearchDom)
-                    if not payment_banks and not bankid:
+                    if not payment_banks and not bank:
                         self.log_inconsistency(
                             _(
                                 'BIC is required and not exist in Xml\n'
@@ -735,13 +735,14 @@ class WizardImportFatturapa(models.TransientModel):
                                 dline.IstitutoFinanziario or ''
                             )
                         )
-                    elif not payment_banks and bankid:
+                    elif not payment_banks and bank:
                         payment_bank_id = PartnerBankModel.create(
                             {
                                 'acc_number': dline.IBAN.strip(),
                                 'partner_id': partner_id,
-                                'bank_id': bankid,
-                                'bank_bic': dline.BIC
+                                'bank_id': bank.id,
+                                'bank_name': dline.IstitutoFinanziario or bank.name,
+                                'bank_bic': dline.BIC or bank.bic
                             }
                         ).id
                     if payment_banks:
