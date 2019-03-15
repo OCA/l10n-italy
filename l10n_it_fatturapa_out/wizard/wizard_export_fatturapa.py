@@ -653,12 +653,8 @@ class WizardExportFatturapa(models.TransientModel):
                     unidecode(line.uom_id.name)) or None,
                 PrezzoTotale='%.2f' % line.price_subtotal,
                 AliquotaIVA=AliquotaIVA)
-            if line.discount:
-                ScontoMaggiorazione = ScontoMaggiorazioneType(
-                    Tipo='SC',
-                    Percentuale='%.2f' % line.discount
-                )
-                DettaglioLinea.ScontoMaggiorazione.append(ScontoMaggiorazione)
+            DettaglioLinea.ScontoMaggiorazione.extend(
+                self.setScontoMaggiorazione(line))
             if aliquota == 0.0:
                 if not line.invoice_line_tax_ids[0].kind_id:
                     raise UserError(
@@ -687,6 +683,15 @@ class WizardExportFatturapa(models.TransientModel):
             body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
 
         return True
+
+    def setScontoMaggiorazione(self, line):
+        res = []
+        if line.discount:
+            res.append(ScontoMaggiorazioneType(
+                Tipo='SC',
+                Percentuale='%.2f' % line.discount
+            ))
+        return res
 
     def setDatiRiepilogo(self, invoice, body):
         for tax_line in invoice.tax_line_ids:
