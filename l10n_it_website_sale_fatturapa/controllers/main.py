@@ -1,4 +1,5 @@
 # Copyright 2019 Simone Rubino
+# Copyright 2019 Lorenzo Battistini
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.addons.website_sale.controllers.main import WebsiteSale
@@ -11,8 +12,8 @@ class WebsiteSaleFatturapa(WebsiteSale):
     def _get_fatturapa_fields(self):
         """Fields that can be changed by the user in frontend"""
         return ['firstname', 'lastname', 'codice_destinatario',
-                'pec_destinatario', 'is_pa', 'ipa_code', 'fiscalcode',
-                'vat', 'street', 'zip', 'city', 'country_id']
+                'pec_destinatario', 'electronic_invoice_subjected',
+                'fiscalcode', 'vat', 'street', 'zip', 'city', 'country_id']
 
     def values_preprocess(self, order, mode, values):
         pre_values = super().values_preprocess(order, mode, values)
@@ -29,6 +30,10 @@ class WebsiteSaleFatturapa(WebsiteSale):
         error, error_message = super().checkout_form_validate(
             mode, all_form_values, data)
 
+        # when checkbox electronic_invoice_subjected is not checked,
+        # it is not posted
+        data['electronic_invoice_subjected'] = data.get(
+            'electronic_invoice_subjected', False)
         partner_model = request.env['res.partner']
         # Gather the value of each field that needs to be
         # checked for fatturapa constraint from the current partner
@@ -43,7 +48,7 @@ class WebsiteSaleFatturapa(WebsiteSale):
             for fatt_field in self._get_fatturapa_fields()
             if fatt_field in data})
         # Patch the country field as it is a m2o so it needs an int
-        if 'country_id' in partner_values:
+        if partner_values.get('country_id'):
             partner_values['country_id'] = int(partner_values['country_id'])
         # This will be set later, during post_process
         partner_values['customer'] = True
