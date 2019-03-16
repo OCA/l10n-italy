@@ -81,6 +81,7 @@ Contributors
 * Lorenzo Battistini
 * Sergio Zanchetta
 * Ruben Tonetto
+* Alessandro Camilli
 
 Maintainers
 ~~~~~~~~~~~

@@ -7,7 +7,8 @@ from odoo.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
     DatiTrasportoType,
     DatiAnagraficiVettoreType,
     IdFiscaleType,
-    AnagraficaType
+    AnagraficaType,
+    IndirizzoType
 )
 
 
@@ -50,7 +51,9 @@ class WizardExportFatturapa(models.TransientModel):
                 ):
                     key = (
                         line.ddt_line_id.package_preparation_id.ddt_number,
-                        line.ddt_line_id.package_preparation_id.date[:10]
+                        line.ddt_line_id.package_preparation_id.date[:10],
+                        line.ddt_line_id.package_preparation_id
+                            .partner_shipping_id
                     )
                     if key not in inv_lines_by_ddt:
                         inv_lines_by_ddt[key] = []
@@ -63,6 +66,12 @@ class WizardExportFatturapa(models.TransientModel):
                 for line_number in inv_lines_by_ddt[key]:
                     DatiDDT.RiferimentoNumeroLinea.append(line_number)
                 body.DatiGenerali.DatiDDT.append(DatiDDT)
+                if invoice.company_id.fatturapa_ddt_shipping_address\
+                        and key[2]:
+                    partner_shipping = key[2]
+                    body.DatiGenerali.DatiTrasporto = DatiTrasportoType()
+                    body.DatiGenerali.DatiTrasporto.IndirizzoResa = \
+                        self.getIndirizzoType(partner_shipping)
         elif self.include_ddt_data == 'dati_trasporto':
             body.DatiGenerali.DatiTrasporto = DatiTrasportoType(
                 MezzoTrasporto=invoice.transportation_method_id.name or None,
@@ -90,4 +99,19 @@ class WizardExportFatturapa(models.TransientModel):
                 body.DatiGenerali.DatiTrasporto.DatiAnagraficiVettore.\
                     Anagrafica = AnagraficaType(
                         Denominazione=invoice.carrier_id.name)
+                if invoice.company_id.fatturapa_ddt_shipping_address\
+                        and invoice.partner_shipping_id:
+                    body.DatiGenerali.DatiTrasporto.IndirizzoResa = \
+                        self.getIndirizzoType(invoice.partner_shipping_id)
         return res
+
+    def getIndirizzoType(self, partner_shipping):
+        if partner_shipping:
+            Indirizzo = IndirizzoType(
+                Indirizzo=partner_shipping.street or '',
+                CAP=partner_shipping.zip or None,
+                Comune=partner_shipping.city or None,
+                Provincia=partner_shipping.state_id.code or None,
+                Nazione=partner_shipping.country_id.code or None,
+                )
+        return Indirizzo
