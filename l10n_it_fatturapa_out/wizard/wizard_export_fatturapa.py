@@ -649,7 +649,7 @@ class WizardExportFatturapa(models.TransientModel):
             # (for example firefox replaces '&#10;' with space)
             descrizione = line.name.replace('\n', ' ').encode(
                 'latin', 'ignore').decode('latin')
-            if company.fatturapa_trunk_line_description:
+            if company.fatturapa_cut_off_line_description:
                 descrizione = descrizione[:1000]
             DettaglioLinea = DettaglioLineeType(
                 NumeroLinea=str(line_no),
