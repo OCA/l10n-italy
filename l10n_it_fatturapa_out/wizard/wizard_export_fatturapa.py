@@ -45,7 +45,8 @@ from odoo.addons.l10n_it_fatturapa.bindings.fatturapa import (
     DettaglioPagamentoType,
     AllegatiType,
     ScontoMaggiorazioneType,
-    CodiceArticoloType
+    CodiceArticoloType,
+    AltriDatiGestionaliType,
 )
 from odoo.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
@@ -598,7 +599,6 @@ class WizardExportFatturapa(models.TransientModel):
         return res
 
     def setDettaglioLinee(self, invoice, body):
-
         body.DatiBeniServizi = DatiBeniServiziType()
         # TipoCessionePrestazione not handled
 
@@ -617,6 +617,49 @@ class WizardExportFatturapa(models.TransientModel):
                 line_no, line, body, price_precision, uom_precision)
             line_no += 1
 
+        generic_mngt_line = False
+        generic_mngt_lines = invoice.related_mngt_data_ids.filtered(
+            lambda x: not x.lineRef or not x.invoice_line_id and x.invoice_id)
+        if generic_mngt_lines:
+            generic_mngt_line = generic_mngt_lines[0]
+        for DettaglioLinea in body.DatiBeniServizi.DettaglioLinee:
+            dati_gestionali = AltriDatiGestionaliType()
+            # get related mgnt_line if exists
+            mngt_lines = filter(
+                lambda x: x.lineRef == DettaglioLinea.NumeroLinea,
+                invoice.related_mngt_data_ids)
+            if mngt_lines:
+                mngt_line = mngt_lines[0]
+                if mngt_line.name:
+                    dati_gestionali.TipoDato = mngt_line.name
+                if mngt_line.text_ref:
+                    dati_gestionali.RiferimentoTesto = mngt_line.text_ref
+                if mngt_line.number_ref:
+                    dati_gestionali.RiferimentoNumero = '%.2f' % \
+                        mngt_line.number_ref
+                if mngt_line.date_ref:
+                    dati_gestionali.RiferimentoData = mngt_line.date_ref
+                DettaglioLinea.AltriDatiGestionali.append(
+                    dati_gestionali
+                )
+            else:
+                if generic_mngt_line:
+                    # if fatturapa line is not referred, and exist a
+                    # generic_mngt_line, add this generic mngt data to line
+                    if generic_mngt_line.name:
+                        dati_gestionali.TipoDato = generic_mngt_line.name
+                    if generic_mngt_line.text_ref:
+                        dati_gestionali.RiferimentoTesto = generic_mngt_line.\
+                            text_ref
+                    if generic_mngt_line.number_ref:
+                        dati_gestionali.RiferimentoNumero = '%.2f' %\
+                            generic_mngt_line.number_ref
+                    if generic_mngt_line.date_ref:
+                        dati_gestionali.RiferimentoData = generic_mngt_line.\
+                            date_ref
+                    DettaglioLinea.AltriDatiGestionali.append(
+                        dati_gestionali
+                    )
         return True
 
     def setDettaglioLinea(
@@ -677,6 +720,7 @@ class WizardExportFatturapa(models.TransientModel):
                 )
                 DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
         body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
+
         return True
 
     def setScontoMaggiorazione(self, line):
