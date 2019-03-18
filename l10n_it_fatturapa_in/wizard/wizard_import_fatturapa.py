@@ -58,6 +58,7 @@ class WizardImportFatturapa(orm.TransientModel):
         }
 
     def default_get(self, cr, uid, fields, context={}):
+        logging.info('Calling default get for wizard import fatturaPA')
         res = super(WizardImportFatturapa, self).default_get(cr, uid, fields, context)
         res['e_invoice_detail_level'] = '2'
         fatturapa_attachment_ids = context.get('active_ids', False)
@@ -72,8 +73,9 @@ class WizardImportFatturapa(orm.TransientModel):
             if fatturapa_attachment.xml_supplier_id not in partnerList:
                 partnerList.append(fatturapa_attachment.xml_supplier_id)
             if len(partnerList) == 1:
-                res['e_invoice_detail_level'] = (
-                    partnerList[0].e_invoice_detail_level)
+                partner_detail_level = partnerList[0].e_invoice_detail_level
+                logging.info('Going to setup partner detail level %r for partner %r' % (partner_detail_level, partnerList[0]))
+                res['e_invoice_detail_level'] = (partner_detail_level)
         return res
 
     def CountryByCode(self, cr, uid, CountryCode, context=None):
