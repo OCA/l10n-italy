@@ -46,7 +46,8 @@ from odoo.addons.l10n_it_fatturapa.bindings.fatturapa import (
     DettaglioPagamentoType,
     AllegatiType,
     ScontoMaggiorazioneType,
-    CodiceArticoloType
+    CodiceArticoloType,
+    AltriDatiGestionaliType,
 )
 from odoo.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
@@ -620,7 +621,6 @@ class WizardExportFatturapa(models.TransientModel):
         return res
 
     def setDettaglioLinee(self, invoice, body):
-
         body.DatiBeniServizi = DatiBeniServiziType()
         # TipoCessionePrestazione not handled
 
@@ -638,10 +638,54 @@ class WizardExportFatturapa(models.TransientModel):
             self.setDettaglioLinea(
                 line_no, line, body, price_precision, uom_precision)
             line_no += 1
+            
+        generic_mngt_line = False
+        generic_mngt_lines = invoice.related_mngt_data_ids.filtered(
+            lambda x: not x.lineRef or not x.invoice_line_id and x.invoice_id)
+        if generic_mngt_lines:
+            generic_mngt_line = generic_mngt_lines[0]
+        for DettaglioLinea in body.DatiBeniServizi.DettaglioLinee:
+            dati_gestionali = AltriDatiGestionaliType()
+            # get related mgnt_line if exists
+            mngt_lines = filter(
+                lambda x: x.lineRef == DettaglioLinea.NumeroLinea,
+                invoice.related_mngt_data_ids)
+            if mngt_lines:
+                mngt_line = mngt_lines[0]
+                if mngt_line.name:
+                    dati_gestionali.TipoDato = mngt_line.name
+                if mngt_line.text_ref:
+                    dati_gestionali.RiferimentoTesto = mngt_line.text_ref
+                if mngt_line.number_ref:
+                    dati_gestionali.RiferimentoNumero = '%.2f' % \
+                        mngt_line.number_ref
+                if mngt_line.date_ref:
+                    dati_gestionali.RiferimentoData = mngt_line.date_ref
+                DettaglioLinea.AltriDatiGestionali.append(
+                    dati_gestionali
+                )
+            else:
+                if generic_mngt_line:
+                    # if fatturapa line is not referred, and exist a
+                    # generic_mngt_line, add this generic mngt data to line
+                    if generic_mngt_line.name:
+                        dati_gestionali.TipoDato = generic_mngt_line.name
+                    if generic_mngt_line.text_ref:
+                        dati_gestionali.RiferimentoTesto = generic_mngt_line.\
+                            text_ref
+                    if generic_mngt_line.number_ref:
+                        dati_gestionali.RiferimentoNumero = '%.2f' %\
+                            generic_mngt_line.number_ref
+                    if generic_mngt_line.date_ref:
+                        dati_gestionali.RiferimentoData = generic_mngt_line.\
+                            date_ref
+                    DettaglioLinea.AltriDatiGestionali.append(
+                        dati_gestionali
+                    )
+        return True
 
     def setDettaglioLinea(
-        self, line_no, line, body, price_precision, uom_precision
-    ):
+            self, line_no, line, body, price_precision, uom_precision):
         if not line.invoice_line_tax_ids:
             raise UserError(
                 _("Invoice line %s does not have tax.") % line.name)
@@ -655,16 +699,19 @@ class WizardExportFatturapa(models.TransientModel):
         DettaglioLinea = DettaglioLineeType(
             NumeroLinea=str(line_no),
             Descrizione=encode_for_export(line.name, 1000),
-            PrezzoUnitario='{prezzo:.{precision}f}'.format(
-                prezzo=prezzo_unitario, precision=price_precision),
-            Quantita='{qta:.{precision}f}'.format(
-                qta=line.quantity, precision=uom_precision),
+            PrezzoUnitario=('%.' + str(
+                price_precision
+            ) + 'f') % prezzo_unitario,
+            Quantita=('%.' + str(
+                uom_precision
+            ) + 'f') % line.quantity,
             UnitaMisura=line.uom_id and (
                 unidecode(line.uom_id.name)) or None,
             PrezzoTotale='%.2f' % float_round(line.price_subtotal, 2),
             AliquotaIVA=AliquotaIVA)
         DettaglioLinea.ScontoMaggiorazione.extend(
             self.setScontoMaggiorazione(line))
+
         if aliquota == 0.0:
             if not line.invoice_line_tax_ids[0].kind_id:
                 raise UserError(
@@ -692,7 +739,7 @@ class WizardExportFatturapa(models.TransientModel):
                 )
                 DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
         body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
-        return DettaglioLinea
+        return True
 
     def setScontoMaggiorazione(self, line):
         res = []
