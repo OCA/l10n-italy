@@ -61,21 +61,21 @@ class WizardImportFatturapa(orm.TransientModel):
         logging.info('Calling default get for wizard import fatturaPA')
         res = super(WizardImportFatturapa, self).default_get(cr, uid, fields, context)
         res['e_invoice_detail_level'] = '2'
-        fatturapa_attachment_ids = context.get('active_ids', False)
+        fatturapa_attachment_ids = context.get('active_ids', [])
         fatturapa_attachment_obj = self.pool.get('fatturapa.attachment.in')
         partnerList = []
         for fatturapa_attachment_id in fatturapa_attachment_ids:
-            fatturapa_attachment = fatturapa_attachment_obj.browse(cr, uid,
-                fatturapa_attachment_id)
+            fatturapa_attachment = fatturapa_attachment_obj.browse(cr, uid, fatturapa_attachment_id)
+            logging.info('Going to get detail level from partner, fattura_pa_id %r, context %r' % (fatturapa_attachment_id, context))
             if fatturapa_attachment.in_invoice_ids:
-                raise except_osv(_('Error' ),
-                             _("File %s is linked to invoices yet") % fatturapa_attachment.name)
+                raise except_osv(_('Error' ), _("File %s is linked to invoices yet") % fatturapa_attachment.name)
             if fatturapa_attachment.xml_supplier_id not in partnerList:
                 partnerList.append(fatturapa_attachment.xml_supplier_id)
             if len(partnerList) == 1:
                 partner_detail_level = partnerList[0].e_invoice_detail_level
                 logging.info('Going to setup partner detail level %r for partner %r' % (partner_detail_level, partnerList[0]))
-                res['e_invoice_detail_level'] = (partner_detail_level)
+                if partner_detail_level:
+                    res['e_invoice_detail_level'] = (partner_detail_level)
         return res
 
     def CountryByCode(self, cr, uid, CountryCode, context=None):
