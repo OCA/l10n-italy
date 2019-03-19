@@ -86,7 +86,8 @@ class AccountInvoice(models.Model):
             'origin': self.number,
             'rc_purchase_invoice_id': self.id,
             'name': rc_type.self_invoice_text,
-            'fiscal_position_id': None
+            'fiscal_position_id': False,
+            'payment_term_id': False,
             }
 
     def get_inv_line_to_reconcile(self):
