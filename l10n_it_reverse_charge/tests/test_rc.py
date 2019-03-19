@@ -32,6 +32,20 @@ class TestReverseCharge(TransactionCase):
         self.invoice_line_account = self.env['account.account'].search(
             [('user_type_id', '=', self.env.ref(
                 'account.data_account_type_expenses').id)], limit=1).id
+        self.term_15_30 = self.env['account.payment.term'].create({
+            'name': '15 30',
+            'line_ids': [
+                (0, 0, {
+                    'value': 'percent',
+                    'value_amount': 50,
+                    'days': 15,
+                    'sequence': 1,
+                }),
+                (0, 0, {
+                    'value': 'balance',
+                    'days': 30,
+                    'sequence': 2,
+                })]})
 
     def _create_account(self):
         account_model = self.env['account.account']
@@ -171,7 +185,7 @@ class TestReverseCharge(TransactionCase):
             invoice.action_invoice_open()
 
     def test_intra_EU(self):
-
+        self.supplier_intraEU.property_payment_term_id = self.term_15_30.id
         invoice = self.invoice_model.create({
             'partner_id': self.supplier_intraEU.id,
             'account_id': self.invoice_account,
@@ -191,6 +205,8 @@ class TestReverseCharge(TransactionCase):
 
         invoice.action_invoice_open()
         self.assertIsNot(bool(invoice.rc_self_invoice_id), False)
+        self.assertIsNot(
+            bool(invoice.rc_self_invoice_id.payment_term_id), True)
         self.assertEqual(invoice.rc_self_invoice_id.state, 'paid')
         self.assertEqual(
             invoice.rc_self_invoice_id.payment_move_line_ids.move_id.state,
