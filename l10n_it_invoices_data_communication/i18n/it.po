@@ -1,0 +1,1225 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_invoices_data_communication
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-03-20 11:38+0000\n"
+"PO-Revision-Date: 2019-03-20 11:38+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:907
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1100
+#, python-format
+msgid "Address, city, ZIP and country of permanent establishment %s are mandatory, when at least one value is defined"
+msgstr "Indirizzo, città, CAP e nazione della stabile organizzazione %s sono obbligatori, quando almeno un valore è definito"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:893
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1086
+#, python-format
+msgid "Address, city, country of %s are mandatory"
+msgstr "Indirizzo, città, nazione di %s sono obbligatori"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1155
+#, python-format
+msgid "All data are correct.\n"
+"It possible to export XML file"
+msgstr "Tutti i dati sono corretti.\n"
+"E' possibile esportare il file XML"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_form
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_ricevute_form
+msgid "Amendment"
+msgstr "Rettifica"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_compute_fiscal_document_type
+msgid "Assign doc type"
+msgstr "Assegna tipo doc"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.actions.act_window,name:l10n_it_invoices_data_communication.action_compute_fiscal_document_type
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form
+msgid "Assign fiscal document type"
+msgstr "Assegna tipo documento fiscale"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_form
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form
+msgid "Assignee"
+msgstr "Cessionario"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_iva_ImponibileImporto
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_iva_ImponibileImporto
+msgid "Base amount"
+msgstr "Imponibile"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_iva_ImponibileImporto
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_iva_ImponibileImporto
+msgid "Base amount (for operations VAT subjected) or not taxable amount (for operations where seller does not indicate VAT) or sum of taxable and tax amounts, when expected, like for simplified invoices (TD07 or TD08)"
+msgstr "Imponibile (per le operazioni soggette a IVA) o importo non imponibile (per le operazione dove il cedente non indica IVA) o la somma di imponibile e imposte, quando previsto, come per le fatture semplificate (TD07 o TD08)"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_compute_fiscal_document_type
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_dati_iva_export_file
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_split_big_communication
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: l10n_it_invoices_data_communication
+#: selection:comunicazione.dati.iva,dati_trasmissione:0
+msgid "Cancellation previously sent data"
+msgstr "Annullamento dei dati precedentemente inviati"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form
+msgid "Check errors"
+msgstr "Controllo errori"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_sede_Comune
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_so_Comune
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_sede_Comune
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_so_Comune
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_sede_Comune
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_so_Comune
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_sede_Comune
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_so_Comune
+msgid "City"
+msgstr "Città"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_compute_fiscal_document_type
+msgid "Click on <strong>Compute</strong> to assign the fiscal document type to the invoices of communication's <strong>period</strong>."
+msgstr "Fare click su <strong>Calcola</strong> per assegnare il tipo di documento fiscale delle fatture del  <strong>periodo</strong> della comunicazione."
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_dati_iva_export_file
+msgid "Click on <strong>Export</strong> to generate invoices data communication file."
+msgstr "Fare click su <strong>Esporta</strong> per generare il file della comunicazione dati fatture."
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_comunicazione_id
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_comunicazione_id
+msgid "Communication"
+msgstr "Comunicazione"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_id_comunicazione
+msgid "Communication ID"
+msgstr "ID comunicazione"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_company_id
+msgid "Company"
+msgstr "Azienda"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_Denominazione
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_rf_Denominazione
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_Denominazione
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_rf_Denominazione
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_Denominazione
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_rf_Denominazione
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_Denominazione
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_rf_Denominazione
+msgid "Company, denomination, business name"
+msgstr "Azienda, denominazione, ragione sociale"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_compute_fiscal_document_type
+msgid "Compute"
+msgstr "Calcola"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form
+msgid "Compute values"
+msgstr "Calcola valori"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_sede_Nazione
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_so_Nazione
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_sede_Nazione
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_so_Nazione
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_sede_Nazione
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_so_Nazione
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_sede_Nazione
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_so_Nazione
+msgid "Country"
+msgstr "Nazione"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_IdFiscaleIVA_IdPaese
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_rf_IdFiscaleIVA_IdPaese
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_IdFiscaleIVA_IdPaese
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_rf_IdFiscaleIVA_IdPaese
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_IdFiscaleIVA_IdPaese
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_rf_IdFiscaleIVA_IdPaese
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_IdFiscaleIVA_IdPaese
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_rf_IdFiscaleIVA_IdPaese
+msgid "Country ID"
+msgstr "ID nazione"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:921
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1114
+#, python-format
+msgid "Country ID and fiscal identifier of fiscal representative %s are mandatory, when at least one value is defined"
+msgstr "ID nazione e identificativo fiscale del rappresentante fiscale %s sono obbligatori, quando almeno un valore è definito"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_IdFiscaleIVA_IdPaese
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_sede_Nazione
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_so_Nazione
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_IdFiscaleIVA_IdPaese
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_sede_Nazione
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_so_Nazione
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_IdFiscaleIVA_IdPaese
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_sede_Nazione
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_so_Nazione
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_IdFiscaleIVA_IdPaese
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_sede_Nazione
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_so_Nazione
+msgid "Country code, expressed using the 3166-1 alpha-2 standard"
+msgstr "Codice nazione, espresso usando lo standard 3166-1 alpha-2"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_create_uid
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_export_file_create_uid
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_body_create_uid
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_create_uid
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_iva_create_uid
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_body_create_uid
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_create_uid
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_iva_create_uid
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_ricalcolo_tipo_document_fiscale_create_uid
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_wizard_split_big_invoices_communication_create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_create_date
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_export_file_create_date
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_body_create_date
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_create_date
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_iva_create_date
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_body_create_date
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_create_date
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_iva_create_date
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_ricalcolo_tipo_document_fiscale_create_date
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_wizard_split_big_invoices_communication_create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_body_fattura_emessa_id
+msgid "Customer invoice"
+msgstr "Fattura cliente"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_iva_fattura_emessa_body_id
+msgid "Customer invoice body"
+msgstr "Corpo fattura cliente"
+
+#. module: l10n_it_invoices_data_communication
+#: selection:comunicazione.dati.iva,dati_trasmissione:0
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_ids
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_body_tree
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_form
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_tree
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form
+msgid "Customer invoices"
+msgstr "Fatture clienti"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_fatture_emesse_body_ids
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_body_form
+msgid "Customer invoices body"
+msgstr "Corpo fatture clienti"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_dati_trasmissione
+msgid "Data transmission"
+msgstr "Trasmissione dati"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_date_end
+msgid "Date end"
+msgstr "Data fine"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_date_start
+msgid "Date start"
+msgstr "Data inizio"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_declarant_fiscalcode
+msgid "Declarant fiscal code"
+msgstr "Codice fiscale dichiarante"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_iva_Deducibile
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_iva_Deducibile
+msgid "Deductible"
+msgstr "Detraibile"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_iva_Detraibile
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_iva_Detraibile
+msgid "Deductible %"
+msgstr "Detraibile %"
+
+#. module: l10n_it_invoices_data_communication
+#: selection:comunicazione.dati.iva.fatture.emesse.iva,EsigibilitaIVA:0
+#: selection:comunicazione.dati.iva.fatture.ricevute.iva,EsigibilitaIVA:0
+msgid "Deferred"
+msgstr "Differita"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:886
+#, python-format
+msgid "Define a country ID for assignee %s"
+msgstr "Definire un ID nazione per cessionario %s"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1079
+#, python-format
+msgid "Define a country ID for seller %s"
+msgstr "Definire un ID nazione per il cedente %s"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_display_name
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_export_file_display_name
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_body_display_name
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_display_name
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_iva_display_name
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_body_display_name
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_display_name
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_iva_display_name
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_ricalcolo_tipo_document_fiscale_display_name
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_wizard_split_big_invoices_communication_display_name
+msgid "Display Name"
+msgstr "Nome Visualizzato"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_body_dati_fattura_Data
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_body_dati_fattura_Data
+msgid "Document date"
+msgstr "Data documento"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_body_dati_fattura_Numero
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_body_dati_fattura_Numero
+msgid "Document number"
+msgstr "Numero documento"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_body_dati_fattura_TipoDocumento
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_body_dati_fattura_TipoDocumento
+msgid "Document type"
+msgstr "Tipo documento"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_errors
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form
+msgid "Errors"
+msgstr "Errori"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1158
+#, python-format
+msgid "Errors:"
+msgstr "Errori:"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_account_invoice_comunicazione_dati_iva_escludi
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_account_journal_comunicazione_dati_iva_escludi
+msgid "Exclude from invoices communication"
+msgstr "Escludere dalla comunicazione fatture"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_iva_Natura_id
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_iva_Natura_id
+msgid "Exemption kind"
+msgstr "Natura esenzione"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_dati_iva_export_file
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_dati_iva_export_file_exit
+msgid "Export"
+msgstr "Esportazione"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_dati_iva_export_file
+msgid "Export File"
+msgstr "Esportare File"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model,name:l10n_it_invoices_data_communication.model_comunicazione_dati_iva_export_file
+msgid "Export XML of invoices data communication"
+msgstr "Esportazione XML della comunicazione dati fatture"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.actions.act_window,name:l10n_it_invoices_data_communication.action_dati_iva_export_file
+msgid "Export file invoices data communication"
+msgstr "Esportazione file comunicazione dati fatture"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_export_file_file_export
+msgid "File"
+msgstr "File"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_export_file_name
+msgid "File Name"
+msgstr "Nome File"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_rettifica_IdFile
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_rettifica_IdFile
+msgid "File identifier"
+msgstr "Identificativo file"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_export_file_filename
+msgid "Filename"
+msgstr "Nome file"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_CodiceFiscale
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_CodiceFiscale
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_CodiceFiscale
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_CodiceFiscale
+msgid "Fiscal code"
+msgstr "Codice fiscale"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_declarant_fiscalcode
+msgid "Fiscal code of the person communicating the invoices data"
+msgstr "Codice fiscale della persona che comunica i dati fatture"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_IdFiscaleIVA_IdCodice
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_rf_IdFiscaleIVA_IdCodice
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_IdFiscaleIVA_IdCodice
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_rf_IdFiscaleIVA_IdCodice
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_IdFiscaleIVA_IdCodice
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_rf_IdFiscaleIVA_IdCodice
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_IdFiscaleIVA_IdCodice
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_rf_IdFiscaleIVA_IdCodice
+msgid "Fiscal identifier"
+msgstr "Identificativo fiscale"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_form
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_ricevute_form
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form
+msgid "Fiscal representative"
+msgstr "Rappresentante fiscale"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_form
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_ricevute_form
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form
+msgid "Headquarters"
+msgstr "Sede"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_sede_Indirizzo
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_sede_Indirizzo
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_sede_Indirizzo
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_sede_Indirizzo
+msgid "Headquarters address"
+msgstr "Indirizzo sede"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_export_file_id
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_body_id
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_id
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_iva_id
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_body_id
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_id
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_iva_id
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_id
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_ricalcolo_tipo_document_fiscale_id
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_wizard_split_big_invoices_communication_id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_identificativo
+msgid "Identifier"
+msgstr "Identificativo"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_rettifica_IdFile
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_rettifica_IdFile
+msgid "Identifier of file to be amended. This identifer is communicated by the system after transmission"
+msgstr "Identificativo del file da rettificare. Questo identificativo è comunicato dal sistema dopo la trasmissione"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_id_comunicazione
+msgid "Identifier provided by the Revenue Agency after performing the communication by XML file"
+msgstr "Identificativo fornito dall'Agenzia delle Entrate dopo la comunicazione del file XML"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_iva_Imposta
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_iva_Imposta
+msgid "If element 2.2.3.1.1 is TD07 or TD08, this can be used instead of 2.2.3.2.2.2 <Aliquota>"
+msgstr "Se l'elemento 2.2.3.1.1 è TD07 o TD08, questo può essere usato al posto di 2.2.3.2.2.2 <Aliquota>"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_split_big_communication
+msgid "If the communication contains more than 1000 partners or more than 1000 invoices per partner, it will be (recursively) splitted in smaller communications."
+msgstr "Se la comunicazione contiene più di 1000 partner o più di 1000 fatture per partner, verrà (ricorsivamente) divisa in comunicazioni più piccole.."
+
+#. module: l10n_it_invoices_data_communication
+#: selection:comunicazione.dati.iva.fatture.emesse.iva,EsigibilitaIVA:0
+#: selection:comunicazione.dati.iva.fatture.ricevute.iva,EsigibilitaIVA:0
+msgid "Immediate"
+msgstr "Immediata"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model,name:l10n_it_invoices_data_communication.model_account_invoice
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_body_invoice_id
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_body_invoice_id
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_body_posizione
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_rettifica_Posizione
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_body_posizione
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_rettifica_Posizione
+msgid "Invoice position within transmitted file"
+msgstr "Posizione della fattura all'interno del file trasmesso"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.actions.act_window,name:l10n_it_invoices_data_communication.action_comunicazione_dati_iva
+#: model:ir.model,name:l10n_it_invoices_data_communication.model_comunicazione_dati_iva
+#: model:ir.ui.menu,name:l10n_it_invoices_data_communication.menu_comunicazione_dati_iva
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form
+msgid "Invoices data communication"
+msgstr "Comunicazione dati fatture"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model,name:l10n_it_invoices_data_communication.model_comunicazione_dati_iva_fatture_emesse
+msgid "Invoices data communication - Customer invoices"
+msgstr "Comunicazione dati fatture - Fatture clienti"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model,name:l10n_it_invoices_data_communication.model_comunicazione_dati_iva_fatture_emesse_iva
+msgid "Invoices data communication - Customer invoices VAT"
+msgstr "Comunicazione dati fatture - IVA fatture clienti"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model,name:l10n_it_invoices_data_communication.model_comunicazione_dati_iva_fatture_emesse_body
+msgid "Invoices data communication - Customer invoices body"
+msgstr "Comunicazione dati fatture - Corpo fatture clienti"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model,name:l10n_it_invoices_data_communication.model_comunicazione_dati_iva_fatture_ricevute
+msgid "Invoices data communication - Supplier bills"
+msgstr "Comunicazione dati fatture - Fatture fornitori"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model,name:l10n_it_invoices_data_communication.model_comunicazione_dati_iva_fatture_ricevute_iva
+msgid "Invoices data communication - Supplier bills VAT"
+msgstr "Comunicazione dati fatture - IVA fatture fornitori"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model,name:l10n_it_invoices_data_communication.model_comunicazione_dati_iva_fatture_ricevute_body
+msgid "Invoices data communication - Supplier bills body"
+msgstr "Comunicazione dati fatture - Corpo fatture fornitori"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_tree
+msgid "Invoices data communications"
+msgstr "Comunicazioni dati IVA"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model,name:l10n_it_invoices_data_communication.model_account_journal
+msgid "Journal"
+msgstr "Registro"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva___last_update
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_export_file___last_update
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse___last_update
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_body___last_update
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_iva___last_update
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute___last_update
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_body___last_update
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_iva___last_update
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_ricalcolo_tipo_document_fiscale___last_update
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_wizard_split_big_invoices_communication___last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_export_file_write_uid
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_body_write_uid
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_iva_write_uid
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_write_uid
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_body_write_uid
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_iva_write_uid
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_write_uid
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_ricalcolo_tipo_document_fiscale_write_uid
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_write_uid
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_wizard_split_big_invoices_communication_write_uid
+msgid "Last Updated by"
+msgstr "Ultima modifica di"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_export_file_write_date
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_body_write_date
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_iva_write_date
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_write_date
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_body_write_date
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_iva_write_date
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_write_date
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_ricalcolo_tipo_document_fiscale_write_date
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_write_date
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_wizard_split_big_invoices_communication_write_date
+msgid "Last Updated on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/wizard/split_big_communication.py:26
+#, python-format
+msgid "Limit not exceeded. Split not needed"
+msgstr "Limite non superato. Divisione non necessaria"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:768
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:961
+#, python-format
+msgid "Limit of 1000 assegnees per communication exceeded"
+msgstr "Limite di 1000 cessionari per comunicazione superato"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:764
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:957
+#, python-format
+msgid "Limit of 1000 invoices per assignee (%s) exceeded"
+msgstr "Limite di 1000 fatture per cessionario (%s) superato"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_Nome
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_rf_Nome
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_Nome
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_rf_Nome
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_Nome
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_rf_Nome
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_Nome
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_rf_Nome
+msgid "Natural person name"
+msgstr "Nome persona fisica"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_Cognome
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_rf_Cognome
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_Cognome
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_rf_Cognome
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_Cognome
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_rf_Cognome
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_Cognome
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_rf_Cognome
+msgid "Natural person surname"
+msgstr "Cognome persona fisica"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:938
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1131
+#, python-format
+msgid "No VAT data defined for invoice %s of partner %s"
+msgstr "Dati IVA non definiti per la fattura %s del partner %s"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/wizard/export_file.py:21
+#, python-format
+msgid "No communication selected"
+msgstr "Nessuna comunicazione selezionata"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1138
+#, python-format
+msgid "No invoice number for supplier bill %s"
+msgstr "Nessun numero fattura per la fattura fornitore %s"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1142
+#, python-format
+msgid "No registration date for supplier bill %s"
+msgstr "Nessuna data registrazione per la fattura fornitore %s"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_rf_IdFiscaleIVA_IdPaese
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_rf_IdFiscaleIVA_IdPaese
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_rf_IdFiscaleIVA_IdPaese
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_rf_IdFiscaleIVA_IdPaese
+msgid "Only IT is accepted"
+msgstr "Solo IT è accettato"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_partner_id
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_partner_id
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_partner_cedente_id
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_partner_cessionario_id
+msgid "Partner"
+msgstr "Partner"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_form
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_ricevute_form
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form
+msgid "Permanent establishment"
+msgstr "Stabile organizzazione"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_so_Indirizzo
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_so_Indirizzo
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_so_Indirizzo
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_so_Indirizzo
+msgid "Permanent establishment address"
+msgstr "Indirizzo stabile organizzazione"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/account_invoice.py:92
+#, python-format
+msgid "Please specify VAT payability for tax: {} - Invoice {}"
+msgstr "Prego specificare l'esigibilità IVA per l'imposta: {} - Fattura {}"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/account_invoice.py:87
+#, python-format
+msgid "Please specify exemption kind for tax: {} - Invoice {}"
+msgstr "Prego specificare la natura esenzione per l'imposta: {} - Fattura {}"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_body_posizione
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_rettifica_Posizione
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_body_posizione
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_rettifica_Posizione
+msgid "Position"
+msgstr "Posizione"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_iva_Deducibile
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_iva_Deducibile
+msgid "Possible value: [SI] = deductible expense"
+msgstr "Valore possibile: [SI] = Spesa deducibile"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_sede_Provincia
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_so_Provincia
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_sede_Provincia
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_so_Provincia
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_sede_Provincia
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_so_Provincia
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_sede_Provincia
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_so_Provincia
+msgid "Province"
+msgstr "Provincia"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model,name:l10n_it_invoices_data_communication.model_comunicazione_dati_iva_ricalcolo_tipo_document_fiscale
+msgid "Recompute invoices document type"
+msgstr "Ricalcola tipo documento fatture"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_body_form
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_ricevute_body_form
+msgid "References"
+msgstr "Riferimenti"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_body_dati_fattura_DataRegistrazione
+msgid "Registration date"
+msgstr "Data registrazione"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:793
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:988
+#, python-format
+msgid "Remove empty characters around address of permanent establishment"
+msgstr "Rimuovere spazi intorno all'indirizzo della stabile organizzazione"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:851
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1046
+#, python-format
+msgid "Remove empty characters around adrress of permanent establishment %s"
+msgstr "Rimuovere spazi intorno all'indirizzo della stabile organizzazione %s"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:985
+#, python-format
+msgid "Remove empty characters around assignee's city"
+msgstr "Rimuovere spazi intorno alla città del cessionario"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:967
+#, python-format
+msgid "Remove empty characters around assignee's denomination"
+msgstr "Rimuovere spazi intorno alla denominazione del cessionario"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:977
+#, python-format
+msgid "Remove empty characters around assignee's headquarters address"
+msgstr "Rimuovere spazi intorno all'indirizzo della sede del cessionario"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:970
+#, python-format
+msgid "Remove empty characters around assignee's name"
+msgstr "Rimuovere spazi intorno al nome del cessionario"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:982
+#, python-format
+msgid "Remove empty characters around assignee's street number"
+msgstr "Rimuovere spazi intorno al numero civico del cessionario"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:973
+#, python-format
+msgid "Remove empty characters around assignee's surname"
+msgstr "Rimuovere spazi intorno al cognome del cessionario"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:846
+#, python-format
+msgid "Remove empty characters around city of assignee %s"
+msgstr "Rimuovere spazi intorno alla città del cessionario %s"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:801
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:997
+#, python-format
+msgid "Remove empty characters around city of permanent establishment"
+msgstr "Rimuovere spazi intorno alla città della stabile organizzazione"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:863
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1056
+#, python-format
+msgid "Remove empty characters around city of permanent establishment %s"
+msgstr "Rimuovere spazi intorno alla città della stabile organizzazione %s"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1041
+#, python-format
+msgid "Remove empty characters around city of seller %s"
+msgstr "Rimuovere spazi intorno alla città del cedente %s"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:819
+#, python-format
+msgid "Remove empty characters around denomination of assignee %s"
+msgstr "Rimuovere spazi intorno alla denominazione del cessionario %s"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:805
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1002
+#, python-format
+msgid "Remove empty characters around denomination of fiscal representative"
+msgstr "Rimuovere spazi intorno alla denominazione del rappresentante fiscale"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:869
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1062
+#, python-format
+msgid "Remove empty characters around denomination of fiscal representative %s"
+msgstr "Rimuovere spazi intorno alla denominazione del rappresentante fiscale %s"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1016
+#, python-format
+msgid "Remove empty characters around denomination of seller %s"
+msgstr "Rimuovere spazi intorno alla denominazione del cedente %s"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:834
+#, python-format
+msgid "Remove empty characters around headquarters address of assignee %s"
+msgstr "Rimuovere spazi intorno all'indirizzo della sede del cessionario %s"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1031
+#, python-format
+msgid "Remove empty characters around headquarters address of seller %s"
+msgstr "Rimuovere spazi intorno intorno all'indirizzo della sede del cedente %s"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:824
+#, python-format
+msgid "Remove empty characters around name of assignee %s"
+msgstr "Rimuovere spazi intorno al nome del cessionario %s"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:809
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1006
+#, python-format
+msgid "Remove empty characters around name of fiscal representative"
+msgstr "Rimuovere spazi intorno intorno al nome del rappresentante fiscale"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:874
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1067
+#, python-format
+msgid "Remove empty characters around name of fiscal representative %s"
+msgstr "Rimuovere spazi intorno intorno al nome del rappresentante fiscale %s"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1021
+#, python-format
+msgid "Remove empty characters around name of seller %s"
+msgstr "Rimuovere spazi intorno al nome del cedente %s"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:790
+#, python-format
+msgid "Remove empty characters around seller's city"
+msgstr "Rimuovere spazi intorno alla città del cedente"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:773
+#, python-format
+msgid "Remove empty characters around seller's denomination"
+msgstr "Rimuovere spazi intorno intorno alla denominazione del cedente"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:782
+#, python-format
+msgid "Remove empty characters around seller's headquarters address"
+msgstr "Rimuovere spazi intorno intorno all'indirizzo della sede del cedente"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:776
+#, python-format
+msgid "Remove empty characters around seller's name"
+msgstr "Rimuovere spazi intorno intorno al nome del cedente"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:787
+#, python-format
+msgid "Remove empty characters around seller's street number"
+msgstr "Rimuovere spazi intorno al numero civico del cedente"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:779
+#, python-format
+msgid "Remove empty characters around seller's surname"
+msgstr "Rimuovere spazi intorno al cognome del cedente"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:841
+#, python-format
+msgid "Remove empty characters around street number of assignee %s"
+msgstr "Rimuovere spazi intorno al numero civico del cessionario %s"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:797
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:993
+#, python-format
+msgid "Remove empty characters around street number of permanent establishment"
+msgstr "Rimuovere spazi intorno al numero civico della stabile organizzazione"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:858
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1051
+#, python-format
+msgid "Remove empty characters around street number of permanent establishment %s"
+msgstr "Rimuovere spazi intorno al numero civico della stabile organizzazione %s"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1036
+#, python-format
+msgid "Remove empty characters around street number of seller %s"
+msgstr "Rimuovere spazi intorno al numero civico del cedente %s"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:829
+#, python-format
+msgid "Remove empty characters around surname of assignee %s"
+msgstr "Rimuovere spazi intorno al cognome del cessionario %s"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:813
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1010
+#, python-format
+msgid "Remove empty characters around surname of fiscal representative"
+msgstr "Rimuovere spazi intorno al cognome del rappresentante fiscale"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:879
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1072
+#, python-format
+msgid "Remove empty characters around surname of fiscal representative %s"
+msgstr "Rimuovere spazi intorno al cognome del rappresentante fiscale %s"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1026
+#, python-format
+msgid "Remove empty characters around surname of seller %s"
+msgstr "Rimuovere spazi intorno al cognome del cedente %s"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_codice_carica_id
+msgid "Role code"
+msgstr "Codice carica"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_ricevute_form
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form
+msgid "Seller"
+msgstr "Cedente"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_split_big_communication
+msgid "Split"
+msgstr "Dividi"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.actions.act_window,name:l10n_it_invoices_data_communication.action_wizard_split_big_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form
+msgid "Split big communication"
+msgstr "Dividi grossa comunicazione"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model,name:l10n_it_invoices_data_communication.model_wizard_split_big_invoices_communication
+msgid "Split big invoices communication"
+msgstr "Dividi grossa comunicazione fatture"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_split_big_communication
+msgid "Split communication"
+msgstr "Dividi comunicazione"
+
+#. module: l10n_it_invoices_data_communication
+#: selection:comunicazione.dati.iva.fatture.emesse.iva,EsigibilitaIVA:0
+#: selection:comunicazione.dati.iva.fatture.ricevute.iva,EsigibilitaIVA:0
+msgid "Split payment"
+msgstr "Split payment"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:631
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:640
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:696
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:705
+#, python-format
+msgid "Splitted considering invoices\n"
+"%s\n"
+""
+msgstr "Diviso considerando le fatture\n"
+"%s\n"
+""
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:597
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:605
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:661
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:669
+#, python-format
+msgid "Splitted considering partners\n"
+"%s\n"
+""
+msgstr "Diviso considerando i partner\n"
+"%s\n"
+""
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_splitting_note
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form
+msgid "Splitting note"
+msgstr "Note di divisione"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:62
+#, python-format
+msgid "Statement already exists with ID {}"
+msgstr "La dichiarazione con ID {} esiste già"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_sede_NumeroCivico
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_so_NumeroCivico
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_sede_NumeroCivico
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_so_NumeroCivico
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_sede_NumeroCivico
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_so_NumeroCivico
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_sede_NumeroCivico
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_so_NumeroCivico
+msgid "Street number"
+msgstr "Numero civico"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_body_fattura_ricevuta_id
+msgid "Supplier bill"
+msgstr "Fattura fornitore"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_iva_fattura_ricevuta_body_id
+msgid "Supplier bill body"
+msgstr "Corpo fattura fornitore"
+
+#. module: l10n_it_invoices_data_communication
+#: selection:comunicazione.dati.iva,dati_trasmissione:0
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_ids
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_ricevute_form
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_ricevute_tree
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form
+msgid "Supplier bills"
+msgstr "Fatture fornitori"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_fatture_ricevute_body_ids
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_ricevute_body_form
+msgid "Supplier bills body"
+msgstr "Corpo fatture fornitori"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_iva_Aliquota
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_iva_Aliquota
+msgid "Tax rate"
+msgstr "Aliquota"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_Cognome
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_rf_Cognome
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_Cognome
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_rf_Cognome
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_Cognome
+msgid "To fill along with 2.1.2.2 <Nome> and alternatively to 2.1.2.1 <Denominazione>"
+msgstr "Da valorizzare insieme a 2.1.2.2 <Nome> ed in alternativa a 2.1.2.1 <Denominazione>"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_Nome
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_rf_Nome
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_Nome
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_rf_Nome
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_Nome
+msgid "To fill along with 2.1.2.3 <Cognome> and alternatively to 2.1.2.1 <Denominazione>"
+msgstr "Da valorizzare insieme a 2.1.2.3 <Cognome> ed in alternativa a 2.1.2.1 <Denominazione>"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_Cognome
+msgid "To fill along with 3.2.2.2 <Nome> and alternatively to 3.2.2.1 <Denominazione>"
+msgstr "Da valorizzare insieme a 3.2.2.2 <Nome> ed in alternativa a 3.2.2.1 <Denominazione>"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_Nome
+msgid "To fill along with 3.2.2.3 <Cognome> and alternatively to 3.2.2.1 <Denominazione>"
+msgstr "Da valorizzare insieme a 3.2.2.3 <Cognome> ed in alternativa a 3.2.2.1 <Denominazione>"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_body_form
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_body_tree
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_ricevute_body_form
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_ricevute_body_tree
+msgid "Tot base amount"
+msgstr "Tot imponibile"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_body_form
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_body_tree
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_ricevute_body_form
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_ricevute_body_tree
+msgid "Tot tax"
+msgstr "Tot imposta"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_body_totale_iva
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_totale_iva
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_body_totale_iva
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_totale_iva
+msgid "Total VAT"
+msgstr "Totale IVA"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_body_totale_imponibile
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_totale_imponibile
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_body_totale_imponibile
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_totale_imponibile
+msgid "Total base amount"
+msgstr "Totale imponibile"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_iva_Imposta
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_iva_Imposta
+msgid "VAT"
+msgstr "IVA"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_iva_EsigibilitaIVA
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_iva_EsigibilitaIVA
+msgid "VAT payability"
+msgstr "Esigibilità IVA"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_iva_Aliquota
+#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_iva_Aliquota
+msgid "VAT rate, in percentage"
+msgstr "Aliuota IVA, in percentuale"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_body_dati_fattura_iva_ids
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_body_dati_fattura_iva_ids
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_body_form
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_ricevute_body_form
+msgid "VAT summary"
+msgstr "Riepilogo IVA"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/wizard/export_file.py:25
+#, python-format
+msgid "You can only export one communication"
+msgstr "E' possibile esportare solo una comunicazione"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_sede_Cap
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cedente_so_Cap
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_sede_Cap
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_cessionario_so_Cap
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_sede_Cap
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_cessionario_so_Cap
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_sede_Cap
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_cedente_so_Cap
+msgid "ZIP"
+msgstr "CAP"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:929
+#, python-format
+msgid "ZIP %s of assignee %s is not 5 characters"
+msgstr "CAP %s del cessionario %s non è di 5 caratteri"
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1122
+#, python-format
+msgid "ZIP %s of seller %s is not 5 characters"
+msgstr "CAP %s del cedente %s non è di 5 caratteri"
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_compute_fiscal_document_type
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_dati_iva_export_file
+#: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_split_big_communication
+msgid "or"
+msgstr "o"
+
