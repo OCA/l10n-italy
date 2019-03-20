@@ -68,7 +68,7 @@ msgid "Bill"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1136
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1137
 #, python-format
 msgid "Bill total %s is different from document total amount %s"
 msgstr ""
@@ -126,7 +126,7 @@ msgid "Company Name field contains '%s'. Your System contains '%s'"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1151
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1152
 #, python-format
 msgid "Computed amount untaxed %s is different from summary data %s"
 msgstr ""
@@ -178,7 +178,7 @@ msgid "Date Reference"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:718
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:719
 #, python-format
 msgid "Define a purchase journal for this company: '%s' (id: %d)."
 msgstr ""
@@ -221,7 +221,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:824
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:825
 #, python-format
 msgid "Document type %s not handled."
 msgstr ""
@@ -297,7 +297,7 @@ msgid "File Size"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1174
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1175
 #, python-format
 msgid "File is linked to bills yet."
 msgstr ""
@@ -501,7 +501,7 @@ msgid "Nature"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:801
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:802
 #, python-format
 msgid "No currency found with code %s."
 msgstr ""
@@ -513,7 +513,7 @@ msgid "No tax with percentage %s and nature %s found. Please configure this tax.
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:885
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:886
 #, python-format
 msgid "No withholding tax found with document payment reason %s and rate %s."
 msgstr ""
@@ -541,13 +541,13 @@ msgid "Payment method %s is not defined in your system."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1089
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1090
 #, python-format
 msgid "Payment method code %s is incorrect."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1084
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1085
 #, python-format
 msgid "Payment method code not found in document."
 msgstr ""
@@ -712,7 +712,7 @@ msgid "Text Reference"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:873
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:874
 #, python-format
 msgid "The bill contains withholding tax with payment reason %s, but such a tax is not found in your system. Please set it."
 msgstr ""
