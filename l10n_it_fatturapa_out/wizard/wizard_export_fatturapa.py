@@ -676,7 +676,8 @@ class WizardExportFatturapa(models.TransientModel):
         if line.product_id:
             if line.product_id.default_code:
                 CodiceArticolo = CodiceArticoloType(
-                    CodiceTipo='ODOO',
+                    CodiceTipo=self.env['ir.config_parameter'].sudo(
+                    ).get_param('fatturapa.codicetipo.odoo', 'ODOO'),
                     CodiceValore=line.product_id.default_code
                 )
                 DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
