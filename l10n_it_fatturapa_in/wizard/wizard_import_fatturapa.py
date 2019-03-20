@@ -104,7 +104,7 @@ class WizardImportFatturapa(models.TransientModel):
                 % (DatiAnagrafici.Anagrafica.Cognome, partner.lastname)
             )
 
-    def getPartnerBase(self, DatiAnagrafici):
+    def getPartnerBase(self, DatiAnagrafici, supplier=True):
         if not DatiAnagrafici:
             return False
         partner_model = self.env['res.partner']
@@ -159,7 +159,7 @@ class WizardImportFatturapa(models.TransientModel):
                 'vat': vat,
                 'fiscalcode': cf,
                 'customer': False,
-                'supplier': True,
+                'supplier': supplier,
                 'is_company': (
                     DatiAnagrafici.Anagrafica.Denominazione and True or False),
                 'eori_code': DatiAnagrafici.Anagrafica.CodEORI or '',
@@ -1201,7 +1201,7 @@ class WizardImportFatturapa(models.TransientModel):
                 self.set_StabileOrganizzazione(cedentePrestatore, invoice)
                 if TaxRappresentative:
                     tax_partner_id = self.getPartnerBase(
-                        TaxRappresentative.DatiAnagrafici)
+                        TaxRappresentative.DatiAnagrafici, supplier=False)
                     invoice.write(
                         {
                             'tax_representative_id': tax_partner_id
@@ -1209,7 +1209,7 @@ class WizardImportFatturapa(models.TransientModel):
                     )
                 if Intermediary:
                     Intermediary_id = self.getPartnerBase(
-                        Intermediary.DatiAnagrafici)
+                        Intermediary.DatiAnagrafici, supplier=False)
                     invoice.write(
                         {
                             'intermediary': Intermediary_id
