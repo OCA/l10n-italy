@@ -244,6 +244,13 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertAlmostEqual(invoice.amount_untaxed, 1173.60)
         self.assertEqual(invoice.amount_tax, 258.19)
         self.assertEqual(invoice.amount_total, 1431.79)
+        self.assertAlmostEqual(
+            invoice.e_invoice_amount_untaxed, invoice.amount_untaxed,
+            places=invoice.currency_id.decimal_places)
+        self.assertAlmostEqual(
+            invoice.e_invoice_amount_tax, invoice.amount_tax,
+            places=invoice.currency_id.decimal_places)
+        self.assertEqual(invoice.e_invoice_validation_error, False)
         self.assertEqual(invoice.invoice_line_ids[0].admin_ref, 'D122353')
 
     def test_08_xml_import(self):

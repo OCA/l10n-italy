@@ -6,6 +6,10 @@
         <field name="model">fatturapa.attachment.in</field>
         <field name="arch" type="xml">
             <form string="Import e-bill" duplicate="false">
+                <div class="alert alert-info" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('e_invoice_validation_error','=',False)]}">
+                     <bold>One or more invoice doesn't match the amount (tax or untaxed or total) of the original e-invoice. Please check</bold>
+                </div>
+                <field name="e_invoice_validation_error" invisible="1"/>
                 <div>
                     <group>
                         <group>
@@ -104,6 +108,12 @@
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_supplier_form"></field>
         <field name="arch" type="xml">
+            <xpath expr="//div[@role='alert']" position="after">
+                <div class="alert alert-info" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('e_invoice_validation_error','=',False)]}">
+                     <bold>The invoice doesn't match one of the amount untaxed, tax amount or total amount of the original e-invoice. Please check</bold>
+                </div>
+                <field name="e_invoice_validation_error" invisible="1"/>
+            </xpath>
             <field name="partner_id" position="after">
                 <field name="electronic_invoice_subjected" invisible="1"/>
                 <field name="tax_representative_id" readonly="1" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}"></field>
@@ -121,9 +131,19 @@
             </field>
             <xpath expr="//notebook" position="inside">
                 <page string="E-bill Inconsistencies" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}">
+                    <group>
+                        <field name="e_invoice_force_validation" attrs="{'invisible': [('e_invoice_validation_error','=',False)]}"/>
+                    </group>
                     <field name="inconsistencies" nolabel="1" colspan="4" readonly="1"></field>
                 </page>
                 <page string="E-bill Details" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}">
+                    <group>
+                        <group string="Amount Summary">
+                            <field name="e_invoice_amount_untaxed"/>
+                            <field name="e_invoice_amount_tax"/>
+                            <field name="e_invoice_amount_total"/>
+                        </group>
+                    </group>
                     <group string="Lines Detail">
                         <field name="e_invoice_line_ids" nolabel="1">
                             <tree string="Lines Detail">
