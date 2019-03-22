@@ -321,7 +321,21 @@ class WizardImportFatturapa(orm.TransientModel):
             partner_model.write(cr, uid, partner_id, vals, context=context)
         return partner_id
 
+    def getCarrier(self, cr, uid, partner_id, context={}):
+        carrier_model = self.pool['delivery.carrier']
+        carrier_ids = carrier_model.search(cr, uid,
+                             [('partner_id', '=', partner_id),
+                              ('active', '=', True),
+                              ]
+                             )
+        if len(carrier_ids) > 1:
+            logging.warning('Found more than one carrier for partner %r, carriers %r' % (partner_id, carrier_ids))
+        for carrier_id in carrier_ids:
+            return carrier_id
+        return False
+
     def getCarrirerPartner(self, cr, uid, Carrier, context=None):
+        carrier_id = False
         partner_model = self.pool['res.partner']
         partner_id = self.getPartnerBase(
             cr, uid, Carrier.DatiAnagraficiVettore, context=context)
@@ -332,7 +346,8 @@ class WizardImportFatturapa(orm.TransientModel):
                 Carrier.DatiAnagraficiVettore.NumeroLicenzaGuida or '',
             }
             partner_model.write(cr, uid, partner_id, vals, context=context)
-        return partner_id
+            carrier_id = self.getCarrier(cr, uid, partner_id, context)
+        return carrier_id
 
     def _prepareInvoiceLine(
         self, cr, uid, credit_account_id, line, context=None
