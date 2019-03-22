@@ -1109,12 +1109,6 @@ class WizardImportFatturapa(models.TransientModel):
         invoice.compute_taxes()
         return invoice_id
 
-    def compute_xml_amount_untaxed(self, DatiRiepilogo):
-        amount_untaxed = 0.0
-        for Riepilogo in DatiRiepilogo:
-            amount_untaxed += float(Riepilogo.ImponibileImporto)
-        return amount_untaxed
-
     def check_invoice_amount(self, invoice, FatturaElettronicaBody):
         if (
             FatturaElettronicaBody.DatiGenerali.DatiGeneraliDocumento.
@@ -1141,7 +1135,7 @@ class WizardImportFatturapa(models.TransientModel):
             # DatiGeneraliDocumento.ScontoMaggiorazione is not present,
             # because otherwise DatiRiepilogo and odoo invoice total would
             # differ
-            amount_untaxed = self.compute_xml_amount_untaxed(
+            amount_untaxed = invoice.compute_xml_amount_untaxed(
                 FatturaElettronicaBody.DatiBeniServizi.DatiRiepilogo)
             if not float_is_zero(
                 invoice.amount_untaxed-amount_untaxed, precision_digits=2
@@ -1217,6 +1211,8 @@ class WizardImportFatturapa(models.TransientModel):
                     )
                 new_invoices.append(invoice_id)
                 self.check_invoice_amount(invoice, fattura)
+
+                invoice.set_einvoice_amount(fattura)
 
                 if self.env.context.get('inconsistencies'):
                     invoice_inconsistencies = (
