@@ -29,6 +29,15 @@ class FatturaPAAttachmentIn(models.Model):
     registered = fields.Boolean(
         "Registered", compute="_compute_registered", store=True)
 
+    e_invoice_validation_error = fields.Boolean(
+        compute='_compute_e_invoice_validation_error')
+
+    @api.depends('in_invoice_ids.e_invoice_validation_error')
+    def _compute_e_invoice_validation_error(self):
+        for rec in self:
+            rec.e_invoice_validation_error = \
+                any(rec.mapped('in_invoice_ids.e_invoice_validation_error'))
+
     @api.onchange('datas_fname')
     def onchagne_datas_fname(self):
         self.name = self.datas_fname

@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from odoo import fields, models, api
+from odoo import fields, models, api, _
+from odoo.exceptions import ValidationError
 import odoo.addons.decimal_precision as dp
+from odoo.tools import float_compare
 
 
 class AccountInvoice(models.Model):
@@ -14,6 +16,58 @@ class AccountInvoice(models.Model):
     e_invoice_line_ids = fields.One2many(
         "einvoice.line", "invoice_id", string="Lines Detail",
         readonly=True, copy=False)
+
+    e_invoice_amount_untaxed = fields.Monetary(
+        string='E-Invoice Untaxed Amount', readonly=True)
+    e_invoice_amount_tax = fields.Monetary(string='E-Invoice Tax Amount',
+                                           readonly=True)
+    e_invoice_amount_total = fields.Monetary(string='E-Invoice Total Amount',
+                                             readonly=True)
+
+    e_invoice_validation_error = fields.Boolean(
+        compute='_compute_e_invoice_validation_error')
+
+    e_invoice_force_validation = fields.Boolean(
+        string='Force E-Invoice Validation')
+
+    @api.multi
+    def invoice_validate(self):
+        for invoice in self:
+            if (invoice.e_invoice_validation_error and
+                    not invoice.e_invoice_force_validation):
+                raise ValidationError(
+                    _("The invoice '%s' doesn't match the related e-invoice") %
+                    invoice.display_name)
+        return super(AccountInvoice, self).invoice_validate()
+
+    @api.depends('amount_untaxed', 'amount_tax', 'amount_total', 'state')
+    def _compute_e_invoice_validation_error(self):
+        for invoice in self:
+            if (invoice.type in ['in_invoice', 'in_refund'] and
+                    invoice.state in ['draft', 'open', 'paid'] and
+                    invoice.fatturapa_attachment_in_id):
+                if (invoice.e_invoice_amount_untaxed and
+                        float_compare(invoice.amount_untaxed,
+                                      invoice.e_invoice_amount_untaxed,
+                                      precision_rounding=invoice.currency_id
+                                      .rounding) != 0):
+                    invoice.e_invoice_validation_error = True
+                elif (invoice.e_invoice_amount_tax and
+                        float_compare(invoice.amount_tax,
+                                      invoice.e_invoice_amount_tax,
+                                      precision_rounding=invoice.currency_id
+                                      .rounding) != 0):
+                    invoice.e_invoice_validation_error = True
+                elif (invoice.e_invoice_amount_total and
+                        float_compare(invoice.amount_total,
+                                      invoice.e_invoice_amount_total,
+                                      precision_rounding=invoice.currency_id
+                                      .rounding) != 0):
+                    invoice.e_invoice_validation_error = True
+                else:
+                    invoice.e_invoice_validation_error = False
+            else:
+                invoice.e_invoice_validation_error = False
 
     @api.multi
     def name_get(self):
@@ -39,6 +93,36 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         self.fatturapa_attachment_in_id = False
         return {'type': 'ir.actions.client', 'tag': 'reload'}
+
+    @api.model
+    def compute_xml_amount_untaxed(self, DatiRiepilogo):
+        amount_untaxed = 0.0
+        for Riepilogo in DatiRiepilogo:
+            amount_untaxed += float(Riepilogo.ImponibileImporto)
+        return amount_untaxed
+
+    @api.model
+    def compute_xml_amount_tax(self, DatiRiepilogo):
+        amount_tax = 0.0
+        for Riepilogo in DatiRiepilogo:
+            amount_tax += float(Riepilogo.Imposta)
+        return amount_tax
+
+    def set_einvoice_amount(self, fattura):
+        self.ensure_one()
+        amount_untaxed = self.compute_xml_amount_untaxed(
+            fattura.DatiBeniServizi.DatiRiepilogo)
+        amount_tax = self.compute_xml_amount_tax(
+            fattura.DatiBeniServizi.DatiRiepilogo)
+        amount_total = float(
+            fattura.DatiGenerali.DatiGeneraliDocumento.
+            ImportoTotaleDocumento or 0.0)
+
+        self.update({
+            'e_invoice_amount_untaxed': amount_untaxed,
+            'e_invoice_amount_tax': amount_tax,
+            'e_invoice_amount_total': amount_total,
+        })
 
 
 class fatturapa_article_code(models.Model):

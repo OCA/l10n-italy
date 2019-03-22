@@ -30,6 +30,7 @@ class WizardLinkToInvoice(models.TransientModel):
                 fatturapa_attachment_id)
             fatt = self.get_invoice_obj(fatturapa_attachment)
             for FatturaBody in fatt.FatturaElettronicaBody:
+                self.invoice_id.set_einvoice_amount(FatturaBody)
                 # 2.5
                 AttachmentsData = FatturaBody.Allegati
                 if AttachmentsData and self.invoice_id:
