@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:362
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:363
 #, python-format
 msgid "Can't find 1 tax mapping for %s"
 msgstr ""
@@ -83,7 +83,7 @@ msgid "Invoice Line"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:318
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:319
 #, python-format
 msgid ""
 "Invoice line\n"
@@ -263,7 +263,7 @@ msgid "Tax Mapping for self invoices"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:326
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:327
 #, python-format
 msgid ""
 "Tax code used is not a RC tax.\n"
@@ -286,7 +286,7 @@ msgid "Text on Self Invoice"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:412
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:413
 #, python-format
 msgid ""
 "There are more than one payment line.\n"
@@ -295,7 +295,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:304
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:305
 #, python-format
 msgid ""
 "There is no default credit account defined \n"
