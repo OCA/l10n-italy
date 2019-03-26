@@ -286,12 +286,19 @@ class WizardImportFatturapa(models.TransientModel):
                     ('type_tax_use', '=', 'purchase'),
                     ('kind_id.code', '=', line.Natura),
                     ('amount', '=', 0.0),
-                ], order='sequence', limit=1)
+                ], order='sequence')
             if not account_taxes:
                 self.log_inconsistency(
                     _('No tax with percentage '
                       '%s and nature %s found. Please configure this tax.')
                     % (line.AliquotaIVA, line.Natura))
+            if len(account_taxes) > 1:
+                self.log_inconsistency(
+                    _('Too many taxes with percentage '
+                      '%s and nature %s found. Tax %s with lower priority has '
+                      'been set on invoice lines.')
+                    % (line.AliquotaIVA, line.Natura,
+                       account_taxes[0].description))
         else:
             account_taxes = account_tax_model.search(
                 [
