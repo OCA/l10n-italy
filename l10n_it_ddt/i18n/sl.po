@@ -773,43 +773,50 @@ msgid "Selected Picking is already linked to TD: %s"
 msgstr "Zbirnik %s je že v prevoznem dokumentu"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:41
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:42
 #, python-format
 msgid "Selected Pickings have different Partner"
 msgstr "Izbrani zbirniki imajo različne partnerje"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:80
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:81
 #, python-format
 msgid "Selected Pickings have different carriage condition"
 msgstr "Izbrani zbirniki imajo različne prevozne pogoje"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:105
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:182
+#, fuzzy, python-format
+#| msgid "Selected Pickings have different Partner"
+msgid "Selected Pickings have different carrier"
+msgstr "Izbrani zbirniki imajo različne partnerje"
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:106
 #, python-format
 msgid "Selected Pickings have different goods description"
 msgstr "Izbrani zbirniki imajo različne opise blaga"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:70
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:71
 #, python-format
 msgid "Selected Pickings have different parcels"
 msgstr "Izbrani zbirniki imajo različne pošiljke"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:156
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:157
 #, python-format
 msgid "Selected Pickings have different transportation method"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:130
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:131
 #, python-format
 msgid "Selected Pickings have different transportation reason"
 msgstr "Izbrani zbirniki imajo različne razloge prevoza"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:58
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:59
 #, python-format
 msgid "Selected pickings have different destinations"
 msgstr ""
@@ -888,7 +895,7 @@ msgstr "Zaloga - tip prevoznega dokumenta"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:71
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:198
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:211
 #: model:ir.actions.report,name:l10n_it_ddt.action_report_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice__ddt_ids
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice_line__ddt_id
