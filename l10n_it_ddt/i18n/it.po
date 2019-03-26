@@ -857,43 +857,50 @@ msgid "Selected Picking is already linked to DDT: %s"
 msgstr "Il prelievo selezionato è già collegato al DDT: %s"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:40
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:41
 #, python-format
 msgid "Selected Pickings have different Partner"
 msgstr "I prelievi selezionati hanno partner diversi"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:79
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:80
 #, python-format
 msgid "Selected Pickings have different carriage condition"
 msgstr "I prelievi selezionati hanno condizioni di trasporto diverse"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:104
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:181
+#, fuzzy, python-format
+#| msgid "Selected Pickings have different Partner"
+msgid "Selected Pickings have different carrier"
+msgstr "I prelievi selezionati hanno partner diversi"
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:105
 #, python-format
 msgid "Selected Pickings have different goods description"
 msgstr "I prelievi selezionati hanno una descrizione beni diversa"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:69
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:70
 #, python-format
 msgid "Selected Pickings have different parcels"
 msgstr "I prelievi selezionati corrispondono a pacchi diversi"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:155
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:156
 #, python-format
 msgid "Selected Pickings have different transportation method"
 msgstr "I prelievi selezionati hanno metodi di trasporto diversi"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:129
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:130
 #, python-format
 msgid "Selected Pickings have different transportation reason"
 msgstr "I prelievi selezionati hanno una causale trasporto diversa"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:57
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:58
 #, python-format
 msgid "Selected pickings have different destinations"
 msgstr "I prelievi selezionati hanno destinazioni diverse"
