@@ -101,7 +101,7 @@ class StockPickingPackagePreparation(models.Model):
     display_name = fields.Char(string='Name', compute='_compute_display_name')
     volume = fields.Float('Volume')
     invoice_id = fields.Many2one(
-        'account.invoice', string="Invoice", readonly=True)
+        'account.invoice', string="Invoice", readonly=True, copy=False)
     weight_manual = fields.Float(
         string="Force Weight",
         help="Fill this field with the value you want to be used as weight. "
