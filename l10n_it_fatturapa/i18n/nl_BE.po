@@ -1107,24 +1107,6 @@ msgid "Sender"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_config_settings_fatturapa_sequence_id
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company_fatturapa_sequence_id
-msgid "Sequence"
-msgstr ""
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/company.py:68
-#, python-format
-msgid "Sequence %s already used by journal %s. Please select another one."
-msgstr ""
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/company.py:61
-#, python-format
-msgid "Sequence %s can't use subsequences."
-msgstr ""
-
-#. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,payability:0
 msgid "Split payment"
 msgstr ""
@@ -1214,14 +1196,6 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_fatturapa_attachments_res_id
 msgid "The record id this is attached to."
-msgstr ""
-
-#. module: l10n_it_fatturapa
-#: model:ir.model.fields,help:l10n_it_fatturapa.field_account_config_settings_fatturapa_sequence_id
-#: model:ir.model.fields,help:l10n_it_fatturapa.field_res_company_fatturapa_sequence_id
-msgid ""
-"The univocal progressive of the file is represented by an alphanumeric "
-"sequence of maximum length 5, its values are included in 'A'-'Z' and '0'-'9'"
 msgstr ""
 
 #. module: l10n_it_fatturapa

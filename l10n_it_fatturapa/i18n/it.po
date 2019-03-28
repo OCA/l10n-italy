@@ -1124,24 +1124,6 @@ msgid "Sender"
 msgstr "Trasmittente"
 
 #. module: l10n_it_fatturapa
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_config_settings_fatturapa_sequence_id
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company_fatturapa_sequence_id
-msgid "Sequence"
-msgstr "Sequenza"
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/company.py:68
-#, python-format
-msgid "Sequence %s already used by journal %s. Please select another one."
-msgstr "La sequenza %s è già usata dal registro %s. Selezionarne un'altra."
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/company.py:61
-#, python-format
-msgid "Sequence %s can't use subsequences."
-msgstr "La sequenza %s non può usare sottosequenze."
-
-#. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,payability:0
 msgid "Split payment"
 msgstr "Scissione pagamenti"
@@ -1245,17 +1227,6 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_fatturapa_attachments_res_id
 msgid "The record id this is attached to."
 msgstr "L'ID del record a cui questo è collegato."
-
-#. module: l10n_it_fatturapa
-#: model:ir.model.fields,help:l10n_it_fatturapa.field_account_config_settings_fatturapa_sequence_id
-#: model:ir.model.fields,help:l10n_it_fatturapa.field_res_company_fatturapa_sequence_id
-msgid ""
-"The univocal progressive of the file is represented by an alphanumeric "
-"sequence of maximum length 5, its values are included in 'A'-'Z' and '0'-'9'"
-msgstr ""
-"Il progressivo univoco del file è rappresentato da una sequenza alfanumerica "
-"di lunghezza massima 5, i cui valori sono inclusi in \"A\"-\"Z\" e \"0\"-"
-"\"9\""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_config_settings_fatturapa_sender_partner
@@ -1418,6 +1389,24 @@ msgstr "non imponibili"
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "reverse charge"
 msgstr "inversione contabile"
+
+#~ msgid "Sequence"
+#~ msgstr "Sequenza"
+
+#~ msgid "Sequence %s already used by journal %s. Please select another one."
+#~ msgstr "La sequenza %s è già usata dal registro %s. Selezionarne un'altra."
+
+#~ msgid "Sequence %s can't use subsequences."
+#~ msgstr "La sequenza %s non può usare sottosequenze."
+
+#~ msgid ""
+#~ "The univocal progressive of the file is represented by an alphanumeric "
+#~ "sequence of maximum length 5, its values are included in 'A'-'Z' and "
+#~ "'0'-'9'"
+#~ msgstr ""
+#~ "Il progressivo univoco del file è rappresentato da una sequenza "
+#~ "alfanumerica di lunghezza massima 5, i cui valori sono inclusi in \"A\"-"
+#~ "\"Z\" e \"0\"-\"9\""
 
 #~ msgid "Signed Xml file %s."
 #~ msgstr "File XML firmato %s."
