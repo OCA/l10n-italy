@@ -4,6 +4,7 @@
 # Copyright 2018-2019 Alex Comba - Agile Business Group
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
+import re
 from .fatturapa_common import FatturaPACommon
 
 
@@ -13,7 +14,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         super(TestFatturaPAXMLValidation, self).setUp()
 
     def test_1_xml_export(self):
-        self.set_sequences(1, 13, '2016-01-07')
+        self.set_sequences(13, '2016-01-07')
         invoice = self.invoice_model.create({
             'date_invoice': '2016-01-07',
             'partner_id': self.res_partner_fatturapa_0.id,
@@ -46,18 +47,24 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                 })],
         })
         invoice.action_invoice_open()
+        self.assertFalse(self.attach_model.file_name_exists('00001'))
         res = self.run_wizard(invoice.id)
 
         self.assertTrue(res)
         attachment = self.attach_model.browse(res['res_id'])
-        self.assertEqual(attachment.datas_fname, 'IT06363391001_00001.xml')
+        file_name_match = (
+            '^%s_[A-Za-z0-9]{5}.xml$' % self.env.user.company_id.vat)
+        # Checking file name randomly generated
+        self.assertTrue(re.search(file_name_match, attachment.datas_fname))
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00001.xml')
+        self.assertTrue(self.attach_model.file_name_exists('00001'))
 
         # XML doc to be validated
         xml_content = attachment.datas.decode('base64')
         self.check_content(xml_content, 'IT06363391001_00001.xml')
 
     def test_2_xml_export(self):
-        self.set_sequences(2, 14, '2016-06-15')
+        self.set_sequences(14, '2016-06-15')
         invoice = self.invoice_model.create({
             'date_invoice': '2016-06-15',
             'partner_id': self.res_partner_fatturapa_0.id,
@@ -99,12 +106,13 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         invoice.action_invoice_open()
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res['res_id'])
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00002.xml')
 
         xml_content = attachment.datas.decode('base64')
         self.check_content(xml_content, 'IT06363391001_00002.xml')
 
     def test_3_xml_export(self):
-        self.set_sequences(3, 15, '2016-06-15')
+        self.set_sequences(15, '2016-06-15')
         invoice = self.invoice_model.create({
             'date_invoice': '2016-06-15',
             'partner_id': self.res_partner_fatturapa_0.id,
@@ -149,12 +157,13 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.AttachFileToInvoice(invoice.id, 'test2.pdf')
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res['res_id'])
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00003.xml')
         xml_content = attachment.datas.decode('base64')
 
         self.check_content(xml_content, 'IT06363391001_00003.xml')
 
     def test_4_xml_export(self):
-        self.set_sequences(4, 16, '2016-06-15')
+        self.set_sequences(16, '2016-06-15')
         invoice = self.invoice_model.create({
             'date_invoice': '2016-06-15',
             'partner_id': self.res_partner_fatturapa_0.id,
@@ -190,13 +199,14 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         invoice.action_invoice_open()
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res['res_id'])
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00004.xml')
         xml_content = attachment.datas.decode('base64')
         self.check_content(xml_content, 'IT06363391001_00004.xml')
 
     def test_5_xml_export(self):
         self.env.user.company_id.fatturapa_sender_partner = (
             self.intermediario.id)
-        self.set_sequences(5, 17, '2016-06-15')
+        self.set_sequences(17, '2016-06-15')
         invoice = self.invoice_model.create({
             'date_invoice': '2016-06-15',
             'partner_id': self.res_partner_fatturapa_0.id,
@@ -223,14 +233,14 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         invoice.action_invoice_open()
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res['res_id'])
+        self.set_e_invoice_file_id(attachment, 'IT03297040366_00005.xml')
         xml_content = attachment.datas.decode('base64')
-        self.assertEqual(attachment.datas_fname, 'IT03297040366_00005.xml')
         self.check_content(xml_content, 'IT03297040366_00005.xml')
 
     def test_6_xml_export(self):
         self.product_product_10.default_code = 'ODOOCODE'
         self.product_order_01.barcode = '987654'
-        self.set_sequences(6, 13, '2018-01-07')
+        self.set_sequences(13, '2018-01-07')
         invoice = self.invoice_model.create({
             'date_invoice': '2018-01-07',
             'partner_id': self.res_partner_fatturapa_2.id,
@@ -265,7 +275,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         invoice.action_invoice_open()
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res['res_id'])
-        self.assertEqual(attachment.datas_fname, 'IT06363391001_00006.xml')
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00006.xml')
 
         xml_content = attachment.datas.decode('base64')
         self.check_content(xml_content, 'IT06363391001_00006.xml')
@@ -281,7 +291,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.company.fatturapa_tax_representative = self.intermediario.id
         self.company.fatturapa_stabile_organizzazione = (
             self.stabile_organizzazione.id)
-        self.set_sequences(7, 14, '2018-01-07')
+        self.set_sequences(14, '2018-01-07')
         invoice = self.invoice_model.create({
             'date_invoice': '2018-01-07',
             'partner_id': self.res_partner_fatturapa_2.id,
@@ -307,15 +317,14 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         invoice.action_invoice_open()
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res['res_id'])
-        self.assertEqual(
-            attachment.datas_fname, 'CHE114993395IVA_00007.xml')
+        self.set_e_invoice_file_id(attachment, 'CHE114993395IVA_00007.xml')
 
         xml_content = attachment.datas.decode('base64')
         self.check_content(xml_content, 'CHE114993395IVA_00007.xml')
 
     def test_8_xml_export(self):
         self.tax_22.price_include = True
-        self.set_sequences(8, 15, '2018-01-07')
+        self.set_sequences(15, '2018-01-07')
         invoice = self.invoice_model.create({
             'date_invoice': '2018-01-07',
             'partner_id': self.res_partner_fatturapa_2.id,
@@ -351,14 +360,14 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         invoice.action_invoice_open()
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res['res_id'])
-        self.assertEqual(attachment.datas_fname, 'IT06363391001_00008.xml')
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00008.xml')
 
         xml_content = attachment.datas.decode('base64')
         self.check_content(xml_content, 'IT06363391001_00008.xml')
 
     def test_9_xml_export(self):
         self.tax_22.price_include = True
-        self.set_sequences(9, 18, '2018-01-07')
+        self.set_sequences(18, '2018-01-07')
         partner = self.res_partner_fatturapa_4
         partner.onchange_country_id_e_inv()
         partner.write(partner._convert_to_write(partner._cache))
@@ -397,7 +406,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         invoice.action_invoice_open()
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res['res_id'])
-        self.assertEqual(attachment.datas_fname, 'IT06363391001_00009.xml')
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00009.xml')
 
         xml_content = attachment.datas.decode('base64')
         self.check_content(xml_content, 'IT06363391001_00009.xml')
