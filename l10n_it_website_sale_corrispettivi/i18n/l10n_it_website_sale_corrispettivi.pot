@@ -15,7 +15,7 @@ msgstr ""
 
 #. module: l10n_it_website_sale_corrispettivi
 #: model:ir.ui.view,arch_db:l10n_it_website_sale_corrispettivi.address
-msgid "Want invoice"
+msgid "Request invoice"
 msgstr ""
 
 #. module: l10n_it_website_sale_corrispettivi

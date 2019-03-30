@@ -6,6 +6,12 @@ from odoo.addons.website_sale.controllers.main import WebsiteSale
 
 class WebsiteSaleCorrispettivi(WebsiteSale):
 
+    def values_preprocess(self, order, mode, values):
+        pre_values = super().values_preprocess(order, mode, values)
+        pre_values['use_corrispettivi'] = not values.get(
+            'use_invoice', False)
+        return pre_values
+
     def _checkout_form_save(self, mode, checkout, all_values):
         partner_id = super(WebsiteSaleCorrispettivi, self) \
             ._checkout_form_save(mode, checkout, all_values)
