@@ -51,6 +51,7 @@ setuptools.setup(
         'odoo10-addon-l10n_it_vat_registries',
         'odoo10-addon-l10n_it_vat_registries_cash_basis',
         'odoo10-addon-l10n_it_vat_registries_split_payment',
+        'odoo10-addon-l10n_it_website_portal_fatturapa',
         'odoo10-addon-l10n_it_website_portal_fiscalcode',
         'odoo10-addon-l10n_it_website_sale_corrispettivi',
         'odoo10-addon-l10n_it_website_sale_fiscalcode',
