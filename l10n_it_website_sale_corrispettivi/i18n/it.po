@@ -18,8 +18,8 @@ msgstr ""
 
 #. module: l10n_it_website_sale_corrispettivi
 #: model:ir.ui.view,arch_db:l10n_it_website_sale_corrispettivi.address
-msgid "Want invoice"
-msgstr "Voglio fattura"
+msgid "Request invoice"
+msgstr "Richiedi fattura"
 
 #. module: l10n_it_website_sale_corrispettivi
 #: model:ir.model,name:l10n_it_website_sale_corrispettivi.model_website
