@@ -16,7 +16,7 @@ class AccountInvoiceLine(models.Model):
     @api.multi
     def _set_rc_flag(self, invoice):
         self.ensure_one()
-        if invoice.type == 'in_invoice':
+        if invoice.type in ['in_invoice', 'in_refund']:
             fposition = invoice.fiscal_position_id
             self.rc = bool(fposition.rc_type_id)
 
