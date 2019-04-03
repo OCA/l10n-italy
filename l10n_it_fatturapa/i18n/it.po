@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-08 09:34+0000\n"
-"PO-Revision-Date: 2018-12-16 23:58+0000\n"
+"PO-Revision-Date: 2019-04-03 11:15+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 3.5.1\n"
 
 #. module: l10n_it_fatturapa
 #: model:account.tax,description:l10n_it_fatturapa.tax_00_e15
@@ -1185,12 +1185,6 @@ msgstr "Rappresentante fiscale"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_partner_codice_destinatario
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_users_codice_destinatario
-#, fuzzy
-#| msgid ""
-#| "The code, 7 characters long, assigned by ES to subjects with an "
-#| "accredited channel; if the addressee didn't accredit a channel to ES and "
-#| "invoices are received by PEC, the field must be filled with zeros "
-#| "('0000000')."
 msgid ""
 "The code, 7 characters long, assigned by ES to subjects with an accredited "
 "channel; if the addressee didn't accredit a channel to ES and invoices are "
@@ -1198,8 +1192,8 @@ msgid ""
 msgstr ""
 "Codice di 7 caratteri assegnato dallo SdI ai soggetti con canale "
 "accreditato. Se il destinatario non ha un canale accreditato presso lo SdI e "
-"riceve le fatture via PEC, l'elemento informativo deve essere valorizzato "
-"con tutti zeri (\"0000000\")."
+"riceve le fatture via PEC, l'elemento informativo deve corrispondere al "
+"valore standard (\"0000000\")."
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_fatturapa_attachments_res_model
