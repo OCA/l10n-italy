@@ -60,7 +60,8 @@ class TestInvoiceDDT(FatturaPACommon):
         })
         self.so1.action_button_confirm()
         self.so2.action_button_confirm()
-        (self.so1.picking_ids | self.so2.picking_ids).do_transfer()
+        self.so1.picking_ids.do_transfer()
+        self.so2.picking_ids.do_transfer()
         self.env['ddt.from.pickings'].with_context({
             'active_ids': self.so1.picking_ids.ids
             }).create({}).create_ddt()
