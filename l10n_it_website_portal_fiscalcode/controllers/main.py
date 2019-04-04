@@ -1,24 +1,22 @@
-# -*- coding: utf-8 -*-
 # Copyright 2019 Simone Rubino
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _
-from odoo.addons.website_portal.controllers.main import website_account
+from odoo.addons.portal.controllers.portal import CustomerPortal
 from odoo.http import request
 
-website_account.OPTIONAL_BILLING_FIELDS.extend(['fiscalcode'])
+CustomerPortal.OPTIONAL_BILLING_FIELDS.extend(['fiscalcode'])
 
 
-class WebsitePortalFiscalCode(website_account):
+class WebsitePortalFiscalCode(CustomerPortal):
 
     def details_form_validate(self, data):
         error, error_message = \
             super(WebsitePortalFiscalCode, self).details_form_validate(data)
         # Check fiscalcode
-        partner_sudo = request.env.user.partner_id.sudo()
         dummy_partner = request.env['res.partner'].new({
             'fiscalcode': data.get('fiscalcode'),
-            'individual': partner_sudo.individual
+            'company_name': data.get('company_name'),
         })
         if not dummy_partner.check_fiscalcode():
             error['fiscalcode'] = 'error'
