@@ -36,32 +36,36 @@
                 <div class="clearfix"/>
             </t>
         </xpath>
-        <xpath expr="//input[@name='fiscalcode']/.." position="after">
-            <div class="clearfix"/>
-            <div class="col-lg-6 div_electronic_invoice_subjected">
-                <label class="control-label label-optional" for="electronic_invoice_subjected">
-                    I want to receive electronic invoices
-                </label>
-                <input type="checkbox" name="electronic_invoice_subjected" class="form-control"
-                       style="width: auto; margin:0px"
-                       t-att-checked="electronic_invoice_subjected or partner.electronic_invoice_subjected"/>
+        <xpath expr="//div[hasclass('o_portal_details')]/div[1]/div[1]" position="after">
+            <!-- after state_id -->
+            <div class="row">
+                <div class="col-xl-6 form-group div_electronic_invoice_subjected">
+                    <input type="checkbox" name="electronic_invoice_subjected"
+                           style="width: auto; margin:0px"
+                           t-att-checked="electronic_invoice_subjected or partner.electronic_invoice_subjected"/>
+                    <label for="electronic_invoice_subjected" style="margin-left:5px">
+                        I request to receive electronic invoices
+                    </label>
+                </div>
             </div>
-            <div class="clearfix"/>
-            <div t-attf-class="form-group #{error.get('codice_destinatario') and 'has-error' or ''} col-lg-6 div_codice_destinatario">
-                <label class="control-label label-optional" for="codice_destinatario">
-                    Addressee code
-                </label>
-                <input type="text" name="codice_destinatario" class="form-control"
-                       t-att-value="codice_destinatario or partner.codice_destinatario"/>
+            <div class="row">
+                <div t-attf-class="form-group #{error.get('codice_destinatario') and 'o_has_error' or ''} col-xl-6 div_codice_destinatario">
+                    <label class="col-form-label" for="codice_destinatario">
+                        Addressee code
+                    </label>
+                    <input type="text" name="codice_destinatario"
+                           t-attf-class="form-control #{error.get('codice_destinatario') and 'is-invalid' or ''}"
+                           t-att-value="codice_destinatario or partner.codice_destinatario"/>
+                </div>
+                <div t-attf-class="form-group #{error.get('pec_destinatario') and 'o_has_error' or ''} col-xl-6 div_pec_destinatario">
+                    <label class="col-form-label" for="pec_destinatario">
+                        Or PEC address for Electronic invoicing
+                    </label>
+                    <input type="text" name="pec_destinatario"
+                           t-attf-class="form-control #{error.get('pec_destinatario') and 'is-invalid' or ''}"
+                           t-att-value="pec_destinatario or partner.pec_destinatario"/>
+                </div>
             </div>
-            <div t-attf-class="form-group #{error.get('pec_destinatario') and 'has-error' or ''} col-lg-6 div_pec_destinatario">
-                <label class="control-label label-optional" for="pec_destinatario">
-                    Or PEC address for Electronic invoicing
-                </label>
-                <input type="text" name="pec_destinatario" class="form-control"
-                       t-att-value="pec_destinatario or partner.pec_destinatario"/>
-            </div>
-            <div class="clearfix"/>
         </xpath>
     </template>
 </odoo>
