@@ -29,7 +29,7 @@ addon | version | summary
 [l10n_it_causali_pagamento](l10n_it_causali_pagamento/) | 10.0.1.0.0 | Aggiunge la tabella delle causali di pagamento da usare ad esempio nelle ritenute d'acconto
 [l10n_it_central_journal](l10n_it_central_journal/) | 10.0.0.0.1 | Italian Localization - Account central journal
 [l10n_it_codici_carica](l10n_it_codici_carica/) | 10.0.1.0.0 | Aggiunge la tabella dei codici carica da usare nei dichiarativi fiscali italiani
-[l10n_it_corrispettivi](l10n_it_corrispettivi/) | 10.0.1.2.2 | Italian Localization - Corrispettivi
+[l10n_it_corrispettivi](l10n_it_corrispettivi/) | 10.0.1.2.3 | Italian Localization - Corrispettivi
 [l10n_it_corrispettivi_sale](l10n_it_corrispettivi_sale/) | 10.0.1.0.1 | Modulo per integrare i corrispettivi in odoo con gli ordini di vendita.
 [l10n_it_ddt](l10n_it_ddt/) | 10.0.1.7.2 | Documento di Trasporto
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 10.0.1.0.0 | Esigibilità IVA
