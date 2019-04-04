@@ -76,7 +76,7 @@ msgid "Bill"
 msgstr "Fattura"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1137
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1163
 #, python-format
 msgid "Bill total %s is different from document total amount %s"
 msgstr ""
@@ -135,7 +135,7 @@ msgid "Company Name field contains '%s'. Your System contains '%s'"
 msgstr "Il campo nome azienda contiene \"%s\", il sistema contiene \"%s\""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1152
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1178
 #, python-format
 msgid "Computed amount untaxed %s is different from summary data %s"
 msgstr "L'imponibile calcolato %s è diverso da quello dei dati di riepilogo %s"
@@ -306,7 +306,7 @@ msgid "File Size"
 msgstr "Dimensione file"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1175
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1201
 #, python-format
 msgid "File is linked to bills yet."
 msgstr "Il file è già collegato alle fatture."
@@ -434,16 +434,6 @@ msgid "Last Updated on"
 msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:308
-#, python-format
-msgid ""
-"Line '%s': Too many taxes with percentage equals to '%s'.\n"
-"Fix it if required"
-msgstr ""
-"Riga \"%s\": troppe imposte con aliquota pari a\"%s\".\n"
-"Correggere se necessario"
-
-#. module: l10n_it_fatturapa_in
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
 msgid "Line Detail"
 msgstr "Dettaglio riga"
@@ -567,13 +557,13 @@ msgid "Payment method %s is not defined in your system."
 msgstr "Modalità di pagamento %s non definita nel sistema."
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1090
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1116
 #, python-format
 msgid "Payment method code %s is incorrect."
 msgstr "Codice modalità di pagamento %s non corretto."
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1085
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1111
 #, python-format
 msgid "Payment method code not found in document."
 msgstr "Codice modalità di pagamento non trovato nel documento."
@@ -602,6 +592,14 @@ msgstr "Data inizio periodo"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in_ftpa_preview_link
 msgid "Preview link"
 msgstr "Collegamento di anteprima"
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_account_config_settings_cassa_previdenziale_product_id
+#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_company_cassa_previdenziale_product_id
+msgid "Product used to model DatiCassaPrevidenziale XML element on bills."
+msgstr ""
+"Prodotto usato come modello per l'elemento XML DatiCassaPrevidenziale delle "
+"fatture."
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_account_config_settings_sconto_maggiorazione_product_id
@@ -765,6 +763,19 @@ msgid "To Register"
 msgstr "Da registrare"
 
 #. module: l10n_it_fatturapa_in
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:308
+#, fuzzy, python-format
+#| msgid ""
+#| "Line '%s': Too many taxes with percentage equals to '%s'.\n"
+#| "Fix it if required"
+msgid ""
+"Too many taxes with percentage equals to '%s'.\n"
+"Fix it if required"
+msgstr ""
+"Riga \"%s\": troppe imposte con aliquota pari a\"%s\".\n"
+"Correggere se necessario"
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_total_price
 msgid "Total Price"
 msgstr "Prezzo totale"
@@ -827,15 +838,37 @@ msgid "Welfare Fund %s not present in your system."
 msgstr "Cassa previdenziale %s non presente nel sistema."
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_config_settings_cassa_previdenziale_product_id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_company_cassa_previdenziale_product_id
+msgid "Welfare Fund Data Product"
+msgstr "Prodotto per dati cassa previdenziale"
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
 msgid "Welfare Fund Details"
 msgstr "Dettagli cassa previdenziale"
+
+#. module: l10n_it_fatturapa_in
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:934
+#, python-format
+msgid ""
+"Welfare Fund data %s has withholding tax but no withholding tax was found in "
+"the system."
+msgstr ""
+"I dati cassa previdenziale %s hanno la ritenuta ma non ce ne sono di "
+"disponibili nel sistema."
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:481
 #, python-format
 msgid "Welfare Fund is not defined."
 msgstr "Cassa previdenziale non definita."
+
+#. module: l10n_it_fatturapa_in
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:926
+#, python-format
+msgid "Welfare Fund: %s"
+msgstr "Cassa previdenziale: %s"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:370
@@ -901,29 +934,11 @@ msgstr "il"
 #~ msgstr ""
 #~ "Prodotto usato come modello per l'elemento XML DatiBollo delle fatture."
 
-#~ msgid "Product used to model DatiCassaPrevidenziale XML element on bills."
-#~ msgstr ""
-#~ "Prodotto usato come modello per l'elemento XML DatiCassaPrevidenziale "
-#~ "delle fatture."
-
 #~ msgid "Stamp Data Product"
 #~ msgstr "Prodotto per dati bollo"
 
 #~ msgid "Stamp duty payed under the MEF Decree June 17, 2014 (art. 6)"
 #~ msgstr "Bollo assolto ai sensi del decreto MEF 17 giugno 2014 (art. 6)"
-
-#~ msgid "Welfare Fund Data Product"
-#~ msgstr "Prodotto per dati cassa previdenziale"
-
-#~ msgid ""
-#~ "Welfare Fund data %s has withholding tax but no withholding tax was found "
-#~ "in the system."
-#~ msgstr ""
-#~ "I dati cassa previdenziale %s hanno la ritenuta ma non ce ne sono di "
-#~ "disponibili nel sistema."
-
-#~ msgid "Welfare Fund: %s"
-#~ msgstr "Cassa previdenziale: %s"
 
 #~ msgid "Related E-bill line"
 #~ msgstr "Riga e-fattura collegata"
