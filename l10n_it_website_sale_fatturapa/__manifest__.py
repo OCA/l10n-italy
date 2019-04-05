@@ -5,7 +5,7 @@
     "name": "Italian Localization - Fattura Elettronica - eCommerce",
     "summary": "Aggiunge i campi necessari alla fatturazione elettronica "
                "nel form del checkout",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "category": "Localization/Italy",
     "website": "https://github.com/OCA/l10n-italy/tree/"
                "12.0/l10n_it_website_sale_fatturapa",
@@ -17,5 +17,6 @@
     ],
     "data": [
         "views/templates.xml"
-    ]
+    ],
+    "auto_install": True,
 }
