@@ -61,6 +61,13 @@ msgid "Invoice"
 msgstr "Счет"
 
 #. module: l10n_it_corrispettivi
+#: model:ir.model,name:l10n_it_corrispettivi.model_account_invoice_refund
+#, fuzzy
+#| msgid "Invoice"
+msgid "Invoice Refund"
+msgstr "Счет"
+
+#. module: l10n_it_corrispettivi
 #: model:ir.model,name:l10n_it_corrispettivi.model_account_journal
 msgid "Journal"
 msgstr ""

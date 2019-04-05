@@ -60,6 +60,13 @@ msgid "Invoice"
 msgstr "Račun"
 
 #. module: l10n_it_corrispettivi
+#: model:ir.model,name:l10n_it_corrispettivi.model_account_invoice_refund
+#, fuzzy
+#| msgid "Invoice"
+msgid "Invoice Refund"
+msgstr "Račun"
+
+#. module: l10n_it_corrispettivi
 #: model:ir.model,name:l10n_it_corrispettivi.model_account_journal
 msgid "Journal"
 msgstr "Dnevnik"
