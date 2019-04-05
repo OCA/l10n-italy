@@ -844,21 +844,31 @@ class WizardExportFatturapa(orm.TransientModel):
                     DataScadenzaPagamento=move_line.date_maturity,
                     ImportoPagamento=ImportoPagamento
                     )
-                if invoice.partner_bank_id:
+                is_riba = self.isRiba(cr, uid, invoice, context)
+                refBank = invoice.partner_bank_id
+                if is_riba:
+                    refBank = invoice.bank_account_ids
+                if refBank:
                     DettaglioPagamento.IstitutoFinanziario = (
-                        invoice.partner_bank_id.bank_name)
-                    if invoice.partner_bank_id.acc_number:
+                        refBank.bank_name)
+                    if refBank.acc_number:
                         DettaglioPagamento.IBAN = (
                             ''.join(
-                                invoice.partner_bank_id.acc_number.split()
+                                refBank.acc_number.split()
                             )
                         )
-                    if invoice.partner_bank_id.bank_bic:
+                    if refBank.bank_bic:
                         DettaglioPagamento.BIC = (
-                            invoice.partner_bank_id.bank_bic)
+                            refBank.bank_bic)
                 DatiPagamento.DettaglioPagamento.append(DettaglioPagamento)
             body.DatiPagamento.append(DatiPagamento)
         return True
+
+    def isRiba(self, cr, uid, invoice, context={}):
+        for termLine in invoice.payment_term.line_ids:
+            if termLine.riba:
+                return True
+        return False
 
     def setAttachments(self, cr, uid, invoice, body, context=None):
         if context is None:
