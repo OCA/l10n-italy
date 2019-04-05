@@ -7,7 +7,7 @@
     'category': 'e-commerce',
     'author': "Agile Business Group,"
               "Odoo Community Association (OCA)",
-    'version': '12.0.1.1.0',
+    'version': '12.0.1.1.1',
     'license': 'LGPL-3',
     'website': 'https://github.com/OCA/l10n-italy/tree/'
                '12.0/l10n_it_website_sale_fiscalcode',
@@ -19,4 +19,5 @@
         'views/templates.xml',
     ],
     'installable': True,
+    'auto_install': True,
 }
