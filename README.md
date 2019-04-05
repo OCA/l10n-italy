@@ -10,9 +10,7 @@ Odoo Italia Modules
 
 ### Contributing
 
-Italian OCA mailing list: `italy@odoo-community.org`
-
-To join, go to [OCA mailing lists](https://odoo-community.org/groups), search for "Italy" and Subscribe.
+Visit https://www.odoo-italia.org/contribuire
 
 #### Review
 
@@ -30,9 +28,7 @@ See our [documentation for translators](https://github.com/OCA/l10n-italy/wiki/T
 
 ### Contribuire
 
-La mailing list del team OCA Italia: `italy@odoo-community.org`
-
-Per iscriverti, visita [la pagina delle mailing list OCA](https://odoo-community.org/groups), cerca "Italy" e iscriviti.
+Visita https://www.odoo-italia.org/contribuire
 
 #### Revisioni
 
