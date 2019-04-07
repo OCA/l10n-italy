@@ -69,16 +69,18 @@ Configuration
  * Nella scheda "Fattura Elettronica" del partner, selezionare "Soggetto a fattura elettronica" per i clienti e i fornitori soggetti alla fatturazione elettronica.
  * Le pubbliche amministrazioni devono avere un codice IPA
  * Gli altri devono avere il Codice Destinatario o la PEC
- * Configurare le imposte riguardo a "Natura non imponibile', "Riferimento normativo" ed "Esigibilità IVA"
+ * Configurare le imposte riguardo a "Natura non imponibile", "Riferimento normativo" ed "Esigibilità IVA"
  * Configurare i dati della fattura elettronica nella configurazione della contabilità, dove necessario
+ * Opzionalmente configurare lo stile dell'anteprima della fattura elettronica, selezionando "Stile del formato di anteprima" in "Configurazione Contabilità"
 
 **English**
 
- * In partner form, select 'Subjected to electronic invoice' in Electronic Invoice tab for customers and suppliers subjected to electronic invoicing
+ * In partner form, select 'Subjected to electronic invoice' in 'Electronic Invoice' tab for customers and suppliers subjected to electronic invoicing
  * Public administrations must have IPA code
  * Others must have Codice Destinatario or PEC
  * Configure taxes about 'Non taxable nature', 'Law reference' and 'VAT payability'
  * Configure Electronic Invoice data in Accounting Configuration, where needed
+ * Optionally configure the Electronic Invoice preview format style by selecting 'Preview Format Style' in 'Accounting Configuration'
 
 Bug Tracker
 ===========
@@ -110,7 +112,7 @@ Contributors
 * Alessio Gerace
 * Sergio Zanchetta <https://github.com/primes2h>
 * Lara Baggio <http://linkgroup.it/>
-
+* Roberto Fichera <https://github.com/robyf70>
 
 Maintainers
 ~~~~~~~~~~~
