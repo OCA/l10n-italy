@@ -62,7 +62,6 @@ msgstr "发票"
 #. module: l10n_it_corrispettivi
 #: model:ir.model,name:l10n_it_corrispettivi.model_account_invoice_refund
 #, fuzzy
-#| msgid "Invoice"
 msgid "Invoice Refund"
 msgstr "发票"
 
