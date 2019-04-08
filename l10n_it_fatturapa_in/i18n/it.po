@@ -765,9 +765,6 @@ msgstr "Da registrare"
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:308
 #, fuzzy, python-format
-#| msgid ""
-#| "Line '%s': Too many taxes with percentage equals to '%s'.\n"
-#| "Fix it if required"
 msgid ""
 "Too many taxes with percentage equals to '%s'.\n"
 "Fix it if required"
