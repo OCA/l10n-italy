@@ -851,7 +851,6 @@ msgstr "Il codice destinatario del partner %s deve essere lungo 7 caratteri."
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/partner.py:90
 #, fuzzy, python-format
-#| msgid "Partner %s Addressee Code must be 7 characters long."
 msgid "Partner %s has Addressee PEC %s, the Addresse Code must be %s."
 msgstr "Il codice destinatario del partner %s deve essere lungo 7 caratteri."
 
