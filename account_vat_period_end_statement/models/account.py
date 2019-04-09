@@ -1,33 +1,14 @@
-#
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
-#    Copyright (C) 2012-15 Agile Business Group sagl (<http://www.agilebg.com>)
-#    Copyright (C) 2015 Associazione Odoo Italia
-#    (<http://www.odoo-italia.org>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
+# Copyright 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
+# Copyright 2012-15 Agile Business Group sagl (<http://www.agilebg.com>)
+# Copyright 2015 Associazione Odoo Italia (<http://www.odoo-italia.org>)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import math
-from datetime import datetime
 from odoo import models, fields, api
 from odoo.tools.translate import _
 from odoo.exceptions import UserError
 import odoo.addons.decimal_precision as dp
-from odoo.tools import float_is_zero, DEFAULT_SERVER_DATE_FORMAT
+from odoo.tools import float_is_zero
 
 
 class AccountVatPeriodEndStatement(models.Model):
@@ -115,7 +96,9 @@ class AccountVatPeriodEndStatement(models.Model):
         return company.of_account_end_vat_statement_interest_percent
 
     _name = "account.vat.period.end.statement"
+    _description = "VAT period end statement"
     _rec_name = 'date'
+
     debit_vat_account_line_ids = fields.One2many(
         'statement.debit.account.line', 'statement_id', 'Debit VAT',
         help='The accounts containing the debit VAT amount to write-off',
@@ -286,8 +269,7 @@ class AccountVatPeriodEndStatement(models.Model):
         for statement in self:
             if statement.date_range_ids:
                 date = min([x.date_start for x in statement.date_range_ids])
-                statement.update({'fiscal_year': datetime.strptime(
-                    date, DEFAULT_SERVER_DATE_FORMAT).year})
+                statement.update({'fiscal_year': date.year})
 
     @api.multi
     def _write(self, vals):
@@ -327,9 +309,10 @@ class AccountVatPeriodEndStatement(models.Model):
     def create_move(self):
         move_obj = self.env['account.move']
         for statement in self:
+            statement_date = fields.Date.to_string(statement.date)
             move_data = {
-                'name': _('VAT statement') + ' - ' + statement.date,
-                'date': statement.date,
+                'name': _('VAT statement') + ' - ' + statement_date,
+                'date': statement_date,
                 'journal_id': statement.journal_id.id,
             }
             move = move_obj.create(move_data)
@@ -346,7 +329,7 @@ class AccountVatPeriodEndStatement(models.Model):
                         'journal_id': statement.journal_id.id,
                         'debit': 0.0,
                         'credit': 0.0,
-                        'date': statement.date,
+                        'date': statement_date,
                         'company_id': statement.company_id.id,
                     }
 
@@ -365,7 +348,7 @@ class AccountVatPeriodEndStatement(models.Model):
                         'journal_id': statement.journal_id.id,
                         'debit': 0.0,
                         'credit': 0.0,
-                        'date': statement.date,
+                        'date': statement_date,
                         'company_id': statement.company_id.id,
                     }
                     if credit_line.amount < 0:
@@ -384,7 +367,7 @@ class AccountVatPeriodEndStatement(models.Model):
                     'journal_id': statement.journal_id.id,
                     'debit': 0.0,
                     'credit': 0.0,
-                    'date': statement.date,
+                    'date': statement_date,
                     'company_id': statement.company_id.id,
                 }
                 if statement.previous_credit_vat_amount < 0:
@@ -403,7 +386,7 @@ class AccountVatPeriodEndStatement(models.Model):
                     'journal_id': statement.journal_id.id,
                     'debit': 0.0,
                     'credit': 0.0,
-                    'date': statement.date,
+                    'date': statement_date,
                     'company_id': statement.company_id.id,
                 }
                 if statement.tax_credit_amount < 0:
@@ -422,7 +405,7 @@ class AccountVatPeriodEndStatement(models.Model):
                     'journal_id': statement.journal_id.id,
                     'debit': 0.0,
                     'credit': 0.0,
-                    'date': statement.date,
+                    'date': statement_date,
                     'company_id': statement.company_id.id,
                 }
                 if statement.previous_debit_vat_amount > 0:
@@ -441,7 +424,7 @@ class AccountVatPeriodEndStatement(models.Model):
                     'journal_id': statement.journal_id.id,
                     'debit': 0.0,
                     'credit': 0.0,
-                    'date': statement.date,
+                    'date': statement_date,
                     'company_id': statement.company_id.id,
                 }
                 if statement.interests_debit_vat_amount > 0:
@@ -460,7 +443,7 @@ class AccountVatPeriodEndStatement(models.Model):
                     'journal_id': statement.journal_id.id,
                     'debit': 0.0,
                     'credit': 0.0,
-                    'date': statement.date,
+                    'date': statement_date,
                     'company_id': statement.company_id.id,
                 }
                 if generic_line.amount < 0:
@@ -475,7 +458,7 @@ class AccountVatPeriodEndStatement(models.Model):
                 'partner_id': statement.authority_partner_id.id,
                 'move_id': move_id,
                 'journal_id': statement.journal_id.id,
-                'date': statement.date,
+                'date': statement_date,
                 'company_id': statement.company_id.id,
             }
             if statement.authority_vat_amount > 0:
@@ -484,7 +467,7 @@ class AccountVatPeriodEndStatement(models.Model):
                     statement.authority_vat_amount)
                 if statement.payment_term_id:
                     due_list = statement.payment_term_id.compute(
-                        statement.authority_vat_amount, statement.date)[0]
+                        statement.authority_vat_amount, statement_date)[0]
                     for term in due_list:
                         current_line = end_debit_vat_data
                         current_line['credit'] = term[1]
@@ -643,6 +626,8 @@ class AccountVatPeriodEndStatement(models.Model):
 
 class StatementDebitAccountLine(models.Model):
     _name = 'statement.debit.account.line'
+    _description = "VAT Statement debit account line"
+
     account_id = fields.Many2one(
         'account.account', 'Account', required=True
     )
@@ -659,6 +644,8 @@ class StatementDebitAccountLine(models.Model):
 
 class StatementCreditAccountLine(models.Model):
     _name = 'statement.credit.account.line'
+    _description = "VAT Statement credit account line"
+
     account_id = fields.Many2one(
         'account.account', 'Account', required=True
     )
@@ -675,6 +662,8 @@ class StatementCreditAccountLine(models.Model):
 
 class StatementGenericAccountLine(models.Model):
     _name = 'statement.generic.account.line'
+    _description = "VAT Statement generic account line"
+
     account_id = fields.Many2one(
         'account.account', 'Account', required=True
     )
