@@ -15,9 +15,16 @@ from odoo import api, models, _
 
 _logger = logging.getLogger(__name__)
 
-FATTURAPA_IN_REGEX = "^[A-Z]{2}[a-zA-Z0-9]{11,16}_[a-zA-Z0-9]{,5}.(xml|zip)"
-RESPONSE_MAIL_REGEX = '[A-Z]{2}[a-zA-Z0-9]{11,16}_[a-zA-Z0-9]{,5}_MT_' \
-                      '[a-zA-Z0-9]{,3}'
+FATTURAPA_IN_REGEX = '^(IT[a-zA-Z0-9]{11,16}|'\
+                     '(?!IT)[A-Z]{2}[a-zA-Z0-9]{2,28})'\
+                     '_[a-zA-Z0-9]{1,5}[.](xml|XML|zip|ZIP)$'
+RESPONSE_MAIL_REGEX = '(IT[a-zA-Z0-9]{11,16}|'\
+                      '(?!IT)[A-Z]{2}[a-zA-Z0-9]{2,28})'\
+                      '_[a-zA-Z0-9]{1,5}'\
+                      '_MT_[a-zA-Z0-9]{,3}'
+
+fatturapa_regex = re.compile(FATTURAPA_IN_REGEX)
+response_regex = re.compile(RESPONSE_MAIL_REGEX)
 
 
 class MailThread(models.AbstractModel):
@@ -39,11 +46,8 @@ class MailThread(models.AbstractModel):
         ):
             _logger.info("Processing FatturaPA PEC with Message-Id: "
                          "{}".format(message.get('Message-Id')))
-
-            fatturapa_regex = re.compile(FATTURAPA_IN_REGEX)
             fatturapa_attachments = [x for x in message_dict['attachments']
                                      if fatturapa_regex.match(x.fname)]
-            response_regex = re.compile(RESPONSE_MAIL_REGEX)
             response_attachments = [x for x in message_dict['attachments']
                                     if response_regex.match(x.fname)]
             if response_attachments and fatturapa_attachments:
@@ -174,7 +178,6 @@ class MailThread(models.AbstractModel):
 
     def create_fatturapa_attachment_in(self, attachment):
         decoded = base64.b64decode(attachment.datas)
-        fatturapa_regex = re.compile(FATTURAPA_IN_REGEX)
         fatturapa_attachment_in = self.env['fatturapa.attachment.in']
         fetchmail_server_id = self.env.context.get('fetchmail_server_id')
         company_id = False
