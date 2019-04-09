@@ -1,10 +1,7 @@
-#
-#    Copyright (C) 2015 Agile Business Group <http://www.agilebg.com>
-#    About License, see __openerp__.py
-#
+#  Copyright 2015 Agile Business Group <http://www.agilebg.com>
+#  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 from datetime import datetime
 from dateutil.rrule import MONTHLY
 
@@ -89,7 +86,7 @@ class TestTax(TransactionCase):
         self.term_line_model.create({
             'value': 'balance',
             'days': 16,
-            'option': 'fix_day_following_month',
+            'option': 'after_invoice_month',
             'payment_id': self.account_payment_term.id,
             })
         self.sale_journal = self.env['account.journal'].search(
