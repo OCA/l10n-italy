@@ -1,20 +1,21 @@
-#    Copyright (C) 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
-#    Copyright (C) 2012-17 Agile Business Group (<http://www.agilebg.com>)
-#    Copyright (C) 2012-15 LinkIt Spa (<http://http://www.linkgroup.it>)
-#    Copyright (C) 2015 Associazione Odoo Italia
-#    (<http://www.odoo-italia.org>).
+#  Copyright 2011-2012 Domsense s.r.l. (<http://www.domsense.com>)
+#  Copyright 2012-17 Agile Business Group (<http://www.agilebg.com>)
+#  Copyright 2012-15 LinkIt Spa (<http://http://www.linkgroup.it>)
+#  Copyright 2015 Associazione Odoo Italia (<http://www.odoo-italia.org>)
+#  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    "name": "Liquidazione IVA",
-    "version": "11.0.1.0.0",
+    "name": "ITA - Liquidazione IVA",
+    "version": "12.0.1.0.0",
     'category': 'Localization/Italy',
+    'summary': "Allow to create the 'VAT Statement'.",
     'license': 'AGPL-3',
     "author": "Agile Business Group, Odoo Community Association (OCA)"
               ", LinkIt Spa",
-    'website': 'https://github.com/OCA/l10n-italy/tree/11.0/'
+    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
                'account_vat_period_end_statement',
     "depends": [
-        "account_invoicing",
+        "account",
         "account_tax_balance",
         "date_range",
         "l10n_it_account",
