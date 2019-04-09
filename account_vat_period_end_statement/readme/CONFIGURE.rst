@@ -1,40 +1,40 @@
 **Italiano**
 
     Per generare i periodi della dichiarazione IVA,
-    aprire Impostazioni > Funzioni Tecniche > Intervalli date > Genera intervalli Date e seleziona:
+    aprire Impostazioni > Fatturazione > Configurazione > Intervalli data > Generazione intervalli data e selezionare:
 
-    * Prefisso: Prefisso identificativo dell'anno dei periodi da generare
-    * Durata: 1 mese
-    * Numero di intervalli da generare: 12
-    * Tipo: Creare un tipo o utilizzarne uno esistente, non è richiesta una configurazione perticolare per il tipo
-    * Data di inizio: primo giorno dell'anno dei periodi da generare (ad esempio 01/01/2018)
+    * prefisso nome intervallo: prefisso identificativo per i periodi da generare (tipicamente l'anno)
+    * durata: 1 mese
+    * numero di intervalli da generare: 12
+    * tipo: creare un tipo o utilizzarne uno esistente, non è richiesta una configurazione particolare
+    * data iniziale: primo giorno del primo periodo che sarà generato (tipicamente il primo giorno dell'anno i.e. 01/01/2018)
 
-    Per caricare l'importo corretto, una tassa deve essere associata al conto utilizzato nella liquidazione.
-    Questa configurazione può essere fatta per ogni tassa:
-    aprire la tassa da Fatturazione > Configurazione > Contabilità > Imposte,
-    quindi nel tab 'Opzioni avanzate' selezionare il conto corretto (ad esempio IVA debito)
-    per il campo 'Conto utilizzato per la liquidazione IVA'.
+    Per caricare l'importo corretto, un'imposta deve essere associata al conto utilizzato nella liquidazione:
+
+    #. aprire l'imposta da Fatturazione > Configurazione > Contabilità > Imposte,
+    #. nella scheda 'Opzioni avanzate' selezionare il conto corretto (ad esempio IVA debito)
+       per il campo 'Conto utilizzato per la liquidazione IVA'.
 
     Per calcolare gli interessi, è possibile aggiungere le informazioni da utilizzare (conto e percentuale)
-    nei dati aziendali, nel tab Liquidazione IVA.
+    nei dati aziendali, nella scheda 'Liquidazione IVA'.
 
 **English**
 
     In order to generate VAT statement's periods,
-    open Settings > Technical > Date ranges > Generate Date Ranges and select:
+    open Accounting > Configuration > Date ranges > Generate Date Ranges and select:
 
-    * Prefix: Prefix identiying the year of the periods to be generated
-    * Duration: 1 month
-    * Number of ranges to generate: 12
-    * Type: Create a type or use an existing one, no specific type's configuration is required
-    * Date start: first day of the period's year (for instance 01/01/2018)
+    * range name prefix: prefix identifying the periods to be generated (usually the year)
+    * duration: 1 month
+    * number of ranges to generate: 12
+    * type: create a type or use an existing one, no specific configuration is required
+    * date start: first day of the first period to be generated (usually the first day of the year e.g. 01/01/2018)
 
     In order to load the correct amount from tax, the tax has to be
-    associated to the account involved in the statement.
-    This configuration can be performed for each tax: open a tax in
-    Accounting > Configuration > Accounting > Taxes, then in the tab Advanced options
-    select the correct account (for instance the account debit VAT)
-    for the field 'Account used for VAT statement'.
+    associated to the account involved in the statement:
+
+    #. open a tax in Accounting > Configuration > Accounting > Taxes,
+    #. in the tab 'Advanced Options' select the correct account (for instance the account debit VAT)
+       for the field 'Account used for VAT statement'.
 
     If you need to calculate interest, you can add default information in your
-    company data (percentage and account), in the VAT statement tab.
+    company data (percentage and account), in the 'VAT statement' tab.
