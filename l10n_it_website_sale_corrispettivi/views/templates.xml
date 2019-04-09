@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Simone Rubino - Agile Business Group
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+    <template id="assets_frontend" inherit_id="website.assets_frontend">
+        <xpath expr="script[last()]" position="after">
+            <script type="text/javascript"
+                    src="/l10n_it_website_sale_corrispettivi/static/src/js/l10n_it_website_sale_corrispettivi.js"/>
+        </xpath>
+    </template>
+    <template id="address" inherit_id="l10n_it_website_sale_fatturapa.address">
+        <xpath expr="//div[hasclass('div_electronic_invoice_subjected')]" position="before">
+            <div t-attf-class="col-lg-12" t-if="mode[1] != 'shipping'">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="use_invoice"
+                               t-att-checked="'use_corrispettivi' in checkout and not checkout['use_corrispettivi']"/>
+                        Request invoice
+                    </label>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
