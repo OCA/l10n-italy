@@ -6,8 +6,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Italian Localization - Registro REA',
-    'version': '12.0.1.0.1',
+    'name': 'ITA - Registro REA',
+    'version': '12.0.1.0.2',
     'category': 'Localisation/Italy',
     'development_status': 'Production/Stable',
     'summary': 'Gestisce i campi del Repertorio Economico Amministrativo',
