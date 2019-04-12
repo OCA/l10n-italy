@@ -19,6 +19,6 @@ class ResPartner(models.Model):
          ('LN', 'Not in liquidation')], 'Liquidation State')
 
     _sql_constraints = [
-        ('rea_code_uniq', 'unique (rea_code, company_id)',
+        ('rea_code_uniq', 'unique (rea_office, rea_code, company_id)',
          'The rea code code must be unique per company !'),
     ]
