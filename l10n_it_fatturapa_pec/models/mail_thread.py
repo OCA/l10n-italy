@@ -17,7 +17,9 @@ _logger = logging.getLogger(__name__)
 
 FATTURAPA_IN_REGEX = '^(IT[a-zA-Z0-9]{11,16}|'\
                      '(?!IT)[A-Z]{2}[a-zA-Z0-9]{2,28})'\
-                     '_[a-zA-Z0-9]{1,5}[.](xml|XML|zip|ZIP)$'
+                     '_[a-zA-Z0-9]{1,5}'\
+                     '\\.(xml|XML|Xml|zip|ZIP|Zip|p7m|P7M|P7m)'\
+                     '(\\.(p7m|P7M|P7m))?$'
 RESPONSE_MAIL_REGEX = '(IT[a-zA-Z0-9]{11,16}|'\
                       '(?!IT)[A-Z]{2}[a-zA-Z0-9]{2,28})'\
                       '_[a-zA-Z0-9]{1,5}'\
