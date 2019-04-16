@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Weblate 3.4\n"
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:124
+#: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:130
 #, python-format
 msgid ""
 "<p>PEC message with Message-Id %s has been read but not processed, as not "
@@ -203,7 +203,7 @@ msgid "PEC error count"
 msgstr "Numero errori PEC"
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:121
+#: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:127
 #, python-format
 msgid "PEC message [%s] not processed"
 msgstr "Messaggio PEC [%s] non elaborato"
