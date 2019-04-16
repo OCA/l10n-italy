@@ -6,7 +6,7 @@
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 {
-    'name': 'Italian Localization - FatturaPA - Emission - PEC Support',
+    'name': 'ITA - Fattura elettronica - Supporto PEC',
     'version': '11.0.1.0.1',
     "development_status": "Beta",
     'category': 'Localization/Italy',
