@@ -116,6 +116,7 @@ class AccountInvoice(models.Model):
 
     def compute_rc_amount_tax(self):
         rc_amount_tax = 0.0
+        round_curr = self.currency_id.round
         rc_lines = self.invoice_line_ids.filtered(lambda l: l.rc)
         for rc_line in rc_lines:
             price_unit = \
@@ -128,14 +129,18 @@ class AccountInvoice(models.Model):
                 partner=rc_line.partner_id)['taxes']
             rc_amount_tax += sum([tax['amount'] for tax in taxes])
 
-        # convert the amount to main company currency
-        invoice_currency = self.currency_id
-        main_currency = self.company_currency_id
+        # convert the amount to main company currency, as
+        # compute_rc_amount_tax is used for debit/credit fields
+        invoice_currency = self.currency_id.with_context(
+            date=self.date_invoice)
+        main_currency = self.company_currency_id.with_context(
+            date=self.date_invoice)
         if invoice_currency != main_currency:
-            amount_rc_tax = invoice_currency.compute(
-                amount_rc_tax, main_currency)
+            round_curr = main_currency.round
+            rc_amount_tax = invoice_currency.compute(
+                rc_amount_tax, main_currency)
 
-        return amount_rc_tax
+        return round_curr(rc_amount_tax)
 
     def rc_credit_line_vals(self, journal):
         credit = debit = 0.0
@@ -156,18 +161,17 @@ class AccountInvoice(models.Model):
 
     def rc_debit_line_vals(self, amount=None):
         credit = debit = 0.0
-        amount_rc_tax = self.compute_rc_amount_tax()
 
         if self.type == 'in_invoice':
             if amount:
                 debit = amount
             else:
-                debit = amount_rc_tax
+                debit = self.compute_rc_amount_tax()
         else:
             if amount:
                 credit = amount
             else:
-                credit = amount_rc_tax
+                credit = self.compute_rc_amount_tax()
         return {
             'name': self.number,
             'debit': debit,
@@ -227,7 +231,7 @@ class AccountInvoice(models.Model):
         payment_credit_line_data = self.rc_payment_credit_line_vals(
             rc_invoice)
         payment_debit_line_data = self.rc_debit_line_vals(
-            self.amount_total)
+            payment_credit_line_data['credit'])
         rc_payment.line_ids = [
             (0, 0, payment_debit_line_data),
             (0, 0, payment_credit_line_data),
