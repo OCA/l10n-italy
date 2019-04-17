@@ -142,7 +142,7 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                     <Provincia>CN</Provincia>
                     <Nazione>IT</Nazione>
                 </IndirizzoResa>
-                <DataOraConsegna>2012-10-22T16:46:12.000+02:00</DataOraConsegna>
+                <DataOraConsegna>0001-01-01T00:00:00.000+02:00</DataOraConsegna>
             </DatiTrasporto>
         </DatiGenerali>
         <DatiBeniServizi>
