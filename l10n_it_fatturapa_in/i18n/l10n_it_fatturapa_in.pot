@@ -19,6 +19,11 @@ msgid "Administration Reference"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
+msgid "Amount Summary"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_cod_article_ids
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
 msgid "Articles Code"
@@ -41,7 +46,7 @@ msgid "Attachment URL"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/attachment.py:72
+#: code:addons/l10n_it_fatturapa_in/models/attachment.py:81
 #, python-format
 msgid "Attachment without name"
 msgstr ""
@@ -68,7 +73,7 @@ msgid "Bill"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1163
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1157
 #, python-format
 msgid "Bill total %s is different from document total amount %s"
 msgstr ""
@@ -126,7 +131,7 @@ msgid "Company Name field contains '%s'. Your System contains '%s'"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1178
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1172
 #, python-format
 msgid "Computed amount untaxed %s is different from summary data %s"
 msgstr ""
@@ -227,6 +232,27 @@ msgid "Document type %s not handled."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice_e_invoice_validation_error
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in_e_invoice_validation_error
+msgid "E invoice validation error"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice_e_invoice_amount_tax
+msgid "E-Invoice Tax Amount"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice_e_invoice_amount_total
+msgid "E-Invoice Total Amount"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice_e_invoice_amount_untaxed
+msgid "E-Invoice Untaxed Amount"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model,name:l10n_it_fatturapa_in.model_fatturapa_article_code
 msgid "E-bill Article Code"
 msgstr ""
@@ -297,9 +323,14 @@ msgid "File Size"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1201
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1195
 #, python-format
 msgid "File is linked to bills yet."
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice_e_invoice_force_validation
+msgid "Force E-Invoice Validation"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -517,6 +548,11 @@ msgid "Number Reference"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
+msgid "One or more invoice doesn't match the amount (tax or untaxed or total) of the original e-invoice. Please check"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data_ids
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
 msgid "Other Administrative Data"
@@ -719,6 +755,17 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in_res_model
 msgid "The database object this attachment will be attached to."
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: code:addons/l10n_it_fatturapa_in/models/account.py:39
+#, python-format
+msgid "The invoice '%s' doesn't match the related e-invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
+msgid "The invoice doesn't match one of the amount untaxed, tax amount or total amount of the original e-invoice. Please check"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
