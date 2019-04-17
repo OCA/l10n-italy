@@ -8,7 +8,7 @@
 {
 
     'name': 'Italian Localization - FatturaPA - Emission - PEC Support',
-    'version': '11.0.1.0.1',
+    'version': '11.0.1.0.2',
     "development_status": "Beta",
     'category': 'Localization/Italy',
     'summary': 'Invio fatture elettroniche tramite PEC',
