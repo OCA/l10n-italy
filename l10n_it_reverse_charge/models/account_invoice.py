@@ -67,6 +67,7 @@ class AccountInvoice(models.Model):
             'uom_id': line.product_id.uom_id.id,
             'price_unit': line.price_unit,
             'quantity': line.quantity,
+            'discount': line.discount,
             }
 
     def rc_inv_vals(self, partner, account, rc_type, lines, currency):
