@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -14,13 +14,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_website_portal_fiscalcode
-#: code:addons/l10n_it_website_portal_fiscalcode/controllers/main.py:25
-#, python-format
-msgid "Fiscal Code not valid"
+#: model_terms:ir.ui.view,arch_db:l10n_it_website_portal_fiscalcode.fiscalcode_details
+msgid "Fiscal Code"
 msgstr ""
 
 #. module: l10n_it_website_portal_fiscalcode
-#: model:ir.ui.view,arch_db:l10n_it_website_portal_fiscalcode.fiscalcode_details
-msgid "Your Fiscal Code"
+#: code:addons/l10n_it_website_portal_fiscalcode/controllers/main.py:23
+#, python-format
+msgid "Fiscal Code not valid"
 msgstr ""
 
