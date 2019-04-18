@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:129
+#: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:131
 #, python-format
 msgid "<p>PEC message with Message-Id %s has been read but not processed, as not related to an e-invoice.</p><p>Please check PEC mailbox %s, at server %s, with user %s</p>"
 msgstr ""
@@ -193,7 +193,7 @@ msgid "PEC error count"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:126
+#: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:128
 #, python-format
 msgid "PEC message [%s] not processed"
 msgstr ""
