@@ -42,7 +42,7 @@ addon | version | summary
 [l10n_it_fatturapa_out_stamp](l10n_it_fatturapa_out_stamp/) | 10.0.1.0.1 | Modulo ponte tra emissione fatture elettroniche e imposta di bollo
 [l10n_it_fatturapa_out_triple_discount](l10n_it_fatturapa_out_triple_discount/) | 10.0.1.0.0 | Modulo ponte tra emissione fatture elettroniche e sconto triplo
 [l10n_it_fatturapa_out_wt](l10n_it_fatturapa_out_wt/) | 10.0.1.0.0 | Modulo ponte tra emissione fatture elettroniche e ritenute.
-[l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 10.0.1.5.2 | Invio fatture elettroniche tramite PEC
+[l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 10.0.1.5.3 | Invio fatture elettroniche tramite PEC
 [l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 10.0.1.1.0 | Italian Localization - Tipi di documento fiscale per dichiarativi
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 10.0.1.0.0 | Electronic invoices payment
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 10.0.1.3.0 | Italian Localisation - Fiscal Code
