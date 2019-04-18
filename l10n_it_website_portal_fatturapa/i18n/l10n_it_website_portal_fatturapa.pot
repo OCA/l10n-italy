@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -14,33 +14,33 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_website_portal_fatturapa
-#: model:ir.ui.view,arch_db:l10n_it_website_portal_fatturapa.fatturapa_details
+#: model_terms:ir.ui.view,arch_db:l10n_it_website_portal_fatturapa.fatturapa_details
 msgid "Addressee code"
 msgstr ""
 
 #. module: l10n_it_website_portal_fatturapa
-#: code:addons/l10n_it_website_portal_fatturapa/controllers/main.py:70
+#: code:addons/l10n_it_website_portal_fatturapa/controllers/main.py:69
 #, python-format
 msgid "At least one of first name and last name is required"
 msgstr ""
 
 #. module: l10n_it_website_portal_fatturapa
-#: model:ir.ui.view,arch_db:l10n_it_website_portal_fatturapa.fatturapa_details
+#: model_terms:ir.ui.view,arch_db:l10n_it_website_portal_fatturapa.fatturapa_details
 msgid "I request to receive electronic invoices"
 msgstr ""
 
 #. module: l10n_it_website_portal_fatturapa
-#: model:ir.ui.view,arch_db:l10n_it_website_portal_fatturapa.fatturapa_details
+#: model_terms:ir.ui.view,arch_db:l10n_it_website_portal_fatturapa.fatturapa_details
 msgid "Or PEC address for Electronic invoicing"
 msgstr ""
 
 #. module: l10n_it_website_portal_fatturapa
-#: model:ir.ui.view,arch_db:l10n_it_website_portal_fatturapa.fatturapa_details
+#: model_terms:ir.ui.view,arch_db:l10n_it_website_portal_fatturapa.fatturapa_details
 msgid "Your First Name"
 msgstr ""
 
 #. module: l10n_it_website_portal_fatturapa
-#: model:ir.ui.view,arch_db:l10n_it_website_portal_fatturapa.fatturapa_details
+#: model_terms:ir.ui.view,arch_db:l10n_it_website_portal_fatturapa.fatturapa_details
 msgid "Your Last Name"
 msgstr ""
 
