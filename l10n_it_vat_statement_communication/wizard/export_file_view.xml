@@ -8,26 +8,26 @@
             <form string="Export File">
                 <div>
                     <p>
-                    Clicca su <strong>Esporta</strong> per generare il file della comunicazione liquidazione IVA.
+                    Click on <strong>Export</strong> to generate VAT statement communication file.
                     </p>
                 </div>
                 <footer>
                     <button name="export"
-                            string="Esporta"
+                            string="Export"
                             type="object"
                             class="oe_highlight"  />
                     o
-                    <button string="Annulla" class="oe_link" special="cancel" />
+                    <button string="Cancel" class="oe_link" special="cancel" />
                 </footer>
             </form>
         </field>
     </record>
 
     <record id="wizard_liquidazione_export_file_exit" model="ir.ui.view">
-        <field name="name">Export file - Eseguito</field>
+        <field name="name">Export file - Done</field>
         <field name="model">comunicazione.liquidazione.export.file</field>
         <field name="arch" type="xml">
-            <form string="Esporta">
+            <form string="Export">
                 <group>
                     <field name="file_export" readonly="1" filename="name"/>
                 </group>
@@ -36,7 +36,7 @@
     </record>
 
     <record id="action_liquidazione_export_file" model="ir.actions.act_window">
-        <field name="name">Export file comunicazione liquidazione IVA</field>
+        <field name="name">Export VAT statement communication file</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">comunicazione.liquidazione.export.file</field>
         <field name="view_type">form</field>
@@ -46,7 +46,7 @@
     </record>
 
     <record model="ir.values" id="value_wizard_liquidazione_export_file">
-        <field name="name">Esporta file comunicazione</field>
+        <field name="name">Export communication file</field>
         <field name="key2">client_action_multi</field>
         <field name="value" eval="'ir.actions.act_window,' + str(ref('action_liquidazione_export_file'))" />
         <field name="key">action</field>

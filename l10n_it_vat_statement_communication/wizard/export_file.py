@@ -6,7 +6,7 @@ from odoo import api, fields, models, exceptions
 
 class ComunicazioneLiquidazioneExportFile(models.TransientModel):
     _name = "comunicazione.liquidazione.export.file"
-    _description = "Export file xml della comunicazione della liquidazione IVA"
+    _description = "Export VAT statement communication XML file"
 
     file_export = fields.Binary('File', readonly=True)
     name = fields.Char('File Name', readonly=True, default='liquidazione.xml')
@@ -33,7 +33,7 @@ class ComunicazioneLiquidazioneExportFile(models.TransientModel):
                 wizard.file_export = out
             model_data_obj = self.env['ir.model.data']
             view_rec = model_data_obj.get_object_reference(
-                'l10n_it_comunicazione_liquidazione_iva',
+                'l10n_it_vat_statement_communication',
                 'wizard_liquidazione_export_file_exit'
             )
             view_id = view_rec and view_rec[1] or False
