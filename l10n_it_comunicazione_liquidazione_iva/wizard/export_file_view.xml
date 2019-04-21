@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="wizard_liquidazione_export_file" model="ir.ui.view">
+        <field name="name">Export file</field>
+        <field name="model">comunicazione.liquidazione.export.file</field>
+        <field name="arch" type="xml">
+            <form string="Export File">
+                <div>
+                    <p>
+                    Clicca su <strong>Esporta</strong> per generare il file della comunicazione liquidazione IVA.
+                    </p>
+                </div>
+                <footer>
+                    <button name="export"
+                            string="Esporta"
+                            type="object"
+                            class="oe_highlight"  />
+                    o
+                    <button string="Annulla" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="wizard_liquidazione_export_file_exit" model="ir.ui.view">
+        <field name="name">Export file - Eseguito</field>
+        <field name="model">comunicazione.liquidazione.export.file</field>
+        <field name="arch" type="xml">
+            <form string="Esporta">
+                <group>
+                    <field name="file_export" readonly="1" filename="name"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_liquidazione_export_file" model="ir.actions.act_window">
+        <field name="name">Export file comunicazione liquidazione IVA</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">comunicazione.liquidazione.export.file</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_liquidazione_export_file"/>
+        <field name="target">new</field>
+    </record>
+
+    <record model="ir.values" id="value_wizard_liquidazione_export_file">
+        <field name="name">Esporta file comunicazione</field>
+        <field name="key2">client_action_multi</field>
+        <field name="value" eval="'ir.actions.act_window,' + str(ref('action_liquidazione_export_file'))" />
+        <field name="key">action</field>
+        <field name="model">comunicazione.liquidazione</field>
+    </record>
+
+</odoo>

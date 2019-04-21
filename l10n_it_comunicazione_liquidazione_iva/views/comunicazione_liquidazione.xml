@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_comunicazione_liquidazione_tree" model="ir.ui.view">
+        <field name="name">comunicazione.liquidazione.tree</field>
+        <field name="model">comunicazione.liquidazione</field>
+        <field name="arch" type="xml">
+            <tree string="Comunicazioni Liquidazione">
+                <field name="name"/>
+                <field name="identificativo"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_comunicazione_liquidazione_form" model="ir.ui.view">
+        <field name="name">comunicazione.liquidazione.form</field>
+        <field name="model">comunicazione.liquidazione</field>
+        <field name="arch" type="xml">
+            <form string="Comunicazione Liquidazione">
+                <sheet>
+                    <group name="company">
+                        <group>
+                        <field name="company_id" widget="selection"/>
+                        </group>
+                        <group>
+                        <field name="identificativo"/>
+                        </group>
+                    </group>
+                    <newline/>
+                    <notebook>
+                        <page string="Frontespizio" name="frontespizio">
+                            <group string="Dati generali" name="dati_generali">
+                                <field name="year"/>
+                                <field name="declarant_different"/>
+                            </group>
+                            <newline/>
+                            <group>
+                                <group string="Contribuente" name="contribuente">
+                                    <field name="taxpayer_vat"/>
+                                    <field name="taxpayer_fiscalcode"/>
+                                    <field name="controller_vat"/>
+                                    <field name="last_month"/>
+                                    <field name="liquidazione_del_gruppo"/>
+                                </group>
+                                <group string="Dichiarante" name="dichiarante"
+                                   attrs="{'invisible': [('declarant_different', '!=', True)]}">
+                                    <field name="declarant_fiscalcode"
+                                       attrs="{'required': [('declarant_different', '=', True)]}"/>
+                                    <field name="codice_carica_id"
+                                       attrs="{'required': [('declarant_different', '=', True)]}"/>
+                                    <field name="declarant_fiscalcode_company"/>
+                                </group>
+                            </group>
+                            <newline/>
+                            <group string="Firma" name="firma">
+                                <field name="declarant_sign"
+                                attrs="{'required': [('declarant_fiscalcode', '!=', True)]}"/>
+                            </group>
+                            <group string="Impegno alla presentazione telematica" name="impegno_presentazione">
+                                <group>
+                                    <field name="delegate_fiscalcode"/>
+                                    <field name="delegate_commitment"
+                                       attrs="{'required': [('delegate_fiscalcode', '!=', False)]}"/>
+                                    <field name="date_commitment"
+                                       attrs="{'required': [('delegate_fiscalcode', '!=', False)]}"/>
+                                    <field name="delegate_sign"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Quadro VP" name="quadro_vp">
+                            <group>
+                                <field name="quadri_vp_ids" nolabel="1">
+                                   <tree>
+                                       <field name="period_type"/>
+                                       <field name="month"/>
+                                       <field name="quarter"/>
+                                       <field name="iva_da_versare"/>
+                                       <field name="iva_a_credito"/>
+                                   </tree>
+                                </field>
+                            </group>
+                        </page>
+
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_comunicazione_liquidazione" model="ir.actions.act_window">
+        <field name="name">Comunicazione Liquidazione IVA</field>
+        <field name="res_model">comunicazione.liquidazione</field>
+        <field name="view_id" ref="view_comunicazione_liquidazione_tree"/>
+    </record>
+
+    <menuitem id="menu_comunicazione_liquidazione" name="Comunicazione Liquidazione IVA"
+        action="action_comunicazione_liquidazione"
+        parent="account.menu_finance_entries" sequence="50"/>
+
+    <record id="view_comunicazione_liquidazione_vp_form" model="ir.ui.view">
+        <field name="name">comunicazione.liquidazione.vp.form</field>
+        <field name="model">comunicazione.liquidazione.vp</field>
+        <field name="arch" type="xml">
+            <form string="Quadro VP">
+                <group string="Periodo di Riferimento" name="periodo">
+                    <group>
+                        <field name="period_type"/>
+                        <field name="month"
+                            attrs="{'invisible': [('period_type', '!=', 'month')],
+                                    'required': [('period_type', '=', 'month')]}"/>
+                        <field name="quarter"
+                            attrs="{'invisible': [('period_type', '!=', 'quarter')],
+                                    'required': [('period_type', '=', 'quarter')]}"/>
+                    </group>
+                    <group>
+                        <field name="subcontracting"/>
+                        <field name="exceptional_events"/>
+                    </group>
+                </group>
+                <newline/>
+                <group string="Liquidazione dell'imposta" name="liquidazione_imposta" col="3">
+                    <hr colspan="3"/>
+                    <group><div><b>VP2</b> Totale operazioni attive (al netto dell’IVA)</div></group>
+                    <group><field name="imponibile_operazioni_attive" nolabel="1"/></group>
+                    <group><div></div></group>
+
+                    <hr colspan="3"/>
+                    <group><div><b>VP3</b> Totale operazioni passive (al netto dell’IVA)</div></group>
+                    <group><div></div></group>
+                    <group><field name="imponibile_operazioni_passive" nolabel="1"/></group>
+
+                    <hr colspan="3"/>
+                    <group><div><b>VP4</b> IVA esigibile</div></group>
+                    <group><field name="iva_esigibile" nolabel="1"/></group>
+                    <group></group>
+
+                    <hr colspan="3"/>
+                    <group><div><b>VP5</b> IVA detratta</div></group>
+                    <group></group>
+                    <group><field name="iva_detratta" nolabel="1"/></group>
+
+                    <hr colspan="3"/>
+                    <group><div><b>VP6</b> IVA dovuta</div></group>
+                    <group><field name="iva_dovuta_debito" nolabel="1"/></group>
+                    <group><span> o a credito</span> <field name="iva_dovuta_credito" nolabel="1"/></group>
+
+                    <hr colspan="3"/>
+                    <group><div><b>VP7</b> Debito periodo precedente non superiore 25,82 euro</div></group>
+                    <group><field name="debito_periodo_precedente" nolabel="1"/></group>
+                    <group></group>
+
+                    <hr colspan="3"/>
+                    <group><div><b>VP8</b> Credito periodo precedente</div></group>
+                    <group></group>
+                    <group><field name="credito_periodo_precedente" nolabel="1"/></group>
+
+                    <hr colspan="3"/>
+                    <group><div><b>VP9</b> Credito anno precedente</div></group>
+                    <group></group>
+                    <group><field name="credito_anno_precedente" nolabel="1"/></group>
+
+                    <hr colspan="3"/>
+                    <group><div><b>VP10</b> Versamenti auto UE</div></group>
+                    <group></group>
+                    <group><field name="versamento_auto_UE" nolabel="1"/></group>
+
+                    <hr colspan="3"/>
+                    <group><div><b>VP11</b> Crediti d’imposta</div></group>
+                    <group></group>
+                    <group><field name="crediti_imposta" nolabel="1"/></group>
+
+                    <hr colspan="3"/>
+                    <group><div><b>VP12</b> Interessi dovuti per liquidazioni trimestrali</div></group>
+                    <group><field name="interessi_dovuti" nolabel="1"/></group>
+                    <group></group>
+
+                    <hr colspan="3"/>
+                    <group><div><b>VP13</b> Acconto dovuto</div></group>
+                    <group></group>
+                    <group><field name="accounto_dovuto" nolabel="1"/></group>
+
+                    <hr colspan="3"/>
+                    <group><div><b>VP14</b> IVA da versare</div></group>
+                    <group><field name="iva_da_versare" nolabel="1"/></group>
+                    <group><span> o a credito</span> <field name="iva_a_credito" nolabel="1"/></group>
+
+                </group>
+            </form>
+        </field>
+    </record>
+
+        
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>  
+
+        <record id="view_comunicazione_liquidazione_bridge_form" model="ir.ui.view">
+            <field name="name">comunicazione.liquidazione.bridge.form</field>
+            <field name="model">comunicazione.liquidazione.vp</field>
+            <field name="inherit_id" ref="l10n_it_comunicazione_liquidazione_iva.view_comunicazione_liquidazione_vp_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//group[@name='periodo']" position="before">
+                    <group>
+                        <field name="liquidazioni_ids"/>
+                    </group>
+                    <newline/>
+                    <group>
+                    </group>
+                    <group>
+                        <button name="compute_from_liquidazioni" string="Recompute" type="object"/>
+                    </group>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</openerp>
