@@ -13,14 +13,14 @@ NS_LOCATION = 'urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp'
 NS_MAP = {
     'iv': NS_IV,
     'xsi': NS_XSI,
-    #'schemaLocation': NS_LOCATION
 }
 etree.register_namespace("vi", NS_IV)
 
 
 class ComunicazioneLiquidazione(models.Model):
+    _inherit = ['mail.thread']
     _name = 'comunicazione.liquidazione'
-    _description = 'Comunicazione Liquidazione IVA'
+    _description = 'VAT statement communication'
 
     @api.model
     def _default_company(self):
@@ -65,36 +65,36 @@ class ComunicazioneLiquidazione(models.Model):
     company_id = fields.Many2one(
         'res.company', string='Company', required=True,
         default=_default_company)
-    identificativo = fields.Integer(string='Identificativo',
+    identificativo = fields.Integer(string='Identifier',
                                     default=_get_identificativo)
     name = fields.Char(string='Name', compute="_compute_name")
     year = fields.Integer(string='Year', required=True, size=4)
     last_month = fields.Integer(string='Last month')
-    liquidazione_del_gruppo = fields.Boolean(string='Liquidazione del gruppo')
+    liquidazione_del_gruppo = fields.Boolean(string='Group\'s statement')
     taxpayer_vat = fields.Char(string='Vat', required=True)
-    controller_vat = fields.Char(string='Controller Vat')
+    controller_vat = fields.Char(string='Controller TIN')
     taxpayer_fiscalcode = fields.Char(string='Fiscalcode')
     declarant_different = fields.Boolean(
         string='Declarant different from taxpayer')
     declarant_fiscalcode = fields.Char(string='Fiscalcode')
     declarant_fiscalcode_company = fields.Char(string='Fiscalcode company')
-    codice_carica_id = fields.Many2one('codice.carica', string='Codice carica')
+    codice_carica_id = fields.Many2one('codice.carica', string='Role code')
     declarant_sign = fields.Boolean(string='Declarant sign', default=True)
 
     delegate_fiscalcode = fields.Char(string='Fiscalcode')
     delegate_commitment = fields.Selection(
-        [('1', 'Comunicazione è stata predisposta dal contribuente '),
-         ('2', 'Comunicazione è stata predisposta da chi effettua l\'invio')],
+        [('1', 'Communication prepared by taxpayer'),
+         ('2', 'Communication prepared by sender')],
         string='Commitment')
     delegate_sign = fields.Boolean(string='Delegate sign')
     date_commitment = fields.Date(string='Date commitment')
     quadri_vp_ids = fields.One2many(
         'comunicazione.liquidazione.vp', 'comunicazione_id',
-        string="Quadri VP")
+        string="VP tables")
     iva_da_versare = fields.Float(
-        string='IVA da versare', readonly=True)
+        string='VAT to pay', readonly=True)
     iva_a_credito = fields.Float(
-        string='IVA a credito', readonly=True)
+        string='Credit VAT', readonly=True)
 
     @api.model
     def create(self, vals):
@@ -138,8 +138,8 @@ class ComunicazioneLiquidazione(models.Model):
         nr_modulo = 0
         for quadro in self.quadri_vp_ids:
             nr_modulo += 1
-            modulo = self.with_context(nr_modulo=nr_modulo)\
-                ._export_xml_get_dati_modulo(quadro)
+            modulo = self.with_context(
+                nr_modulo=nr_modulo)._export_xml_get_dati_modulo(quadro)
             x1_2_2_DatiContabili.append(modulo)
         x1_2_Comunicazione.append(x1_2_2_DatiContabili)
         # Composizione struttura xml con le varie sezioni generate
@@ -168,7 +168,7 @@ class ComunicazioneLiquidazione(models.Model):
 
         # Codice Fiscale dichiarante Obbligatorio se il codice fiscale
         # del contribuente è di 11 caratteri
-        if self.taxpayer_fiscalcode  and len(self.taxpayer_fiscalcode) == 11\
+        if self.taxpayer_fiscalcode and len(self.taxpayer_fiscalcode) == 11\
                 and not self.declarant_fiscalcode:
             raise ValidationError(
                 _("Declarant Fiscalcode is required. You can enable the \
@@ -181,40 +181,38 @@ class ComunicazioneLiquidazione(models.Model):
         if self.liquidazione_del_gruppo:
             if self.controller_vat:
                 raise ValidationError(
-                    _("Per liquidazione del gruppo, partita iva controllante\
-                     deve essere vuota"))
+                    _("For group's statement, controller's TIN must be empty"))
             if len(self.taxpayer_fiscalcode) == 16:
                 raise ValidationError(
-                    _("Liquidazione del gruppo non valida, visto il codice\
-                     fiscale di 16 caratteri"))
+                    _("Group's statement not valid, as fiscal code is 16 "
+                      "characters"))
         # CodiceCaricaDichiarante
         if self.declarant_fiscalcode:
             if not self.codice_carica_id:
                 raise ValidationError(
-                    _("Indicare il codice carica del dichiarante"))
+                    _("Specify role code of declarant"))
         # CodiceFiscaleSocieta:
         # Obbligatori per codice carica 9
         if self.codice_carica_id and self.codice_carica_id.code == '9':
             if not self.declarant_fiscalcode_company:
                 raise ValidationError(
-                    _("Visto il codice carica, occorre indicare il codice \
-                    fiscale della socità dichiarante"))
+                    _("With this role code, you need to specify fiscal code "
+                      "of declarant company"))
         # ImpegnoPresentazione::
         if self.delegate_fiscalcode:
             if not self.delegate_commitment:
                 raise ValidationError(
-                    _("Visto il codice fiscale dell'intermediario, occorre \
-                    indicare il codice l'impegno"))
+                    _("With intermediary fiscal code, you need to specify "
+                      "commitment code"))
             if not self.date_commitment:
                 raise ValidationError(
-                    _("Visto il codice fiscale dell'intermediario, occorre \
-                    indicare la data dell'impegno"))
+                    _("With intermediary fiscal code, you need to specify "
+                      "commitment date"))
         # ImpegnoPresentazione::
         if self.delegate_fiscalcode and not self.delegate_sign:
             raise ValidationError(
-                _("In presenza dell'incaricato nella sezione impegno \
-                    alla presentazione telematica, è necessario vistare \
-                    l'opzione firma dell'incaricato"))
+                _("With delegate in commitment section, you need to check "
+                  "'delegate sign'"))
         return True
 
     def _export_xml_get_fornitura(self):
@@ -306,7 +304,8 @@ class ComunicazioneLiquidazione(models.Model):
         # ImpegnoPresentazione
         if self.delegate_commitment:
             x1_2_1_12_ImpegnoPresentazione = etree.SubElement(
-                x1_2_1_Frontespizio, etree.QName(NS_IV, "ImpegnoPresentazione"))
+                x1_2_1_Frontespizio, etree.QName(
+                    NS_IV, "ImpegnoPresentazione"))
             x1_2_1_12_ImpegnoPresentazione.text = self.delegate_commitment
         # DataImpegno
         if self.date_commitment:
@@ -438,7 +437,7 @@ class ComunicazioneLiquidazione(models.Model):
 
 class ComunicazioneLiquidazioneVp(models.Model):
     _name = 'comunicazione.liquidazione.vp'
-    _description = 'Comunicazione Liquidazione IVA - Quadro VP'
+    _description = 'VAT statement communication - VP table'
 
     @api.multi
     @api.depends('iva_esigibile', 'iva_detratta')
@@ -460,14 +459,16 @@ class ComunicazioneLiquidazioneVp(models.Model):
                  'crediti_imposta', 'interessi_dovuti', 'accounto_dovuto')
     def _compute_VP14_iva_da_versare_credito(self):
         """
-        Tot Iva a debito = (VP6, col.1 + VP7 + VP12) 
+        Tot Iva a debito = (VP6, col.1 + VP7 + VP12)
         Tot Iva a credito = (VP6, col.2 + VP8 + VP9 + VP10 + VP11 + VP13)
         """
         for quadro in self:
             quadro.iva_da_versare = 0
             quadro.iva_a_credito = 0
-            debito = quadro.iva_dovuta_debito + quadro.debito_periodo_precedente\
-                + quadro.interessi_dovuti
+            debito = (
+                quadro.iva_dovuta_debito + quadro.debito_periodo_precedente +
+                quadro.interessi_dovuti
+            )
             credito = quadro.iva_dovuta_credito \
                 + quadro.credito_periodo_precedente\
                 + quadro.credito_anno_precedente \
@@ -479,7 +480,7 @@ class ComunicazioneLiquidazioneVp(models.Model):
                 quadro.iva_a_credito = credito - debito
 
     comunicazione_id = fields.Many2one('comunicazione.liquidazione',
-                                       string='Comunicazione', readonly=True)
+                                       string='Communication', readonly=True)
     period_type = fields.Selection(
         [('month', 'Monthly'),
          ('quarter', 'Quarterly')],
@@ -491,30 +492,122 @@ class ComunicazioneLiquidazioneVp(models.Model):
         [('1', 'Code 1'), ('9', 'Code 9')], string='Exceptional events')
 
     imponibile_operazioni_attive = fields.Float(
-        string='Totale operazioni attive (al netto dell\'IVA)')
+        string='Profitable operations total (without VAT)')
     imponibile_operazioni_passive = fields.Float(
-        string='Totale operazioni passive (al netto dell\'IVA)')
-    iva_esigibile = fields.Float(string='IVA esigibile')
-    iva_detratta = fields.Float(string='IVA detratta')
+        string='Unprofitable operations total (without VAT)')
+    iva_esigibile = fields.Float(string='Due VAT')
+    iva_detratta = fields.Float(string='Deducted VAT')
     iva_dovuta_debito = fields.Float(
-        string='IVA dovuta debito',
+        string='Debit VAT',
         compute="_compute_VP6_iva_dovuta_credito", store=True)
     iva_dovuta_credito = fields.Float(
-        string='IVA dovuta credito',
+        string='Credit VAT',
         compute="_compute_VP6_iva_dovuta_credito", store=True)
     debito_periodo_precedente = fields.Float(
-        string='Debito periodo precedente')
+        string='Previous period debit')
     credito_periodo_precedente = fields.Float(
-        string='Credito periodo precedente')
-    credito_anno_precedente = fields.Float(string='Credito anno precedente')
-    versamento_auto_UE = fields.Float(string='Versamenti auto UE')
-    crediti_imposta = fields.Float(string='Crediti d\'imposta')
+        string='Previous period credit')
+    credito_anno_precedente = fields.Float(string='Previous year credit')
+    versamento_auto_UE = fields.Float(string='Auto UE payment')
+    crediti_imposta = fields.Float(string='Tax credits')
     interessi_dovuti = fields.Float(
-        string='Interessi dovuti per liquidazioni trimestrali')
-    accounto_dovuto = fields.Float(string='Acconto dovuto')
+        string='Due interests for quarterly statements')
+    accounto_dovuto = fields.Float(string='Due down payment')
     iva_da_versare = fields.Float(
-        string='IVA da versare',
+        string='VAT to pay',
         compute="_compute_VP14_iva_da_versare_credito", store=True)
     iva_a_credito = fields.Float(
-        string='IVA a credito',
+        string='Credit VAT',
         compute="_compute_VP14_iva_da_versare_credito", store=True)
+    liquidazioni_ids = fields.Many2many(
+        'account.vat.period.end.statement',
+        'comunicazione_iva_liquidazioni_rel',
+        'comunicazione_id',
+        'liquidazione_id',
+        string='VAT statements')
+
+    def _reset_values(self):
+        for quadro in self:
+            quadro.imponibile_operazioni_attive = 0
+            quadro.imponibile_operazioni_passive = 0
+            quadro.iva_esigibile = 0
+            quadro.iva_detratta = 0
+            quadro.debito_periodo_precedente = 0
+            quadro.credito_periodo_precedente = 0
+            quadro.credito_anno_precedente = 0
+            quadro.versamento_auto_UE = 0
+            quadro.crediti_imposta = 0
+            quadro.interessi_dovuti = 0
+            quadro.accounto_dovuto = 0
+
+    def _get_tax_context(self, period):
+        return {
+            'from_date': period.date_start,
+            'to_date': period.date_end,
+        }
+
+    def _compute_imponibile_operazioni_attive(self, liq, period):
+        self.ensure_one()
+        debit_taxes = self.env['account.tax']
+        for debit in liq.debit_vat_account_line_ids:
+            debit_taxes |= debit.tax_id
+        for debit_tax in debit_taxes:
+            tax = debit_taxes.with_context(
+                self._get_tax_context(period)).browse(debit_tax.id)
+            self.imponibile_operazioni_attive += (
+                tax.base_balance)
+
+    def _compute_imponibile_operazioni_passive(self, liq, period):
+        self.ensure_one()
+        credit_taxes = self.env['account.tax']
+        for credit in liq.credit_vat_account_line_ids:
+            credit_taxes |= credit.tax_id
+        for credit_tax in credit_taxes:
+            tax = credit_taxes.with_context(
+                self._get_tax_context(period)).browse(credit_tax.id)
+            self.imponibile_operazioni_passive -= (
+                tax.base_balance)
+
+    @api.multi
+    @api.onchange('liquidazioni_ids')
+    def compute_from_liquidazioni(self):
+
+        for quadro in self:
+            # Reset valori
+            quadro._reset_values()
+
+            interests_account_id = quadro.comunicazione_id.company_id.\
+                of_account_end_vat_statement_interest_account_id.id or False
+
+            for liq in quadro.liquidazioni_ids:
+
+                for period in liq.date_range_ids:
+                    quadro._compute_imponibile_operazioni_attive(liq, period)
+                    quadro._compute_imponibile_operazioni_passive(liq, period)
+
+                # Iva esigibile
+                for vat_amount in liq.debit_vat_account_line_ids:
+                    quadro.iva_esigibile += vat_amount.amount
+                # Iva detratta
+                for vat_amount in liq.credit_vat_account_line_ids:
+                    quadro.iva_detratta += vat_amount.amount
+                # credito/debito periodo precedente
+                quadro.debito_periodo_precedente =\
+                    liq.previous_debit_vat_amount
+                quadro.credito_periodo_precedente =\
+                    liq.previous_credit_vat_amount
+                # Credito anno precedente (NON GESTITO)
+                # Versamenti auto UE (NON GESTITO)
+                # Crediti d’imposta (NON GESTITO)
+                # Da altri crediti e debiti calcolo:
+                # 1 - Interessi dovuti per liquidazioni trimestrali
+                # 2 - Decremento iva esigibile con righe positive
+                # 3 - Decremento iva detratta con righe negative
+                for line in liq.generic_vat_account_line_ids:
+                    if interests_account_id and \
+                            (line.account_id.id == interests_account_id):
+                        quadro.interessi_dovuti += (-1 * line.amount)
+                    elif line.amount > 0:
+                        quadro.iva_esigibile -= line.amount
+                    else:
+                        quadro.iva_detratta += line.amount
