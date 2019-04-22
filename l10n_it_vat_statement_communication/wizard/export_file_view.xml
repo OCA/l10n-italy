@@ -16,7 +16,7 @@
                             string="Export"
                             type="object"
                             class="oe_highlight"  />
-                    o
+                    or
                     <button string="Cancel" class="oe_link" special="cancel" />
                 </footer>
             </form>
@@ -30,27 +30,23 @@
             <form string="Export">
                 <group>
                     <field name="file_export" readonly="1" filename="name"/>
+                    <field name="name" invisible="1"/>
                 </group>
+                <footer>
+                    <button string="Close" class="oe_link" special="cancel" />
+                </footer>
             </form>
         </field>
     </record>
 
     <record id="action_liquidazione_export_file" model="ir.actions.act_window">
         <field name="name">Export VAT statement communication file</field>
-        <field name="type">ir.actions.act_window</field>
         <field name="res_model">comunicazione.liquidazione.export.file</field>
         <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="wizard_liquidazione_export_file"/>
         <field name="target">new</field>
-    </record>
-
-    <record model="ir.values" id="value_wizard_liquidazione_export_file">
-        <field name="name">Export communication file</field>
-        <field name="key2">client_action_multi</field>
-        <field name="value" eval="'ir.actions.act_window,' + str(ref('action_liquidazione_export_file'))" />
-        <field name="key">action</field>
-        <field name="model">comunicazione.liquidazione</field>
+        <field name="binding_model_id" ref="l10n_it_vat_statement_communication.model_comunicazione_liquidazione" />
     </record>
 
 </odoo>
