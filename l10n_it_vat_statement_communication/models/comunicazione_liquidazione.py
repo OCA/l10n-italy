@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-
 
 from odoo import api, fields, models, _
-from datetime import datetime
 from odoo.exceptions import ValidationError
 from lxml import etree
 
@@ -34,7 +31,7 @@ class ComunicazioneLiquidazione(models.Model):
         dichiarazioni = self.search(domain)
         if len(dichiarazioni) > 1:
             raise ValidationError(
-                _("Dichiarazione già esiste con identificativo {}"
+                _("Communication with identifier {} already exists"
                   ).format(self.identificativo))
 
     @api.multi
@@ -73,15 +70,15 @@ class ComunicazioneLiquidazione(models.Model):
     liquidazione_del_gruppo = fields.Boolean(string='Group\'s statement')
     taxpayer_vat = fields.Char(string='Vat', required=True)
     controller_vat = fields.Char(string='Controller TIN')
-    taxpayer_fiscalcode = fields.Char(string='Fiscalcode')
+    taxpayer_fiscalcode = fields.Char(string='Taxpayer Fiscalcode')
     declarant_different = fields.Boolean(
-        string='Declarant different from taxpayer')
-    declarant_fiscalcode = fields.Char(string='Fiscalcode')
+        string='Declarant different from taxpayer', default=True)
+    declarant_fiscalcode = fields.Char(string='Declarant Fiscalcode')
     declarant_fiscalcode_company = fields.Char(string='Fiscalcode company')
     codice_carica_id = fields.Many2one('codice.carica', string='Role code')
     declarant_sign = fields.Boolean(string='Declarant sign', default=True)
 
-    delegate_fiscalcode = fields.Char(string='Fiscalcode')
+    delegate_fiscalcode = fields.Char(string='Delegate Fiscalcode')
     delegate_commitment = fields.Selection(
         [('1', 'Communication prepared by taxpayer'),
          ('2', 'Communication prepared by sender')],
@@ -229,19 +226,19 @@ class ComunicazioneLiquidazione(models.Model):
         x1_1_1_CodiceFornitura = etree.SubElement(
             x1_1_Intestazione, etree.QName(NS_IV, "CodiceFornitura"))
         code = str(self.year)[-2:]
-        x1_1_1_CodiceFornitura.text = unicode('IVP{}'.format(code))
+        x1_1_1_CodiceFornitura.text = str('IVP{}'.format(code))
         # Codice Fiscale Dichiarante
         if self.declarant_fiscalcode:
             x1_1_2_CodiceFiscaleDichiarante = etree.SubElement(
                 x1_1_Intestazione, etree.QName(NS_IV,
                                                "CodiceFiscaleDichiarante"))
-            x1_1_2_CodiceFiscaleDichiarante.text = unicode(
+            x1_1_2_CodiceFiscaleDichiarante.text = str(
                 self.declarant_fiscalcode)
         # Codice Carica
         if self.codice_carica_id:
             x1_1_3_CodiceCarica = etree.SubElement(
                 x1_1_Intestazione, etree.QName(NS_IV, "CodiceCarica"))
-            x1_1_3_CodiceCarica.text = unicode(self.codice_carica_id.code)
+            x1_1_3_CodiceCarica.text = str(self.codice_carica_id.code)
         return x1_1_Intestazione
 
     def _export_xml_get_frontespizio(self):
@@ -249,7 +246,7 @@ class ComunicazioneLiquidazione(models.Model):
         # Codice Fiscale
         x1_2_1_1_CodiceFiscale = etree.SubElement(
             x1_2_1_Frontespizio, etree.QName(NS_IV, "CodiceFiscale"))
-        x1_2_1_1_CodiceFiscale.text = unicode(self.taxpayer_fiscalcode) \
+        x1_2_1_1_CodiceFiscale.text = str(self.taxpayer_fiscalcode) \
             if self.taxpayer_fiscalcode else ''
         # Anno Imposta
         x1_2_1_2_AnnoImposta = etree.SubElement(
@@ -311,8 +308,8 @@ class ComunicazioneLiquidazione(models.Model):
         if self.date_commitment:
             x1_2_1_13_DataImpegno = etree.SubElement(
                 x1_2_1_Frontespizio, etree.QName(NS_IV, "DataImpegno"))
-            x1_2_1_13_DataImpegno.text = datetime.strptime(
-                self.date_commitment, "%Y-%m-%d").strftime('%d%m%Y')
+            x1_2_1_13_DataImpegno.text = self.date_commitment.strftime(
+                '%d%m%Y')
         # FirmaIntermediario
         if self.delegate_fiscalcode:
             x1_2_1_14_FirmaIntermediario = etree.SubElement(
@@ -501,7 +498,7 @@ class ComunicazioneLiquidazioneVp(models.Model):
         string='Debit VAT',
         compute="_compute_VP6_iva_dovuta_credito", store=True)
     iva_dovuta_credito = fields.Float(
-        string='Credit VAT',
+        string='Credit due VAT',
         compute="_compute_VP6_iva_dovuta_credito", store=True)
     debito_periodo_precedente = fields.Float(
         string='Previous period debit')
