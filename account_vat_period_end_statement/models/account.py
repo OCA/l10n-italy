@@ -50,17 +50,17 @@ class AccountVatPeriodEndStatement(models.Model):
     def _compute_residual(self):
         precision = self.env.user.company_id.currency_id.decimal_places
         for statement in self:
+            if not statement.move_id.exists():
+                statement.residual = 0.0
+                statement.reconciled = False
+                continue
+
             residual = 0.0
-            if statement.move_id.exists():
-                if not statement.move_id:
-                    statement.residual = 0.0
-                    statement.reconciled = False
-                    return
-                for line in statement.move_id.line_ids:
-                    authority_vat_account_id = (
-                        statement.authority_vat_account_id.id)
-                    if line.account_id.id == authority_vat_account_id:
-                        residual += line.amount_residual
+            for line in statement.move_id.line_ids:
+                authority_vat_account_id = (
+                    statement.authority_vat_account_id.id)
+                if line.account_id.id == authority_vat_account_id:
+                    residual += line.amount_residual
             statement.residual = abs(residual)
             if float_is_zero(statement.residual, precision_digits=precision):
                 statement.reconciled = True
