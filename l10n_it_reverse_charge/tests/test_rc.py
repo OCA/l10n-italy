@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Simone Rubino - Agile Business Group
 # Copyright 2019 Alex Comba - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
@@ -402,8 +401,7 @@ class TestReverseCharge(TransactionCase):
 
         invoice.action_invoice_open()
 
-        self.env['account.journal'].search(
-            [('name', '=', 'Customer Invoices')]).update_posted = True
+        invoice.journal_id.update_posted = True
         invoice.action_cancel()
         self.assertEqual(invoice.state, 'cancel')
         invoice.action_invoice_draft()
