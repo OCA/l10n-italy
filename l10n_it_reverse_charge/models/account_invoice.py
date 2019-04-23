@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Davide Corio
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
@@ -390,18 +389,24 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def invoice_validate(self):
-        self.ensure_one()
         res = super(AccountInvoice, self).invoice_validate()
-        fp = self.fiscal_position_id
-        rc_type = fp and fp.rc_type_id
-        if rc_type and rc_type.method == 'selfinvoice'\
-                and self.amount_total:
-            if not rc_type.with_supplier_self_invoice:
-                self.generate_self_invoice()
-            else:
-                # See with_supplier_self_invoice field help
-                self.generate_supplier_self_invoice()
-                self.rc_self_purchase_invoice_id.generate_self_invoice()
+        for invoice in self:
+            fp = invoice.fiscal_position_id
+            rc_type = fp and fp.rc_type_id
+            if not rc_type:
+                continue
+            if rc_type.method == 'selfinvoice' and invoice.amount_total:
+                if not rc_type.with_supplier_self_invoice:
+                    invoice.generate_self_invoice()
+                else:
+                    # See with_supplier_self_invoice field help
+                    invoice.generate_supplier_self_invoice()
+                    invoice.rc_self_purchase_invoice_id.generate_self_invoice()
+            elif rc_type.method == 'integration':
+                raise UserError(
+                    _("VAT integration RC type, "
+                      "defined in fiscal position {fp}, is not managed yet")
+                    .format(fp=fp.display_name))
         return res
 
     def remove_rc_payment(self):
