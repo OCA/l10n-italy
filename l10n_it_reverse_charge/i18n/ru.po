@@ -21,7 +21,7 @@ msgstr ""
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:363
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:362
 #, python-format
 msgid "Can't find 1 tax mapping for %s"
 msgstr ""
@@ -288,7 +288,7 @@ msgid "Text on Self Invoice"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:413
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:412
 #, python-format
 msgid ""
 "There are more than one payment line.\n"
@@ -297,7 +297,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:305
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:304
 #, python-format
 msgid ""
 "There is no default credit account defined \n"
