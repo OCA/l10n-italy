@@ -9,16 +9,15 @@
         <field name="model">add.period.to.vat.statement</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
-            <form string="Add period" version="7.0">
+            <form string="Add period">
                 <group>
-                    <label for="period_id"/>
-                    <div>
-                        <field name="period_id" class="oe_inline"/>
-                    </div>
+                    <group>
+                        <field name="period_id"/>
+                    </group>
                 </group>
                 <footer>
                     <button special="cancel" string="Cancel"/>
-                    <button name="add_period" string="Add" type="object"/>
+                    <button name="add_period" string="Add" type="object" class="oe_highlight"/>
                 </footer>
             </form>
         </field>
