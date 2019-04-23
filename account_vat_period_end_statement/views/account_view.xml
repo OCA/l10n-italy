@@ -12,6 +12,12 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Vat statement">
+                <header>
+                    <button name="create_move" states="draft" type="object" string="Create Move" class="oe_highlight"/>
+                    <button name="statement_draft" type="object" states="confirmed,paid" string="Set to draft"/>
+                    <button type="object" name="compute_amounts" string="Recompute amounts" states="draft"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
                 <group>
                     <field name="journal_id"   widget="selection"/>
                     <field name="date"/>
@@ -29,9 +35,16 @@
                 </group>
                 <notebook colspan="4">
                     <page string="Periods">
-                        <button type='action' name="%(action_add_period)d" string="Add period" colspan="2" attrs="{'invisible': [('state', 'in', ('confirmed', 'paid'))]}"/>
-                        <button type='action' name="%(action_remove_period)d" string="Remove period" colspan="2" attrs="{'invisible': [('state', 'in', ('confirmed', 'paid'))]}"/>
-                        <field name="date_range_ids" colspan="4" nolabel="1" readonly="1"/>
+                        <div>
+                            <button type='action' name="%(action_add_period)d" string="Add period" colspan="2"
+                                    attrs="{'invisible': [('state', 'in', ('confirmed', 'paid'))]}" icon="fa-plus"/>
+                            <span>&amp;nbsp;</span>
+                            <button type='action' name="%(action_remove_period)d" string="Remove period" colspan="2"
+                                    attrs="{'invisible': [('state', 'in', ('confirmed', 'paid'))]}" icon="fa-minus"/>
+                        </div>
+                        <group>
+                            <field name="date_range_ids" colspan="4" nolabel="1" readonly="1"/>
+                        </group>
                     </page>
                     <page string="Accounts">
                         <group colspan="4" col="3">
@@ -95,13 +108,9 @@
                                </form>
                             </field>
                         </group>
-                        <button type="object" name="compute_amounts" string="Recompute amounts" states="draft"/>
                         <group>
-                            <field name="state"/>
                             <field name="reconciled"/>
                         </group>
-                        <button name="create_move" states="draft" type="object" string="Create Move" colspan="2"/>
-                        <button name="statement_draft" type="object" states="confirmed,paid" string="Set to draft" colspan="2"/>
                     </page>
                     <page string="Tax Authority">
                         <group>
