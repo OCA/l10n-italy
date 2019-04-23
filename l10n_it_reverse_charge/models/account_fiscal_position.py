@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Davide Corio
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
