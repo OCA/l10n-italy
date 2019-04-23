@@ -5,8 +5,8 @@
   License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
   -->
 <odoo>
-    <template id="assets_frontend" inherit_id="website.assets_frontend" name="Website Portal Electronic Invoice">
-        <xpath expr="." position="inside">
+    <template id="assets_frontend" inherit_id="web.assets_frontend" name="Website Portal Electronic Invoice">
+        <xpath expr="//script[last()]" position="after">
             <script type="text/javascript"
                     src="/l10n_it_website_portal_fatturapa/static/src/js/l10n_it_website_portal_fatturapa.js"/>
         </xpath>
