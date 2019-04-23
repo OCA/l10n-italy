@@ -20,7 +20,7 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:363
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:362
 #, python-format
 msgid "Can't find 1 tax mapping for %s"
 msgstr "Ne najdem 1 davčnega mapiranja za %s"
@@ -296,7 +296,7 @@ msgid "Text on Self Invoice"
 msgstr "Besedilo v računu za samo-obdavčitev"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:413
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:412
 #, python-format
 msgid ""
 "There are more than one payment line.\n"
@@ -308,7 +308,7 @@ msgstr ""
 "ročno"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:305
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:304
 #, python-format
 msgid ""
 "There is no default credit account defined \n"
