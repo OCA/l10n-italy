@@ -195,7 +195,7 @@
                 <t t-set="tax_code_vat_deductible" t-value="(tax_code_amounts[tax_code]['vat_deductible'])"/>
                 <t t-set="tax_code_vat_undeductible" t-value="(tax_code_amounts[tax_code]['vat_undeductible'])"/>
                 <!-- print values  -->
-                <tr>
+                <tr t-if="tax_code_base or tax_code_vat or tax_code_vat_deductible or tax_code_vat_undeductible">
                     <td><span t-esc="code"/></td>
                     <td class="text-right"><span t-esc="formatLang(env, tax_code_base)" /></td>
                     <td class="text-right"><span t-esc="formatLang(env, tax_code_vat)" /></td>
