@@ -5,25 +5,36 @@
         <field name="name">wizard_link_supplier_invoice</field>
         <field name="model">wizard.link.to.invoice</field>
         <field name="arch" type="xml">
-            <form string="Link to existing supplier bill" >
-                <group>
+            <form string="Link to existing supplier bills" >
+                <sheet>
                     <group>
-                        <field name="invoice_id"
-                               domain="[('type', 'in', ('in_invoice', 'in_refund')), ('state', 'in', ('draft', 'proforma', 'proforma2')), ('fatturapa_attachment_in_id', '=', False)]"
-                               context="{'form_view_ref': 'account.invoice_supplier_form', 'tree_view_ref': 'account.invoice_supplier_tree'}"
-                               options="{'no_create': True}"
-                        />
+                        <field name="line_ids" nolabel="1">
+                            <tree editable="top" create="false">
+                                <field name="wizard_id" invisible="True"/>
+                                <field name="e_invoice_descr"/>
+                                <field name="invoice_id"
+                                       domain="[
+                                              ('type', 'in', ('in_invoice', 'in_refund')),
+                                              ('state', 'in', ('draft', 'proforma', 'proforma2')),
+                                              ('fatturapa_attachment_in_id', '=', False)]"
+                                       context="{
+                                               'form_view_ref': 'account.invoice_supplier_form',
+                                               'tree_view_ref': 'account.invoice_supplier_tree'}"
+                                       options="{'no_create': True}"
+                                />
+                            </tree>
+                        </field>
                     </group>
-                    <footer>
-                        <button special="cancel" string="Cancel"/>
-                        <button name="link" string="Link" type="object"/>
-                    </footer>
-                </group>
+                </sheet>
+                <footer>
+                    <button special="cancel" string="Cancel"/>
+                    <button name="link" string="Link" type="object"/>
+                </footer>
             </form>
         </field>
     </record>
 
-    <act_window name="Link to existing supplier bill"
+    <act_window name="Link to existing supplier bills"
         res_model="wizard.link.to.invoice"
         src_model="fatturapa.attachment.in"
         view_mode="form"
