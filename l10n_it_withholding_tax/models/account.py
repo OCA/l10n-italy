@@ -220,15 +220,15 @@ class AccountMove(models.Model):
         return res
 
 
-class account_payment(models.Model):
+class AccountPayment(models.Model):
     _inherit = "account.payment"
 
     @api.model
     def default_get(self, fields):
         """
-        Redifine  amount to pay proportionally to amount total less wt
+        Redefine amount to pay proportionally to amount total less wt
         """
-        rec = super(account_payment, self).default_get(fields)
+        rec = super(AccountPayment, self).default_get(fields)
         invoice_defaults = self.resolve_2many_commands('invoice_ids',
                                                        rec.get('invoice_ids'))
         if invoice_defaults and len(invoice_defaults) == 1:
@@ -240,7 +240,7 @@ class account_payment(models.Model):
         return rec
 
 
-class account_register_payments(models.TransientModel):
+class AccountRegisterPayments(models.TransientModel):
     _inherit = "account.register.payments"
 
     @api.model

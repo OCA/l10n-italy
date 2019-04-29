@@ -5,14 +5,22 @@
 # Namespace http://www.w3.org/2000/09/xmldsig# [xmlns:ds]
 
 from __future__ import unicode_literals
-import pyxb
-import pyxb.binding
-import pyxb.binding.saxer
 import io
-import pyxb.utils.utility
-import pyxb.utils.domutils
+import logging
 import sys
-import pyxb.utils.six as _six
+
+try:
+    import pyxb
+    import pyxb.binding
+    import pyxb.binding.datatypes
+    import pyxb.binding.saxer
+    import pyxb.utils.utility
+    import pyxb.utils.domutils
+    import pyxb.utils.six as _six
+except (ImportError, IOError) as err:
+    _logger = logging.getLogger(__name__)
+    _logger.debug(err)
+
 # Unique identifier for bindings created at the same time
 _GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:2f21c9cc-4921-11e9-b65e-2477035a237c')
 
@@ -27,7 +35,6 @@ if pyxb.__version__ != _PyXBVersion:
 _module_typeBindings = pyxb.utils.utility.Object()
 
 # Import bindings for namespaces imported into schema
-import pyxb.binding.datatypes
 
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI('http://www.w3.org/2000/09/xmldsig#', create_if_missing=True)

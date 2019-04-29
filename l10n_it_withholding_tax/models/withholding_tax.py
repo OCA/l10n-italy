@@ -15,7 +15,7 @@ class WithholdingTax(models.Model):
     @api.one
     @api.depends('rate_ids.date_start', 'rate_ids.date_stop', 'rate_ids.base',
                  'rate_ids.tax')
-    def _get_rate(self):
+    def _compute_rate(self):
         self.env.cr.execute('''
             SELECT tax, base FROM withholding_tax_rate
                 WHERE withholding_tax_id = %s
@@ -57,8 +57,8 @@ class WithholdingTax(models.Model):
     )
     payment_term = fields.Many2one('account.payment.term', 'Payment Terms',
                                    required=True)
-    tax = fields.Float(string='Tax %', compute='_get_rate')
-    base = fields.Float(string='Base', compute='_get_rate')
+    tax = fields.Float(string='Tax %', compute='_compute_rate')
+    base = fields.Float(string='Base', compute='_compute_rate')
     rate_ids = fields.One2many('withholding.tax.rate', 'withholding_tax_id',
                                'Rates', required=True)
 
@@ -126,7 +126,7 @@ class WithholdingTaxRate(models.Model):
                 where.append("((date_start<='%s') or (date_start is null))" %
                              (self.date_stop,))
 
-            self.env.cr.execute(
+            self.env.cr.execute(  # noqa
                 'SELECT id '
                 'FROM withholding_tax_rate '
                 'WHERE ' + ' and '.join(where) + (where and ' and ' or '') +

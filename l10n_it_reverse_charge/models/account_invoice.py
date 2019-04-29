@@ -72,13 +72,13 @@ class AccountInvoice(models.Model):
 
     def rc_inv_vals(self, partner, account, rc_type, lines, currency):
         if self.type == 'in_invoice':
-            type = 'out_invoice'
+            inv_type = 'out_invoice'
         else:
-            type = 'out_refund'
+            inv_type = 'out_refund'
 
         return {
             'partner_id': partner.id,
-            'type': type,
+            'type': inv_type,
             'account_id': account.id,
             'journal_id': rc_type.journal_id.id,
             'invoice_line_ids': lines,

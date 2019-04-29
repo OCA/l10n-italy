@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2018 Sergio Corato (https://efatto.it)
 # Copyright 2018 Enrico Ganzaroli (enrico.gz@gmail.com)
 # Copyright 2018 Ermanno Gnan (ermannognan@gmail.com)

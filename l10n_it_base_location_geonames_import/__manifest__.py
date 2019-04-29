@@ -25,10 +25,6 @@
     'category': 'Extra Tools',
     'license': 'AGPL-3',
     'summary': 'Import base_location entries (provinces) from Geonames',
-    'description': """
-This module extends base_location_geonames_import in order to correctly import
-Italian provinces
-""",
     'author': "Agile Business Group,Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'depends': ['base_location_geonames_import'],
