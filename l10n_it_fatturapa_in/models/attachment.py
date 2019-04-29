@@ -32,11 +32,26 @@ class FatturaPAAttachmentIn(models.Model):
     e_invoice_validation_error = fields.Boolean(
         compute='_compute_e_invoice_validation_error')
 
+    e_invoice_validation_message = fields.Text(
+        compute='_compute_e_invoice_validation_error')
+
     @api.depends('in_invoice_ids.e_invoice_validation_error')
     def _compute_e_invoice_validation_error(self):
-        for rec in self:
-            rec.e_invoice_validation_error = \
-                any(rec.mapped('in_invoice_ids.e_invoice_validation_error'))
+        for att in self:
+            bills_with_error = att.in_invoice_ids.filtered(
+                lambda b: b.e_invoice_validation_error
+            )
+            if not bills_with_error:
+                continue
+            att.e_invoice_validation_error = True
+            errors_message_template = u"{bill}:\n{errors}"
+            error_messages = list()
+            for bill in bills_with_error:
+                error_messages.append(
+                    errors_message_template.format(
+                        bill=bill.display_name,
+                        errors=bill.e_invoice_validation_message))
+            att.e_invoice_validation_message = "\n\n".join(error_messages)
 
     @api.onchange('datas_fname')
     def onchagne_datas_fname(self):
