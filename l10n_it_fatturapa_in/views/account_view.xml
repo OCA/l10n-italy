@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <form string="Import e-bill" duplicate="false">
                 <div class="alert alert-info" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('e_invoice_validation_error','=',False)]}">
-                     <bold>One or more invoice doesn't match the amount (tax or untaxed or total) of the original e-invoice. Please check</bold>
+                     <bold><field name="e_invoice_validation_message" nolabel="1"/></bold>
                 </div>
                 <field name="e_invoice_validation_error" invisible="1"/>
                 <div>
@@ -111,7 +111,7 @@
         <field name="arch" type="xml">
             <xpath expr="//div[@role='alert']" position="after">
                 <div class="alert alert-info" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('e_invoice_validation_error','=',False)]}">
-                     <bold>The invoice doesn't match one of the amount untaxed, tax amount or total amount of the original e-invoice. Please check</bold>
+                     <bold><field name="e_invoice_validation_message" nolabel="1"/></bold>
                 </div>
                 <field name="e_invoice_validation_error" invisible="1"/>
             </xpath>

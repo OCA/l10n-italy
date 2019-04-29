@@ -24,7 +24,18 @@ class AccountInvoice(models.Model):
     e_invoice_amount_total = fields.Monetary(string='E-Invoice Total Amount',
                                              readonly=True)
 
+    e_invoice_reference = fields.Char(
+        string="E-invoice vendor reference",
+        readonly=True)
+
+    e_invoice_date_invoice = fields.Date(
+        string="E-invoice invoice date",
+        readonly=True)
+
     e_invoice_validation_error = fields.Boolean(
+        compute='_compute_e_invoice_validation_error')
+
+    e_invoice_validation_message = fields.Text(
         compute='_compute_e_invoice_validation_error')
 
     e_invoice_force_validation = fields.Boolean(
@@ -40,34 +51,86 @@ class AccountInvoice(models.Model):
                     invoice.display_name)
         return super(AccountInvoice, self).invoice_validate()
 
-    @api.depends('amount_untaxed', 'amount_tax', 'amount_total', 'state')
+    @api.depends('type', 'state', 'fatturapa_attachment_in_id',
+                 'amount_untaxed', 'amount_tax', 'amount_total',
+                 'reference', 'date_invoice')
     def _compute_e_invoice_validation_error(self):
-        for invoice in self:
-            if (invoice.type in ['in_invoice', 'in_refund'] and
-                    invoice.state in ['draft', 'open', 'paid'] and
-                    invoice.fatturapa_attachment_in_id):
-                if (invoice.e_invoice_amount_untaxed and
-                        float_compare(invoice.amount_untaxed,
-                                      invoice.e_invoice_amount_untaxed,
-                                      precision_rounding=invoice.currency_id
-                                      .rounding) != 0):
-                    invoice.e_invoice_validation_error = True
-                elif (invoice.e_invoice_amount_tax and
-                        float_compare(invoice.amount_tax,
-                                      invoice.e_invoice_amount_tax,
-                                      precision_rounding=invoice.currency_id
-                                      .rounding) != 0):
-                    invoice.e_invoice_validation_error = True
-                elif (invoice.e_invoice_amount_total and
-                        float_compare(invoice.amount_total,
-                                      invoice.e_invoice_amount_total,
-                                      precision_rounding=invoice.currency_id
-                                      .rounding) != 0):
-                    invoice.e_invoice_validation_error = True
-                else:
-                    invoice.e_invoice_validation_error = False
-            else:
-                invoice.e_invoice_validation_error = False
+        bills_to_check = self.filtered(
+            lambda inv:
+                inv.type in ['in_invoice', 'in_refund'] and
+                inv.state in ['draft', 'open', 'paid'] and
+                inv.fatturapa_attachment_in_id)
+        for bill in bills_to_check:
+            error_messages = list()
+            if (bill.e_invoice_amount_untaxed and
+                    float_compare(bill.amount_untaxed,
+                                  bill.e_invoice_amount_untaxed,
+                                  precision_rounding=bill.currency_id
+                                  .rounding) != 0):
+                error_messages.append(
+                    _("Untaxed amount ({bill_amount_untaxed}) "
+                      "does not match with "
+                      "e-bill untaxed amount ({e_bill_amount_untaxed})")
+                    .format(
+                        bill_amount_untaxed=bill.amount_untaxed or 0,
+                        e_bill_amount_untaxed=bill.e_invoice_amount_untaxed
+                    ))
+
+            if (bill.e_invoice_amount_tax and
+                    float_compare(bill.amount_tax,
+                                  bill.e_invoice_amount_tax,
+                                  precision_rounding=bill.currency_id
+                                  .rounding) != 0):
+                error_messages.append(
+                    _("Taxed amount ({bill_amount_tax}) "
+                      "does not match with "
+                      "e-bill taxed amount ({e_bill_amount_tax})")
+                    .format(
+                        bill_amount_tax=bill.amount_tax or 0,
+                        e_bill_amount_tax=bill.e_invoice_amount_tax
+                    ))
+
+            if (bill.e_invoice_amount_total and
+                    float_compare(bill.amount_total,
+                                  bill.e_invoice_amount_total,
+                                  precision_rounding=bill.currency_id
+                                  .rounding) != 0):
+                error_messages.append(
+                    _("Total amount ({bill_amount_total}) "
+                      "does not match with "
+                      "e-bill total amount ({e_bill_amount_total})")
+                    .format(
+                        bill_amount_total=bill.amount_total or 0,
+                        e_bill_amount_total=bill.e_invoice_amount_total
+                    ))
+
+            if (bill.e_invoice_reference and
+                    bill.reference != bill.e_invoice_reference):
+                error_messages.append(
+                    _("Vendor reference ({bill_vendor_ref}) "
+                      "does not match with "
+                      "e-bill vendor reference ({e_bill_vendor_ref})")
+                    .format(
+                        bill_vendor_ref=bill.reference or "",
+                        e_bill_vendor_ref=bill.e_invoice_reference
+                    ))
+
+            if (bill.e_invoice_date_invoice and
+                    bill.e_invoice_date_invoice != bill.date_invoice):
+                error_messages.append(
+                    _("Invoice date ({bill_date_invoice}) "
+                      "does not match with "
+                      "e-bill invoice date ({e_bill_date_invoice})")
+                    .format(
+                        bill_date_invoice=bill.date_invoice or "",
+                        e_bill_date_invoice=bill.e_invoice_date_invoice
+                    ))
+
+            if not error_messages:
+                continue
+            bill.e_invoice_validation_error = True
+            bill.e_invoice_validation_message = \
+                ",\n".join(error_messages) + "."
 
     @api.multi
     def name_get(self):
@@ -108,7 +171,7 @@ class AccountInvoice(models.Model):
             amount_tax += float(Riepilogo.Imposta)
         return amount_tax
 
-    def set_einvoice_amount(self, fattura):
+    def set_einvoice_data(self, fattura):
         self.ensure_one()
         amount_untaxed = self.compute_xml_amount_untaxed(
             fattura.DatiBeniServizi.DatiRiepilogo)
@@ -117,11 +180,15 @@ class AccountInvoice(models.Model):
         amount_total = float(
             fattura.DatiGenerali.DatiGeneraliDocumento.
             ImportoTotaleDocumento or 0.0)
+        reference = fattura.DatiGenerali.DatiGeneraliDocumento.Numero
+        date_invoice = fattura.DatiGenerali.DatiGeneraliDocumento.Data
 
         self.update({
             'e_invoice_amount_untaxed': amount_untaxed,
             'e_invoice_amount_tax': amount_tax,
             'e_invoice_amount_total': amount_total,
+            'e_invoice_reference': reference,
+            'e_invoice_date_invoice': date_invoice,
         })
 
 
