@@ -12,7 +12,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
     def getFile(self, filename):
         path = get_module_resource(
             'l10n_it_fatturapa_in', 'tests', 'data', filename)
-        with open(path) as test_data:
+        with open(path, 'rb') as test_data:
             with tempfile.TemporaryFile() as out:
                 base64.encode(test_data, out)
                 out.seek(0)
@@ -33,6 +33,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
     def setUp(self):
         super(TestFatturaPAXMLValidation, self).setUp()
         self.wizard_model = self.env['wizard.import.fatturapa']
+        self.wizard_link_model = self.env['wizard.link.to.invoice']
         self.data_model = self.env['ir.model.data']
         self.attach_model = self.env['fatturapa.attachment.in']
         self.invoice_model = self.env['account.invoice']
@@ -53,17 +54,25 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
                 [('code', '=', 'IT')]).id
         })
 
-    def run_wizard(self, name, file_name):
+    def run_wizard(self, name, file_name, datas_fname=None,
+                   mode='import', wiz_values=None):
         self.env.invalidate_all()
+        if datas_fname is None:
+            datas_fname = file_name
         attach_id = self.attach_model.create(
             {
                 'name': name,
                 'datas': self.getFile(file_name)[1],
-                'datas_fname': file_name
+                'datas_fname': datas_fname
             }).id
-        wizard = self.wizard_model.with_context(
-            active_ids=[attach_id]).create({})
-        return wizard.importFatturaPA()
+        if mode == 'import':
+            wizard = self.wizard_model.with_context(
+                active_ids=[attach_id]).create(wiz_values or {})
+            return wizard.importFatturaPA()
+        if mode == 'link':
+            wizard = self.wizard_link_model.with_context(
+                active_ids=[attach_id]).create(wiz_values or {})
+            return wizard.link()
 
     def run_wizard_multi(self, file_name_list):
         active_ids = []
@@ -140,15 +149,16 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
         self.assertEqual(invoice.partner_id.street, "VIALE ROMA 543")
         self.assertEqual(invoice.partner_id.state_id.code, "SS")
+        self.assertEqual(invoice.partner_id.country_id.code, "IT")
         self.assertEqual(
             invoice.tax_representative_id.name, "Rappresentante fiscale")
         self.assertEqual(invoice.welfare_fund_ids[0].welfare_rate_tax, 0.04)
-        self.assertEqual(
-            invoice.related_documents[0].type, "order")
-        self.assertEqual(
-            invoice.related_documents[0].cig, '456def')
-        self.assertEqual(
-            invoice.related_documents[0].cup, '123abc')
+        order_related_doc = invoice.related_documents.filtered(
+            lambda rd: rd.type == 'order'
+        )
+        self.assertTrue(order_related_doc)
+        self.assertEqual(order_related_doc.cig, '456def')
+        self.assertEqual(order_related_doc.cup, '123abc')
         self.assertEqual(
             invoice.welfare_fund_ids[0].welfare_amount_tax, 9)
         self.assertFalse(invoice.welfare_fund_ids[0].welfare_taxable)
@@ -477,6 +487,51 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         invoice_ids = res.get('domain')[0][2]
         invoices = self.invoice_model.browse(invoice_ids)
         self.assertEqual(len(invoices), 2)
+
+    def test_01_xml_link(self):
+        """einvoice lines are created but Vendor Reference is kept"""
+        supplier = self.env['res.partner'].search(
+            [('vat', '=', 'IT02780790107')], limit=1)
+        invoice_values = {
+            'partner_id': supplier.id,
+            'type': 'in_invoice',
+            'reference': 'original_ref',
+        }
+        orig_invoice = self.invoice_model.create(invoice_values)
+        wiz_values = {
+            'line_ids': [(0, 0, {
+                'invoice_id': orig_invoice.id
+            })],
+        }
+        self.run_wizard('test_link_01', 'IT01234567890_FPR04.xml',
+                        mode='link', wiz_values=wiz_values)
+        self.assertTrue(orig_invoice.e_invoice_line_ids)
+        self.assertFalse(orig_invoice.invoice_line)
+        self.assertTrue(orig_invoice.e_invoice_validation_error)
+        self.assertEqual(
+            invoice_values['reference'],
+            orig_invoice.reference,
+        )
+
+    def test_02_xml_link(self):
+        """einvoice lines are created but Vendor Reference is kept"""
+        supplier = self.env['res.partner'].search(
+            [('vat', '=', 'IT02780790107')], limit=1)
+        invoice_values = {
+            'partner_id': supplier.id,
+            'type': 'in_invoice',
+        }
+        orig_invoice = self.invoice_model.create(invoice_values)
+        wiz_values = {
+            'line_ids': [(0, 0, {
+                'invoice_id': orig_invoice.id
+            })],
+        }
+        self.run_wizard('test_link_02', 'IT02780790107_11004.xml',
+                        mode='link', wiz_values=wiz_values)
+        self.assertTrue(orig_invoice.e_invoice_line_ids)
+        self.assertFalse(orig_invoice.invoice_line)
+        self.assertTrue(orig_invoice.e_invoice_validation_error)
 
     def test_31_xml_import(self):
         res = self.run_wizard('test31', 'IT01234567890_FPR05.xml')
