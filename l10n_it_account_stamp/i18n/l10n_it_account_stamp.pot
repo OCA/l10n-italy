@@ -48,6 +48,7 @@ msgstr ""
 
 #. module: l10n_it_account_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_invoice_line_is_stamp_line
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_delivery_carrier_is_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product_is_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template_is_stamp
 msgid "Is stamp"
@@ -85,12 +86,14 @@ msgid "Product used as Tax Stamp in customer invoices."
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_delivery_carrier_stamp_apply_min_total_base
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product_stamp_apply_min_total_base
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template_stamp_apply_min_total_base
 msgid "Stamp apply min total base"
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_delivery_carrier_stamp_apply_tax_ids
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product_stamp_apply_tax_ids
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template_stamp_apply_tax_ids
 msgid "Stamp taxes"
