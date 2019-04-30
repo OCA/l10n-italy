@@ -7,11 +7,12 @@
             'E-fattura integrazione',
     'summary': 'Integrazione fatturazione elettronica e Comunicazione dati '
                'fatture (c.d. "nuovo spesometro")',
-    'version': '10.0.1.0.0',
+    'version': '8.0.1.0.0',
     'category': 'Hidden',
     'author': "Agile Business Group, "
               "Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/l10n-italy/',
+    'website': 'https://github.com/OCA/l10n-italy/tree/'
+               '8.0/l10n_it_invoices_data_communication_fatturapa',
     'license': 'LGPL-3',
     'depends': [
         'l10n_it_invoices_data_communication',

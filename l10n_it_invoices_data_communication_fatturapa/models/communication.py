@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields
+from openerp import models, fields
 
 
 class Communication(models.Model):
