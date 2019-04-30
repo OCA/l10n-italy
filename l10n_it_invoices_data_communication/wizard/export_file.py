@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import base64
-from odoo import api, fields, models, exceptions, _
+from openerp import api, fields, models, _
+from openerp.exceptions import Warning as UserError
 
 
 class ComunicazioneDatiIvaExportFile(models.TransientModel):
@@ -17,11 +18,11 @@ class ComunicazioneDatiIvaExportFile(models.TransientModel):
 
         comunicazione_ids = self._context.get('active_ids')
         if not comunicazione_ids:
-            raise exceptions.UserError(
+            raise UserError(
                 _('No communication selected')
             )
         if len(comunicazione_ids) > 1:
-            raise exceptions.UserError(
+            raise UserError(
                 _('You can only export one communication')
             )
 

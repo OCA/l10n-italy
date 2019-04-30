@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<odoo>
+<openerp>
     <data>
 
         <record id="wizard_compute_fiscal_document_type" model="ir.ui.view">
@@ -36,4 +36,4 @@
         </record>
 
     </data>
-</odoo>
+</openerp>

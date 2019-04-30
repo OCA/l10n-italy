@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from odoo import api, models, exceptions, _
+from openerp import api, models, _
+from openerp.exceptions import Warning as UserError
 
 
 class SplitBigCommunication(models.TransientModel):
@@ -23,5 +24,5 @@ class SplitBigCommunication(models.TransientModel):
                 'domain': [('id', 'in', res.ids)],
             }
         else:
-            raise exceptions.UserError(_(
+            raise UserError(_(
                 'Limit not exceeded. Split not needed'))

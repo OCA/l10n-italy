@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<odoo>
+<openerp>
     <data>
 
         <record id="wizard_dati_iva_export_file" model="ir.ui.view">
@@ -56,4 +56,4 @@
         </record>
 
     </data>
-</odoo>
+</openerp>

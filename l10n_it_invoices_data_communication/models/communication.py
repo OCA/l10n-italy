@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
 
-from odoo import api, fields, models, _
-from odoo.exceptions import ValidationError
+from openerp import api, fields, models, _
+from openerp.exceptions import ValidationError
+from openerp.osv import expression
 from lxml import etree
 import re
 
@@ -40,6 +41,20 @@ def check_normalized_string(value):
     if value != value.strip():
         normalized = False
     return normalized
+
+
+def _get_invoice_date_domain(date_start, date_end):
+    reg_date_domain = [
+        '&',
+        ('registration_date', '>=', date_start),
+        ('registration_date', '<=', date_end),
+    ]
+    date_inv_domain = [
+        '&',
+        ('date_invoice', '>=', date_start),
+        ('date_invoice', '<=', date_end),
+    ]
+    return expression.OR([reg_date_domain, date_inv_domain])
 
 
 class ComunicazioneDatiIva(models.Model):
@@ -475,6 +490,7 @@ class ComunicazioneDatiIva(models.Model):
             self.fatture_emesse_ids = dati_fatture
 
     def _get_fatture_emesse_domain(self):
+        self.ensure_one()
         domain = [('comunicazione_dati_iva_escludi', '=', True)]
         no_journal_ids = self.env['account.journal'].search(domain).ids
         domain = [('type', 'in', ['out_invoice', 'out_refund']),
@@ -482,12 +498,12 @@ class ComunicazioneDatiIva(models.Model):
                   ('move_id', '!=', False),
                   ('move_id.journal_id', 'not in', no_journal_ids),
                   ('company_id', '=', self.company_id.id),
-                  ('date_invoice', '>=', self.date_start),
-                  ('date_invoice', '<=', self.date_end),
                   '|',
                   ('fiscal_document_type_id.out_invoice', '=', True),
                   ('fiscal_document_type_id.out_refund', '=', True),
                   ]
+        date_domain = _get_invoice_date_domain(self.date_start, self.date_end)
+        domain = expression.AND([domain, date_domain])
         return domain
 
     def _get_fatture_emesse(self):
@@ -512,9 +528,9 @@ class ComunicazioneDatiIva(models.Model):
                         fattura.fiscal_document_type_id.id,
                     'dati_fattura_Data': fattura.date_invoice,
                     'dati_fattura_DataRegistrazione':
-                        fattura.date,
+                        fattura.registration_date or fattura.date_invoice,
                     'dati_fattura_Numero': self._parse_fattura_numero(
-                        fattura.reference) or '',
+                        fattura.supplier_invoice_number) or '',
                     'dati_fattura_iva_ids':
                         fattura._get_tax_comunicazione_dati_iva()
                 }
@@ -545,6 +561,7 @@ class ComunicazioneDatiIva(models.Model):
             self.fatture_ricevute_ids = dati_fatture
 
     def _get_fatture_ricevute_domain(self):
+        self.ensure_one()
         domain = [('comunicazione_dati_iva_escludi', '=', True)]
         no_journal_ids = self.env['account.journal'].search(domain).ids
         domain = [('type', 'in', ['in_invoice', 'in_refund']),
@@ -552,11 +569,11 @@ class ComunicazioneDatiIva(models.Model):
                   ('move_id', '!=', False),
                   ('move_id.journal_id', 'not in', no_journal_ids),
                   ('company_id', '=', self.company_id.id),
-                  ('date', '>=', self.date_start),
-                  ('date', '<=', self.date_end),
                   '|',
                   ('fiscal_document_type_id.in_invoice', '=', True),
                   ('fiscal_document_type_id.in_refund', '=', True), ]
+        date_domain = _get_invoice_date_domain(self.date_start, self.date_end)
+        domain = expression.AND([domain, date_domain])
         return domain
 
     def _get_fatture_ricevute(self):
@@ -1149,7 +1166,7 @@ class ComunicazioneDatiIva(models.Model):
                 errors.append(_(
                     u'ZIP %s of seller %s is not 5 characters'
                 ) % (
-                    invoices_partner.cessionario_sede_Cap,
+                    invoices_partner.cedente_sede_Cap,
                     invoices_partner.partner_id.display_name
                 ))
             # ----- Dettagli IVA
@@ -2485,10 +2502,12 @@ class ComunicazioneDatiIvaFattureRicevuteBody(models.Model):
                 fattura.dati_fattura_TipoDocumento = \
                     fattura.invoice_id.fiscal_document_type_id and \
                     fattura.invoice_id.fiscal_document_type_id.id or False
-                fattura.dati_fattura_Numero = fattura.invoice_id.number
+                fattura.dati_fattura_Numero = \
+                    fattura.invoice_id.supplier_invoice_number
                 fattura.dati_fattura_Data = fattura.invoice_id.date_invoice
                 fattura.dati_fattura_DataRegistrazione = \
-                    fattura.invoice_id.date
+                    fattura.invoice_id.registration_date \
+                    or fattura.invoice_id.date_invoice
                 # tax
                 tax_lines = []
                 for tax_line in fattura.invoice_id.tax_line:
