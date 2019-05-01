@@ -461,9 +461,8 @@ class StockPickingPackagePreparation(models.Model):
             'default_res_id': self.ids[0],
             'default_use_template': bool(template_id),
             'default_template_id': template_id,
-            'mark_so_as_sent': True,
-            'custom_layout':
-                "l10n_it_ddt.mail_template_data_notification_email_ddt"
+            'default_composition_mode': 'comment',
+            'force_email': True,
         }
         return {
             'type': 'ir.actions.act_window',
