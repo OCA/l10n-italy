@@ -11,15 +11,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-25 05:17+0000\n"
-"PO-Revision-Date: 2019-03-07 17:23+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2019-05-01 09:02+0000\n"
+"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.4\n"
+"X-Generator: Weblate 3.5.1\n"
 
 #. module: l10n_it_ddt
 #: model:mail.template,body_html:l10n_it_ddt.email_template_edi_ddt
@@ -39,6 +39,20 @@ msgid ""
 "<p>You can reply to this email if you have any questions.</p>\n"
 "<p>Thank you.</p>\n"
 msgstr ""
+"\n"
+"<p>Gentile ${object.partner_id.name},</p>\n"
+"<p>ecco il documento\n"
+"%if object.date:\n"
+" del <strong>${object.date},</strong>\n"
+"% endif\n"
+"%if object.date_done:\n"
+"con data di spedizione\n"
+"<strong>${object.date_done}</strong>\n"
+"%endif\n"
+"da ${object.company_id.name}.\n"
+"</p>\n"
+"<p>È possibile rispondere a questa email in caso di domande.</p>\n"
+"<p>Grazie.</p>\n"
 
 #. module: l10n_it_ddt
 #: model:mail.template,report_name:l10n_it_ddt.email_template_edi_ddt
@@ -474,9 +488,8 @@ msgstr "Impossibile creare un collo senza dettagli"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_location
-#, fuzzy
 msgid "Inventory Locations"
-msgstr "Posizioni di magazzino"
+msgstr "Ubicazioni di magazzino"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_account_invoice
@@ -787,9 +800,9 @@ msgstr "I prelievi selezionati hanno una condizione di trasporto diversa"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:182
-#, fuzzy, python-format
+#, python-format
 msgid "Selected Pickings have different carrier"
-msgstr "I prelievi selezionati hanno partner diversi"
+msgstr "I prelievi selezionati hanno trasportatori diversi"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:106
