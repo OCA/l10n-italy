@@ -73,6 +73,7 @@ Configuration
 * Configurare i dati della fattura elettronica nella configurazione della contabilità, dove necessario
 * Opzionalmente configurare lo stile dell'anteprima della fattura elettronica, selezionando "Stile del formato di anteprima" in "Configurazione Contabilità"
 
+
 **English**
 
 * In partner form, select 'Subjected to electronic invoice' in 'Electronic Invoice' tab for customers and suppliers subjected to electronic invoicing
