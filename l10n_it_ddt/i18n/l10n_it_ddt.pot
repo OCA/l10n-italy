@@ -689,6 +689,30 @@ msgid "Sale Order"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:46
+#, python-format
+msgid "Sale order %s and DDT %s have different carriage condition"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:57
+#, python-format
+msgid "Sale order %s and DDT %s have different goods description"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:79
+#, python-format
+msgid "Sale order %s and DDT %s have different transportation method"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:68
+#, python-format
+msgid "Sale order %s and DDT %s have different transportation reason"
+msgstr ""
+
+#. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_line__sale_line_id
 msgid "Sale order line"
 msgstr ""
@@ -702,30 +726,6 @@ msgstr ""
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:37
 #, python-format
 msgid "Selected Picking %s have different Partner"
-msgstr ""
-
-#. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:43
-#, python-format
-msgid "Selected Picking %s have different carriage condition"
-msgstr ""
-
-#. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:48
-#, python-format
-msgid "Selected Picking %s have different goods description"
-msgstr ""
-
-#. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:58
-#, python-format
-msgid "Selected Picking %s have different transportation method"
-msgstr ""
-
-#. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:53
-#, python-format
-msgid "Selected Picking %s have different transportation reason"
 msgstr ""
 
 #. module: l10n_it_ddt
@@ -853,7 +853,7 @@ msgid "Stock TD Type"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:71
+#: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:95
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:211
 #: model:ir.actions.report,name:l10n_it_ddt.action_report_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice__ddt_ids
