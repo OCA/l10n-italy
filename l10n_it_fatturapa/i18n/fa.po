@@ -143,6 +143,11 @@ msgid "Assignee / Partner"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: selection:res.company,fatturapa_preview_style:0
+msgid "AssoSoftware v1.1"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_ir_attachment_id
 msgid "Attachment"
 msgstr ""
@@ -473,6 +478,11 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:account.tax,name:l10n_it_fatturapa.tax_00_minimi_acq
 msgid "Exempt Pur"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: selection:res.company,fatturapa_preview_style:0
+msgid "FatturaOrdinaria v1.2.1"
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -905,6 +915,12 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail_prepayment_discount
 msgid "Prepayment Discount"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_config_settings_fatturapa_preview_style
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company_fatturapa_preview_style
+msgid "Preview Format Style"
 msgstr ""
 
 #. module: l10n_it_fatturapa
