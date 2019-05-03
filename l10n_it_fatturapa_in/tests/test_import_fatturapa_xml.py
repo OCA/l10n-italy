@@ -469,3 +469,34 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertEqual(invoice.inconsistencies, '')
         self.assertEqual(invoice.invoice_line_ids[2].price_unit, 0.0)
         self.assertEqual(invoice.invoice_line_ids[2].discount, 0.0)
+
+    def test_22_xml_import(self):
+        res = self.run_wizard('test22', 'IT02780790107_11004_xml_doctor.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+
+        self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
+
+        self.assertIn('removed timezone information', invoice.inconsistencies)
+
+        # DatiGeneraliDocumento/Causale
+        self.assertEqual(invoice.comment, '')
+
+        # DatiGeneraliDocumento/Data
+        self.assertEqual(invoice.date_invoice, '2014-12-18')
+
+        # DatiTrasporto/IndirizzoResa/NumeroCivico
+        self.assertEqual(invoice.delivery_address,
+                         'strada dei test, \n12042 - Bra\nCN IT')
+
+        # DatiTrasporto/DataOraConsegna
+        self.assertFalse(invoice.delivery_datetime)
+
+        # DatiBeniServizi/DettaglioLinee/Descrizione
+        self.assertEqual(invoice.invoice_line_ids[0].name, '-')
+
+        # DatiPagamento/DettaglioPagamento/DataDecorrenzaPenale
+        payment_data = self.env['fatturapa.payment.data'].search(
+            [('invoice_id', '=', invoice.id)])
+        self.assertEqual(payment_data[0].payment_methods[0].penalty_date,
+                         '2015-05-01')
