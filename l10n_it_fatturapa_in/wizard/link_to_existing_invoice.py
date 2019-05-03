@@ -3,7 +3,7 @@
 from odoo import models, api, fields
 from odoo.tools.translate import _
 from odoo.exceptions import UserError
-from odoo.addons.l10n_it_fatturapa.bindings import fatturapa_v_1_2
+from odoo.addons.l10n_it_fatturapa.bindings import fatturapa
 
 
 class WizardLinkToInvoice(models.TransientModel):
@@ -14,7 +14,7 @@ class WizardLinkToInvoice(models.TransientModel):
 
     def get_invoice_obj(self, fatturapa_attachment):
         xml_string = fatturapa_attachment.get_xml_string()
-        return fatturapa_v_1_2.CreateFromDocument(xml_string)
+        return fatturapa.CreateFromDocument(xml_string)
 
     @api.multi
     def link(self):
