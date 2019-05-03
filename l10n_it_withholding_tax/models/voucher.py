@@ -130,6 +130,7 @@ class account_voucher(orm.Model):
         the invoice
         '''
         move_line_obj = self.pool['account.move.line']
+        account_move_obj = self.pool['account.move']  #Apulia
         voucher_line_obj = self.pool['account.voucher.line']
         payment_term_obj = self.pool['account.payment.term']
         reconcile_obj = self.pool['account.move.reconcile']
@@ -163,6 +164,7 @@ class account_voucher(orm.Model):
         for rec in rec_list_ids:
             line_move_to_pay = move_line_obj.browse(cr, uid, rec[1])
             line_payment = move_line_obj.browse(cr, uid, rec[0])
+            #verifica che la registrazione non sia validata e la riporta in bozza
             # Remove reconciliation to change amounts
             lines_to_rereconcile = _unreconcile_move_line(line_move_to_pay)
             for r_line_id in lines_to_rereconcile:
@@ -232,7 +234,15 @@ class account_voucher(orm.Model):
                         'credit': line_payment.credit + debit,
                         'debit': line_payment.debit + credit
                     }
+                    # la registrazione è già validata la riporta in bozza
+                    cc_move = line_payment.move_id
+                    if cc_move.state == 'posted':
+                         account_move_obj.button_cancel(
+                             cr, uid, [cc_move.id], context)
                     move_line_obj.write(cr, uid, [line_payment.id], val)
+                    # una volta corretta la riga rivalida la registrazione
+                    if cc_move.journal_id.entry_posted:
+                        account_move_obj.post(cr, uid, [cc_move.id], context={})
 
         # Merge with existing lines to reconcile
         if rec_list_new_moves:
@@ -542,7 +552,6 @@ class withholding_tax_voucher_line(orm.Model):
             wt_move_vals.update({'amount': wt_v_line.amount})
             wt_move_obj.write(cr, uid, [wt_move_id], wt_move_vals)
             # wt_move.write(wt_move_vals)
-
         return True
 
     def create(self, cr, uid, vals, *args, **kwargs):
