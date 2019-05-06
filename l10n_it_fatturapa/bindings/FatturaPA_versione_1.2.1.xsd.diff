@@ -96,6 +96,15 @@
      </xs:restriction>
    </xs:simpleType>
    <xs:simpleType name="ProvinciaType">
+@@ -1238,7 +1243,7 @@
+   </xs:simpleType>
+   <xs:simpleType name="NumeroCivicoType">
+     <xs:restriction base="xs:normalizedString">
+-      <xs:pattern value="(\p{IsBasicLatin}{1,8})" />
++      <xs:pattern value="(\p{IsBasicLatin}{0,8})" />
+     </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="BolloVirtualeType">
 @@ -1265,18 +1270,17 @@
      </xs:restriction>
    </xs:simpleType>

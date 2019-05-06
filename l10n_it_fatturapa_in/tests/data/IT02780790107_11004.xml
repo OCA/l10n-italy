@@ -136,7 +136,7 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                 <TipoResa>DAP</TipoResa>
                 <IndirizzoResa>
                     <Indirizzo>strada dei test</Indirizzo>
-                    <NumeroCivico>150/B</NumeroCivico>
+                    <NumeroCivico> </NumeroCivico>
                     <CAP>12042</CAP>
                     <Comune>Bra</Comune>
                     <Provincia>CN</Provincia>

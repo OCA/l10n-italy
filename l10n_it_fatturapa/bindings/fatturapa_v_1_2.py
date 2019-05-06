@@ -821,7 +821,7 @@ class NumeroCivicoType (pyxb.binding.datatypes.normalizedString):
     _XSDLocation = pyxb.utils.utility.Location('https://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2.1/Schema_del_file_xml_FatturaPA_versione_1.2.1.xsd', 1244, 2)
     _Documentation = None
 NumeroCivicoType._CF_pattern = pyxb.binding.facets.CF_pattern()
-NumeroCivicoType._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,8})')
+NumeroCivicoType._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{0,8})')
 NumeroCivicoType._InitializeFacetMap(NumeroCivicoType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'NumeroCivicoType', NumeroCivicoType)
 _module_typeBindings.NumeroCivicoType = NumeroCivicoType
