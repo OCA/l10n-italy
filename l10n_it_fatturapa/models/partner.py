@@ -102,7 +102,7 @@ class res_partner(orm.Model):
                         "Partner %s must have VAT Number or Fiscal Code."
                         "Italian partner %s must "
                         "have VAT Number or Fiscal Code."
-                    ) % partner.name)
+                    ) % (partner.name, partner.name))
                 if partner.customer:
                     if not partner.street:
                         raise except_osv(_('Error' ),_(
