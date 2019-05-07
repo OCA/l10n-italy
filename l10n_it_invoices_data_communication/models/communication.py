@@ -2491,16 +2491,14 @@ class ComunicazioneDatiIvaFattureRicevuteBody(models.Model):
                     fattura.invoice_id.date
                 # tax
                 tax_lines = []
-                for tax_line in fattura.invoice_id.tax_line:
+                for tax_line in fattura.invoice_id.tax_line_ids:
                     # aliquota
                     aliquota = 0
-                    domain = [('tax_code_id', '=', tax_line.tax_code_id.id)]
-                    tax = self.env['account.tax'].search(
-                        domain, order='id', limit=1)
+                    tax = tax_line.tax_id
                     if tax:
-                        aliquota = tax.amount * 100
+                        aliquota = tax.amount
                     val = {
-                        'ImponibileImporto': tax_line.base_amount,
+                        'ImponibileImporto': tax_line.base,
                         'Imposta': tax_line.amount,
                         'Aliquota': aliquota,
                     }
