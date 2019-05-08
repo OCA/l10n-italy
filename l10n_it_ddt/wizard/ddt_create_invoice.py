@@ -88,7 +88,9 @@ class DdTCreateInvoice(models.TransientModel):
                         if move.invoice_state != "2binvoiced":
                             raise UserError(
                                 _("Move {m} is not invoiceable ({d})".format(
-                                    m=move.name, d=ddt.ddt_number)))
+                                    m=move.name.encode(
+                                        'latin', 'ignore').decode('latin'),
+                                    d=ddt.ddt_number)))
             invoice_ids = []
             for partner_id in ddt_partner.keys():
                 p_list = []
