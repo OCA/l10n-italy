@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-24 10:45+0000\n"
-"PO-Revision-Date: 2019-04-24 10:45+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -277,7 +275,7 @@ msgid "Text on Self Invoice"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:416
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:417
 #, python-format
 msgid "There are more than one payment line.\n"
 "In that case account entries cannot be canceledautomatically. Please proceed manually"
@@ -316,3 +314,4 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__with_supplier_self_invoice
 msgid "With additional supplier self invoice"
 msgstr ""
+
