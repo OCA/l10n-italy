@@ -11,15 +11,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-25 05:17+0000\n"
-"PO-Revision-Date: 2019-05-01 09:02+0000\n"
-"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
+"PO-Revision-Date: 2019-05-14 14:09+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.5.1\n"
+"X-Generator: Weblate 3.6.1\n"
 
 #. module: l10n_it_ddt
 #: model:mail.template,body_html:l10n_it_ddt.email_template_edi_ddt
@@ -642,31 +642,28 @@ msgstr "Ordine di vendita"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:46
-#, fuzzy, python-format
-#| msgid "Selected Picking %s have different carriage condition"
+#, python-format
 msgid "Sale order %s and DDT %s have different carriage condition"
-msgstr "Il prelievo %s selezionato ha una condizione di trasporto diversa"
+msgstr ""
+"L'ordine di vendita %s e il DDT %s hanno condizioni di trasporto diverse"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:57
-#, fuzzy, python-format
-#| msgid "Selected Picking %s have different goods description"
+#, python-format
 msgid "Sale order %s and DDT %s have different goods description"
-msgstr "Il prelievo %s selezionato ha una descrizione dei beni diversa"
+msgstr "L'ordine di vendita %s e il DDT %s hanno descrizioni dei beni diverse"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:79
-#, fuzzy, python-format
-#| msgid "Selected Picking %s have different transportation method"
+#, python-format
 msgid "Sale order %s and DDT %s have different transportation method"
-msgstr "Il prelievo %s selezionato ha un metodo di trasporto diverso"
+msgstr "L'ordine di vendita %s e il DDT %s hanno metodi di trasporto diversi"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:68
-#, fuzzy, python-format
-#| msgid "Selected Picking %s have different transportation reason"
+#, python-format
 msgid "Sale order %s and DDT %s have different transportation reason"
-msgstr "Il prelievo %s selezionato ha una causale di trasporto diversa"
+msgstr "L'ordine di vendita %s e il DDT %s hanno causali di trasporto diverse"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_line__sale_line_id
