@@ -3,7 +3,7 @@
 # Generated 2019-03-18 02:57:28.772978 by PyXB version 1.2.6 using Python 2.7.15.final.0
 # Namespace http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2
 
-from __future__ import unicode_literals
+
 import pyxb
 import pyxb.binding
 import pyxb.binding.saxer
@@ -27,7 +27,7 @@ _module_typeBindings = pyxb.utils.utility.Object()
 
 # Import bindings for namespaces imported into schema
 import pyxb.binding.datatypes
-import _ds as _ImportedBinding__ds
+from . import _ds as _ImportedBinding__ds
 
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI('http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2', create_if_missing=True)
