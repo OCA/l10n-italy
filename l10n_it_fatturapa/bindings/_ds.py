@@ -3,7 +3,7 @@
 # Generated 2019-03-18 02:57:28.772754 by PyXB version 1.2.6 using Python 2.7.15.final.0
 # Namespace http://www.w3.org/2000/09/xmldsig# [xmlns:ds]
 
-from __future__ import unicode_literals
+
 import pyxb
 import pyxb.binding
 import pyxb.binding.saxer
