@@ -89,6 +89,7 @@ class WizardGiornale(models.TransientModel):
         move_line_ids = move_line_obj.search([
             ('date', '>=', wizard.date_move_line_from),
             ('date', '<=', wizard.date_move_line_to),
+            ('journal_id', 'in', [j.id for j in wizard.journal_ids]),
             ('move_id.state', 'in', target_type)
         ], order='date, move_id asc')
         if not move_line_ids:
