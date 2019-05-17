@@ -847,8 +847,9 @@ class WizardExportFatturapa(orm.TransientModel):
                 is_riba = self.isRiba(cr, uid, invoice, context)
                 refBank = invoice.partner_bank_id
                 if is_riba:
-                    for bank in invoice.bank_account_ids:
-                        refBank = bank
+                    if invoice.customer_bank_ids:
+                        for bank in invoice.customer_bank_ids:
+                            refBank = bank
                 if refBank:
                     DettaglioPagamento.IstitutoFinanziario = (
                         refBank.bank_name)
@@ -866,10 +867,7 @@ class WizardExportFatturapa(orm.TransientModel):
         return True
 
     def isRiba(self, cr, uid, invoice, context={}):
-        for termLine in invoice.payment_term.line_ids:
-            if termLine.riba:
-                return True
-        return False
+        return invoice.payment_term.riba
 
     def setAttachments(self, cr, uid, invoice, body, context=None):
         if context is None:
