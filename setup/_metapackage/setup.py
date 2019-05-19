@@ -36,6 +36,7 @@ setuptools.setup(
         'odoo12-addon-l10n_it_sdi_channel',
         'odoo12-addon-l10n_it_split_payment',
         'odoo12-addon-l10n_it_vat_registries',
+        'odoo12-addon-l10n_it_vat_statement_communication',
         'odoo12-addon-l10n_it_website_portal_fatturapa',
         'odoo12-addon-l10n_it_website_portal_fiscalcode',
         'odoo12-addon-l10n_it_website_sale_corrispettivi',
