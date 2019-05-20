@@ -102,20 +102,12 @@ class AccountVatPeriodEndStatement(models.Model):
     debit_vat_account_line_ids = fields.One2many(
         'statement.debit.account.line', 'statement_id', 'Debit VAT',
         help='The accounts containing the debit VAT amount to write-off',
-        states={
-            'confirmed': [('readonly', True)],
-            'paid': [('readonly', True)],
-            'draft': [('readonly', False)]
-        }
+        readonly=True
     )
     credit_vat_account_line_ids = fields.One2many(
         'statement.credit.account.line', 'statement_id', 'Credit VAT',
         help='The accounts containing the credit VAT amount to write-off',
-        states={
-            'confirmed': [('readonly', True)],
-            'paid': [('readonly', True)],
-            'draft': [('readonly', False)]
-        })
+        readonly=True)
     previous_credit_vat_account_id = fields.Many2one(
         'account.account', 'Previous Credits VAT',
         help='Credit VAT from previous periods',
