@@ -20,8 +20,10 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #. module: l10n_it_central_journal
-#: model:ir.actions.report.xml,name:l10n_it_central_journal.action_report_giornale
-msgid "Account central journal"
+#: model:ir.actions.report,name:l10n_it_central_journal.action_report_giornale
+#, fuzzy
+#| msgid "Account central journal"
+msgid "Account General Journal"
 msgstr "Osrednji knjigovodski dnevnik"
 
 #. module: l10n_it_central_journal
@@ -50,18 +52,6 @@ msgid "Cancel"
 msgstr "Preklic"
 
 #. module: l10n_it_central_journal
-#: model:ir.actions.act_window,name:l10n_it_central_journal.action_giornale
-#: model:ir.ui.menu,name:l10n_it_central_journal.menu_giornale
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
-msgid "Central Journal"
-msgstr "Osrednji dnevnik"
-
-#. module: l10n_it_central_journal
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.view_date_range_form_inherit_view
-msgid "Central journal info"
-msgstr "Podatki o osrednjem dnevniku"
-
-#. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_company_id
 msgid "Company"
 msgstr "Družba"
@@ -87,12 +77,13 @@ msgid "Date"
 msgstr "Datum"
 
 #. module: l10n_it_central_journal
+#: model:ir.model,name:l10n_it_central_journal.model_date_range
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_daterange
 msgid "Date Range"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:117
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:127
 #, python-format
 msgid "Date already printed"
 msgstr "Datum je že natisnjen"
@@ -120,7 +111,9 @@ msgstr "Osnutek"
 
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_account_journal_central_journal_exclude
-msgid "Exclude from Central             Journal"
+#, fuzzy
+#| msgid "Exclude from Central             Journal"
+msgid "Exclude from General Journal"
 msgstr "Izključi iz osrednjega dnevnika"
 
 #. module: l10n_it_central_journal
@@ -138,6 +131,22 @@ msgstr "Končni tisk"
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_date_move_line_from_view
 msgid "From date"
 msgstr "Od datuma"
+
+#. module: l10n_it_central_journal
+#: model:ir.actions.act_window,name:l10n_it_central_journal.action_giornale
+#: model:ir.ui.menu,name:l10n_it_central_journal.menu_giornale
+#: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
+#, fuzzy
+#| msgid "Central Journal"
+msgid "General Journal"
+msgstr "Osrednji dnevnik"
+
+#. module: l10n_it_central_journal
+#: model:ir.ui.view,arch_db:l10n_it_central_journal.view_date_range_form_inherit_view
+#, fuzzy
+#| msgid "Central journal info"
+msgid "General Journal Info"
+msgstr "Podatki o osrednjem dnevniku"
 
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_report_l10n_it_central_journal_report_giornale_id
@@ -203,8 +212,8 @@ msgid "Name"
 msgstr "Naziv"
 
 #. module: l10n_it_central_journal
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:95
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:131
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:102
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:141
 #, python-format
 msgid "No documents found in the current selection"
 msgstr "V trenutnem izboru ni najdenih dokumentov"
@@ -286,8 +295,14 @@ msgid "To date"
 msgstr "Do zdaj"
 
 #. module: l10n_it_central_journal
-#: model:ir.model,name:l10n_it_central_journal.model_date_range
-msgid "date.range"
+#: model:ir.model.fields,help:l10n_it_central_journal.field_wizard_giornale_year_footer
+msgid "Value printed near number of page in the footer"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_year_footer
+#: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
+msgid "Year for Footer"
 msgstr ""
 
 #. module: l10n_it_central_journal

@@ -20,8 +20,8 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: l10n_it_central_journal
-#: model:ir.actions.report.xml,name:l10n_it_central_journal.action_report_giornale
-msgid "Account central journal"
+#: model:ir.actions.report,name:l10n_it_central_journal.action_report_giornale
+msgid "Account General Journal"
 msgstr ""
 
 #. module: l10n_it_central_journal
@@ -50,18 +50,6 @@ msgid "Cancel"
 msgstr "取消"
 
 #. module: l10n_it_central_journal
-#: model:ir.actions.act_window,name:l10n_it_central_journal.action_giornale
-#: model:ir.ui.menu,name:l10n_it_central_journal.menu_giornale
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
-msgid "Central Journal"
-msgstr ""
-
-#. module: l10n_it_central_journal
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.view_date_range_form_inherit_view
-msgid "Central journal info"
-msgstr ""
-
-#. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_company_id
 msgid "Company"
 msgstr ""
@@ -87,12 +75,13 @@ msgid "Date"
 msgstr "日期"
 
 #. module: l10n_it_central_journal
+#: model:ir.model,name:l10n_it_central_journal.model_date_range
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_daterange
 msgid "Date Range"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:117
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:127
 #, python-format
 msgid "Date already printed"
 msgstr ""
@@ -120,7 +109,7 @@ msgstr ""
 
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_account_journal_central_journal_exclude
-msgid "Exclude from Central             Journal"
+msgid "Exclude from General Journal"
 msgstr ""
 
 #. module: l10n_it_central_journal
@@ -137,6 +126,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_date_move_line_from
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_date_move_line_from_view
 msgid "From date"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.actions.act_window,name:l10n_it_central_journal.action_giornale
+#: model:ir.ui.menu,name:l10n_it_central_journal.menu_giornale
+#: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
+msgid "General Journal"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.ui.view,arch_db:l10n_it_central_journal.view_date_range_form_inherit_view
+msgid "General Journal Info"
 msgstr ""
 
 #. module: l10n_it_central_journal
@@ -203,8 +204,8 @@ msgid "Name"
 msgstr "名称"
 
 #. module: l10n_it_central_journal
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:95
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:131
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:102
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:141
 #, python-format
 msgid "No documents found in the current selection"
 msgstr ""
@@ -286,8 +287,14 @@ msgid "To date"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model,name:l10n_it_central_journal.model_date_range
-msgid "date.range"
+#: model:ir.model.fields,help:l10n_it_central_journal.field_wizard_giornale_year_footer
+msgid "Value printed near number of page in the footer"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_year_footer
+#: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
+msgid "Year for Footer"
 msgstr ""
 
 #. module: l10n_it_central_journal
