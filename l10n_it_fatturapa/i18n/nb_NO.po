@@ -105,14 +105,14 @@ msgid "Art. 73"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:62
+#: code:addons/l10n_it_fatturapa/models/partner.py:64
 #, python-format
 msgid ""
 "As a Public Administration, partner %s IPA Code must be 6 characters long."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:72
+#: code:addons/l10n_it_fatturapa/models/partner.py:74
 #, python-format
 msgid "As a natural person, partner %s must have Name and Surname."
 msgstr ""
@@ -257,19 +257,19 @@ msgid "Created on"
 msgstr "Laget den"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:102
+#: code:addons/l10n_it_fatturapa/models/partner.py:119
 #, python-format
 msgid "Customer %s: city is needed for XML generation."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:106
+#: code:addons/l10n_it_fatturapa/models/partner.py:123
 #, python-format
 msgid "Customer %s: country is needed for XML generation."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:94
+#: code:addons/l10n_it_fatturapa/models/partner.py:111
 #, python-format
 msgid "Customer %s: street is needed for XML generation."
 msgstr ""
@@ -611,13 +611,13 @@ msgid "Is public document"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:89
+#: code:addons/l10n_it_fatturapa/models/partner.py:106
 #, python-format
 msgid "Italian partner %s must have VAT Number or Fiscal Code."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:98
+#: code:addons/l10n_it_fatturapa/models/partner.py:115
 #, python-format
 msgid "Italian partner %s: ZIP is needed for XML generation."
 msgstr ""
@@ -818,9 +818,21 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:81
+#: code:addons/l10n_it_fatturapa/models/partner.py:90
 #, python-format
 msgid "Partner %s Addressee Code must be 7 characters long."
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/partner.py:96
+#, python-format
+msgid "Partner %s has Addressee PEC %s, the Addresse Code must be %s."
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: code:addons/l10n_it_fatturapa/models/partner.py:82
+#, python-format
+msgid "Partner %s must have Addresse Code. Use %s if unknown"
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -1172,7 +1184,7 @@ msgstr ""
 msgid ""
 "The code, 7 characters long, assigned by ES to subjects with an accredited "
 "channel; if the addressee didn't accredit a channel to ES and invoices are "
-"received by PEC, the field must be filled with zeros ('0000000')."
+"received by PEC, the field must be the standard value ('0000000')."
 msgstr ""
 
 #. module: l10n_it_fatturapa
