@@ -27,8 +27,8 @@ msgid ""
 "17, 2014"
 msgstr ""
 "\n"
-"Assolvimento dell’imposta di bollo ai sensi dell’articolo 6, comma 2, del "
-"D.M.\n"
+"Assolvimento dell’imposta di bollo ai sensi dell’articolo 6, comma 2, del D."
+"M.\n"
 "17 giugno 2014"
 
 #. module: l10n_it_account_stamp
@@ -63,6 +63,7 @@ msgstr "Riga fattura"
 
 #. module: l10n_it_account_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_invoice_line_is_stamp_line
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_delivery_carrier_is_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product_is_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template_is_stamp
 msgid "Is stamp"
@@ -100,12 +101,14 @@ msgid "Product used as Tax Stamp in customer invoices."
 msgstr "Prodotto usato come imposta di bollo nelle fatture cliente."
 
 #. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_delivery_carrier_stamp_apply_min_total_base
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product_stamp_apply_min_total_base
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template_stamp_apply_min_total_base
 msgid "Stamp apply min total base"
 msgstr "Totale imponibile minimo per applicabilità bollo"
 
 #. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_delivery_carrier_stamp_apply_tax_ids
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product_stamp_apply_tax_ids
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template_stamp_apply_tax_ids
 msgid "Stamp taxes"
