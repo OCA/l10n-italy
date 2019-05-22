@@ -1149,7 +1149,7 @@ class ComunicazioneDatiIva(models.Model):
                 errors.append(_(
                     u'ZIP %s of seller %s is not 5 characters'
                 ) % (
-                    invoices_partner.cessionario_sede_Cap,
+                    invoices_partner.cedente_sede_Cap,
                     invoices_partner.partner_id.display_name
                 ))
             # ----- Dettagli IVA
