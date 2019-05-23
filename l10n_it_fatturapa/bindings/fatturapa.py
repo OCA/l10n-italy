@@ -1,11 +1,9 @@
-# -*- coding: utf-8 -*-
-
 import logging
 import pyxb.binding
 from odoo.modules.module import get_module_resource
 
 from lxml import etree
-from binding import *  # noqa: F403
+from .binding import *  # noqa: F403
 
 _logger = logging.getLogger(__name__)
 _logger.setLevel(logging.DEBUG)
