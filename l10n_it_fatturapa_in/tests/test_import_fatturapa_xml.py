@@ -494,7 +494,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertEqual(invoice.comment, '')
 
         # DatiGeneraliDocumento/Data
-        self.assertEqual(invoice.date_invoice, '2014-12-18')
+        self.assertEqual(invoice.date_invoice, date(2014, 12, 18))
 
         # DatiTrasporto/IndirizzoResa/NumeroCivico
         self.assertEqual(invoice.delivery_address,
@@ -510,4 +510,4 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         payment_data = self.env['fatturapa.payment.data'].search(
             [('invoice_id', '=', invoice.id)])
         self.assertEqual(payment_data[0].payment_methods[0].penalty_date,
-                         '2015-05-01')
+                         date(2015, 5, 1))
