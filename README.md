@@ -47,7 +47,7 @@ addon | version | summary
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 10.0.1.0.0 | Electronic invoices payment
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 10.0.1.3.0 | Italian Localisation - Fiscal Code
 [l10n_it_fiscalcode_invoice](l10n_it_fiscalcode_invoice/) | 10.0.1.0.0 | Italian Fiscal Code in invoice PDF
-[l10n_it_invoices_data_communication](l10n_it_invoices_data_communication/) | 10.0.1.1.0 | Comunicazione dati fatture (c.d. "nuovo spesometro" o "esterometro")
+[l10n_it_invoices_data_communication](l10n_it_invoices_data_communication/) | 10.0.1.1.1 | Comunicazione dati fatture (c.d. "nuovo spesometro" o "esterometro")
 [l10n_it_invoices_data_communication_fatturapa](l10n_it_invoices_data_communication_fatturapa/) | 10.0.1.0.0 | Integrazione fatturazione elettronica e Comunicazione dati fatture (c.d. "nuovo spesometro")
 [l10n_it_ipa](l10n_it_ipa/) | 10.0.2.0.0 | IPA Code (IndicePA)
 [l10n_it_location_nuts](l10n_it_location_nuts/) | 10.0.1.0.0 | NUTS specific options for Italy
