@@ -30,6 +30,10 @@
                            domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"/>
                 </xpath>
 
+                <field name="date_done" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
+
             </field>
         </record>
 
@@ -140,22 +144,38 @@
                     <page string="Shipping Informations"
                           attrs="{'invisible':[('ddt_type_id', '=', False)]}">
                         <group>
-                            <field name="carriage_condition_id"
-                                   attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
-                            <field name="goods_description_id"
-                                   attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
-                            <field name="transportation_reason_id"
-                                   attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
-                            <field name="transportation_method_id"
-                                   attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
-                            <field name="carrier_id"/>
-                            <field name="parcels"
-                                   attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
-                            <field name="volume"/>
-                            <field name="weight"/>
-                            <field name="weight_manual"/>
-                            <field name="gross_weight"/>
-                            <field name="show_price"/>
+                            <group>
+                                <field name="parcels"
+                                       attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
+                                <label for="volume"/>
+                                <div class="o_row">
+                                    <field name="volume"/>
+                                    <field name="volume_uom_id" groups="uom.group_uom" widget="selection"/>
+                                </div>
+                                <field name="weight"/>
+                                <label for="weight_manual"/>
+                                <div class="o_row">
+                                    <field name="weight_manual"/>
+                                    <field name="weight_manual_uom_id" groups="uom.group_uom" widget="selection"/>
+                                </div>
+                                <label for="gross_weight"/>
+                                <div class="o_row">
+                                    <field name="gross_weight"/>
+                                    <field name="gross_weight_uom_id" groups="uom.group_uom" widget="selection"/>
+                                </div>
+                                <field name="show_price"/>
+                            </group>
+                            <group>
+                                <field name="carriage_condition_id"
+                                       attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
+                                <field name="goods_description_id"
+                                       attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
+                                <field name="transportation_reason_id"
+                                       attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
+                                <field name="transportation_method_id"
+                                       attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
+                                <field name="carrier_id"/>
+                            </group>
                         </group>
                     </page>
                 </notebook>
