@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-25 05:17+0000\n"
-"PO-Revision-Date: 2019-05-14 14:09+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2019-05-24 14:19+0000\n"
+"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -550,7 +550,7 @@ msgstr "Riga preparazione collo"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__parcels
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Parcels"
-msgstr "Pacchi"
+msgstr "Colli"
 
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
@@ -715,7 +715,7 @@ msgstr "I prelievi selezionati hanno una descrizione dei beni diversa"
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:71
 #, python-format
 msgid "Selected Pickings have different parcels"
-msgstr "I prelievi selezionati contengono pacchi diversi"
+msgstr "I prelievi selezionati contengono colli diversi"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:157
@@ -788,7 +788,7 @@ msgstr "Mostrare prezzi sul documento"
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Size"
-msgstr "Dimensioni"
+msgstr "Volume"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_invoicing__date_from
