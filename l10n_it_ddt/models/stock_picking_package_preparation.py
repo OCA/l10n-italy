@@ -90,7 +90,11 @@ class StockPickingPackagePreparation(models.Model):
         return self.env['stock.ddt.type'].search([], limit=1)
 
     ddt_type_id = fields.Many2one(
-        'stock.ddt.type', string='TD Type', default=_default_ddt_type)
+        'stock.ddt.type', string='TD Type', default=_default_ddt_type,
+        states={
+            'done': [('readonly', True)],
+            'cancel': [('readonly', True)]
+        })
     ddt_number = fields.Char(string='TD Number', copy=False)
     partner_shipping_id = fields.Many2one(
         'res.partner', string="Shipping Address")
@@ -111,6 +115,10 @@ class StockPickingPackagePreparation(models.Model):
     display_name = fields.Char(
         string='Name', compute='_compute_clean_display_name')
     volume = fields.Float('Volume')
+    volume_uom_id = fields.Many2one(
+        'uom.uom', 'Volume UoM',
+        default=lambda self: self.env.ref(
+            'uom.product_uom_litre', raise_if_not_found=False))
     invoice_id = fields.Many2one(
         'account.invoice', string='Invoice', readonly=True, copy=False)
     to_be_invoiced = fields.Boolean(
@@ -122,7 +130,15 @@ class StockPickingPackagePreparation(models.Model):
         string="Force Net Weight",
         help="Fill this field with the value you want to be used as weight. "
              "Leave empty to let the system to compute it")
+    weight_manual_uom_id = fields.Many2one(
+        'uom.uom', 'Net Weight UoM',
+        default=lambda self: self.env.ref(
+            'uom.product_uom_kgm', raise_if_not_found=False))
     gross_weight = fields.Float(string="Gross Weight")
+    gross_weight_uom_id = fields.Many2one(
+        'uom.uom', 'Gross Weight UoM',
+        default=lambda self: self.env.ref(
+            'uom.product_uom_kgm', raise_if_not_found=False))
     check_if_picking_done = fields.Boolean(
         compute='_compute_check_if_picking_done',
         )

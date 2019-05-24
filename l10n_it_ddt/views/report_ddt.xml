@@ -34,11 +34,11 @@
                     </td>
                     <td>
                         <h6>Net Weight</h6>
-                        <div class="signature" t-field="ddt.weight"></div>
+                        <div class="signature"><span t-field="ddt.weight"/> <span t-field="ddt.weight_manual_uom_id"/></div>
                     </td>
                     <td>
                         <h6>Gross Weight</h6>
-                        <div class="signature" t-field="ddt.gross_weight"></div>
+                        <div class="signature"><span t-field="ddt.gross_weight"/> <span t-field="ddt.gross_weight_uom_id"/></div>
                     </td>
                 </tr>
                 <tr>
@@ -47,8 +47,8 @@
                         <div class="signature" t-field="ddt.carrier_id.name"></div>
                     </td>
                     <td>
-                        <h6>Date</h6>
-                        <div class="signature" t-field="ddt.date" t-field-options='{"widget": "date"}'></div>
+                        <h6>Shipping date</h6>
+                        <div class="signature" t-field="ddt.date_done" t-options='{"widget": "date"}'></div>
                     </td>
                     <td>
                         <h6>Pick up time</h6>
@@ -60,7 +60,7 @@
                     </td>
                     <td>
                         <h6>Size</h6>
-                        <div class="signature" t-field="ddt.volume"></div>
+                        <div class="signature"><span t-field="ddt.volume"/> <span t-field="ddt.volume_uom_id"/></div>
                     </td>
                 </tr>
             </table>
@@ -106,7 +106,7 @@
                         </div>
                     </div>
                     <br/>
-                    <h1>TD number: <span t-field="o.ddt_number"></span></h1>
+                    <h2>TD number: <span t-field="o.ddt_number"></span> - <span t-field="o.date" t-options='{"widget": "date"}'></span></h2>
                     <table class="table table-condensed">
                         <t t-set="has_serial_number"
                            t-value="o.line_ids.filtered('lot_ids')"
@@ -115,6 +115,7 @@
                             <tr>
                                 <th><strong>Description</strong></th>
                                 <th class="text-right"><strong>Quantity</strong></th>
+                                <th class="text-left" groups="uom.group_uom"><strong>UoM</strong></th>
                                 <th name="lot_serial" t-if="has_serial_number" class="text-right">
                                     <strong>Lots/Serial Numbers</strong>
                                 </th>
@@ -128,6 +129,7 @@
                             <tr t-foreach="o.line_ids" t-as="line">
                                 <td><span t-field="line.name"></span></td>
                                 <td class="text-right"><span t-field="line.product_uom_qty"></span></td>
+                                <td class="text-left" groups="uom.group_uom"><span t-field="line.product_uom_id"></span></td>
                                 <t t-if="has_serial_number">
                                     <t t-set="lot_dict" t-value="line.quantity_by_lot()"/>
                                     <td class="text-right">
