@@ -44,6 +44,7 @@ addon | version | summary
 [l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 8.0.1.1.6 | Electronic invoices reception
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.3.3.1 | Electronic invoices emission
 [l10n_it_fatturapa_out_ddt](l10n_it_fatturapa_out_ddt/) | 8.0.1.0.0 | Modulo ponte tra emissione fatture elettroniche e DDT
+[l10n_it_fatturapa_out_sale](l10n_it_fatturapa_out_sale/) | 8.0.1.0.0 | Modulo ponte tra emissione fatture elettroniche e dati ordine di vendita
 [l10n_it_fatturapa_out_stamp](l10n_it_fatturapa_out_stamp/) | 8.0.1.0.0 | Modulo ponte tra emissione fatture elettroniche e imposta di bollo
 [l10n_it_fatturapa_out_triple_discount](l10n_it_fatturapa_out_triple_discount/) | 8.0.1.0.0 | Modulo ponte tra emissione fatture elettroniche e sconto triplo
 [l10n_it_fatturapa_out_wt](l10n_it_fatturapa_out_wt/) | 8.0.1.0.0 | Modulo ponte tra emissione fatture elettroniche e ritenute.
