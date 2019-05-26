@@ -55,7 +55,7 @@
                         <div class="signature"></div>
                     </td>
                     <td>
-                        <h6>Parcels</h6>
+                        <h6>Packages</h6>
                         <div class="signature" t-field="ddt.parcels"></div>
                     </td>
                     <td>
