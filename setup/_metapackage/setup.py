@@ -30,6 +30,7 @@ setuptools.setup(
         'odoo8-addon-l10n_it_fatturapa_in',
         'odoo8-addon-l10n_it_fatturapa_out',
         'odoo8-addon-l10n_it_fatturapa_out_ddt',
+        'odoo8-addon-l10n_it_fatturapa_out_sale',
         'odoo8-addon-l10n_it_fatturapa_out_stamp',
         'odoo8-addon-l10n_it_fatturapa_out_triple_discount',
         'odoo8-addon-l10n_it_fatturapa_out_wt',
