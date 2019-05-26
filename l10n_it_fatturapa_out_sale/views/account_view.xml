@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_invoice_form_fatturapa_out_sale" model="ir.ui.view">
+            <field name="name">account.invoice.fatturapa.out.sale</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="fatturapa_attachment_out_id" position="after">
+                    <field name="fatturapa_sale_order_data"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
