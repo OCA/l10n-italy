@@ -111,7 +111,8 @@ class StockPickingPackagePreparation(models.Model):
         string='Method of Transportation')
     carrier_id = fields.Many2one(
         'res.partner', string='Carrier')
-    parcels = fields.Integer('Parcels')
+    # TODO align terms: parcels > packages
+    parcels = fields.Integer('Packages')
     display_name = fields.Char(
         string='Name', compute='_compute_clean_display_name')
     volume = fields.Float('Volume')
