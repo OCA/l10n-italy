@@ -742,22 +742,26 @@ class WizardExportFatturapa(models.TransientModel):
                 move_line = move_line_pool.browse(move_line_id)
                 ImportoPagamento = '%.2f' % (
                     move_line.amount_currency or move_line.debit)
+                # Create with only mandatory fields
                 DettaglioPagamento = DettaglioPagamentoType(
                     ModalitaPagamento=(
                         invoice.payment_term_id.fatturapa_pm_id.code),
-                    DataScadenzaPagamento=move_line.date_maturity,
                     ImportoPagamento=ImportoPagamento
                     )
-                if invoice.partner_bank_id:
-                    DettaglioPagamento.IstitutoFinanziario = (
-                        invoice.partner_bank_id.bank_name)
-                    if invoice.partner_bank_id.acc_number:
-                        DettaglioPagamento.IBAN = (
-                            ''.join(invoice.partner_bank_id.acc_number.split())
-                            )
-                    if invoice.partner_bank_id.bank_bic:
-                        DettaglioPagamento.BIC = (
-                            invoice.partner_bank_id.bank_bic)
+
+                # Add only the existing optional fields
+                if move_line.date_maturity:
+                    DettaglioPagamento.DataScadenzaPagamento = \
+                        move_line.date_maturity
+                partner_bank = invoice.partner_bank_id
+                if partner_bank.bank_name:
+                    DettaglioPagamento.IstitutoFinanziario = \
+                        partner_bank.bank_name
+                if partner_bank.acc_number:
+                    DettaglioPagamento.IBAN = \
+                        ''.join(partner_bank.acc_number.split())
+                if partner_bank.bank_bic:
+                    DettaglioPagamento.BIC = partner_bank.bank_bic
                 DatiPagamento.DettaglioPagamento.append(DettaglioPagamento)
             body.DatiPagamento.append(DatiPagamento)
         return True
