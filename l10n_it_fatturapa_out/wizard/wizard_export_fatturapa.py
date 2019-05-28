@@ -681,6 +681,10 @@ class WizardExportFatturapa(models.TransientModel):
 
     def setDatiRiepilogo(self, invoice, body):
         model_tax = self.env['account.tax']
+        if not invoice.tax_line:
+            raise UserError(
+                _("Invoice {invoice} has no tax lines")
+                .format(invoice=invoice.display_name))
         for tax_line in invoice.tax_line:
             tax = model_tax.get_tax_by_invoice_tax(tax_line.name)
             riepilogo = DatiRiepilogoType(
