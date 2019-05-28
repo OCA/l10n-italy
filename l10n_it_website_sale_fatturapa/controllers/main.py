@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2019 Simone Rubino
 # Copyright 2019 Lorenzo Battistini
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
@@ -16,7 +17,8 @@ class WebsiteSaleFatturapa(WebsiteSale):
                 'fiscalcode', 'vat', 'street', 'zip', 'city', 'country_id']
 
     def values_preprocess(self, order, mode, values):
-        pre_values = super().values_preprocess(order, mode, values)
+        pre_values = super(WebsiteSaleFatturapa, self) \
+            .values_preprocess(order, mode, values)
         # Compute name field, using First name and Last name
         if all(f in values for f in ['name', 'firstname', 'lastname']):
             partner_model = request.env['res.partner']
@@ -27,8 +29,8 @@ class WebsiteSaleFatturapa(WebsiteSale):
         return pre_values
 
     def checkout_form_validate(self, mode, all_form_values, data):
-        error, error_message = super().checkout_form_validate(
-            mode, all_form_values, data)
+        error, error_message = super(WebsiteSaleFatturapa, self) \
+            .checkout_form_validate(mode, all_form_values, data)
 
         # when checkbox electronic_invoice_subjected is not checked,
         # it is not posted
@@ -66,4 +68,5 @@ class WebsiteSaleFatturapa(WebsiteSale):
             if fatturapa_field not in checkout \
                     and fatturapa_field in all_values:
                 checkout[fatturapa_field] = all_values[fatturapa_field]
-        return super()._checkout_form_save(mode, checkout, all_values)
+        return super(WebsiteSaleFatturapa, self) \
+            ._checkout_form_save(mode, checkout, all_values)
