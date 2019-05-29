@@ -29,6 +29,8 @@ class FatturaPAAttachmentIn(models.Model):
         help="If specified by supplier, total amount of the document net of "
              "any discount and including tax charged to the buyer/ordered"
     )
+    invoices_date = fields.Char(
+        string="Invoices date", compute="_compute_xml_data", store=True)
     registered = fields.Boolean(
         "Registered", compute="_compute_registered", store=True)
 
@@ -82,11 +84,17 @@ class FatturaPAAttachmentIn(models.Model):
             att.xml_supplier_id = partner_id
             att.invoices_number = len(fatt.FatturaElettronicaBody)
             att.invoices_total = 0
+            invoices_date = []
             for invoice_body in fatt.FatturaElettronicaBody:
                 att.invoices_total += float(
                     invoice_body.DatiGenerali.DatiGeneraliDocumento.
                     ImportoTotaleDocumento or 0
                 )
+                invoice_date = fields.Date.to_string(fields.Date.from_string(
+                    invoice_body.DatiGenerali.DatiGeneraliDocumento.Data))
+                if invoice_date not in invoices_date:
+                    invoices_date.append(invoice_date)
+            att.invoices_date = ' '.join(invoices_date)
 
     @api.multi
     @api.depends('in_invoice_ids')
