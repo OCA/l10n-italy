@@ -6,6 +6,11 @@
             <field name="model">ddt.create.invoice</field>
             <field name="arch" type="xml">
               <form string="DDT Create Invoice">
+                <group>
+                  <group>
+                    <field name="subtract_down_payment_invoice"/>
+                  </group>
+                </group>
                 <separator string="DDT" />
                     <field string="DDT" name="ddt_ids" readonly="0">
                         <tree create="false">
@@ -23,7 +28,7 @@
                         or
                         <button string="Cancel" class="oe_link" special="cancel" />
                     </footer>
-            </form>
+              </form>
             </field>
         </record>
 

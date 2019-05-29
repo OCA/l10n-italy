@@ -409,3 +409,41 @@ class TestDdt(TransactionCase):
         action = order1.action_view_ddt()
         self.assertTrue(action['domain'])
         self.assertFalse(action['res_id'])
+
+    def test_invoice_from_sale_order_with_down_payment(self):
+        # Create sale order and ddt
+        order_with_down_payment = self._create_sale_order()
+        self._create_sale_order_line(
+            order_with_down_payment,
+            self.product1,
+            quantity=1)
+        order_with_down_payment.create_ddt = True
+        order_with_down_payment.action_confirm()
+        ddt = order_with_down_payment.ddt_ids[0]
+        # Create down payment invoice from sale order
+        invoice_wizard = self.env['sale.advance.payment.inv'].with_context(
+            active_ids=[order_with_down_payment.id]).create({
+                'advance_payment_method': 'fixed',
+                'amount': 200.0,
+                })
+        invoice_wizard.create_invoices()
+        down_payment_invoice = order_with_down_payment.invoice_ids[0]
+        # create invoice from ddt
+        ddt_invoice_wizard = self.env['ddt.create.invoice'].with_context(
+            {'active_ids': [ddt.id]}).create({
+                'subtract_down_payment_invoice': True
+            })
+        action = ddt_invoice_wizard.create_invoice()
+        ddt_invoice_id = action['domain'][0][2][0]
+        ddt_invoice = self.env['account.invoice'].browse(ddt_invoice_id)
+        down_payment_product_id = self.env['ir.values'].get_default(
+            'sale.config.settings', 'deposit_product_id_setting')
+        ddt_invoice_down_payment_amount = sum(
+            l.price_subtotal for l in
+            ddt_invoice.invoice_line_ids.filtered(
+                lambda l:
+                    l.product_id.id == down_payment_product_id))
+        self.assertEqual(
+            -1 * down_payment_invoice.amount_untaxed,
+            ddt_invoice_down_payment_amount
+            )

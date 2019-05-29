@@ -362,6 +362,9 @@ class StockPickingPackagePreparation(models.Model):
         inv_obj = self.env['account.invoice']
         invoices = {}
         references = {}
+        # Get down payment product
+        down_payment_product_id = self.env['ir.values'].get_default(
+            'sale.config.settings', 'deposit_product_id_setting')
         for ddt in self:
             if not ddt.to_be_invoiced or ddt.invoice_id:
                 continue
@@ -409,6 +412,21 @@ class StockPickingPackagePreparation(models.Model):
                 if line.product_uom_qty > 0:
                     line.invoice_line_create(
                         invoices[group_key].id, line.product_uom_qty)
+
+            # Create invoice lines for down payments
+            if self._context.get('subtract_down_payment_invoice',
+                                 False) and order:
+                for order_line in order.order_line.filtered(
+                        lambda l: l.invoice_status == 'to invoice'):
+                    if order_line.product_id and \
+                            order_line.product_id.id == \
+                            down_payment_product_id:
+                        line_data = order_line._prepare_invoice_line(
+                            order_line.qty_to_invoice)
+                        line_data['sale_line_ids'] = [(6, 0, [order_line.id])]
+                        invoices[group_key].invoice_line_ids = [
+                            (0, 0, line_data)]
+
             if references.get(invoices.get(group_key)):
                 if ddt not in references[invoices[group_key]]:
                     references[invoice] = references[invoice] | ddt

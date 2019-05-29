@@ -13,13 +13,18 @@ class DdtCreateInvoice(models.TransientModel):
         return self.env['stock.picking.package.preparation'].browse(
             self.env.context['active_ids'])
 
+    subtract_down_payment_invoice = fields.Boolean(
+        'Subtract Down Payment Invoice')
     ddt_ids = fields.Many2many(
         'stock.picking.package.preparation', default=_get_ddt_ids)
 
     @api.multi
     def create_invoice(self):
         if self.ddt_ids:
-            invoice_ids = self.ddt_ids.action_invoice_create()
+            subtract_down_payment_invoice = self.subtract_down_payment_invoice
+            invoice_ids = self.ddt_ids.with_context(
+                subtract_down_payment_invoice=subtract_down_payment_invoice
+                ).action_invoice_create()
             # ----- Show new invoices
             if invoice_ids:
                 ir_model_data = self.env['ir.model.data']
