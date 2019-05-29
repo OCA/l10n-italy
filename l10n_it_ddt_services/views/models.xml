@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_template_form_view_ddt_invoicing" model="ir.ui.view">
+        <field name="name">product.template.form.ddt.invoicing</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="sale.product_template_form_view_invoice_policy"/>
+        <field name="arch" type="xml">
+            <field name="invoice_policy" position="after">
+                <field name="ddt_invoice_exclude"
+                attrs="{'invisible':[('type','!=','service')]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_partner_form_ddt_invoicing" model="ir.ui.view">
+        <field name="name">res.partner.form.ddt.invoicing</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="l10n_it_ddt.view_partner_form_ddt"/>
+        <field name="arch" type="xml">
+            <field name="transportation_method_id" position="after">
+                <field name="ddt_invoice_exclude"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="sale_order_form_view_ddt_invoicing" model="ir.ui.view">
+        <field name="name">sale.order.form.ddt.invoicing</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="l10n_it_ddt.sale_order_form_view_ddt"/>
+        <field name="arch" type="xml">
+            <field name="ddt_invoicing_group" position="after">
+                <field name="ddt_invoice_exclude"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
