@@ -25,6 +25,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             invoice.partner_id.register_fiscalpos.code, 'RF02')
         self.assertEqual(invoice.reference, 'FT/2015/0006')
         self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0006')
+        self.assertEqual(invoice.fatturapa_attachment_in_id.invoices_date,
+                         '2015-02-16')
         self.assertEqual(invoice.amount_total, 57.00)
         self.assertEqual(invoice.gross_weight, 0.00)
         self.assertEqual(invoice.net_weight, 0.00)
@@ -63,6 +65,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.reference, '123')
         self.assertEqual(invoice.amount_untaxed, 34.00)
         self.assertEqual(invoice.amount_tax, 7.48)
+        self.assertEqual(invoice.fatturapa_attachment_in_id.invoices_date,
+                         '2014-12-18')
         self.assertEqual(
             len(invoice.invoice_line[0].invoice_line_tax_id), 1)
         self.assertEqual(
@@ -300,6 +304,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice_ids = res.get('domain')[0][2]
         invoices = self.invoice_model.browse(invoice_ids)
         self.assertEqual(len(invoices), 2)
+        self.assertEqual(invoices[0].fatturapa_attachment_in_id.invoices_date,
+                         '2014-12-18 2014-12-20')
         for invoice in invoices:
             self.assertEqual(invoice.inconsistencies, '')
             self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")

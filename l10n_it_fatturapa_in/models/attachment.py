@@ -33,6 +33,8 @@ class FatturaPAAttachmentIn(models.Model):
         help="If specified by supplier, total amount of the document net of "
              "any discount and including tax charged to the buyer/ordered"
     )
+    invoices_date = fields.Char(
+        string="Invoices date", compute="_compute_xml_data", store=True)
     registered = fields.Boolean(
         "Registered", compute="_compute_registered", store=True)
 

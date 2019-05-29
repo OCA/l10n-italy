@@ -54,6 +54,7 @@
                                     <field name="invoices_total"
                                            widget="monetary"
                                            options="{'currency_field': 'currency_id'}"/>
+                                    <field name="invoices_date"/>
                                 </group>
                             </group>
                             <!--<field name="ftpa_preview_link" widget="url" text="Show preview" class="btn btn-default"/>-->
@@ -100,6 +101,7 @@
                     <field name="create_date"/>
                     <field name="xml_supplier_id"/>
                     <field name="invoices_number"/>
+                    <field name="invoices_date"/>
                     <field name="invoices_total" sum="Bills Total"/>
                     <field name="registered"/>
                     <field name="in_invoice_ids"/>
