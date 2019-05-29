@@ -29,6 +29,7 @@
                             <field name="e_invoice_received_date"/>
                             <field name="registered"/>
                             <field name="invoices_total"/>
+                            <field name="invoices_date"/>
                         </group>
                     </group>
                     <notebook>
@@ -73,6 +74,7 @@
                 <field name="create_date"/>
                 <field name="xml_supplier_id"/>
                 <field name="invoices_number"/>
+                <field name="invoices_date"/>
                 <field name="registered"/>
                 <field name="in_invoice_ids"/>
             </tree>
