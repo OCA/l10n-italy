@@ -102,7 +102,7 @@ msgid "Attachment URL"
 msgstr "URL allegato"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/attachment.py:107
+#: code:addons/l10n_it_fatturapa_in/models/attachment.py:115
 #, python-format
 msgid "Attachment without name"
 msgstr "Allegato senza nome"
@@ -634,6 +634,12 @@ msgid ""
 msgstr ""
 "La data fattura ({bill_date_invoice}) non corrisponde con la data della "
 "fattura elettronica ({e_bill_date_invoice})"
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__invoices_date
+#, fuzzy
+msgid "Invoices date"
+msgstr "Data fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_is_follower
