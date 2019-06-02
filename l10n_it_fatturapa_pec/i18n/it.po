@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-03-07 11:50+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2019-06-02 21:20+0000\n"
+"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.4\n"
+"X-Generator: Weblate 3.6.1\n"
 
 #. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:130
@@ -36,8 +36,8 @@ msgid ""
 "<p>PEC server %s has been reset. Last error message is</p><p><strong>%s</"
 "strong></p>"
 msgstr ""
-"<p>Il server PEC %s è stato ripristinato. L'ultimo messaggio di errore è</"
-"p><p><strong>%s</strong></p>"
+"<p>Il server PEC %s è stato reimpostato. L'ultimo messaggio di errore "
+"è</p><p><strong>%s</strong></p>"
 
 #. module: l10n_it_fatturapa_pec
 #: selection:account.invoice,fatturapa_state:0
