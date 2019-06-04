@@ -408,7 +408,7 @@ class WizardImportFatturapa(models.TransientModel):
 
         return retLine
 
-    def _prepareRelDocsLine(self, invoice_id, line, type):
+    def _prepareRelDocsLine(self, invoice_id, line, doc_type):
         res = []
         lineref = line.RiferimentoNumeroLinea or False
         IdDoc = line.IdDocumento or 'Error'
@@ -430,7 +430,7 @@ class WizardImportFatturapa(models.TransientModel):
                 if invoice_lines:
                     invoice_lineid = invoice_lines[0].id
                 val = {
-                    'type': type,
+                    'type': doc_type,
                     'name': IdDoc,
                     'lineRef': numline,
                     'invoice_line_id': invoice_lineid,
@@ -444,7 +444,7 @@ class WizardImportFatturapa(models.TransientModel):
                 res.append(val)
         else:
             val = {
-                'type': type,
+                'type': doc_type,
                 'name': IdDoc,
                 'invoice_line_id': invoice_lineid,
                 'invoice_id': invoice_id,
@@ -509,14 +509,14 @@ class WizardImportFatturapa(models.TransientModel):
 
         return res
 
-    def _prepareDiscRisePriceLine(self, id, line):
+    def _prepareDiscRisePriceLine(self, line_id, line):
         Tipo = line.Tipo or False
         Percentuale = line.Percentuale and float(line.Percentuale) or 0.0
         Importo = line.Importo and float(line.Importo) or 0.0
         res = {
             'percentage': Percentuale,
             'amount': Importo,
-            self.env.context.get('drtype'): id,
+            self.env.context.get('drtype'): line_id,
         }
         res['name'] = Tipo
 
