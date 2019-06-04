@@ -75,6 +75,11 @@ msgid "<strong>Quantity</strong>"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: model_terms:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
+msgid "<strong>UoM</strong>"
+msgstr ""
+
+#. module: l10n_it_ddt
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_pickings_to_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
 msgid "Add Pickings to TD"
@@ -223,11 +228,6 @@ msgid "Created on"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: model_terms:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
-msgid "Date"
-msgstr ""
-
-#. module: l10n_it_ddt
 #: model:ir.ui.menu,name:l10n_it_ddt.menu_stock_ddt_data
 msgid "DdT Data"
 msgstr ""
@@ -296,7 +296,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:483
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:499
 #, python-format
 msgid "Document {d} has invoice linked"
 msgstr ""
@@ -342,6 +342,11 @@ msgid "Gross Weight"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__gross_weight_uom_id
+msgid "Gross Weight UoM"
+msgstr ""
+
+#. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
 msgid "Group By"
 msgstr ""
@@ -360,7 +365,7 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:184
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:200
 #, python-format
 msgid "Impossible to put in pack a package without details"
 msgstr ""
@@ -477,7 +482,12 @@ msgid "Net Weight"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:196
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__weight_manual_uom_id
+msgid "Net Weight UoM"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:212
 #, python-format
 msgid "Not every picking is in done status"
 msgstr ""
@@ -559,13 +569,13 @@ msgid "Pickings"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:309
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:325
 #, python-format
 msgid "Please define an accounting sale journal for this company."
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:609
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:625
 #, python-format
 msgid ""
 "Please define income account for this product: \"%s\" (id:%d) - or for its "
@@ -607,7 +617,7 @@ msgid "Related TDs"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:274
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:290
 #, python-format
 msgid "Relevant period:"
 msgstr ""
@@ -658,7 +668,7 @@ msgid "Selected Picking %s have different Partner"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:168
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:184
 #, python-format
 msgid "Selected Picking is already linked to TD: %s"
 msgstr ""
@@ -748,6 +758,11 @@ msgstr ""
 #: selection:res.partner,ddt_invoicing_group:0
 #: selection:sale.order,ddt_invoicing_group:0
 msgid "Shipping Partner"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model_terms:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
+msgid "Shipping date"
 msgstr ""
 
 #. module: l10n_it_ddt
@@ -885,8 +900,8 @@ msgid "Taxes"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:413
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:421
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:429
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:437
 #, python-format
 msgid "There is no invoiceable line."
 msgstr ""
@@ -957,6 +972,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order__volume
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__volume
 msgid "Volume"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__volume_uom_id
+msgid "Volume UoM"
 msgstr ""
 
 #. module: l10n_it_ddt
