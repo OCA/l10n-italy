@@ -511,3 +511,12 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
             [('invoice_id', '=', invoice.id)])
         self.assertEqual(payment_data[0].payment_methods[0].penalty_date,
                          date(2015, 5, 1))
+
+    def test_23_xml_import(self):
+        # Testing CAdES signature, base64 encoded with newlines
+        res = self.run_wizard(
+            'test23', 'IT01234567890_FPR04.base64.xml.p7m',
+            'IT01234567890_FPR04.xml.p7m')
+        invoice_ids = res.get('domain')[0][2]
+        invoices = self.invoice_model.browse(invoice_ids)
+        self.assertEqual(len(invoices), 2)
