@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0+e\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-06 08:05+0000\n"
-"PO-Revision-Date: 2017-12-06 08:05+0000\n"
+"POT-Creation-Date: 2018-06-29 14:54+0000\n"
+"PO-Revision-Date: 2018-06-29 14:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,18 +17,18 @@ msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model,name:l10n_it_intrastat.model_account_intrastat_custom
-msgid "Account INTRASTAT - Customs"
+msgid "Customs Sections"
 msgstr "Sezioni Doganali"
 
 #. module: l10n_it_intrastat
 #: model:ir.model,name:l10n_it_intrastat.model_account_intrastat_transation_nature
-msgid "Account INTRASTAT - Transation Nature"
+msgid "Transaction Nature"
 msgstr "Natura del Trasporto"
 
 #. module: l10n_it_intrastat
 #: model:ir.model,name:l10n_it_intrastat.model_account_intrastat_transport
-msgid "Account INTRASTAT - Transport"
-msgstr "Consegna"
+msgid "Transport mode"
+msgstr "Modalità di trasporto"
 
 #. module: l10n_it_intrastat
 #: selection:account.invoice.intrastat,payment_method:0
@@ -59,7 +59,7 @@ msgstr "Tutte (Fiscali e statistici)"
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat_amount_currency
 msgid "Amount Currency"
-msgstr "Importo valuta"
+msgstr "Importo Valuta"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat_amount_euro
@@ -87,7 +87,7 @@ msgstr "Codici"
 #. module: l10n_it_intrastat
 #: model:ir.ui.menu,name:l10n_it_intrastat.menu_report_intrastat_code
 msgid "Codes Intrastat"
-msgstr "Intrastat Nomenclature Combinate"
+msgstr "Nomenclature Combinate"
 
 #. module: l10n_it_intrastat
 #: model:ir.model,name:l10n_it_intrastat.model_res_company
@@ -100,7 +100,7 @@ msgid "Country"
 msgstr "Nazione"
 
 #. module: l10n_it_intrastat
-#: code:addons/l10n_it_intrastat/models/intrastat.py:54
+#: code:addons/l10n_it_intrastat/models/intrastat.py:47
 #, python-format
 msgid "Country %s without ISO code"
 msgstr "Nazione %s senza codice ISO"
@@ -113,12 +113,12 @@ msgstr "Nazione destinazione"
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat_country_good_origin_id
 msgid "Country Goods Origin"
-msgstr "Nazione origine merci"
+msgstr "Paese di origine"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat_country_origin_id
 msgid "Country Origin"
-msgstr "Nazione origine"
+msgstr "Paese di provenienza"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat_country_partner_id
@@ -211,7 +211,7 @@ msgstr "Destinazione"
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transport_display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat_display_name
 msgid "Display Name"
-msgstr "Nome Visualizzato"
+msgstr "Visualizza Nome"
 
 #. module: l10n_it_intrastat
 #: selection:product.category,intrastat_type:0
@@ -222,7 +222,7 @@ msgstr "Escludi"
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company_intrastat_exclude_free_line
 msgid "Exclude Free lines"
-msgstr "Escludi righe Omaggio"
+msgstr "Escludere righe omaggio"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company_intrastat_export_file_name
@@ -243,7 +243,7 @@ msgstr "Posizione Fiscale"
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company_intrastat_purchase_statistic_amount
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company_intrastat_sale_statistic_amount
 msgid "Force Statistic Amount Euro"
-msgstr "Forza importo statistico euro"
+msgstr "Forza valore statistico euro"
 
 #. module: l10n_it_intrastat
 #: selection:account.invoice.intrastat,intrastat_code_type:0
@@ -296,7 +296,7 @@ msgstr "Intrastat"
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_product_category_intrastat_code_id
 #: model:ir.ui.view,arch_db:l10n_it_intrastat.view_invoice_intrastat_search
 msgid "Intrastat Code"
-msgstr "Intrastat Nomenclatura Combinata"
+msgstr "Codice Intrastat"
 
 #. module: l10n_it_intrastat
 #: model:ir.actions.act_window,name:l10n_it_intrastat.view_invoice_intrastat_report_action
@@ -309,7 +309,6 @@ msgid "Intrastat Search"
 msgstr "Intrastat Search"
 
 #. module: l10n_it_intrastat
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_delivery_carrier_intrastat_type
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_product_category_intrastat_type
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_product_product_intrastat_type
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_product_template_intrastat_type
@@ -330,12 +329,12 @@ msgstr "Fattura"
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat_invoice_date
 msgid "Invoice Date"
-msgstr "Data fattura"
+msgstr "Data Fattura"
 
 #. module: l10n_it_intrastat
 #: model:ir.model,name:l10n_it_intrastat.model_account_invoice_line
 msgid "Invoice Line"
-msgstr "Riga Fattura"
+msgstr "Riga fattura"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat_invoice_number
@@ -353,7 +352,7 @@ msgstr "Riferimento Fattura"
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transport___last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat___last_update
 msgid "Last Modified on"
-msgstr "Ultima modifica il"
+msgstr "Data di ultima modifica"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_custom_write_uid
@@ -383,7 +382,7 @@ msgid "Miscellaneous"
 msgstr "Varie"
 
 #. module: l10n_it_intrastat
-#: code:addons/l10n_it_intrastat/models/intrastat.py:51
+#: code:addons/l10n_it_intrastat/models/intrastat.py:44
 #, python-format
 msgid "Missing Country"
 msgstr "Missing Country"
@@ -425,8 +424,8 @@ msgstr "Metodo di pagamento"
 
 #. module: l10n_it_intrastat
 #: model:ir.model,name:l10n_it_intrastat.model_account_payment_term
-msgid "Payment Term"
-msgstr "Termine di pagamento"
+msgid "Payment Terms"
+msgstr "Termini di pagamento"
 
 #. module: l10n_it_intrastat
 #: model:ir.ui.view,arch_db:l10n_it_intrastat.view_invoice_intrastat_search
@@ -441,7 +440,7 @@ msgstr "Categoria prodotto"
 #. module: l10n_it_intrastat
 #: model:ir.model,name:l10n_it_intrastat.model_product_template
 msgid "Product Template"
-msgstr "Template prodotto"
+msgstr "Modello Prodotto"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company_intrastat_purchase_province_destination_id
@@ -483,7 +482,7 @@ msgstr "Quantità"
 #: model:ir.ui.view,arch_db:l10n_it_intrastat.account_intrastat_invoice_form
 #: model:ir.ui.view,arch_db:l10n_it_intrastat.account_intrastat_invoice_supplier_form
 msgid "Recompute Intrastat Lines"
-msgstr "Ricalcola Linee Intrastat"
+msgstr "Ricalcola righe Intrastat"
 
 #. module: l10n_it_intrastat
 #: selection:account.invoice.intrastat,supply_method:0
@@ -550,7 +549,7 @@ msgid "Total"
 msgstr "Totale"
 
 #. module: l10n_it_intrastat
-#: code:addons/l10n_it_intrastat/models/account.py:268
+#: code:addons/l10n_it_intrastat/models/account.py:260
 #, python-format
 msgid "Total Intrastat must be ugual to                        Total Invoice Untaxed"
 msgstr "Totale Intrastat deve essere uguale al totale imponibile della fattura"
@@ -564,7 +563,7 @@ msgstr "Totale Intrastat deve essere uguale al totale imponibile della fattura"
 #: model:ir.ui.view,arch_db:l10n_it_intrastat.account_intrastat_transation_nature_view_form
 #: model:ir.ui.view,arch_db:l10n_it_intrastat.account_intrastat_transation_nature_view_tree
 msgid "Transation Nature"
-msgstr "Natura transazione"
+msgstr "Natura della transazione"
 
 #. module: l10n_it_intrastat
 #: selection:account.invoice.intrastat,payment_method:0
