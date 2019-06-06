@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 from odoo import fields, models, _
@@ -35,6 +34,12 @@ class AccountInvoice(models.Model):
             if parent:
                 main_tax = parent
                 aliquota = parent.amount
+                if (
+                    tax.cee_type and
+                    tax.amount < 0 and
+                    main_tax.kind_id.code == 'N6'
+                ):
+                    continue
             else:
                 main_tax = tax
             kind_id = main_tax.kind_id.id
@@ -82,7 +87,6 @@ class AccountInvoice(models.Model):
         return tax_lines
 
     def _check_tax_comunicazione_dati_iva(self, tax, val=None):
-        self.ensure_one()
         if not val:
             val = {}
         if val['Aliquota'] == 0 and not val['Natura_id']:
