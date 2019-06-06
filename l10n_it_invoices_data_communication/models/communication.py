@@ -86,11 +86,9 @@ class ComunicazioneDatiIva(models.Model):
     date_start = fields.Date(string='Date start', required=True)
     date_end = fields.Date(string='Date end', required=True)
     fatture_emesse_ids = fields.One2many(
-        'comunicazione.dati.iva.fatture.emesse', 'comunicazione_id',
-        string='Customer invoices')
+        'comunicazione.dati.iva.fatture.emesse', 'comunicazione_id')
     fatture_ricevute_ids = fields.One2many(
-        'comunicazione.dati.iva.fatture.ricevute', 'comunicazione_id',
-        string='Supplier bills')
+        'comunicazione.dati.iva.fatture.ricevute', 'comunicazione_id')
     fatture_emesse = fields.Boolean(string="Customer invoices")
     fatture_ricevute = fields.Boolean(string="Supplier bills")
     dati_trasmissione = fields.Selection(
@@ -99,120 +97,92 @@ class ComunicazioneDatiIva(models.Model):
          ('ANN', 'Cancellation previously sent data')],
         string='Data transmission', required=True)
     # Cedente
-    partner_cedente_id = fields.Many2one('res.partner', string='Partner')
+    partner_cedente_id = fields.Many2one('res.partner')
     cedente_IdFiscaleIVA_IdPaese = fields.Char(
-        string='Country ID', size=2,
+        size=2,
         help="Country code, expressed using the 3166-1 alpha-2 standard")
-    cedente_IdFiscaleIVA_IdCodice = fields.Char(
-        string='Fiscal identifier', size=28)
-    cedente_CodiceFiscale = fields.Char(string='Fiscal code', size=16)
-    cedente_Denominazione = fields.Char(
-        string='Company, denomination or business name', size=80)
+    cedente_IdFiscaleIVA_IdCodice = fields.Char(size=28)
+    cedente_CodiceFiscale = fields.Char(size=16)
+    cedente_Denominazione = fields.Char(size=80)
     cedente_Nome = fields.Char(
-        string='Natural person name', size=60,
+        size=60,
         help="To fill along with 2.1.2.3 <Cognome> and alternatively to "
              "2.1.2.1 <Denominazione>")
     cedente_Cognome = fields.Char(
-        string='Natural person surname', size=60,
+        size=60,
         help="To fill along with 2.1.2.2 <Nome> and alternatively to "
              "2.1.2.1 <Denominazione>")
-    cedente_sede_Indirizzo = fields.Char(
-        string='Headquarters address', size=60)
-    cedente_sede_NumeroCivico = fields.Char(
-        string='Street number', size=8)
-    cedente_sede_Cap = fields.Char(
-        string='ZIP', size=5)
-    cedente_sede_Comune = fields.Char(
-        string='City', size=60)
-    cedente_sede_Provincia = fields.Char(
-        string='State', size=2)
+    cedente_sede_Indirizzo = fields.Char(size=60)
+    cedente_sede_NumeroCivico = fields.Char(size=8)
+    cedente_sede_Cap = fields.Char(size=5)
+    cedente_sede_Comune = fields.Char(size=60)
+    cedente_sede_Provincia = fields.Char(size=2)
     cedente_sede_Nazione = fields.Char(
-        string='Country', size=2,
+        size=2,
         help="Country code, expressed using the 3166-1 alpha-2 standard")
-    cedente_so_Indirizzo = fields.Char(
-        string='Permanent establishment address', size=60)
-    cedente_so_NumeroCivico = fields.Char(
-        string='Street number', size=8)
-    cedente_so_Cap = fields.Char(
-        string='ZIP', size=5)
-    cedente_so_Comune = fields.Char(
-        string='City', size=60)
-    cedente_so_Provincia = fields.Char(
-        string='State', size=2)
+    cedente_so_Indirizzo = fields.Char(size=60)
+    cedente_so_NumeroCivico = fields.Char(size=8)
+    cedente_so_Cap = fields.Char(size=5)
+    cedente_so_Comune = fields.Char(size=60)
+    cedente_so_Provincia = fields.Char(size=2)
     cedente_so_Nazione = fields.Char(
-        string='Country', size=2,
+        size=2,
         help="Country code, expressed using the 3166-1 alpha-2 standard")
     cedente_rf_IdFiscaleIVA_IdPaese = fields.Char(
-        string='Country ID', size=2, help="Only IT is accepted")
-    cedente_rf_IdFiscaleIVA_IdCodice = fields.Char(
-        string='Fiscal identifier', size=11)
-    cedente_rf_Denominazione = fields.Char(
-        string='Company, denomination or business name', size=80)
+        size=2, help="Only IT is accepted")
+    cedente_rf_IdFiscaleIVA_IdCodice = fields.Char(size=11)
+    cedente_rf_Denominazione = fields.Char(size=80)
     cedente_rf_Nome = fields.Char(
-        string='Natural person name', size=60,
+        size=60,
         help="To fill along with 2.1.2.3 <Cognome> and alternatively to "
              "2.1.2.1 <Denominazione>")
     cedente_rf_Cognome = fields.Char(
-        string='Natural person surname', size=60,
+        size=60,
         help="To fill along with 2.1.2.2 <Nome> and alternatively to "
              "2.1.2.1 <Denominazione>")
     # Cessionario
-    partner_cessionario_id = fields.Many2one('res.partner', string='Partner')
+    partner_cessionario_id = fields.Many2one('res.partner')
     cessionario_IdFiscaleIVA_IdPaese = fields.Char(
-        string='Country ID', size=2,
+        size=2,
         help="Country code, expressed using the 3166-1 alpha-2 standard")
-    cessionario_IdFiscaleIVA_IdCodice = fields.Char(
-        string='Fiscal identifier', size=28)
-    cessionario_CodiceFiscale = fields.Char(
-        string='Fiscal code', size=16)
-    cessionario_Denominazione = fields.Char(
-        string='Company, denomination or business name', size=80)
+    cessionario_IdFiscaleIVA_IdCodice = fields.Char(size=28)
+    cessionario_CodiceFiscale = fields.Char(size=16)
+    cessionario_Denominazione = fields.Char(size=80)
     cessionario_Nome = fields.Char(
-        string='Natural person name', size=60,
+        size=60,
         help="To fill along with 3.1.2.3 <Cognome> and alternatively to "
              "3.1.2.1 <Denominazione>")
     cessionario_Cognome = fields.Char(
-        string='Natural person surname', size=60,
+        size=60,
         help="To fill along with 3.1.2.3 <Nome> and alternatively to "
              "3.1.2.1 <Denominazione>")
-    cessionario_sede_Indirizzo = fields.Char(
-        string='Headquarters address', size=60)
-    cessionario_sede_NumeroCivico = fields.Char(
-        string='Street number', size=8)
-    cessionario_sede_Cap = fields.Char(
-        string='ZIP', size=5)
-    cessionario_sede_Comune = fields.Char(
-        string='City', size=60)
-    cessionario_sede_Provincia = fields.Char(
-        string='State', size=2)
+    cessionario_sede_Indirizzo = fields.Char(size=60)
+    cessionario_sede_NumeroCivico = fields.Char(size=8)
+    cessionario_sede_Cap = fields.Char(size=5)
+    cessionario_sede_Comune = fields.Char(size=60)
+    cessionario_sede_Provincia = fields.Char(size=2)
     cessionario_sede_Nazione = fields.Char(
-        string='Country', size=2,
+        size=2,
         help="Country code, expressed using the 3166-1 alpha-2 standard")
-    cessionario_so_Indirizzo = fields.Char(
-        string='Permanent establishment address', size=60)
-    cessionario_so_NumeroCivico = fields.Char(
-        string='Street number', size=8)
-    cessionario_so_Cap = fields.Char(
-        string='ZIP', size=5)
-    cessionario_so_Comune = fields.Char(
-        string='City', size=60)
-    cessionario_so_Provincia = fields.Char(
-        string='State', size=2)
+    cessionario_so_Indirizzo = fields.Char(size=60)
+    cessionario_so_NumeroCivico = fields.Char(size=8)
+    cessionario_so_Cap = fields.Char(size=5)
+    cessionario_so_Comune = fields.Char(size=60)
+    cessionario_so_Provincia = fields.Char(size=2)
     cessionario_so_Nazione = fields.Char(
-        string='Country', size=2,
+        size=2,
         help="Country code, expressed using the 3166-1 alpha-2 standard")
     cessionario_rf_IdFiscaleIVA_IdPaese = fields.Char(
-        string='Country ID', size=2, help="Only IT is accepted")
-    cessionario_rf_IdFiscaleIVA_IdCodice = fields.Char(
-        string='Fiscal identifier', size=11)
-    cessionario_rf_Denominazione = fields.Char(
-        string='Company, denomination or business name', size=80)
+        size=2,
+        help="Only IT is accepted")
+    cessionario_rf_IdFiscaleIVA_IdCodice = fields.Char(size=11)
+    cessionario_rf_Denominazione = fields.Char(size=80)
     cessionario_rf_Nome = fields.Char(
-        string='Natural person name', size=60,
+        size=60,
         help="To fill along with 2.1.2.3 <Cognome> and alternatively to "
              "2.1.2.1 <Denominazione>")
     cessionario_rf_Cognome = fields.Char(
-        string='Natural person surname', size=60,
+        size=60,
         help="To fill along with 2.1.2.2 <Nome> and alternatively to "
              "2.1.2.1 <Denominazione>")
     errors = fields.Text(copy=False)
@@ -396,7 +366,6 @@ class ComunicazioneDatiIva(models.Model):
             if not country.intrastat:
                 if not vals['IdFiscaleIVA_IdCodice']:
                     vals['IdFiscaleIVA_IdCodice'] = partner.name[:28]
-
         return vals
 
     def _prepare_fattura_emessa(self, vals, fattura):
@@ -581,8 +550,8 @@ class ComunicazioneDatiIva(models.Model):
                 fatture_emesse = self.mapped(
                     'fatture_emesse_ids.fatture_emesse_body_ids.invoice_id')
                 cessionari = fatture_emesse.mapped('partner_id')
-                first_set_ids = cessionari.ids[:len(cessionari)/2]
-                second_set_ids = cessionari.ids[len(cessionari)/2:]
+                first_set_ids = cessionari.ids[:len(cessionari) / 2]
+                second_set_ids = cessionari.ids[len(cessionari) / 2:]
                 first_set_cessionari = self.env['res.partner'].browse(
                     first_set_ids)
                 second_set_cessionari = self.env['res.partner'].browse(
@@ -615,7 +584,7 @@ class ComunicazioneDatiIva(models.Model):
                         fe.partner_id.id ==
                             cessionario.id)
                     if len(fatture) > 1000:
-                        new_set_ids = fatture.ids[:len(fatture)/2]
+                        new_set_ids = fatture.ids[:len(fatture) / 2]
                         new_partial_set = self.env['account.invoice'].browse(
                             new_set_ids)
                         new_set |= new_partial_set
@@ -645,8 +614,8 @@ class ComunicazioneDatiIva(models.Model):
                     'fatture_ricevute_ids.fatture_ricevute_body_ids.'
                     'invoice_id')
                 cedenti = fatture_ricevute.mapped('partner_id')
-                first_set_ids = cedenti.ids[:len(cedenti)/2]
-                second_set_ids = cedenti.ids[len(cedenti)/2:]
+                first_set_ids = cedenti.ids[:len(cedenti) / 2]
+                second_set_ids = cedenti.ids[len(cedenti) / 2:]
                 first_set_cedenti = self.env['res.partner'].browse(
                     first_set_ids)
                 second_set_cedenti = self.env['res.partner'].browse(
@@ -680,7 +649,7 @@ class ComunicazioneDatiIva(models.Model):
                         fr.partner_id.id ==
                             cedente.id)
                     if len(fatture) > 1000:
-                        new_set_ids = fatture.ids[:len(fatture)/2]
+                        new_set_ids = fatture.ids[:len(fatture) / 2]
                         new_partial_set = self.env['account.invoice'].browse(
                             new_set_ids)
                         new_set |= new_partial_set
@@ -1152,7 +1121,7 @@ class ComunicazioneDatiIva(models.Model):
             elif comunicazione.dati_trasmissione == 'DTR':
                 errors += comunicazione._check_errors_dtr()
             if not errors:
-                errors = [_(u'All data are correct.\nIt possible to export '
+                errors = [_(u'All data are correct.\nIt\'s possible to export '
                             u'XML file')]
             else:
                 errors = [_('Errors:')] + errors
@@ -1562,7 +1531,8 @@ class ComunicazioneDatiIva(models.Model):
                 x_2_2_3_1_2_data = etree.SubElement(
                     x_2_2_3_1_dati_generali,
                     etree.QName("Data"))
-                x_2_2_3_1_2_data.text = invoice.dati_fattura_Data or ''
+                x_2_2_3_1_2_data.text = \
+                    fields.Date.to_string(invoice.dati_fattura_Data) or ''
                 # -----                 2.2.3.1.3 - Numero
                 x_2_2_3_1_2_numero = etree.SubElement(
                     x_2_2_3_1_dati_generali,
@@ -1971,7 +1941,8 @@ class ComunicazioneDatiIva(models.Model):
                 x_3_2_3_1_2_data = etree.SubElement(
                     x_3_2_3_1_dati_generali,
                     etree.QName("Data"))
-                x_3_2_3_1_2_data.text = invoice.dati_fattura_Data or ''
+                x_3_2_3_1_2_data.text = fields.Date.to_string(
+                    invoice.dati_fattura_Data) or ''
                 # -----                 2.2.3.1.3 - Numero
                 x_3_2_3_1_3_numero = etree.SubElement(
                     x_3_2_3_1_dati_generali,
@@ -1981,9 +1952,8 @@ class ComunicazioneDatiIva(models.Model):
                 x_3_2_3_1_4_data_registrazione = etree.SubElement(
                     x_3_2_3_1_dati_generali,
                     etree.QName("DataRegistrazione"))
-                x_3_2_3_1_4_data_registrazione.text = \
-                    invoice.dati_fattura_DataRegistrazione or ''
-
+                x_3_2_3_1_4_data_registrazione.text = fields.Date.to_string(
+                    invoice.dati_fattura_DataRegistrazione) or ''
                 for tax in invoice.dati_fattura_iva_ids:
                     # -----             2.2.3.2 - Dati Riepilogo
                     x_3_2_3_2_riepilogo = etree.SubElement(
@@ -2108,54 +2078,38 @@ class ComunicazioneDatiIvaFattureEmesse(models.Model):
         help="Country code, expressed using the 3166-1 alpha-2 standard")
     cessionario_IdFiscaleIVA_IdCodice = fields.Char(
         string='Fiscal identifier', size=28)
-    cessionario_CodiceFiscale = fields.Char(
-        string='Fiscal code', size=16)
-    cessionario_Denominazione = fields.Char(
-        string='Company, denomination or business name', size=80)
+    cessionario_CodiceFiscale = fields.Char(size=16)
+    cessionario_Denominazione = fields.Char(size=80)
     cessionario_Nome = fields.Char(
-        string='Natural person name', size=60,
+        size=60,
         help="To fill along with 2.1.2.3 <Cognome> and alternatively to "
              "2.1.2.1 <Denominazione>")
     cessionario_Cognome = fields.Char(
-        string='Natural person surname', size=60,
+        size=60,
         help="To fill along with 2.1.2.2 <Nome> and alternatively to "
              "2.1.2.1 <Denominazione>")
-    cessionario_sede_Indirizzo = fields.Char(
-        string='Headquarters address', size=60)
-    cessionario_sede_NumeroCivico = fields.Char(
-        string='Street number', size=8)
-    cessionario_sede_Cap = fields.Char(
-        string='ZIP', size=5)
-    cessionario_sede_Comune = fields.Char(
-        string='City', size=60)
-    cessionario_sede_Provincia = fields.Char(
-        string='State', size=2)
+    cessionario_sede_Indirizzo = fields.Char(size=60)
+    cessionario_sede_NumeroCivico = fields.Char(size=8)
+    cessionario_sede_Cap = fields.Char(size=5)
+    cessionario_sede_Comune = fields.Char(size=60)
+    cessionario_sede_Provincia = fields.Char(size=2)
     cessionario_sede_Nazione = fields.Char(
-        string='Country', size=2,
+        size=2,
         help="Country code, expressed using the 3166-1 alpha-2 standard")
-    cessionario_so_Indirizzo = fields.Char(
-        string='Permanent establishment address', size=60)
-    cessionario_so_NumeroCivico = fields.Char(
-        string='Street number', size=8)
-    cessionario_so_Cap = fields.Char(
-        string='ZIP', size=5)
-    cessionario_so_Comune = fields.Char(
-        string='City', size=60)
-    cessionario_so_Provincia = fields.Char(
-        string='State', size=2)
+    cessionario_so_Indirizzo = fields.Char(size=60)
+    cessionario_so_NumeroCivico = fields.Char(size=8)
+    cessionario_so_Cap = fields.Char(size=5)
+    cessionario_so_Comune = fields.Char(size=60)
+    cessionario_so_Provincia = fields.Char(size=2)
     cessionario_so_Nazione = fields.Char(
-        string='Country', size=2,
+        size=2,
         help="Country code, expressed using the 3166-1 alpha-2 standard")
     cessionario_rf_IdFiscaleIVA_IdPaese = fields.Char(
-        string='Country ID', size=2, help="Only IT is accepted")
-    cessionario_rf_IdFiscaleIVA_IdCodice = fields.Char(
-        string='Fiscal identifier', size=11)
-    cessionario_rf_Denominazione = fields.Char(
-        string='Company, denomination or business name', size=80)
-    cessionario_rf_Nome = fields.Char(
-        string='Natural person name', size=60)
-    cessionario_rf_Cognome = fields.Char(
-        string='Natural person surname', size=60)
+        size=2, help="Only IT is accepted")
+    cessionario_rf_IdFiscaleIVA_IdCodice = fields.Char(size=11)
+    cessionario_rf_Denominazione = fields.Char(size=80)
+    cessionario_rf_Nome = fields.Char(size=60)
+    cessionario_rf_Cognome = fields.Char(size=60)
     # Dati Cessionario e Fattura
     fatture_emesse_body_ids = fields.One2many(
         'comunicazione.dati.iva.fatture.emesse.body', 'fattura_emessa_id',
@@ -2305,55 +2259,38 @@ class ComunicazioneDatiIvaFattureRicevute(models.Model):
         help="Country code, expressed using the 3166-1 alpha-2 standard")
     cedente_IdFiscaleIVA_IdCodice = fields.Char(
         string='Fiscal identifier', size=28)
-    cedente_CodiceFiscale = fields.Char(
-        string='Fiscal code', size=16)
-    cedente_Denominazione = fields.Char(
-        string='Company, denomination or business name', size=80)
+    cedente_CodiceFiscale = fields.Char(size=16)
+    cedente_Denominazione = fields.Char(size=80)
     cedente_Nome = fields.Char(
-        string='Natural person name', size=60,
+        size=60,
         help="To fill along with 3.2.2.3 <Cognome> and alternatively to "
              "3.2.2.1 <Denominazione>")
     cedente_Cognome = fields.Char(
-        string='Natural person surname', size=60,
+        size=60,
         help="To fill along with 3.2.2.2 <Nome> and alternatively to "
              "3.2.2.1 <Denominazione>")
-    cedente_sede_Indirizzo = fields.Char(
-        string='Headquarters address', size=60)
-    cedente_sede_NumeroCivico = fields.Char(
-        string='Street number', size=8)
-    cedente_sede_Cap = fields.Char(
-        string='ZIP', size=5)
-    cedente_sede_Comune = fields.Char(
-        string='City', size=60)
-    cedente_sede_Provincia = fields.Char(
-        string='State', size=2)
+    cedente_sede_Indirizzo = fields.Char(size=60)
+    cedente_sede_NumeroCivico = fields.Char(size=8)
+    cedente_sede_Cap = fields.Char(size=5)
+    cedente_sede_Comune = fields.Char(size=60)
+    cedente_sede_Provincia = fields.Char(size=2)
     cedente_sede_Nazione = fields.Char(
-        string='Country', size=2,
+        size=2,
         help="Country code, expressed using the 3166-1 alpha-2 standard")
-    cedente_so_Indirizzo = fields.Char(
-        string='Permanent establishment address', size=60)
-    cedente_so_NumeroCivico = fields.Char(
-        string='Street number', size=8)
-    cedente_so_Cap = fields.Char(
-        string='ZIP', size=5)
-    cedente_so_Comune = fields.Char(
-        string='City', size=60)
-    cedente_so_Provincia = fields.Char(
-        string='State', size=2)
+    cedente_so_Indirizzo = fields.Char(size=60)
+    cedente_so_NumeroCivico = fields.Char(size=8)
+    cedente_so_Cap = fields.Char(size=5)
+    cedente_so_Comune = fields.Char(size=60)
+    cedente_so_Provincia = fields.Char(size=2)
     cedente_so_Nazione = fields.Char(
-        string='Country', size=2,
+        size=2,
         help="Country code, expressed using the 3166-1 alpha-2 standard")
     cedente_rf_IdFiscaleIVA_IdPaese = fields.Char(
-        string='Country ID', size=2, help="Only IT is accepted")
-    cedente_rf_IdFiscaleIVA_IdCodice = fields.Char(
-        string='Fiscal identifier', size=11)
-    cedente_rf_Denominazione = fields.Char(
-        string='Company, denomination or business name', size=80)
-    cedente_rf_Nome = fields.Char(
-        string='Natural person name', size=60)
-    cedente_rf_Cognome = fields.Char(
-        string='Natural person surname', size=60)
-
+        size=2, help="Only IT is accepted")
+    cedente_rf_IdFiscaleIVA_IdCodice = fields.Char(size=11)
+    cedente_rf_Denominazione = fields.Char(size=80)
+    cedente_rf_Nome = fields.Char(size=60)
+    cedente_rf_Cognome = fields.Char(size=60)
     # Dati Cedente e Fattura
     fatture_ricevute_body_ids = fields.One2many(
         'comunicazione.dati.iva.fatture.ricevute.body', 'fattura_ricevuta_id',
@@ -2425,7 +2362,8 @@ class ComunicazioneDatiIvaFattureRicevuteBody(models.Model):
             totale_iva = 0
 
             for tax_line in ft.dati_fattura_iva_ids:
-                if ft.dati_fattura_TipoDocumento.out_refund or ft.dati_fattura_TipoDocumento.in_refund:
+                if ft.dati_fattura_TipoDocumento.out_refund or \
+                        ft.dati_fattura_TipoDocumento.in_refund:
                     totale_imponibile -= tax_line.ImponibileImporto
                     totale_iva -= tax_line.Imposta
                 else:
