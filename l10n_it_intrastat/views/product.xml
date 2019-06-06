@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
     	<!--
 		PRODUCT
 		 -->
@@ -59,5 +58,4 @@
             </field>
         </record>
 
-    </data>
-</openerp>
+</odoo>
