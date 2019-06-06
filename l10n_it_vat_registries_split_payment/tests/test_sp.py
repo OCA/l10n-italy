@@ -1,12 +1,10 @@
-# -*- coding: utf-8 -*-
-
 from odoo.addons.account.tests.account_test_users import AccountTestUsers
 
 
 class TestSP(AccountTestUsers):
 
     def setUp(self):
-        super(TestSP, self).setUp()
+        super().setUp()
         self.tax_model = self.env['account.tax']
         self.invoice_model = self.env['account.invoice']
         self.inv_line_model = self.env['account.invoice.line']
@@ -97,5 +95,5 @@ class TestSP(AccountTestUsers):
         }
         totals_sp = self.tax22sp._compute_totals_tax(data)
         totals = self.tax22._compute_totals_tax(data)
-        self.assertEqual(totals_sp, (u'22% SP', 100.0, 22.0, 0.0, 0))
-        self.assertEqual(totals, (u'22%', 100.0, 22.0, 22.0, 0))
+        self.assertEqual(totals_sp, ('22% SP', 100.0, 22.0, 0.0, 0))
+        self.assertEqual(totals, ('22%', 100.0, 22.0, 22.0, 0))
