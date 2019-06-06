@@ -1,22 +1,14 @@
-# -*- coding: utf-8 -*-
-#
-#    Author: Alessandro Camilli (a.camilli@openforce.it)
-#    Copyright (C) 2015
-#    Apulia Software srl - info@apuliasoftware.it - www.apuliasoftware.it
-#    Openforce di Camilli Alessandro - www.openforce.it
-#
-
-from openerp import models, fields, api
+from openerp import models, fields
 
 
-class res_company(models.Model):
+class ResCompany(models.Model):
     _inherit = 'res.company'
 
     intrastat_uom_kg_id = fields.Many2one(
         'product.uom', string="Unit of measure for Kg",
-        )
+    )
     intrastat_additional_unit_from = fields.Selection(
-        [('quantity', 'Quantity'),('weight', 'Weight'),('none', 'None')],
+        [('quantity', 'Quantity'), ('weight', 'Weight'), ('none', 'None')],
         string='Additional Unit of Measure FROM', default='weight')
     intrastat_exclude_free_line = fields.Boolean(string='Exclude Free lines')
     intrastat_ua_code = fields.Char(string="User ID (UA Code)", size=4)
@@ -25,7 +17,7 @@ class res_company(models.Model):
     intrastat_delegated_name = fields.Char(string="Delegated person", size=255)
     intrastat_export_file_name = fields.Char(string="File name for export")
 
-    ### default values sale section
+    # default values sale section
     intrastat_sale_statistic_amount = fields.Boolean(
         string='Force Statistic Amount Euro')
     intrastat_sale_transation_nature_id = fields.Many2one(
@@ -37,7 +29,7 @@ class res_company(models.Model):
     intrastat_sale_province_origin_id = fields.Many2one(
         'res.country.state', string='Province Origin')
 
-    ### default values purchase section
+    # default values purchase section
     intrastat_purchase_statistic_amount = fields.Boolean(
         string='Force Statistic Amount Euro')
     intrastat_purchase_transation_nature_id = fields.Many2one(
