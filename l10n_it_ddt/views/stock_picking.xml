@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2016 - Agile Business Group
      Copyright 2018 Simone Rubino - Agile Business Group
+     Copyright 2019 Alex Comba - Agile Business Group
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
 <odoo>
@@ -12,6 +13,33 @@
         <field name="arch" type="xml">
             <field name="name" position="after">
                     <field name="ddt_ids" string="TD"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="name">stock.picking.form.ddt</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='extra']" position="after">
+                 <page string="TD Info" attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}">
+                     <group>
+                         <field name="ddt_supplier_number"/>
+                         <field name="ddt_supplier_date"/>
+                     </group>
+                 </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_picking_internal_search" model="ir.ui.view">
+        <field name="name">view.picking.search.ddt</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id"  ref="stock.view_picking_internal_search"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="ddt_supplier_number"/>
             </field>
         </field>
     </record>
