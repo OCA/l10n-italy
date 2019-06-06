@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Alex Comba - Agile Business Group
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="stock_journal_wizard_form_view">
+        <field name="name">stock.journal.wizard.form</field>
+        <field name="model">stock.journal.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Stock Journal Report">
+                <group>
+                    <field name="date_range_id"/>
+                </group>
+                <newline/>
+                <group>
+                    <field name="from_date"/>
+                </group>
+                <group>
+                    <field name="to_date"/>
+                </group>
+                <footer>
+                    <button name="button_export_pdf"
+                            string="Export PDF" type="object" default_focus="1" class="oe_highlight"/>
+                    <button string="Cancel"
+                            class="btn-default"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="stock_journal_wizard_action">
+        <field name="name">Stock Journal</field>
+        <field name="res_model">stock.journal.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+
+
+    <record model="ir.ui.menu" id="stock_journal_wizard_menu">
+        <field name="name">Stock Journal</field>
+        <field name="parent_id" ref="stock.menu_warehouse_report"/>
+        <field name="action" ref="stock_journal_wizard_action"/>
+        <field name="sequence" eval="16"/>
+    </record>
+</odoo>
