@@ -1,0 +1,1 @@
+Se necessario (altrimenti vedi `l10n_it_bilancio_civilistico_mapping`) impostare su ogni conto il campo "raggruppo civilistico"
