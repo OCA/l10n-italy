@@ -33,7 +33,7 @@ msgstr "Indirizzo, città, nazione di %s sono obbligatori"
 #: code:addons/l10n_it_invoices_data_communication/models/communication.py:1155
 #, python-format
 msgid "All data are correct.\n"
-"It possible to export XML file"
+"It\'s possible to export XML file"
 msgstr "Tutti i dati sono corretti.\n"
 "E' possibile esportare il file XML"
 

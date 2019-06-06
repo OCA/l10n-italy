@@ -42,6 +42,6 @@
             key2="client_action_multi" name="Export communication file"
             res_model="comunicazione.dati.iva.export.file" src_model="comunicazione.dati.iva"
             view_mode="form" target="new" view_type="form" />
-        
+
     </data>
 </odoo>

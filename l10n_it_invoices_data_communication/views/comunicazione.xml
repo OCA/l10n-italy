@@ -62,84 +62,84 @@
                         <notebook attrs="{'invisible':[('dati_trasmissione', '!=', 'DTE')]}">
                             <page string="Seller" name="page_cedente">
                                 <group name="cedente">
-                                    <field name="partner_cedente_id"/>
-                                    <field name="cedente_IdFiscaleIVA_IdPaese"/>
-                                    <field name="cedente_IdFiscaleIVA_IdCodice"/>
-                                    <field name="cedente_CodiceFiscale"/>
-                                    <field name="cedente_Denominazione"/>
-                                    <field name="cedente_Nome"/>
-                                    <field name="cedente_Cognome"/>
+                                    <field name="partner_cedente_id" string="Partner"/>
+                                    <field name="cedente_IdFiscaleIVA_IdPaese" string="Country ID"/>
+                                    <field name="cedente_IdFiscaleIVA_IdCodice" string="Fiscal identifier"/>
+                                    <field name="cedente_CodiceFiscale" string="Fiscal code"/>
+                                    <field name="cedente_Denominazione" string="Company, denomination or business name"/>
+                                    <field name="cedente_Nome" string="Natural person name"/>
+                                    <field name="cedente_Cognome" string="Natural person surname"/>
                                 </group>
                             </page>
                             <page string="Headquarters">
                                 <group name="cedente_sede">
-                                    <field name="cedente_sede_Indirizzo"/>
-                                    <field name="cedente_sede_NumeroCivico"/>
-                                    <field name="cedente_sede_Cap"/>
-                                    <field name="cedente_sede_Comune"/>
-                                    <field name="cedente_sede_Provincia"/>
-                                    <field name="cedente_sede_Nazione"/>
+                                    <field name="cedente_sede_Indirizzo" string="Headquarters address"/>
+                                    <field name="cedente_sede_NumeroCivico" string="Street number"/>
+                                    <field name="cedente_sede_Cap" string="ZIP"/>
+                                    <field name="cedente_sede_Comune" string="City"/>
+                                    <field name="cedente_sede_Provincia" string="State"/>
+                                    <field name="cedente_sede_Nazione" string="Country"/>
                                 </group>
                             </page>
                             <page string="Permanent establishment">
                                 <group name="cedente_stabile_organizzazione">
-                                    <field name="cedente_so_Indirizzo"/>
-                                    <field name="cedente_so_NumeroCivico"/>
-                                    <field name="cedente_so_Cap"/>
-                                    <field name="cedente_so_Comune"/>
-                                    <field name="cedente_so_Provincia"/>
-                                    <field name="cedente_so_Nazione"/>
+                                    <field name="cedente_so_Indirizzo" string="Permanent establishment address"/>
+                                    <field name="cedente_so_NumeroCivico" string="Street number"/>
+                                    <field name="cedente_so_Cap" string="ZIP"/>
+                                    <field name="cedente_so_Comune" string="City"/>
+                                    <field name="cedente_so_Provincia" string="State"/>
+                                    <field name="cedente_so_Nazione" string="Country"/>
                                 </group>
                             </page>
                             <page string="Fiscal representative">
                                 <group name="cedente_rappresentante_fiscale">
-                                    <field name="cedente_rf_IdFiscaleIVA_IdPaese"/>
-                                    <field name="cedente_rf_IdFiscaleIVA_IdCodice"/>
-                                    <field name="cedente_rf_Denominazione"/>
-                                    <field name="cedente_rf_Nome"/>
-                                    <field name="cedente_rf_Cognome"/>
+                                    <field name="cedente_rf_IdFiscaleIVA_IdPaese" string="Country ID"/>
+                                    <field name="cedente_rf_IdFiscaleIVA_IdCodice" string="Fiscal identifier"/>
+                                    <field name="cedente_rf_Denominazione" string="Company, denomination or business name"/>
+                                    <field name="cedente_rf_Nome" string="Natural person name"/>
+                                    <field name="cedente_rf_Cognome" string="Natural person surname"/>
                                 </group>
                             </page>
                         </notebook>
                         <notebook attrs="{'invisible':[('dati_trasmissione', '!=', 'DTR')]}">
                            <page string="Assignee" name="page_cessionario">
                                 <group name="cessionario">
-                                    <field name="partner_cessionario_id"/>
-                                    <field name="cessionario_IdFiscaleIVA_IdPaese"/>
-                                    <field name="cessionario_IdFiscaleIVA_IdCodice"/>
-                                    <field name="cessionario_CodiceFiscale"/>
-                                    <field name="cessionario_Denominazione"/>
-                                    <field name="cessionario_Nome"/>
-                                    <field name="cessionario_Cognome"/>
+                                    <field name="partner_cessionario_id" string="Partner"/>
+                                    <field name="cessionario_IdFiscaleIVA_IdPaese" string="Country ID"/>
+                                    <field name="cessionario_IdFiscaleIVA_IdCodice" string="Fiscal identifier"/>
+                                    <field name="cessionario_CodiceFiscale" string="Fiscal code"/>
+                                    <field name="cessionario_Denominazione" string="Company, denomination or business name"/>
+                                    <field name="cessionario_Nome" string="Natural person name"/>
+                                    <field name="cessionario_Cognome" string="Natural person surname"/>
                                 </group>
                             </page>
                             <page string="Headquarters">
                                 <group name="cessionario_sede">
-                                    <field name="cessionario_sede_Indirizzo"/>
-                                    <field name="cessionario_sede_NumeroCivico"/>
-                                    <field name="cessionario_sede_Cap"/>
-                                    <field name="cessionario_sede_Comune"/>
-                                    <field name="cessionario_sede_Provincia"/>
-                                    <field name="cessionario_sede_Nazione"/>
+                                    <field name="cessionario_sede_Indirizzo" string="Headquarters address"/>
+                                    <field name="cessionario_sede_NumeroCivico" string="Street number"/>
+                                    <field name="cessionario_sede_Cap" string="ZIP"/>
+                                    <field name="cessionario_sede_Comune" string="City"/>
+                                    <field name="cessionario_sede_Provincia" string="State"/>
+                                    <field name="cessionario_sede_Nazione" string="Country"/>
                                 </group>
                             </page>
                             <page string="Permanent establishment">
                                 <group name="cessionario_stabile_organizzazione">
-                                    <field name="cessionario_so_Indirizzo"/>
-                                    <field name="cessionario_so_NumeroCivico"/>
-                                    <field name="cessionario_so_Cap"/>
-                                    <field name="cessionario_so_Comune"/>
-                                    <field name="cessionario_so_Provincia"/>
-                                    <field name="cessionario_so_Nazione"/>
+                                    <field name="cessionario_so_Indirizzo" string="Permanent establishment address"/>
+                                    <field name="cessionario_so_NumeroCivico" string="Street number"/>
+                                    <field name="cessionario_so_Cap" string="ZIP"/>
+                                    <field name="cessionario_so_Comune" string="City"/>
+                                    <field name="cessionario_so_Provincia" string="State"/>
+                                    <field name="cessionario_so_Nazione" string="Country"/>
                                 </group>
                             </page>
                             <page string="Fiscal representative">
                                 <group name="cessionario_rappresentante_fiscale">
-                                    <field name="cessionario_rf_IdFiscaleIVA_IdPaese"/>
-                                    <field name="cessionario_rf_IdFiscaleIVA_IdCodice"/>
-                                    <field name="cessionario_rf_Denominazione"/>
-                                    <field name="cessionario_rf_Nome"/>
-                                    <field name="cessionario_rf_Cognome"/>
+                                    <field name="cessionario_rf_IdFiscaleIVA_IdPaese" string="Country ID"/>
+                                    <field name="cessionario_rf_IdFiscaleIVA_IdCodice" string="Fiscal identifier"/>
+                                    <field name="cessionario_rf_Denominazione" string="Company, denomination or business name"/>
+                                    <field name="cessionario_rf_Nome" string="Natural person name"/>
+                                    <field name="cessionario_rf_Cognome" string="Natural person surname"/>
                                 </group>
                             </page>
                         </notebook>
@@ -147,14 +147,14 @@
                             <page string="Customer invoices"
                                 attrs="{'invisible':[('dati_trasmissione', '!=', 'DTE')]}">
                                 <group>
-                                    <field name="fatture_emesse_ids" nolabel="1">
+                                    <field name="fatture_emesse_ids" string="Customer invoices" nolabel="1">
                                     </field>
                                 </group>
                             </page>
                             <page string="Supplier bills"
                                 attrs="{'invisible':[('dati_trasmissione', '!=', 'DTR')]}">
                                 <group>
-                                    <field name="fatture_ricevute_ids" nolabel="1">
+                                    <field name="fatture_ricevute_ids" string="Supplier bills" nolabel="1">
                                     </field>
                                 </group>
                             </page>
@@ -191,7 +191,7 @@
             <field name="arch" type="xml">
                 <tree string="Customer invoices">
                     <field name="partner_id" />
-                    <field name="cessionario_Denominazione" />
+                    <field name="cessionario_Denominazione" string="Company, denomination or business name"/>
                     <field name="totale_imponibile"/>
                     <field name="totale_iva"/>
                 </tree>
@@ -212,41 +212,41 @@
                         <page string="Assignee" name="page_cessionario">
                             <group name="cessionario">
                                 <field name="partner_id"/>
-                                <field name="cessionario_IdFiscaleIVA_IdPaese"/>
-                                <field name="cessionario_IdFiscaleIVA_IdCodice"/>
-                                <field name="cessionario_CodiceFiscale"/>
-                                <field name="cessionario_Denominazione"/>
-                                <field name="cessionario_Nome"/>
-                                <field name="cessionario_Cognome"/>
+                                <field name="cessionario_IdFiscaleIVA_IdPaese" string="Country ID"/>
+                                <field name="cessionario_IdFiscaleIVA_IdCodice" string="Fiscal identifier"/>
+                                <field name="cessionario_CodiceFiscale" string="Fiscal code"/>
+                                <field name="cessionario_Denominazione" string="Company, denomination or business name"/>
+                                <field name="cessionario_Nome" string="Natural person name"/>
+                                <field name="cessionario_Cognome" string="Natural person surname"/>
                             </group>
                         </page>
                         <page string="Headquarters">
                             <group name="cessionario_sede">
-                                <field name="cessionario_sede_Indirizzo"/>
-                                <field name="cessionario_sede_NumeroCivico"/>
-                                <field name="cessionario_sede_Cap"/>
-                                <field name="cessionario_sede_Comune"/>
-                                <field name="cessionario_sede_Provincia"/>
-                                <field name="cessionario_sede_Nazione"/>
+                                <field name="cessionario_sede_Indirizzo" string="Headquarters address"/>
+                                <field name="cessionario_sede_NumeroCivico" string="Street number"/>
+                                <field name="cessionario_sede_Cap" string="ZIP"/>
+                                <field name="cessionario_sede_Comune" string="City"/>
+                                <field name="cessionario_sede_Provincia" string="State"/>
+                                <field name="cessionario_sede_Nazione" string="Country"/>
                             </group>
                         </page>
                         <page string="Permanent establishment">
                             <group name="cessionario_stabile_organizzazione">
-                                <field name="cessionario_so_Indirizzo"/>
-                                <field name="cessionario_so_NumeroCivico"/>
-                                <field name="cessionario_so_Cap"/>
-                                <field name="cessionario_so_Comune"/>
-                                <field name="cessionario_so_Provincia"/>
-                                <field name="cessionario_so_Nazione"/>
+                                <field name="cessionario_so_Indirizzo" string="Permanent establishment address"/>
+                                <field name="cessionario_so_NumeroCivico" string="Street number"/>
+                                <field name="cessionario_so_Cap" string="ZIP"/>
+                                <field name="cessionario_so_Comune" string="City"/>
+                                <field name="cessionario_so_Provincia" string="State"/>
+                                <field name="cessionario_so_Nazione" string="Country"/>
                             </group>
                         </page>
                         <page string="Fiscal representative">
                             <group name="cessionario_rappresentante_fiscale">
-                                <field name="cessionario_rf_IdFiscaleIVA_IdPaese"/>
-                                <field name="cessionario_rf_IdFiscaleIVA_IdCodice"/>
-                                <field name="cessionario_rf_Denominazione"/>
-                                <field name="cessionario_rf_Nome"/>
-                                <field name="cessionario_rf_Cognome"/>
+                                <field name="cessionario_rf_IdFiscaleIVA_IdPaese" string="Country ID"/>
+                                <field name="cessionario_rf_IdFiscaleIVA_IdCodice" string="Fiscal identifier"/>
+                                <field name="cessionario_rf_Denominazione" string="Company, denomination or business name"/>
+                                <field name="cessionario_rf_Nome" string="Natural person name"/>
+                                <field name="cessionario_rf_Cognome" string="Natural person surname"/>
                             </group>
                         </page>
                     </notebook>
@@ -266,7 +266,7 @@
             <field name="arch" type="xml">
                 <tree string="Supplier bills">
                     <field name="partner_id" />
-                    <field name="cedente_Denominazione" />
+                    <field name="cedente_Denominazione" string="Company, denomination or business name"/>
                     <field name="totale_imponibile"/>
                     <field name="totale_iva"/>
                 </tree>
@@ -290,39 +290,39 @@
                                 <field name="partner_id"/>
                                 <field name="cedente_IdFiscaleIVA_IdPaese"/>
                                 <field name="cedente_IdFiscaleIVA_IdCodice"/>
-                                <field name="cedente_CodiceFiscale"/>
-                                <field name="cedente_Denominazione"/>
-                                <field name="cedente_Nome"/>
-                                <field name="cedente_Cognome"/>
+                                <field name="cedente_CodiceFiscale" string="Fiscal code"/>
+                                <field name="cedente_Denominazione" string="Company, denomination or business name"/>
+                                <field name="cedente_Nome" string="Natural person name"/>
+                                <field name="cedente_Cognome" string="Natural person surname"/>
                             </group>
                         </page>
                         <page string="Headquarters">
                             <group name="cedente_sede">
-                                <field name="cedente_sede_Indirizzo"/>
-                                <field name="cedente_sede_NumeroCivico"/>
-                                <field name="cedente_sede_Cap"/>
-                                <field name="cedente_sede_Comune"/>
-                                <field name="cedente_sede_Provincia"/>
-                                <field name="cedente_sede_Nazione"/>
+                                <field name="cedente_sede_Indirizzo" string="Headquarters address"/>
+                                <field name="cedente_sede_NumeroCivico" string="Street number"/>
+                                <field name="cedente_sede_Cap" string="ZIP"/>
+                                <field name="cedente_sede_Comune" string="City"/>
+                                <field name="cedente_sede_Provincia" string="State"/>
+                                <field name="cedente_sede_Nazione" string="Country"/>
                             </group>
                         </page>
                         <page string="Permanent establishment">
                             <group name="cedente_stabile_organizzazione">
-                                <field name="cedente_so_Indirizzo"/>
-                                <field name="cedente_so_NumeroCivico"/>
-                                <field name="cedente_so_Cap"/>
-                                <field name="cedente_so_Comune"/>
-                                <field name="cedente_so_Provincia"/>
-                                <field name="cedente_so_Nazione"/>
+                                <field name="cedente_so_Indirizzo" string="Permanent establishment address"/>
+                                <field name="cedente_so_NumeroCivico" string="Street number"/>
+                                <field name="cedente_so_Cap" string="ZIP"/>
+                                <field name="cedente_so_Comune" string="City"/>
+                                <field name="cedente_so_Provincia" string="State"/>
+                                <field name="cedente_so_Nazione" string="Country"/>
                             </group>
                         </page>
                         <page string="Fiscal representative">
                             <group name="cedente_rappresentante_fiscale">
-                                <field name="cedente_rf_IdFiscaleIVA_IdPaese"/>
-                                <field name="cedente_rf_IdFiscaleIVA_IdCodice"/>
-                                <field name="cedente_rf_Denominazione"/>
-                                <field name="cedente_rf_Nome"/>
-                                <field name="cedente_rf_Cognome"/>
+                                <field name="cedente_rf_IdFiscaleIVA_IdPaese" string="Country ID"/>
+                                <field name="cedente_rf_IdFiscaleIVA_IdCodice" string="Fiscal identifier"/>
+                                <field name="cedente_rf_Denominazione" string="Company, denomination or business name"/>
+                                <field name="cedente_rf_Nome" string="Natural person name"/>
+                                <field name="cedente_rf_Cognome" string="Natural person surname"/>
                             </group>
                         </page>
                     </notebook>
