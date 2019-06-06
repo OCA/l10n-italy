@@ -1,13 +1,13 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Alessandro Camilli - Openforce
 # Copyright 2017-2019 Lorenzo Battistini
+# Copyright 2019 Glauco Prina - Linkit
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 {
     'name': 'Italian Localization - Comunicazione dati fatture',
     'summary': 'Comunicazione dati fatture (c.d. "nuovo spesometro" o '
                '"esterometro")',
-    'version': '10.0.1.1.1',
+    'version': '11.0.1.0.3',
     'category': 'Account',
     'author': "Openforce di Camilli Alessandro, "
               "Odoo Community Association (OCA)",

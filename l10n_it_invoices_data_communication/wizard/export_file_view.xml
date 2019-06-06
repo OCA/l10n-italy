@@ -37,23 +37,11 @@
             </field>
         </record>
 
-        <record id="action_dati_iva_export_file" model="ir.actions.act_window">
-            <field name="name">Export file invoices data communication</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">comunicazione.dati.iva.export.file</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">form</field>
-            <field name="view_id" ref="wizard_dati_iva_export_file"/>
-            <field name="target">new</field>
-        </record>
-
-        <record model="ir.values" id="value_wizard_dati_iva_export_file">
-            <field name="name">Export communication file</field>
-            <field name="key2">client_action_multi</field>
-            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_dati_iva_export_file'))" />
-            <field name="key">action</field>
-            <field name="model">comunicazione.dati.iva</field>
-        </record>
-
+        <act_window id="action_wizard_dati_iva_export_file"
+            multi="True"
+            key2="client_action_multi" name="Export communication file"
+            res_model="comunicazione.dati.iva.export.file" src_model="comunicazione.dati.iva"
+            view_mode="form" target="new" view_type="form" />
+        
     </data>
 </odoo>
