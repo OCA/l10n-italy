@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0+e\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-06 08:56+0000\n"
-"PO-Revision-Date: 2017-12-06 08:56+0000\n"
+"POT-Creation-Date: 2018-06-29 14:56+0000\n"
+"PO-Revision-Date: 2018-06-29 14:56+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -97,7 +97,7 @@ msgstr "Tutte (Fiscali e statistici)"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section3_amount_currency
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section4_amount_currency
 msgid "Amount Currency"
-msgstr "Importo valuta"
+msgstr "Importo Valuta"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1_amount_euro
@@ -239,6 +239,16 @@ msgid "Data Type"
 msgstr "Tipo dati"
 
 #. module: l10n_it_intrastat_statement
+#: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_date_start
+msgid "Date Start"
+msgstr "Date Start"
+
+#. module: l10n_it_intrastat_statement
+#: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_date_stop
+msgid "Date Stop"
+msgstr "Date Stop"
+
+#. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1_delivery_code_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section1_delivery_code_id
 msgid "Delivery"
@@ -256,7 +266,7 @@ msgstr "Consegna"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section3_display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4_display_name
 msgid "Display Name"
-msgstr "Nome Visualizzato"
+msgstr "Visualizza Nome"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.ui.view,arch_db:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
@@ -269,7 +279,7 @@ msgid "Export File"
 msgstr "Export File"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/wizard/export_file.py:47
+#: code:addons/l10n_it_intrastat_statement/wizard/export_file.py:39
 #: model:ir.actions.act_window,name:l10n_it_intrastat_statement.action_wizard_wizard_account_intrastat_export_file
 #: model:ir.ui.view,arch_db:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
 #, python-format
@@ -420,7 +430,7 @@ msgstr "Fattura"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section3_invoice_date
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4_invoice_date
 msgid "Invoice Date"
-msgstr "Data fattura"
+msgstr "Data Fattura"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section3_invoice_number
@@ -431,10 +441,10 @@ msgid "Invoice Number"
 msgstr "Numero Fattura"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:927
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:964
 #, python-format
-msgid "Invoice and refund in the same period with                             refound > invoice for partner %s"
-msgstr "Fatture e nota credito nello stesso periodo con rettifica > valore fattura per il partner %s"
+msgid "Invoice and refund in the same period with refund > invoice for partner %s"
+msgstr "Invoice and refund in the same period with refund > invoice for partner %s"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_export_file___last_update
@@ -448,7 +458,7 @@ msgstr "Fatture e nota credito nello stesso periodo con rettifica > valore fattu
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section3___last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4___last_update
 msgid "Last Modified on"
-msgstr "Ultima modifica il"
+msgstr "Data di ultima modifica"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_export_file_write_uid
@@ -479,193 +489,193 @@ msgid "Last Updated on"
 msgstr "Ultima modifica il"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2118
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2155
 #, python-format
 msgid "Missing Country Payment on Purchase Section 4"
 msgstr "Manca Paese pagamento su Acquisti Sezione 4"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1490
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1527
 #, python-format
 msgid "Missing Country Payment on Sale Section 4"
 msgstr "Manca Paese pagamento su Vendite Sezione 4"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2106
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2143
 #, python-format
 msgid "Missing Invoice data on Purchase Section 4"
 msgstr "Manca data fattura su Acquisti Sezione 4"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1478
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1515
 #, python-format
 msgid "Missing Invoice data on Sale Section 4"
 msgstr "Manca data fattura su Vendite Sezione 4"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1831
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1868
 #, python-format
 msgid "Missing Month Ref Variation on Purchase Section 2"
 msgstr "Manca il mese di riferimento nella varazione degli acquisti nella sezione 2"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1227
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1264
 #, python-format
 msgid "Missing Month Ref Variation on Sale Section 2"
 msgstr "Manca il mese di riferimento nella varazione delle vendite nella sezione 2"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2114
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2151
 #, python-format
 msgid "Missing Payment method on Purchase Section 4"
 msgstr "Manca metodo di pagamento su Acquisti Sezione 4"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1486
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1523
 #, python-format
 msgid "Missing Payment method on Sale Section 4"
 msgstr "Manca metodo di pagamento su Vendite Sezione 4"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2102
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2139
 #, python-format
 msgid "Missing Progressive to modity on Purchase Section 4"
 msgstr "Manca progressivo da modificare su Acquisti Sezione 4"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1474
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1511
 #, python-format
 msgid "Missing Progressive to modity on Sale Section 4"
 msgstr "Manca progressivo da modificare su Vendite Sezione 4"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1835
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1872
 #, python-format
 msgid "Missing Quarterly Ref Variation on Purchase Section 2"
 msgstr "Manca il trimestre di riferimento nella varazione degli acquisti nella sezione 2"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1231
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1268
 #, python-format
 msgid "Missing Quarterly Ref Variation on Sale Section 2"
 msgstr "Manca il trimestre di riferimento nella varazione delle vendite nella sezione 2"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1826
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1863
 #, python-format
 msgid "Missing Sign Variation on Purchase Section 2"
 msgstr "Manca il segno nella variazione degli acquisti sezione 2"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1222
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1259
 #, python-format
 msgid "Missing Sign Variation on Sale Section 2"
 msgstr "Manca il segno nella variazione nelle vendite sezione 2"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2110
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2147
 #, python-format
 msgid "Missing Supply method on Purchase Section 4"
 msgstr "Manca Modalità di erogazione su Acquisti sezione 4"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1482
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1519
 #, python-format
 msgid "Missing Supply method on Sale Section 4"
 msgstr "Manca Modalità di erogazione su Vendite sezione 4"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1675
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1712
 #, python-format
 msgid "Missing Vat code for %s in Purchase Section 1"
 msgstr "Missing Vat code for %s in Purchase Section 1"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1817
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1854
 #, python-format
 msgid "Missing Vat code for %s in Purchase Section 2"
 msgstr "Manca codice IVA per %s in Acquisti Sezione 2"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1953
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1990
 #, python-format
 msgid "Missing Vat code for %s in Purchase Section 3"
 msgstr "Manca codice IVA per %s in Acquisti Sezione 3"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2085
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2122
 #, python-format
 msgid "Missing Vat code for %s in Purchase Section 4"
 msgstr "Manca codice IVA per %s in Acquisti Sezione 4"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1079
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1116
 #, python-format
 msgid "Missing Vat code for %s in Sale Section 1"
 msgstr "Manca codice IVA per %s in Vendite Sezione 1"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1213
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1250
 #, python-format
 msgid "Missing Vat code for %s in Sale Section 2"
 msgstr "Manca codice IVA per %s in Vendite Sezione 2"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1336
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1373
 #, python-format
 msgid "Missing Vat code for %s in Sale Section 3"
 msgstr "Manca codice IVA per %s in Vendite Sezione 3"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1457
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1494
 #, python-format
 msgid "Missing Vat code for %s in Sale Section 4"
 msgstr "Manca codice IVA per %s in Vendite Sezione 4"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1822
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1859
 #, python-format
 msgid "Missing Year Ref on Purchase Section 2"
 msgstr "Manca l'anno di rifermento nella variazione degli acquisti sezione 2"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2090
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2127
 #, python-format
 msgid "Missing Year Ref on Purchase Section 4"
 msgstr "Manca l'anno di rifermento nella variazione degli acquisti sezione 4"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1218
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1255
 #, python-format
 msgid "Missing Year Ref on Sale Section 2"
 msgstr "Manca l'anno di rifermento nella variazione delle vendite sezione 2"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1462
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1499
 #, python-format
 msgid "Missing Year Ref on Sale Section 4"
 msgstr "Manca l'anno di rifermento nella variazione delle vendite sezione 4"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2094
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2131
 #, python-format
 msgid "Missing custom on Purchase Section 4"
 msgstr "Manca sezione doganale su Acquisti Sezione 4"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1466
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1503
 #, python-format
 msgid "Missing custom on Sale Section 4"
 msgstr "Manca sezione doganale su Vendite Sezione 4"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2098
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2135
 #, python-format
 msgid "Missing protocol on Purchase Section 4"
 msgstr "Manca Protocollo in Acquisti Sezione 4"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1470
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1507
 #, python-format
 msgid "Missing protocol on Sale Section 4"
 msgstr "Manca Protocollo in Vendite Sezione 4"
@@ -699,7 +709,7 @@ msgid "Normal Period"
 msgstr "Periodo Normale"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:683
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:719
 #, python-format
 msgid "Nothing to export"
 msgstr "Nulla da esportare"
@@ -754,8 +764,8 @@ msgid "Partner"
 msgstr "Partner"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1517
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2145
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1554
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2182
 #, python-format
 msgid "Partner without Country"
 msgstr "Partner senza nazione"
@@ -774,13 +784,13 @@ msgid "Period"
 msgstr "Periodo"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:962
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:999
 #, python-format
 msgid "Period Not Valid! Range accepted: from 1 to 12"
 msgstr "Periodo non valido! (Solo da 1 to 12 )"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:966
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1003
 #, python-format
 msgid "Period Not Valid! Range accepted: from 1 to 4"
 msgstr "Periodo non valido! (solo da 1 a 4)"
@@ -965,7 +975,7 @@ msgid "Statement Sequence"
 msgstr "Statement Sequence"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:693
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:729
 #, python-format
 msgid "Statement without lines"
 msgstr "Statement without lines"
