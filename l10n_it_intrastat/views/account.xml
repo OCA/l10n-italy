@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
         <!--
         Fiscal Position
         -->
@@ -100,7 +99,7 @@
             <field name="name">views.form.account.intrastat.invoice.intrastat</field>
             <field name="model">account.invoice.intrastat</field>
             <field name="arch" type="xml">
-                <form>
+                <form create="false">
                        <field name="statement_section" readonly="1"/>
                        <group>
                            <group>
@@ -176,7 +175,7 @@
             <field name="name">account.intrastat.invoice.intrastat.report</field>
             <field name="model">account.invoice.intrastat</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree create="false">
                     <field name="partner_id"/>
                     <field name="invoice_id"/>
                     <field name="intrastat_code_id"/>
@@ -241,5 +240,4 @@
             </field>
         </record>
 
-    </data>
-</openerp>
+</odoo>

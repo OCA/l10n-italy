@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
 
         <menuitem id="menu_account_intrastat_configuration" name="Intrastat"
              parent="account.menu_finance_configuration" sequence="45"/>
@@ -12,7 +11,7 @@
             <field name="name">account.intrastat.custom.view.tree</field>
             <field name="model">account.intrastat.custom</field>
             <field name="arch" type="xml">
-                <tree string="Custom" version="7.0">
+                <tree string="Custom">
                     <field name="code"/>
                     <field name="name"/>
                     <field name="date_start"/>
@@ -25,7 +24,7 @@
             <field name="name">account.intrastat.custom.view.form</field>
             <field name="model">account.intrastat.custom</field>
             <field name="arch" type="xml">
-                <form string="Custom" version="7.0">
+                <form string="Custom">
                     <group>
                         <group>
                             <field name="code"/>
@@ -100,7 +99,7 @@
             <field name="name">account.intrastat.transport.view.tree</field>
             <field name="model">account.intrastat.transport</field>
             <field name="arch" type="xml">
-                <tree string="Transport" version="7.0">
+                <tree string="Transport">
                     <field name="code"/>
                     <field name="name"/>
                 </tree>
@@ -111,7 +110,7 @@
             <field name="name">account.intrastat.transport.view.form</field>
             <field name="model">account.intrastat.transport</field>
             <field name="arch" type="xml">
-                <form string="Transport" version="7.0">
+                <form string="Transport">
                     <group>
                         <field name="code"/>
                         <field name="name"/>
@@ -137,7 +136,7 @@
             <field name="name">account.intrastat.transation.nature.view.tree</field>
             <field name="model">account.intrastat.transation.nature</field>
             <field name="arch" type="xml">
-                <tree string="Transation Nature" version="7.0">
+                <tree string="Transation Nature">
                     <field name="code"/>
                     <field name="name"/>
                 </tree>
@@ -148,7 +147,7 @@
             <field name="name">account.intrastat.transation.nature.view.form</field>
             <field name="model">account.intrastat.transation.nature</field>
             <field name="arch" type="xml">
-                <form string="Transation Nature" version="7.0">
+                <form string="Transation Nature">
                     <group>
                         <field name="code"/>
                         <field name="name"/>
@@ -166,6 +165,4 @@
         <menuitem id="menu_account_transation_nature" name="Transation Nature"
             action="action_account_intrastat_transation_nature_transport" parent="menu_account_intrastat_configuration" sequence="40"/>
 
-
-    </data>
-</openerp>
+</odoo>

@@ -1,156 +1,575 @@
-<section class="oe_container">
-    <div class="oe_row oe_spaced">
-        <h2 class="oe_slogan" style="color:#875A7B;">Intrastat base</h2>
-        <h3 class="oe_slogan">Odoo Italia Network</h3>
-        <div class="oe_span6 oe_centeralign oe_mt32 oe_mb32">
-            <img class="oe_picture oe_centered" src="icon.png"
-                 style="width: 85px; margin: auto; text-align: center">
-        </div>
-        <div class="oe_span6 oe_centeralign oe_mt32 oe_mb32">
-            <img class="oe_picture oe_centered" src="OIN.png"
-                 style="height: 85px; margin: auto; text-align: center">
-        </div>
-    </div>
-</section>
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.14: http://docutils.sourceforge.net/" />
+<title>ITA - Intrastat</title>
+<style type="text/css">
 
-<section class="oe_container oe_dark">
-    <div class="oe_row oe_spaced">
-        <h2 class="oe_slogan" style="color:#875A7B;">Premessa</h2>
-        <!--h3 class="oe_slogan">A template for every need</h3-->
-        <div class="oe_span6 text-justify">
-            <p class="oe_mt32">
-Questo modulo si occupa della riclassificazione delle merci e dei servizi che sono oggetto di
-transazioni comunitarie e di creare l'apposita dichiarazione intrastat da presentare all'Agenzia delle
-Dogane.
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7952 2016-07-26 18:15:59Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
 
-Per la dichiarazione è possibile generare il file da presentare all'Agenzia delle Dogane.
+Default cascading style sheet for the HTML output of Docutils.
 
-Il modulo precarica anche le tabelle necessarie alla compilazione della dichiarazione:
-Nomenclature combinate, Sezioni doganali, Natura transazioni, Trasporto
-            </p>
-            <!--img class="oe_picture" src="sms_template_1.png"-->
-        </div>
-        <div class="oe_span6 text-justify">
-            <p class="oe_mt32">
-            <h3 class="oe_slogan">Autori</h3>
-            <ul>
-                <li>Openforce di Alessandro Camilli</li>
-                <li>Apulia Software srl</li>
-                <li>Lara baggio per Link IT srl</li>
-            </ul>
-            </p>
-        </div>
-    </div>
-</section>
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
 
-<section class="oe_container">
-    <div class="oe_row oe_spaced">
-        <h2 class="oe_slogan" style="color:#875A7B;">Configurazione</h2>
-        <div class="oe_span12 text-justify">
-            <p class="oe_mt32">
-In Configurazione >> Aziende >> Aziende >> <company>, impostare i parametri delle sezioni presenti nel tab Configurazione:
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
 
-1. Intrastat
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
 
-   a) User ID (UA Code): inserire il codice identificativo Intrastat dell’azienda (codice alfanumerico di 4 caratteri, utilizzato come user-id per l’accesso alle applicazioni delle Dogane)
-   b) Unità di misura per Kg: parametro che indica l’unità di misura che viene verificata sulla riga fattura soggetta a Intrastat. Se sulla riga il peso è espresso nell’unità di misura indicata nel parametro (o in un suo multiplo), il peso che viene riportato nella corrispondente riga Intrastat è quello preso dalla riga fattura. In caso contrario, il peso viene rilevato secondo la configurazione del parametro che segue (Peso dal prodotto).
-   c) Peso dal Prodotto: indica se, invece che dalla riga fattura, il peso debba essere:
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
 
-      i. prelevato dalla scheda prodotto (opzioni “Peso netto” o “Peso Lordo)
-      ii. impostato manualmente dall’utente (opzione “Nessuno”)
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
 
-   d) Unità Aggiuntive da:
+.hidden {
+  display: none }
 
-      i. peso: da peso dei prodotti sulla riga intrastat
-      ii. quantità: da peso dei prodotti sulla riga intrastat
-      iii. nessuno
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
 
-   e) Escludi righe omaggio: Esclude dalle righe intrastata, le righe a valore 0
-   f) Delegated person: il nominativo della persona delegata alla presentazione della dichiarazione Intrastat
-   g) Delegated person VAT: la partita IVA della persona delegata alla presentazione della dichiarazione Intrastat
-   h) Nome file per export: nome del file che può essere impostato per forzare quello di default (SCAMBI.CEE)
-   i) Sezione doganale: sezione doganale di default da proporre in una nuova dichiarazione
-            </p>
-            <!--img class="oe_picture" src="sms_partner_1.png"-->
-        </div>
-        <div class="oe_span12 text-justify">
-            <p class="oe_mt32">
-2. Default sale values (parametri Intrastat per le fatture di vendita)
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
 
-   a) Force Statistic Amount Euro: flag attualmente non gestito
-   b) Transaction Nature: indica il valore di default che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (natura della transazione)
-   c) Consegna: indica il valore di default che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (metodo di consegna)
-   d) Transport: indica il valore di default che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (metodo di trasporto delle merci)
-   e) Provincia di Origine: indica il valore di default che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (provincia di origine della spedizione di merce venduta)
-            </p>
-            <!--img class="oe_picture" src="sms_partner_2.png"-->
-        </div>
-        <div class="oe_span12 text-justify">
-            <p class="oe_mt32">
-3. Default purchase value (parametri Intrastat per le fatture di acquisto)
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
 
-   a) Force Statistic Amount Euro: flag attualmente non gestito
-   b) Transaction Nature: indica il valore di default che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (natura della transazione)
-   c) Consegna: indica il valore che verrà impostato di default nelle righe Intrastat di una fattura per il campo di riferimento (metodo di consegna)
-   d) Transport: indica il valore che verrà impostato di default nelle righe Intrastat di una fattura per il campo di riferimento (metodo di trasporto delle merci)
-   e) Provincia di Destinazione: indica il valore che verrà impostato di default nelle righe Intrastat di una fattura per il campo di riferimento (provincia di destinazione della spedizione di merce acquistata)
-            </p>
-            <!--img class="oe_picture" src="sms_partner_2.png"-->
-        </div>
+blockquote.epigraph {
+  margin: 2em 5em ; }
 
-        <h3 class="oe_slogan oe_mb32">Tabelle​ di​ ​sistema</h3>
-        <div class="oe_span12 text-justify">
-            <p class="oe_mt32">
-In Contabilità >> Configurazione >> Varie >> Intrastat sono presenti le funzionalità per la gestione delle tabelle di sistema.
+dl.docutils dd {
+  margin-bottom: 0.5em }
 
-- Sezione doganale
-- Intrastat Nomenclature combinate
-- Transport (modalità di trasporto)
-- Transaction nature (natura della transazione)
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
 
-Tali tabelle sono pre-popolate in fase di installazione del modulo, in base ai valori ammessi per le dichiarazioni Intrastat.
-            </p>
-            <!--img class="oe_picture" src="sms_partner_2.png"-->
-        </div>
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
 
-        <h3 class="oe_slogan oe_mb32">Posizione​ ​fiscale</h3>
-        <div class="oe_span12 text-justify">
-            <p class="oe_mt32">
-L'assoggettamento ad Intrastat può essere gestito anche a livello generale di singolo partner, associandogli una posizione fiscale che abbia un flag attivo per l'apposito campo “Soggetto a Intrastat”
-            </p>
-            <img class="oe_picture" src="../img/soggetto_a_intrastat.png">
-            <p>
-Tutte le fatture create per il partner che abbia una posizione fiscale marcata come soggetta ad Intrastat avranno l’apposito campo Soggetto a Intrastat automaticamente flaggato.
-            </p>
-        </div>
+div.abstract {
+  margin: 2em 5em }
 
-    </div>
-</section>
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
 
-<section class="oe_container oe_dark">
-    <div class="oe_row oe_spaced">
-        <h3 class="oe_slogan">Prodotti​ e categorie</h3>
-        <div class="oe_span12 text-justify oe_centeralign" style="text-align: center">
-            <p class="oe_mt32">
-La classificazione Intrastat della merce o servizio può essere fatta sia a livello di categoria che a livello​ ​ di​ ​ prodotto.
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
 
-La priorità è data al prodotto: se su un prodotto non è configurato un codice Intrastat, il sistema tenta di​ ​ ricavarlo​ ​ dalla​ ​ categoria​ ​ cui​ ​ quel​ ​ prodotto​ ​ è ​ ​ associato.
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
 
-Per​ ​ il​ ​ prodotto​ ​ la​ ​ sezione​ ​ intrastat​ ​ è ​ ​ nel​ ​ tab​ ​ Contabilità,​ ​ ove​ ​ è ​ ​ necessario​ ​ inserire:
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
 
-- la​ ​ tipologia​ ​ (Merce,​ ​ Servizio,​ ​ Varie,​ ​ escludi)
-- il codice Intrastat, tra quelli censiti tramite l’apposita tabella di sistema Intrastat Nomenclature combinate​ ​ (il​ ​ campo​ ​ si​ ​ abilita​ ​ solo​ ​ per​ ​ le​ ​ tipologie​ ​ Merce​ ​ e ​ ​ Servizio)
-            </p>
-            <div class="oe_row_img oe_centered">
-                <img class="oe_picture" src="../img/prodotto.png">
-            </div>
-            <p>
-Per le categorie di prodotti, le informazioni sono presenti in un’apposita area Intrastat della maschera di​ ​ dettaglio:
-            </p>
-            <div class="oe_row_img oe_centered">
-                <img class="oe_picture" src="../img/categoria.png">
-            </div>
-        </div>
-    </div>
-</section>
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
 
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="ita-intrastat">
+<h1 class="title">ITA - Intrastat</h1>
+
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! This file is generated by oca-gen-addon-readme !!
+!! changes will be overwritten.                   !!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<p><a class="reference external" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/licence-LGPL--3-blue.png" /></a> <a class="reference external" href="https://github.com/OCA/l10n-italy/tree/11.0/l10n_it_intrastat"><img alt="OCA/l10n-italy" src="https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github" /></a> <a class="reference external" href="https://translation.odoo-community.org/projects/l10n-italy-11-0/l10n-italy-11-0-l10n_it_intrastat"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external" href="https://runbot.odoo-community.org/runbot/122/11.0"><img alt="Try me on Runbot" src="https://img.shields.io/badge/runbot-Try%20me-875A7B.png" /></a></p>
+<p><strong>Italiano</strong></p>
+<p>Questo modulo si occupa della riclassificazione delle merci e dei servizi che sono oggetto di
+transazioni comunitarie e di creare l’apposita dichiarazione Intrastat da presentare all’Agenzia delle
+Dogane.</p>
+<p>Per la dichiarazione è possibile generare il file da presentare all’Agenzia delle Dogane.</p>
+<p>Il modulo precarica anche le tabelle necessarie alla compilazione della dichiarazione:
+nomenclature combinate, sezioni doganali, natura dell transazioni, modalità di asporto</p>
+<p><strong>Table of contents</strong></p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#configuration" id="id1">Configuration</a></li>
+<li><a class="reference internal" href="#usage" id="id2">Usage</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="id3">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="id4">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="id5">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="id6">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="id7">Maintainers</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="configuration">
+<h1><a class="toc-backref" href="#id1">Configuration</a></h1>
+<p><strong>Italiano</strong></p>
+<p>In Impostazioni → Utenti e aziende → Aziende → &lt;nome_azienda&gt;
+impostare i parametri delle seguenti sezioni presenti nella scheda “Informazioni generali”:</p>
+<ol class="arabic simple">
+<li>Intrastat<ol class="loweralpha">
+<li>ID utente (codice UA): inserire il codice identificativo Intrastat dell’azienda (codice alfanumerico di 4 caratteri, utilizzato come identificativo per l’accesso alle applicazioni delle Dogane)</li>
+<li>Unità di misura per Kg: parametro che indica l’unità di misura che viene verificata sulla riga fattura soggetta a Intrastat. Se sulla riga il peso è espresso nell’unità di misura indicata nel parametro (o in un suo multiplo), il peso che viene riportato nella corrispondente riga Intrastat è quello preso dalla riga fattura. In caso contrario, il peso viene rilevato secondo la configurazione del parametro che segue (Peso dal prodotto).</li>
+<li>Peso dal Prodotto: indica se, invece che dalla riga fattura, il peso debba essere:<ol class="lowerroman">
+<li>prelevato dalla scheda prodotto (opzioni “Peso netto” o “Peso Lordo)</li>
+<li>impostato manualmente dall’utente (opzione “Nessuno”)</li>
+</ol>
+</li>
+<li>Unità supplementari da:<ol class="lowerroman">
+<li>peso: da peso dei prodotti sulla riga Intrastat</li>
+<li>quantità: da peso dei prodotti sulla riga Intrastat</li>
+<li>nessuno</li>
+</ol>
+</li>
+<li>Escludere righe omaggio: esclude dalle righe Intrastat le righe a valore 0</li>
+<li>Persona delegata: il nominativo della persona delegata alla presentazione della dichiarazione Intrastat</li>
+<li><ol class="first upperalpha" start="16">
+<li>IVA persona delegata: la partita IVA della persona delegata alla presentazione della dichiarazione Intrastat</li>
+</ol>
+</li>
+<li>Nome file per esportazione: nome del file che può essere impostato per forzare quello predefinito (SCAMBI.CEE)</li>
+<li>Sezione doganale: sezione doganale predefinita da proporre in una nuova dichiarazione</li>
+</ol>
+</li>
+<li>Valori predefiniti per vendite (parametri Intrastat per le fatture di vendita)<ol class="loweralpha">
+<li>Forzare valore statistico in euro: casella di selezione attualmente non gestita</li>
+<li>Natura della transazione: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento</li>
+<li>Condizioni di consegna: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento</li>
+<li>Modalità di trasporto: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Modo di trasporto)</li>
+<li>Provincia di origine: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Provincia di origine della spedizione di merce venduta)</li>
+</ol>
+</li>
+<li>Valori predefiniti per acquisti (parametri Intrastat per le fatture di acquisto)<ol class="loweralpha">
+<li>Forzare valore statistico in euro: flag attualmente non gestito</li>
+<li>Natura della transazione: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento</li>
+<li>Condizioni di consegna: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento</li>
+<li>Modalità di trasporto: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Modo di trasporto)</li>
+<li>Provincia di destinazione: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Provincia di destinazione della spedizione di merce acquistata)</li>
+</ol>
+</li>
+</ol>
+<p><strong>Tabelle​ di​ ​sistema</strong></p>
+<p>In Fatturazione/Contabilità → Configurazione → Intrastat
+sono presenti le funzionalità per la gestione delle tabelle di sistema.</p>
+<ul class="simple">
+<li>Sezione doganale</li>
+<li>Nomenclature combinate</li>
+<li>Modalità di trasporto</li>
+<li>Natura della transazione</li>
+</ul>
+<p>Tali tabelle sono pre-popolate in fase di installazione del modulo, in base ai valori ammessi per le dichiarazioni Intrastat.</p>
+<p><strong>Posizione​ ​fiscale</strong></p>
+<p>L’assoggettamento ad Intrastat può essere gestito anche a livello generale di singolo partner, associandogli una posizione fiscale che abbia l’apposita casella “Soggetta a Intrastat” selezionata.</p>
+<p>Tutte le fatture create per il partner che ha una posizione fiscale marcata come soggetta ad Intrastat avranno l’apposito campo “Soggetta a Intrastat” selezionato automaticamente.</p>
+<p><strong>Prodotti​ e categorie</strong></p>
+<p>La classificazione Intrastat delle merci o dei servizi può essere fatta sia a livello di categoria che a livello​ di prodotto.</p>
+<p>La priorità è data al prodotto: se su un prodotto non è configurato un codice Intrastat, il sistema tenta di​ ricavarlo dalla categoria a cui quel prodotto è associato.</p>
+<p>Per il prodotto la sezione intrastat​ è nel tab Contabilità, ove è necessario inserire:</p>
+<ul class="simple">
+<li>la tipologia (Merce, Servizio, Varie, Escludi)</li>
+<li>il codice Intrastat, tra quelli censiti tramite l’apposita tabella di sistema Nomenclature combinate (il campo viene abilitato solo per le tipologie​ “Merce” e “Servizio”)</li>
+</ul>
+<p>Per le categorie di prodotti, le informazioni sono presenti in un’apposita area Intrastat della maschera di dettaglio:</p>
+<p><strong>Fatture​ e Note​ di credito​ Intrastat</strong></p>
+<p>E’ possibile indicare l’assoggettamento di una fattura ad Intrastat attraverso l’apposito campo presente sulla maschera di modifica della fattura stessa.</p>
+<p>Sulla scheda Intrastat è presente un pulsante «Ricalcola righe Intrastat». Il pulsante permette al sistema:</p>
+<ul class="simple">
+<li>di verificare se le righe prodotto presenti in fattura (scheda “Righe Fattura”) si riferiscono a prodotti che hanno un codice Intrastat assegnato, o appartengono ad una categoria che ha un codice Intrastat​ aggregato</li>
+<li>di generare per questi prodotti le corrispondenti righe Intrastat: le righe accorpano prodotti omogenei per codice Intrastat, indicando nel campo Massa netta (kg) il peso totale dei prodotti presenti nelle corrispondenti righe. La riga Intrastat, ovviamente, raggruppa il valore economico dei prodotti.</li>
+<li>NB: se una riga presente in fattura si riferisce ad un prodotto che ha come tipologia Intrastat “Varie”, l’importo della riga verrà automaticamente suddiviso in maniera uguale sulle altre righe Intrastat che si riferiscono a merci o servizi. Tale automatismo permette di gestire, in maniera conforme a quanto previsto dalla normativa, il ribaltamento proporzionale dei costi sostenuti per spese accessorie (es: spese di trasporto) sui costi sostenuti per l’acquisto vero e proprio di merce o servizi.</li>
+</ul>
+<p>Nella scheda Intrastat, un clic su una riga Intrastat permette di accedere alla maschera di dettaglio.</p>
+<p>Nella​ ​ maschera:</p>
+<ul class="simple">
+<li>il campo Paese partner viene popolato in automatico dal campo “Nazione” dell’indirizzo associato​ al  partner</li>
+<li>i campi configurati in Configurazione → Aziende → Aziende → &lt;company&gt; (vedi Configurazione su company​ ) vengono popolati in automatico con i valori predefiniti impostati, in ragione della tipologia di fattura​ (vendita o acquisto)</li>
+<li>se fattura di vendita:
+1. i campi Origine → “Paese di provenienza” e Origine → “Paese di origine” vengono popolati in automatico con la nazione presente nell’indirizzo associato alla company
+2. il campo Destinazione → Nazione destinazione viene popolato in automatico con la nazione presente nell’indirizzo associato al partner</li>
+<li>se​ fattura di acquisto:
+1. i campi Origine → “Paese di provenienza” e Origine → “Paese di origine” vengono popolati in automatico con la nazione presente nell’indirizzo associato al partner (fornitore)
+2. il​ campo Destinazione → Nazione destinazione viene preso ​dai dati della company</li>
+</ul>
+<p>NB: tutti i campi possono ovviamente essere modificati, ma l’utilizzo del pulsante «Ricalcola righe Intrastat» ripristinerà i valori predefiniti, sui campi prelevati dalla configurazione della company o dalla riga fattura.</p>
+<p><strong>Note​ di​ credito</strong></p>
+<p>Nelle note di credito, sulla scheda Intrastat, è presente inoltre un menù a tendina che permette di selezionare il periodo fiscale di riferimento da rettificare per la nota di credito. Tale valore sarà utilizzato automaticamente​ nella dichiarazione (sezioni 2 e 4 - Rettifiche).</p>
+<p>Importante:</p>
+<p>se si seleziona un periodo che è lo stesso della dichiarazione, la nota di credito, per il suo importo, non confluirà nella sezione di rettifica, ma andrà a stornare direttamente il valore della fattura sulla quale è stata emessa. La verifica sulla fattura da stornare viene fatta confrontando la coppia di valori partner/nomenclatura combinata.</p>
+</div>
+<div class="section" id="usage">
+<h1><a class="toc-backref" href="#id2">Usage</a></h1>
+<p><strong>Italiano</strong></p>
+<p><strong>Dichiarazione​ Intrastat</strong></p>
+<p>Accedere a Fatturazione/Contabilità → Operazioni contabili → Dichiarazioni Intrastat ed utilizzare​ il ​pulsante «Crea» per creare una nuova dichiarazione.</p>
+<p>N.B. : “Operazioni contabili” è visibile solo se abilitate  funzionalità contabili complete</p>
+<p>Nella parte superiore della maschera, inserire i dati:</p>
+<ul class="simple">
+<li>Azienda:​ popolato in automatico con il nome​ dell’azienda</li>
+<li>Partita IVA contribuente:​ la​ partita​ IVA,​ popolata​ in​ automatico​ con​ il​ nome​ dell’azienda</li>
+<li>Data​ di​ presentazione:​ popolata​ in​ automatico​ con​ la​ data​ corrente</li>
+<li>Anno di presentazione: scelto dal menù a tendina che visualizza gli anni fiscali configurati​ a sistema</li>
+<li>Tipo periodo: l’orizzonte temporale a cui fa riferimento la dichiarazione, scelto da menù​ a tendina​ con​ le​ voci​ “Mese”​ o “Trimestre”</li>
+<li>Periodo: il periodo temporale a cui fa riferimento la dichiarazione. Inserire il numero del mese (es. 9 per settembre, se nel campo Tipo periodo è stato selezionato “Mese”, oppure in numero del trimestre (es: 1 per il trimestre gennaio-marzo), se nel campo Tipo periodo è stato selezionato​ “Trimestre”</li>
+<li>Caselle di selezione “Vendite” e “Acquisti”: da selezionare in base alla tipologia di operazioni che si vogliono inserire​ nella​ dichiarazione</li>
+<li>Numero:​ progressivo​ della​ dichiarazione​ proposto​ in​ automatico​ dal​ sistema</li>
+<li>Tipo di contenuto:​ selezionare​ la​ voce​ di​ competenza​ dal​ menù​ a tendina</li>
+<li>Casi​ speciali:​ selezionare​ la​ voce​ di​ competenza​ dal​ menù​ a tendina</li>
+<li>Sezione​ doganale:​ selezionare​ la​ voce​ di​ riferimento​ dal​ menù​ a tendina</li>
+</ul>
+<div class="figure">
+<img alt="Dichiarazione" src="https://raw.githubusercontent.com/OCA/l10n-italy/11.0/l10n_it_intrastat/static/img/dichiarazione.png" style="width: 600px;" />
+</div>
+<p>Inseriti​ e salvati​ i dati,​ utilizzare​ il​ pulsante «Ricalcola»​ per​ popolare​ la​ dichiarazione. Per​ ciascuna scheda​ (”Vendite”​ e “Acquisti”)​ verranno​ inserite​ nelle​ sezioni​ di​ riferimento:</p>
+<ul class="simple">
+<li>Vendite:
+- Vendita​mMerci​ - Sezione​ 1 → fatture​ di​ vendita​ di​ merci
+- Rettifica​ merci​ - Sezione 2 → note​ di credito​ su​ vendita​ merci
+- Vendita​ servizi​ - Sezione 3 → fatture​ di​ vendita​ di​ servizi
+- Rettifica​ servizi​ - Sezione​ 4 → note​ di credito​ su​ vendita​ servizi</li>
+<li>Acquisti:
+- Acquisto​ merci​ - Sezione​ 1 → fatture​ di​ acquisto​ di​ merci
+- Rettifica​ merci​ - Sezione​ 2 → note​ di credito​ su​ acquisto​ merci
+- Vendita​ servizi​ - Sezione 3 → fatture​ di​ acquisto​ di​ servizi
+- Rettifica​ servizi​ - Sezione​ 4 → note​ di credito​ su​ acquisto​ servizi</li>
+</ul>
+<p>I dati presi dalle fatture e dalle note credito indicate come soggette ad Intrastat, relative al periodo di riferimento.</p>
+<p>NB: i record presenti nelle schede “Rettifica Merci - Sezione 2” e “Rettifica Servizi - Sezione 4”, sia per gli acquisti che​ per​ le​ vendite, vanno​ modificati​ per​ inserire​ i dati​ obbligatori​ mancanti.</p>
+<p>Inseriti i dati e salvata la dichiarazione, è possibile procedere all’elaborazione dei file da inviare all’Agenzia​ delle​ Dogane​ tramite​ l’apposito​ pulsante​ «Esporta​ File».</p>
+<div class="figure">
+<img alt="Export file" src="https://raw.githubusercontent.com/OCA/l10n-italy/11.0/l10n_it_intrastat/static/img/export_file.png" />
+</div>
+<p>Il​ pulsante​ fa​ partire​ una procedura guidata,​ che​ permette​ di​ scegliere​ quale​ tipo​ di​ file​ estrarre:</p>
+<ul class="simple">
+<li>file​ di invio​ (complessivo)</li>
+<li>file​ acquisti.cee</li>
+<li>file​ cessioni.cee</li>
+</ul>
+<p>Il file potrà essere scaricato tramite l’apposito link visualizzato nella maschera della procedura guidata. Di seguito un esempio​ per​ lo scaricamento del​ file​ cessioni.cee​ (il​ nome​ del​ file​ da​ scaricare​ è SCAMBI.CEE).</p>
+</div>
+<div class="section" id="bug-tracker">
+<h1><a class="toc-backref" href="#id3">Bug Tracker</a></h1>
+<p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-italy/issues">GitHub Issues</a>.
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us smashing it by providing a detailed and welcomed
+<a class="reference external" href="https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_intrastat%0Aversion:%2011.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<p>Do not contact contributors directly about support or help with technical issues.</p>
+</div>
+<div class="section" id="credits">
+<h1><a class="toc-backref" href="#id4">Credits</a></h1>
+<div class="section" id="authors">
+<h2><a class="toc-backref" href="#id5">Authors</a></h2>
+<ul class="simple">
+<li>Openforce</li>
+<li>Link IT srl</li>
+</ul>
+</div>
+<div class="section" id="contributors">
+<h2><a class="toc-backref" href="#id6">Contributors</a></h2>
+<ul class="simple">
+<li>Alessandro Camilli</li>
+<li>Lorenzo Battistini</li>
+<li>Lara Baggio &lt;<a class="reference external" href="mailto:lbaggio&#64;linkgroup.it">lbaggio&#64;linkgroup.it</a>&gt;</li>
+</ul>
+</div>
+<div class="section" id="maintainers">
+<h2><a class="toc-backref" href="#id7">Maintainers</a></h2>
+<p>This module is maintained by the OCA.</p>
+<a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
+<p>OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-italy/tree/11.0/l10n_it_intrastat">OCA/l10n-italy</a> project on GitHub.</p>
+<p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

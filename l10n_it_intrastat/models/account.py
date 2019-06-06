@@ -1,25 +1,18 @@
-# -*- coding: utf-8 -*-
-#
-#    Author: Openforce di Camilli Alessandro (www.openforce.it)
-#    Copyright (C) 2015
-#    Author: Apruzzese Francesco (f.apruzzese@apuliasoftware.it)
-#    Copyright (C) 2015
-#    Apulia Software srl - info@apuliasoftware.it - www.apuliasoftware.it
-#    Openforce di Camilli Alessandro - www.openforce.it
-#
+
 
 from openerp import models, fields, api, _
 import openerp.addons.decimal_precision as dp
-from openerp.exceptions import except_orm, Warning, RedirectWarning
+from openerp.exceptions import Warning
 from openerp.tools import float_is_zero
 
-class account_fiscal_position(models.Model):
+
+class AccountFiscalPosition(models.Model):
     _inherit = 'account.fiscal.position'
 
     intrastat = fields.Boolean(string="Subject to Intrastat")
 
 
-class account_invoice_line(models.Model):
+class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
     def _prepare_intrastat_line(self):
@@ -79,16 +72,16 @@ class account_invoice_line(models.Model):
             product_weight = 0
         weight_line = self.quantity * product_weight
         if (intrastat_uom_kg and
-            (
-             product_template.uom_id.category_id.id ==
-             intrastat_uom_kg.category_id.id
-             )):
-                weight_line_kg = self.env['product.uom']._compute_qty(
-                    self.uos_id.id,
-                    self.quantity,
-                    intrastat_uom_kg.id
-                    )
-                weight_kg = weight_line_kg
+                (
+                    product_template.uom_id.category_id.id ==
+                    intrastat_uom_kg.category_id.id
+                )):
+            weight_line_kg = self.env['product.uom']._compute_qty(
+                self.uos_id.id,
+                self.quantity,
+                intrastat_uom_kg.id
+            )
+            weight_kg = weight_line_kg
         else:
             weight_kg = weight_line
         res.update({'weight_kg': weight_kg})
@@ -112,13 +105,13 @@ class account_invoice_line(models.Model):
                 'transport_code_id':
                     company_id.intrastat_sale_transport_code_id and
                     company_id.intrastat_sale_transport_code_id.id or False
-                })
+            })
         elif self.invoice_id.type in ('in_invoice', 'in_refund'):
             res.update({
                 'transport_code_id':
                     company_id.intrastat_purchase_transport_code_id and
                     company_id.intrastat_purchase_transport_code_id.id or False
-                })
+            })
         # Transation
         if self.invoice_id.type in ('out_invoice', 'out_refund'):
             res.update({
@@ -126,27 +119,27 @@ class account_invoice_line(models.Model):
                     company_id.intrastat_sale_transation_nature_id and
                     company_id.intrastat_sale_transation_nature_id.id or
                     False
-                })
+            })
         elif self.invoice_id.type in ('in_invoice', 'in_refund'):
             res.update({
                 'transation_nature_id':
                     company_id.intrastat_purchase_transation_nature_id and
                     company_id.intrastat_purchase_transation_nature_id.id or
                     False
-                })
+            })
         # Delivery
         if self.invoice_id.type in ('out_invoice', 'out_refund'):
             res.update({
                 'delivery_code_id':
                     company_id.intrastat_sale_delivery_code_id and
                     company_id.intrastat_sale_delivery_code_id.id or False
-                })
+            })
         elif self.invoice_id.type in ('in_invoice', 'in_refund'):
             res.update({
                 'delivery_code_id':
                     company_id.intrastat_purchase_delivery_code_id and
                     company_id.intrastat_purchase_delivery_code_id.id or False
-                })
+            })
         # ---------
         # Origin
         # ---------
@@ -173,9 +166,9 @@ class account_invoice_line(models.Model):
         if self.invoice_id.type in ('out_invoice', 'out_refund'):
             province_origin_id = (
                 (
-                 company_id.intrastat_sale_province_origin_id and
-                 company_id.intrastat_sale_province_origin_id.id
-                 ) or company_id.partner_id.state_id.id)
+                    company_id.intrastat_sale_province_origin_id and
+                    company_id.intrastat_sale_province_origin_id.id
+                ) or company_id.partner_id.state_id.id)
         elif self.invoice_id.type in ('in_invoice', 'in_refund'):
             province_origin_id = \
                 self.invoice_id.partner_id.state_id.id
@@ -201,7 +194,7 @@ class account_invoice_line(models.Model):
             province_destination_id = (
                 company_id.intrastat_purchase_province_destination_id and
                 company_id.intrastat_purchase_province_destination_id.id
-                ) or self.invoice_id.company_id.partner_id.state_id.id
+            ) or self.invoice_id.company_id.partner_id.state_id.id
         res.update({'province_destination_id': province_destination_id})
         # ---------
         # Transportation
@@ -210,7 +203,7 @@ class account_invoice_line(models.Model):
         # Invoice Ref #
         # ---------
         # Supply method
-        supply_method = False
+        # supply_method = False
         # Payment method
         payment_method = False
         if self.invoice_id.payment_term_id \
@@ -229,7 +222,7 @@ class account_invoice_line(models.Model):
         return res
 
 
-class account_invoice(models.Model):
+class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
     intrastat = fields.Boolean(string="Subject to Intrastat",
@@ -238,12 +231,6 @@ class account_invoice(models.Model):
     intrastat_line_ids = fields.One2many(
         'account.invoice.intrastat', 'invoice_id', string='Intrastat',
         readonly=True, states={'draft': [('readonly', False)]}, copy=False)
-    #===========================================================================
-    # intrastat_refund_period_id = fields.Many2one(
-    #     'account.period',
-    #     readonly=True, states={'draft': [('readonly', False)]}, copy=False,
-    #     string='Period Ref of Refund')
-    #===========================================================================
 
     @api.onchange('fiscal_position_id')
     def change_fiscal_position(self):
@@ -254,15 +241,26 @@ class account_invoice(models.Model):
         for invoice in self:
             if not invoice.intrastat_line_ids:
                 invoice.compute_intrastat_lines()
-        super(account_invoice, self).action_move_create()
+        super(AccountInvoice, self).action_move_create()
         for invoice in self:
             if invoice.intrastat:
+                # Calcolo l'importo delle righe di fattura che hanno i prodotti
+                # che escludono il tipo intrastat
+
+                excluded_amount = 0
+                for line in invoice.invoice_line_ids:
+                    product_tmp = line.product_id.product_tmpl_id
+                    intrastat_data = product_tmp.get_intrastat_data()
+                    if intrastat_data['intrastat_type'] == 'exclude':
+                        excluded_amount += line.price_subtotal
+
                 total_amount = sum(
                     l.amount_currency for l in invoice.intrastat_line_ids)
                 precision_digits = self.env[
                     'decimal.precision'].precision_get('Account')
+                subtotal = abs(invoice.amount_untaxed - excluded_amount)
                 if not float_is_zero(
-                    total_amount - invoice.amount_untaxed,
+                    total_amount - subtotal,
                     precision_digits=precision_digits
                 ):
                     raise Warning(_('Total Intrastat must be ugual to\
@@ -279,6 +277,7 @@ class account_invoice(models.Model):
                 int_line.unlink()
             i_line_by_code = {}
             lines_to_split = []
+
             for line in inv.invoice_line_ids:
                 # Lines to compute
                 if not line.product_id:
@@ -288,7 +287,7 @@ class account_invoice(models.Model):
                 if (
                     'intrastat_code_id' not in intrastat_data or
                     intrastat_data['intrastat_type'] == 'exclude'
-                   ):
+                ):
                     continue
                 # Free lines
                 if inv.company_id.intrastat_exclude_free_line \
@@ -303,32 +302,31 @@ class account_invoice(models.Model):
 
                 # Group by intrastat code
                 intra_line = line._prepare_intrastat_line()
-                if intra_line['intrastat_code_id'] in i_line_by_code:
-                    i_line_by_code[intra_line['intrastat_code_id']]\
-                        ['amount_currency'] += intra_line['amount_currency']
-                    i_line_by_code[intra_line['intrastat_code_id']]\
-                        ['statistic_amount_euro'] +=\
+                i_code_id = intra_line['intrastat_code_id']
+                i_code_type = intra_line['intrastat_code_type']
+
+                if i_code_id in i_line_by_code:
+                    i_line_by_code[i_code_id]['amount_currency'] += \
+                        intra_line['amount_currency']
+                    i_line_by_code[i_code_id]['statistic_amount_euro'] += \
                         intra_line['statistic_amount_euro']
-                    i_line_by_code[intra_line['intrastat_code_id']]\
-                        ['weight_kg'] += intra_line['weight_kg']
-                    i_line_by_code[intra_line['intrastat_code_id']]\
-                        ['additional_units'] += intra_line['additional_units']
+                    i_line_by_code[i_code_id]['weight_kg'] += \
+                        intra_line['weight_kg']
+                    i_line_by_code[i_code_id]['additional_units'] += \
+                        intra_line['additional_units']
                 else:
                     intra_line['statement_section'] = \
-                        self.env['account.invoice.intrastat'].\
-                        with_context(
-                        intrastat_code_type=intra_line['intrastat_code_type'],
-                        invoice_type=inv.type).\
-                        _get_statement_section()
-                    i_line_by_code[
-                        intra_line['intrastat_code_id']] = intra_line
+                        self.env['account.invoice.intrastat'].with_context(
+                            intrastat_code_type=i_code_type,
+                            invoice_type=inv.type)._get_statement_section()
+                    i_line_by_code[i_code_id] = intra_line
 
             # Split lines for instrastat with type "misc"
             if lines_to_split:
-                nr_lines = len(i_line_by_code)
+                # nr_lines = len(i_line_by_code)
                 # tot intrastat
                 amount_tot_intrastat = 0
-                for key, i_line in i_line_by_code.iteritems():
+                for key, i_line in i_line_by_code.items():
                     amount_tot_intrastat += i_line['amount_currency']
                 # amount to add
                 amount_to_split = 0
@@ -336,7 +334,7 @@ class account_invoice(models.Model):
                     amount_to_split = amount_to_split_residual =\
                         line.price_subtotal
                     i = 0
-                    for key, i_line in i_line_by_code.iteritems():
+                    for key, i_line in i_line_by_code.items():
                         i += 1
                         # competence
                         if i == len(i_line_by_code):
@@ -355,13 +353,13 @@ class account_invoice(models.Model):
 
                         amount_to_split_residual -= amount_competence
 
-            for key, val in i_line_by_code.iteritems():
+            for key, val in i_line_by_code.items():
                 intrastat_lines.append((0, 0, val))
             if intrastat_lines:
                 inv.intrastat_line_ids = intrastat_lines
 
 
-class account_invoice_intrastat(models.Model):
+class AccountInvoiceIntrastat(models.Model):
     _name = 'account.invoice.intrastat'
 
     @api.one
@@ -383,7 +381,9 @@ class account_invoice_intrastat(models.Model):
         for rec in self:
             if rec.invoice_id.type in ['in_invoice', 'in_refund']:
                 if rec.invoice_id.reference:
-                    rec.invoice_number = rec.invoice_id.reference
+                    rec.invoice_number = (
+                        rec.invoice_id.reference or
+                        rec.invoice_id.number)
                     if rec.invoice_id.date_invoice:
                         rec.invoice_date = rec.invoice_id.date_invoice
             else:
@@ -393,10 +393,10 @@ class account_invoice_intrastat(models.Model):
                         rec.invoice_date = rec.invoice_id.date_invoice
 
     def _get_statement_section(self):
-        '''
+        """
         Compute where the invoice intrastat data will be computed.
         This field is used to show the right values to fill in
-        '''
+        """
         invoice_type = self.env.context.get('invoice_type')
         intrastat_code_type = self.env.context.get('intrastat_code_type')
         if not invoice_type:
@@ -475,20 +475,16 @@ class account_invoice_intrastat(models.Model):
                                  readonly=True,
                                  related="invoice_id.partner_id",
                                  store=True)
-    #===========================================================================
-    # period_id = fields.Many2one(string='Period',
-    #                             readonly=True, related="invoice_id.period_id",
-    #                             store=True)
-    #===========================================================================
+
     intrastat_type_data = fields.Selection([
-        ('all', 'All (Fiscal and Statistic'),
+        ('all', 'All (Fiscal and Statistic)'),
         ('fiscal', 'Fiscal'),
         ('statistic', 'Statistic'),
-        ], 'Data Type', default='all', required=True)
+    ], 'Data Type', default='all', required=True)
     intrastat_code_type = fields.Selection([
         ('service', 'Service'),
         ('good', 'Good')
-        ], 'Code Type', required=True, default='good')
+    ], 'Code Type', required=True, default='good')
     intrastat_code_id = fields.Many2one(
         'report.intrastat.code', string='Intrastat Code', required=True)
     statement_section = fields.Selection([
@@ -500,8 +496,8 @@ class account_invoice_intrastat(models.Model):
         ('purchase_s2', 'Purchase s2'),
         ('purchase_s3', 'Purchase s3'),
         ('purchase_s4', 'Purchase s4'),
-        ], 'Statement Section', default=_get_statement_section
-        )
+    ], 'Statement Section', default=_get_statement_section
+    )
 
     amount_euro = fields.Float(
         string='Amount Euro', compute='_compute_amount_euro',
@@ -531,7 +527,6 @@ class account_invoice_intrastat(models.Model):
     country_origin_id = fields.Many2one('res.country', string='Country Origin')
     country_good_origin_id = fields.Many2one(
         'res.country', string='Country Goods Origin')
-    ## Destination ##
     delivery_code_id = fields.Many2one('stock.incoterms', string='Delivery')
     transport_code_id = fields.Many2one(
         'account.intrastat.transport', string='Transport')
@@ -540,7 +535,6 @@ class account_invoice_intrastat(models.Model):
     country_destination_id = fields.Many2one(
         'res.country', string='Country Destination',
         default=_default_country_destination)
-    ## Invoice Ref ##
     invoice_number = fields.Char(string='Invoice Number',
                                  compute='_compute_invoice_ref', store=True)
     invoice_date = fields.Date(string='Invoice Date',
@@ -548,18 +542,18 @@ class account_invoice_intrastat(models.Model):
     supply_method = fields.Selection([
         ('I', 'Instant'),
         ('R', 'Repeatedly'),
-        ], 'Supply Method')
+    ], 'Supply Method')
     payment_method = fields.Selection([
         ('B', 'Transfer'),
         ('A', 'Accreditation'),
         ('X', 'Other'),
-        ], 'Payment Method')
+    ], 'Payment Method')
     country_payment_id = fields.Many2one('res.country', 'Country Payment')
 
     @api.onchange('weight_kg')
     def change_weight_kg(self):
         if self.invoice_id.company_id.intrastat_additional_unit_from ==\
-             'weight':
+                'weight':
             self.additional_units = self.weight_kg
 
     @api.onchange('amount_euro')
@@ -572,11 +566,11 @@ class account_invoice_intrastat(models.Model):
         self.intrastat_code_id = False
 
 
-class account_payment_term(models.Model):
+class AccountPaymentTerm(models.Model):
     _inherit = 'account.payment.term'
 
     intrastat_code = fields.Selection([
         ('B', 'Transfer'),
         ('A', 'Accreditation'),
         ('X', 'Other'),
-        ], 'Payment Method')
+    ], 'Payment Method')
