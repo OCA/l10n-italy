@@ -4,7 +4,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 {
     'name': 'ITA - Comunicazione liquidazione IVA',
-    'summary': 'Comunicazione liquidazione IVA ed export file xml'
+    'summary': 'Comunicazione liquidazione IVA ed esportazione file xml'
                'conforme alle specifiche dell\'Agenzia delle Entrate',
     'version': '10.0.1.0.0',
     'category': 'Account',
@@ -19,6 +19,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/comunicazione_liquidazione.xml',
+        'views/config.xml',
         'wizard/export_file_view.xml',
         'security/security.xml',
     ],
