@@ -22,6 +22,9 @@ class StockPicking(models.Model):
         string='TD',
         copy=False, )
 
+    ddt_supplier_number = fields.Char(string='Supplier TD Number', copy=False)
+    ddt_supplier_date = fields.Date(string='Supplier TD Date', copy=False)
+
     @api.multi
     def write(self, values):
         pack_to_update = None
