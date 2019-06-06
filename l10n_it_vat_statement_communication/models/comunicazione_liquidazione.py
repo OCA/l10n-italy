@@ -225,8 +225,8 @@ class ComunicazioneLiquidazione(models.Model):
         # Codice Fornitura
         x1_1_1_CodiceFornitura = etree.SubElement(
             x1_1_Intestazione, etree.QName(NS_IV, "CodiceFornitura"))
-        code = str(self.year)[-2:]
-        x1_1_1_CodiceFornitura.text = str('IVP{}'.format(code))
+        code = self.company_id.vsc_supply_code
+        x1_1_1_CodiceFornitura.text = code
         # Codice Fiscale Dichiarante
         if self.declarant_fiscalcode:
             x1_1_2_CodiceFiscaleDichiarante = etree.SubElement(
