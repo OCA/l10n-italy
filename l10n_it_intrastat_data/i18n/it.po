@@ -1,0 +1,495 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_intrastat_statement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-19 13:37+0000\n"
+"PO-Revision-Date: 2015-11-19 13:37+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#: model:ir.model,name:l10n_it_intrastat_statement.model_account_intrastat_statement
+#. module: l10n_it_intrastat_statement
+msgid "Account INTRASTAT - Statement"
+msgstr "Dichiarazione Intrastat"
+
+#: model:ir.model,name:l10n_it_intrastat_statement.model_account_intrastat_statement_purchase_section1
+#. module: l10n_it_intrastat_statement
+msgid "Account INTRASTAT - Statement - Purchase Section 1"
+msgstr "Dichiarazione Intrastat - Acquisti sez. 1"
+
+#: model:ir.model,name:l10n_it_intrastat_statement.model_account_intrastat_statement_purchase_section2
+#. module: l10n_it_intrastat_statement
+msgid "Account INTRASTAT - Statement - Purchase Section 2"
+msgstr "Dichiarazione Intrastat - Acquisti sez. 2"
+
+#: model:ir.model,name:l10n_it_intrastat_statement.model_account_intrastat_statement_purchase_section3
+#. module: l10n_it_intrastat_statement
+msgid "Account INTRASTAT - Statement - Purchase Section 3"
+msgstr "Dichiarazione Intrastat - Acquisti sez. 3"
+
+#: model:ir.model,name:l10n_it_intrastat_statement.model_account_intrastat_statement_purchase_section4
+#. module: l10n_it_intrastat_statement
+msgid "Account INTRASTAT - Statement - Purchase Section 4"
+msgstr "Dichiarazione Intrastat - Acquisti sez. 4"
+
+#: model:ir.model,name:l10n_it_intrastat_statement.model_account_intrastat_statement_sale_section1
+#. module: l10n_it_intrastat_statement
+msgid "Account INTRASTAT - Statement - Sale Section 1"
+msgstr "Dichiarazione Intrastat - Vendite sez. 1"
+
+#: model:ir.model,name:l10n_it_intrastat_statement.model_account_intrastat_statement_sale_section2
+#. module: l10n_it_intrastat_statement
+msgid "Account INTRASTAT - Statement - Sale Section 2"
+msgstr "Dichiarazione Intrastat - Vendite sez. 2"
+
+#: model:ir.model,name:l10n_it_intrastat_statement.model_account_intrastat_statement_sale_section3
+#. module: l10n_it_intrastat_statement
+msgid "Account INTRASTAT - Statement - Sale Section 3"
+msgstr "Dichiarazione Intrastat - Vendite sez. 3"
+
+#: model:ir.model,name:l10n_it_intrastat_statement.model_account_intrastat_statement_sale_section4
+#. module: l10n_it_intrastat_statement
+msgid "Account INTRASTAT - Statement - Sale Section 4"
+msgstr "Dichiarazione Intrastat - Vendite sez. 4"
+
+#: view:account.intrastat.export.file:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
+#. module: l10n_it_intrastat_statement
+msgid "Cancel"
+msgstr "Annulla"
+
+#: view:account.intrastat.export.file:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
+#. module: l10n_it_intrastat_statement
+msgid "Close"
+msgstr "Chiudi"
+
+#: model:ir.model,name:l10n_it_intrastat_statement.model_res_company
+#. module: l10n_it_intrastat_statement
+msgid "Companies"
+msgstr "Aziende"
+
+#: view:account.intrastat.custom:l10n_it_intrastat_statement.account_intrastat_custom_view_form
+#: view:account.intrastat.custom:l10n_it_intrastat_statement.account_intrastat_custom_view_tree
+#: field:res.company,intrastat_custom_id:0
+#. module: l10n_it_intrastat_statement
+msgid "Custom"
+msgstr "Sezione doganale"
+
+#: model:ir.actions.act_window,name:l10n_it_intrastat_statement.action_account_intrastat_custom
+#: model:ir.ui.menu,name:l10n_it_intrastat_statement.menu_account_intrastat_custom
+#. module: l10n_it_intrastat_statement
+msgid "Customs"
+msgstr "Sezione doganale"
+
+#: view:account.intrastat.export.file:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
+#. module: l10n_it_intrastat_statement
+msgid "Export Complete"
+msgstr "Export Completato"
+
+#: view:account.intrastat.statement:l10n_it_intrastat_statement.account_intrastat_statement_form_view
+#. module: l10n_it_intrastat_statement
+msgid "Export File"
+msgstr "Export File"
+
+#: view:account.intrastat.export.file:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
+#: code:addons/l10n_it_intrastat_statement/wizard/export_file.py:62
+#: model:ir.actions.act_window,name:l10n_it_intrastat_statement.action_wizard_wizard_account_intrastat_export_file
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Export Intrastat File"
+msgstr "Export Intrastat File"
+
+#: view:account.intrastat.export.file:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
+#. module: l10n_it_intrastat_statement
+msgid "Export acquisti.cee"
+msgstr "Export acquisti.cee"
+
+#: view:account.intrastat.export.file:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
+#. module: l10n_it_intrastat_statement
+msgid "Export cessioni.cee"
+msgstr "Export cessioni.cee"
+
+#: view:account.intrastat.export.file:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
+#. module: l10n_it_intrastat_statement
+msgid "Export file invio"
+msgstr "Export file invio"
+
+#: view:account.intrastat.statement:l10n_it_intrastat_statement.account_intrastat_statement_form_view
+#. module: l10n_it_intrastat_statement
+msgid "Goods Purchase - Section 1"
+msgstr "Acquisti Merci - Section 1"
+
+#: view:account.intrastat.statement:l10n_it_intrastat_statement.account_intrastat_statement_form_view
+#. module: l10n_it_intrastat_statement
+msgid "Goods Refund - Section 2"
+msgstr "Rettifica Merci - Section 2"
+
+#: view:account.intrastat.statement:l10n_it_intrastat_statement.account_intrastat_statement_form_view
+#. module: l10n_it_intrastat_statement
+msgid "Goods Refund Purchase - Section 2"
+msgstr "Rettifica Merci - Section 2"
+
+#: view:account.intrastat.statement:l10n_it_intrastat_statement.account_intrastat_statement_form_view
+#. module: l10n_it_intrastat_statement
+msgid "Goods Sale - Section 1"
+msgstr "Vendita Merci - Section 1"
+
+#: view:account.intrastat.statement:l10n_it_intrastat_statement.view_search_account_intrastat_statement
+#. module: l10n_it_intrastat_statement
+msgid "Group By"
+msgstr "Group By"
+
+#: view:account.intrastat.export.file:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
+#. module: l10n_it_intrastat_statement
+msgid "Here is the exported file:"
+msgstr "Ecco il file esportato:"
+
+#: view:account.intrastat.statement:l10n_it_intrastat_statement.account_intrastat_statement_form_view
+#: view:account.intrastat.statement:l10n_it_intrastat_statement.account_intrastat_statement_tree_view
+#. module: l10n_it_intrastat_statement
+msgid "INTRASTAT Statement"
+msgstr "INTRASTAT Dichiarazione"
+
+#: view:account.intrastat.statement:l10n_it_intrastat_statement.view_search_account_intrastat_statement
+#: model:ir.actions.act_window,name:l10n_it_intrastat_statement.account_intrastat_statement_action
+#: model:ir.ui.menu,name:l10n_it_intrastat_statement.menu_account_intrastat_statement
+#. module: l10n_it_intrastat_statement
+msgid "Intrastat Statements"
+msgstr "Dichiarazioni Intrastat"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:911
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Invoice and refund in the same period with                             refound > invoice for partner %s"
+msgstr "Fatture e nota credito nello stesso periodo con rettifica > valore fattura per il partner %s"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2069
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Country Payment on Purchase Section 4"
+msgstr "Manca Paese pagamento su Acquisti Sezione 4"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1459
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Country Payment on Sale Section 4"
+msgstr "Manca Paese pagamento su Vendite Sezione 4"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:429
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Intrasta UA code : see company configuration"
+msgstr "Manca il codice UA  : Vedi configurazione dell'azienda"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2057
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Invoice data on Purchase Section 4"
+msgstr "Manca data fattura su Acquisti Sezione 4"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1447
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Invoice data on Sale Section 4"
+msgstr "Manca data fattura su Vendite Sezione 4"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1791
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Month Ref Variation on Purchase Section 2"
+msgstr "Manca il mese di riferimento nella varazione degli acquisti nella sezione 2"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1203
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Month Ref Variation on Sale Section 2"
+msgstr "Manca il mese di riferimento nella varazione delle vendite nella sezione 2"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2065
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Payment method on Purchase Section 4"
+msgstr "Manca metodo di pagamento su Acquisti Sezione 4"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1455
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Payment method on Sale Section 4"
+msgstr "Manca metodo di pagamento su Vendite Sezione 4"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2053
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Progressive to modity on Purchase Section 4"
+msgstr "Manca progressivo da modificare su Acquisti Sezione 4"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1443
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Progressive to modity on Sale Section 4"
+msgstr "Manca progressivo da modificare su Vendite Sezione 4"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1795
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Quarterly Ref Variation on Purchase Section 2"
+msgstr "Manca il trimestre di riferimento nella varazione degli acquisti nella sezione 2"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1207
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Quarterly Ref Variation on Sale Section 2"
+msgstr "Manca il trimestre di riferimento nella varazione delle vendite nella sezione 2"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1786
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Sign Variation on Purchase Section 2"
+msgstr "Manca il segno nella variazione degli acquisti sezione 2"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1198
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Sign Variation on Sale Section 2"
+msgstr "Manca il segno nella variazione nelle vendite sezione 2"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2061
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Supply method on Purchase Section 4"
+msgstr "Manca Modalità di erogazione su Acquisti sezione 4"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1451
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Supply method on Sale Section 4"
+msgstr "Manca Modalità di erogazione su Vendite sezione 4"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1636
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Vat code for %s in Purchase Section 1"
+msgstr "Missing Vat code for %s in Purchase Section 1"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1777
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Vat code for %s in Purchase Section 2"
+msgstr "Manca codice IVA per %s in Acquisti Sezione 2"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1906
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Vat code for %s in Purchase Section 3"
+msgstr "Manca codice IVA per %s in Acquisti Sezione 3"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2036
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Vat code for %s in Purchase Section 4"
+msgstr "Manca codice IVA per %s in Acquisti Sezione 4"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1061
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Vat code for %s in Sale Section 1"
+msgstr "Manca codice IVA per %s in Vendite Sezione 1"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1189
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Vat code for %s in Sale Section 2"
+msgstr "Manca codice IVA per %s in Vendite Sezione 2"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1310
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Vat code for %s in Sale Section 3"
+msgstr "Manca codice IVA per %s in Vendite Sezione 3"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1426
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Vat code for %s in Sale Section 4"
+msgstr "Manca codice IVA per %s in Vendite Sezione 4"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1782
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Year Ref on Purchase Section 2"
+msgstr "Manca l'anno di rifermento nella variazione degli acquisti sezione 2"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2041
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Year Ref on Purchase Section 4"
+msgstr "Manca l'anno di rifermento nella variazione degli acquisti sezione 4"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1194
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Year Ref on Sale Section 2"
+msgstr "Manca l'anno di rifermento nella variazione delle vendite sezione 2"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1431
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing Year Ref on Sale Section 4"
+msgstr "Manca l'anno di rifermento nella variazione delle vendite sezione 4"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2045
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing custom on Purchase Section 4"
+msgstr "Manca sezione doganale su Acquisti Sezione 4"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1435
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing custom on Sale Section 4"
+msgstr "Manca sezione doganale su Vendite Sezione 4"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2049
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing protocol on Purchase Section 4"
+msgstr "Manca Protocollo in Acquisti Sezione 4"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1439
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Missing protocol on Sale Section 4"
+msgstr "Manca Protocollo in Vendite Sezione 4"
+
+#: field:account.intrastat.statement.purchase.section4,month:0
+#: field:account.intrastat.statement.sale.section4,month:0
+#. module: l10n_it_intrastat_statement
+msgid "Month Ref of Refund"
+msgstr "Mese rif. rettifica"
+
+#: field:account.intrastat.statement,name_delegate:0
+#. module: l10n_it_intrastat_statement
+msgid "Name delegate"
+msgstr "Nome Delegato "
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:677
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Nothing to export"
+msgstr "Nulla da esportare"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:1486
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:2096
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Partner without Country"
+msgstr "Partner senza nazione"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:946
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Period Not Valid! Range accepted: from 1 to 12"
+msgstr "Periodo non valido! (Solo da 1 to 12 )"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:950
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Period Not Valid! Range accepted: from 1 to 4"
+msgstr "Periodo non valido! (solo da 1 a 4)"
+
+#: field:account.intrastat.statement.purchase.section1,sequence:0
+#: field:account.intrastat.statement.purchase.section2,sequence:0
+#: field:account.intrastat.statement.purchase.section3,sequence:0
+#: field:account.intrastat.statement.purchase.section4,sequence:0
+#: field:account.intrastat.statement.sale.section1,sequence:0
+#: field:account.intrastat.statement.sale.section2,sequence:0
+#: field:account.intrastat.statement.sale.section3,sequence:0
+#: field:account.intrastat.statement.sale.section4,sequence:0
+#. module: l10n_it_intrastat_statement
+msgid "Progressive"
+msgstr "Progressivo"
+
+#: field:account.intrastat.statement.purchase.section4,progressive_to_modify:0
+#: field:account.intrastat.statement.sale.section4,progressive_to_modify:0
+#. module: l10n_it_intrastat_statement
+msgid "Progressive to Modify"
+msgstr "Progressivo da modificare"
+
+#: view:account.intrastat.statement:l10n_it_intrastat_statement.account_intrastat_statement_form_view
+#: view:account.intrastat.statement:l10n_it_intrastat_statement.view_search_account_intrastat_statement
+#. module: l10n_it_intrastat_statement
+msgid "Purchase"
+msgstr "Acquisti"
+
+#: field:account.intrastat.statement.purchase.section4,quarterly:0
+#: field:account.intrastat.statement.sale.section4,quarterly:0
+#. module: l10n_it_intrastat_statement
+msgid "Quarterly Ref of Refund"
+msgstr "Trimestre di rif. da rettificare"
+
+#: view:account.intrastat.statement:l10n_it_intrastat_statement.account_intrastat_statement_form_view
+#. module: l10n_it_intrastat_statement
+msgid "Recompute"
+msgstr "Ricalcola"
+
+#: view:account.intrastat.statement:l10n_it_intrastat_statement.account_intrastat_statement_form_view
+#: view:account.intrastat.statement:l10n_it_intrastat_statement.view_search_account_intrastat_statement
+#. module: l10n_it_intrastat_statement
+msgid "Sale"
+msgstr "Vendite"
+
+#: view:account.intrastat.statement:l10n_it_intrastat_statement.account_intrastat_statement_form_view
+#. module: l10n_it_intrastat_statement
+msgid "Services Purchase - Section 3"
+msgstr "Servizi Acquisti - Sezione 3"
+
+#: view:account.intrastat.statement:l10n_it_intrastat_statement.account_intrastat_statement_form_view
+#. module: l10n_it_intrastat_statement
+msgid "Services Refund - Section 4"
+msgstr "Rettifica Servizi - Sezioni 4"
+
+#: view:account.intrastat.statement:l10n_it_intrastat_statement.account_intrastat_statement_form_view
+#. module: l10n_it_intrastat_statement
+msgid "Services Refund Purchase - Section 4"
+msgstr "Rettifica Servizi - Sezione 4"
+
+#: view:account.intrastat.statement:l10n_it_intrastat_statement.account_intrastat_statement_form_view
+#. module: l10n_it_intrastat_statement
+msgid "Services Sale - Section 3"
+msgstr "Vendita Servizi - Sezione 3"
+
+#: code:addons/l10n_it_intrastat_statement/models/intrastat.py:687
+#. module: l10n_it_intrastat_statement
+#, python-format
+msgid "Statement without lines"
+msgstr "Statement without lines"
+
+#: view:account.intrastat.statement.purchase.section1:l10n_it_intrastat_statement.view_tree_statement_purchase_section1
+#: view:account.intrastat.statement.purchase.section2:l10n_it_intrastat_statement.view_tree_statement_purchase_section2
+#: view:account.intrastat.statement.purchase.section3:l10n_it_intrastat_statement.view_tree_statement_purchase_section3
+#: view:account.intrastat.statement.purchase.section4:l10n_it_intrastat_statement.view_tree_statement_purchase_section4
+#: view:account.intrastat.statement.sale.section1:l10n_it_intrastat_statement.view_tree_statement_sale_section1
+#: view:account.intrastat.statement.sale.section2:l10n_it_intrastat_statement.view_tree_statement_sale_section2
+#: view:account.intrastat.statement.sale.section3:l10n_it_intrastat_statement.view_tree_statement_sale_section3
+#: view:account.intrastat.statement.sale.section4:l10n_it_intrastat_statement.view_tree_statement_sale_section4
+#. module: l10n_it_intrastat_statement
+msgid "Total"
+msgstr "Totale"
+
+#: view:account.intrastat.statement:l10n_it_intrastat_statement.view_search_account_intrastat_statement
+#. module: l10n_it_intrastat_statement
+msgid "Year"
+msgstr "Year"
+
+#: view:account.intrastat.export.file:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
+#. module: l10n_it_intrastat_statement
+msgid "or"
+msgstr "o"
+
