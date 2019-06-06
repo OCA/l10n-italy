@@ -1,0 +1,156 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#875A7B;">Intrastat base</h2>
+        <h3 class="oe_slogan">Odoo Italia Network</h3>
+        <div class="oe_span6 oe_centeralign oe_mt32 oe_mb32">
+            <img class="oe_picture oe_centered" src="icon.png"
+                 style="width: 85px; margin: auto; text-align: center">
+        </div>
+        <div class="oe_span6 oe_centeralign oe_mt32 oe_mb32">
+            <img class="oe_picture oe_centered" src="OIN.png"
+                 style="height: 85px; margin: auto; text-align: center">
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#875A7B;">Premessa</h2>
+        <!--h3 class="oe_slogan">A template for every need</h3-->
+        <div class="oe_span6 text-justify">
+            <p class="oe_mt32">
+Questo modulo si occupa della riclassificazione delle merci e dei servizi che sono oggetto di
+transazioni comunitarie e di creare l'apposita dichiarazione intrastat da presentare all'Agenzia delle
+Dogane.
+
+Per la dichiarazione è possibile generare il file da presentare all'Agenzia delle Dogane.
+
+Il modulo precarica anche le tabelle necessarie alla compilazione della dichiarazione:
+Nomenclature combinate, Sezioni doganali, Natura transazioni, Trasporto
+            </p>
+            <!--img class="oe_picture" src="sms_template_1.png"-->
+        </div>
+        <div class="oe_span6 text-justify">
+            <p class="oe_mt32">
+            <h3 class="oe_slogan">Autori</h3>
+            <ul>
+                <li>Openforce di Alessandro Camilli</li>
+                <li>Apulia Software srl</li>
+                <li>Lara baggio per Link IT srl</li>
+            </ul>
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#875A7B;">Configurazione</h2>
+        <div class="oe_span12 text-justify">
+            <p class="oe_mt32">
+In Configurazione >> Aziende >> Aziende >> <company>, impostare i parametri delle sezioni presenti nel tab Configurazione:
+
+1. Intrastat
+
+   a) User ID (UA Code): inserire il codice identificativo Intrastat dell’azienda (codice alfanumerico di 4 caratteri, utilizzato come user-id per l’accesso alle applicazioni delle Dogane)
+   b) Unità di misura per Kg: parametro che indica l’unità di misura che viene verificata sulla riga fattura soggetta a Intrastat. Se sulla riga il peso è espresso nell’unità di misura indicata nel parametro (o in un suo multiplo), il peso che viene riportato nella corrispondente riga Intrastat è quello preso dalla riga fattura. In caso contrario, il peso viene rilevato secondo la configurazione del parametro che segue (Peso dal prodotto).
+   c) Peso dal Prodotto: indica se, invece che dalla riga fattura, il peso debba essere:
+
+      i. prelevato dalla scheda prodotto (opzioni “Peso netto” o “Peso Lordo)
+      ii. impostato manualmente dall’utente (opzione “Nessuno”)
+
+   d) Unità Aggiuntive da:
+
+      i. peso: da peso dei prodotti sulla riga intrastat
+      ii. quantità: da peso dei prodotti sulla riga intrastat
+      iii. nessuno
+
+   e) Escludi righe omaggio: Esclude dalle righe intrastata, le righe a valore 0
+   f) Delegated person: il nominativo della persona delegata alla presentazione della dichiarazione Intrastat
+   g) Delegated person VAT: la partita IVA della persona delegata alla presentazione della dichiarazione Intrastat
+   h) Nome file per export: nome del file che può essere impostato per forzare quello di default (SCAMBI.CEE)
+   i) Sezione doganale: sezione doganale di default da proporre in una nuova dichiarazione
+            </p>
+            <!--img class="oe_picture" src="sms_partner_1.png"-->
+        </div>
+        <div class="oe_span12 text-justify">
+            <p class="oe_mt32">
+2. Default sale values (parametri Intrastat per le fatture di vendita)
+
+   a) Force Statistic Amount Euro: flag attualmente non gestito
+   b) Transaction Nature: indica il valore di default che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (natura della transazione)
+   c) Consegna: indica il valore di default che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (metodo di consegna)
+   d) Transport: indica il valore di default che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (metodo di trasporto delle merci)
+   e) Provincia di Origine: indica il valore di default che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (provincia di origine della spedizione di merce venduta)
+            </p>
+            <!--img class="oe_picture" src="sms_partner_2.png"-->
+        </div>
+        <div class="oe_span12 text-justify">
+            <p class="oe_mt32">
+3. Default purchase value (parametri Intrastat per le fatture di acquisto)
+
+   a) Force Statistic Amount Euro: flag attualmente non gestito
+   b) Transaction Nature: indica il valore di default che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (natura della transazione)
+   c) Consegna: indica il valore che verrà impostato di default nelle righe Intrastat di una fattura per il campo di riferimento (metodo di consegna)
+   d) Transport: indica il valore che verrà impostato di default nelle righe Intrastat di una fattura per il campo di riferimento (metodo di trasporto delle merci)
+   e) Provincia di Destinazione: indica il valore che verrà impostato di default nelle righe Intrastat di una fattura per il campo di riferimento (provincia di destinazione della spedizione di merce acquistata)
+            </p>
+            <!--img class="oe_picture" src="sms_partner_2.png"-->
+        </div>
+
+        <h3 class="oe_slogan oe_mb32">Tabelle​ di​ ​sistema</h3>
+        <div class="oe_span12 text-justify">
+            <p class="oe_mt32">
+In Contabilità >> Configurazione >> Varie >> Intrastat sono presenti le funzionalità per la gestione delle tabelle di sistema.
+
+- Sezione doganale
+- Intrastat Nomenclature combinate
+- Transport (modalità di trasporto)
+- Transaction nature (natura della transazione)
+
+Tali tabelle sono pre-popolate in fase di installazione del modulo, in base ai valori ammessi per le dichiarazioni Intrastat.
+            </p>
+            <!--img class="oe_picture" src="sms_partner_2.png"-->
+        </div>
+
+        <h3 class="oe_slogan oe_mb32">Posizione​ ​fiscale</h3>
+        <div class="oe_span12 text-justify">
+            <p class="oe_mt32">
+L'assoggettamento ad Intrastat può essere gestito anche a livello generale di singolo partner, associandogli una posizione fiscale che abbia un flag attivo per l'apposito campo “Soggetto a Intrastat”
+            </p>
+            <img class="oe_picture" src="../img/soggetto_a_intrastat.png">
+            <p>
+Tutte le fatture create per il partner che abbia una posizione fiscale marcata come soggetta ad Intrastat avranno l’apposito campo Soggetto a Intrastat automaticamente flaggato.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan">Prodotti​ e categorie</h3>
+        <div class="oe_span12 text-justify oe_centeralign" style="text-align: center">
+            <p class="oe_mt32">
+La classificazione Intrastat della merce o servizio può essere fatta sia a livello di categoria che a livello​ ​ di​ ​ prodotto.
+
+La priorità è data al prodotto: se su un prodotto non è configurato un codice Intrastat, il sistema tenta di​ ​ ricavarlo​ ​ dalla​ ​ categoria​ ​ cui​ ​ quel​ ​ prodotto​ ​ è ​ ​ associato.
+
+Per​ ​ il​ ​ prodotto​ ​ la​ ​ sezione​ ​ intrastat​ ​ è ​ ​ nel​ ​ tab​ ​ Contabilità,​ ​ ove​ ​ è ​ ​ necessario​ ​ inserire:
+
+- la​ ​ tipologia​ ​ (Merce,​ ​ Servizio,​ ​ Varie,​ ​ escludi)
+- il codice Intrastat, tra quelli censiti tramite l’apposita tabella di sistema Intrastat Nomenclature combinate​ ​ (il​ ​ campo​ ​ si​ ​ abilita​ ​ solo​ ​ per​ ​ le​ ​ tipologie​ ​ Merce​ ​ e ​ ​ Servizio)
+            </p>
+            <div class="oe_row_img oe_centered">
+                <img class="oe_picture" src="../img/prodotto.png">
+            </div>
+            <p>
+Per le categorie di prodotti, le informazioni sono presenti in un’apposita area Intrastat della maschera di​ ​ dettaglio:
+            </p>
+            <div class="oe_row_img oe_centered">
+                <img class="oe_picture" src="../img/categoria.png">
+            </div>
+        </div>
+    </div>
+</section>
+
