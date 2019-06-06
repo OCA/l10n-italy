@@ -7,7 +7,7 @@
     "name": "ITA - Bilancio civilistico",
     "summary": "Stampa del bilancio riclassificato secondo la IV direttiva "
                "CEE",
-    "version": "12.0.1.0.0",
+    "version": "11.0.1.0.0",
     "development_status": "Beta",
     "category": "Accounting",
     "website": "https://github.com/OCA/l10n-italy",
@@ -22,7 +22,8 @@
     "data": [
         "views/account_view.xml",
         "wizard/trial_balance_view.xml",
-        "data/cee_groups.xml"
+        "data/cee_groups.xml",
+        "report/templates/trial_balance.xml",
     ],
     "qweb": [
     ]

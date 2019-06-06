@@ -14,7 +14,7 @@
         </field>
     </record>
 
-    <record id="view_account_group_form_cee" model="ir.ui.view">
+     <record id="view_account_group_form_cee" model="ir.ui.view">
         <field name="name">view_account_group_form_cee</field>
         <field name="model">account.group</field>
         <field name="inherit_id" ref="account.view_account_group_form"/>
@@ -50,8 +50,8 @@
         </field>
     </record>
 
-    <record id="account.action_account_group_tree" model="ir.actions.act_window">
+     <record id="account.action_account_group_tree" model="ir.actions.act_window">
         <field name="context">{'search_default_not_cee_group': 1}</field>
     </record>
 
-</odoo>
+ </odoo>

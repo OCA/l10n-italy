@@ -1,4 +1,4 @@
-from odoo import models
+from odoo import models, api
 
 
 class TrialBalanceReportCompute(models.TransientModel):
@@ -27,7 +27,7 @@ class TrialBalanceReportCompute(models.TransientModel):
                 accgroup.parent_id,
                 coalesce(accgroup.code_prefix, accgroup.name),
                 accgroup.name,
-                accgroup.parent_path,
+                accgroup.parent_left * 100000,
                 accgroup.level
             FROM
                 account_group accgroup
@@ -40,3 +40,8 @@ class TrialBalanceReportCompute(models.TransientModel):
         )
         self.env.cr.execute(query_inject_account_group,
                             query_inject_account_params)
+
+    @api.multi
+    def compute_data_for_report(self):
+        res = super(TrialBalanceReportCompute, self).compute_data_for_report()
+        return res
