@@ -11,6 +11,8 @@ class AccountGroup(models.Model):
         comodel_name='account.account',
         inverse_name='group_id',
         string="Accounts")
+    account_balance_sign = fields.Integer(
+        "Balance sign", compute="_compute_account_balance_sign")
 
     @api.constrains('account_ids')
     def check_constrain_account_types(self):
@@ -22,3 +24,19 @@ class AccountGroup(models.Model):
         ])
         if error_msg:
             raise ValidationError(error_msg)
+
+    def get_first_account_type(self):
+        if self.account_ids:
+            return self.account_ids[0].user_type_id
+        children = self.search([('parent_id', '=', self.id)])
+        for child in children:
+            return child.get_first_account_type()
+
+    @api.multi
+    def _compute_account_balance_sign(self):
+        for group in self:
+            acc_type = group.get_first_account_type()
+            if acc_type:
+                group.account_balance_sign = acc_type.account_balance_sign
+            else:
+                group.account_balance_sign = 1
