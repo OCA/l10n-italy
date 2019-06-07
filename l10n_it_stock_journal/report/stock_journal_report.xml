@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <template id="stock_journal_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="row">
+                            <h4 class="mt0" style="text-align: center;">
+                                Stock Journal Report
+                            </h4>
+                        </div>
+                        <t t-foreach="o.product_report_ids" t-as="product">
+                            <div class="row">
+                                <span t-esc="product.product_id.name"/>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+        <!-- Report action -->
+       <report
+          id="action_stock_journal_report"
+          model="stock_journal_report"
+          string="Stock Journal"
+          report_type="qweb-pdf"
+          name="l10n_it_stock_journal.stock_journal_report"
+          file="l10n_it_stock_journal.stock_journal_report"
+      />
+
+</odoo>

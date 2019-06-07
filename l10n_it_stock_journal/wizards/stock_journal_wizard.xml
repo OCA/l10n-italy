@@ -11,13 +11,11 @@
             <form string="Stock Journal Report">
                 <group>
                     <field name="date_range_id"/>
-                </group>
-                <newline/>
-                <group>
                     <field name="from_date"/>
+                    <field name="to_date"/>
                 </group>
                 <group>
-                    <field name="to_date"/>
+                    <field name="location_id"/>
                 </group>
                 <footer>
                     <button name="button_export_pdf"

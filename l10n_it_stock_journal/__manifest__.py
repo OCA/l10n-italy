@@ -16,7 +16,7 @@
     ],
     'data': [
         'wizards/stock_journal_wizard.xml',
-        # 'report/srock_journal_report.xml'
+        'report/stock_journal_report.xml'
     ],
     'installable': True,
 }
