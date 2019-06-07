@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-25 05:17+0000\n"
-"PO-Revision-Date: 2019-05-24 14:19+0000\n"
+"PO-Revision-Date: 2019-06-07 10:20+0000\n"
 "Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -830,17 +830,13 @@ msgstr "Tipo DDT di magazzino"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking__ddt_supplier_date
-#, fuzzy
-#| msgid "TD Date"
 msgid "Supplier TD Date"
-msgstr "Data DDT"
+msgstr "Data DDT fornitore"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking__ddt_supplier_number
-#, fuzzy
-#| msgid "TD Number"
 msgid "Supplier TD Number"
-msgstr "Numero DDT"
+msgstr "Numero DDT fornitore"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:95
@@ -872,10 +868,8 @@ msgstr "Data DDT"
 
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.view_picking_form
-#, fuzzy
-#| msgid "TD Invoicing"
 msgid "TD Info"
-msgstr "Fatturazione DDT"
+msgstr "Informazioni DDT"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/ddt_invoicing.py:52
