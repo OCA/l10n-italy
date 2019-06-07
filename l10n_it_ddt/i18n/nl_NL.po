@@ -800,6 +800,16 @@ msgid "Stock TD Type"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking__ddt_supplier_date
+msgid "Supplier TD Date"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking__ddt_supplier_number
+msgid "Supplier TD Number"
+msgstr ""
+
+#. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:95
 #: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:211
 #: model:ir.actions.report,name:l10n_it_ddt.action_report_ddt
@@ -825,6 +835,11 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
 msgid "TD Date"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model_terms:ir.ui.view,arch_db:l10n_it_ddt.view_picking_form
+msgid "TD Info"
 msgstr ""
 
 #. module: l10n_it_ddt
