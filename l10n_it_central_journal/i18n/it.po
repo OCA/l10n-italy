@@ -248,7 +248,7 @@ msgstr ""
 
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_progressive_debit2
-msgid "Progressive debit"
+msgid "Progressive Debit"
 msgstr "Progressivo dare"
 
 #. module: l10n_it_central_journal
@@ -268,8 +268,8 @@ msgstr "Pronto per la stampa"
 
 #. module: l10n_it_central_journal
 #: model:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
-msgid "Ref"
-msgstr "Rif"
+msgid "Ref."
+msgstr "Rif."
 
 #. module: l10n_it_central_journal
 #: model:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
