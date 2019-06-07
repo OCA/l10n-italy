@@ -2,12 +2,14 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Italian Localization - Libro giornale',
-    'version': '11.0.1.0.0',
+    'name': 'ITA - Libro giornale',
+    'version': '12.0.1.0.0',
+    "development_status": "Beta",
     'category': 'Localization/Italy',
     'author': 'Gianmarco Conte - Dinamiche Aziendali srl, '
               'Odoo Community Association (OCA)',
-    'website': 'http://www.dinamicheaziendali.it',
+    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
+               'l10n_it_central_journal',
     'license': 'AGPL-3',
     "depends": [
         'account',
