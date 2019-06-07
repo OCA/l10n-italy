@@ -3,7 +3,7 @@
 
 from odoo import models, fields, api, _
 from odoo.exceptions import Warning as UserError
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 
 class WizardGiornale(models.TransientModel):
@@ -16,8 +16,9 @@ class WizardGiornale(models.TransientModel):
         return journal_ids
 
     _name = "wizard.giornale"
+    _description = "Wizard journal report"
 
-    date_move_line_from = fields.Date('From date', required=True)
+    date_move_line_from = fields.Date(required=True)
     date_move_line_from_view = fields.Date('From date')
     last_def_date_print = fields.Date('Last definitive date print')
     date_move_line_to = fields.Date('To date', required=True)
@@ -27,7 +28,7 @@ class WizardGiornale(models.TransientModel):
     company_id = fields.Many2one(related='daterange.company_id',
                                  readonly=True, store=True)
     progressive_credit = fields.Float('Progressive Credit')
-    progressive_debit2 = fields.Float('Progressive debit')
+    progressive_debit2 = fields.Float('Progressive Debit')
     print_state = fields.Selection(
         [('print', 'Ready for printing'),
          ('printed', 'Printed')],
@@ -55,19 +56,18 @@ class WizardGiornale(models.TransientModel):
     @api.onchange('date_move_line_from_view')
     def get_year_footer(self):
         if self.date_move_line_from_view:
-            self.year_footer = datetime.strptime(self.date_move_line_from_view,
-                                                 "%Y-%m-%d").year
+            self.year_footer = fields.Date.to_date(
+                self.date_move_line_from_view).year
 
     @api.onchange('daterange')
     def on_change_daterange(self):
         if self.daterange:
-            date_start = datetime.strptime(
-                self.daterange.date_start, "%Y-%m-%d").date()
-            date_end = datetime.strptime(
-                self.daterange.date_end, "%Y-%m-%d").date()
+            date_start = fields.Date.to_date(self.daterange.date_start)
+            date_end = fields.Date.to_date(self.daterange.date_end)
+
             if self.daterange.date_last_print:
-                date_last_print = datetime.strptime(
-                    self.daterange.date_last_print, "%Y-%m-%d").date()
+                date_last_print = fields.Date.to_date(
+                    self.daterange.date_last_print)
                 self.last_def_date_print = date_last_print
                 date_start = (date_last_print + timedelta(days=1)).__str__()
             else:
