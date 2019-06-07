@@ -10,9 +10,10 @@ _logger = logging.getLogger(__name__)
 
 class ReportGiornale(models.AbstractModel):
     _name = 'report.l10n_it_central_journal.report_giornale'
+    _description = "Journal report"
 
     @api.model
-    def get_report_values(self, docids, data=None):
+    def _get_report_values(self, docids, data=None):
         lang_code = self._context.get('company_id',
                                       self.env.user.company_id.partner_id.lang)
         lang = self.env['res.lang']

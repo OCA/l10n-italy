@@ -29,7 +29,7 @@
                             <tr style="page-break-inside: avoid">
                                 <th class="left_without_line">Row</th>
                                 <th class="left_without_line">Date</th>
-                                <th class="left_without_line">Ref</th>
+                                <th class="left_without_line">Ref.</th>
                                 <th class="left_without_line">Account move</th>
                                 <th class="left_without_line">Account code</th>
                                 <th class="left_without_line">Account name</th>
@@ -92,7 +92,7 @@
                                     <!-- Date -->
                                     <td class="left_without_line">
                                         <div style="page-break-inside: avoid"
-                                             t-esc="time.strftime(date_format, time.strptime(line['date'],'%Y-%m-%d'))"/>
+                                             t-esc="time.strftime(date_format, time.strptime(str(line['date']),'%Y-%m-%d'))"/>
                                     </td>
                                     <!-- ref -->
                                     <td class="left_without_line">
