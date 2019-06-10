@@ -248,13 +248,30 @@ class WizardImportFatturapa(models.TransientModel):
 
             if cedPrest.IscrizioneREA:
                 REA = cedPrest.IscrizioneREA
-                rea_partners = partner_model.search([
-                    ('rea_code', '=', REA.NumeroREA),
+                offices = self.ProvinceByCode(REA.Ufficio)
+                rea_nr = REA.NumeroREA
+
+                if not offices:
+                    office_id = False
+                    self.log_inconsistency(
+                        _(
+                            'REA Office Province Code ( %s ) not present in '
+                            'your system'
+                        ) % REA.Ufficio
+                    )
+                else:
+                    office_id = offices[0].id
+                    vals['rea_office'] = office_id
+
+                rea_domain = [
+                    ('rea_code', '=', rea_nr),
                     ('company_id', '=', partner_company_id),
                     ('id', '!=', partner_id)
-                ])
+                ]
+                if office_id:
+                    rea_domain.append(('rea_office', '=', office_id))
+                rea_partners = partner_model.search(rea_domain)
                 if rea_partners:
-                    rea_nr = REA.NumeroREA
                     rea_names = ", ".join(rea_partners.mapped('name'))
                     p_name = partner_model.browse(partner_id).name
                     self.log_inconsistency(
@@ -266,17 +283,7 @@ class WizardImportFatturapa(models.TransientModel):
                     )
                 else:
                     vals['rea_code'] = REA.NumeroREA
-                offices = self.ProvinceByCode(REA.Ufficio)
-                if not offices:
-                    self.log_inconsistency(
-                        _(
-                            'REA Office Province Code ( %s ) not present in '
-                            'your system'
-                        ) % REA.Ufficio
-                    )
-                else:
-                    office_id = offices[0].id
-                    vals['rea_office'] = office_id
+
                 vals['rea_capital'] = REA.CapitaleSociale or 0.0
                 vals['rea_member_type'] = REA.SocioUnico or False
                 vals['rea_liquidation_state'] = REA.StatoLiquidazione or False
