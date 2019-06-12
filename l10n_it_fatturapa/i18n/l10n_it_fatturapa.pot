@@ -110,6 +110,11 @@ msgid "Assignee / Partner"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: selection:res.company,fatturapa_preview_style:0
+msgid "AssoSoftware v1.1"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_ir_attachment
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__ir_attachment_id
 msgid "Attachment"
@@ -464,6 +469,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__electronic_invoice_subjected
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__electronic_invoice_subjected
 msgid "Enable electronic invoicing"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: selection:res.company,fatturapa_preview_style:0
+msgid "FatturaOrdinaria v1.2.1"
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -872,6 +882,12 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail__prepayment_discount
 msgid "Prepayment Discount"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company__fatturapa_preview_style
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_config_settings__fatturapa_preview_style
+msgid "Preview Format Style"
 msgstr ""
 
 #. module: l10n_it_fatturapa
