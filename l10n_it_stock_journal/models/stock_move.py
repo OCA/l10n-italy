@@ -9,35 +9,35 @@ class StockMove(models.Model):
     _inherit = 'stock.move'
 
     @api.model
-    def _selection_move_journal_type(self):
+    def _selection_usage(self):
         return [
             ('internal', 'Internal'),
-            ('incoming', 'Incoming'),
-            ('outcoming', 'Outcoming'),
+            ('loading', 'Loading'),
+            ('unloading', 'Unloading'),
         ]
 
-    move_journal_type = fields.Selection(
-        selection='_selection_move_journal_type',
-        compute='_compute_move_journal_type', store=True, readonly=True)
+    usage = fields.Selection(
+        selection='_selection_usage',
+        compute='_compute_usage', store=True, readonly=True)
 
     @api.multi
     @api.depends('location_id', 'location_dest_id')
-    def _compute_move_journal_type(self):
+    def _compute_usage(self):
         for move in self:
             if (
                     move.location_id.usage == 'internal'
                     and move.location_dest_id.usage == 'internal'
             ):
-                move.move_journal_type = 'internal'
+                move.usage = 'internal'
             elif (
                     move.location_id.usage == 'internal'
                     and move.location_dest_id.usage != 'internal'
             ):
-                move.move_journal_type = 'outcoming'
+                move.usage = 'unloading'
             elif (
                     move.location_id.usage != 'internal'
                     and move.location_dest_id.usage == 'internal'
             ):
-                move.move_journal_type = 'incoming'
+                move.usage = 'loading'
 
 

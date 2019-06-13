@@ -12,7 +12,7 @@ class StockJournalReport(models.TransientModel):
     The class hierarchy is :
     * StockJournalReport
     ** StockJournalReportProduct
-        *** GeneralLedgerReportMove
+        *** StockJournalMoveReport
     """
 
     _name = 'stock_journal_report'
@@ -61,11 +61,11 @@ class StockJournalMoveReport(models.TransientModel):
     origin = fields.Char(string='Origin Document Number')
     origin_date = fields.Date(string='Origin Document Date')
     reason = fields.Char(string='Reason')  # picking type
-    incoming_qty = fields.Float(
-        string='Incoming Quantity',
+    loading_qty = fields.Float(
+        string='Loading Quantity',
         digits=dp.get_precision('Product Unit of Measure'))  # carico
-    outcoming_qty = fields.Float(
-        string='Outcoming Quantity',
+    unloading_qty = fields.Float(
+        string='Unloading Quantity',
         digits=dp.get_precision('Product Unit of Measure'))  # scarico
 
 
@@ -114,11 +114,11 @@ class StockJournalReportCompute(models.TransientModel):
             'origin': '',
             'origin_date': fields.Date.today(),
             'reason': move.picking_id.picking_type_id.name,
-            'incoming_qty': (move.product_uom_qty
-                             if move.move_journal_type == 'incoming'
+            'loading_qty': (move.product_uom_qty
+                             if move.usage == 'loading'
                              else 0.0),
-            'outcoming_qty': (move.product_uom_qty
-                              if move.move_journal_type == 'outcoming'
+            'unloading_qty': (move.product_uom_qty
+                              if move.usage == 'unloading'
                               else 0.0),
         })
 
@@ -131,7 +131,7 @@ class StockJournalReportCompute(models.TransientModel):
             product_report = self._create_product_report(product)
             moves = self._get_moves_filtered_by_product(moves, product)
             for move in moves:
-                if move.move_journal_type != 'internal':
+                if move.usage != 'internal':
                     self._create_move_report(move, product_report)
 
 
