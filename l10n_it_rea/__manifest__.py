@@ -7,7 +7,7 @@
 
 {
     'name': 'Italian Localization - Registro REA',
-    'version': '11.0.1.0.1',
+    'version': '11.0.1.1.0',
     'category': 'Localisation/Italy',
     'summary': 'Gestisce i campi del Repertorio Economico Amministrativo',
     'author': 'Agile Business Group, Odoo Italia Network,'
