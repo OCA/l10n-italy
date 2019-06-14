@@ -93,7 +93,18 @@ class TestSP(AccountTestUsers):
             'from_date': self.recent_date,
             'to_date': self.recent_date,
         }
-        totals_sp = self.tax22sp._compute_totals_tax(data)
-        totals = self.tax22._compute_totals_tax(data)
-        self.assertEqual(totals_sp, ('22% SP', 100.0, 22.0, 0.0, 0))
-        self.assertEqual(totals, ('22%', 100.0, 22.0, 22.0, 0))
+        totals_standard_sp = self.tax22sp._compute_totals_tax(data)
+        totals_standard = self.tax22._compute_totals_tax(data)
+
+        self.assertEqual(totals_standard_sp, ('22% SP', 100.0, 22.0, 22.0, 0))
+        self.assertEqual(totals_standard, ('22%', 100.0, 22.0, 22.0, 0))
+
+        ReportVatRegistry = \
+            self.env['report.l10n_it_vat_registries.report_registro_iva']
+        totals_registry_sp = \
+            ReportVatRegistry._compute_totals_tax(self.tax22sp, data)
+        totals_registry = \
+            ReportVatRegistry._compute_totals_tax(self.tax22, data)
+
+        self.assertEqual(totals_registry_sp, ('22% SP', 100.0, 22.0, 0.0, 0))
+        self.assertEqual(totals_registry, ('22%', 100.0, 22.0, 22.0, 0))
