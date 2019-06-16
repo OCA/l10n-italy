@@ -23,7 +23,7 @@ msgstr ""
 #. module: l10n_it_rea
 #: code:addons/l10n_it_rea/models/res_company.py:54
 #, python-format
-msgid "%s - %s / Share Cap. %s â¬ / %s / %s"
+msgid "%s - %s / Share Cap. %s € / %s / %s"
 msgstr ""
 
 #. module: l10n_it_rea
