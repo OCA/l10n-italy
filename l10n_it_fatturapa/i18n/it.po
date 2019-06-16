@@ -129,6 +129,11 @@ msgid "Assignee / Partner"
 msgstr "Cessionario / Committente"
 
 #. module: l10n_it_fatturapa
+#: selection:res.company,fatturapa_preview_style:0
+msgid "AssoSoftware v1.1"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_ir_attachment
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__ir_attachment_id
 msgid "Attachment"
@@ -406,11 +411,6 @@ msgid "E-invoice Related Document Type"
 msgstr "Tipo documento relativo alla e-fattura"
 
 #. module: l10n_it_fatturapa
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company__fatturapa_sequence_id
-msgid "E-invoice Sequence"
-msgstr "Sequenza e-fattura"
-
-#. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_welfare_fund_data_line
 msgid "E-invoice Welfare Fund Data"
 msgstr "Dati cassa previdenziale e-fattura"
@@ -494,6 +494,11 @@ msgstr "Fatture elettroniche"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__electronic_invoice_subjected
 msgid "Enable electronic invoicing"
 msgstr "Abilitare fatturazione elettronica"
+
+#. module: l10n_it_fatturapa
+#: selection:res.company,fatturapa_preview_style:0
+msgid "FatturaOrdinaria v1.2.1"
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__datas
@@ -928,6 +933,12 @@ msgid "Prepayment Discount"
 msgstr "Sconto pagamento anticipato"
 
 #. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company__fatturapa_preview_style
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_config_settings__fatturapa_preview_style
+msgid "Preview Format Style"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__ftpa_preview_link
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_ir_attachment__ftpa_preview_link
 msgid "Preview link"
@@ -1127,23 +1138,6 @@ msgid "Sender"
 msgstr "Trasmittente"
 
 #. module: l10n_it_fatturapa
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_config_settings__fatturapa_sequence_id
-msgid "Sequence"
-msgstr "Sequenza"
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/company.py:54
-#, python-format
-msgid "Sequence %s already used by journal %s. Please select another one."
-msgstr "La sequenza %s è già usata dal registro %s. Selezionarne un'altra."
-
-#. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/company.py:47
-#, python-format
-msgid "Sequence %s can't use subsequences."
-msgstr "La sequenza %s non può usare sottosequenze."
-
-#. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,payability:0
 msgid "Split payment"
 msgstr "Scissione pagamenti"
@@ -1259,17 +1253,6 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_fatturapa_attachments__res_id
 msgid "The record id this is attached to."
 msgstr "L'ID del record a cui questo è collegato."
-
-#. module: l10n_it_fatturapa
-#: model:ir.model.fields,help:l10n_it_fatturapa.field_res_company__fatturapa_sequence_id
-#: model:ir.model.fields,help:l10n_it_fatturapa.field_res_config_settings__fatturapa_sequence_id
-msgid ""
-"The univocal progressive of the file is represented by an alphanumeric "
-"sequence of maximum length 5, its values are included in 'A'-'Z' and '0'-'9'"
-msgstr ""
-"Il progressivo univoco del file è rappresentato da una sequenza alfanumerica "
-"di lunghezza massima 5, i cui valori sono inclusi in \"A\"-\"Z\" e \"0\"-"
-"\"9\""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__theme_template_id
@@ -1427,6 +1410,27 @@ msgstr "non imponibili"
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "reverse charge"
 msgstr "inversione contabile"
+
+#~ msgid "E-invoice Sequence"
+#~ msgstr "Sequenza e-fattura"
+
+#~ msgid "Sequence"
+#~ msgstr "Sequenza"
+
+#~ msgid "Sequence %s already used by journal %s. Please select another one."
+#~ msgstr "La sequenza %s è già usata dal registro %s. Selezionarne un'altra."
+
+#~ msgid "Sequence %s can't use subsequences."
+#~ msgstr "La sequenza %s non può usare sottosequenze."
+
+#~ msgid ""
+#~ "The univocal progressive of the file is represented by an alphanumeric "
+#~ "sequence of maximum length 5, its values are included in 'A'-'Z' and "
+#~ "'0'-'9'"
+#~ msgstr ""
+#~ "Il progressivo univoco del file è rappresentato da una sequenza "
+#~ "alfanumerica di lunghezza massima 5, i cui valori sono inclusi in \"A\"-"
+#~ "\"Z\" e \"0\"-\"9\""
 
 #~ msgid "ASN.1 structure is not parsable in DER."
 #~ msgstr "La struttura ASN.1 non può essere analizzata con DER."
