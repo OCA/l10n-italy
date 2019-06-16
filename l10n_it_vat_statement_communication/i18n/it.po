@@ -157,6 +157,13 @@ msgid "Communication with identifier {} already exists"
 msgstr "Comunicazione con identificativo {} già esistente"
 
 #. module: l10n_it_vat_statement_communication
+#: model:ir.model,name:l10n_it_vat_statement_communication.model_res_company
+#, fuzzy
+#| msgid "Company"
+msgid "Companies"
+msgstr "Azienda"
+
+#. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__company_id
 msgid "Company"
 msgstr "Azienda"
@@ -362,6 +369,12 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_res_company__vsc_supply_code
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_vat_statement_communication_company_form
+msgid "IVP18"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__identificativo
 msgid "Identifier"
 msgstr "Identificativo"
@@ -540,11 +553,6 @@ msgid "Statement communication"
 msgstr "Comunicazione liquidazione"
 
 #. module: l10n_it_vat_statement_communication
-#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_tree
-msgid "Statement communications"
-msgstr "Comunicazioni liquidazioni"
-
-#. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__subcontracting
 msgid "Subcontracting"
 msgstr "Subfornitura"
@@ -649,6 +657,13 @@ msgid "Vat"
 msgstr "IVA"
 
 #. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_res_company__vsc_supply_code
+#, fuzzy
+#| msgid "VAT statement communication"
+msgid "Vat statement communication supply code"
+msgstr "Comunicazione liquidazione IVA"
+
+#. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__website_message_ids
 msgid "Website Messages"
 msgstr "Messaggi sito web"
@@ -724,3 +739,6 @@ msgstr "o"
 #, python-format
 msgid "quarter"
 msgstr "trimestre"
+
+#~ msgid "Statement communications"
+#~ msgstr "Comunicazioni liquidazioni"
