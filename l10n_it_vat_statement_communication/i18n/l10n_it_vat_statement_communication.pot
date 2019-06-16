@@ -150,6 +150,11 @@ msgid "Communication with identifier {} already exists"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#: model:ir.model,name:l10n_it_vat_statement_communication.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__company_id
 msgid "Company"
 msgstr ""
@@ -348,6 +353,12 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_res_company__vsc_supply_code
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_vat_statement_communication_company_form
+msgid "IVP18"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__identificativo
 msgid "Identifier"
 msgstr ""
@@ -526,11 +537,6 @@ msgid "Statement communication"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_tree
-msgid "Statement communications"
-msgstr ""
-
-#. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__subcontracting
 msgid "Subcontracting"
 msgstr ""
@@ -628,6 +634,11 @@ msgstr ""
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__taxpayer_vat
 msgid "Vat"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_res_company__vsc_supply_code
+msgid "Vat statement communication supply code"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
