@@ -165,10 +165,14 @@ class AccountInvoice(models.Model):
             if not invoice.company_id.due_cost_service_id:
                 raise UserError(
                     _('Set a Service for Due Cost in Company Config'))
-            # ---- Apply Due Cost on invoice only on first due of the month
-            # ---- Get Date of first due
+            # ---- Apply Due Cost based on partner configuration, not applied
+            # if the client has group riba configuration and a due date already
+            # exists in month
             move_line = self.env['account.move.line'].search([
-                ('partner_id', '=', invoice.partner_id.id)])
+                ('partner_id', '=', invoice.partner_id.id),
+                ('payment_term_id.riba', '=', True),
+            ])
+
             # ---- Filtered recordset with date_maturity
             move_line = move_line.filtered(
                 lambda l: l.date_maturity is not False)
@@ -180,7 +184,9 @@ class AccountInvoice(models.Model):
                 self.payment_term_id.id)
             pterm_list = pterm.compute(value=1, date_ref=self.date_invoice)
             for pay_date in pterm_list[0]:
-                if not self.month_check(pay_date[0], previous_date_due):
+                if (invoice.commercial_partner_id.group_riba and
+                        not self.month_check(pay_date[0], previous_date_due)
+                    ) or not invoice.commercial_partner_id.group_riba:
                     # ---- Get Line values for service product
                     service_prod = invoice.company_id.due_cost_service_id
                     line_obj = self.env['account.invoice.line']
