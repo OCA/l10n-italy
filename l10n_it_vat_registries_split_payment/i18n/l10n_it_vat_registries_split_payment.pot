@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_vat_registries_split_payment
-#: model:ir.model,name:l10n_it_vat_registries_split_payment.model_account_tax
-msgid "Tax"
+#: model:ir.model,name:l10n_it_vat_registries_split_payment.model_report_l10n_it_vat_registries_report_registro_iva
+msgid "Report VAT registry"
 msgstr ""
 
