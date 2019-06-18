@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+    <record id="wizard_liquidazione_export_file" model="ir.ui.view">
+        <field name="name">Export file</field>
+        <field name="model">comunicazione.liquidazione.export.file</field>
+        <field name="arch" type="xml">
+            <form string="Export File">
+                <div>
+                    <p>
+                    Click on <strong>Export</strong> to generate VAT statement communication file.
+                    </p>
+                </div>
+                <footer>
+                    <button name="export"
+                            string="Export"
+                            type="object"
+                            class="oe_highlight"  />
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="wizard_liquidazione_export_file_exit" model="ir.ui.view">
+        <field name="name">Export file - Done</field>
+        <field name="model">comunicazione.liquidazione.export.file</field>
+        <field name="arch" type="xml">
+            <form string="Export">
+                <group>
+                    <field name="file_export" readonly="1" filename="name"/>
+                    <field name="name" invisible="1"/>
+                </group>
+                <footer>
+                    <button string="Close" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_liquidazione_export_file"
+                    key2="client_action_multi"
+                    name="Export VAT statement communication file"
+                    res_model="comunicazione.liquidazione.export.file"
+                    src_model="comunicazione.liquidazione"
+                    target="new"
+                    view_id="wizard_liquidazione_export_file"
+                    view_mode="form">
+    </act_window>
+
+</data>
+</openerp>
