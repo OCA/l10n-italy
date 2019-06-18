@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+    <record id="wizard_account_invoice_split_line_view" model="ir.ui.view">
+        <field name="name">wizard_account_invoice_split_line_view</field>
+        <field name="model">wizard.account.invoice.split.line</field>
+        <field name="arch" type="xml">
+            <form string="Split Invoice Lines">
+                <sheet>
+                    <group>
+                        <label colspan="2" string="Invoice lines with more than 1000 chars will be split in lines of 985 chars and the starting message: (...follow) and the next "/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="split_invoice_line" string="Split lines"
+                            type="object" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_wizard_account_invoice_split_line"
+                key2="client_action_multi"
+                name="Split Invoice Line"
+                res_model="wizard.account.invoice.split.line"
+                src_model="account.invoice"
+                target="new"
+                view_id="wizard_account_invoice_split_line_view"
+                view_mode="form"/>
+</data>
+</openerp>
