@@ -192,7 +192,7 @@ class AccountInvoice(models.Model):
         })
 
 
-class fatturapa_article_code(models.Model):
+class FatturapaArticleCode(models.Model):
     # _position = ['2.2.1.3']
     _name = "fatturapa.article.code"
     _description = 'E-bill Article Code'
