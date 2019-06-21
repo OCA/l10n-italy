@@ -1,7 +1,7 @@
 from odoo import fields, models
 
 
-class AccountTaxCode(models.Model):
+class AccountTax(models.Model):
     _inherit = "account.tax"
 
     vsc_exclude_operation = fields.Boolean(
