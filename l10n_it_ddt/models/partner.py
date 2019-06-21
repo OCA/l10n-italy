@@ -34,3 +34,8 @@ class ResPartner(models.Model):
     ddt_show_price = fields.Boolean(
         string='TD show prices', default=False, help="Show prices and \
         discounts in TD report")
+    ddt_invoice_exclude = fields.Boolean(
+        string='Do not invoice services from DDT',
+        help="If flagged services will not be automatically "
+             "invoiced from DDT. If set on the partner, this parameter will"
+             "be automatically applied to Sale Orders.")
