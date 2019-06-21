@@ -21,6 +21,12 @@ re_base64 = re.compile(
     br'^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$')
 
 
+def is_base64(s):
+    s = s or b""
+    s = s.replace(b"\r", b"").replace(b"\n", b"")
+    return re_base64.match(s)
+
+
 class Attachment(models.Model):
     _inherit = 'ir.attachment'
 
@@ -76,7 +82,7 @@ class Attachment(models.Model):
                 ) % e.args
             )
 
-        if re_base64.match(data) is not None:
+        if is_base64(data):
             try:
                 data = base64.b64decode(data)
             except binascii.Error as e:
