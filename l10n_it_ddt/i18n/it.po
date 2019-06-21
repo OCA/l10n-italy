@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-25 05:17+0000\n"
-"PO-Revision-Date: 2019-06-07 10:20+0000\n"
+"PO-Revision-Date: 2019-06-21 15:42+0000\n"
 "Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -792,10 +792,8 @@ msgstr "Partner di spedizione"
 
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
-#, fuzzy
-#| msgid "Shipping Partner"
 msgid "Shipping date"
-msgstr "Partner di spedizione"
+msgstr "Data di spedizione"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_res_partner__ddt_show_price
