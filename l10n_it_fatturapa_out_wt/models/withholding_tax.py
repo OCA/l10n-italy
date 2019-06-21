@@ -2,7 +2,7 @@
 # Author(s): Sergio Corato (https://efatto.it)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from openerp import fields, models
+from odoo import fields, models
 
 
 class WithholdingTax(models.Model):
