@@ -27,11 +27,44 @@ msgstr ""
 "                      <span class=\"text-right\">IVA: </span>"
 
 #. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_account_account
+#, fuzzy
+#| msgid "Accounting"
+msgid "Account"
+msgstr "Contabilità"
+
+#. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_account_account_type
+#, fuzzy
+#| msgid "Accounting"
+msgid "Account Type"
+msgstr "Contabilità"
+
+#. module: l10n_it_account
 #: model:ir.ui.view,arch_db:l10n_it_account.product_template_form_view
 #: model:ir.ui.view,arch_db:l10n_it_account.res_config_settings_view_form
 #: model:ir.ui.view,arch_db:l10n_it_account.view_partner_property_form
 msgid "Accounting"
 msgstr "Contabilità"
+
+#. module: l10n_it_account
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_group_account_ids
+#, fuzzy
+#| msgid "Accounting"
+msgid "Accounts"
+msgstr "Contabilità"
+
+#. module: l10n_it_account
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_account_type_account_balance_sign
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_group_account_balance_sign
+msgid "Balance sign"
+msgstr ""
+
+#. module: l10n_it_account
+#: code:addons/l10n_it_account/models/account_group.py:24
+#, python-format
+msgid "Cannot link accounts of different types to group '{}'."
+msgstr ""
 
 #. module: l10n_it_account
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_tax_cee_type
@@ -76,6 +109,13 @@ msgid ""
 msgstr ""
 "Utilizzare nel caso di imposta per \"integrazione IVA\". Specifica il "
 "registro IVA (vendite / acquisti) nel quale deve essere calcolata l'imposta."
+
+#. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_account_group
+#, fuzzy
+#| msgid "Accounting"
+msgid "account.group"
+msgstr "Contabilità"
 
 #~ msgid "Generate Date Ranges"
 #~ msgstr "Generazione intervalli date"
