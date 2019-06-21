@@ -24,6 +24,9 @@ class StockPicking(models.Model):
 
     ddt_supplier_number = fields.Char(string='Supplier TD Number', copy=False)
     ddt_supplier_date = fields.Date(string='Supplier TD Date', copy=False)
+    ddt_type = fields.Many2one(
+        'stock.ddt.type',
+        related='picking_type_id.default_location_src_id.type_ddt_id')
 
     @api.multi
     def write(self, values):
