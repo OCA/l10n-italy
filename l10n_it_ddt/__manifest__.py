@@ -28,6 +28,7 @@
         'views/stock_picking_package_preparation.xml',
         'views/stock_picking.xml',
         'views/partner.xml',
+        'views/product.xml',
         'views/account.xml',
         'views/sale.xml',
         'views/stock_location.xml',
