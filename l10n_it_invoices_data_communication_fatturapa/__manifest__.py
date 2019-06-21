@@ -2,9 +2,9 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Italian Localization - Comunicazione dati fatture - '
-            'E-fattura integrazione',
-    'summary': 'Integrazione fatturazione elettronica e Comunicazione dati '
+    'name': 'ITA - Comunicazione dati fatture - '
+            'Integrazione e-fattura',
+    'summary': 'Integrazione fatturazione elettronica e comunicazione dati '
                'fatture (c.d. "nuovo spesometro")',
     'version': '12.0.1.0.0',
     'category': 'Hidden',
