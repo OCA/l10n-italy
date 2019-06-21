@@ -8,11 +8,25 @@
             <field name="arch" type="xml">
                 <tree string="Invoices data communications">
                     <field name="identificativo"/>
+                    <field name="id_comunicazione"/>
                     <field name="dati_trasmissione"/>
                     <field name="date_start"/>
                     <field name="date_end"/>
                     <field name="company_id"/>
                 </tree>
+            </field>
+        </record>
+
+        <record id="view_comunicazione_dati_iva_search" model="ir.ui.view">
+            <field name="name">comunicazione.dati_iva.search</field>
+            <field name="model">comunicazione.dati.iva</field>
+            <field name="arch" type="xml">
+                <search string="Invoices data communications">
+                    <field name="identificativo"/>
+                    <field name="id_comunicazione"/>
+                    <field name="dati_trasmissione"/>
+                    <field name="company_id"/>
+                </search>
             </field>
         </record>
 
@@ -170,6 +184,10 @@
                             </page>
                         </notebook>
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>

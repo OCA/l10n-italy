@@ -45,6 +45,7 @@ class ComunicazioneDatiIva(models.Model):
     _name = 'comunicazione.dati.iva'
     _description = 'Invoices data communication'
     _rec_name = 'identificativo'
+    _inherit = ['mail.thread']
 
     @api.model
     def _default_company(self):
