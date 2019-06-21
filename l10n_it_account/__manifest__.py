@@ -6,8 +6,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Italian Localization - Account',
-    'version': '12.0.1.0.1',
+    'name': 'ITA - Contabilità base',
+    'summary': 'Modulo base usato come dipendenza di altri moduli contabili',
+    'version': '12.0.1.2.0',
     'category': 'Hidden',
     'author': "Agile Business Group, Abstract, "
               "Odoo Community Association (OCA)",
@@ -25,6 +26,8 @@
         'views/product_view.xml',
         'views/res_config_settings_views.xml',
         'reports/account_reports_view.xml',
+        'views/account_view.xml',
     ],
     'installable': True,
+    "post_init_hook": "_l10n_it_account_post_init",
 }
