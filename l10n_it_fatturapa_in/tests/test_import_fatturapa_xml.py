@@ -495,7 +495,11 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertAlmostEquals(invoice.amount_net_pay, 1126.0)
 
     def test_01_xml_link(self):
-        """einvoice lines are created but Vendor Reference is kept"""
+        """
+        E-invoice lines are created.
+        Vendor Reference and Invoice Date are kept.
+        """
+
         supplier = self.env['res.partner'].search(
             [('vat', '=', 'IT02780790107')], limit=1)
         invoice_values = {
@@ -504,6 +508,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             'supplier_invoice_number': 'original_ref',
             'account_id': self.env.ref('account.a_pay').id,
             'journal_id': self.env.ref('account.expenses_journal').id,
+            'date_invoice': '2020-01-01',
         }
         orig_invoice = self.invoice_model.create(invoice_values)
         wiz_values = {
@@ -520,9 +525,17 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             invoice_values['supplier_invoice_number'],
             orig_invoice.supplier_invoice_number,
         )
+        self.assertEqual(
+            invoice_values['date_invoice'],
+            orig_invoice.date_invoice,
+        )
 
     def test_02_xml_link(self):
-        """einvoice lines are created but Vendor Reference is kept"""
+        """
+        E-invoice lines are created.
+        Vendor Reference and Invoice Date are fetched from the XML.
+        """
+
         supplier = self.env['res.partner'].search(
             [('vat', '=', 'IT02780790107')], limit=1)
         invoice_values = {
@@ -542,6 +555,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertTrue(orig_invoice.e_invoice_line_ids)
         self.assertFalse(orig_invoice.invoice_line)
         self.assertTrue(orig_invoice.e_invoice_validation_error)
+        self.assertTrue(orig_invoice.reference)
+        self.assertTrue(orig_invoice.date_invoice)
 
     def test_31_xml_import(self):
         res = self.run_wizard('test31', 'IT01234567890_FPR05.xml')
