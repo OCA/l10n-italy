@@ -125,8 +125,8 @@ class SaleOrder(models.Model):
         result = mod_obj.get_object_reference(
             'stock_picking_package_preparation',
             'action_stock_picking_package_preparation')
-        id = result and result[1] or False
-        result = act_obj.browse(id).read()[0]
+        ddt_id = result and result[1] or False
+        result = act_obj.browse(ddt_id).read()[0]
 
         ddt_ids = []
         for so in self:
