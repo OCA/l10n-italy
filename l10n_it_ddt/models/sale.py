@@ -47,6 +47,12 @@ class SaleOrder(models.Model):
          ('code_group', 'Code group')], 'TD invoicing group',
         default='billing_partner')
 
+    ddt_invoice_exclude = fields.Boolean(
+        string='DDT do not invoice services',
+        help="If flagged services from this SO will not be automatically "
+             "invoiced from DDT. This parameter can be set on partners and "
+             "automatically applied to Sale Orders.")
+
     @api.multi
     @api.onchange('partner_id')
     def onchange_partner_id(self):
@@ -61,6 +67,8 @@ class SaleOrder(models.Model):
                 self.partner_id.transportation_method_id.id)
             self.ddt_invoicing_group = (
                 self.partner_id.ddt_invoicing_group)
+            self.ddt_invoice_exclude = (
+                self.partner_id.ddt_invoice_exclude)
         return result
 
     @api.multi
