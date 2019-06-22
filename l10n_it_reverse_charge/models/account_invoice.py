@@ -180,6 +180,7 @@ class AccountInvoice(models.Model):
                 credit = amount
             else:
                 credit = self.compute_rc_amount_tax()
+
         return {
             'name': self.number,
             'debit': debit,
@@ -263,6 +264,7 @@ class AccountInvoice(models.Model):
             (0, 0, payment_credit_line_data),
         ]
         rc_payment = move_model.create(rc_payment_data)
+
         for move_line in rc_payment.line_ids:
             if move_line.debit:
                 payment_debit_line = move_line
