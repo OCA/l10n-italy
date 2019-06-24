@@ -33,7 +33,7 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                 <CAP>07100</CAP>
                 <Comune>SASSARI</Comune>
                 <Provincia>SS</Provincia>
-                <Nazione>IT</Nazione>
+                <Nazione></Nazione>
             </Sede>
         </CedentePrestatore>
         <CessionarioCommittente>
