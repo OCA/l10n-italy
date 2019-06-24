@@ -34,11 +34,11 @@
                             </tree>
                         </field>
                     </group>
-                    <group string="Related Mngt Datas">
+                    <group string="Related Mngt Data">
                         <field name="related_mngt_data_ids" nolabel="1">
-                            <tree editable="bottom" string="Related Mngt Datas">
+                            <tree editable="bottom" string="Related Mngt Data">
                                 <field name="name"/>
-                                <field name="lineRef" readonly="0"/>
+                                <field name="line_ref"/>
                                 <field name="text_ref"/>
                                 <field name="number_ref"/>
                                 <field name="date_ref"/>
