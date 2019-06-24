@@ -2,7 +2,6 @@
 
 ## Incongruenze rispetto alle specifiche del file xsd
 
-* StringNNType: nelle specifiche da 1 a NN, lo SDI accetta da 0 a N
 * Amount8DecimalType, Amount2DecimalType, RateType, QuantitaType sono xs:decimal
   ma la specifica vieta gli zeri finali, quindi li modifichiamo in xs:string
 
