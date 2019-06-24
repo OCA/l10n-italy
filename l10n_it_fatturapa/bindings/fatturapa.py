@@ -20,7 +20,6 @@ _CreateFromDocument = CreateFromDocument  # noqa: F405
 
 date_types = {}
 datetime_types = {}
-string_types = {}
 
 
 def get_parent_element(e):
@@ -63,9 +62,7 @@ def collect_types():
     for element_type in _root.findall('//{*}simpleType'):
         base = element_type.find('{*}restriction').attrib['base']
 
-        if base in ('xs:string', 'xs:normalizedString'):
-            collect_elements_by_type(string_types, element_type)
-        elif base == 'xs:date':
+        if base == 'xs:date':
             collect_elements_by_type(date_types, element_type)
         elif base == 'xs:dateTime':
             collect_elements_by_type(datetime_types, element_type)
@@ -116,31 +113,6 @@ def CreateFromDocument(xml_string):
                         element_path, element.text, e)
                     problems.append(msg)
                     _logger.warn(msg)
-
-    # remove string types with spaces only,
-    # if mandatory replace them with a dash
-    for path, mandatory in string_types.items():
-        for element in root.xpath(path):
-            text = element.text
-
-            if text is not None:
-                text = text.strip()
-
-            if text:
-                continue
-
-            element_path = tree.getpath(element)
-
-            if mandatory:
-                msg = 'mandatory element %s was empty, replacing with a dash' \
-                      % element_path
-                element.text = '-'
-            else:
-                msg = 'removed empty %s element' % element_path
-                element.getparent().remove(element)
-
-            problems.append(msg)
-            _logger.warn(msg)
 
     fatturapa = _CreateFromDocument(etree.tostring(root))
     setattr(fatturapa, '_xmldoctor', problems)

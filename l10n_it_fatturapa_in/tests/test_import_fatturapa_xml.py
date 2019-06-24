@@ -141,6 +141,7 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
         self.assertEqual(invoice.partner_id.street, "VIALE ROMA 543")
         self.assertEqual(invoice.partner_id.state_id.code, "SS")
+        self.assertEqual(invoice.partner_id.country_id.code, "IT")
         self.assertEqual(
             invoice.tax_representative_id.name, "Rappresentante fiscale")
         self.assertEqual(invoice.welfare_fund_ids[0].welfare_rate_tax, 0.04)
@@ -487,20 +488,20 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertIn('removed timezone information', invoice.inconsistencies)
 
         # DatiGeneraliDocumento/Causale
-        self.assertEqual(invoice.comment, '')
+        self.assertIn(' ', invoice.comment)
 
         # DatiGeneraliDocumento/Data
         self.assertEqual(invoice.date_invoice, '2014-12-18')
 
         # DatiTrasporto/IndirizzoResa/NumeroCivico
         self.assertEqual(invoice.delivery_address,
-                         'strada dei test, \n12042 - Bra\nCN IT')
+                         'strada dei test,  \n12042 - Bra\nCN IT')
 
         # DatiTrasporto/DataOraConsegna
         self.assertFalse(invoice.delivery_datetime)
 
         # DatiBeniServizi/DettaglioLinee/Descrizione
-        self.assertEqual(invoice.invoice_line_ids[0].name, '-')
+        self.assertEqual(invoice.invoice_line_ids[0].name, ' ')
 
         # DatiPagamento/DettaglioPagamento/DataDecorrenzaPenale
         payment_data = self.env['fatturapa.payment.data'].search(

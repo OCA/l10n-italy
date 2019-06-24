@@ -59,9 +59,6 @@ class Attachment(models.Model):
     def strip_xml_content(self, xml):
         recovering_parser = ET.XMLParser(recover=True)
         root = ET.XML(xml, parser=recovering_parser)
-        for elem in root.iter('*'):
-            if elem.text is not None:
-                elem.text = elem.text.strip()
         return ET.tostring(root)
 
     @staticmethod
