@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Alex Comba - Agile Business Group
 # Copyright 2016 Andrea Cometa - Apulia Software
 # Copyright 2016-2017 Lorenzo Battistini - Agile Business Group
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from openerp import models, api, fields
+from odoo import models, api, fields
 import collections
 
 
