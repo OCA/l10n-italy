@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-22 20:30+0000\n"
-"PO-Revision-Date: 2019-04-22 20:30+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2019-06-25 10:42+0000\n"
+"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.6.1\n"
 
 #. module: l10n_it_vat_statement_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
@@ -158,10 +159,8 @@ msgstr "Comunicazione con identificativo {} già esistente"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model,name:l10n_it_vat_statement_communication.model_res_company
-#, fuzzy
-#| msgid "Company"
 msgid "Companies"
-msgstr "Azienda"
+msgstr "Aziende"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__company_id
@@ -366,13 +365,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_export_file__id
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_res_company__vsc_supply_code
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_vat_statement_communication_company_form
 msgid "IVP18"
-msgstr ""
+msgstr "IVP18"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__identificativo
@@ -658,10 +657,8 @@ msgstr "IVA"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_res_company__vsc_supply_code
-#, fuzzy
-#| msgid "VAT statement communication"
 msgid "Vat statement communication supply code"
-msgstr "Comunicazione liquidazione IVA"
+msgstr "Codice fornitura Comunicazione liquidazione IVA"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__website_message_ids
