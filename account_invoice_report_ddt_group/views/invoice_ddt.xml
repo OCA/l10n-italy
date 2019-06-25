@@ -4,11 +4,11 @@
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
  -->
 
-<openerp>
+<odoo>
     <data>
         <template id="report_invoice_ddt_group"
                   inherit_id="account.report_invoice_document" >
-            <xpath expr="//div[@class='page']/table[1]/thead/tr/th[1]" position="after">
+            <xpath expr="//div[hasclass('page')]/table[1]/thead/tr/th[1]" position="after">
                 <t t-set="has_serial_number" t-value="o.has_serial_number()" groups="stock.group_production_lot"/>
                 <th name="lot_serial" t-if="has_serial_number">
                     <strong>Lots/Serial Numbers</strong>
@@ -71,4 +71,4 @@
             </xpath>
         </template>
     </data>
-</openerp>
+</odoo>

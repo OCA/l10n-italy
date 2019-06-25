@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Nicola Malcontenti - Agile Business Group
 # Copyright 2016 Andrea Cometa - Apulia Software
 # Copyright 2016-2017 Lorenzo Battistini - Agile Business Group
@@ -6,7 +5,7 @@
 
 {
     'name': "Account invoice report grouped by DDT",
-    'version': '10.0.0.3.1',
+    'version': '11.0.1.0.0',
     'category': 'Localization/Italy',
     'author': 'Agile Business Group, Apulia Software, Openforce,'
               'Odoo Community Association (OCA)',
