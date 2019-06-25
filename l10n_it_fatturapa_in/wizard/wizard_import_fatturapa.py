@@ -627,13 +627,8 @@ class WizardImportFatturapa(orm.TransientModel):
 
         return res
 
-    def _computeDiscount(
-        self, cr, uid, DettaglioLinea, context=None
-    ):
-        logging.info('DettaglioLinea.PrezzoTotale %r ' % (DettaglioLinea.PrezzoTotale))
+    def _computeDiscount(self, cr, uid, DettaglioLinea, context=None):
         line_total = float(DettaglioLinea.PrezzoTotale)
-        logging.info('line_total %r ' % (line_total))
-        logging.info('Quantita %r' % (DettaglioLinea.Quantita))
         if not line_total or not DettaglioLinea.Quantita:
             return 0
         line_unit = line_total / float(DettaglioLinea.Quantita)
