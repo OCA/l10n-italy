@@ -631,6 +631,8 @@ class WizardImportFatturapa(orm.TransientModel):
         self, cr, uid, DettaglioLinea, context=None
     ):
         line_total = float(DettaglioLinea.PrezzoTotale)
+        if not line_total or not float(DettaglioLinea.Quantita):
+            return 0
         line_unit = line_total / float(DettaglioLinea.Quantita)
         discount = (
             1 - (line_unit / float(DettaglioLinea.PrezzoUnitario))
