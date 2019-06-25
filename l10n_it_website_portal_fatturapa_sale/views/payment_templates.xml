@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2019 Simone Rubino - Agile Business Group
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+
+<odoo>
+    <template id="payment_tokens_list"
+              name="Add e-invoice subjected in Payment Tokens list"
+              inherit_id="payment.payment_tokens_list">
+        <xpath expr="//div[hasclass('card')]" position="after">
+            <div class="form-check">
+                <label>
+                    <input type="checkbox"
+                           name="electronic_invoice_subjected"
+                           t-att-checked="'checked' if request.env['res.partner'].browse(partner_id).electronic_invoice_subjected else None"/>
+                    I request to receive electronic invoice
+                </label>
+            </div>
+        </xpath>
+    </template>
+</odoo>
