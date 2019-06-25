@@ -46,7 +46,9 @@ class SdiChannelPEC(models.Model):
         default=lambda self: self.env['ir.config_parameter'].get_param(
             'sdi.pec.first.address')
     )
-    first_invoice_sent = fields.Boolean("First invoice sent", readonly=True)
+    first_invoice_sent = fields.Boolean(
+        "First e-invoice sent",
+        help="This is set after having sent the first e-invoice to SDI")
 
     @api.constrains('pec_server_id')
     def check_pec_server_id(self):
