@@ -147,7 +147,7 @@ class TestDdt(TransactionCase):
         )
         self.assertEqual(
             list(inv_dict[ddt1_key].values())[0][0].product_id.id,
-                self.product1.id)
+            self.product1.id)
         self.assertEqual(
             list(inv_dict[ddt2_key].values())[0][0].product_id.id,
-                self.product2.id)
+            self.product2.id)
