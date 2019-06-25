@@ -178,8 +178,8 @@ class StockPickingPackagePreparation(models.Model):
         # ----- Check if exist a stock picking whose state is 'done'
         for record_picking in self.picking_ids:
             if record_picking.state == 'done':
-                raise UserError((
-                    "Impossible to put in pack a picking whose state "
+                raise UserError(
+                    _("Impossible to put in pack a picking whose state "
                     "is 'done'"))
         for package in self:
             # ----- Check if package has details
