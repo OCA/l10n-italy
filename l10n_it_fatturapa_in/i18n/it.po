@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-27 08:07+0000\n"
-"PO-Revision-Date: 2019-03-07 16:53+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2019-06-26 09:42+0000\n"
+"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.4\n"
+"X-Generator: Weblate 3.6.1\n"
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
@@ -980,15 +980,12 @@ msgstr "Da registrare"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:315
-#, fuzzy, python-format
-#| msgid ""
-#| "Line '%s': Too many taxes with percentage equals to '%s'.\n"
-#| "Fix it if required"
+#, python-format
 msgid ""
 "Too many taxes with percentage equals to '%s'.\n"
 "Fix it if required"
 msgstr ""
-"Riga \"%s\": troppe imposte con aliquota pari a\"%s\".\n"
+"Troppe imposte con aliquota uguale a\"%s\".\n"
 "Correggere se necessario"
 
 #. module: l10n_it_fatturapa_in
