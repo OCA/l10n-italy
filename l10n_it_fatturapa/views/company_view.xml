@@ -56,6 +56,10 @@
                                 <label for="fatturapa_rea_liquidation"/>
                                 <field name="fatturapa_rea_liquidation" class="oe_inline"/>
                             </div>
+                            <div>
+                                <label for="fatturapa_preview_style"/>
+                                <field name="fatturapa_preview_style" class="oe_inline"/>
+                            </div>
                         </div>
                     </group>
                 </xpath>

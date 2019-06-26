@@ -50,6 +50,11 @@ class ResCompany(models.Model):
         help='Blocco da valorizzare nei casi di cedente / prestatore non '
              'residente, con stabile organizzazione in Italia'
         )
+    fatturapa_preview_style = fields.Selection([
+        ('fatturaordinaria_v1.2.1.xsl', 'FatturaOrdinaria v1.2.1'),
+        ('FoglioStileAssoSoftware_v1.1.xsl', 'AssoSoftware v1.1')],
+        string='Preview Format Style', required=True,
+        default='fatturaordinaria_v1.2.1.xsl')
 
     @api.multi
     @api.constrains(
@@ -135,6 +140,10 @@ class AccountConfigSettings(models.TransientModel):
         help="Blocco da valorizzare nei casi di cedente / prestatore non "
              "residente, con stabile organizzazione in Italia"
         )
+    fatturapa_preview_style = fields.Selection(
+        related='company_id.fatturapa_preview_style',
+        string="Preview Format Style", required=True
+        )
 
     @api.v7
     def onchange_company_id(self, cr, uid, ids, company_id, context=None):
@@ -192,6 +201,9 @@ class AccountConfigSettings(models.TransientModel):
                     company.fatturapa_stabile_organizzazione and
                     company.fatturapa_stabile_organizzazione.id or False
                     ),
+                'fatturapa_preview_style': (
+                    company.fatturapa_preview_style or False
+                    ),
                 })
         else:
             res['value'].update({
@@ -207,5 +219,6 @@ class AccountConfigSettings(models.TransientModel):
                 'fatturapa_tax_representative': False,
                 'fatturapa_sender_partner': False,
                 'fatturapa_stabile_organizzazione': False,
+                'fatturapa_preview_style': False,
                 })
         return res
