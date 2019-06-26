@@ -185,6 +185,7 @@ class WizardImportFatturapa(models.TransientModel):
         partner_id = self.getPartnerBase(cedPrest.DatiAnagrafici)
         fiscalPosModel = self.env['fatturapa.fiscal_position']
         if partner_id:
+            partner_company_id = partner_model.browse(partner_id).company_id.id
             vals = {
                 'street': cedPrest.Sede.Indirizzo,
                 'zip': cedPrest.Sede.CAP,
@@ -232,7 +233,24 @@ class WizardImportFatturapa(models.TransientModel):
 
             if cedPrest.IscrizioneREA:
                 REA = cedPrest.IscrizioneREA
-                vals['rea_code'] = REA.NumeroREA
+                rea_partners = partner_model.search([
+                    ('rea_code', '=', REA.NumeroREA),
+                    ('company_id', '=', partner_company_id),
+                    ('id', '!=', partner_id)
+                ])
+                if rea_partners:
+                    rea_nr = REA.NumeroREA
+                    rea_names = ", ".join(rea_partners.mapped('name'))
+                    p_name = partner_model.browse(partner_id).name
+                    self.log_inconsistency(
+                        _("Current invoice is from {} with REA Code"
+                          " {}. Yet it seems that partners {} have the same"
+                          " REA Code. This code should be unique; please fix"
+                          " it."
+                          .format(p_name, rea_nr, rea_names))
+                    )
+                else:
+                    vals['rea_code'] = REA.NumeroREA
                 offices = self.ProvinceByCode(REA.Ufficio)
                 if not offices:
                     self.log_inconsistency(
