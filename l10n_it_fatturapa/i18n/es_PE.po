@@ -94,6 +94,11 @@ msgid "As a natural person, partner %s must have Name and Surname"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: selection:res.company,fatturapa_preview_style:0
+msgid "AssoSoftware v1.1"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: field:fatturapa.attachments,ir_attachment_id:0
 msgid "Attachment"
 msgstr ""
@@ -468,6 +473,11 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: field:account.invoice,fatturapa_doc_attachments:0
 msgid "Fattura Elettronica attachments"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: selection:res.company,fatturapa_preview_style:0
+msgid "FatturaOrdinaria v1.2.1"
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -924,6 +934,12 @@ msgid "Prepayment Discount"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: field:account.config.settings,fatturapa_preview_style:0
+#: field:res.company,fatturapa_preview_style:0
+msgid "Preview Format Style"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: field:fatturapa.attachments,ftpa_preview_link:0
 #: field:ir.attachment,ftpa_preview_link:0
 msgid "Preview link"
@@ -1111,7 +1127,7 @@ msgid "Sequence"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/company.py:65
+#: code:addons/l10n_it_fatturapa/models/company.py:70
 #, python-format
 msgid "Sequence %s already used by journal %s. Please select another one"
 msgstr ""
