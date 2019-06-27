@@ -51,6 +51,8 @@ class WizardLinkToInvoiceLine(models.TransientModel):
 
         self.invoice_id.set_einvoice_data(FatturaBody)
 
+        import_wiz.set_vendor_bill_data(FatturaBody, self.invoice_id)
+
         import_wiz.set_e_invoice_lines(FatturaBody, self.invoice_id)
 
         import_wiz.set_summary_data(FatturaBody, self.invoice_id.id)

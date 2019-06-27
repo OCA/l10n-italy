@@ -827,10 +827,6 @@ class WizardImportFatturapa(models.TransientModel):
 
         invoice_data = {
             'fiscal_document_type_id': docType_id,
-            'date_invoice':
-                FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data,
-            'reference':
-                FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
             'sender': fatt.FatturaElettronicaHeader.SoggettoEmittente or False,
             'account_id': pay_acc_id,
             'type': invtype,
@@ -865,6 +861,8 @@ class WizardImportFatturapa(models.TransientModel):
         invoice._onchange_payment_term_date_invoice()
         invoice.write(invoice._convert_to_write(invoice._cache))
         invoice_id = invoice.id
+
+        self.set_vendor_bill_data(FatturaBody, invoice)
 
         # 2.1.1.7
         self.set_welfares_fund(
@@ -923,6 +921,18 @@ class WizardImportFatturapa(models.TransientModel):
         # compute the invoice
         invoice.compute_taxes()
         return invoice_id
+
+    def set_vendor_bill_data(self, FatturaBody, invoice):
+        if not invoice.date_invoice:
+            invoice.update({
+                'date_invoice':
+                    FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data,
+            })
+        if not invoice.reference:
+            invoice.update({
+                'reference':
+                    FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
+            })
 
     def set_parent_invoice_data(self, FatturaBody, invoice):
         ParentInvoice = FatturaBody.DatiGenerali.FatturaPrincipale

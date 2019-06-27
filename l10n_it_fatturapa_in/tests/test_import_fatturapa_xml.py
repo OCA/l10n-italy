@@ -518,13 +518,18 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertEqual(len(invoices), 2)
 
     def test_01_xml_link(self):
-        """einvoice lines are created but Vendor Reference is kept"""
+        """
+        E-invoice lines are created.
+        Vendor Reference and Invoice Date are kept.
+        """
+
         supplier = self.env['res.partner'].search(
             [('vat', '=', 'IT02780790107')], limit=1)
         invoice_values = {
             'partner_id': supplier.id,
             'type': 'in_invoice',
             'reference': 'original_ref',
+            'date_invoice': '2020-01-01',
         }
         orig_invoice = self.invoice_model.create(invoice_values)
         wiz_values = {
@@ -541,9 +546,17 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
             invoice_values['reference'],
             orig_invoice.reference,
         )
+        self.assertEqual(
+            invoice_values['date_invoice'],
+            orig_invoice.date_invoice,
+        )
 
     def test_02_xml_link(self):
-        """einvoice lines are created but Vendor Reference is kept"""
+        """
+        E-invoice lines are created.
+        Vendor Reference and Invoice Date are fetched from the XML.
+        """
+
         supplier = self.env['res.partner'].search(
             [('vat', '=', 'IT02780790107')], limit=1)
         invoice_values = {
@@ -561,3 +574,5 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertTrue(orig_invoice.e_invoice_line_ids)
         self.assertFalse(orig_invoice.invoice_line_ids)
         self.assertTrue(orig_invoice.e_invoice_validation_error)
+        self.assertTrue(orig_invoice.reference)
+        self.assertTrue(orig_invoice.date_invoice)
