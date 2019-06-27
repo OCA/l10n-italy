@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Author(s): Sergio Corato (https://efatto.it)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
@@ -13,4 +12,4 @@ class WithholdingTax(models.Model):
     wt_types = fields.Selection([
         ('enasarco', 'Enasarco tax'),
         ('ritenuta', 'Withholding tax'),
-        ], 'Withholding tax type', required=True, default='ritenuta')
+    ], 'Withholding tax type', required=True, default='ritenuta')
