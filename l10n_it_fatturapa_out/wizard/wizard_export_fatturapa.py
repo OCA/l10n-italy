@@ -867,7 +867,14 @@ class WizardExportFatturapa(orm.TransientModel):
         return True
 
     def isRiba(self, cr, uid, invoice, context={}):
-        return invoice.payment_term.riba
+        try:
+            return invoice.payment_term.riba
+        except Exception as ex:
+            logging.warning('Trying to check if payment term is a RIBA %r' % (ex))
+            for line in invoice.payment_term.line_ids:
+                if line.riba:
+                    return True
+            return False
 
     def setAttachments(self, cr, uid, invoice, body, context=None):
         if context is None:
