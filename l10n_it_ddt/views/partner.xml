@@ -21,6 +21,7 @@
                             attrs="{'invisible': [('ddt_invoicing_group','!=','code_group')],
                                     'required': [('ddt_invoicing_group','=','code_group')]} "/>
                         <field name="ddt_show_price"/>
+                        <field name="ddt_invoice_exclude"/>
                     </group>
                 </xpath>
                 

@@ -15,6 +15,7 @@
 from . import stock_picking_package_preparation
 from . import partner
 from . import account
+from . import product
 from . import stock
 from . import sale
 from . import stock_location

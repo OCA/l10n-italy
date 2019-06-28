@@ -94,6 +94,7 @@ Contributors
 * Andrea Gallina <a.gallina@apuliasoftware.it>
 * Alex Comba <alex.comba@agilebg.com>
 * Alessandro Camilli <alessandrocamilli@openforce.it>
+* Giacomo Grasso <giacomo.grasso.82@gmail.com>
 
 Maintainer
 ----------
