@@ -20,6 +20,7 @@ class WithholdingTax(models.Model):
             SELECT tax, base FROM withholding_tax_rate
                 WHERE withholding_tax_id = %s
                  and (date_start <= current_date or date_start is null)
+                 and (date_stop >= current_date or date_stop is null)
                 ORDER by date_start LIMIT 1''',
                             (self.id,))
         rate = self.env.cr.fetchone()
