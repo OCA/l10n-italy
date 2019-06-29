@@ -280,6 +280,16 @@ msgid "Exceptional events"
 msgstr "Eventi eccezionali"
 
 #. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_account_tax__vsc_exclude_vat
+msgid "Exclude from VAT payable / deducted"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_account_tax__vsc_exclude_operation
+msgid "Exclude from active / passive operations"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.wizard_liquidazione_export_file
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.wizard_liquidazione_export_file_exit
 msgid "Export"
@@ -555,6 +565,11 @@ msgstr "Comunicazione liquidazione"
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__subcontracting
 msgid "Subcontracting"
 msgstr "Subfornitura"
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model,name:l10n_it_vat_statement_communication.model_account_tax
+msgid "Tax"
+msgstr ""
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__crediti_imposta
