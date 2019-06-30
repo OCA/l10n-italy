@@ -719,12 +719,12 @@ class StockPickingPackagePreparationLine(models.Model):
         to its quantity (if the product is tracked with lots)"""
         self.ensure_one()
         res = {}
-        for quant in self.lot_ids.mapped('quant_ids'):
-            if quant.location_id == self.move_id.location_dest_id:
-                if quant.lot_id not in res:
-                    res[quant.lot_id] = quant.quantity
+        for move_line in self.move_id.move_line_ids:
+            if move_line.lot_id:
+                if move_line.lot_id not in res:
+                    res[move_line.lot_id] = move_line.qty_done
                 else:
-                    res[quant.lot_id] += quant.quantity
+                    res[move_line.lot_id] += move_line.qty_done
         for lot in res:
             if lot.product_id.tracking == 'lot':
                 res[lot] = formatLang(self.env, res[lot])
