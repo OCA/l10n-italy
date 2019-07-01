@@ -847,8 +847,8 @@ class WizardExportFatturapa(orm.TransientModel):
                 is_riba = self.isRiba(cr, uid, invoice, context)
                 refBank = invoice.partner_bank_id
                 if is_riba:
-                    if invoice.customer_bank_ids:
-                        for bank in invoice.customer_bank_ids:
+                    if invoice.bank_account_ids:
+                        for bank in invoice.bank_account_ids:
                             refBank = bank
                 if refBank:
                     DettaglioPagamento.IstitutoFinanziario = (
