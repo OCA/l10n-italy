@@ -100,6 +100,7 @@ class WizardExportFatturapa(models.TransientModel):
             'name': '%s_%s.xml' % (vat, number),
             'datas_fname': '%s_%s.xml' % (vat, number),
             'datas': base64.encodestring(fatturapa.toxml("UTF-8")),
+            'mimetype': 'text/xml',
         }
         return attach_obj.create(attach_vals)
 
