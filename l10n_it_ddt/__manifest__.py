@@ -7,8 +7,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    'name': 'Italian Localization - DDT: documento di trasporto',
-    'version': '12.0.1.3.0',
+    'name': 'ITA - DDT: documento di trasporto',
+    'version': '12.0.1.4.0',
     'category': 'Localization/Italy',
     'summary': 'Documento di Trasporto',
     'author': 'Davide Corio, Odoo Community Association (OCA),'
@@ -28,6 +28,7 @@
         'views/stock_picking_package_preparation.xml',
         'views/stock_picking.xml',
         'views/partner.xml',
+        'views/product.xml',
         'views/account.xml',
         'views/sale.xml',
         'views/stock_location.xml',
