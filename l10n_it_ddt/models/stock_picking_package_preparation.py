@@ -181,7 +181,7 @@ class StockPickingPackagePreparation(models.Model):
         # ----- Check if exist a stock picking whose state is 'done'
         for record_picking in self.picking_ids:
             if record_picking.state == 'done':
-                raise UserError((
+                raise UserError(_(
                     "Impossible to put in pack a picking whose state "
                     "is 'done'"))
         for package in self:
@@ -354,6 +354,31 @@ class StockPickingPackagePreparation(models.Model):
         return res
 
     @api.multi
+    def other_operations_on_ddt(self, invoice):
+        """ Once invoices are created with stockable products, we add them
+        all the invoiceable services available in the SO related to the
+        DDTs linked to the invoice.
+
+        Override this method in order to execute other additional operation on
+        the invoices created from DDT.
+        """
+        precision = self.env['decimal.precision'].precision_get(
+            'Product Unit of Measure')
+        for ddt in self:
+            order_ids = ddt.line_ids.mapped('sale_line_id.order_id').filtered(
+                lambda o: not o.ddt_invoice_exclude)
+            line_ids = order_ids.mapped('order_line').filtered(
+                lambda l: not float_is_zero(
+                    l.qty_to_invoice, precision_digits=precision) and
+                l.product_id.type == 'service' and
+                not l.product_id.ddt_invoice_exclude)
+
+            # we call the Sale method for creating invoice
+            for line in line_ids:
+                qty = line.qty_to_invoice
+                line.invoice_line_create(invoice.id, qty)
+
+    @api.multi
     def action_invoice_create(self):
         """
         Create the invoice associated to the DDT.
@@ -412,6 +437,9 @@ class StockPickingPackagePreparation(models.Model):
             if references.get(invoices.get(group_key)):
                 if ddt not in references[invoices[group_key]]:
                     references[invoice] = references[invoice] | ddt
+
+            # Allow additional operations from ddt
+            ddt.other_operations_on_ddt(invoice)
 
         if not invoices:
             raise UserError(_('There is no invoicable line.'))

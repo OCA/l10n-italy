@@ -106,6 +106,7 @@ class TestDdt(TransactionCase):
         self.partner2 = self.env.ref('base.res_partner_3')
         self.product1 = self.env.ref('product.product_product_25')
         self.product2 = self.env.ref('product.product_product_27')
+        self.product3 = self.env.ref('product.product_product_1')
         self.ddt_model = self.env['stock.picking.package.preparation']
         self.picking = self._create_picking()
         self.move = self._create_move(self.picking, self.product1)
@@ -409,3 +410,33 @@ class TestDdt(TransactionCase):
         action = order1.action_view_ddt()
         self.assertTrue(action['domain'])
         self.assertFalse(action['res_id'])
+
+    def test_order_with_service(self):
+        order1 = self._create_sale_order()
+        self.product3.ddt_invoice_exclude = False
+        self.product3.invoice_policy = 'order'
+        self._create_sale_order_line(order1, self.product1)
+        self._create_sale_order_line(order1, self.product3)
+        order1.create_ddt = True
+        order1.action_confirm()
+        ddt1 = order1.ddt_ids[0]
+        invoice_wizard = self.env['ddt.create.invoice'].with_context(
+            {'active_ids': [ddt1.id]}).create({})
+        action = invoice_wizard.create_invoice()
+        invoice_ids = action['domain'][0][2]
+        invoice = self.env['account.invoice'].browse(invoice_ids[0])
+        self.assertEqual(len(invoice.invoice_line_ids), 2)
+
+        order2 = self._create_sale_order()
+        self.product3.ddt_invoice_exclude = True
+        self._create_sale_order_line(order2, self.product1)
+        self._create_sale_order_line(order2, self.product3)
+        order2.create_ddt = True
+        order2.action_confirm()
+        ddt2 = order2.ddt_ids[0]
+        invoice_wizard = self.env['ddt.create.invoice'].with_context(
+            {'active_ids': [ddt2.id]}).create({})
+        action = invoice_wizard.create_invoice()
+        invoice_ids = action['domain'][0][2]
+        invoice = self.env['account.invoice'].browse(invoice_ids[0])
+        self.assertEqual(len(invoice.invoice_line_ids), 1)

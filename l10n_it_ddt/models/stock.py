@@ -19,6 +19,9 @@ class StockPicking(models.Model):
         column2='stock_picking_package_preparation_id',
         string='DdT',
         copy=False, )
+    ddt_type = fields.Many2one(
+        'stock.ddt.type',
+        related='picking_type_id.default_location_src_id.type_ddt_id')
 
     @api.multi
     def write(self, values):
