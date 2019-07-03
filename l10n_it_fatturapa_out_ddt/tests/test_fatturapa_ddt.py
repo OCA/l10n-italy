@@ -69,6 +69,9 @@ class TestInvoiceDDT(FatturaPACommon):
         self.so2.ddt_ids[0].ddt_number = 'DDT/0101'
         self.so1.ddt_ids[0].set_done()
         self.so2.ddt_ids[0].set_done()
+        # Set sequence to have the expected order in XML
+        self.so1.ddt_ids.line_ids[0].sequence = 1
+        self.so2.ddt_ids.line_ids[0].sequence = 2
         invoice_wizard = self.env['ddt.create.invoice'].with_context(
             {'active_ids': (self.so1.ddt_ids | self.so2.ddt_ids).ids}
         ).create({})
