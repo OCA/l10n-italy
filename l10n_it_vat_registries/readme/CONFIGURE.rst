@@ -17,7 +17,9 @@ Contabilità -> Configurazione -> Contabilità -> Registri IVA
 è possibile configurare i registri IVA, ad esempio 'vendite', 'acquisti' o 'corrispettivi'.
 Per associare un sezionale ad un registro IVA, aprire il sezionale tramite
 Contabilità -> Configurazione -> Contabilità -> Sezionali
-ed impostare il campo 'Registro IVA'
+ed impostare il campo 'Registro IVA'.
+
+Se non ci sono movimenti contabili da stampare, la stampa viene generata con totale zero.
 
 
 **English**
@@ -39,4 +41,6 @@ Accounting -> Configuration -> Accounting -> VAT registries
 you can configure VAT registries, like 'Sales', 'Purchases' or 'corrispettivi'.
 In order to link a journal to a VAT registry, open journal by
 Accounting -> Configuration -> Accounting -> Journals
-and set the 'VAT registry' field
+and set the 'VAT registry' field.
+
+If there are no account moves to be printed, the report is printed with total equal to zero.
