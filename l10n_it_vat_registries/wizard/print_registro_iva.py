@@ -54,10 +54,6 @@ class WizardRegistroIva(models.TransientModel):
             ('date', '<=', self.to_date),
             ('journal_id', 'in', [j.id for j in self.journal_ids]),
             ('state', '=', 'posted'), ], order='date, name')
-
-        if not moves:
-            raise UserError(_('No documents found in the current selection'))
-
         return moves.ids
 
     @api.multi
@@ -68,8 +64,6 @@ class WizardRegistroIva(models.TransientModel):
             raise UserError(_('No journals found in the current selection.\n'
                               'Please load them before to retry!'))
         move_ids = self._get_move_ids(wizard)
-        if not move_ids:
-            raise UserError(_('No documents found in the current selection'))
 
         datas_form = {}
         datas_form['from_date'] = wizard.from_date
