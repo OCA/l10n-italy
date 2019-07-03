@@ -3,6 +3,7 @@
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2018 Sergio Corato
 # Copyright 2018 Lara Baggio (Link IT srl)
+# Copyright 2019 Giovanni - GSLabIt
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
