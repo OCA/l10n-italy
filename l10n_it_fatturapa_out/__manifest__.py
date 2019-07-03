@@ -3,6 +3,7 @@
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2018 Sergio Corato
 # Copyright 2018 Lara Baggio (Link IT srl)
+# Copyright 2019 Giovanni - GSLabIt
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
@@ -18,7 +19,7 @@
     'depends': [
         'l10n_it_fatturapa',
         'l10n_it_split_payment',
-        ],
+    ],
     'data': [
         'wizard/wizard_export_fatturapa_view.xml',
         'views/attachment_view.xml',
