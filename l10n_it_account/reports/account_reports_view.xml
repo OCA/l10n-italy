@@ -108,7 +108,7 @@
                             fromPage[j].textContent = parseInt(eval(vars['sitepage']) + fiscal_page_base);
                         var toPage = document.getElementsByClassName('topage');
                         for(var j = 0; j&lt;toPage.length; j++)
-                            toPage[j].textContent = parseInt(eval(vars['sitepage']) + fiscal_page_base);
+                            toPage[j].textContent = parseInt(eval(vars['sitepages']) + fiscal_page_base);
 
                         var index = vars['webpage'].split('.', 4)[3]
                         var header = document.getElementById('minimal_layout_report_headers');
