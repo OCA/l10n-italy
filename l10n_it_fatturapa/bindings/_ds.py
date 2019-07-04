@@ -1,7 +1,7 @@
 # flake8: noqa
 # -*- coding: utf-8 -*-
 # PyXB bindings for NM:f1c343a882e7a65fb879f4ee813309f8231f28c8
-# Generated 2019-05-07 16:38:46.865830 by PyXB version 1.2.6 using Python 2.7.16.final.0
+# Generated 2019-07-04 14:12:27.048992 by PyXB version 1.2.6 using Python 2.7.15.candidate.1
 # Namespace http://www.w3.org/2000/09/xmldsig# [xmlns:ds]
 
 from __future__ import unicode_literals
@@ -14,7 +14,7 @@ import pyxb.utils.domutils
 import sys
 import pyxb.utils.six as _six
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:d2084e5a-70d5-11e9-8dc4-2477035a237c')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:f3386e3c-9e54-11e9-b81a-d43b049899a0')
 
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.6'
