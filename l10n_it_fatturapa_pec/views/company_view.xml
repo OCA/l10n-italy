@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_config_settings_ftpa_pec" model="ir.ui.view">
+            <field name="name">view_account_config_settings_ftpa_pec</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="l10n_it_fatturapa.view_account_config_settings"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='fatturapa_settings']" position="inside">
+                    <group>
+                        <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." groups="base.group_multi_company"/>
+                        <field name="e_invoice_user_id"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

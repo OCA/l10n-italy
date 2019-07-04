@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Simone Rubino - Agile Business Group
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+
+    <!-- DdT Sequence -->
+    <record id="seq_ddt" model="ir.sequence">
+        <field name="name">DDT</field>
+        <field name="code">stock.ddt</field>
+        <field name="prefix">DDT/</field>
+        <field name="padding">4</field>
+    </record>
+
+    <!-- DdT Type -->
+    <record id="ddt_type_ddt" model="stock.ddt.type">
+        <field name="name">DdT</field>
+        <field name="sequence_id" ref="seq_ddt" />
+    </record>
+
+    <!-- carriage conditions -->
+    <record id="carriage_condition_PF" model="stock.picking.carriage_condition">
+        <field name="name">PORTO FRANCO</field>
+    </record>
+    <record id="carriage_condition_PA" model="stock.picking.carriage_condition">
+        <field name="name">PORTO ASSEGNATO</field>
+    </record>
+    <record id="carriage_condition_PAF" model="stock.picking.carriage_condition">
+        <field name="name">CON ADDEBITO IN FATTURA</field>
+    </record>
+
+    <!-- goods descriptions -->
+    <record id="goods_description_CAR" model="stock.picking.goods_description">
+        <field name="name">CARTONE</field>
+    </record>
+    <record id="goods_description_BAN" model="stock.picking.goods_description">
+        <field name="name">BANCALE</field>
+    </record>
+    <record id="goods_description_SFU" model="stock.picking.goods_description">
+        <field name="name">SFUSI</field>
+    </record>
+    <record id="goods_description_CBA" model="stock.picking.goods_description">
+        <field name="name">CARTONI-BANCALI</field>
+    </record>
+
+    <!-- trasportation reasons -->
+    <record id="transportation_reason_VEN" model="stock.picking.transportation_reason">
+        <field name="name">VENDITA</field>
+    </record>
+    <record id="transportation_reason_VIS" model="stock.picking.transportation_reason">
+        <field name="name">CONTO VISIONE</field>
+    </record>
+    <record id="transportation_reason_RES" model="stock.picking.transportation_reason">
+        <field name="name">RESO</field>
+    </record>
+
+    <!-- trasportation methods -->
+    <record id="transportation_method_MIT" model="stock.picking.transportation_method">
+        <field name="name">MITTENTE</field>
+    </record>
+    <record id="transportation_method_DES" model="stock.picking.transportation_method">
+        <field name="name">DESTINATARIO</field>
+    </record>
+    <record id="transportation_method_COR" model="stock.picking.transportation_method">
+        <field name="name">CORRIERE</field>
+    </record>
+
+</odoo>

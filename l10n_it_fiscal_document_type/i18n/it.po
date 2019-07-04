@@ -1,0 +1,166 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_fiscal_document_type
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Paolo Valier, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-06 01:45+0000\n"
+"PO-Revision-Date: 2018-12-12 17:25+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.3\n"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_code
+msgid "Code"
+msgstr "Codice"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model,name:l10n_it_fiscal_document_type.model_res_partner
+msgid "Contact"
+msgstr "Contatto"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_out_refund
+msgid "Customer Credit Note"
+msgstr "Nota di credito cliente"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_out_invoice
+msgid "Customer Invoice"
+msgstr "Fattura cliente"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_fiscal_position_fiscal_document_type_id
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_invoice_fiscal_document_type_id
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner_in_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner_out_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_users_in_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_users_out_fiscal_document_type
+msgid "Fiscal Document Type"
+msgstr "Tipo documento fiscale"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.actions.act_window,name:l10n_it_fiscal_document_type.action_view_fiscal_document_type
+#: model:ir.ui.menu,name:l10n_it_fiscal_document_type.menu_fiscal_document_type
+#: model:ir.ui.view,arch_db:l10n_it_fiscal_document_type.view_fiscal_document_type_form
+#: model:ir.ui.view,arch_db:l10n_it_fiscal_document_type.view_fiscal_document_type_tree
+msgid "Fiscal Document Types"
+msgstr "Tipi documento fiscale"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model,name:l10n_it_fiscal_document_type.model_account_fiscal_position
+msgid "Fiscal Position"
+msgstr "Posizione fiscale"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model,name:l10n_it_fiscal_document_type.model_account_invoice
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model,name:l10n_it_fiscal_document_type.model_account_journal
+msgid "Journal"
+msgstr "Registro"
+
+#. module: l10n_it_fiscal_document_type
+#: code:addons/l10n_it_fiscal_document_type/models/journal.py:17
+#, python-format
+msgid "Journal %s can be linked to only 1 fiscal document type (found in %s)"
+msgstr ""
+"Il registro %s può essere collegato a un solo tipo di documento fiscale "
+"(trovato in %s)"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_journal_ids
+msgid "Journals"
+msgstr "Registri"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type___last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_name
+msgid "Name"
+msgstr "Nome"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_priority
+msgid "Priority"
+msgstr "Priorità"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_in_invoice
+msgid "Vendor Bill"
+msgstr "Fattura fornitore"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_in_refund
+msgid "Vendor Credit Note"
+msgstr "Nota di credito fornitore"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model,name:l10n_it_fiscal_document_type.model_fiscal_document_type
+msgid "fiscal.document.type"
+msgstr "fiscal.document.type"
+
+#, fuzzy
+#~ msgid "Codice"
+#~ msgstr "Codice"
+
+#, fuzzy
+#~ msgid "Nome"
+#~ msgstr "Nome"
+
+#, fuzzy
+#~ msgid "Nota di credito"
+#~ msgstr "Nota di credito"
+
+#, fuzzy
+#~ msgid "Nota di debito"
+#~ msgstr "Nota di debito"
+
+#~ msgid "Partner"
+#~ msgstr "Partner"

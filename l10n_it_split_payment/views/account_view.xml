@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<odoo>
+
+
+        <record id="account_fiscal_position_form_sp" model="ir.ui.view">
+        <field name="name">account.fiscal.position.form.sp</field>
+        <field name="model">account.fiscal.position</field>
+        <field name="inherit_id" ref="account.view_account_position_form"/>
+        <field name="arch" type="xml">
+            <field name="country_group_id" position="after">
+                            <field name="split_payment"/>
+                        </field>
+        </field>
+    </record>
+
+        <record id="account_invoice_form_sp" model="ir.ui.view">
+        <field name="name">account.invoice.form.sp</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+                        <field name="move_id" position="after">
+                            <field name="split_payment" invisible="1"/>
+                        </field>
+            <field name="amount_tax" position="after">
+                            <field name="amount_sp" widget="monetary"
+                                options="{'currency_field': 'currency_id'}"
+                                attrs="{'invisible': [('split_payment', '=', False)]}"/>
+                        </field>
+        </field>
+    </record>
+
+</odoo>

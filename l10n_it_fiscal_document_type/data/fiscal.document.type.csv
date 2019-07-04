@@ -1,0 +1,14 @@
+id,code,name,out_invoice,in_invoice,out_refund,in_refund,priority
+1,TD01,fattura,True,True,False,False,1
+9,TD02,acconto-anticipo su fattura,True,True,False,False,3
+10,TD03,acconto-anticipo su parcella,True,True,False,False,3
+2,TD04,nota di credito,False,False,True,True,1
+3,TD05,nota di debito,False,False,False,False,1
+11,TD06,parcella,True,True,False,False,3
+4,TD07,fattura semplificata,True,False,False,False,3
+5,TD08,nota di credito semplificata,False,False,True,False,3
+12,TD09,nota di debito semplificata,False,False,False,False,3
+6,TD10,fattura di acquisto intracomunitario beni,False,True,False,False,3
+7,TD11,fattura di acquisto intracomunitario servizi,False,True,False,False,3
+8,TD12,documento riepilogativo,False,True,False,False,3
+13,TD20,autofattura,True,False,False,False,3

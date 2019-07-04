@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <!--
+        INVOICE CUSTOMER
+        -->
+        <record model="ir.ui.view" id="view_withholding_invoice_form">
+            <field name="name">view.withholding.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='journal_id']" position="after">
+                    <field name="withholding_tax" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='invoice_line_ids']" position="attributes">
+                    <attribute name="context">{'fiscal_position_id': fiscal_position_id, 'type': type, 'journal_id': journal_id, 'default_invoice_id': id}</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='invoice_line_tax_ids']" position="after">
+                    <field name="invoice_line_tax_wt_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                </xpath>
+
+                <xpath expr="//field[@name='tax_line_ids']" position="after">
+                    <field name="withholding_tax_line_ids" attrs="{'invisible': [('withholding_tax', '=', False)]}">
+                        <tree>
+                            <field name="withholding_tax_id"/>
+                            <field name="base"/>
+                            <field name="tax"/>
+                        </tree>
+                        <form>
+                            <group colspan="2">
+                                <field name="withholding_tax_id" />
+                                <field name="base"/>
+                                <field name="tax"/>
+                            </group>
+                        </form>
+                        
+                        <tree  editable="bottom" string="Withholding Taxes">
+                            <field name="withholding_tax_id"/>
+                            <field name="base"/>
+                            <field name="tax"/>
+                        </tree>
+                        
+                    </field>
+                </xpath>
+
+                <xpath expr="//field[@name='amount_total']" position="after">
+                    <field name="withholding_tax_amount" widget="monetary" options="{'currency_field': 'currency_id'}" 
+                        attrs="{'invisible': [('withholding_tax', '=', False)]}"/>
+                    <field name="amount_net_pay" widget="monetary" options="{'currency_field': 'currency_id'}" class="oe_subtotal_footer_separator"
+                        attrs="{'invisible': [('withholding_tax', '=', False)]}"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <!--
+        INVOICE SUPPLIER
+        -->
+        <record model="ir.ui.view" id="view_withholding_invoice_supplier_form">
+            <field name="name">view.withholding.invoice.supplier.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='reference']" position="after">
+                    <field name="withholding_tax" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='invoice_line_ids']" position="attributes">
+                    <attribute name="context">{'fiscal_position_id': fiscal_position_id, 'type': type, 'journal_id': journal_id}</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='invoice_line_tax_ids']" position="after">
+                    <field name="invoice_line_tax_wt_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                </xpath>
+
+                <xpath expr="//field[@name='tax_line_ids']" position="after">
+                    <field name="withholding_tax_line_ids" attrs="{'invisible': [('withholding_tax', '=', False)]}">
+                        <tree>
+                            <field name="withholding_tax_id"/>
+                            <field name="base"/>
+                            <field name="tax"/>
+                        </tree>
+                        <form>
+                            <group colspan="2">
+                                <field name="withholding_tax_id" />
+                                <field name="base"/>
+                                <field name="tax"/>
+                            </group>
+                        </form>
+
+                        <tree  editable="bottom" string="Withholding Taxes">
+                            <field name="withholding_tax_id"/>
+                            <field name="base"/>
+                            <field name="tax"/>
+                        </tree>
+
+                    </field>
+                </xpath>
+
+                <xpath expr="//group[hasclass('oe_subtotal_footer', 'oe_right')]/field[@name='amount_total']" position="after">
+                    <field name="withholding_tax_amount" widget="monetary" options="{'currency_field': 'currency_id'}" 
+                        attrs="{'invisible': [('withholding_tax', '=', False)]}"/>
+                    <field name="amount_net_pay" widget="monetary" options="{'currency_field': 'currency_id'}" class="oe_subtotal_footer_separator"
+                        attrs="{'invisible': [('withholding_tax', '=', False)]}"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <!--
+        INVOICE LINE
+        -->
+        <record model="ir.ui.view" id="view_wt_invoice_line_form">
+            <field name="name">view.withholding.invoice.supplier.form</field>
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="account.view_invoice_line_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='invoice_line_tax_ids']" position="after">
+                    <field name="invoice_line_tax_wt_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <!--
+        FISCAL POSITION
+         -->
+        <record model="ir.ui.view" id="view_withholding_tax_fiscal_position_form">
+            <field name="name">view.withholding.tax.fiscal.position.form</field>
+            <field name="model">account.fiscal.position</field>
+            <field name="inherit_id" ref="account.view_account_position_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//page[@name='account_mapping']" position="after">
+                    <page name="account_withholding_tax" string="Withholding Tax">
+                        <field name="withholding_tax_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="name"/>
+                                <field name="tax"/>
+                                <field name="base"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+
+</odoo>

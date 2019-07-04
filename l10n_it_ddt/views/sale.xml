@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Simone Rubino - Agile Business Group
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+        <record id="sale_order_form_view_ddt" model="ir.ui.view">
+            <field name="name">sale.order.form.ddt</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Shipping Informations">
+                        <group string="Shipping Informations">
+                            <group>
+                                <field name="goods_description_id"
+                                    widget="selection"/>
+                                <field name="carriage_condition_id"
+                                    widget="selection"/>
+                                <field name="transportation_reason_id"
+                                    widget="selection"/>
+                                <field name="transportation_method_id"
+                                    widget="selection"/>
+                                <field name="ddt_carrier_id" />
+                                <field name="parcels" />
+                                <field name="weight" />
+                                <field name="gross_weight"/>
+                                <field name="volume" />
+                            </group>
+                            <group>
+                                <field name="create_ddt"/>
+                                <field name="ddt_invoicing_group"/>
+                            </group>
+                        </group>
+                        <group string="Related DDTs">
+                            <field name="ddt_ids" nolabel="1"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+        <record id="view_order_form_view_ddt" model="ir.ui.view">
+            <field name="name">sale.order.form.view.ddt</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_view_delivery']" position="after">
+                   <button type="object"
+                       name="action_view_ddt"
+                       class="oe_stat_button"
+                       icon="fa-truck"
+                       attrs="{'invisible': ['|',('ddt_ids','=',False),('ddt_ids','=',[])]}" groups="base.group_user"
+                       string="View DdT">
+                   </button>
+                </xpath>
+            </field>
+        </record>
+
+</odoo>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_partner_form_fatturapa">
+        <field name="name">partner.form.fatturapa</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+            <page name="fatturapa" string="Electronic Invoice" groups="account.group_account_invoice">
+                <group name="fatturapa_group">
+                    <label for="electronic_invoice_subjected"/>
+                    <field name="electronic_invoice_subjected"/>
+
+                    <group attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">
+                        <field name="ipa_code" placeholder="IPA123" attrs="{'invisible': [('is_pa','=', False)]}"/>
+                        <field name="codice_destinatario" attrs="{'invisible': [('is_pa', '=', True)]}"/>
+                        <field name="pec_destinatario"
+                               attrs="{'invisible': ['|',('is_pa', '=', True), ('codice_destinatario', '!=', '0000000')]}"/>
+                        <field name="eori_code"/>
+                    </group>
+                </group>
+            </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="view_partner_ipa_form_ftpa" model="ir.ui.view">
+        <field name="name">view_partner_ipa_form_ftpa</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="l10n_it_ipa.view_partner_ipa_form"/>
+        <field name="arch" type="xml">
+            <field name="ipa_code" position="replace"/>
+        </field>
+    </record>
+
+</odoo>

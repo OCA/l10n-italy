@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2018 Alex Comba - Agile Business Group
-     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
 
-    <!--    date range   -->
-    <menuitem id="menu_date_range" name="Date ranges"
-        parent="account.account_account_menu"/>
-    <menuitem action="date_range.date_range_action" id="menu_date_range_action" parent="menu_date_range"/>
-    <menuitem action="date_range.date_range_type_action"
-        id="menu_date_range_type_action" parent="menu_date_range"/>
-    <menuitem action="date_range.date_range_generator_action"
-        id="menu_date_range_generator_action" parent="menu_date_range"/>
+    <record id="view_account_type_form_sign" model="ir.ui.view">
+        <field name="name">account.account.type.form.sign</field>
+        <field name="model">account.account.type</field>
+        <field name="inherit_id" ref="account.view_account_type_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/group/field[@name='type']" position="after">
+                <field name="account_balance_sign"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_group_form_sign" model="ir.ui.view">
+        <field name="name">account.group.form.sign</field>
+        <field name="model">account.group</field>
+        <field name="inherit_id" ref="account.view_account_group_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/field[@name='code_prefix']" position="after">
+                <field name="account_balance_sign"/>
+            </xpath>
+        </field>
+    </record>
 
 </odoo>

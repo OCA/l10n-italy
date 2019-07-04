@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Simone Rubino - Agile Business Group
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+        <record id="view_ddt_create_invoice" model="ir.ui.view">
+            <field name="name">DdT Create Invoice</field>
+            <field name="model">ddt.create.invoice</field>
+            <field name="arch" type="xml">
+              <form string="DDT Create Invoice">
+                <separator string="DDT" />
+                    <field string="DDT" name="ddt_ids" readonly="0">
+                        <tree create="false">
+                            <field name="ddt_number"/>
+                            <field name="partner_id"/>
+                            <field name="partner_shipping_id"/>
+                            <field name="date"/>
+                            <field name="date_done"/>
+                            <field name="package_id"/>
+                            <field name="state"/>
+                        </tree>
+                    </field>
+                    <footer>
+                        <button name="create_invoice" string="Create Invoice" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+            </form>
+            </field>
+        </record>
+
+        <record id="action_ddt_create_invoice" model="ir.actions.act_window">
+            <field name="name">DDT Create Invoice</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ddt.create.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_ddt_create_invoice"/>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="stock_picking_package_preparation.model_stock_picking_package_preparation"/>
+        </record>
+
+</odoo>
