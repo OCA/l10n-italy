@@ -472,7 +472,7 @@ class StockPickingPackagePreparation(models.Model):
                 })
 
             for line in td.line_ids:
-                if line.product_uom_qty > 0:
+                if line.allow_invoice_line():
                     line.invoice_line_create(invoice.id, line.product_uom_qty)
 
             # Allow additional operations from td
@@ -769,3 +769,11 @@ class StockPickingPackagePreparationLine(models.Model):
                 # If not tracking by lots, quantity is not relevant
                 res[lot] = False
         return res
+
+    @api.multi
+    def allow_invoice_line(self):
+        """This method allows or not the invoicing of a specific DDT line.
+        It can be inherited for different purposes, e.g. for proper invoicing
+        of kit."""
+        self.ensure_one()
+        return self.product_uom_qty > 0
