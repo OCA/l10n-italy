@@ -213,11 +213,3 @@ class DdTFromPickings(models.TransientModel):
             'views': [(form_id, 'form'), (tree_id, 'tree')],
             'type': 'ir.actions.act_window',
         }
-
-
-class StockPicking(models.Model):
-    _inherit = "stock.picking"
-
-    ddt_type = fields.Many2one(
-        'stock.ddt.type',
-        related='picking_type_id.default_location_src_id.type_ddt_id')
