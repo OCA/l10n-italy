@@ -414,8 +414,8 @@ class StockPickingPackagePreparation(models.Model):
                         invoices[group_key].id, line.product_uom_qty)
 
             # Create invoice lines for down payments
-            if self._context.get('subtract_down_payment_invoice',
-                                 False) and order:
+            if self.env.context.get(
+                    'subtract_down_payment_invoice', False) and order:
                 for order_line in order.order_line.filtered(
                         lambda l: l.invoice_status == 'to invoice'):
                     if order_line.product_id and \
@@ -423,7 +423,9 @@ class StockPickingPackagePreparation(models.Model):
                             down_payment_product_id:
                         line_data = order_line._prepare_invoice_line(
                             order_line.qty_to_invoice)
-                        line_data['sale_line_ids'] = [(6, 0, [order_line.id])]
+                        sale_line_ids_data = line_data.get('sale_line_ids', [])
+                        sale_line_ids_data.append((6, 0, [order_line.id]))
+                        line_data['sale_line_ids'] = sale_line_ids_data
                         invoices[group_key].invoice_line_ids = [
                             (0, 0, line_data)]
 
