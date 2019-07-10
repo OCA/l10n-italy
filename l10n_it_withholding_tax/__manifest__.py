@@ -1,9 +1,10 @@
 # Copyright 2015 Alessandro Camilli (<http://www.openforce.it>)
+# Copyright 2019 Giovanni - GSLabIt
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
     'name': 'Italian Withholding Tax',
-    'version': '11.0.1.0.1',
+    'version': '11.0.1.0.2',
     'category': 'Account',
     'author': 'Openforce, Odoo Italia Network, '
               'Odoo Community Association (OCA)',
