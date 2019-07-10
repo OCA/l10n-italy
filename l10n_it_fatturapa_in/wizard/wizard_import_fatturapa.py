@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
+import vatnumber
 from openerp import models, api, fields, _
 from openerp.tools import float_is_zero
 from openerp.exceptions import Warning as UserError
@@ -124,6 +125,22 @@ class WizardImportFatturapa(models.TransientModel):
                 )
         partners = partner_model
         if vat:
+            is_vat = vatnumber.check_vat(vat)
+            if is_vat:
+                partners = partner_model.search([
+                    ('vat', '=', vat),
+                ])
+            else:
+                self.log_inconsistency(
+                        _(
+                            'The VAT number %s of the carrier/transporter %s is not valid'
+                        )
+                        % (
+                            vat,
+                            DatiAnagrafici.Anagrafica.Denominazione
+                        )
+                    )
+                return False
             partners = partner_model.search([
                 ('vat', '=', vat),
             ])
