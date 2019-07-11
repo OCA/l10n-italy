@@ -126,6 +126,7 @@ class WithholdingTaxRate(models.Model):
                 where.append("((date_start<='%s') or (date_start is null))" %
                              (self.date_stop,))
 
+            # pylint: disable=sql-injection
             self.env.cr.execute(
                 'SELECT id '
                 'FROM withholding_tax_rate '
