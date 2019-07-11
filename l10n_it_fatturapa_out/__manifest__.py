@@ -28,6 +28,9 @@
     ],
     'installable': True,
     'external_dependencies': {
-        'python': ['unidecode'],
+        'python': [
+            'unidecode',
+            'pyxb',  # pyxb 1.2.6
+        ],
     }
 }
