@@ -2,8 +2,7 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.addons.l10n_it_fatturapa_pec.tests.e_invoice_common \
-    import EInvoiceCommon
+from .e_invoice_common import EInvoiceCommon
 from odoo.modules import get_module_resource
 
 
