@@ -6,7 +6,7 @@
 
 {
     'name': 'ITA - Fattura elettronica - Emissione',
-    'version': '12.0.1.1.2',
+    'version': '12.0.1.1.3',
     'development_status': 'Beta',
     'category': 'Localization/Italy',
     'summary': 'Emissione fatture elettroniche',
@@ -27,6 +27,9 @@
     ],
     'installable': True,
     'external_dependencies': {
-        'python': ['unidecode'],
+        'python': [
+            'unidecode',
+            'pyxb',  # pyxb 1.2.6
+        ],
     }
 }
