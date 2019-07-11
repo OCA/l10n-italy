@@ -62,7 +62,7 @@ msgid "Attachments"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:688
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:687
 #, python-format
 msgid "BIC is required and not exist in Xml\n"
 "Curr bank data is: \n"
@@ -90,7 +90,7 @@ msgid "Bill number {bill_nbr} of {bill_date}.\n"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1238
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1237
 #, python-format
 msgid "Bill total %s is different from document total amount %s"
 msgstr ""
@@ -149,7 +149,7 @@ msgid "Company Name field contains '%s'. Your System contains '%s'"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1253
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1252
 #, python-format
 msgid "Computed amount untaxed %s is different from summary data %s"
 msgstr ""
@@ -209,7 +209,7 @@ msgid "Date Reference"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:744
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:743
 #, python-format
 msgid "Define a purchase journal for this company: '%s' (id: %d)."
 msgstr ""
@@ -253,7 +253,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:843
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:842
 #, python-format
 msgid "Document type %s not handled."
 msgstr ""
@@ -371,7 +371,7 @@ msgid "File Size"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1276
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1275
 #, python-format
 msgid "File is linked to bills yet."
 msgstr ""
@@ -387,7 +387,7 @@ msgid "General Data"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:576
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:575
 #, python-format
 msgid "Global bill discount from document general data"
 msgstr ""
@@ -587,7 +587,7 @@ msgid "Name field contains '%s'. Your System contains '%s'"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:664
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:663
 #, python-format
 msgid "Name of Bank with BIC '%s' is not set. Can't create bank"
 msgstr ""
@@ -598,7 +598,7 @@ msgid "Nature"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:821
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:820
 #, python-format
 msgid "No currency found with code %s."
 msgstr ""
@@ -610,7 +610,7 @@ msgid "No tax with percentage %s and nature %s found. Please configure this tax.
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1092
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1091
 #, python-format
 msgid "No withholding tax found with document payment reason %s and rate %s."
 msgstr ""
@@ -632,19 +632,19 @@ msgid "Partner"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:606
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:605
 #, python-format
 msgid "Payment method %s is not defined in your system."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1059
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1058
 #, python-format
 msgid "Payment method code %s is incorrect."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1054
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1053
 #, python-format
 msgid "Payment method code not found in document."
 msgstr ""
@@ -804,7 +804,7 @@ msgid "Tax Withholding"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:497
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:496
 #, python-format
 msgid "Tax kind %s not found"
 msgstr ""
@@ -821,7 +821,7 @@ msgid "Text Reference"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1080
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1079
 #, python-format
 msgid "The bill contains withholding tax with payment reason %s, but such a tax is not found in your system. Please set it."
 msgstr ""
@@ -920,7 +920,7 @@ msgid "Welfare Fund"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:524
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:523
 #, python-format
 msgid "Welfare Fund %s not present in your system."
 msgstr ""
@@ -937,19 +937,19 @@ msgid "Welfare Fund Details"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1127
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1126
 #, python-format
 msgid "Welfare Fund data %s has withholding tax but no withholding tax was found in the system."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:506
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:505
 #, python-format
 msgid "Welfare Fund is not defined."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1119
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1118
 #, python-format
 msgid "Welfare Fund: %s"
 msgstr ""
