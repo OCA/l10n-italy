@@ -619,7 +619,7 @@ class WizardExportFatturapa(models.TransientModel):
 
         line_no = 1
         price_precision = self.env['decimal.precision'].precision_get(
-            'Product Price')
+            'Product Price for XML e-invoices')
         if price_precision < 2:
             # XML wants at least 2 decimals always
             price_precision = 2
