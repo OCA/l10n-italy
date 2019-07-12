@@ -92,7 +92,7 @@
                 <Descrizione>Mouse Optical</Descrizione>
                 <Quantita>1.000</Quantita>
                 <UnitaMisura>Unit(s)</UnitaMisura>
-                <PrezzoUnitario>10.00</PrezzoUnitario>
+                <PrezzoUnitario>10.00000</PrezzoUnitario>
                 <PrezzoTotale>10.00</PrezzoTotale>
                 <AliquotaIVA>22.00</AliquotaIVA>
             </DettaglioLinee>
