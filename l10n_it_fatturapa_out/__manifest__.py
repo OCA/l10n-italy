@@ -24,6 +24,7 @@
         'views/attachment_view.xml',
         'views/account_view.xml',
         'security/ir.model.access.csv',
+        'data/l10n_it_fatturapa_out_data.xml',
     ],
     'installable': True,
     'external_dependencies': {
