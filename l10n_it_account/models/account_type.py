@@ -2,6 +2,7 @@ from odoo import models, fields, api
 
 ACCOUNT_TYPES_NEGATIVE_SIGN = [
     'account.data_unaffected_earnings',
+    'account.data_account_type_equity',
     'account.data_account_type_revenue',
     'account.data_account_type_other_income',
     'account.data_account_type_payable',
