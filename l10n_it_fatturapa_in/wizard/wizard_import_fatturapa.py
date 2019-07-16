@@ -682,31 +682,23 @@ class WizardImportFatturapa(models.TransientModel):
                     ]
                     payment_bank_id = False
                     payment_banks = PartnerBankModel.search(SearchDom)
-                    if not payment_banks and not bank:
-                        self.log_inconsistency(
-                            _(
-                                'BIC is required and not exist in Xml\n'
-                                'Curr bank data is: \n'
-                                'IBAN: %s\n'
-                                'Bank Name: %s\n'
-                            )
-                            % (
-                                dline.IBAN.strip() or '',
-                                dline.IstitutoFinanziario or ''
-                            )
-                        )
-                    elif not payment_banks and bank:
-                        payment_bank_id = PartnerBankModel.create(
+                    if not payment_banks:
+                        payment_bank = PartnerBankModel.create(
                             {
                                 'acc_number': dline.IBAN.strip(),
-                                'partner_id': partner_id,
-                                'bank_id': bank.id,
-                                'bank_name':
-                                    dline.IstitutoFinanziario or bank.name,
-                                'bank_bic': dline.BIC or bank.bic
+                                'partner_id': partner_id
                             }
-                        ).id
-                    if payment_banks:
+                        )
+                        if bank:
+                            payment_bank.update(
+                                {
+                                    'bank_id': bank.id,
+                                    'bank_name': bank.name,
+                                    'bank_bic': bank.bic
+                                }
+                            )
+                        payment_bank_id = payment_bank.id
+                    else:
                         payment_bank_id = payment_banks[0].id
 
                 if payment_bank_id:
