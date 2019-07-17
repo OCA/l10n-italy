@@ -32,6 +32,8 @@ class FatturaPAAttachmentIn(models.Model):
     registered = fields.Boolean(
         "Registered", compute="_compute_registered", store=True)
 
+    e_invoice_received_date = fields.Datetime(string='E-Bill Received Date')
+
     e_invoice_validation_error = fields.Boolean(
         compute='_compute_e_invoice_validation_error')
 
