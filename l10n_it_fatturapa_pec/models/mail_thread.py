@@ -124,7 +124,7 @@ class MailThread(models.AbstractModel):
         for attachment in self.env['ir.attachment'].browse(
                 [att_id for m, att_id in attachment_ids]):
             if fatturapa_regex.match(attachment.name):
-                self.create_fatturapa_attachment_in(attachment)
+                self.create_fatturapa_attachment_in(attachment, message_dict)
         message_dict['attachment_ids'] = attachment_ids
         self.clean_message_dict(message_dict)
         # model and res_id are only needed by
@@ -155,10 +155,13 @@ class MailThread(models.AbstractModel):
                 return fatturapa_attachment_out
         return attachment_out_model.browse()
 
-    def create_fatturapa_attachment_in(self, attachment):
+    def create_fatturapa_attachment_in(self, attachment, message_dict=None):
         decoded = base64.b64decode(attachment.datas)
         fatturapa_attachment_in = self.env['fatturapa.attachment.in']
         fetchmail_server_id = self.env.context.get('fetchmail_server_id')
+        received_date = False
+        if message_dict is not None and 'date' in message_dict:
+            received_date = message_dict['date']
         company_id = False
         e_invoice_user_id = False
         if fetchmail_server_id:
@@ -189,6 +192,7 @@ class MailThread(models.AbstractModel):
                                 'datas_fname': file_name,
                                 'datas': base64.encodestring(inv_file.read()),
                                 'company_id': company_id,
+                                'e_invoice_received_date': received_date,
                             })
         else:
             fatturapa_atts = fatturapa_attachment_in.search(
@@ -201,4 +205,5 @@ class MailThread(models.AbstractModel):
                 fatturapa_attachment_in.create({
                     'ir_attachment_id': attachment.id,
                     'company_id': company_id,
+                    'e_invoice_received_date': received_date,
                 })

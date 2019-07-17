@@ -41,6 +41,9 @@ class AccountInvoice(models.Model):
     e_invoice_force_validation = fields.Boolean(
         string='Force E-Invoice Validation')
 
+    e_invoice_received_date = fields.Date(
+        string='E-Bill Received Date')
+
     @api.multi
     def invoice_validate(self):
         for invoice in self:
