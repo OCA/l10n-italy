@@ -870,7 +870,14 @@ class WizardImportFatturapa(models.TransientModel):
             for rel_doc in causLst:
                 comment += rel_doc + '\n'
 
+        if fatturapa_attachment.e_invoice_received_date:
+            e_invoice_received_date = fatturapa_attachment.\
+                e_invoice_received_date.date()
+        else:
+            e_invoice_received_date = fatturapa_attachment.create_date.date()
+
         invoice_data = {
+            'e_invoice_received_date': e_invoice_received_date,
             'fiscal_document_type_id': docType_id,
             'sender': fatt.FatturaElettronicaHeader.SoggettoEmittente or False,
             'account_id': pay_acc_id,
