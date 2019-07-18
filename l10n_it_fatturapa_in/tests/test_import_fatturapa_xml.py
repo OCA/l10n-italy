@@ -529,6 +529,23 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         invoices = self.invoice_model.browse(invoice_ids)
         self.assertEqual(len(invoices), 2)
 
+    def test_30_xml_import(self):
+        self.env.user.company_id.cassa_previdenziale_product_id = (
+            self.service.id)
+        res = self.run_wizard('test30', 'IT05979361218_001.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        partner_id = invoice.partner_id
+        partner_id.write({
+            'street': 'Viale Repubblica, 34',
+            'electronic_invoice_no_contact_update': True,
+        })
+        res = self.run_wizard('test30', 'IT05979361218_002.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.partner_id.id, partner_id.id)
+        self.assertEqual(invoice.partner_id.street, 'Viale Repubblica, 34')
+
     def test_01_xml_link(self):
         """einvoice lines are created but Vendor Reference is kept"""
         supplier = self.env['res.partner'].search(
