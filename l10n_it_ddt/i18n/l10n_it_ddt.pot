@@ -301,7 +301,7 @@ msgid "Do not invoice services from DDT"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:527
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:528
 #, python-format
 msgid "Document {d} has invoice linked"
 msgstr ""
@@ -391,13 +391,13 @@ msgid "If flagged this service will not be automatically invoiced from DDT."
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:200
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:201
 #, python-format
 msgid "Impossible to put in pack a package without details"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:193
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:194
 #, python-format
 msgid "Impossible to put in pack a picking whose state is 'done'"
 msgstr ""
@@ -519,7 +519,7 @@ msgid "Net Weight UoM"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:212
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:213
 #, python-format
 msgid "Not every picking is in done status"
 msgstr ""
@@ -566,10 +566,14 @@ msgid "Package Preparation Line"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice__parcels
-#: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order__parcels
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__parcels
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
+msgid "Packages"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice__parcels
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order__parcels
 msgid "Parcels"
 msgstr ""
 
@@ -601,13 +605,13 @@ msgid "Pickings"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:325
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:326
 #, python-format
 msgid "Please define an accounting sale journal for this company."
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:653
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:654
 #, python-format
 msgid "Please define income account for this product: \"%s\" (id:%d) - or for its category: \"%s\"."
 msgstr ""
@@ -652,7 +656,7 @@ msgid "Related TDs"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:290
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:291
 #, python-format
 msgid "Relevant period:"
 msgstr ""
@@ -703,7 +707,7 @@ msgid "Selected Picking %s have different Partner"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:184
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:185
 #, python-format
 msgid "Selected Picking is already linked to TD: %s"
 msgstr ""
@@ -950,8 +954,8 @@ msgid "Taxes"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:457
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:465
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:458
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:466
 #, python-format
 msgid "There is no invoiceable line."
 msgstr ""
