@@ -47,6 +47,9 @@ class ResPartner(models.Model):
     electronic_invoice_subjected = fields.Boolean(
         "Subjected to Electronic Invoice")
 
+    electronic_invoice_no_contact_update = fields.Boolean(
+        "Do not update the contact from Electronic Invoice Details")
+
     @api.multi
     @api.constrains(
         'is_pa', 'ipa_code', 'codice_destinatario', 'company_type',
