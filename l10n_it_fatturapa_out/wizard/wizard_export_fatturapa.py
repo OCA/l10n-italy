@@ -3,6 +3,7 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # Copyright 2018 Sergio Corato
 # Copyright 2019 Alex Comba - Agile Business Group
+# Copyright 2019 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import base64
@@ -616,9 +617,10 @@ class WizardExportFatturapa(models.TransientModel):
         if uom_precision < 2:
             uom_precision = 2
         for line in invoice.invoice_line_ids:
-            self.setDettaglioLinea(
-                line_no, line, body, price_precision, uom_precision)
-            line_no += 1
+            if not line.display_type:
+                self.setDettaglioLinea(
+                    line_no, line, body, price_precision, uom_precision)
+                line_no += 1
 
     def setDettaglioLinea(
         self, line_no, line, body, price_precision, uom_precision
