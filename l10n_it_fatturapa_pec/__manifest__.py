@@ -23,6 +23,7 @@
     'data': [
         'security/groups.xml',
         'views/account.xml',
+        'views/company_view.xml',
         'views/fatturapa_attachment_out.xml',
         'wizard/send_pec_view.xml',
         'views/fetchmail_view.xml',
