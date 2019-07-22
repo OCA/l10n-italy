@@ -15,6 +15,18 @@
                     <label for="sconto_maggiorazione_product_id"/>
                     <field name="sconto_maggiorazione_product_id" class="oe_inline"/>
                 </div>
+                <div>
+                    <label for="arrotondamenti_attivi_account_id"/>
+                    <field name="arrotondamenti_attivi_account_id" class="oe_inline"/>
+                </div>
+                <div>
+                    <label for="arrotondamenti_passivi_account_id"/>
+                    <field name="arrotondamenti_passivi_account_id" class="oe_inline"/>
+                </div>
+                <div>
+                    <label for="arrotondamenti_tax_id"/>
+                    <field name="arrotondamenti_tax_id" class="oe_inline"/>
+                </div>
             </xpath>
         </field>
     </record>

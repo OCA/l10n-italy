@@ -14,6 +14,21 @@ class ResCompany(models.Model):
         'product.product', 'Discount Supplement Product',
         help="Product used to model ScontoMaggiorazione XML element on bills."
         )
+    arrotondamenti_attivi_account_id = fields.Many2one(
+        'account.account', 'Active Rounding Account',
+        domain=[('deprecated', '=', False)],
+        help="Account used for active rounding amount on bills."
+        )
+    arrotondamenti_passivi_account_id = fields.Many2one(
+        'account.account', 'Passive Rounding Account',
+        domain=[('deprecated', '=', False)],
+        help="Account used for passive rounding amount on bills."
+        )
+    arrotondamenti_tax_id = fields.Many2one(
+        'account.tax', 'Rounding Tax',
+        domain=[('type_tax_use', '=', 'purchase'), ('amount', '=', 0.0)],
+        help="Tax used for rounding amount on bills."
+        )
 
 
 class AccountConfigSettings(models.TransientModel):
@@ -29,6 +44,15 @@ class AccountConfigSettings(models.TransientModel):
         string="Discount Supplement Product",
         help="Product used to model ScontoMaggiorazione XML element on bills."
         )
+    arrotondamenti_attivi_account_id = fields.Many2one(
+        related='company_id.arrotondamenti_attivi_account_id',
+    )
+    arrotondamenti_passivi_account_id = fields.Many2one(
+        related='company_id.arrotondamenti_passivi_account_id',
+    )
+    arrotondamenti_tax_id = fields.Many2one(
+        related='company_id.arrotondamenti_tax_id',
+    )
 
     @api.onchange('company_id')
     def onchange_company_id(self):
