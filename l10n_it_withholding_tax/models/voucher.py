@@ -433,30 +433,38 @@ class AccountVoucherLine(orm.Model):
             domain = [('move_id', '=', voucher_line.move_line_id.move_id.id)]
             inv_ids = invoice_obj.search(cr, uid, domain)
             for inv in invoice_obj.browse(cr, uid, inv_ids):
-                if len(inv.withholding_tax_line):
-                    rate_num = len(inv.withholding_tax_line)
-                    # Rates
-                    wt_amount_rate = round(
-                        voucher_line.amount_withholding_tax / rate_num,
-                        dp_obj.precision_get(cr, uid, 'Account'))
-                    wt_residual = voucher_line.amount_withholding_tax
-                    # Re-read move lines to assign the amounts of wt
-                    i = 0
-                    for wt_invoice_line in inv.withholding_tax_line:
-                        i += 1
-                        if i == rate_num:
-                            wt_amount = wt_residual
-                        else:
-                            wt_amount = wt_amount_rate
-                        wt_residual -= wt_amount
+                for wt_tax in inv.withholding_tax_line:
+                    if len(wt_tax.filtered(lambda x: x == wt_tax)):
+                        rate_num = len(wt_tax.filtered(lambda x: x == wt_tax))
+                        # Rates
+                        wt_amount_rate = round(
+                            voucher_line.amount_withholding_tax / rate_num * (
+                                wt_tax.tax / sum(
+                                    x.tax for x in inv.withholding_tax_line)
+                                ),
+                            dp_obj.precision_get(cr, uid, 'Account'))
+                        wt_residual = voucher_line.amount_withholding_tax * (
+                            wt_tax.tax / sum(
+                                x.tax for x in inv.withholding_tax_line)
+                            )
+                        # Re-read move lines to assign the amounts of wt
+                        i = 0
+                        for wt_invoice_line in inv.withholding_tax_line.\
+                                filtered(lambda x: x == wt_tax):
+                            i += 1
+                            if i == rate_num:
+                                wt_amount = wt_residual
+                            else:
+                                wt_amount = wt_amount_rate
+                            wt_residual -= wt_amount
 
-                        val = {
-                            'voucher_line_id': voucher_line_id,
-                            'withholding_tax_id':
-                                wt_invoice_line.withholding_tax_id.id,
-                            'amount': wt_amount
-                        }
-                        wt_voucher_line_obj.create(cr, uid, val)
+                            val = {
+                                'voucher_line_id': voucher_line_id,
+                                'withholding_tax_id':
+                                    wt_invoice_line.withholding_tax_id.id,
+                                'amount': wt_amount
+                            }
+                            wt_voucher_line_obj.create(cr, uid, val)
 
         return res
 
