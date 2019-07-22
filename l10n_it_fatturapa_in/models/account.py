@@ -161,7 +161,8 @@ class AccountInvoice(models.Model):
     def compute_xml_amount_untaxed(self, DatiRiepilogo):
         amount_untaxed = 0.0
         for Riepilogo in DatiRiepilogo:
-            amount_untaxed += float(Riepilogo.ImponibileImporto)
+            rounding = float(Riepilogo.Arrotondamento or 0.0)
+            amount_untaxed += float(Riepilogo.ImponibileImporto) + rounding
         return amount_untaxed
 
     @api.model
