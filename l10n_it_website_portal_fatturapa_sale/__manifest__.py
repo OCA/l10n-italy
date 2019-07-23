@@ -3,7 +3,7 @@
 {
     "name": "ITA - Fattura elettronica - Portale clienti",
     "summary": "Controlli per la fattura elettronica nel portale vendite",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "author": "Odoo Community Association (OCA)",
     "category": "Localization/Italy",
     "website": "https://github.com/OCA/l10n-italy/tree/"
