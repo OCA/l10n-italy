@@ -37,7 +37,7 @@
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" class="mr8" name='electronic_invoice_subjected'
-                           t-att-checked="'electronic_invoice_subjected' in checkout and checkout['electronic_invoice_subjected']"/>I want to receive electronic invoice
+                           t-att-checked="'electronic_invoice_subjected' in checkout and checkout['electronic_invoice_subjected']"/>I request to receive electronic invoice
                     </label>
                 </div>
             </div>
