@@ -402,8 +402,7 @@ class TestReverseCharge(TransactionCase):
 
         invoice.action_invoice_open()
 
-        self.env['account.journal'].search(
-            [('name', '=', 'Customer Invoices')]).update_posted = True
+        invoice.journal_id.update_posted = True
         invoice.action_cancel()
         self.assertEqual(invoice.state, 'cancel')
         invoice.action_invoice_draft()

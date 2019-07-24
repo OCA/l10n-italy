@@ -80,7 +80,9 @@ class AccountRCType(models.Model):
         string='Self Invoice Tax Mapping',
         copy=False)
     description = fields.Text('Description')
-    self_invoice_text = fields.Text('Text in Self Invoice')
+    self_invoice_text = fields.Text(
+        'Text in Self Invoice',
+        help="Reference/Description in Customer Invoice")
 
     @api.multi
     @api.constrains('with_supplier_self_invoice', 'tax_ids')
