@@ -1,6 +1,9 @@
 # Copyright 2018 Lorenzo Battistini (https://github.com/eLBati)
 
 from odoo.tests.common import TransactionCase
+from datetime import date, timedelta
+from odoo import fields
+from odoo.exceptions import ValidationError
 import time
 
 
@@ -176,3 +179,11 @@ class TestWithholdingTax(TransactionCase):
         self.assertEqual(self.invoice.amount_net_pay_residual, 200)
         self.assertEqual(self.invoice.residual, 250)
         self.assertEqual(self.invoice.state, 'open')
+
+    def test_overlapping_rates(self):
+        """Check that overlapping rates cannot be created"""
+        with self.assertRaises(ValidationError):
+            self.wt1040.rate_ids = [(0, 0, {
+                'date_start': fields.Date.to_string(
+                    date.today() - timedelta(days=1))
+            })]
