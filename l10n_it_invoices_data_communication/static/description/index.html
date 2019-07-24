@@ -391,16 +391,25 @@ ul.auto-toc {
 <div class="section" id="known-issues-roadmap">
 <h1><a class="toc-backref" href="#id1">Known issues / Roadmap</a></h1>
 <p>Qualora questo modulo venisse installato in un DB dove <tt class="docutils literal">l10n_it_comunicazione_dati_iva</tt> è già installato, è necessario eseguire la sequente procedura:</p>
-<p>Installare <tt class="docutils literal">openupgradelib</tt>
-#. Lanciare odoo con il paramentro <tt class="docutils literal">shell</tt>
-#. Eseguire i seguenti comandi</p>
+<ol class="arabic">
+<li><p class="first">Installare <tt class="docutils literal">openupgradelib</tt></p>
+</li>
+<li><p class="first">Lanciare odoo con il paramentro <tt class="docutils literal">shell</tt></p>
+</li>
+<li><p class="first">Eseguire i seguenti comandi</p>
+<blockquote>
 <pre class="doctest-block">
 &gt;&gt;&gt; from openupgradelib import openupgrade
 &gt;&gt;&gt; openupgrade.update_module_names(env.cr, [('l10n_it_comunicazione_dati_iva', 'l10n_it_invoices_data_communication'),], merge_modules=False,)
 &gt;&gt;&gt; env.cr.commit()
 </pre>
-<p>Riavviare odoo
-#. Aggiornare <tt class="docutils literal">l10n_it_invoices_data_communication</tt></p>
+</blockquote>
+</li>
+<li><p class="first">Riavviare odoo</p>
+</li>
+<li><p class="first">Aggiornare <tt class="docutils literal">l10n_it_invoices_data_communication</tt></p>
+</li>
+</ol>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#id2">Bug Tracker</a></h1>
