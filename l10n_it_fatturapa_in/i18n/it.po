@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-27 08:07+0000\n"
-"PO-Revision-Date: 2019-06-26 09:42+0000\n"
+"PO-Revision-Date: 2019-07-24 19:43+0000\n"
 "Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 3.7.1\n"
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
@@ -54,7 +54,7 @@ msgstr "Riferimento amministrazione"
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
 msgid "Amount Summary"
-msgstr ""
+msgstr "Riepilogo importo"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line__cod_article_ids
@@ -294,24 +294,22 @@ msgstr "Tipo documento %s non gestito."
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice__e_invoice_validation_error
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__e_invoice_validation_error
 msgid "E Invoice Validation Error"
-msgstr ""
+msgstr "Errore di validazione e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice__e_invoice_amount_tax
 msgid "E-Invoice Tax Amount"
-msgstr ""
+msgstr "Importo imposta e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice__e_invoice_amount_total
-#, fuzzy
-#| msgid "Invoices total"
 msgid "E-Invoice Total Amount"
-msgstr "Totale fatture"
+msgstr "Importo totale e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice__e_invoice_amount_untaxed
 msgid "E-Invoice Untaxed Amount"
-msgstr ""
+msgstr "Imponibile e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model,name:l10n_it_fatturapa_in.model_fatturapa_article_code
@@ -416,10 +414,8 @@ msgstr "Follower (partner)"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice__e_invoice_force_validation
-#, fuzzy
-#| msgid "E-invoice line"
 msgid "Force E-Invoice Validation"
-msgstr "Riga e-fattura"
+msgstr "Forza validazione e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
@@ -725,6 +721,8 @@ msgid ""
 "One or more invoice doesn't match the amount (tax or untaxed or total) of "
 "the original e-invoice. Please check"
 msgstr ""
+"L'importo di una o più fatture (imposta, imponibile o totale) non combacia "
+"con quello della e-fattura originale. Prego controllare"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line__other_data_ids
@@ -957,7 +955,7 @@ msgstr "L'oggetto del database a cui verrà assegnato questo allegato."
 #: code:addons/l10n_it_fatturapa_in/models/account.py:37
 #, python-format
 msgid "The invoice '%s' doesn't match the related e-invoice"
-msgstr ""
+msgstr "La fattura '%s' non combacia con la relativa e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
@@ -965,6 +963,8 @@ msgid ""
 "The invoice doesn't match one of the amount untaxed, tax amount or total "
 "amount of the original e-invoice. Please check"
 msgstr ""
+"L'imponibile, l'imposta o il totale della fattura non combacia con quello "
+"della e-fattura originale. Prego controllare"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__res_id
