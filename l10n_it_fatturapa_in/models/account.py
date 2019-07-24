@@ -50,6 +50,57 @@ class AccountInvoice(models.Model):
                     invoice.display_name)
         return super(AccountInvoice, self).invoice_validate()
 
+    def e_inv_check_amount_untaxed(self):
+        error_message = ''
+        if (self.e_invoice_amount_untaxed and
+                float_compare(self.amount_untaxed,
+                              self.e_invoice_amount_untaxed,
+                              precision_rounding=self.currency_id
+                              .rounding) != 0):
+            error_message = (
+                _("Untaxed amount ({bill_amount_untaxed}) "
+                  "does not match with "
+                  "e-bill untaxed amount ({e_bill_amount_untaxed})")
+                .format(
+                    bill_amount_untaxed=self.amount_untaxed or 0,
+                    e_bill_amount_untaxed=self.e_invoice_amount_untaxed
+                ))
+        return error_message
+
+    def e_inv_check_amount_tax(self):
+        error_message = ''
+        if (self.e_invoice_amount_tax and
+                float_compare(self.amount_tax,
+                              self.e_invoice_amount_tax,
+                              precision_rounding=self.currency_id
+                              .rounding) != 0):
+            error_message = (
+                _("Taxed amount ({bill_amount_tax}) "
+                  "does not match with "
+                  "e-bill taxed amount ({e_bill_amount_tax})")
+                .format(
+                    bill_amount_tax=self.amount_tax or 0,
+                    e_bill_amount_tax=self.e_invoice_amount_tax
+                ))
+        return error_message
+
+    def e_inv_check_amount_total(self):
+        error_message = ''
+        if (self.e_invoice_amount_total and
+                float_compare(self.amount_total,
+                              self.e_invoice_amount_total,
+                              precision_rounding=self.currency_id
+                              .rounding) != 0):
+            error_message = (
+                _("Total amount ({bill_amount_total}) "
+                  "does not match with "
+                  "e-bill total amount ({e_bill_amount_total})")
+                .format(
+                    bill_amount_total=self.amount_total or 0,
+                    e_bill_amount_total=self.e_invoice_amount_total
+                ))
+        return error_message
+
     @api.depends('type', 'state', 'fatturapa_attachment_in_id',
                  'amount_untaxed', 'amount_tax', 'amount_total',
                  'reference', 'date_invoice')
@@ -61,47 +112,18 @@ class AccountInvoice(models.Model):
                 inv.fatturapa_attachment_in_id)
         for bill in bills_to_check:
             error_messages = list()
-            if (bill.e_invoice_amount_untaxed and
-                    float_compare(bill.amount_untaxed,
-                                  bill.e_invoice_amount_untaxed,
-                                  precision_rounding=bill.currency_id
-                                  .rounding) != 0):
-                error_messages.append(
-                    _("Untaxed amount ({bill_amount_untaxed}) "
-                      "does not match with "
-                      "e-bill untaxed amount ({e_bill_amount_untaxed})")
-                    .format(
-                        bill_amount_untaxed=bill.amount_untaxed or 0,
-                        e_bill_amount_untaxed=bill.e_invoice_amount_untaxed
-                    ))
 
-            if (bill.e_invoice_amount_tax and
-                    float_compare(bill.amount_tax,
-                                  bill.e_invoice_amount_tax,
-                                  precision_rounding=bill.currency_id
-                                  .rounding) != 0):
-                error_messages.append(
-                    _("Taxed amount ({bill_amount_tax}) "
-                      "does not match with "
-                      "e-bill taxed amount ({e_bill_amount_tax})")
-                    .format(
-                        bill_amount_tax=bill.amount_tax or 0,
-                        e_bill_amount_tax=bill.e_invoice_amount_tax
-                    ))
+            error_message = bill.e_inv_check_amount_untaxed()
+            if error_message:
+                error_messages.append(error_message)
 
-            if (bill.e_invoice_amount_total and
-                    float_compare(bill.amount_total,
-                                  bill.e_invoice_amount_total,
-                                  precision_rounding=bill.currency_id
-                                  .rounding) != 0):
-                error_messages.append(
-                    _("Total amount ({bill_amount_total}) "
-                      "does not match with "
-                      "e-bill total amount ({e_bill_amount_total})")
-                    .format(
-                        bill_amount_total=bill.amount_total or 0,
-                        e_bill_amount_total=bill.e_invoice_amount_total
-                    ))
+            error_message = bill.e_inv_check_amount_tax()
+            if error_message:
+                error_messages.append(error_message)
+
+            error_message = bill.e_inv_check_amount_total()
+            if error_message:
+                error_messages.append(error_message)
 
             if (bill.e_invoice_reference and
                     bill.reference != bill.e_invoice_reference):
@@ -227,7 +249,7 @@ class EInvoiceLine(models.Model):
     _name = 'einvoice.line'
     _description = 'E-invoice line'
     invoice_id = fields.Many2one(
-        "account.invoice", "Bill", readonly=True)
+        "account.invoice", "Bill", readonly=True, ondelete='cascade')
     line_number = fields.Integer('Line Number', readonly=True)
     service_type = fields.Char('Sale Provision Type', readonly=True)
     cod_article_ids = fields.One2many(
