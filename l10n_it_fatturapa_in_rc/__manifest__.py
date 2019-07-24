@@ -2,9 +2,8 @@
 # Copyright 2018 Sergio Corato (https://efatto.it)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
-    'name': 'Italian Localization - Fattura elettronica - integrazione fattura'
-            'in acquisto e reverse charge',
-    "summary": "Modulo di collegamento tra fattura in acquisto e reverse"
+    'name': 'ITA - Fattura elettronica - Reverse charge',
+    "summary": "Modulo di collegamento tra e-fattura in acquisto e reverse"
                " charge",
     "version": "10.0.1.0.0",
     "development_status": "Beta",
@@ -20,7 +19,9 @@
     "depends": [
         "l10n_it_reverse_charge",
         "l10n_it_fatturapa_in",
+        "l10n_it_account_tax_kind",
     ],
     "data": [
+        "views/rc_type_view.xml",
     ],
 }
