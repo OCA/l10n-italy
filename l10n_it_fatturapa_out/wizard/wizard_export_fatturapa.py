@@ -52,6 +52,8 @@ from odoo.addons.l10n_it_fatturapa.models.account import (
 _logger = logging.getLogger(__name__)
 
 try:
+    from pyxb.utils import domutils
+    from pyxb.binding.datatypes import decimal as pyxb_decimal
     from unidecode import unidecode
     from pyxb.exceptions_ import SimpleFacetValueError, SimpleTypeValueError
 except ImportError as err:
@@ -63,6 +65,22 @@ def id_generator(
     string.ascii_lowercase
 ):
     return ''.join(random.choice(chars) for dummy in range(size))
+
+
+class FatturapaBDS(domutils.BindingDOMSupport):
+
+    def valueAsText(self, value, enable_default_namespace=True):
+        if isinstance(value, pyxb_decimal) and hasattr(value, '_CF_pattern'):
+            # PyXB changes the text representation of decimals
+            # so that it breaks pattern matching.
+            # We have to use directly the string value
+            # instead of letting PyXB edit it
+            return str(value)
+        return super(FatturapaBDS, self) \
+            .valueAsText(value, enable_default_namespace)
+
+
+fatturapaBDS = FatturapaBDS()
 
 
 class WizardExportFatturapa(models.TransientModel):
@@ -96,10 +114,16 @@ class WizardExportFatturapa(models.TransientModel):
     def saveAttachment(self, fatturapa, number):
         attach_obj = self.env['fatturapa.attachment.out']
         vat = attach_obj.get_file_vat()
+
+        attach_str = fatturapa.toxml(
+            encoding="UTF-8",
+            bds=fatturapaBDS,
+        )
+        fatturapaBDS.reset()
         attach_vals = {
             'name': '%s_%s.xml' % (vat, number),
             'datas_fname': '%s_%s.xml' % (vat, number),
-            'datas': base64.encodestring(fatturapa.toxml("UTF-8")),
+            'datas': base64.encodestring(attach_str),
         }
         return attach_obj.create(attach_vals)
 

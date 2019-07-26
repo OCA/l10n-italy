@@ -1,19 +1,28 @@
 # flake8: noqa
 # PyXB bindings for NM:f1c343a882e7a65fb879f4ee813309f8231f28c8
-# Generated 2019-05-07 16:38:46.865830 by PyXB version 1.2.6 using Python 2.7.16.final.0
+# Generated 2019-07-11 07:37:21.447467 by PyXB version 1.2.6 using Python 3.6.7.final.0
 # Namespace http://www.w3.org/2000/09/xmldsig# [xmlns:ds]
 
-
-import pyxb
-import pyxb.binding
-import pyxb.binding.saxer
+from __future__ import unicode_literals
+import logging
 import io
-import pyxb.utils.utility
-import pyxb.utils.domutils
-import sys
-import pyxb.utils.six as _six
+
+_logger = logging.getLogger(__name__)
+
+try:
+    import pyxb
+    import pyxb.binding
+    import pyxb.binding.saxer
+    import pyxb.utils.utility
+    import pyxb.utils.domutils
+    import pyxb.utils.six as _six
+    # Import bindings for namespaces imported into schema
+    import pyxb.binding.datatypes
+except (ImportError) as err:
+    _logger.debug(err)
+
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:d2084e5a-70d5-11e9-8dc4-2477035a237c')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:ead586f0-a39d-11e9-8600-d43b049899a0')
 
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.6'
@@ -24,9 +33,6 @@ if pyxb.__version__ != _PyXBVersion:
 # A holder for module-level binding classes so we can access them from
 # inside class definitions where property names may conflict.
 _module_typeBindings = pyxb.utils.utility.Object()
-
-# Import bindings for namespaces imported into schema
-import pyxb.binding.datatypes
 
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI('http://www.w3.org/2000/09/xmldsig#', create_if_missing=True)
