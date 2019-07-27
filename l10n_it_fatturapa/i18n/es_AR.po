@@ -152,7 +152,7 @@ msgid "Bank Name"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:90
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:87
 #, python-format
 msgid "Base64 encoded file %s."
 msgstr ""
@@ -220,7 +220,7 @@ msgid "Contract"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:80
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:77
 #, python-format
 msgid "Corrupted attachment %s."
 msgstr ""
@@ -598,7 +598,7 @@ msgid "Intermediary"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:114
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:111
 #, python-format
 msgid "Invalid xml %s."
 msgstr ""
