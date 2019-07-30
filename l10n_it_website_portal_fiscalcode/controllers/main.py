@@ -14,9 +14,22 @@ class WebsitePortalFiscalCode(CustomerPortal):
         error, error_message = \
             super(WebsitePortalFiscalCode, self).details_form_validate(data)
         # Check fiscalcode
+        partner = request.env.user.partner_id
+        # company_type does not come from page form
+        company_type = partner.company_type
+        company_name = False
+        if 'company_name' in data:
+            company_name = data.get('company_name')
+        else:
+            # when company_name is not posted (readonly)
+            if partner.company_name:
+                company_name = partner.company_name
+            elif partner.company_type == 'company':
+                company_name = partner.name
         dummy_partner = request.env['res.partner'].new({
             'fiscalcode': data.get('fiscalcode'),
-            'company_name': data.get('company_name'),
+            'company_name': company_name,
+            'company_type': company_type,
         })
         if not dummy_partner.check_fiscalcode():
             error['fiscalcode'] = 'error'
