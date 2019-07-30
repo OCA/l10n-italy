@@ -55,6 +55,8 @@ class AccountInvoice(models.Model):
                     'EsigibilitaIVA': payability,
                     'Detraibile': 0.0,
                 }
+                if fattura.type in ('in_invoice', 'in_refund'):
+                    tax_grouped[main_tax.id]['Detraibile'] = 100.0
             else:
                 tax_grouped[main_tax.id]['Imposta'] += imposta
             if tax.account_id:
