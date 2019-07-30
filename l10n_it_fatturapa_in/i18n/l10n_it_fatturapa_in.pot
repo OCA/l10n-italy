@@ -14,6 +14,30 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_account_config_settings_arrotondamenti_attivi_account_id
+#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_company_arrotondamenti_attivi_account_id
+msgid "Account used for active rounding amount on bills."
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_account_config_settings_arrotondamenti_passivi_account_id
+#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_company_arrotondamenti_passivi_account_id
+msgid "Account used for passive rounding amount on bills."
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1052
+#, python-format
+msgid "Active Rounding"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_config_settings_arrotondamenti_attivi_account_id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_company_arrotondamenti_attivi_account_id
+msgid "Active Rounding Account"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_admin_ref
 msgid "Administration Reference"
 msgstr ""
@@ -90,7 +114,7 @@ msgid "Bill number {bill_nbr} of {bill_date}.\n"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1237
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1274
 #, python-format
 msgid "Bill total %s is different from document total amount %s"
 msgstr ""
@@ -149,7 +173,7 @@ msgid "Company Name field contains '%s'. Your System contains '%s'"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1252
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1289
 #, python-format
 msgid "Computed amount untaxed %s is different from summary data %s"
 msgstr ""
@@ -371,7 +395,7 @@ msgid "File Size"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1275
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1312
 #, python-format
 msgid "File is linked to bills yet."
 msgstr ""
@@ -610,7 +634,7 @@ msgid "No tax with percentage %s and nature %s found. Please configure this tax.
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1091
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1128
 #, python-format
 msgid "No withholding tax found with document payment reason %s and rate %s."
 msgstr ""
@@ -632,19 +656,31 @@ msgid "Partner"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1043
+#, python-format
+msgid "Passive Rounding"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_config_settings_arrotondamenti_passivi_account_id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_company_arrotondamenti_passivi_account_id
+msgid "Passive Rounding Account"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:605
 #, python-format
 msgid "Payment method %s is not defined in your system."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1058
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1095
 #, python-format
 msgid "Payment method code %s is incorrect."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1053
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1090
 #, python-format
 msgid "Payment method code not found in document."
 msgstr ""
@@ -757,6 +793,12 @@ msgid "Resource Name"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_config_settings_arrotondamenti_tax_id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_company_arrotondamenti_tax_id
+msgid "Rounding Tax"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_service_type
 msgid "Sale Provision Type"
 msgstr ""
@@ -810,6 +852,12 @@ msgid "Tax kind %s not found"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_account_config_settings_arrotondamenti_tax_id
+#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_company_arrotondamenti_tax_id
+msgid "Tax used for rounding amount on bills."
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/models/account.py:85
 #, python-format
 msgid "Taxed amount ({bill_amount_tax}) does not match with e-bill taxed amount ({e_bill_amount_tax})"
@@ -821,7 +869,7 @@ msgid "Text Reference"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1079
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1116
 #, python-format
 msgid "The bill contains withholding tax with payment reason %s, but such a tax is not found in your system. Please set it."
 msgstr ""
@@ -937,7 +985,7 @@ msgid "Welfare Fund Details"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1126
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1163
 #, python-format
 msgid "Welfare Fund data %s has withholding tax but no withholding tax was found in the system."
 msgstr ""
@@ -949,7 +997,7 @@ msgid "Welfare Fund is not defined."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1118
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1155
 #, python-format
 msgid "Welfare Fund: %s"
 msgstr ""
