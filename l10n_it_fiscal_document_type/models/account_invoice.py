@@ -34,9 +34,9 @@ class AccountInvoice(models.Model):
 
         # Partner
         if partner:
-            if type in ('out_invoice', 'out_refund'):
+            if type in ('out_invoice'):
                 doc_id = partner.out_fiscal_document_type.id or False
-            elif type in ('in_invoice', 'in_refund'):
+            elif type in ('in_invoice'):
                 doc_id = partner.in_fiscal_document_type.id or False
         # Fiscal Position
         if not doc_id and fiscal_position:
