@@ -465,22 +465,15 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(len(invoices), 2)
 
     def test_24_xml_import(self):
-        arrotondamenti_attivi_account_id = self.env['account.account'].\
-            search([('user_type_id', '=', self.env.ref(
-                'account.data_account_type_other_income').id)], limit=1).id
-        arrotondamenti_passivi_account_id = self.env['account.account'].\
-            search([('user_type_id', '=', self.env.ref(
-                'account.data_account_type_direct_costs').id)], limit=1).id
-        arrotondamenti_tax_id = self.env['account.tax'].search(
-            [('type_tax_use', '=', 'purchase'),
-             ('amount', '=', 0.0)], order='sequence', limit=1)
-        self.env.user.company_id.arrotondamenti_attivi_account_id = (
-            arrotondamenti_attivi_account_id)
-        self.env.user.company_id.arrotondamenti_passivi_account_id = (
-            arrotondamenti_passivi_account_id)
-        self.env.user.company_id.arrotondamenti_tax_id = (
-            arrotondamenti_tax_id)
         res = self.run_wizard('test24', 'IT05979361218_011.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertAlmostEqual(invoice.e_invoice_amount_untaxed, 34.32)
+        self.assertEqual(invoice.e_invoice_amount_tax, 0.0)
+        self.assertEqual(invoice.e_invoice_amount_total, 34.32)
+
+    def test_25_xml_import(self):
+        res = self.run_wizard('test25', 'IT05979361218_013.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertAlmostEqual(invoice.e_invoice_amount_untaxed, 34.32)
