@@ -1040,13 +1040,13 @@ msgid "Permanent establishment address"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/account_invoice.py:97
+#: code:addons/l10n_it_invoices_data_communication/models/account_invoice.py:99
 #, python-format
 msgid "Please specify VAT payability for tax: {} - Invoice {}"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/account_invoice.py:92
+#: code:addons/l10n_it_invoices_data_communication/models/account_invoice.py:94
 #, python-format
 msgid "Please specify exemption kind for tax: {} - Invoice {}"
 msgstr ""
