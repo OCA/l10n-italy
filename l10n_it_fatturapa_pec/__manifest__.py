@@ -6,7 +6,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Italian Localization - Fattura elettronica - Supporto PEC',
+    'name': 'ITA - Fattura elettronica - Supporto PEC',
     'version': '12.0.1.3.4',
     'category': 'Localization/Italy',
     'summary': 'Invio fatture elettroniche tramite PEC',
