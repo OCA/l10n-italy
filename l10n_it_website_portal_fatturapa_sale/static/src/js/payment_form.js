@@ -6,6 +6,7 @@ odoo.define('l10n_it_website_portal_fatturapa_sale.payment_form', function (requ
 
     PaymentForm.include({
         payEvent: function (ev) {
+            ev.preventDefault();
             var partner_id = this.options.partnerId;
             var super_pay_event = this._super;
             var self = this;
