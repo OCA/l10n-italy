@@ -183,6 +183,12 @@ class MailThread(models.AbstractModel):
         fetchmail_server_id = self.env.context.get('fetchmail_server_id')
         company_id = False
         e_invoice_user_id = False
+        # The incoming supplier e-bill doesn't carry which company
+        # we must use to create the given fatturapa.attachment.in record,
+        # so we expect fetchmail_server_id coming in the context
+        # see fetchmail.py.
+        # With this information we search which SDI is actually using it,
+        # finally the SDI contain both company and user we would need to use
         if fetchmail_server_id:
             sdi_chan = self.env['sdi.channel'].search([
                 ('fetch_pec_server_id', '=', fetchmail_server_id)], limit=1)
