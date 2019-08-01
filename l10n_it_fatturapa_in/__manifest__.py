@@ -23,9 +23,10 @@
         'views/account_view.xml',
         'views/partner_view.xml',
         'wizard/wizard_import_fatturapa_view.xml',
-        'security/ir.model.access.csv',
         'wizard/link_to_existing_invoice.xml',
         'views/company_view.xml',
+        'security/ir.model.access.csv',
+        'security/rules.xml',
     ],
     "installable": True
 }
