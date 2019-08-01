@@ -478,6 +478,22 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoices = self.invoice_model.browse(invoice_ids)
         self.assertEqual(len(invoices), 2)
 
+    def test_24_xml_import(self):
+        res = self.run_wizard('test24', 'IT05979361218_012.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertAlmostEqual(invoice.e_invoice_amount_untaxed, 34.32)
+        self.assertEqual(invoice.e_invoice_amount_tax, 0.0)
+        self.assertEqual(invoice.e_invoice_amount_total, 34.32)
+
+    def test_25_xml_import(self):
+        res = self.run_wizard('test25', 'IT05979361218_013.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertAlmostEqual(invoice.e_invoice_amount_untaxed, 34.32)
+        self.assertEqual(invoice.e_invoice_amount_tax, 0.0)
+        self.assertEqual(invoice.e_invoice_amount_total, 34.32)
+
     def test_30_xml_import(self):
         self.env.user.company_id.cassa_previdenziale_product_id = (
             self.service.id)
