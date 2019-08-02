@@ -4,7 +4,7 @@
 {
     "name": "Italian Localization - Fattura elettronica - Portale",
     "summary": "Add fatturapa fields and checks in frontend user's details",
-    "version": "12.0.1.1.0",
+    "version": "12.0.1.2.0",
     "author": "Odoo Community Association (OCA)",
     "category": "Localization/Italy",
     "website": "https://github.com/OCA/l10n-italy/tree/"
@@ -12,7 +12,8 @@
     "license": "AGPL-3",
     "depends": [
         "l10n_it_fatturapa",
-        "l10n_it_website_portal_fiscalcode"
+        "l10n_it_website_portal_fiscalcode",
+        "l10n_it_website_portal_ipa",
     ],
     "data": [
         "views/l10n_it_website_portal_fatturapa_templates.xml"

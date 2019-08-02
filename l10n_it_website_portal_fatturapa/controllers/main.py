@@ -10,7 +10,8 @@ from odoo.tools.translate import _
 FATTURAPA_PORTAL_FIELDS = \
     ['codice_destinatario', 'firstname', 'lastname',
      'pec_destinatario', 'country_id', 'fiscalcode', 'zipcode', 'vat',
-     'electronic_invoice_subjected', 'street', 'city']
+     'electronic_invoice_subjected', 'street', 'city',
+     'is_pa', 'ipa_code', 'eori_code']
 WebsitePortalFiscalCode.OPTIONAL_BILLING_FIELDS.extend(FATTURAPA_PORTAL_FIELDS)
 
 
