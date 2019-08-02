@@ -48,8 +48,8 @@
                     </label>
                 </div>
             </div>
-            <div class="row">
-                <div t-attf-class="form-group #{error.get('codice_destinatario') and 'o_has_error' or ''} col-xl-6 div_codice_destinatario">
+            <div class="row div_electronic_invoice_subjected_fields">
+                <div t-attf-class="form-group #{error.get('codice_destinatario') and 'o_has_error' or ''} col-xl-6">
                     <label class="col-form-label" for="codice_destinatario">
                         Addressee code
                     </label>
@@ -57,13 +57,21 @@
                            t-attf-class="form-control #{error.get('codice_destinatario') and 'is-invalid' or ''}"
                            t-att-value="codice_destinatario or partner.codice_destinatario"/>
                 </div>
-                <div t-attf-class="form-group #{error.get('pec_destinatario') and 'o_has_error' or ''} col-xl-6 div_pec_destinatario">
+                <div t-attf-class="form-group #{error.get('pec_destinatario') and 'o_has_error' or ''} col-xl-6">
                     <label class="col-form-label" for="pec_destinatario">
                         Or PEC address for Electronic invoicing
                     </label>
                     <input type="text" name="pec_destinatario"
                            t-attf-class="form-control #{error.get('pec_destinatario') and 'is-invalid' or ''}"
                            t-att-value="pec_destinatario or partner.pec_destinatario"/>
+                </div>
+                <div t-attf-class="form-group #{error.get('eori_code') and 'o_has_error' or ''} col-xl-6">
+                    <label class="col-form-label label-optional" for="eori_code">
+                        EORI code
+                    </label>
+                    <input type="text" name="eori_code"
+                           t-attf-class="form-control #{error.get('eori_code') and 'is-invalid' or ''}"
+                           t-att-value="eori_code or partner.eori_code"/>
                 </div>
             </div>
         </xpath>
