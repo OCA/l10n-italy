@@ -35,9 +35,9 @@ addon | version | summary
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 10.0.1.0.0 | Esigibilità IVA
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 10.0.2.7.3 | Fatture elettroniche
 [l10n_it_fatturapa_export_zip](l10n_it_fatturapa_export_zip/) | 10.0.1.0.0 | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche
-[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 10.0.1.9.0 | Ricezione fatture elettroniche
+[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 10.0.1.10.0 | Ricezione fatture elettroniche
 [l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 10.0.1.0.0 | Modulo ponte tra ricezione fatture elettroniche e acquisti
-[l10n_it_fatturapa_in_rc](l10n_it_fatturapa_in_rc/) | 10.0.1.0.0 | Modulo di collegamento tra e-fattura in acquisto e reverse charge
+[l10n_it_fatturapa_in_rc](l10n_it_fatturapa_in_rc/) | 10.0.1.1.0 | Modulo di collegamento tra e-fattura in acquisto e reverse charge
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 10.0.1.4.5 | Emissione fatture elettroniche
 [l10n_it_fatturapa_out_ddt](l10n_it_fatturapa_out_ddt/) | 10.0.1.0.4 | Modulo ponte tra emissione fatture elettroniche e DDT
 [l10n_it_fatturapa_out_stamp](l10n_it_fatturapa_out_stamp/) | 10.0.1.0.2 | Modulo ponte tra emissione fatture elettroniche e imposta di bollo
@@ -54,7 +54,7 @@ addon | version | summary
 [l10n_it_location_nuts](l10n_it_location_nuts/) | 10.0.1.0.0 | NUTS specific options for Italy
 [l10n_it_pec](l10n_it_pec/) | 10.0.1.0.0 | Pec Mail
 [l10n_it_rea](l10n_it_rea/) | 10.0.1.1.2 | Gestisce i campi del Repertorio Economico Amministrativo
-[l10n_it_reverse_charge](l10n_it_reverse_charge/) | 10.0.1.1.8 | Reverse Charge for Italy
+[l10n_it_reverse_charge](l10n_it_reverse_charge/) | 10.0.1.2.0 | Reverse Charge for Italy
 [l10n_it_riba_commission](l10n_it_riba_commission/) | 10.0.1.0.1 | Ricevute bancarie & commissioni
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 10.0.1.3.0 | Ricevute Bancarie
 [l10n_it_sdi_channel](l10n_it_sdi_channel/) | 10.0.1.2.0 | Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI
