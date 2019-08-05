@@ -477,3 +477,16 @@ class AccountInvoice(models.Model):
                     inv.rc_self_purchase_invoice_id.id)
                 self_purchase_invoice.action_invoice_draft()
         return True
+
+    def get_tax_amount_added_for_rc(self):
+        res = 0
+        for line in self.invoice_line_ids:
+            if line.rc:
+                price_unit = line.price_unit * (
+                    1 - (line.discount or 0.0) / 100.0)
+                taxes = line.invoice_line_tax_ids.compute_all(
+                    price_unit, self.currency_id, line.quantity,
+                    line.product_id, self.partner_id)['taxes']
+                for tax in taxes:
+                    res += tax['amount']
+        return res
