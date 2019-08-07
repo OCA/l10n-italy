@@ -6,8 +6,8 @@ from odoo import models, fields, api
 class FiscalDocumentType(models.Model):
     _name = 'fiscal.document.type'
 
-    code = fields.Char(string='Code', size=5)
-    name = fields.Char(string='Name', size=100)
+    code = fields.Char(string='Code', size=5, required=True)
+    name = fields.Char(string='Name', size=100, required=True)
     out_invoice = fields.Boolean(string='Customer Invoice')
     in_invoice = fields.Boolean(string='Vendor Bill')
     out_refund = fields.Boolean(string='Customer Credit Note')
