@@ -41,7 +41,8 @@ class AccountConfigSettings(models.TransientModel):
     fatturapa_fiscal_position_id = fields.Many2one(
         related='company_id.fatturapa_fiscal_position_id',
         string="Fiscal Position",
-        help='Fiscal position used by electronic invoice'
+        help='Fiscal position used by electronic invoice',
+        readonly=False,
         )
     fatturapa_art73 = fields.Boolean(
         related='company_id.fatturapa_art73',
