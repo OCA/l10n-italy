@@ -183,9 +183,15 @@ class AccountInvoice(models.Model):
     def compute_xml_amount_untaxed(self, DatiRiepilogo):
         amount_untaxed = 0.0
         for Riepilogo in DatiRiepilogo:
-            rounding = float(Riepilogo.Arrotondamento or 0.0)
-            amount_untaxed += float(Riepilogo.ImponibileImporto) + rounding
+            amount_untaxed += float(Riepilogo.ImponibileImporto)
         return amount_untaxed
+
+    @api.model
+    def compute_xml_rounding_total(self, DatiRiepilogo):
+        amount_rounding = 0.0
+        for Riepilogo in DatiRiepilogo:
+            amount_rounding += float(Riepilogo.Arrotondamento or 0.0)
+        return amount_rounding
 
     @api.model
     def compute_xml_amount_tax(self, DatiRiepilogo):
@@ -200,9 +206,11 @@ class AccountInvoice(models.Model):
             fattura.DatiBeniServizi.DatiRiepilogo)
         amount_tax = self.compute_xml_amount_tax(
             fattura.DatiBeniServizi.DatiRiepilogo)
+        amount_rounding = self.compute_xml_rounding_total(
+            fattura.DatiBeniServizi.DatiRiepilogo)
         amount_total = float(
             fattura.DatiGenerali.DatiGeneraliDocumento.
-            ImportoTotaleDocumento or 0.0)
+            ImportoTotaleDocumento or 0.0) + amount_rounding
         reference = fattura.DatiGenerali.DatiGeneraliDocumento.Numero
         date_invoice = fattura.DatiGenerali.DatiGeneraliDocumento.Data
 
