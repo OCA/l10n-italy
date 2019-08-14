@@ -12,6 +12,10 @@ class FatturaPAAttachmentIn(models.Model):
 
     ir_attachment_id = fields.Many2one(
         'ir.attachment', 'Attachment', required=True, ondelete="cascade")
+    att_name = fields.Char(
+        string="E-invoice file name",
+        related='ir_attachment_id.name',
+        store=True)
     in_invoice_ids = fields.One2many(
         'account.invoice', 'fatturapa_attachment_in_id',
         string="In Bills", readonly=True)
@@ -33,6 +37,11 @@ class FatturaPAAttachmentIn(models.Model):
 
     e_invoice_validation_message = fields.Text(
         compute='_compute_e_invoice_validation_error')
+
+    _sql_constraints = [(
+        'ftpa_attachment_in_name_uniq',
+        'unique(att_name)',
+        'The name of the e-invoice file must be unique!')]
 
     @api.depends('in_invoice_ids.e_invoice_validation_error')
     def _compute_e_invoice_validation_error(self):
