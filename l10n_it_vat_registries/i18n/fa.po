@@ -217,14 +217,7 @@ msgid "Name"
 msgstr "نام"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:61
-#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:74
-#, python-format
-msgid "No documents found in the current selection"
-msgstr ""
-
-#. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:70
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:66
 #, python-format
 msgid ""
 "No journals found in the current selection.\n"

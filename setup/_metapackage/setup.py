@@ -29,6 +29,7 @@ setuptools.setup(
         'odoo10-addon-l10n_it_fatturapa_export_zip',
         'odoo10-addon-l10n_it_fatturapa_in',
         'odoo10-addon-l10n_it_fatturapa_in_purchase',
+        'odoo10-addon-l10n_it_fatturapa_in_rc',
         'odoo10-addon-l10n_it_fatturapa_out',
         'odoo10-addon-l10n_it_fatturapa_out_ddt',
         'odoo10-addon-l10n_it_fatturapa_out_stamp',

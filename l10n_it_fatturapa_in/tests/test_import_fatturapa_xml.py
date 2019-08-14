@@ -1,83 +1,13 @@
 # -*- coding: utf-8 -*-
 
-import base64
-import tempfile
-from odoo.tests.common import SingleTransactionCase
-from odoo.modules import get_module_resource
+from .fatturapa_common import FatturapaCommon
 from odoo.exceptions import UserError
 
 
-class TestFatturaPAXMLValidation(SingleTransactionCase):
-
-    def getFile(self, filename):
-        path = get_module_resource(
-            'l10n_it_fatturapa_in', 'tests', 'data', filename)
-        with open(path) as test_data:
-            with tempfile.TemporaryFile() as out:
-                base64.encode(test_data, out)
-                out.seek(0)
-                return path, out.read()
-
-    def create_wt(self):
-        return self.env['withholding.tax'].create({
-            'name': '1040',
-            'code': '1040',
-            'account_receivable_id': self.payable_account_id,
-            'account_payable_id': self.payable_account_id,
-            'payment_term': self.env.ref('account.account_payment_term').id,
-            'rate_ids': [(0, 0, {'tax': 20.0})],
-            'causale_pagamento_id':
-                self.env.ref('l10n_it_causali_pagamento.a').id,
-        })
+class TestFatturaPAXMLValidation(FatturapaCommon):
 
     def setUp(self):
         super(TestFatturaPAXMLValidation, self).setUp()
-        self.wizard_model = self.env['wizard.import.fatturapa']
-        self.wizard_link_model = self.env['wizard.link.to.invoice']
-        self.data_model = self.env['ir.model.data']
-        self.attach_model = self.env['fatturapa.attachment.in']
-        self.invoice_model = self.env['account.invoice']
-        self.payable_account_id = self.env['account.account'].search([
-            ('user_type_id', '=', self.env.ref(
-                'account.data_account_type_payable').id)
-        ], limit=1).id
-        self.headphones = self.env.ref(
-            'product.product_product_7_product_template')
-        self.imac = self.env.ref(
-            'product.product_product_8_product_template')
-        self.service = self.env.ref('product.service_delivery')
-
-    def run_wizard(self, name, file_name, datas_fname=None,
-                   mode='import', wiz_values=None):
-        if datas_fname is None:
-            datas_fname = file_name
-        attach_id = self.attach_model.create(
-            {
-                'name': name,
-                'datas': self.getFile(file_name)[1],
-                'datas_fname': datas_fname
-            }).id
-        if mode == 'import':
-            wizard = self.wizard_model.with_context(
-                active_ids=[attach_id]).create(wiz_values or {})
-            return wizard.importFatturaPA()
-        if mode == 'link':
-            wizard = self.wizard_link_model.with_context(
-                active_ids=[attach_id]).create(wiz_values or {})
-            return wizard.link()
-
-    def run_wizard_multi(self, file_name_list):
-        active_ids = []
-        for file_name in file_name_list:
-            active_ids.append(self.attach_model.create(
-                {
-                    'name': file_name,
-                    'datas': self.getFile(file_name)[1],
-                    'datas_fname': file_name
-                }).id)
-        wizard = self.wizard_model.with_context(
-            active_ids=active_ids).create({})
-        return wizard.importFatturaPA()
 
     def test_00_xml_import(self):
         self.env.user.company_id.cassa_previdenziale_product_id = (
@@ -517,6 +447,29 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         invoice_ids = res.get('domain')[0][2]
         invoices = self.invoice_model.browse(invoice_ids)
         self.assertEqual(len(invoices), 2)
+
+    def test_24_xml_import(self):
+        arrotondamenti_attivi_account_id = self.env['account.account'].\
+            search([('user_type_id', '=', self.env.ref(
+                'account.data_account_type_other_income').id)], limit=1).id
+        arrotondamenti_passivi_account_id = self.env['account.account'].\
+            search([('user_type_id', '=', self.env.ref(
+                'account.data_account_type_direct_costs').id)], limit=1).id
+        arrotondamenti_tax_id = self.env['account.tax'].search(
+            [('type_tax_use', '=', 'purchase'),
+             ('amount', '=', 0.0)], order='sequence', limit=1)
+        self.env.user.company_id.arrotondamenti_attivi_account_id = (
+            arrotondamenti_attivi_account_id)
+        self.env.user.company_id.arrotondamenti_passivi_account_id = (
+            arrotondamenti_passivi_account_id)
+        self.env.user.company_id.arrotondamenti_tax_id = (
+            arrotondamenti_tax_id)
+        res = self.run_wizard('test24', 'IT05979361218_011.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertAlmostEqual(invoice.e_invoice_amount_untaxed, 34.32)
+        self.assertEqual(invoice.e_invoice_amount_tax, 0.0)
+        self.assertEqual(invoice.e_invoice_amount_total, 34.32)
 
     def test_01_xml_link(self):
         """

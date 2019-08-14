@@ -11,7 +11,7 @@
 
 {
     'name': 'DDT',
-    'version': '10.0.1.8.0',
+    'version': '10.0.1.8.1',
     'category': 'Localization/Italy',
     'summary': 'Documento di Trasporto',
     'author': 'Davide Corio, Odoo Community Association (OCA),'
