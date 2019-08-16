@@ -33,5 +33,14 @@
                 </field>
             </field>
         </record>
+        <record id="welfare_fund_type_tree" model="ir.ui.view">
+            <field name="name">welfare.fund.type.tree</field>
+            <field name="model">welfare.fund.type</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="display_name" />
+                </tree>
+            </field>
+        </record>
     </data>
 </openerp>
