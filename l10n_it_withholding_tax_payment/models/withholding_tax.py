@@ -144,6 +144,15 @@ class WithholdingTaxMovePayment(models.Model):
                        wt_move.partner_id.name,
                        wt_move.date,
                        str(wt_move.amount)))
+            if wt_move.type == 'out':
+                raise ValidationError(
+                    _("Remove Wt move {} {} {} from selection! \
+                    only IN type can be included".format(
+                        wt_move.partner_id.name,
+                        wt_move.date,
+                        wt_move.amount,
+                        ))
+                    )
         # Create Move payment
         wt_payment = False
         if wt_moves:
