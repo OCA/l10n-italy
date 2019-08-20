@@ -177,8 +177,12 @@ class WizardImportFatturapa(models.TransientModel):
     def getCedPrest(self, cedPrest):
         partner_model = self.env['res.partner']
         partner_id = self.getPartnerBase(cedPrest.DatiAnagrafici)
-        fiscalPosModel = self.env['fatturapa.fiscal_position']
+        no_contact_update = False
         if partner_id:
+            no_contact_update = partner_model.browse(partner_id).\
+                electronic_invoice_no_contact_update
+        fiscalPosModel = self.env['fatturapa.fiscal_position']
+        if partner_id and not no_contact_update:
             partner_company_id = partner_model.browse(partner_id).company_id.id
             vals = {
                 'street': cedPrest.Sede.Indirizzo,
@@ -278,7 +282,11 @@ class WizardImportFatturapa(models.TransientModel):
     def getCarrirerPartner(self, Carrier):
         partner_model = self.env['res.partner']
         partner_id = self.getPartnerBase(Carrier.DatiAnagraficiVettore)
+        no_contact_update = False
         if partner_id:
+            no_contact_update = partner_model.browse(partner_id).\
+                electronic_invoice_no_contact_update
+        if partner_id and not no_contact_update:
             vals = {
                 'license_number':
                 Carrier.DatiAnagraficiVettore.NumeroLicenzaGuida or '',
