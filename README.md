@@ -59,7 +59,7 @@ addon | version | summary
 [l10n_it_reverse_charge](l10n_it_reverse_charge/) | 8.0.2.0.0 | Reverse Charge for Italy
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 8.0.1.3.1 | Ricevute Bancarie
 [l10n_it_sdi_channel](l10n_it_sdi_channel/) | 8.0.1.1.0 | Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI
-[l10n_it_sepa_bonifici](l10n_it_sepa_bonifici/) | 8.0.1.0.0 | Banking SEPA Italian Credit Transfer CBI
+[l10n_it_sepa_bonifici](l10n_it_sepa_bonifici/) | 8.0.1.0.1 | Banking SEPA Italian Credit Transfer CBI
 [l10n_it_split_payment](l10n_it_split_payment/) | 8.0.1.0.0 | Split Payment
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 8.0.2.0.0 | Italian Localization - VAT Registries
 [l10n_it_withholding_tax](l10n_it_withholding_tax/) | 8.0.3.0.0 | Italian Withholding Tax
