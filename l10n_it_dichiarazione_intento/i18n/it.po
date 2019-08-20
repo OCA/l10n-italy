@@ -332,3 +332,19 @@ msgstr "Limite annuale per le dichiarazioni"
 #: model:ir.model,name:l10n_it_dichiarazione_intento.model_dichiarazione_intento_line
 msgid "dichiarazione.intento.line"
 msgstr "dichiarazione.intento.line"
+
+#. module: l10n_it_dichiarazione_intento
+#: code:addons/l10n_it_dichiarazione_intento/models/account_invoice.py:204
+#, python-format
+msgid "Your reference"
+msgstr "Vostro riferimento"
+
+#. module: l10n_it_dichiarazione_intento
+#: code:addons/l10n_it_dichiarazione_intento/models/account_invoice.py:208
+#, python-format
+msgid "{} \n"
+"Your reference {} of the {}\n"
+"Our reference {} of the {}"
+msgstr "{} \n"
+"Vostro riferimento {} del {}\n"
+"Nostro riferimento {} del {}"
