@@ -25,7 +25,7 @@ addon | version | summary
 [account_invoice_entry_date](account_invoice_entry_date/) | 8.0.0.1.0 | Account Invoice entry Date
 [account_invoice_sequential_dates](account_invoice_sequential_dates/) | 8.0.1.0.0 | Check invoice date consistency
 [account_vat_period_end_statement](account_vat_period_end_statement/) | 8.0.3.0.0 | Period End VAT Statement
-[l10n_it_abicab](l10n_it_abicab/) | 8.0.1.0.0 | Base Bank ABI/CAB codes
+[l10n_it_abicab](l10n_it_abicab/) | 8.0.1.1.0 | Base Bank ABI/CAB codes
 [l10n_it_account](l10n_it_account/) | 8.0.1.0.0 | Italian Localization - Account
 [l10n_it_account_stamp](l10n_it_account_stamp/) | 8.0.1.0.0 | Tax stamp automatic management
 [l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 8.0.1.0.0 | Italian Localisation - Natura delle aliquote IVA
@@ -49,7 +49,7 @@ addon | version | summary
 [l10n_it_fatturapa_out_triple_discount](l10n_it_fatturapa_out_triple_discount/) | 8.0.1.0.0 | Modulo ponte tra emissione fatture elettroniche e sconto triplo
 [l10n_it_fatturapa_out_wt](l10n_it_fatturapa_out_wt/) | 8.0.1.0.0 | Modulo ponte tra emissione fatture elettroniche e ritenute.
 [l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 8.0.1.3.2 | Send electronic invoices via PEC
-[l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 8.0.1.1.0 | Italian Localization - Tipi di documento fiscale per dichiarativi
+[l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 8.0.1.1.1 | Italian Localization - Tipi di documento fiscale per dichiarativi
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 8.0.0.0.0 | Electronic invoices payment
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 8.0.0.1.1 | Italian Localisation - Fiscal Code
 [l10n_it_ipa](l10n_it_ipa/) | 8.0.2.0.0 | IPA Code (IndicePA)
@@ -59,7 +59,7 @@ addon | version | summary
 [l10n_it_reverse_charge](l10n_it_reverse_charge/) | 8.0.2.0.0 | Reverse Charge for Italy
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 8.0.1.3.1 | Ricevute Bancarie
 [l10n_it_sdi_channel](l10n_it_sdi_channel/) | 8.0.1.1.0 | Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI
-[l10n_it_sepa_bonifici](l10n_it_sepa_bonifici/) | 8.0.1.0.0 | Banking SEPA Italian Credit Transfer CBI
+[l10n_it_sepa_bonifici](l10n_it_sepa_bonifici/) | 8.0.1.0.1 | Banking SEPA Italian Credit Transfer CBI
 [l10n_it_split_payment](l10n_it_split_payment/) | 8.0.1.0.0 | Split Payment
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 8.0.2.0.0 | Italian Localization - VAT Registries
 [l10n_it_withholding_tax](l10n_it_withholding_tax/) | 8.0.3.0.0 | Italian Withholding Tax
