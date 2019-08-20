@@ -395,7 +395,7 @@ class AccountInvoice(models.Model):
     def _onchange_invoice_line_wt_ids(self):
         self.ensure_one()
         wt_taxes_grouped = self.get_wt_taxes_values()
-        wt_tax_lines = []
+        wt_tax_lines = [(5, 0)]
         for tax in wt_taxes_grouped.values():
             wt_tax_lines.append((0, 0, tax))
         self.withholding_tax_line_ids = wt_tax_lines
