@@ -165,6 +165,53 @@ class AccountInvoice(models.Model):
                 lines.unlink()
         return super(AccountInvoice, self).action_invoice_cancel()
 
+    def get_desc_dichiarazione_intento(self):
+        dichiarazione_model = self.env['dichiarazione.intento']
+        dichiarazioni = dichiarazione_model.with_context(
+            ignore_state=True if self.type.endswith('_refund')
+            else False).get_valid(type_d=self.type.split('_')[0],
+                                  partner_id=self.partner_id.id,
+                                  date=self.date_invoice)
+        dichiarazioni_desc = []
+        for d in dichiarazioni:
+                desc = {
+                    'tax':
+                    d.taxes_ids[0].name,
+                    'partner_document_number':
+                    d.partner_document_number,
+                    'partner_document_date':
+                    d.partner_document_date.strftime('%d/%m/%Y'),
+                    'number':
+                    d.number.split('/')[1]
+                    if d.number.find('/') != -1
+                    else d.number,
+                    'date':
+                        d.date.strftime('%d/%m/%Y')}
+                dichiarazioni_desc.append(desc)
+        return dichiarazioni_desc
+
+    @api.multi
+    def invoice_validate(self):
+        result = super().invoice_validate()
+        for invoice in self:
+            if invoice.fiscal_position_id.valid_for_dichiarazione_intento:
+                if not invoice.comment:
+                    invoice.comment = ''
+                if invoice.comment.find(_('Your reference')) == -1:
+                    dichiarazioni_desc = \
+                        invoice.get_desc_dichiarazione_intento()
+                    for d_desc in dichiarazioni_desc:
+                        desc = _('{} \nYour reference {} of the {}'
+                                 '\nOur reference {} of the {}').format(
+                            d_desc['tax'],
+                            d_desc['partner_document_number'],
+                            d_desc['partner_document_date'],
+                            d_desc['number'], d_desc['date'])
+                        if invoice.comment:
+                            desc = '\n{}'.format(desc)
+                        invoice.comment = '{}{}'.format(invoice.comment, desc)
+        return result
+
 
 class AccountInvoiceLine(models.Model):
 
