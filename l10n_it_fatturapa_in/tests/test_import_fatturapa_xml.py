@@ -9,6 +9,11 @@ class TestDuplicatedAttachment(FatturapaCommon):
 
     def test_duplicated_attachment(self):
         """Attachment name must be unique"""
+        # This test breaks the current transaction
+        # and every test executed after this in the
+        # same transaction would fail.
+        # Note that all the tests in TestFatturaPAXMLValidation
+        # are executed in the same transaction.
         self.run_wizard('test_duplicated', 'IT02780790107_11005.xml')
         with self.assertRaises(IntegrityError) as ie:
             self.run_wizard('test_duplicated', 'IT02780790107_11005.xml')
