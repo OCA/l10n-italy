@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -13,7 +12,7 @@ class AccountInvoice(models.Model):
     dichiarazione_intento_ids = fields.Many2many(
         'dichiarazione.intento', string='Dichiarazioni di Intento', copy=False)
     exclude_from_dichiarazione_intento = fields.Boolean(
-        "Escludi da dich. d'intento")
+        "Exclude from dichiarazione d'intento")
 
     @api.multi
     def _set_fiscal_position(self):
@@ -25,7 +24,7 @@ class AccountInvoice(models.Model):
                     invoice.date_invoice)
                 if dichiarazioni:
                     invoice.fiscal_position_id = \
-                        dichiarazioni.fiscal_position_id.id
+                        dichiarazioni[0].fiscal_position_id.id
 
     @api.onchange('partner_id', 'company_id')
     def _onchange_partner_id(self):
@@ -57,13 +56,23 @@ class AccountInvoice(models.Model):
                 continue
             dichiarazioni = dichiarazione_model.with_context(
                 ignore_state=True if invoice.type.endswith('_refund')
-                else False).get_valid(type=invoice.type.split('_')[0],
+                else False).get_valid(type_d=invoice.type.split('_')[0],
                                       partner_id=invoice.partner_id.id,
                                       date=invoice.date_invoice)
             # ----- If partner hasn't dichiarazioni, do nothing
             if not dichiarazioni:
-                continue
-            sign = 1 if invoice.type.endswith('_invoice') else -1
+                # ----  check se posizione fiscale dichiarazione di intento
+                # ---- e non ho dichiarazioni, segnalo errore
+                if self.fiscal_position_id.valid_for_dichiarazione_intento:
+                    raise UserError(
+                        'Dichiarazione di intento non trovata.\n'
+                        'Aggiungere una nuova dichiarazione di intento '
+                        'o cambiare \n'
+                        'posizione fiscale sul documento e verificare '
+                        'l\'IVA applicata.')
+                else:
+                    continue
+            sign = 1 if invoice.type.startswith('out_') else -1
             dichiarazioni_amounts = {}
             for tax_line in invoice.tax_line_ids:
                 amount = sign * tax_line.base
@@ -80,12 +89,11 @@ class AccountInvoice(models.Model):
                 raise UserError(_(
                     'Available plafond insufficent.\n'
                     'Excess value: %s' % (abs(dichiarazioni_residual))))
-
         # ----- Assign account move lines to dichiarazione for invoices
         for invoice in self:
             dichiarazioni = dichiarazione_model.with_context(
                 ignore_state=True if invoice.type.endswith('_refund')
-                else False).get_valid(type=invoice.type.split('_')[0],
+                else False).get_valid(type_d=invoice.type.split('_')[0],
                                       partner_id=invoice.partner_id.id,
                                       date=invoice.date_invoice)
             # ----- If partner hasn't dichiarazioni, do nothing
@@ -106,16 +114,15 @@ class AccountInvoice(models.Model):
                     grouped_lines.update({tax: []})
                 grouped_lines[tax].append(line)
             # ----- Create a detail in dichiarazione for every tax group
-            for tax, lines in grouped_lines.iteritems():
+            for tax, lines in grouped_lines.items():
                 for dichiarazione in dichiarazioni:
                     if tax not in dichiarazione.taxes_ids:
                         continue
-                    dich_lines = self.env['dichiarazione.intento.line'].search(
-                        [
+                    dich_lines = \
+                        self.env['dichiarazione.intento.line'].search([
                             ('dichiarazione_id', '=', dichiarazione.id),
                             ('invoice_id', '=', invoice.id),
-                            ('taxes_ids', 'in', [tax.id])
-                        ])
+                            ('taxes_ids', 'in', [tax.id])])
                     if dich_lines:
                         # Line already present
                         if invoice.exclude_from_dichiarazione_intento:
@@ -133,7 +140,7 @@ class AccountInvoice(models.Model):
                         'invoice_id': invoice.id,
                         'base_amount': invoice.amount_untaxed,
                         'currency_id': invoice.currency_id.id,
-                        })]
+                    })]
                     # ----- Link dichiarazione to invoice
                     invoice.dichiarazione_intento_ids = [
                         (4, dichiarazione.id)]

@@ -16,45 +16,43 @@
                                attrs="{'invisible': [('number', '=', '')],
                                        'readonly':[('state','!=','valid')]}"/>
                     </h1>
-                    <group col="4">
-                        <field name="type"
-                               attrs="{'readonly':[('state','!=','valid')]}"
-                               colspan="2"/>
-                        <field name="partner_id" options="{'no_create': True}"
-                               attrs="{'readonly':[('state','!=','valid')]}"
-                               colspan="2"/>
-                    </group>
-                    <group col="4">
-                        <field name="partner_document_number"
-                               attrs="{'readonly':[('state','!=','valid')]}"
-                               colspan="2"/>
-                        <field name="partner_document_date"
-                               attrs="{'readonly':[('state','!=','valid')]}"
-                               colspan="2"/>
-                    </group>
-                    <group col="5">
-                        <field name="date"
-                               attrs="{'readonly':[('state','!=','valid')]}"
-                               colspan="2"/>
-                        <label string="Valid Period" colspan="1"/>
-                        <field name="date_start" colspan="1" nolabel="1"
+                    <group>
+                        <group name="main">
+                            <field name="type"
                                attrs="{'readonly':[('state','!=','valid')]}"/>
-                        <field name="date_end" colspan="1" nolabel="1"
+                            <field name="partner_id" options="{'no_create': True}"
                                attrs="{'readonly':[('state','!=','valid')]}"/>
+                        </group>
+                        <group></group>
                     </group>
                     <group>
+                        <group name="main_ref" string="Refs">
+                            <field name="date"
+                               attrs="{'readonly':[('state','!=','valid')]}"/>
+                            <field name="partner_document_number"
+                               attrs="{'readonly':[('state','!=','valid')]}"/>
+                            <field name="partner_document_date"
+                               attrs="{'readonly':[('state','!=','valid')]}"/>
+                        </group>
+                        <group name="valid_period" string="Valid Period">
+                            <field name="date_start"
+                               attrs="{'readonly':[('state','!=','valid')]}"/>
+                            <field name="date_end"
+                               attrs="{'readonly':[('state','!=','valid')]}"/>
+                        </group>
+                    </group>
+
+                    <group name="accounting" string="Accounting">
                         <field name="fiscal_position_id" widget="selection"
                                attrs="{'readonly':[('state','!=','valid')]}"/>
-                    </group>
-                    <group>
                         <field name="taxes_ids" widget="many2many_tags"
                                attrs="{'readonly':[('state','!=','valid')]}"/>
                     </group>
+
                     <div>
-                        <label for="limit_amount"
-                                   class="oe_inline"/>
+                        <label for="limit_amount" class="oe_inline"/>
                         <field name="used_amount" class="oe_inline" nolabel="1"/>
-                        <label string="/" class="oe_inline"/>
+                        <label string=" / " for="used_amount" class="oe_inline"/>
                         <field name="limit_amount" nolabel="1"
                                attrs="{'readonly':[('state','!=','valid')]}"/>
                         <field name="currency_id"
@@ -93,8 +91,8 @@
                 <field name="date_end"/>
                 <filter name="state_valid" string="Valid" domain="[('state','=','valid')]"/>
                 <filter name="state_close" string="Close" domain="[('state','=','close')]"/>
-                <filter string="Partner" context="{'group_by':'partner_id'}"/>
-                <filter string="State" context="{'group_by':'state'}"/>
+                <filter name="partner" string="Partner" context="{'group_by':'partner_id'}"/>
+                <filter name="state" string="State" context="{'group_by':'state'}"/>
             </search>
         </field>
     </record>

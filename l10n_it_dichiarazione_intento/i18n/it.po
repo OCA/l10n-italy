@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0+e\n"
+"Project-Id-Version: Odoo Server 12.0+e-20190417\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-23 09:50+0000\n"
 "PO-Revision-Date: 2018-05-23 09:50+0000\n"
@@ -30,6 +30,14 @@ msgstr "Importo"
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_available_amount
 msgid "Available amount"
 msgstr "Importo disponibile"
+
+#. module: l10n_it_dichiarazione_intento
+#: code:addons/l10n_it_dichiarazione_intento/models/account_invoice.py:92
+#, python-format
+msgid "Available plafond insufficent.\n"
+"Excess value: %s"
+msgstr "Plafond insufficiente.\n"
+"Valore in eccesso: %s"
 
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_line_base_amount
@@ -155,6 +163,11 @@ msgid "Document Number"
 msgstr "Numero Documento"
 
 #. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_account_invoice__exclude_from_dichiarazione_intento
+msgid "Exclude from dichiarazione d'intento"
+msgstr "Escludi da dichiarazione d'intento"
+
+#. module: l10n_it_dichiarazione_intento
 #: model:ir.model,name:l10n_it_dichiarazione_intento.model_account_fiscal_position
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_fiscal_position_id
 msgid "Fiscal Position"
@@ -212,6 +225,14 @@ msgid "Limit amount"
 msgstr "Import Limite"
 
 #. module: l10n_it_dichiarazione_intento
+#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:137
+#, python-format
+msgid "Limit passed for dichiarazione %s.\n"
+"Excess value: %s%s"
+msgstr "Limite superato per dichiarazione %s.\n"
+"Valore in eccesso : %s%s"
+
+#. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_line_ids
 msgid "Lines"
 msgstr "Righe"
@@ -230,6 +251,11 @@ msgstr "Numero"
 #: model:ir.model.fields,help:l10n_it_dichiarazione_intento.field_dichiarazione_intento_partner_document_number
 msgid "Number of partner's document"
 msgstr "Numero del documento del partner"
+
+#. module: l10n_it_dichiarazione_intento
+#: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_invoice_form
+msgid "Recompute"
+msgstr "Ricalcola
 
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_partner_id

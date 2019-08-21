@@ -1,10 +1,8 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime
 from odoo import api, fields, models, _
-from odoo.tools import DEFAULT_SERVER_DATE_FORMAT as DATE_FORMAT
 from odoo.exceptions import UserError, ValidationError
 
 
@@ -169,17 +167,17 @@ class DichiarazioneIntento(models.Model):
                 state = 'close'
             # ----- If date is passed, close document
             elif record.date_end and \
-                    record.date_end < datetime.today().strftime(DATE_FORMAT):
+                    record.date_end < fields.Date.today():
                 state = 'close'
             else:
                 state = 'valid'
             record.state = state
 
-    def get_valid(self, type=None, partner_id=False, date=False):
-        if not partner_id or not type or not date:
+    def get_valid(self, type_d=None, partner_id=False, date=False):
+        if not partner_id or not type_d or not date:
             return False
         # ----- return valid documents for partner
-        domain = [('partner_id', '=', partner_id), ('type', '=', type),
+        domain = [('partner_id', '=', partner_id), ('type', '=', type_d),
                   ('date_start', '<=', date), ('date_end', '>=', date)]
         ignore_state = self.env.context.get('ignore_state', False)
         if not ignore_state:
@@ -191,6 +189,7 @@ class DichiarazioneIntento(models.Model):
 class DichiarazioneIntentoLine(models.Model):
 
     _name = 'dichiarazione.intento.line'
+    _description = 'Dichiarazione Intento line'
 
     dichiarazione_id = fields.Many2one('dichiarazione.intento',
                                        string='Dichiarazione')

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -11,7 +10,7 @@ from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 
 class TestDichiarazioneIntento(TransactionCase):
 
-    def _create_dichiarazione(self, partner, type):
+    def _create_dichiarazione(self, partner, type_d):
         return self.env['dichiarazione.intento'].sudo().create({
             'partner_id': partner.id,
             'partner_document_number': 'PartnerTest%s' % partner.id,
@@ -22,7 +21,7 @@ class TestDichiarazioneIntento(TransactionCase):
             'taxes_ids': [(6, 0, [self.tax1.id])],
             'limit_amount': 1000.00,
             'fiscal_position_id': self.fiscal_position.id,
-            'type': type,
+            'type': type_d,
             })
 
     def _create_invoice(self, partner, tax=False, date=False):
@@ -147,10 +146,10 @@ class TestDichiarazioneIntento(TransactionCase):
         dichiarazione_model = self.env['dichiarazione.intento'].sudo()
         self.assertFalse(dichiarazione_model.get_valid())
         records = dichiarazione_model.get_valid(
-            type='out', partner_id=self.partner1.id, date=self.today_date)
+            type_d='out', partner_id=self.partner1.id, date=self.today_date)
         self.assertEquals(len(records), 1)
         records = dichiarazione_model.get_valid(
-            type='out', partner_id=self.partner2.id, date=self.today_date)
+            type_d='out', partner_id=self.partner2.id, date=self.today_date)
         self.assertEquals(len(records), 2)
 
     def test_dichiarazione_state_change(self):
