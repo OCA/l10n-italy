@@ -40,7 +40,7 @@
             <div class="clearfix"/>
             <div class="col-lg-6 div_electronic_invoice_subjected">
                 <label class="control-label label-optional" for="electronic_invoice_subjected">
-                    I want to receive electronic invoices
+                    Enable receiving electronic invoice
                 </label>
                 <input type="checkbox" name="electronic_invoice_subjected" class="form-control"
                        style="width: auto; margin:0px"
