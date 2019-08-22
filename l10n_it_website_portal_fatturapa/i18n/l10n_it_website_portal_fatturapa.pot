@@ -19,14 +19,19 @@ msgid "Addressee code"
 msgstr ""
 
 #. module: l10n_it_website_portal_fatturapa
-#: code:addons/l10n_it_website_portal_fatturapa/controllers/main.py:69
+#: code:addons/l10n_it_website_portal_fatturapa/controllers/main.py:70
 #, python-format
 msgid "At least one of first name and last name is required"
 msgstr ""
 
 #. module: l10n_it_website_portal_fatturapa
 #: model_terms:ir.ui.view,arch_db:l10n_it_website_portal_fatturapa.fatturapa_details
-msgid "I request to receive electronic invoices"
+msgid "EORI code"
+msgstr ""
+
+#. module: l10n_it_website_portal_fatturapa
+#: model_terms:ir.ui.view,arch_db:l10n_it_website_portal_fatturapa.fatturapa_details
+msgid "Enable receiving electronic invoice"
 msgstr ""
 
 #. module: l10n_it_website_portal_fatturapa
