@@ -16,6 +16,7 @@ class FatturaPAAttachment(models.Model):
 
     ir_attachment_id = fields.Many2one(
         'ir.attachment', 'Attachment', required=True, ondelete="cascade")
+    att_name = fields.Char(related='ir_attachment_id.name', store=True)
     out_invoice_ids = fields.One2many(
         'account.invoice', 'fatturapa_attachment_out_id',
         string="Out Invoices", readonly=True)
@@ -26,6 +27,11 @@ class FatturaPAAttachment(models.Model):
     invoice_partner_id = fields.Many2one(
         'res.partner', string='Customer', store=True,
         compute='_compute_invoice_partner_id')
+
+    _sql_constraints = [(
+        'ftpa_attachment_out_name_uniq',
+        'unique(att_name)',
+        'The name of the attachment must be unique!')]
 
     @api.model
     def get_file_vat(self):

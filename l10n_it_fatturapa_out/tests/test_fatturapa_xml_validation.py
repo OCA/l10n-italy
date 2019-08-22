@@ -5,7 +5,25 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import re
+
+from psycopg2 import IntegrityError
+
 from .fatturapa_common import FatturaPACommon
+
+
+class TestDuplicatedAttachment(FatturaPACommon):
+
+    def test_duplicated_attachment(self):
+        """Attachment name must be unique"""
+        # This test breaks the current transaction
+        # and every test executed after this in the
+        # same transaction would fail.
+        # Note that all the tests in TestFatturaPAXMLValidation
+        # are executed in the same transaction.
+        self.attach_model.create({'name': 'test_duplicated'})
+        with self.assertRaises(IntegrityError) as ie:
+            self.attach_model.create({'name': 'test_duplicated'})
+        self.assertEqual(ie.exception.pgcode, '23505')
 
 
 class TestFatturaPAXMLValidation(FatturaPACommon):
