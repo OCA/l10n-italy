@@ -44,7 +44,7 @@
                            style="width: auto; margin:0px"
                            t-att-checked="electronic_invoice_subjected or partner.electronic_invoice_subjected"/>
                     <label for="electronic_invoice_subjected" style="margin-left:5px">
-                        I request to receive electronic invoices
+                        Enable receiving electronic invoice
                     </label>
                 </div>
             </div>
