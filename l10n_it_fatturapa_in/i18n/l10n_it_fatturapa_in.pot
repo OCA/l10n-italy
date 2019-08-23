@@ -59,6 +59,7 @@ msgid "Attachment"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in_att_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in_name
 msgid "Attachment Name"
 msgstr ""
@@ -75,7 +76,7 @@ msgid "Attachment id"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/attachment.py:96
+#: code:addons/l10n_it_fatturapa_in/models/attachment.py:102
 #, python-format
 msgid "Attachment without name"
 msgstr ""
@@ -883,6 +884,11 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_in/models/account.py:50
 #, python-format
 msgid "The invoice '%s' doesn't match the related e-invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: sql_constraint:fatturapa.attachment.in:0
+msgid "The name of the attachment must be unique!"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
