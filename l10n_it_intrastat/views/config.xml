@@ -20,18 +20,18 @@
                         <field name="intrastat_min_amount"/>
                     </group>
                     <group string="Default sale values">
-                        <field name="intrastat_sale_statistic_amount"/>
-                        <field name="intrastat_sale_transation_nature_id"/>
-                        <field name="intrastat_sale_delivery_code_id"/>
-                        <field name="intrastat_sale_transport_code_id"/>
-                        <field name="intrastat_sale_province_origin_id"/>
+                        <field name="intrastat_sale_statistic_amount" string="Force Statistic Amount Euro"/>
+                        <field name="intrastat_sale_transation_nature_id" string="Transation Nature"/>
+                        <field name="intrastat_sale_delivery_code_id" string="Delivery"/>
+                        <field name="intrastat_sale_transport_code_id" string="Transport"/>
+                        <field name="intrastat_sale_province_origin_id" string="Province destination"/>
                     </group>
                     <group string="Default purchase values">
-                        <field name="intrastat_purchase_statistic_amount"/>
-                        <field name="intrastat_purchase_transation_nature_id"/>
-                        <field name="intrastat_purchase_delivery_code_id"/>
-                        <field name="intrastat_purchase_transport_code_id"/>
-                        <field name="intrastat_purchase_province_destination_id" />
+                        <field name="intrastat_purchase_statistic_amount" string="Force Statistic Amount Euro"/>
+                        <field name="intrastat_purchase_transation_nature_id" string="Transation Nature"/>
+                        <field name="intrastat_purchase_delivery_code_id" string="Delivery"/>
+                        <field name="intrastat_purchase_transport_code_id" string="Transport"/>
+                        <field name="intrastat_purchase_province_destination_id" string="Province origin"/>
                     </group>
                 </group>
 
