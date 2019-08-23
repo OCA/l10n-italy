@@ -101,6 +101,17 @@ msgid "Date of partner's document"
 msgstr "Data del documento del partner"
 
 #. module: l10n_it_dichiarazione_intento
+#: code:addons/l10n_it_dichiarazione_intento/models/account_invoice.py:67
+#, python-format
+msgid "Declaration of intent not found.\n"
+"Add a new declaration of intent or change \n"
+"then document fiscal position and check the applied VAT."
+msgstr "Dichiarazione di intento non trovata.\n"
+"Aggiungere una nuova dichiarazione di intento o cambiare"
+"posizione fiscale sul documento e verificare "
+"l\'IVA applicata."
+
+#. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_date_start
 msgid "Date start"
 msgstr "Data inizio"
@@ -108,13 +119,13 @@ msgstr "Data inizio"
 #. module: l10n_it_dichiarazione_intento
 #: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:86
 #, python-format
-msgid "Define a yearly platfond for out documents"
+msgid "Define a yearly platfond for the documents"
 msgstr "Definire un limite annuale per i documenti"
 
 #. module: l10n_it_dichiarazione_intento
 #: code:addons/l10n_it_dichiarazione_intento/models/account.py:21
 #, python-format
-msgid "Define taxes for fiscal position %s valid for dichiarazione intento"
+msgid "Define taxes for fiscal position %s valid for declaration of intent"
 msgstr "Definire le tasse per la posizione fiscale %s valide per la dichiarazione di intento"
 
 #. module: l10n_it_dichiarazione_intento

@@ -10,9 +10,9 @@ class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
     dichiarazione_intento_ids = fields.Many2many(
-        'dichiarazione.intento', string='Dichiarazioni di Intento', copy=False)
+        'dichiarazione.intento', string='Declaration of intent', copy=False)
     exclude_from_dichiarazione_intento = fields.Boolean(
-        "Exclude from dichiarazione d'intento")
+        "Exclude from declaration of intent")
 
     @api.multi
     def _set_fiscal_position(self):
@@ -64,12 +64,11 @@ class AccountInvoice(models.Model):
                 # ----  check se posizione fiscale dichiarazione di intento
                 # ---- e non ho dichiarazioni, segnalo errore
                 if self.fiscal_position_id.valid_for_dichiarazione_intento:
-                    raise UserError(
-                        'Dichiarazione di intento non trovata.\n'
-                        'Aggiungere una nuova dichiarazione di intento '
-                        'o cambiare \n'
-                        'posizione fiscale sul documento e verificare '
-                        'l\'IVA applicata.')
+                    raise UserError(_(
+                        'Declaration of intent not found.\n'
+                        'Add a new declaration of intent or change \n'
+                        'then document fiscal position and check '
+                        'the applied VAT.'))
                 else:
                     continue
             sign = 1 if invoice.type.startswith('out_') else -1

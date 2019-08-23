@@ -9,7 +9,7 @@ from odoo.exceptions import UserError, ValidationError
 class DichiarazioneIntentoYearlyLimit(models.Model):
 
     _name = 'dichiarazione.intento.yearly.limit'
-    _description = 'Yearly limit for dichiarazioni'
+    _description = 'Yearly limit for declarations'
     _order = 'company_id, year desc'
     _rec_name = 'year'
 
@@ -31,7 +31,7 @@ class DichiarazioneIntentoYearlyLimit(models.Model):
 class DichiarazioneIntento(models.Model):
 
     _name = 'dichiarazione.intento'
-    _description = 'Dichiarazione Intento'
+    _description = 'Declaration of intent'
     _order = 'date_start desc,date_end desc'
     _rec_name = 'display_name'
 
@@ -83,7 +83,7 @@ class DichiarazioneIntento(models.Model):
                     lambda r: r.year == year)
             if not platfond:
                 raise UserError(
-                    _('Define a yearly platfond for out documents'))
+                    _('Define a yearly platfond for the documents'))
             dichiarazioni = self.search([
                 ('date_start', '>=', '%s-01-01' % year),
                 ('date_end', '<=', '%s-12-31' % year),
@@ -120,7 +120,7 @@ class DichiarazioneIntento(models.Model):
                 for tax in dichiarazione.taxes_ids:
                     if tax.id not in taxes:
                         raise ValidationError(_(
-                            'All taxes in dichiarazione intento must be used '
+                            'All taxes in declaration of intent must be used '
                             'in fiscal position taxes'))
 
     @api.constrains('limit_amount', 'used_amount', 'line_ids',
@@ -130,7 +130,7 @@ class DichiarazioneIntento(models.Model):
         for dichiarazione in self:
             if dichiarazione.available_amount < 0:
                 raise UserError(_(
-                    'Limit passed for dichiarazione %s.\n'
+                    'Limit passed for declaration %s.\n'
                     'Excess value: %s%s' % (
                         dichiarazione.number,
                         abs(dichiarazione.available_amount),
@@ -147,7 +147,7 @@ class DichiarazioneIntento(models.Model):
             record.display_name = display_name
 
     @api.multi
-    @api.depends('line_ids', 'line_ids.amount')
+    @api.depends('line_ids', 'line_ids.amount', 'limit_amount')
     def _compute_amounts(self):
         for record in self:
             amount = sum(line.amount for line in record.line_ids)
@@ -189,10 +189,10 @@ class DichiarazioneIntento(models.Model):
 class DichiarazioneIntentoLine(models.Model):
 
     _name = 'dichiarazione.intento.line'
-    _description = 'Dichiarazione Intento line'
+    _description = 'Declaration of intent line'
 
     dichiarazione_id = fields.Many2one('dichiarazione.intento',
-                                       string='Dichiarazione')
+                                       string='Declaration')
     taxes_ids = fields.Many2many('account.tax', string='Taxes')
     move_line_ids = fields.Many2many('account.move.line', string='Move Lines',
                                      ondelete='cascade')
