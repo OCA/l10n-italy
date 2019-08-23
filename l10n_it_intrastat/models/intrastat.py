@@ -1,63 +1,82 @@
-from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError
+# Copyright 2019 Simone Rubino - Agile Business Group
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 
 class AccountIntrastatCustom(models.Model):
     _name = 'account.intrastat.custom'
-    _description = 'Customs Sections'
+    _description = 'Account INTRASTAT - Customs'
 
-    code = fields.Char(string='Code', size=6)
-    name = fields.Char(string='Name')
-    date_start = fields.Date(string='Date start')
-    date_stop = fields.Date(string='Date stop')
+    code = fields.Char(
+        size=6)
+    name = fields.Char()
+    date_start = fields.Date(
+        string="Date start")
+    date_stop = fields.Date(
+        string="Date stop")
 
 
 class ReportIntrastatCode(models.Model):
+    _name = "report.intrastat.code"
+    _description = "Intrastat code"
 
-    _inherit = 'report.intrastat.code'
-
-    active = fields.Boolean(default=True)
+    name = fields.Char(
+        string="Intrastat Code")
+    active = fields.Boolean(
+        default=True)
     additional_unit_required = fields.Boolean(
-        default=False,
-        string='Unit of Measure Additional Required')
+        string="Unit of Measure Additional Required")
     additional_unit_from = fields.Selection(
-        [('quantity', 'Quantity'), ('weight', 'Weight'), ('none', 'None')],
-        string='Additional Unit of Measure FROM')
+        selection=[
+            ('quantity', "Quantity"),
+            ('weight', "Weight"),
+            ('none', "None")],
+        string="Additional Unit of Measure FROM")
     additional_unit_uom_id = fields.Many2one(
-        'product.uom',
-        string='Unit of Measure Additional')
+        comodel_name='uom.uom',
+        string="Unit of Measure Additional")
     type = fields.Selection(
-        [('good', 'Good'), ('service', 'Service')])
-    description = fields.Char('Description', translate=True)
+        selection=[
+            ('good', "Good"),
+            ('service', "Service")])
+    description = fields.Char(
+        string="Description",
+        translate=True)
 
 
 class ResCountry(models.Model):
-
     _inherit = 'res.country'
 
-    @api.model
+    @api.multi
     def intrastat_validate(self):
-        control_ISO_code = self._context.get('control_ISO_code', False)
-        if not self:
+        self.ensure_one()
+        if not self.code:
             raise ValidationError(
-                _('Missing Country'))
-        if control_ISO_code and not self.code:
-            raise ValidationError(
-                _('Country %s without ISO code') % (self.name,))
+                _("Country %s without ISO code") % self.display_name)
         return True
 
 
 class AccountIntrastatTransport(models.Model):
     _name = 'account.intrastat.transport'
-    _description = 'Transport mode'
+    _description = "Account INTRASTAT - Transport"
 
-    code = fields.Char(string='Code', size=1, required=True)
-    name = fields.Char(string='Name')
+    code = fields.Char(
+        string="Code",
+        size=1,
+        required=True)
+    name = fields.Char(
+        string="Name")
 
 
 class AccountIntrastatTransationNature(models.Model):
     _name = 'account.intrastat.transation.nature'
-    _description = 'Transaction Nature'
+    _description = "Account INTRASTAT - Transation Nature"
 
-    code = fields.Char(string='Code', size=1, required=True)
-    name = fields.Char(string='Name')
+    code = fields.Char(
+        string="Code",
+        size=1,
+        required=True)
+    name = fields.Char(
+        string="Name")

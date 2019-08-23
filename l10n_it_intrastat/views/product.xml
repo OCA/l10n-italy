@@ -1,20 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    	<!--
-		PRODUCT
-		 -->
-		<record id="view_instrastat_product_template_1_form" model="ir.ui.view">
-            <field name="name">intrastat.product.template.1.form</field>
-            <field name="model">product.template</field>
-            <field name="inherit_id" ref="report_intrastat.product_template_form_view"/>
-            <field name="arch" type="xml">
-
-            	<!-- Move intrastat code from page inventory to account -->
-            	<xpath expr="//field[@name='intrastat_id']" position="replace">
-                </xpath>
-
-            </field>
-        </record>
         <record id="view_instrastat_product_template_2_form" model="ir.ui.view">
             <field name="name">intrastat.product.template.2.form</field>
             <field name="model">product.template</field>
@@ -27,7 +12,7 @@
                             <field name="intrastat_type"/>
                         </group>
                         <group>
-                            <field name="intrastat_id"
+                            <field name="intrastat_code_id"
                             attrs="{'invisible':[('intrastat_type','!=', 'good'),('intrastat_type','!=', 'service')],
                                     'required':[('intrastat_type','in', ['good', 'service'])]}" />
                       </group>
@@ -37,9 +22,6 @@
             </field>
         </record>
 
-		<!--
-		CATEGORY
-		 -->
         <record id="view_instrastat_product_category_form" model="ir.ui.view">
             <field name="name">intrastat.product.category.form</field>
             <field name="model">product.category</field>
@@ -48,14 +30,13 @@
                 <xpath expr="/form/sheet/group" position="after">
                     <group>
                         <group string="Intrastat" name="intrastat" col="4">
-                        	<field name="intrastat_type"/>
+                            <field name="intrastat_type"/>
                             <field name="intrastat_code_id"
                             attrs="{'invisible':[('intrastat_type','!=', 'good'),('intrastat_type','!=', 'service')],
-	            					'required':[('intrastat_type','in', ['good', 'service'])]}"/>
+                                    'required':[('intrastat_type','in', ['good', 'service'])]}"/>
                         </group>
                     </group>
                 </xpath>
             </field>
         </record>
-
 </odoo>
