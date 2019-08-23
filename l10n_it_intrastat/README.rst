@@ -10,9 +10,9 @@ ITA - Intrastat
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
-    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
-    :alt: License: LGPL-3
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+    :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
     :target: https://github.com/OCA/l10n-italy/tree/11.0/l10n_it_intrastat
     :alt: OCA/l10n-italy
@@ -28,13 +28,11 @@ ITA - Intrastat
 **Italiano**
 
 Questo modulo si occupa della riclassificazione delle merci e dei servizi che sono oggetto di
-transazioni comunitarie e di creare l'apposita dichiarazione Intrastat da presentare all'Agenzia delle
-Dogane.
+transazioni comunitarie e di creare l'apposita dichiarazione Intrastat da presentare all'Agenzia delle Dogane.
 
 Per la dichiarazione è possibile generare il file da presentare all'Agenzia delle Dogane.
 
-Il modulo precarica anche le tabelle necessarie alla compilazione della dichiarazione:
-nomenclature combinate, sezioni doganali, natura dell transazioni, modalità di asporto
+Il modulo precarica anche le tabelle necessarie alla compilazione della dichiarazione: nomenclature combinate, sezioni doganali, natura dell transazioni, modalità di asporto
 
 **Table of contents**
 
@@ -66,7 +64,7 @@ impostare i parametri delle seguenti sezioni presenti nella scheda "Informazioni
 
    e) Escludere righe omaggio: esclude dalle righe Intrastat le righe a valore 0
    f) Persona delegata: il nominativo della persona delegata alla presentazione della dichiarazione Intrastat
-   g) P. IVA persona delegata: la partita IVA della persona delegata alla presentazione della dichiarazione Intrastat
+   g) P.IVA persona delegata: la partita IVA della persona delegata alla presentazione della dichiarazione Intrastat
    h) Nome file per esportazione: nome del file che può essere impostato per forzare quello predefinito (SCAMBI.CEE)
    i) Sezione doganale: sezione doganale predefinita da proporre in una nuova dichiarazione
 
@@ -85,6 +83,7 @@ impostare i parametri delle seguenti sezioni presenti nella scheda "Informazioni
    c) Condizioni di consegna: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento
    d) Modalità di trasporto: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Modo di trasporto)
    e) Provincia di destinazione: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Provincia di destinazione della spedizione di merce acquistata)
+
 
 **Tabelle​ di​ ​sistema**
 
@@ -235,6 +234,7 @@ Authors
 
 * Openforce
 * Link IT srl
+* Agile Business Group
 
 Contributors
 ~~~~~~~~~~~~
@@ -242,6 +242,7 @@ Contributors
 * Alessandro Camilli
 * Lorenzo Battistini
 * Lara Baggio <lbaggio@linkgroup.it>
+* Glauco Prina <gprina@linkgroup.it>
 
 Maintainers
 ~~~~~~~~~~~
