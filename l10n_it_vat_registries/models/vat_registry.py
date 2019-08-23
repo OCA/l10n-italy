@@ -2,7 +2,7 @@
 # Copyright 2016-2017 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, models
+from odoo import api, models, fields
 from odoo.tools.misc import formatLang
 from odoo.tools.translate import _
 from odoo.exceptions import Warning as UserError
@@ -40,11 +40,27 @@ class ReportRegistroIva(models.AbstractModel):
             'compute_totals_tax': self._compute_totals_tax,
             'l10n_it_count_fiscal_page_base': data['form']['fiscal_page_base'],
             'only_totals': data['form']['only_totals'],
-            'date_format': date_format
+            'date_format': date_format,
+            'l10n_it_fiscalyear_code': self._get_fy_code(
+                data['form']['from_date'], data['form']['to_date']),
         }
 
         return self.env['report'].render(
             'l10n_it_vat_registries.report_registro_iva', docargs)
+
+    def _get_fy_code(self, from_date, to_date):
+        date_range_obj = self.env['date.range']
+        date_range_type = self.env['date.range.type'].search(
+            [('fiscal_year', '=', True)])
+        date_ranges = date_range_obj.search([
+            ('type_id', '=', date_range_type.id),
+            ('date_start', '<=', from_date),
+            ('date_end', '>=', to_date)
+        ])
+        code = fields.Date.from_string(to_date).strftime('%Y')
+        if date_ranges and len(date_ranges) == 1:
+            code = date_ranges[0].name
+        return code
 
     def _get_move(self, move_ids):
         move_list = self.env['account.move'].browse(move_ids)
