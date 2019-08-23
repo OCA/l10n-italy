@@ -1,7 +1,5 @@
 <?xml version="1.0"?>
 <odoo>
-    <data>
-
     <record id="no_header_format_a4_vertical" model="report.paperformat">
         <field name="name">No Header A4 Vertical</field>
         <field name="margin_top">10</field>
@@ -73,5 +71,4 @@
     <record id="print_intrastat_mod2_bis" model="ir.actions.report">
         <field name="paperformat_id" ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"/>
     </record>
-    </data>
 </odoo>

@@ -1,17 +1,19 @@
+# Copyright 2019 Simone Rubino - Agile Business Group
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 {
-    'name': 'ITA - Dichiarazione Intrastat',
-    'version': '11.0.1.0.0',
+    'name': "ITA - Dichiarazione Intrastat",
+    'version': '12.0.1.0.0',
     'category': 'Account',
-    'summary': 'Dichiarazione Intrastat per l\'Agenzia delle Dogane',
-    'author': 'Openforce'
-            ', Link IT srl, Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/l10n-italy',
-    'license': 'LGPL-3',
-    "depends": [
+    'author': "Openforce, Link IT srl, Agile Business Group, "
+              "Odoo Community Association (OCA)",
+    'website': 'https://github.com/OCA/l10n-italy/tree/'
+               '12.0/l10n_it_intrastat_statement',
+    'license': 'AGPL-3',
+    'depends': [
         'l10n_it_intrastat',
-        'web',
     ],
-    "data": [
+    'data': [
         'data/sequence.xml',
         'security/ir.model.access.csv',
         'security/rules.xml',
@@ -23,7 +25,5 @@
         'report/report_intrastat_mod2.xml',
         'report/report_intrastat_mod2_bis.xml',
         'report/reports.xml',
-    ],
-    "demo": [],
-    "installable": True
+    ]
 }
