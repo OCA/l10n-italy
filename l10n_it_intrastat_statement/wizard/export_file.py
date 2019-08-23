@@ -1,23 +1,30 @@
-from openerp import models, api, fields
+# Copyright 2019 Simone Rubino - Agile Business Group
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 import base64
-from openerp.tools.translate import _
+from odoo import api, fields, models, _
 
 
 class AccountIntrastatExportFile(models.TransientModel):
     _name = "account.intrastat.export.file"
+    _description = "Intrastat export file"
 
-    name = fields.Char(string='File Name', readonly=True)
-    data = fields.Binary(string='File', readonly=True)
+    name = fields.Char(
+        string="File Name",
+        readonly=True)
+    data = fields.Binary(
+        string="File",
+        readonly=True)
     state = fields.Selection(
-        [
-            ('choose', 'choose'),
-            ('get', 'get')
-        ],
-        string='State', default='choose')
+        selection=[
+            ('choose', "Choose"),
+            ('get', "Get")],
+        string="State",
+        default='choose')
 
     @api.multi
     def act_getfile(self):
-
+        self.ensure_one()
         statement_id = self.env.context.get('active_id')
         statement = self.env['account.intrastat.statement'].browse(
             statement_id)

@@ -1,27 +1,18 @@
 <?xml version="1.0"?>
-<openerp>
-<data>
-
+<odoo>
     <template id="report_intrastat_mod2_bis">
-        <style>
-            .fondo {
-                background-color: #E1E1E0
-            }
-            .small {
-                line-height: 2px;
-                margin-bottom: 2px;
-            }
-        </style>
-        <t t-foreach="docs" t-as="o">
-            <div class="article">
-                <div class="row">
-                    <div class="row">
-                        <div class="col-xs-1">
-                            <p class="text-right"><img src="/l10n_it_intrastat_statement/static/img/logo_dogane.gif" height="80px"/></p>
-                        </div>
-                        <div class="col-xs-7 col-xs-offset-3">
-                            <table class="table text-center table-bordered">
 
+        <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+        <t t-call="web.internal_layout">
+                <div class="page">
+                    <div class="row col-12">
+                   
+                        <div class="col-3">
+                            <p class="text-right"><img src="/l10n_it_intrastat_statement/static/img/agenzia_dogane.jpg" height="80px"/></p>
+                        </div>
+                        <div class="col-7 col-offset-3">
+                            <table class="table text-center table-bordered">
                                 <td>
                                     <b>RIEPILOGO DEGLI ACQUISTI INTRACOMUNITARI
                                     <br/>DI BENI E DEI SERVIZI RICEVUTI</b>
@@ -32,34 +23,34 @@
                     </div>
                 </div>
                     <div class="row">
-                        <span class="text-center col-xs-7 col-xs-offset-3">
+                        <span class="text-center col-7 col-offset-3">
                             <strong>SEZIONE 1. ACQUISTI DI BENI REGISTRATI NEL PERIODO</strong>
                             <p/>
                         </span>
                     </div>
-                    <div class="row text-center col-xs-12">
+                    <div class="row text-center col-12">
                         <span>PERIODO: </span>
 
-                        <span class="col-xs-offset-1">MESE: </span>
+                        <span class="col-offset-1">MESE: </span>
                         <strong>
                             <t t-if="o.period_type == 'M'">
                                 <span t-esc="o.period_number"/>
                             </t>
                         </strong>
 
-                        <span class="col-xs-offset-1">TRIMESTRE: </span>
+                        <span class="col-offset-1">TRIMESTRE: </span>
                         <strong>
                             <t t-if="o.period_type == 'T'">
                                 <span t-esc="o.period_number"/>
                             </t>
                         </strong>
-                        <span class="col-xs-offset-1">ANNO: </span>
+                        <span class="col-offset-1">ANNO: </span>
                         <strong><span t-esc="o.fiscalyear"/></strong>
 
-                        <span class="col-xs-offset-2">PARTITA IVA</span>
+                        <span class="col-offset-2">PARTITA IVA</span>
                         <strong><span t-esc="o.company_id.vat"/></strong>
                     </div>
-                    <div class="row col-xs-12">
+                    <div class="row col-12">
                         <p/>
                     <table class="table table-bordered">
                         <thead class="fondo">
@@ -142,9 +133,8 @@
                     </table>
                     </div>
                 </div>
-            </div>
+        </t>
+        </t>
         </t>
     </template>
-
-</data>
-</openerp>
+</odoo>
