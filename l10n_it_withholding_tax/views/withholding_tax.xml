@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-        <menuitem id="wt_main" name="Withholding tax" parent="account.menu_finance" sequence="5" groups="account.group_account_manager"/>
+        <menuitem id="wt_main" name="Withholding tax"
+                  parent="account.menu_finance_entries" groups="account.group_account_manager"/>
 
-        <!--
+       <!--
         WITHHOLDING TAX
          -->
         <record id="view_withholding_tax_tree" model="ir.ui.view">
