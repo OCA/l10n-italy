@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-#
-#    Author: Alessandro Camilli (a.camilli@openforce.it)
-#    Copyright (C) 2015
-#    Openforce di Camilli Alessandro - www.openforce.it
-#
-
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from . import test_intrastat
