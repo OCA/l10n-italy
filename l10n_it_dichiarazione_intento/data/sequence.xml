@@ -3,7 +3,7 @@
     <data noupdate="1">
 
         <record id="dichiarazione_intento_seq" model="ir.sequence">
-            <field name="name">Dichiarazione Intento sequence</field>
+            <field name="name">Declaration of intent sequence</field>
             <field name="code">dichiarazione.intento</field>
             <field eval="1" name="number_next"/>
             <field eval="1" name="number_increment"/>

@@ -19,4 +19,4 @@ class AccountFiscalPosition(models.Model):
                     not fiscal_position.tax_ids:
                 raise ValidationError(_(
                     'Define taxes for fiscal position %s valid '
-                    'for dichiarazione intento') % fiscal_position.name)
+                    'for declaration of intent') % fiscal_position.name)
