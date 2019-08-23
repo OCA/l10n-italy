@@ -69,9 +69,12 @@
         <record id="view_form_report_intrastat_code" model="ir.ui.view">
             <field name="name">views.form.report.intrastat.code</field>
             <field name="model">report.intrastat.code</field>
-            <field name="inherit_id" ref="report_intrastat.view_report_intrastat_code_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//group" position="after">
+                <form string="Intrastat Code">
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
                     <group>
                         <field name="additional_unit_required"/>
                         <field name="additional_unit_from"/>
@@ -79,10 +82,10 @@
                         <field name="type"/>
                         <field name="active"/>
                     </group>
-                </xpath>
+                </form>
             </field>
         </record>
-
+        
         <record id="action_report_intrastat_code" model="ir.actions.act_window">
             <field name="name">Codes</field>
             <field name="res_model">report.intrastat.code</field>
