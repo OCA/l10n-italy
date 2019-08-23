@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <record id="view_intrastat_statement_company_form" model="ir.ui.view">
         <field name="name">view_form_intrastat_statement_company</field>
         <field name="model">res.company</field>
@@ -13,5 +12,4 @@
 
         </field>
     </record>
-
 </odoo>
