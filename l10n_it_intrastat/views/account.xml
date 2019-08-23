@@ -200,9 +200,8 @@
                     <field name="country_origin_id" filter_domain="[('country_origin_id','ilike',self)]"/>
                     <field name="country_destination_id" filter_domain="[('country_destination_id','ilike',self)]"/>
                     <group expand="0" string="Group By...">
-                        <filter string="Partner" icon="terp-partner" domain="[]" context="{'group_by':'partner_id'}"/>
-                        <filter string="Intrastat Code" icon="terp-personal" domain="[]"  context="{'group_by':'intrastat_code_id'}"/>
-                        <filter string="Period" icon="terp-go-month" domain="[]" context="{'group_by':'period_id'}"/>
+                        <filter name="group_by_partne" string="Partner" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter name="intrastat_code" string="Intrastat Code" domain="[]"  context="{'group_by':'intrastat_code_id'}"/>
                     </group>
                 </search>
             </field>
@@ -217,11 +216,13 @@
             <field name="search_view_id" ref="view_invoice_intrastat_search" />
         </record>
 
-         <!-- Override standard intrastat report -->
-        <menuitem name="Intrastat"
-            action="view_invoice_intrastat_report_action" id="report_intrastat.menu_report_intrastat_all"
+        <menuitem name="Intrastat report"
+            action="view_invoice_intrastat_report_action" id="menu_report_intrastat_all"
             parent="account.menu_finance_reports" sequence="4"/>
 
+
+
+            
         <!--
         Payment Terms
         -->
