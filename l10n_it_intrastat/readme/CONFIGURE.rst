@@ -20,7 +20,7 @@ impostare i parametri delle seguenti sezioni presenti nella scheda "Informazioni
 
    e) Escludere righe omaggio: esclude dalle righe Intrastat le righe a valore 0
    f) Persona delegata: il nominativo della persona delegata alla presentazione della dichiarazione Intrastat
-   g) P. IVA persona delegata: la partita IVA della persona delegata alla presentazione della dichiarazione Intrastat
+   g) P.IVA persona delegata: la partita IVA della persona delegata alla presentazione della dichiarazione Intrastat
    h) Nome file per esportazione: nome del file che può essere impostato per forzare quello predefinito (SCAMBI.CEE)
    i) Sezione doganale: sezione doganale predefinita da proporre in una nuova dichiarazione
 
@@ -39,6 +39,7 @@ impostare i parametri delle seguenti sezioni presenti nella scheda "Informazioni
    c) Condizioni di consegna: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento
    d) Modalità di trasporto: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Modo di trasporto)
    e) Provincia di destinazione: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Provincia di destinazione della spedizione di merce acquistata)
+
 
 **Tabelle​ di​ ​sistema**
 
