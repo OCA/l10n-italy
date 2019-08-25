@@ -37,6 +37,13 @@ msgid "Bank Details"
 msgstr "Dettagli Banca"
 
 #. module: l10n_it_abicab
+#: view:res.bank:l10n_it_abicab.view_bank_search_abicab
+#, fuzzy
+#| msgid "Bank"
+msgid "Banks"
+msgstr "Banca"
+
+#. module: l10n_it_abicab
 #: field:res.bank,cab:0 field:res.partner.bank,bank_cab:0
 msgid "CAB"
 msgstr "CAB"
