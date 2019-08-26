@@ -19,4 +19,4 @@ class AccountConfigSettings(models.TransientModel):
         string="Supplier e-bill creator",
         help="This user will be used at supplier e-bill creation. "
              "This setting is relevant in multi-company environments"
-        )
+    )
