@@ -2,6 +2,7 @@
 # Copyright 2015 Abstract srl (<http://www.abstract.it>)
 # Copyright 2015-2017 Agile Business Group (<http://www.agilebg.com>)
 # Copyright 2015 Link It Spa (<http://www.linkgroup.it/>)
+# Copyright 2019 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
