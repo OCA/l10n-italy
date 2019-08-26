@@ -11,6 +11,7 @@ import zipfile
 import io
 
 from odoo import api, models, _
+from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
@@ -52,56 +53,10 @@ class MailThread(models.AbstractModel):
             response_attachments = [x for x in message_dict['attachments']
                                     if response_regex.match(x.fname)]
             if response_attachments and fatturapa_attachments:
-                # this is an electronic invoice
-                if len(response_attachments) > 1:
-                    _logger.info(
-                        'More than 1 message found in mail of incoming '
-                        'invoice')
-                message_dict['model'] = 'fatturapa.attachment.in'
-                message_dict['record_name'] = message_dict['subject']
-                message_dict['res_id'] = 0
-                attachment_ids = self._message_post_process_attachments(
-                    message_dict['attachments'], [], message_dict)
-                for attachment in self.env['ir.attachment'].browse(
-                        [att_id for m, att_id in attachment_ids]):
-                    if fatturapa_regex.match(attachment.name):
-                        self.create_fatturapa_attachment_in(attachment,
-                                                            message_dict)
-
-                message_dict['attachment_ids'] = attachment_ids
-                self.clean_message_dict(message_dict)
-
-                # model and res_id are only needed by
-                # _message_post_process_attachments: we don't attach to
-                del message_dict['model']
-                del message_dict['res_id']
-
-                # message_create_from_mail_mail to avoid to notify message
-                # (see mail.message.create)
-                self.env['mail.message'].with_context(
-                    message_create_from_mail_mail=True).create(message_dict)
-                _logger.info('Routing FatturaPA PEC E-Mail with Message-Id: {}'
-                             .format(message.get('Message-Id')))
-                return []
-
+                return self.manage_pec_fe_attachments(
+                    message, message_dict, response_attachments)
             else:
-                # this is an SDI notification
-                message_dict = self.env['fatturapa.attachment.out']\
-                    .parse_pec_response(message_dict)
-
-                message_dict['record_name'] = message_dict['subject']
-                attachment_ids = self._message_post_process_attachments(
-                    message_dict['attachments'], [], message_dict)
-                message_dict['attachment_ids'] = attachment_ids
-                self.clean_message_dict(message_dict)
-
-                # message_create_from_mail_mail to avoid to notify message
-                # (see mail.message.create)
-                self.env['mail.message'].with_context(
-                    message_create_from_mail_mail=True).create(message_dict)
-                _logger.info('Routing FatturaPA PEC E-Mail with Message-Id: {}'
-                             .format(message.get('Message-Id')))
-                return []
+                return self.manage_pec_sdi_notification(message, message_dict)
 
         elif self._context.get('fetchmail_server_id', False):
             # This is not an email coming from SDI
@@ -110,73 +65,94 @@ class MailThread(models.AbstractModel):
             if fetchmail_server.is_fatturapa_pec:
                 att = self.find_attachment_by_subject(message_dict['subject'])
                 if att:
-                    # This a PEC response (CONSEGNA o ACCETTAZIONE)
-                    # related to a message sent to SDI by us
-                    message_dict['model'] = 'fatturapa.attachment.out'
-                    message_dict['res_id'] = att.id
-                    self.clean_message_dict(message_dict)
-                    self.env['mail.message'].with_context(
-                        message_create_from_mail_mail=True).create(
-                            message_dict)
-                else:
-                    _logger.info(
-                        'Can\'t route PEC E-Mail with Message-Id: {}'.format(
-                            message.get('Message-Id'))
-                    )
-                    if fetchmail_server.e_inv_notify_partner_ids:
-                        self.env['mail.mail'].create({
-                            'subject': _(
-                                "PEC message [%s] not processed"
-                            ) % message.get('Subject'),
-                            'body_html': _(
-                                "<p>"
-                                "PEC message with Message-Id %s has been read "
-                                "but not processed, as not related to an "
-                                "e-invoice.</p>"
-                                "<p>Please check PEC mailbox %s, at server %s,"
-                                " with user %s</p>"
-                            ) % (
-                                message.get('Message-Id'),
-                                fetchmail_server.name, fetchmail_server.server,
-                                fetchmail_server.user
-                            ),
-                            'recipient_ids': [(
-                                6, 0,
-                                fetchmail_server.e_inv_notify_partner_ids.ids
-                            )]
-                        })
-                        _logger.info(
-                            'Notifying partners %s about message with '
-                            'Message-Id: %s' % (
-                                fetchmail_server.e_inv_notify_partner_ids.ids,
-                                message.get('Message-Id')))
-                    else:
-                        _logger.error(
-                            'Can\'t notify anyone about not processed '
-                            'PEC E-Mail with Message-Id: {}'.format(
-                                message.get('Message-Id')))
-                return []
-
+                    return self.manage_pec_sdi_response(att, message_dict)
+                raise UserError(_(
+                    "PEC message with Message-Id %s has been read "
+                    "but not processed, as not related to an "
+                    "e-invoice.\n"
+                    "Please check PEC mailbox %s, at server %s,"
+                    " with user %s."
+                ) % (
+                    message.get('Message-Id'),
+                    fetchmail_server.name, fetchmail_server.server,
+                    fetchmail_server.user
+                ))
         return super(MailThread, self).message_route(
             message, message_dict, model=model, thread_id=thread_id,
             custom_values=custom_values)
 
+    def manage_pec_sdi_response(self, att, message_dict):
+        # This is a PEC response (CONSEGNA o ACCETTAZIONE)
+        # related to a message sent to SDI by us
+        message_dict['model'] = 'fatturapa.attachment.out'
+        message_dict['res_id'] = att.id
+        self.clean_message_dict(message_dict)
+        self.env['mail.message'].with_context(
+            message_create_from_mail_mail=True).create(
+            message_dict)
+        return []
+
+    def manage_pec_sdi_notification(self, message, message_dict):
+        # this is an SDI notification
+        message_dict = self.env['fatturapa.attachment.out'] \
+            .parse_pec_response(message_dict)
+        message_dict['record_name'] = message_dict['subject']
+        attachment_ids = self._message_post_process_attachments(
+            message_dict['attachments'], [], message_dict)
+        message_dict['attachment_ids'] = attachment_ids
+        self.clean_message_dict(message_dict)
+        # message_create_from_mail_mail to avoid to notify message
+        # (see mail.message.create)
+        self.env['mail.message'].with_context(
+            message_create_from_mail_mail=True).create(message_dict)
+        _logger.info('Routing FatturaPA PEC E-Mail with Message-Id: {}'
+                     .format(message.get('Message-Id')))
+        return []
+
+    def manage_pec_fe_attachments(self, message, message_dict,
+                                  response_attachments):
+        # this is an electronic invoice
+        if len(response_attachments) > 1:
+            _logger.info(
+                'More than 1 message found in mail of incoming invoice')
+        message_dict['model'] = 'fatturapa.attachment.in'
+        message_dict['record_name'] = message_dict['subject']
+        message_dict['res_id'] = 0
+        attachment_ids = self._message_post_process_attachments(
+            message_dict['attachments'], [], message_dict)
+        for attachment in self.env['ir.attachment'].browse(
+                [att_id for m, att_id in attachment_ids]):
+            if fatturapa_regex.match(attachment.name):
+                self.create_fatturapa_attachment_in(attachment, message_dict)
+        message_dict['attachment_ids'] = attachment_ids
+        self.clean_message_dict(message_dict)
+        # model and res_id are only needed by
+        # _message_post_process_attachments: we don't attach to
+        del message_dict['model']
+        del message_dict['res_id']
+        # message_create_from_mail_mail to avoid to notify message
+        # (see mail.message.create)
+        self.env['mail.message'].with_context(
+            message_create_from_mail_mail=True).create(message_dict)
+        _logger.info('Routing FatturaPA PEC E-Mail with Message-Id: {}'
+                     .format(message.get('Message-Id')))
+        return []
+
     def find_attachment_by_subject(self, subject):
+        attachment_out_model = self.env['fatturapa.attachment.out']
         if 'CONSEGNA: ' in subject:
             att_name = subject.replace('CONSEGNA: ', '')
-            fatturapa_attachment_out = self.env[
-                'fatturapa.attachment.out'
-            ].search([('datas_fname', '=', att_name)])
+            fatturapa_attachment_out = attachment_out_model \
+                .search([('datas_fname', '=', att_name)])
             if len(fatturapa_attachment_out) == 1:
                 return fatturapa_attachment_out
         if 'ACCETTAZIONE: ' in subject:
             att_name = subject.replace('ACCETTAZIONE: ', '')
-            fatturapa_attachment_out = self.env[
-                'fatturapa.attachment.out'
-            ].search([('datas_fname', '=', att_name)])
+            fatturapa_attachment_out = attachment_out_model \
+                .search([('datas_fname', '=', att_name)])
             if len(fatturapa_attachment_out) == 1:
                 return fatturapa_attachment_out
-        return False
+        return attachment_out_model.browse()
 
     def create_fatturapa_attachment_in(self, attachment, message_dict=None):
         decoded = base64.b64decode(attachment.datas)

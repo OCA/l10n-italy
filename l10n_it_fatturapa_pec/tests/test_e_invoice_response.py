@@ -5,6 +5,7 @@
 from .e_invoice_common import EInvoiceCommon
 from odoo.modules import get_module_resource
 from odoo.fields import Datetime
+import mock
 
 
 class TestEInvoiceResponse(EInvoiceCommon):
@@ -106,6 +107,30 @@ class TestEInvoiceResponse(EInvoiceCommon):
             Datetime.from_string(msg_dict['date']))
         self.assertEqual(e_invoices.xml_supplier_id.vat,
                          'IT02652600210')
+
+    def test_process_response_INVIO_broken_XML(self):
+        """Receiving a 'Invio File' with a broken XML sends an email
+        to e_inv_notify_partner_ids"""
+        incoming_mail = self._get_file(
+            'POSTA CERTIFICATA: Invio File 7339338 (broken XML).txt')
+        outbound_mail_model = self.env['mail.mail']
+        error_mail_domain = [
+            ('body_html', 'like', 'unbound_prefix'),
+            ('recipient_ids', 'in',
+             self.PEC_server.e_inv_notify_partner_ids.ids)]
+        error_mails_nbr = outbound_mail_model.search_count(error_mail_domain)
+        self.assertFalse(error_mails_nbr)
+
+        with mock.patch('odoo.addons.fetchmail.models.fetchmail.POP3') \
+                as mock_pop3:
+            instance = mock_pop3.return_value
+            instance.stat.return_value = (1, 1)
+            instance.retr.return_value = ('', [incoming_mail], '')
+
+            self.PEC_server.fetch_mail()
+
+        error_mails_nbr = outbound_mail_model.search_count(error_mail_domain)
+        self.assertEqual(error_mails_nbr, 1)
 
     def test_process_response_MC(self):
         """Receiving a 'Mancata consegna' sets the state of the
