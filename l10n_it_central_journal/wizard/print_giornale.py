@@ -119,7 +119,6 @@ class WizardGiornale(models.TransientModel):
         return datas_form
 
     def print_giornale(self):
-        wizard = self
         move_line_ids = self.get_line_ids()
         if not move_line_ids:
             raise UserError(_('No documents found in the current selection'))
