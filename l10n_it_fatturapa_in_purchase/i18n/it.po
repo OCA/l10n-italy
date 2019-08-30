@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Weblate 3.3\n"
 
 #. module: l10n_it_fatturapa_in_purchase
-#: model:ir.ui.view,arch_db:l10n_it_fatturapa_in_purchase.invoice_supplier_form_po_line
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in_purchase.invoice_supplier_form_po_line
 msgid "PO line"
 msgstr ""
 
@@ -28,7 +28,7 @@ msgid "Purchase Order Line"
 msgstr "Riga ordine di acquisto"
 
 #. module: l10n_it_fatturapa_in_purchase
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_purchase.field_purchase_order_line_to_invoice
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_purchase.field_purchase_order_line__to_invoice
 msgid "To Invoice"
 msgstr "Da fatturare"
 
