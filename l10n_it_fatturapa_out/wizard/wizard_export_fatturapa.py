@@ -99,18 +99,6 @@ class WizardExportFatturapa(models.TransientModel):
         domain=_domain_ir_values,
         help='This report will be automatically included in the created XML')
 
-    @api.model
-    def _domain_ir_values(self):
-        model_name = self.env.context.get('active_model', False)
-        # Get all print actions for current model
-        return [('binding_model_id', '=', model_name),
-                ('type', '=', 'ir.actions.report')]
-
-    report_print_menu = fields.Many2one(
-        comodel_name='ir.actions.actions',
-        domain=_domain_ir_values,
-        help='This report will be automatically included in the created XML')
-
     def saveAttachment(self, fatturapa, number):
         attach_obj = self.env['fatturapa.attachment.out']
         vat = attach_obj.get_file_vat()
