@@ -853,6 +853,7 @@ class WizardExportFatturapa(models.TransientModel):
                 for invoice_id in invoice_ids:
                     inv = invoice_obj.with_context(context_partner).browse(
                         invoice_id)
+                    inv.set_taxes_for_descriptive_lines()
                     if inv.fatturapa_attachment_out_id:
                         raise UserError(
                             _("Invoice %s has e-invoice export file yet.") % (
