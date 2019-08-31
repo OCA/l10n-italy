@@ -885,7 +885,6 @@ class WizardExportFatturapa(models.TransientModel):
                 setFatturaElettronicaHeader(company, partner, fatturapa)
             for invoice_id in invoice_ids:
                 inv = invoice_obj.with_context(context).browse(invoice_id)
-                inv.set_taxes_for_descriptive_lines()
                 if not attach and inv.fatturapa_attachment_out_id:
                     raise UserError(
                         _("E-invoice export file still present for invoice %s.")
