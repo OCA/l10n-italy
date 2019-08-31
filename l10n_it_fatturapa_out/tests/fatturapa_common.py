@@ -46,6 +46,7 @@ class FatturaPACommon(AccountTestUsers):
         self.product_order_01.default_code = False
         self.product_order_01.barcode = False
         self.tax_22 = self.env.ref('l10n_it_fatturapa.tax_22')
+        self.tax_10 = self.env.ref('l10n_it_fatturapa.tax_10')
         self.tax_22_SP = self.env.ref('l10n_it_fatturapa.tax_22_SP')
         self.res_partner_fatturapa_0 = self.env.ref(
             'l10n_it_fatturapa.res_partner_fatturapa_0')
