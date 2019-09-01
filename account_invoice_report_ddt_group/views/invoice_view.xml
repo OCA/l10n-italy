@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="invoice_form_ddt_group" model="ir.ui.view">
+        <field name="name">invoice_form_ddt_group</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <field name="comment" position="before">
+                <field name="has_ddt" invisible="1"/>
+                <button name="group_lines_by_ddt" string="Group lines by TD" type="object"
+                        confirm="This will overwrite existing Sections and Notes. Continue?"
+                        attrs="{'invisible': [('has_ddt', '=', False)]}"/>
+            </field>
+        </field>
+    </record>
+</odoo>
