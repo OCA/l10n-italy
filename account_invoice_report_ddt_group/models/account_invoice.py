@@ -1,15 +1,34 @@
-# -*- coding: utf-8 -*-
-# Copyright 2015 Alex Comba - Agile Business Group
-# Copyright 2016 Andrea Cometa - Apulia Software
-# Copyright 2016-2017 Lorenzo Battistini - Agile Business Group
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, api, fields
+from odoo import models, api, fields
 import collections
 
 
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
+
+    has_ddt = fields.Boolean("Has TD", compute="_compute_has_ddt")
+
+    @api.multi
+    def group_lines_by_ddt(self):
+        self.ensure_one()
+        self.invoice_line_ids.filtered(lambda r: r.display_type).unlink()
+        grouped_lines = self.grouped_lines_by_ddt()
+        line_number = 0
+        for ddt in grouped_lines:
+            new_line = self.env['account.invoice.line'].create({
+                'sequence': line_number,
+                'name': ddt,
+                'display_type': 'line_section',
+                'invoice_id': self.id
+            })
+            if grouped_lines[ddt]['shipping_address']:
+                new_line.name = "%s\n%s" % (
+                    new_line.name, grouped_lines[ddt]['shipping_address'])
+            line_number += 1
+            for line in grouped_lines[ddt]['lines']:
+                line.sequence = line_number
+                line_number += 1
 
     @api.multi
     def grouped_lines_by_ddt(self):
@@ -18,7 +37,8 @@ class AccountInvoice(models.Model):
         """
         all_lines = self.invoice_line_ids
         ddt_dict = {}
-        for line in all_lines:
+        # do not consider Sections and Notes: they will be overwritten
+        for line in all_lines.filtered(lambda r: not r.display_type):
             # group by recordset (that can be empty or bigger then 1)
             ddts = line.mapped('ddt_line_id.package_preparation_id')
             if ddts not in ddt_dict:
@@ -35,10 +55,9 @@ class AccountInvoice(models.Model):
                 string_key = ''
                 for ddt in key:
                     if ddt.ddt_number and ddt.date:
-                        ddt_date = fields.Date.from_string(ddt.date)
                         ddt_key = '%s - %s' % (
                             ddt.ddt_number, '%s/%s/%s' % (
-                                ddt_date.day, ddt_date.month, ddt_date.year)
+                                ddt.date.day, ddt.date.month, ddt.date.year)
                         )
                         if 'DDT' not in ddt_key.upper():
                             ddt_key = 'DDT %s' % (ddt_key)
@@ -51,8 +70,11 @@ class AccountInvoice(models.Model):
             if string_key not in group:
                 group[string_key] = {'lines': ddt_dict[key]}
                 group[string_key]['shipping_address'] = ''
-                if string_key and ddt.partner_shipping_id.parent_id.\
-                        ddt_invoice_print_shipping_address:
+                if (
+                    string_key and
+                    ddt.partner_shipping_id.commercial_partner_id.
+                    ddt_invoice_print_shipping_address
+                ):
                     group[string_key]['shipping_address'] =\
                         self._prepare_ddt_shipping_address(
                             ddt.partner_shipping_id)
@@ -68,6 +90,15 @@ class AccountInvoice(models.Model):
         return group
 
     @api.multi
+    def _compute_has_ddt(self):
+        for invoice in self:
+            invoice.has_ddt = False
+            for line in self.invoice_line_ids:
+                if line.ddt_line_id:
+                    invoice.has_ddt = True
+                    break
+
+    @api.multi
     def has_serial_number(self):
         self.ensure_one()
         for line in self.invoice_line_ids:
@@ -77,6 +108,6 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def _prepare_ddt_shipping_address(self, partner_shipping_id):
-        shipping_address = '{} - {}'.format(partner_shipping_id.name,
-                                            partner_shipping_id.city)
+        shipping_address = '{} - {}'.format(partner_shipping_id.display_name,
+                                            partner_shipping_id.city or '')
         return shipping_address

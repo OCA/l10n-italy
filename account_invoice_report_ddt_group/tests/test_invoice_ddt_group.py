@@ -1,12 +1,6 @@
-# -*- coding: utf-8 -*-
-# Author: Francesco Apruzzese
-# Copyright 2015 Apulia Software srl
-# Copyright 2016 Lorenzo Battistini - Agile Business Group
-# Copyright 2016 Andrea Cometa - Apulia Software
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp.tests.common import TransactionCase
-from odoo import fields
 
 
 class TestDdt(TransactionCase):
@@ -55,7 +49,7 @@ class TestDdt(TransactionCase):
         line = self.env['sale.order.line'].create({
             'order_id': order.id,
             'product_id': product.id,
-            'product_uom_qty': 10,
+            'product_uom_qty': 5,
             'price_unit': 100,
             })
         line.product_id_change()
@@ -84,8 +78,10 @@ class TestDdt(TransactionCase):
         self.src_location = self.env.ref('stock.stock_location_stock')
         self.dest_location = self.env.ref('stock.stock_location_customers')
         self.partner = self.env.ref('base.res_partner_2')
-        self.product1 = self.env.ref('product.product_product_4')
-        self.product2 = self.env.ref('product.product_product_3')
+        # Acoustic Bloc Screens, 16 on hand
+        self.product1 = self.env.ref('product.product_product_25')
+        # Cabinet with Doors, 8 on hand
+        self.product2 = self.env.ref('product.product_product_10')
         self.product1.invoice_policy = 'order'
         self.product2.invoice_policy = 'order'
         self.ddt_model = self.env['stock.picking.package.preparation']
@@ -100,8 +96,9 @@ class TestDdt(TransactionCase):
         order2.action_confirm()
 
         for p in order1.picking_ids | order2.picking_ids:
-            p.force_assign()
-            p.action_done()
+            wiz_vals = p.button_validate()
+            wiz = self.env[wiz_vals['res_model']].browse(wiz_vals['res_id'])
+            wiz.process()
 
         wizard = self.env['ddt.from.pickings'].with_context({
             'active_ids': [p.id for p in order1.picking_ids]
@@ -136,17 +133,27 @@ class TestDdt(TransactionCase):
         #   u'DDT/1 - 13/04/2017': [account.invoice.line(1,)],
         #   u'DDT/2 - 14/04/2017': [account.invoice.line(2,)]
         # }
-        ddt1_date = fields.Date.from_string(ddt1.date)
         ddt1_key = '%s - %s' % (
             ddt1.ddt_number, '%s/%s/%s' % (
-                ddt1_date.day, ddt1_date.month, ddt1_date.year)
+                ddt1.date.day, ddt1.date.month, ddt1.date.year)
         )
-        ddt2_date = fields.Date.from_string(ddt2.date)
         ddt2_key = '%s - %s' % (
             ddt2.ddt_number, '%s/%s/%s' % (
-                ddt2_date.day, ddt2_date.month, ddt2_date.year)
+                ddt2.date.day, ddt2.date.month, ddt2.date.year)
         )
         self.assertEqual(
-            inv_dict[ddt1_key].values()[0][0].product_id.id, self.product1.id)
+            inv_dict[ddt1_key]['lines'][0].product_id.id,
+            self.product1.id)
         self.assertEqual(
-            inv_dict[ddt2_key].values()[0][0].product_id.id, self.product2.id)
+            inv_dict[ddt2_key]['lines'][0].product_id.id,
+            self.product2.id)
+
+        invoice.group_lines_by_ddt()
+        self.assertEqual(invoice.invoice_line_ids[0].name, ddt1_key)
+        self.assertEqual(
+            invoice.invoice_line_ids[1].name,
+            '[FURN_6666] Acoustic Bloc Screens')
+        self.assertEqual(invoice.invoice_line_ids[2].name, ddt2_key)
+        self.assertEqual(
+            invoice.invoice_line_ids[3].name,
+            '[E-COM11] Cabinet with Doors')
