@@ -25,17 +25,17 @@ msgid "Account General Journal"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
 msgid "Account code"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
 msgid "Account move"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
 msgid "Account name"
 msgstr ""
 
@@ -45,38 +45,43 @@ msgid "All"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
 msgid "Cancel"
 msgstr "Hủy"
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_company_id
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__company_id
 msgid "Company"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_create_uid
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__create_uid
 msgid "Created by"
 msgstr "Tạo bởi"
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_create_date
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__create_date
 msgid "Created on"
 msgstr "Tạo vào"
 
 #. module: l10n_it_central_journal
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
 msgid "Credit"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
 msgid "Date"
 msgstr ""
 
 #. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__date_move_line_from
+msgid "Date Move Line From"
+msgstr ""
+
+#. module: l10n_it_central_journal
 #: model:ir.model,name:l10n_it_central_journal.model_date_range
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_daterange
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__daterange
 msgid "Date Range"
 msgstr ""
 
@@ -87,18 +92,18 @@ msgid "Date already printed"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
 msgid "Dates movements"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
 msgid "Debit"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_report_l10n_it_central_journal_report_giornale_display_name
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_display_name
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_report_l10n_it_central_journal_report_giornale__display_name
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -108,46 +113,45 @@ msgid "Draft"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_account_journal_central_journal_exclude
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_account_journal__central_journal_exclude
 msgid "Exclude from General Journal"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
 msgid "Final Balance"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
 msgid "Final print"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_date_move_line_from
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_date_move_line_from_view
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__date_move_line_from_view
 msgid "From date"
 msgstr ""
 
 #. module: l10n_it_central_journal
 #: model:ir.actions.act_window,name:l10n_it_central_journal.action_giornale
 #: model:ir.ui.menu,name:l10n_it_central_journal.menu_giornale
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
 msgid "General Journal"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.view_date_range_form_inherit_view
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.view_date_range_form_inherit_view
 msgid "General Journal Info"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_report_l10n_it_central_journal_report_giornale_id
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_id
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_report_l10n_it_central_journal_report_giornale__id
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__id
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_central_journal
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
 msgid "Initial Balance"
 msgstr ""
 
@@ -157,49 +161,54 @@ msgid "Journal"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_journal_ids
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
+#: model:ir.model,name:l10n_it_central_journal.model_report_l10n_it_central_journal_report_giornale
+msgid "Journal report"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__journal_ids
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
 msgid "Journals"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_report_l10n_it_central_journal_report_giornale___last_update
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale___last_update
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_report_l10n_it_central_journal_report_giornale____last_update
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_write_uid
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__write_uid
 msgid "Last Updated by"
 msgstr "Cập nhật lần cuối bởi"
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_write_date
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__write_date
 msgid "Last Updated on"
 msgstr "Cập nhật lần cuối vào"
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_last_def_date_print
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__last_def_date_print
 msgid "Last definitive date print"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range_date_last_print
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range__date_last_print
 msgid "Last printed date"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_fiscal_page_base
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__fiscal_page_base
 msgid "Last printed page"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
 msgid "Layout"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
 msgid "Name"
 msgstr "Tên"
 
@@ -216,7 +225,7 @@ msgid "Posted"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
 msgid "Print"
 msgstr ""
 
@@ -226,28 +235,24 @@ msgid "Printed"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range_progressive_credit
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_progressive_credit
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range__progressive_credit
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__progressive_credit
 msgid "Progressive Credit"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range_progressive_debit
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range__progressive_debit
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__progressive_debit2
 msgid "Progressive Debit"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_progressive_debit2
-msgid "Progressive debit"
-msgstr ""
-
-#. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range_progressive_line_number
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range__progressive_line_number
 msgid "Progressive line"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range_progressive_page_number
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range__progressive_page_number
 msgid "Progressive of the page"
 msgstr ""
 
@@ -257,57 +262,52 @@ msgid "Ready for printing"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
-msgid "Ref"
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
+msgid "Ref."
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
 msgid "Row"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_start_row
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__start_row
 msgid "Start row"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_print_state
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__print_state
 msgid "State"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_target_move
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__target_move
 msgid "Target Move"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_date_move_line_to
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__date_move_line_to
 msgid "To date"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,help:l10n_it_central_journal.field_wizard_giornale_year_footer
+#: model:ir.model.fields,help:l10n_it_central_journal.field_wizard_giornale__year_footer
 msgid "Value printed near number of page in the footer"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_year_footer
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
+#: model:ir.model,name:l10n_it_central_journal.model_wizard_giornale
+msgid "Wizard journal report"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__year_footer
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
 msgid "Year for Footer"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
 msgid "or"
 msgstr "hoặc"
-
-#. module: l10n_it_central_journal
-#: model:ir.model,name:l10n_it_central_journal.model_report_l10n_it_central_journal_report_giornale
-msgid "report.l10n_it_central_journal.report_giornale"
-msgstr ""
-
-#. module: l10n_it_central_journal
-#: model:ir.model,name:l10n_it_central_journal.model_wizard_giornale
-msgid "wizard.giornale"
-msgstr ""
