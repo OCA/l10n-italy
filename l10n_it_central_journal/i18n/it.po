@@ -242,12 +242,8 @@ msgid "Progressive Credit"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range_progressive_debit
-msgid "Progressive Debit"
-msgstr ""
-
-#. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_progressive_debit2
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range__progressive_debit
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__progressive_debit2
 msgid "Progressive Debit"
 msgstr "Progressivo dare"
 
