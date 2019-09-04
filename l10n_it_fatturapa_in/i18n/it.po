@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-27 08:07+0000\n"
-"PO-Revision-Date: 2019-07-24 19:43+0000\n"
+"PO-Revision-Date: 2019-09-04 11:23+0000\n"
 "Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
@@ -110,10 +110,8 @@ msgstr "Fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice_line__e_invoice_nbr
-#, fuzzy
-#| msgid "Bills Number"
 msgid "Bill number in XML"
-msgstr "Numero fatture"
+msgstr "Numero fattura nell'XML"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/link_to_existing_invoice.py:94
@@ -123,6 +121,9 @@ msgid ""
 "Total no tax: {bill_no_tax}\n"
 "Total tax: {bill_tax}"
 msgstr ""
+"Numero fattura {bill_nbr} del {bill_date}.\n"
+"Totale imponibile: {bill_no_tax}\n"
+"Totale imposte: {bill_tax}"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1260
@@ -238,6 +239,9 @@ msgid ""
 "Current invoice is from {} with REA Code {}. Yet it seems that partners {} "
 "have the same REA Code. This code should be unique; please fix it."
 msgstr ""
+"La fattura corrente viene da {} con codice REA {}. Tuttavia sembra che i "
+"partner {} abbiano lo stesso codice REA. questo codice dovrebbe essere unico;"
+" prego correggere."
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data__name
@@ -318,10 +322,8 @@ msgstr "Errore di validazione e-fattura"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice__e_invoice_validation_message
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__e_invoice_validation_message
-#, fuzzy
-#| msgid "E Invoice Validation Error"
 msgid "E Invoice Validation Message"
-msgstr "Errore di validazione e-fattura"
+msgstr "Messaggio di validazione e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice__e_invoice_amount_tax
@@ -367,10 +369,8 @@ msgstr "Incongruenze e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice_line__e_invoice_descr
-#, fuzzy
-#| msgid "Description"
 msgid "E-bill description"
-msgstr "Descrizione"
+msgstr "Descrizione e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model,name:l10n_it_fatturapa_in.model_fatturapa_attachment_in
@@ -391,10 +391,8 @@ msgstr "Dati sconto maggiorazione e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice__e_invoice_date_invoice
-#, fuzzy
-#| msgid "E-invoice line"
 msgid "E-invoice date"
-msgstr "Riga e-fattura"
+msgstr "Data e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model,name:l10n_it_fatturapa_in.model_einvoice_line
@@ -408,10 +406,8 @@ msgstr "Altri dati riga e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice__e_invoice_reference
-#, fuzzy
-#| msgid "E-invoice line"
 msgid "E-invoice vendor reference"
-msgstr "Riga e-fattura"
+msgstr "Riferimento fornitore e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.wizard_import_fatturapa_form_view
@@ -576,6 +572,8 @@ msgid ""
 "Invoice date ({bill_date_invoice}) does not match with e-bill invoice date "
 "({e_bill_date_invoice})"
 msgstr ""
+"La data fattura ({bill_date_invoice}) non corrisponde con la data della "
+"fattura elettronica ({e_bill_date_invoice})"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_is_follower
@@ -628,7 +626,7 @@ msgstr "Ultimo aggiornamento il"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice__line_ids
 msgid "Line"
-msgstr ""
+msgstr "Riga"
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
@@ -653,8 +651,6 @@ msgstr "Collega"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model,name:l10n_it_fatturapa_in.model_wizard_link_to_invoice_line
-#, fuzzy
-#| msgid "Link to Bill"
 msgid "Link e-bill to bill"
 msgstr "Collega a fattura"
 
@@ -666,10 +662,8 @@ msgstr "Collega a fattura"
 #. module: l10n_it_fatturapa_in
 #: model:ir.actions.act_window,name:l10n_it_fatturapa_in.action_wizard_link_supplier_invoice
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.wizard_link_supplier_invoice
-#, fuzzy
-#| msgid "Link to existing supplier bill"
 msgid "Link to existing supplier bills"
-msgstr "Collega a fattura fornitore esistente"
+msgstr "Collega a fatture fornitore esistenti"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_main_attachment_id
@@ -996,6 +990,8 @@ msgid ""
 "Taxed amount ({bill_amount_tax}) does not match with e-bill taxed amount "
 "({e_bill_amount_tax})"
 msgstr ""
+"L'importo delle imposte ({bill_amount_tax}) non corrisponde con l'importo "
+"delle imposte della fattura elettronica ({e_bill_amount_tax})"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__key
@@ -1053,12 +1049,13 @@ msgstr "Da registrare"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:330
-#, fuzzy, python-format
-#| msgid "Too many taxes with percentage %s and nature %s found."
+#, python-format
 msgid ""
 "Too many taxes with percentage %s and nature %s found. Tax %s with lower "
 "priority has been set on invoice lines."
-msgstr "Rilevate troppe imposte con aliquota %s e natura %s."
+msgstr ""
+"Troppe imposte con aliquota %s e natura %s trovate. L'imposta %s con "
+"maggiore priorità è stata impostata sulle righe fattura."
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:355
@@ -1082,6 +1079,8 @@ msgid ""
 "Total amount ({bill_amount_total}) does not match with e-bill total amount "
 "({e_bill_amount_total})"
 msgstr ""
+"L'importo totale ({bill_amount_total}) non corrisponde con l'importo totale "
+"della fattura elettronica ({e_bill_amount_total})"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:146
@@ -1125,6 +1124,8 @@ msgid ""
 "Untaxed amount ({bill_amount_untaxed}) does not match with e-bill untaxed "
 "amount ({e_bill_amount_untaxed})"
 msgstr ""
+"L'imponibile ({bill_amount_untaxed}) non corrisponde con l'imponibile della "
+"fattura elettronica ({e_bill_amount_untaxed})"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__url
@@ -1154,6 +1155,8 @@ msgid ""
 "Vendor reference ({bill_vendor_ref}) does not match with e-bill vendor "
 "reference ({e_bill_vendor_ref})"
 msgstr ""
+"Il riferimento fornitore ({bill_vendor_ref}) non corrisponde con il "
+"riferimento fornitore della fattura elettronica ({e_bill_vendor_ref})"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__website_id
@@ -1222,7 +1225,7 @@ msgstr "Cassa previdenziale: %s"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice_line__wizard_id
 msgid "Wizard"
-msgstr ""
+msgstr "Procedura guidata"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:417
