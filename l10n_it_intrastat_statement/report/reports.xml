@@ -58,6 +58,20 @@
         <field name="paperformat_id" ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"/>
     </record>
 
+    <!-- Mod. Intra-1 Ter -->
+    <report
+        string="Mod. INTRA-1 Ter"
+        id="print_intrastat_mod1_ter"
+        model="account.intrastat.statement"
+        report_type="qweb-pdf"
+        name="l10n_it_intrastat_statement.report_intrastat_mod1_ter"
+        file="l10n_it_intrastat_statement.report_intrastat_mod1_ter"
+        />
+
+    <record id="print_intrastat_mod1_ter" model="ir.actions.report">
+        <field name="paperformat_id" ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"/>
+    </record>
+
     <!-- Mod. Intra-2 bis -->
     <report
         string="Mod. INTRA-2 Bis"
