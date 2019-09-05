@@ -45,6 +45,11 @@ through mail PEC, WEB API or SFTP to the Exchange System (ES).
 
 http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm
 
+.. IMPORTANT::
+   This is an alpha version, the data model and design can change at any time without warning.
+   Only for development or testing purpose, do not use in production.
+   `More details on development status <https://odoo-community.org/page/development-status>`_
+
 **Table of contents**
 
 .. contents::
