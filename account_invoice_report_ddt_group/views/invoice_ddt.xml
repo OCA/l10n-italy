@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_ddt_group"
+              inherit_id="account.report_invoice_document" >
+        <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[1]" position="after">
+            <t t-set="has_serial_number" t-value="o.has_serial_number()" groups="stock.group_production_lot"/>
+            <th name="lot_serial" t-if="has_serial_number">
+                <strong>Lots/Serial Numbers</strong>
+            </th>
+        </xpath>
+        <xpath expr="//td[@name='account_invoice_line_name']" position="after">
+            <t t-if="has_serial_number">
+                <td t-if="line.ddt_line_id.lot_ids">
+                    <span><t t-esc="', '.join([lot.name for lot in line.ddt_line_id.lot_ids])"/></span>
+                </td>
+                <td t-if="not line.ddt_line_id.lot_ids"/>
+            </t>
+        </xpath>
+    </template>
+</odoo>
