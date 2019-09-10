@@ -177,7 +177,7 @@ class DichiarazioneIntento(models.Model):
 
     def get_valid(self, type=None, partner_id=False, date=False):
         if not partner_id or not type or not date:
-            return False
+            return self.browse()
         # ----- return valid documents for partner
         domain = [('partner_id', '=', partner_id), ('type', '=', type),
                   ('date_start', '<=', date), ('date_end', '>=', date)]
