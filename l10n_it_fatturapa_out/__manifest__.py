@@ -7,7 +7,7 @@
 
 {
     'name': 'Italian Localization - Fattura Elettronica - Emissione',
-    "version": "11.0.1.0.4",
+    "version": "11.0.1.0.5",
     'development_status': 'Beta',
     'category': 'Localization/Italy',
     'summary': 'Emissione fatture elettroniche',
