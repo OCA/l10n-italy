@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_reverse_charge
+# 	* l10n_it_reverse_charge
 #
 msgid ""
 msgstr ""
@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2019-07-24 13:42+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -17,7 +18,6 @@ msgstr ""
 
 #. module: l10n_it_reverse_charge
 #: code:addons/l10n_it_reverse_charge/models/account_invoice.py:362
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:402
 #, python-format
 msgid "Can't find 1 tax mapping for %s"
 msgstr "Impossibile trovare una mappatura imposte per %s"
@@ -33,18 +33,6 @@ msgstr "Creato da"
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax_create_date
 msgid "Created on"
 msgstr "Creato il"
-
-#. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:482
-#, python-format
-msgid "Credit transfer for reverse charge"
-msgstr "Credit transfer for reverse charge"
-
-#. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:484
-#, python-format
-msgid "Debit transfer for reverse charge"
-msgstr "Debit transfer for reverse charge"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_description
@@ -69,8 +57,16 @@ msgstr "Posizione fiscale"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,help:l10n_it_reverse_charge.field_account_rc_type_with_supplier_self_invoice
-msgid "Flag this to enable the creation of an additional supplier self invoice. This is tipically used for extraUE suppliers, in order to show, in supplier register, an invoice to the specified partner (tipically, my company), instead of the extraUE partner"
-msgstr "Selezionare questo per abilitare la creazione di un'addizionale autofattura passiva. Questo è usato tipicamente per i fornitori extra UE, per mostrare, nel registro IVA acquisti, una fattura per il partner specificato (tipicamente, la propria azienda), invece del fornitore extra UE"
+msgid ""
+"Flag this to enable the creation of an additional supplier self invoice. "
+"This is tipically used for extraUE suppliers, in order to show, in supplier "
+"register, an invoice to the specified partner (tipically, my company), "
+"instead of the extraUE partner"
+msgstr ""
+"Selezionare questo per abilitare la creazione di un'addizionale autofattura "
+"passiva. Questo è usato tipicamente per i fornitori extra UE, per mostrare, "
+"nel registro IVA acquisti, una fattura per il partner specificato "
+"(tipicamente, la propria azienda), invece del fornitore extra UE"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_id
@@ -90,12 +86,13 @@ msgstr "Riga fattura"
 
 #. module: l10n_it_reverse_charge
 #: code:addons/l10n_it_reverse_charge/models/account_invoice.py:319
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:357
 #, python-format
-msgid "Invoice line\n"
+msgid ""
+"Invoice line\n"
 "%s\n"
 "is RC but has not tax"
-msgstr "La riga fattura\n"
+msgstr ""
+"La riga fattura\n"
 "%s\n"
 "è RC ma non non ha imposte"
 
@@ -277,11 +274,12 @@ msgstr "Mappatura imposte per autofatturazione"
 
 #. module: l10n_it_reverse_charge
 #: code:addons/l10n_it_reverse_charge/models/account_invoice.py:327
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:364
 #, python-format
-msgid "Tax code used is not a RC tax.\n"
+msgid ""
+"Tax code used is not a RC tax.\n"
 "Can't find tax mapping"
-msgstr "Il codice imposta utilizzato non è di tipo RC.\n"
+msgstr ""
+"Il codice imposta utilizzato non è di tipo RC.\n"
 "Impossibile trovare la mappatura imposte"
 
 #. module: l10n_it_reverse_charge
@@ -301,20 +299,24 @@ msgstr "Testo su autofattura"
 
 #. module: l10n_it_reverse_charge
 #: code:addons/l10n_it_reverse_charge/models/account_invoice.py:418
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:538
 #, python-format
-msgid "There are more than one payment line.\n"
-"In that case account entries cannot be canceledautomatically. Please proceed manually"
-msgstr "È presente più di una riga di pagamento.\n"
-"In tal caso le registrazioni non possono essere annullate automaticamente. Procedere manualmente"
+msgid ""
+"There are more than one payment line.\n"
+"In that case account entries cannot be canceledautomatically. Please proceed "
+"manually"
+msgstr ""
+"È presente più di una riga di pagamento.\n"
+"In tal caso le registrazioni non possono essere annullate automaticamente. "
+"Procedere manualmente"
 
 #. module: l10n_it_reverse_charge
 #: code:addons/l10n_it_reverse_charge/models/account_invoice.py:304
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:343
 #, python-format
-msgid "There is no default credit account defined \n"
+msgid ""
+"There is no default credit account defined \n"
 "on journal \"%s\"."
-msgstr "Non c'è un conto di credito di default \n"
+msgstr ""
+"Non c'è un conto di credito di default \n"
 "sul sezionale \"%s\"."
 
 #. module: l10n_it_reverse_charge
@@ -330,18 +332,28 @@ msgstr "Integrazione IVA"
 #. module: l10n_it_reverse_charge
 #: code:addons/l10n_it_reverse_charge/models/account_invoice.py:408
 #, python-format
-msgid "VAT integration RC type, defined in fiscal position {fp}, is not managed yet"
-msgstr "VAT integration RC type, defined in fiscal position {fp}, is not managed yet"
+msgid ""
+"VAT integration RC type, defined in fiscal position {fp}, is not managed yet"
+msgstr ""
+"VAT integration RC type, defined in fiscal position {fp}, is not managed yet"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_rc_type.py:91
 #: code:addons/l10n_it_reverse_charge/models/account_rc_type.py:92
 #, python-format
-msgid "When \"With additional supplier self invoice\" you must set only one tax mapping line: only 1 tax per invoice is supported"
-msgstr "Quando \"Con autofattura passiva aggiuntiva\" bisogna impostare una sola riga di mappatura imposte: solo un'imposta per fattura è supportata"
+msgid ""
+"When \"With additional supplier self invoice\" you must set only one tax "
+"mapping line: only 1 tax per invoice is supported"
+msgstr ""
+"Quando \"Con autofattura passiva aggiuntiva\" bisogna impostare una sola "
+"riga di mappatura imposte: solo un'imposta per fattura è supportata"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_with_supplier_self_invoice
 msgid "With additional supplier self invoice"
 msgstr "Con autofattura passiva aggiuntiva"
 
+#~ msgid "Credit transfer for reverse charge"
+#~ msgstr "Credit transfer for reverse charge"
+
+#~ msgid "Debit transfer for reverse charge"
+#~ msgstr "Debit transfer for reverse charge"
