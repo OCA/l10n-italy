@@ -874,7 +874,7 @@ class WizardImportFatturapa(models.TransientModel):
             'currency_id': currency[0].id,
             'journal_id': purchase_journal.id,
             # 'origin': xmlData.datiOrdineAcquisto,
-            'fiscal_position_id': False,
+            'fiscal_position_id': partner.property_account_position_id.id,
             'payment_term_id': partner.property_supplier_payment_term_id.id,
             'company_id': company.id,
             'fatturapa_attachment_in_id': fatturapa_attachment.id,
