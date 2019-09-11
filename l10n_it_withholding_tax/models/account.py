@@ -315,6 +315,12 @@ class AccountFiscalPosition(models.Model):
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
+    print_withholding_tax_in_pdf = fields.Boolean(
+        "Print withholding tax in PDF",
+        help="If enabled, it will print withholding tax in PDF invoice.",
+        default=True
+    )
+
     @api.multi
     @api.depends(
         'invoice_line_ids.price_subtotal', 'withholding_tax_line_ids.tax',

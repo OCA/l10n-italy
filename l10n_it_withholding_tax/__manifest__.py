@@ -16,6 +16,7 @@
         'views/withholding_tax.xml',
         'security/ir.model.access.csv',
         'security/security.xml',
+        'views/report_invoice.xml'
     ],
     "installable": True
 }
