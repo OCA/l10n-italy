@@ -1,10 +1,11 @@
 # Copyright 2016 Lorenzo Battistini - Agile Business Group
 # Copyright 2018-2019 Simone Rubino - Agile Business Group
 # Copyright 2019 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
+# Copyright 2020 Giovanni Serra - GSLab.it
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 {
     'name': 'Italian Localization - Ricevute',
-    'version': '12.0.1.1.2',
+    'version': '12.0.1.1.3',
     'category': 'Accounting & Finance',
     'author': 'Odoo Italian Community, Agile Business Group, '
               'Odoo Community Association (OCA)',

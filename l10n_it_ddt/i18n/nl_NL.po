@@ -308,7 +308,7 @@ msgid "Do not invoice services from DDT"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:528
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:532
 #, python-format
 msgid "Document {d} has invoice linked"
 msgstr ""
@@ -619,13 +619,13 @@ msgid "Pickings"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:326
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:330
 #, python-format
 msgid "Please define an accounting sale journal for this company."
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:654
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:658
 #, python-format
 msgid ""
 "Please define income account for this product: \"%s\" (id:%d) - or for its "
@@ -672,7 +672,7 @@ msgid "Related TDs"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:291
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:295
 #, python-format
 msgid "Relevant period:"
 msgstr ""
@@ -972,8 +972,8 @@ msgid "Taxes"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:458
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:466
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:462
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:470
 #, python-format
 msgid "There is no invoiceable line."
 msgstr ""
