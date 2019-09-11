@@ -286,6 +286,10 @@ class StockPickingPackagePreparation(models.Model):
         date_format = lang.date_format
         ddt_date_from = self._context.get('ddt_date_from', False)
         ddt_date_to = self._context.get('ddt_date_to', False)
+        if isinstance(ddt_date_from, str):
+            ddt_date_from = fields.Date.from_string(ddt_date_from)
+        if isinstance(ddt_date_to, str):
+            ddt_date_to = fields.Date.from_string(ddt_date_to)
         if ddt_date_from and ddt_date_to:
             invoice_description = '{} {} - {}'.format(
                 _('Relevant period:'), ddt_date_from.strftime(date_format),

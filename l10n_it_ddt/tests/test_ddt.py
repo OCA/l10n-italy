@@ -6,6 +6,8 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from datetime import datetime
+from odoo import fields
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import Warning as UserError
 
@@ -569,3 +571,37 @@ class TestDdt(TransactionCase):
         ddt2 = self.ddt_model.browse(res['res_id'])
         quantity_by_lot = ddt2.line_ids[0].quantity_by_lot()
         self.assertEqual(quantity_by_lot, {lot1: '4.00', lot2: '2.00'})
+
+    def test_ddt_invoicing(self):
+        outgoung_type = self.env['stock.picking.type'].search(
+            [('code', '=', 'outgoing')])
+        outgoung_type.write({
+            'default_location_dest_id': self.env.ref(
+                'stock.stock_location_customers').id
+        })
+        ddt = self._create_ddt()
+        ddt.line_ids = [(0, 0, {
+            'name': self.product1.name,
+            'product_id': self.product1.id,
+            'product_uom_qty': 2,
+            'product_uom_id': self.product1.uom_id.id,
+            'price_unit': 3,
+        })]
+        ddt.action_put_in_pack()
+        ddt.action_done()
+        ddt.to_be_invoiced = True
+        invoicing_wiz = self.env['ddt.invoicing'].create({
+            'date_from': datetime.now().date(),
+            'date_to': datetime.now().date(),
+        })
+        action = invoicing_wiz.create_invoices()
+        # context manager translates dates to strings when launching actions
+        ctx = action['context'].copy()
+        ctx['ddt_date_from'] = fields.Date.to_string(ctx['ddt_date_from'])
+        ctx['ddt_date_to'] = fields.Date.to_string(ctx['ddt_date_to'])
+        invoice_wiz = self.env['ddt.create.invoice'].with_context(
+            ctx).create({})
+        res = invoice_wiz.create_invoice()
+        self.assertTrue(
+            "Relevant period: " in
+            self.env['account.invoice'].browse(res['domain'][0][2][0]).name)
