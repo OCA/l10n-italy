@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Payment Term -->
+
+        <record id="account_payment_term_riba" model="account.payment.term">
+            <field name="name">RiBA 30 Days End of Month</field>
+            <field name="note">RiBA 30 Days End of Month</field>
+            <field name="riba" eval="True"></field>
+        </record>
+        <record id="account_payment_term_line" model="account.payment.term.line">
+            <field name="value">balance</field>
+            <field name="option">last_day_following_month</field>
+            <field ref="account_payment_term_riba" name="payment_id"/>
+        </record>
+
+        <!-- banks -->
+
+        <record id="res_bank_1" model="res.bank">
+            <field name="name">Bank</field>
+            <field name="bic">CPHBBE75</field>
+        </record>
+
+        <record id="company_bank" model="res.partner.bank">
+            <field name="acc_number">BE74126201326907</field>
+            <field name="partner_id" ref="base.main_partner"></field>
+            <field name="bank_bic">CPHBBE75</field>
+            <field name="bank_id" ref="res_bank_1"></field>
+        </record>
+
+        <record id="customer_bank" model="res.partner.bank">
+            <field name="acc_number">IT86Y0200809440000005235152</field>
+            <field name="partner_id" ref="base.res_partner_12"></field>
+            <field name="bank_bic">CPHBBE75</field>
+            <field name="bank_id" ref="res_bank_1"></field>
+        </record>
+
+    </data>
+</odoo>
