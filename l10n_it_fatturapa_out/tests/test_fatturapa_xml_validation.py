@@ -410,3 +410,42 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
 
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, 'IT06363391001_00009.xml')
+
+    def test_10_xml_export(self):
+        # invoice with descriptive line
+        self.set_sequences(10, '2019-08-07')
+        invoice = self.invoice_model.create({
+            'date_invoice': '2019-08-07',
+            'partner_id': self.res_partner_fatturapa_2.id,
+            'journal_id': self.sales_journal.id,
+            'account_id': self.a_recv.id,
+            'payment_term_id': self.account_payment_term.id,
+            'user_id': self.user_demo.id,
+            'type': 'out_invoice',
+            'currency_id': self.EUR.id,
+            'invoice_line_ids': [
+                (0, 0, {
+                    'account_id': self.a_sale.id,
+                    'product_id': self.product_product_10.id,
+                    'name': 'Mouse\nOptical',
+                    'quantity': 1,
+                    'uom_id': self.product_uom_unit.id,
+                    'price_unit': 10,
+                    'invoice_line_tax_ids': [(6, 0, {
+                        self.tax_10.id})]
+                }),
+                (0, 0, {
+                    'display_type': 'line_note',
+                    'name': 'Notes',
+                    'invoice_line_tax_ids': [(6, 0, {
+                        self.tax_22.id})]
+                })],
+        })
+        invoice.action_invoice_open()
+        res = self.run_wizard(invoice.id)
+        attachment = self.attach_model.browse(res['res_id'])
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00010.xml')
+
+        # XML doc to be validated
+        xml_content = base64.decodebytes(attachment.datas)
+        self.check_content(xml_content, 'IT06363391001_00010.xml')
