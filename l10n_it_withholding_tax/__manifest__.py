@@ -11,7 +11,10 @@
               'Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/l10n-italy',
     'license': 'AGPL-3',
-    "depends": ['account'],
+    "depends": [
+        'account',
+        'l10n_it_fatturapa',
+    ],
     "data": [
         'views/account.xml',
         'views/withholding_tax.xml',
