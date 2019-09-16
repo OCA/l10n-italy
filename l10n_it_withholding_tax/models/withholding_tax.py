@@ -62,6 +62,13 @@ class WithholdingTax(models.Model):
     rate_ids = fields.One2many('withholding.tax.rate', 'withholding_tax_id',
                                'Rates', required=True)
 
+    welfare_fund_type_id = fields.Many2one(
+        'welfare.fund.type', 'Welfare Fund Type')
+    wt_types = fields.Selection([
+        ('enasarco', 'Enasarco tax'),
+        ('ritenuta', 'Withholding tax'),
+        ], 'Withholding tax type', required=True, default='ritenuta')
+
     @api.one
     @api.constrains('rate_ids')
     def _check_rate_ids(self):
