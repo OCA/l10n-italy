@@ -38,6 +38,8 @@
                             <field name="account_payable_id"/>
                             <field name="journal_id"/>
                             <field name="payment_term"/>
+                            <field name="welfare_fund_type_id"/>
+                            <field name="wt_types" widget='radio'/>
                         </group>
                         <group>
                             <field name="active"/>
