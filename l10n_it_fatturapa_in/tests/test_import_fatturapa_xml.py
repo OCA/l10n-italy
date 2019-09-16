@@ -563,3 +563,9 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.partner_id.id, partner_id.id)
         self.assertEqual(invoice.partner_id.street, 'Viale Repubblica, 34')
+
+    def test_31_xml_import(self):
+        res = self.run_wizard('test02', 'IT05979361218_012.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.partner_id.vat, 'IT05979361218')
