@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:361
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:371
 #, python-format
 msgid "Can't find 1 tax mapping for %s"
 msgstr "Impossibile trovare una mappatura imposte per %s"
@@ -85,7 +85,7 @@ msgid "Invoice Line"
 msgstr "Riga fattura"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:318
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:328
 #, python-format
 msgid ""
 "Invoice line\n"
@@ -203,6 +203,17 @@ msgid "Reverse Charge Types"
 msgstr "Tipi di inversione contabile"
 
 #. module: l10n_it_reverse_charge
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:78
+#, python-format
+msgid ""
+"Reverse charge self invoice.\n"
+"Supplier: %s\n"
+"Reference: %s\n"
+"Date: %s\n"
+"Internal reference: %s"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax__sale_tax_id
 msgid "Sale Tax"
 msgstr "Imposta vendite"
@@ -268,7 +279,7 @@ msgid "Tax Mapping for self invoices"
 msgstr "Mappatura imposte per autofatturazione"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:326
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:336
 #, python-format
 msgid ""
 "Tax code used is not a RC tax.\n"
@@ -293,7 +304,7 @@ msgid "Text on Self Invoice"
 msgstr "Testo su autofattura"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:417
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:427
 #, python-format
 msgid ""
 "There are more than one payment line.\n"
@@ -305,7 +316,7 @@ msgstr ""
 "Procedere manualmente"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:303
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:313
 #, python-format
 msgid ""
 "There is no default credit account defined \n"
@@ -325,7 +336,7 @@ msgid "VAT Integration"
 msgstr "Integrazione IVA"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:407
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:417
 #, python-format
 msgid ""
 "VAT integration RC type, defined in fiscal position {fp}, is not managed yet"
