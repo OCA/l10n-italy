@@ -11,14 +11,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-13 10:35+0000\n"
-"PO-Revision-Date: 2018-04-13 10:35+0000\n"
-"Last-Translator: Marco Calcagni <mcalcagni@dinamicheaziendali.it>, 2018\n"
+"PO-Revision-Date: 2019-09-18 09:24+0000\n"
+"Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: account_invoice_report_ddt_group
 #: model_terms:ir.ui.view,arch_db:account_invoice_report_ddt_group.report_invoice_ddt_group
@@ -28,17 +29,17 @@ msgstr "<strong>Lotti/Numeri seriali</strong>"
 #. module: account_invoice_report_ddt_group
 #: model:ir.model,name:account_invoice_report_ddt_group.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contatto"
 
 #. module: account_invoice_report_ddt_group
 #: model_terms:ir.ui.view,arch_db:account_invoice_report_ddt_group.invoice_form_ddt_group
 msgid "Group lines by TD"
-msgstr ""
+msgstr "Raggruppare righe per DDT"
 
 #. module: account_invoice_report_ddt_group
 #: model:ir.model.fields,field_description:account_invoice_report_ddt_group.field_account_invoice__has_ddt
 msgid "Has TD"
-msgstr ""
+msgstr "Ha DDT"
 
 #. module: account_invoice_report_ddt_group
 #: model:ir.model,name:account_invoice_report_ddt_group.model_account_invoice
@@ -49,18 +50,18 @@ msgstr "Fattura"
 #: model:ir.model.fields,help:account_invoice_report_ddt_group.field_res_partner__ddt_invoice_print_shipping_address
 #: model:ir.model.fields,help:account_invoice_report_ddt_group.field_res_users__ddt_invoice_print_shipping_address
 msgid "Show shipping address of TD in invoice report"
-msgstr ""
+msgstr "Mostrare indirizzo di spedizione DDT nella stampa fattura"
 
 #. module: account_invoice_report_ddt_group
 #: model:ir.model.fields,field_description:account_invoice_report_ddt_group.field_res_partner__ddt_invoice_print_shipping_address
 #: model:ir.model.fields,field_description:account_invoice_report_ddt_group.field_res_users__ddt_invoice_print_shipping_address
 msgid "TD shipping address on invoice"
-msgstr ""
+msgstr "Indirizzo spedizione DDT in fattura"
 
 #. module: account_invoice_report_ddt_group
 #: model_terms:ir.ui.view,arch_db:account_invoice_report_ddt_group.invoice_form_ddt_group
 msgid "This will overwrite existing Sections and Notes. Continue?"
-msgstr ""
+msgstr "Questo sovrascriverà sezioni e note esistenti. Continuare?"
 
 #~ msgid "DDT invoice print shipping address"
 #~ msgstr "Stampa indirizzo di destinazione DDT fattura"
