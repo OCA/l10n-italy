@@ -22,5 +22,6 @@
     "data": [
         "views/partner_view.xml",
         "views/account_view.xml",
+        "views/company_view.xml",
     ],
 }

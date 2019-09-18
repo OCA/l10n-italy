@@ -55,7 +55,11 @@ class WizardExportFatturapa(models.TransientModel):
             order = self.env['sale.order'].search(
                 [('name', '=', sale_order_name)])
             if order:
-                name = order.client_order_ref or order.name
+                company_id = self.env.user.company_id
+                name = order.name if company_id.\
+                    fatturapa_out_sale_internal_ref \
+                    or not order.client_order_ref \
+                    else order.client_order_ref
                 res = {
                     'name': name[:20].replace('\n', ' ').replace
                     ('\t', ' ').replace('\r', ' ').encode(
