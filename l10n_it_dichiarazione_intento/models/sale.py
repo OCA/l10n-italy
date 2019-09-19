@@ -19,7 +19,7 @@ class SaleOrder(models.Model):
                     sale.date_order)
                 if dichiarazioni:
                     sale.fiscal_position_id = \
-                        dichiarazioni.fiscal_position_id.id
+                        dichiarazioni[0].fiscal_position_id.id
 
     @api.onchange('date_order')
     def onchange_date_order(self):

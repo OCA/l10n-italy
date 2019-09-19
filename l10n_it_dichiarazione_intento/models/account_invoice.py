@@ -5,6 +5,8 @@
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
+from collections import OrderedDict
+
 
 class AccountInvoice(models.Model):
 
@@ -25,7 +27,7 @@ class AccountInvoice(models.Model):
                     invoice.date_invoice)
                 if dichiarazioni:
                     invoice.fiscal_position_id = \
-                        dichiarazioni.fiscal_position_id.id
+                        dichiarazioni[0].fiscal_position_id.id
 
     @api.onchange('partner_id', 'company_id')
     def _onchange_partner_id(self):
@@ -48,95 +50,95 @@ class AccountInvoice(models.Model):
         for invoice in self:
             invoice.invoice_line_ids._compute_tax_id()
 
+    def get_grouped_lines(self, invoice):
+        # ----- Get only lines with taxes
+        lines = invoice.move_id.line_ids.filtered(
+            lambda l: l.tax_ids)
+        if not lines:
+            return False
+
+        # ----- Group lines for tax
+        grouped_lines = {}
+        for line in lines:
+            tax = line.tax_ids[0]
+            if tax not in grouped_lines.keys():
+                grouped_lines.update({tax: []})
+            grouped_lines[tax].append(line)
+        return grouped_lines
+
     @api.multi
     def compute_dichiarazione_intento(self):
         dichiarazione_model = self.env['dichiarazione.intento']
-        # ------ Check if there is enough available amount on dichiarioni
+        dichiarazioni_amounts = OrderedDict()
+
         for invoice in self:
             if invoice.exclude_from_dichiarazione_intento:
                 continue
             dichiarazioni = dichiarazione_model.with_context(
-                ignore_state=True if invoice.type.endswith('_refund')
+                is_refund=True if invoice.type.endswith('_refund')
                 else False).get_valid(type=invoice.type.split('_')[0],
                                       partner_id=invoice.partner_id.id,
                                       date=invoice.date_invoice)
-            # ----- If partner hasn't dichiarazioni, do nothing
             if not dichiarazioni:
-                continue
-            sign = 1 if invoice.type.endswith('_invoice') else -1
-            dichiarazioni_amounts = {}
-            for tax_line in invoice.tax_line_ids:
-                amount = sign * tax_line.base
-                for dichiarazione in dichiarazioni:
-                    if dichiarazione.id not in dichiarazioni_amounts:
-                        dichiarazioni_amounts[dichiarazione.id] = \
-                            dichiarazione.available_amount
-                    if tax_line.tax_id.id in [t.id for t
-                                              in dichiarazione.taxes_ids]:
-                        dichiarazioni_amounts[dichiarazione.id] -= amount
-            dichiarazioni_residual = sum([
-                dichiarazioni_amounts[da] for da in dichiarazioni_amounts])
-            if dichiarazioni_residual < 0:
-                raise UserError(_(
-                    'Available plafond insufficent.\n'
-                    'Excess value: %s' % (abs(dichiarazioni_residual))))
+                if self.fiscal_position_id.valid_for_dichiarazione_intento:
+                    raise UserError(_(
+                        'Declaration of intent not found.\n'
+                        'Add a new declaration of intent or change \n'
+                        'then document fiscal position and check '
+                        'the applied VAT.'))
+                else:
+                    continue
 
-        # ----- Assign account move lines to dichiarazione for invoices
-        for invoice in self:
-            dichiarazioni = dichiarazione_model.with_context(
-                ignore_state=True if invoice.type.endswith('_refund')
-                else False).get_valid(type=invoice.type.split('_')[0],
-                                      partner_id=invoice.partner_id.id,
-                                      date=invoice.date_invoice)
-            # ----- If partner hasn't dichiarazioni, do nothing
-            if not dichiarazioni:
+            sign = invoice.type.endswith('_refund') and -1 or 1
+            grouped_lines = self.get_grouped_lines(invoice)
+            if not grouped_lines:
                 continue
-            # ----- Get only lines with taxes
-            lines = invoice.move_id.line_ids.filtered(
-                lambda l: l.tax_ids)
-            if not lines:
-                continue
-            # ----- Group lines for tax
-            grouped_lines = {}
-            sign = -1 if invoice.type.endswith('_refund') else 1
-            # sign = 1 if invoice.type in ('in_invoice', 'out_refund') else -1
-            for line in lines:
-                tax = line.tax_ids[0]
-                if tax not in grouped_lines.keys():
-                    grouped_lines.update({tax: []})
-                grouped_lines[tax].append(line)
-            # ----- Create a detail in dichiarazione for every tax group
-            for tax, lines in grouped_lines.iteritems():
+            # Check if there is enough available amount on declarations
+            # for every tax group
+            for tax, lines in grouped_lines.items():
+                amount = sum([abs(l.balance) for l in lines])
+                amount_available = 0
                 for dichiarazione in dichiarazioni:
+                    if dichiarazione not in dichiarazioni_amounts:
+                        if tax in dichiarazione.taxes_ids:
+                            amount_to_use = dichiarazione.available_amount \
+                                if sign == 1 else dichiarazione.used_amount
+                            dichiarazioni_amounts[dichiarazione] = \
+                                amount_to_use
+                            amount_available += amount_to_use
+                if amount_available < amount:
+                    raise UserError(_(
+                        'Available plafond insufficent.\n'
+                        'Invoice value : %s \n'
+                        'Excess value: %s' % (self.amount_total,
+                                              abs(amount_available - amount))))
+
+            # ----- Create a detail in dichiarazione for every tax group
+            for tax, lines in grouped_lines.items():
+                amount_group = sum([abs(l.balance) for l in lines])
+
+                for dichiarazione in dichiarazioni_amounts.keys():
                     if tax not in dichiarazione.taxes_ids:
                         continue
-                    dich_lines = self.env['dichiarazione.intento.line'].search(
-                        [
-                            ('dichiarazione_id', '=', dichiarazione.id),
-                            ('invoice_id', '=', invoice.id),
-                            ('taxes_ids', 'in', [tax.id])
-                        ])
-                    if dich_lines:
-                        # Line already present
-                        if invoice.exclude_from_dichiarazione_intento:
-                            # if present, remove
-                            invoice.dichiarazione_intento_ids = [
-                                (2, dichiarazione.id)]
-                            dich_lines.unlink()
-                        continue
-                    if invoice.exclude_from_dichiarazione_intento:
-                        continue
+                    if dichiarazioni_amounts[dichiarazione] > amount_group:
+                        amount = amount_group
+                    else:
+                        amount = dichiarazioni_amounts[dichiarazione]
+                    amount_group -= amount
+
                     dichiarazione.line_ids = [(0, 0, {
                         'taxes_ids': [(6, 0, [tax.id, ])],
                         'move_line_ids': [(6, 0, [l.id for l in lines])],
-                        'amount': sum([sign * abs(l.balance) for l in lines]),
+                        'amount': sign * amount,
                         'invoice_id': invoice.id,
-                        'base_amount': invoice.amount_untaxed,
+                        'base_amount': sum([abs(l.balance) for l in lines]),
                         'currency_id': invoice.currency_id.id,
-                        })]
+                    })]
                     # ----- Link dichiarazione to invoice
-                    invoice.dichiarazione_intento_ids = [
-                        (4, dichiarazione.id)]
+                    invoice.dichiarazione_intento_ids = [(4, dichiarazione.id)]
+                    if amount_group <= 0:
+                        break
+                self.env.cr.commit()
 
     @api.multi
     def action_move_create(self):

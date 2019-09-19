@@ -149,7 +149,7 @@ class DichiarazioneIntento(models.Model):
             record.display_name = display_name
 
     @api.multi
-    @api.depends('line_ids', 'line_ids.amount')
+    @api.depends('line_ids', 'line_ids.amount', 'limit_amount')
     def _compute_amounts(self):
         for record in self:
             amount = sum(line.amount for line in record.line_ids)
@@ -181,10 +181,12 @@ class DichiarazioneIntento(models.Model):
         # ----- return valid documents for partner
         domain = [('partner_id', '=', partner_id), ('type', '=', type),
                   ('date_start', '<=', date), ('date_end', '>=', date)]
-        ignore_state = self.env.context.get('ignore_state', False)
-        if not ignore_state:
+        is_refund = self.env.context.get('is_refund', False)
+        if is_refund:
+            records = self.search(domain, order='state desc, date desc')
+        else:
             domain.append(('state', '!=', 'close'), )
-        records = self.search(domain, order='state desc, date desc')
+            records = self.search(domain, order='date')
         return records
 
 
