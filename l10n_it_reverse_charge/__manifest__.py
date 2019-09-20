@@ -24,6 +24,7 @@
         'views/account_invoice_view.xml',
         'views/account_fiscal_position_view.xml',
         'views/account_rc_type_view.xml',
+        'security/reverse_charge_security.xml',
     ],
     'installable': True,
 }
