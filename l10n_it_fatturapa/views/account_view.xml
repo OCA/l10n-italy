@@ -27,10 +27,11 @@
                 <xpath expr="//field[@name='invoice_line']/tree" position="attributes">
                     <attribute eval="False" name="editable"></attribute>
                 </xpath>
+                <!-- 
                 <xpath expr="//field[@name='origin']" position="after">
                     <field name="doc_type"></field>
                 </xpath>
-                
+                 -->
             </field>
         </record>
 
