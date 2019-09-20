@@ -26,6 +26,12 @@ msgid "Can't find 1 tax mapping for %s"
 msgstr "Ne najdem 1 davčnega mapiranja za %s"
 
 #. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__company_id
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax__company_id
+msgid "Company"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__create_uid
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax__create_uid
 msgid "Created by"
@@ -346,7 +352,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_rc_type.py:89
+#: code:addons/l10n_it_reverse_charge/models/account_rc_type.py:95
 #, python-format
 msgid ""
 "When \"With additional supplier self invoice\" you must set only one tax "
