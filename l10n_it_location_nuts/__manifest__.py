@@ -1,12 +1,12 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Simone Rubino - Agile Business Group
+# Copyright 2019 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
-    'name': 'NUTS Regions for Italy',
-    'summary': 'NUTS specific options for Italy',
-    'version': '10.0.1.0.0',
+    'name': 'ITA - Regioni NUTS',
+    'summary': 'Opzioni NUTS specifiche per l\'Italia',
+    'version': '12.0.1.0.0',
     'category': 'Localisation/Europe',
-    'website': 'https://www.agilebg.com',
+    'website': 'https://github.com/OCA/l10n-italy',
     'author': 'Agile Business Group, '
               'Odoo Community Association (OCA)',
     'license': 'AGPL-3',
