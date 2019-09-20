@@ -6,7 +6,7 @@
 
 {
     'name': 'ITA - Inversione contabile',
-    'version': '12.0.1.1.1',
+    'version': '12.0.1.2.0',
     'category': 'Localization/Italy',
     'summary': 'Inversione contabile',
     'author': 'Odoo Italia Network, Odoo Community Association (OCA)',
@@ -23,6 +23,7 @@
         'views/account_invoice_view.xml',
         'views/account_fiscal_position_view.xml',
         'views/account_rc_type_view.xml',
+        'security/reverse_charge_security.xml',
     ],
     'installable': True,
 }
