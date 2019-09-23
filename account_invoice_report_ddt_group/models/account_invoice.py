@@ -57,7 +57,7 @@ class AccountInvoice(models.Model):
                         self._prepare_ddt_shipping_address(
                             ddt.partner_shipping_id)
             else:
-                group[string_key]['lines'].append(ddt_dict[key])
+                group[string_key]['lines'].extend(ddt_dict[key])
         # Order dict by ddt number
         if group:
             group_ordered = collections.OrderedDict()
