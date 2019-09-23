@@ -172,13 +172,13 @@ msgid "Due"
 msgstr "Da pagare"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:70
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:71
 #, python-format
 msgid "Error! Rates are required"
 msgstr "Errore! I tassi sono obbligatori"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:139
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:140
 #, python-format
 msgid "Error! You cannot have 2 rates that overlap!"
 msgstr "Errore! I periodi si sovrappongono"
@@ -408,13 +408,13 @@ msgid "W.T."
 msgstr "R.A."
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:280
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:281
 #, python-format
 msgid "WT %s - %s"
 msgstr "WT %s - %s"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:290
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:291
 #, python-format
 msgid "WT %s - %s - %s"
 msgstr "Rit. %s - %s - %s"
@@ -451,7 +451,7 @@ msgstr "Voci Ritenuta"
 
 #. module: l10n_it_withholding_tax
 #: code:addons/l10n_it_withholding_tax/models/account.py:131
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:399
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:400
 #, python-format
 msgid ""
 "Warning! Only Withholding Tax moves in Due status                     can be "
@@ -460,7 +460,7 @@ msgstr ""
 "Attenzione! Solo Voci di ritenuta \"Da pagare\" possono essere cancellate"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:276
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:277
 #, python-format
 msgid "Warning! Wt account move already exists: %s"
 msgstr "Attenzione! Movimento di ritenuta già esistente: %s"
