@@ -28,6 +28,10 @@
                         <label for="arrotondamenti_tax_id"/>
                         <field name="arrotondamenti_tax_id" class="oe_inline"/>
                     </div>
+                    <div>
+                        <label for="enasarco_relax_checks" class="oe_inline" />
+                        <field name="enasarco_relax_checks" />
+                    </div>
                 </xpath>
             </field>
         </record>
