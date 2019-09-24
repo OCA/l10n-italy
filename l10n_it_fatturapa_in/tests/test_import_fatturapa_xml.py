@@ -28,6 +28,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
     def setUp(self):
         super(TestFatturaPAXMLValidation, self).setUp()
 
+        self.invoice_model = self.env['account.invoice']
+
     def test_00_xml_import(self):
         self.env.user.company_id.cassa_previdenziale_product_id = (
             self.service.id)
@@ -578,3 +580,80 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertTrue(orig_invoice.e_invoice_validation_error)
         self.assertTrue(orig_invoice.reference)
         self.assertTrue(orig_invoice.date_invoice)
+
+
+class TestFatturaPAEnasarco(FatturapaCommon):
+
+    def setUp(self):
+        super(TestFatturaPAEnasarco, self).setUp()
+
+        self.invoice_model = self.env['account.invoice']
+
+        account_payable = self.env['account.account'].create({
+            'name': 'Test WH tax',
+            'code': 'whtaxpay2',
+            'user_type_id': self.env.ref(
+                'account.data_account_type_payable').id,
+            'reconcile': True})
+        account_receivable = self.env['account.account'].create({
+            'name': 'Test WH tax',
+            'code': 'whtaxrec2',
+            'user_type_id': self.env.ref(
+                'account.data_account_type_receivable').id,
+            'reconcile': True})
+        misc_journal = self.env['account.journal']. \
+            search([("code", "=", "MISC")])
+        welfare_fund_type_id = self.env['welfare.fund.type']. \
+            search([('name', '=', 'TC07')])
+        self.env['withholding.tax'].create({
+            'name': 'Enasarco',
+            'code': 'TC07',
+            'account_receivable_id': account_receivable.id,
+            'account_payable_id': account_payable.id,
+            'journal_id': misc_journal.id,
+            'payment_term': self.env.ref(
+                'account.account_payment_term_advance').id,
+            'welfare_fund_type_id': welfare_fund_type_id.id,
+            'wt_types': 'enasarco',
+            'rate_ids': [(0, 0, {
+                'tax': 1.57,
+                'base': 1.0,
+            })]
+        })
+        self.env['withholding.tax'].create({
+            'name': '1040/3',
+            'code': '1040',
+            'account_receivable_id': account_receivable.id,
+            'account_payable_id': account_payable.id,
+            'journal_id': misc_journal.id,
+            'payment_term': self.env.ref(
+                'account.account_payment_term_advance').id,
+            'welfare_fund_type_id': False,
+            'wt_types': 'ritenuta',
+            'causale_pagamento_id': self.env.ref(
+                'l10n_it_causali_pagamento.a').id,
+            'rate_ids': [(0, 0, {
+                'tax': 11.50,
+                'base': 1.0,
+            })]
+        })
+
+    def test_01_xml_import_enasarco(self):
+        res = self.run_wizard('test01', 'IT05979361218_014.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
+        self.assertEqual(invoice.amount_untaxed, 2470.00)
+        self.assertEqual(invoice.amount_tax, 543.40)
+        self.assertEqual(invoice.amount_total, 3013.40)
+        self.assertEqual(invoice.amount_net_pay, 2690.57)
+        self.assertEqual(invoice.welfare_fund_ids[0].kind_id.code, 'N2')
+        self.assertTrue(len(invoice.e_invoice_line_ids) == 1)
+        self.assertEqual(
+            invoice.e_invoice_line_ids[0].name, 'ACCONTO PROVVIGIONI')
+        self.assertEqual(
+            invoice.e_invoice_line_ids[0].qty, 1.0)
+        self.assertEqual(
+            invoice.e_invoice_line_ids[0].unit_price, 2470.0)
+        self.assertEqual(
+            invoice.e_invoice_line_ids[0].total_price, 2470.0)
