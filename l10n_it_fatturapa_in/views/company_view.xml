@@ -39,6 +39,10 @@
                                     <label for="arrotondamenti_tax_id" class="col-lg-6 o_light_label"/>
                                     <field name="arrotondamenti_tax_id" class="col-lg-6"/>
                                 </div>
+                                <div class="row">
+                                    <label for="enasarco_relax_checks" class="col-lg-6 o_light_label"/>
+                                    <field name="enasarco_relax_checks" class="col-lg-6"/>
+                                </div>
                             </div>
                         </div>
                     </div>
