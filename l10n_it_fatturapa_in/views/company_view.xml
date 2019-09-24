@@ -12,6 +12,10 @@
                     <field name="cassa_previdenziale_product_id" class="oe_inline"/>
                 </div>
                 <div>
+                    <label for="enasarco_relax_checks"/>
+                    <field name="enasarco_relax_checks" class="oe_inline"/>
+                </div>
+                <div>
                     <label for="sconto_maggiorazione_product_id"/>
                     <field name="sconto_maggiorazione_product_id" class="oe_inline"/>
                 </div>
