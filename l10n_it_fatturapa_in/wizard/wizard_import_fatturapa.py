@@ -1186,10 +1186,80 @@ class WizardImportFatturapa(models.TransientModel):
             return
 
         WelfareFundLineModel = self.env['welfare.fund.data.line']
+
+        wts = False
+        enasarco_relax_checks = self.env.user.company_id.enasarco_relax_checks
+        if any([welfareLine for welfareLine in Welfares
+                if welfareLine.TipoCassa == 'TC07']):
+            # Search the matching withholding tax
+            wts = self.env['withholding.tax'].search(
+                [('wt_types', '=', 'enasarco')])
+
+        processedLines = []
         for welfareLine in Welfares:
-            WalferLineVals = self._prepareWelfareLine(
-                invoice.id, welfareLine)
-            WelfareFundLineModel.create(WalferLineVals)
+            # Handle only TC07
+            if welfareLine.TipoCassa == 'TC07':
+                if not wts:
+                    msg = _(
+                        "The bill contains Welfare Fund tax with "
+                        "Type %s, "
+                        "but such a tax is not found in your system. Please "
+                        "set it."
+                    ) % welfareLine.TipoCassa
+                    if enasarco_relax_checks:
+                        self.log_inconsistency(msg)
+                    else:
+                        raise UserError(msg)
+
+                wt_found = False
+                for wt in wts:
+                    if wt.tax == float(welfareLine.AlCassa):
+                        wt_found = wt
+                        break
+
+                if not wt_found:
+                    msg = _(
+                        "The bill contains Welfare Fund tax with "
+                        "Type %s and Tax %s "
+                        "but such a tax is not found in your system. Please "
+                        "set it."
+                    ) % (welfareLine.TipoCassa, float(welfareLine.AlCassa))
+                    if enasarco_relax_checks:
+                        self.log_inconsistency(msg)
+                    else:
+                        raise UserError(msg)
+
+            WalfarLineVals = self._prepareWelfareLine(invoice.id, welfareLine)
+            WelfareFundLineModel.create(WalfarLineVals)
+
+            # We are not interested to continue if Enasarco is used
+            if welfareLine.TipoCassa == 'TC07':
+                found = False
+                for line in invoice.invoice_line_ids:
+                    # search an invoice line having a valid Welfare Tax
+                    if (line.id not in processedLines and
+                            line.invoice_line_tax_wt_ids):
+                        processedLines.append(line.id)
+                        ids = line.invoice_line_tax_wt_ids.ids
+                        ids.append(wt_found.id)
+                        line.update({
+                            'invoice_line_tax_wt_ids': [(6, 0, ids)],
+                        })
+                        found = True
+
+                if not found:
+                    msg = _(
+                        "The bill contains Welfare Fund tax with "
+                        "Type %s and Tax %s "
+                        "but such a tax cannot be added in accounting."
+                    ) % (welfareLine.TipoCassa, float(welfareLine.AlCassa))
+                    if enasarco_relax_checks:
+                        self.log_inconsistency(msg)
+                    else:
+                        raise UserError(msg)
+
+                continue
+
             line_vals = self._prepare_generic_line_data(welfareLine)
             line_vals.update({
                 'name': _(
@@ -1215,6 +1285,9 @@ class WizardImportFatturapa(models.TransientModel):
                     cassa_previdenziale_product, line_vals
                 )
             self.env['account.invoice.line'].create(line_vals)
+
+        if processedLines:
+            invoice._onchange_invoice_line_wt_ids()
 
     def set_delivery_data(self, FatturaBody, invoice):
         Delivery = FatturaBody.DatiGenerali.DatiTrasporto
