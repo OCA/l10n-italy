@@ -9,6 +9,10 @@
             <field name="arch" type="xml">
                 <xpath expr="//div[@id='fatturapa_settings']" position="inside">
                     <div>
+                        <label for="fatturapa_sale_order_data"/>
+                        <field name="fatturapa_sale_order_data" class="oe_inline"/>
+                    </div>
+                    <div>
                         <label for="fatturapa_out_sale_internal_ref"/>
                         <field name="fatturapa_out_sale_internal_ref" class="oe_inline"/>
                     </div>

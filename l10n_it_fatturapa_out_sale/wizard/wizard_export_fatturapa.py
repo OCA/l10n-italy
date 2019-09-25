@@ -14,7 +14,8 @@ class WizardExportFatturapa(models.TransientModel):
     def setRelatedDocumentTypes(self, invoice, body):
         res = super(WizardExportFatturapa, self).setRelatedDocumentTypes(
             invoice, body)
-        if invoice.partner_id.fatturapa_sale_order_data:
+        if invoice.partner_id.fatturapa_sale_order_data or \
+                self.env.user.company_id.fatturapa_sale_order_data:
             doc_type = 'DatiOrdineAcquisto'
             # if sale_order refer to the whole invoice create only 1 rel doc
             if invoice.picking_ids and set(self.env['sale.order'].search([
