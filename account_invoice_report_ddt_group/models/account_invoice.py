@@ -93,7 +93,7 @@ class AccountInvoice(models.Model):
     def _compute_has_ddt(self):
         for invoice in self:
             invoice.has_ddt = False
-            for line in self.invoice_line_ids:
+            for line in invoice.invoice_line_ids:
                 if line.ddt_line_id:
                     invoice.has_ddt = True
                     break
