@@ -1,6 +1,7 @@
 account-financial-reporting
 account-invoicing
 account-payment
+bank-payment
 commission
 partner-contact
 server-tools
