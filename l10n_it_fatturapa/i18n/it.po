@@ -127,7 +127,7 @@ msgid "Art. 73"
 msgstr "Art. 73"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:65
+#: code:addons/l10n_it_fatturapa/models/partner.py:68
 #, python-format
 msgid ""
 "As a Public Administration, partner %s IPA Code must be 6 characters long."
@@ -136,7 +136,7 @@ msgstr ""
 "6 caratteri."
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:75
+#: code:addons/l10n_it_fatturapa/models/partner.py:78
 #, python-format
 msgid "As a natural person, partner %s must have Name and Surname."
 msgstr "Il partner %s, come persona fisica, deve avere nome e cognome."
@@ -282,19 +282,19 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:113
+#: code:addons/l10n_it_fatturapa/models/partner.py:116
 #, python-format
 msgid "Customer %s: city is needed for XML generation."
 msgstr "Cliente %s: per la generazione dell'XML è necessaria la città."
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:117
+#: code:addons/l10n_it_fatturapa/models/partner.py:120
 #, python-format
 msgid "Customer %s: country is needed for XML generation."
 msgstr "Cliente %s: per la generazione dell'XML è necessaria la nazione."
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:105
+#: code:addons/l10n_it_fatturapa/models/partner.py:108
 #, python-format
 msgid "Customer %s: street is needed for XML generation."
 msgstr "Cliente %s: per la generazione dell'XML è necessario l'indirizzo."
@@ -370,6 +370,12 @@ msgstr "Dettagli sconto o maggiorazione"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
+
+#. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner_electronic_invoice_no_contact_update
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users_electronic_invoice_no_contact_update
+msgid "Do not update the contact from Electronic Invoice Details"
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_ddt_name
@@ -624,13 +630,13 @@ msgid "Is public document"
 msgstr "È un documento pubblico"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:100
+#: code:addons/l10n_it_fatturapa/models/partner.py:103
 #, fuzzy, python-format
 msgid "Italian partner %s must have VAT Number or Fiscal Code."
 msgstr "Il partner %s deve avere una partita IVA o un codice fiscale."
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:109
+#: code:addons/l10n_it_fatturapa/models/partner.py:112
 #, fuzzy, python-format
 msgid "Italian partner %s: ZIP is needed for XML generation."
 msgstr "Cliente %s: per la generazione dell'XML è necessario il CAP."
@@ -853,13 +859,13 @@ msgid "Partner"
 msgstr "Partner"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:84
+#: code:addons/l10n_it_fatturapa/models/partner.py:87
 #, python-format
 msgid "Partner %s Addressee Code must be 7 characters long."
 msgstr "Il codice destinatario del partner %s deve essere lungo 7 caratteri."
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:90
+#: code:addons/l10n_it_fatturapa/models/partner.py:93
 #, python-format
 msgid "Partner %s has Addressee PEC %s, the Addresse Code must be %s."
 msgstr ""

@@ -26,7 +26,7 @@ msgstr ""
 
 #. module: l10n_it_website_portal_fatturapa
 #: model:ir.ui.view,arch_db:l10n_it_website_portal_fatturapa.fatturapa_details
-msgid "I want to receive electronic invoices"
+msgid "Enable receiving electronic invoice"
 msgstr ""
 
 #. module: l10n_it_website_portal_fatturapa

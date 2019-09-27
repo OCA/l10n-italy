@@ -29,6 +29,7 @@ msgid "Attachment"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_att_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out_name
 msgid "Attachment Name"
 msgstr ""
@@ -72,7 +73,7 @@ msgid "Company"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:43
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:49
 #, python-format
 msgid "Company %s TIN not set."
 msgstr ""
@@ -171,7 +172,7 @@ msgid "E-invoice Export Files"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:103
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:109
 #, python-format
 msgid "E-invoice attachment changed"
 msgstr ""
@@ -230,7 +231,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:72
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:78
 #, python-format
 msgid "File %s already present."
 msgstr ""
@@ -385,7 +386,7 @@ msgid "Out Invoices"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:36
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:42
 #, python-format
 msgid "Partner %s TIN not set."
 msgstr ""
@@ -489,6 +490,11 @@ msgid "The database object this attachment will be attached to."
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
+#: sql_constraint:fatturapa.attachment.out:0
+msgid "The name of the attachment must be unique!"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out_res_id
 msgid "The record id this is attached to."
 msgstr ""
@@ -528,7 +534,7 @@ msgid "Url"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:104
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:110
 #, python-format
 msgid "User %s uploaded a new e-invoice file"
 msgstr ""

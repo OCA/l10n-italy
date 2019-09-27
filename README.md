@@ -35,7 +35,7 @@ addon | version | summary
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 10.0.1.0.0 | Esigibilità IVA
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 10.0.2.8.0 | Fatture elettroniche
 [l10n_it_fatturapa_export_zip](l10n_it_fatturapa_export_zip/) | 10.0.1.0.0 | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche
-[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 10.0.1.11.1 | Ricezione fatture elettroniche
+[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 10.0.1.11.2 | Ricezione fatture elettroniche
 [l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 10.0.1.0.0 | Modulo ponte tra ricezione fatture elettroniche e acquisti
 [l10n_it_fatturapa_in_rc](l10n_it_fatturapa_in_rc/) | 10.0.1.1.0 | Modulo di collegamento tra e-fattura in acquisto e reverse charge
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 10.0.1.5.1 | Emissione fatture elettroniche
@@ -43,8 +43,8 @@ addon | version | summary
 [l10n_it_fatturapa_out_stamp](l10n_it_fatturapa_out_stamp/) | 10.0.1.0.2 | Modulo ponte tra emissione fatture elettroniche e imposta di bollo
 [l10n_it_fatturapa_out_triple_discount](l10n_it_fatturapa_out_triple_discount/) | 10.0.1.0.1 | Modulo ponte tra emissione fatture elettroniche e sconto triplo
 [l10n_it_fatturapa_out_wt](l10n_it_fatturapa_out_wt/) | 10.0.1.0.1 | Modulo ponte tra emissione fatture elettroniche e ritenute.
-[l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 10.0.1.5.4 | Invio fatture elettroniche tramite PEC
-[l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 10.0.1.1.1 | Italian Localization - Tipi di documento fiscale per dichiarativi
+[l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 10.0.1.7.0 | Invio fatture elettroniche tramite PEC
+[l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 10.0.1.2.0 | Italian Localization - Tipi di documento fiscale per dichiarativi
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 10.0.1.0.0 | Electronic invoices payment
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 10.0.1.3.0 | Italian Localisation - Fiscal Code
 [l10n_it_fiscalcode_invoice](l10n_it_fiscalcode_invoice/) | 10.0.1.0.0 | Italian Fiscal Code in invoice PDF
@@ -62,11 +62,11 @@ addon | version | summary
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 10.0.1.3.0 | ITA - Registri IVA
 [l10n_it_vat_registries_cash_basis](l10n_it_vat_registries_cash_basis/) | 10.0.1.0.0 | Italian Localization - VAT Registries - Cash Basis
 [l10n_it_vat_registries_split_payment](l10n_it_vat_registries_split_payment/) | 10.0.1.0.0 | Bridge module to make VAT registries work with Split Payment
-[l10n_it_website_portal_fatturapa](l10n_it_website_portal_fatturapa/) | 10.0.1.0.1 | Add fatturapa fields and checks in frontend user's details
+[l10n_it_website_portal_fatturapa](l10n_it_website_portal_fatturapa/) | 10.0.1.0.2 | Add fatturapa fields and checks in frontend user's details
 [l10n_it_website_portal_fiscalcode](l10n_it_website_portal_fiscalcode/) | 10.0.1.0.0 | Add fiscal code to details of frontend user
 [l10n_it_website_sale_corrispettivi](l10n_it_website_sale_corrispettivi/) | 10.0.1.1.1 | Italian localization - Website Sale Corrispettivi
 [l10n_it_website_sale_fiscalcode](l10n_it_website_sale_fiscalcode/) | 10.0.1.0.1 | Website Sale FiscalCode
-[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 10.0.1.2.5 | Italian Withholding Tax
+[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 10.0.1.2.6 | Italian Withholding Tax
 [l10n_it_withholding_tax_causali](l10n_it_withholding_tax_causali/) | 10.0.1.0.0 | Causali pagamento per ritenute d'acconto
 [l10n_it_withholding_tax_payment](l10n_it_withholding_tax_payment/) | 10.0.1.1.0 | Italian Withholding Tax Payment
 
