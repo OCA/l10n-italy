@@ -47,6 +47,7 @@ setuptools.setup(
         'odoo12-addon-l10n_it_website_portal_fatturapa',
         'odoo12-addon-l10n_it_website_portal_fatturapa_sale',
         'odoo12-addon-l10n_it_website_portal_fiscalcode',
+        'odoo12-addon-l10n_it_website_portal_ipa',
         'odoo12-addon-l10n_it_website_sale_corrispettivi',
         'odoo12-addon-l10n_it_website_sale_fatturapa',
         'odoo12-addon-l10n_it_website_sale_fiscalcode',
