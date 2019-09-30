@@ -67,7 +67,7 @@ msgid "Attachment URL"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/attachment.py:95
+#: code:addons/l10n_it_fatturapa_in/models/attachment.py:104
 #, python-format
 msgid "Attachment without name"
 msgstr ""
@@ -367,6 +367,11 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice__e_invoice_date_invoice
 msgid "E-invoice date"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__att_name
+msgid "E-invoice file name"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -965,6 +970,11 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_in/models/account.py:49
 #, python-format
 msgid "The invoice '%s' doesn't match the related e-invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: sql_constraint:fatturapa.attachment.in:0
+msgid "The name of the e-invoice file must be unique!"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
