@@ -85,7 +85,7 @@ msgid "Company"
 msgstr "Azienda"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:42
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:51
 #, python-format
 msgid "Company %s TIN not set."
 msgstr "Partita IVA dell'azienda %s non impostata."
@@ -178,7 +178,7 @@ msgid "E-invoice Export Files"
 msgstr "File e-fattura esportati"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:102
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:111
 #, python-format
 msgid "E-invoice attachment changed"
 msgstr "Allegato e-fattura modificato"
@@ -187,6 +187,13 @@ msgstr "Allegato e-fattura modificato"
 #: model:ir.model,name:l10n_it_fatturapa_out.model_fatturapa_attachments
 msgid "E-invoice attachments"
 msgstr "Allegati e-fattura"
+
+#. module: l10n_it_fatturapa_out
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__att_name
+#, fuzzy
+#| msgid "E-invoice Export File"
+msgid "E-invoice file name"
+msgstr "File esportato e-fattura"
 
 #. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
@@ -233,7 +240,7 @@ msgstr ""
 "%s"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:71
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:80
 #, python-format
 msgid "File %s already present."
 msgstr "File %s già presente."
@@ -473,7 +480,7 @@ msgid "Out Invoices"
 msgstr "Fatture emesse"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:35
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:44
 #, python-format
 msgid "Partner %s TIN not set."
 msgstr "Partita IVA del partner %s non impostata."
@@ -593,6 +600,11 @@ msgid "The database object this attachment will be attached to."
 msgstr "L'oggetto del database a cui verrà assegnato questo allegato."
 
 #. module: l10n_it_fatturapa_out
+#: sql_constraint:fatturapa.attachment.out:0
+msgid "The name of the e-invoice file must be unique!"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out__res_id
 msgid "The record id this is attached to."
 msgstr "L'ID del record a cui questo è collegato."
@@ -654,7 +666,7 @@ msgid "Url"
 msgstr "URL"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:103
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:112
 #, python-format
 msgid "User %s uploaded a new e-invoice file"
 msgstr "L'utente %s ha caricato un nuovo file e-fattura"
