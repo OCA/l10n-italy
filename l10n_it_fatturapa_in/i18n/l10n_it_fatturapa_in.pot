@@ -348,6 +348,11 @@ msgid "E-bill description"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__att_name
+msgid "E-bill file name"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model,name:l10n_it_fatturapa_in.model_fatturapa_attachment_in
 msgid "E-bill import file"
 msgstr ""
@@ -367,11 +372,6 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice__e_invoice_date_invoice
 msgid "E-invoice date"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__att_name
-msgid "E-invoice file name"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -974,7 +974,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: sql_constraint:fatturapa.attachment.in:0
-msgid "The name of the e-invoice file must be unique!"
+msgid "The name of the e-bill file must be unique!"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
