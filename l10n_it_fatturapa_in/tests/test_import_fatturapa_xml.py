@@ -1,7 +1,26 @@
+from psycopg2 import IntegrityError
 
 from datetime import date
+
+from odoo.tools import mute_logger
 from .fatturapa_common import FatturapaCommon
 from odoo.exceptions import UserError
+
+
+class TestDuplicatedAttachment(FatturapaCommon):
+
+    def test_duplicated_attachment(self):
+        """Attachment name must be unique"""
+        # This test breaks the current transaction
+        # and every test executed after this in the
+        # same transaction would fail.
+        # Note that all the tests in TestFatturaPAXMLValidation
+        # are executed in the same transaction.
+        self.run_wizard('test_duplicated', 'IT02780790107_11005.xml')
+        with self.assertRaises(IntegrityError) as ie:
+            with mute_logger('odoo.sql_db'):
+                self.run_wizard('test_duplicated', 'IT02780790107_11005.xml')
+        self.assertEqual(ie.exception.pgcode, '23505')
 
 
 class TestFatturaPAXMLValidation(FatturapaCommon):
@@ -257,7 +276,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         # inconsistencies must not be duplicated
         res = self.run_wizard_multi([
             'IT02780790107_11005.xml',
-            'IT02780790107_11005.xml',
+            'IT02780790107_11006.xml',
             ])
         invoice1_id = res.get('domain')[0][2][0]
         invoice2_id = res.get('domain')[0][2][1]
@@ -303,7 +322,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
     def test_16_xml_import(self):
         # file B2B downloaded from
         # http://www.fatturapa.gov.it/export/fatturazione/it/a-3.htm
-        res = self.run_wizard('test16', 'IT01234567890_FPR03.xml')
+        res = self.run_wizard('test16a', 'IT01234567890_FPR03.xml')
         invoice_ids = res.get('domain')[0][2]
         invoices = self.invoice_model.browse(invoice_ids)
         self.assertEqual(len(invoices), 2)
@@ -329,7 +348,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             'product_tmpl_id': self.headphones.id,
             'product_code': 'ART123',
         })
-        res = self.run_wizard('test17', 'IT01234567890_FPR03.xml')
+        res = self.run_wizard('test16b', 'IT01234567890_FPR03.xml')
         invoice_ids = res.get('domain')[0][2]
         invoices = self.invoice_model.browse(invoice_ids)
         for invoice in invoices:
@@ -348,7 +367,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
 
         # change Livello di dettaglio Fatture elettroniche to Minimo
         partner.e_invoice_detail_level = '0'
-        res = self.run_wizard('test17', 'IT01234567890_FPR03.xml')
+        res = self.run_wizard('test16c', 'IT01234567890_FPR03.xml')
         invoice_ids = res.get('domain')[0][2]
         invoices = self.invoice_model.browse(invoice_ids)
         self.assertTrue(len(invoices) == 2)
@@ -470,7 +489,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             'street': 'Viale Repubblica, 34',
             'electronic_invoice_no_contact_update': True,
         })
-        res = self.run_wizard('test30', 'IT05979361218_002.xml')
+        res = self.run_wizard('test30a', 'IT05979361218_002.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.partner_id.id, partner_id.id)
