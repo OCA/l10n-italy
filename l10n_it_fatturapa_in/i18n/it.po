@@ -79,7 +79,7 @@ msgid "Attachment URL"
 msgstr "URL allegato"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/attachment.py:95
+#: code:addons/l10n_it_fatturapa_in/models/attachment.py:104
 #, python-format
 msgid "Attachment without name"
 msgstr "Allegato senza nome"
@@ -240,8 +240,8 @@ msgid ""
 "have the same REA Code. This code should be unique; please fix it."
 msgstr ""
 "La fattura corrente viene da {} con codice REA {}. Tuttavia sembra che i "
-"partner {} abbiano lo stesso codice REA. questo codice dovrebbe essere unico;"
-" prego correggere."
+"partner {} abbiano lo stesso codice REA. questo codice dovrebbe essere "
+"unico; prego correggere."
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data__name
@@ -393,6 +393,13 @@ msgstr "Dati sconto maggiorazione e-fattura"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice__e_invoice_date_invoice
 msgid "E-invoice date"
 msgstr "Data e-fattura"
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__att_name
+#, fuzzy
+#| msgid "E-invoice line"
+msgid "E-invoice file name"
+msgstr "Riga e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model,name:l10n_it_fatturapa_in.model_einvoice_line
@@ -1026,6 +1033,11 @@ msgstr "L'oggetto del database a cui verrà assegnato questo allegato."
 #, python-format
 msgid "The invoice '%s' doesn't match the related e-invoice"
 msgstr "La fattura '%s' non combacia con la relativa e-fattura"
+
+#. module: l10n_it_fatturapa_in
+#: sql_constraint:fatturapa.attachment.in:0
+msgid "The name of the e-invoice file must be unique!"
+msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__res_id
