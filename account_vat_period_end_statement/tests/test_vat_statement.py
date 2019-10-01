@@ -2,7 +2,7 @@
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests.common import TransactionCase
-from datetime import datetime
+from datetime import datetime, date
 from dateutil.rrule import MONTHLY
 
 
@@ -23,6 +23,14 @@ class TestTax(TransactionCase):
             'unit_of_time': MONTHLY,
             'count': 12})
         generator.action_apply()
+        prev_year_generator = generator.create({
+            'date_start': '%s-01-01' % (datetime.now().year - 1),
+            'name_prefix': '%s-' % (datetime.now().year - 1),
+            'type_id': self.range_type.id,
+            'duration_count': 1,
+            'unit_of_time': MONTHLY,
+            'count': 12})
+        prev_year_generator.action_apply()
         self.tax_model = self.env['account.tax']
         self.account_model = self.env['account.account']
         self.term_model = self.env['account.payment.term']
@@ -34,6 +42,11 @@ class TestTax(TransactionCase):
             ('date_start', '<=', today),
             ('date_end', '>=', today)
         ])
+        self.last_year_date = date(today.year - 1, today.month, today.day)
+        self.last_year_period = self.env['date.range'].search([
+            ('date_start', '<=', self.last_year_date),
+            ('date_end', '>=', self.last_year_date)
+        ])
         self.vat_statement_model = self.env['account.vat.period.end.statement']
         paid_vat_account = self.env['account.account'].search([
             (
@@ -42,7 +55,7 @@ class TestTax(TransactionCase):
                     'account.data_account_type_current_assets').id
             )
         ], limit=1).id
-        received_vat_account = self.env['account.account'].search([
+        self.received_vat_account = self.env['account.account'].search([
             (
                 'user_type_id', '=',
                 self.env.ref(
@@ -55,12 +68,15 @@ class TestTax(TransactionCase):
         self.recent_date = self.invoice_model.search(
             [('date_invoice', '!=', False)], order='date_invoice desc',
             limit=1).date_invoice
+        self.last_year_recent_date = date(
+            self.recent_date.year - 1, self.recent_date.month,
+            self.recent_date.day)
 
         self.account_tax_22 = self.tax_model.create({
             'name': '22%',
             'amount': 22,
             'amount_type': 'percent',
-            'vat_statement_account_id': received_vat_account,
+            'vat_statement_account_id': self.received_vat_account,
             'type_tax_use': 'sale',
             })
         self.account_tax_22_credit = self.tax_model.create({
@@ -156,6 +172,33 @@ class TestTax(TransactionCase):
         in_invoice.compute_taxes()
         in_invoice.action_invoice_open()
 
+        last_year_in_invoice = self.invoice_model.create({
+            'date_invoice': self.last_year_recent_date,
+            'account_id': in_invoice_account,
+            'journal_id': self.purchase_journal.id,
+            'partner_id': self.env.ref('base.res_partner_4').id,
+            'type': 'in_invoice',
+            })
+        self.invoice_line_model.create({
+            'invoice_id': last_year_in_invoice.id,
+            'account_id': in_invoice_line_account,
+            'name': 'service',
+            'price_unit': 50,
+            'quantity': 1,
+            'invoice_line_tax_ids': [(6, 0, [self.account_tax_22_credit.id])],
+            })
+        last_year_in_invoice.compute_taxes()
+        last_year_in_invoice.action_invoice_open()
+
+        self.last_year_vat_statement = self.vat_statement_model.create({
+            'journal_id': self.general_journal.id,
+            'authority_vat_account_id': self.vat_authority.id,
+            'payment_term_id': self.account_payment_term.id,
+            'date': self.last_year_date,
+            })
+        self.last_year_period.vat_statement_id = self.last_year_vat_statement
+        self.last_year_vat_statement.compute_amounts()
+
         self.vat_statement = self.vat_statement_model.create({
             'journal_id': self.general_journal.id,
             'authority_vat_account_id': self.vat_authority.id,
@@ -163,7 +206,12 @@ class TestTax(TransactionCase):
             })
         self.current_period.vat_statement_id = self.vat_statement
         self.vat_statement.compute_amounts()
-        self.assertEqual(self.vat_statement.authority_vat_amount, 11)
+        self.vat_statement.previous_credit_vat_account_id = (
+            self.received_vat_account)
+
+        self.assertEqual(self.vat_statement.previous_credit_vat_amount, 11)
+        self.assertTrue(self.vat_statement.previous_year_credit)
+        self.assertEqual(self.vat_statement.authority_vat_amount, 0)
         self.assertEqual(self.vat_statement.deductible_vat_amount, 11)
         self.assertEqual(self.vat_statement.residual, 0)
         self.assertEqual(

@@ -84,6 +84,7 @@
                                 <separator colspan="3" string="Previous Credits VAT"/>
                                 <field name="previous_credit_vat_account_id" attrs="{'required':[('previous_credit_vat_amount','!=',0)]}"/>
                                 <field name="previous_credit_vat_amount" nolabel="1"/>
+                                <field name="previous_year_credit" />
                                 <separator colspan="3" string="Previous Debits VAT"/>
                                 <field name="previous_debit_vat_account_id" attrs="{'required':[('previous_debit_vat_amount','!=',0)]}"/>
                                 <field name="previous_debit_vat_amount" nolabel="1"/>
