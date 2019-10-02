@@ -76,6 +76,15 @@ class AccountInvoice(models.Model):
         else:
             type = 'out_refund'
 
+        comment = _(
+            "Reverse charge self invoice.\n"
+            "Supplier: %s\n"
+            "Reference: %s\n"
+            "Date: %s\n"
+            "Internal reference: %s") % (
+            self.partner_id.display_name, self.reference or '', self.date,
+            self.number
+        )
         return {
             'partner_id': partner.id,
             'type': type,
@@ -90,6 +99,7 @@ class AccountInvoice(models.Model):
             'currency_id': currency.id,
             'fiscal_position_id': False,
             'payment_term_id': False,
+            'comment': comment,
             }
 
     def get_inv_line_to_reconcile(self):

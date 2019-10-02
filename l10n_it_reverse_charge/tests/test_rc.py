@@ -221,6 +221,8 @@ class TestReverseCharge(TransactionCase):
         self.assertEqual(
             invoice.rc_self_invoice_id.payment_move_line_ids.move_id.state,
             'posted')
+        self.assertTrue(
+            "Intra EU supplier" in invoice.rc_self_invoice_id.comment)
 
     def test_intra_EU_2_mixed_lines(self):
         """Create an invoice with two lines: one is RC and the other is not.
