@@ -6,14 +6,14 @@
     <!-- ====================================================== -->
     <!--                     DISTINTA RIBA - FILTRI             -->
     <!-- ====================================================== -->
-    <record id="view_distinta_riba_filtri" model="ir.ui.view">
+    <record model="ir.ui.view" id="view_distinta_riba_filtri">
         <field name="name">riba.distinta.filtri</field>
         <field name="model">riba.distinta</field>
         <field name="arch" type="xml">
             <search string="Distinte Ri.Ba.">
-                <filter string="Draft" domain="[('state','=','draft')]" help="Draft"/>
-                <filter string="Confirmed" domain="[('state','=','accepted')]" help="Accepted"/>
-                <filter string="Paid" domain="[('state','=','paid')]" help="Paid"/>
+                <filter name="filter_draft" string="Draft" domain="[('state','=','draft')]" help="Draft"/>
+                <filter name="filter_confirm" string="Confirmed" domain="[('state','=','accepted')]" help="Confirmed"/>
+                <filter name="filter_paid" string="Paid" domain="[('state','=','paid')]" help="Paid"/>
                 <separator orientation="vertical"/>
                 <field name="name" />
                 <field name="config_id" />

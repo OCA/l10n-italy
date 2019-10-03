@@ -132,7 +132,8 @@ class TestRibaCommon(common.TransactionCase):
             'riba_payment_cost': 5.00,
             'line_ids': [
                 (0, 0,
-                 {'value': 'balance', 'option': 'last_day_following_month'})
+                 {'value': 'balance',
+                  'option': 'day_following_month'})
             ]
         })
 

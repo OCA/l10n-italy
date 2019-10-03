@@ -8,13 +8,13 @@
 
 {
     'name': "Ricevute Bancarie",
-    'version': "11.0.1.0.0",
+    'version': "12.0.1.0.0",
     'author': "Odoo Community Association (OCA)",
     'category': "Accounting & Finance",
     'website': "https://odoo-community.org/",
     'license': "AGPL-3",
     'depends': [
-        'account_invoicing',
+        'account',
         'account_group_menu',
         'l10n_it_fiscalcode',
         'base_iban',

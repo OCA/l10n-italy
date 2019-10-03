@@ -252,8 +252,7 @@ class RibaFileExport(models.TransientModel):
             if not line.due_date:  # ??? VERIFICARE
                 due_date = '000000'
             else:
-                due_date = datetime.datetime.strptime(
-                    line.due_date[:10], '%Y-%m-%d').strftime("%d%m%y")
+                due_date = line.due_date.strftime("%d%m%y")
 
             if not line.partner_id.vat and not line.partner_id.fiscalcode:
                 raise UserError(
