@@ -61,6 +61,7 @@ setuptools.setup(
         'odoo10-addon-l10n_it_withholding_tax',
         'odoo10-addon-l10n_it_withholding_tax_causali',
         'odoo10-addon-l10n_it_withholding_tax_payment',
+        'odoo10-addon-l10n_it_withholding_tax_payment_order',
     ],
     classifiers=[
         'Programming Language :: Python',
