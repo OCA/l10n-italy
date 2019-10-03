@@ -6,7 +6,7 @@
 
 {
     'name': 'ITA - Fattura elettronica - Emissione',
-    'version': '12.0.1.3.0',
+    'version': '12.0.1.4.0',
     'development_status': 'Beta',
     'category': 'Localization/Italy',
     'summary': 'Emissione fatture elettroniche',
@@ -24,7 +24,7 @@
         'views/attachment_view.xml',
         'views/account_view.xml',
         'security/ir.model.access.csv',
-        'security/rules.xml',
+        'data/l10n_it_fatturapa_out_data.xml',
         'security/rules.xml',
     ],
     'installable': True,
