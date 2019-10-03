@@ -69,6 +69,7 @@ addon | version | summary
 [l10n_it_withholding_tax](l10n_it_withholding_tax/) | 10.0.1.2.6 | Italian Withholding Tax
 [l10n_it_withholding_tax_causali](l10n_it_withholding_tax_causali/) | 10.0.1.0.0 | Causali pagamento per ritenute d'acconto
 [l10n_it_withholding_tax_payment](l10n_it_withholding_tax_payment/) | 10.0.1.1.0 | Italian Withholding Tax Payment
+[l10n_it_withholding_tax_payment_order](l10n_it_withholding_tax_payment_order/) | 10.0.1.0.0 | Modulo ponte tra ritenuta d'acconto e ordine di pagamento
 
 
 Unported addons
