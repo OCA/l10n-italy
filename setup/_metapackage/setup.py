@@ -38,6 +38,7 @@ setuptools.setup(
         'odoo12-addon-l10n_it_invoices_data_communication',
         'odoo12-addon-l10n_it_invoices_data_communication_fatturapa',
         'odoo12-addon-l10n_it_ipa',
+        'odoo12-addon-l10n_it_location_nuts',
         'odoo12-addon-l10n_it_pec',
         'odoo12-addon-l10n_it_rea',
         'odoo12-addon-l10n_it_reverse_charge',
