@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_account_config_settings" model="ir.ui.view">
+            <field name="name">view_account_config_settings</field>
+            <field name="model">account.config.settings</field>
+            <field name="inherit_id" ref="l10n_it_fatturapa.view_account_config_settings"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='fatturapa_settings']" position="inside">
+                    <div>
+                        <label for="fatturapa_sale_order_data"/>
+                        <field name="fatturapa_sale_order_data" class="oe_inline"/>
+                    </div>
+                    <div>
+                        <label for="fatturapa_out_sale_internal_ref"/>
+                        <field name="fatturapa_out_sale_internal_ref" class="oe_inline"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
