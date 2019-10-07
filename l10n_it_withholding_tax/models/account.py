@@ -424,7 +424,7 @@ class AccountInvoice(models.Model):
         for tax in wt_taxes_grouped.values():
             wt_tax_lines.append((0, 0, tax))
         self.withholding_tax_line_ids = wt_tax_lines
-        if wt_tax_lines:
+        if len(wt_tax_lines) > 1:
             self.withholding_tax = True
         else:
             self.withholding_tax = False
