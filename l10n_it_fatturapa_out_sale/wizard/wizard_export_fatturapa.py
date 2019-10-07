@@ -3,7 +3,7 @@
 
 from openerp import models
 
-from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
+from openerp.addons.l10n_it_fatturapa.bindings.fatturapa import (
     DatiDocumentiCorrelatiType,
 )
 
@@ -21,16 +21,16 @@ class WizardExportFatturapa(models.TransientModel):
             if invoice.picking_ids and set(self.env['sale.order'].search([
                 ('name', 'in', invoice.picking_ids.mapped('origin'))]).mapped(
                 'client_order_ref')) == 1 or \
-                    len(set(invoice.invoice_line.mapped('origin'))) == 1:
+                    len(set(invoice.invoice_line_ids.mapped('origin'))) == 1:
                 doc_data = self.prepareRelDocsLine(
-                    invoice, invoice.invoice_line[0])
+                    invoice, invoice.invoice_line_ids[0])
                 if doc_data:
                     documento = DatiDocumentiCorrelatiType()
                     documento.IdDocumento = doc_data['name']
                     documento.Data = doc_data['date']
                     getattr(body.DatiGenerali, doc_type).append(documento)
             else:
-                for line in invoice.invoice_line:
+                for line in invoice.invoice_line_ids:
                     doc_data = self.prepareRelDocsLine(invoice, line)
                     if doc_data:
                         documento = DatiDocumentiCorrelatiType()
@@ -62,9 +62,9 @@ class WizardExportFatturapa(models.TransientModel):
                     or not order.client_order_ref \
                     else order.client_order_ref
                 res = {
-                    'name': name[:20].replace('\n', ' ').replace
+                    'name': name.replace('\n', ' ').replace
                     ('\t', ' ').replace('\r', ' ').encode(
-                        'latin', 'ignore').decode('latin'),
+                        'latin', 'ignore').decode('latin')[:20],
                     'date': order.date_order[:10],
                 }
         return res
