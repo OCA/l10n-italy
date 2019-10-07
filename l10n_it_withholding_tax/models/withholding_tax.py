@@ -198,7 +198,7 @@ class WithholdingTaxStatement(models.Model):
                                'statement_id', 'Moves')
     display_name = fields.Char(compute='_compute_display_name')
 
-    @api.depends('move_id')
+    @api.depends('move_id.line_ids.account_id.user_type_id.type')
     def _compute_type(self):
         for st in self:
             if st.move_id:
@@ -371,17 +371,18 @@ class WithholdingTaxMove(models.Model):
                 line_to_reconcile = line
                 break
         if line_to_reconcile:
-            if line_to_reconcile.account_id.user_type_id.type == 'payable':
+            if self.credit_debit_line_id.invoice_id.type in\
+                    ['in_refund', 'out_invoice']:
+                debit_move_id = self.credit_debit_line_id.id
+                credit_move_id = line_to_reconcile.id
+            else:
                 debit_move_id = line_to_reconcile.id
                 credit_move_id = self.credit_debit_line_id.id
-            else:
-                credit_move_id = line_to_reconcile.id
-                debit_move_id = self.credit_debit_line_id.id
             self.env['account.partial.reconcile'].\
                 with_context(no_generate_wt_move=True).create({
                     'debit_move_id': debit_move_id,
                     'credit_move_id': credit_move_id,
-                    'amount': self.amount,
+                    'amount': abs(self.amount),
                 })
 
     def _compute_display_name(self):
