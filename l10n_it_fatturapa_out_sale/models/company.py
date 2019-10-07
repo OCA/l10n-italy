@@ -11,7 +11,7 @@ class ResCompany(models.Model):
     fatturapa_out_sale_internal_ref = fields.Boolean(
         string="Internal sale order reference",
         help="Put in e-invoice reference to internal order, instead of "
-               "reference of customer.")
+             "reference of customer.")
     fatturapa_sale_order_data = fields.Boolean(
         string='Include sale order data in e-invoice')
 
@@ -28,24 +28,16 @@ class AccountConfigSettings(models.TransientModel):
         related='company_id.fatturapa_sale_order_data',
         string='Include sale order data in e-invoice')
 
-    @api.v7
-    def onchange_company_id(self, cr, uid, ids, company_id, context=None):
-        res = super(AccountConfigSettings, self).onchange_company_id(
-            cr, uid, ids, company_id, context=context)
-        if company_id:
-            company = self.pool.get('res.company').browse(
-                cr, uid, company_id, context=context)
-            res['value'].update({
-                'fatturapa_out_sale_internal_ref': (
-                    company.fatturapa_out_sale_internal_ref or False
-                    ),
-                'fatturapa_sale_order_data': (
-                    company.fatturapa_sale_order_data or False
-                ),
-                })
+    @api.onchange('company_id')
+    def onchange_company_id(self):
+        res = super(AccountConfigSettings, self).onchange_company_id()
+        if self.company_id:
+            company = self.company_id
+            self.fatturapa_out_sale_internal_ref = (
+                company.fatturapa_out_sale_internal_ref)
+            self.fatturapa_sale_order_data = (
+                company.fatturapa_sale_order_data)
         else:
-            res['value'].update({
-                'fatturapa_out_sale_internal_ref': False,
-                'fatturapa_sale_order_data': False,
-            })
+            self.fatturapa_out_sale_internal_ref = False
+            self.fatturapa_sale_order_data = False
         return res
