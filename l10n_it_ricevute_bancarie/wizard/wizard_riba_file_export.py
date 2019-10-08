@@ -57,6 +57,7 @@ class RibaFileExport(models.TransientModel):
                        [14] = data effettiva della fattura
 
     """
+    _description = "Ri.Ba. file export wizard"
     _progressivo = 0
     _assuntrice = 0
     _sia = 0

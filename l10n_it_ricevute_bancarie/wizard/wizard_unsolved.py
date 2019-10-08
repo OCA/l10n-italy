@@ -57,6 +57,7 @@ class RibaUnsolved(models.TransientModel):
         ].get_default_value_by_list_line('protest_charge_account_id')
 
     _name = "riba.unsolved"
+    _description = "Manage unsolved Ri.Ba."
     unsolved_journal_id = fields.Many2one(
         'account.journal', 'Unsolved journal', domain=[('type', '=', 'bank')],
         default=_get_unsolved_journal_id)
