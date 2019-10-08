@@ -57,5 +57,5 @@ class AccountConfigSettings(models.TransientModel):
         readonly=False
     )
     enasarco_relax_checks = fields.Boolean(
-        related='company_id.enasarco_relax_checks',
+        related='company_id.enasarco_relax_checks', readonly=False
     )
