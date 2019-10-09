@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Author(s): Andrea Colangelo (andreacolangelo@openforce.it)
 # Copyright 2018 Openforce Srls Unipersonale (www.openforce.it)
 # Copyright 2018 Sergio Corato (https://efatto.it)
@@ -8,7 +7,7 @@
     'name': 'Italian Localization - Fattura elettronica - Integrazione '
             'ritenuta',
     'summary': 'Modulo ponte tra emissione fatture elettroniche e ritenute.',
-    'version': '10.0.1.0.0',
+    'version': '12.0.1.0.0',
     'development_status': 'Beta',
     'category': 'Hidden',
     'website': 'https://github.com/OCA/l10n-italy',
