@@ -480,13 +480,24 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.e_invoice_amount_tax, 0.0)
         self.assertEqual(invoice.e_invoice_amount_total, 34.32)
 
-    def test_31_xml_import(self):
-        res = self.run_wizard('test31', 'IT01234567890_FPR05.xml')
+    def test_26_xml_import(self):
+        res = self.run_wizard('test26', 'IT01234567890_FPR05.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.invoice_line_ids[1].discount, 100)
         self.assertEqual(invoice.invoice_line_ids[1].price_subtotal, 0)
-        self.assertEqual(invoice.amount_total, 12.2)
+        self.assertAlmostEqual(invoice.amount_total, 12.2)
+
+    def test_27_xml_import(self):
+        res = self.run_wizard('test27', 'IT05979361218_014.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertAlmostEqual(invoice.amount_untaxed, 3.35)
+        self.assertAlmostEqual(invoice.amount_tax, 0.74)
+        self.assertAlmostEqual(invoice.amount_total, 4.09)
+        self.assertEqual(
+            invoice.inconsistencies,
+            'Computed amount untaxed 3.35 is different from summary data 3.05')
 
     def test_01_xml_link(self):
         """

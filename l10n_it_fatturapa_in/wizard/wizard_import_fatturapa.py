@@ -1044,12 +1044,22 @@ class WizardImportFatturapa(models.TransientModel):
 
     def set_roundings(self, FatturaBody, invoice):
         rounding = 0.0
+        tot_doc = 0.0
+        tot_doc_computed = 0.0
+        vat = 0.0
         if FatturaBody.DatiBeniServizi.DatiRiepilogo:
             for summary in FatturaBody.DatiBeniServizi.DatiRiepilogo:
                 rounding += float(summary.Arrotondamento or 0.0)
+                vat += float(summary.Imposta or 0.0)
+                tot_doc_computed += float(summary.ImponibileImporto or 0.0)
         if FatturaBody.DatiGenerali.DatiGeneraliDocumento:
             summary = FatturaBody.DatiGenerali.DatiGeneraliDocumento
             rounding += float(summary.Arrotondamento or 0.0)
+            tot_doc += float(summary.ImportoTotaleDocumento or 0.0)
+        if tot_doc and tot_doc_computed and rounding and not float_is_zero(
+                tot_doc - rounding + vat - tot_doc_computed,
+                precision_digits=2):
+            rounding = round(tot_doc - tot_doc_computed - vat, 2)
         if rounding:
             arrotondamenti_attivi_account_id = self.env.user.company_id.\
                 arrotondamenti_attivi_account_id
