@@ -118,7 +118,8 @@ class TestRibaCommon(common.TransactionCase):
             'line_ids': [
                 (0, 0,
                  {'value': 'percent', 'days': 30,
-                  'option': 'day_after_invoice_date', 'value_amount': 0.50}),
+                  'option': 'day_after_invoice_date',
+                  'value_amount': 0.50}),
                 (0, 0,
                  {'value': 'balance', 'days': 60,
                   'option': 'day_after_invoice_date'})
@@ -133,7 +134,8 @@ class TestRibaCommon(common.TransactionCase):
             'line_ids': [
                 (0, 0,
                  {'value': 'balance',
-                  'option': 'day_following_month'})
+                  'option': 'day_following_month',
+                  'days': 30})
             ]
         })
 
