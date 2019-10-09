@@ -603,8 +603,6 @@ class TestFatturaPAEnasarco(FatturapaCommon):
             'reconcile': True})
         misc_journal = self.env['account.journal']. \
             search([("code", "=", "MISC")])
-        welfare_fund_type_id = self.env['welfare.fund.type']. \
-            search([('name', '=', 'TC07')])
         self.env['withholding.tax'].create({
             'name': 'Enasarco',
             'code': 'TC07',
@@ -613,7 +611,6 @@ class TestFatturaPAEnasarco(FatturapaCommon):
             'journal_id': misc_journal.id,
             'payment_term': self.env.ref(
                 'account.account_payment_term_advance').id,
-            'welfare_fund_type_id': welfare_fund_type_id.id,
             'wt_types': 'enasarco',
             'rate_ids': [(0, 0, {
                 'tax': 1.57,
@@ -628,7 +625,6 @@ class TestFatturaPAEnasarco(FatturapaCommon):
             'journal_id': misc_journal.id,
             'payment_term': self.env.ref(
                 'account.account_payment_term_advance').id,
-            'welfare_fund_type_id': False,
             'wt_types': 'ritenuta',
             'causale_pagamento_id': self.env.ref(
                 'l10n_it_causali_pagamento.a').id,
