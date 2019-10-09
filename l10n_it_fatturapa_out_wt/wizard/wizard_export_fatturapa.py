@@ -51,8 +51,7 @@ class WizardExportFatturapa(models.TransientModel):
             body.DatiBeniServizi.DettaglioLinee[0].AltriDatiGestionali.append(
                 AltriDatiGestionaliType(
                     TipoDato="CASSA-PREV",
-                    RiferimentoTesto='ENASARCO %s' % wt_line.
-                    withholding_tax_id.welfare_fund_type_id.name,
+                    RiferimentoTesto='ENASARCO TC07',
                     RiferimentoNumero='%.2f' % wt_line.tax,
                 )
             )
