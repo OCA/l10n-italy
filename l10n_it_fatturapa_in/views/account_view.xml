@@ -41,6 +41,8 @@
                                     <field name="origin"/>
                                     <field name="amount_total"/>
                                     <field name="state"/>
+                                    <button name="open_form_current" type="object" string="Open full-screen" icon="fa-external-link"
+                                            context="{'form_view_ref': 'account.invoice_supplier_form'}"/>
                                     <button name="remove_attachment_link" type="object" string="Remove" icon="fa-times"/>
                                 </tree>
                             </field>
