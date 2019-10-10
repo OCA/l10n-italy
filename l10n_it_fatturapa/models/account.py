@@ -418,3 +418,15 @@ class AccountInvoice(models.Model):
         'Subjected to Electronic Invoice',
         related='commercial_partner_id.electronic_invoice_subjected',
         readonly=True)
+
+    @api.multi
+    def open_form_current(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': self._name,
+            'res_id': self.id,
+            'taget': 'current'
+        }
