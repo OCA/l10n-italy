@@ -51,8 +51,8 @@ def _get_invoice_date_domain(date_start, date_end):
     ]
     date_inv_domain = [
         '&',
-        ('date_invoice', '>=', date_start),
-        ('date_invoice', '<=', date_end),
+        ('move_id.date', '>=', date_start),
+        ('move_id.date', '<=', date_end),
     ]
     return expression.OR([reg_date_domain, date_inv_domain])
 
@@ -528,7 +528,7 @@ class ComunicazioneDatiIva(models.Model):
                         fattura.fiscal_document_type_id.id,
                     'dati_fattura_Data': fattura.date_invoice,
                     'dati_fattura_DataRegistrazione':
-                        fattura.registration_date or fattura.date_invoice,
+                        fattura.registration_date or fattura.move_id.date,
                     'dati_fattura_Numero': self._parse_fattura_numero(
                         fattura.supplier_invoice_number) or '',
                     'dati_fattura_iva_ids':
@@ -2507,7 +2507,7 @@ class ComunicazioneDatiIvaFattureRicevuteBody(models.Model):
                 fattura.dati_fattura_Data = fattura.invoice_id.date_invoice
                 fattura.dati_fattura_DataRegistrazione = \
                     fattura.invoice_id.registration_date \
-                    or fattura.invoice_id.date_invoice
+                    or fattura.invoice_id.move_id.date
                 # tax
                 tax_lines = []
                 for tax_line in fattura.invoice_id.tax_line:
