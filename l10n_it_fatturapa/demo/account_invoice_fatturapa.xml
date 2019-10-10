@@ -81,6 +81,14 @@
             <field name="law_reference">Reverse Charge</field>
         </record>
 
+        <record id="tax_00_enas" model="account.tax">
+            <field name="name">Escluso</field>
+            <field name="description">00</field>
+            <field name="amount">0.00</field>
+            <field name="kind_id" ref="l10n_it_account_tax_kind.n2"/>
+            <field name="law_reference">Escluso Art. 13 5C DPR 633/72</field>
+        </record>
+
         <record id="base.main_company" model="res.company">
             <field name="street">Via Milano, 1</field>
             <field name="zip">00100</field>
