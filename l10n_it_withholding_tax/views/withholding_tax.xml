@@ -38,6 +38,7 @@
                             <field name="account_payable_id"/>
                             <field name="journal_id"/>
                             <field name="payment_term"/>
+                            <field name="use_daticassaprev_for_enasarco" attrs="{'invisible': [('wt_types', '!=', 'enasarco')]}"/>
                             <field name="wt_types" widget='radio'/>
                         </group>
                         <group>

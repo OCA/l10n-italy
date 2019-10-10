@@ -66,6 +66,11 @@ class WithholdingTax(models.Model):
         ('enasarco', 'Enasarco tax'),
         ('ritenuta', 'Withholding tax'),
         ], 'Withholding tax type', required=True, default='ritenuta')
+    use_daticassaprev_for_enasarco = fields.Boolean(
+        "DatiCassa export",
+        help="Setting this, while exporting e-invoice XML, "
+             "Enasarco data will be also added to DatiCassaPrevidenziale"
+    )
 
     @api.one
     @api.constrains('rate_ids')
