@@ -133,7 +133,8 @@ class TestRibaCommon(common.TransactionCase):
             'line_ids': [
                 (0, 0,
                  {'value': 'balance',
-                  'option': 'day_following_month'})
+                  'option': 'day_following_month',
+                  'days': 1})
             ]
         })
 
