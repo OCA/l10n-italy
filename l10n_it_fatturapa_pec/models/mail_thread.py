@@ -180,6 +180,25 @@ class MailThread(models.AbstractModel):
     def create_fatturapa_attachment_in(self, attachment):
         decoded = base64.b64decode(attachment.datas)
         fatturapa_attachment_in = self.env['fatturapa.attachment.in']
+        fetchmail_server_id = self.env.context.get('fetchmail_server_id')
+        company_id = False
+        e_invoice_user_id = False
+        # The incoming supplier e-bill doesn't carry which company
+        # we must use to create the given fatturapa.attachment.in record,
+        # so we expect fetchmail_server_id coming in the context
+        # see fetchmail.py.
+        # With this information we search which SDI is actually using it,
+        # finally the SDI contain both company and user we would need to use
+        if fetchmail_server_id:
+            sdi_chan = self.env['sdi.channel'].search([
+                ('fetch_pec_server_id', '=', fetchmail_server_id)], limit=1)
+            if sdi_chan:
+                # See check_fetch_pec_server_id
+                company_id = sdi_chan.company_id.id
+                e_invoice_user_id = sdi_chan.company_id.e_invoice_user_id.id
+        if e_invoice_user_id:
+            fatturapa_attachment_in = fatturapa_attachment_in.sudo(
+                e_invoice_user_id)
         if attachment.mimetype == 'application/zip':
             with zipfile.ZipFile(io.BytesIO(decoded)) as zf:
                 for file_name in zf.namelist():
@@ -196,7 +215,9 @@ class MailThread(models.AbstractModel):
                             fatturapa_attachment_in.create({
                                 'name': file_name,
                                 'datas_fname': file_name,
-                                'datas': base64.encodestring(inv_file.read())})
+                                'datas': base64.encodestring(inv_file.read()),
+                                'company_id': company_id,
+                            })
         else:
             fatturapa_atts = fatturapa_attachment_in.search(
                 [('name', '=', attachment.name)])
@@ -206,4 +227,6 @@ class MailThread(models.AbstractModel):
                     % fatturapa_atts.mapped('name'))
             else:
                 fatturapa_attachment_in.create({
-                    'ir_attachment_id': attachment.id})
+                    'ir_attachment_id': attachment.id,
+                    'company_id': company_id,
+                })
