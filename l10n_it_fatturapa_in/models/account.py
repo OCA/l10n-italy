@@ -179,10 +179,13 @@ class AccountInvoice(models.Model):
         return {'type': 'ir.actions.client', 'tag': 'reload'}
 
     @api.model
-    def compute_xml_amount_untaxed(self, DatiRiepilogo):
-        amount_untaxed = 0.0
-        for Riepilogo in DatiRiepilogo:
-            amount_untaxed += float(Riepilogo.ImponibileImporto)
+    def compute_xml_amount_untaxed(self, FatturaBody):
+        amount_untaxed = float(
+            FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento
+            or 0.0)
+        for Riepilogo in FatturaBody.DatiBeniServizi.DatiRiepilogo:
+            rounding = float(Riepilogo.Arrotondamento or 0.0)
+            amount_untaxed += float(Riepilogo.ImponibileImporto) + rounding
         return amount_untaxed
 
     @api.model
@@ -194,8 +197,7 @@ class AccountInvoice(models.Model):
 
     def set_einvoice_data(self, fattura):
         self.ensure_one()
-        amount_untaxed = self.compute_xml_amount_untaxed(
-            fattura.DatiBeniServizi.DatiRiepilogo)
+        amount_untaxed = self.compute_xml_amount_untaxed(fattura)
         amount_tax = self.compute_xml_amount_tax(
             fattura.DatiBeniServizi.DatiRiepilogo)
         amount_total = float(
