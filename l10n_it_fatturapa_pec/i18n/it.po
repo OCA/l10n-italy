@@ -40,6 +40,15 @@ msgstr ""
 "p><p><strong>%s</strong></p>"
 
 #. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_config_settings_ftpa_pec
+msgid ""
+"<span class=\"o_form_label\">Supplier Bills</span>\n"
+"                            <span class=\"fa fa-lg fa-building-o\" title="
+"\"Values set here are company-specific.\" aria-label=\"Values set here are "
+"company-specific.\"/>"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
 #: selection:account.invoice,fatturapa_state:0
 #: selection:fatturapa.attachment.out,state:0
 msgid "Accepted"
@@ -54,6 +63,16 @@ msgstr "Consentire forzatura dello stato di esportazione e-fattura"
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
 msgid "Cancel"
 msgstr "Annulla"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server__e_inv_notify_partner_ids
@@ -76,6 +95,11 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_config_settings_ftpa_pec
+msgid "Default user used in electronic supplier bills"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
 #: selection:account.invoice,fatturapa_state:0
 #: selection:fatturapa.attachment.out,state:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
@@ -91,6 +115,12 @@ msgstr "Data consegna"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_company__e_invoice_user_id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_config_settings__e_invoice_user_id
+msgid "E-bill creator"
+msgstr ""
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model,name:l10n_it_fatturapa_pec.model_fatturapa_attachment_out
@@ -278,6 +308,12 @@ msgstr "Inviato da"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out__state
 msgid "State"
 msgstr "Stato"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_res_company__e_invoice_user_id
+#: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_res_config_settings__e_invoice_user_id
+msgid "This user will be used at supplier e-bill creation."
+msgstr ""
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model,name:l10n_it_fatturapa_pec.model_wizard_fatturapa_send_pec
