@@ -145,8 +145,7 @@ class AccountInvoice(models.Model):
         :return: True if month of invoice_date_due is in a list of all_date_due
         """
         for d in all_date_due:
-            if (invoice_date_due.year == d.year and
-                    invoice_date_due.month == d.month):
+            if invoice_date_due[:7] == d.strftime("%Y-%m-%d")[:7]:
                 return True
         return False
 

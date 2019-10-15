@@ -76,6 +76,8 @@ class TestRibaCommon(common.TransactionCase):
             'name': 'Due Cost',
             'type': 'service',
             'property_account_income_id': self._account_expense(),
+            'uom_id': self.env.ref('uom.product_uom_unit').id,
+            'uom_po_id': self.env.ref('uom.product_uom_unit').id
         })
 
     def _account_expense(self):
