@@ -263,16 +263,17 @@ class AccountInvoice(models.Model):
 
     def partially_reconcile_supplier_invoice(self, rc_payment):
         move_line_model = self.env['account.move.line']
+        payment_debit_line = None
         for move_line in rc_payment.line_ids:
-            # testa se nota credito o debito
-            if (self.type == 'in_invoice') and move_line.debit:
+            if move_line.account_id.internal_type == 'payable' and (
+                    move_line.debit or move_line.credit):
                 payment_debit_line = move_line
-            elif (self.type == 'in_refund') and move_line.credit:
-                payment_debit_line = move_line
-        inv_lines_to_rec = move_line_model.browse(
-            [self.get_inv_line_to_reconcile().id,
-                payment_debit_line.id])
-        inv_lines_to_rec.reconcile()
+                break
+        if payment_debit_line:
+            inv_lines_to_rec = move_line_model.browse(
+                [self.get_inv_line_to_reconcile().id,
+                    payment_debit_line.id])
+            inv_lines_to_rec.reconcile()
 
     def reconcile_rc_invoice(self):
         rc_type = self.fiscal_position_id.rc_type_id
@@ -416,13 +417,14 @@ class AccountInvoice(models.Model):
 
     def remove_rc_payment(self):
         inv = self
-        if inv.payment_move_line_ids:
-            if len(inv.payment_move_line_ids) > 1:
+        if inv.rc_self_invoice_id.payment_move_line_ids:
+            if len(inv.rc_self_invoice_id.payment_move_line_ids) > 1:
                 raise UserError(
                     _('There are more than one payment line.\n'
                       'In that case account entries cannot be canceled'
                       'automatically. Please proceed manually'))
-            payment_move = inv.payment_move_line_ids[0].move_id
+            payment_move = inv.rc_self_invoice_id.payment_move_line_ids[0].\
+                move_id
 
             # remove move reconcile related to the supplier invoice
             move = inv.move_id
