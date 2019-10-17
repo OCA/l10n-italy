@@ -10,7 +10,7 @@ class DistintaReportQweb(models.AbstractModel):
     _description = "Report Ri.Ba. list"
 
     @api.multi
-    def get_report_values(self, docids, data=None):
+    def _get_report_values(self, docids, data=None):
         return {
             'doc_ids': docids,
             'doc_model': 'riba.distinta',
