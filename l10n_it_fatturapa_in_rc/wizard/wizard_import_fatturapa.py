@@ -36,6 +36,8 @@ class WizardImportFatturapa(models.TransientModel):
     ):
         res = super(WizardImportFatturapa, self).set_invoice_line_ids(
             FatturaBody, credit_account_id, partner, wt_found, invoice_data)
+        if not invoice_data.get('invoice_line_ids'):
+            return
         # set RC fiscal position
         inv_line_ids = invoice_data['invoice_line_ids'][0][2]
         inv_lines = self.env['account.invoice.line'].browse(inv_line_ids)
