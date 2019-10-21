@@ -36,6 +36,12 @@ class TestReverseCharge(TransactionCase):
             'supplier': True,
             'property_account_position_id': self.fiscal_position_intra.id
         })
+        self.supplier_intraEU_exempt = self.partner_model.create({
+            'name': 'Intra EU supplier exempt',
+            'customer': False,
+            'supplier': True,
+            'property_account_position_id': self.fiscal_position_exempt.id
+        })
         self.invoice_account = self.env['account.account'].search(
             [('user_type_id', '=', self.env.ref(
                 'account.data_account_type_payable').id)], limit=1).id
@@ -56,6 +62,8 @@ class TestReverseCharge(TransactionCase):
                     'days': 30,
                     'sequence': 2,
                 })]})
+        self.env['account.journal'].search(
+            [('name', '=', 'Customer Invoices')]).update_posted = True
 
     def _create_account(self):
         account_model = self.env['account.account']
@@ -92,6 +100,16 @@ class TestReverseCharge(TransactionCase):
             'name': "Tax 22%",
             'type_tax_use': 'purchase',
             'amount': 22
+        })
+        self.tax_0_pur = tax_model.create({
+            'name': "Tax 0%",
+            'type_tax_use': 'purchase',
+            'amount': 0
+        })
+        self.tax_0_sal = tax_model.create({
+            'name': "Tax 0%",
+            'type_tax_use': 'sale',
+            'amount': 0
         })
 
     def _create_journals(self):
@@ -149,6 +167,15 @@ class TestReverseCharge(TransactionCase):
             'transitory_account_id': self.account_selfinvoice.id
         })
 
+        self.rc_type_exempt = rc_type_model.create({
+            'name': 'Intra EU (exempt)',
+            'method': 'selfinvoice',
+            'partner_type': 'supplier',
+            'journal_id': self.journal_selfinvoice.id,
+            'payment_journal_id': self.journal_reconciliation.id,
+            'transitory_account_id': self.account_selfinvoice.id
+        })
+
     def _create_rc_type_taxes(self):
         rc_type_tax_model = self.env['account.rc.type.tax']
         self.rc_type_tax_ieu = rc_type_tax_model.create({
@@ -163,6 +190,12 @@ class TestReverseCharge(TransactionCase):
             'sale_tax_id': self.tax_22ve.id
         })
 
+        self.rc_type_tax_exempt = rc_type_tax_model.create({
+            'rc_type_id': self.rc_type_exempt.id,
+            'purchase_tax_id': self.tax_0_pur.id,
+            'sale_tax_id': self.tax_0_sal.id
+        })
+
     def _create_fiscal_position(self):
         model_fiscal_position = self.env['account.fiscal.position']
         self.fiscal_position_intra = model_fiscal_position.create({
@@ -173,6 +206,11 @@ class TestReverseCharge(TransactionCase):
         self.fiscal_position_extra = model_fiscal_position.create({
             'name': 'Extra EU',
             'rc_type_id': self.rc_type_eeu.id
+        })
+
+        self.fiscal_position_exempt = model_fiscal_position.create({
+            'name': 'Intra EU exempt',
+            'rc_type_id': self.rc_type_exempt.id
         })
 
     def test_intra_EU_invoice_line_no_tax(self):
@@ -383,6 +421,11 @@ class TestReverseCharge(TransactionCase):
             invoice.rc_self_purchase_invoice_id.payment_move_line_ids.
             move_id.state, 'posted')
 
+        invoice.action_cancel()
+        self.assertEqual(invoice.state, 'cancel')
+        invoice.action_invoice_draft()
+        self.assertEqual(invoice.state, 'draft')
+
     def test_intra_EU_cancel_and_draft(self):
 
         invoice = self.invoice_model.create({
@@ -404,8 +447,6 @@ class TestReverseCharge(TransactionCase):
 
         invoice.action_invoice_open()
 
-        self.env['account.journal'].search(
-            [('name', '=', 'Customer Invoices')]).update_posted = True
         invoice.action_cancel()
         self.assertEqual(invoice.state, 'cancel')
         invoice.action_invoice_draft()
@@ -429,3 +470,33 @@ class TestReverseCharge(TransactionCase):
         invoice_line = self.invoice_line_model.create(invoice_line_vals)
         invoice_line.onchange_invoice_line_tax_id()
         self.assertTrue(all(line.rc for line in invoice.invoice_line_ids))
+
+    def test_intra_EU_exempt(self):
+        self.supplier_intraEU.property_payment_term_id = self.term_15_30.id
+        invoice = self.invoice_model.create({
+            'partner_id': self.supplier_intraEU_exempt.id,
+            'account_id': self.invoice_account,
+            'type': 'in_invoice',
+        })
+
+        invoice_line_vals = {
+            'name': 'Invoice for sample product',
+            'account_id': self.invoice_line_account,
+            'invoice_id': invoice.id,
+            'product_id': self.sample_product.id,
+            'price_unit': 100,
+            'invoice_line_tax_ids': [(4, self.tax_0_pur.id, 0)]}
+        invoice_line = self.invoice_line_model.create(invoice_line_vals)
+        invoice_line.onchange_invoice_line_tax_id()
+        invoice.compute_taxes()
+
+        invoice.action_invoice_open()
+        self.assertEqual(invoice.amount_total, 100)
+        self.assertEqual(invoice.residual, 100)
+        self.assertEqual(invoice.rc_self_invoice_id.state, 'paid')
+        self.assertEqual(invoice.rc_self_invoice_id.amount_total, 100)
+        self.assertEqual(invoice.rc_self_invoice_id.residual, 0)
+        invoice.action_cancel()
+        self.assertEqual(invoice.state, 'cancel')
+        invoice.action_invoice_draft()
+        self.assertEqual(invoice.state, 'draft')
