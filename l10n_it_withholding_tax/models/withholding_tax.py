@@ -183,7 +183,7 @@ class WithholdingTaxStatement(models.Model):
             statement.amount_paid = tot_wt_amount_paid
 
     date = fields.Date('Date')
-    type = fields.Selection([
+    wt_type = fields.Selection([
         ('in', 'In'),
         ('out', 'Out'),
     ], 'Type', store=True, compute='_compute_type')
@@ -217,9 +217,9 @@ class WithholdingTaxStatement(models.Model):
                     ('account_id.user_type_id.type', '=', 'payable')]
                 lines = self.env['account.move.line'].search(domain)
                 if lines:
-                    st.type = 'in'
+                    st.wt_type = 'in'
                 else:
-                    st.type = 'out'
+                    st.wt_type = 'out'
 
     def get_wt_competence(self, amount_reconcile):
         dp_obj = self.env['decimal.precision']
@@ -264,10 +264,10 @@ class WithholdingTaxMove(models.Model):
         ('paid', 'Paid'),
     ], 'Status', readonly=True, copy=False, default='due')
     statement_id = fields.Many2one('withholding.tax.statement', 'Statement')
-    type = fields.Selection([
+    wt_type = fields.Selection([
         ('in', 'In'),
         ('out', 'Out'),
-    ], 'Type', store=True, related='statement_id.type')
+    ], 'Type', store=True, related='statement_id.wt_type')
     date = fields.Date('Date Competence')
     reconcile_partial_id = fields.Many2one(
         'account.partial.reconcile', 'Invoice reconciliation',
