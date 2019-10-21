@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:372
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:373
 #, python-format
 msgid "Can't find 1 tax mapping for %s"
 msgstr ""
@@ -74,7 +74,7 @@ msgid "Invoice Line"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:329
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:330
 #, python-format
 msgid "Invoice line\n"
 "%s\n"
@@ -263,7 +263,7 @@ msgid "Tax Mapping for self invoices"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:337
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:338
 #, python-format
 msgid "Tax code used is not a RC tax.\n"
 "Can't find tax mapping"
@@ -285,14 +285,14 @@ msgid "Text on Self Invoice"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:422
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:423
 #, python-format
 msgid "There are more than one payment line.\n"
 "In that case account entries cannot be canceledautomatically. Please proceed manually"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:314
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:315
 #, python-format
 msgid "There is no default credit account defined \n"
 "on journal \"%s\"."
