@@ -515,7 +515,7 @@ class AccountInvoice(models.Model):
                 wt_base_amount = -1 * wt_base_amount
                 wt_tax_amount = -1 * wt_tax_amount
             val = {
-                'type': '',
+                'wt_type': '',
                 'date': self.move_id.date,
                 'move_id': self.move_id.id,
                 'invoice_id': self.id,

@@ -95,7 +95,7 @@
             <field name="model">withholding.tax.statement</field>
             <field name="arch" type="xml">
                 <tree string="Withholding Tax statement" create="false" edit="false" delete="false">
-                    <field name="type"/>
+                    <field name="wt_type"/>
                     <field name="partner_id"/>
                     <field name="date"/>
                     <field name="move_id"/>
@@ -159,8 +159,8 @@
                 <search string="Withholding Tax Statement">
                     <field name="partner_id" filter_domain="[('partner_id','ilike',self)]"/>
                     <field name="withholding_tax_id" filter_domain="[('withholding_tax_id','ilike',self)]"/>
-                    <filter name="typeIn" string="In type" domain="[('type','=','in')]" help="Supplier invoices"/>
-                    <filter name="typeOut" string="Out type" domain="[('type','=','out')]" help="Customer invoices"/>
+                    <filter name="typeIn" string="In type" domain="[('wt_type','=','in')]" help="Supplier invoices"/>
+                    <filter name="typeOut" string="Out type" domain="[('wt_type','=','out')]" help="Customer invoices"/>
                     <group expand="0" string="Group By...">
                         <filter name="group_by_partners" string="Partners" icon="terp-personal" domain="[]" context="{'group_by':'partner_id'}"/>
                         <filter name="group_by_wt" string="Withholding Tax" icon="terp-personal" domain="[]" context="{'group_by':'withholding_tax_id'}"/>
@@ -188,7 +188,7 @@
             <field name="model">withholding.tax.move</field>
             <field name="arch" type="xml">
                 <tree string="Withholding Tax Move" create="false" edit="false" delete="false">
-                    <field name="type"/>
+                    <field name="wt_type"/>
                     <field name="partner_id"/>
                     <field name="date"/>
                     <field name="withholding_tax_id"/>
@@ -246,8 +246,8 @@
                     <filter name="due" string="Due" domain="[('state','=','due')]" help="Due"/>
                     <filter name="paid" string="Paid" domain="[('state','=','paid')]" help="Paid"/>
                     <newline/>
-                    <filter name="typeIn" string="In type" domain="[('type','=','in')]" help="Supplier invoices"/>
-                    <filter name="typeOut" string="Out type" domain="[('type','=','out')]" help="Customer invoices"/>
+                    <filter name="typeIn" string="In type" domain="[('wt_type','=','in')]" help="Supplier invoices"/>
+                    <filter name="typeOut" string="Out type" domain="[('wt_type','=','out')]" help="Customer invoices"/>
                     <field name="partner_id" filter_domain="[('partner_id','ilike',self)]"/>
                     <field name="withholding_tax_id" filter_domain="[('withholding_tax_id','ilike',self)]"/>
                     <field name="company_id" filter_domain="[('company_id','ilike',self)]" groups="base.group_multi_company"/>
