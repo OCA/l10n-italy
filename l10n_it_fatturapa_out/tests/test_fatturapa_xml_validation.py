@@ -469,3 +469,57 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         # XML doc to be validated
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, 'IT06363391001_00010.xml')
+
+    def test_11_xml_export(self):
+        self.set_sequences(11, '2018-01-07')
+        self.product_product_10.default_code = 'GH82Ø23€ŦD11'
+        self.product_order_01.default_code = 'GZD11'
+        partner = self.res_partner_fatturapa_2
+        partner.name = 'REMODELAÇÃO DECORAÇÃO ŽALEC LDAŠ'
+        partner.street = 'Mžaja ŠtraÇÃ 14'
+        partner.zip = 'ES-49714'
+        partner.city = 'Šofıa'
+        partner.country_id = self.env.ref('base.si').id
+        partner.vat = 'SI12345679'
+        partner.fiscalcode = False
+        partner.onchange_country_id_e_inv()
+        partner.write(partner._convert_to_write(partner._cache))
+        self.assertEqual(partner.codice_destinatario, 'XXXXXXX')
+        invoice = self.invoice_model.create({
+            'date_invoice': '2018-01-07',
+            'partner_id': self.res_partner_fatturapa_2.id,
+            'journal_id': self.sales_journal.id,
+            'account_id': self.a_recv.id,
+            'payment_term_id': self.account_payment_term.id,
+            'user_id': self.user_demo.id,
+            'type': 'out_invoice',
+            'currency_id': self.EUR.id,
+            'invoice_line_ids': [
+                (0, 0, {
+                    'account_id': self.a_sale.id,
+                    'product_id': self.product_product_10.id,
+                    'name': 'Mouse Optical Ø23 ß11',
+                    'quantity': 1,
+                    'uom_id': self.product_uom_unit.id,
+                    'price_unit': 10,
+                    'invoice_line_tax_ids': [(6, 0, {
+                        self.tax_22.id})]
+                }),
+                (0, 0, {
+                    'account_id': self.a_sale.id,
+                    'product_id': self.product_order_01.id,
+                    'name': 'Zed+^ Antiv° (£)',
+                    'quantity': 1,
+                    'uom_id': self.product_uom_unit.id,
+                    'price_unit': 4,
+                    'invoice_line_tax_ids': [(6, 0, {
+                        self.tax_22.id})]
+                })],
+        })
+        invoice.action_invoice_open()
+        res = self.run_wizard(invoice.id)
+        attachment = self.attach_model.browse(res['res_id'])
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00011.xml')
+
+        xml_content = base64.decodebytes(attachment.datas)
+        self.check_content(xml_content, 'IT06363391001_00011.xml')
