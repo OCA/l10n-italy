@@ -52,6 +52,8 @@ addon | version | summary
 [l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 8.0.1.1.1 | Italian Localization - Tipi di documento fiscale per dichiarativi
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 8.0.0.0.0 | Electronic invoices payment
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 8.0.0.1.1 | Italian Localisation - Fiscal Code
+[l10n_it_invoices_data_communication](l10n_it_invoices_data_communication/) | 8.0.1.0.0 | Comunicazione dati fatture (c.d. "nuovo spesometro" o "esterometro")
+[l10n_it_invoices_data_communication_fatturapa](l10n_it_invoices_data_communication_fatturapa/) | 8.0.1.0.0 | Integrazione fatturazione elettronica e Comunicazione dati fatture (c.d. "nuovo spesometro")
 [l10n_it_ipa](l10n_it_ipa/) | 8.0.2.0.0 | IPA Code (IndicePA)
 [l10n_it_pec](l10n_it_pec/) | 8.0.0.1.0 | Pec Mail
 [l10n_it_rea](l10n_it_rea/) | 8.0.0.1.0 | Manage fields for Economic Administrative catalogue
