@@ -44,7 +44,7 @@ msgid "CAUS."
 msgstr "RAZLOG"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/vat_registry.py:183
+#: code:addons/l10n_it_vat_registries/vat_registry.py:185
 #, python-format
 msgid "Can't compute base amount for tax %s"
 msgstr "Za davek %s ne morem izračunati osnove"
@@ -166,8 +166,7 @@ msgid "Last Modified on"
 msgstr "Zadnjič spremenjeno"
 
 #. module: l10n_it_vat_registries
-#: field:account.tax.registry,write_uid:0
-#: field:wizard.registro.iva,write_uid:0
+#: field:account.tax.registry,write_uid:0 field:wizard.registro.iva,write_uid:0
 msgid "Last Updated by"
 msgstr "Zadnji posodobil"
 
@@ -283,12 +282,6 @@ msgid "Tax amount sign"
 msgstr "Podpis davčnega zneska"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/vat_registry.py:248
-#, python-format
-msgid "Tax code %s is not linked to 1 and only 1 tax"
-msgstr "Davčna koda %s ni povezana z 1 in le 1 davkom"
-
-#. module: l10n_it_vat_registries
 #: model:ir.ui.menu,name:l10n_it_vat_registries.menu_finance_legal_statement_taxes
 msgid "Taxes"
 msgstr "Davki"
@@ -347,3 +340,6 @@ msgstr ""
 #: view:wizard.registro.iva:l10n_it_vat_registries.wizard_registro_iva
 msgid "or"
 msgstr "ali"
+
+#~ msgid "Tax code %s is not linked to 1 and only 1 tax"
+#~ msgstr "Davčna koda %s ni povezana z 1 in le 1 davkom"

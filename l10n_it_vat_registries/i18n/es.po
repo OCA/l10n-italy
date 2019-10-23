@@ -36,7 +36,7 @@ msgid "CAUS."
 msgstr ""
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/vat_registry.py:183
+#: code:addons/l10n_it_vat_registries/vat_registry.py:185
 #, python-format
 msgid "Can't compute base amount for tax %s"
 msgstr ""
@@ -159,8 +159,7 @@ msgid "Last Modified on"
 msgstr "Última Actualización el"
 
 #. module: l10n_it_vat_registries
-#: field:account.tax.registry,write_uid:0
-#: field:wizard.registro.iva,write_uid:0
+#: field:account.tax.registry,write_uid:0 field:wizard.registro.iva,write_uid:0
 msgid "Last Updated by"
 msgstr "Última Actualización por"
 
@@ -273,12 +272,6 @@ msgstr ""
 #. module: l10n_it_vat_registries
 #: field:wizard.registro.iva,tax_sign:0
 msgid "Tax amount sign"
-msgstr ""
-
-#. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/vat_registry.py:248
-#, python-format
-msgid "Tax code %s is not linked to 1 and only 1 tax"
 msgstr ""
 
 #. module: l10n_it_vat_registries
