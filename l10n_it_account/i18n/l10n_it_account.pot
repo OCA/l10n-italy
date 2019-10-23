@@ -51,10 +51,10 @@ msgid "Error"
 msgstr ""
 
 #. module: l10n_it_account
-#: code:addons/l10n_it_account/models/account_tax.py:184
-#: code:addons/l10n_it_account/models/account_tax.py:193
-#: code:addons/l10n_it_account/models/account_tax.py:202
-#: code:addons/l10n_it_account/models/account_tax.py:211
+#: code:addons/l10n_it_account/models/account_tax.py:241
+#: code:addons/l10n_it_account/models/account_tax.py:250
+#: code:addons/l10n_it_account/models/account_tax.py:259
+#: code:addons/l10n_it_account/models/account_tax.py:268
 #, python-format
 msgid "Error!"
 msgstr ""
@@ -129,12 +129,18 @@ msgid "Tax Code"
 msgstr ""
 
 #. module: l10n_it_account
-#: code:addons/l10n_it_account/models/account_tax.py:185
-#: code:addons/l10n_it_account/models/account_tax.py:194
-#: code:addons/l10n_it_account/models/account_tax.py:203
-#: code:addons/l10n_it_account/models/account_tax.py:212
+#: code:addons/l10n_it_account/models/account_tax.py:242
+#: code:addons/l10n_it_account/models/account_tax.py:251
+#: code:addons/l10n_it_account/models/account_tax.py:260
+#: code:addons/l10n_it_account/models/account_tax.py:269
 #, python-format
 msgid "Tax code %s already used in other purchase tax"
+msgstr ""
+
+#. module: l10n_it_account
+#: code:addons/l10n_it_account/models/account_tax.py:191
+#, python-format
+msgid "Tax code %s is not linked to 1 and only 1 tax"
 msgstr ""
 
 #. module: l10n_it_account
