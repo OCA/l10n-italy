@@ -100,6 +100,7 @@ class NutsImport(models.TransientModel):
         'ITI19': 'base.state_it_si',  # Siena
         'ITG19': 'base.state_it_sr',  # Siracusa
         'ITC44': 'base.state_it_so',  # Sondrio
+        'ITG2H': 'base.state_it_su',  # Sud Sardegna
         'ITF43': 'base.state_it_ta',  # Taranto
         'ITF12': 'base.state_it_te',  # Teramo
         'ITI22': 'base.state_it_tr',  # Terni
