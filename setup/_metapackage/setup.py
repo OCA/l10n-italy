@@ -38,6 +38,8 @@ setuptools.setup(
         'odoo8-addon-l10n_it_fiscal_document_type',
         'odoo8-addon-l10n_it_fiscal_payment_term',
         'odoo8-addon-l10n_it_fiscalcode',
+        'odoo8-addon-l10n_it_invoices_data_communication',
+        'odoo8-addon-l10n_it_invoices_data_communication_fatturapa',
         'odoo8-addon-l10n_it_ipa',
         'odoo8-addon-l10n_it_pec',
         'odoo8-addon-l10n_it_rea',
