@@ -135,6 +135,63 @@ class AccountTaxCode(models.Model):
                 tax_code, res=res)
         return res
 
+    @api.multi
+    def get_tax_by_tax_code(self):
+        """
+        Get account.tax linked to current tax code.
+        If the account.tax has a parent, the parent account.tax is returned.
+        """
+        self.ensure_one()
+        # assumendo l'univocità fra tax code e tax senza genitore, risale
+        # all account.tax collegato al tax code passato al metodo
+        tax_code_id = self.id
+        obj_tax = self.env['account.tax']
+        tax_ids = obj_tax.search([
+            '&',
+            '|',
+            ('base_code_id', '=', tax_code_id),
+            '|',
+            ('tax_code_id', '=', tax_code_id),
+            '|',
+            ('ref_base_code_id', '=', tax_code_id),
+            ('ref_tax_code_id', '=', tax_code_id),
+            ('parent_id', '=', False)
+        ]).ids
+        if not tax_ids:
+            # I'm in the case of partially deductible VAT
+            child_tax_ids = obj_tax.search([
+                '|',
+                ('base_code_id', '=', tax_code_id),
+                '|',
+                ('tax_code_id', '=', tax_code_id),
+                '|',
+                ('ref_base_code_id', '=', tax_code_id),
+                ('ref_tax_code_id', '=', tax_code_id)
+            ]).ids
+            for tax in obj_tax.browse(child_tax_ids):
+                if tax.parent_id:
+                    if tax.parent_id.id not in tax_ids:
+                        tax_ids.append(tax.parent_id.id)
+                else:
+                    if tax.id not in tax_ids:
+                        tax_ids.append(tax.id)
+        # Nel caso in cui due imposte (una con iva inclusa nel prezzo e
+        # una con iva esclusa dal prezzo), utilizzino lo stesso account
+        # tax code o lo stesso account base code, verrà utilizzata solo
+        # quella con iva esclusa dal prezzo.
+        if len(tax_ids) > 1:
+            tax_ids_temp = []
+            for tax in obj_tax.browse(tax_ids):
+                if not tax.price_include:
+                    tax_ids_temp.append(tax.id)
+            tax_ids = tax_ids_temp
+
+        if len(tax_ids) != 1:
+            raise Exception(
+                _("Tax code %s is not linked to 1 and only 1 tax")
+                % tax_code_id)
+        return tax_ids[0]
+
 
 class AccountTax(models.Model):
     _inherit = 'account.tax'

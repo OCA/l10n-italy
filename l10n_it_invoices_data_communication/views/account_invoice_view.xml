@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <record id="view_account_inv_escl_comunicazione_iva_supp" model="ir.ui.view">
+            <field name="name">account.invoice.supp.fiscal.document.type.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="l10n_it_fiscal_document_type.view_account_inv_supp_fiscal_document_type"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='fiscal_document_type_id']" position="after">
+                        <field name="comunicazione_dati_iva_escludi" class="oe_inline" />
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="view_account_inv_escl_comunicazione_iva" model="ir.ui.view">
+            <field name="name">account.invoice.cus.fiscal.document.type.supp.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="l10n_it_fiscal_document_type.view_account_inv_cus_fiscal_document_type"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='fiscal_document_type_id']" position="after">
+                        <field name="comunicazione_dati_iva_escludi" class="oe_inline" />
+                </xpath>
+            </field>
+        </record>
+    
+
+  </data>
+</openerp>

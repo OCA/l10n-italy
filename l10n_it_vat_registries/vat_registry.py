@@ -55,8 +55,8 @@ class Parser(report_sxw.rml_parse):
                         move_line.tax_code_id.vat_statement_type == 'debit')
                 ):
                     tax = tax_obj.browse(
-                        self.cr, self.uid, self.get_tax_by_tax_code(
-                            move_line.tax_code_id.id))
+                        self.cr, self.uid,
+                        move_line.tax_code_id.get_tax_by_tax_code())
                     if not res.get(tax.id):
                         res[tax.id] = {'name': tax.name,
                                        'base': 0,
@@ -162,9 +162,11 @@ class Parser(report_sxw.rml_parse):
     def _compute_totals_tax(self, tax_code_ids):
         res = []
         tax_obj = self.pool.get('account.tax')
+        tax_code_obj = self.pool.get('account.tax.code')
+        tax_codes = tax_code_obj.browse(self.cr, self.uid, tax_code_ids)
         tax_list = []
-        for tax_code_id in tax_code_ids:
-            tax_id = self.get_tax_by_tax_code(tax_code_id)
+        for tax_code in tax_codes:
+            tax_id = tax_code.get_tax_by_tax_code()
             if tax_id not in tax_list:
                 tax_list.append(tax_id)
         tax_list_obj = tax_obj.browse(self.cr, self.uid, tax_list)
@@ -197,57 +199,6 @@ class Parser(report_sxw.rml_parse):
                 tax.name, total_base, total_tax, total_deduct,
                 total_undeduct))
         return res
-
-    def get_tax_by_tax_code(self, tax_code_id):
-        # assumendo l'univocità fra tax code e tax senza genitore, risale
-        # all account.tax collegato al tax code passato al metodo
-
-        obj_tax = self.pool.get('account.tax')
-        tax_ids = obj_tax.search(self.cr, self.uid, [
-            '&',
-            '|',
-            ('base_code_id', '=', tax_code_id),
-            '|',
-            ('tax_code_id', '=', tax_code_id),
-            '|',
-            ('ref_base_code_id', '=', tax_code_id),
-            ('ref_tax_code_id', '=', tax_code_id),
-            ('parent_id', '=', False)
-        ])
-        if not tax_ids:
-            # I'm in the case of partially deductible VAT
-            child_tax_ids = obj_tax.search(self.cr, self.uid, [
-                '|',
-                ('base_code_id', '=', tax_code_id),
-                '|',
-                ('tax_code_id', '=', tax_code_id),
-                '|',
-                ('ref_base_code_id', '=', tax_code_id),
-                ('ref_tax_code_id', '=', tax_code_id)
-            ])
-            for tax in obj_tax.browse(self.cr, self.uid, child_tax_ids):
-                if tax.parent_id:
-                    if tax.parent_id.id not in tax_ids:
-                        tax_ids.append(tax.parent_id.id)
-                else:
-                    if tax.id not in tax_ids:
-                        tax_ids.append(tax.id)
-        # Nel caso in cui due imposte (una con iva inclusa nel prezzo e
-        # una con iva esclusa dal prezzo), utilizzino lo stesso account
-        # tax code o lo stesso account base code, verrà utilizzata solo
-        # quella con iva esclusa dal prezzo.
-        if len(tax_ids) > 1:
-            tax_ids_temp = []
-            for tax in obj_tax.browse(self.cr, self.uid, tax_ids):
-                if not tax.price_include:
-                    tax_ids_temp.append(tax.id)
-            tax_ids = tax_ids_temp
-
-        if len(tax_ids) != 1:
-            raise Exception(
-                _("Tax code %s is not linked to 1 and only 1 tax")
-                % tax_code_id)
-        return tax_ids[0]
 
     def compute_tax_code_total(self, tax_code):
         journal_ids = self.localcontext['data']['form']['journal_ids']
