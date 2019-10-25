@@ -358,7 +358,7 @@ msgstr "Data e ora di consegna"
 #: field:account.invoice,description:0
 #: field:fatturapa.attachments,description:0
 #: field:fatturapa.document_type,name:0 field:fatturapa.fiscal_position,name:0
-#: field:fatturapa.format,name:0
+#: field:fatturapa.format,name:0 field:welfare.fund.type,description:0
 msgid "Description"
 msgstr "Descrizione"
 
@@ -797,7 +797,7 @@ msgid "Member Type"
 msgstr "Tipo Socio"
 
 #. module: l10n_it_fatturapa
-#: field:welfare.fund.type,display_name:0
+#: field:welfare.fund.type,display_name:0 field:welfare.fund.type,name:0
 #, fuzzy
 msgid "Name"
 msgstr "Nome File"
@@ -1304,6 +1304,7 @@ msgid "Welfare Fund"
 msgstr "Cassa previdenziale"
 
 #. module: l10n_it_fatturapa
+#: model:ir.model,name:l10n_it_fatturapa.model_welfare_fund_type
 #: field:welfare.fund.data.line,name:0
 msgid "Welfare Fund Type"
 msgstr "Tipo cassa previdenziale"
@@ -1334,11 +1335,6 @@ msgid "assignee / partner"
 msgstr "cessionario / committente"
 
 #. module: l10n_it_fatturapa
-#: field:welfare.fund.type,description:0
-msgid "description"
-msgstr "descrizione"
-
-#. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "escluse ex art. 15"
 msgstr "escluse ex art. 15"
@@ -1367,11 +1363,6 @@ msgid "inversione contabile (reverse charge)"
 msgstr "inversione contabile (reverse charge)"
 
 #. module: l10n_it_fatturapa
-#: field:welfare.fund.type,name:0
-msgid "name"
-msgstr "nome"
-
-#. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "non imponibili"
 msgstr "non imponibili"
@@ -1396,10 +1387,14 @@ msgstr "regime del margine"
 msgid "third person"
 msgstr "Terzo"
 
-#. module: l10n_it_fatturapa
-#: model:ir.model,name:l10n_it_fatturapa.model_welfare_fund_type
-msgid "welfare fund type"
-msgstr "Tipo cassa previdenziale"
+#~ msgid "description"
+#~ msgstr "descrizione"
+
+#~ msgid "name"
+#~ msgstr "nome"
+
+#~ msgid "welfare fund type"
+#~ msgstr "Tipo cassa previdenziale"
 
 #~ msgid "ASN.1 structure is not parsable in DER"
 #~ msgstr "ASN.1 structure is not parsable in DER"
