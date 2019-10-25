@@ -19,6 +19,25 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
+#, fuzzy
+#| msgid ""
+#| "<span class=\"o_form_label\">Supplier Invoices</span>\n"
+#| "                            <span class=\"fa fa-lg fa-building-o\" title="
+#| "\"Values set here are company-specific.\" aria-label=\"Values set here "
+#| "are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" aria-label=\"Values set here are company-specific.\" groups="
+"\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+"<span class=\"o_form_label\">Fatture fornitori</span>\n"
+"                            <span class=\"fa fa-lg fa-building-o\" title=\"I "
+"valori impostati qui sono specifici per azienda.\" aria-label=\"I valori "
+"impostati qui sono specifici per azienda.\" groups=\"base.group_multi_company"
+"\" role=\"img\"/>"
+
+#. module: l10n_it_fatturapa_in
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
 msgid ""
 "<span class=\"o_form_label\">Supplier Invoices</span>\n"
 "                            <span class=\"fa fa-lg fa-building-o\" title="
@@ -138,7 +157,7 @@ msgstr ""
 "Totale imposte: {bill_tax}"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1314
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1361
 #, python-format
 msgid "Bill total %s is different from document total amount %s"
 msgstr "Il totale fattura %s è diverso dall'importo totale del documento %s"
@@ -196,7 +215,7 @@ msgid "Company Name field contains '%s'. Your System contains '%s'"
 msgstr "Il campo nome azienda contiene \"%s\", il sistema contiene \"%s\""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1329
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1376
 #, python-format
 msgid "Computed amount untaxed %s is different from summary data %s"
 msgstr "L'imponibile calcolato %s è diverso da quello dei dati di riepilogo %s"
@@ -318,6 +337,11 @@ msgstr "Dettagli sconto e maggiorazione"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice_line__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
+
+#. module: l10n_it_fatturapa_in
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
+msgid "Do not block e-bill import in case of missing Enasarco configuration"
+msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:863
@@ -450,7 +474,7 @@ msgid "File Size"
 msgstr "Dimensione file"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1352
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1399
 #, python-format
 msgid "File is linked to bills yet."
 msgstr "Il file è già collegato a delle fatture."
@@ -804,6 +828,11 @@ msgid "Number of unread messages"
 msgstr "Numero di messaggi non letti"
 
 #. module: l10n_it_fatturapa_in
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
+msgid "Open full-screen"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line__other_data_ids
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
 msgid "Other Administrative Data"
@@ -912,6 +941,12 @@ msgstr "Documenti collegati"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_article_code__e_invoice_line_id
 msgid "Related E-bill Line"
 msgstr "Riga e-fattura collegata"
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_company__enasarco_relax_checks
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_config_settings__enasarco_relax_checks
+msgid "Relax checks for Enasarco"
+msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
@@ -1072,6 +1107,32 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data__text_ref
 msgid "Text Reference"
 msgstr "Riferimento testo"
+
+#. module: l10n_it_fatturapa_in
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1223
+#, fuzzy, python-format
+#| msgid ""
+#| "The bill contains withholding tax with payment reason %s, but such a tax "
+#| "is not found in your system. Please set it."
+msgid ""
+"The bill contains Welfare Fund tax with Type %s and Tax %s but such a tax is "
+"not found in your system. Please set it."
+msgstr ""
+"La fattura contiene una ritenuta d'acconto con causale pagamento %s. Tale "
+"ritenuta non è presente nel sistema, è necessario impostarla."
+
+#. module: l10n_it_fatturapa_in
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1205
+#, fuzzy, python-format
+#| msgid ""
+#| "The bill contains withholding tax with payment reason %s, but such a tax "
+#| "is not found in your system. Please set it."
+msgid ""
+"The bill contains Welfare Fund tax with Type %s, but such a tax is not found "
+"in your system. Please set it."
+msgstr ""
+"La fattura contiene una ritenuta d'acconto con causale pagamento %s. Tale "
+"ritenuta non è presente nel sistema, è necessario impostarla."
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1155
@@ -1273,7 +1334,7 @@ msgid "Welfare Fund Details"
 msgstr "Dettagli cassa previdenziale"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1203
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1250
 #, python-format
 msgid ""
 "Welfare Fund data %s has withholding tax but no withholding tax was found in "
@@ -1289,7 +1350,7 @@ msgid "Welfare Fund is not defined."
 msgstr "Cassa previdenziale non definita."
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1195
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1242
 #, python-format
 msgid "Welfare Fund: %s"
 msgstr "Cassa previdenziale: %s"
