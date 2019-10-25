@@ -336,9 +336,9 @@ class WizardImportFatturapa(models.TransientModel):
             if len(account_taxes) > 1:
                 # just logging because this is an usual case: see split payment
                 _logger.warning(_(
-                    "Line '%s': Too many taxes with percentage equals "
-                    "to \"%s\"\nfix it if required"
-                ) % (line.Descrizione, line.AliquotaIVA))
+                    "Too many taxes with percentage equals "
+                    "to '%s'.\nFix it if required"
+                ) % line.AliquotaIVA)
                 # if there are multiple taxes with same percentage
                 # and there is a default tax with this percentage,
                 # set taxes list equal to supplier_taxes_id, loaded before
@@ -810,7 +810,7 @@ class WizardImportFatturapa(models.TransientModel):
         PaymentTermsModel = self.env['fatturapa.payment_term']
         SummaryDatasModel = self.env['faturapa.summary.data']
 
-        company = self.env.user.company_id
+        company = self.env.user.company_id.with_env(self.env)
         partner = partner_model.browse(partner_id)
         pay_acc_id = partner.property_account_payable.id
         # currency 2.1.1.2
@@ -944,6 +944,30 @@ class WizardImportFatturapa(models.TransientModel):
                 WalferLineVals = self._prepareWelfareLine(
                     invoice_id, walfareLine)
                 WelfareFundLineModel.create(WalferLineVals)
+                line_vals = self._prepare_generic_line_data(walfareLine)
+                line_vals.update({
+                    'name': _(
+                        "Welfare Fund: %s") % walfareLine.TipoCassa,
+                    'price_unit': float(walfareLine.ImportoContributoCassa),
+                    'invoice_id': invoice.id,
+                    'account_id': credit_account_id,
+                })
+                if walfareLine.Ritenuta:
+                    if not wt_found:
+                        raise UserError(_(
+                            "Welfare Fund data %s has withholding tax but no "
+                            "withholding tax was found in the system."
+                            % walfareLine.TipoCassa))
+                if company.cassa_previdenziale_product_id:
+                    cassa_previdenziale_product = (
+                        company.cassa_previdenziale_product_id
+                    )
+                    line_vals['product_id'] = cassa_previdenziale_product.id
+                    line_vals['name'] = cassa_previdenziale_product.name
+                    self.adjust_accounting_data(
+                        cassa_previdenziale_product, line_vals
+                    )
+                self.env['account.invoice.line'].create(line_vals)
 
         # 2.1.2
         relOrders = FatturaBody.DatiGenerali.DatiOrdineAcquisto
@@ -1140,7 +1164,8 @@ class WizardImportFatturapa(models.TransientModel):
                 'tax': float(Withholding.ImportoRitenuta),
                 'withholding_tax_id': wt_found[0].id,
             })
-            invoice.write({'withholding_tax_line': [(6, 0, [wh_line_id.id])]})
+            invoice.write({'withholding_tax_line': [(6, 0, [wh_line_id.id])],
+                           'withholding_tax': True})
         self._addGlobalDiscount(
             invoice_id, FatturaBody.DatiGenerali.DatiGeneraliDocumento)
         return invoice_id
