@@ -102,6 +102,14 @@ class WelfareFundType(models.Model):
     name = fields.Char('Name')
     description = fields.Char('Description')
 
+    @api.multi
+    def name_get(self):
+        res = []
+        for record in self:
+            res.append(
+                (record.id, u'[%s] %s' % (record.name, record.description)))
+        return res
+
 
 class WelfareFundDataLine(models.Model):
     # _position = ['2.1.1.7']
@@ -410,3 +418,15 @@ class AccountInvoice(models.Model):
         'Subjected to Electronic Invoice',
         related='commercial_partner_id.electronic_invoice_subjected',
         readonly=True)
+
+    @api.multi
+    def open_form_current(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': self._name,
+            'res_id': self.id,
+            'taget': 'current'
+        }

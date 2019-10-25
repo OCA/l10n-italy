@@ -62,6 +62,16 @@ class WithholdingTax(models.Model):
     rate_ids = fields.One2many('withholding.tax.rate', 'withholding_tax_id',
                                'Rates', required=True)
 
+    wt_types = fields.Selection([
+        ('enasarco', 'Enasarco tax'),
+        ('ritenuta', 'Withholding tax'),
+        ], 'Withholding tax type', required=True, default='ritenuta')
+    use_daticassaprev_for_enasarco = fields.Boolean(
+        "DatiCassa export",
+        help="Setting this, while exporting e-invoice XML, "
+             "Enasarco data will be also added to DatiCassaPrevidenziale"
+    )
+
     @api.one
     @api.constrains('rate_ids')
     def _check_rate_ids(self):
@@ -173,6 +183,10 @@ class WithholdingTaxStatement(models.Model):
             statement.amount_paid = tot_wt_amount_paid
 
     date = fields.Date('Date')
+    wt_type = fields.Selection([
+        ('in', 'In'),
+        ('out', 'Out'),
+    ], 'Type', store=True, compute='_compute_type')
     move_id = fields.Many2one('account.move', 'Account move',
                               ondelete='cascade')
     invoice_id = fields.Many2one('account.invoice', 'Invoice',
@@ -193,6 +207,19 @@ class WithholdingTaxStatement(models.Model):
     move_ids = fields.One2many('withholding.tax.move',
                                'statement_id', 'Moves')
     display_name = fields.Char(compute='_compute_display_name')
+
+    @api.depends('move_id.line_ids.account_id.user_type_id.type')
+    def _compute_type(self):
+        for st in self:
+            if st.move_id:
+                domain = [
+                    ('move_id', '=', st.move_id.id),
+                    ('account_id.user_type_id.type', '=', 'payable')]
+                lines = self.env['account.move.line'].search(domain)
+                if lines:
+                    st.wt_type = 'in'
+                else:
+                    st.wt_type = 'out'
 
     def get_wt_competence(self, amount_reconcile):
         dp_obj = self.env['decimal.precision']
@@ -237,6 +264,10 @@ class WithholdingTaxMove(models.Model):
         ('paid', 'Paid'),
     ], 'Status', readonly=True, copy=False, default='due')
     statement_id = fields.Many2one('withholding.tax.statement', 'Statement')
+    wt_type = fields.Selection([
+        ('in', 'In'),
+        ('out', 'Out'),
+    ], 'Type', store=True, related='statement_id.wt_type')
     date = fields.Date('Date Competence')
     reconcile_partial_id = fields.Many2one(
         'account.partial.reconcile', 'Invoice reconciliation',

@@ -1186,10 +1186,57 @@ class WizardImportFatturapa(models.TransientModel):
             return
 
         WelfareFundLineModel = self.env['welfare.fund.data.line']
+
+        wts = False
+        enasarco_relax_checks = self.env.user.company_id.enasarco_relax_checks
+        if any([welfareLine for welfareLine in Welfares
+                if welfareLine.TipoCassa == 'TC07']):
+            # Search the matching withholding tax
+            wts = self.env['withholding.tax'].search(
+                [('wt_types', '=', 'enasarco')])
+
         for welfareLine in Welfares:
-            WalferLineVals = self._prepareWelfareLine(
-                invoice.id, welfareLine)
-            WelfareFundLineModel.create(WalferLineVals)
+            WalfarLineVals = self._prepareWelfareLine(invoice.id, welfareLine)
+            WelfareFundLineModel.create(WalfarLineVals)
+
+            # Handle only TC07
+            if welfareLine.TipoCassa == 'TC07':
+                if not wts:
+                    msg = _(
+                        "The bill contains Welfare Fund tax with "
+                        "Type %s, "
+                        "but such a tax is not found in your system. Please "
+                        "set it."
+                    ) % welfareLine.TipoCassa
+                    if enasarco_relax_checks:
+                        self.log_inconsistency(msg)
+                    else:
+                        raise UserError(msg)
+
+                wt_found = False
+                for wt in wts:
+                    if wt.tax == float(welfareLine.AlCassa):
+                        wt_found = wt
+                        break
+
+                if not wt_found:
+                    msg = _(
+                        "The bill contains Welfare Fund tax with "
+                        "Type %s and Tax %s "
+                        "but such a tax is not found in your system. Please "
+                        "set it."
+                    ) % (welfareLine.TipoCassa, float(welfareLine.AlCassa))
+                    if enasarco_relax_checks:
+                        self.log_inconsistency(msg)
+                    else:
+                        raise UserError(msg)
+
+                for line in invoice.invoice_line_ids:
+                    line.invoice_line_tax_wt_ids = [(4, wt_found.id)]
+                invoice._onchange_invoice_line_wt_ids()
+                invoice.write(invoice._convert_to_write(invoice._cache))
+                continue
+
             line_vals = self._prepare_generic_line_data(welfareLine)
             line_vals.update({
                 'name': _(
