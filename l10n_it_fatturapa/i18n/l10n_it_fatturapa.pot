@@ -337,6 +337,7 @@ msgstr ""
 #: field:fatturapa.document_type,name:0
 #: field:fatturapa.fiscal_position,name:0
 #: field:fatturapa.format,name:0
+#: field:welfare.fund.type,description:0
 msgid "Description"
 msgstr ""
 
@@ -756,6 +757,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: field:welfare.fund.type,display_name:0
+#: field:welfare.fund.type,name:0
 msgid "Name"
 msgstr ""
 
@@ -1244,6 +1246,7 @@ msgid "Welfare Fund"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: model:ir.model,name:l10n_it_fatturapa.model_welfare_fund_type
 #: field:welfare.fund.data.line,name:0
 msgid "Welfare Fund Type"
 msgstr ""
@@ -1274,11 +1277,6 @@ msgid "assignee / partner"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: field:welfare.fund.type,description:0
-msgid "description"
-msgstr ""
-
-#. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "escluse ex art. 15"
 msgstr ""
@@ -1296,11 +1294,6 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "inversione contabile (reverse charge)"
-msgstr ""
-
-#. module: l10n_it_fatturapa
-#: field:welfare.fund.type,name:0
-msgid "name"
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -1326,10 +1319,5 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: selection:account.invoice,sender:0
 msgid "third person"
-msgstr ""
-
-#. module: l10n_it_fatturapa
-#: model:ir.model,name:l10n_it_fatturapa.model_welfare_fund_type
-msgid "welfare fund type"
 msgstr ""
 
