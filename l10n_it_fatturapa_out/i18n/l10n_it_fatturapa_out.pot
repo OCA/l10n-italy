@@ -456,6 +456,11 @@ msgid "Number of unread messages"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
+msgid "Open full-screen"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__out_invoice_ids
 msgid "Out Invoices"
 msgstr ""
