@@ -98,19 +98,24 @@ class FatturapaFiscalPosition(models.Model):
 class WelfareFundType(models.Model):
     # _position = ['2.1.1.7.1']
     _name = "welfare.fund.type"
-    _description = 'welfare fund type'
+    _description = 'Welfare Fund Type'
     _rec_name = 'display_name'
 
-    name = fields.Char('name')
-    description = fields.Char('description')
-    display_name = fields.Char(string='Name', compute='_compute_display_name')
+    name = fields.Char('Name')
+    description = fields.Char('Description')
+    display_name = fields.Char(string='Name',
+                               compute='_compute_clean_display_name')
 
-    @api.depends('description', 'name')
     @api.multi
-    def _compute_display_name(self):
+    @api.depends(
+        'description', 'name'
+    )
+    def _compute_clean_display_name(self):
         for record in self:
-            record.display_name = u'[%s] %s' % (
-                record.name, record.description)
+            name = record.name
+            if record.name and record.description:
+                name = u'[%s] %s' % (record.name, record.description)
+            record.display_name = name
 
 
 class WelfareFundDataLine(models.Model):
