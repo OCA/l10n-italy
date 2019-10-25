@@ -101,7 +101,7 @@ msgid "Company"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1186
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1211
 #, python-format
 msgid "Computed amount untaxed %s is different from DatiRiepilogo %s"
 msgstr ""
@@ -306,7 +306,7 @@ msgid "File Type Icon"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1209
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1234
 #, python-format
 msgid "File is linked to invoices yet"
 msgstr ""
@@ -398,7 +398,7 @@ msgid "Invoice Line"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1171
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1196
 #, python-format
 msgid "Invoice total %s is different from ImportoTotaleDocumento %s"
 msgstr ""
@@ -456,13 +456,6 @@ msgstr ""
 #: field:wizard.import.fatturapa,write_date:0
 #: field:wizard.link.to.invoice,write_date:0
 msgid "Last Updated on"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:338
-#, python-format
-msgid "Line '%s': Too many taxes with percentage equals to \"%s\"\n"
-"fix it if required"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -572,13 +565,13 @@ msgid "Partner"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1113
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1137
 #, python-format
 msgid "Payment method Code %s is incorrect"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1108
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1132
 #, python-format
 msgid "Payment method Code not found in document"
 msgstr ""
@@ -618,6 +611,12 @@ msgstr ""
 #: field:account.config.settings,sconto_maggiorazione_product_id:0
 #: field:res.company,sconto_maggiorazione_product_id:0
 msgid "Product for Sconto Maggiorazione"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: help:account.config.settings,cassa_previdenziale_product_id:0
+#: help:res.company,cassa_previdenziale_product_id:0
+msgid "Product used to model DatiCassaPrevidenziale XML element on bills."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -807,6 +806,13 @@ msgid "Too many taxes with percentage %s and nature %s found"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:338
+#, python-format
+msgid "Too many taxes with percentage equals to '%s'.\n"
+"Fix it if required"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:144
 #, python-format
 msgid "Two distinct partners with Vat %s and Fiscalcode %s already present in db"
@@ -843,8 +849,26 @@ msgid "Welfare Fund"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: field:account.config.settings,cassa_previdenziale_product_id:0
+#: field:res.company,cassa_previdenziale_product_id:0
+msgid "Welfare Fund Data Product"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: view:account.invoice:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
 msgid "Welfare Fund Details"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:957
+#, python-format
+msgid "Welfare Fund data %s has withholding tax but no withholding tax was found in the system."
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:949
+#, python-format
+msgid "Welfare Fund: %s"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
