@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-08 09:34+0000\n"
-"PO-Revision-Date: 2019-08-13 14:44+0000\n"
-"Last-Translator: Simone Rubino <simone.rubino@agilebg.com>\n"
+"PO-Revision-Date: 2019-10-27 15:33+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: l10n_it_fatturapa
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa.view_account_config_settings
@@ -131,7 +131,7 @@ msgstr "Cessionario / Committente"
 #. module: l10n_it_fatturapa
 #: selection:res.company,fatturapa_preview_style:0
 msgid "AssoSoftware v1.1"
-msgstr ""
+msgstr "AssoSoftware v1.1"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_ir_attachment
@@ -363,7 +363,7 @@ msgstr "Nome visualizzato"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__electronic_invoice_no_contact_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__electronic_invoice_no_contact_update
 msgid "Do not update the contact from Electronic Invoice Details"
-msgstr ""
+msgstr "Non aggiornare il contatto dai dati della fattura elettronica"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_ddt__name
@@ -503,8 +503,9 @@ msgstr "Abilitare fatturazione elettronica"
 
 #. module: l10n_it_fatturapa
 #: selection:res.company,fatturapa_preview_style:0
+#, fuzzy
 msgid "FatturaOrdinaria v1.2.1"
-msgstr ""
+msgstr "FatturaOrdinaria v1.2.1"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__datas
@@ -942,7 +943,7 @@ msgstr "Sconto pagamento anticipato"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company__fatturapa_preview_style
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_config_settings__fatturapa_preview_style
 msgid "Preview Format Style"
-msgstr ""
+msgstr "Anteprima stile del formato"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__ftpa_preview_link
