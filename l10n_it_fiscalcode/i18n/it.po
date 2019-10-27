@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-25 03:08+0000\n"
-"PO-Revision-Date: 2019-02-18 11:50+0000\n"
+"PO-Revision-Date: 2019-10-27 15:33+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.4\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__cadastre_code
@@ -186,15 +186,13 @@ msgstr "Variazione nome"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model,name:l10n_it_fiscalcode.model_res_city_it_code
-#, fuzzy
 msgid "National city codes"
-msgstr "Codice nazionale"
+msgstr "Codici nazionali città"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model,name:l10n_it_fiscalcode.model_res_city_it_code_distinct
-#, fuzzy
 msgid "National city codes distinct"
-msgstr "Codice nazionale mancante"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__national_code
@@ -221,7 +219,7 @@ msgstr "Note"
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:184
 #, python-format
 msgid "One or more fields are missing"
-msgstr "Uno o più campi non sono valorizzati"
+msgstr "Uno o più campi mancanti"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__province
