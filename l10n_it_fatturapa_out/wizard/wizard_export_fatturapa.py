@@ -360,7 +360,7 @@ class WizardExportFatturapa(models.TransientModel):
         if partner.vat:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente. \
                 DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-                    IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
+                    IdPaese=partner.vat[0:2].upper(), IdCodice=partner.vat[2:])
         if partner.is_company:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente. \
                 DatiAnagrafici.Anagrafica = AnagraficaType(
@@ -394,7 +394,7 @@ class WizardExportFatturapa(models.TransientModel):
         if partner.vat:
             fatturapa.FatturaElettronicaHeader.RappresentanteFiscale. \
                 DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-                    IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
+                    IdPaese=partner.vat[0:2].upper(), IdCodice=partner.vat[2:])
         fatturapa.FatturaElettronicaHeader.RappresentanteFiscale. \
             DatiAnagrafici.Anagrafica = AnagraficaType(
                 Denominazione=partner.name)
@@ -422,7 +422,7 @@ class WizardExportFatturapa(models.TransientModel):
             fatturapa.FatturaElettronicaHeader. \
                 TerzoIntermediarioOSoggettoEmittente. \
                 DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-                    IdPaese=partner.vat[0:2],
+                    IdPaese=partner.vat[0:2].upper(),
                     IdCodice=partner.vat[2:])
         fatturapa.FatturaElettronicaHeader. \
             TerzoIntermediarioOSoggettoEmittente. \
