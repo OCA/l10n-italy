@@ -3,6 +3,7 @@ account-invoicing
 account-payment
 bank-payment
 commission
+contract
 partner-contact
 server-tools
 stock-logistics-workflow
