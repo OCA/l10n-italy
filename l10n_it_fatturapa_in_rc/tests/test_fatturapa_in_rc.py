@@ -32,6 +32,7 @@ class TestInvoiceRC(FatturapaCommon):
             'type_tax_use': 'purchase',
             'amount': 22,
             'kind_id': self.env.ref('l10n_it_account_tax_kind.n6').id,
+            'sequence': 10,
         })
         self.tax_22vi = tax_model.create({
             'name': "Tax 22% Sales RC ITA",
@@ -39,11 +40,7 @@ class TestInvoiceRC(FatturapaCommon):
             'amount': 22,
             'kind_id': self.env.ref('l10n_it_account_tax_kind.n6').id,
             'law_reference': 'articoli 23 e 25 D.P.R. 633/1972',
-        })
-        self.tax_22 = tax_model.create({
-            'name': "Tax 22%",
-            'type_tax_use': 'purchase',
-            'amount': 22
+            'sequence': 10,
         })
 
     def _create_journals(self):
