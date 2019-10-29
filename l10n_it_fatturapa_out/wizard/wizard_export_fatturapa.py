@@ -8,6 +8,7 @@
 import base64
 import logging
 import os
+import re
 
 import openerp
 from openerp import fields, models, api, _
@@ -57,6 +58,8 @@ try:
 except ImportError as err:
     _logger.debug(err)
 
+regex = re.compile(r'\s+')
+
 
 class WizardExportFatturapa(models.TransientModel):
     _name = "wizard.export.fatturapa"
@@ -64,7 +67,7 @@ class WizardExportFatturapa(models.TransientModel):
 
     @staticmethod
     def encode(string_to_encode, max_chars, encoding='latin'):
-        res = string_to_encode.replace('\t', ' ').encode(
+        res = regex.sub(' ', string_to_encode).encode(
             encoding, 'replace').decode(encoding)[:max_chars]
         return res
 
@@ -504,7 +507,7 @@ class WizardExportFatturapa(models.TransientModel):
         body.DatiGenerali = DatiGeneraliType()
         if not invoice.number:
             raise UserError(
-                _('Invoice does not have a number.'))
+                _('Invoice %s does not have a number.' % invoice.display_name))
 
         TipoDocumento = invoice.fiscal_document_type_id.code
         if not TipoDocumento:
@@ -768,7 +771,7 @@ class WizardExportFatturapa(models.TransientModel):
                     doc_id.datas_fname) <= 60 else ''.join([
                         file_name[:(60-len(file_extension))], file_extension])
                 AttachDoc = AllegatiType(
-                    NomeAttachment=attachment_name,
+                    NomeAttachment=self.encode(attachment_name, 60),
                     Attachment=base64.decodestring(doc_id.datas)
                 )
                 body.Allegati.append(AttachDoc)
@@ -806,7 +809,8 @@ class WizardExportFatturapa(models.TransientModel):
                 partner = invoice.partner_id
             if invoice.partner_id != partner:
                 raise UserError(
-                    _('Invoices must belong to the same partner'))
+                    _('Invoices %s must belong to the same partner') %
+                    invoices.mapped('number'))
 
         return partner
 
