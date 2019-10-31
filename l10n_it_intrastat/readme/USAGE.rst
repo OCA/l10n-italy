@@ -1,57 +1,34 @@
 **Italiano**
 
 
-**Dichiarazione​ Intrastat**
+**Fatture e note di credito Intrastat**
+
+È possibile indicare l’assoggettamento di una fattura ad Intrastat attraverso l'apposito campo presente sulla maschera di modifica della fattura stessa.
+
+Sulla scheda Intrastat è presente un pulsante «Ricalcola righe Intrastat». Il pulsante permette al sistema:
+
+- di verificare se le righe prodotto presenti in fattura (scheda "Righe fattura") si riferiscono a prodotti che hanno un codice Intrastat assegnato, o appartengono ad una categoria che ha un codice Intrastat aggregato;
+- di generare per questi prodotti le corrispondenti righe Intrastat: le righe accorpano prodotti omogenei per codice Intrastat, indicando nel campo "Massa netta (kg)" il peso totale dei prodotti presenti nelle corrispondenti righe. La riga Intrastat, ovviamente, raggruppa il valore economico dei prodotti;
+- N.B.: se una riga presente in fattura si riferisce ad un prodotto che ha come tipologia Intrastat “Varie”, l’importo della riga verrà automaticamente suddiviso in maniera uguale sulle altre righe Intrastat che si riferiscono a beni o servizi. Tale automatismo permette di gestire, in maniera conforme a quanto previsto dalla normativa, il ribaltamento proporzionale dei costi sostenuti per spese accessorie (es: spese di trasporto) sui costi sostenuti per l’acquisto vero e proprio di beni o servizi.
+
+Nella scheda Intrastat, un clic su una riga Intrastat permette di accedere alla maschera di dettaglio.
+
+Nella maschera:
+
+- il campo "Stato acquirente/fornitore" viene popolato in automatico dal campo "Nazione" dell’indirizzo associato al partner;
+- i campi configurati in Impostazioni → Utenti e aziende → Aziende → *Nome azienda* (vedi "Informazioni generali" su azienda) vengono popolati in automatico con i valori predefiniti impostati, in ragione della tipologia di fattura (vendita o acquisto);
+- se fattura di vendita:
+  1. i campi Origine → "Paese di provenienza" e Origine → "Paese di origine" vengono popolati in automatico con la nazione presente nell’indirizzo associato all'azienda;
+  2. il campo Destinazione → "Paese di destinazione" viene popolato in automatico con la nazione presente nell'indirizzo associato al partner;
+- se fattura di acquisto:
+  1. i campi Origine → "Paese di provenienza" e Origine → "Paese di origine" vengono popolati in automatico con la nazione presente nell’indirizzo associato al partner (fornitore);
+  2. il campo Destinazione → "Paese di destinazione" viene preso dai dati dell'azienda.
+
+N.B.: tutti i campi possono ovviamente essere modificati, ma l’utilizzo del pulsante «Ricalcola righe Intrastat» ripristinerà i valori predefiniti, sui campi prelevati dalla configurazione dell'azienda o dalla riga fattura.
 
 
-Accedere a Fatturazione/Contabilità → Operazioni contabili → Dichiarazioni Intrastat ed utilizzare​ il ​pulsante «Crea» per creare una nuova dichiarazione.
+**Note di credito**
 
-N.B. : "Operazioni contabili" è visibile solo se abilitate  funzionalità contabili complete
+Importante:
 
-Nella parte superiore della maschera, inserire i dati:
-
-- Azienda:​ popolato in automatico con il nome​ dell'azienda
-- Partita IVA contribuente:​ la​ partita​ IVA,​ popolata​ in​ automatico​ con​ il​ nome​ dell'azienda
-- Data​ di​ presentazione:​ popolata​ in​ automatico​ con​ la​ data​ corrente
-- Anno di presentazione: scelto dal menù a tendina che visualizza gli anni fiscali configurati​ a sistema
-- Tipo periodo: l’orizzonte temporale a cui fa riferimento la dichiarazione, scelto da menù​ a tendina​ con​ le​ voci​ “Mese”​ o “Trimestre”
-- Periodo: il periodo temporale a cui fa riferimento la dichiarazione. Inserire il numero del mese (es. 9 per settembre, se nel campo Tipo periodo è stato selezionato “Mese”, oppure in numero del trimestre (es: 1 per il trimestre gennaio-marzo), se nel campo Tipo periodo è stato selezionato​ “Trimestre”
-- Caselle di selezione “Vendite” e “Acquisti”: da selezionare in base alla tipologia di operazioni che si vogliono inserire​ nella​ dichiarazione
-- Numero:​ progressivo​ della​ dichiarazione​ proposto​ in​ automatico​ dal​ sistema
-- Tipo di contenuto:​ selezionare​ la​ voce​ di​ competenza​ dal​ menù​ a tendina
-- Casi​ speciali:​ selezionare​ la​ voce​ di​ competenza​ dal​ menù​ a tendina
-- Sezione​ doganale:​ selezionare​ la​ voce​ di​ riferimento​ dal​ menù​ a tendina
-
-.. figure:: static/img/dichiarazione.png
-   :alt: Dichiarazione
-   :width: 600 px
-
-Inseriti​ e salvati​ i dati,​ utilizzare​ il​ pulsante «Ricalcola»​ per​ popolare​ la​ dichiarazione. Per​ ciascuna scheda​ (”Vendite”​ e “Acquisti”)​ verranno​ inserite​ nelle​ sezioni​ di​ riferimento:
-
-- Vendite:
-  - Vendita​mMerci​ - Sezione​ 1 → fatture​ di​ vendita​ di​ merci
-  - Rettifica​ merci​ - Sezione 2 → note​ di credito​ su​ vendita​ merci
-  - Vendita​ servizi​ - Sezione 3 → fatture​ di​ vendita​ di​ servizi
-  - Rettifica​ servizi​ - Sezione​ 4 → note​ di credito​ su​ vendita​ servizi
-- Acquisti:
-  - Acquisto​ merci​ - Sezione​ 1 → fatture​ di​ acquisto​ di​ merci
-  - Rettifica​ merci​ - Sezione​ 2 → note​ di credito​ su​ acquisto​ merci
-  - Vendita​ servizi​ - Sezione 3 → fatture​ di​ acquisto​ di​ servizi
-  - Rettifica​ servizi​ - Sezione​ 4 → note​ di credito​ su​ acquisto​ servizi
-
-I dati presi dalle fatture e dalle note credito indicate come soggette ad Intrastat, relative al periodo di riferimento.
-
-NB: i record presenti nelle schede "Rettifica Merci - Sezione 2" e "Rettifica Servizi - Sezione 4", sia per gli acquisti che​ per​ le​ vendite, vanno​ modificati​ per​ inserire​ i dati​ obbligatori​ mancanti.
-
-Inseriti i dati e salvata la dichiarazione, è possibile procedere all’elaborazione dei file da inviare all’Agenzia​ delle​ Dogane​ tramite​ l’apposito​ pulsante​ «Esporta​ File». 
-
-.. figure:: static/img/export_file.png
-   :alt: Export file
-
-Il​ pulsante​ fa​ partire​ una procedura guidata,​ che​ permette​ di​ scegliere​ quale​ tipo​ di​ file​ estrarre:
-
-- file​ di invio​ (complessivo)
-- file​ acquisti.cee
-- file​ cessioni.cee
-
-Il file potrà essere scaricato tramite l’apposito link visualizzato nella maschera della procedura guidata. Di seguito un esempio​ per​ lo scaricamento del​ file​ cessioni.cee​ (il​ nome​ del​ file​ da​ scaricare​ è SCAMBI.CEE).
+Se si seleziona un periodo che è lo stesso della dichiarazione, la nota di credito, per il suo importo, non confluirà nella sezione di rettifica, ma andrà a stornare direttamente il valore della fattura sulla quale è stata emessa. La verifica sulla fattura da stornare viene fatta confrontando la coppia di valori partner/nomenclatura combinata.
