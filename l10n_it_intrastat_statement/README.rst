@@ -10,9 +10,9 @@ ITA - Dichiarazione Intrastat
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
-    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
-    :alt: License: LGPL-3
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+    :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
     :target: https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_intrastat_statement
     :alt: OCA/l10n-italy
@@ -27,8 +27,7 @@ ITA - Dichiarazione Intrastat
 
 **Italiano**
 
-Questo modulo si occupa di generare la Dichiarazione Intrastat e le relative stampe
-
+Questo modulo si occupa di generare la dichiarazione Intrastat e le relative stampe
 
 
 **Table of contents**
@@ -42,58 +41,62 @@ Usage
 **Italiano**
 
 
-**Dichiarazione​ Intrastat**
+**Dichiarazione Intrastat**
 
+Accedere a Fatturazione/Contabilità → Contabilità → Intrastat → Dichiarazioni Intrastat ed utilizzare il pulsante «Crea» per creare una nuova dichiarazione.
 
-Accedere a ​ Contabilità >> Dichiarazioni Intrastat ed utilizzare​ ​ il​ ​ tasto​ ​ Crea​ ​ per​ ​ creare​ ​ una​ ​ nuova​ ​ dichiarazione:
+N.B.: il menù "Contabilità" è visibile solo se vengono abilitate le funzionalità contabili complete.
 
-Nella​ ​ parte​ ​ superiore​ ​ della​ ​ maschera,​ ​ inserire​ ​ i ​ ​ dati:
+Nella parte superiore della maschera, inserire i dati:
 
-- Azienda:​ ​ popolato​ ​ in​ ​ automatico​ ​ con​ ​ il​ ​ nome​ ​ della​ ​ company
-- VAT​ ​ taxpayer:​ ​ la​ ​ partita​ ​ IVA,​ ​ popolata​ ​ in​ ​ automatico​ ​ con​ ​ il​ ​ nome​ ​ della​ ​ company
-- Data​ ​ di​ ​ presentazione:​ ​ popolata​ ​ in​ ​ automatico​ ​ con​ ​ la​ ​ data​ ​ corrente
-- Year: anno di presentazione, scelta da menù a tendina che visualizza gli anni fiscali configurati​ ​ a ​ ​ sistema
-- Tipo periodo: l’orizzonte temporale temporale cui fa riferimento la dichiarazione, scelta da menù​ ​ a ​ ​ tendina​ ​ con​ ​ le​ ​ voci​ ​ “Mese”​ ​ o ​ ​ “Trimestre”
-- Periodo: il periodo temporale cui fa riferimento la dichiarazione. In serire il numero del mese (es. 9 per settembre, se nel campo Tipo periodo è stato selezionato “Mese”, oppure in numero del trimestre (es: 1 per il trimestre genn.-marzo), se nel campo Tipo periodo è stato selezionato​ ​ “Trimestre”
-- Flag “Vendite” e “Acquisti”: da selezionare in base alla tipologia di operazioni che si vogliono inserire​ ​ nella​ ​ dichiarazione
-- Numero:​ ​ progressivo​ ​ della​ ​ dichiarazione,​ ​ proposto​ ​ in​ ​ automatico​ ​ dal​ ​ sistema
-- Contenuto​ ​ degli​ ​ elenchi:​ ​ selezionare​ ​ la​ ​ voce​ ​ di​ ​ competenza​ ​ dal​ ​ menù​ ​ a ​ ​ tendina
-- Casi​ ​ speciali:​ ​ selezionare​ ​ la​ ​ voce​ ​ di​ ​ competenza​ ​ dal​ ​ menù​ ​ a ​ ​ tendina
-- Sezione​ ​ doganale:​ ​ selezionare​ ​ la​ ​ voce​ ​ di​ ​ riferimento,​ ​ dal​ ​ menù​ ​ a ​ ​ tendina
+- Azienda: popolato in automatico con il nome dell'azienda;
+- Partita IVA contribuente: la partita IVA, popolata in automatico con il nome dell'azienda;
+- Data di presentazione: popolata in automatico con la data corrente;
+- Anno: l'anno di presentazione, scelto dal menù a tendina che visualizza gli anni fiscali configurati a sistema;
+- Tipo periodo: l’orizzonte temporale a cui fa riferimento la dichiarazione, scelto da menù a tendina con le voci “Mese” o “Trimestre”;
+- Periodo: il periodo temporale a cui fa riferimento la dichiarazione. Inserire il numero del mese (es. 9 per settembre, se nel campo "Tipo periodo" è stato selezionato “Mese”, oppure in numero del trimestre (es: 1 per il trimestre gennaio-marzo), se nel campo "Tipo periodo" è stato selezionato “Trimestre”;
+- Caselle di selezione “Cessioni” e “Acquisti”: da selezionare in base alla tipologia di operazioni che si vogliono inserire nella dichiarazione;
+- Numero: progressivo della dichiarazione proposto in automatico dal sistema;
+- Tipo di contenuto: selezionare la voce di competenza dal menù a tendina;
+- Casi speciali: selezionare la voce di competenza dal menù a tendina;
+- Sezione doganale: selezionare la voce di riferimento dal menù a tendina.
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_intrastat_statement/static/img/dichiarazione.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/11.0/l10n_it_intrastat/static/img/dichiarazione.png
    :alt: Dichiarazione
    :width: 600 px
 
-Inseriti​ ​ e ​ ​ salvati​ ​ i ​ ​ dati,​ ​ utilizzare​ ​ il​ ​ tasto​ ​ Ricalcola​ ​ per​ ​ popolare​ ​ la​ ​ dichiarazione. Per​ ​ ciascun​ ​ tab​ ​ (”Acquisti”​ ​ e ​ ​ “Vendite”)​ ​ verranno​ ​ inserite​ ​ nelle​ ​ sezioni​ ​ di​ ​ riferimento:
 
-- Vendita:
-  - Vendita​ ​ Merci​ ​ - ​ ​ Section​ ​ 1 ​ ​ → ​ ​ fatture​ ​ di​ ​ vendita​ ​ di​ ​ merci
-  - Rettifica​ ​ Merci​ ​ - ​ ​ Section​ ​ 2 ​ ​ → ​ ​ note​ ​ credito​ ​ su​ ​ vendita​ ​ merci
-  - Vendita​ ​ Servizi​ ​ - ​ ​ Section​ ​ 3 ​ ​ → ​ ​ fatture​ ​ di​ ​ vendita​ ​ di​ ​ servizi
-  - Rettifica​ ​ Servizi​ ​ - ​ ​ Section​ ​ 4 ​ ​ → ​ ​ note​ ​ credito​ ​ su​ ​ vendita​ ​ servizi
-- Acquisto:
-  - Acquisto​ ​ Merci​ ​ - ​ ​ Section​ ​ 1 ​ ​ → ​ ​ fatture​ ​ di​ ​ acquisto​ ​ di​ ​ merci
-  - Rettifica​ ​ Merci​ ​ - ​ ​ Section​ ​ 2 ​ ​ → ​ ​ note​ ​ credito​ ​ su​ ​ acquisto​ ​ merci
-  - Vendita​ ​ Servizi​ ​ - ​ ​ Section​ ​ 3 ​ ​ → ​ ​ fatture​ ​ di​ ​ acquisto​ ​ di​ ​ servizi
-  - Rettifica​ ​ Servizi​ ​ - ​ ​ Section​ ​ 4 ​ ​ → ​ ​ note​ ​ credito​ ​ su​ ​ acquisto​ ​ servizi
+Inseriti e salvati i dati, utilizzare il pulsante «Ricalcola» per popolare la dichiarazione. Per ciascuna scheda (”Cessioni” e “Acquisti”) verranno inserite nelle sezioni di riferimento:
 
-I dati presi dalle fatture e dalle note credito indicate come soggette ad Intrastat, relative al periodo di riferimento.
+- Cessioni:
+  - Cessione beni - Sezione 1 → fatture di vendita di merci
+  - Rettifica beni - Sezione 2 → note di credito su vendita merci
+  - Cessione servizi - Sezione 3 → fatture di vendita di servizi
+  - Rettifica servizi - Sezione 4 → note di credito su vendita servizi
+- Acquisti:
+  - Acquisto beni - Sezione 1 → fatture di acquisto di merci
+  - Rettifica beni - Sezione 2 → note di credito su acquisto merci
+  - Acquisto servizi - Sezione 3 → fatture di acquisto di servizi
+  - Rettifica servizi - Sezione 4 → note di credito su acquisto servizi
 
-NB: i record presenti nei tab ​ Rettifica Merci - Section 2 e ​ Rettifica Servizi - Section 4 ​ , sia per gli Acquisti ​ ​ che​ ​ per​ ​ le​ ​ Vendite ​ , ​ ​ vanno​ ​ editati​ ​ per​ ​ inserire​ ​ i ​ ​ dati​ ​ obbligatori​ ​ mancanti.
+I dati presi dalle fatture e dalle note di credito indicate come soggette ad Intrastat, relative al periodo di riferimento.
 
-Inseriti i dati e slavata la dichiarazione, è possibile procedere all’elaborazione dei file da inviare all’Agenzia​ ​ delle​ ​ Dogane,​ ​ tramite​ ​ l’apposito​ ​ pulsante​ ​ “Export​ ​ File”
+N.B.: i record presenti nelle schede "Rettifica beni - Sezione 2" e "Rettifica servizi - Sezione 4", sia per gli acquisti che per le vendite, vanno modificati per inserire i dati obbligatori mancanti.
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_intrastat_statement/static/img/export_file.png
+Inseriti i dati e salvata la dichiarazione, è possibile procedere all’elaborazione dei file da inviare all’Agenzia delle Dogane tramite l’apposito pulsante «Esporta file». 
+
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/11.0/l10n_it_intrastat/static/img/export_file.png
    :alt: Export file
 
-Il​ ​ pulsante​ ​ fa​ ​ partire​ ​ un​ ​ wizard,​ ​ che​ ​ permette​ ​ di​ ​ scegliere​ ​ quale​ ​ tipo​ ​ di​ ​ file​ ​ estrarre:
+Il pulsante fa partire una procedura guidata, che permette di scegliere quale tipo di file estrarre:
 
-- file​ ​ Invio​ ​ (complessivo)
-- file​ ​ acquisti.cee
-- file​ ​ cessioni.cee
+- file di invio (complessivo)
+- file acquisti.cee
+- file cessioni.cee
 
-Il file potrà essere scaricato tramite l’apposito link mostrato nella maschera del wizard. Di seguito un esempio​ ​ per​ ​ il​ ​ download​ ​ del​ ​ file​ ​ cessioni.cee​ ​ (il​ ​ nome​ ​ del​ ​ file​ ​ da​ ​ scaricare​ ​ è ​ ​ SCAMBI.CEE)
+Il file potrà essere scaricato tramite l’apposito link visualizzato nella maschera della procedura guidata. Di seguito un esempio per lo scaricamento del file cessioni.cee (il nome del file da scaricare è SCAMBI.CEE).
+
+Dalla voce Stampa è possibile generare gli elenchi riepilogativi delle cessioni o degli acquisti intracomunitari: modello INTRA-1, INTRA-1 Bis, INTRA-1 Ter, INTRA-2, INTRA-2 Bis
 
 Bug Tracker
 ===========
@@ -113,6 +116,7 @@ Authors
 
 * Openforce
 * Link IT srl
+* Agile Business Group
 
 Contributors
 ~~~~~~~~~~~~
