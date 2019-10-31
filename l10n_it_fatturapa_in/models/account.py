@@ -87,7 +87,7 @@ class EInvoiceLine(models.Model):
         "Quantity", readonly=True,
         digits=dp.get_precision('Product Unit of Measure')
     )
-    uom = fields.Char("Unit of measure", readonly=True)
+    uom = fields.Char("Unit of Measure", readonly=True)
     period_start_date = fields.Date("Period Start Date", readonly=True)
     period_end_date = fields.Date("Period End Date", readonly=True)
     unit_price = fields.Float(

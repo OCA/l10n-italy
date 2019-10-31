@@ -62,7 +62,7 @@
                             </group>
                         </group>
                         <notebook>
-                            <page string="Sale" attrs="{'invisible':[('sale','=', False)]}">
+                            <page string="Sales" attrs="{'invisible':[('sale','=', False)]}">
                                 <group>
                                     <group>
                                         <field name="sale_statement_sequence" />
@@ -72,7 +72,7 @@
                                         <field name="sale_section1_operation_number" />
                                         <field name="sale_section1_operation_amount" />
                                     </group>
-                                    <group string="Goods Refund - Section 2">
+                                    <group string="Goods Adjustment - Section 2">
                                         <field name="sale_section2_operation_number" />
                                         <field name="sale_section2_operation_amount" />
                                     </group>
@@ -81,7 +81,7 @@
                                         <field name="sale_section3_operation_number" />
                                         <field name="sale_section3_operation_amount" />
                                     </group>
-                                    <group string="Services Refund - Section 4">
+                                    <group string="Services Adjustment - Section 4">
                                         <field name="sale_section4_operation_number" />
                                         <field name="sale_section4_operation_amount" />
                                     </group>
@@ -93,7 +93,7 @@
                                             context="{'statement_id': id}">
                                         </field>
                                     </page>
-                                    <page string="Goods Refund - Section 2">
+                                    <page string="Goods Adjustment - Section 2">
                                         <field name="sale_section2_ids" nolabel="1"
                                             context="{'statement_id': id}">
                                         </field>
@@ -103,14 +103,14 @@
                                             context="{'statement_id': id} ">
                                         </field>
                                     </page>
-                                    <page string="Services Refund - Section 4">
+                                    <page string="Services Adjustment - Section 4">
                                         <field name="sale_section4_ids" nolabel="1"
                                             context="{'statement_id': id} ">
                                         </field>
                                     </page>
                                 </notebook>
                             </page>
-                            <page string="Purchase" attrs="{'invisible':[('purchase','=', False)]}">
+                            <page string="Purchases" attrs="{'invisible':[('purchase','=', False)]}">
                                 <group>
                                     <group>
                                         <field name="purchase_statement_sequence" />
@@ -120,7 +120,7 @@
                                         <field name="purchase_section1_operation_number" />
                                         <field name="purchase_section1_operation_amount" />
                                     </group>
-                                    <group string="Goods Refund Purchase - Section 2">
+                                    <group string="Goods Adjustment - Section 2">
                                         <field name="purchase_section2_operation_number" />
                                         <field name="purchase_section2_operation_amount" />
                                     </group>
@@ -129,7 +129,7 @@
                                         <field name="purchase_section3_operation_number" />
                                         <field name="purchase_section3_operation_amount" />
                                     </group>
-                                    <group string="Services Refund Purchase - Section 4">
+                                    <group string="Services Adjustment - Section 4">
                                         <field name="purchase_section4_operation_number" />
                                         <field name="purchase_section4_operation_amount" />
                                     </group>
@@ -141,7 +141,7 @@
                                             context="{'statement_id': id}">
                                         </field>
                                     </page>
-                                    <page string="Goods Refund Purchase - Section 2">
+                                    <page string="Goods Adjustment - Section 2">
                                         <field name="purchase_section2_ids" nolabel="1"
                                             context="{'statement_id': id}">
                                         </field>
@@ -151,7 +151,7 @@
                                             context="{'statement_id': id}">
                                         </field>
                                     </page>
-                                    <page string="Services Refund Purchase - Section 4">
+                                    <page string="Services Adjustment - Section 4">
                                         <field name="purchase_section4_ids" nolabel="1"
                                             context="{'statement_id': id}">
                                         </field>
@@ -170,8 +170,8 @@
             <field name="model">account.intrastat.statement</field>
             <field name="arch" type="xml">
                 <search string="Intrastat Statements">
-                    <filter icon="terp-sale" string="Sale" domain="[('sale','=',True)]"/>
-                    <filter icon="terp-purchase" string="Purchase" domain="[('purchase','=',True)]"/>
+                    <filter icon="terp-sale" string="Sales" domain="[('sale','=',True)]"/>
+                    <filter icon="terp-purchase" string="Purchases" domain="[('purchase','=',True)]"/>
                     <field name="company_id" groups="base.group_multi_company"></field>
                     <group expand="0" string="Group By">
                         <filter string="Year" icon="terp-folder-orange" domain="" context="{'group_by':'fiscalyear'}"/>
@@ -195,8 +195,9 @@
 
         <menuitem id="menu_account_intrastat_statement"
             action="account_intrastat_statement_action"
-            parent="account.menu_finance_entries" sequence="100"/>
-
+            parent="l10n_it_intrastat.menu_intrastat_statement"
+            sequence="10"/>
+            
         <!--
         STATEMENT - Sale section 1
          -->
@@ -230,7 +231,7 @@
                             <field name="vat_code" required="1"/>
                         </group>
                         <group>
-                            <field name="transation_nature_id" required="1"/>
+                            <field name="transaction_nature_id" required="1"/>
                         </group>
                     </group>
                     <newline/>
@@ -287,7 +288,7 @@
                             <field name="vat_code" required="1"/>
                         </group>
                         <group>
-                            <field name="transation_nature_id" required="1"/>
+                            <field name="transaction_nature_id" required="1"/>
                         </group>
                     </group>
                     <newline/>
@@ -446,7 +447,7 @@
                             <field name="vat_code" required="1"/>
                         </group>
                         <group>
-                            <field name="transation_nature_id" required="1"/>
+                            <field name="transaction_nature_id" required="1"/>
                         </group>
                     </group>
                     <newline/>
@@ -507,7 +508,7 @@
                             <field name="vat_code" required="1"/>
                         </group>
                         <group>
-                            <field name="transation_nature_id" required="1"/>
+                            <field name="transaction_nature_id" required="1"/>
                         </group>
                     </group>
                     <newline/>
@@ -637,13 +638,13 @@
         </record>
 
         <!--
-        CUSTOM
+        CUSTOMS SECTION
         -->
         <record id="account_intrastat_custom_view_tree" model="ir.ui.view">
             <field name="name">account.intrastat.custom.view.tree</field>
             <field name="model">account.intrastat.custom</field>
             <field name="arch" type="xml">
-                <tree string="Custom">
+                <tree string="Customs Section">
                     <field name="code"/>
                     <field name="name"/>
                     <field name="date_start"/>
@@ -656,7 +657,7 @@
             <field name="name">account.intrastat.custom.view.form</field>
             <field name="model">account.intrastat.custom</field>
             <field name="arch" type="xml">
-                <form string="Custom">
+                <form string="Customs Section">
                     <group>
                         <group>
                             <field name="code"/>

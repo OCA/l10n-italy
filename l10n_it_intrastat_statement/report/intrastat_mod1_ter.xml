@@ -15,6 +15,7 @@
             margin-bottom: 2px;
             }
         </style>
+	<t t-translation="off">
         <t t-foreach="docs" t-as="o">
             <div class="article">
                 <div class="row">
@@ -84,7 +85,7 @@
                             <thead class="fondo">
                                 <tr>
                                     <th rowspan="3">
-                                        PROGR
+                                        PROGR.
                                     </th>
                                     <th colspan="3" class="text-center">
                                         PERIODO DI RIFERIMENTO
@@ -133,7 +134,7 @@
                                     <td t-esc="l.vat_code"/>
                                     <td t-esc="l.sign_variation"/>
                                     <td t-esc="l.amount_euro"/>
-                                    <td t-esc="l.transation_nature_id.code"/>
+                                    <td t-esc="l.transaction_nature_id.code"/>
                                     <td t-esc="l.intrastat_code_id.name"/>
                                     <td t-esc="l.statistic_amount_euro"/>
                                     <t t-set="total"
@@ -152,6 +153,7 @@
                     </div>
                 </div>
             </div>
+        </t>
         </t>
     </template>
 </odoo>

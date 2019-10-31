@@ -20,7 +20,7 @@
 
     <!-- Mod. Intra-1 -->
     <report
-        string="Mod. INTRA-1"
+        string="INTRA-1 Model"
         id="print_intrastat_mod1"
         model="account.intrastat.statement"
         report_type="qweb-pdf"
@@ -34,7 +34,7 @@
 
     <!-- Mod. Intra-2 -->
     <report
-        string="Mod. INTRA-2"
+        string="INTRA-2 Model"
         id="print_intrastat_mod2"
         model="account.intrastat.statement"
         report_type="qweb-pdf"
@@ -48,7 +48,7 @@
 
     <!-- Mod. Intra-1 bis -->
     <report
-        string="Mod. INTRA-1 Bis"
+        string="INTRA-1 Bis Model"
         id="print_intrastat_mod1_bis"
         model="account.intrastat.statement"
         report_type="qweb-pdf"
@@ -62,7 +62,7 @@
 
     <!-- Mod. Intra-1 Ter -->
     <report
-        string="Mod. INTRA-1 Ter"
+        string="INTRA-1 Ter Model"
         id="print_intrastat_mod1_ter"
         model="account.intrastat.statement"
         report_type="qweb-pdf"
@@ -76,7 +76,7 @@
 
     <!-- Mod. Intra-2 bis -->
     <report
-        string="Mod. INTRA-2 Bis"
+        string="INTRA-2 Bis Model"
         id="print_intrastat_mod2_bis"
         model="account.intrastat.statement"
         report_type="qweb-pdf"

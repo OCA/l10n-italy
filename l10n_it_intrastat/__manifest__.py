@@ -19,7 +19,7 @@
         'views/product.xml',
         'views/account.xml',
         'views/config.xml',
-        'data/account.intrastat.transation.nature.csv',
+        'data/account.intrastat.transaction.nature.csv',
         'data/account.intrastat.transport.csv',
         'data/account.intrastat.custom.csv',
         'data/report.intrastat.code.csv',

@@ -6,11 +6,11 @@ class ProductCategory(models.Model):
 
     intrastat_code_id = fields.Many2one(
         'report.intrastat.code',
-        string='Intrastat Code'
+        string='Nomenclature Code'
     )
     intrastat_type = fields.Selection(
         [
-            ('good', 'Good'),
+            ('good', 'Goods'),
             ('service', 'Service'),
             ('misc', 'Miscellaneous'),
             ('exclude', 'Exclude')
@@ -23,7 +23,7 @@ class ProductTemplate(models.Model):
 
     intrastat_type = fields.Selection(
         [
-            ('good', 'Good'),
+            ('good', 'Goods'),
             ('service', 'Service'),
             ('misc', 'Miscellaneous'),
             ('exclude', 'Exclude')

@@ -16,7 +16,7 @@
             <field name="intrastat_id" ref="intrastat_intrastat_01012100"/>
         </record>
 
-        <record id="l10n_it_intrastat.tax_22_i" model="account.tax">
+        <record id="tax_22_i" model="account.tax">
             <field name="name">22% intr</field>
             <field name="description">22</field>
             <field name="amount">22</field>

@@ -6,7 +6,7 @@ from datetime import datetime, date, timedelta
 
 class AccountIntrastatStatement(models.Model):
     _name = 'account.intrastat.statement'
-    _description = 'Account INTRASTAT - Statement'
+    _description = 'Intrastat Statement'
 
     @api.model
     def _default_company(self):
@@ -132,7 +132,7 @@ class AccountIntrastatStatement(models.Model):
     @api.model
     def _compute_progressive(self):
         '''
-        Assign univoque progressive to statement
+        Assign unique progressive to statement
         TODO: why not a sequence?
         '''
         # From last statement
@@ -170,41 +170,41 @@ class AccountIntrastatStatement(models.Model):
         'res.company', string='Company', default=_default_company,
         required=True)
     vat_taxpayer = fields.Char(
-        string='Vat taxpayer', required=True, default=_default_company_vat)
-    vat_delegate = fields.Char(string='Vat delegate',
+        string='Taxpayer VAT Number', required=True, default=_default_company_vat)
+    vat_delegate = fields.Char(string='Delegate VAT Number',
                                default=_default_vat_delegate)
-    name_delegate = fields.Char(string='Name delegate',
+    name_delegate = fields.Char(string='Delegate Name',
                                 default=_default_name_delegate)
     fiscalyear = fields.Integer(string='Year', required=True,
                                 default=datetime.now().year)
     period_type = fields.Selection([
         ('M', 'Month'),
-        ('T', 'Quarterly'),
+        ('T', 'Quarter'),
     ], 'Period Type', required=True)
     period_number = fields.Integer(
         string='Period',
-        help="Values accepted:\
-        - Month : From 1 to 12 \
-        - Quarterly: From 1 to 4", required=True)
-    date_start = fields.Date(string='Date Start')
-    date_stop = fields.Date(string='Date Stop')
+        help="Values accepted:\n"
+             " - Month : From 1 to 12\n"
+             " - Quarter: From 1 to 4", required=True)
+    date_start = fields.Date(string='Start Date')
+    date_stop = fields.Date(string='Stop Date')
     content_type = fields.Selection([
         ('0', 'Normal Period'),
-        ('8', 'Change Period in quarterly: only first month operations'),
-        ('9', 'Change Period in quarterly: only first and second month \
-            operations'),
+        ('8', 'Change Period in quarter: only first month operations'),
+        ('9', 'Change Period in quarter: only first and second month '
+              'operations'),
     ], 'Content Type', required=True, default="0")
     special_cases = fields.Selection([
-        ('7', 'First Statement'),
-        ('8', 'Change VAT or Close Activity'),
-        ('9', 'First Statement in Change VAT or Close Activity'),
+        ('7', 'First Statement Submitted'),
+        ('8', 'Ceasing Activity or Changing VAT Number'),
+        ('9', 'First Statement in Ceasing Activity or Changing VAT Number'),
         ('0', 'None of the above cases'),
     ], 'Special Cases', required=True, default="0")
     custom_id = fields.Many2one(
-        'account.intrastat.custom', string='Custom', required=True,
+        'account.intrastat.custom', string='Customs Section', required=True,
         default=_default_custom)
-    sale = fields.Boolean(string='Sale', default=True)
-    purchase = fields.Boolean(string='Purchase', default=True)
+    sale = fields.Boolean(string='Sales', default=True)
+    purchase = fields.Boolean(string='Purchases', default=True)
 
     intrastat_type_data = fields.Selection([
         ('all', 'All (Fiscal and Statistic)'),
@@ -213,7 +213,7 @@ class AccountIntrastatStatement(models.Model):
     ], 'Data Type', required=True, default='all')
     intrastat_code_type = fields.Selection([
         ('service', 'Service'),
-        ('good', 'Good')
+        ('good', 'Goods')
     ], 'Code Type', required=True, default='good')
 
     sale_statement_sequence = fields.Integer(
@@ -221,36 +221,36 @@ class AccountIntrastatStatement(models.Model):
         default=_get_sequence)
     sale_section1_ids = fields.One2many(
         'account.intrastat.statement.sale.section1',
-        'statement_id', string='Sale - Section 1')
+        'statement_id', string='Sales - Section 1')
     sale_section1_operation_number = fields.Integer(
-        string='Operation Nr', store=True, readonly=True,
+        string='Operation Count', store=True, readonly=True,
         compute='_compute_amount_sale_s1')
     sale_section1_operation_amount = fields.Integer(
         string='Operation Amount', store=True, readonly=True,
         compute='_compute_amount_sale_s1')
     sale_section2_ids = fields.One2many(
         'account.intrastat.statement.sale.section2',
-        'statement_id', string='Sale - Section 2')
+        'statement_id', string='Sales - Section 2')
     sale_section2_operation_number = fields.Integer(
-        string='Operation Nr', store=True, readonly=True,
+        string='Operation Count', store=True, readonly=True,
         compute='_compute_amount_sale_s2')
     sale_section2_operation_amount = fields.Integer(
         string='Operation Amount', store=True, readonly=True,
         compute='_compute_amount_sale_s2')
     sale_section3_ids = fields.One2many(
         'account.intrastat.statement.sale.section3',
-        'statement_id', string='Sale - Section 3')
+        'statement_id', string='Sales - Section 3')
     sale_section3_operation_number = fields.Integer(
-        string='Operation Nr', store=True, readonly=True,
+        string='Operation Count', store=True, readonly=True,
         compute='_compute_amount_sale_s3')
     sale_section3_operation_amount = fields.Integer(
         string='Operation Amount', store=True, readonly=True,
         compute='_compute_amount_sale_s3')
     sale_section4_ids = fields.One2many(
         'account.intrastat.statement.sale.section4',
-        'statement_id', string='Sale - Section 4')
+        'statement_id', string='Sales - Section 4')
     sale_section4_operation_number = fields.Integer(
-        string='Operation Nr', store=True, readonly=True,
+        string='Operation Count', store=True, readonly=True,
         compute='_compute_amount_sale_s4')
     sale_section4_operation_amount = fields.Integer(
         string='Operation Amount', store=True, readonly=True,
@@ -261,36 +261,36 @@ class AccountIntrastatStatement(models.Model):
         default=_get_sequence)
     purchase_section1_ids = fields.One2many(
         'account.intrastat.statement.purchase.section1',
-        'statement_id', string='Purchase - Section 1')
+        'statement_id', string='Purchases - Section 1')
     purchase_section1_operation_number = fields.Integer(
-        string='Operation Nr', store=True, readonly=True,
+        string='Operation Count', store=True, readonly=True,
         compute='_compute_amount_purchase_s1')
     purchase_section1_operation_amount = fields.Integer(
         string='Operation Amount', store=True, readonly=True,
         compute='_compute_amount_purchase_s1')
     purchase_section2_ids = fields.One2many(
         'account.intrastat.statement.purchase.section2',
-        'statement_id', string='Purchase - Section 2')
+        'statement_id', string='Purchases - Section 2')
     purchase_section2_operation_number = fields.Integer(
-        string='Operation Nr', store=True, readonly=True,
+        string='Operation Count', store=True, readonly=True,
         compute='_compute_amount_purchase_s2')
     purchase_section2_operation_amount = fields.Integer(
         string='Operation Amount', store=True, readonly=True,
         compute='_compute_amount_purchase_s2')
     purchase_section3_ids = fields.One2many(
         'account.intrastat.statement.purchase.section3',
-        'statement_id', string='Purchase - Section 3')
+        'statement_id', string='Purchases - Section 3')
     purchase_section3_operation_number = fields.Integer(
-        string='Operation Nr', store=True, readonly=True,
+        string='Operation Count', store=True, readonly=True,
         compute='_compute_amount_purchase_s3')
     purchase_section3_operation_amount = fields.Integer(
         string='Operation Amount', store=True, readonly=True,
         compute='_compute_amount_purchase_s3')
     purchase_section4_ids = fields.One2many(
         'account.intrastat.statement.purchase.section4',
-        'statement_id', string='Purchase - Section 4')
+        'statement_id', string='Purchases - Section 4')
     purchase_section4_operation_number = fields.Integer(
-        string='Operation Nr', store=True, readonly=True,
+        string='Operation Count', store=True, readonly=True,
         compute='_compute_amount_purchase_s4')
     purchase_section4_operation_amount = fields.Integer(
         string='Operation Amount', store=True, readonly=True,
@@ -445,7 +445,7 @@ class AccountIntrastatStatement(models.Model):
             intrastat_ua_code = self.company_id.intrastat_ua_code
         # if not self.company_id.intrastat_ua_code:
         #    raise ValidationError(
-        #    _('Missing Intrasta UA code : see company configuration'))
+        #    _('Missing Intrastat UA code : see company configuration'))
         rcd += '{:4s}'.format(intrastat_ua_code)
         # Riservato a SDA
         rcd += '{:12s}'.format("")
@@ -784,7 +784,7 @@ class AccountIntrastatStatement(models.Model):
         purch_section4 = 'account.intrastat.statement.purchase.section4'
         for inv in self.env['account.invoice'].search(domain):
             for inv_intra_line in inv.intrastat_line_ids:
-                # Sale - Section 1
+                # Sales - Section 1
                 if inv_intra_line.statement_section == 'sale_s1':
 
                     st_line = self.env[sale_section1]._prepare_statement_line(
@@ -796,7 +796,7 @@ class AccountIntrastatStatement(models.Model):
                         else:
                             st_line['sequence'] = 1
                         statement_lines_sale_s1.append((0, 0, st_line))
-                # Sale - Section 2
+                # Sales - Section 2
                 elif inv_intra_line.statement_section == 'sale_s2':
                     st_line = self.env[sale_section2]._prepare_statement_line(
                         inv_intra_line, self)
@@ -807,7 +807,7 @@ class AccountIntrastatStatement(models.Model):
                         else:
                             st_line['sequence'] = 1
                         statement_lines_sale_s2.append((0, 0, st_line))
-                # Sale - Section 3
+                # Sales - Section 3
                 elif inv_intra_line.statement_section == 'sale_s3':
                     st_line = self.env[sale_section3]._prepare_statement_line(
                         inv_intra_line)
@@ -818,7 +818,7 @@ class AccountIntrastatStatement(models.Model):
                         else:
                             st_line['sequence'] = 1
                         statement_lines_sale_s3.append((0, 0, st_line))
-                # Sale - Section 4
+                # Sales - Section 4
                 elif inv_intra_line.statement_section == 'sale_s4':
                     st_line = self.env[sale_section4]._prepare_statement_line(
                         inv_intra_line, self)
@@ -829,7 +829,7 @@ class AccountIntrastatStatement(models.Model):
                         else:
                             st_line['sequence'] = 1
                         statement_lines_sale_s4.append((0, 0, st_line))
-                # Purchase - Section 1
+                # Purchases - Section 1
                 elif inv_intra_line.statement_section == 'purchase_s1':
                     st_line = self.env[purch_section1]._prepare_statement_line(
                         inv_intra_line)
@@ -840,7 +840,7 @@ class AccountIntrastatStatement(models.Model):
                         else:
                             st_line['sequence'] = 1
                         statement_lines_purchase_s1.append((0, 0, st_line))
-                # Purchase - Section 2
+                # Purchases - Section 2
                 elif inv_intra_line.statement_section == 'purchase_s2':
                     st_line = self.env[purch_section2]._prepare_statement_line(
                         inv_intra_line, self)
@@ -851,7 +851,7 @@ class AccountIntrastatStatement(models.Model):
                         else:
                             st_line['sequence'] = 1
                         statement_lines_purchase_s2.append((0, 0, st_line))
-                # Purchase - Section 3
+                # Purchases - Section 3
                 elif inv_intra_line.statement_section == 'purchase_s3':
                     st_line = self.env[purch_section3]._prepare_statement_line(
                         inv_intra_line)
@@ -862,7 +862,7 @@ class AccountIntrastatStatement(models.Model):
                         else:
                             st_line['sequence'] = 1
                         statement_lines_purchase_s3.append((0, 0, st_line))
-                # Purchase - Section 4
+                # Purchases - Section 4
                 elif inv_intra_line.statement_section == 'purchase_s4':
                     st_line = self.env[purch_section4]._prepare_statement_line(
                         inv_intra_line, self)
@@ -929,8 +929,8 @@ class AccountIntrastatStatement(models.Model):
             if line_to_refund:
                 if line_to_refund.amount_euro < line.amount_euro:
                     raise ValidationError(
-                        _('Invoice and refund in the same period with'
-                          ' refund > invoice for partner %s')
+                        _('Invoice and credit note in the same period with'
+                          ' credit note > invoice for partner %s')
                         % line.partner_id.name)
                 val = {
                     'amount_euro': (
@@ -971,41 +971,41 @@ class AccountIntrastatStatement(models.Model):
 
 class AccountIntrastatStatementSaleSection1(models.Model):
     _name = 'account.intrastat.statement.sale.section1'
-    _description = 'Account INTRASTAT - Statement - Sale Section 1'
+    _description = 'Intrastat Statement - Sales Section 1'
 
     statement_id = fields.Many2one(
         'account.intrastat.statement', string='Statement',
         readonly=True, ondelete="cascade")
-    sequence = fields.Integer(string='Progressive')
-    partner_id = fields.Many2one('res.partner', string='Partner')
+    sequence = fields.Integer(string='Progr.')
+    partner_id = fields.Many2one('res.partner', string='Buyer')
     country_partner_id = fields.Many2one('res.country',
-                                         string='Country Customer')
-    vat_code = fields.Char(string='Vat Code Customer')
-    amount_euro = fields.Integer(string='Amount Euro',
+                                         string='Buyer State')
+    vat_code = fields.Char(string='Buyer VAT Code')
+    amount_euro = fields.Integer(string='Amount in Euro',
                                  digits=dp.get_precision('Account'))
-    transation_nature_id = fields.Many2one(
-        'account.intrastat.transation.nature', string='Transation Nature')
+    transaction_nature_id = fields.Many2one(
+        'account.intrastat.transaction.nature', string='Transaction Nature')
     intrastat_code_id = fields.Many2one('report.intrastat.code',
-                                        string='Intrastat Code Good')
-    weight_kg = fields.Integer(string='Weight kg')
+                                        string='Goods Code')
+    weight_kg = fields.Integer(string='Net Mass (kg)')
     additional_units = fields.Integer(string='Additional Units')
     additional_units_required = fields.Boolean(
-        string='Additional Units Required', store=True,
+        string='Additional Unit Required', store=True,
         related='intrastat_code_id.additional_unit_required')
     additional_units_uom = fields.Char(
-        string='Additional Units UOM',
+        string='Additional Unit of Measure',
         readonly=True,
         related="intrastat_code_id.additional_unit_uom_id.name")
-    statistic_amount_euro = fields.Integer(string='Statistic Amount Euro',
+    statistic_amount_euro = fields.Integer(string='Statistic Value in Euro',
                                            digits=dp.get_precision('Account'))
     delivery_code_id = fields.Many2one('stock.incoterms',
-                                       string='Delivery')
+                                       string='Delivery Terms')
     transport_code_id = fields.Many2one('account.intrastat.transport',
-                                        string='Transport')
+                                        string='Transport Mode')
     country_destination_id = fields.Many2one('res.country',
-                                             string='Country Destination')
+                                             string='Destination Country')
     province_origin_id = fields.Many2one('res.country.state',
-                                         string='Province Origin')
+                                         string='Origin Province')
     invoice_id = fields.Many2one('account.invoice',
                                  string='Invoice', readonly=True)
 
@@ -1039,11 +1039,11 @@ class AccountIntrastatStatementSaleSection1(models.Model):
                  or False),
             'amount_euro': self.statement_id.round_min_amount(round(
                 inv_intra_line.amount_euro) or 0, company_id),
-            'transation_nature_id':
-                (inv_intra_line.transation_nature_id
-                 and inv_intra_line.transation_nature_id.id) or
-                (company_id.intrastat_sale_transation_nature_id
-                 and company_id.intrastat_sale_transation_nature_id.id)
+            'transaction_nature_id':
+                (inv_intra_line.transaction_nature_id
+                 and inv_intra_line.transaction_nature_id.id) or
+                (company_id.intrastat_sale_transaction_nature_id
+                 and company_id.intrastat_sale_transaction_nature_id.id)
                 or False,
             'intrastat_code_id': inv_intra_line.intrastat_code_id.id or False,
             'weight_kg': round(inv_intra_line.weight_kg) or 0,
@@ -1084,7 +1084,7 @@ class AccountIntrastatStatementSaleSection1(models.Model):
         # .. Vat code
         if not self.vat_code:
             raise ValidationError(
-                _('Missing Vat code for %s in Sale Section 1')
+                _("Missing vat code for %s on 'Sales - Section 1'")
                 % (self.partner_id.name,))
 
         rcd = ''
@@ -1098,7 +1098,7 @@ class AccountIntrastatStatementSaleSection1(models.Model):
         rcd += '{:13s}'.format(str(self.amount_euro).zfill(13))
         # Codice della natura della transazione
         rcd += '{:1s}'.format(
-            self.transation_nature_id and self.transation_nature_id.code or '')
+            self.transaction_nature_id and self.transaction_nature_id.code or '')
         # Codice della nomenclatura combinata della merce
         rcd += '{:8s}'.format(
             self.intrastat_code_id and self.intrastat_code_id.name or '')
@@ -1131,31 +1131,31 @@ class AccountIntrastatStatementSaleSection1(models.Model):
 
 class AccountIntrastatStatementSaleSection2(models.Model):
     _name = 'account.intrastat.statement.sale.section2'
-    _description = 'Account INTRASTAT - Statement - Sale Section 2'
+    _description = 'Intrastat Statement - Sales Section 2'
 
     statement_id = fields.Many2one('account.intrastat.statement',
                                    string='Statement',
                                    readonly=True,
                                    ondelete="cascade")
-    sequence = fields.Integer(string='Progressive')
-    month = fields.Integer(string='Month Ref of Refund')
-    quarterly = fields.Integer(string='Quarterly Ref of Refund')
-    year_id = fields.Integer(string='Year Ref of Refund')
-    partner_id = fields.Many2one('res.partner', string='Partner')
+    sequence = fields.Integer(string='Progr.')
+    month = fields.Integer(string='Ref. Month')
+    quarterly = fields.Integer(string='Ref. Quarter')
+    year_id = fields.Integer(string='Ref. Year')
+    partner_id = fields.Many2one('res.partner', string='Buyer')
     country_partner_id = fields.Many2one('res.country',
-                                         string='Country Partner')
-    vat_code = fields.Char(string='Vat Code Customer')
+                                         string='Buyer State')
+    vat_code = fields.Char(string='Buyer VAT Code')
     sign_variation = fields.Selection([
         ('+', '+'),
         ('-', '-'),
-    ], 'Sign Variation')
-    amount_euro = fields.Integer(string='Amount Euro',
+    ], 'Adjustment Sign')
+    amount_euro = fields.Integer(string='Amount in Euro',
                                  digits=dp.get_precision('Account'))
-    transation_nature_id = fields.Many2one(
-        'account.intrastat.transation.nature', string='Transation Nature')
+    transaction_nature_id = fields.Many2one(
+        'account.intrastat.transaction.nature', string='Transaction Nature')
     intrastat_code_id = fields.Many2one('report.intrastat.code',
-                                        string='Intrastat Code Good')
-    statistic_amount_euro = fields.Integer(string='Statistic Amount Euro',
+                                        string='Goods Code')
+    statistic_amount_euro = fields.Integer(string='Statistic Value in Euro',
                                            digits=dp.get_precision('Account'))
     invoice_id = fields.Many2one('account.invoice', string='Invoice',
                                  readonly=True)
@@ -1193,12 +1193,12 @@ class AccountIntrastatStatementSaleSection2(models.Model):
             'amount_euro': self.statement_id.round_min_amount(
                 round(inv_intra_line.amount_euro) or 0, company_id),
             'sign_variation': sign_variation,
-            'transation_nature_id':
-                (inv_intra_line.transation_nature_id and
-                 inv_intra_line.transation_nature_id.id)
+            'transaction_nature_id':
+                (inv_intra_line.transaction_nature_id and
+                 inv_intra_line.transaction_nature_id.id)
                 or
-                (company_id.intrastat_sale_transation_nature_id and
-                 company_id.intrastat_sale_transation_nature_id.id) or
+                (company_id.intrastat_sale_transaction_nature_id and
+                 company_id.intrastat_sale_transaction_nature_id.id) or
                 False,
             'intrastat_code_id': inv_intra_line.intrastat_code_id.id or False,
             'statistic_amount_euro':
@@ -1217,25 +1217,25 @@ class AccountIntrastatStatementSaleSection2(models.Model):
         # .. Vat code
         if not self.vat_code:
             raise ValidationError(
-                _('Missing Vat code for %s in Sale Section 2')
+                _("Missing vat code for %s on 'Sales - Section 2'")
                 % (self.partner_id.name,))
         # .. year ref
         if not self.year_id:
             raise ValidationError(
-                _('Missing Year Ref on Sale Section 2'))
+                _("Missing reference year on 'Sales - Section 2'"))
         # .. Sign variation
         if not self.sign_variation:
             raise ValidationError(
-                _('Missing Sign Variation on Sale Section 2'))
+                _("Missing adjustment sign on 'Sales - Section 2'"))
         # ...Period ref
         if self.statement_id.period_type == 'M':
             if not self.month:
                 raise ValidationError(
-                    _('Missing Month Ref Variation on Sale Section 2'))
+                    _("Missing reference month on 'Sales - Section 2' adjustment"))
         else:
             if not self.quarterly:
                 raise ValidationError(
-                    _('Missing Quarterly Ref Variation on Sale Section 2'))
+                    _("Missing reference quarter on 'Sales - Section 2' adjustment"))
 
         rcd = ''
         # Mese di riferimento del riepilogo da rettificare
@@ -1259,7 +1259,7 @@ class AccountIntrastatStatementSaleSection2(models.Model):
         rcd += '{:13s}'.format(str(self.amount_euro).zfill(13))
         # Codice della natura della transazione
         rcd += '{:1s}'.format(
-            self.transation_nature_id and self.transation_nature_id.code or '')
+            self.transaction_nature_id and self.transaction_nature_id.code or '')
         # Codice della nomenclatura combinata della merce
         rcd += '{:8s}'.format(
             self.intrastat_code_id and self.intrastat_code_id.name or '')
@@ -1274,33 +1274,33 @@ class AccountIntrastatStatementSaleSection2(models.Model):
 
 class AccountIntrastatStatementSaleSection3(models.Model):
     _name = 'account.intrastat.statement.sale.section3'
-    _description = 'Account INTRASTAT - Statement - Sale Section 3'
+    _description = 'Intrastat Statement - Sales Section 3'
 
     statement_id = fields.Many2one('account.intrastat.statement',
                                    string='Statement',
                                    readonly=True,
                                    ondelete="cascade")
-    sequence = fields.Integer(string='Progressive')
-    partner_id = fields.Many2one('res.partner', string='Partner')
+    sequence = fields.Integer(string='Progr.')
+    partner_id = fields.Many2one('res.partner', string='Buyer')
     country_partner_id = fields.Many2one('res.country',
-                                         string='Country Partner')
-    vat_code = fields.Char(string='Vat Code Customer')
-    amount_euro = fields.Integer(string='Amount Euro',
+                                         string='Buyer State')
+    vat_code = fields.Char(string='Buyer VAT Code')
+    amount_euro = fields.Integer(string='Amount in Euro',
                                  digits=dp.get_precision('Account'))
     invoice_number = fields.Char(string='Invoice Number')
     invoice_date = fields.Date(string='Invoice Date')
     intrastat_code_id = fields.Many2one('report.intrastat.code',
-                                        string='Intrastat Code Service')
+                                        string='Service Code')
     supply_method = fields.Selection([
         ('I', 'Instant'),
-        ('R', 'Repeatedly'),
+        ('R', 'Repeated'),
     ], 'Supply Method')
     payment_method = fields.Selection([
-        ('B', 'Transfer'),
-        ('A', 'Accreditation'),
+        ('B', 'Bank Transfer'),
+        ('A', 'Credit'),
         ('X', 'Other'),
     ], 'Payment Method')
-    country_payment_id = fields.Many2one('res.country', 'Country Payment')
+    country_payment_id = fields.Many2one('res.country', 'Payment Country')
     invoice_id = fields.Many2one('account.invoice', string='Invoice',
                                  readonly=True)
 
@@ -1343,7 +1343,7 @@ class AccountIntrastatStatementSaleSection3(models.Model):
         # .. Vat code
         if not self.vat_code:
             raise ValidationError(
-                _('Missing Vat code for %s in Sale Section 3')
+                _("Missing vat code for %s on 'Sales - Section 3'")
                 % (self.partner_id.name,))
 
         rcd = ''
@@ -1382,38 +1382,38 @@ class AccountIntrastatStatementSaleSection3(models.Model):
 
 class AccountIntrastatStatementSaleSection4(models.Model):
     _name = 'account.intrastat.statement.sale.section4'
-    _description = 'Account INTRASTAT - Statement - Sale Section 4'
+    _description = 'Intrastat Statement - Sales Section 4'
 
     statement_id = fields.Many2one(
         'account.intrastat.statement', string='Statement',
         readonly=True, ondelete="cascade")
-    sequence = fields.Integer(string='Progressive')
-    custom_id = fields.Many2one('account.intrastat.custom', 'Custom')
-    month = fields.Integer(string='Month Ref of Refund')
-    quarterly = fields.Integer(string='Quarterly Ref of Refund')
-    year_id = fields.Integer(string='Year Ref of Variation')
-    protocol = fields.Integer(string='Protocol number', size=6)
+    sequence = fields.Integer(string='Progr.')
+    custom_id = fields.Many2one('account.intrastat.custom', 'Customs Section')
+    month = fields.Integer(string='Ref. Month')
+    quarterly = fields.Integer(string='Ref. Quarter')
+    year_id = fields.Integer(string='Ref. Year')
+    protocol = fields.Integer(string='Protocol Number', size=6)
     progressive_to_modify = fields.Integer('Progressive to Modify')
-    partner_id = fields.Many2one('res.partner', string='Partner')
+    partner_id = fields.Many2one('res.partner', string='Buyer')
     country_partner_id = fields.Many2one('res.country',
-                                         string='Country Partner')
-    vat_code = fields.Char(string='Vat Code Customer')
-    amount_euro = fields.Integer(string='Amount Euro',
+                                         string='Buyer State')
+    vat_code = fields.Char(string='Buyer VAT Code')
+    amount_euro = fields.Integer(string='Amount in Euro',
                                  digits=dp.get_precision('Account'))
     invoice_number = fields.Char(string='Invoice Number')
     invoice_date = fields.Date(string='Invoice Date')
     intrastat_code_id = fields.Many2one('report.intrastat.code',
-                                        string='Intrastat Code Service')
+                                        string='Service Code')
     supply_method = fields.Selection([
         ('I', 'Instant'),
-        ('R', 'Repeatedly'),
+        ('R', 'Repeated'),
     ], 'Supply Method')
     payment_method = fields.Selection([
-        ('B', 'Transfer'),
-        ('A', 'Accreditation'),
+        ('B', 'Bank Transfer'),
+        ('A', 'Credit'),
         ('X', 'Other'),
     ], 'Payment Method')
-    country_payment_id = fields.Many2one('res.country', 'Country Payment')
+    country_payment_id = fields.Many2one('res.country', 'Payment Country')
     invoice_id = fields.Many2one('account.invoice', string='Invoice',
                                  readonly=True)
 
@@ -1463,40 +1463,40 @@ class AccountIntrastatStatementSaleSection4(models.Model):
         # .. Vat code
         if not self.vat_code:
             raise ValidationError(
-                _('Missing Vat code for %s in Sale Section 4')
+                _("Missing vat code for %s on 'Sales - Section 4'")
                 % (self.partner_id.name,))
         # .. year ref
         if not self.year_id:
             raise ValidationError(
-                _('Missing Year Ref on Sale Section 4'))
+                _("Missing reference year on 'Sales - Section 4'"))
         # .. custom_id
         if not self.custom_id:
             raise ValidationError(
-                _('Missing custom on Sale Section 4'))
+                _("Missing customs section on 'Sales - Section 4'"))
         # .. Protocol
         if not self.protocol:
             raise ValidationError(
-                _('Missing protocol on Sale Section 4'))
-        # .. Progressive to modity
+                _("Missing protocol number on 'Sales - Section 4'"))
+        # .. Progressive to modify
         if not self.progressive_to_modify:
             raise ValidationError(
-                _('Missing Progressive to modity on Sale Section 4'))
+                _("Missing progressive to adjust on 'Sales - Section 4'"))
         # .. Invoice
         if (not self.invoice_number) or (not self.invoice_date):
             raise ValidationError(
-                _('Missing Invoice data on Sale Section 4'))
+                _("Missing invoice data on 'Sales - Section 4'"))
         # .. Supply method
         if not self.supply_method:
             raise ValidationError(
-                _('Missing Supply method on Sale Section 4'))
+                _("Missing supply method on 'Sales - Section 4'"))
         # .. payment_method
         if not self.payment_method:
             raise ValidationError(
-                _('Missing Payment method on Sale Section 4'))
+                _("Missing payment method on 'Sales - Section 4'"))
         # .. country_payment_id
         if not self.country_payment_id:
             raise ValidationError(
-                _('Missing Country Payment on Sale Section 4'))
+                _("Missing payment country on 'Sales - Section 4'"))
 
         rcd = ''
         # Codice della sezione doganale in cui è stato registrata la
@@ -1515,14 +1515,14 @@ class AccountIntrastatStatementSaleSection4(models.Model):
             self.progressive_to_modify_id and
             str(self.progressive_to_modify_id.sequence).zfill(5) or '')
         # Codice dello Stato membro dell’acquirente
-        # Test anche che ci sia il codice nazione
+        # Verifica anche che ci sia il codice nazione
         country_id = (self.country_partner_id
                       or self.partner_id.country_id)
         if country_id:
             country_id.with_context(control_ISO_code=True).intrastat_validate()
         else:
             raise ValidationError(
-                _('Partner without Country'))
+                _('Missing State for Buyer'))
         rcd += '{:2s}'.format(country_id.code or '')
         #  Codice IVA dell’acquirente
         rcd += '{:12s}'.format(self.vat_code.replace(' ', '') or '')
@@ -1555,46 +1555,46 @@ class AccountIntrastatStatementSaleSection4(models.Model):
 
 class AccountIntrastatStatementPurchaseSection1(models.Model):
     _name = 'account.intrastat.statement.purchase.section1'
-    _description = 'Account INTRASTAT - Statement - Purchase Section 1'
+    _description = 'Intrastat Statement - Purchases Section 1'
 
     statement_id = fields.Many2one('account.intrastat.statement',
                                    string='Statement',
                                    readonly=True,
                                    ondelete="cascade")
-    sequence = fields.Integer(string='Progressive')
-    partner_id = fields.Many2one('res.partner', string='Partner')
+    sequence = fields.Integer(string='Progr.')
+    partner_id = fields.Many2one('res.partner', string='Supplier')
     country_partner_id = fields.Many2one('res.country',
-                                         string='Country Partner')
-    vat_code = fields.Char(string='Vat Code Partner')
-    amount_euro = fields.Integer(string='Amount Euro',
+                                         string='Supplier State')
+    vat_code = fields.Char(string='Supplier VAT Code')
+    amount_euro = fields.Integer(string='Amount in Euro',
                                  digits=dp.get_precision('Account'))
-    amount_currency = fields.Integer(string='Amount Currency',
+    amount_currency = fields.Integer(string='Amount in Currency',
                                      digits=dp.get_precision('Account'))
-    transation_nature_id = fields.Many2one(
-        'account.intrastat.transation.nature', string='Transation Nature')
+    transaction_nature_id = fields.Many2one(
+        'account.intrastat.transaction.nature', string='Transaction Nature')
     intrastat_code_id = fields.Many2one(
-        'report.intrastat.code', string='Intrastat Code Good')
-    weight_kg = fields.Integer(string='Weight kg')
+        'report.intrastat.code', string='Goods Code')
+    weight_kg = fields.Integer(string='Net Mass (kg)')
     additional_units = fields.Integer(string='Additional Units')
     additional_units_required = fields.Boolean(
-        string='Additional Units Required', store=True,
+        string='Additional Unit Required', store=True,
         related='intrastat_code_id.additional_unit_required')
     additional_units_uom = fields.Char(
-        string='Additional Units UOM',
+        string='Additional Unit of Measure',
         readonly=True,
         related="intrastat_code_id.additional_unit_uom_id.name")
-    statistic_amount_euro = fields.Integer(string='Statistic Amount Euro',
+    statistic_amount_euro = fields.Integer(string='Statistic Value in Euro',
                                            digits=dp.get_precision('Account'))
     delivery_code_id = fields.Many2one('stock.incoterms',
-                                       string='Delivery')
+                                       string='Delivery Terms')
     transport_code_id = fields.Many2one('account.intrastat.transport',
-                                        string='Transport')
+                                        string='Transport Mode')
     country_origin_id = fields.Many2one('res.country',
-                                        string='Country Origin')
+                                        string='Provenance Country')
     country_good_origin_id = fields.Many2one('res.country',
-                                             string='Country Good Origin')
+                                             string='Goods Origin Country')
     province_destination_id = fields.Many2one('res.country.state',
-                                              string='Province Destination')
+                                              string='Destination Province')
     invoice_id = fields.Many2one('account.invoice', string='Invoice',
                                  readonly=True)
 
@@ -1638,14 +1638,14 @@ class AccountIntrastatStatementPurchaseSection1(models.Model):
                     and round(inv_intra_line.amount_currency)
                     or 0
                 ),
-            'transation_nature_id':
+            'transaction_nature_id':
                 (
-                    (inv_intra_line.transation_nature_id
-                     and inv_intra_line.transation_nature_id.id
+                    (inv_intra_line.transaction_nature_id
+                     and inv_intra_line.transaction_nature_id.id
                      )
                     or
-                    (company_id.intrastat_purchase_transation_nature_id
-                     and company_id.intrastat_purchase_transation_nature_id.id
+                    (company_id.intrastat_purchase_transaction_nature_id
+                     and company_id.intrastat_purchase_transaction_nature_id.id
                      )
                     or False
                 ),
@@ -1701,7 +1701,7 @@ class AccountIntrastatStatementPurchaseSection1(models.Model):
         # .. Vat code
         if not self.vat_code:
             raise ValidationError(
-                _('Missing Vat code for %s in Purchase Section 1')
+                _("Missing vat code for %s on 'Purchases - Section 1'")
                 % (self.partner_id.name,))
 
         rcd = ''
@@ -1717,7 +1717,7 @@ class AccountIntrastatStatementPurchaseSection1(models.Model):
         rcd += '{:13s}'.format(str(self.amount_currency).zfill(13))
         # Codice della natura della transazione
         rcd += '{:1s}'.format(
-            self.transation_nature_id and self.transation_nature_id.code or '')
+            self.transaction_nature_id and self.transaction_nature_id.code or '')
         # Codice della nomenclatura combinata della merce
         rcd += '{:8s}'.format(
             self.intrastat_code_id and self.intrastat_code_id.name or '')
@@ -1755,33 +1755,33 @@ class AccountIntrastatStatementPurchaseSection1(models.Model):
 
 class AccountIntrastatStatementPurchaseSection2(models.Model):
     _name = 'account.intrastat.statement.purchase.section2'
-    _description = 'Account INTRASTAT - Statement - Purchase Section 2'
+    _description = 'Intrastat Statement - Purchases Section 2'
 
     statement_id = fields.Many2one('account.intrastat.statement',
                                    string='Statement',
                                    readonly=True,
                                    ondelete="cascade")
-    sequence = fields.Integer(string='Progressive')
-    month = fields.Integer(string='Month Ref of Refund')
-    quarterly = fields.Integer(string='Quarterly Ref of Refund')
-    year_id = fields.Integer(string='Year Ref of Refund')
-    partner_id = fields.Many2one('res.partner', string='Partner')
+    sequence = fields.Integer(string='Progr.')
+    month = fields.Integer(string='Ref. Month')
+    quarterly = fields.Integer(string='Ref. Quarter')
+    year_id = fields.Integer(string='Ref. Year')
+    partner_id = fields.Many2one('res.partner', string='Supplier')
     country_partner_id = fields.Many2one('res.country',
-                                         string='Country Partner')
-    vat_code = fields.Char(string='Vat Code Partner')
+                                         string='Supplier State')
+    vat_code = fields.Char(string='Supplier VAT Code')
     sign_variation = fields.Selection([
         ('+', '+'),
         ('-', '-'),
-    ], 'Sign Variation')
-    amount_euro = fields.Integer(string='Amount Euro',
+    ], 'Adjustment Sign')
+    amount_euro = fields.Integer(string='Amount in Euro',
                                  digits=dp.get_precision('Account'))
-    amount_currency = fields.Integer(string='Amount Currency',
+    amount_currency = fields.Integer(string='Amount in Currency',
                                      digits=dp.get_precision('Account'))
-    transation_nature_id = fields.Many2one(
-        'account.intrastat.transation.nature', string='Transation Nature')
+    transaction_nature_id = fields.Many2one(
+        'account.intrastat.transaction.nature', string='Transaction Nature')
     intrastat_code_id = fields.Many2one(
-        'report.intrastat.code', string='Intrastat Code Good')
-    statistic_amount_euro = fields.Integer(string='Statistic Amount Euro',
+        'report.intrastat.code', string='Goods Code')
+    statistic_amount_euro = fields.Integer(string='Statistic Value in Euro',
                                            digits=dp.get_precision('Account'))
     invoice_id = fields.Many2one('account.invoice', string='Invoice',
                                  readonly=True)
@@ -1821,11 +1821,11 @@ class AccountIntrastatStatementPurchaseSection2(models.Model):
             'amount_euro': self.statement_id.round_min_amount(
                 round(inv_intra_line.amount_euro) or 0, company_id),
             'amount_currency': round(inv_intra_line.amount_currency) or 0,
-            'transation_nature_id': (
-                inv_intra_line.transation_nature_id and
-                inv_intra_line.transation_nature_id.id) or (
-                company_id.intrastat_purchase_transation_nature_id and
-                company_id.intrastat_purchase_transation_nature_id.id) or
+            'transaction_nature_id': (
+                inv_intra_line.transaction_nature_id and
+                inv_intra_line.transaction_nature_id.id) or (
+                company_id.intrastat_purchase_transaction_nature_id and
+                company_id.intrastat_purchase_transaction_nature_id.id) or
                 False,
             'intrastat_code_id': inv_intra_line.intrastat_code_id.id or False,
             'statistic_amount_euro':
@@ -1844,25 +1844,27 @@ class AccountIntrastatStatementPurchaseSection2(models.Model):
         # .. Vat code
         if not self.vat_code:
             raise ValidationError(
-                _('Missing Vat code for %s in Purchase Section 2')
+                _("Missing vat code for %s on 'Purchases - Section 2'")
                 % (self.partner_id.name,))
         # .. year ref
         if not self.year_id:
             raise ValidationError(
-                _('Missing Year Ref on Purchase Section 2'))
+                _("Missing reference year on 'Purchases - Section 2'"))
         # .. Sign variation
         if not self.sign_variation:
             raise ValidationError(
-                _('Missing Sign Variation on Purchase Section 2'))
+                _("Missing adjustment sign on 'Purchases - Section 2'"))
         # ...Period ref
         if self.statement_id.period_type == 'M':
             if not self.month:
                 raise ValidationError(
-                    _('Missing Month Ref Variation on Purchase Section 2'))
+                    _("Missing reference month "
+                      "on 'Purchases - Section 2' adjustment"))
         else:
             if not self.quarterly:
                 raise ValidationError(
-                    _('Missing Quarterly Ref Variation on Purchase Section 2'))
+                    _("Missing reference quarter "
+                      "on 'Purchases - Section 2' adjustment"))
         rcd = ''
         # Mese di riferimento del riepilogo da rettificare
         rcd += '{:2s}'.format(str(self.month).zfill(2))
@@ -1892,7 +1894,7 @@ class AccountIntrastatStatementPurchaseSection2(models.Model):
             rcd += '{:13s}'.format(str(0).zfill(13))
         # Codice della natura della transazione
         rcd += '{:1s}'.format(
-            self.transation_nature_id and self.transation_nature_id.code or '')
+            self.transaction_nature_id and self.transaction_nature_id.code or '')
         # Codice della nomenclatura combinata della merce
         rcd += '{:8s}'.format(
             self.intrastat_code_id and self.intrastat_code_id.name or '')
@@ -1907,35 +1909,35 @@ class AccountIntrastatStatementPurchaseSection2(models.Model):
 
 class AccountIntrastatStatementPurchaseSection3(models.Model):
     _name = 'account.intrastat.statement.purchase.section3'
-    _description = 'Account INTRASTAT - Statement - Purchase Section 3'
+    _description = 'Intrastat Statement - Purchases Section 3'
 
     statement_id = fields.Many2one('account.intrastat.statement',
                                    string='Statement',
                                    readonly=True,
                                    ondelete="cascade")
-    sequence = fields.Integer(string='Progressive')
-    partner_id = fields.Many2one('res.partner', string='Partner')
+    sequence = fields.Integer(string='Progr.')
+    partner_id = fields.Many2one('res.partner', string='Supplier')
     country_partner_id = fields.Many2one('res.country',
-                                         string='Country Partner')
-    vat_code = fields.Char(string='Vat Code Partner')
-    amount_euro = fields.Integer(string='Amount Euro',
+                                         string='Supplier State')
+    vat_code = fields.Char(string='Supplier VAT Code')
+    amount_euro = fields.Integer(string='Amount in Euro',
                                  digits=dp.get_precision('Account'))
-    amount_currency = fields.Integer(string='Amount Currency',
+    amount_currency = fields.Integer(string='Amount in Currency',
                                      digits=dp.get_precision('Account'))
     invoice_number = fields.Char(string='Invoice Number')
     invoice_date = fields.Date(string='Invoice Date')
     intrastat_code_id = fields.Many2one('report.intrastat.code',
-                                        string='Intrastat Code Service')
+                                        string='Service Code')
     supply_method = fields.Selection([
         ('I', 'Instant'),
-        ('R', 'Repeatedly'),
+        ('R', 'Repeated'),
     ], 'Supply Method')
     payment_method = fields.Selection([
-        ('B', 'Transfer'),
-        ('A', 'Accreditation'),
+        ('B', 'Bank Transfer'),
+        ('A', 'Credit'),
         ('X', 'Other'),
     ], 'Payment Method')
-    country_payment_id = fields.Many2one('res.country', 'Country Payment')
+    country_payment_id = fields.Many2one('res.country', 'Payment Country')
     invoice_id = fields.Many2one(
         'account.invoice', string='Invoice', readonly=True)
 
@@ -1983,7 +1985,7 @@ class AccountIntrastatStatementPurchaseSection3(models.Model):
         # .. Vat code
         if not self.vat_code:
             raise ValidationError(
-                _('Missing Vat code for %s in Purchase Section 3')
+                _("Missing vat code for %s on 'Purchases - Section 3'")
                 % (self.partner_id.name,))
 
         rcd = ''
@@ -2027,44 +2029,44 @@ class AccountIntrastatStatementPurchaseSection3(models.Model):
 
 class AccountIntrastatStatementPurchaseSection4(models.Model):
     _name = 'account.intrastat.statement.purchase.section4'
-    _description = 'Account INTRASTAT - Statement - Purchase Section 4'
+    _description = 'Intrastat Statement - Purchases Section 4'
 
     statement_id = fields.Many2one('account.intrastat.statement',
                                    string='Statement',
                                    readonly=True,
                                    ondelete="cascade")
-    sequence = fields.Integer(string='Progressive')
-    custom_id = fields.Many2one('account.intrastat.custom', 'Custom')
-    month = fields.Integer(string='Month Ref of Refund')
-    quarterly = fields.Integer(string='Quarterly Ref of Refund')
-    year_id = fields.Integer(string='Year Ref of Variation')
-    protocol = fields.Integer(string='Protocol number', size=6)
+    sequence = fields.Integer(string='Progr.')
+    custom_id = fields.Many2one('account.intrastat.custom', 'Customs Section')
+    month = fields.Integer(string='Ref. Month')
+    quarterly = fields.Integer(string='Ref. Quarter')
+    year_id = fields.Integer(string='Ref. Year')
+    protocol = fields.Integer(string='Protocol Number', size=6)
     progressive_to_modify_id = fields.Many2one(
         'account.intrastat.statement.purchase.section1',
         'Progressive to Modify')
     progressive_to_modify = fields.Integer('Progressive to Modify')
-    partner_id = fields.Many2one('res.partner', string='Partner')
+    partner_id = fields.Many2one('res.partner', string='Supplier')
     country_partner_id = fields.Many2one('res.country',
-                                         string='Country Partner')
-    vat_code = fields.Char(string='Vat Code Partner')
-    amount_euro = fields.Integer(string='Amount Euro',
+                                         string='Supplier State')
+    vat_code = fields.Char(string='Supplier VAT Code')
+    amount_euro = fields.Integer(string='Amount in Euro',
                                  digits=dp.get_precision('Account'))
-    amount_currency = fields.Integer(string='Amount Currency',
+    amount_currency = fields.Integer(string='Amount in Currency',
                                      digits=dp.get_precision('Account'))
     invoice_number = fields.Char(string='Invoice Number')
-    invoice_date = fields.Char(string='Invoice Date')
+    invoice_date = fields.Date(string='Invoice Date')
     intrastat_code_id = fields.Many2one('report.intrastat.code',
-                                        string='Intrastat Code Service')
+                                        string='Service Code')
     supply_method = fields.Selection([
         ('I', 'Instant'),
-        ('R', 'Repeatedly'),
+        ('R', 'Repeated'),
     ], 'Supply Method')
     payment_method = fields.Selection([
-        ('B', 'Transfer'),
-        ('A', 'Accreditation'),
+        ('B', 'Bank Transfer'),
+        ('A', 'Credit'),
         ('X', 'Other'),
     ], 'Payment Method')
-    country_payment_id = fields.Many2one('res.country', 'Country Payment')
+    country_payment_id = fields.Many2one('res.country', 'Payment Country')
     invoice_id = fields.Many2one('account.invoice', string='Invoice',
                                  readonly=True)
 
@@ -2103,8 +2105,8 @@ class AccountIntrastatStatementPurchaseSection4(models.Model):
             'intrastat_code_id': inv_intra_line.intrastat_code_id.id or False,
             'supply_method': inv_intra_line.supply_method or False,
             'payment_method': inv_intra_line.payment_method or False,
-            'country_payment_id': (
-                inv_intra_line.country_payment_id.id or False),
+            'country_payment_id':
+                inv_intra_line.country_payment_id.id or False,
             'custom_id': statement_id.custom_id.id
         }
         return res
@@ -2115,40 +2117,40 @@ class AccountIntrastatStatementPurchaseSection4(models.Model):
         # .. Vat code
         if not self.vat_code:
             raise ValidationError(
-                _('Missing Vat code for %s in Purchase Section 4')
+                _("Missing vat code for %s on 'Purchases - Section 4'")
                 % (self.partner_id.name,))
         # .. year ref
         if not self.year_id:
             raise ValidationError(
-                _('Missing Year Ref on Purchase Section 4'))
+                _("Missing reference year on 'Purchases - Section 4'"))
         # .. custom_id
         if not self.custom_id:
             raise ValidationError(
-                _('Missing custom on Purchase Section 4'))
+                _("Missing customs section on 'Purchases - Section 4'"))
         # .. Protocol
         if not self.protocol:
             raise ValidationError(
-                _('Missing protocol on Purchase Section 4'))
+                _("Missing protocol number on 'Purchases - Section 4'"))
         # .. Progressive to modity
         if not self.progressive_to_modify:
             raise ValidationError(
-                _('Missing Progressive to modity on Purchase Section 4'))
+                _("Missing progressive to adjust on 'Purchases - Section 4'"))
         # .. Invoice
         if (not self.invoice_number) or (not self.invoice_date):
             raise ValidationError(
-                _('Missing Invoice data on Purchase Section 4'))
+                _("Missing invoice data on 'Purchases - Section 4'"))
         # .. Supply method
         if not self.supply_method:
             raise ValidationError(
-                _('Missing Supply method on Purchase Section 4'))
+                _("Missing supply method on 'Purchases - Section 4'"))
         # .. payment_method
         if not self.payment_method:
             raise ValidationError(
-                _('Missing Payment method on Purchase Section 4'))
+                _("Missing payment method on 'Purchases - Section 4'"))
         # .. country_payment_id
         if not self.country_payment_id:
             raise ValidationError(
-                _('Missing Country Payment on Purchase Section 4'))
+                _("Missing payment country on 'Purchases - Section 4'"))
 
         rcd = ''
         # Codice della sezione doganale in cui è stato registrata la
@@ -2166,7 +2168,7 @@ class AccountIntrastatStatementPurchaseSection4(models.Model):
             str(self.progressive_to_modify_id.sequence).zfill(5)
             or '')
         # Codice dello Stato membro dell’acquirente
-        # Test anche che ci sia il codice nazione
+        # Verifica anche che ci sia il codice nazione
         country_id = (
             self.country_partner_id
             or self.partner_id.country_id
@@ -2176,7 +2178,7 @@ class AccountIntrastatStatementPurchaseSection4(models.Model):
                 control_ISO_code=True).intrastat_validate()
         else:
             raise ValidationError(
-                _('Partner without Country'))
+                _('Missing State for Supplier'))
         rcd += '{:2s}'.format(country_id.code or '')
         # Codice IVA dell’acquirente
         rcd += '{:12s}'.format(self.vat_code.replace(' ', '') or '')

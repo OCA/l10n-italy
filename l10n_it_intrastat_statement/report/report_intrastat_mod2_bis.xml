@@ -12,6 +12,7 @@
                 margin-bottom: 2px;
             }
         </style>
+	<t t-translation="off">
         <t t-foreach="docs" t-as="o">
             <div class="article">
                 <div class="row">
@@ -94,7 +95,7 @@
                                 <th class="text-center">MODO TRASP.</th>
                                 <th class="text-center">PAESE PROV.</th>
                                 <th class="text-center">PAESE ORIG.</th>
-                                <th class="text-center">PROV. DEST</th>
+                                <th class="text-center">PROV. DEST.</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -122,7 +123,7 @@
                                 <td><span t-field="l.vat_code"/></td>
                                 <td><span t-field="l.amount_euro"/></td>
                                 <td></td>
-                                <td><span t-field="l.transation_nature_id.code"/></td>
+                                <td><span t-field="l.transaction_nature_id.code"/></td>
                                 <td><span t-field="l.intrastat_code_id.name"/></td>
                                 <td><span t-field="l.weight_kg"/></td>
                                 <td><span t-field="l.additional_units"/></td>
@@ -143,6 +144,7 @@
                     </div>
                 </div>
             </div>
+        </t>
         </t>
     </template>
 

@@ -19,7 +19,7 @@
 
     </style>
     
-    
+    <t t-translation="off">
     <t t-foreach="docs" t-as="o">
     <div class="article">
         <div class="row">
@@ -126,6 +126,7 @@
             </tr>
         </table>
     </div>
+    </t>
     </t>
 </template>
 

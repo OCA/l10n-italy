@@ -8,26 +8,27 @@ class AccountIntrastatCustom(models.Model):
 
     code = fields.Char(string='Code', size=6)
     name = fields.Char(string='Name')
-    date_start = fields.Date(string='Date start')
-    date_stop = fields.Date(string='Date stop')
+    date_start = fields.Date(string='Start Date')
+    date_stop = fields.Date(string='Stop Date')
 
 
 class ReportIntrastatCode(models.Model):
 
     _inherit = 'report.intrastat.code'
+    _translate = True
 
     active = fields.Boolean(default=True)
     additional_unit_required = fields.Boolean(
         default=False,
-        string='Unit of Measure Additional Required')
+        string='Additional Unit of Measure Required')
     additional_unit_from = fields.Selection(
         [('quantity', 'Quantity'), ('weight', 'Weight'), ('none', 'None')],
-        string='Additional Unit of Measure FROM')
+        string='Additional Unit of Measure from')
     additional_unit_uom_id = fields.Many2one(
         'product.uom',
-        string='Unit of Measure Additional')
+        string='Additional Unit of Measure')
     type = fields.Selection(
-        [('good', 'Good'), ('service', 'Service')])
+        [('good', 'Goods'), ('service', 'Service')])
     description = fields.Char('Description', translate=True)
 
 
@@ -40,23 +41,23 @@ class ResCountry(models.Model):
         control_ISO_code = self._context.get('control_ISO_code', False)
         if not self:
             raise ValidationError(
-                _('Missing Country'))
+                _('Missing State'))
         if control_ISO_code and not self.code:
             raise ValidationError(
-                _('Country %s without ISO code') % (self.name,))
+                _('State %s without ISO code') % (self.name,))
         return True
 
 
 class AccountIntrastatTransport(models.Model):
     _name = 'account.intrastat.transport'
-    _description = 'Transport mode'
+    _description = 'Transport Mode'
 
     code = fields.Char(string='Code', size=1, required=True)
     name = fields.Char(string='Name')
 
 
 class AccountIntrastatTransationNature(models.Model):
-    _name = 'account.intrastat.transation.nature'
+    _name = 'account.intrastat.transaction.nature'
     _description = 'Transaction Nature'
 
     code = fields.Char(string='Code', size=1, required=True)
