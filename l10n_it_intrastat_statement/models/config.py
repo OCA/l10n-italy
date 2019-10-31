@@ -9,4 +9,4 @@ class ResCompany(models.Model):
 
     intrastat_custom_id = fields.Many2one(
         comodel_name='account.intrastat.custom',
-        string="Custom")
+        string="Customs Section")

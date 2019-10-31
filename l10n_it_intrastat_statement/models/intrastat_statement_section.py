@@ -8,7 +8,7 @@ from odoo.exceptions import ValidationError
 
 class IntrastatStatementSection(models.AbstractModel):
     _name = 'account.intrastat.statement.section'
-    _description = "Fields and methods common to all intrastat sections"
+    _description = "Fields and methods common to all Intrastat sections"
 
     statement_id = fields.Many2one(
         comodel_name='account.intrastat.statement',
@@ -16,25 +16,21 @@ class IntrastatStatementSection(models.AbstractModel):
         readonly=True,
         ondelete='cascade')
     sequence = fields.Integer(
-        string="Progressive")
+        string="Progr.")
     partner_id = fields.Many2one(
-        comodel_name='res.partner',
-        string="Partner")
+        comodel_name='res.partner')
     country_partner_id = fields.Many2one(
-        comodel_name='res.country',
-        string="Country Partner")
-    vat_code = fields.Char(
-        string="Vat Code Partner")
+        comodel_name='res.country')
+    vat_code = fields.Char()
     amount_euro = fields.Integer(
-        string="Amount Euro",
+        string="Amount in Euro",
         digits=dp.get_precision('Account'))
     invoice_id = fields.Many2one(
         comodel_name='account.invoice',
         string="Invoice",
         readonly=True)
     intrastat_code_id = fields.Many2one(
-        comodel_name='report.intrastat.code',
-        string="Intrastat Code Good")
+        comodel_name='report.intrastat.code')
 
     @api.multi
     def apply_partner_data(self, partner_data):
@@ -80,7 +76,7 @@ class IntrastatStatementSection(models.AbstractModel):
         self.ensure_one()
         if not self.vat_code:
             raise ValidationError(
-                _("Missing Vat code for %s in %s Section %s")
+                _("Missing vat code for %s on '%s - Section %s'")
                 % (self.partner_id.display_name,
                    section_label,
                    section_number))

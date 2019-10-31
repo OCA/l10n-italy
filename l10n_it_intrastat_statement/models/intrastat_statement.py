@@ -12,7 +12,7 @@ from odoo.tools import float_round
 
 class AccountIntrastatStatement(models.Model):
     _name = 'account.intrastat.statement'
-    _description = "Account INTRASTAT - Statement"
+    _description = "Intrastat Statement"
     _rec_name = 'number'
 
     @api.multi
@@ -26,7 +26,7 @@ class AccountIntrastatStatement(models.Model):
         else:
             round_amount = round(amount)
 
-        return min(round_amount or 0, company.intrastat_min_amount)
+        return max(round_amount or 0, company.intrastat_min_amount)
 
     @api.multi
     def _compute_amount_section(self, section_type, section_number):
@@ -125,16 +125,16 @@ class AccountIntrastatStatement(models.Model):
         default=lambda self: self.env.user.company_id.id,
         required=True)
     vat_taxpayer = fields.Char(
-        string="Vat taxpayer",
+        string="Taxpayer VAT Number",
         required=True,
         default=lambda self:
-            self.env.user.company_id.partner_id.vat
-            and self.env.user.company_id.partner_id.vat[2:] or False)
+            self.env.user.company_id.partner_id.vat and
+            self.env.user.company_id.partner_id.vat[2:] or False)
     intrastat_vat_delegate = fields.Char(
-        string="Vat delegate",
+        string="Delegate VAT Number",
         default=lambda self: self.env.user.company_id.intrastat_delegated_vat)
     intrastat_name_delegate = fields.Char(
-        string="Name delegate",
+        string="Delegate Name",
         default=lambda self: self.env.user.company_id.intrastat_delegated_name)
     fiscalyear = fields.Integer(
         string="Year",
@@ -143,16 +143,16 @@ class AccountIntrastatStatement(models.Model):
     period_type = fields.Selection(
         selection=[
             ('M', "Month"),
-            ('T', "Quarterly"),
+            ('T', "Quarter"),
         ],
         string="Period Type",
         required=True)
     period_number = fields.Integer(
         string="Period",
-        help="Values accepted:\
-        - Month : From 1 to 12 \
-        - Quarterly: From 1 to 4",
-        required=True)
+        help="Values accepted:\n"
+             " - Month : From 1 to 12\n"
+             " - Quarter: From 1 to 4",
+             required=True)
     date_start = fields.Date(
         store=True,
         readonly=True,
@@ -163,32 +163,34 @@ class AccountIntrastatStatement(models.Model):
         compute='_compute_dates')
     content_type = fields.Selection(
         selection=[
-            ('0', "Normal Period"),
-            ('8', "Change Period in quarterly: only first month operations"),
-            ('9', "Change Period in quarterly: only first and second month \
-                operations"),
+            ('0', 'Normal Period'),
+            ('8', 'Change Period in quarter: only first month operations'),
+            ('9', 'Change Period in quarter: only first and second month '
+                  'operations'),
         ],
         string="Content Type",
         required=True,
         default='0')
     special_cases = fields.Selection(
         selection=[
-            ('7', "First Statement"),
-            ('8', "Change VAT or Close Activity"),
-            ('9', "First Statement in Change VAT or Close Activity"),
-            ('0', "None of the above cases"),
+            ('7', 'First Statement Submitted'),
+            ('8', 'Ceasing Activity or Changing VAT Number'),
+            ('9', 'First Statement in Ceasing Activity or Changing VAT Number'),
+            ('0', 'None of the above cases'),
         ],
         string="Special Cases",
         required=True,
         default='0')
     intrastat_custom_id = fields.Many2one(
         comodel_name='account.intrastat.custom',
-        string="Custom",
+        string="Customs Section",
         required=True,
         default=lambda self: self.env.user.company_id.intrastat_custom_id)
     sale = fields.Boolean(
+        string='Sales',
         default=True)
     purchase = fields.Boolean(
+        string='Purchases',
         default=True)
     intrastat_type_data = fields.Selection(
         selection=[
@@ -202,7 +204,7 @@ class AccountIntrastatStatement(models.Model):
     intrastat_code_type = fields.Selection(
         selection=[
             ('service', "Service"),
-            ('good', "Good")
+            ('good', "Goods")
         ],
         string="Code Type",
         required=True,
@@ -213,7 +215,7 @@ class AccountIntrastatStatement(models.Model):
     sale_section1_ids = fields.One2many(
         comodel_name='account.intrastat.statement.sale.section1',
         inverse_name='statement_id',
-        string="Sale - Section 1")
+        string="Sales - Section 1")
     sale_section1_operation_number = fields.Integer(
         store=True,
         readonly=True,
@@ -225,7 +227,7 @@ class AccountIntrastatStatement(models.Model):
     sale_section2_ids = fields.One2many(
         comodel_name='account.intrastat.statement.sale.section2',
         inverse_name='statement_id',
-        string="Sale - Section 2")
+        string="Sales - Section 2")
     sale_section2_operation_number = fields.Integer(
         store=True,
         readonly=True,
@@ -237,7 +239,7 @@ class AccountIntrastatStatement(models.Model):
     sale_section3_ids = fields.One2many(
         comodel_name='account.intrastat.statement.sale.section3',
         inverse_name='statement_id',
-        string="Sale - Section 3")
+        string="Sales - Section 3")
     sale_section3_operation_number = fields.Integer(
         store=True,
         readonly=True,
@@ -249,7 +251,7 @@ class AccountIntrastatStatement(models.Model):
     sale_section4_ids = fields.One2many(
         comodel_name='account.intrastat.statement.sale.section4',
         inverse_name='statement_id',
-        string="Sale - Section 4")
+        string="Sales - Section 4")
     sale_section4_operation_number = fields.Integer(
         store=True,
         readonly=True,
@@ -264,7 +266,7 @@ class AccountIntrastatStatement(models.Model):
     purchase_section1_ids = fields.One2many(
         comodel_name='account.intrastat.statement.purchase.section1',
         inverse_name='statement_id',
-        string="Purchase - Section 1")
+        string="Purchases - Section 1")
     purchase_section1_operation_number = fields.Integer(
         store=True,
         readonly=True,
@@ -276,7 +278,7 @@ class AccountIntrastatStatement(models.Model):
     purchase_section2_ids = fields.One2many(
         comodel_name='account.intrastat.statement.purchase.section2',
         inverse_name='statement_id',
-        string="Purchase - Section 2")
+        string="Purchases - Section 2")
     purchase_section2_operation_number = fields.Integer(
         store=True,
         readonly=True,
@@ -288,7 +290,7 @@ class AccountIntrastatStatement(models.Model):
     purchase_section3_ids = fields.One2many(
         comodel_name='account.intrastat.statement.purchase.section3',
         inverse_name='statement_id',
-        string="Purchase - Section 3")
+        string="Purchases - Section 3")
     purchase_section3_operation_number = fields.Integer(
         store=True,
         readonly=True,
@@ -300,7 +302,7 @@ class AccountIntrastatStatement(models.Model):
     purchase_section4_ids = fields.One2many(
         comodel_name='account.intrastat.statement.purchase.section4',
         inverse_name='statement_id',
-        string="Purchase - Section 4")
+        string="Purchases - Section 4")
     purchase_section4_operation_number = fields.Integer(
         store=True,
         readonly=True,
@@ -757,7 +759,6 @@ class AccountIntrastatStatement(models.Model):
                         .append((0, 0, st_line))
 
         self.write(statement_data)
-
         # Group refund to sale lines if they have the same period of ref
         refund_map = [
             (2, 1),  # Sale (Purchase) section 2 refunds section 1
@@ -791,14 +792,14 @@ class AccountIntrastatStatement(models.Model):
         to_refund = False
         if line.year_id == self.fiscalyear:
             if (
-                    self.period_type == 'M'
-                    and line.month == self.period_number
+                    self.period_type == 'M' and
+                    line.month == self.period_number
             ):
                 to_refund = True
 
             if (
-                    self.period_type == 'T'
-                    and line.quarterly == self.period_number
+                    self.period_type == 'T' and
+                    line.quarterly == self.period_number
             ):
                 to_refund = True
         # Execute refund
@@ -811,8 +812,8 @@ class AccountIntrastatStatement(models.Model):
             if line_to_refund:
                 if line_to_refund.amount_euro < line.amount_euro:
                     raise ValidationError(
-                        _('Invoice and refund in the same period with'
-                          ' refund > invoice for partner %s')
+                        _('Invoice and credit note in the same period with'
+                          ' credit note > invoice for partner %s')
                         % line.partner_id.name)
                 val = {
                     'amount_euro': (
@@ -833,8 +834,8 @@ class AccountIntrastatStatement(models.Model):
 
     @api.onchange('company_id')
     def change_company_id(self):
-        self.vat_taxpayer = (self.company_id.partner_id.vat
-                             and self.company_id.partner_id.vat[2:] or False)
+        self.vat_taxpayer = (self.company_id.partner_id.vat and
+                             self.company_id.partner_id.vat[2:] or False)
         self.intrastat_vat_delegate = (self.company_id.intrastat_delegated_vat
                                        or False)
 
