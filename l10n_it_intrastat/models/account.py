@@ -45,8 +45,8 @@ class AccountInvoiceLine(models.Model):
         # Transport
         self._prepare_intrastat_line_transport(company_id, res)
 
-        # Transation
-        self._prepare_intrastat_line_transation(company_id, res)
+        # Transaction
+        self._prepare_intrastat_line_transaction(company_id, res)
 
         # Delivery
         self._prepare_intrastat_line_delivery(company_id, res)
@@ -54,28 +54,28 @@ class AccountInvoiceLine(models.Model):
         # ---------
         # Origin
         # ---------
-        # Country Origin
+        # Provenance Country
         self._prepare_intrastat_line_country_origin(res)
 
-        # Country Good Origin
+        # Goods Origin Province
         self._prepare_intrastat_line_country_good_origin(res)
 
-        # Province Origin
+        # Origin Province
         self._prepare_intrastat_line_province_origin(company_id, res)
 
         # ---------
         # Destination
         # ---------
-        # Country Destination
+        # Destination Country
         self._prepare_intrastat_line_country_dest(res)
 
-        # Province Destination
+        # Destination Province
         self._prepare_intrastat_line_province_dest(company_id, res)
 
         # Payment method
         self._prepare_intrastat_line_payment(res)
 
-        # Country Payment
+        # Payment Country
         self._prepare_intrastat_line_country_payment(res)
         return res
 
@@ -183,17 +183,17 @@ class AccountInvoiceLine(models.Model):
             })
 
     @api.multi
-    def _prepare_intrastat_line_transation(self, company_id, res):
+    def _prepare_intrastat_line_transaction(self, company_id, res):
         self.ensure_one()
         if self.invoice_id.type in ('out_invoice', 'out_refund'):
             res.update({
-                'transation_nature_id':
-                    company_id.intrastat_sale_transation_nature_id
+                'transaction_nature_id':
+                    company_id.intrastat_sale_transaction_nature_id
             })
         elif self.invoice_id.type in ('in_invoice', 'in_refund'):
             res.update({
-                'transation_nature_id':
-                    company_id.intrastat_purchase_transation_nature_id
+                'transaction_nature_id':
+                    company_id.intrastat_purchase_transaction_nature_id
             })
 
     @api.multi
@@ -330,8 +330,8 @@ class AccountInvoice(models.Model):
                     total_amount - subtotal,
                     precision_digits=precision_digits
                 ):
-                    raise UserError(_("Total Intrastat must be equal to\
-                        Total Invoice Untaxed"))
+                    raise UserError(_('Intrastat total must be equal to '
+                                      'invoice untaxed total'))
         return True
 
     @api.multi
@@ -424,7 +424,14 @@ class AccountInvoice(models.Model):
 
 class AccountInvoiceIntrastat(models.Model):
     _name = 'account.invoice.intrastat'
-    _description = "Intrastat line"
+    _description = "Intrastat Line"
+
+    @api.multi
+    def name_get(self):
+        res = []
+        for l in self:
+            res.append((l.id, '%s' % l.invoice_id.number))
+        return res
 
     @api.depends('amount_currency')
     def _compute_amount_euro(self):
@@ -541,79 +548,79 @@ class AccountInvoiceIntrastat(models.Model):
     intrastat_code_type = fields.Selection(
         selection=[
             ('service', "Service"),
-            ('good', "Good")],
+            ('good', "Goods")],
         string="Code Type",
         required=True,
         default='good')
     intrastat_code_id = fields.Many2one(
         comodel_name='report.intrastat.code',
-        string="Intrastat Code",
+        string="Nomenclature Code",
         required=True)
     statement_section = fields.Selection(
         selection=[
-            ('sale_s1', "Sale s1"),
-            ('sale_s2', "Sale s2"),
-            ('sale_s3', "Sale s3"),
-            ('sale_s4', "Sale s4"),
-            ('purchase_s1', "Purchase s1"),
-            ('purchase_s2', "Purchase s2"),
-            ('purchase_s3', "Purchase s3"),
-            ('purchase_s4', "Purchase s4")],
+            ('sale_s1', "Sales section 1"),
+            ('sale_s2', "Sales section 2"),
+            ('sale_s3', "Sales section 3"),
+            ('sale_s4', "Sales section 4"),
+            ('purchase_s1', "Purchases section 1"),
+            ('purchase_s2', "Purchases section 2"),
+            ('purchase_s3', "Purchases section 3"),
+            ('purchase_s4', "Purchases section 4")],
         string="Statement Section",
         compute='_get_statement_section')
 
     amount_euro = fields.Float(
-        string="Amount Euro",
+        string="Amount in Euro",
         compute='_compute_amount_euro',
         digits=dp.get_precision('Account'),
         store=True,
         readonly=True)
     amount_currency = fields.Float(
-        string="Amount Currency",
+        string="Amount in Currency",
         digits=dp.get_precision('Account'))
-    transation_nature_id = fields.Many2one(
-        comodel_name='account.intrastat.transation.nature',
-        string="Transation Nature")
+    transaction_nature_id = fields.Many2one(
+        comodel_name='account.intrastat.transaction.nature',
+        string="Transaction Nature")
     weight_kg = fields.Float(
-        string="Weight kg")
+        string="Net Mass (kg)")
     additional_units = fields.Float(
         string="Additional Units")
     additional_units_uom = fields.Char(
-        string="Additional Units UOM",
+        string="Additional Unit of Measure",
         readonly=True,
         related="intrastat_code_id.additional_unit_uom_id.name")
     statistic_amount_euro = fields.Float(
-        string="Statistic Amount Euro",
+        string="Statistic Value in Euro",
         digits=dp.get_precision('Account'))
     country_partner_id = fields.Many2one(
         comodel_name='res.country',
-        string="Country Partner",
+        string="Partner State",
         compute='_compute_partner_data',
         store=True,
         readonly=True)
     # Origin 
     province_origin_id = fields.Many2one(
         comodel_name='res.country.state',
-        string="Province Origin")
+        string="Origin Province")
     country_origin_id = fields.Many2one(
         comodel_name='res.country',
-        string="Country Origin")
+        string="Provenance Country")
     country_good_origin_id = fields.Many2one(
         comodel_name='res.country',
-        string="Country Goods Origin")
+        string="Goods Origin Country")
     delivery_code_id = fields.Many2one(
         comodel_name='account.incoterms',
-        string="Delivery")
+        string="Delivery Terms")
     transport_code_id = fields.Many2one(
         comodel_name='account.intrastat.transport',
-        string="Transport")
+        string="Transport Mode")
     # Destination
     province_destination_id = fields.Many2one(
         comodel_name='res.country.state',
-        string="province destination")
+        string="Destination Province")
     country_destination_id = fields.Many2one(
         comodel_name='res.country',
-        string="Country Destination")
+        string="Destination Country")
     invoice_number = fields.Char(
         string="Invoice Number",
         compute='_compute_invoice_ref',
@@ -625,17 +632,17 @@ class AccountInvoiceIntrastat(models.Model):
     supply_method = fields.Selection(
         selection=[
             ('I', 'Instant'),
-            ('R', 'Repeatedly')],
+            ('R', 'Repeated')],
         string="Supply Method")
     payment_method = fields.Selection(
         selection=[
-            ('B', "Transfer"),
-            ('A', "Accreditation"),
+            ('B', "Bank Transfer"),
+            ('A', "Credit"),
             ('X', "Other")],
         string="Payment Method")
     country_payment_id = fields.Many2one(
         comodel_name='res.country',
-        string="Country Payment")
+        string="Payment Country")
 
     @api.onchange('weight_kg')
     def change_weight_kg(self):
@@ -658,7 +665,7 @@ class AccountPaymentTerm(models.Model):
 
     intrastat_code = fields.Selection(
         selection=[
-            ('B', "Transfer"),
-            ('A', "Accreditation"),
+            ('B', "Bank Transfer"),
+            ('A', "Credit"),
             ('X', "Other")],
         string="Payment Method")
