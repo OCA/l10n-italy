@@ -14,13 +14,13 @@ ITA - Intrastat
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-italy/tree/11.0/l10n_it_intrastat
+    :target: https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_intrastat
     :alt: OCA/l10n-italy
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-italy-11-0/l10n-italy-11-0-l10n_it_intrastat
+    :target: https://translation.odoo-community.org/projects/l10n-italy-12-0/l10n-italy-12-0-l10n_it_intrastat
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/122/11.0
+    :target: https://runbot.odoo-community.org/runbot/122/12.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -28,11 +28,13 @@ ITA - Intrastat
 **Italiano**
 
 Questo modulo si occupa della riclassificazione delle merci e dei servizi che sono oggetto di
-transazioni comunitarie e di creare l'apposita dichiarazione Intrastat da presentare all'Agenzia delle Dogane.
+transazioni comunitarie
 
-Per la dichiarazione è possibile generare il file da presentare all'Agenzia delle Dogane.
+Il modulo precarica anche le tabelle necessarie alla compilazione della dichiarazione:
+nomenclature combinate, sezioni doganali, natura delle transazioni, modalità di trasporto.
 
-Il modulo precarica anche le tabelle necessarie alla compilazione della dichiarazione: nomenclature combinate, sezioni doganali, natura dell transazioni, modalità di asporto
+Per la creazione delle dichiarazioni, degli elenchi riepilogativi e le estrazioni da
+presentare all'Agenzia delle Dogane è necessario installare il modulo l10n_it_intrastat_statement.
 
 **Table of contents**
 
@@ -44,116 +46,77 @@ Configuration
 
 **Italiano**
 
-In Impostazioni → Utenti e aziende → Aziende → <nome_azienda>
-impostare i parametri delle seguenti sezioni presenti nella scheda "Informazioni generali":
+In Impostazioni → Utenti e aziende → Aziende → *Nome azienda*
+impostare i parametri delle seguenti sezioni presenti nella scheda "Informazioni generali".
 
 1. Intrastat
 
-   a) ID utente (codice UA): inserire il codice identificativo Intrastat dell’azienda (codice alfanumerico di 4 caratteri, utilizzato come identificativo per l’accesso alle applicazioni delle Dogane)
-   b) Unità di misura per Kg: parametro che indica l’unità di misura che viene verificata sulla riga fattura soggetta a Intrastat. Se sulla riga il peso è espresso nell’unità di misura indicata nel parametro (o in un suo multiplo), il peso che viene riportato nella corrispondente riga Intrastat è quello preso dalla riga fattura. In caso contrario, il peso viene rilevato secondo la configurazione del parametro che segue (Peso dal prodotto).
-   c) Peso dal Prodotto: indica se, invece che dalla riga fattura, il peso debba essere:
-
-      i. prelevato dalla scheda prodotto (opzioni “Peso netto” o “Peso Lordo)
-      ii. impostato manualmente dall’utente (opzione “Nessuno”)
-
-   d) Unità supplementari da:
+   a) ID utente (codice UA): inserire il codice identificativo Intrastat dell’azienda (codice alfanumerico di 4 caratteri, utilizzato come identificativo per l’accesso alle applicazioni delle Dogane).
+   b) Unità di misura per kg: parametro che indica l’unità di misura che viene verificata sulla riga fattura soggetta a Intrastat. Se sulla riga il peso è espresso nell’unità di misura indicata nel parametro (o in un suo multiplo), il peso che viene riportato nella corrispondente riga Intrastat è quello preso dalla riga fattura.
+   c) Unità supplementare da:
 
       i. peso: da peso dei prodotti sulla riga Intrastat
-      ii. quantità: da peso dei prodotti sulla riga Intrastat
-      iii. nessuno
+      ii. quantità: da quantità dei prodotti sulla riga Intrastat
+      iii. nulla
 
-   e) Escludere righe omaggio: esclude dalle righe Intrastat le righe a valore 0
-   f) Persona delegata: il nominativo della persona delegata alla presentazione della dichiarazione Intrastat
-   g) P.IVA persona delegata: la partita IVA della persona delegata alla presentazione della dichiarazione Intrastat
-   h) Nome file per esportazione: nome del file che può essere impostato per forzare quello predefinito (SCAMBI.CEE)
-   i) Sezione doganale: sezione doganale predefinita da proporre in una nuova dichiarazione
+   d) Escludere righe omaggio: esclude dalle righe Intrastat le righe a valore 0.
+   e) Delegato: il nominativo della persona delegata alla presentazione della dichiarazione Intrastat.
+   f) Partita IVA delegato: la partita IVA della persona delegata alla presentazione della dichiarazione Intrastat.
+   g) Nome file da esportare: nome del file che può essere impostato per forzare quello predefinito (SCAMBI.CEE).
+   h) Sezione doganale: sezione doganale predefinita da proporre in una nuova dichiarazione.
+   i) Ammontare minimo: in caso di fatture di importo inferiore usa questo valore nella dichiarazione.
 
-2. Valori predefiniti per vendite (parametri Intrastat per le fatture di vendita)
+2. Valori predefiniti per cessioni (parametri Intrastat per le fatture di vendita)
 
-   a) Forzare valore statistico in euro: casella di selezione attualmente non gestita
-   b) Natura della transazione: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento
-   c) Condizioni di consegna: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento
-   d) Modalità di trasporto: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Modo di trasporto)
-   e) Provincia di origine: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Provincia di origine della spedizione di merce venduta)
+   a) Forzare valore statistico in euro: casella di selezione attualmente non gestita.
+   b) Natura transazione: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.
+   c) Condizioni di consegna: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.
+   d) Modalità di trasporto: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Modo di trasporto).
+   e) Provincia di origine: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (provincia di origine della spedizione dei beni venduti).
 
 3. Valori predefiniti per acquisti (parametri Intrastat per le fatture di acquisto)
 
-   a) Forzare valore statistico in euro: flag attualmente non gestito
-   b) Natura della transazione: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento
-   c) Condizioni di consegna: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento
-   d) Modalità di trasporto: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Modo di trasporto)
-   e) Provincia di destinazione: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Provincia di destinazione della spedizione di merce acquistata)
+   a) Forzare valore statistico in euro: casella di selezione attualmente non gestita.
+   b) Natura transazione: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.
+   c) Condizioni di consegna: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.
+   d) Modalità di trasporto: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Modo di trasporto).
+   e) Provincia di destinazione: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (provincia di destinazione della spedizione dei beni acquistati).
 
-
-**Tabelle​ di​ ​sistema**
+**Tabelle di sistema**
 
 
 In Fatturazione/Contabilità → Configurazione → Intrastat
 sono presenti le funzionalità per la gestione delle tabelle di sistema.
 
-- Sezione doganale
+- Sezioni doganali
 - Nomenclature combinate
 - Modalità di trasporto
-- Natura della transazione
+- Natura transazione
 
 Tali tabelle sono pre-popolate in fase di installazione del modulo, in base ai valori ammessi per le dichiarazioni Intrastat.
 
-**Posizione​ ​fiscale**
+N.B.: Il sottomenù "Intrastat" è visibile solo se vengono abilitate le funzionalità contabili complete.
+
+**Posizione fiscale**
 
 L'assoggettamento ad Intrastat può essere gestito anche a livello generale di singolo partner, associandogli una posizione fiscale che abbia l'apposita casella "Soggetta a Intrastat" selezionata.
 
 Tutte le fatture create per il partner che ha una posizione fiscale marcata come soggetta ad Intrastat avranno l’apposito campo "Soggetta a Intrastat" selezionato automaticamente.
 
 
-**Prodotti​ e categorie**
+**Prodotti e categorie**
 
-La classificazione Intrastat delle merci o dei servizi può essere fatta sia a livello di categoria che a livello​ di prodotto.
+La classificazione Intrastat dei beni o dei servizi può essere fatta sia a livello di categoria che a livello di prodotto.
 
-La priorità è data al prodotto: se su un prodotto non è configurato un codice Intrastat, il sistema tenta di​ ricavarlo dalla categoria a cui quel prodotto è associato.
+La priorità è data al prodotto: se su un prodotto non è configurato un codice Intrastat, il sistema tenta di ricavarlo dalla categoria a cui quel prodotto è associato.
 
-Per il prodotto la sezione intrastat​ è nel tab Contabilità, ove è necessario inserire:
+Per il prodotto la sezione Intrastat si trova nella scheda «Fatturazione/Contabilità», ove è necessario inserire:
 
-- la tipologia (Merce, Servizio, Varie, Escludi)
-- il codice Intrastat, tra quelli censiti tramite l’apposita tabella di sistema Nomenclature combinate (il campo viene abilitato solo per le tipologie​ "Merce" e "Servizio")
+- la tipologia (Bene, Servizio, Varie, Escludere);
+- il codice Intrastat, tra quelli censiti tramite l’apposita tabella di sistema "Nomenclature combinate" (il campo viene abilitato solo per le tipologie "Bene" e "Servizio").
 
 
 Per le categorie di prodotti, le informazioni sono presenti in un’apposita area Intrastat della maschera di dettaglio:
-
-
-**Fatture​ e Note​ di credito​ Intrastat**
-
-E' possibile indicare l’assoggettamento di una fattura ad Intrastat attraverso l'apposito campo presente sulla maschera di modifica della fattura stessa.
-
-Sulla scheda Intrastat è presente un pulsante «Ricalcola righe Intrastat». Il pulsante permette al sistema:
-
-- di verificare se le righe prodotto presenti in fattura (scheda "Righe Fattura") si riferiscono a prodotti che hanno un codice Intrastat assegnato, o appartengono ad una categoria che ha un codice Intrastat​ aggregato
-- di generare per questi prodotti le corrispondenti righe Intrastat: le righe accorpano prodotti omogenei per codice Intrastat, indicando nel campo Massa netta (kg) il peso totale dei prodotti presenti nelle corrispondenti righe. La riga Intrastat, ovviamente, raggruppa il valore economico dei prodotti.
-- NB: se una riga presente in fattura si riferisce ad un prodotto che ha come tipologia Intrastat “Varie”, l’importo della riga verrà automaticamente suddiviso in maniera uguale sulle altre righe Intrastat che si riferiscono a merci o servizi. Tale automatismo permette di gestire, in maniera conforme a quanto previsto dalla normativa, il ribaltamento proporzionale dei costi sostenuti per spese accessorie (es: spese di trasporto) sui costi sostenuti per l’acquisto vero e proprio di merce o servizi.
-
-Nella scheda Intrastat, un clic su una riga Intrastat permette di accedere alla maschera di dettaglio.
-
-Nella​ ​ maschera:
-
-- il campo Paese partner viene popolato in automatico dal campo "Nazione" dell’indirizzo associato​ al  partner
-- i campi configurati in Configurazione → Aziende → Aziende → <company> (vedi Configurazione su company​ ) vengono popolati in automatico con i valori predefiniti impostati, in ragione della tipologia di fattura​ (vendita o acquisto)
-- se fattura di vendita:
-  1. i campi Origine → "Paese di provenienza" e Origine → "Paese di origine" vengono popolati in automatico con la nazione presente nell’indirizzo associato alla company
-  2. il campo Destinazione → Nazione destinazione viene popolato in automatico con la nazione presente nell'indirizzo associato al partner
-- se​ fattura di acquisto:
-  1. i campi Origine → "Paese di provenienza" e Origine → "Paese di origine" vengono popolati in automatico con la nazione presente nell’indirizzo associato al partner (fornitore)
-  2. il​ campo Destinazione → Nazione destinazione viene preso ​dai dati della company
-
-NB: tutti i campi possono ovviamente essere modificati, ma l’utilizzo del pulsante «Ricalcola righe Intrastat» ripristinerà i valori predefiniti, sui campi prelevati dalla configurazione della company o dalla riga fattura.
-
-
-**Note​ di​ credito**
-
-
-Nelle note di credito, sulla scheda Intrastat, è presente inoltre un menù a tendina che permette di selezionare il periodo fiscale di riferimento da rettificare per la nota di credito. Tale valore sarà utilizzato automaticamente​ nella dichiarazione (sezioni 2 e 4 - Rettifiche).
-
-Importante:
-
-se si seleziona un periodo che è lo stesso della dichiarazione, la nota di credito, per il suo importo, non confluirà nella sezione di rettifica, ma andrà a stornare direttamente il valore della fattura sulla quale è stata emessa. La verifica sulla fattura da stornare viene fatta confrontando la coppia di valori partner/nomenclatura combinata.
 
 Usage
 =====
@@ -161,60 +124,37 @@ Usage
 **Italiano**
 
 
-**Dichiarazione​ Intrastat**
+**Fatture e note di credito Intrastat**
+
+È possibile indicare l’assoggettamento di una fattura ad Intrastat attraverso l'apposito campo presente sulla maschera di modifica della fattura stessa.
+
+Sulla scheda Intrastat è presente un pulsante «Ricalcola righe Intrastat». Il pulsante permette al sistema:
+
+- di verificare se le righe prodotto presenti in fattura (scheda "Righe fattura") si riferiscono a prodotti che hanno un codice Intrastat assegnato, o appartengono ad una categoria che ha un codice Intrastat aggregato;
+- di generare per questi prodotti le corrispondenti righe Intrastat: le righe accorpano prodotti omogenei per codice Intrastat, indicando nel campo "Massa netta (kg)" il peso totale dei prodotti presenti nelle corrispondenti righe. La riga Intrastat, ovviamente, raggruppa il valore economico dei prodotti;
+- N.B.: se una riga presente in fattura si riferisce ad un prodotto che ha come tipologia Intrastat “Varie”, l’importo della riga verrà automaticamente suddiviso in maniera uguale sulle altre righe Intrastat che si riferiscono a beni o servizi. Tale automatismo permette di gestire, in maniera conforme a quanto previsto dalla normativa, il ribaltamento proporzionale dei costi sostenuti per spese accessorie (es: spese di trasporto) sui costi sostenuti per l’acquisto vero e proprio di beni o servizi.
+
+Nella scheda Intrastat, un clic su una riga Intrastat permette di accedere alla maschera di dettaglio.
+
+Nella maschera:
+
+- il campo "Stato acquirente/fornitore" viene popolato in automatico dal campo "Nazione" dell’indirizzo associato al partner;
+- i campi configurati in Impostazioni → Utenti e aziende → Aziende → *Nome azienda* (vedi "Informazioni generali" su azienda) vengono popolati in automatico con i valori predefiniti impostati, in ragione della tipologia di fattura (vendita o acquisto);
+- se fattura di vendita:
+  1. i campi Origine → "Paese di provenienza" e Origine → "Paese di origine" vengono popolati in automatico con la nazione presente nell’indirizzo associato all'azienda;
+  2. il campo Destinazione → "Paese di destinazione" viene popolato in automatico con la nazione presente nell'indirizzo associato al partner;
+- se fattura di acquisto:
+  1. i campi Origine → "Paese di provenienza" e Origine → "Paese di origine" vengono popolati in automatico con la nazione presente nell’indirizzo associato al partner (fornitore);
+  2. il campo Destinazione → "Paese di destinazione" viene preso dai dati dell'azienda.
+
+N.B.: tutti i campi possono ovviamente essere modificati, ma l’utilizzo del pulsante «Ricalcola righe Intrastat» ripristinerà i valori predefiniti, sui campi prelevati dalla configurazione dell'azienda o dalla riga fattura.
 
 
-Accedere a Fatturazione/Contabilità → Operazioni contabili → Dichiarazioni Intrastat ed utilizzare​ il ​pulsante «Crea» per creare una nuova dichiarazione.
+**Note di credito**
 
-N.B. : "Operazioni contabili" è visibile solo se abilitate  funzionalità contabili complete
+Importante:
 
-Nella parte superiore della maschera, inserire i dati:
-
-- Azienda:​ popolato in automatico con il nome​ dell'azienda
-- Partita IVA contribuente:​ la​ partita​ IVA,​ popolata​ in​ automatico​ con​ il​ nome​ dell'azienda
-- Data​ di​ presentazione:​ popolata​ in​ automatico​ con​ la​ data​ corrente
-- Anno di presentazione: scelto dal menù a tendina che visualizza gli anni fiscali configurati​ a sistema
-- Tipo periodo: l’orizzonte temporale a cui fa riferimento la dichiarazione, scelto da menù​ a tendina​ con​ le​ voci​ “Mese”​ o “Trimestre”
-- Periodo: il periodo temporale a cui fa riferimento la dichiarazione. Inserire il numero del mese (es. 9 per settembre, se nel campo Tipo periodo è stato selezionato “Mese”, oppure in numero del trimestre (es: 1 per il trimestre gennaio-marzo), se nel campo Tipo periodo è stato selezionato​ “Trimestre”
-- Caselle di selezione “Vendite” e “Acquisti”: da selezionare in base alla tipologia di operazioni che si vogliono inserire​ nella​ dichiarazione
-- Numero:​ progressivo​ della​ dichiarazione​ proposto​ in​ automatico​ dal​ sistema
-- Tipo di contenuto:​ selezionare​ la​ voce​ di​ competenza​ dal​ menù​ a tendina
-- Casi​ speciali:​ selezionare​ la​ voce​ di​ competenza​ dal​ menù​ a tendina
-- Sezione​ doganale:​ selezionare​ la​ voce​ di​ riferimento​ dal​ menù​ a tendina
-
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/11.0/l10n_it_intrastat/static/img/dichiarazione.png
-   :alt: Dichiarazione
-   :width: 600 px
-
-Inseriti​ e salvati​ i dati,​ utilizzare​ il​ pulsante «Ricalcola»​ per​ popolare​ la​ dichiarazione. Per​ ciascuna scheda​ (”Vendite”​ e “Acquisti”)​ verranno​ inserite​ nelle​ sezioni​ di​ riferimento:
-
-- Vendite:
-  - Vendita​mMerci​ - Sezione​ 1 → fatture​ di​ vendita​ di​ merci
-  - Rettifica​ merci​ - Sezione 2 → note​ di credito​ su​ vendita​ merci
-  - Vendita​ servizi​ - Sezione 3 → fatture​ di​ vendita​ di​ servizi
-  - Rettifica​ servizi​ - Sezione​ 4 → note​ di credito​ su​ vendita​ servizi
-- Acquisti:
-  - Acquisto​ merci​ - Sezione​ 1 → fatture​ di​ acquisto​ di​ merci
-  - Rettifica​ merci​ - Sezione​ 2 → note​ di credito​ su​ acquisto​ merci
-  - Vendita​ servizi​ - Sezione 3 → fatture​ di​ acquisto​ di​ servizi
-  - Rettifica​ servizi​ - Sezione​ 4 → note​ di credito​ su​ acquisto​ servizi
-
-I dati presi dalle fatture e dalle note credito indicate come soggette ad Intrastat, relative al periodo di riferimento.
-
-NB: i record presenti nelle schede "Rettifica Merci - Sezione 2" e "Rettifica Servizi - Sezione 4", sia per gli acquisti che​ per​ le​ vendite, vanno​ modificati​ per​ inserire​ i dati​ obbligatori​ mancanti.
-
-Inseriti i dati e salvata la dichiarazione, è possibile procedere all’elaborazione dei file da inviare all’Agenzia​ delle​ Dogane​ tramite​ l’apposito​ pulsante​ «Esporta​ File». 
-
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/11.0/l10n_it_intrastat/static/img/export_file.png
-   :alt: Export file
-
-Il​ pulsante​ fa​ partire​ una procedura guidata,​ che​ permette​ di​ scegliere​ quale​ tipo​ di​ file​ estrarre:
-
-- file​ di invio​ (complessivo)
-- file​ acquisti.cee
-- file​ cessioni.cee
-
-Il file potrà essere scaricato tramite l’apposito link visualizzato nella maschera della procedura guidata. Di seguito un esempio​ per​ lo scaricamento del​ file​ cessioni.cee​ (il​ nome​ del​ file​ da​ scaricare​ è SCAMBI.CEE).
+Se si seleziona un periodo che è lo stesso della dichiarazione, la nota di credito, per il suo importo, non confluirà nella sezione di rettifica, ma andrà a stornare direttamente il valore della fattura sulla quale è stata emessa. La verifica sulla fattura da stornare viene fatta confrontando la coppia di valori partner/nomenclatura combinata.
 
 Bug Tracker
 ===========
@@ -222,7 +162,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_intrastat%0Aversion:%2011.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_intrastat%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -243,6 +183,7 @@ Contributors
 * Lorenzo Battistini
 * Lara Baggio <lbaggio@linkgroup.it>
 * Glauco Prina <gprina@linkgroup.it>
+* Sergio Zanchetta <https://github.com/primes2h>
 
 Maintainers
 ~~~~~~~~~~~
@@ -257,6 +198,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/11.0/l10n_it_intrastat>`_ project on GitHub.
+This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_intrastat>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
