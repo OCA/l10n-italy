@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="ClientDetails">
+        <t t-jquery=".client-details-right" t-operation="append">
+            <div class='client-detail'>
+                <span class='label'>F.C.</span>
+                <t t-if='partner.fiscalcode'>
+                    <span class='detail fiscalcode'><t t-esc='partner.fiscalcode'/></span>
+                </t>
+                <t t-if='!partner.fiscalcode'>
+                    <span class='detail fiscalcode empty'>N/A</span>
+                </t>
+            </div>
+        </t>
+    </t>
+    <t t-extend="ClientDetailsEdit">
+        <t t-jquery=".client-details-right" t-operation="append">
+            <div class='client-detail'>
+                <span class='label'>F.C.</span>
+                <input class='detail fiscalcode' name='fiscalcode' t-att-value='partner.fiscalcode || ""'/>
+            </div>
+        </t>
+    </t>
+</templates>
