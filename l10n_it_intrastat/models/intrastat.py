@@ -7,15 +7,15 @@ from odoo.exceptions import ValidationError
 
 class AccountIntrastatCustom(models.Model):
     _name = 'account.intrastat.custom'
-    _description = 'Account INTRASTAT - Customs'
+    _description = 'Customs Sections'
 
     code = fields.Char(
         size=6)
     name = fields.Char()
     date_start = fields.Date(
-        string="Date start")
+        string="Start Date")
     date_stop = fields.Date(
-        string="Date stop")
+        string="Stop Date")
 
 
 class ReportIntrastatCode(models.Model):
@@ -27,19 +27,19 @@ class ReportIntrastatCode(models.Model):
     active = fields.Boolean(
         default=True)
     additional_unit_required = fields.Boolean(
-        string="Unit of Measure Additional Required")
+        string="Additional Unit of Measure Required")
     additional_unit_from = fields.Selection(
         selection=[
             ('quantity', "Quantity"),
             ('weight', "Weight"),
             ('none', "None")],
-        string="Additional Unit of Measure FROM")
+        string="Additional Unit of Measure from")
     additional_unit_uom_id = fields.Many2one(
         comodel_name='uom.uom',
-        string="Unit of Measure Additional")
+        string="Additional Unit of Measure")
     type = fields.Selection(
         selection=[
-            ('good', "Good"),
+            ('good', "Goods"),
             ('service', "Service")])
     description = fields.Char(
         string="Description",
@@ -54,13 +54,13 @@ class ResCountry(models.Model):
         self.ensure_one()
         if not self.code:
             raise ValidationError(
-                _("Country %s without ISO code") % self.display_name)
+                _("State %s without ISO code") % self.display_name)
         return True
 
 
 class AccountIntrastatTransport(models.Model):
     _name = 'account.intrastat.transport'
-    _description = "Account INTRASTAT - Transport"
+    _description = "Transport Mode"
 
     code = fields.Char(
         string="Code",
@@ -71,8 +71,8 @@ class AccountIntrastatTransport(models.Model):
 
 
 class AccountIntrastatTransationNature(models.Model):
-    _name = 'account.intrastat.transation.nature'
-    _description = "Account INTRASTAT - Transation Nature"
+    _name = 'account.intrastat.transaction.nature'
+    _description = "Transaction Nature"
 
     code = fields.Char(
         string="Code",
