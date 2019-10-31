@@ -852,11 +852,7 @@ class WizardExportFatturapa(orm.TransientModel):
                             for bank in invoice.bank_account_ids:
                                 refBank = bank
                     except Exception as ex:
-<<<<<<< HEAD
                         logging.error('Cannot get bank for RIBA from invoice')
-=======
-                        logging.error(ex)
->>>>>>> refs/remotes/origin/7.0_fattura_pa_backport
                 if refBank:
                     DettaglioPagamento.IstitutoFinanziario = (
                         refBank.bank_name)
