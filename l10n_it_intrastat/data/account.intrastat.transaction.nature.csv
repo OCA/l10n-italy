@@ -1,0 +1,10 @@
+id,name,code
+code_1,Acquisto o vendita (compreso il baratto),1
+code_2,Restituzione o sostituzione di merci,2
+code_3,"Aiuti governativi, privati o finanziati dalla Comunità europea, altri aiuti pubblici di carattere generale, altri aiuti (privati, organizzazioni non governative)",3
+code_4,Operazione in vista di una lavorazione per conto terzi,4
+code_5,Operazione successiva ad una lavorazione per conto terzi,5
+code_6,Movimento di merci senza trasferimento di proprietà (noleggio e leasing operativi),6
+code_7,Operazioni nel quadro di progetti di difesa comune o di altri programmi di protezione intergovernativi comuni,7
+code_8,"Fornitura di materiale e attrezzature per lavori nel quadro di un contratto generale di costruzione o di genio civile, per il quale non è richiesta alcuna fatturazione separata delle merci e per il quale sarà emessa una fattura per l’intero contratto",8
+code_9,Altre transazioni,9

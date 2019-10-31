@@ -1,5 +1,4 @@
 **Italiano**
 
-Questo modulo si occupa di generare la Dichiarazione Intrastat e le relative stampe
-
+Questo modulo si occupa di generare la dichiarazione Intrastat e le relative stampe
 

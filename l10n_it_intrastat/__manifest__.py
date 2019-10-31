@@ -6,6 +6,7 @@
     'name': "ITA - Intrastat",
     'version': '12.0.1.0.0',
     'category': 'Account',
+    'summary': 'Riclassificazione merci e servizi per dichiarazioni Intrastat',
     'author': "Openforce, Link IT srl, Agile Business Group, "
               "Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/l10n-italy/tree/'
@@ -20,7 +21,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'data/account.intrastat.transation.nature.csv',
+        'data/account.intrastat.transaction.nature.csv',
         'data/account.intrastat.transport.csv',
         'data/account.intrastat.custom.csv',
         'data/report.intrastat.code.csv',
