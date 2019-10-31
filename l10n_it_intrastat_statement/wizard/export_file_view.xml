@@ -12,7 +12,7 @@
                     <p>Here is the exported file: <field name="data" readonly="1" filename="name"/></p>
                 </div>
                 <footer states="choose">
-                    <button name="act_getfile" string="Export file invio" type="object" class="oe_highlight"
+                    <button name="act_getfile" string="Export submission file" type="object" class="oe_highlight"
                         context="{'export_without_head': 0, 'purchase': True, 'sale': True}"/> or
                     <button name="act_getfile" string="Export acquisti.cee" type="object" class="oe_highlight"
                         context="{'export_without_head': 1, 'export_filename': 'SCAMBI.CEE', 'purchase': True, 'sale': False}" /> or

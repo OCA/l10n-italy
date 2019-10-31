@@ -87,7 +87,7 @@
                 <tree>
                     <field name="intrastat_code_type"/>
                     <field name="intrastat_code_id"/>
-                    <field name="transation_nature_id"/>
+                    <field name="transaction_nature_id"/>
                     <field name="transport_code_id"/>
                     <field name="weight_kg"/>
                     <field name="amount_currency" sum="Total"/>
@@ -110,7 +110,7 @@
                                <field name="statistic_amount_euro"/>
                            </group>
                            <group>
-                               <field name="transation_nature_id"/>
+                               <field name="transaction_nature_id"/>
                                <field name="weight_kg"/>
                                <field name="additional_units"/>
                                <field name="additional_units_uom"/>
@@ -181,7 +181,7 @@
                     <field name="intrastat_code_id"/>
                     <field name="country_origin_id"/>
                     <field name="country_destination_id"/>
-                    <field name="transation_nature_id"/>
+                    <field name="transaction_nature_id"/>
                     <field name="transport_code_id"/>
                     <field name="weight_kg"/>
                     <field name="additional_units"/>
@@ -201,14 +201,14 @@
                     <field name="country_destination_id" filter_domain="[('country_destination_id','ilike',self)]"/>
                     <group expand="0" string="Group By...">
                         <filter name="group_by_partne" string="Partner" domain="[]" context="{'group_by':'partner_id'}"/>
-                        <filter name="intrastat_code" string="Intrastat Code" domain="[]"  context="{'group_by':'intrastat_code_id'}"/>
+                        <filter name="intrastat_code" string="Nomenclature Code" domain="[]"  context="{'group_by':'intrastat_code_id'}"/>
                     </group>
                 </search>
             </field>
         </record>
 
         <record id="view_invoice_intrastat_report_action" model="ir.actions.act_window">
-            <field name="name">Intrastat Report</field>
+            <field name="name">Intrastat Lines</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">account.invoice.intrastat</field>
             <field name="view_mode">tree,form</field>
@@ -216,11 +216,11 @@
             <field name="search_view_id" ref="view_invoice_intrastat_search" />
         </record>
 
-        <menuitem name="Intrastat report"
+        <menuitem id="menu_intrastat_statement" name="Intrastat" parent="account.menu_finance_entries"/>
+
+        <menuitem name="Intrastat Lines"
             action="view_invoice_intrastat_report_action" id="menu_report_intrastat_all"
-            parent="account.menu_finance_reports" sequence="4"/>
-
-
+            parent="menu_intrastat_statement" sequence="5"/>
 
             
         <!--
