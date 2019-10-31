@@ -852,7 +852,11 @@ class WizardExportFatturapa(orm.TransientModel):
                             for bank in invoice.bank_account_ids:
                                 refBank = bank
                     except Exception as ex:
+<<<<<<< HEAD
                         logging.error('Cannot get bank for RIBA from invoice')
+=======
+                        logging.error(ex)
+>>>>>>> refs/remotes/origin/7.0_fattura_pa_backport
                 if refBank:
                     DettaglioPagamento.IstitutoFinanziario = (
                         refBank.bank_name)
@@ -981,31 +985,31 @@ class WizardExportFatturapa(orm.TransientModel):
             context_partner = context.copy()
             context_partner.update({'lang': partner.lang})
             user_obj = self.pool['res.users']
-            try:
-                self.setFatturaElettronicaHeader(cr, uid, company,
-                                                 partner, fatturapa, context=context_partner)
-                for invoice_id in invoice_ids:
-                    inv = invoice_obj.browse(
-                        cr, uid, invoice_id, context=context_partner)
-                    if inv.fatturapa_attachment_out_id:
-                        raise orm.except_orm(
-                            _("Error"),
-                            _("Invoice %s has E-invoice Export File yet") % (
-                                inv.number))
-                    if obj.report_print_menu:
-                        self.generate_attach_report(cr, uid, ids, inv)
-                    invoice_body = FatturaElettronicaBodyType()
-                    invoice_obj.preventive_checks(cr, uid, inv.id)
-                    self.setFatturaElettronicaBody(
-                        cr, uid, ids, inv, invoice_body, context=context_partner)
-                    fatturapa.FatturaElettronicaBody.append(invoice_body)
-                    # TODO DatiVeicoli
-    
-                number = self.setProgressivoInvio(cr, uid, fatturapa, context=context)
-            except (SimpleFacetValueError, SimpleTypeValueError) as e:
-                raise orm.except_orm(
-                    _("XML SDI validation error"),
-                    (unicode(e)))
+#             try:
+            self.setFatturaElettronicaHeader(cr, uid, company,
+                                             partner, fatturapa, context=context_partner)
+            for invoice_id in invoice_ids:
+                inv = invoice_obj.browse(
+                    cr, uid, invoice_id, context=context_partner)
+                if inv.fatturapa_attachment_out_id:
+                    raise orm.except_orm(
+                        _("Error"),
+                        _("Invoice %s has E-invoice Export File yet") % (
+                            inv.number))
+                if obj.report_print_menu:
+                    self.generate_attach_report(cr, uid, ids, inv)
+                invoice_body = FatturaElettronicaBodyType()
+                invoice_obj.preventive_checks(cr, uid, inv.id)
+                self.setFatturaElettronicaBody(
+                    cr, uid, ids, inv, invoice_body, context=context_partner)
+                fatturapa.FatturaElettronicaBody.append(invoice_body)
+                # TODO DatiVeicoli
+
+            number = self.setProgressivoInvio(cr, uid, fatturapa, context=context)
+#             except (SimpleFacetValueError, SimpleTypeValueError) as e:
+#                 raise orm.except_orm(
+#                     _("XML SDI validation error"),
+#                     (unicode(e)))
 
             attach_id = self.saveAttachment(cr, uid, fatturapa, number, context=context)
             attachment_ids.append(attach_id)
