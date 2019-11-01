@@ -20,8 +20,9 @@ class StockPickingCarriageCondition(models.Model):
     _name = "stock.picking.carriage_condition"
     _description = "Carriage Condition"
 
-    name = fields.Char(string='Carriage Condition', required=True)
-    note = fields.Text(string='Note')
+    name = fields.Char(string='Carriage Condition', required=True,
+                       translate=True)
+    note = fields.Text(string='Note', translate=True)
 
 
 class StockPickingGoodsDescription(models.Model):
@@ -29,8 +30,9 @@ class StockPickingGoodsDescription(models.Model):
     _name = 'stock.picking.goods_description'
     _description = "Description of Goods"
 
-    name = fields.Char(string='Description of Goods', required=True)
-    note = fields.Text(string='Note')
+    name = fields.Char(string='Description of Goods', required=True,
+                       translate=True)
+    note = fields.Text(string='Note', translate=True)
 
 
 class StockPickingTransportationReason(models.Model):
@@ -38,8 +40,9 @@ class StockPickingTransportationReason(models.Model):
     _name = 'stock.picking.transportation_reason'
     _description = 'Reason for Transportation'
 
-    name = fields.Char(string='Reason For Transportation', required=True)
-    note = fields.Text(string='Note')
+    name = fields.Char(string='Reason For Transportation', required=True,
+                       translate=True)
+    note = fields.Text(string='Note', translate=True)
     to_be_invoiced = fields.Boolean(string='To be Invoiced')
 
 
@@ -48,8 +51,9 @@ class StockPickingTransportationMethod(models.Model):
     _name = 'stock.picking.transportation_method'
     _description = 'Method of Transportation'
 
-    name = fields.Char(string='Method of Transportation', required=True)
-    note = fields.Text(string='Note')
+    name = fields.Char(string='Method of Transportation', required=True,
+                       translate=True)
+    note = fields.Text(string='Note', translate=True)
 
 
 class StockDdtType(models.Model):
@@ -81,7 +85,7 @@ class StockPickingPackagePreparation(models.Model):
 
     _inherit = 'stock.picking.package.preparation'
     _rec_name = 'display_name'
-    _order = 'date desc'
+    _order = 'ddt_number, date desc'
 
     @api.multi
     @api.depends('transportation_reason_id.to_be_invoiced')
