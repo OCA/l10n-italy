@@ -6,7 +6,7 @@
 
 {
     'name': 'ITA - Fattura elettronica - Emissione',
-    'version': '12.0.1.5.0',
+    'version': '12.0.1.6.0',
     'development_status': 'Beta',
     'category': 'Localization/Italy',
     'summary': 'Emissione fatture elettroniche',
@@ -16,6 +16,7 @@
                'l10n_it_fatturapa_out',
     'license': 'LGPL-3',
     'depends': [
+        'l10n_it_account',
         'l10n_it_fatturapa',
         'l10n_it_split_payment',
         ],
