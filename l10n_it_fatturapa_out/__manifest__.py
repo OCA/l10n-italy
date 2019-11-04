@@ -16,6 +16,7 @@
     'website': 'https://github.com/OCA/l10n_italy',
     'license': 'LGPL-3',
     'depends': [
+        'l10n_it_account',
         'l10n_it_fatturapa',
         'l10n_it_split_payment',
         ],
