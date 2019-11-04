@@ -16,7 +16,7 @@
                             <div class="content-group">
                                 <div class="row">
                                     <label for="fatturapa_fiscal_position_id" class="col-lg-3 o_light_label"/>
-                                    <field name="fatturapa_fiscal_position_id"/>
+                                    <field name="fatturapa_fiscal_position_id" options="{'no_create': True, 'no_open':True}"/>
                                 </div>
                                 <div class="row">
                                     <label for="fatturapa_tax_representative" class="col-lg-3 o_light_label"/>
@@ -83,7 +83,7 @@
                 <page string="E-invoice">
                     <group>
                         <group>
-                            <field name="fatturapa_fiscal_position_id" required="1"/>
+                            <field name="fatturapa_fiscal_position_id" required="1" options="{'no_create': True, 'no_open':True}"/>
                         </group>
                     </group>
                 </page>
