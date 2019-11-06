@@ -7,7 +7,7 @@
 {
     'name': 'Italian Localization - Fattura elettronica - Integrazione DDT',
     "summary": "Modulo ponte tra emissione fatture elettroniche e DDT",
-    "version": "8.0.1.0.0",
+    "version": "8.0.1.0.1",
     "development_status": "Beta",
     "category": "Hidden",
     'website': 'https://github.com/OCA/l10n-italy/tree/10.0/'
