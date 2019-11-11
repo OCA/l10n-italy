@@ -52,10 +52,6 @@
                         attrs="{'invisible': [('withholding_tax', '=', False)]}"/>
                 </xpath>
 
-	            <xpath expr="//field[@name='fiscal_position_id']" position="after">
-                	<field name="print_withholding_tax_in_pdf"/>
-            	</xpath>
-
             </field>
         </record>
 
