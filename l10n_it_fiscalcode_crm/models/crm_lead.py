@@ -10,12 +10,12 @@ class Lead(models.Model):
 
     @api.multi
     def _create_lead_partner(self):
-        """Add VAT to partner."""
+        """Add fiscal code to partner."""
         return (super(Lead, self.with_context(
             default_fiscalcode=self.fiscalcode))._create_lead_partner())
 
     def _onchange_partner_id_values(self, partner_id):
-        """Recover fiscalcode from partner if available."""
+        """Recover fiscal code from partner if available."""
         result = super(Lead, self)._onchange_partner_id_values(partner_id)
         if not partner_id:
             return result
