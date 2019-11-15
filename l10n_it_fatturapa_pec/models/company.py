@@ -20,4 +20,4 @@ class ResConfigSettings(models.TransientModel):
         string="Supplier e-invoice creator",
         help="This user will be used at supplier e-invoice creation. "
              "This setting is relevant in multi-company environments"
-        )
+    )
