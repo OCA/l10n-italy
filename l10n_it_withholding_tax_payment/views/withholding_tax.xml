@@ -25,13 +25,13 @@
         </record>
 
         <!--
-        WITHHOLDING TAX MOVE PAYMENT
-         -->
+            Withholding Tax Payment Move
+          -->
         <record id="view_withholding_move_payment_tree" model="ir.ui.view">
             <field name="name">withholding.tax.move.payment.view.tree</field>
             <field name="model">withholding.tax.move.payment</field>
             <field name="arch" type="xml">
-                <tree string="Withholding Move Payment">
+                <tree string="Withholding Payment Move">
                     <field name="name"/>
                     <field name="date"/>
                     <field name="date_start"/>
@@ -47,7 +47,7 @@
             <field name="name">withholding.tax.move.payment.view.form</field>
             <field name="model">withholding.tax.move.payment</field>
             <field name="arch" type="xml">
-                <form string="Withholding Tax Move Payment">
+                <form string="Withholding Tax Payment Move">
                     <header>
                         <button name="action_set_to_draft" states="confirmed" string="Set to Draft" type="object" />
                         <button name="action_confirmed" states="draft" string="Confirm" type="object" />
@@ -55,7 +55,7 @@
                             attrs="{'invisible': ['|', ('state', '!=', 'confirmed'), ('move_id', '!=', False)]}"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,confirmed"/>
                     </header>
-                    <sheet string="Withholding Move Payment">
+                    <sheet string="Withholding Payment Move">
                         <group>
                             <field name="name"/>
                             <field name="date"/>
@@ -91,12 +91,12 @@
         </record>
 
         <record id="action_withholding_tax_move_payment" model="ir.actions.act_window">
-            <field name="name">Withhoulding Tax Move Payment</field>
+            <field name="name">Withholding Tax Payment Move</field>
             <field name="res_model">withholding.tax.move.payment</field>
             <field name="view_id" ref="view_withholding_move_payment_tree"/>
         </record>
 
-        <menuitem id="menu_withholding_tax_move_payment" name="WT Move Payments" 
+        <menuitem id="menu_withholding_tax_move_payment" name="WT Payment Moves"
             action="action_withholding_tax_move_payment" parent="l10n_it_withholding_tax.wt_main" sequence="20"/>
 
 </odoo>
