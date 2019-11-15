@@ -1,23 +1,29 @@
 # Copyright 2015 Alessandro Camilli (<http://www.openforce.it>)
+# Copyright 2019 Matteo Bilotta
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    'name': 'Italian Withholding Tax Payment',
-    'version': '11.0.1.0.0',
-    'category': 'Account',
-    'author': 'Openforce, Odoo Italia Network, '
-              'Odoo Community Association (OCA)',
-    'website': 'https://odoo-community.org/',
+    'name': "ITA - Ritenuta d'acconto - Pagamenti",
+    'summary': "Gestisce le ritenute sulle fatture e sui pagamenti",
+    'version': '12.0.1.0.0',
+    'development_status': "Beta",
+    'category': "Invoicing & Payments",
+    'website': 'https://github.com/OCA/l10n-italy',
+    'author': "Openforce, "
+              "Odoo Italia Network, "
+              "Odoo Community Association (OCA)",
     'license': 'AGPL-3',
-    "depends": ['account',
-                'l10n_it_withholding_tax'],
-    "data": [
-        'views/withholding_tax.xml',
-        'security/ir.model.access.csv',
-        'data/sequence.xml',
-        'wizard/create_move_payment_view.xml',
-        'security/security.xml',
+    'application': False,
+    'installable': True,
+    'depends': [
+        'account',
+        'l10n_it_withholding_tax'
     ],
-    "active": False,
-    "installable": True
+    'data': [
+        'data/sequence.xml',
+        'security/ir.model.access.csv',
+        'security/security.xml',
+        'views/withholding_tax.xml',
+        'wizard/create_move_payment_view.xml',
+    ]
 }
