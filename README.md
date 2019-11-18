@@ -37,7 +37,7 @@ addon | version | summary
 [l10n_it_fatturapa_export_zip](l10n_it_fatturapa_export_zip/) | 10.0.1.0.0 | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche
 [l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 10.0.1.11.3 | Ricezione fatture elettroniche
 [l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 10.0.1.0.0 | Modulo ponte tra ricezione fatture elettroniche e acquisti
-[l10n_it_fatturapa_in_rc](l10n_it_fatturapa_in_rc/) | 10.0.1.1.0 | Modulo di collegamento tra e-fattura in acquisto e reverse charge
+[l10n_it_fatturapa_in_rc](l10n_it_fatturapa_in_rc/) | 10.0.1.1.1 | Modulo di collegamento tra e-fattura in acquisto e reverse charge
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 10.0.1.5.1 | Emissione fatture elettroniche
 [l10n_it_fatturapa_out_ddt](l10n_it_fatturapa_out_ddt/) | 10.0.1.0.4 | Modulo ponte tra emissione fatture elettroniche e DDT
 [l10n_it_fatturapa_out_stamp](l10n_it_fatturapa_out_stamp/) | 10.0.1.0.2 | Modulo ponte tra emissione fatture elettroniche e imposta di bollo
