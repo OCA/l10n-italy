@@ -14,7 +14,7 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "autoinstall": True,
+    "auto_install": True,
     "depends": [
         "l10n_it_reverse_charge",
         "l10n_it_fatturapa_in",
