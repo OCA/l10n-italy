@@ -4,7 +4,7 @@
     'name': 'ITA - Fattura elettronica - Inversione contabile',
     "summary": "Modulo ponte tra e-fattura in acquisto e inversione"
                " contabile",
-    "version": "12.0.1.1.1",
+    "version": "12.0.1.1.2",
     "development_status": "Beta",
     "category": "Hidden",
     'website': 'https://github.com/OCA/l10n-italy/tree/10.0/'
@@ -14,7 +14,7 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "autoinstall": True,
+    "auto_install": True,
     "depends": [
         "l10n_it_reverse_charge",
         "l10n_it_fatturapa_in",
