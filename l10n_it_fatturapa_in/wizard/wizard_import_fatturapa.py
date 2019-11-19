@@ -1124,8 +1124,24 @@ class WizardImportFatturapa(models.TransientModel):
                     }
                 )
 
+    def _get_last_due_date(self, DatiPagamento):
+        dates = []
+        for PaymentLine in DatiPagamento:
+            details = PaymentLine.DettaglioPagamento
+            if details:
+                for dline in details:
+                    if dline.DataScadenzaPagamento:
+                        dates.append(fields.Date.to_date(dline.DataScadenzaPagamento))
+        dates.sort(reverse=True)
+        return dates
+
     def set_payments_data(self, FatturaBody, invoice_id, partner_id):
         PaymentsData = FatturaBody.DatiPagamento
+        partner = self.env['res.partner'].browse(partner_id)
+        if not partner.property_supplier_payment_term_id:
+            due_dates = self._get_last_due_date(FatturaBody.DatiPagamento)
+            if due_dates:
+                self.env['account.invoice'].browse(invoice_id).date_due = due_dates[0]
         if PaymentsData:
             PaymentDataModel = self.env['fatturapa.payment.data']
             PaymentTermsModel = self.env['fatturapa.payment_term']
