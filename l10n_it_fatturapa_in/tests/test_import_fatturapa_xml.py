@@ -336,10 +336,12 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
                 self.assertTrue(len(invoice.invoice_line_ids) == 2)
                 for line in invoice.invoice_line_ids:
                     self.assertFalse(line.product_id)
+                self.assertEqual(invoice.date_due, date(2015, 1, 30))
             if invoice.reference == '456':
                 self.assertTrue(len(invoice.invoice_line_ids) == 1)
                 for line in invoice.invoice_line_ids:
                     self.assertFalse(line.product_id)
+                self.assertEqual(invoice.date_due, date(2015, 1, 28))
 
         partner = invoice.partner_id
         partner.e_invoice_default_product_id = (
