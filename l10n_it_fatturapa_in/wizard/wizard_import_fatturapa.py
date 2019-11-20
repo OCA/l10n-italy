@@ -1043,38 +1043,42 @@ class WizardImportFatturapa(models.TransientModel):
             invoice_data['art73'] = True
 
     def set_roundings(self, FatturaBody, invoice):
-        dati_riepilogo = FatturaBody.DatiBeniServizi.DatiRiepilogo
-        if dati_riepilogo:
+        rounding = 0.0
+        if FatturaBody.DatiBeniServizi.DatiRiepilogo:
+            for summary in FatturaBody.DatiBeniServizi.DatiRiepilogo:
+                rounding += float(summary.Arrotondamento or 0.0)
+        if FatturaBody.DatiGenerali.DatiGeneraliDocumento:
+            summary = FatturaBody.DatiGenerali.DatiGeneraliDocumento
+            rounding += float(summary.Arrotondamento or 0.0)
+        if rounding:
             arrotondamenti_attivi_account_id = self.env.user.company_id.\
                 arrotondamenti_attivi_account_id
             arrotondamenti_passivi_account_id = self.env.user.company_id.\
                 arrotondamenti_passivi_account_id
             arrotondamenti_tax_id = self.env.user.company_id.\
                 arrotondamenti_tax_id
-            for summary in dati_riepilogo:
-                rounding = summary.Arrotondamento or 0.0
-                line_vals = {}
-                if rounding > 0.0:
-                    line_vals = {
-                        'invoice_id': invoice.id,
-                        'name': _("Passive Rounding"),
-                        'account_id': arrotondamenti_passivi_account_id.id,
-                        'price_unit': rounding,
-                        'invoice_line_tax_ids':
-                            [(6, 0, [arrotondamenti_tax_id.id])],
-                    }
-                elif rounding < 0.0:
-                    line_vals = {
-                        'invoice_id': invoice.id,
-                        'name': _("Active Rounding"),
-                        'account_id': arrotondamenti_attivi_account_id.id,
-                        'price_unit': rounding,
-                        'invoice_line_tax_ids':
-                            [(6, 0, [arrotondamenti_tax_id.id])],
-                    }
+            line_vals = {}
+            if rounding > 0.0:
+                line_vals = {
+                    'invoice_id': invoice.id,
+                    'name': _("Passive Rounding"),
+                    'account_id': arrotondamenti_passivi_account_id.id,
+                    'price_unit': rounding,
+                    'invoice_line_tax_ids':
+                        [(6, 0, [arrotondamenti_tax_id.id])],
+                }
+            elif rounding < 0.0:
+                line_vals = {
+                    'invoice_id': invoice.id,
+                    'name': _("Active Rounding"),
+                    'account_id': arrotondamenti_attivi_account_id.id,
+                    'price_unit': rounding,
+                    'invoice_line_tax_ids':
+                        [(6, 0, [arrotondamenti_tax_id.id])],
+                }
 
-                if line_vals:
-                    self.env['account.invoice.line'].create(line_vals)
+            if line_vals:
+                self.env['account.invoice.line'].create(line_vals)
 
     def set_efatt_rounding(self, FatturaBody, invoice_data):
         if FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento:
@@ -1298,7 +1302,7 @@ class WizardImportFatturapa(models.TransientModel):
             # because otherwise DatiRiepilogo and odoo invoice total would
             # differ
             amount_untaxed = invoice.compute_xml_amount_untaxed(
-                FatturaElettronicaBody.DatiBeniServizi.DatiRiepilogo)
+                FatturaElettronicaBody)
             if not float_is_zero(
                 invoice.amount_untaxed-amount_untaxed, precision_digits=2
             ):

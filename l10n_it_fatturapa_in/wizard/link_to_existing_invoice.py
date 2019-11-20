@@ -105,7 +105,7 @@ class WizardLinkToInvoice(models.TransientModel):
                     bill_nbr=dati_generali_documento.Numero,
                     bill_date=dati_generali_documento.Data,
                     bill_no_tax=invoice_model.compute_xml_amount_untaxed(
-                        dati_riepilogo),
+                        FatturaBody),
                     bill_tax=invoice_model.compute_xml_amount_tax(
                         dati_riepilogo)
                 ),
