@@ -11,5 +11,6 @@ class ResConfigSettings(models.TransientModel):
 
     sp_description = fields.Char(
         related='company_id.sp_description',
-        string="Description for period end statements"
+        string="Description for period end statements",
+        readonly=False
     )
