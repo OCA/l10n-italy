@@ -3,8 +3,6 @@
 # Copyright (c) 2019 Matteo Bilotta
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from datetime import datetime
-
 from odoo import _, api, fields, models
 
 
@@ -13,10 +11,6 @@ class AccountVatPeriodEndStatement(models.Model):
 
     @api.multi
     def compute_amounts(self):
-        def reverse_date(date_string):
-            date = datetime.strptime(date_string, '%Y-%m-%d')
-
-            return datetime.strftime(date, '%d/%m/%Y')
 
         AccountMoveLine = self.env['account.move.line']
         StatementGenericAccountLine = \
@@ -48,8 +42,8 @@ class AccountVatPeriodEndStatement(models.Model):
                     continue
 
                 grouped_lines = acc_move_lines.group_by_account_and_tax()
-                date_start_str = reverse_date(date_range.date_start)
-                date_end_str = reverse_date(date_range.date_end)
+                date_start_str = date_range.date_start
+                date_end_str = date_range.date_end
 
                 date_string = _("from {} to {}") \
                     .format(date_start_str, date_end_str)
