@@ -4,10 +4,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0+e-20191007\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-12 10:39+0000\n"
-"PO-Revision-Date: 2019-11-12 10:39+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -518,7 +516,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code__active
 msgid "Active"
-msgstr "Attiva"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_21021090
@@ -1279,7 +1277,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__amount_currency
 msgid "Amount in Currency"
-msgstr "Importo in valuta"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__amount_euro
@@ -7162,7 +7160,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature__code
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transport__code
 msgid "Code"
-msgstr "Codice"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__intrastat_code_type
@@ -7172,7 +7170,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_tree_report_intrastat_code
 msgid "Codes"
-msgstr "Codici"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_09011100
@@ -7492,7 +7490,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model,name:l10n_it_intrastat.model_res_company
 msgid "Companies"
-msgstr "Aziende"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.692022
@@ -8592,7 +8590,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model,name:l10n_it_intrastat.model_res_country
 msgid "Country"
-msgstr "Nazione"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_19024010
@@ -8731,7 +8729,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__create_uid
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code__create_uid
 msgid "Created by"
-msgstr "Creato da"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_custom__create_date
@@ -8740,7 +8738,7 @@ msgstr "Creato da"
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__create_date
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code__create_date
 msgid "Created on"
-msgstr "Creato il"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: selection:account.invoice.intrastat,payment_method:0
@@ -9214,7 +9212,7 @@ msgstr ""
 #: model:ir.model,name:l10n_it_intrastat.model_account_intrastat_custom
 #: model:ir.ui.menu,name:l10n_it_intrastat.menu_account_intrastat_custom
 msgid "Customs Sections"
-msgstr "Sezioni Doganali"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_58012200
@@ -9755,7 +9753,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code__description
 msgid "Description"
-msgstr "Descrizione"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_08011100
@@ -9775,7 +9773,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_form_invoice_intrastat_form
 msgid "Destination"
-msgstr "Destinazione"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__country_destination_id
@@ -10180,7 +10178,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code__display_name
 msgid "Display Name"
-msgstr "Nome visualizzato"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90065310
@@ -12421,7 +12419,7 @@ msgstr ""
 #: selection:product.category,intrastat_type:0
 #: selection:product.template,intrastat_type:0
 msgid "Exclude"
-msgstr "Escludi"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_exclude_free_line
@@ -13321,12 +13319,12 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: selection:account.invoice.intrastat,intrastat_type_data:0
 msgid "Fiscal"
-msgstr "Fiscale"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model,name:l10n_it_intrastat.model_account_fiscal_position
 msgid "Fiscal Position"
-msgstr "Posizione fiscale"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_15042090
@@ -19959,7 +19957,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_invoice_intrastat_search
 msgid "Group By..."
-msgstr "Raggruppa per..."
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.653012
@@ -22043,7 +22041,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: selection:account.invoice.intrastat,supply_method:0
 msgid "Instant"
-msgstr "istantanea"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90064000
@@ -22481,7 +22479,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model,name:l10n_it_intrastat.model_report_intrastat_code
 msgid "Intrastat code"
-msgstr "Codice Intrastat"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: code:addons/l10n_it_intrastat/models/account.py:333
@@ -22528,17 +22526,17 @@ msgstr ""
 #: model:ir.model,name:l10n_it_intrastat.model_account_invoice
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__invoice_id
 msgid "Invoice"
-msgstr "Fattura"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__invoice_date
 msgid "Invoice Date"
-msgstr "Data fattura"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model,name:l10n_it_intrastat.model_account_invoice_line
 msgid "Invoice Line"
-msgstr "Riga fattura"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__invoice_number
@@ -23397,7 +23395,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code____last_update
 msgid "Last Modified on"
-msgstr "Ultima modifica il"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_custom__write_uid
@@ -23406,7 +23404,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__write_uid
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code__write_uid
 msgid "Last Updated by"
-msgstr "Ultimo aggiornamento di"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_custom__write_date
@@ -23415,7 +23413,7 @@ msgstr "Ultimo aggiornamento di"
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__write_date
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code__write_date
 msgid "Last Updated on"
-msgstr "Ultimo aggiornamento il"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_40025100
@@ -27571,7 +27569,7 @@ msgstr ""
 #: selection:product.category,intrastat_type:0
 #: selection:product.template,intrastat_type:0
 msgid "Miscellaneous"
-msgstr "Varie"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.651273
@@ -29168,7 +29166,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature__name
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transport__name
 msgid "Name"
-msgstr "Nome"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29332910
@@ -30761,7 +30759,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_form_invoice_intrastat_form
 msgid "Origin"
-msgstr "Origine"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__province_origin_id
@@ -30833,7 +30831,7 @@ msgstr ""
 #: selection:account.invoice.intrastat,payment_method:0
 #: selection:account.payment.term,intrastat_code:0
 msgid "Other"
-msgstr "Altro"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.559019
@@ -33480,12 +33478,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__payment_method
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_payment_term__intrastat_code
 msgid "Payment Method"
-msgstr "Metodo di pagamento"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model,name:l10n_it_intrastat.model_account_payment_term
 msgid "Payment Terms"
-msgstr "Termini di pagamento"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.692024
@@ -36950,12 +36948,12 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model,name:l10n_it_intrastat.model_product_category
 msgid "Product Category"
-msgstr "Categoria prodotto"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model,name:l10n_it_intrastat.model_product_template
 msgid "Product Template"
-msgstr "Modello prodotto"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.702215
@@ -37371,7 +37369,7 @@ msgstr ""
 #: selection:report.intrastat.code,additional_unit_from:0
 #: selection:res.company,intrastat_additional_unit_from:0
 msgid "Quantity"
-msgstr "Quantità"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_25061000
@@ -41430,7 +41428,7 @@ msgstr ""
 #: selection:product.template,intrastat_type:0
 #: selection:report.intrastat.code,type:0
 msgid "Service"
-msgstr "Servizio"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.261191
@@ -43931,7 +43929,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_custom__date_start
 msgid "Start Date"
-msgstr "Data inizio"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85114000
@@ -43962,7 +43960,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: selection:account.invoice.intrastat,intrastat_type_data:0
 msgid "Statistic"
-msgstr "Statistico"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__statistic_amount_euro
@@ -45763,7 +45761,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__supply_method
 msgid "Supply Method"
-msgstr "Metodo di Approvvigionamento"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.702216
@@ -47659,7 +47657,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_tree_invoice_intrastat_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_tree_invoice_intrastat_report_tree
 msgid "Total"
-msgstr "Totale"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70071980
@@ -47870,7 +47868,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.account_intrastat_transaction_nature_view_tree
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_intrastat_company_form
 msgid "Transaction Nature"
-msgstr "Natura del Trasporto"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_99500000
@@ -48751,7 +48749,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code__type
 msgid "Type"
-msgstr "Tipo"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_96121080
@@ -50788,7 +50786,7 @@ msgstr ""
 #: selection:report.intrastat.code,additional_unit_from:0
 #: selection:res.company,intrastat_additional_unit_from:0
 msgid "Weight"
-msgstr "Peso"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73158200
@@ -54938,7 +54936,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,help:l10n_it_intrastat.field_account_invoice_intrastat__partner_id
 msgid "You can find a contact by its Name, TIN, Email or Internal Reference."
-msgstr "È possibile trovare un contatto per nome, partita IVA, e-mail o riferimento interno."
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_79040000
