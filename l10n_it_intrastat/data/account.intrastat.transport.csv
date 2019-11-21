@@ -1,0 +1,9 @@
+id,name,code
+1, Trasporto marittimo,1
+2, Trasporto ferroviario,2
+3, Trasporto stradale,3
+4, Trasporto aereo,4
+5, Spedizioni postali,5
+7, Installazioni fisse di trasporto,7
+8, Trasporto per vie d'acqua,8
+9, Propulsione propria,9
