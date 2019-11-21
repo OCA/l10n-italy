@@ -36,6 +36,8 @@ setuptools.setup(
         'odoo12-addon-l10n_it_fiscal_payment_term',
         'odoo12-addon-l10n_it_fiscalcode',
         'odoo12-addon-l10n_it_fiscalcode_crm',
+        'odoo12-addon-l10n_it_intrastat',
+        'odoo12-addon-l10n_it_intrastat_statement',
         'odoo12-addon-l10n_it_invoices_data_communication',
         'odoo12-addon-l10n_it_invoices_data_communication_fatturapa',
         'odoo12-addon-l10n_it_ipa',
