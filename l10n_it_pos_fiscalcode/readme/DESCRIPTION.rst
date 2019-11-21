@@ -1,7 +1,7 @@
 **Italiano**
 
 Il modulo aggiunge il campo codice fiscale nella schermata del cliente nell'interfaccia del punto vendita,
-permettendo di visualizzarlo e modificarlo
+permettendo di visualizzarlo e modificarlo.
 
 **English**
 
