@@ -10,17 +10,17 @@ ITA - Intrastat
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
-    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
-    :alt: License: LGPL-3
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+    :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-italy/tree/11.0/l10n_it_intrastat
+    :target: https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_intrastat
     :alt: OCA/l10n-italy
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-italy-11-0/l10n-italy-11-0-l10n_it_intrastat
+    :target: https://translation.odoo-community.org/projects/l10n-italy-12-0/l10n-italy-12-0-l10n_it_intrastat
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/122/11.0
+    :target: https://runbot.odoo-community.org/runbot/122/12.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -36,7 +36,6 @@ nomenclature combinate, sezioni doganali, natura delle transazioni, modalità di
 Per la creazione delle dichiarazioni, degli elenchi riepilogativi e le estrazioni da
 presentare all'Agenzia delle Dogane è necessario installare il modulo l10n_it_intrastat_statement.
 
-
 **Table of contents**
 
 .. contents::
@@ -48,7 +47,7 @@ Configuration
 **Italiano**
 
 In Impostazioni → Utenti e aziende → Aziende → *Nome azienda*
-impostare i parametri delle seguenti sezioni presenti nella scheda "Informazioni generali":
+impostare i parametri delle seguenti sezioni presenti nella scheda "Informazioni generali".
 
 1. Intrastat
 
@@ -64,8 +63,8 @@ impostare i parametri delle seguenti sezioni presenti nella scheda "Informazioni
    e) Delegato: il nominativo della persona delegata alla presentazione della dichiarazione Intrastat.
    f) Partita IVA delegato: la partita IVA della persona delegata alla presentazione della dichiarazione Intrastat.
    g) Nome file da esportare: nome del file che può essere impostato per forzare quello predefinito (SCAMBI.CEE).
-   h) Sezione doganale: sezione doganale predefinita da proporre in una nuova dichiarazione
-   i) Ammontare minino: in caso di fatture di importo inferiore usa questo valore nella dichiarazione.
+   h) Sezione doganale: sezione doganale predefinita da proporre in una nuova dichiarazione.
+   i) Ammontare minimo: in caso di fatture di importo inferiore usa questo valore nella dichiarazione.
 
 2. Valori predefiniti per cessioni (parametri Intrastat per le fatture di vendita)
 
@@ -122,6 +121,9 @@ Per le categorie di prodotti, le informazioni sono presenti in un’apposita are
 Usage
 =====
 
+**Italiano**
+
+
 **Fatture e note di credito Intrastat**
 
 È possibile indicare l’assoggettamento di una fattura ad Intrastat attraverso l'apposito campo presente sulla maschera di modifica della fattura stessa.
@@ -152,8 +154,7 @@ N.B.: tutti i campi possono ovviamente essere modificati, ma l’utilizzo del pu
 
 Importante:
 
-se si seleziona un periodo che è lo stesso della dichiarazione, la nota di credito, per il suo importo, non confluirà nella sezione di rettifica, ma andrà a stornare direttamente il valore della fattura sulla quale è stata emessa. La verifica sulla fattura da stornare viene fatta confrontando la coppia di valori partner/nomenclatura combinata.
-
+Se si seleziona un periodo che è lo stesso della dichiarazione, la nota di credito, per il suo importo, non confluirà nella sezione di rettifica, ma andrà a stornare direttamente il valore della fattura sulla quale è stata emessa. La verifica sulla fattura da stornare viene fatta confrontando la coppia di valori partner/nomenclatura combinata.
 
 Bug Tracker
 ===========
@@ -161,7 +162,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_intrastat%0Aversion:%2011.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_intrastat%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -197,6 +198,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/11.0/l10n_it_intrastat>`_ project on GitHub.
+This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_intrastat>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
