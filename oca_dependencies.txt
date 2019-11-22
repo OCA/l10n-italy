@@ -4,3 +4,4 @@ partner-contact
 stock-logistics-workflow
 intrastat-extrastat
 server-ux
+pos
