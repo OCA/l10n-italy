@@ -7,3 +7,4 @@ partner-contact
 server-tools
 stock-logistics-workflow
 web
+pos
