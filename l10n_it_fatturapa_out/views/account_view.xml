@@ -7,8 +7,9 @@
         <field name="inherit_id" ref="account.invoice_form"/>
         <field name="arch" type="xml">
             <button name="action_invoice_proforma2" position="before">
-                <button name="%(action_wizard_export_fatturapa)d" type="action" states="open,paid"
-                        string="Export E-invoice" class="oe_highlight"/>
+                <button name="%(action_wizard_export_fatturapa)d" type="action"
+                        string="Export E-invoice" class="oe_highlight"
+                        attrs="{'invisible': ['|', ('fatturapa_attachment_out_id', '!=', False), ('state', 'not in', ['open', 'paid'])]}"/>
             </button>
             <field name="partner_id" position="after">
                 <field name="electronic_invoice_subjected" invisible="1"/>
