@@ -1,0 +1,30 @@
+# -*- coding: utf-8 -*-
+# Copyright 2019 Roberto Fichera
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+{
+    "name": "ITA - POS - Fattura elettronica",
+    "summary": "Gestione dati fattura elettronica del cliente all'interno "
+               "dell'interfaccia del POS",
+    "version": "10.0.1.0.0",
+    "development_status": "Beta",
+    "category": "Point Of Sale",
+    "website": "https://github.com/OCA/l10n-italy",
+    "author": "Roberto Fichera, Odoo Community Association (OCA)",
+    "maintainers": ["robyf70"],
+    "license": "AGPL-3",
+    "application": False,
+    "installable": True,
+    "auto_install": True,
+    "depends": [
+        "pos_partner_firstname",
+        "l10n_it_pos_fiscalcode",
+        "l10n_it_fatturapa",
+    ],
+    'qweb': [
+        'static/src/xml/pos.xml'
+    ],
+    'data': [
+        'views/assets.xml',
+    ],
+}
