@@ -43,6 +43,7 @@ setuptools.setup(
         'odoo12-addon-l10n_it_ipa',
         'odoo12-addon-l10n_it_location_nuts',
         'odoo12-addon-l10n_it_pec',
+        'odoo12-addon-l10n_it_pos_fiscalcode',
         'odoo12-addon-l10n_it_rea',
         'odoo12-addon-l10n_it_reverse_charge',
         'odoo12-addon-l10n_it_sdi_channel',
