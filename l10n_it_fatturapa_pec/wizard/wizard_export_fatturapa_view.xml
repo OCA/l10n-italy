@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_export_fatturapa_form_view_regenerate" model="ir.ui.view">
+        <field name="name">Export Electronic Invoice Regenerate</field>
+        <field name="model">wizard.export.fatturapa</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="l10n_it_fatturapa_out.wizard_export_fatturapa_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='exportFatturaPA']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='exportFatturaPA']" position="after">
+                <button name="exportFatturaPARegenerate" string="Re-Export"
+                        type="object" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+
+    <act_window id="action_wizard_export_fatturapa_regenerate"
+                key2="client_action_multi"
+                name="Re-Export Electronic Invoice"
+                res_model="wizard.export.fatturapa"
+                src_model="account.invoice"
+                target="new"
+                view_id="wizard_export_fatturapa_form_view_regenerate"
+                view_mode="form"/>
+
+</odoo>

@@ -4,6 +4,7 @@
 # Copyright 2018-2019 Sergio Corato (https://efatto.it)
 # Copyright 2018-2019 Lorenzo Battistini <https://github.com/eLBati>
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
+# Copyright 2019 Roberto Fichera (https://levelprime.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 {
     'name': 'Italian Localization - Fattura elettronica - Supporto PEC',
@@ -22,9 +23,10 @@
     ],
     'data': [
         'security/groups.xml',
-        'views/account.xml',
         'views/fatturapa_attachment_out.xml',
         'wizard/send_pec_view.xml',
+        'wizard/wizard_export_fatturapa_view.xml',
+        'views/account.xml',
         'views/fetchmail_view.xml',
         'security/ir.model.access.csv',
         'views/company_view.xml',
