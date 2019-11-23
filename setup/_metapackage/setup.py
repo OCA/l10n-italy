@@ -45,6 +45,7 @@ setuptools.setup(
         'odoo10-addon-l10n_it_ipa',
         'odoo10-addon-l10n_it_location_nuts',
         'odoo10-addon-l10n_it_pec',
+        'odoo10-addon-l10n_it_pos_fiscalcode',
         'odoo10-addon-l10n_it_rea',
         'odoo10-addon-l10n_it_reverse_charge',
         'odoo10-addon-l10n_it_riba_commission',
