@@ -7,43 +7,44 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-12 11:04+0000\n"
-"PO-Revision-Date: 2019-11-12 11:04+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2019-12-05 16:55+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__additional_units_required
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section1__additional_units_required
 msgid "Additional Unit Required"
-msgstr ""
+msgstr "Richiesta unità supplementare"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__additional_units_uom
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section1__additional_units_uom
 msgid "Additional Unit of Measure"
-msgstr ""
+msgstr "Unità di misura supplementare"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__additional_units
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section1__additional_units
 msgid "Additional Units"
-msgstr ""
+msgstr "Unità supplementari"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section2__sign_variation
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section2__sign_variation
 msgid "Adjustment Sign"
-msgstr ""
+msgstr "Segno rettifica"
 
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement,intrastat_type_data:0
 msgid "All (Fiscal and Statistic)"
-msgstr ""
+msgstr "Tutti (fiscale e statistico)"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__amount_currency
@@ -67,7 +68,7 @@ msgstr "Importo in valuta"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section__amount_euro
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_section__amount_euro
 msgid "Amount in Euro"
-msgstr ""
+msgstr "Ammontare in euro"
 
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement.purchase.section3,payment_method:0
@@ -75,7 +76,7 @@ msgstr ""
 #: selection:account.intrastat.statement.sale.section3,payment_method:0
 #: selection:account.intrastat.statement.sale.section4,payment_method:0
 msgid "Bank Transfer"
-msgstr ""
+msgstr "Bonifico bancario"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_form_statement_sale_section1
@@ -87,7 +88,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_sale_section3
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_sale_section4
 msgid "Buyer"
-msgstr ""
+msgstr "Acquirente"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_form_statement_sale_section1
@@ -99,7 +100,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_sale_section3
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_sale_section4
 msgid "Buyer State"
-msgstr ""
+msgstr "Stato acquirente"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_form_statement_sale_section1
@@ -110,7 +111,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_sale_section3
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_sale_section4
 msgid "Buyer VAT Code"
-msgstr ""
+msgstr "Codice IVA acquirente"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
@@ -120,17 +121,18 @@ msgstr "Annulla"
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement,special_cases:0
 msgid "Ceasing Activity or Changing VAT Number"
-msgstr ""
+msgstr "Cessazione attività o variazione partita IVA"
 
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement,content_type:0
 msgid "Change Period in quarter: only first and second month operations"
 msgstr ""
+"Cambio periodicità: nel trimestrale solo operazioni del primo e secondo mese"
 
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement,content_type:0
 msgid "Change Period in quarter: only first month operations"
-msgstr ""
+msgstr "Cambio periodicità: nel trimestrale solo operazioni del primo mese"
 
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.export.file,state:0
@@ -145,7 +147,7 @@ msgstr "Chiudi"
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__intrastat_code_type
 msgid "Code Type"
-msgstr ""
+msgstr "Tipo codice"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model,name:l10n_it_intrastat_statement.model_res_company
@@ -160,7 +162,7 @@ msgstr "Azienda"
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__content_type
 msgid "Content Type"
-msgstr ""
+msgstr "Tipo di contenuto"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__country_partner_id
@@ -211,7 +213,7 @@ msgstr "Creato il"
 #: selection:account.intrastat.statement.sale.section3,payment_method:0
 #: selection:account.intrastat.statement.sale.section4,payment_method:0
 msgid "Credit"
-msgstr ""
+msgstr "Accredito"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__intrastat_custom_id
@@ -221,48 +223,48 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_custom_view_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_custom_view_tree
 msgid "Customs Section"
-msgstr ""
+msgstr "Sezione doganale"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__intrastat_type_data
 msgid "Data Type"
-msgstr ""
+msgstr "Tipo dati"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__date_start
 msgid "Date Start"
-msgstr ""
+msgstr "Data inizio"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__date_stop
 msgid "Date Stop"
-msgstr ""
+msgstr "Data fine"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__intrastat_name_delegate
 msgid "Delegate Name"
-msgstr ""
+msgstr "Nome delegato"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__intrastat_vat_delegate
 msgid "Delegate VAT Number"
-msgstr ""
+msgstr "Partita IVA delegato"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__delivery_code_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section1__delivery_code_id
 msgid "Delivery Terms"
-msgstr ""
+msgstr "Condizioni di consegna"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section1__country_destination_id
 msgid "Destination Country"
-msgstr ""
+msgstr "Paese di destinazione"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__province_destination_id
 msgid "Destination Province"
-msgstr ""
+msgstr "Provincia di destinazione"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_export_file__display_name
@@ -289,7 +291,7 @@ msgstr "Esportazione completata"
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_form_view
 msgid "Export File"
-msgstr ""
+msgstr "Esporta file"
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/wizard/export_file.py:50
@@ -297,42 +299,42 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
 #, python-format
 msgid "Export Intrastat File"
-msgstr ""
+msgstr "Esporta file Intrastat"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
 msgid "Export acquisti.cee"
-msgstr ""
+msgstr "Esporta acquisti.cee"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
 msgid "Export cessioni.cee"
-msgstr ""
+msgstr "Esporta cessioni.cee"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
 msgid "Export submission file"
-msgstr ""
+msgstr "Esporta file di invio"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model,name:l10n_it_intrastat_statement.model_account_intrastat_statement_purchase_section
 msgid "Fields and methods common to all Intrastat purchase sections"
-msgstr ""
+msgstr "Campi e metodi comuni a tutte le sezioni di cessione Intrastat"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model,name:l10n_it_intrastat_statement.model_account_intrastat_statement_sale_section
 msgid "Fields and methods common to all Intrastat sale sections"
-msgstr ""
+msgstr "Campi e metodi comuni a tutte le sezioni di acquisto Intrastat"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model,name:l10n_it_intrastat_statement.model_account_intrastat_statement_section
 msgid "Fields and methods common to all Intrastat sections"
-msgstr ""
+msgstr "Campi e metodi comuni a tutte le sezioni Intrastat"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_export_file__data
 msgid "File"
-msgstr ""
+msgstr "File"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_export_file__name
@@ -342,12 +344,14 @@ msgstr "Nome file"
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement,special_cases:0
 msgid "First Statement Submitted"
-msgstr ""
+msgstr "Prima dichiarazione inviata"
 
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement,special_cases:0
 msgid "First Statement in Ceasing Activity or Changing VAT Number"
 msgstr ""
+"Prima dichiarazione contestuale a cessazione attività o variazione partita "
+"IVA"
 
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement,intrastat_type_data:0
@@ -362,12 +366,12 @@ msgstr ""
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement,intrastat_code_type:0
 msgid "Goods"
-msgstr ""
+msgstr "Beni"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_form_view
 msgid "Goods Adjustment - Section 2"
-msgstr ""
+msgstr "Rettifica beni - Sezione 2"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_form_statement_purchase_section1
@@ -379,27 +383,27 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_sale_section1
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_sale_section2
 msgid "Goods Code"
-msgstr ""
+msgstr "Codice bene"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__country_good_origin_id
 msgid "Goods Origin Country"
-msgstr ""
+msgstr "Paese di origine dei beni"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_form_view
 msgid "Goods Purchase - Section 1"
-msgstr ""
+msgstr "Acquisto beni - Sezione 1"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_form_view
 msgid "Goods Sale - Section 1"
-msgstr ""
+msgstr "Cessione beni - Sezione 1"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
 msgid "Here is the exported file:"
-msgstr ""
+msgstr "File esportato disponibile qui:"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_export_file__id
@@ -416,38 +420,38 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_section__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.actions.report,name:l10n_it_intrastat_statement.print_intrastat_mod1_bis
 msgid "INTRA-1 Bis Model"
-msgstr ""
+msgstr "Modello INTRA-1 bis"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.actions.report,name:l10n_it_intrastat_statement.print_intrastat_mod1
 msgid "INTRA-1 Model"
-msgstr ""
+msgstr "Modello INTRA-1"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.actions.report,name:l10n_it_intrastat_statement.print_intrastat_mod1_ter
 msgid "INTRA-1 Ter Model"
-msgstr ""
+msgstr "Modello INTRA-1 ter"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.actions.report,name:l10n_it_intrastat_statement.print_intrastat_mod2_bis
 msgid "INTRA-2 Bis Model"
-msgstr ""
+msgstr "Modello INTRA-2 bis"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.actions.report,name:l10n_it_intrastat_statement.print_intrastat_mod2
 msgid "INTRA-2 Model"
-msgstr ""
+msgstr "Modello INTRA-2"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_tree_view
 msgid "INTRASTAT Statement"
-msgstr ""
+msgstr "Dichiarazione INTRASTAT"
 
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement.purchase.section3,supply_method:0
@@ -455,7 +459,7 @@ msgstr ""
 #: selection:account.intrastat.statement.sale.section3,supply_method:0
 #: selection:account.intrastat.statement.sale.section4,supply_method:0
 msgid "Instant"
-msgstr "istantanea"
+msgstr "Istantanea"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__intrastat_code_id
@@ -470,52 +474,52 @@ msgstr "istantanea"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section__intrastat_code_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_section__intrastat_code_id
 msgid "Intrastat Code"
-msgstr ""
+msgstr "Codice Intrastat"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model,name:l10n_it_intrastat_statement.model_account_intrastat_statement
 msgid "Intrastat Statement"
-msgstr ""
+msgstr "Dichiarazione Intrastat"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model,name:l10n_it_intrastat_statement.model_account_intrastat_statement_purchase_section1
 msgid "Intrastat Statement - Purchases Section 1"
-msgstr ""
+msgstr "Dichiarazione Intrastat - Acquisti sezione 1"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model,name:l10n_it_intrastat_statement.model_account_intrastat_statement_purchase_section2
 msgid "Intrastat Statement - Purchases Section 2"
-msgstr ""
+msgstr "Dichiarazione Intrastat - Acquisti sezione 2"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model,name:l10n_it_intrastat_statement.model_account_intrastat_statement_purchase_section3
 msgid "Intrastat Statement - Purchases Section 3"
-msgstr ""
+msgstr "Dichiarazione Intrastat - Acquisti sezione 3"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model,name:l10n_it_intrastat_statement.model_account_intrastat_statement_purchase_section4
 msgid "Intrastat Statement - Purchases Section 4"
-msgstr ""
+msgstr "Dichiarazione Intrastat - Acquisti sezione 4"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model,name:l10n_it_intrastat_statement.model_account_intrastat_statement_sale_section1
 msgid "Intrastat Statement - Sales Section 1"
-msgstr ""
+msgstr "Dichiarazione Intrastat - Cessioni sezione 1"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model,name:l10n_it_intrastat_statement.model_account_intrastat_statement_sale_section2
 msgid "Intrastat Statement - Sales Section 2"
-msgstr ""
+msgstr "Dichiarazione Intrastat - Cessioni sezione 2"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model,name:l10n_it_intrastat_statement.model_account_intrastat_statement_sale_section3
 msgid "Intrastat Statement - Sales Section 3"
-msgstr ""
+msgstr "Dichiarazione Intrastat - Cessioni sezione 3"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model,name:l10n_it_intrastat_statement.model_account_intrastat_statement_sale_section4
 msgid "Intrastat Statement - Sales Section 4"
-msgstr ""
+msgstr "Dichiarazione Intrastat - Cessioni sezione 4"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.actions.act_window,name:l10n_it_intrastat_statement.account_intrastat_statement_action
@@ -527,7 +531,7 @@ msgstr "Dichiarazioni Intrastat"
 #. module: l10n_it_intrastat_statement
 #: model:ir.model,name:l10n_it_intrastat_statement.model_account_intrastat_export_file
 msgid "Intrastat export file"
-msgstr ""
+msgstr "File di esportazione Intrastat"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__invoice_id
@@ -558,7 +562,7 @@ msgstr "Data fattura"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section3__invoice_number
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4__invoice_number
 msgid "Invoice Number"
-msgstr ""
+msgstr "Numero fattura"
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:815
@@ -567,6 +571,8 @@ msgid ""
 "Invoice and credit note in the same period with credit note > invoice for "
 "partner %s"
 msgstr ""
+"Fattura e nota di credito dello stesso periodo con nota di credito > fattura "
+"per il partner %s"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_export_file____last_update
@@ -617,151 +623,155 @@ msgstr "Ultimo aggiornamento il"
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:259
 #, python-format
 msgid "Missing adjustment sign on 'Purchases - Section 2'"
-msgstr ""
+msgstr "Segno di rettifica mancante in \"Acquisti - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:218
 #, python-format
 msgid "Missing adjustment sign on 'Sales - Section 2'"
-msgstr ""
+msgstr "Segno di rettifica mancante in \"Cessioni - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:466
 #, python-format
 msgid "Missing customs section on 'Purchase Section 4'"
-msgstr ""
+msgstr "Sezione doganale mancante in \"Acquisti - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:410
 #, python-format
 msgid "Missing customs section on 'Sales - Section 4'"
-msgstr ""
+msgstr "Sezione doganale mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:475
 #, python-format
 msgid "Missing invoice data on 'Purchase Section 4'"
-msgstr ""
+msgstr "Data fattura mancante in \"Acquisti - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:419
 #, python-format
 msgid "Missing invoice data on 'Sales - Section 4'"
-msgstr ""
+msgstr "Data fattura mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:484
 #, python-format
 msgid "Missing payment country on 'Purchase Section 4'"
-msgstr ""
+msgstr "Paese di pagamento mancante in \"Acquisti - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:428
 #, python-format
 msgid "Missing payment country on 'Sales - Section 4'"
-msgstr ""
+msgstr "Paese di pagamento mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:481
 #, python-format
 msgid "Missing payment method on 'Purchase Section 4'"
-msgstr ""
+msgstr "Modalità di incasso mancante in \"Acquisti - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:425
 #, python-format
 msgid "Missing payment method on 'Sales - Section 4'"
-msgstr ""
+msgstr "Modalità di incasso mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:472
 #, python-format
 msgid "Missing progressive to adjust on 'Purchase Section 4'"
-msgstr ""
+msgstr "Progressivo da rettificare mancante in \"Acquisti - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:416
 #, python-format
 msgid "Missing progressive to adjust on 'Sales Section 4'"
-msgstr ""
+msgstr "Progressivo da rettificare mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:413
 #, python-format
 msgid "Missing protocol number on 'Sales - Section 4'"
-msgstr ""
+msgstr "Numero di protocollo mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:469
 #, python-format
 msgid "Missing protocol on 'Purchase Section 4'"
-msgstr ""
+msgstr "Numero di protocollo mancante in \"Acquisti - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:263
 #, python-format
 msgid "Missing reference month on 'Purchases - Section 2' adjustment"
 msgstr ""
+"Mese di riferimento mancante nella rettifica di \"Acquisti - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:222
 #, python-format
 msgid "Missing reference month on 'Sales - Section 2' adjustment"
 msgstr ""
+"Mese di riferimento mancante nella rettifica di \"Cessioni - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:268
 #, python-format
 msgid "Missing reference quarter on 'Purchases - Section 2' adjustment"
 msgstr ""
+"Trimestre di riferimento mancante nella rettifica di \"Acquisti - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:226
 #, python-format
 msgid "Missing reference quarter on 'Sales - Section 2' adjustment"
 msgstr ""
+"Trimestre di riferimento mancante nella rettifica di \"Cessioni - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:463
 #, python-format
 msgid "Missing reference year on 'Purchase - Section 4'"
-msgstr ""
+msgstr "Anno di riferimento mancante in \"Acquisti - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:256
 #, python-format
 msgid "Missing reference year on 'Purchases - Section 2'"
-msgstr ""
+msgstr "Anno di riferimento mancante in \"Acquisti - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:215
 #, python-format
 msgid "Missing reference year on 'Sale - Section 2'"
-msgstr ""
+msgstr "Anno di riferimento mancante in \"Cessioni - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:407
 #, python-format
 msgid "Missing reference year on 'Sales - Section 4'"
-msgstr ""
+msgstr "Anno di riferimento mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:478
 #, python-format
 msgid "Missing supply method on 'Purchase Section 4'"
-msgstr ""
+msgstr "Modalità di erogazione mancante in \"Acquisti - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:422
 #, python-format
 msgid "Missing supply method on 'Sales - Section 4'"
-msgstr ""
+msgstr "Modalità di erogazione mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_section.py:79
 #, python-format
 msgid "Missing vat code for %s on '%s - Section %s'"
-msgstr ""
+msgstr "Codice IVA mancante per %s in \"%s - Sezione %s\""
 
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement,period_type:0
@@ -772,7 +782,7 @@ msgstr "Mese"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__weight_kg
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section1__weight_kg
 msgid "Net Mass (kg)"
-msgstr ""
+msgstr "Massa netta (kg)"
 
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement,special_cases:0
@@ -782,13 +792,13 @@ msgstr "Nessuno dei casi precedenti"
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement,content_type:0
 msgid "Normal Period"
-msgstr "Periodo Normale"
+msgstr "Periodo regolare"
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:704
 #, python-format
 msgid "Nothing to export"
-msgstr ""
+msgstr "Nulla da esportare"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__number
@@ -798,17 +808,17 @@ msgstr "Numero"
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_form_view
 msgid "Operation Amount"
-msgstr ""
+msgstr "Ammontare delle operazioni"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_form_view
 msgid "Operation Count"
-msgstr ""
+msgstr "Numero operazioni"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section1__province_origin_id
 msgid "Origin Province"
-msgstr ""
+msgstr "Provincia di origine"
 
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement.purchase.section3,payment_method:0
@@ -831,7 +841,7 @@ msgstr "Altro"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section__partner_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_section__partner_id
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_section.py:87
@@ -845,7 +855,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section3__country_payment_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4__country_payment_id
 msgid "Payment Country"
-msgstr ""
+msgstr "Paese di pagamento"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section3__payment_method
@@ -853,29 +863,29 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section3__payment_method
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4__payment_method
 msgid "Payment Method"
-msgstr "Metodo di pagamento"
+msgstr "Modalità di incasso"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__period_number
 msgid "Period"
-msgstr ""
+msgstr "Periodo"
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:848
 #, python-format
 msgid "Period Not Valid! Range accepted: from 1 to 12"
-msgstr ""
+msgstr "Periodo non valido. Intervallo ammesso: da 1 a 12"
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:852
 #, python-format
 msgid "Period Not Valid! Range accepted: from 1 to 4"
-msgstr ""
+msgstr "Periodo non valido. Intervallo ammesso: da 1 a 4"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__period_type
 msgid "Period Type"
-msgstr ""
+msgstr "Tipo periodo"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__sequence
@@ -890,29 +900,29 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section__sequence
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_section__sequence
 msgid "Progr."
-msgstr ""
+msgstr "Progr."
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section4__progressive_to_modify_id
 msgid "Progressive To Modify"
-msgstr ""
+msgstr "Progressivo da rettificare"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section4__progressive_to_modify
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4__progressive_to_modify
 msgid "Progressive to Modify"
-msgstr ""
+msgstr "Progressivo da rettificare"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section4__protocol
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4__protocol
 msgid "Protocol Number"
-msgstr ""
+msgstr "Numero di protocollo"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__country_origin_id
 msgid "Provenance Country"
-msgstr ""
+msgstr "Paese di provenienza"
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:148
@@ -921,7 +931,7 @@ msgstr ""
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:488
 #, python-format
 msgid "Purchase"
-msgstr ""
+msgstr "Acquisto"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__purchase_section1_operation_amount
@@ -977,32 +987,32 @@ msgstr "Acquisti"
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__purchase_section1_ids
 msgid "Purchases - Section 1"
-msgstr ""
+msgstr "Acquisti - Sezione 1"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__purchase_section2_ids
 msgid "Purchases - Section 2"
-msgstr ""
+msgstr "Acquisti - Sezione 2"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__purchase_section3_ids
 msgid "Purchases - Section 3"
-msgstr ""
+msgstr "Acquisti - Sezione 3"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__purchase_section4_ids
 msgid "Purchases - Section 4"
-msgstr ""
+msgstr "Acquisti - Sezione 4"
 
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement,period_type:0
 msgid "Quarter"
-msgstr ""
+msgstr "Trimestre"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_form_view
 msgid "Recompute"
-msgstr ""
+msgstr "Ricalcola"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section2__month
@@ -1010,7 +1020,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section2__month
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4__month
 msgid "Ref. Month"
-msgstr ""
+msgstr "Mese di rif."
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section2__quarterly
@@ -1018,7 +1028,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section2__quarterly
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4__quarterly
 msgid "Ref. Quarter"
-msgstr ""
+msgstr "Trimestre di rif."
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section2__year_id
@@ -1026,7 +1036,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section2__year_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4__year_id
 msgid "Ref. Year"
-msgstr ""
+msgstr "Anno di rif."
 
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement.purchase.section3,supply_method:0
@@ -1034,7 +1044,7 @@ msgstr ""
 #: selection:account.intrastat.statement.sale.section3,supply_method:0
 #: selection:account.intrastat.statement.sale.section4,supply_method:0
 msgid "Repeated"
-msgstr ""
+msgstr "A più riprese"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__sale_section1_operation_amount
@@ -1090,27 +1100,27 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_form_view
 #, python-format
 msgid "Sales"
-msgstr "Vendite"
+msgstr "Cessioni"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__sale_section1_ids
 msgid "Sales - Section 1"
-msgstr ""
+msgstr "Cessioni - Sezione 1"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__sale_section2_ids
 msgid "Sales - Section 2"
-msgstr ""
+msgstr "Cessioni - Sezione 2"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__sale_section3_ids
 msgid "Sales - Section 3"
-msgstr ""
+msgstr "Cessioni - Sezione 3"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__sale_section4_ids
 msgid "Sales - Section 4"
-msgstr ""
+msgstr "Cessioni - Sezione 4"
 
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement,intrastat_code_type:0
@@ -1127,32 +1137,32 @@ msgstr "Servizio"
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_sale_section3
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_sale_section4
 msgid "Service Code"
-msgstr ""
+msgstr "Codice servizio"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_form_view
 msgid "Services Adjustment - Section 4"
-msgstr ""
+msgstr "Rettifica servizi - Sezione 4"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_form_view
 msgid "Services Purchase - Section 3"
-msgstr ""
+msgstr "Acquisto servizi - Sezione 3"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_form_view
 msgid "Services Sale - Section 3"
-msgstr ""
+msgstr "Cessione servizi - Sezione 3"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__special_cases
 msgid "Special Cases"
-msgstr ""
+msgstr "Casi speciali"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_export_file__state
 msgid "State"
-msgstr "Provincia"
+msgstr "Stato"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__statement_id
@@ -1167,18 +1177,18 @@ msgstr "Provincia"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section__statement_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_section__statement_id
 msgid "Statement"
-msgstr "Estratto conto"
+msgstr "Dichiarazione"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_form_view
 msgid "Statement Sequence"
-msgstr ""
+msgstr "Sequenza dichiarazione"
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:713
 #, python-format
 msgid "Statement without lines"
-msgstr ""
+msgstr "Dichiarazione senza righe"
 
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement,intrastat_type_data:0
@@ -1191,12 +1201,12 @@ msgstr "Statistico"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section1__statistic_amount_euro
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section2__statistic_amount_euro
 msgid "Statistic Value in Euro"
-msgstr ""
+msgstr "Valore statistico in euro"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__date
 msgid "Submission Date"
-msgstr ""
+msgstr "Data di presentazione"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_form_statement_purchase_section1
@@ -1208,7 +1218,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_purchase_section3
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_purchase_section4
 msgid "Supplier"
-msgstr ""
+msgstr "Fornitore"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_form_statement_purchase_section1
@@ -1220,7 +1230,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_purchase_section3
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_purchase_section4
 msgid "Supplier State"
-msgstr ""
+msgstr "Stato fornitore"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_form_statement_purchase_section1
@@ -1231,7 +1241,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_purchase_section3
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_purchase_section4
 msgid "Supplier VAT Code"
-msgstr ""
+msgstr "Codice IVA fornitore"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section3__supply_method
@@ -1239,12 +1249,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section3__supply_method
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4__supply_method
 msgid "Supply Method"
-msgstr "Metodo di Approvvigionamento"
+msgstr "Modalità di erogazione"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__vat_taxpayer
 msgid "Taxpayer VAT Number"
-msgstr ""
+msgstr "Partita IVA contribuente"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_purchase_section1
@@ -1264,13 +1274,13 @@ msgstr "Totale"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section1__transaction_nature_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section2__transaction_nature_id
 msgid "Transaction Nature"
-msgstr ""
+msgstr "Natura transazione"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__transport_code_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section1__transport_code_id
 msgid "Transport Mode"
-msgstr ""
+msgstr "Modalità di trasporto"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,help:l10n_it_intrastat_statement.field_account_intrastat_statement__period_number
@@ -1279,6 +1289,9 @@ msgid ""
 " - Month : From 1 to 12\n"
 " - Quarter: From 1 to 4"
 msgstr ""
+"Valori ammessi:\n"
+" - Mese: da 1 a 12\n"
+" - Trimestre: da 1 a 4"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__vat_code
@@ -1293,20 +1306,20 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section__vat_code
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_section__vat_code
 msgid "Vat Code"
-msgstr ""
+msgstr "Codice IVA"
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:50
 #, python-format
 msgid "Wrong section type %s or number %s"
-msgstr ""
+msgstr "Tipologia %s o numero %s errati per la sezione"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__fiscalyear
 msgid "Year"
-msgstr ""
+msgstr "Anno"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
 msgid "or"
-msgstr "o"
+msgstr "oppure"
