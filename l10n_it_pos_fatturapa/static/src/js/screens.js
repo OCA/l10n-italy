@@ -2,7 +2,6 @@ odoo.define('l10n_it_pos_fatturapa.screens', function (require) {
     "use strict";
 
     var Screens = require('point_of_sale.screens');
-    var Model = require('web.Model');
 
     Screens.ClientListScreenWidget.include({
 
