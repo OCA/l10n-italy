@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2019-11-24 22:36+0100\n"
+"PO-Revision-Date: 2019-11-26 21:14+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_33074100
@@ -9121,7 +9121,6 @@ msgstr "Pellicole cinematografiche"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_37069052
-#, fuzzy
 msgid ""
 "Cinematographic film, exposed and developed, consisting only of soundtrack, "
 "width < 35 mm; Negatives, intermediate positives and newsreels of "
@@ -9131,7 +9130,6 @@ msgstr "Pellicole cinematografiche"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_37061020
-#, fuzzy
 msgid ""
 "Cinematographic film, exposed and developed, consisting only of soundtrack, "
 "width >= 35 mm; Negatives and intermediate positives of cinematographic film, "
@@ -15578,7 +15576,6 @@ msgstr "Energia elettrica"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90283019
-#, fuzzy
 msgid ""
 "Electricity supply or production meters for alternating current, multi-phase, "
 "incl. calibrating meters therefor"
@@ -15586,7 +15583,6 @@ msgstr "Energia elettrica"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90283011
-#, fuzzy
 msgid ""
 "Electricity supply or production meters for alternating current, single-"
 "phase, incl. calibrating meters therefor"
@@ -15594,7 +15590,6 @@ msgstr "Energia elettrica"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90283090
-#, fuzzy
 msgid ""
 "Electricity supply or production meters for continuous current, incl. "
 "calibrating meters therefor"
@@ -28568,7 +28563,6 @@ msgstr "Capelli umani, non lavorati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_05010000
-#, fuzzy
 msgid ""
 "Human hair, unworked, whether or not washed or scoured; waste of human hair"
 msgstr "Capelli umani, non lavorati"
@@ -46410,7 +46404,6 @@ msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_37051000
-#, fuzzy
 msgid ""
 "Photographic plates and film, exposed and developed, for offset reproduction "
 "(excl. products made of paper, paperboard or textiles and ready-to-use plates)"
@@ -46425,7 +46418,6 @@ msgstr "Lastre e pellicole fotografiche, impressionate ma non sviluppate"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_37040010
-#, fuzzy
 msgid ""
 "Photographic plates and film, exposed but not developed (excl. products made "
 "of paper, paperboard or textiles)"
@@ -69286,13 +69278,11 @@ msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.381225
-#, fuzzy
 msgid "Waste oils"
 msgstr "Residui di oli"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_27109900
-#, fuzzy
 msgid ""
 "Waste oils containing mainly petroleum or bituminous minerals (excl. those "
 "containing polychlorinated biphenyls [PCBs], polychlorinated terphenyls "
@@ -69301,7 +69291,6 @@ msgstr "Residui di oli"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_27109100
-#, fuzzy
 msgid ""
 "Waste oils containing polychlorinated biphenyls [PCBs], polychlorinated "
 "terphenyls [PCTs] or polybrominated biphenyls [PBBs]"
@@ -69314,13 +69303,11 @@ msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_38254100
-#, fuzzy
 msgid "Waste organic solvents, halogenated"
 msgstr "Residui di solventi organici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_38254900
-#, fuzzy
 msgid "Waste organic solvents, non-halogenated"
 msgstr "Residui di solventi organici"
 
