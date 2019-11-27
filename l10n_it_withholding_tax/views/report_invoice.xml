@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="print_invoice_wt" inherit_id="account.report_invoice_document">
+        <xpath expr="//table[hasclass('table', 'table-condensed')]//thead//tr//th[6]" position="after">
+            <t t-if="o.withholding_tax">
+                <th class="text-right">
+                Withholding Tax
+                </th>
+            </t>
+        </xpath>
+        <xpath expr="//tbody[hasclass('invoice_tbody')]//td[@id='subtotal']" position="before">
+            <t t-if="o.withholding_tax">
+                <td class="text-right">
+                    <span t-esc="', '.join(map(lambda x: (x.name), l.invoice_line_tax_wt_ids))" />
+                </td>
+            </t>
+        </xpath>
+
+        <xpath expr="//tbody[hasclass('invoice_tbody')]//tr[@t-foreach='range(max(5-len(o.invoice_line_ids),0))']/td[last()]" position="before">
+            <td t-if="o.withholding_tax" />
+        </xpath>
+
+        <xpath expr="//div[@id='total']//table[hasclass('table', 'table-condensed')]//span[@t-field='o.amount_total']/../.." position="after">
+            <t t-if="o.withholding_tax">
+                <tr>
+                    <td>
+                        <strong>Withholding Tax</strong>
+                    </td>
+                    <td class="text-right">
+                        <span t-field="o.withholding_tax_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                    </td>
+                </tr>
+                <tr class="border-black">
+                    <td>
+                        <strong>Net To Pay</strong>
+                    </td>
+                    <td class="text-right">
+                        <span t-field="o.amount_net_pay" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                    </td>
+                </tr>
+            </t>
+        </xpath>
+    </template>
+</odoo>
