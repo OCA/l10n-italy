@@ -28,13 +28,13 @@ ITA - Intrastat
 **Italiano**
 
 Questo modulo si occupa della riclassificazione delle merci e dei servizi che sono oggetto di
-transazioni comunitarie
+transazioni comunitarie.
 
 Il modulo precarica anche le tabelle necessarie alla compilazione della dichiarazione:
 nomenclature combinate, sezioni doganali, natura delle transazioni, modalità di trasporto.
 
 Per la creazione delle dichiarazioni, degli elenchi riepilogativi e le estrazioni da
-presentare all'Agenzia delle Dogane è necessario installare il modulo l10n_it_intrastat_statement.
+presentare all'Agenzia delle Dogane è necessario installare il modulo `l10n_it_intrastat_statement`.
 
 **Table of contents**
 
@@ -46,46 +46,46 @@ Configuration
 
 **Italiano**
 
-In Impostazioni → Utenti e aziende → Aziende → *Nome azienda*
+In *Impostazioni → Utenti e aziende → Aziende → Nome azienda*
 impostare i parametri delle seguenti sezioni presenti nella scheda "Informazioni generali".
 
 1. Intrastat
 
-   a) ID utente (codice UA): inserire il codice identificativo Intrastat dell’azienda (codice alfanumerico di 4 caratteri, utilizzato come identificativo per l’accesso alle applicazioni delle Dogane).
-   b) Unità di misura per kg: parametro che indica l’unità di misura che viene verificata sulla riga fattura soggetta a Intrastat. Se sulla riga il peso è espresso nell’unità di misura indicata nel parametro (o in un suo multiplo), il peso che viene riportato nella corrispondente riga Intrastat è quello preso dalla riga fattura.
-   c) Unità supplementare da:
+   a) *ID utente (codice UA)*: inserire il codice identificativo Intrastat dell’azienda (codice alfanumerico di 4 caratteri, utilizzato come identificativo per l’accesso alle applicazioni delle Dogane).
+   b) *Unità di misura per kg*: parametro che indica l’unità di misura che viene verificata sulla riga fattura soggetta a Intrastat. Se sulla riga il peso è espresso nell’unità di misura indicata nel parametro (o in un suo multiplo), il peso che viene riportato nella corrispondente riga Intrastat è quello preso dalla riga fattura.
+   c) *Unità supplementare da*:
 
-      i. peso: da peso dei prodotti sulla riga Intrastat
-      ii. quantità: da quantità dei prodotti sulla riga Intrastat
-      iii. nulla
+      i. *peso*: da peso dei prodotti sulla riga Intrastat
+      ii. *quantità*: da quantità dei prodotti sulla riga Intrastat
+      iii. *nulla*
 
-   d) Escludere righe omaggio: esclude dalle righe Intrastat le righe a valore 0.
-   e) Delegato: il nominativo della persona delegata alla presentazione della dichiarazione Intrastat.
-   f) Partita IVA delegato: la partita IVA della persona delegata alla presentazione della dichiarazione Intrastat.
-   g) Nome file da esportare: nome del file che può essere impostato per forzare quello predefinito (SCAMBI.CEE).
-   h) Sezione doganale: sezione doganale predefinita da proporre in una nuova dichiarazione.
-   i) Ammontare minimo: in caso di fatture di importo inferiore usa questo valore nella dichiarazione.
+   d) *Escludere righe omaggio*: esclude dalle righe Intrastat le righe a valore 0.
+   e) *Delegato*: il nominativo della persona delegata alla presentazione della dichiarazione Intrastat.
+   f) *Partita IVA delegato*: la partita IVA della persona delegata alla presentazione della dichiarazione Intrastat.
+   g) *Nome file da esportare*: nome del file che può essere impostato per forzare quello predefinito (SCAMBI.CEE).
+   h) *Sezione doganale*: sezione doganale predefinita da proporre in una nuova dichiarazione.
+   i) *Ammontare minimo*: in caso di fatture di importo inferiore usa questo valore nella dichiarazione.
 
 2. Valori predefiniti per cessioni (parametri Intrastat per le fatture di vendita)
 
-   a) Forzare valore statistico in euro: casella di selezione attualmente non gestita.
-   b) Natura transazione: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.
-   c) Condizioni di consegna: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.
-   d) Modalità di trasporto: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Modo di trasporto).
-   e) Provincia di origine: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (provincia di origine della spedizione dei beni venduti).
+   a) *Forzare valore statistico in euro*: casella di selezione attualmente non gestita.
+   b) *Natura transazione*: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.
+   c) *Condizioni di consegna*: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.
+   d) *Modalità di trasporto*: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Modo di trasporto).
+   e) *Provincia di origine*: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (provincia di origine della spedizione dei beni venduti).
 
 3. Valori predefiniti per acquisti (parametri Intrastat per le fatture di acquisto)
 
-   a) Forzare valore statistico in euro: casella di selezione attualmente non gestita.
-   b) Natura transazione: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.
-   c) Condizioni di consegna: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.
-   d) Modalità di trasporto: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Modo di trasporto).
-   e) Provincia di destinazione: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (provincia di destinazione della spedizione dei beni acquistati).
+   a) *Forzare valore statistico in euro*: casella di selezione attualmente non gestita.
+   b) *Natura transazione*: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.
+   c) *Condizioni di consegna*: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.
+   d) *Modalità di trasporto*: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Modo di trasporto).
+   e) *Provincia di destinazione*: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (provincia di destinazione della spedizione dei beni acquistati).
+
 
 **Tabelle di sistema**
 
-
-In Fatturazione/Contabilità → Configurazione → Intrastat
+In *Fatturazione/Contabilità → Configurazione → Intrastat*
 sono presenti le funzionalità per la gestione delle tabelle di sistema.
 
 - Sezioni doganali
@@ -96,6 +96,7 @@ sono presenti le funzionalità per la gestione delle tabelle di sistema.
 Tali tabelle sono pre-popolate in fase di installazione del modulo, in base ai valori ammessi per le dichiarazioni Intrastat.
 
 N.B.: Il sottomenù "Intrastat" è visibile solo se vengono abilitate le funzionalità contabili complete.
+
 
 **Posizione fiscale**
 
@@ -115,8 +116,7 @@ Per il prodotto la sezione Intrastat si trova nella scheda «Fatturazione/Contab
 - la tipologia (Bene, Servizio, Varie, Escludere);
 - il codice Intrastat, tra quelli censiti tramite l’apposita tabella di sistema "Nomenclature combinate" (il campo viene abilitato solo per le tipologie "Bene" e "Servizio").
 
-
-Per le categorie di prodotti, le informazioni sono presenti in un’apposita area Intrastat della maschera di dettaglio:
+Per le categorie di prodotti, le informazioni sono presenti in un’apposita area Intrastat della maschera di dettaglio.
 
 Usage
 =====
@@ -139,13 +139,16 @@ Nella scheda Intrastat, un clic su una riga Intrastat permette di accedere alla 
 Nella maschera:
 
 - il campo "Stato acquirente/fornitore" viene popolato in automatico dal campo "Nazione" dell’indirizzo associato al partner;
-- i campi configurati in Impostazioni → Utenti e aziende → Aziende → *Nome azienda* (vedi "Informazioni generali" su azienda) vengono popolati in automatico con i valori predefiniti impostati, in ragione della tipologia di fattura (vendita o acquisto);
+- i campi configurati in *Impostazioni → Utenti e aziende → Aziende → Nome azienda* (vedi "Informazioni generali" su azienda) vengono popolati in automatico con i valori predefiniti impostati, in ragione della tipologia di fattura (vendita o acquisto);
 - se fattura di vendita:
-  1. i campi Origine → "Paese di provenienza" e Origine → "Paese di origine" vengono popolati in automatico con la nazione presente nell’indirizzo associato all'azienda;
-  2. il campo Destinazione → "Paese di destinazione" viene popolato in automatico con la nazione presente nell'indirizzo associato al partner;
+
+  1. i campi *Origine → Paese di provenienza* e *Origine → Paese di origine* vengono popolati in automatico con la nazione presente nell’indirizzo associato all'azienda;
+  2. il campo *Destinazione → Paese di destinazione* viene popolato in automatico con la nazione presente nell'indirizzo associato al partner;
+
 - se fattura di acquisto:
-  1. i campi Origine → "Paese di provenienza" e Origine → "Paese di origine" vengono popolati in automatico con la nazione presente nell’indirizzo associato al partner (fornitore);
-  2. il campo Destinazione → "Paese di destinazione" viene preso dai dati dell'azienda.
+
+  1. i campi *Origine → Paese di provenienza* e *Origine → Paese di origine* vengono popolati in automatico con la nazione presente nell’indirizzo associato al partner (fornitore);
+  2. il campo *Destinazione → Paese di destinazione* viene preso dai dati dell'azienda.
 
 N.B.: tutti i campi possono ovviamente essere modificati, ma l’utilizzo del pulsante «Ricalcola righe Intrastat» ripristinerà i valori predefiniti, sui campi prelevati dalla configurazione dell'azienda o dalla riga fattura.
 
@@ -153,8 +156,7 @@ N.B.: tutti i campi possono ovviamente essere modificati, ma l’utilizzo del pu
 **Note di credito**
 
 Importante:
-
-Se si seleziona un periodo che è lo stesso della dichiarazione, la nota di credito, per il suo importo, non confluirà nella sezione di rettifica, ma andrà a stornare direttamente il valore della fattura sulla quale è stata emessa. La verifica sulla fattura da stornare viene fatta confrontando la coppia di valori partner/nomenclatura combinata.
+   Se si seleziona un periodo che è lo stesso della dichiarazione, la nota di credito, per il suo importo, non confluirà nella sezione di rettifica, ma andrà a stornare direttamente il valore della fattura sulla quale è stata emessa. La verifica sulla fattura da stornare viene fatta confrontando la coppia di valori *Partner/Nomenclatura combinata*.
 
 Bug Tracker
 ===========
