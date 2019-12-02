@@ -14,3 +14,5 @@ class PosConfig(models.Model):
         string='Use https',
         default=False,
     )
+    show_receipt_when_printing = fields.Boolean(
+        string='Show receipt on screen when printing', default=True)
