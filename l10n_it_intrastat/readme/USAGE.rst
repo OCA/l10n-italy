@@ -16,13 +16,16 @@ Nella scheda Intrastat, un clic su una riga Intrastat permette di accedere alla 
 Nella maschera:
 
 - il campo "Stato acquirente/fornitore" viene popolato in automatico dal campo "Nazione" dell’indirizzo associato al partner;
-- i campi configurati in Impostazioni → Utenti e aziende → Aziende → *Nome azienda* (vedi "Informazioni generali" su azienda) vengono popolati in automatico con i valori predefiniti impostati, in ragione della tipologia di fattura (vendita o acquisto);
+- i campi configurati in *Impostazioni → Utenti e aziende → Aziende → Nome azienda* (vedi "Informazioni generali" su azienda) vengono popolati in automatico con i valori predefiniti impostati, in ragione della tipologia di fattura (vendita o acquisto);
 - se fattura di vendita:
-  1. i campi Origine → "Paese di provenienza" e Origine → "Paese di origine" vengono popolati in automatico con la nazione presente nell’indirizzo associato all'azienda;
-  2. il campo Destinazione → "Paese di destinazione" viene popolato in automatico con la nazione presente nell'indirizzo associato al partner;
+
+  1. i campi *Origine → Paese di provenienza* e *Origine → Paese di origine* vengono popolati in automatico con la nazione presente nell’indirizzo associato all'azienda;
+  2. il campo *Destinazione → Paese di destinazione* viene popolato in automatico con la nazione presente nell'indirizzo associato al partner;
+
 - se fattura di acquisto:
-  1. i campi Origine → "Paese di provenienza" e Origine → "Paese di origine" vengono popolati in automatico con la nazione presente nell’indirizzo associato al partner (fornitore);
-  2. il campo Destinazione → "Paese di destinazione" viene preso dai dati dell'azienda.
+
+  1. i campi *Origine → Paese di provenienza* e *Origine → Paese di origine* vengono popolati in automatico con la nazione presente nell’indirizzo associato al partner (fornitore);
+  2. il campo *Destinazione → Paese di destinazione* viene preso dai dati dell'azienda.
 
 N.B.: tutti i campi possono ovviamente essere modificati, ma l’utilizzo del pulsante «Ricalcola righe Intrastat» ripristinerà i valori predefiniti, sui campi prelevati dalla configurazione dell'azienda o dalla riga fattura.
 
@@ -30,5 +33,4 @@ N.B.: tutti i campi possono ovviamente essere modificati, ma l’utilizzo del pu
 **Note di credito**
 
 Importante:
-
-Se si seleziona un periodo che è lo stesso della dichiarazione, la nota di credito, per il suo importo, non confluirà nella sezione di rettifica, ma andrà a stornare direttamente il valore della fattura sulla quale è stata emessa. La verifica sulla fattura da stornare viene fatta confrontando la coppia di valori partner/nomenclatura combinata.
+   Se si seleziona un periodo che è lo stesso della dichiarazione, la nota di credito, per il suo importo, non confluirà nella sezione di rettifica, ma andrà a stornare direttamente il valore della fattura sulla quale è stata emessa. La verifica sulla fattura da stornare viene fatta confrontando la coppia di valori *Partner/Nomenclatura combinata*.
