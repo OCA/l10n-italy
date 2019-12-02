@@ -212,7 +212,7 @@ class IntrastatStatementSaleSection2(models.Model):
             ._export_line_checks(section_label, section_number)
         if not self.year_id:
             raise ValidationError(
-                _("Missing reference year on 'Sale - Section 2'"))
+                _("Missing reference year on 'Sales - Section 2'"))
         if not self.sign_variation:
             raise ValidationError(
                 _("Missing adjustment sign on 'Sales - Section 2'"))
@@ -357,7 +357,7 @@ class IntrastatStatementSaleSection4(models.Model):
         string="Protocol Number",
         size=6)
     progressive_to_modify = fields.Integer(
-        string="Progressive to Modify")
+        string="Progressive to Adjust")
     invoice_number = fields.Char(
         string="Invoice Number")
     invoice_date = fields.Date(
@@ -413,7 +413,7 @@ class IntrastatStatementSaleSection4(models.Model):
                 _("Missing protocol number on 'Sales - Section 4'"))
         if not self.progressive_to_modify:
             raise ValidationError(
-                _("Missing progressive to adjust on 'Sales Section 4'"))
+                _("Missing progressive to adjust on 'Sales - Section 4'"))
         if (not self.invoice_number) or (not self.invoice_date):
             raise ValidationError(
                 _("Missing invoice data on 'Sales - Section 4'"))
