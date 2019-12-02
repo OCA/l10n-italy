@@ -370,11 +370,11 @@ ul.auto-toc {
 <p><a class="reference external" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external" href="https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_intrastat"><img alt="OCA/l10n-italy" src="https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github" /></a> <a class="reference external" href="https://translation.odoo-community.org/projects/l10n-italy-12-0/l10n-italy-12-0-l10n_it_intrastat"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external" href="https://runbot.odoo-community.org/runbot/122/12.0"><img alt="Try me on Runbot" src="https://img.shields.io/badge/runbot-Try%20me-875A7B.png" /></a></p>
 <p><strong>Italiano</strong></p>
 <p>Questo modulo si occupa della riclassificazione delle merci e dei servizi che sono oggetto di
-transazioni comunitarie</p>
+transazioni comunitarie.</p>
 <p>Il modulo precarica anche le tabelle necessarie alla compilazione della dichiarazione:
 nomenclature combinate, sezioni doganali, natura delle transazioni, modalità di trasporto.</p>
 <p>Per la creazione delle dichiarazioni, degli elenchi riepilogativi e le estrazioni da
-presentare all’Agenzia delle Dogane è necessario installare il modulo l10n_it_intrastat_statement.</p>
+presentare all’Agenzia delle Dogane è necessario installare il modulo <cite>l10n_it_intrastat_statement</cite>.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -392,45 +392,45 @@ presentare all’Agenzia delle Dogane è necessario installare il modulo l10n_it
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#id1">Configuration</a></h1>
 <p><strong>Italiano</strong></p>
-<p>In Impostazioni → Utenti e aziende → Aziende → <em>Nome azienda</em>
+<p>In <em>Impostazioni → Utenti e aziende → Aziende → Nome azienda</em>
 impostare i parametri delle seguenti sezioni presenti nella scheda “Informazioni generali”.</p>
 <ol class="arabic simple">
 <li>Intrastat<ol class="loweralpha">
-<li>ID utente (codice UA): inserire il codice identificativo Intrastat dell’azienda (codice alfanumerico di 4 caratteri, utilizzato come identificativo per l’accesso alle applicazioni delle Dogane).</li>
-<li>Unità di misura per kg: parametro che indica l’unità di misura che viene verificata sulla riga fattura soggetta a Intrastat. Se sulla riga il peso è espresso nell’unità di misura indicata nel parametro (o in un suo multiplo), il peso che viene riportato nella corrispondente riga Intrastat è quello preso dalla riga fattura.</li>
-<li>Unità supplementare da:<ol class="lowerroman">
-<li>peso: da peso dei prodotti sulla riga Intrastat</li>
-<li>quantità: da quantità dei prodotti sulla riga Intrastat</li>
-<li>nulla</li>
+<li><em>ID utente (codice UA)</em>: inserire il codice identificativo Intrastat dell’azienda (codice alfanumerico di 4 caratteri, utilizzato come identificativo per l’accesso alle applicazioni delle Dogane).</li>
+<li><em>Unità di misura per kg</em>: parametro che indica l’unità di misura che viene verificata sulla riga fattura soggetta a Intrastat. Se sulla riga il peso è espresso nell’unità di misura indicata nel parametro (o in un suo multiplo), il peso che viene riportato nella corrispondente riga Intrastat è quello preso dalla riga fattura.</li>
+<li><em>Unità supplementare da</em>:<ol class="lowerroman">
+<li><em>peso</em>: da peso dei prodotti sulla riga Intrastat</li>
+<li><em>quantità</em>: da quantità dei prodotti sulla riga Intrastat</li>
+<li><em>nulla</em></li>
 </ol>
 </li>
-<li>Escludere righe omaggio: esclude dalle righe Intrastat le righe a valore 0.</li>
-<li>Delegato: il nominativo della persona delegata alla presentazione della dichiarazione Intrastat.</li>
-<li>Partita IVA delegato: la partita IVA della persona delegata alla presentazione della dichiarazione Intrastat.</li>
-<li>Nome file da esportare: nome del file che può essere impostato per forzare quello predefinito (SCAMBI.CEE).</li>
-<li>Sezione doganale: sezione doganale predefinita da proporre in una nuova dichiarazione.</li>
-<li>Ammontare minimo: in caso di fatture di importo inferiore usa questo valore nella dichiarazione.</li>
+<li><em>Escludere righe omaggio</em>: esclude dalle righe Intrastat le righe a valore 0.</li>
+<li><em>Delegato</em>: il nominativo della persona delegata alla presentazione della dichiarazione Intrastat.</li>
+<li><em>Partita IVA delegato</em>: la partita IVA della persona delegata alla presentazione della dichiarazione Intrastat.</li>
+<li><em>Nome file da esportare</em>: nome del file che può essere impostato per forzare quello predefinito (SCAMBI.CEE).</li>
+<li><em>Sezione doganale</em>: sezione doganale predefinita da proporre in una nuova dichiarazione.</li>
+<li><em>Ammontare minimo</em>: in caso di fatture di importo inferiore usa questo valore nella dichiarazione.</li>
 </ol>
 </li>
 <li>Valori predefiniti per cessioni (parametri Intrastat per le fatture di vendita)<ol class="loweralpha">
-<li>Forzare valore statistico in euro: casella di selezione attualmente non gestita.</li>
-<li>Natura transazione: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.</li>
-<li>Condizioni di consegna: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.</li>
-<li>Modalità di trasporto: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Modo di trasporto).</li>
-<li>Provincia di origine: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (provincia di origine della spedizione dei beni venduti).</li>
+<li><em>Forzare valore statistico in euro</em>: casella di selezione attualmente non gestita.</li>
+<li><em>Natura transazione</em>: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.</li>
+<li><em>Condizioni di consegna</em>: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.</li>
+<li><em>Modalità di trasporto</em>: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Modo di trasporto).</li>
+<li><em>Provincia di origine</em>: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (provincia di origine della spedizione dei beni venduti).</li>
 </ol>
 </li>
 <li>Valori predefiniti per acquisti (parametri Intrastat per le fatture di acquisto)<ol class="loweralpha">
-<li>Forzare valore statistico in euro: casella di selezione attualmente non gestita.</li>
-<li>Natura transazione: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.</li>
-<li>Condizioni di consegna: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.</li>
-<li>Modalità di trasporto: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Modo di trasporto).</li>
-<li>Provincia di destinazione: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (provincia di destinazione della spedizione dei beni acquistati).</li>
+<li><em>Forzare valore statistico in euro</em>: casella di selezione attualmente non gestita.</li>
+<li><em>Natura transazione</em>: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.</li>
+<li><em>Condizioni di consegna</em>: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.</li>
+<li><em>Modalità di trasporto</em>: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Modo di trasporto).</li>
+<li><em>Provincia di destinazione</em>: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (provincia di destinazione della spedizione dei beni acquistati).</li>
 </ol>
 </li>
 </ol>
 <p><strong>Tabelle di sistema</strong></p>
-<p>In Fatturazione/Contabilità → Configurazione → Intrastat
+<p>In <em>Fatturazione/Contabilità → Configurazione → Intrastat</em>
 sono presenti le funzionalità per la gestione delle tabelle di sistema.</p>
 <ul class="simple">
 <li>Sezioni doganali</li>
@@ -451,7 +451,7 @@ sono presenti le funzionalità per la gestione delle tabelle di sistema.</p>
 <li>la tipologia (Bene, Servizio, Varie, Escludere);</li>
 <li>il codice Intrastat, tra quelli censiti tramite l’apposita tabella di sistema “Nomenclature combinate” (il campo viene abilitato solo per le tipologie “Bene” e “Servizio”).</li>
 </ul>
-<p>Per le categorie di prodotti, le informazioni sono presenti in un’apposita area Intrastat della maschera di dettaglio:</p>
+<p>Per le categorie di prodotti, le informazioni sono presenti in un’apposita area Intrastat della maschera di dettaglio.</p>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#id2">Usage</a></h1>
@@ -468,18 +468,24 @@ sono presenti le funzionalità per la gestione delle tabelle di sistema.</p>
 <p>Nella maschera:</p>
 <ul class="simple">
 <li>il campo “Stato acquirente/fornitore” viene popolato in automatico dal campo “Nazione” dell’indirizzo associato al partner;</li>
-<li>i campi configurati in Impostazioni → Utenti e aziende → Aziende → <em>Nome azienda</em> (vedi “Informazioni generali” su azienda) vengono popolati in automatico con i valori predefiniti impostati, in ragione della tipologia di fattura (vendita o acquisto);</li>
-<li>se fattura di vendita:
-1. i campi Origine → “Paese di provenienza” e Origine → “Paese di origine” vengono popolati in automatico con la nazione presente nell’indirizzo associato all’azienda;
-2. il campo Destinazione → “Paese di destinazione” viene popolato in automatico con la nazione presente nell’indirizzo associato al partner;</li>
-<li>se fattura di acquisto:
-1. i campi Origine → “Paese di provenienza” e Origine → “Paese di origine” vengono popolati in automatico con la nazione presente nell’indirizzo associato al partner (fornitore);
-2. il campo Destinazione → “Paese di destinazione” viene preso dai dati dell’azienda.</li>
+<li>i campi configurati in <em>Impostazioni → Utenti e aziende → Aziende → Nome azienda</em> (vedi “Informazioni generali” su azienda) vengono popolati in automatico con i valori predefiniti impostati, in ragione della tipologia di fattura (vendita o acquisto);</li>
+<li>se fattura di vendita:<ol class="arabic">
+<li>i campi <em>Origine → Paese di provenienza</em> e <em>Origine → Paese di origine</em> vengono popolati in automatico con la nazione presente nell’indirizzo associato all’azienda;</li>
+<li>il campo <em>Destinazione → Paese di destinazione</em> viene popolato in automatico con la nazione presente nell’indirizzo associato al partner;</li>
+</ol>
+</li>
+<li>se fattura di acquisto:<ol class="arabic">
+<li>i campi <em>Origine → Paese di provenienza</em> e <em>Origine → Paese di origine</em> vengono popolati in automatico con la nazione presente nell’indirizzo associato al partner (fornitore);</li>
+<li>il campo <em>Destinazione → Paese di destinazione</em> viene preso dai dati dell’azienda.</li>
+</ol>
+</li>
 </ul>
 <p>N.B.: tutti i campi possono ovviamente essere modificati, ma l’utilizzo del pulsante «Ricalcola righe Intrastat» ripristinerà i valori predefiniti, sui campi prelevati dalla configurazione dell’azienda o dalla riga fattura.</p>
 <p><strong>Note di credito</strong></p>
-<p>Importante:</p>
-<p>Se si seleziona un periodo che è lo stesso della dichiarazione, la nota di credito, per il suo importo, non confluirà nella sezione di rettifica, ma andrà a stornare direttamente il valore della fattura sulla quale è stata emessa. La verifica sulla fattura da stornare viene fatta confrontando la coppia di valori partner/nomenclatura combinata.</p>
+<dl class="docutils">
+<dt>Importante:</dt>
+<dd>Se si seleziona un periodo che è lo stesso della dichiarazione, la nota di credito, per il suo importo, non confluirà nella sezione di rettifica, ma andrà a stornare direttamente il valore della fattura sulla quale è stata emessa. La verifica sulla fattura da stornare viene fatta confrontando la coppia di valori <em>Partner/Nomenclatura combinata</em>.</dd>
+</dl>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#id3">Bug Tracker</a></h1>
