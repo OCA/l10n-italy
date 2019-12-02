@@ -11,7 +11,7 @@
                'FP81II, FP90III',
     'author': (
         'Odoo Community Association (OCA), Agile Business Group, '
-        'Leonardo Donelli @ Creativi Quadrati, TAKOBI'
+        'Leonardo Donelli, TAKOBI, Level Prime Srl'
     ),
     'license': 'GPL-3',
     'website': 'https://github.com/OCA/l10n-italy',
