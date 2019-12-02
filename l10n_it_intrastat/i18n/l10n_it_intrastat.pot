@@ -9782,6 +9782,7 @@ msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__province_destination_id
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_province_destination_id
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_intrastat_company_form
 msgid "Destination Province"
 msgstr ""
@@ -22415,56 +22416,6 @@ msgid "Intrastat Lines"
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_delivery_code_id
-msgid "Intrastat Purchase Delivery Code"
-msgstr ""
-
-#. module: l10n_it_intrastat
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_province_destination_id
-msgid "Intrastat Purchase Province Destination"
-msgstr ""
-
-#. module: l10n_it_intrastat
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_statistic_amount
-msgid "Intrastat Purchase Statistic Amount"
-msgstr ""
-
-#. module: l10n_it_intrastat
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_transaction_nature_id
-msgid "Intrastat Purchase Transaction Nature"
-msgstr ""
-
-#. module: l10n_it_intrastat
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_transport_code_id
-msgid "Intrastat Purchase Transport Code"
-msgstr ""
-
-#. module: l10n_it_intrastat
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_delivery_code_id
-msgid "Intrastat Sale Delivery Code"
-msgstr ""
-
-#. module: l10n_it_intrastat
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_province_origin_id
-msgid "Intrastat Sale Province Origin"
-msgstr ""
-
-#. module: l10n_it_intrastat
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_statistic_amount
-msgid "Intrastat Sale Statistic Amount"
-msgstr ""
-
-#. module: l10n_it_intrastat
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_transaction_nature_id
-msgid "Intrastat Sale Transaction Nature"
-msgstr ""
-
-#. module: l10n_it_intrastat
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_transport_code_id
-msgid "Intrastat Sale Transport Code"
-msgstr ""
-
-#. module: l10n_it_intrastat
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_invoice_intrastat_search
 msgid "Intrastat Search"
 msgstr ""
@@ -30763,6 +30714,7 @@ msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__province_origin_id
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_province_origin_id
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_intrastat_company_form
 msgid "Origin Province"
 msgstr ""
@@ -37271,6 +37223,26 @@ msgid "Purchases Default Values"
 msgstr ""
 
 #. module: l10n_it_intrastat
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_delivery_code_id
+msgid "Purchases Delivery Terms"
+msgstr ""
+
+#. module: l10n_it_intrastat
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_statistic_amount
+msgid "Purchases Statistic Value in Euro"
+msgstr ""
+
+#. module: l10n_it_intrastat
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_transaction_nature_id
+msgid "Purchases Transaction Nature"
+msgstr ""
+
+#. module: l10n_it_intrastat
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_transport_code_id
+msgid "Purchases Transport Mode"
+msgstr ""
+
+#. module: l10n_it_intrastat
 #: selection:account.invoice.intrastat,statement_section:0
 msgid "Purchases section 1"
 msgstr ""
@@ -40220,6 +40192,26 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_intrastat_company_form
 msgid "Sales Default Values"
+msgstr ""
+
+#. module: l10n_it_intrastat
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_delivery_code_id
+msgid "Sales Delivery Terms"
+msgstr ""
+
+#. module: l10n_it_intrastat
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_statistic_amount
+msgid "Sales Statistic Value in Euro"
+msgstr ""
+
+#. module: l10n_it_intrastat
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_transaction_nature_id
+msgid "Sales Transaction Nature"
+msgstr ""
+
+#. module: l10n_it_intrastat
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_transport_code_id
+msgid "Sales Transport Mode"
 msgstr ""
 
 #. module: l10n_it_intrastat

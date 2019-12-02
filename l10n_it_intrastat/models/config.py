@@ -32,26 +32,36 @@ class ResCompany(models.Model):
         string="File name for export")
 
     # default values sale section
-    intrastat_sale_statistic_amount = fields.Boolean()
+    intrastat_sale_statistic_amount = fields.Boolean(
+        string="Sales Statistic Value in Euro")
     intrastat_sale_transaction_nature_id = fields.Many2one(
-        comodel_name='account.intrastat.transaction.nature')
+        comodel_name='account.intrastat.transaction.nature',
+        string="Sales Transaction Nature")
     intrastat_sale_delivery_code_id = fields.Many2one(
-        comodel_name='account.incoterms')
+        comodel_name='account.incoterms',
+        string="Sales Delivery Terms")
     intrastat_sale_transport_code_id = fields.Many2one(
-        comodel_name='account.intrastat.transport')
+        comodel_name='account.intrastat.transport',
+        string="Sales Transport Mode")
     intrastat_sale_province_origin_id = fields.Many2one(
-        comodel_name='res.country.state')
+        comodel_name='res.country.state',
+        string="Origin Province")
 
     # default values purchase section
-    intrastat_purchase_statistic_amount = fields.Boolean()
+    intrastat_purchase_statistic_amount = fields.Boolean(
+        string="Purchases Statistic Value in Euro")
     intrastat_purchase_transaction_nature_id = fields.Many2one(
-        comodel_name='account.intrastat.transaction.nature')
+        comodel_name='account.intrastat.transaction.nature',
+        string="Purchases Transaction Nature")
     intrastat_purchase_delivery_code_id = fields.Many2one(
-        comodel_name='account.incoterms')
+        comodel_name='account.incoterms',
+        string="Purchases Delivery Terms")
     intrastat_purchase_transport_code_id = fields.Many2one(
-        comodel_name='account.intrastat.transport')
+        comodel_name='account.intrastat.transport',
+        string="Purchases Transport Mode")
     intrastat_purchase_province_destination_id = fields.Many2one(
-        comodel_name='res.country.state')
+        comodel_name='res.country.state',
+        string="Destination Province")
 
     intrastat_min_amount = fields.Float(
         string="Min amount",
