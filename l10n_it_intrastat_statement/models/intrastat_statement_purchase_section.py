@@ -412,9 +412,10 @@ class IntrastatStatementPurchaseSection4(models.Model):
         string="Protocol Number",
         size=6)
     progressive_to_modify_id = fields.Many2one(
-        comodel_name='account.intrastat.statement.purchase.section1')
+        comodel_name='account.intrastat.statement.purchase.section1',
+        string="Progressive to Adjust ID")
     progressive_to_modify = fields.Integer(
-        string="Progressive to Modify")
+        string="Progressive to Adjust")
     invoice_number = fields.Char(
         string="Invoice Number")
     invoice_date = fields.Date(
@@ -460,28 +461,28 @@ class IntrastatStatementPurchaseSection4(models.Model):
             ._export_line_checks(section_label, section_number)
         if not self.year_id:
             raise ValidationError(
-                _("Missing reference year on 'Purchase - Section 4'"))
+                _("Missing reference year on 'Purchases - Section 4'"))
         if not self.intrastat_custom_id:
             raise ValidationError(
-                _("Missing customs section on 'Purchase Section 4'"))
+                _("Missing customs section on 'Purchases - Section 4'"))
         if not self.protocol:
             raise ValidationError(
-                _("Missing protocol on 'Purchase Section 4'"))
+                _("Missing protocol number on 'Purchases - Section 4'"))
         if not self.progressive_to_modify:
             raise ValidationError(
-                _("Missing progressive to adjust on 'Purchase Section 4'"))
+                _("Missing progressive to adjust on 'Purchases - Section 4'"))
         if (not self.invoice_number) or (not self.invoice_date):
             raise ValidationError(
-                _("Missing invoice data on 'Purchase Section 4'"))
+                _("Missing invoice data on 'Purchases - Section 4'"))
         if not self.supply_method:
             raise ValidationError(
-                _("Missing supply method on 'Purchase Section 4'"))
+                _("Missing supply method on 'Purchases - Section 4'"))
         if not self.payment_method:
             raise ValidationError(
-                _("Missing payment method on 'Purchase Section 4'"))
+                _("Missing payment method on 'Purchases - Section 4'"))
         if not self.country_payment_id:
             raise ValidationError(
-                _("Missing payment country on 'Purchase Section 4'"))
+                _("Missing payment country on 'Purchases - Section 4'"))
 
     @api.multi
     def _prepare_export_line(self):
