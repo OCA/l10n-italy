@@ -2,14 +2,6 @@
 <odoo>
     <data>
 
-
-     <template id="assets_backend" name="filter_selection" inherit_id="point_of_sale.assets">
-             <xpath expr="//script[last()]" position="after">
-                 <script type="text/javascript" src="/fiscal_epos_print/static/lib/fiscalprint/fiscalprint.js"/>
-                 <script type="text/javascript" src="/fiscal_epos_print/static/src/js/fp90iii.js"/>
-             </xpath>
-        </template>
-
         <record model="ir.ui.view" id="view_account_journal_pos_user_form_fp90">
             <field name="name">POS Journal - Fiscal Printer field</field>
             <field name="model">account.journal</field>
@@ -17,7 +9,9 @@
                    ref="point_of_sale.view_account_journal_pos_user_form"/>
             <field name="arch" type="xml">
                 <field name="amount_authorized_diff" position="after">
-                    <field name="fiscalprinter_payment_type" />
+                    <field name="fiscalprinter_payment_type"/>
+                    <field name="fiscalprinter_payment_index"
+                           attrs="{'required': [('fiscalprinter_payment_type', 'in', ('2', '3'))], 'invisible': [('fiscalprinter_payment_type', 'not in', ('2', '3'))]}"/>
                 </field>
             </field>
         </record>
