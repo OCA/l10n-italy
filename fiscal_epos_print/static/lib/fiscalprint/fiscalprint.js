@@ -1,13 +1,34 @@
 ﻿//
 // ePOS-Print and Fiscal Print API
 //
-// Version 1.0.0
+// Version 1.1.0
 //
-// Copyright (C) SEIKO EPSON CORPORATION 2012. All rights reserved.
+// Copyright (C) SEIKO EPSON CORPORATION 2018. All rights reserved.
 //
+
+// 06/12/2012	1.0.0
+// First release.
+
+// 01/09/2014	1.0.1
+// 1. Added send timeout parameter (argument).
+// 2. Added onreceive res_add argument so that complete response can also be returned.
+// 3. onerror response generates FP_NO_ANSWER_NETWORK fixed text instead of xhr response.
+// 4. encodeBase64Binary object added for future use.
+
+
+// 23/03/2018	1.1.0
+// 1. Added empty node exception handling.
+// 2. Added "statusText" string field in result variable as "status" field is Integer which doesn't manage text
+//    present in certain replies.
+// 3. Added callMode argument in send method so that either asynchronous or synchronous mode can be selected.
+//    Use "async" for asynchronous otherwise defaults to synchronous.
+//    If null, defaults to async.
+//    Timeout only valid for async mode.
+
 
 (function (window)
 {
+
     //
     // Function: ePOSBuilder constructor
     // Description: initialize an ePOS-Print XML Builder object
@@ -1144,7 +1165,7 @@
         xhr.send(soap);
     }
 
-    
+
 	/*
 	Function: createXMLHttpRequest method
 	Description: create an XMLHttpRequest object
@@ -1152,7 +1173,7 @@
 	Return:      object      XMLHttpRequest object
 	Throws:      object      the browser does not equip XMLHttpRequest
     */
-    
+
 	function createXMLHttpRequest()
 	{
 		var xhr = null;
@@ -1216,7 +1237,8 @@
     }
 
 
-// F I S C A L --- F I S C A L --- F I S C A L --- F I S C A L --- F I S C A L
+// F I S C A L --- F I S C A L --- F I S C A L --- F I S C A L --- F I S C A L --- F I S C A L --- F I S C A L --- F I S C A L
+
 
 	/*
 	Function: fiscalPrint constructor
@@ -1224,13 +1246,13 @@
 	Parameters:  none
 	Return:      none
 	*/
-	
+
 	function fiscalPrint()
 	{
 		// events
 		this.onreceive = null;
 		this.onerror = null;
-		
+
 		// constants
 		this.ASB_NO_RESPONSE = 0x00000001;
 		this.ASB_PRINT_SUCCESS = 0x00000002;
@@ -1260,9 +1282,12 @@
 	Return:			none
 	Throws:			object		The browser does not equip XMLHttpRequest
 	*/
-    
-	fiscalPrint.prototype.send = function (address, request)
+
+	fiscalPrint.prototype.send = function (address, request, timeout, callMode)
 	{
+		timeout = timeout || 0;
+		callMode = callMode || "async";
+
 		// create SOAP envelope
 		var soap = '<?xml version="1.0" encoding="utf-8"?>\n' +
 			'<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">\n' +
@@ -1272,13 +1297,31 @@
             '</s:Envelope>\n';
 		// create XMLHttpRequest object
 		var xhr = createXMLHttpRequest();
-		xhr.open('POST', address, true);
+		if (callMode == "async")
+		{
+			xhr.open('POST', address, true);
+		}
+		else
+		{
+			xhr.open('POST', address, false); // PHIL false = sincrono
+		}
 		// set headers
 		xhr.setRequestHeader('Content-Type', 'text/xml; charset=UTF-8');
 		xhr.setRequestHeader('If-Modified-Since', 'Thu, 01 Jan 1970 00:00:00 GMT');
 		xhr.setRequestHeader('SOAPAction', '""');
 		// receive event
 		var epos = this;
+
+		// PHIL timeout non va con le richieste sincrone
+		if (callMode == "async")
+		{
+			xhr.timeout = timeout;
+			xhr.ontimeout = function () {
+			console.log("Timed out!!!");
+			fireFiscalErrorEvent(epos, xhr);
+			}
+		}
+
 		xhr.onreadystatechange = function ()
 		{
 			// receive response message
@@ -1295,10 +1338,10 @@
 				}
 			}
 		}
+
 		// send request message
 		xhr.send(soap);
 	}
-
 
 	/*
 	Function: fireFiscalReceiveEvent method
@@ -1313,18 +1356,17 @@
 	{
 		if (epos.onreceive)
 		{
+			// alert ("xhr.responseXML.xml = " + xhr.responseXML.xml);
 			var res = xhr.responseXML.getElementsByTagName('response');
-			// alert (xhr.responseXML.xml);
-			// document.write(xhr.responseXML.xml);
-			
 			if (res.length > 0)
 			{
 				// fire onreceive event
-				var result = 
+				var result =
 				{
 					success: /^(1|true)$/.test(res[0].getAttribute('success')),
 					code: res[0].getAttribute('code'),
-					status: parseInt(res[0].getAttribute('status'))
+					status: parseInt(res[0].getAttribute('status')),
+					statusText: res[0].getAttribute('status')
 				};
 
 				// look for additional info
@@ -1336,20 +1378,35 @@
 					var tag_names_list = list[0].childNodes[0].nodeValue;
 					var tag_names_array = tag_names_list.split(',');
 					var add_info = {};
-					for (var i = 0; i < tag_names_array.length; i++)
+
+					for (var tnai = 0; tnai < tag_names_array.length; tnai++)
 					{
-						var node = res_add[0].getElementsByTagName(tag_names_array[i])[0];
+						var node = res_add[0].getElementsByTagName(tag_names_array[tnai])[0];
 						var node_child = node.childNodes[0];
-						var node_val = node_child.nodeValue;
-						add_info[tag_names_array[i]] = node_val;
+						var node_val = "";
+						// 21/02/2018 Philip Barnett. Alcuni comandi tornano con responseData vuoto. Senza la verifica, possono vericarsi i null Exceptiom.
+						// Questa riga non ha risolto il problema - if(node_child.nodeValue != null && node_child.nodeValue != "")
+						try
+						{
+							node_val = node_child.nodeValue;
+						}
+						catch(err) // Blank lines generate exceptions
+						{
+							// node_val = "Elemento " + node.childNodes[0] + " vuoto";
+						}
+						add_info[tag_names_array[tnai]] = node_val;
 					}
 				}
-				epos.onreceive(result, tag_names_array, add_info)
+				else {
+					var tag_names_array = "";
+					var add_info = "";
+				}
+
+				epos.onreceive(result, tag_names_array, add_info, res_add)
 			}
 			else // res.length <= 0
 			{
 				// alert ("res.length = " + res.length);
-				fireFiscalErrorEvent(epos, xhr);
 			} // end if (res.length > 0)
 		} // end if (epos.onreceive)
 	} // end function fireFiscalReceiveEvent(epos, xhr)
@@ -1370,10 +1427,14 @@
 		// alert("Error event called");
 		if (epos.onerror)
 		{
-			epos.onerror({
-				status: xhr.status,
-				responseText: xhr.responseText
-			});
+			var result =
+				{
+					success: 'false',
+					code: "FP_NO_ANSWER_NETWORK",
+					status: 0
+				};
+
+				epos.onerror(result)
 		}
 	}
 
@@ -1420,16 +1481,143 @@
         this.send(address, builder.toString());
     };
 
-    
+
 	/*
 	Function: epson object
 	Description: append constructors to window object
 	*/
+
 	window.epson = {
 		ePOSBuilder: ePOSBuilder,
 		ePOSPrint: ePOSPrint,
 		fiscalPrint: fiscalPrint,
-		CanvasPrint: CanvasPrint
+		CanvasPrint: CanvasPrint,
+		encodeBase64Binary: encodeBase64Binary
 	};
 
+
 })(window);
+
+
+/*
+Function:	decodeFpStatus
+Description:	Decodes the five printer status bytes
+Parameters:	add_info.fpstatus
+Return:		printer, ej, receipt, cash_drawer and mode
+*/
+
+
+/*
+function decodeFpStatus(add_info.fpStatus)
+{
+
+	var printer = "";
+	var ej = "";
+	var cash_drawer = "";
+	var receipt = "";
+	var mode = "";
+
+	switch(add_info.fpStatus.substring(0,1)) {
+		case "0":
+			printer = "OK";
+			break;
+		case "2":
+			printer = "Carta in esaurimento";
+			break;
+		case "3":
+			printer = "Offline (fine carta o coperchio aperto)";
+			break;
+		default:
+			printer = "Risposta errata";
+	}
+
+	switch(add_info.fpStatus.substring(1,2)) {
+		case "0":
+			ej = "OK";
+			break;
+		case "1":
+			ej = "Prossimo ad Esaurimento";
+			break;
+		case "2":
+			ej = "Da formattare";
+			break;
+		case "3":
+			ej = "Precedente";
+			break;
+		case "4":
+			ej = "Di altro misuratore";
+			break;
+		case "5":
+			ej = "Esaurito";
+			break;
+		default:
+			ej = "Risposta errata";
+	}
+
+	switch(add_info.fpStatus.substring(2,3)) {
+		case "0":
+			cash_drawer = "Aperto";
+			break;
+		case "1":
+			cash_drawer = "Chiuso";
+			break;
+		default:
+			cash_drawer = "Risposta errata";
+	}
+
+	switch(add_info.fpStatus.substring(3,4)) {
+		case "0":
+			receipt = "Fiscale aperto";
+			break;
+		case "1":
+			receipt = "Fiscale/Non fiscale chiuso";
+			break;
+		case "2":
+			receipt = "Non fiscale aperto";
+			break;
+		case "3":
+			receipt = "Pagamento in corso";
+			break;
+		case "4":
+			receipt = "Errore ultimo comando ESC/POS con Fiscale/Non fiscale chiuso";
+			break;
+		case "5":
+			receipt = "Scontrino in negativo";
+			break;
+		case "6":
+			receipt = "Errore ultimo comando ESC/POS con Non fiscale aperto";
+			break;
+		case "7":
+			receipt = "Attesa chiusura scontrino modalit&agrave; JAVAPOS";
+			break;
+		case "8":
+			receipt = "Documento fiscale aperto";
+			break;
+		case "A":
+			receipt = "Titolo aperto";
+			break;
+		case "2":
+			receipt = "Titolo chiuso";
+			break;
+		default:
+			receipt = "Risposta errata";
+	}
+
+	switch(add_info.fpStatus.substring(4,5)) {
+		case "0":
+			mode = "Stato registrazione";
+			break;
+		case "1":
+			mode = "Stato X";
+			break;
+		case "2":
+			mode = "Stato Z";
+			break;
+		case "3":
+			mode = "Stato Set";
+			break;
+		default:
+			mode = "Risposta errata";
+	}
+}
+*/
