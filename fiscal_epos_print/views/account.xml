@@ -8,11 +8,13 @@
             <field name="inherit_id"
                    ref="point_of_sale.view_account_journal_pos_user_form"/>
             <field name="arch" type="xml">
-                <field name="amount_authorized_diff" position="after">
-                    <field name="fiscalprinter_payment_type"/>
-                    <field name="fiscalprinter_payment_index"
-                           attrs="{'required': [('fiscalprinter_payment_type', 'in', ('2', '3'))], 'invisible': [('fiscalprinter_payment_type', 'not in', ('2', '3'))]}"/>
-                </field>
+                <group name="amount_authorized" position="after">
+                    <group name="fiscalprinter">
+                        <field name="fiscalprinter_payment_type"/>
+                        <field name="fiscalprinter_payment_index"
+                               attrs="{'required': [('fiscalprinter_payment_type', 'in', ('2', '3'))], 'invisible': [('fiscalprinter_payment_type', 'not in', ('2', '3'))]}"/>
+                    </group>
+                </group>
             </field>
         </record>
 
