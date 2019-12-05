@@ -15,7 +15,7 @@ class AccountInvoice(models.Model):
     @api.multi
     def _set_fiscal_position(self):
         for invoice in self:
-            if invoice.partner_id and invoice.date_invoice:
+            if invoice.partner_id and invoice.date_invoice and invoice.type:
                 dichiarazioni = self.env['dichiarazione.intento'].get_valid(
                     invoice.type.split('_')[0],
                     invoice.partner_id.id,
