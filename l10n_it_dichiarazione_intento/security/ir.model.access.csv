@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_dichiarazione_intento,dichiarazione.intento access,model_dichiarazione_intento,account.group_account_invoice,1,1,1,1
+access_dichiarazione_intento_base,dichiarazione.intento access.base,model_dichiarazione_intento,base.group_user,1,0,0,0
+access_dichiarazione_intento_line,dichiarazione.intento.line access,model_dichiarazione_intento_line,account.group_account_invoice,1,1,1,1
+access_dichiarazione_intento_yearly_limit,dichiarazione.intento.yearly.limit access,model_dichiarazione_intento_yearly_limit,account.group_account_invoice,1,1,1,1

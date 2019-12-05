@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+    <record id="dichiarazione_intento_account_position_form" model="ir.ui.view">
+        <field name="name">dichiarazione.intento.account.fiscal.position.form</field>
+        <field name="model">account.fiscal.position</field>
+        <field name="inherit_id" ref="account.view_account_position_form"/>
+        <field name="arch" type="xml">
+            <field name="auto_apply" position="after">
+                <field name="valid_for_dichiarazione_intento"/>
+            </field>
+        </field>
+    </record>
+
+</data>
+</odoo>
