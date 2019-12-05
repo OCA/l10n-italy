@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_invoice_document_inherit"
+              inherit_id="account.report_invoice_document"
+              name="Invoice - Dichiarazione Intento">
+        <xpath expr="//div[hasclass('page')]/p[last()]" position="after">
+            <p id="dichiarazioni_intento">
+                <t t-foreach="o.dichiarazione_intento_ids" t-as="dich">
+                    <span>Vostra dichiarazione d'intento nr <span t-field="dich.partner_document_number"/> del <span t-field="dich.partner_document_date"/>, nostro protocollo nr <span t-field="dich.number"/> del <span t-field="dich.date"/>.</span><br/>
+                </t>
+            </p>
+        </xpath>
+    </template>
+</odoo>
