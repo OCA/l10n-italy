@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-27 08:07+0000\n"
-"PO-Revision-Date: 2019-10-28 09:56+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2019-12-05 16:04+0000\n"
+"Last-Translator: Sergio Corato <sergiocorato@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #. module: l10n_it_fatturapa_in
 #: field:einvoice.line,tax_amount:0
@@ -73,7 +73,7 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: help:fatturapa.attachment.in,type:0
 msgid "Binary File or URL"
-msgstr ""
+msgstr "File binario o URL"
 
 #. module: l10n_it_fatturapa_in
 #: view:wizard.import.fatturapa:l10n_it_fatturapa_in.wizard_import_fatturapa_form_view
@@ -161,6 +161,9 @@ msgid ""
 "Current invoice is from {} with REA Code {}. Yet it seems that partners {} "
 "have the same REA Code. This code should be unique; please fix it."
 msgstr ""
+"L'attuale fattura proviene da {} con codice REA {}. Sembra però che il "
+"partner {} abbia lo stesso codice REA. Questo codice dovrebbe essere unico, "
+"si prega di correggerlo."
 
 #. module: l10n_it_fatturapa_in
 #: field:einvoice.line,period_end_date:0
@@ -181,7 +184,7 @@ msgstr "Dati database"
 #. module: l10n_it_fatturapa_in
 #: help:fatturapa.attachment.in,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr ""
+msgstr "Data dell'ultimo messaggio postato sul record."
 
 #. module: l10n_it_fatturapa_in
 #: view:account.invoice:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
@@ -344,7 +347,7 @@ msgstr "Il file è già collegato a delle fatture"
 #. module: l10n_it_fatturapa_in
 #: field:fatturapa.attachment.in,message_follower_ids:0
 msgid "Followers"
-msgstr ""
+msgstr "Followers"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:575
@@ -363,6 +366,8 @@ msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
 msgstr ""
+"Contiene il sommario della Chat (n. di messaggi, ...). Questo sommario è "
+"direttamente in formato html per essere inserito nelle viste kanban."
 
 #. module: l10n_it_fatturapa_in
 #: field:einvoice.line,id:0 field:einvoice.line.other.data,id:0
@@ -374,7 +379,7 @@ msgstr "ID"
 #. module: l10n_it_fatturapa_in
 #: help:fatturapa.attachment.in,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Se flaggato nuovi messaggi richiedono la tua attenzione."
 
 #. module: l10n_it_fatturapa_in
 #: view:wizard.import.fatturapa:l10n_it_fatturapa_in.wizard_import_fatturapa_form_view
@@ -452,12 +457,12 @@ msgstr "Totale fatture"
 #. module: l10n_it_fatturapa_in
 #: field:fatturapa.attachment.in,message_is_follower:0
 msgid "Is a Follower"
-msgstr ""
+msgstr "È un follower"
 
 #. module: l10n_it_fatturapa_in
 #: field:fatturapa.attachment.in,message_last_post:0
 msgid "Last Message Date"
-msgstr ""
+msgstr "Ultima Data Messaggio"
 
 #. module: l10n_it_fatturapa_in
 #: field:einvoice.line,__last_update:0
@@ -541,12 +546,12 @@ msgstr "Massimo"
 #. module: l10n_it_fatturapa_in
 #: field:fatturapa.attachment.in,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "Messaggi"
 
 #. module: l10n_it_fatturapa_in
 #: help:fatturapa.attachment.in,message_ids:0
 msgid "Messages and communication history"
-msgstr ""
+msgstr "Storico messaggi e comunicazioni"
 
 #. module: l10n_it_fatturapa_in
 #: selection:res.partner,e_invoice_detail_level:0
@@ -601,7 +606,7 @@ msgstr "Numero riga"
 #. module: l10n_it_fatturapa_in
 #: field:fatturapa.attachment.in,user_id:0
 msgid "Owner"
-msgstr ""
+msgstr "Proprietario"
 
 #. module: l10n_it_fatturapa_in
 #: field:fatturapa.attachment.in,partner_id:0
@@ -915,7 +920,7 @@ msgstr "Unita' di misura"
 #. module: l10n_it_fatturapa_in
 #: field:fatturapa.attachment.in,message_unread:0
 msgid "Unread Messages"
-msgstr ""
+msgstr "Messaggi non letti"
 
 #. module: l10n_it_fatturapa_in
 #: field:fatturapa.attachment.in,url:0
@@ -964,10 +969,9 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:949
-#, fuzzy, python-format
-#| msgid "Welfare Fund"
+#, python-format
 msgid "Welfare Fund: %s"
-msgstr "Cassa previdenziale"
+msgstr "Cassa previdenziale: %s"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:396
