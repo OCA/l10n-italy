@@ -27,5 +27,5 @@
             id="action_wizard_import_fatturapa"
             view_id="wizard_import_fatturapa_form_view"/>
 
-	</data>
+    </data>
 </openerp>

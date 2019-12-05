@@ -4,8 +4,8 @@
 
         <record id="partner_corrispettivi" model="res.partner">
             <field name="name">corrispettivi</field>
-	    <field name="active">False</field>
-	    <field name="corrispettivi">True</field>
+            <field name="active">False</field>
+            <field name="corrispettivi">True</field>
         </record>
 
     </data>

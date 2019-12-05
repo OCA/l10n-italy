@@ -12,11 +12,11 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='centralisation']" position="before">
                     <field name="central_journal_exclude"/>
-           		</xpath>
+                </xpath>
             </field>
-		</record>
-		
-		<!--
+        </record>
+
+        <!--
             Account Fiscal Year inheritancy
         -->
         
