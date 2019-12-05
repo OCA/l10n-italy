@@ -116,8 +116,14 @@
                                     </td>
                                     <!-- Name -->
                                     <td class="left_without_line">
-                                        <div style="page-break-inside: avoid"
-                                             t-esc="line.name"/>
+                                        <t t-if="line.account_id.user_type_id.type in ['receivable', 'payable']">
+                                            <div style="page-break-inside: avoid"
+                                            t-esc="line.partner_id.name" />
+                                        </t>
+                                        <t t-else="">
+                                            <div style="page-break-inside: avoid"
+                                            t-esc="line.name" />
+                                        </t>
                                     </td>
                                     <!-- Debit -->
                                     <td class="right_without_line">
