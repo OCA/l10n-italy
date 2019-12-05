@@ -1,7 +1,7 @@
 # Copyright 2017 Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -67,12 +67,12 @@ class AccountInvoice(models.Model):
                 # ----  check se posizione fiscale dichiarazione di intento
                 # ---- e non ho dichiarazioni, segnalo errore
                 if self.fiscal_position_id.valid_for_dichiarazione_intento:
-                    raise UserError(
+                    raise UserError(_(
                         'Dichiarazione di intento non trovata.\n'
                         'Aggiungere una nuova dichiarazione di intento '
                         'o cambiare \n'
                         'posizione fiscale sul documento e '
-                        'verificare l\'IVA applicata.')
+                        'verificare l\'IVA applicata.'))
 
                 else:
                     continue
@@ -90,9 +90,9 @@ class AccountInvoice(models.Model):
             dichiarazioni_residual = sum([
                 dichiarazioni_amounts[da] for da in dichiarazioni_amounts])
             if dichiarazioni_residual < 0:
-                raise UserError(
+                raise UserError(_(
                     'Available plafond insufficent.\n'
-                    'Excess value: %s' % (abs(dichiarazioni_residual)))
+                    'Excess value: %s') % (abs(dichiarazioni_residual)))
         # ----- Assign account move lines to dichiarazione for invoices
         for invoice in self:
             if invoice.dichiarazione_intento_ids:

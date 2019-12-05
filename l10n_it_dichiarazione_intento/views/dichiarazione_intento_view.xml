@@ -21,11 +21,11 @@
                                        'readonly':[('state','!=','valid')]}"/>
                     </h1>
                     <group>
-	                    <group name="main">
-	                        <field name="type"
-	                           attrs="{'readonly':[('state','!=','valid')]}"/>
-	                        <field name="partner_id" options="{'no_create': True}"
-	                           attrs="{'readonly':[('state','!=','valid')]}"/>
+                        <group name="main">
+                            <field name="type"
+                               attrs="{'readonly':[('state','!=','valid')]}"/>
+                            <field name="partner_id" options="{'no_create': True}"
+                               attrs="{'readonly':[('state','!=','valid')]}"/>
                             <field name="force_close" invisible="1" />
                         </group>
                         <group></group>

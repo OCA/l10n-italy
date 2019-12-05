@@ -5,8 +5,6 @@
 
 {
     'name': 'ITA - Dichiarazione Intento',
-    'description': """
-        Gestione dichiarazione di intento""",
     'version': '12.0.0.1.0',
     'license': 'AGPL-3',
     'author': 'Francesco Apruzzese, Odoo Community Association (OCA), '
