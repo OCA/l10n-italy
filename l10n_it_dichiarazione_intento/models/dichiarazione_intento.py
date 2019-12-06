@@ -151,7 +151,7 @@ class DichiarazioneIntento(models.Model):
             if record.partner_document_number:
                 complete_name = '%s (%s)' % (
                     complete_name, record.partner_document_number)
-            res.append(record.id, complete_name)
+            res.append((record.id, complete_name), )
         return res
 
     @api.multi
