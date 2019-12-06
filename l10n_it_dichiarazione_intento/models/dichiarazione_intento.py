@@ -145,6 +145,7 @@ class DichiarazioneIntento(models.Model):
 
     @api.multi
     def name_get(self):
+        res = []
         for record in self:
             complete_name = record.number
             if record.partner_document_number:
