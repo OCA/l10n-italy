@@ -8,6 +8,7 @@ from odoo import models, fields, api
 class SelectManuallyDeclarations(models.TransientModel):
 
     _name = 'select.manually.declarations'
+    _description = 'Set declaration of intent manually on invoice'
 
     def fields_view_get(self, view_id=None, view_type='form', context=None,
                         toolbar=False, submenu=False):

@@ -37,14 +37,11 @@ class DichiarazioneIntento(models.Model):
     _name = 'dichiarazione.intento'
     _description = 'Declaration of intent'
     _order = 'date_start desc,date_end desc'
-    _rec_name = 'display_name'
 
     @api.model
     def _default_currency(self):
         return self.env.user.company_id.currency_id
 
-    display_name = fields.Char(compute='_compute_clean_display_name',
-                               store=True)
     number = fields.Char(copy=False)
     date = fields.Date(required=True)
     date_start = fields.Date(required=True)
@@ -134,8 +131,7 @@ class DichiarazioneIntento(models.Model):
                             'All taxes in declaration of intent must be used '
                             'in fiscal position taxes'))
 
-    @api.constrains('limit_amount', 'used_amount', 'line_ids',
-                    'line_ids.amount')
+    @api.constrains('limit_amount', 'used_amount', 'line_ids')
     @api.multi
     def _check_available_amount(self):
         for dichiarazione in self:
@@ -148,14 +144,14 @@ class DichiarazioneIntento(models.Model):
                         dichiarazione.currency_id.symbol, )))
 
     @api.multi
-    @api.depends('number', 'partner_document_number')
-    def _compute_clean_display_name(self):
+    def name_get(self):
         for record in self:
             complete_name = record.number
             if record.partner_document_number:
                 complete_name = '%s (%s)' % (
                     complete_name, record.partner_document_number)
-            record.display_name = complete_name
+            res.append(record.id, complete_name)
+        return res
 
     @api.multi
     @api.depends('line_ids', 'line_ids.amount', 'limit_amount')
@@ -208,6 +204,7 @@ class DichiarazioneIntento(models.Model):
 class DichiarazioneIntentoLine(models.Model):
 
     _name = 'dichiarazione.intento.line'
+    _description = 'Details of declaration of intent'
 
     dichiarazione_id = fields.Many2one('dichiarazione.intento',
                                        string='Declaration')
