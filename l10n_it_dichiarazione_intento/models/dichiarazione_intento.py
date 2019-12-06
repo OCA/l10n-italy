@@ -43,7 +43,8 @@ class DichiarazioneIntento(models.Model):
     def _default_currency(self):
         return self.env.user.company_id.currency_id
 
-    display_name = fields.Char(compute='_compute_display_name', store=True)
+    display_name = fields.Char(compute='_compute_clean_display_name',
+                               store=True)
     number = fields.Char(copy=False)
     date = fields.Date(required=True)
     date_start = fields.Date(required=True)
@@ -148,13 +149,13 @@ class DichiarazioneIntento(models.Model):
 
     @api.multi
     @api.depends('number', 'partner_document_number')
-    def _compute_display_name(self):
+    def _compute_clean_display_name(self):
         for record in self:
-            display_name = record.number
+            complete_name = record.number
             if record.partner_document_number:
-                display_name = '%s (%s)' % (
-                    display_name, record.partner_document_number)
-            record.display_name = display_name
+                complete_name = '%s (%s)' % (
+                    complete_name, record.partner_document_number)
+            record.display_name = complete_name
 
     @api.multi
     @api.depends('line_ids', 'line_ids.amount', 'limit_amount')
