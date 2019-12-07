@@ -11,9 +11,21 @@
         <xpath expr="//div[hasclass('card')]" position="after">
             <div class="form-check">
                 <label>
-                    <input type="checkbox"
-                           name="electronic_invoice_subjected"
-                           t-att-checked="'checked' if request.env['res.partner'].browse(partner_id).electronic_invoice_subjected else None"/>
+                    <input type="checkbox" t-att-data-e-inv-data-complete="'true' if request.env['res.partner'].sudo().browse(partner_id).electronic_invoice_data_complete else 'false'"
+                           name="electronic_invoice_subjected_payment"
+                           t-att-checked="'checked' if request.env['res.partner'].sudo().browse(partner_id).electronic_invoice_subjected else None"/>
+                    I request to receive electronic invoice
+                </label>
+            </div>
+        </xpath>
+    </template>
+    <template id="sale_order_portal_template_fatturapa" inherit_id="sale.sale_order_portal_template">
+        <xpath expr="//main[@id='sign-dialog']/p" position="after">
+            <div class="form-check">
+                <label>
+                    <input type="checkbox" t-att-data-e-inv-data-complete="'true' if request.env['res.partner'].sudo().browse(partner_id).electronic_invoice_data_complete else 'false'"
+                           name="electronic_invoice_subjected_signature"
+                           t-att-checked="'checked' if request.env['res.partner'].sudo().browse(partner_id).electronic_invoice_subjected else None"/>
                     I request to receive electronic invoice
                 </label>
             </div>

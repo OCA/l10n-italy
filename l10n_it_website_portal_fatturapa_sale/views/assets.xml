@@ -8,7 +8,11 @@
     <template id="assets_frontend" inherit_id="web.assets_frontend">
         <xpath expr="script[last()]" position="after">
             <script type="text/javascript"
+                    src="/l10n_it_website_portal_fatturapa_sale/static/src/js/portal.js"/>
+            <script type="text/javascript"
                     src="/l10n_it_website_portal_fatturapa_sale/static/src/js/payment_form.js"/>
+            <script type="text/javascript"
+                    src="/l10n_it_website_portal_fatturapa_sale/static/src/js/signature_form.js"/>
         </xpath>
     </template>
 </odoo>
