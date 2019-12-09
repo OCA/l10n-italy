@@ -9,11 +9,11 @@
               name="Add e-invoice subjected in Payment Tokens list"
               inherit_id="payment.payment_tokens_list">
         <xpath expr="//div[hasclass('card')]" position="after">
-            <div class="form-check">
+            <div class="form-check" t-att-style="'display:none;' if (sale_order and sale_order.company_id.portal_mandatory_e_invoicing) else ''">
                 <label>
                     <input type="checkbox" t-att-data-e-inv-data-complete="'true' if request.env['res.partner'].sudo().browse(partner_id).electronic_invoice_data_complete else 'false'"
                            name="electronic_invoice_subjected_payment"
-                           t-att-checked="'checked' if request.env['res.partner'].sudo().browse(partner_id).electronic_invoice_subjected else None"/>
+                           t-att-checked="'checked' if request.env['res.partner'].sudo().browse(partner_id).electronic_invoice_subjected or (sale_order and sale_order.company_id.portal_mandatory_e_invoicing) else None"/>
                     I request to receive electronic invoice
                 </label>
             </div>
@@ -21,11 +21,11 @@
     </template>
     <template id="sale_order_portal_template_fatturapa" inherit_id="sale.sale_order_portal_template">
         <xpath expr="//main[@id='sign-dialog']/p" position="after">
-            <div class="form-check">
+            <div class="form-check" t-att-style="'display:none;' if (sale_order and sale_order.company_id.portal_mandatory_e_invoicing) else ''">
                 <label>
                     <input type="checkbox" t-att-data-e-inv-data-complete="'true' if request.env['res.partner'].sudo().browse(partner_id).electronic_invoice_data_complete else 'false'"
                            name="electronic_invoice_subjected_signature"
-                           t-att-checked="'checked' if request.env['res.partner'].sudo().browse(partner_id).electronic_invoice_subjected else None"/>
+                           t-att-checked="'checked' if request.env['res.partner'].sudo().browse(partner_id).electronic_invoice_subjected or (sale_order and sale_order.company_id.portal_mandatory_e_invoicing) else None"/>
                     I request to receive electronic invoice
                 </label>
             </div>
