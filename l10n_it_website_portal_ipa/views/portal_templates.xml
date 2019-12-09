@@ -18,12 +18,12 @@
             <div class="col-xl-12" t-if="partner.company_type == 'company'">
                 <div class="row">
                     <div t-attf-class="form-group #{error.get('is_pa') and 'o_has_error' or ''} col-xl-6">
-                        <label class="col-form-label label-optional" for="is_pa">
-                            Public administration
-                        </label>
-                        <input type="checkbox" class="form-control"
+                        <input type="checkbox" style="width: auto; margin:0px"
                                name="is_pa" id="is_pa"
                                t-att-checked="is_pa or partner.is_pa"/>
+                        <label class="label-optional" style="margin-left:5px" for="is_pa">
+                            Public administration
+                        </label>
                     </div>
                     <div t-attf-class="form-group #{error.get('ipa_code') and 'o_has_error' or ''} col-xl-6">
                         <label class="col-form-label label-optional">
