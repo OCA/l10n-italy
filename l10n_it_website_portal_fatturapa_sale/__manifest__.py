@@ -13,10 +13,13 @@
     "depends": [
         "l10n_it_website_portal_fatturapa",
         "sale_management",
+        "payment",
+        "portal",
     ],
     "data": [
         "views/assets.xml",
         "views/payment_templates.xml",
+        "views/res_config_settings_view.xml",
     ],
     "auto_install": True,
 }
