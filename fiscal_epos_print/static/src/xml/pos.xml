@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="FiscalPrinterADEFilesButtonWidget">
+        <div class="header-button" style="padding-top:5px">
+            <img src="/fiscal_epos_print/static/src/img/ade-logo.png" alt="ADE status" title="Status of files to be sent to ADE"/>
+        </div>
+    </t>
+
+    <t t-extend="PosTicket">
+        <t t-jquery="div[class='pos-sale-ticket']" t-operation="attributes">
+            <attribute name="style">display:none</attribute>
+        </t>
+        <t t-jquery="div[class='pos-sale-ticket']" t-operation="after">
+            <div class="button disabled" t-if="!order.is_to_invoice()">
+                Scontrino inviato alla stampante
+            </div>
+            <div class="button disabled" t-if="order.is_to_invoice()">
+                Fattura registrata
+            </div>
+        </t>
+    </t>
+    <t t-extend="ReceiptScreenWidget">
+        <t t-jquery="div[class='button print']" t-operation="attributes">
+            <attribute name="style">display:none</attribute>
+        </t>
+    </t>
+
+</templates>
