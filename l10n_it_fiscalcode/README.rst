@@ -35,7 +35,7 @@ This module extends the functionality of partner to fit italian laws allowing yo
 Installation
 ============
 
-Install python package `codicefiscale <https://pypi.python.org/pypi/codicefiscale>`_.
+Install python package `python-codicefiscale <https://pypi.org/project/python-codicefiscale/>`_.
 
 Usage
 =====
