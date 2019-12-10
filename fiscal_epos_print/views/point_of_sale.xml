@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record model="ir.ui.view" id="view_pos_config_printer_form">
+            <field name="name">pos.config.form.printer.view</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id"
+                   ref="point_of_sale.pos_config_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet//h2[1]" position="before">
+                    <h2 name="fiscal_epos_print">Fiscal printer</h2>
+                    <group>
+                        <field name="printer_ip"/>
+                        <field name="use_https"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+ 
+
+    </data>
+</odoo>
