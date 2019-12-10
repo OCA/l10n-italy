@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="view_pos_config_printer_form">
+            <field name="name">pos.config.form.printer.view</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_config_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='iface_print_auto']" position="after">
+                    <field name="show_receipt_when_printing"/>
+                </xpath>
+                <xpath expr="//group[@name='features']" position="after">
+                    <h2 name="fiscal_epos_print">Fiscal printer</h2>
+                    <group>
+                        <field name="printer_ip"/>
+                        <field name="use_https"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_pos_pos_form_refund_info" model="ir.ui.view">
+            <field name="name">pos.order.form</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <xpath expr='//notebook' position="inside">
+                    <page name="refund_field" string="Refund Info">
+                        <group>
+                            <field name="refund_date"/>
+                            <field name="refund_report"/>
+                            <field name="refund_doc_num"/>
+                            <field name="refund_cash_fiscal_serial"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

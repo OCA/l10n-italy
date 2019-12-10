@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/fiscal_epos_print/static/lib/fiscalprint/fiscalprint.js"/>
+            <script type="text/javascript" src="/fiscal_epos_print/static/src/js/models.js"/>
+            <script type="text/javascript" src="/fiscal_epos_print/static/src/js/fp90iii.js"/>
+            <link rel="stylesheet" href="/fiscal_epos_print/static/src/css/pos.css"/>
+            <link rel="stylesheet" type="text/css" href="/fiscal_epos_print/static/lib/pikaday/pikaday.min.css"/>
+            <script type="text/javascript" src="/fiscal_epos_print/static/lib/pikaday/pikaday.min.js"/>
+        </xpath>
+    </template>
+
+</odoo>
