@@ -1,0 +1,5 @@
+/* Disabilitato finchè non gestiamo i resi */
+
+.orderlist-screen .order-line .order-list-return {
+    display:none;
+}
