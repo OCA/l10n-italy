@@ -138,13 +138,13 @@ class WizardComputeFc(models.TransientModel):
         for ct in cities:
             if (ct.creation_date and
                     (not dtcostvar or not ct.creation_date or
-                        dtcostvar < ct.creation_date)):
+                         dtcostvar < ct.creation_date)):
                 dtcostvar = ct.creation_date
             if not ct.notes:
                 nc = ct.national_code
             elif (ct.notes == 'ORA' and
                     (not dtcostvar or not ct.var_date or
-                        dtcostvar < ct.var_date)):
+                         dtcostvar < ct.var_date)):
                 if (not ct.var_date or ct.var_date <= birth_date):
                     nc = ct.national_code_var
                 elif not nc:
@@ -153,7 +153,7 @@ class WizardComputeFc(models.TransientModel):
                     dtcostvar = ct.var_date
             elif (ct.notes == 'AGG' and
                     (not dtcostvar or not ct.var_date or
-                        dtcostvar < ct.var_date)):
+                         dtcostvar < ct.var_date)):
                 if (not ct.var_date or ct.var_date <= birth_date):
                     nc = ct.national_code_var
                 elif not nc:
@@ -162,13 +162,13 @@ class WizardComputeFc(models.TransientModel):
                     dtcostvar = ct.var_date
             elif (ct.notes == 'AGP' and
                     (not dtcostvar or not ct.var_date or
-                        dtcostvar < ct.var_date)):
+                         dtcostvar < ct.var_date)):
                 nc = ct.national_code
                 if (ct.var_date):
                     dtcostvar = ct.var_date
             elif (ct.notes == 'AGP' and
                     (not dtcostvar or not ct.var_date or
-                        dtcostvar < ct.var_date)):
+                         dtcostvar < ct.var_date)):
                 nc = ct.national_code
 
         return nc
@@ -185,7 +185,8 @@ class WizardComputeFc(models.TransientModel):
             if not nat_code:
                 raise UserError(_('National code is missing'))
             birth_date_string = f.birth_date.strftime("%d/%m/%Y")
-            c_f = encode(f.fiscalcode_surname, f.fiscalcode_firstname, f.sex, birth_date_string, nat_code)
+            c_f = encode(f.fiscalcode_surname, f.fiscalcode_firstname,
+                         f.sex, birth_date_string, nat_code)
             if partner.fiscalcode and partner.fiscalcode != c_f:
                 raise UserError(_(
                     'Existing fiscal code %(partner_fiscalcode)s is different '

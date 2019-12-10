@@ -2,6 +2,7 @@
 # Copyright 2016 Andrea Gallina (Apulia Software)
 # Copyright 2018 Matteo Bilotta (Link IT s.r.l.)
 # Copyright 2018 Lorenzo Battistini (https://github.com/eLBati)
+# Copyright 2019 Giuseppe Matranga (https://github.com/mastrobirraio)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
@@ -24,6 +25,6 @@
         'view/report_invoice_document.xml',
         'wizard/compute_fc_view.xml',
         'view/company_view.xml'
-        ],
+    ],
     'installable': True
 }
