@@ -1,0 +1,152 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* fiscal_epos_print
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-29 10:20+0000\n"
+"PO-Revision-Date: 2019-10-29 10:20+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:32
+#, python-format
+msgid "\n"
+"Old files: "
+msgstr "\nFile vecchi: "
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:32
+#, python-format
+msgid "\n"
+"Rejected files: "
+msgstr "\nFile rifiutati: "
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:6
+#, python-format
+msgid "ADE status"
+msgstr "Stato ADE"
+
+#. module: fiscal_epos_print
+#: selection:account.journal,fiscalprinter_payment_type:0
+msgid "Cash"
+msgstr "Contanti"
+
+#. module: fiscal_epos_print
+#: selection:account.journal,fiscalprinter_payment_type:0
+msgid "Cheque"
+msgstr "Assegni"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:260
+#, python-format
+msgid "Connecting to the fiscal printer"
+msgstr "Connessione alla stampante fiscale"
+
+#. module: fiscal_epos_print
+#: selection:account.journal,fiscalprinter_payment_type:0
+msgid "Credit/Credit Card"
+msgstr "Carta di credito"
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_account_tax__fpdeptax
+msgid "Department group tax on fiscal printer 1~99"
+msgstr "Reparto sulla stampante fiscale 1~99"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:24
+#, python-format
+msgid "Error missing paper."
+msgstr "Errore Manca La carta."
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:32
+#, python-format
+msgid "Files waiting to be sent: "
+msgstr "File in attesa di essere inviati: "
+
+#. module: fiscal_epos_print
+#: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_pos_config_printer_form
+msgid "Fiscal printer"
+msgstr "Stampante fiscale"
+
+#. module: fiscal_epos_print
+#: model:ir.model,name:fiscal_epos_print.model_account_journal
+msgid "Journal"
+msgstr "Registro"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:39
+#, python-format
+msgid "Network error. Printer can not be reached"
+msgstr "Errore di rete. La stampante non può essere raggiunta"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:162
+#, python-format
+msgid "No taxes found"
+msgstr "Nessuna imposta trovata"
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_account_journal__fiscalprinter_payment_type
+msgid "Payment type"
+msgstr "Tipo di pagamento"
+
+#. module: fiscal_epos_print
+#: model:ir.model,name:fiscal_epos_print.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr "Configurazione punto vendita"
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_config__printer_ip
+msgid "Printer IP Address"
+msgstr "Indirizzo IP stampante"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:6
+#, python-format
+msgid "Status of files to be sent to ADE"
+msgstr "Stato dei file da inviare all'ADE"
+
+#. module: fiscal_epos_print
+#: model:ir.model,name:fiscal_epos_print.model_account_tax
+msgid "Tax"
+msgstr "Imposta"
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,help:fiscal_epos_print.field_pos_config__printer_ip
+msgid "The hostname or ip address of the hardware printer, please fill this field if you want use you receipts printer"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,help:fiscal_epos_print.field_account_journal__fiscalprinter_payment_type
+msgid "The payment type to send to the Fiscal Printer."
+msgstr ""
+
+#. module: fiscal_epos_print
+#: selection:account.journal,fiscalprinter_payment_type:0
+msgid "Ticket"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_config__use_https
+msgid "Use https"
+msgstr "Usa HTTPS"
+
