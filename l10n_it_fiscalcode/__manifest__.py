@@ -8,12 +8,14 @@
 {
     'name': 'Italian Fiscal Code',
     'version': '13.0.1.0.0',
+    'development_status': 'Production/Stable',
     'category': 'Localisation/Italy',
     'author': "Link IT s.r.l., "
               "Apulia Software, "
               "Odoo Italia Network, "
               "Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/l10n-italy',
+    'license': 'AGPL-3',i
     'depends': ['base_vat'],
     'external_dependencies': {
         'python': ['python-codicefiscale'],
