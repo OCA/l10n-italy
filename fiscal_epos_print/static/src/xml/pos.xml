@@ -22,7 +22,8 @@
 
     <t t-name="SetRefundInfoButton">
         <div id="refund_info_button" class='control-button'>
-            <i class='fa fa-pencil-square-o'> Refund Data</i>
+            <i class='fa fa-pencil-square-o'/>
+            Refund Data
         </div>
     </t>
 
@@ -35,22 +36,22 @@
                 </p>
 
                 <div class='client-detail'>
-                    <span class='label'>Seq. Closing</span>
+                    <div class='label'>Seq. Closing</div>
                     <input id="refund_report" class="detail refund_report"
                            type='text' t-att-value="widget.options.refund_report || ''" placeholder="Max 4 numbers"/>
                 </div>
                 <div class='client-detail'>
-                    <span class='label'>Receipt Num.</span>
+                    <div class='label'>Receipt Num.</div>
                     <input id="refund_doc_num" class="detail refund_doc_num"
                            type='text' t-att-value="widget.options.refund_doc_num || ''" placeholder="Max 4 numbers"/>
                 </div>
                 <div class='client-detail'>
-                    <span class='label'>Receipt Date</span>
+                    <div class='label'>Receipt Date</div>
                     <input id="refund_date" class="detail refund_date" type='text' t-att-value="widget.options.refund_date || ''"
                            placeholder="DDMMYYYY"/>
                 </div>
                 <div class='client-detail'>
-                    <span class='label'>RT Serial</span>
+                    <div class='label'>RT Serial</div>
                     <input id="refund_cash_fiscal_serial" class="detail refund_cash_fiscal_serial" type='text'
                            t-att-value="widget.options.refund_cash_fiscal_serial || ''" placeholder="RT Serial"/>
                 </div>
