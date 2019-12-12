@@ -48,18 +48,28 @@ odoo.define("fiscal_epos_print.screens", function (require) {
         },
 
         order_is_valid: function(force_validation) {
-            var self = this;
-            var receipt = this.pos.get_order();
-            if (receipt.has_refund && (receipt.refund_date == null || receipt.refund_date === '' ||
-                                       receipt.refund_doc_num == null || receipt.refund_doc_num == '' ||
-                                       receipt.refund_cash_fiscal_serial == null || receipt.refund_cash_fiscal_serial == '' ||
-                                       receipt.refund_report == null || receipt.refund_report == '')) {
-                this.gui.show_popup('error',{
-                    'title': _t('Refund Information Not Present'),
-                    'body':  _t("The refund information aren't present. Please insert them before printing the receipt"),
-                });
-                return false;
+            if (this.pos.config.printer_ip) {
+                var receipt = this.pos.get_order();
+                if (receipt.has_refund && (receipt.refund_date == null || receipt.refund_date === '' ||
+                                           receipt.refund_doc_num == null || receipt.refund_doc_num == '' ||
+                                           receipt.refund_cash_fiscal_serial == null || receipt.refund_cash_fiscal_serial == '' ||
+                                           receipt.refund_report == null || receipt.refund_report == '')) {
+                    this.gui.show_popup('error',{
+                        'title': _t('Refund Information Not Present'),
+                        'body':  _t("The refund information aren't present. Please insert them before printing the receipt"),
+                    });
+                    return false;
+                }
+
+                if (!this.pos.config.iface_tax_included) {
+                    this.gui.show_popup('error',{
+                        'title': _t('Wrong tax configuration'),
+                        'body':  _t("Product prices on receipts must be set to 'Tax-Included Price' in POS configuration"),
+                    });
+                    return false;
+                }
             }
+
             return this._super(force_validation);
         }
     });
