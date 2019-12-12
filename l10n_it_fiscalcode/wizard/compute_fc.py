@@ -9,13 +9,13 @@ from odoo.osv import expression
 _logger = logging.getLogger(__name__)
 
 try:
-    from codicefiscale.codicefiscale import encode
+    from codicefiscale import build
 
 except ImportError:
     _logger.warning(
-        "python-codicefiscale library not found. "
-        "If you plan to use it, please install the python-codicefiscale library"
-        " from https://pypi.org/project/python-codicefiscale/"
+        "codicefiscale library not found. "
+        "If you plan to use it, please install the codicefiscale library"
+        " from https://pypi.org/project/codicefiscale/"
     )
 
 
@@ -33,9 +33,10 @@ class WizardComputeFc(models.TransientModel):
     birth_province = fields.Many2one(
         "res.country.state", required=True, string="Province"
     )
-    sex = fields.Selection(
-        [("M", "Male"), ("F", "Female")], required=True, string="Sex"
-    )
+    sex = fields.Selection([
+        ("M", "Male",),
+        ("F", "Female",)
+    ], required=True, string="Sex")
 
     @api.onchange("birth_city")
     def onchange_birth_city(self):
@@ -184,7 +185,7 @@ class WizardComputeFc(models.TransientModel):
                 or not f.fiscalcode_firstname
                 or not f.birth_date
                 or not f.birth_city
-                or not f.sex
+                or not f.gender
             ):
                 raise UserError(_("One or more fields are missing"))
             nat_code = self._get_national_code(
@@ -192,12 +193,11 @@ class WizardComputeFc(models.TransientModel):
             )
             if not nat_code:
                 raise UserError(_("National code is missing"))
-            birth_date_string = f.birth_date.strftime("%d/%m/%Y")
-            c_f = encode(
+            c_f = build(
                 f.fiscalcode_surname,
                 f.fiscalcode_firstname,
-                f.sex,
-                birth_date_string,
+                f.gender,
+                f.birth_date,
                 nat_code,
             )
             if partner.fiscalcode and partner.fiscalcode != c_f:

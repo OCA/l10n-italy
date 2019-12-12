@@ -1,11 +1,14 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
+    fiscalcode = fields.Char("Fiscal Code", size=16, help="Italian Fiscal Code")
+
+    @api.constrains('fiscalcode', "The fiscal code doesn't seem to be correct.")
     def check_fiscalcode(self):
         for partner in self:
             if not partner.fiscalcode:
@@ -22,13 +25,3 @@ class ResPartner(models.Model):
                     # Check fiscalcode of a person
                     return False
         return True
-
-    fiscalcode = fields.Char("Fiscal Code", size=16, help="Italian Fiscal Code")
-
-    _constraints = [
-        (
-            check_fiscalcode,
-            "The fiscal code doesn't seem to be correct.",
-            ["fiscalcode"],
-        )
-    ]
