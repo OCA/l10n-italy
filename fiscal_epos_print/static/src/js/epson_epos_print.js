@@ -2,7 +2,9 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
     "use strict";
 
     var core = require("web.core");
+    var utils = require('web.utils');
     var _t = core._t;
+    var round_pr = utils.round_precision;
 
     function addPadding(str, padding=4) {
         var pad = new Array(padding).fill(0).join('') + str;
