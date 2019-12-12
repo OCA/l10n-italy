@@ -26,9 +26,15 @@
         'views/assets.xml',
     ],
     'js': [
+        'static/lib/fiscalprint/fiscalprint.js',
+        'static/lib/pikaday/pikaday.min.js',
+        'static/lib/pikaday/pikaday.min.css',
+        'static/src/js/epson_epos_print.js',
+        'static/src/js/screens.js',
         'static/src/js/models.js',
-        'static/src/js/fp90iii.js',
-        'static/lib/fiscalprint/fiscalprint.js'
+        'static/src/js/popups.js',
+        'static/src/js/pos_order_mgmt.js',
+        'static/src/js/chrome.js',
     ],
     'qweb': [
         'static/src/xml/pos.xml'

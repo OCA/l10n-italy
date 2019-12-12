@@ -4,11 +4,15 @@
     <template id="assets" inherit_id="point_of_sale.assets">
         <xpath expr="." position="inside">
             <script type="text/javascript" src="/fiscal_epos_print/static/lib/fiscalprint/fiscalprint.js"/>
-            <script type="text/javascript" src="/fiscal_epos_print/static/src/js/models.js"/>
-            <script type="text/javascript" src="/fiscal_epos_print/static/src/js/fp90iii.js"/>
-            <link rel="stylesheet" href="/fiscal_epos_print/static/src/css/pos.css"/>
             <link rel="stylesheet" type="text/css" href="/fiscal_epos_print/static/lib/pikaday/pikaday.min.css"/>
             <script type="text/javascript" src="/fiscal_epos_print/static/lib/pikaday/pikaday.min.js"/>
+            <script type="text/javascript" src="/fiscal_epos_print/static/src/js/epson_epos_print.js"/>
+            <script type="text/javascript" src="/fiscal_epos_print/static/src/js/models.js"/>
+            <script type="text/javascript" src="/fiscal_epos_print/static/src/js/screens.js"/>
+            <script type="text/javascript" src="/fiscal_epos_print/static/src/js/popups.js"/>
+            <script type="text/javascript" src="/fiscal_epos_print/static/src/js/pos_order_mgmt.js"/>
+            <script type="text/javascript" src="/fiscal_epos_print/static/src/js/chrome.js"/>
+            <link rel="stylesheet" href="/fiscal_epos_print/static/src/css/pos.css"/>
         </xpath>
     </template>
 

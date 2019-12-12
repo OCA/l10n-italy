@@ -1,0 +1,83 @@
+odoo.define("fiscal_epos_print.popups", function (require) {
+    "use strict";
+
+    var core = require("web.core");
+    var popups = require('point_of_sale.popups');
+    var gui = require('point_of_sale.gui');
+    var _t = core._t;
+
+    function addPadding(str, padding=4) {
+        var pad = new Array(padding).fill(0).join('') + str;
+        return pad.substr(pad.length - padding, padding);
+    }
+
+
+    var RefundInfoPopupWidget = popups.extend({
+        template: 'RefundInfoPopupWidget',
+        init: function(parent) {
+            this.refund_report = null;
+            this.refund_date = null;
+            this.refund_doc_num = null;
+            this.refund_cash_fiscal_serial = null;
+            this.datepicker = null;
+            return this._super(parent);
+        },
+        show: function(options){
+            options = options || {};
+            this._super(options);
+            this.update_refund_info_button = options.update_refund_info_button;
+            this.renderElement();
+            this.datepicker = null;
+            this.$('refund_report').focus();
+            this.initializeDatePicker();
+        },
+        click_confirm: function(){
+            var self = this;
+            function allValid() {
+                return self.$('input').toArray().every(function(element) {
+                    return element.value && element.value != ''
+                })
+            }
+
+            if (allValid()) {
+                this.$('#error-message-dialog').hide()
+
+                var order = this.pos.get_order();
+                order.refund_report = this.$('#refund_report').val();
+                order.refund_date = this.$('#refund_date').val();
+                order.refund_doc_num = this.$('#refund_doc_num').val();
+                order.refund_cash_fiscal_serial = this.$('#refund_cash_fiscal_serial').val();
+                this.gui.close_popup();
+                if (this.update_refund_info_button && this.update_refund_info_button instanceof Function) {
+                    this.update_refund_info_button();
+                }
+            } else {
+                this.$('#error-message-dialog').show()
+            }
+        },
+        initializeDatePicker: function() {
+            var self = this,
+                element = this.$('#refund_date').get(0);
+
+            if (element && !this.datepicker) {
+                this.datepicker = new Pikaday({
+                    field: element,
+                    parse: function(str) {
+                        return new Date(str.slice(4, 8),
+                                        str.slice(2, 4),
+                                        str.slice(0, 2))
+                    },
+                    toString: function(date) {
+                        var str = date.toLocaleDateString().split('/');
+                        return addPadding(str[1], 2) +
+                            addPadding(str[0], 2) +
+                            addPadding(str[2]);
+                    }
+                });
+            }
+        },
+    });
+
+    gui.define_popup({name:'refundinfo', widget: RefundInfoPopupWidget});
+
+});
