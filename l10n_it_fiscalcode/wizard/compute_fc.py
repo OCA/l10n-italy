@@ -33,10 +33,9 @@ class WizardComputeFc(models.TransientModel):
     birth_province = fields.Many2one(
         "res.country.state", required=True, string="Province"
     )
-    sex = fields.Selection([
-        ("M", "Male",),
-        ("F", "Female",)
-    ], required=True, string="Sex")
+    sex = fields.Selection(
+        [("M", "Male"), ("F", "Female")], required=True, string="Sex"
+    )
 
     @api.onchange("birth_city")
     def onchange_birth_city(self):

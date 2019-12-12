@@ -8,7 +8,7 @@ class ResPartner(models.Model):
 
     fiscalcode = fields.Char("Fiscal Code", size=16, help="Italian Fiscal Code")
 
-    @api.constrains('fiscalcode', "The fiscal code doesn't seem to be correct.")
+    @api.constrains("fiscalcode", "The fiscal code doesn't seem to be correct.")
     def check_fiscalcode(self):
         for partner in self:
             if not partner.fiscalcode:
