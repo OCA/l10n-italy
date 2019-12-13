@@ -60,8 +60,8 @@ msgstr "Cognome"
 #: code:addons/l10n_it_pos_fatturapa/static/src/xml/pos.xml:57
 #: code:addons/l10n_it_pos_fatturapa/static/src/xml/pos.xml:111
 #, python-format
-msgid "PA Code"
-msgstr ""
+msgid "iPA Code"
+msgstr "Codice iPA"
 
 #. module: l10n_it_pos_fatturapa
 #. openerp-web
