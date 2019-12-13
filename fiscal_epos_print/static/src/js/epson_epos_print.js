@@ -36,9 +36,10 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             }
             this.fiscalPrinter.onerror = function() {
                 sender.chrome.loading_hide();
-                alert(
-                _t('Network error. Printer can not be reached')
-                );
+                sender.pos.gui.show_popup('error', {
+                    'title': _t('Network error'),
+                    'body': _t('Printer can not be reached')
+                });
             }
         },
 
