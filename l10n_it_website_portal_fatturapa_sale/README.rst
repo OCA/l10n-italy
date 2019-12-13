@@ -51,6 +51,12 @@ Do not contact contributors directly about support or help with technical issues
 Credits
 =======
 
+Contributors
+~~~~~~~~~~~~
+
+* Simone Rubino
+* Lorenzo Battistini (https://takobi.online)
+
 Maintainers
 ~~~~~~~~~~~
 
