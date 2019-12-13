@@ -1,5 +1,4 @@
-# coding=utf-8
-
+from datetime import datetime
 from odoo import fields, models, api
 
 
@@ -10,6 +9,13 @@ class PosOrder(models.Model):
     refund_report = fields.Integer(string='Report reference', digits=(4, 0))
     refund_doc_num = fields.Integer(string='Document Number', digits=(4, 0))
     refund_cash_fiscal_serial = fields.Char(string='Refund Cash Serial')
+
+    fiscal_receipt_number = fields.Integer(
+        string='Fiscal receipt number', digits=(4, 0))
+    fiscal_receipt_amount = fields.Float("Fiscal receipt amount")
+    fiscal_receipt_date = fields.Date(
+        "Fiscal receipt date", digits=(4, 0))
+    fiscal_z_rep_number = fields.Integer("Fiscal closure number")
 
     @api.model
     def _order_fields(self, ui_order):
@@ -31,3 +37,20 @@ class PosOrder(models.Model):
         res['refund_doc_num'] = self.refund_doc_num
         res['refund_cash_fiscal_serial'] = self.refund_cash_fiscal_serial
         return res
+
+    @api.model
+    def update_fiscal_receipt_values(self, pos_order):
+        po = self.search([('pos_reference', '=', pos_order.get('name'))])
+        receipt_no = int(pos_order.get('fiscal_receipt_number'))
+        receipt_date = datetime.strptime(pos_order.get(
+            'fiscal_receipt_date'), '%d/%m/%Y').date().strftime('%Y-%m-%d')
+        receipt_amount = float(pos_order.get('fiscal_receipt_amount'))
+        fiscal_z_rep_number = int(pos_order.get('fiscal_z_rep_number'))
+        if po:
+            po.write({
+                'fiscal_receipt_number': receipt_no,
+                'fiscal_receipt_date': receipt_date,
+                'fiscal_receipt_amount': receipt_amount,
+                'fiscal_z_rep_number': fiscal_z_rep_number
+            })
+        return True

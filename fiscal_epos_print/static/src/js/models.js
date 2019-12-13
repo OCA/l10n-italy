@@ -20,6 +20,10 @@ odoo.define('fiscal_epos_print.models', function (require) {
             this.refund_doc_num = null;
             this.refund_cash_fiscal_serial = null;
             this.has_refund = false;
+            this.fiscal_receipt_number = null;
+            this.fiscal_receipt_amount = null;
+            this.fiscal_receipt_date = null;
+            this.fiscal_z_rep_number = null;
         },
         check_order_has_refund: function() {
             var order = this.pos.get_order();
@@ -36,6 +40,10 @@ odoo.define('fiscal_epos_print.models', function (require) {
             this.refund_doc_num = json.refund_doc_num;
             this.refund_cash_fiscal_serial = json.refund_cash_fiscal_serial;
             this.check_order_has_refund();
+            this.fiscal_receipt_number = json.fiscal_receipt_number;
+            this.fiscal_receipt_amount = json.fiscal_receipt_amount;
+            this.fiscal_receipt_date = json.fiscal_receipt_date;
+            this.fiscal_z_rep_number = json.fiscal_z_rep_number;
         },
 
         export_as_JSON: function() {
@@ -46,6 +54,10 @@ odoo.define('fiscal_epos_print.models', function (require) {
                                                     this.refund_date.substr(0, 2) : null; // day
             result.refund_doc_num = this.refund_doc_num;
             result.refund_cash_fiscal_serial = this.refund_cash_fiscal_serial;
+            result.fiscal_receipt_number = this.fiscal_receipt_number;
+            result.fiscal_receipt_amount = this.fiscal_receipt_amount;
+            result.fiscal_receipt_date = this.fiscal_receipt_date; // parsed by backend
+            result.fiscal_z_rep_number = this.fiscal_z_rep_number;
             return result;
         },
 
@@ -56,6 +68,10 @@ odoo.define('fiscal_epos_print.models', function (require) {
             receipt.refund_report = this.refund_report;
             receipt.refund_doc_num = this.refund_doc_num;
             receipt.refund_cash_fiscal_serial = this.refund_cash_fiscal_serial;
+            receipt.fiscal_receipt_number = this.fiscal_receipt_number;
+            receipt.fiscal_receipt_amount = this.fiscal_receipt_amount;
+            receipt.fiscal_receipt_date = this.fiscal_receipt_date;
+            receipt.fiscal_z_rep_number = this.fiscal_z_rep_number;
 
             return receipt
         },
