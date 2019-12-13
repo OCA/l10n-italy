@@ -45,9 +45,24 @@ class ResPartner(models.Model):
     )
     electronic_invoice_subjected = fields.Boolean(
         "Enable electronic invoicing")
+    electronic_invoice_data_complete = fields.Boolean(
+        compute="_compute_electronic_invoice_data_complete")
 
     electronic_invoice_no_contact_update = fields.Boolean(
         "Do not update the contact from Electronic Invoice Details")
+
+    @api.multi
+    def _compute_electronic_invoice_data_complete(self):
+        check_fatturapa_fields = self._check_ftpa_partner_data._constrains
+        for partner in self:
+            partner.electronic_invoice_data_complete = True
+            partner_values = partner.read(check_fatturapa_fields)[0]
+            partner_values['electronic_invoice_subjected'] = True
+            partner_dummy = self.new(partner_values)
+            try:
+                partner_dummy._check_ftpa_partner_data()
+            except ValidationError:
+                partner.electronic_invoice_data_complete = False
 
     @api.multi
     @api.constrains(
