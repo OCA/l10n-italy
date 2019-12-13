@@ -163,7 +163,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                         xml += self.printRecItem({
                             description: l.product_name,
                             quantity: l.quantity,
-                            unitPrice: l.full_price,
+                            unitPrice: full_price,
                             department: l.tax_department.code
                         });
                         if (l.discount) {
