@@ -21,7 +21,7 @@
                             <span class='label'>EORI</span>
                             <span class='detail eori_code'><t t-esc='partner.eori_code or ""'/></span><br/>
 
-                            <span class='label'>PA Code</span>
+                            <span class='label'>iPA Code</span>
                             <span class='detail pa_partner_code'><t t-esc='partner.pa_partner_code or ""'/></span>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                         <span class='label'>EORI</span>
                         <input class='detail eori_code' name='eori_code' t-att-value="partner.eori_code or ''"/>
 
-                        <span class='label'>PA Code</span>
+                        <span class='label'>iPA Code</span>
                         <input class='detail pa_partner_code' name='pa_partner_code' t-att-value="partner.pa_partner_code or ''"/>
                     </div>
                 </div>
