@@ -14,6 +14,7 @@
     'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
                'l10n_it_fatturapa',
     'license': 'LGPL-3',
+    'excludes': ['l10n_it_edi'],
     "depends": [
         'l10n_it_account',
         'l10n_it_fiscalcode',

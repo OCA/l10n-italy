@@ -82,6 +82,17 @@ Configuration
 * Configure Electronic Invoice data in Accounting Configuration, where needed
 * Optionally configure the Electronic Invoice preview format style by selecting 'Preview Format Style' in 'Accounting Configuration'
 
+Usage
+=====
+
+**Italiano**
+
+Il modulo NON È compatibile con il modulo standard l10n_it_edi.
+
+**English**
+
+The module is NOT compatible with the standard l10n_it_edi module.
+
 Bug Tracker
 ===========
 
