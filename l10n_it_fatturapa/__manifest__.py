@@ -6,7 +6,7 @@
 
 {
     'name': 'Italian Localization - Fattura elettronica - Base',
-    'version': '12.0.1.6.1',
+    'version': '12.0.1.8.0',
     'category': 'Localization/Italy',
     'summary': 'Fatture elettroniche',
     'author': 'Davide Corio, Agile Business Group, Innoviu, '
@@ -14,6 +14,7 @@
     'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
                'l10n_it_fatturapa',
     'license': 'LGPL-3',
+    'excludes': ['l10n_it_edi'],
     "depends": [
         'l10n_it_account',
         'l10n_it_fiscalcode',
