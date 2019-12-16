@@ -30205,14 +30205,12 @@ msgstr "Intrastat"
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code__name
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_form_report_intrastat_code
 #, fuzzy
-#| msgid "Intrastat code"
 msgid "Intrastat Code"
 msgstr "Codice Intrastat"
 
 #. module: l10n_it_intrastat
 #: model:ir.model,name:l10n_it_intrastat.model_account_invoice_intrastat
 #, fuzzy
-#| msgid "Intrastat Type"
 msgid "Intrastat Line"
 msgstr "Tipologia Intrastat"
 
@@ -30220,14 +30218,12 @@ msgstr "Tipologia Intrastat"
 #: model:ir.actions.act_window,name:l10n_it_intrastat.view_invoice_intrastat_report_action
 #: model:ir.ui.menu,name:l10n_it_intrastat.menu_report_intrastat_all
 #, fuzzy
-#| msgid "Intrastat Type"
 msgid "Intrastat Lines"
 msgstr "Tipologia Intrastat"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_delivery_code_id
 #, fuzzy
-#| msgid "Intrastat code"
 msgid "Intrastat Purchase Delivery Code"
 msgstr "Codice Intrastat"
 
@@ -30244,28 +30240,24 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_transaction_nature_id
 #, fuzzy
-#| msgid "Transaction Nature"
 msgid "Intrastat Purchase Transaction Nature"
 msgstr "Natura transazione"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_transport_code_id
 #, fuzzy
-#| msgid "Intrastat Report"
 msgid "Intrastat Purchase Transport Code"
 msgstr "Resoconto Intrastat"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_delivery_code_id
 #, fuzzy
-#| msgid "Intrastat code"
 msgid "Intrastat Sale Delivery Code"
 msgstr "Codice Intrastat"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_province_origin_id
 #, fuzzy
-#| msgid "Intrastat Search"
 msgid "Intrastat Sale Province Origin"
 msgstr "Ricerca Intrastat"
 
@@ -30277,14 +30269,12 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_transaction_nature_id
 #, fuzzy
-#| msgid "Transaction Nature"
 msgid "Intrastat Sale Transaction Nature"
 msgstr "Natura transazione"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_transport_code_id
 #, fuzzy
-#| msgid "Intrastat Report"
 msgid "Intrastat Sale Transport Code"
 msgstr "Resoconto Intrastat"
 
