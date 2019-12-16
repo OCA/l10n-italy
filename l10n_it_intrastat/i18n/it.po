@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2019-12-05 16:55+0000\n"
+"PO-Revision-Date: 2019-12-16 17:37+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -30204,28 +30204,24 @@ msgstr "Intrastat"
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_product_template__intrastat_code_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code__name
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_form_report_intrastat_code
-#, fuzzy
 msgid "Intrastat Code"
 msgstr "Codice Intrastat"
 
 #. module: l10n_it_intrastat
 #: model:ir.model,name:l10n_it_intrastat.model_account_invoice_intrastat
-#, fuzzy
 msgid "Intrastat Line"
-msgstr "Tipologia Intrastat"
+msgstr "Riga Intrastat"
 
 #. module: l10n_it_intrastat
 #: model:ir.actions.act_window,name:l10n_it_intrastat.view_invoice_intrastat_report_action
 #: model:ir.ui.menu,name:l10n_it_intrastat.menu_report_intrastat_all
-#, fuzzy
 msgid "Intrastat Lines"
-msgstr "Tipologia Intrastat"
+msgstr "Righe Intrastat"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_delivery_code_id
-#, fuzzy
 msgid "Intrastat Purchase Delivery Code"
-msgstr "Codice Intrastat"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_province_destination_id
@@ -30239,27 +30235,23 @@ msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_transaction_nature_id
-#, fuzzy
 msgid "Intrastat Purchase Transaction Nature"
-msgstr "Natura transazione"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_transport_code_id
-#, fuzzy
 msgid "Intrastat Purchase Transport Code"
-msgstr "Resoconto Intrastat"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_delivery_code_id
-#, fuzzy
 msgid "Intrastat Sale Delivery Code"
-msgstr "Codice Intrastat"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_province_origin_id
-#, fuzzy
 msgid "Intrastat Sale Province Origin"
-msgstr "Ricerca Intrastat"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_statistic_amount
@@ -30268,15 +30260,13 @@ msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_transaction_nature_id
-#, fuzzy
 msgid "Intrastat Sale Transaction Nature"
-msgstr "Natura transazione"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_transport_code_id
-#, fuzzy
 msgid "Intrastat Sale Transport Code"
-msgstr "Resoconto Intrastat"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_invoice_intrastat_search
