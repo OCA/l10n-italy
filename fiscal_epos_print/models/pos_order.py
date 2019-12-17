@@ -56,3 +56,11 @@ class PosOrder(models.Model):
                 'fiscal_z_rep_number': fiscal_z_rep_number
             })
         return True
+
+    @api.model
+    def create_from_ui(self, orders):
+        res = super(PosOrder, self).create_from_ui(orders)
+        for order in orders:
+            if order['data'].get('fiscal_receipt_number'):
+                self.update_fiscal_receipt_values(order['data'])
+        return res

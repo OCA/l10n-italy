@@ -3,8 +3,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
 
     var core = require("web.core");
     var utils = require('web.utils');
-    var PosDB = require('point_of_sale.DB');
-    var rpc = require('web.rpc');
+    var Model = require('web.Model');
     var _t = core._t;
     var round_pr = utils.round_precision;
 
@@ -118,14 +117,15 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
 
     var eposDriver = core.Class.extend({
         init: function(options, sender) {
+            var self = this;
             options = options || {};
             this.url = options.url || 'http://192.168.1.1/cgi-bin/fpmate.cgi';
             this.fiscalPrinter = new epson.fiscalPrint();
-            this.fpreponse = false;
+            this.fpresponse = false;
             this.sender = sender;
             this.fiscalPrinter.onreceive = function(res, tag_list_names, add_info) {
-                this.fpreponse = tag_list_names
-                var tagStatus = this.fpreponse.filter(getStatusField);
+                self.fpresponse = tag_list_names;
+                var tagStatus = tag_list_names.filter(getStatusField);
                 if (res['code'] == "EPTR_REC_EMPTY"){
                     sender.chrome.loading_hide();
                     alert(_t("Error missing paper."));
@@ -150,24 +150,18 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                             order.fiscal_receipt_date = add_info.fiscalReceiptDate;
                             order.fiscal_z_rep_number = add_info.zRepNumber;
 
-                            var def = new $.Deferred();
-                            var pos_db = new PosDB();
-                            if (pos_db.get_order(order.uid)) {
-                                pos_db.add_order(order);
+                            if (sender.pos.get_order(order.uid)) {
+                                sender.pos.db.add_order(order);
                             } else {
-                                rpc.query({
-                                    model: 'pos.order',
-                                    method: 'update_fiscal_receipt_values',
-                                    args: [order.export_as_JSON()],
-                                }).then(function (r) {
-                                    def.resolve();
-                                }), function (type, error) {
-                                    sender.pos.gui.show_popup('error', {
-                                        'title': _t('Error'),
-                                        'body': _t('Cannot update fiscal number for order. Set it manually, in case.')
+                                var P = new Model('pos.order');
+                                P.call('update_fiscal_receipt_values', [order.export_as_JSON()])
+                                    .fail(function(error, event) {
+                                        sender.pos.gui.show_popup('error', {
+                                            'title': _t('Error'),
+                                            'body': _t('Cannot update fiscal number for order. Set it manually, in case.')
+                                        });
                                     });
-                                };
-                            };
+                            }
                         }
                     }
                     else {
@@ -364,7 +358,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
         printFiscalReport: function() {
             var xml = '<printerFiscalReport>';
             xml += '<displayText operator="1" data="' + _t('Fiscal Closing') + '" />';
-            xml += '<printZReport operator="1" />';
+            xml += '<printZReport operator="" />';
             xml += '</printerFiscalReport>';
             this.fiscalPrinter.send(this.url, xml);
         },
