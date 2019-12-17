@@ -1,7 +1,7 @@
-# -*- coding: utf-8 -*-
 # Copyright 2019 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import codecs
 from odoo.addons.l10n_it_fatturapa_out.tests.fatturapa_common import (
     FatturaPACommon)
 
@@ -45,6 +45,6 @@ class TestInvoiceTripleDiscount(FatturaPACommon):
         self.set_e_invoice_file_id(attachment, 'IT06363391001_00001.xml')
 
         # XML doc to be validated
-        xml_content = attachment.datas.decode('base64')
+        xml_content = codecs.decode(attachment.datas, 'base64')
         self.check_content(xml_content, 'IT06363391001_00001.xml',
                            module_name='l10n_it_fatturapa_out_triple_discount')
