@@ -37,8 +37,9 @@ odoo.define("fiscal_epos_print.pos_order_mgmt", function (require) {
         },
         action_print: function (order_data, order) {
             if (this.pos.config.printer_ip) {
-                var receipt = order.export_for_printing();
+                var receipt = order_data.export_for_printing();
                 var printer_options = this.getPrinterOptions();
+                printer_options.order = order_data;
                 this.sendToFP90Printer(receipt, printer_options);
             }
             return this._super(order_data, order);

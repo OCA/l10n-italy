@@ -123,6 +123,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             this.fiscalPrinter = new epson.fiscalPrint();
             this.fpresponse = false;
             this.sender = sender;
+            this.order = options.order || null;
             this.fiscalPrinter.onreceive = function(res, tag_list_names, add_info) {
                 self.fpresponse = tag_list_names;
                 var tagStatus = tag_list_names.filter(getStatusField);
@@ -143,7 +144,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                     var info = add_info[tagStatus[0]];
                     var msgPrinter = decodeFpStatus(info);
                     if (!isErrorStatus(info)) {
-                        var order = sender.pos.get_order();
+                        var order = self.order;
                         if (!order.fiscal_receipt_number) {
                             order.fiscal_receipt_number = parseInt(add_info.fiscalReceiptNumber);
                             order.fiscal_receipt_amount = parseFloat(add_info.fiscalReceiptAmount.replace(',', '.'));

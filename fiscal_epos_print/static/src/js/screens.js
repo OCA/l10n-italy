@@ -41,6 +41,7 @@ odoo.define("fiscal_epos_print.screens", function (require) {
             this._super.apply(this, arguments);
             if (this.pos.config.printer_ip && !currentOrder.is_to_invoice()) {
                 var printer_options = this.getPrinterOptions();
+                printer_options.order = currentOrder;
                 var receipt = currentOrder.export_for_printing();
                 this.sendToFP90Printer(receipt, printer_options);
                 currentOrder._printed = true;
