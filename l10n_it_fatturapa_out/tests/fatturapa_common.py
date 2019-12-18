@@ -146,6 +146,8 @@ class FatturaPACommon(AccountTestInvoicingCommon):
             "UPDATE res_company SET currency_id = %s WHERE id = %s",
             [self.EUR.id, self.company.id],
         )
+        # Otherwise self.company in cache could keep the old wrong value USD
+        self.company.refresh()
 
     def AttachFileToInvoice(self, InvoiceId, filename):
         self.fatturapa_attach.create(

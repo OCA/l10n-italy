@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <record id="view_account_config_settings" model="ir.ui.view">
+            <field name="name">view_account_config_settings</field>
+            <field name="model">res.config.settings</field>
+            <field
+                name="inherit_id"
+                ref="l10n_it_fatturapa.view_account_config_settings"
+            />
+            <field name="arch" type="xml">
+                <xpath
+                    expr="//field[@name='fatturapa_preview_style']/parent::div"
+                    position="after"
+                >
+                    <div class="row">
+                        <label for="max_invoice_in_xml" />
+                        <field
+                            name="max_invoice_in_xml"
+                            class="col-lg-3 o_light_label"
+                        />
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+
+</odoo>
