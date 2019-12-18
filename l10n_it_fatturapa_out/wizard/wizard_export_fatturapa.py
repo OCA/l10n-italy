@@ -10,6 +10,7 @@ import logging
 import os
 import string
 import random
+import itertools
 
 from odoo import api, fields, models
 from odoo.tools.translate import _
@@ -117,11 +118,18 @@ class WizardExportFatturapa(models.TransientModel):
         }
         return attach_obj.create(attach_vals)
 
-    def setProgressivoInvio(self, fatturapa):
-
-        file_id = id_generator()
-        while self.env['fatturapa.attachment.out'].file_name_exists(file_id):
+    def setProgressivoInvio(self, fatturapa, attach=False):
+        # if the attachment is given than we will reuse its file_id
+        if attach:
+            # Xml file name uses the format VAT_XXXXX.xml and we are interested
+            # to get XXXXX
+            file_id = attach.name.split('_')[1].split('.')[0]
+        else:
             file_id = id_generator()
+            Attachment = self.env['fatturapa.attachment.out']
+            while Attachment.file_name_exists(file_id):
+                file_id = id_generator()
+
         try:
             fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
                 ProgressivoInvio = file_id
@@ -833,60 +841,90 @@ class WizardExportFatturapa(models.TransientModel):
         return partner
 
     def group_invoices_by_partner(self):
+        def split_list(my_list, size):
+            it = iter(my_list)
+            item = list(itertools.islice(it, size))
+            while item:
+                yield item
+                item = list(itertools.islice(it, size))
+
         invoice_ids = self.env.context.get('active_ids', False)
         res = {}
         for invoice in self.env['account.invoice'].browse(invoice_ids):
-            if invoice.partner_id.id not in res:
-                res[invoice.partner_id.id] = []
-            res[invoice.partner_id.id].append(invoice.id)
+            if invoice.partner_id not in res:
+                res[invoice.partner_id] = []
+            res[invoice.partner_id].append(invoice.id)
+
+        for partner_id in res.keys():
+            if partner_id.max_invoice_in_xml:
+                res[partner_id] = list(
+                    split_list(res[partner_id], partner_id.max_invoice_in_xml))
+            else:
+                res[partner_id] = [res[partner_id]]
+
+        # The returned dictionary contains a plain res.partner object as key
+        # because that avoid to call the .browse() during the xml generation
+        # this will speedup the algorithm. As value we have a list of list
+        # such as [[inv1, inv2, inv3], [inv4, inv5], ...] where every subgroup
+        # represents as per customer splitting invoice block defined by
+        # max_invoice_in_xml field
         return res
+
+    def exportInvoiceXML(
+            self, company, partner, invoice_ids, attach=False, context=None):
+        if context is None:
+            context = {}
+        invoice_obj = self.env['account.invoice']
+        if partner.is_pa:
+            fatturapa = FatturaElettronica(versione='FPA12')
+        else:
+            fatturapa = FatturaElettronica(versione='FPR12')
+
+        try:
+            self.with_context(context). \
+                setFatturaElettronicaHeader(company, partner, fatturapa)
+            for invoice_id in invoice_ids:
+                inv = invoice_obj.with_context(context).browse(invoice_id)
+                inv.set_taxes_for_descriptive_lines()
+                if not attach and inv.fatturapa_attachment_out_id:
+                    raise UserError(
+                        _("E-invoice export file still present for invoice %s.")
+                        % (inv.number))
+                if self.report_print_menu:
+                    self.generate_attach_report(inv)
+                invoice_body = FatturaElettronicaBodyType()
+                inv.preventive_checks()
+                self.with_context(
+                    context
+                ).setFatturaElettronicaBody(
+                    inv, invoice_body)
+                fatturapa.FatturaElettronicaBody.append(invoice_body)
+                # TODO DatiVeicoli
+
+            number = self.setProgressivoInvio(fatturapa, attach=attach)
+        except (SimpleFacetValueError, SimpleTypeValueError) as e:
+            raise UserError(str(e))
+        return fatturapa, number
 
     def exportFatturaPA(self):
         invoice_obj = self.env['account.invoice']
-        invoices_by_partner = self.group_invoices_by_partner()
         attachments = self.env['fatturapa.attachment.out']
-        for partner_id in invoices_by_partner:
-            invoice_ids = invoices_by_partner[partner_id]
-            partner = self.getPartnerId(invoice_ids)
-            if partner.is_pa:
-                fatturapa = FatturaElettronica(versione='FPA12')
-            else:
-                fatturapa = FatturaElettronica(versione='FPR12')
+        invoices_by_partner = self.group_invoices_by_partner()
+        company = self.env.user.company_id
 
-            company = self.env.user.company_id
+        for partner in invoices_by_partner:
             context_partner = self.env.context.copy()
             context_partner.update({'lang': partner.lang})
-            try:
-                self.with_context(context_partner).setFatturaElettronicaHeader(
-                    company, partner, fatturapa)
+            for invoice_ids in invoices_by_partner[partner]:
+                fatturapa, number = self.exportInvoiceXML(
+                    company, partner, invoice_ids, context=context_partner)
+
+                attach = self.saveAttachment(fatturapa, number)
+                attachments |= attach
+
                 for invoice_id in invoice_ids:
-                    inv = invoice_obj.with_context(context_partner).browse(
-                        invoice_id)
-                    if inv.fatturapa_attachment_out_id:
-                        raise UserError(
-                            _("Invoice %s has e-invoice export file yet.") % (
-                                inv.number))
-                    if self.report_print_menu:
-                        self.generate_attach_report(inv)
-                    invoice_body = FatturaElettronicaBodyType()
-                    inv.preventive_checks()
-                    self.with_context(
-                        context_partner
-                    ).setFatturaElettronicaBody(
-                        inv, invoice_body)
-                    fatturapa.FatturaElettronicaBody.append(invoice_body)
-                    # TODO DatiVeicoli
-
-                number = self.setProgressivoInvio(fatturapa)
-            except (SimpleFacetValueError, SimpleTypeValueError) as e:
-                raise UserError(str(e))
-
-            attach = self.saveAttachment(fatturapa, number)
-            attachments |= attach
-
-            for invoice_id in invoice_ids:
-                inv = invoice_obj.browse(invoice_id)
-                inv.write({'fatturapa_attachment_out_id': attach.id})
+                    inv = invoice_obj.browse(invoice_id)
+                    inv.write({'fatturapa_attachment_out_id': attach.id})
 
         action = {
             'view_type': 'form',
