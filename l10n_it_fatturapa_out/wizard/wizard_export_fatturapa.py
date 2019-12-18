@@ -11,6 +11,7 @@ import logging
 import os
 import string
 import random
+import itertools
 
 from odoo import api, fields, models
 from odoo.tools.translate import _
@@ -841,12 +842,28 @@ class WizardExportFatturapa(models.TransientModel):
         return partner
 
     def group_invoices_by_partner(self):
+        def split_list(my_list, size):
+            it = iter(my_list)
+            item = list(itertools.islice(it, size))
+            while item:
+                yield item
+                item = list(itertools.islice(it, size))
+
         invoice_ids = self.env.context.get('active_ids', False)
         res = {}
         for invoice in self.env['account.invoice'].browse(invoice_ids):
             if invoice.partner_id.id not in res:
                 res[invoice.partner_id.id] = []
             res[invoice.partner_id.id].append(invoice.id)
+
+        partner_obj = self.env['res.partner']
+        for partner in res.keys():
+            partner_id = partner_obj.browse(partner)
+            if partner_id.max_invoice_in_xml:
+                res[partner] = list(
+                    split_list(res[partner], partner_id.max_invoice_in_xml))
+            else:
+                res[partner] = [res[partner]]
         return res
 
     def exportFatturaPA(self):
@@ -854,47 +871,47 @@ class WizardExportFatturapa(models.TransientModel):
         invoices_by_partner = self.group_invoices_by_partner()
         attachments = self.env['fatturapa.attachment.out']
         for partner_id in invoices_by_partner:
-            invoice_ids = invoices_by_partner[partner_id]
-            partner = self.getPartnerId(invoice_ids)
-            if partner.is_pa:
-                fatturapa = FatturaElettronica(versione='FPA12')
-            else:
-                fatturapa = FatturaElettronica(versione='FPR12')
+            for invoice_ids in invoices_by_partner[partner_id]:
+                partner = self.getPartnerId(invoice_ids)
+                if partner.is_pa:
+                    fatturapa = FatturaElettronica(versione='FPA12')
+                else:
+                    fatturapa = FatturaElettronica(versione='FPR12')
 
-            company = self.env.user.company_id
-            context_partner = self.env.context.copy()
-            context_partner.update({'lang': partner.lang})
-            try:
-                self.with_context(context_partner).setFatturaElettronicaHeader(
-                    company, partner, fatturapa)
+                company = self.env.user.company_id
+                context_partner = self.env.context.copy()
+                context_partner.update({'lang': partner.lang})
+                try:
+                    self.with_context(context_partner).\
+                        setFatturaElettronicaHeader(company, partner, fatturapa)
+                    for invoice_id in invoice_ids:
+                        inv = invoice_obj.with_context(context_partner).browse(
+                            invoice_id)
+                        if inv.fatturapa_attachment_out_id:
+                            raise UserError(
+                                _("Invoice %s has e-invoice export file yet.")
+                                % (inv.number))
+                        if self.report_print_menu:
+                            self.generate_attach_report(inv)
+                        invoice_body = FatturaElettronicaBodyType()
+                        inv.preventive_checks()
+                        self.with_context(
+                            context_partner
+                        ).setFatturaElettronicaBody(
+                            inv, invoice_body)
+                        fatturapa.FatturaElettronicaBody.append(invoice_body)
+                        # TODO DatiVeicoli
+
+                    number = self.setProgressivoInvio(fatturapa)
+                except (SimpleFacetValueError, SimpleTypeValueError) as e:
+                    raise UserError(unicode(e))
+
+                attach = self.saveAttachment(fatturapa, number)
+                attachments |= attach
+
                 for invoice_id in invoice_ids:
-                    inv = invoice_obj.with_context(context_partner).browse(
-                        invoice_id)
-                    if inv.fatturapa_attachment_out_id:
-                        raise UserError(
-                            _("Invoice %s has e-invoice export file yet.") % (
-                                inv.number))
-                    if self.report_print_menu:
-                        self.generate_attach_report(inv)
-                    invoice_body = FatturaElettronicaBodyType()
-                    inv.preventive_checks()
-                    self.with_context(
-                        context_partner
-                    ).setFatturaElettronicaBody(
-                        inv, invoice_body)
-                    fatturapa.FatturaElettronicaBody.append(invoice_body)
-                    # TODO DatiVeicoli
-
-                number = self.setProgressivoInvio(fatturapa)
-            except (SimpleFacetValueError, SimpleTypeValueError) as e:
-                raise UserError(unicode(e))
-
-            attach = self.saveAttachment(fatturapa, number)
-            attachments |= attach
-
-            for invoice_id in invoice_ids:
-                inv = invoice_obj.browse(invoice_id)
-                inv.write({'fatturapa_attachment_out_id': attach.id})
+                    inv = invoice_obj.browse(invoice_id)
+                    inv.write({'fatturapa_attachment_out_id': attach.id})
 
         action = {
             'view_type': 'form',
