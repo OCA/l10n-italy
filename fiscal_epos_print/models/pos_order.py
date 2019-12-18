@@ -64,3 +64,12 @@ class PosOrder(models.Model):
             if order['data'].get('fiscal_receipt_number'):
                 self.update_fiscal_receipt_values(order['data'])
         return res
+
+    @api.multi
+    def _prepare_done_order_for_pos(self):
+        res = super(PosOrder, self)._prepare_done_order_for_pos()
+        res['fiscal_receipt_number'] = self.fiscal_receipt_number
+        res['fiscal_receipt_amount'] = self.fiscal_receipt_amount
+        res['fiscal_receipt_date'] = self.fiscal_receipt_date
+        res['fiscal_z_rep_number'] = self.fiscal_z_rep_number
+        return res

@@ -124,48 +124,52 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             this.fpresponse = false;
             this.sender = sender;
             this.order = options.order || null;
+            this.requested_z_report = options.requested_z_report || false;
             this.fiscalPrinter.onreceive = function(res, tag_list_names, add_info) {
+                sender.chrome.loading_hide();
                 self.fpresponse = tag_list_names;
                 var tagStatus = tag_list_names.filter(getStatusField);
                 if (res['code'] == "EPTR_REC_EMPTY"){
-                    sender.chrome.loading_hide();
-                    alert(_t("Error missing paper."));
+                    sender.chrome.screens['receipt'].lock_screen(true);
+                    sender.pos.gui.show_popup('error', {
+                        'title': _t('Error'),
+                        'body': _t('Missing paper'),
+                    });
                 }
                 else if (add_info.responseCommand == "1138") {
                     // coming from FiscalPrinterADEFilesButtonWidget
-                    sender.chrome.loading_hide();
                     var to_be_sent = add_info.responseData[9] + add_info.responseData[10] + add_info.responseData[11] + add_info.responseData[12];
                     var old = add_info.responseData[13] + add_info.responseData[14] + add_info.responseData[15] + add_info.responseData[16];
                     var rejected = add_info.responseData[17] + add_info.responseData[18] + add_info.responseData[19] + add_info.responseData[20];
-                    var msg = _t("Files waiting to be sent: ") + to_be_sent + _t("\nOld files: ") + old + _t("\nRejected files: ") + rejected
-                    alert(msg);
+                    var msg = _t("Files waiting to be sent: ") + to_be_sent + "; " + _t("Old files: ") + old + "; " + _t("Rejected files: ") + rejected;
+                    sender.pos.gui.show_popup('alert', {
+                        'title': _t('ADE files'),
+                        'body': msg,
+                    });
                 }
                 else if (tagStatus.length > 0 && res.success) {
                     var info = add_info[tagStatus[0]];
                     var msgPrinter = decodeFpStatus(info);
                     if (!isErrorStatus(info)) {
-                        var order = self.order;
-                        if (!order.fiscal_receipt_number) {
-                            order.fiscal_receipt_number = parseInt(add_info.fiscalReceiptNumber);
-                            order.fiscal_receipt_amount = parseFloat(add_info.fiscalReceiptAmount.replace(',', '.'));
-                            order.fiscal_receipt_date = add_info.fiscalReceiptDate;
-                            order.fiscal_z_rep_number = add_info.zRepNumber;
-
-                            if (sender.pos.get_order(order.uid)) {
-                                sender.pos.db.add_order(order);
-                            } else {
-                                var P = new Model('pos.order');
-                                P.call('update_fiscal_receipt_values', [order.export_as_JSON()])
-                                    .fail(function(error, event) {
-                                        sender.pos.gui.show_popup('error', {
-                                            'title': _t('Error'),
-                                            'body': _t('Cannot update fiscal number for order. Set it manually, in case.')
-                                        });
-                                    });
+                        // Z report can be printed from header bar: we just need to hide the loading screen, done above
+                        if (!self.requested_z_report) {
+                            sender.chrome.screens['receipt'].lock_screen(false);
+                            var order = self.order;
+                            order._printed = true;
+                            if (!order.fiscal_receipt_number) {
+                                order.fiscal_receipt_number = parseInt(add_info.fiscalReceiptNumber);
+                                order.fiscal_receipt_amount = parseFloat(add_info.fiscalReceiptAmount.replace(',', '.'));
+                                order.fiscal_receipt_date = add_info.fiscalReceiptDate;
+                                order.fiscal_z_rep_number = add_info.zRepNumber;
+                                sender.pos.db.add_order(order.export_as_JSON());
+                            }
+                            if (!sender.pos.config.show_receipt_when_printing) {
+                                sender.chrome.screens['receipt'].click_next();
                             }
                         }
                     }
                     else {
+                        sender.chrome.screens['receipt'].lock_screen(true);
                         sender.pos.gui.show_popup('error', {
                             'title': _t('Connection to the printer failed'),
                             'body': msgPrinter,
@@ -173,6 +177,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                     };
                 }
                 else {
+                    sender.chrome.screens['receipt'].lock_screen(true);
                     sender.pos.gui.show_popup('error', {
                         'title': _t('Connection to the printer failed'),
                         'body': _t('An error happened while sending data to the printer. Error code: ') + res.code,
@@ -181,6 +186,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             }
             this.fiscalPrinter.onerror = function() {
                 sender.chrome.loading_hide();
+                sender.chrome.screens['receipt'].lock_screen(true);
                 sender.pos.gui.show_popup('error', {
                     'title': _t('Network error'),
                     'body': _t('Printer can not be reached')
@@ -230,6 +236,13 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                 + ' unitPrice="' + (args.unitPrice || '') + '"'
                 + ' department="' + (args.department || '1') + '"'
                 + ' justification="' + (args.justification || '1') + '"'
+                + ' operator="' + (args.operator || '1') + '"'
+                + ' />';
+            return tag;
+        },
+
+        printRecTotalRefund: function(args) {
+            var tag = '<printRecTotal'
                 + ' operator="' + (args.operator || '1') + '"'
                 + ' />';
             return tag;
@@ -326,46 +339,19 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                         refund_doc_num: receipt.refund_doc_num,
                         refund_cash_fiscal_serial: receipt.refund_cash_fiscal_serial});
             }
-            _.each(receipt.orderlines, function(l, i, list) {
-                if (l.price >= 0) {
-                    if(l.quantity>=0) {
-                        var full_price = l.price;
-                        if (l.discount) {
-                            full_price = round_pr(l.price / (1 - (l.discount / 100)), self.sender.pos.currency.rounding);
-                        }
-                        xml += self.printRecItem({
-                            description: l.product_name,
-                            quantity: l.quantity,
-                            unitPrice: full_price,
-                            department: l.tax_department.code
-                        });
-                        if (l.discount) {
-                            xml += self.printRecItemAdjustment({
-                                adjustmentType: 0,
-                                description: _t('Discount') + ' ' + l.discount + '%',
-                                amount: round_pr(l.quantity * full_price - l.price, self.sender.pos.currency.rounding),
-                            });
-                        }
-                    }
-                    else
-                    {
-                        xml += self.printRecRefund({
-                            description: _t('Refund >>> ') + l.product_name,
-                            quantity: l.quantity * -1.0,
-                            unitPrice: l.price,
-                            department: l.tax_department.code
-                        });
-                    }
-                }
-                else {
-                    xml += self.printRecItemAdjustment({
-                        adjustmentType: 3,
-                        description: l.product_name,
-                        department: l.tax_department.code,
-                        amount: -l.price,
+            if (has_refund) {
+                xml += self.printRecTotalRefund({});
+            }
+            else {
+                _.each(receipt.paymentlines, function(l, i, list) {
+                    xml += self.printRecTotal({
+                        payment: l.amount,
+                        paymentType: l.type,
+                        paymentIndex: l.type_index,
+                        description: l.journal,
                     });
-                }
-            });
+                });
+            }
             if (has_refund) {
                 xml += self.printRecTotalRefund({});
             }
@@ -386,7 +372,6 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
 
         printFiscalReport: function() {
             var xml = '<printerFiscalReport>';
-            xml += '<displayText operator="1" data="' + _t('Fiscal Closing') + '" />';
             xml += '<printZReport operator="" />';
             xml += '</printerFiscalReport>';
             this.fiscalPrinter.send(this.url, xml);

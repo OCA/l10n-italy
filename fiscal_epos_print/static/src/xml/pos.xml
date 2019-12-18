@@ -7,6 +7,12 @@
         </div>
     </t>
 
+    <t t-name="PrinterFiscalClosure">
+        <div class="header-button" style="padding-top:5px">
+            <img src="/fiscal_epos_print/static/src/img/Z.png" alt="Fiscal closure" title="Send fiscal closure command to the fiscal printer"/>
+        </div>
+    </t>
+    
     <t t-extend="PosTicket">
         <t t-jquery="div[class='pos-sale-ticket']" t-operation="after">
             <div class="button print">

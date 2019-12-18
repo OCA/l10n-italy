@@ -37,6 +37,13 @@ odoo.define("fiscal_epos_print.pos_order_mgmt", function (require) {
         },
         action_print: function (order_data, order) {
             if (this.pos.config.printer_ip) {
+                if (order_data.fiscal_receipt_number) {
+                    this.pos.gui.show_popup('error', {
+                        'title': _t('Order already printed'),
+                        'body': order_data.pos_reference + _t(": order already has a fiscal number, ") + order_data.fiscal_receipt_number,
+                    });
+                    return;
+                }
                 var receipt = order_data.export_for_printing();
                 var printer_options = this.getPrinterOptions();
                 printer_options.order = order_data;

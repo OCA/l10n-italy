@@ -92,7 +92,10 @@ odoo.define('fiscal_epos_print.models', function (require) {
                     taxname: this.pos.taxes_by_id[i].name,
                 }
             }
-            alert(_t("No taxes found"));
+            this.pos.gui.show_popup('error', {
+                'title': _t('Error'),
+                'body': _t('No taxes found'),
+            });
         },
         compute_all: function(taxes, price_unit, quantity, currency_rounding, no_map_tax) {
             var res = _orderline_super.compute_all.call(this, taxes, price_unit, quantity, currency_rounding, no_map_tax);
