@@ -6,6 +6,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import base64
+import itertools
 import logging
 import random
 import string
@@ -74,48 +75,80 @@ class WizardExportFatturapa(models.TransientModel):
         return partner
 
     def group_invoices_by_partner(self):
+        def split_list(my_list, size):
+            it = iter(my_list)
+            item = list(itertools.islice(it, size))
+            while item:
+                yield item
+                item = list(itertools.islice(it, size))
+
         invoice_ids = self.env.context.get("active_ids", False)
         res = {}
         for invoice in self.env["account.move"].browse(invoice_ids):
-            if invoice.partner_id.id not in res:
-                res[invoice.partner_id.id] = []
-            res[invoice.partner_id.id].append(invoice.id)
+            if invoice.partner_id not in res:
+                res[invoice.partner_id] = []
+            res[invoice.partner_id].append(invoice.id)
+        for partner_id in res.keys():
+            if partner_id.max_invoice_in_xml:
+                res[partner_id] = list(
+                    split_list(res[partner_id], partner_id.max_invoice_in_xml)
+                )
+            else:
+                res[partner_id] = [res[partner_id]]
+        # The returned dictionary contains a plain res.partner object as key
+        # because that avoid to call the .browse() during the xml generation
+        # this will speedup the algorithm. As value we have a list of list
+        # such as [[inv1, inv2, inv3], [inv4, inv5], ...] where every subgroup
+        # represents as per customer splitting invoice block defined by
+        # max_invoice_in_xml field
         return res
 
+    def setProgressivoInvio(self, attach=False):
+        # if the attachment is given than we will reuse its file_id
+        if attach:
+            file_id = attach.name.split("_")[1].split(".")[0]
+        else:
+            file_id = id_generator()
+            Attachment = self.env["fatturapa.attachment.out"]
+            while Attachment.file_name_exists(file_id):
+                file_id = id_generator()
+        return file_id
+
+    def exportInvoiceXML(self, partner, invoice_ids, attach=False, context=None):
+        progressivo_invio = self.setProgressivoInvio(attach)
+        invoice_ids = self.env["account.move"].with_context(context).browse(invoice_ids)
+        invoice_ids.preventive_checks()
+
+        # generate attachments (PDF version of invoice)
+        for inv in invoice_ids:
+            if not attach and inv.fatturapa_attachment_out_id:
+                raise UserError(
+                    _("E-invoice export file still present for invoice %s.")
+                    % (inv.number)
+                )
+            if not inv.fatturapa_doc_attachments and self.report_print_menu:
+                self.generate_attach_report(inv)
+        fatturapa = EFatturaOut(self, partner, invoice_ids, progressivo_invio)
+        return fatturapa, progressivo_invio
+
     def exportFatturaPA(self):
+        invoice_obj = self.env["account.move"]
         invoices_by_partner = self.group_invoices_by_partner()
         attachments = self.env["fatturapa.attachment.out"]
-        for partner_id in invoices_by_partner:
-            invoice_ids = invoices_by_partner[partner_id]
-            partner = self.getPartnerId(invoice_ids)
+        for partner in invoices_by_partner:
             context_partner = self.env.context.copy()
             context_partner.update({"lang": partner.lang})
+            for invoice_ids in invoices_by_partner[partner]:
+                fatturapa, progressivo_invio = self.exportInvoiceXML(
+                    partner, invoice_ids, context=context_partner
+                )
 
-            progressivo_invio = id_generator()
-            while self.env["fatturapa.attachment.out"].file_name_exists(
-                progressivo_invio
-            ):
-                progressivo_invio = id_generator()
+                attach = self.saveAttachment(fatturapa, progressivo_invio)
+                attachments |= attach
 
-            invoice_ids = (
-                self.env["account.move"]
-                .with_context(context_partner)
-                .browse(invoice_ids)
-            )
-
-            invoice_ids.preventive_checks()
-
-            # generate attachments (PDF version of invoice)
-            for inv in invoice_ids:
-                if not inv.fatturapa_doc_attachments and self.report_print_menu:
-                    self.generate_attach_report(inv)
-
-            fatturapa = EFatturaOut(self, partner, invoice_ids, progressivo_invio)
-
-            attach = self.saveAttachment(fatturapa, progressivo_invio)
-            attachments |= attach
-
-            invoice_ids.write({"fatturapa_attachment_out_id": attach.id})
+                for invoice_id in invoice_ids:
+                    inv = invoice_obj.browse(invoice_id)
+                    inv.write({"fatturapa_attachment_out_id": attach.id})
 
         action = {
             "name": "Export Electronic Invoice",
