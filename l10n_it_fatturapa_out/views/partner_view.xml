@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_partner_form_fatturapa">
+        <field name="name">partner.form.fatturapa</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="l10n_it_fatturapa.view_partner_form_fatturapa" />
+        <field name="arch" type="xml">
+            <field name="ipa_code" position="before">
+                <field name="max_invoice_in_xml" />
+            </field>
+        </field>
+    </record>
+
+</odoo>
