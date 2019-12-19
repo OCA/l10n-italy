@@ -71,5 +71,7 @@ class EInvoiceCommon(FatturaPACommon):
             'port': 110,
             'user': 'dummy',
             'password': 'secret',
-            'state': 'done'
+            'state': 'done',
+            'e_inv_notify_partner_ids': [
+                (6, 0, [self.env.ref("base.user_admin").partner_id.id])],
         })
