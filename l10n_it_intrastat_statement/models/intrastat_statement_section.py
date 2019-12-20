@@ -20,7 +20,8 @@ class IntrastatStatementSection(models.AbstractModel):
     partner_id = fields.Many2one(
         comodel_name='res.partner')
     country_partner_id = fields.Many2one(
-        comodel_name='res.country')
+        comodel_name='res.country',
+        string="Partner State")
     vat_code = fields.Char()
     amount_euro = fields.Integer(
         string="Amount in Euro",
@@ -84,7 +85,7 @@ class IntrastatStatementSection(models.AbstractModel):
         if country_id:
             country_id.intrastat_validate()
         else:
-            raise ValidationError(_("Partner %s without Country")
+            raise ValidationError(_("Missing State for Partner %s")
                                   % self.partner_id.display_name)
 
     @api.multi
