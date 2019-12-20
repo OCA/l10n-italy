@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from odoo.tests import common
 
 
@@ -102,7 +101,7 @@ class TestRibaCommon(common.TransactionCase):
             'account_id': self.account_rec1_id.id,
             'invoice_line_ids': [(
                 0, 0, {
-                    'name': self.product1.partner_ref,
+                    'name': self.product1.name,
                     'product_id': self.product1.id,
                     'quantity': 1.0,
                     'price_unit': 100.00,
@@ -133,7 +132,9 @@ class TestRibaCommon(common.TransactionCase):
             'riba_payment_cost': 5.00,
             'line_ids': [
                 (0, 0,
-                 {'value': 'balance', 'option': 'last_day_following_month'})
+                 {'value': 'balance',
+                  'option': 'day_following_month',
+                  'days': 1, })
             ]
         })
 
