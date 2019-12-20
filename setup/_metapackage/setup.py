@@ -61,6 +61,7 @@ setuptools.setup(
         'odoo12-addon-l10n_it_website_sale_fiscalcode',
         'odoo12-addon-l10n_it_withholding_tax',
         'odoo12-addon-l10n_it_withholding_tax_causali',
+        'odoo12-addon-l10n_it_withholding_tax_payment',
     ],
     classifiers=[
         'Programming Language :: Python',
