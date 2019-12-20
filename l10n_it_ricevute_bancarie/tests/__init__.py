@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Author: Andrea Gallina
 # ©  2015 Apulia Software srl

@@ -11,7 +11,8 @@
         </record>
         <record id="account_payment_term_line" model="account.payment.term.line">
             <field name="value">balance</field>
-            <field name="option">last_day_following_month</field>
+            <field name="option">day_following_month</field>
+            <field name="days">1</field>
             <field ref="account_payment_term_riba" name="payment_id"/>
         </record>
 
