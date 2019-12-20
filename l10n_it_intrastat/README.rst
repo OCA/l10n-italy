@@ -82,8 +82,8 @@ impostare i parametri delle seguenti sezioni presenti nella scheda "Informazioni
    d) *Modalità di trasporto*: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Modo di trasporto).
    e) *Provincia di destinazione*: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (provincia di destinazione della spedizione dei beni acquistati).
 
-**Tabelle di sistema**
 
+**Tabelle di sistema**
 
 In *Fatturazione/Contabilità → Configurazione → Intrastat*
 sono presenti le funzionalità per la gestione delle tabelle di sistema.
@@ -96,6 +96,7 @@ sono presenti le funzionalità per la gestione delle tabelle di sistema.
 Tali tabelle sono pre-popolate in fase di installazione del modulo, in base ai valori ammessi per le dichiarazioni Intrastat.
 
 N.B.: Il sottomenù "Intrastat" è visibile solo se vengono abilitate le funzionalità contabili complete.
+
 
 **Posizione fiscale**
 
@@ -115,8 +116,7 @@ Per il prodotto la sezione Intrastat si trova nella scheda «Fatturazione/Contab
 - la tipologia (Bene, Servizio, Varie, Escludere);
 - il codice Intrastat, tra quelli censiti tramite l’apposita tabella di sistema "Nomenclature combinate" (il campo viene abilitato solo per le tipologie "Bene" e "Servizio").
 
-
-Per le categorie di prodotti, le informazioni sono presenti in un’apposita area Intrastat della maschera di dettaglio:
+Per le categorie di prodotti, le informazioni sono presenti in un’apposita area Intrastat della maschera di dettaglio.
 
 Usage
 =====
