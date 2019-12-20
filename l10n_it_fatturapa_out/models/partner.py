@@ -9,9 +9,11 @@ from odoo.exceptions import ValidationError
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    max_invoice_in_xml = fields.Integer(string='Max Num. Invoice in XML',
-        default=0, help="Maximum number of invoices to group in a single "
-                        "XML file. Default=0 unlimited")
+    max_invoice_in_xml = fields.Integer(
+        string='Max Invoice # in XML',
+        default=lambda self: self.env.user.company_id.max_invoice_in_xml,
+        help="Maximum number of invoices to group in a single "
+             "XML file. 0=Unlimited")
 
     @api.constrains('max_invoice_in_xml')
     def _validate_max_invoice_in_xml(self):

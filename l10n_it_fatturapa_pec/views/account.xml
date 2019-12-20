@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <act_window id="action_wizard_export_fatturapa_regenerate"
+                name="Re-Export Electronic Invoice"
+                res_model="wizard.export.fatturapa"
+                target="new"
+                view_id="wizard_export_fatturapa_form_view_regenerate"
+                view_mode="form"/>
+
     <record id="view_invoice_fatturapa_out_pec_tree" model="ir.ui.view">
         <field name="name">view.invoice.fatturapa.out.pec.tree</field>
         <field name="model">account.invoice</field>
@@ -44,4 +51,5 @@
             </xpath>
         </field>
     </record>
+
 </odoo>
