@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) 2012 Andrea Cometa.
 # Email: info@andreacometa.it
 # Web site: http://www.andreacometa.it
@@ -98,7 +97,7 @@ class AccountMoveLine(models.Model):
                 if riba_line.state in ['confirmed', 'accredited']:
                     if riba_line.test_reconciled():
                         riba_line.state = 'paid'
-                        riba_line.distinta_id.signal_workflow('paid')
+                        riba_line.distinta_id.state = 'paid'
 
     @api.multi
     def reconcile(
@@ -146,7 +145,7 @@ class AccountInvoice(models.Model):
         :return: True if month of invoice_date_due is in a list of all_date_due
         """
         for d in all_date_due:
-            if invoice_date_due[:7] == d[:7]:
+            if invoice_date_due[:7] == str(d.strftime('%Y-%m')):
                 return True
         return False
 
@@ -246,6 +245,7 @@ class AccountInvoice(models.Model):
                         ))
         super(AccountInvoice, self).action_cancel()
 
+    @api.multi
     def copy(self, default=None):
         self.ensure_one()
         # Delete Due Cost Line of invoice when copying
@@ -282,10 +282,10 @@ class AccountFullReconcile(models.Model):
                 if not riba_line.test_reconciled():
                     if riba_line.distinta_id.accreditation_move_id:
                         riba_line.state = 'accredited'
-                        riba_line.distinta_id.signal_workflow('accredited')
+                        riba_line.distinta_id.state = 'accredited'
                     else:
                         riba_line.state = 'confirmed'
-                        riba_line.distinta_id.signal_workflow('accepted')
+                        riba_line.distinta_id.state = 'accepted'
 
     @api.multi
     def unlink(self):

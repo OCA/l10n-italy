@@ -1,51 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
 
     <template id="distinta_layout">
-        <t t-set="company" t-value="res_company" />
-        <t t-call="report.external_layout_header" />
-        <t t-raw="0" />
+        <div class="header o_clean_header">
+            <t t-set="company" t-value="res_company" />
+            <t t-call="web.external_layout_standard" />
+         </div>
+        <div class="article o_report_layout_clean">
+            <t t-raw="0" />
+        </div>
     </template>
 
     <template id="distinta_qweb">
-
-        <style type="text/css">
-            p {
-                font-size: 11px;
-                margin-bottom: 0px;
-                }
-            .doc_data {
-                font-size: 11px;
-                font-weight: bold;
-                text-align: right;
-                }
-            .distinta_number {
-                font-size: 15px;
-                font-weight: bold;
-                }
-            .with_bord {
-                border:1px solid #ddd;
-                padding-bottom:3px;
-                margin-bottom:5px;
-                }
-            .signature { min-height: 2em; }
-            address { font-size: 11px; }
-        </style>
-
-        <t t-call="report.html_container">
+        <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="l10n_it_ricevute_bancarie.distinta_layout">
                     <div class="page">
-
-                        <div id="distinta_number" class="row with_bord" style="padding: 2px;">
-                            <p class="distinta_number">
+                        <div class="row with_bord" style="padding: 2px;">
+                            <p>
                                 Ricevute Bancarie list nr <span t-esc="o.name or 'Bozza'"/> del <span t-field="o.registration_date"/>
                             </p>
                         </div>
 
                         <div class="row">
-                            <table id="distinta_details" class="table table-bordered table-responsive">
+                            <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>
@@ -99,7 +77,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div> <!-- /row -->
+                        </div>
 
                         <div class="row">
                             <div class="col-xs-4 pull-right">
@@ -120,5 +98,4 @@
         </t>
     </template>
 
-    </data>
-</openerp>
+</odoo>

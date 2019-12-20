@@ -5,3 +5,4 @@ stock-logistics-workflow
 intrastat-extrastat
 server-ux
 pos
+account-payment

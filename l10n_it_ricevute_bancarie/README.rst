@@ -81,6 +81,7 @@ Contributors
 * Giacomo Grasso <giacomo.grasso@agilebg.com>
 * Gabriele Baldessari <gabriele.baldessari@gmail.com>
 * Alex Comba <alex.comba@agilebg.com>
+* Marco Calcagni <mcalcagni@dinamicheaziendali.it>
 
 Maintainer
 ----------

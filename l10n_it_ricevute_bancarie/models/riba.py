@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) 2012 Andrea Cometa.
 # Email: info@andreacometa.it
 # Web site: http://www.andreacometa.it
@@ -7,7 +6,7 @@
 # Copyright (C) 2012-2017 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models, api, workflow, _
+from odoo import fields, models, api, _
 from odoo.exceptions import Warning as UserError
 import odoo.addons.decimal_precision as dp
 from datetime import date
@@ -105,7 +104,7 @@ class RibaList(models.Model):
     @api.multi
     def unlink(self):
         for riba_list in self:
-            if riba_list.state not in ('draft', 'cancel'):
+            if riba_list.state not in ('draft',  'cancel'):
                 raise UserError(_(
                     'List %s is in state %s. You can only delete documents'
                     ' in state draft or canceled')
@@ -114,26 +113,22 @@ class RibaList(models.Model):
 
     @api.multi
     def confirm(self):
-        for ribalist in self:
-            for line in ribalist.line_ids:
+        for distinta in self:
+            for line in distinta.line_ids:
                 line.confirm()
 
     @api.multi
-    def riba_new(self):
-        self.state = 'draft'
-
-    @api.multi
     def riba_cancel(self):
-        for riba_list in self:
-            for line in riba_list.line_ids:
+        for distinta in self:
+            for line in distinta.line_ids:
                 line.state = 'cancel'
                 if line.acceptance_move_id:
                     line.acceptance_move_id.unlink()
                 if line.unsolved_move_id:
                     line.unsolved_move_id.unlink()
-            if riba_list.accreditation_move_id:
-                riba_list.accreditation_move_id.unlink()
-            riba_list.state = 'cancel'
+            if distinta.accreditation_move_id:
+                distinta.accreditation_move_id.unlink()
+            distinta.state = 'cancel'
 
     @api.multi
     def settle_all_line(self):
@@ -149,26 +144,6 @@ class RibaList(models.Model):
                 raise UserError(_(
                     "Date accreditation must be greater or equal to"
                     " date acceptance"))
-
-    @api.multi
-    def riba_accepted(self):
-        self.state = 'accepted'
-        if not self.date_accepted:
-            self.date_accepted = fields.Date.context_today(self)
-
-    @api.multi
-    def riba_accredited(self):
-        self.state = 'accredited'
-        if not self.date_accreditation:
-            self.date_accreditation = fields.Date.context_today(self)
-        for riba_list in self:
-            for line in riba_list.line_ids:
-                line.state = 'accredited'
-
-    @api.multi
-    def riba_paid(self):
-        self.state = 'paid'
-        self.date_paid = fields.Date.context_today(self)
 
     @api.multi
     def riba_unsolved(self):
@@ -198,10 +173,6 @@ class RibaList(models.Model):
     @api.multi
     def action_cancel_draft(self):
         for riba_list in self:
-            workflow.trg_delete(
-                self.env.user.id, 'riba.distinta', riba_list.id, self._cr)
-            workflow.trg_create(
-                self.env.user.id, 'riba.distinta', riba_list.id, self._cr)
             riba_list.state = 'draft'
             for line in riba_list.line_ids:
                 line.state = 'draft'
@@ -275,9 +246,9 @@ class RibaListLine(models.Model):
                 riba_line.state == 'unsolved'
             ):
                 for line in riba_line.acceptance_move_id.line_ids:
-                    payment_lines.extend(filter(None, [
+                    payment_lines.extend([_f for _f in [
                         rp.credit_move_id.id for rp in line.matched_credit_ids
-                    ]))
+                    ] if _f])
             riba_line.payment_ids = self.env['account.move.line'].browse(
                 list(set(payment_lines)))
 
@@ -369,7 +340,10 @@ class RibaListLine(models.Model):
                 'acceptance_move_id': move.id,
                 'state': 'confirmed',
             })
-            line.distinta_id.signal_workflow('accepted')
+            line.distinta_id.state = 'accepted'
+            if not line.distinta_id.date_accepted:
+                line.distinta_id.date_accepted = \
+                    fields.Date.context_today(self)
 
     @api.multi
     def riba_line_settlement(self):
@@ -385,20 +359,20 @@ class RibaListLine(models.Model):
                 ('account_id', '=', riba_line.acceptance_account_id.id),
                 ('move_id', '=', riba_line.acceptance_move_id.id),
                 ('debit', '!=', 0)
-            ])
+                ])
 
             settlement_move_amount = settlement_move_line.debit
 
-            move_ref = u"Settlement RIBA {} - {}".format(
+            move_ref = "Settlement RIBA {} - {}".format(
                 riba_line.distinta_id.name,
                 riba_line.partner_id.name,
-            )
+                )
             settlement_move = move_model.create({
                 'journal_id':
                     riba_line.distinta_id.config_id.settlement_journal_id.id,
                 'date': date.today().strftime('%Y-%m-%d'),
                 'ref': move_ref,
-            })
+                })
 
             move_line_credit = move_line_model.with_context({
                 'check_move_validity': False}).create(

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) 2012 Andrea Cometa.
 # Email: info@andreacometa.it
 # Web site: http://www.andreacometa.it
@@ -18,7 +17,7 @@ class RibaConfiguration(models.Model):
     name = fields.Char("Description", size=64, required=True)
     type = fields.Selection(
         (('sbf', 'Salvo buon fine'), ('incasso', 'Al dopo incasso')),
-        "Emission mode", required=True)
+        "Modalità Emissione", required=True)
     bank_id = fields.Many2one(
         'res.partner.bank', "Banca", required=True,
         help="Bank account used for Ri.Ba. issuing")
@@ -28,7 +27,6 @@ class RibaConfiguration(models.Model):
         help="Journal used when Ri.Ba. is accepted by the bank")
     acceptance_account_id = fields.Many2one(
         'account.account', "Acceptance account",
-        domain=[('internal_type', '=', 'receivable')],
         help="Account used when Ri.Ba. is accepted by the bank")
     company_id = fields.Many2one(
         'res.company', "Company", required=True,

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) 2011-2012 Associazione OpenERP Italia
 # (<http://www.odoo-italia.org>).
 # Copyright (C) 2012-2017 Lorenzo Battistini - Agile Business Group
@@ -58,6 +57,7 @@ class RibaFileExport(models.TransientModel):
                        [14] = data effettiva della fattura
 
     """
+    _description = "Ri.Ba. file export wizard"
     _progressivo = 0
     _assuntrice = 0
     _sia = 0
@@ -146,9 +146,7 @@ class RibaFileExport(models.TransientModel):
 
     def _Record70(self):
         return " 70" + str(self._progressivo).rjust(
-            7, '0') + " " * 91 + \
-            self.env.user.company_id.riba_payment_response + \
-            " " * 18 + "\r\n"
+            7, '0') + " " * 110 + "\r\n"
 
     def _RecordEF(self):  # record di coda
         return (
@@ -255,8 +253,7 @@ class RibaFileExport(models.TransientModel):
             if not line.due_date:  # ??? VERIFICARE
                 due_date = '000000'
             else:
-                due_date = datetime.datetime.strptime(
-                    line.due_date[:10], '%Y-%m-%d').strftime("%d%m%y")
+                due_date = line.due_date.strftime("%d%m%y")
 
             if not line.partner_id.vat and not line.partner_id.fiscalcode:
                 raise UserError(
