@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2019-12-16 17:37+0000\n"
+"PO-Revision-Date: 2019-12-21 15:02+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -29112,7 +29112,7 @@ msgid ""
 "In case of invoices < 'Min amount', use min amount in Intrastat statement"
 msgstr ""
 "Usa un importo minimo nella dichiarazione Intrastat in presenza di fatture < "
-"\"Ammontare min.\"."
+"\"Ammontare min.\""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_21022019
@@ -51119,31 +51119,23 @@ msgstr "Valori predefiniti per acquisti"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_delivery_code_id
-#, fuzzy
-#| msgid "Delivery Terms"
 msgid "Purchases Delivery Terms"
-msgstr "Condizioni di consegna"
+msgstr "Condizioni di consegna acquisti"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_statistic_amount
-#, fuzzy
-#| msgid "Force Statistic Value in Euro"
 msgid "Purchases Statistic Value in Euro"
-msgstr "Forzare valore statistico in euro"
+msgstr "Valore statistico acquisti in euro"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_transaction_nature_id
-#, fuzzy
-#| msgid "Transaction Nature"
 msgid "Purchases Transaction Nature"
-msgstr "Natura transazione"
+msgstr "Natura transazione acquisti"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_transport_code_id
-#, fuzzy
-#| msgid "Transport Mode"
 msgid "Purchases Transport Mode"
-msgstr "Modalità di trasporto"
+msgstr "Modalità di trasporto acquisti"
 
 #. module: l10n_it_intrastat
 #: selection:account.invoice.intrastat,statement_section:0
@@ -55035,31 +55027,23 @@ msgstr "Valori predefiniti per cessioni"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_delivery_code_id
-#, fuzzy
-#| msgid "Delivery Terms"
 msgid "Sales Delivery Terms"
-msgstr "Condizioni di consegna"
+msgstr "Condizioni di consegna cessioni"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_statistic_amount
-#, fuzzy
-#| msgid "Statistic Value in Euro"
 msgid "Sales Statistic Value in Euro"
-msgstr "Valore statistico in euro"
+msgstr "Valore statistico cessioni in euro"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_transaction_nature_id
-#, fuzzy
-#| msgid "Transaction Nature"
 msgid "Sales Transaction Nature"
-msgstr "Natura transazione"
+msgstr "Natura transazione cessioni"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_transport_code_id
-#, fuzzy
-#| msgid "Transport Mode"
 msgid "Sales Transport Mode"
-msgstr "Modalità di trasporto"
+msgstr "Modalità di trasporto cessioni"
 
 #. module: l10n_it_intrastat
 #: selection:account.invoice.intrastat,statement_section:0
