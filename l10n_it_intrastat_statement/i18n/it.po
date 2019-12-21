@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-12 11:04+0000\n"
-"PO-Revision-Date: 2019-12-05 16:55+0000\n"
+"PO-Revision-Date: 2019-12-21 15:02+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -598,7 +598,7 @@ msgstr "Ultimo aggiornamento il"
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_section.py:88
 #, python-format
 msgid "Missing State for Partner %s"
-msgstr ""
+msgstr "Stato mancante per il partner %s"
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:259
@@ -614,8 +614,7 @@ msgstr "Segno di rettifica mancante in \"Cessioni - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:467
-#, fuzzy, python-format
-#| msgid "Missing customs section on 'Purchase Section 4'"
+#, python-format
 msgid "Missing customs section on 'Purchases - Section 4'"
 msgstr "Sezione doganale mancante in \"Acquisti - Sezione 4\""
 
@@ -627,8 +626,7 @@ msgstr "Sezione doganale mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:476
-#, fuzzy, python-format
-#| msgid "Missing invoice data on 'Purchase Section 4'"
+#, python-format
 msgid "Missing invoice data on 'Purchases - Section 4'"
 msgstr "Data fattura mancante in \"Acquisti - Sezione 4\""
 
@@ -640,8 +638,7 @@ msgstr "Data fattura mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:485
-#, fuzzy, python-format
-#| msgid "Missing payment country on 'Purchase Section 4'"
+#, python-format
 msgid "Missing payment country on 'Purchases - Section 4'"
 msgstr "Paese di pagamento mancante in \"Acquisti - Sezione 4\""
 
@@ -653,8 +650,7 @@ msgstr "Paese di pagamento mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:482
-#, fuzzy, python-format
-#| msgid "Missing payment method on 'Purchase Section 4'"
+#, python-format
 msgid "Missing payment method on 'Purchases - Section 4'"
 msgstr "Modalità di incasso mancante in \"Acquisti - Sezione 4\""
 
@@ -666,22 +662,19 @@ msgstr "Modalità di incasso mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:473
-#, fuzzy, python-format
-#| msgid "Missing progressive to adjust on 'Purchase Section 4'"
+#, python-format
 msgid "Missing progressive to adjust on 'Purchases - Section 4'"
 msgstr "Progressivo da rettificare mancante in \"Acquisti - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:416
-#, fuzzy, python-format
-#| msgid "Missing progressive to adjust on 'Sales Section 4'"
+#, python-format
 msgid "Missing progressive to adjust on 'Sales - Section 4'"
 msgstr "Progressivo da rettificare mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:470
-#, fuzzy, python-format
-#| msgid "Missing protocol number on 'Sales - Section 4'"
+#, python-format
 msgid "Missing protocol number on 'Purchases - Section 4'"
 msgstr "Numero di protocollo mancante in \"Cessioni - Sezione 4\""
 
@@ -727,15 +720,13 @@ msgstr "Anno di riferimento mancante in \"Acquisti - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:464
-#, fuzzy, python-format
-#| msgid "Missing reference year on 'Purchase - Section 4'"
+#, python-format
 msgid "Missing reference year on 'Purchases - Section 4'"
 msgstr "Anno di riferimento mancante in \"Acquisti - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:215
-#, fuzzy, python-format
-#| msgid "Missing reference year on 'Sale - Section 2'"
+#, python-format
 msgid "Missing reference year on 'Sales - Section 2'"
 msgstr "Anno di riferimento mancante in \"Cessioni - Sezione 2\""
 
@@ -747,8 +738,7 @@ msgstr "Anno di riferimento mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:479
-#, fuzzy, python-format
-#| msgid "Missing supply method on 'Purchase Section 4'"
+#, python-format
 msgid "Missing supply method on 'Purchases - Section 4'"
 msgstr "Modalità di erogazione mancante in \"Acquisti - Sezione 4\""
 
@@ -799,63 +789,47 @@ msgstr "Numero"
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_form_view
 msgid "Operation Amount"
-msgstr "Ammontare delle operazioni"
+msgstr "Ammontare operazioni"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__purchase_section1_operation_amount
-#, fuzzy
-#| msgid "Intrastat Statement - Purchases Section 1"
 msgid "Operation Amount - Purchases Section 1"
-msgstr "Dichiarazione Intrastat - Acquisti sezione 1"
+msgstr "Ammontare operazioni - Acquisti sezione 1"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__purchase_section2_operation_amount
-#, fuzzy
-#| msgid "Intrastat Statement - Purchases Section 2"
 msgid "Operation Amount - Purchases Section 2"
-msgstr "Dichiarazione Intrastat - Acquisti sezione 2"
+msgstr "Ammontare operazioni - Acquisti sezione 2"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__purchase_section3_operation_amount
-#, fuzzy
-#| msgid "Intrastat Statement - Purchases Section 3"
 msgid "Operation Amount - Purchases Section 3"
-msgstr "Dichiarazione Intrastat - Acquisti sezione 3"
+msgstr "Ammontare operazioni - Acquisti sezione 3"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__purchase_section4_operation_amount
-#, fuzzy
-#| msgid "Intrastat Statement - Purchases Section 4"
 msgid "Operation Amount - Purchases Section 4"
-msgstr "Dichiarazione Intrastat - Acquisti sezione 4"
+msgstr "Ammontare operazioni - Acquisti sezione 4"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__sale_section1_operation_amount
-#, fuzzy
-#| msgid "Intrastat Statement - Sales Section 1"
 msgid "Operation Amount - Sales Section 1"
-msgstr "Dichiarazione Intrastat - Cessioni sezione 1"
+msgstr "Ammontare operazioni - Cessioni sezione 1"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__sale_section2_operation_amount
-#, fuzzy
-#| msgid "Intrastat Statement - Sales Section 2"
 msgid "Operation Amount - Sales Section 2"
-msgstr "Dichiarazione Intrastat - Cessioni sezione 2"
+msgstr "Ammontare operazioni - Cessioni sezione 2"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__sale_section3_operation_amount
-#, fuzzy
-#| msgid "Intrastat Statement - Sales Section 3"
 msgid "Operation Amount - Sales Section 3"
-msgstr "Dichiarazione Intrastat - Cessioni sezione 3"
+msgstr "Ammontare operazioni - Cessioni sezione 3"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__sale_section4_operation_amount
-#, fuzzy
-#| msgid "Intrastat Statement - Sales Section 4"
 msgid "Operation Amount - Sales Section 4"
-msgstr "Dichiarazione Intrastat - Cessioni sezione 4"
+msgstr "Ammontare operazioni - Cessioni sezione 4"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_form_view
@@ -864,59 +838,43 @@ msgstr "Numero operazioni"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__purchase_section1_operation_number
-#, fuzzy
-#| msgid "Intrastat Statement - Purchases Section 1"
 msgid "Operation Count - Purchases Section 1"
-msgstr "Dichiarazione Intrastat - Acquisti sezione 1"
+msgstr "Numero operazioni - Acquisti sezione 1"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__purchase_section2_operation_number
-#, fuzzy
-#| msgid "Intrastat Statement - Purchases Section 2"
 msgid "Operation Count - Purchases Section 2"
-msgstr "Dichiarazione Intrastat - Acquisti sezione 2"
+msgstr "Numero operazioni - Acquisti sezione 2"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__purchase_section3_operation_number
-#, fuzzy
-#| msgid "Intrastat Statement - Purchases Section 3"
 msgid "Operation Count - Purchases Section 3"
-msgstr "Dichiarazione Intrastat - Acquisti sezione 3"
+msgstr "Numero operazioni - Acquisti sezione 3"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__purchase_section4_operation_number
-#, fuzzy
-#| msgid "Intrastat Statement - Purchases Section 4"
 msgid "Operation Count - Purchases Section 4"
-msgstr "Dichiarazione Intrastat - Acquisti sezione 4"
+msgstr "Numero operazioni - Acquisti sezione 4"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__sale_section1_operation_number
-#, fuzzy
-#| msgid "Intrastat Statement - Sales Section 1"
 msgid "Operation Count - Sales Section 1"
-msgstr "Dichiarazione Intrastat - Cessioni sezione 1"
+msgstr "Numero operazioni - Cessioni sezione 1"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__sale_section2_operation_number
-#, fuzzy
-#| msgid "Intrastat Statement - Sales Section 2"
 msgid "Operation Count - Sales Section 2"
-msgstr "Dichiarazione Intrastat - Cessioni sezione 2"
+msgstr "Numero operazioni - Cessioni sezione 2"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__sale_section3_operation_number
-#, fuzzy
-#| msgid "Intrastat Statement - Sales Section 3"
 msgid "Operation Count - Sales Section 3"
-msgstr "Dichiarazione Intrastat - Cessioni sezione 3"
+msgstr "Numero operazioni - Cessioni sezione 3"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__sale_section4_operation_number
-#, fuzzy
-#| msgid "Intrastat Statement - Sales Section 4"
 msgid "Operation Count - Sales Section 4"
-msgstr "Dichiarazione Intrastat - Cessioni sezione 4"
+msgstr "Numero operazioni - Cessioni sezione 4"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section1__province_origin_id
@@ -958,10 +916,8 @@ msgstr "Partner"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4__country_partner_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section__country_partner_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_section__country_partner_id
-#, fuzzy
-#| msgid "Partner"
 msgid "Partner State"
-msgstr "Partner"
+msgstr "Stato del partner"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section3__country_payment_id
@@ -1019,17 +975,13 @@ msgstr "Progr."
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section4__progressive_to_modify
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4__progressive_to_modify
-#, fuzzy
-#| msgid "Progressive to Modify"
 msgid "Progressive to Adjust"
 msgstr "Progressivo da rettificare"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section4__progressive_to_modify_id
-#, fuzzy
-#| msgid "Progressive to Modify"
 msgid "Progressive to Adjust ID"
-msgstr "Progressivo da rettificare"
+msgstr "ID progressivo da rettificare"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section4__protocol
@@ -1079,10 +1031,8 @@ msgstr "Acquisti - Sezione 4"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__purchase_statement_sequence
-#, fuzzy
-#| msgid "Statement Sequence"
 msgid "Purchases Statement Sequence"
-msgstr "Sequenza dichiarazione"
+msgstr "Sequenza dichiarazione acquisti"
 
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement,period_type:0
@@ -1159,10 +1109,8 @@ msgstr "Cessioni - Sezione 4"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__sale_statement_sequence
-#, fuzzy
-#| msgid "Statement Sequence"
 msgid "Sales Statement Sequence"
-msgstr "Sequenza dichiarazione"
+msgstr "Sequenza dichiarazione cessioni"
 
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement,intrastat_code_type:0
@@ -1204,7 +1152,7 @@ msgstr "Casi speciali"
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__date_start
 msgid "Start Date"
-msgstr ""
+msgstr "Data inizio"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_export_file__state
@@ -1253,7 +1201,7 @@ msgstr "Valore statistico in euro"
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__date_stop
 msgid "Stop Date"
-msgstr ""
+msgstr "Data fine"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__date
