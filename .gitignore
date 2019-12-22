@@ -57,6 +57,3 @@ docs/_build/
 
 # OSX Files
 *.DS_Store
-
-#Ignore clone blocking files
-l10n_it_fatturapa_pec/tests/data
