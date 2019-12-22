@@ -645,22 +645,43 @@ class WizardExportFatturapa(models.TransientModel):
         AliquotaIVA = '%.2f' % (aliquota)
         line.ftpa_line_number = line_no
         prezzo_unitario = self._get_prezzo_unitario(line)
-        DettaglioLinea = DettaglioLineeType(
-            NumeroLinea=str(line_no),
-            # can't insert newline with pyxb
-            # see https://tinyurl.com/ycem923t
-            # and '&#10;' would not be correctly visualized anyway
-            # (for example firefox replaces '&#10;' with space)
-            Descrizione=line.name.replace('\n', ' ').replace('\t', ' ').
-            replace('\r', ' ').encode('latin', 'ignore').decode('latin'),
-            PrezzoUnitario='{prezzo:.{precision}f}'.format(
-                prezzo=prezzo_unitario, precision=price_precision),
-            Quantita='{qta:.{precision}f}'.format(
-                qta=line.quantity, precision=uom_precision),
-            UnitaMisura=line.uom_id and (
-                unidecode(line.uom_id.name)) or None,
-            PrezzoTotale='%.2f' % line.price_subtotal,
-            AliquotaIVA=AliquotaIVA)
+        # if quantity is negative (for stock adaption)
+        # set qta on fattura elettronica to 0 and the
+        # line total to 0 too
+        if line.quantity<0:
+            DettaglioLinea = DettaglioLineeType(
+                NumeroLinea=str(line_no),
+                # can't insert newline with pyxb
+                # see https://tinyurl.com/ycem923t
+                # and '&#10;' would not be correctly visualized anyway
+                # (for example firefox replaces '&#10;' with space)
+                Descrizione=line.name.replace('\n', ' ').replace('\t', ' ').
+                    replace('\r', ' ').encode('latin', 'ignore').decode('latin'),
+                PrezzoUnitario='{prezzo:.{precision}f}'.format(
+                    prezzo=prezzo_unitario, precision=price_precision),
+                Quantita='{qta:.{precision}f}'.format(
+                    qta=0, precision=uom_precision),
+                UnitaMisura=line.uom_id and (
+                    unidecode(line.uom_id.name)) or None,
+                PrezzoTotale='%.2f' % 0,
+                AliquotaIVA=AliquotaIVA)
+        else:
+            DettaglioLinea = DettaglioLineeType(
+                NumeroLinea=str(line_no),
+                # can't insert newline with pyxb
+                # see https://tinyurl.com/ycem923t
+                # and '&#10;' would not be correctly visualized anyway
+                # (for example firefox replaces '&#10;' with space)
+                Descrizione=line.name.replace('\n', ' ').replace('\t', ' ').
+                replace('\r', ' ').encode('latin', 'ignore').decode('latin'),
+                PrezzoUnitario='{prezzo:.{precision}f}'.format(
+                    prezzo=prezzo_unitario, precision=price_precision),
+                Quantita='{qta:.{precision}f}'.format(
+                    qta=line.quantity, precision=uom_precision),
+                UnitaMisura=line.uom_id and (
+                    unidecode(line.uom_id.name)) or None,
+                PrezzoTotale='%.2f' % line.price_subtotal,
+                AliquotaIVA=AliquotaIVA)
         DettaglioLinea.ScontoMaggiorazione.extend(
             self.setScontoMaggiorazione(line))
         if aliquota == 0.0:
