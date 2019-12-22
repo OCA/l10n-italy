@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-11 07:51+0000\n"
-"PO-Revision-Date: 2018-12-27 01:40+0000\n"
+"PO-Revision-Date: 2019-12-22 18:05+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #. module: l10n_it_withholding_tax
 #: code:addons/l10n_it_withholding_tax/models/account.py:352
@@ -31,12 +31,12 @@ msgstr "Riga movimento contabile"
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__account_payable_id
 msgid "Account Payable"
-msgstr "Conto Fornitore"
+msgstr "Conto di debito"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__account_receivable_id
 msgid "Account Receivable"
-msgstr "Conto Cliente"
+msgstr "Conto di credito"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model,name:l10n_it_withholding_tax.model_account_reconciliation_widget
@@ -135,7 +135,7 @@ msgstr "Riga in dare/avere"
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
 msgid "Customer invoices"
-msgstr ""
+msgstr "Fatture cliente"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__date
@@ -168,7 +168,7 @@ msgstr "Data fine"
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__use_daticassaprev_for_enasarco
 msgid "DatiCassa export"
-msgstr ""
+msgstr "Esportazione DatiCassa"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax__display_name
@@ -188,7 +188,7 @@ msgstr "Debito"
 #. module: l10n_it_withholding_tax
 #: selection:withholding.tax,wt_types:0
 msgid "Enasarco tax"
-msgstr ""
+msgstr "Contributo Enasarco"
 
 #. module: l10n_it_withholding_tax
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:80
@@ -200,7 +200,7 @@ msgstr "Errore! Le aliquote sono obbligatorie"
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:149
 #, python-format
 msgid "Error! You cannot have 2 rates that overlap!"
-msgstr "Errore! Due aliquote non posso sovrapporsi"
+msgstr "Errore! Due aliquote non possono sovrapporsi"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model,name:l10n_it_withholding_tax.model_account_fiscal_position
@@ -308,7 +308,7 @@ msgstr "Ultimo aggiornamento il"
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:35
 #, python-format
 msgid "MISC"
-msgstr ""
+msgstr "VARIE"
 
 #. module: l10n_it_withholding_tax
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:413
@@ -418,6 +418,8 @@ msgid ""
 "Setting this, while exporting e-invoice XML, Enasarco data will be also "
 "added to DatiCassaPrevidenziale"
 msgstr ""
+"Se impostato, i dati Enasarco verranno aggiunti a DatiCassaPrevidenziale "
+"durante l'esportazione XML della e-fattura"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__statement_id
@@ -433,7 +435,7 @@ msgstr "Stato"
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
 msgid "Supplier invoices"
-msgstr ""
+msgstr "Fatture fornitore"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax__tax
@@ -482,7 +484,7 @@ msgstr "Totale imponibile"
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__wt_type
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__wt_type
 msgid "Type"
-msgstr ""
+msgstr "Tipologia"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,help:l10n_it_withholding_tax.field_withholding_tax_move__move_line_id
@@ -556,8 +558,8 @@ msgid ""
 "Warning! Only Withholding Tax moves in Due status                     can be "
 "deleted"
 msgstr ""
-"Attenzione, possono essere eliminati solo i movimenti RdA con stato \"Da "
-"pagare\""
+"Attenzione, possono essere eliminati solo i movimenti RdA con stato «Da "
+"pagare»"
 
 #. module: l10n_it_withholding_tax
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:313
@@ -655,10 +657,8 @@ msgstr "Registro ritenuta d'acconto"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__wt_types
-#, fuzzy
-#| msgid "Withholding tax"
 msgid "Withholding tax type"
-msgstr "Ritenuta d'acconto"
+msgstr "Tipologia ritenuta d'acconto"
 
 #~ msgid "Payments"
 #~ msgstr "Pagamenti"
