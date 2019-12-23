@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-27 08:07+0000\n"
-"PO-Revision-Date: 2019-11-18 11:34+0000\n"
-"Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
+"PO-Revision-Date: 2019-12-23 12:05+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
@@ -334,8 +334,8 @@ msgstr "Nome visualizzato"
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
 msgid "Do not block e-bill import in case of missing Enasarco configuration"
 msgstr ""
-"Non bloccare l'importazione delle e-fatture in caso di configurazione "
-"Enasarco mancante"
+"Non blocca l'importazione delle e-fatture in caso di configurazione Enasarco "
+"mancante"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:863
@@ -938,7 +938,7 @@ msgstr "Riga e-fattura collegata"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_company__enasarco_relax_checks
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_config_settings__enasarco_relax_checks
 msgid "Relax checks for Enasarco"
-msgstr "Rilassare i controlli per Enasarco"
+msgstr "Rilassare controlli per Enasarco"
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
