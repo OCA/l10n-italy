@@ -404,7 +404,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
 
     def test_10_xml_export(self):
         # invoice with descriptive line
-        self.set_sequences(10, '2019-08-07')
+        self.set_sequences(10, 10, '2019-08-07')
         invoice = self.invoice_model.create({
             'date_invoice': '2019-08-07',
             'partner_id': self.res_partner_fatturapa_2.id,
@@ -423,7 +423,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                     'uom_id': self.product_uom_unit.id,
                     'price_unit': 10,
                     'invoice_line_tax_ids': [(6, 0, {
-                        self.tax_10.id})]
+                        self.tax_22.id})]
                 }),
                 (0, 0, {
                     'display_type': 'line_note',
@@ -442,7 +442,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.check_content(xml_content, 'IT06363391001_00010.xml')
 
     def test_11_xml_export(self):
-        self.set_sequences(11, '2018-01-07')
+        self.set_sequences(11, 11, '2018-01-07')
         self.product_product_10.default_code = 'GH82Ø23€ŦD11'
         self.product_order_01.default_code = 'GZD11'
         partner = self.res_partner_fatturapa_2

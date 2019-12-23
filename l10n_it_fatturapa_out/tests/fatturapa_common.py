@@ -106,6 +106,18 @@ class FatturaPACommon(AccountTestUsers):
         return wizard.with_context(
             {'active_ids': [invoice_id]}).exportFatturaPA()
 
+    def set_e_invoice_file_id(self, e_invoice, file_name):
+        # We need this because file name is random and we can't predict it
+        partial_file_name = file_name.replace('.xml', '')
+        test_file_id = partial_file_name.split('_')[1]
+        xml_content = base64.decodebytes(e_invoice.datas)
+        parser = etree.XMLParser(remove_blank_text=True)
+        xml = etree.fromstring(xml_content, parser)
+        file_id = xml.findall('.//ProgressivoInvio')
+        file_id[0].text = test_file_id
+        e_invoice.datas = base64.encodestring(etree.tostring(xml))
+        e_invoice.datas_fname = file_name
+
     def check_content(self, xml_content, file_name, module_name=None):
         parser = etree.XMLParser(remove_blank_text=True)
         test_fatt_data = self.getFile(file_name, module_name=module_name)[1]
