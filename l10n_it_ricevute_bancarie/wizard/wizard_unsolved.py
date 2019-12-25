@@ -57,41 +57,41 @@ class RibaUnsolved(models.TransientModel):
         ].get_default_value_by_list_line('protest_charge_account_id')
 
     _name = "riba.unsolved"
-    _description = "Manage unsolved Ri.Ba."
+    _description = "Manage Past Due C/Os"
     unsolved_journal_id = fields.Many2one(
-        'account.journal', 'Unsolved journal', domain=[('type', '=', 'bank')],
+        'account.journal', 'Past Due Journal', domain=[('type', '=', 'bank')],
         default=_get_unsolved_journal_id)
     effects_account_id = fields.Many2one(
-        'account.account', 'Effects account',
+        'account.account', 'Bills Account',
         domain=[('internal_type', '=', 'receivable')],
         default=_get_effects_account_id)
     effects_amount = fields.Float(
-        'Effects amount', default=_get_effects_amount)
+        'Bills Amount', default=_get_effects_amount)
     riba_bank_account_id = fields.Many2one(
-        'account.account', 'Ri.Ba. bank account',
+        'account.account', 'C/O Account',
         default=_get_riba_bank_account_id)
     riba_bank_amount = fields.Float(
-        'Ri.Ba. bank amount', default=_get_effects_amount)
+        'C/O Amount', default=_get_effects_amount)
     overdue_effects_account_id = fields.Many2one(
-        'account.account', 'Overdue Effects account',
+        'account.account', 'Past Due Bills Account',
         domain=[('internal_type', '=', 'receivable')],
         default=_get_overdue_effects_account_id)
     overdue_effects_amount = fields.Float(
-        'Overdue Effects amount', default=_get_effects_amount)
+        'Past Due Bills Amount', default=_get_effects_amount)
     bank_account_id = fields.Many2one(
-        'account.account', 'Bank account', domain=[(
+        'account.account', 'A/C Bank Account', domain=[(
             'internal_type', '=', 'liquidity')],
         default=_get_bank_account_id)
-    bank_amount = fields.Float('Taken amount')
+    bank_amount = fields.Float('Withdrawn Amount')
     bank_expense_account_id = fields.Many2one(
-        'account.account', 'Bank Expenses account',
+        'account.account', 'Bank Fees Account',
         default=_get_bank_expense_account_id)
-    expense_amount = fields.Float('Expenses amount')
+    expense_amount = fields.Float('Fees Amount')
 
     def skip(self):
         active_id = self.env.context.get('active_id')
         if not active_id:
-            raise UserError(_('No active ID found'))
+            raise UserError(_('No active ID found.'))
         line_model = self.env['riba.distinta.line']
         line = line_model.browse(active_id)
         line.state = 'unsolved'
@@ -101,7 +101,7 @@ class RibaUnsolved(models.TransientModel):
     def create_move(self):
         active_id = self.env.context.get('active_id', False)
         if not active_id:
-            raise UserError(_('No active ID found'))
+            raise UserError(_('No active ID found.'))
         move_model = self.env['account.move']
         invoice_model = self.env['account.invoice']
         move_line_model = self.env['account.move.line']
@@ -115,27 +115,27 @@ class RibaUnsolved(models.TransientModel):
             not wizard.bank_account_id or
             not wizard.bank_expense_account_id
         ):
-            raise UserError(_('Every account is mandatory'))
+            raise UserError(_('Every account is mandatory.'))
         move_vals = {
-            'ref': _('Unsolved Ri.Ba. %s - line %s') % (
+            'ref': _('Past Due C/O %s - Line %s') % (
                 distinta_line.distinta_id.name, distinta_line.sequence),
             'journal_id': wizard.unsolved_journal_id.id,
             'line_ids': [
                 (0, 0, {
-                    'name':  _('Effects'),
+                    'name':  _('Bills'),
                     'account_id': wizard.effects_account_id.id,
                     'partner_id': distinta_line.partner_id.id,
                     'credit': wizard.effects_amount,
                     'debit': 0.0,
                 }),
                 (0, 0, {
-                    'name':  _('Ri.Ba. Bank'),
+                    'name':  _('C/O'),
                     'account_id': wizard.riba_bank_account_id.id,
                     'debit': wizard.riba_bank_amount,
                     'credit': 0.0,
                 }),
                 (0, 0, {
-                    'name':  _('Overdue Effects'),
+                    'name':  _('Past Due Bills'),
                     'account_id': wizard.overdue_effects_account_id.id,
                     'debit': wizard.overdue_effects_amount,
                     'credit': 0.0,
@@ -143,7 +143,7 @@ class RibaUnsolved(models.TransientModel):
                     'date_maturity': distinta_line.due_date,
                 }),
                 (0, 0, {
-                    'name':  _('Bank'),
+                    'name':  _('A/C Bank'),
                     'account_id': wizard.bank_account_id.id,
                     'credit': wizard.bank_amount,
                     'debit': 0.0,
@@ -154,7 +154,7 @@ class RibaUnsolved(models.TransientModel):
         if wizard.expense_amount:
             move_vals['line_ids'].append(
                 (0, 0, {
-                    'name': _('Expenses'),
+                    'name': _('Bank Fee'),
                     'account_id': wizard.bank_expense_account_id.id,
                     'debit': wizard.expense_amount,
                     'credit': 0.0,
@@ -198,7 +198,7 @@ class RibaUnsolved(models.TransientModel):
         to_be_reconciled_lines.reconcile()
         distinta_line.distinta_id.state = 'unsolved'
         return {
-            'name': _('Unsolved Entry'),
+            'name': _('Past Due Entry'),
             'view_type': 'form',
             'view_mode': 'form',
             'res_model': 'account.move',
