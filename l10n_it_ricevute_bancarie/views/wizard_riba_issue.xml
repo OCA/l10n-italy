@@ -9,8 +9,8 @@
         <field name="name">riba.issue.wizard</field>
         <field name="model">riba.issue</field>
         <field name="arch" type="xml">
-            <form string="Issue Ri.Ba.">
-                <separator string="This wizard generates the Ri.Ba. list, do you confirm?" colspan="4"/>
+            <form string="C/O Issue">
+                <separator string="This wizard will generate the C/O slip" colspan="4"/>
                 <group>
                     <field name="configuration_id"/>
                 </group>
@@ -26,7 +26,7 @@
     <!--                     ACTION EMISSIONE RIBA                -->
     <!-- ====================================================== -->
     <record id="riba_issue_action" model="ir.actions.act_window">
-        <field name="name">Issue Ri.Ba.</field>
+        <field name="name">Issue C/O</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">riba.issue</field>
         <field name="src_model">account.move.line</field>

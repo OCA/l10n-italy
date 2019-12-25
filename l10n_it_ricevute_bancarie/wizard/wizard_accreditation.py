@@ -48,39 +48,39 @@ class RibaAccreditation(models.TransientModel):
         return amount
 
     _name = "riba.accreditation"
-    _description = "Bank accreditation"
+    _description = "Bank Credit"
     accreditation_journal_id = fields.Many2one(
         'account.journal',
-        'Accreditation journal',
+        'Credit Journal',
         domain=[('type', '=', 'bank')],
         default=_get_accreditation_journal_id)
     accreditation_account_id = fields.Many2one(
-        'account.account', 'Ri.Ba. bank account',
+        'account.account', 'C/O Account',
         default=_get_accreditation_account_id)
     accreditation_amount = fields.Float(
-        'Credit amount', default=_get_accreditation_amount)
+        'Credit Amount', default=_get_accreditation_amount)
     bank_account_id = fields.Many2one(
         'account.account',
-        'Bank account',
+        'A/C Bank Account',
         domain=[('internal_type', '=', 'liquidity')],
         default=_get_bank_account_id)
-    bank_amount = fields.Float('Paid amount')
+    bank_amount = fields.Float('Paid Amount')
     bank_expense_account_id = fields.Many2one(
-        'account.account', 'Bank Expenses account',
+        'account.account', 'Bank Fees Account',
         default=_get_bank_expense_account_id)
-    expense_amount = fields.Float('Expenses amount')
+    expense_amount = fields.Float('Fees Amount')
 
     def skip(self):
         active_id = self.env.context.get('active_id') or False
         if not active_id:
-            raise UserError(_('No active ID found'))
+            raise UserError(_('No active ID found.'))
         self.env['riba.distinta'].browse(active_id).state = 'accredited'
         return {'type': 'ir.actions.act_window_close'}
 
     def create_move(self):
         active_id = self.env.context.get('active_id', False)
         if not active_id:
-            raise UserError(_('No active ID found'))
+            raise UserError(_('No active ID found.'))
         move_model = self.env['account.move']
         distinta_model = self.env['riba.distinta']
         distinta = distinta_model.browse(active_id)
@@ -91,9 +91,9 @@ class RibaAccreditation(models.TransientModel):
             not wizard.bank_account_id or
             not wizard.bank_expense_account_id
         ):
-            raise UserError(_('Every account is mandatory'))
+            raise UserError(_('Every account is mandatory.'))
         move_vals = {
-            'ref': _('Accreditation Ri.Ba. %s') % distinta.name,
+            'ref': _('C/O Credit %s') % distinta.name,
             'journal_id': wizard.accreditation_journal_id.id,
             'line_ids': [
                 (0, 0, {
@@ -103,7 +103,7 @@ class RibaAccreditation(models.TransientModel):
                     'debit': 0.0,
                 }),
                 (0, 0, {
-                    'name':  _('Bank'),
+                    'name':  _('A/C Bank'),
                     'account_id': wizard.bank_account_id.id,
                     'debit': wizard.bank_amount,
                     'credit': 0.0,
@@ -114,7 +114,7 @@ class RibaAccreditation(models.TransientModel):
         if wizard.expense_amount:
             move_vals['line_ids'].append(
                 (0, 0, {
-                    'name':  _('Bank'),
+                    'name':  _('Bank Fee'),
                     'account_id': wizard.bank_expense_account_id.id,
                     'debit': wizard.expense_amount,
                     'credit': 0.0,
@@ -134,7 +134,7 @@ class RibaAccreditation(models.TransientModel):
             line.state = 'accredited'
 
         return {
-            'name': _('Accreditation Entry'),
+            'name': _('Credit Entry'),
             'view_type': 'form',
             'view_mode': 'form',
             'res_model': 'account.move',

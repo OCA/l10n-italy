@@ -7,9 +7,9 @@
         <field name="inherit_id" ref="account.view_account_config_settings"/>
         <field name="arch" type="xml">
             <xpath expr="//group[@name='bank_cash']" position="after">
-                <separator string="Ri.Ba. Due Cost Config"/>
+                <separator string="C/O Collection Fees Config"/>
                 <group name="riba_config">
-                    <label for="id" string="Due Cost Service"/>
+                    <label for="id" string="Collection Fees Service"/>
                         <div>
                             <div>
                                 <field name="due_cost_service_id"
@@ -27,15 +27,15 @@
         <field name="arch" type="xml">
             <div id="eu_service" position="after">
                 <div class="col-12 col-lg-6 o_setting_box"
-                     title="Ri.Ba. Config">
+                     title="C/O Configuration">
                     <div class="o_setting_left_pane"/>
                     <div class="o_setting_right_pane">
-                        <span class="o_form_label">Ri.Ba. due cost</span>
-                        <span class="fa fa-lg fa-building-o" title="Ri.Ba. Due Cost Service account"
-                              aria-label="Ri.Ba. Due Cost Service account"
+                        <span class="o_form_label">C/O Collection Fees</span>
+                        <span class="fa fa-lg fa-building-o" title="Product used as Service for C/O Collection Fees"
+                              aria-label="Product used as Service for C/O Collection Fees"
                               groups="base.group_multi_company" role="img"/>
                         <div class="text-muted">
-                            Ri.Ba. due cost service account
+                           Product used as Service for C/O Collection Fees
                         </div>
                         <div class="content-group">
                             <div class="row mt16">

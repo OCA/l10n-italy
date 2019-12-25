@@ -5,8 +5,8 @@
         <!-- Payment Term -->
 
         <record id="account_payment_term_riba" model="account.payment.term">
-            <field name="name">RiBA 30 Days End of Month</field>
-            <field name="note">RiBA 30 Days End of Month</field>
+		<field name="name">C/O 30 Days End of Month</field>
+		<field name="note">C/O 30 Days End of Month</field>
             <field name="riba" eval="True"></field>
         </record>
         <record id="account_payment_term_line" model="account.payment.term.line">
