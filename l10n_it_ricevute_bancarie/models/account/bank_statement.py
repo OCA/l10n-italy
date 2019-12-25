@@ -30,8 +30,8 @@ class AccountBankStatementLine(models.Model):
             ctx
         ).domain_move_lines_for_reconciliation(str=str)
 
-        # Include move lines without payment_id but linked to a RiBa distinta
-        # in order to allow to close bank statement lines with accreditation
+        # Include move lines without payment_id but linked to a C/O slip
+        # in order to allow closing bank statement lines with credited
         # journal items
         accr_domain = [
             '&',
@@ -47,8 +47,8 @@ class AccountBankStatementLine(models.Model):
             accr_domain, offset=offset, limit=limit,
             order="date_maturity asc, id asc")
 
-        # Include move lines without payment_id but linked to a RiBa distinta
-        # in order to allow to close bank statement lines with unsolved
+        # Include move lines without payment_id but linked to a C/O slip
+        # in order to allow closing bank statement lines with past due
         # journal items
         unsolved_domain = [
             '&',

@@ -39,7 +39,7 @@ class RibaList(models.Model):
             riba.payment_ids = move_lines
 
     _name = 'riba.distinta'
-    _description = 'Riba list'
+    _description = 'C/O Slip'
 
     name = fields.Char(
         'Reference', required=True, readonly=True,
@@ -50,29 +50,29 @@ class RibaList(models.Model):
     config_id = fields.Many2one(
         'riba.configuration', string='Configuration', index=True,
         required=True, readonly=True, states={'draft': [('readonly', False)]},
-        help='Riba configuration to be used')
+        help='C/O configuration to be used.')
     state = fields.Selection([
         ('draft', 'Draft'),
         ('accepted', 'Accepted'),
-        ('accredited', 'Accredited'),
+        ('accredited', 'Credited'),
         ('paid', 'Paid'),
-        ('unsolved', 'Unsolved'),
+        ('unsolved', 'Past Due'),
         ('cancel', 'Canceled')], 'State', readonly=True,
         default='draft')
     line_ids = fields.One2many(
-        'riba.distinta.line', 'distinta_id', 'Riba deadlines', readonly=True,
+        'riba.distinta.line', 'distinta_id', 'C/O Due Dates', readonly=True,
         states={'draft': [('readonly', False)]})
     user_id = fields.Many2one(
         'res.users', 'User', required=True, readonly=True,
         states={'draft': [('readonly', False)]},
         default=lambda self: self.env.user,)
     date_created = fields.Date(
-        'Creation date', readonly=True,
+        'Creation Date', readonly=True,
         default=lambda self: fields.Date.context_today(self))
-    date_accepted = fields.Date('Acceptance date')
-    date_accreditation = fields.Date('Accreditation date')
-    date_paid = fields.Date('Paid date', readonly=True)
-    date_unsolved = fields.Date('Unsolved date', readonly=True)
+    date_accepted = fields.Date('Acceptance Date')
+    date_accreditation = fields.Date('Credit Date')
+    date_paid = fields.Date('Payment Date', readonly=True)
+    date_unsolved = fields.Date('Past Due Date', readonly=True)
     company_id = fields.Many2one(
         'res.company', 'Company', required=True, readonly=True,
         states={'draft': [('readonly', False)]},
@@ -83,13 +83,13 @@ class RibaList(models.Model):
         compute='_compute_acceptance_move_ids',
         string="Acceptance Entries")
     accreditation_move_id = fields.Many2one(
-        'account.move', 'Accreditation Entry', readonly=True)
+        'account.move', 'Credit Entry', readonly=True)
     payment_ids = fields.Many2many(
         'account.move.line', compute='_compute_payment_ids', string='Payments')
     unsolved_move_ids = fields.Many2many(
         'account.move',
         compute='_compute_unsolved_move_ids',
-        string="Unsolved Entries")
+        string="Past Due Entries")
     type = fields.Selection(
         string="Type", related='config_id.type', readonly=True)
     registration_date = fields.Date(
@@ -99,15 +99,15 @@ class RibaList(models.Model):
         readonly=True,
         required=True,
         default=lambda self: fields.Date.context_today(self),
-        help="Keep empty to use the current date")
+        help="Keep empty to use the current date.")
 
     @api.multi
     def unlink(self):
         for riba_list in self:
             if riba_list.state not in ('draft',  'cancel'):
                 raise UserError(_(
-                    'List %s is in state %s. You can only delete documents'
-                    ' in state draft or canceled')
+                    "Slip %s is in state '%s'. You can only delete documents"
+                    " in state 'Draft' or 'Canceled'.")
                     % (riba_list.name, riba_list.state))
         super(RibaList, self).unlink()
 
@@ -142,8 +142,8 @@ class RibaList(models.Model):
         if self.date_accepted and self.date_accreditation:
             if self.date_accepted > self.date_accreditation:
                 raise UserError(_(
-                    "Date accreditation must be greater or equal to"
-                    " date acceptance"))
+                    "Credit date must be greater or equal to"
+                    " acceptance date."))
 
     @api.multi
     def riba_unsolved(self):
@@ -180,7 +180,7 @@ class RibaList(models.Model):
 
 class RibaListLine(models.Model):
     _name = 'riba.distinta.line'
-    _description = 'Riba details'
+    _description = 'C/O Details'
     _rec_name = 'sequence'
 
     @api.multi
@@ -254,28 +254,28 @@ class RibaListLine(models.Model):
 
     sequence = fields.Integer('Number')
     move_line_ids = fields.One2many(
-        'riba.distinta.move.line', 'riba_line_id', string='Credit move lines')
+        'riba.distinta.move.line', 'riba_line_id', string='Credit Move Lines')
     acceptance_move_id = fields.Many2one(
         'account.move', string='Acceptance Entry', readonly=True)
     unsolved_move_id = fields.Many2one(
-        'account.move', string='Unsolved Entry', readonly=True)
+        'account.move', string='Past Due Entry', readonly=True)
     acceptance_account_id = fields.Many2one(
         'account.account', string='Acceptance Account')
-    bank_id = fields.Many2one('res.partner.bank', string='Debitor Bank')
+    bank_id = fields.Many2one('res.partner.bank', string='Debtor Bank')
     iban = fields.Char(
         related='bank_id.acc_number', string='IBAN', store=False,
         readonly=True)
     distinta_id = fields.Many2one(
-        'riba.distinta', string='List', required=True, ondelete='cascade')
+        'riba.distinta', string='Slip', required=True, ondelete='cascade')
     partner_id = fields.Many2one(
-        'res.partner', string="Cliente", readonly=True)
-    due_date = fields.Date("Due date", readonly=True)
+        'res.partner', string="Customer", readonly=True)
+    due_date = fields.Date("Due Date", readonly=True)
     state = fields.Selection([
         ('draft', 'Draft'),
         ('confirmed', 'Confirmed'),
-        ('accredited', 'Accredited'),
+        ('accredited', 'Credited'),
         ('paid', 'Paid'),
-        ('unsolved', 'Unsolved'),
+        ('unsolved', 'Past Due'),
         ('cancel', 'Canceled'),
     ], 'State', readonly=True, track_visibility='onchange')
     payment_ids = fields.Many2many(
@@ -291,8 +291,8 @@ class RibaListLine(models.Model):
             journal = line.distinta_id.config_id.acceptance_journal_id
             total_credit = 0.0
             move = move_model.create({
-                'ref': 'Ri.Ba. %s - line %s' % (line.distinta_id.name,
-                                                line.sequence),
+                'ref': 'C/O %s - Line %s' % (line.distinta_id.name,
+                                             line.sequence),
                 'journal_id': journal.id,
                 'date': line.distinta_id.registration_date,
             })
@@ -320,8 +320,8 @@ class RibaListLine(models.Model):
             move_line_model.with_context({
                 'check_move_validity': False
             }).create({
-                'name': 'Ri.Ba. %s - line %s' % (line.distinta_id.name,
-                                                 line.sequence),
+                'name': 'C/O %s - Line %s' % (line.distinta_id.name,
+                                              line.sequence),
                 'account_id': (
                     line.acceptance_account_id.id or
                     line.distinta_id.config_id.acceptance_account_id.id
@@ -349,7 +349,7 @@ class RibaListLine(models.Model):
     def riba_line_settlement(self):
         for riba_line in self:
             if not riba_line.distinta_id.config_id.settlement_journal_id:
-                raise UserError(_('Please define a Settlement journal'))
+                raise UserError(_('Please define a Settlement Journal.'))
 
             # trovare le move line delle scritture da chiudere
             move_model = self.env['account.move']
@@ -363,7 +363,7 @@ class RibaListLine(models.Model):
 
             settlement_move_amount = settlement_move_line.debit
 
-            move_ref = "Settlement RIBA {} - {}".format(
+            move_ref = "Settlement C/O {} - {}".format(
                 riba_line.distinta_id.name,
                 riba_line.partner_id.name,
                 )
@@ -410,12 +410,12 @@ class RibaListLine(models.Model):
 class RibaListMoveLine(models.Model):
 
     _name = 'riba.distinta.move.line'
-    _description = 'Riba details'
+    _description = 'C/O Details'
     _rec_name = 'amount'
 
     amount = fields.Float(
         'Amount', digits=dp.get_precision('Account'))
     move_line_id = fields.Many2one(
-        'account.move.line', string='Credit move line')
+        'account.move.line', string='Credit Move Line')
     riba_line_id = fields.Many2one(
-        'riba.distinta.line', string='List line', ondelete='cascade')
+        'riba.distinta.line', string='Slip Line', ondelete='cascade')

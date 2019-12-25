@@ -49,19 +49,19 @@ class TestRibaCommon(common.TransactionCase):
         self.invoice = self._create_invoice()
         self.invoice2 = self._create_invoice()
         self.sbf_effects = self.env['account.account'].create({
-            'code': 'SBF',
-            'name': 'SBF effects (test)',
+            'code': 'STC',
+            'name': 'STC Bills (test)',
             'reconcile': True,
             'user_type_id': self.account_user_type.id,
         })
         self.riba_account = self.env['account.account'].create({
-            'code': 'RiBa',
-            'name': 'RiBa account (test)',
+            'code': 'C/O',
+            'name': 'C/O Account (test)',
             'user_type_id': self.account_asset_user_type.id,
         })
         self.unsolved_account = self.env['account.account'].create({
-            'code': 'UNSOLVED',
-            'name': 'Overdue effects account (test)',
+            'code': 'Past Due',
+            'name': 'Past Due Bills Account (test)',
             'reconcile': True,
             'user_type_id': self.account_user_type.id,
         })
@@ -73,7 +73,7 @@ class TestRibaCommon(common.TransactionCase):
 
     def _create_service_due_cost(self):
         return self.env['product.product'].create({
-            'name': 'Due Cost',
+            'name': 'Collection Fees',
             'type': 'service',
             'property_account_income_id': self._account_expense(),
         })
@@ -112,7 +112,7 @@ class TestRibaCommon(common.TransactionCase):
 
     def _create_pterm(self):
         return self.env['account.payment.term'].create({
-            'name': 'Ri.Ba. 30/60',
+            'name': 'C/O 30/60',
             'riba': True,
             'riba_payment_cost': 5.00,
             'line_ids': [
@@ -127,7 +127,7 @@ class TestRibaCommon(common.TransactionCase):
 
     def _create_pterm2(self):
         return self.env['account.payment.term'].create({
-            'name': 'Ri.Ba. 30',
+            'name': 'C/O 30',
             'riba': True,
             'riba_payment_cost': 5.00,
             'line_ids': [
@@ -140,7 +140,7 @@ class TestRibaCommon(common.TransactionCase):
 
     def create_config(self):
         return self.env['riba.configuration'].create({
-            'name': 'Salvo Buon Fine',
+            'name': 'Subject To Collection',
             'type': 'sbf',
             'bank_id': self.company_bank.id,
             'acceptance_journal_id': self.bank_journal.id,
