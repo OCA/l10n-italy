@@ -40,10 +40,10 @@
     <!-- Riba da emettere Tree View -->
 
     <record model="ir.ui.view" id="view_riba_da_emettere_tree">
-        <field name="name">Issue Ri.Ba.</field>
+        <field name="name">C/O Issue</field>
         <field name="model">account.move.line</field>
         <field name="arch" type="xml">
-            <tree string="Issue Ri.Ba." colors="grey:reconciled!=False;red:date_maturity&lt;current_date">
+            <tree string="C/O Issue" colors="grey:reconciled!=False;red:date_maturity&lt;current_date">
                 <field name="partner_id" readonly="1"/>
                 <field name="iban" readonly="1"/>
                 <!-- TODO: field name="partner_ref" readonly="1"/>
@@ -52,7 +52,7 @@
                 <field name="invoice_origin" readonly="1"/>
                 <field name="payment_term_id" readonly="1"/-->
                 <field name="account_id" readonly="1"/>
-                <field name="debit" readonly="1" sum="Total Debit"/>
+                <field name="debit" readonly="1" sum="Debit Total"/>
                 <field name="amount_residual" readonly="1" sum="Total Amount" />
                 <field name="date_maturity"/>
                 <field name="riba" />
@@ -66,7 +66,7 @@
     <!-- Riba da emettere Filtro -->
 
     <record id="riba_filter" model="ir.ui.view">
-        <field name="name">Ri.Ba. filter</field>
+        <field name="name">C/O filter</field>
         <field name="model">account.move.line</field>
         <field name="arch" type="xml">
             <search string="Search Journal Items">
@@ -76,16 +76,16 @@
                 <filter name="reconciled" string="Reconciled" domain="[('reconciled', '!=', False)]"/>
                 <filter name="to_reconcile" string="To Reconcile" domain="[('reconciled', '=', False)]"/>
                 <separator/>
-                <filter name="unsolved" string="Unsolved" domain="[('unsolved_invoice_ids', '!=', False)]"/>
+                <filter name="unsolved" string="Past Due" domain="[('unsolved_invoice_ids', '!=', False)]"/>
                 <filter name="sale_journal" string="Sale Journals" domain="[('journal_id.type', '=', 'sale')]"/>
                 <field name="account_id"/>
                 <field name="partner_id"/>
                 <field name="invoice_id"/>
                 <!-- TODO: field name="invoice_origin"/-->
                 <field name="date_maturity"/>
-                <group expand="0" string="Group by...">
-                    <filter name="filter_customer" string="Group by customer" context="{'group_by':'partner_id'}"/>
-                    <filter name="filter_invoice" string="Group by invoice" context="{'group_by':'stored_invoice_id'}"/>
+                <group expand="0" string="Group By...">
+                    <filter name="filter_customer" string="Group By Customer" context="{'group_by':'partner_id'}"/>
+                    <filter name="filter_invoice" string="Group By Invoice" context="{'group_by':'stored_invoice_id'}"/>
                 </group>
             </search>
         </field>
@@ -94,7 +94,7 @@
     <!-- Riba da emettere Action -->
 
     <record model="ir.actions.act_window" id="action_riba_da_emettere">
-        <field name="name">Issue Ri.Ba.</field>
+        <field name="name">C/O Issue</field>
         <field name="res_model">account.move.line</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_riba_da_emettere_tree"/>
@@ -104,7 +104,7 @@
     </record>
 
 
-    <menuitem name="Issue Ri.Ba." parent="menu_riba"
+    <menuitem name="Issue" parent="menu_riba"
         id="menu_riba_da_emettere" action="action_riba_da_emettere" />
 
     <!-- Invoice -->
@@ -115,7 +115,7 @@
         <field name="inherit_id" ref="account.invoice_form"/>
         <field name="arch" type="xml">
             <field name="tax_line_ids" position="after">
-                <separator string="Unsolved Ri.Ba." colspan="4"/>
+                <separator string="Past Due C/Os" colspan="4"/>
                 <field name="unsolved_move_line_ids" colspan="4" nolabel="1"/>
             </field>
         </field>
@@ -128,13 +128,13 @@
         <field name="inherit_id" ref="account.view_account_invoice_filter"/>
         <field name="arch" type="xml">
             <filter name="unpaid" position="after">
-               <filter name="unsolved" string="Unsolved" domain="[('is_unsolved','=',True)]" help="Unsolved Invoices"/>
+               <filter name="unsolved" string="Past Due" domain="[('is_unsolved','=',True)]" help="Past Due Invoices"/>
             </filter>
         </field>
     </record>
 
     <record id="action_invoice_tree1" model="ir.actions.act_window">
-        <field name="name">Unsolved Invoices</field>
+        <field name="name">Past Due Invoices</field>
         <field name="res_model">account.invoice</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form,calendar,graph</field>
@@ -157,7 +157,7 @@
         <field name="view_id" ref="account.invoice_form"/>
         <field name="act_window_id" ref="action_invoice_tree1"/>
     </record>
-    <menuitem name="Unsolved Invoices" parent="menu_riba"
+    <menuitem name="Past Due Invoices" parent="menu_riba"
         id="menu_invoices" action="action_invoice_tree1" />
 
 </odoo>

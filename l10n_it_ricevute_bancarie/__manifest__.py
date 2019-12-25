@@ -4,14 +4,17 @@
 # Copyright (C) 2012 Associazione OpenERP Italia
 # (<http://www.odoo-italia.org>).
 # Copyright (C) 2012-2017 Lorenzo Battistini - Agile Business Group
+# Copyright (C) 2019 Sergio Zanchetta - Associazione PNLUG
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': "Ricevute Bancarie",
+    'name': "ITA - Ricevute bancarie",
     'version': "12.0.1.0.0",
     'author': "Odoo Community Association (OCA)",
-    'category': "Accounting & Finance",
-    'website': "https://odoo-community.org/",
+    'category': 'Localization/Italy',
+    'summary': 'Ricevute bancarie',
+    'website': 'https://github.com/OCA/l10n-italy/tree/'
+               '12.0/l10n_it_ricevute_bancarie',
     'license': "AGPL-3",
     'depends': [
         'account',
