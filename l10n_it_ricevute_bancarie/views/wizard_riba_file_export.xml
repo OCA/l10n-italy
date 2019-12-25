@@ -2,10 +2,10 @@
 <odoo>
 
     <record id="wizard_riba_file_export" model="ir.ui.view">
-        <field name="name">Export Ri.Ba.</field>
+        <field name="name">Export C/O</field>
         <field name="model">riba.file.export</field>
         <field name="arch" type="xml">
-            <form string="Export Ri.Ba. file">
+            <form string="Export C/O file">
                 <group col="4">
                     <group colspan="4">
                         <field name="riba_txt" readonly="1" filename="file_name"/>
@@ -20,7 +20,7 @@
         </field>
     </record>
 
-   <act_window name="Export Ri.Ba."
+    <act_window name="Export C/O"
         res_model="riba.file.export"
         src_model="riba.distinta"
         view_mode="form"

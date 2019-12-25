@@ -12,51 +12,51 @@ from odoo import models, fields
 class RibaConfiguration(models.Model):
 
     _name = "riba.configuration"
-    _description = "Configuration parameters for Ricevute Bancarie"
+    _description = "Configuration parameters for Cash Orders"
 
     name = fields.Char("Description", size=64, required=True)
     type = fields.Selection(
-        (('sbf', 'Salvo buon fine'), ('incasso', 'Al dopo incasso')),
-        "Modalità Emissione", required=True)
+        (('sbf', 'Subject To Collection'), ('incasso', 'After Collection')),
+        "Issue Mode", required=True)
     bank_id = fields.Many2one(
-        'res.partner.bank', "Banca", required=True,
-        help="Bank account used for Ri.Ba. issuing")
+        'res.partner.bank', "Bank Account", required=True,
+        help="Bank account used for C/O issuing.")
     acceptance_journal_id = fields.Many2one(
-        'account.journal', "Acceptance journal",
+        'account.journal', "Acceptance Journal",
         domain=[('type', '=', 'bank')],
-        help="Journal used when Ri.Ba. is accepted by the bank")
+        help="Journal used when C/O is accepted by the bank.")
     acceptance_account_id = fields.Many2one(
-        'account.account', "Acceptance account",
-        help="Account used when Ri.Ba. is accepted by the bank")
+        'account.account', "Acceptance Account",
+        help="Account used when C/O is accepted by the bank.")
     company_id = fields.Many2one(
         'res.company', "Company", required=True,
         default=lambda self: self.env['res.company']._company_default_get(
             'riba.configuration'))
     accreditation_journal_id = fields.Many2one(
-        'account.journal', "Accreditation journal",
+        'account.journal', "Credit Journal",
         domain=[('type', '=', 'bank')],
-        help="Journal used when Ri.Ba. amount is accredited by the bank")
+        help="Journal used when C/O amount is credited by the bank.")
     accreditation_account_id = fields.Many2one(
-        'account.account', "Ri.Ba. bank account",
-        help='Account used when Ri.Ba. is accepted by the bank',
+        'account.account', "C/O Account",
+        help='Account used when C/O amount is credited by the bank.',
         domain=[('internal_type', '!=', 'liquidity')])
     bank_account_id = fields.Many2one(
-        'account.account', "Bank account",
+        'account.account', "A/C Bank Account",
         domain=[('internal_type', '=', 'liquidity')])
     bank_expense_account_id = fields.Many2one(
-        'account.account', "Bank Expenses account")
+        'account.account', "Bank Fees Account")
     unsolved_journal_id = fields.Many2one(
-        'account.journal', "Unsolved journal",
+        'account.journal', "Past Due Journal",
         domain=[('type', '=', 'bank')],
-        help="Journal used when Ri.Ba. is unsolved")
+        help="Journal used when C/O is past due.")
     overdue_effects_account_id = fields.Many2one(
-        'account.account', "Overdue Effects account",
+        'account.account', "Past Due Bills Account",
         domain=[('internal_type', '=', 'receivable')])
     protest_charge_account_id = fields.Many2one(
-        'account.account', "Protest charge account")
+        'account.account', "Protest Fee Account")
     settlement_journal_id = fields.Many2one(
         'account.journal', "Settlement Journal",
-        help="Journal used when the clients finally pays the invoice to bank")
+        help="Journal used when customers finally pay the invoice to bank.")
 
     def get_default_value_by_list(self, field_name):
         if not self.env.context.get('active_id', False):

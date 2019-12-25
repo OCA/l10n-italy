@@ -57,7 +57,7 @@ class RibaFileExport(models.TransientModel):
                        [14] = data effettiva della fattura
 
     """
-    _description = "Ri.Ba. file export wizard"
+    _description = "C/O File Export Wizard"
     _progressivo = 0
     _assuntrice = 0
     _sia = 0
@@ -190,7 +190,7 @@ class RibaFileExport(models.TransientModel):
         credit_bank = order_obj.config_id.bank_id
         name_company = order_obj.config_id.company_id.partner_id.name
         if not credit_bank.acc_number:
-            raise UserError(_('No IBAN specified'))
+            raise UserError(_('No IBAN specified.'))
         # remove spaces automatically added by odoo
         credit_iban = credit_bank.acc_number.replace(" ", "")
         credit_abi = credit_iban[5:10]
@@ -198,7 +198,7 @@ class RibaFileExport(models.TransientModel):
         credit_conto = credit_iban[-12:]
         if not credit_bank.codice_sia:
             raise UserError(
-                _('No SIA Code specified for: ') + name_company)
+                _('No SIA Code specified for ') + name_company)
         credit_sia = credit_bank.codice_sia
         dataemissione = datetime.datetime.now().strftime("%d%m%y")
         nome_supporto = datetime.datetime.now().strftime(
@@ -210,7 +210,7 @@ class RibaFileExport(models.TransientModel):
             order_obj.config_id.company_id.partner_id.fiscalcode
         ):
             raise UserError(
-                _('No VAT or Fiscalcode specified for: ') + name_company)
+                _('No VAT or Fiscal Code specified for ') + name_company)
         array_testata = [
             credit_sia,
             credit_abi,
@@ -257,7 +257,7 @@ class RibaFileExport(models.TransientModel):
 
             if not line.partner_id.vat and not line.partner_id.fiscalcode:
                 raise UserError(
-                    _('No VAT or Fiscal code specified for ') +
+                    _('No VAT or Fiscal Code specified for ') +
                     line.partner_id.name)
             Riba = [
                 line.sequence,
@@ -313,4 +313,4 @@ class RibaFileExport(models.TransientModel):
         ),
         default='choose')
     riba_txt = fields.Binary('File', readonly=True)
-    file_name = fields.Char('File name', readonly=True)
+    file_name = fields.Char('File Name', readonly=True)

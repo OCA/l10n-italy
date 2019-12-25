@@ -14,7 +14,7 @@ from odoo import fields, models, exceptions, api, _
 # -------------------------------------------------------
 class RibaIssue(models.TransientModel):
     _name = "riba.issue"
-    _description = "Ricevute bancarie issue"
+    _description = "Cash Orders Issue"
     configuration_id = fields.Many2one(
         'riba.configuration', string='Configuration', required=True)
 
@@ -72,7 +72,7 @@ class RibaIssue(models.TransientModel):
                 bank_id = move_line.partner_id.bank_ids[0]
             else:
                 raise exceptions.Warning(
-                    _('Partner %s has not bank!!!') %
+                    _('No bank has been specified for partner %s!') %
                     move_line.partner_id.name)
             if move_line.partner_id.group_riba:
                 for key in grouped_lines:
@@ -105,7 +105,7 @@ class RibaIssue(models.TransientModel):
 
             countme += 1
 
-        # ----- show list form
+        # ----- show slip form
         mod_obj = self.env['ir.model.data']
         act_obj = self.env['ir.actions.act_window']
         action = mod_obj.get_object_reference(
