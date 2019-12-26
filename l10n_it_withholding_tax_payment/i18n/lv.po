@@ -170,7 +170,6 @@ msgstr ""
 #. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment__date_stop
 #, fuzzy
-#| msgid "Date"
 msgid "Stop Date"
 msgstr "Datums"
 
