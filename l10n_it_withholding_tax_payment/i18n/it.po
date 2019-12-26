@@ -29,7 +29,6 @@ msgstr "Conto"
 #. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment__move_id
 #, fuzzy
-#| msgid "Account move"
 msgid "Account Move"
 msgstr "Movimento contabile"
 
@@ -67,14 +66,12 @@ msgstr "Crea movimento contabile"
 #: model:ir.actions.act_window,name:l10n_it_withholding_tax_payment.wizard_wt_move_payment_create_action
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.wizard_wt_move_payment_create_view
 #, fuzzy
-#| msgid "Create Move Payment"
 msgid "Create Payment Move"
 msgstr "Crea versamento"
 
 #. module: l10n_it_withholding_tax_payment
 #: model:ir.model,name:l10n_it_withholding_tax_payment.model_wizard_wt_move_payment_create
 #, fuzzy
-#| msgid "Create Move Payment"
 msgid "Create WT Payment Move Wizard"
 msgstr "Crea versamento"
 
@@ -178,7 +175,6 @@ msgstr "Stato"
 #. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment__date_stop
 #, fuzzy
-#| msgid "Date"
 msgid "Stop Date"
 msgstr "Data"
 
@@ -196,7 +192,6 @@ msgstr "Tot."
 #. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment__amount
 #, fuzzy
-#| msgid "WT amount"
 msgid "WT Amount"
 msgstr "Importo RdA"
 
@@ -209,14 +204,12 @@ msgstr "Movimenti RdA"
 #. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move__wt_move_payment_id
 #, fuzzy
-#| msgid "WT Move Payments"
 msgid "WT Payment Move"
 msgstr "Versamenti ritenute"
 
 #. module: l10n_it_withholding_tax_payment
 #: model:ir.ui.menu,name:l10n_it_withholding_tax_payment.menu_withholding_tax_move_payment
 #, fuzzy
-#| msgid "WT Move Payments"
 msgid "WT Payment Moves"
 msgstr "Versamenti ritenute"
 
@@ -249,7 +242,6 @@ msgstr ""
 #. module: l10n_it_withholding_tax_payment
 #: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:34
 #, fuzzy, python-format
-#| msgid "Withholding Move Payment"
 msgid "Warning! Withholding tax moves in a payment: {}"
 msgstr "Versamento ritenute"
 
@@ -257,7 +249,6 @@ msgstr "Versamento ritenute"
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_tree
 #, fuzzy
-#| msgid "Withholding Tax Move"
 msgid "Withholding Payment Move"
 msgstr "Voci ritenuta"
 
@@ -279,14 +270,12 @@ msgstr ""
 #: model:ir.model,name:l10n_it_withholding_tax_payment.model_withholding_tax_move_payment
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_form
 #, fuzzy
-#| msgid "Withholding Tax Move"
 msgid "Withholding Tax Payment Move"
 msgstr "Voci ritenuta"
 
 #. module: l10n_it_withholding_tax_payment
 #: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:94
 #, fuzzy, python-format
-#| msgid "Withholding Move Payment"
 msgid "Withholding tax payment {}"
 msgstr "Versamento ritenute"
 
