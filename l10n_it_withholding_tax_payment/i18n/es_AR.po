@@ -28,7 +28,6 @@ msgstr "Cuenta"
 #. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment__move_id
 #, fuzzy
-#| msgid "Account"
 msgid "Account Move"
 msgstr "Cuenta"
 
@@ -173,7 +172,6 @@ msgstr ""
 #. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment__date_stop
 #, fuzzy
-#| msgid "Date"
 msgid "Stop Date"
 msgstr "Fecha"
 
@@ -191,7 +189,6 @@ msgstr ""
 #. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment__amount
 #, fuzzy
-#| msgid "Account"
 msgid "WT Amount"
 msgstr "Cuenta"
 
