@@ -53,6 +53,7 @@ addon | version | summary
 [l10n_it_ipa](l10n_it_ipa/) | 10.0.2.0.0 | IPA Code (IndicePA)
 [l10n_it_location_nuts](l10n_it_location_nuts/) | 10.0.1.0.1 | NUTS specific options for Italy
 [l10n_it_pec](l10n_it_pec/) | 10.0.1.0.0 | Pec Mail
+[l10n_it_pos_fatturapa](l10n_it_pos_fatturapa/) | 10.0.1.0.0 | Gestione dati fattura elettronica del cliente all'interno dell'interfaccia del POS
 [l10n_it_pos_fiscalcode](l10n_it_pos_fiscalcode/) | 10.0.1.0.0 | Gestione codice fiscale del cliente all'interno dell'interfaccia del POS
 [l10n_it_rea](l10n_it_rea/) | 10.0.1.1.2 | Gestisce i campi del Repertorio Economico Amministrativo
 [l10n_it_reverse_charge](l10n_it_reverse_charge/) | 10.0.1.2.2 | Reverse Charge for Italy
