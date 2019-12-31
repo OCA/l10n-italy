@@ -326,7 +326,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             var xml = '<printerFiscalReceipt>';
             // header must be printed before beginning a fiscal receipt
             xml += this.printFiscalReceiptHeader(receipt);
-            if(!has_refund) {
+            if (!has_refund) {
                 xml += '<beginFiscalReceipt />';
             }
             // footer can go only as promo code so within a fiscal receipt body
@@ -339,19 +339,46 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                         refund_doc_num: receipt.refund_doc_num,
                         refund_cash_fiscal_serial: receipt.refund_cash_fiscal_serial});
             }
-            if (has_refund) {
-                xml += self.printRecTotalRefund({});
-            }
-            else {
-                _.each(receipt.paymentlines, function(l, i, list) {
-                    xml += self.printRecTotal({
-                        payment: l.amount,
-                        paymentType: l.type,
-                        paymentIndex: l.type_index,
-                        description: l.journal,
+            _.each(receipt.orderlines, function(l, i, list) {
+                if (l.price >= 0) {
+                    if(l.quantity>=0) {
+                        var full_price = l.price;
+                        if (l.discount) {
+                            full_price = round_pr(l.price / (1 - (l.discount / 100)), self.sender.pos.currency.rounding);
+                        }
+                        xml += self.printRecItem({
+                            description: l.product_name,
+                            quantity: l.quantity,
+                            unitPrice: full_price,
+                            department: l.tax_department.code
+                        });
+                        if (l.discount) {
+                            xml += self.printRecItemAdjustment({
+                                adjustmentType: 0,
+                                description: _t('Discount') + ' ' + l.discount + '%',
+                                amount: round_pr(l.quantity * full_price - l.price, self.sender.pos.currency.rounding),
+                            });
+                        }
+                    }
+                    else
+                    {
+                        xml += self.printRecRefund({
+                            description: _t('Refund >>> ') + l.product_name,
+                            quantity: l.quantity * -1.0,
+                            unitPrice: l.price,
+                            department: l.tax_department.code
+                        });
+                    }
+                }
+                else {
+                    xml += self.printRecItemAdjustment({
+                        adjustmentType: 3,
+                        description: l.product_name,
+                        department: l.tax_department.code,
+                        amount: -l.price,
                     });
-                });
-            }
+                }
+            });
             if (has_refund) {
                 xml += self.printRecTotalRefund({});
             }
