@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="ClientDetails">
+        <t t-jquery=".client-details-right" t-operation="append">
+            <div class='client-detail'>
+                <t t-if="partner.electronic_invoice_subjected">
+                    <span class='label'>e-Invoice</span>
+                    <input type="checkbox" class='detail o_checkbox electronic_invoice_subjected'
+                           t-att-checked="partner.electronic_invoice_subjected ? 'checked' : null" disabled="disabled"
+                           t-att-value="partner.electronic_invoice_subjected"/><br/>
+
+                    <div id="electronic_invoice_subjected" t-attf-style="display: #{partner.electronic_invoice_subjected ? 'block': 'none'};">
+                        <div class="client-detail">
+                            <span class='label'>Code</span>
+                            <span class='detail codice_destinatario'><t t-esc='partner.codice_destinatario or ""'/></span><br/>
+
+                            <span class='label'>PEC</span>
+                            <span class='detail pec_destinatario'><t t-esc='partner.pec_destinatario or ""'/></span><br/>
+
+                            <span class='label'>EORI</span>
+                            <span class='detail eori_code'><t t-esc='partner.eori_code or ""'/></span><br/>
+
+                            <span class='label'>iPA Code</span>
+                            <span class='detail pa_partner_code'><t t-esc='partner.pa_partner_code or ""'/></span>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </t>
+
+    <t t-extend="ClientDetailsEdit">
+        <t t-jquery=".client-details-right" t-operation="append">
+            <div class='client-detail'>
+                <span class='label'>e-Invoice</span>
+                <input type='checkbox' class='detail o_checkbox checkbox electronic_invoice_subjected'
+                       name='electronic_invoice_subjected' t-att-checked="partner.electronic_invoice_subjected ? 'checked' : null"
+                       t-att-value="partner.electronic_invoice_subjected"/>
+
+                <div id="electronic_invoice_subjected" t-attf-style="display: #{partner.electronic_invoice_subjected ? 'block': 'none'};">
+                    <div class='client-detail'>
+                        <span class='label'>Code</span>
+                        <input class='detail codice_destinatario' name='codice_destinatario' t-att-value="partner.codice_destinatario or '0000000'"/>
+
+                        <span class='label'>PEC</span>
+                        <input class='detail pec_destinatario' name='pec_destinatario' t-att-value="partner.pec_destinatario or ''"/>
+
+                        <span class='label'>EORI</span>
+                        <input class='detail eori_code' name='eori_code' t-att-value="partner.eori_code or ''"/>
+
+                        <span class='label'>iPA Code</span>
+                        <input class='detail pa_partner_code' name='pa_partner_code' t-att-value="partner.pa_partner_code or ''"/>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </t>
+
+</templates>
