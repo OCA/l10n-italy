@@ -290,7 +290,10 @@ class StockPickingPackagePreparation(models.Model):
         a clean extension chain).
         """
         self.ensure_one()
-        order = self._get_sale_order_ref()
+        if self._context.get('ddt_line', False):
+            order = self._context.get('ddt_line').sale_line_id.order_id
+        else:
+            order = self._get_sale_order_ref()
         if order:
             # Most of the values will be overwritten below,
             # but this preserves inheritance chain
@@ -415,8 +418,12 @@ class StockPickingPackagePreparation(models.Model):
                 group_key = ddt.id
 
             for line in ddt.line_ids:
+                group_key_line = line.get_ddt_group_key_line()
+                if group_key_line:
+                    group_key = group_key_line
                 if group_key not in invoices:
-                    inv_data = ddt._prepare_invoice()
+                    inv_data = ddt.with_context(ddt_line=line)\
+                        ._prepare_invoice()
                     invoice = inv_obj.create(inv_data)
                     references[invoice] = ddt
                     invoices[group_key] = invoice
@@ -726,3 +733,9 @@ class StockPickingPackagePreparationLine(models.Model):
         of kit."""
         self.ensure_one()
         return self.product_uom_qty > 0
+
+    def get_ddt_group_key_line(self):
+        """
+        Hook to manage group key from ddt line
+        """
+        return False
