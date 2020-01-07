@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-04 14:09+0000\n"
-"PO-Revision-Date: 2019-12-16 16:05+0000\n"
+"PO-Revision-Date: 2020-01-07 11:13+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: l10n_it_central_journal
 #: model:ir.actions.report,name:l10n_it_central_journal.action_report_giornale
@@ -183,7 +183,7 @@ msgstr "Ultima modifica il"
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__write_uid
 msgid "Last Updated by"
-msgstr "Ultima modifica di"
+msgstr "Ultimo aggiornamento di"
 
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__write_date
@@ -297,7 +297,7 @@ msgstr "Alla data"
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,help:l10n_it_central_journal.field_wizard_giornale__year_footer
 msgid "Value printed near number of page in the footer"
-msgstr "Valore stampato nel piè di pagina vicino al numero"
+msgstr "Valore stampato nel piè di pagina vicino al numero pagina"
 
 #. module: l10n_it_central_journal
 #: model:ir.model,name:l10n_it_central_journal.model_wizard_giornale
