@@ -21,3 +21,5 @@ class PosConfig(models.Model):
         string='Show receipt on screen when printing', default=True)
 
     fiscal_printer_serial = fields.Char(string='Fiscal Printer Serial')
+
+    fiscal_cashdrawer = fields.Boolean(string='Fiscal Printer Open CashDrawer')

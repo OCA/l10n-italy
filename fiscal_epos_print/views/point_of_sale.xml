@@ -16,6 +16,7 @@
                         <field name="printer_ip"/>
                         <field name="use_https"/>
                         <field name="fiscal_printer_serial"/>
+                        <field name="fiscal_cashdrawer"/>
                     </group>
                 </xpath>
             </field>

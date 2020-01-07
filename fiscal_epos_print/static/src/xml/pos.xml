@@ -19,6 +19,12 @@
         </div>
     </t>
 
+    <t t-name="PrinterFiscalOpenCashDrawer">
+        <div class="header-button" style="padding-top:5px">
+            <img src="/fiscal_epos_print/static/src/img/cashdrawer.png" alt="Open CashDrawer" title="Open CashDrawer"/>
+        </div>
+    </t>
+
     <t t-extend="PosTicket">
         <t t-jquery="div[class='pos-sale-ticket']" t-operation="after">
             <div class="button disabled receipt-sent" t-if="!order.is_to_invoice()">
