@@ -7,21 +7,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-09 12:56+0000\n"
-"PO-Revision-Date: 2019-04-09 12:56+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2020-01-07 11:13+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
-#, fuzzy
-#| msgid "<span>Summary</span>"
 msgid "<span>&amp;nbsp;</span>"
-msgstr "<span>Riepilogo</span>"
+msgstr "<span>&amp;nbsp;</span>"
 
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
@@ -120,7 +119,7 @@ msgstr "Importo IVA Erario"
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
 msgid "Base"
-msgstr "Base"
+msgstr "Imponibile"
 
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.add_period
@@ -505,6 +504,7 @@ msgstr "Rimuovi periodo dalla liquidazione IVA"
 
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
+#, fuzzy
 msgid ""
 "Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in "
 "Italia, Beni FUE in Italia, Cell., Microproc.\n"
@@ -635,7 +635,7 @@ msgstr "Riga di debito liquidazione IVA"
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_statement_generic_account_line
 msgid "VAT Statement generic account line"
-msgstr "Riga generica liquidazione IVA"
+msgstr "Riga contabile generica dichiarazione IVA"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_report_account_vat_period_end_statement_vat_statement
@@ -645,7 +645,7 @@ msgstr "Report liquidazione IVA"
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_account_vat_period_end_statement
 msgid "VAT period end statement"
-msgstr "Liquidazione IVA di fine periodo"
+msgstr "Dichiarazione IVA di fine periodo"
 
 #. module: account_vat_period_end_statement
 #: code:addons/account_vat_period_end_statement/models/account.py:306
@@ -671,7 +671,7 @@ msgstr "Liquidazioni IVA"
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
 msgid "Vat"
-msgstr "Imposta"
+msgstr "IVA"
 
 #. module: account_vat_period_end_statement
 #: model:ir.actions.act_window,name:account_vat_period_end_statement.action_account_vat_period_end_statement
