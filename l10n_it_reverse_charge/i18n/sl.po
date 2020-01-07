@@ -20,13 +20,13 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:254
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:264
 #, python-format
 msgid "Can't find 1 tax mapping for %s"
 msgstr "Ne najdem 1 davčnega mapiranja za %s"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:220
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:230
 #, python-format
 msgid "Can't find tax mapping"
 msgstr "Ne najdem davčnega mapiranja"
@@ -91,7 +91,7 @@ msgid "Invoice Line"
 msgstr "Postavka računa"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:213
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:223
 #, python-format
 msgid ""
 "Invoice line\n"
@@ -209,6 +209,17 @@ msgid "Reverse Charge Types"
 msgstr "Tipi obrnjenih davčnih obveznosti"
 
 #. module: l10n_it_reverse_charge
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:45
+#, python-format
+msgid ""
+"Reverse charge self invoice.\n"
+"Supplier: %s\n"
+"Reference: %s\n"
+"Date: %s\n"
+"Internal reference: %s"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
 #: field:account.rc.type.tax,sale_tax_id:0
 msgid "Sale Tax"
 msgstr "Prodajni davek"
@@ -291,7 +302,7 @@ msgid "Text on Self Invoice"
 msgstr "Besedilo v računu za samo-obdavčitev"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:303
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:313
 #, python-format
 msgid ""
 "There are more than one payment line.\n"
@@ -303,7 +314,7 @@ msgstr ""
 "ročno"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:199
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:209
 #, python-format
 msgid ""
 "There is no default credit account defined \n"
