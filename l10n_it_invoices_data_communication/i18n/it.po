@@ -7,19 +7,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-20 11:38+0000\n"
-"PO-Revision-Date: 2019-03-20 11:38+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2020-01-07 11:13+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Azione richiesta"
 
 #. module: l10n_it_invoices_data_communication
 #: code:addons/l10n_it_invoices_data_communication/models/communication.py:878
@@ -75,7 +76,7 @@ msgstr "Cessionario"
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Numero allegati"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_iva__ImponibileImporto
@@ -433,10 +434,8 @@ msgstr "Azienda"
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_ricevute_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_ricevute_tree
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form
-#, fuzzy
-#| msgid "Company, denomination, business name"
 msgid "Company, denomination or business name"
-msgstr "Azienda, denominazione, ragione sociale"
+msgstr "Azienda, denominazione o ragione sociale"
 
 #. module: l10n_it_invoices_data_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_compute_fiscal_document_type
@@ -537,7 +536,7 @@ msgstr "Corpo fattura cliente"
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_tree
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form
 msgid "Customer invoices"
-msgstr "Fatture clienti"
+msgstr "Fatture cliente"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__fatture_emesse_body_ids
@@ -607,7 +606,7 @@ msgstr "Definire un ID nazione per il cedente %s"
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_ricalcolo_tipo_document_fiscale__display_name
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_wizard_split_big_invoices_communication__display_name
 msgid "Display Name"
-msgstr "Nome Visualizzato"
+msgstr "Nome visualizzato"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_body__dati_fattura_Data
@@ -669,10 +668,8 @@ msgstr "Esportazione XML della comunicazione dati fatture"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.actions.act_window,name:l10n_it_invoices_data_communication.action_wizard_dati_iva_export_file
-#, fuzzy
-#| msgid "Export file invoices data communication"
 msgid "Export invoices data file"
-msgstr "Esportazione file comunicazione dati fatture"
+msgstr "Esporta file dati fatture"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__fatture_emesse_ids
@@ -692,7 +689,7 @@ msgstr "File"
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_export_file__name
 msgid "File Name"
-msgstr "Nome File"
+msgstr "Nome file"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__rettifica_IdFile
@@ -736,17 +733,17 @@ msgstr "Rappresentante fiscale"
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Follower"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_channel_ids
 msgid "Followers (Channels)"
-msgstr ""
+msgstr "Follower (canali)"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Follower (partner)"
 
 #. module: l10n_it_invoices_data_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_form
@@ -803,17 +800,17 @@ msgstr ""
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_unread
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Se selezionato, nuovi messaggi richiedono attenzione."
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Se selezionato, nuovi messaggi richiedono attenzione."
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Se selezionato, nuovi messaggi presentano un errore di consegna."
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_iva__Imposta
@@ -903,7 +900,7 @@ msgstr "Comunicazioni dati IVA"
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Sta seguendo"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model,name:l10n_it_invoices_data_communication.model_account_journal
@@ -936,7 +933,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_ricalcolo_tipo_document_fiscale__write_uid
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_wizard_split_big_invoices_communication__write_uid
 msgid "Last Updated by"
-msgstr "Ultima modifica di"
+msgstr "Ultimo aggiornamento di"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__write_date
@@ -950,7 +947,7 @@ msgstr "Ultima modifica di"
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_ricalcolo_tipo_document_fiscale__write_date
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_wizard_split_big_invoices_communication__write_date
 msgid "Last Updated on"
-msgstr "Ultima modifica il"
+msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_invoices_data_communication
 #: code:addons/l10n_it_invoices_data_communication/wizard/split_big_communication.py:25
@@ -961,8 +958,7 @@ msgstr "Limite non superato. Divisione non necessaria"
 #. module: l10n_it_invoices_data_communication
 #: code:addons/l10n_it_invoices_data_communication/models/communication.py:739
 #: code:addons/l10n_it_invoices_data_communication/models/communication.py:932
-#, fuzzy, python-format
-#| msgid "Limit of 1000 assegnees per communication exceeded"
+#, python-format
 msgid "Limit of 1000 assignees per communication exceeded"
 msgstr "Limite di 1000 cessionari per comunicazione superato"
 
@@ -976,17 +972,17 @@ msgstr "Limite di 1000 fatture per cessionario (%s) superato"
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Allegato principale"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Errore di consegna messaggio"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Messaggi"
 
 #. module: l10n_it_invoices_data_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_form
@@ -1030,27 +1026,27 @@ msgstr "Nessuna data registrazione per la fattura fornitore %s"
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Numero di azioni"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_has_error_counter
 msgid "Number of error"
-msgstr ""
+msgstr "Numero di errori"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr ""
+msgstr "Numero di messaggi che richiedono un'azione"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Numero di messaggi con errore di consegna"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_unread_counter
 msgid "Number of unread messages"
-msgstr ""
+msgstr "Numero di messaggi non letti"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_rf_IdFiscaleIVA_IdPaese
@@ -1404,7 +1400,7 @@ msgstr "Dividi comunicazione"
 #: selection:comunicazione.dati.iva.fatture.emesse.iva,EsigibilitaIVA:0
 #: selection:comunicazione.dati.iva.fatture.ricevute.iva,EsigibilitaIVA:0
 msgid "Split payment"
-msgstr "Split payment"
+msgstr "Scissione dei pagamenti"
 
 #. module: l10n_it_invoices_data_communication
 #: code:addons/l10n_it_invoices_data_communication/models/communication.py:601
@@ -1443,7 +1439,7 @@ msgstr "Note di divisione"
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_ricevute_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form
 msgid "State"
-msgstr ""
+msgstr "Stato"
 
 #. module: l10n_it_invoices_data_communication
 #: code:addons/l10n_it_invoices_data_communication/models/communication.py:63
@@ -1522,28 +1518,20 @@ msgstr ""
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_Nome
-#, fuzzy
-#| msgid ""
-#| "To fill along with 2.1.2.3 <Cognome> and alternatively to 2.1.2.1 "
-#| "<Denominazione>"
 msgid ""
 "To fill along with 3.1.2.3 <Cognome> and alternatively to 3.1.2.1 "
 "<Denominazione>"
 msgstr ""
-"Da valorizzare insieme a 2.1.2.3 <Cognome> ed in alternativa a 2.1.2.1 "
+"Da valorizzare insieme a 3.1.2.3 <Cognome> e in alternativa a 3.1.2.1 "
 "<Denominazione>"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_Cognome
-#, fuzzy
-#| msgid ""
-#| "To fill along with 2.1.2.2 <Nome> and alternatively to 2.1.2.1 "
-#| "<Denominazione>"
 msgid ""
 "To fill along with 3.1.2.3 <Nome> and alternatively to 3.1.2.1 "
 "<Denominazione>"
 msgstr ""
-"Da valorizzare insieme a 2.1.2.2 <Nome> ed in alternativa a 2.1.2.1 "
+"Da valorizzare insieme a 3.1.2.2 <Nome> e in alternativa a 3.1.2.1 "
 "<Denominazione>"
 
 #. module: l10n_it_invoices_data_communication
@@ -1593,20 +1581,18 @@ msgstr "Totale IVA"
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_body__totale_imponibile
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__totale_imponibile
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute_body__totale_imponibile
-#, fuzzy
-#| msgid "Total base amount"
 msgid "Total untaxed amount"
-msgstr "Totale imponibile"
+msgstr "Totale importo imponibile"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_unread
 msgid "Unread Messages"
-msgstr ""
+msgstr "Messaggi non letti"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_unread_counter
 msgid "Unread Messages Counter"
-msgstr ""
+msgstr "Numero messaggi non letti"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse_iva__Imposta
@@ -1637,14 +1623,12 @@ msgstr "Riepilogo IVA"
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Messaggi sito web"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__website_message_ids
-#, fuzzy
-#| msgid "Split communication"
 msgid "Website communication history"
-msgstr "Dividi comunicazione"
+msgstr "Cronologia comunicazioni sito web"
 
 #. module: l10n_it_invoices_data_communication
 #: code:addons/l10n_it_invoices_data_communication/wizard/export_file.py:24
@@ -1661,10 +1645,9 @@ msgstr "CAP"
 
 #. module: l10n_it_invoices_data_communication
 #: code:addons/l10n_it_invoices_data_communication/models/communication.py:900
-#, fuzzy, python-format
-#| msgid "ZIP %s of assignee %s is not 5 characters"
+#, python-format
 msgid "ZIP %s of assignee %s is not 5 numeric characters"
-msgstr "CAP %s del cessionario %s non è di 5 caratteri"
+msgstr "Il CAP %s del cessionario %s non ha 5 caratteri numerici"
 
 #. module: l10n_it_invoices_data_communication
 #: code:addons/l10n_it_invoices_data_communication/models/communication.py:1093
@@ -1677,7 +1660,7 @@ msgstr "CAP %s del cedente %s non è di 5 caratteri"
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_dati_iva_export_file
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_split_big_communication
 msgid "or"
-msgstr "o"
+msgstr "oppure"
 
 #~ msgid "Province"
 #~ msgstr "Provincia"
