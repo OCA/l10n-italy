@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 10:03+0000\n"
-"PO-Revision-Date: 2019-02-12 17:18+0000\n"
+"PO-Revision-Date: 2020-01-07 11:13+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.4\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__access_token
@@ -45,7 +45,7 @@ msgstr "Allegato"
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__message_attachment_count
 msgid "Attachment Count"
-msgstr "Totale allegati"
+msgstr "Numero allegati"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__local_url
@@ -128,31 +128,27 @@ msgstr "Cliente"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:486
-#, fuzzy, python-format
-#| msgid "Customer ZIP not set."
+#, python-format
 msgid "Customer ZIP not set for %s."
-msgstr "CAP del cliente non impostato."
+msgstr "CAP del cliente non impostato per %s."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:469
-#, fuzzy, python-format
-#| msgid "Customer city is not set."
+#, python-format
 msgid "Customer city is not set for %s."
-msgstr "Città del cliente non impostata."
+msgstr "Città del cliente non impostata per %s."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:472
-#, fuzzy, python-format
-#| msgid "Customer country is not set."
+#, python-format
 msgid "Customer country is not set for %s."
-msgstr "Nazione del cliente non impostata."
+msgstr "Nazione del cliente non impostata per %s."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:466
-#, fuzzy, python-format
-#| msgid "Customer street is not set."
+#, python-format
 msgid "Customer street is not set for %s."
-msgstr "Indirizzo del cliente non impostato."
+msgstr "Indirizzo del cliente non impostato per %s."
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__db_datas
@@ -194,10 +190,8 @@ msgstr "Allegati e-fattura"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__att_name
-#, fuzzy
-#| msgid "E-invoice Export File"
 msgid "E-invoice file name"
-msgstr "File esportato e-fattura"
+msgstr "Nome file e-fattura"
 
 #. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
@@ -319,7 +313,7 @@ msgstr "Se selezionato, nuovi messaggi richiedono attenzione."
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr "Se selezionato, alcuni messaggi presentano un errore di consegna. "
+msgstr "Se selezionato, alcuni messaggi presentano un errore di consegna."
 
 #. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view
@@ -342,10 +336,9 @@ msgstr "Fattura"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:525
-#, fuzzy, python-format
-#| msgid "Invoice does not have a number."
+#, python-format
 msgid "Invoice %s does not have a number."
-msgstr "La fattura non possiede un numero."
+msgstr "La fattura %s non possiede un numero."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/models/account.py:30
@@ -374,10 +367,9 @@ msgstr "Fatture"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:820
-#, fuzzy, python-format
-#| msgid "Invoices must belong to the same partner."
+#, python-format
 msgid "Invoices %s must belong to the same partner."
-msgstr "Le fatture devono appartenere allo stesso partner."
+msgstr "Le fatture %s devono appartenere allo stesso partner."
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__message_is_follower
@@ -483,7 +475,7 @@ msgstr "Numero di messaggi non letti"
 #. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 msgid "Open full-screen"
-msgstr ""
+msgstr "Apri a schermo intero"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__out_invoice_ids
@@ -516,10 +508,9 @@ msgstr "Il partner %s deve avere nome e cognome."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:440
-#, fuzzy, python-format
-#| msgid "Partner VAT number and fiscal code are not set."
+#, python-format
 msgid "Partner VAT number and fiscal code are not set for %s."
-msgstr "Partita IVA e codice fiscale del partner non impostati."
+msgstr "Partita IVA e codice fiscale del partner non impostati per %s."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:741
@@ -614,7 +605,7 @@ msgstr "L'oggetto del database a cui verrà assegnato questo allegato."
 #. module: l10n_it_fatturapa_out
 #: sql_constraint:fatturapa.attachment.out:0
 msgid "The name of the e-invoice file must be unique!"
-msgstr ""
+msgstr "Il nome file della e-fattura deve essere univoco."
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out__res_id
