@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-05-24 08:19+0000\n"
-"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
+"PO-Revision-Date: 2020-01-07 11:13+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: l10n_it_fatturapa_export_zip
 #: code:addons/l10n_it_fatturapa_export_zip/wizard/export_fatturapa.py:30
@@ -115,12 +115,12 @@ msgstr "Ultima modifica il"
 #. module: l10n_it_fatturapa_export_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_export_zip.field_wizard_fatturapa_export__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: l10n_it_fatturapa_export_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_export_zip.field_wizard_fatturapa_export__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_fatturapa_export_zip
 #: model:ir.model,name:l10n_it_fatturapa_export_zip.model_wizard_fatturapa_export
