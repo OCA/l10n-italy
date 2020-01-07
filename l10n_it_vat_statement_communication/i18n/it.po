@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-22 20:30+0000\n"
-"PO-Revision-Date: 2019-10-27 00:33+0000\n"
+"PO-Revision-Date: 2020-01-07 11:13+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: l10n_it_vat_statement_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
@@ -313,7 +313,7 @@ msgstr "Esporta il file della comunicazione della liquidazione IVA"
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_export_file__file_export
 msgid "File"
-msgstr ""
+msgstr "File"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_export_file__name
@@ -328,17 +328,17 @@ msgstr "Codice fiscale azienda"
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Follower"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_channel_ids
 msgid "Followers (Channels)"
-msgstr "Followers (Canali)"
+msgstr "Follower (canali)"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Followers (Partner)"
+msgstr "Follower (partner)"
 
 #. module: l10n_it_vat_statement_communication
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:181
@@ -401,12 +401,12 @@ msgstr "Se selezionato, nuovi messaggi richiedono attenzione."
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr "Se selezionato, alcuni messaggi presentano un errore di consegna. "
+msgstr "Se selezionato, alcuni messaggi presentano un errore di consegna."
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_is_follower
 msgid "Is Follower"
-msgstr "È Follower"
+msgstr "Sta seguendo"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione____last_update
@@ -473,7 +473,7 @@ msgstr "Nessuna comunicazione selezionata"
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_needaction_counter
 msgid "Number of Actions"
-msgstr "Numero di Azioni"
+msgstr "Numero di azioni"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_has_error_counter
@@ -533,7 +533,7 @@ msgstr "Trimestrale"
 #. module: l10n_it_vat_statement_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
 msgid "Recompute"
-msgstr "Ricalcolare"
+msgstr "Ricalcola"
 
 #. module: l10n_it_vat_statement_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
@@ -619,12 +619,12 @@ msgstr "Totale operazioni passive (al netto dell'IVA)"
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_unread
 msgid "Unread Messages"
-msgstr "Messaggi Non Letti"
+msgstr "Messaggi non letti"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_unread_counter
 msgid "Unread Messages Counter"
-msgstr "Contatore di messaggi non letti"
+msgstr "Numero messaggi non letti"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.actions.act_window,name:l10n_it_vat_statement_communication.action_comunicazione_liquidazione
@@ -744,7 +744,7 @@ msgstr "mese"
 #. module: l10n_it_vat_statement_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.wizard_liquidazione_export_file
 msgid "or"
-msgstr "o"
+msgstr "oppure"
 
 #. module: l10n_it_vat_statement_communication
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:47
