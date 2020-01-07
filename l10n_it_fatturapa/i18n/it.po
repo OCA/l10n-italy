@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-08 09:34+0000\n"
-"PO-Revision-Date: 2019-10-27 15:33+0000\n"
+"PO-Revision-Date: 2020-01-07 11:13+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: l10n_it_fatturapa
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa.view_account_config_settings
@@ -511,7 +511,6 @@ msgstr "Abilitare fatturazione elettronica"
 
 #. module: l10n_it_fatturapa
 #: selection:res.company,fatturapa_preview_style:0
-#, fuzzy
 msgid "FatturaOrdinaria v1.2.1"
 msgstr "FatturaOrdinaria v1.2.1"
 
@@ -1213,12 +1212,6 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_partner__codice_destinatario
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_users__codice_destinatario
-#, fuzzy
-#| msgid ""
-#| "The code, 7 characters long, assigned by ES to subjects with an "
-#| "accredited channel; if the addressee didn't accredit a channel to ES and "
-#| "invoices are received by PEC, the field must be filled with zeros "
-#| "('0000000')."
 msgid ""
 "The code, 7 characters long, assigned by ES to subjects with an accredited "
 "channel; if the addressee didn't accredit a channel to ES and invoices are "
@@ -1226,8 +1219,8 @@ msgid ""
 msgstr ""
 "Codice di 7 caratteri assegnato dallo SdI ai soggetti con canale "
 "accreditato. Se il destinatario non ha un canale accreditato presso lo SdI e "
-"riceve le fatture via PEC, l'elemento informativo deve essere valorizzato "
-"con tutti zeri (\"0000000\")."
+"riceve le fatture via PEC, il campo deve corrispondere al valore standard (\""
+"0000000\")."
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_fatturapa_attachments__res_model
