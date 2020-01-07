@@ -161,7 +161,10 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                                 order.fiscal_receipt_amount = parseFloat(add_info.fiscalReceiptAmount.replace(',', '.'));
                                 order.fiscal_receipt_date = add_info.fiscalReceiptDate;
                                 order.fiscal_z_rep_number = add_info.zRepNumber;
+                                order.fiscal_printer_serial = sender.pos.config.fiscal_printer_serial;
                                 sender.pos.db.add_order(order.export_as_JSON());
+                                // try to save the order
+                                sender.pos.push_order();
                             }
                             if (!sender.pos.config.show_receipt_when_printing) {
                                 sender.chrome.screens['receipt'].click_next();
@@ -216,8 +219,10 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             var message = 'REFUND ' +
                 addPadding(args.refund_report) + ' ' +
                 addPadding(args.refund_doc_num) + ' ' +
-                args.refund_date + ' ' +
-                args.refund_cash_fiscal_serial;
+                args.refund_date.substr(8, 2) + // day
+                args.refund_date.substr(5, 2) + // month
+                args.refund_date.substr(0, 4) + // year
+                ' ' + args.refund_cash_fiscal_serial;
 
             var tag = '<printRecMessage'
                 + ' messageType="4" message="' + message + '" font="1" index="1"'
@@ -327,7 +332,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             // header must be printed before beginning a fiscal receipt
             xml += this.printFiscalReceiptHeader(receipt);
             if (!has_refund) {
-                xml += '<beginFiscalReceipt />';
+                xml += '<beginFiscalReceipt/>';
             }
             // footer can go only as promo code so within a fiscal receipt body
             xml += this.printFiscalReceiptFooter(receipt);
@@ -356,7 +361,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                             xml += self.printRecItemAdjustment({
                                 adjustmentType: 0,
                                 description: _t('Discount') + ' ' + l.discount + '%',
-                                amount: round_pr(l.quantity * full_price - l.price, self.sender.pos.currency.rounding),
+                                amount: round_pr(l.quantity * (full_price - l.price), self.sender.pos.currency.rounding),
                             });
                         }
                     }
@@ -400,6 +405,13 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
         printFiscalReport: function() {
             var xml = '<printerFiscalReport>';
             xml += '<printZReport operator="" />';
+            xml += '</printerFiscalReport>';
+            this.fiscalPrinter.send(this.url, xml);
+        },
+
+        printFiscalXReport: function() {
+            var xml = '<printerFiscalReport>';
+            xml += '<printXReport operator="" />';
             xml += '</printerFiscalReport>';
             this.fiscalPrinter.send(this.url, xml);
         },

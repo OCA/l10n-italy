@@ -14,7 +14,7 @@ odoo.define('fiscal_epos_print.models', function (require) {
 
     models.Order = models.Order.extend({
         initialize: function(attributes, options){
-            OrderSuper.prototype.initialize.call(this, attributes,options);
+            OrderSuper.prototype.initialize.call(this, attributes, options);
             this.refund_report = null;
             this.refund_date = null;
             this.refund_doc_num = null;
@@ -24,7 +24,9 @@ odoo.define('fiscal_epos_print.models', function (require) {
             this.fiscal_receipt_amount = null;
             this.fiscal_receipt_date = null;
             this.fiscal_z_rep_number = null;
+            this.fiscal_printer_serial = this.pos.config.fiscal_printer_serial || null;
         },
+
         check_order_has_refund: function() {
             var order = this.pos.get_order();
             if (order) {
@@ -44,20 +46,20 @@ odoo.define('fiscal_epos_print.models', function (require) {
             this.fiscal_receipt_amount = json.fiscal_receipt_amount;
             this.fiscal_receipt_date = json.fiscal_receipt_date;
             this.fiscal_z_rep_number = json.fiscal_z_rep_number;
+            this.fiscal_printer_serial = json.fiscal_printer_serial;
         },
 
         export_as_JSON: function() {
             var result = OrderSuper.prototype.export_as_JSON.call(this);
             result.refund_report = this.refund_report;
-            result.refund_date = this.refund_date ? this.refund_date.substr(4, 4) + '-' + // year
-                                                    this.refund_date.substr(2, 2) + '-' + // month
-                                                    this.refund_date.substr(0, 2) : null; // day
+            result.refund_date = this.refund_date;
             result.refund_doc_num = this.refund_doc_num;
             result.refund_cash_fiscal_serial = this.refund_cash_fiscal_serial;
             result.fiscal_receipt_number = this.fiscal_receipt_number;
             result.fiscal_receipt_amount = this.fiscal_receipt_amount;
             result.fiscal_receipt_date = this.fiscal_receipt_date; // parsed by backend
             result.fiscal_z_rep_number = this.fiscal_z_rep_number;
+            result.fiscal_printer_serial = this.fiscal_printer_serial || null;
             return result;
         },
 
@@ -72,9 +74,17 @@ odoo.define('fiscal_epos_print.models', function (require) {
             receipt.fiscal_receipt_amount = this.fiscal_receipt_amount;
             receipt.fiscal_receipt_date = this.fiscal_receipt_date;
             receipt.fiscal_z_rep_number = this.fiscal_z_rep_number;
+            receipt.fiscal_printer_serial = this.fiscal_printer_serial;
 
             return receipt
         },
+
+        getPrinterOptions: function (){
+            var protocol = ((this.pos.config.use_https) ? 'https://' : 'http://');
+            var printer_url = protocol + this.pos.config.printer_ip + '/cgi-bin/fpmate.cgi';
+            return {url: printer_url};
+        },
+
     });
 
     var _orderline_super = models.Orderline.prototype;

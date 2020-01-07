@@ -15,6 +15,7 @@
                     <group>
                         <field name="printer_ip"/>
                         <field name="use_https"/>
+                        <field name="fiscal_printer_serial"/>
                     </group>
                 </xpath>
             </field>
@@ -33,6 +34,7 @@
                                 <field name="fiscal_receipt_amount"/>
                                 <field name="fiscal_receipt_date"/>
                                 <field name="fiscal_z_rep_number"/>
+                                <field name="fiscal_printer_serial"/>
                             </group>
                             <group string="Refund Info">
                                 <field name="refund_date"/>

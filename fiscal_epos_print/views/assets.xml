@@ -12,7 +12,6 @@
             <script type="text/javascript" src="/fiscal_epos_print/static/src/js/popups.js"/>
             <script type="text/javascript" src="/fiscal_epos_print/static/src/js/pos_order_mgmt.js"/>
             <script type="text/javascript" src="/fiscal_epos_print/static/src/js/chrome.js"/>
-            <link rel="stylesheet" href="/fiscal_epos_print/static/src/css/pos.css"/>
         </xpath>
     </template>
 

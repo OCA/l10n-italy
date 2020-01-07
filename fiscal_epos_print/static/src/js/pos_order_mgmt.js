@@ -11,13 +11,19 @@ odoo.define("fiscal_epos_print.pos_order_mgmt", function (require) {
     OrderListScreenWidget.include({
         _prepare_order_from_order_data: function (order_data, action) {
             var order = this._super(order_data, action);
-            order.refund_report = order_data.refund_report;
-            order.refund_date = order_data.refund_date ? order_data.refund_date.substr(8, 2) +  // day
-                                                         order_data.refund_date.substr(5, 2) +  // month
-                                                         order_data.refund_date.substr(0, 4)    // year
-                                                       : null;
-            order.refund_doc_num = order_data.refund_doc_num;
-            order.refund_cash_fiscal_serial = order_data.refund_cash_fiscal_serial;
+            if (action === 'print') {
+                order.refund_report = order_data.refund_report;
+                order.refund_date = order_data.refund_date;
+                order.refund_doc_num = order_data.refund_doc_num;
+                order.refund_cash_fiscal_serial = order_data.refund_cash_fiscal_serial;
+            }
+            else if (action === 'return') {
+                order.refund_report = order_data.fiscal_z_rep_number;
+                order.refund_date = order_data.fiscal_receipt_date;
+                order.refund_doc_num = order_data.fiscal_receipt_number;
+                order.refund_cash_fiscal_serial = order_data.fiscal_printer_serial;
+            }
+            // for action === 'copy' we don't need to do anything
 
             return order;
         },

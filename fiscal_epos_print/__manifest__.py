@@ -2,7 +2,7 @@
 # Leonardo Donelli - Creativi Quadrati
 # © 2016 Alessio Gerace - Agile Business Group
 # © 2018-2019 Lorenzo Battistini
-# © 2019 Roberto Fichera - Level Prime Srl
+# © 2019-2020 Roberto Fichera - Level Prime Srl
 # License GPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
 
 {
@@ -13,7 +13,7 @@
     'author': (
         'Agile Business Group, '
         'Leonardo Donelli @ Creativi Quadrati, TAKOBI, '
-        'Level Prime Srl'
+        'Roberto Fichera @ Level Prime Srl'
     ),
     'website': 'https://takobi.online',
     'depends': [
@@ -21,7 +21,7 @@
         'pos_order_mgmt',
     ],
     'data': [
-        'views/account_statement_view.xml',
+        'views/account.xml',
         'views/point_of_sale.xml',
         'views/assets.xml',
     ],

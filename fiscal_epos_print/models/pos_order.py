@@ -18,6 +18,7 @@ class PosOrder(models.Model):
     fiscal_receipt_date = fields.Date(
         "Fiscal receipt date", digits=(4, 0))
     fiscal_z_rep_number = fields.Integer("Fiscal closure number")
+    fiscal_printer_serial = fields.Char(string='Fiscal Printer Serial')
 
     @api.model
     def _order_fields(self, ui_order):
@@ -27,6 +28,14 @@ class PosOrder(models.Model):
         res['refund_doc_num'] = ui_order['refund_doc_num'] or False
         res['refund_cash_fiscal_serial'] = \
             ui_order['refund_cash_fiscal_serial'] or False
+        res['fiscal_receipt_number'] = \
+            ui_order['fiscal_receipt_number'] or False
+        res['fiscal_receipt_amount'] = \
+            ui_order['fiscal_receipt_amount'] or False
+        res['fiscal_receipt_date'] = ui_order['fiscal_receipt_date'] or False
+        res['fiscal_z_rep_number'] = ui_order['fiscal_z_rep_number'] or False
+        res['fiscal_printer_serial'] = \
+            ui_order['fiscal_printer_serial'] or False
         return res
 
     # This is on pos_order_mgmt to send back the fields of already existing
@@ -38,6 +47,11 @@ class PosOrder(models.Model):
         res['refund_report'] = self.refund_report
         res['refund_doc_num'] = self.refund_doc_num
         res['refund_cash_fiscal_serial'] = self.refund_cash_fiscal_serial
+        res['fiscal_receipt_number'] = self.fiscal_receipt_number
+        res['fiscal_receipt_amount'] = self.fiscal_receipt_amount
+        res['fiscal_receipt_date'] = self.fiscal_receipt_date
+        res['fiscal_z_rep_number'] = self.fiscal_z_rep_number
+        res['fiscal_printer_serial'] = self.fiscal_printer_serial
         return res
 
     @api.model
@@ -48,12 +62,15 @@ class PosOrder(models.Model):
             'fiscal_receipt_date'), '%d/%m/%Y').date().strftime('%Y-%m-%d')
         receipt_amount = float(pos_order.get('fiscal_receipt_amount'))
         fiscal_z_rep_number = int(pos_order.get('fiscal_z_rep_number'))
+        fiscal_printer_serial = pos_order.get('fiscal_printer_serial') or \
+            self.config_id.fiscal_printer_serial
         if po:
             po.write({
                 'fiscal_receipt_number': receipt_no,
                 'fiscal_receipt_date': receipt_date,
                 'fiscal_receipt_amount': receipt_amount,
-                'fiscal_z_rep_number': fiscal_z_rep_number
+                'fiscal_z_rep_number': fiscal_z_rep_number,
+                'fiscal_printer_serial': fiscal_printer_serial,
             })
         return True
 
@@ -63,13 +80,4 @@ class PosOrder(models.Model):
         for order in orders:
             if order['data'].get('fiscal_receipt_number'):
                 self.update_fiscal_receipt_values(order['data'])
-        return res
-
-    @api.multi
-    def _prepare_done_order_for_pos(self):
-        res = super(PosOrder, self)._prepare_done_order_for_pos()
-        res['fiscal_receipt_number'] = self.fiscal_receipt_number
-        res['fiscal_receipt_amount'] = self.fiscal_receipt_amount
-        res['fiscal_receipt_date'] = self.fiscal_receipt_date
-        res['fiscal_z_rep_number'] = self.fiscal_z_rep_number
         return res

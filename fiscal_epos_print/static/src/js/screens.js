@@ -18,6 +18,40 @@ odoo.define("fiscal_epos_print.screens", function (require) {
             {
                 this.click_next();
             }
+        },
+
+        lock_screen: function(locked) {
+            this._super.apply(this, arguments);
+            if (locked) {
+                this.$('.receipt-sent').hide();
+                this.$('.printing-error').show();
+                this.$('.printing-retry').show();
+            } else {
+                this.$('.receipt-sent').show();
+                this.$('.printing-error').hide();
+                this.$('.printing-retry').hide();
+            }
+        },
+
+        sendToFP90Printer: function(receipt, printer_options) {
+            var fp90 = new eposDriver(printer_options, this);
+            fp90.printFiscalReceipt(receipt);
+        },
+
+        render_receipt: function() {
+            var self = this;
+            this._super();
+            this.$('.printing-retry').click(function(){
+                if (self._locked) {
+                    var currentOrder = self.pos.get_order();
+                    self.chrome.loading_show();
+                    self.chrome.loading_message(_t('Connecting to the fiscal printer'));
+                    var printer_options = currentOrder.getPrinterOptions();
+                    printer_options.order = currentOrder;
+                    var receipt = currentOrder.export_for_printing();
+                    self.sendToFP90Printer(receipt, printer_options);
+                }
+            });
         }
     });
 
@@ -132,26 +166,30 @@ odoo.define("fiscal_epos_print.screens", function (require) {
         },
         refund_get_button_color: function() {
             var order = this.pos.get_order();
-            var lines = order.orderlines;
-            var has_refund = lines.find(function(line){ return line.quantity < 0.0;}) != undefined;
             var color = '#e2e2e2';
-            if (has_refund == true)
-            {
-                if (order.refund_date && order.refund_date != '' && order.refund_doc_num && order.refund_doc_num != '' &&
-                    order.refund_cash_fiscal_serial && order.refund_cash_fiscal_serial != '' && order.refund_report && order.refund_report != '') {
-                        color = 'lightgreen';
-                }
-                else
+            if(order) {
+                var lines = order.orderlines;
+                var has_refund = lines.find(function(line){ return line.quantity < 0.0;}) != undefined;
+                if (has_refund == true)
                 {
-                    color = 'red';
+                    if (order.refund_date && order.refund_date != '' && order.refund_doc_num && order.refund_doc_num != '' &&
+                        order.refund_cash_fiscal_serial && order.refund_cash_fiscal_serial != '' && order.refund_report && order.refund_report != '') {
+                            color = 'lightgreen';
+                    }
+                    else
+                    {
+                        color = 'red';
+                    }
                 }
             }
             return color;
         },
         orderline_change: function(){
             var order = this.pos.get_order();
-            var lines = order.orderlines;
-            order.has_refund = lines.find(function(line){ return line.quantity < 0.0;}) != undefined;
+            if (order) {
+                var lines = order.orderlines;
+                order.has_refund = lines.find(function(line){ return line.quantity < 0.0;}) != undefined;
+            }
             this.renderElement();
         },
     });
