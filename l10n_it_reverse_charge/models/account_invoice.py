@@ -42,6 +42,15 @@ class AccountInvoice(models.Model):
             }
 
     def rc_inv_vals(self, partner, account, rc_type, lines):
+        comment = _(
+            "Reverse charge self invoice.\n"
+            "Supplier: %s\n"
+            "Reference: %s\n"
+            "Date: %s\n"
+            "Internal reference: %s") % (
+            self.partner_id.display_name, self.reference or '', self.date,
+            self.number
+        )
         return {
             'partner_id': partner.id,
             'type': 'out_invoice',
@@ -53,6 +62,7 @@ class AccountInvoice(models.Model):
             'origin': self.number,
             'rc_purchase_invoice_id': self.id,
             'name': rc_type.self_invoice_text,
+            'comment': comment,
             }
 
     def get_inv_line_to_reconcile(self):
