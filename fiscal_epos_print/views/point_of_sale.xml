@@ -15,6 +15,7 @@
                         <field name="use_https"/>
                         <field name="fiscal_printer_serial"/>
                         <field name="show_receipt_when_printing"/>
+                        <field name="fiscal_cashdrawer"/>
                     </group>
                 </xpath>
             </field>
