@@ -447,6 +447,13 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             this.fiscalPrinter.send(this.url, xml);
         },
 
+        printFiscalReprintLast: function() {
+            var xml = '<printerCommand>';
+            xml += '<printDuplicateReceipt operator="1" />';
+            xml += '</printerCommand>';
+            this.fiscalPrinter.send(this.url, xml);
+        },
+
     });
 
     return {

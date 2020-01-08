@@ -116,6 +116,39 @@ odoo.define("fiscal_epos_print.chrome", function (require) {
         },
     });
 
+    var PrinterFiscalReprintLast = PosBaseWidget.extend({
+        template: 'PrinterFiscalReprintLast',
+
+        button_click: function () {
+            var self = this;
+            this.chrome.loading_show();
+            this.chrome.loading_message(_t('Connecting to the fiscal printer'));
+            var protocol = ((this.pos.config.use_https) ? 'https://' : 'http://');
+            var printer_url = protocol + this.pos.config.printer_ip + '/cgi-bin/fpmate.cgi';
+            var printer_options = {url: printer_url, requested_z_report: true};
+            var fp90 = new eposDriver(printer_options, this);
+
+            this.gui.show_popup('confirm',{
+                'title': _t('Confirm Print Last Receipt?'),
+                'body': _t('Please confirm to print the last receipt'),
+                confirm: function(){
+                    fp90.printFiscalReprintLast();
+                },
+                cancel: function(){
+                    self.chrome.loading_hide();
+                },
+            });
+        },
+
+        renderElement: function () {
+            var self = this;
+            this._super();
+            this.$el.click(function () {
+                self.button_click();
+            });
+        },
+    });
+
     var widgets = chrome.Chrome.prototype.widgets;
     widgets.push({
         'name': 'ADE files status',
@@ -153,11 +186,21 @@ odoo.define("fiscal_epos_print.chrome", function (require) {
         },
     });
 
+    widgets.push({
+        'name': _t('Reprinter Last Receipt'),
+        'widget': PrinterFiscalReprintLast,
+        'append': '.pos-rightheader',
+        'args': {
+            'label': 'Reprinter Last Receipt',
+        },
+    });
+
     return {
         FiscalPrinterADEFilesButtonWidget: FiscalPrinterADEFilesButtonWidget,
         PrinterFiscalClosure: PrinterFiscalClosure,
         PrinterFiscalXReport: PrinterFiscalXReport,
         PrinterFiscalOpenCashDrawer: PrinterFiscalOpenCashDrawer,
+        PrinterFiscalReprintLast: PrinterFiscalReprintLast,
     };
 
 });
