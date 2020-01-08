@@ -47,6 +47,16 @@ odoo.define("fiscal_epos_print.screens", function (require) {
     });
 
     PaymentScreenWidget.include({
+        show: function() {
+            this._super.apply(this, arguments);
+            if (this.pos.config.printer_ip) {
+                var currentOrder = this.pos.get_order();
+                var printer_options = currentOrder.getPrinterOptions();
+                var fp90 = new eposDriver(printer_options, this);
+                var amount = this.format_currency(currentOrder.get_total_with_tax());
+                fp90.printDisplayText(_t("SubTotal") + " " + amount);
+            }
+        },
         sendToFP90Printer: function(receipt, printer_options) {
             var fp90 = new eposDriver(printer_options, this);
             fp90.printFiscalReceipt(receipt);
