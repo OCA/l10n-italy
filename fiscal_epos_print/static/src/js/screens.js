@@ -60,17 +60,11 @@ odoo.define("fiscal_epos_print.screens", function (require) {
             this._super.apply(this, arguments);
             if (this.pos.config.printer_ip) {
                 var currentOrder = this.pos.get_order();
-                var printer_options = this.getPrinterOptions();
+                var printer_options = currentOrder.getPrinterOptions();
                 var fp90 = new eposDriver(printer_options, this);
                 var amount = this.format_currency(currentOrder.get_total_with_tax());
                 fp90.printDisplayText(_t("SubTotal") + " " + amount);
             }
-        },
-
-        getPrinterOptions: function (){
-            var protocol = ((this.pos.config.use_https) ? 'https://' : 'http://');
-            var printer_url = protocol + this.pos.config.printer_ip + '/cgi-bin/fpmate.cgi';
-            return {url: printer_url};
         },
 
         sendToFP90Printer: function(receipt, printer_options) {
@@ -85,11 +79,12 @@ odoo.define("fiscal_epos_print.screens", function (require) {
             var currentOrder = this.pos.get_order();
             this._super.apply(this, arguments);
             if (this.pos.config.printer_ip && !currentOrder.is_to_invoice()) {
-                var printer_options = this.getPrinterOptions();
+                this.chrome.loading_show();
+                this.chrome.loading_message(_t('Connecting to the fiscal printer'));
+                var printer_options = currentOrder.getPrinterOptions();
                 printer_options.order = currentOrder;
                 var receipt = currentOrder.export_for_printing();
                 this.sendToFP90Printer(receipt, printer_options);
-                currentOrder._printed = true;
             }
         },
 
