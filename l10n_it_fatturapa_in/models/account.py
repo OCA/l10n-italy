@@ -57,7 +57,10 @@ class AccountInvoice(models.Model):
         error_message = ''
         if (self.e_invoice_amount_untaxed and
                 float_compare(self.amount_untaxed,
-                              self.e_invoice_amount_untaxed,
+                              # Using abs because odoo invoice total can't be negative,
+                              # while XML total can.
+                              # See process_negative_lines method
+                              abs(self.e_invoice_amount_untaxed),
                               precision_rounding=self.currency_id
                               .rounding) != 0):
             error_message = (
@@ -74,7 +77,7 @@ class AccountInvoice(models.Model):
         error_message = ''
         if (self.e_invoice_amount_tax and
                 float_compare(self.amount_tax,
-                              self.e_invoice_amount_tax,
+                              abs(self.e_invoice_amount_tax),
                               precision_rounding=self.currency_id
                               .rounding) != 0):
             error_message = (
@@ -91,7 +94,7 @@ class AccountInvoice(models.Model):
         error_message = ''
         if (self.e_invoice_amount_total and
                 float_compare(self.amount_total,
-                              self.e_invoice_amount_total,
+                              abs(self.e_invoice_amount_total),
                               precision_rounding=self.currency_id
                               .rounding) != 0):
             error_message = (
@@ -217,6 +220,16 @@ class AccountInvoice(models.Model):
             'e_invoice_reference': reference,
             'e_invoice_date_invoice': date_invoice,
         })
+
+    def process_negative_lines(self):
+        self.ensure_one()
+        for line in self.invoice_line_ids:
+            if line.price_unit >= 0:
+                return
+        # if every line is negative, change them all
+        for line in self.invoice_line_ids:
+            line.price_unit = -line.price_unit
+        self.compute_taxes()
 
 
 class FatturapaArticleCode(models.Model):
