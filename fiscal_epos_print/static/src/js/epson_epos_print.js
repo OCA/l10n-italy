@@ -333,6 +333,14 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             return tag;
         },
 
+        printDisplayText: function(msg) {
+            var xml = '<printerCommand>'
+                + '<displayText '
+                + ' operator="1" text="' + this.encodeXml(msg || '') + '"'
+                + ' /></printerCommand>';
+            this.fiscalPrinter.send(this.url, xml);
+        },
+
         /*
           Prints a receipt
         */

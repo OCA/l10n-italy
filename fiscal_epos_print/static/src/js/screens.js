@@ -56,6 +56,17 @@ odoo.define("fiscal_epos_print.screens", function (require) {
     });
 
     PaymentScreenWidget.include({
+        show: function() {
+            this._super.apply(this, arguments);
+            if (this.pos.config.printer_ip) {
+                var currentOrder = this.pos.get_order();
+                var printer_options = this.getPrinterOptions();
+                var fp90 = new eposDriver(printer_options, this);
+                var amount = this.format_currency(currentOrder.get_total_with_tax());
+                fp90.printDisplayText(_t("SubTotal") + " " + amount);
+            }
+        },
+
         getPrinterOptions: function (){
             var protocol = ((this.pos.config.use_https) ? 'https://' : 'http://');
             var printer_url = protocol + this.pos.config.printer_ip + '/cgi-bin/fpmate.cgi';
