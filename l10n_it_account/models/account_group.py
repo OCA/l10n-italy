@@ -1,6 +1,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, models, fields
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -10,33 +10,100 @@ class AccountGroup(models.Model):
     account_ids = fields.One2many(
         comodel_name='account.account',
         inverse_name='group_id',
-        string="Accounts")
+        string="Accounts",
+    )
     account_balance_sign = fields.Integer(
-        "Balance sign", compute="_compute_account_balance_sign")
+        compute="_compute_account_balance_sign",
+        string="Balance sign",
+    )
 
-    @api.constrains('account_ids')
-    def check_constrain_account_types(self):
-        error_msg = '\n'.join([
-            _("Cannot link accounts of different types to group '{}'."
-              .format(group.name))
-            for group in self
-            if len(group.account_ids.mapped('user_type_id')) > 1
-        ])
-        if error_msg:
-            raise ValidationError(error_msg)
+    @api.constrains('parent_id')
+    def check_parent_recursion(self):
+        for group in self:
+            try:
+                group.get_group_parents()
+            except ValidationError as err:
+                raise ValidationError(
+                    _("Can't set '{}' as parent for group '{}'."
+                      "\n{}")
+                    .format(group.parent_id.name_get()[0][-1],
+                            group.name_get()[0][-1],
+                            err.name)
+                )
 
-    def get_first_account_type(self):
-        if self.account_ids:
-            return self.account_ids[0].user_type_id
-        children = self.search([('parent_id', '=', self.id)])
-        for child in children:
-            return child.get_first_account_type()
+    @api.constrains('account_ids', 'parent_id')
+    def check_balance_sign_coherence(self):
+        """
+        Checks whether every group (plus parents and subgroups) have the same
+        balance sign. This is done by first retrieving every group's progenitor
+        and then checking, for each of them, the account types' for accounts
+        linked to such progenitor group and its subgroups.
+        """
+        # Force recursion check
+        self.check_parent_recursion()
+        done_group_ids, progenitor_ids = [], []
+        for group in self:
+            if group.id in done_group_ids:
+                continue
+            progenitor = group.get_group_progenitor()
+            progenitor_ids.append(progenitor.id)
+            done_group_ids.extend(progenitor.get_group_subgroups().ids)
+
+        for progenitor in self.browse(tuple(set(progenitor_ids))):
+            accounts = progenitor.get_group_accounts()
+            if not accounts.mapped('user_type_id').have_same_sign():
+                raise ValidationError(
+                    _("Incoherent balance signs for '{}' and its subgroups.")
+                    .format(progenitor.name_get()[0][-1])
+                )
 
     @api.multi
     def _compute_account_balance_sign(self):
         for group in self:
-            acc_type = group.get_first_account_type()
-            if acc_type:
-                group.account_balance_sign = acc_type.account_balance_sign
-            else:
-                group.account_balance_sign = 1
+            group.account_balance_sign = group.get_account_balance_sign()
+
+    def get_account_balance_sign(self):
+        self.ensure_one()
+        progenitor = self.get_group_progenitor()
+        types = progenitor.get_group_accounts().mapped('user_type_id')
+        if types:
+            return types[0].account_balance_sign
+        return 1
+
+    def get_group_accounts(self):
+        """ Retrieves every account from `self` and `self`'s subgroups. """
+        return (self + self.get_group_subgroups()).mapped('account_ids')
+
+    def get_group_progenitor(self):
+        self.ensure_one()
+        if not self.parent_id:
+            return self
+        return self.get_group_parents().filtered(lambda g: not g.parent_id)
+
+    def get_group_parents(self):
+        """
+        Retrieves every parent for group `self`.
+        :return: group's parents as recordset, or empty recordset if `self`
+        has no parents. If a recursion is found, an error is raised.
+        """
+        self.ensure_one()
+        parent_ids = []
+        parent = self.parent_id
+        while parent:
+            parent_ids.append(parent.id)
+            parent = parent.parent_id
+            if parent == self:
+                raise ValidationError(
+                    _("A recursion in '{}' parents has been found.")
+                    .format(self.name_get()[0][-1])
+                )
+        return self.browse(parent_ids)
+
+    def get_group_subgroups(self):
+        """ Retrieves every subgroup for groups `self`. """
+        # Avoid recursion upon empty recordsets
+        if not self:
+            return self
+        subgroups = self.search([('parent_id', 'in', self.ids)])
+        subgroup_ids = subgroups.ids + subgroups.get_group_subgroups().ids
+        return self.browse(tuple(set(subgroup_ids)))
