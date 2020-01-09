@@ -7,5 +7,12 @@ class Account(models.Model):
     _inherit = 'account.account'
 
     @api.constrains('group_id')
-    def check_group_constrain_account_types(self):
-        self.mapped('group_id').check_constrain_account_types()
+    def check_balance_sign_coherence(self):
+        """
+        Checks whether adding an account to (or removing it from) a group
+        creates incoherencies in account groups' balance signs.
+        """
+        groups = self.mapped('group_id')
+        # Avoid check upon empty recordset to make it faster
+        if groups:
+            groups.check_balance_sign_coherence()
