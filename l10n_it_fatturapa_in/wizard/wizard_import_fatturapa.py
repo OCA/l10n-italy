@@ -975,6 +975,8 @@ class WizardImportFatturapa(models.TransientModel):
 
         # compute the invoice
         invoice.compute_taxes()
+        # this can happen with refunds with negative amounts
+        invoice.process_negative_lines()
         return invoice_id
 
     def set_vendor_bill_data(self, FatturaBody, invoice):

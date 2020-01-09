@@ -523,6 +523,33 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.invoice_line_ids[1].price_subtotal, 0)
         self.assertEqual(invoice.amount_total, 12.2)
 
+    def test_32_xml_import(self):
+        # Refund with positive total
+        res = self.run_wizard('test32', 'IT01234567890_FPR06.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.type, 'in_refund')
+        self.assertEqual(invoice.amount_total, 18.3)
+        self.assertEqual(invoice.invoice_line_ids[0].price_unit, 2.0)
+        self.assertEqual(invoice.invoice_line_ids[0].quantity, 10.0)
+        self.assertEqual(invoice.invoice_line_ids[0].price_subtotal, 20.0)
+        self.assertEqual(invoice.invoice_line_ids[1].price_unit, -1.0)
+        self.assertEqual(invoice.invoice_line_ids[1].quantity, 5.0)
+        self.assertEqual(invoice.invoice_line_ids[1].price_subtotal, -5.0)
+
+    def test_33_xml_import(self):
+        # Refund with negative total
+        res = self.run_wizard('test33', 'IT01234567890_FPR07.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.type, 'in_refund')
+        self.assertEqual(invoice.amount_total, 24.4)
+        self.assertEqual(invoice.invoice_line_ids[0].price_unit, 2.0)
+        self.assertEqual(invoice.invoice_line_ids[0].quantity, 10.0)
+        self.assertEqual(invoice.invoice_line_ids[0].price_subtotal, 20.0)
+        self.assertEqual(invoice.e_invoice_amount_untaxed, -20.0)
+        self.assertEqual(invoice.e_invoice_amount_tax, -4.4)
+
     def test_01_xml_link(self):
         """
         E-invoice lines are created.
