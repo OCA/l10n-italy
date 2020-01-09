@@ -39,7 +39,7 @@ odoo.define("fiscal_epos_print.chrome", function (require) {
             this.chrome.loading_message(_t('Connecting to the fiscal printer'));
             var protocol = ((this.pos.config.use_https) ? 'https://' : 'http://');
             var printer_url = protocol + this.pos.config.printer_ip + '/cgi-bin/fpmate.cgi';
-            var printer_options = {url: printer_url, requested_z_report: true};
+            var printer_options = {url: printer_url};
             var fp90 = new eposDriver(printer_options, this);
             this.gui.show_popup('confirm', {
                 'title': _t('Confirm Printer Fiscal Closure (Report Z)?'),
@@ -71,7 +71,7 @@ odoo.define("fiscal_epos_print.chrome", function (require) {
             this.chrome.loading_message(_t('Connecting to the fiscal printer'));
             var protocol = ((this.pos.config.use_https) ? 'https://' : 'http://');
             var printer_url = protocol + this.pos.config.printer_ip + '/cgi-bin/fpmate.cgi';
-            var printer_options = {url: printer_url, requested_z_report: true};
+            var printer_options = {url: printer_url};
             var fp90 = new eposDriver(printer_options, this);
             this.gui.show_popup('confirm', {
                 'title': _t('Confirm Printer Daily Financial Report (Report X)?'),
@@ -102,7 +102,7 @@ odoo.define("fiscal_epos_print.chrome", function (require) {
             this.chrome.loading_message(_t('Connecting to the fiscal printer'));
             var protocol = ((this.pos.config.use_https) ? 'https://' : 'http://');
             var printer_url = protocol + this.pos.config.printer_ip + '/cgi-bin/fpmate.cgi';
-            var printer_options = {url: printer_url, requested_z_report: true};
+            var printer_options = {url: printer_url};
             var fp90 = new eposDriver(printer_options, this);
             fp90.printOpenCashDrawer();
         },
@@ -125,7 +125,7 @@ odoo.define("fiscal_epos_print.chrome", function (require) {
             this.chrome.loading_message(_t('Connecting to the fiscal printer'));
             var protocol = ((this.pos.config.use_https) ? 'https://' : 'http://');
             var printer_url = protocol + this.pos.config.printer_ip + '/cgi-bin/fpmate.cgi';
-            var printer_options = {url: printer_url, requested_z_report: true};
+            var printer_options = {url: printer_url};
             var fp90 = new eposDriver(printer_options, this);
 
             this.gui.show_popup('confirm',{

@@ -124,19 +124,31 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             this.fpresponse = false;
             this.sender = sender;
             this.order = options.order || null;
-            this.requested_z_report = options.requested_z_report || false;
             this.fiscalPrinter.onreceive = function(res, tag_list_names, add_info) {
                 sender.chrome.loading_hide();
                 self.fpresponse = tag_list_names;
-                var tagStatus = tag_list_names.filter(getStatusField);
-                if (res['code'] == "EPTR_REC_EMPTY"){
+                var tagStatus = (tag_list_names ? tag_list_names.filter(getStatusField) : []);
+                var msgPrinter = "";
+
+                if (tagStatus.length > 0 && res.success) {
+                    var info = add_info[tagStatus[0]];
+                    res.success = !isErrorStatus(info);
+                }
+
+                if (!res.success) {
+                    if (tagStatus.length > 0) {
+                        var info = add_info[tagStatus[0]];
+                        var msgPrinter = decodeFpStatus(info);
+                    }
                     sender.chrome.screens['receipt'].lock_screen(true);
                     sender.pos.gui.show_popup('error', {
-                        'title': _t('Error'),
-                        'body': _t('Missing paper'),
+                        'title': _t('Connection to the printer failed'),
+                        'body': _t('An error happened while sending data to the printer. Error code: ') + (res.code || '') + '\n' + _t('Error Message: ') + msgPrinter,
                     });
+                    return;
                 }
-                else if (add_info.responseCommand == "1138") {
+
+                if (add_info.responseCommand == "1138") {
                     // coming from FiscalPrinterADEFilesButtonWidget
                     var to_be_sent = add_info.responseData[9] + add_info.responseData[10] + add_info.responseData[11] + add_info.responseData[12];
                     var old = add_info.responseData[13] + add_info.responseData[14] + add_info.responseData[15] + add_info.responseData[16];
@@ -146,50 +158,33 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                         'title': _t('ADE files'),
                         'body': msg,
                     });
+                    return;
                 }
-                else if (tagStatus.length > 0 && res.success) {
-                    var info = add_info[tagStatus[0]];
-                    var msgPrinter = decodeFpStatus(info);
-                    if (!isErrorStatus(info)) {
-                        // Z report can be printed from header bar: we just need to hide the loading screen, done above
-                        if (!self.requested_z_report) {
-                            sender.chrome.screens['receipt'].lock_screen(false);
-                            var order = self.order;
-                            order._printed = true;
-                            if (!order.fiscal_receipt_number) {
-                                order.fiscal_receipt_number = parseInt(add_info.fiscalReceiptNumber);
-                                order.fiscal_receipt_amount = parseFloat(add_info.fiscalReceiptAmount.replace(',', '.'));
-                                order.fiscal_receipt_date = add_info.fiscalReceiptDate;
-                                order.fiscal_z_rep_number = add_info.zRepNumber;
-                                order.fiscal_printer_serial = sender.pos.config.fiscal_printer_serial;
-                                sender.pos.db.add_order(order.export_as_JSON());
-                                // try to save the order
-                                sender.pos.push_order();
-                            }
-                            if (!sender.pos.config.show_receipt_when_printing) {
-                                sender.chrome.screens['receipt'].click_next();
-                            }
-                            if(sender.pos.config.fiscal_cashdrawer)
-                            {
-                                self.printOpenCashDrawer();
-                            }
-                        }
+
+                // is it a receipt data?
+                if (add_info.fiscalReceiptNumber && add_info.fiscalReceiptAmount && add_info.fiscalReceiptDate && add_info.zRepNumber) {
+                    sender.chrome.screens['receipt'].lock_screen(false);
+                    var order = self.order;
+                    order._printed = true;
+                    if (!order.fiscal_receipt_number) {
+                        order.fiscal_receipt_number = parseInt(add_info.fiscalReceiptNumber);
+                        order.fiscal_receipt_amount = parseFloat(add_info.fiscalReceiptAmount.replace(',', '.'));
+                        order.fiscal_receipt_date = add_info.fiscalReceiptDate;
+                        order.fiscal_z_rep_number = add_info.zRepNumber;
+                        order.fiscal_printer_serial = sender.pos.config.fiscal_printer_serial;
+                        sender.pos.db.add_order(order.export_as_JSON());
+                        // try to save the order
+                        sender.pos.push_order();
                     }
-                    else {
-                        sender.chrome.screens['receipt'].lock_screen(true);
-                        sender.pos.gui.show_popup('error', {
-                            'title': _t('Connection to the printer failed'),
-                            'body': msgPrinter,
-                        });
-                    };
+                    if (!sender.pos.config.show_receipt_when_printing) {
+                        sender.chrome.screens['receipt'].click_next();
+                    }
+                    if(sender.pos.config.fiscal_cashdrawer)
+                    {
+                        self.printOpenCashDrawer();
+                    }
+                    return;
                 }
-                else if (!res.success) {
-                    sender.chrome.screens['receipt'].lock_screen(true);
-                    sender.pos.gui.show_popup('error', {
-                        'title': _t('Connection to the printer failed'),
-                        'body': _t('An error happened while sending data to the printer. Error code: ') + res.code,
-                    });
-                };
             }
             this.fiscalPrinter.onerror = function() {
                 sender.chrome.loading_hide();
