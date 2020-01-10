@@ -85,6 +85,53 @@ odoo.define('fiscal_epos_print.models', function (require) {
             return {url: printer_url};
         },
 
+        get_total_with_tax: function() {
+            if (this.pos.config.iface_tax_included) {
+                if (this.pos.company.tax_calculation_rounding_method === "round_globally") {
+                    return this.get_subtotal();
+                }
+                else {
+                    return this.get_total_without_tax() + this.get_total_tax();
+                }
+            } else {
+                return this._super();
+            }
+        },
+
+        // TODO: Do we need to call the super?
+        // The problem here is that the v10 has wrong calculation when rounding globally
+        get_total_tax: function() {
+            if (this.pos.company.tax_calculation_rounding_method === "round_globally") {
+                // As always, we need:
+                // 1. For each tax, sum their amount across all order lines
+                // 2. Round that result
+                // 3. Sum all those rounded amounts
+                var groupTaxes = {};
+                this.orderlines.each(function (line) {
+                    var taxDetails = line.get_tax_details();
+                    var taxIds = Object.keys(taxDetails);
+                    for (var t = 0; t<taxIds.length; t++) {
+                        var taxId = taxIds[t];
+                        if (!(taxId in groupTaxes)) {
+                            groupTaxes[taxId] = 0;
+                        }
+                        groupTaxes[taxId] += taxDetails[taxId];
+                    }
+                });
+
+                var sum = 0;
+                var taxIds = Object.keys(groupTaxes);
+                for (var j = 0; j<taxIds.length; j++) {
+                    var taxAmount = groupTaxes[taxIds[j]];
+                    sum += round_pr(taxAmount, this.pos.currency.rounding);
+                }
+                return sum;
+            } else {
+                return round_pr(this.orderlines.reduce((function(sum, orderLine) {
+                    return sum + orderLine.get_tax();
+                }), 0), this.pos.currency.rounding);
+            }
+        },
     });
 
     var _orderline_super = models.Orderline.prototype;
@@ -107,9 +154,33 @@ odoo.define('fiscal_epos_print.models', function (require) {
                 'body': _t('No taxes found'),
             });
         },
+        // stolen from v12
+        _compute_all: function(tax, base_amount, quantity) {
+            if (tax.amount_type === 'fixed') {
+                var sign_base_amount = Math.sign(base_amount) || 1;
+                // Since base amount has been computed with quantity
+                // we take the abs of quantity
+                // Same logic as bb72dea98de4dae8f59e397f232a0636411d37ce
+                return tax.amount * sign_base_amount * Math.abs(quantity);
+            }
+            if ((tax.amount_type === 'percent' && !tax.price_include) || (tax.amount_type === 'division' && tax.price_include)){
+                return base_amount * tax.amount / 100;
+            }
+            if (tax.amount_type === 'percent' && tax.price_include){
+                return base_amount - (base_amount / (1 + tax.amount / 100));
+            }
+            if (tax.amount_type === 'division' && !tax.price_include) {
+                return base_amount / (1 - tax.amount / 100) - base_amount;
+            }
+            return false;
+        },
         compute_all: function(taxes, price_unit, quantity, currency_rounding, no_map_tax) {
             var res = _orderline_super.compute_all.call(this, taxes, price_unit, quantity, currency_rounding, no_map_tax);
             var self = this;
+
+            if (this.pos.company.tax_calculation_rounding_method == "round_globally"){
+               currency_rounding = currency_rounding * 0.00001;
+            }
 
             var total_excluded = round_pr(price_unit * quantity, currency_rounding);
             var total_included = total_excluded;

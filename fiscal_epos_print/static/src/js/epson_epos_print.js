@@ -345,6 +345,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
         */
         printFiscalReceipt: function(receipt) {
             var self = this;
+            var currency_rounding = self.sender.pos.currency.rounding;
             var has_refund = _.every(receipt.orderlines, function(line) {
                 return line.quantity < 0;
             });
@@ -369,7 +370,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                     if(l.quantity>=0) {
                         var full_price = l.price;
                         if (l.discount) {
-                            full_price = round_pr(l.price / (1 - (l.discount / 100)), self.sender.pos.currency.rounding);
+                            full_price = round_pr(l.price / (1 - (l.discount / 100)), currency_rounding);
                         }
                         xml += self.printRecItem({
                             description: l.product_name,
@@ -381,7 +382,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                             xml += self.printRecItemAdjustment({
                                 adjustmentType: 0,
                                 description: _t('Discount') + ' ' + l.discount + '%',
-                                amount: round_pr(l.quantity * (full_price - l.price), self.sender.pos.currency.rounding),
+                                amount: round_pr(l.quantity * (full_price - l.price), currency_rounding),
                             });
                         }
                     }
