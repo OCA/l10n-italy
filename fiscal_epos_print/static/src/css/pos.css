@@ -5,14 +5,17 @@
     position: absolute;
     right: 10px;
     top: 10px;
-    width: 200px;
-    font-size: 13px;
+    width: 236px;
+    font-size: 14px;
 
     background: rgba(0,0,0,0.82);
     color: white;
     padding-bottom: 10px;
     cursor: move;
     -webkit-transform: translate3d(0,0,0);
+}
+.pos .pos-rightheader .header-button > img {
+    vertical-align: middle;
 }
 .pos .epson-fp81ii-widget .toggle {
     position: absolute;
@@ -38,6 +41,7 @@
     padding-left: 10px;
     margin: 0px;
     font-weight: bold;
+    font-size: 16px;
     padding-top:3px;
     padding-bottom:3px;
 }
@@ -47,9 +51,13 @@
     display: block;
     cursor:pointer;
 }
+.pos .epson-fp81ii-widget .button:hover{
+    background: #546E7A;
+}
 .pos .epson-fp81ii-widget .category-label {
     position: relative;
-    top: -8px;
+    padding: 4px;
+    top: -12px;
 }
 .pos .epson-fp81ii-widget li img {
     min-width: 32px;
