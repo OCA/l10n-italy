@@ -2,8 +2,8 @@
 <templates id="template" xml:space="preserve">
 
     <t t-name="EpsonEPOSWidget">
-        <div class="header-button" style="padding-top:5px">
-            <img src="/fiscal_epos_print/static/src/img/epos.png" alt="Epson ePOS" title="Epson ePOS Operation"/>
+        <div class="header-button">
+            <img src="/fiscal_epos_print/static/src/img/epos.svg" alt="Epson ePOS" title="Epson ePOS Operation" />
         </div>
     </t>
 
@@ -92,7 +92,7 @@
                     <li>
                         <div class="button open_cashdrawer" style="padding-top:5px">
                             <span>
-                                <img src="/fiscal_epos_print/static/src/img/cashdrawer.png" alt="Open CashDrawer" title="Open CashDrawer"/>
+                                <img src="/fiscal_epos_print/static/src/img/cashdrawer.svg" alt="Open CashDrawer" title="Open CashDrawer"/>
                             </span>
                             <span class="category-label">
                                 Open CashDrawer
@@ -102,7 +102,7 @@
                     <li>
                         <div class="button reprint_last_receipt" style="padding-top:5px">
                             <span>
-                                <img src="/fiscal_epos_print/static/src/img/reprint.png" alt="Reprint Last Receipt" title="Reprint last receipt"/>
+                                <img src="/fiscal_epos_print/static/src/img/reprint.svg" alt="Reprint Last Receipt" title="Reprint last receipt"/>
                             </span>
                             <span class="category-label">
                                 Reprint last receipt
@@ -115,7 +115,7 @@
                     <li>
                         <div class="button show_ade_status" style="padding-top:5px">
                             <span>
-                                <img src="/fiscal_epos_print/static/src/img/ade-logo.png" alt="ADE status" title="Status of files to be sent to ADE"/>
+                                <img src="/fiscal_epos_print/static/src/img/ade-logo.svg" alt="ADE status" title="Status of files to be sent to ADE"/>
                             </span>
                             <span class="category-label">
                                 ADE Status
@@ -125,7 +125,7 @@
                     <li>
                         <div class="button fiscal_closing" style="padding-top:5px">
                             <span>
-                                <img src="/fiscal_epos_print/static/src/img/Z.png" alt="Fiscal closure" title="Send fiscal closure command to the fiscal printer"/>
+                                <img src="/fiscal_epos_print/static/src/img/Z.svg" alt="Fiscal closure" title="Send fiscal closure command to the fiscal printer"/>
                             </span>
                             <span class="category-label">
                                 Closure Report Z (Fiscal)
@@ -135,7 +135,7 @@
                     <li>
                         <div class="button fiscal_xreport" style="padding-top:5px">
                             <span>
-                                <img src="/fiscal_epos_print/static/src/img/X.png" alt="Fiscal closure" title="Send fiscal X report to the fiscal printer"/>
+                                <img src="/fiscal_epos_print/static/src/img/X.svg" alt="Fiscal closure" title="Send fiscal X report to the fiscal printer"/>
                             </span>
                             <span class="category-label">
                                 Financial Report X
