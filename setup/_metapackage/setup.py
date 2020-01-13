@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo12-addon-l10n_it_abicab',
         'odoo12-addon-l10n_it_account',
         'odoo12-addon-l10n_it_account_stamp',
+        'odoo12-addon-l10n_it_account_stamp_ddt',
         'odoo12-addon-l10n_it_account_tax_kind',
         'odoo12-addon-l10n_it_causali_pagamento',
         'odoo12-addon-l10n_it_central_journal',
