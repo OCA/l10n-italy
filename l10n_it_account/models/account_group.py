@@ -41,7 +41,10 @@ class AccountGroup(models.Model):
         """
         # Force recursion check
         self.check_parent_recursion()
-        done_group_ids, progenitor_ids = [], []
+        if self.env.context.get('skip_check_balance_sign_coherence'):
+            return
+        done_group_ids = []
+        progenitor_ids = []
         for group in self:
             if group.id in done_group_ids:
                 continue
