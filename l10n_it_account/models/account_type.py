@@ -29,7 +29,8 @@ class AccountType(models.Model):
         for xml_id in ACCOUNT_TYPES_NEGATIVE_SIGN:
             acc_type = self.env.ref(xml_id, raise_if_not_found=False)
             if acc_type:
-                acc_type.account_balance_sign = -1
+                acc_type.with_context(
+                    skip_check_balance_sign_coherence=True).account_balance_sign = -1
 
     @api.constrains('account_balance_sign')
     def check_balance_sign_value(self):
