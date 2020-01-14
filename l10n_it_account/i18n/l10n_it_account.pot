@@ -20,6 +20,12 @@ msgid "<br/>\n"
 msgstr ""
 
 #. module: l10n_it_account
+#: code:addons/l10n_it_account/models/account_group.py:99
+#, python-format
+msgid "A recursion in '{}' parents has been found."
+msgstr ""
+
+#. module: l10n_it_account
 #: model:ir.model,name:l10n_it_account.model_account_account
 msgid "Account"
 msgstr ""
@@ -53,14 +59,27 @@ msgid "Balance sign"
 msgstr ""
 
 #. module: l10n_it_account
-#: code:addons/l10n_it_account/models/account_group.py:21
+#: code:addons/l10n_it_account/models/account_type.py:42
 #, python-format
-msgid "Cannot link accounts of different types to group '{}'."
+msgid "Balance sign's value can only be 1 or -1."
+msgstr ""
+
+#. module: l10n_it_account
+#: code:addons/l10n_it_account/models/account_group.py:27
+#, python-format
+msgid "Can't set '{}' as parent for group '{}'.\n"
+"{}"
 msgstr ""
 
 #. module: l10n_it_account
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__cee_type
 msgid "Include in VAT register"
+msgstr ""
+
+#. module: l10n_it_account
+#: code:addons/l10n_it_account/models/account_group.py:58
+#, python-format
+msgid "Incoherent balance signs for '{}' and its subgroups."
 msgstr ""
 
 #. module: l10n_it_account
