@@ -8,7 +8,7 @@ class AccountJournal(models.Model):
         [
             ('0', 'Cash'),
             ('1', 'Cheque'),
-            ('2', 'Credit/Credit Card'),
+            ('2', 'Not collected / Electronic payment'),
             ('3', 'Ticket')
         ],
         'Payment type',
@@ -17,7 +17,7 @@ class AccountJournal(models.Model):
     )
 
     fiscalprinter_payment_index = fields.Integer(
-        string='Credit Card/Ticket Index',
+        string='Electronic Payment / Ticket Index',
         help='Set the index of the given payment type to specify the detail. '
              'Such index of the payment type must programmed on the fiscal '
              'printer')

@@ -1,46 +1,50 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* fiscal_epos_print
+# 	* fiscal_epos_print
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-12 08:14+0000\n"
-"PO-Revision-Date: 2019-12-12 08:14+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2020-01-15 09:38+0000\n"
+"PO-Revision-Date: 2020-01-15 10:42+0100\n"
+"Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"Language: it\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #. module: fiscal_epos_print
 #. openerp-web
 #: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:34
-#: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:277
 #, python-format
-msgid "\n"
+msgid ""
+"\n"
 "Old files: "
-msgstr "\n"
+msgstr ""
+"\n"
 "File vecchi: "
 
 #. module: fiscal_epos_print
 #. openerp-web
 #: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:34
-#: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:277
 #, python-format
-msgid "\n"
+msgid ""
+"\n"
 "Rejected files: "
-msgstr "\n"
+msgstr ""
+"\n"
 "File rifiutati: "
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:644
+#: code:addons/fiscal_epos_print/static/src/js/pos_order_mgmt.js:39
 #, python-format
-msgid "ADE files status"
-msgstr "Stato dei file ADE"
+msgid ": order already has a fiscal number, "
+msgstr ": l'ordine ha già un numero fiscale\t, "
 
 #. module: fiscal_epos_print
 #. openerp-web
@@ -51,14 +55,21 @@ msgstr "Stato ADE"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:62
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:147
+#, python-format
+msgid "An error happened while sending data to the printer. Error code: "
+msgstr "Si è verificato un errore inviando i dati alla stampante. Codice errore: "
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:70
 #, python-format
 msgid "Apply"
 msgstr "Applica"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:65
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:73
 #, python-format
 msgid "Cancel"
 msgstr "Annulla"
@@ -75,37 +86,79 @@ msgstr "Assegni"
 
 #. module: fiscal_epos_print
 #. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:49
+#, python-format
+msgid "Closing Seq."
+msgstr "Seq. chiusura"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:130
+#, python-format
+msgid "Closure Report Z (Fiscal)"
+msgstr "Report Z di chiusura (fiscale)"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/chrome.js:128
+#, python-format
+msgid "Confirm Printer Daily Financial Report (Report X)?"
+msgstr "Confermare stampa finanziaria giornaliera (rendiconto X)?"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/chrome.js:110
+#, python-format
+msgid "Confirm Printer Fiscal Closure (Report Z)?"
+msgstr "Confermare stampa chiusura fiscale (rendiconto Z)?"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/chrome.js:97
+#: code:addons/fiscal_epos_print/static/src/js/chrome.js:106
+#: code:addons/fiscal_epos_print/static/src/js/chrome.js:124
+#: code:addons/fiscal_epos_print/static/src/js/chrome.js:142
+#: code:addons/fiscal_epos_print/static/src/js/chrome.js:151
 #: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:285
-#: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:624
+#: code:addons/fiscal_epos_print/static/src/js/pos_order_mgmt.js:44
+#: code:addons/fiscal_epos_print/static/src/js/screens.js:39
+#: code:addons/fiscal_epos_print/static/src/js/screens.js:72
 #, python-format
 msgid "Connecting to the fiscal printer"
 msgstr "Connessione alla stampante fiscale"
 
 #. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:146
+#, python-format
+msgid "Connection to the printer failed"
+msgstr "Connessione alla stmpante fallita"
+
+#. module: fiscal_epos_print
 #: model:ir.model.fields,field_description:fiscal_epos_print.field_account_journal__fiscalprinter_payment_index
-msgid "Credit Card/Ticket Index"
-msgstr "Index carta di credito / ticket"
+msgid "Electronic Payment / Ticket Index"
+msgstr "Index pagamento elettronico / ticket"
 
 #. module: fiscal_epos_print
 #: selection:account.journal,fiscalprinter_payment_type:0
-msgid "Credit/Credit Card"
-msgstr "Carta di credito"
+msgid "Not collected / Electronic payment"
+msgstr "Non riscosso / Pagamento elettronico"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:53
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:61
 #, python-format
 msgid "DDMMYYYY"
 msgstr "GGMMAAAA"
 
 #. module: fiscal_epos_print
 #: model:ir.model.fields,field_description:fiscal_epos_print.field_account_tax__fpdeptax
-msgid "Department group tax on fiscal printer 1~99"
+msgid "Department on fiscal printer 1~99"
 msgstr "Reparto sulla stampante fiscale 1~99"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:412
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:378
 #, python-format
 msgid "Discount"
 msgstr "Sconto"
@@ -117,11 +170,53 @@ msgstr "Numero documento"
 
 #. module: fiscal_epos_print
 #. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:6
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:87
+#, python-format
+msgid "Epson ePOS"
+msgstr "Epson ePOS"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:6
+#, python-format
+msgid "Epson ePOS Operation"
+msgstr "Operazione Epson ePOS"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/models.js:103
+#, python-format
+msgid "Error"
+msgstr "Errore"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:147
+#, python-format
+msgid "Error Message: "
+msgstr "Messaggio errore: "
+
+#. module: fiscal_epos_print
+#. openerp-web
 #: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:26
-#: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:269
 #, python-format
 msgid "Error missing paper."
 msgstr "Errore Manca La carta."
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:88
+#, python-format
+msgid "Error on last ESC/POS command with Fiscal/Non fiscal closed"
+msgstr "Errore ultimo comando ESC/POS con Fiscale/Non fiscale chiuso"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:94
+#, python-format
+msgid "Error on last ESC/POS command with Non fiscal open"
+msgstr "Errore ultimo comando ESC/POS con Non fiscale aperto"
 
 #. module: fiscal_epos_print
 #. openerp-web
@@ -132,23 +227,105 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:157
 #: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:34
-#: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:277
 #, python-format
 msgid "Files waiting to be sent: "
 msgstr "File in attesa di essere inviati: "
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:455
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:140
 #, python-format
-msgid "Fiscal Closing"
+msgid "Financial Report X"
+msgstr "Rendiconto finanziario X"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:67
+#, python-format
+msgid "Finished"
+msgstr "Esaurito"
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_config__fiscal_cashdrawer
+msgid "Fiscal Printer Open CashDrawer"
+msgstr "Aprire cassetto contanti stampante fiscale"
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_config__fiscal_printer_serial
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__fiscal_printer_serial
+msgid "Fiscal Printer Serial"
+msgstr "Seriale stampante fiscale"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:128
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:138
+#, python-format
+msgid "Fiscal closure"
 msgstr "Chiusura fiscale"
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__fiscal_z_rep_number
+msgid "Fiscal closure number"
+msgstr "Numero chiusura fiscale"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:100
+#, python-format
+msgid "Fiscal document open"
+msgstr "Documento fiscale aperto"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:75
+#, python-format
+msgid "Fiscal open"
+msgstr "Fiscale aperto"
 
 #. module: fiscal_epos_print
 #: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_pos_config_printer_form
 msgid "Fiscal printer"
 msgstr "Stampante fiscale"
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__fiscal_receipt_amount
+msgid "Fiscal receipt amount"
+msgstr "Importo scontrino fiscale"
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__fiscal_receipt_date
+msgid "Fiscal receipt date"
+msgstr "Data scontrino fiscale"
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__fiscal_receipt_number
+msgid "Fiscal receipt number"
+msgstr "Numero scontrino fiscale"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:64
+#, python-format
+msgid "From other measurement device"
+msgstr "Di altro misuratore"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:159
+#, python-format
+msgid "IRA files"
+msgstr "Files ADE"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:118
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:120
+#, python-format
+msgid "IRA status"
+msgstr "Stato ADE"
 
 #. module: fiscal_epos_print
 #. openerp-web
@@ -164,16 +341,29 @@ msgstr "Registro"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:43
-#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:48
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:51
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:56
 #, python-format
 msgid "Max 4 numbers"
 msgstr "Massimo 4 numeri"
 
 #. module: fiscal_epos_print
 #. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:91
+#, python-format
+msgid "Negative receipt"
+msgstr "Scontrino in negativo"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:195
+#, python-format
+msgid "Network error"
+msgstr "Errore rete"
+
+#. module: fiscal_epos_print
+#. openerp-web
 #: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:41
-#: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:284
 #, python-format
 msgid "Network error. Printer can not be reached"
 msgstr "Errore di rete. La stampante non può essere raggiunta"
@@ -181,29 +371,100 @@ msgstr "Errore di rete. La stampante non può essere raggiunta"
 #. module: fiscal_epos_print
 #. openerp-web
 #: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:164
-#: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:485
+#: code:addons/fiscal_epos_print/static/src/js/models.js:104
 #, python-format
 msgid "No taxes found"
 msgstr "Nessuna imposta trovata"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:46
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:82
 #, python-format
-msgid "Num. Scontrino"
-msgstr ""
+msgid "Non fiscal open"
+msgstr "Non fiscale aperto"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:350
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:44
+#, python-format
+msgid "Offline (end of paper or open cover)"
+msgstr "Offline (fine carta o coperchio aperto)"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:157
+#, python-format
+msgid "Old files: "
+msgstr "Vecchi file: "
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:95
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:97
+#, python-format
+msgid "Open CashDrawer"
+msgstr "Aprire cassetto"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:90
+#, python-format
+msgid "Operations"
+msgstr "Operazioni"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/pos_order_mgmt.js:38
+#, python-format
+msgid "Order already printed"
+msgstr "Ordine già stampato"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:41
+#, python-format
+msgid "Paper running low"
+msgstr "Carta in esaurimento"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:284
 #, python-format
 msgid "Payment"
 msgstr "Pagamento"
 
 #. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:85
+#, python-format
+msgid "Payment in progress"
+msgstr "Pagamento in corso"
+
+#. module: fiscal_epos_print
 #: model:ir.model.fields,field_description:fiscal_epos_print.field_account_journal__fiscalprinter_payment_type
 msgid "Payment type"
 msgstr "Tipo di pagamento"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/chrome.js:129
+#, python-format
+msgid "Please confirm to execute the Printer Daily Financial Report"
+msgstr "Prego confermare per eseguire la stampa del rendiconto finanziario giornaliero"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/chrome.js:111
+#, python-format
+msgid "Please confirm to execute the Printer Fiscal Closure"
+msgstr "Prego confermare per eseguire le stampa della chiusura fiscale"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/chrome.js:156
+#, python-format
+msgid "Please confirm to reprint the last receipt"
+msgstr "Prego confermare ristampa ultimo scontrino"
 
 #. module: fiscal_epos_print
 #: model:ir.model,name:fiscal_epos_print.model_pos_config
@@ -216,9 +477,30 @@ msgid "Point of Sale Orders"
 msgstr "Ordini punto vendita"
 
 #. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:61
+#, python-format
+msgid "Previous"
+msgstr "Precedente"
+
+#. module: fiscal_epos_print
 #: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_config__printer_ip
 msgid "Printer IP Address"
 msgstr "Indirizzo IP stampante"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:196
+#, python-format
+msgid "Printer can not be reached"
+msgstr "La stampante non può essere raggiunta"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:18
+#, python-format
+msgid "Printing error"
+msgstr "Errore di stampa"
 
 #. module: fiscal_epos_print
 #: code:addons/fiscal_epos_print/models/product.py:12
@@ -233,18 +515,42 @@ msgstr "Modello prodotto"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:56
-#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:58
+#: code:addons/fiscal_epos_print/static/src/js/screens.js:83
+#, python-format
+msgid "Product prices on receipts must be set to 'Tax-Included Price' in POS configuration"
+msgstr "I prezzi dei prodotti sugli scontrini devono essere impostati 'Prezzo IVA-inclusa' nella configurazione POS"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:64
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:66
 #, python-format
 msgid "RT Serial"
 msgstr "Seriale RT"
 
 #. module: fiscal_epos_print
+#: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_pos_pos_form_refund_info
+msgid "RT data"
+msgstr "Dati RT"
+
+#. module: fiscal_epos_print
+#: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_pos_pos_form_refund_info
+msgid "Receipt"
+msgstr "Scontrino"
+
+#. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:51
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:59
 #, python-format
 msgid "Receipt Date"
 msgstr "Data scontrino"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:54
+#, python-format
+msgid "Receipt Num."
+msgstr "Num. scontrino"
 
 #. module: fiscal_epos_print
 #. openerp-web
@@ -255,7 +561,7 @@ msgstr "Scontrino inviato alla stampante"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:424
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:386
 #, python-format
 msgid "Refund >>> "
 msgstr "Reso >>> "
@@ -267,7 +573,7 @@ msgstr "Matricola RT"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:28
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:35
 #, python-format
 msgid "Refund Data"
 msgstr "Dati reso"
@@ -279,14 +585,14 @@ msgstr "Informazioni reso"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:126
+#: code:addons/fiscal_epos_print/static/src/js/screens.js:124
 #, python-format
 msgid "Refund Information Details"
-msgstr "Dettagli reso"
+msgstr "Dettagli informazioni reso"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:47
+#: code:addons/fiscal_epos_print/static/src/js/screens.js:94
 #, python-format
 msgid "Refund Information Not Present"
 msgstr "Informazioni reso non presenti"
@@ -297,9 +603,59 @@ msgid "Refund date reference"
 msgstr "Data riferimento reso"
 
 #. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:157
+#, python-format
+msgid "Rejected files: "
+msgstr "File rifiutati: "
+
+#. module: fiscal_epos_print
 #: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__refund_report
-msgid "Report reference"
-msgstr "Riferimento report"
+msgid "Closure reference"
+msgstr "Riferimento chiusura"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:113
+#, python-format
+msgid "Reports"
+msgstr "Rendiconti"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:105
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:107
+#, python-format
+msgid "Reprint Last Receipt"
+msgstr "Ristampa ultimo scontrino"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/chrome.js:155
+#, python-format
+msgid "Reprint Last Receipt?"
+msgstr "Ristampare ultimo scontrino?"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:105
+#, python-format
+msgid "Reprint last receipt"
+msgstr "Ristampa ultimo scontrino"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:21
+#, python-format
+msgid "Retry"
+msgstr "Riprova"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:55
+#, python-format
+msgid "Running low"
+msgstr "Prossimo ad Esaurimento"
 
 #. module: fiscal_epos_print
 #. openerp-web
@@ -310,10 +666,17 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:41
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:138
 #, python-format
-msgid "Seq. Closing"
-msgstr "Seq. Chiusura"
+msgid "Send fiscal X report to the fiscal printer"
+msgstr "Inviare rendiconto finanziario X alla stampante fiscale"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:128
+#, python-format
+msgid "Send fiscal closure command to the fiscal printer"
+msgstr "Inviare comando di chiusura fiscale alla stampante fiscale"
 
 #. module: fiscal_epos_print
 #: model:ir.model.fields,help:fiscal_epos_print.field_account_journal__fiscalprinter_payment_index
@@ -327,7 +690,7 @@ msgstr "Mostrare a schermo lo scontrino in fase di stampa"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:69
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:77
 #, python-format
 msgid "Some fields are empty."
 msgstr "Alcuni campi sono vuoti."
@@ -338,6 +701,20 @@ msgstr "Alcuni campi sono vuoti."
 #, python-format
 msgid "Status of files to be sent to ADE"
 msgstr "Stato dei file da inviare all'ADE"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:118
+#, python-format
+msgid "Status of files to be sent to IRA"
+msgstr "Stato dei file da inviare all'ADE"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/screens.js:57
+#, python-format
+msgid "SubTotal"
+msgstr "Subtotale"
 
 #. module: fiscal_epos_print
 #: model:ir.model,name:fiscal_epos_print.model_account_tax
@@ -352,8 +729,8 @@ msgstr "L'imposta %s deve essere inclusa nel prezzo"
 
 #. module: fiscal_epos_print
 #: model:ir.model.fields,help:fiscal_epos_print.field_pos_config__printer_ip
-msgid "The hostname or ip address of the hardware printer, please fill this field if you want use you receipts printer"
-msgstr ""
+msgid "The hostname or IP address of the fiscal printer"
+msgstr "L'hostname o indirizzo IP della stampante fiscale"
 
 #. module: fiscal_epos_print
 #: model:ir.model.fields,help:fiscal_epos_print.field_account_journal__fiscalprinter_payment_type
@@ -362,15 +739,36 @@ msgstr "Il tipo di pagamento da inviare alla stampante fiscale."
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/fp90iii.js:48
+#: code:addons/fiscal_epos_print/static/src/js/screens.js:95
 #, python-format
 msgid "The refund information aren't present. Please insert them before printing the receipt"
-msgstr "Le informazioni di reso non sono presenti. Prego inserirle prima di stampare lo scontrino"
+msgstr "Le informazioni del reso non sono presenti. Prego inserirle prima di stampare lo scontrino"
 
 #. module: fiscal_epos_print
 #: selection:account.journal,fiscalprinter_payment_type:0
 msgid "Ticket"
-msgstr ""
+msgstr "Ticket"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:106
+#, python-format
+msgid "Title closed"
+msgstr "Titolo chiuso"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:103
+#, python-format
+msgid "Title open"
+msgstr "Titolo aperto"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:58
+#, python-format
+msgid "To format"
+msgstr "Da formattare"
 
 #. module: fiscal_epos_print
 #: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_config__use_https
@@ -379,10 +777,32 @@ msgstr "Usa HTTPS"
 
 #. module: fiscal_epos_print
 #. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:97
+#, python-format
+msgid "Waiting for receipt closing in JAVAPOS mode"
+msgstr "Attesa chiusura scontrino modalità JAVAPOS"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:47
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:70
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:109
+#, python-format
+msgid "Wrong answer"
+msgstr "Risposta errata"
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/screens.js:82
+#, python-format
+msgid "Wrong tax configuration"
+msgstr "Errata configurazione imposte"
+
+#. module: fiscal_epos_print
+#. openerp-web
 #: code:addons/fiscal_epos_print/static/src/xml/pos.xml:12
-#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:22
 #: code:addons/fiscal_epos_print/static/src/xml/pos.xml:25
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:29
 #, python-format
 msgid "display:none"
-msgstr ""
-
+msgstr "display:none"
