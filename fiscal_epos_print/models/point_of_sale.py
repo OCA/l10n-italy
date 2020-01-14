@@ -6,8 +6,7 @@ class PosConfig(models.Model):
 
     printer_ip = fields.Char(
         'Printer IP Address',
-        help='The hostname or ip address of the hardware printer, '
-        'please fill this field if you want use you receipts printer',
+        help='The hostname or IP address of the fiscal printer',
         size=45
     )
     use_https = fields.Boolean(

@@ -1,4 +1,3 @@
-from datetime import datetime
 from odoo import fields, models, api
 
 
@@ -6,7 +5,7 @@ class PosOrder(models.Model):
     _inherit = 'pos.order'
 
     refund_date = fields.Date(string='Refund date reference')
-    refund_report = fields.Integer(string='Report reference', digits=(4, 0))
+    refund_report = fields.Integer(string='Closure reference', digits=(4, 0))
     refund_doc_num = fields.Integer(string='Document Number', digits=(4, 0))
     refund_cash_fiscal_serial = fields.Char(string='Refund Cash Serial')
 
@@ -56,8 +55,7 @@ class PosOrder(models.Model):
     def update_fiscal_receipt_values(self, pos_order):
         po = self.search([('pos_reference', '=', pos_order.get('name'))])
         receipt_no = int(pos_order.get('fiscal_receipt_number'))
-        receipt_date = datetime.strptime(pos_order.get(
-            'fiscal_receipt_date'), '%d/%m/%Y').date().strftime('%Y-%m-%d')
+        receipt_date = pos_order.get('fiscal_receipt_date')
         receipt_amount = float(pos_order.get('fiscal_receipt_amount'))
         fiscal_z_rep_number = int(pos_order.get('fiscal_z_rep_number'))
         fiscal_printer_serial = pos_order.get('fiscal_printer_serial') or \
