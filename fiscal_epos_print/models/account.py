@@ -5,6 +5,6 @@ class AccountTax(models.Model):
     _inherit = 'account.tax'
 
     fpdeptax = fields.Char(
-        'Department group tax on fiscal printer 1~99',
+        'Department on fiscal printer 1~99',
         size=1, default="1"
     )

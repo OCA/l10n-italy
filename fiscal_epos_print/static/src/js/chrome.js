@@ -152,8 +152,8 @@ odoo.define("fiscal_epos_print.chrome", function (require) {
                 var printer_options = self.getPrinterOptions();
                 var fp90 = new eposDriver(printer_options, self);
                 self.gui.show_popup('confirm',{
-                    'title': _t('Confirm Print Last Receipt?'),
-                    'body': _t('Please confirm to print the last receipt'),
+                    'title': _t('Reprint Last Receipt?'),
+                    'body': _t('Please confirm to reprint the last receipt'),
                     confirm: function() {
                         fp90.printFiscalReprintLast();
                     },
