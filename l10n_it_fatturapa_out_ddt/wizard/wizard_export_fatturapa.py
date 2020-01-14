@@ -2,6 +2,7 @@
 
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
+from odoo.tools.float_utils import float_round
 from odoo.addons.l10n_it_fatturapa.bindings.fatturapa import (
     DatiDDTType,
     DatiTrasportoType,
@@ -69,8 +70,8 @@ class WizardExportFatturapa(models.TransientModel):
                 CausaleTrasporto=invoice.transportation_reason_id.name or None,
                 NumeroColli=invoice.parcels or None,
                 Descrizione=invoice.goods_description_id.name or None,
-                PesoLordo='%.2f' % invoice.gross_weight,
-                PesoNetto='%.2f' % invoice.weight,
+                PesoLordo='%.2f' % float_round(invoice.gross_weight, 2),
+                PesoNetto='%.2f' % float_round(invoice.weight, 2),
                 TipoResa=invoice.incoterms_id.code or None
             )
             if invoice.carrier_id:
