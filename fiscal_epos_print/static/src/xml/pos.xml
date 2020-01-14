@@ -46,12 +46,12 @@
                 </p>
 
                 <div class='client-detail'>
-                    <div class='label'>Seq. Closing</div>
+                    <div class='label'>Closing Seq.</div>
                     <input id="refund_report" class="detail refund_report"
                            type='text' t-att-value="widget.options.refund_report || ''" placeholder="Max 4 numbers"/>
                 </div>
                 <div class='client-detail'>
-                    <div class='label'>Num. Scontrino</div>
+                    <div class='label'>Receipt Num.</div>
                     <input id="refund_doc_num" class="detail refund_doc_num"
                            type='text' t-att-value="widget.options.refund_doc_num || ''" placeholder="Max 4 numbers"/>
                 </div>
@@ -105,7 +105,7 @@
                                 <img src="/fiscal_epos_print/static/src/img/reprint.svg" alt="Reprint Last Receipt" title="Reprint last receipt"/>
                             </span>
                             <span class="category-label">
-                                Reprint last receipt
+                                Reprint Last Receipt
                             </span>
                         </div>
                     </li>
@@ -115,10 +115,10 @@
                     <li>
                         <div class="button show_ade_status" style="padding-top:5px">
                             <span>
-                                <img src="/fiscal_epos_print/static/src/img/ade-logo.svg" alt="ADE status" title="Status of files to be sent to ADE"/>
+                                <img src="/fiscal_epos_print/static/src/img/ade-logo.svg" alt="IRA status" title="Status of files to be sent to IRA"/>
                             </span>
                             <span class="category-label">
-                                ADE Status
+                                IRA status
                             </span>
                         </div>
                     </li>
