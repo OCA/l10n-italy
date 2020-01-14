@@ -1,6 +1,5 @@
 # coding=utf-8
 
-from datetime import datetime
 from odoo import fields, models, api
 
 
@@ -58,8 +57,7 @@ class PosOrder(models.Model):
     def update_fiscal_receipt_values(self, pos_order):
         po = self.search([('pos_reference', '=', pos_order.get('name'))])
         receipt_no = int(pos_order.get('fiscal_receipt_number'))
-        receipt_date = datetime.strptime(pos_order.get(
-            'fiscal_receipt_date'), '%d/%m/%Y').date().strftime('%Y-%m-%d')
+        receipt_date = pos_order.get('fiscal_receipt_date')
         receipt_amount = float(pos_order.get('fiscal_receipt_amount'))
         fiscal_z_rep_number = int(pos_order.get('fiscal_z_rep_number'))
         fiscal_printer_serial = pos_order.get('fiscal_printer_serial') or \
