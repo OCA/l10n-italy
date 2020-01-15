@@ -47,6 +47,10 @@
                                     <field name="fatturapa_art73"/>
                                 </div>
                                 <div class="row">
+                                    <label for="fatturapa_pub_administration_ref" class="col-lg-3 o_light_label"/>
+                                    <field name="fatturapa_pub_administration_ref"/>
+                                </div>
+                                <div class="row">
                                     <label for="fatturapa_rea_office" class="col-lg-3 o_light_label"/>
                                     <field name="fatturapa_rea_office"/>
                                 </div>
