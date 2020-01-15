@@ -40,7 +40,7 @@ msgid "Include transport data"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_ddt
-#: code:addons/l10n_it_fatturapa_out_ddt/wizard/wizard_export_fatturapa.py:79
+#: code:addons/l10n_it_fatturapa_out_ddt/wizard/wizard_export_fatturapa.py:80
 #, python-format
 msgid "TIN not set for %s."
 msgstr ""
