@@ -5,7 +5,7 @@
     "name": "Italian Localization - Fattura elettronica - Integrazione bollo",
     "summary": "Modulo ponte tra emissione fatture elettroniche e imposta di "
                "bollo",
-    "version": "12.0.1.0.2",
+    "version": "12.0.1.0.3",
     "development_status": "Beta",
     "category": "Hidden",
     "website": "https://github.com/OCA/l10n-italy",
