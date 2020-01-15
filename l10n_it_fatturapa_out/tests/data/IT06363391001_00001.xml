@@ -36,6 +36,7 @@
                 <Telefono>06543534343</Telefono>
                 <Email>info@yourcompany.example.com</Email>
             </Contatti>
+            <RiferimentoAmministrazione>F000000111</RiferimentoAmministrazione>
         </CedentePrestatore>
         <CessionarioCommittente>
             <DatiAnagrafici>
