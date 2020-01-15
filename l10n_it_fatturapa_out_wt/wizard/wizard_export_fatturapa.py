@@ -3,6 +3,7 @@
 from odoo import models
 from odoo.tools.translate import _
 from odoo.exceptions import Warning as UserError
+from odoo.tools.float_utils import float_round
 from odoo.addons.l10n_it_fatturapa.bindings.fatturapa import (
     DatiRitenutaType,
     AltriDatiGestionaliType,
@@ -31,8 +32,9 @@ class WizardExportFatturapa(models.TransientModel):
                 = DatiRitenutaType(
                     TipoRitenuta="RT02" if invoice.partner_id.is_company
                     else "RT01",  # RT02 persona giuridica
-                    ImportoRitenuta='%.2f' % wt_line.tax,
-                    AliquotaRitenuta='%.2f' % wt_line.withholding_tax_id.tax,
+                    ImportoRitenuta='%.2f' % float_round(wt_line.tax, 2),
+                    AliquotaRitenuta='%.2f' % float_round(
+                        wt_line.withholding_tax_id.tax, 2),
                     CausalePagamento=wt_line.withholding_tax_id.
                     causale_pagamento_id.code
                 )
@@ -44,8 +46,10 @@ class WizardExportFatturapa(models.TransientModel):
                     DatiCassaPrevidenziale.append(
                         DatiCassaPrevidenzialeType(
                             TipoCassa='TC07',
-                            AlCassa='%.2f' % enas_line.withholding_tax_id.tax,
-                            ImportoContributoCassa='%.2f' % enas_line.tax,
+                            AlCassa='%.2f' % float_round(
+                                enas_line.withholding_tax_id.tax, 2),
+                            ImportoContributoCassa='%.2f' % float_round(
+                                enas_line.tax, 2),
                             AliquotaIVA='0.00',
                             Natura='N2'
                             )
@@ -70,11 +74,11 @@ class WizardExportFatturapa(models.TransientModel):
             if n2_riepilogo:
                 base_amount = float(n2_riepilogo.ImponibileImporto)
                 base_amount += enasarco_base
-                n2_riepilogo.ImponibileImporto = '%.2f' % base_amount
+                n2_riepilogo.ImponibileImporto = '%.2f' % float_round(base_amount, 2)
             else:
                 riepilogo = DatiRiepilogoType(
                     AliquotaIVA='0.00',
-                    ImponibileImporto='%.2f' % enasarco_base,
+                    ImponibileImporto='%.2f' % float_round(enasarco_base, 2),
                     Imposta='0.00',
                     Natura='N2',
                     RiferimentoNormativo='Escluso Art. 13 5C DPR 633/72',
@@ -95,7 +99,7 @@ class WizardExportFatturapa(models.TransientModel):
                     AltriDatiGestionaliType(
                         TipoDato="CASSA-PREV",
                         RiferimentoTesto=('ENASARCO TC07 (%s%%)' % wt.tax),
-                        RiferimentoNumero='%.2f' % amount,
+                        RiferimentoNumero='%.2f' % float_round(amount, 2),
                     )
                 )
             else:
@@ -113,7 +117,7 @@ class WizardExportFatturapa(models.TransientModel):
             for move_line_id in payment_line_ids:
                 move_line = move_line_pool.browse(move_line_id)
                 body.DatiPagamento[0].DettaglioPagamento[index].\
-                    ImportoPagamento = '%.2f' % (
-                        (move_line.amount_currency or move_line.debit) * rate)
+                    ImportoPagamento = '%.2f' % float_round(
+                        (move_line.amount_currency or move_line.debit) * rate, 2)
                 index += 1
         return res
