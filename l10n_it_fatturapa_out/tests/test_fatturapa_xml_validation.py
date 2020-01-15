@@ -34,6 +34,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         super(TestFatturaPAXMLValidation, self).setUp()
 
     def test_1_xml_export(self):
+        self.env.user.company_id.fatturapa_pub_administration_ref = 'F000000111'
         self.set_sequences(13, '2016-01-07')
         invoice = self.invoice_model.create({
             'date_invoice': '2016-01-07',
