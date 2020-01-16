@@ -1,11 +1,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, models
-from odoo.tools.misc import formatLang
-from odoo.tools.translate import _
-from odoo.exceptions import Warning as UserError
-
 import time
+
+from odoo import _, api, models
+from odoo.tools.misc import formatLang
+from odoo.exceptions import Warning as UserError
 
 
 class ReportRegistroIva(models.AbstractModel):
@@ -19,7 +18,7 @@ class ReportRegistroIva(models.AbstractModel):
 
         date_format = data['form']['date_format']
 
-        docargs = {
+        return {
             'doc_ids': data['ids'],
             'doc_model': self.env['account.move'],
             'data': data['form'],
@@ -40,13 +39,11 @@ class ReportRegistroIva(models.AbstractModel):
             'l10n_it_count_fiscal_page_base': data['form']['fiscal_page_base'],
             'only_totals': data['form']['only_totals'],
             'date_format': date_format,
-            'year_footer': data['form']['year_footer']
+            'year_footer': data['form']['year_footer'],
         }
-        return docargs
 
     def _get_move(self, move_ids):
-        move_list = self.env['account.move'].browse(move_ids)
-        return move_list
+        return self.env['account.move'].browse(move_ids)
 
     def _format_date(self, my_date, date_format):
         # supporting both cases, as data['form']['from_date'] is string
@@ -58,8 +55,7 @@ class ReportRegistroIva(models.AbstractModel):
         return formatted_date or ''
 
     def _get_invoice_from_move(self, move):
-        return self.env['account.invoice'].search([
-            ('move_id', '=', move.id)])
+        return self.env['account.invoice'].search([('move_id', '=', move.id)])
 
     def _get_move_line(self, move, data):
         return [move_line for move_line in move.line_ids]

@@ -1,9 +1,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api, _
-from odoo.exceptions import Warning as UserError
-
-from datetime import datetime
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 
 class WizardRegistroIva(models.TransientModel):
@@ -38,7 +36,6 @@ class WizardRegistroIva(models.TransientModel):
     def load_journal_ids(self):
         self.ensure_one()
         self.journal_ids = self.tax_registry_id.journal_ids
-
         return {"type": "ir.actions.do_nothing"}
 
     @api.onchange('date_range_id')
@@ -50,15 +47,16 @@ class WizardRegistroIva(models.TransientModel):
     @api.onchange('from_date')
     def get_year_footer(self):
         if self.from_date:
-            self.year_footer = datetime.strptime(self.from_date,
-                                                 "%Y-%m-%d").year
+            self.year_footer = fields.Datetime.from_string(self.from_date).year
 
     def _get_move_ids(self, wizard):
-        moves = self.env['account.move'].search([
-            ('date', '>=', self.from_date),
-            ('date', '<=', self.to_date),
-            ('journal_id', 'in', [j.id for j in self.journal_ids]),
-            ('state', '=', 'posted'), ], order='date, name')
+        moves = self.env['account.move'].search(
+            [('date', '>=', self.from_date),
+             ('date', '<=', self.to_date),
+             ('journal_id', 'in', self.journal_ids.ids),
+             ('state', '=', 'posted')],
+            order='date, name'
+        )
 
         if not moves:
             raise UserError(_('No documents found in the current selection'))
@@ -76,30 +74,30 @@ class WizardRegistroIva(models.TransientModel):
         if not move_ids:
             raise UserError(_('No documents found in the current selection'))
 
-        datas_form = {}
-        datas_form['from_date'] = wizard.from_date
-        datas_form['to_date'] = wizard.to_date
-        datas_form['journal_ids'] = [j.id for j in wizard.journal_ids]
-        datas_form['fiscal_page_base'] = wizard.fiscal_page_base
-        datas_form['registry_type'] = wizard.layout_type
-        datas_form['year_footer'] = wizard.year_footer
-
         lang_code = self.env.user.company_id.partner_id.lang
-        lang = self.env['res.lang']
-        lang_id = lang._lang_get(lang_code)
-        date_format = lang_id.date_format
-        datas_form['date_format'] = date_format
+        lang = self.env['res.lang']._lang_get(lang_code)
+        date_format = lang.date_format
 
         if wizard.tax_registry_id:
-            datas_form['tax_registry_name'] = wizard.tax_registry_id.name
+            tax_registry_name = wizard.tax_registry_id.name
         else:
-            datas_form['tax_registry_name'] = ''
-        datas_form['only_totals'] = wizard.only_totals
+            tax_registry_name = ''
+
         # report_name = 'l10n_it_vat_registries.report_registro_iva'
         report_name = 'l10n_it_vat_registries.action_report_registro_iva'
         datas = {
             'ids': move_ids,
             'model': 'account.move',
-            'form': datas_form
+            'form': {
+                'date_format': date_format,
+                'from_date': wizard.from_date,
+                'fiscal_page_base': wizard.fiscal_page_base,
+                'journal_ids': wizard.journal_ids.ids,
+                'only_totals': wizard.only_totals,
+                'registry_type': wizard.layout_type,
+                'tax_registry_name': tax_registry_name,
+                'to_date': wizard.to_date,
+                'year_footer': wizard.year_footer,
+            },
         }
         return self.env.ref(report_name).report_action(self, data=datas)
