@@ -9,6 +9,7 @@
                 <group name="general_settings">
                     <field name="name"/>
                     <field name="layout_type"/>
+                    <field name="daily_totals"/>
                 </group>
                 <group name="journals" string="Journals">
                     <field name="journal_ids"/>

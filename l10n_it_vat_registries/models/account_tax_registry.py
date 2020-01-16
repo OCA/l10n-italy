@@ -18,3 +18,6 @@ class AccountTaxRegistry(models.Model):
         ('supplier', 'Supplier Invoices'),
         ('corrispettivi', 'Sums due'),
         ], 'Layout', required=True)
+    daily_totals = fields.Boolean(
+        string="Print daily totals"
+    )

@@ -2,7 +2,9 @@
 
 import time
 
-from odoo import _, api, models
+from dateutil.relativedelta import relativedelta
+
+from odoo import _, api, fields, models
 from odoo.tools.misc import formatLang
 from odoo.exceptions import Warning as UserError
 
@@ -40,6 +42,8 @@ class ReportRegistroIva(models.AbstractModel):
             'only_totals': data['form']['only_totals'],
             'date_format': date_format,
             'year_footer': data['form']['year_footer'],
+            'daily_totals': data['form']['daily_totals'],
+            'get_tax_daily_totals': self.get_tax_daily_totals,
         }
 
     def _get_move(self, move_ids):
@@ -214,3 +218,52 @@ class ReportRegistroIva(models.AbstractModel):
 
         """
         return tax._compute_totals_tax(data)
+
+    def get_tax_daily_totals(self, move_ids, data):
+        """
+        Retrieves daily tax totals.
+        :param move_ids: account.move IDs
+        :param data: report data
+        :return: dict made as follows:
+            tax_daily_totals = {
+                '2020-01-01': [
+                    ('Tax 22%', 100.0, 22.0, 22.0, 0.0),
+                    ('Tax 20% INC', 80.0, 20.0, 20.0, 0.0),
+                ],
+                '2020-01-02': [
+                    ('Tax 20% INC', 50.0, 12.5, 12.5, 0),
+                ],
+                ...
+            }
+        """
+        # Get every day from start date to end date
+        start_dt = fields.Date.from_string(data['from_date'])
+        end_dt = fields.Date.from_string(data['to_date'])
+        dates = []
+        while start_dt <= end_dt:
+            dates.append(fields.Date.to_string(start_dt))
+            start_dt += relativedelta(days=1)
+
+        # Retrieve every tax
+        tax_ids = []
+        for move in self.env['account.move'].browse(move_ids):
+            tax_ids.extend(self._get_tax_lines(move, data)[-1].ids)
+        # Avoid duplicated IDs
+        tax_ids = tuple(set(tax_ids))
+
+        tax_daily_totals = {}
+        for dt in dates:
+            # Avoid overriding original `data`
+            local_data = data.copy()
+            local_data.update({'from_date': dt, 'to_date': dt})
+            tax_totals = []
+            for tax in self.env['account.tax'].browse(tax_ids):
+                tax_data = tax._compute_totals_tax(local_data)
+                # Check if there's at least 1 non-zero value among tax amounts
+                if any(tax_data[1:]):
+                    tax_totals.append(tax_data)
+            if tax_totals:
+                # Sort taxes alphabetically
+                tax_daily_totals[dt] = sorted(tax_totals)
+
+        return tax_daily_totals

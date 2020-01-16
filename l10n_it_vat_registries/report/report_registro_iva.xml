@@ -126,6 +126,56 @@
                     </table>
                     <br/>
 
+                    <t t-if="only_totals and daily_totals">
+                        <div style="page-break-inside: avoid;" name="daily_totals_div">
+                            <t t-set="tax_daily_totals" t-value="get_tax_daily_totals(doc_ids, data)"/>
+                            <t t-foreach="tax_daily_totals" t-as="tax_date">
+                                <t t-set="daily_tot_base" t-value="0"/>
+                                <t t-set="daily_tot_tax" t-value="0"/>
+                                <t t-set="daily_tot_ded" t-value="0"/>
+                                <t t-set="daily_tot_unded" t-value="0"/>
+                                <table style="width:100%;">
+                                    <tr>
+                                        <td colspan="2" style="vertical-align:text-top;padding:10">
+                                            <h3><t t-esc="format_date(tax_date, date_format)"/></h3>
+                                            <table style="width:100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="left_without_line_bold">Descrizione</th>
+                                                        <th class="right_without_line_bold">Imponibile</th>
+                                                        <th class="right_without_line_bold">Imposta</th>
+                                                        <th class="right_without_line_bold">Detraibile</th>
+                                                        <th class="right_without_line_bold">Indetraibile</th>
+                                                    </tr>
+                                                </thead>
+                                                <t t-foreach="tax_daily_totals[tax_date]" t-as="tax_info">
+                                                    <tr>
+                                                        <td class="left_without_line" t-esc="tax_info[0]"/>
+                                                        <td class="right_without_line" t-esc="formatLang(env, tax_info[1])"/>
+                                                        <td class="right_without_line" t-esc="formatLang(env, tax_info[2])"/>
+                                                        <td class="right_without_line" t-esc="formatLang(env, tax_info[3])"/>
+                                                        <td class="right_without_line" t-esc="formatLang(env, tax_info[4])"/>
+                                                    </tr>
+                                                    <t t-set="daily_tot_base" t-value="daily_tot_base + tax_info[1]"/>
+                                                    <t t-set="daily_tot_tax" t-value="daily_tot_tax + tax_info[2]"/>
+                                                    <t t-set="daily_tot_ded" t-value="daily_tot_ded + tax_info[3]"/>
+                                                    <t t-set="daily_tot_unded" t-value="daily_tot_unded + tax_info[4]"/>
+                                                </t>
+                                                <tr>
+                                                    <td class="left_without_line_bold">Totale giornaliero euro</td>
+                                                    <td class="right_without_line_bold" t-esc="formatLang(env, daily_tot_base)"/>
+                                                    <td class="right_without_line_bold" t-esc="formatLang(env, daily_tot_tax)"/>
+                                                    <td class="right_without_line_bold" t-esc="formatLang(env, daily_tot_ded)"/>
+                                                    <td class="right_without_line_bold" t-esc="formatLang(env, daily_tot_unded)"/>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </t>
+                        </div>
+                    </t>
+
                     <t t-set="tot_base" t-value="0"/>
                     <t t-set="tot_tax" t-value="0"/>
                     <t t-set="tot_ded" t-value="0"/>

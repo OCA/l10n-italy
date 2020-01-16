@@ -39,6 +39,7 @@
                     </group>
                     <group>
                         <field name="only_totals" />
+                        <field name="daily_totals" attrs="{'invisible': [('only_totals', '=', False)]}"/>
                     </group>
                 </group>
                 <field name="message" nolabel="1" colspan="2"/>
