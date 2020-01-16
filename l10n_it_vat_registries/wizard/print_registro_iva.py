@@ -31,11 +31,17 @@ class WizardRegistroIva(models.TransientModel):
     year_footer = fields.Char(
         string='Year for Footer',
         help="Value printed near number of page in the footer")
+    daily_totals = fields.Boolean(
+        string="Print daily totals"
+    )
 
     @api.multi
     def load_journal_ids(self):
         self.ensure_one()
         self.journal_ids = self.tax_registry_id.journal_ids
+        if self.tax_registry_id.daily_totals:
+            self.only_totals = True
+            self.daily_totals = True
         return {"type": "ir.actions.do_nothing"}
 
     @api.onchange('date_range_id')
@@ -89,6 +95,7 @@ class WizardRegistroIva(models.TransientModel):
             'ids': move_ids,
             'model': 'account.move',
             'form': {
+                'daily_totals': wizard.daily_totals,
                 'date_format': date_format,
                 'from_date': wizard.from_date,
                 'fiscal_page_base': wizard.fiscal_page_base,
