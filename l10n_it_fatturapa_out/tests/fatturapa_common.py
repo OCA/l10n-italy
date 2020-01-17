@@ -91,7 +91,17 @@ class FatturaPACommon(AccountTestUsers):
         ftpa_seq.write({
             'implementation': 'no_gap',
             'number_next_actual': file_number, })
-        inv_seq = seq_pool.search([('name', '=', 'Customer Invoices')])[0]
+        # Search by name using both italian and english name, as they both
+        # refer to the same record, but we can avoid errors given by
+        # translations: the sequence itself is created right after a journal
+        # with the same name is created, and the sequence copies its name;
+        # therefore, it'll be named "Customer Invoices" if the active language
+        # was English or not set, or it'll be named "Fatture cliente" if the
+        # active language was Italian
+        inv_seq = seq_pool.search(
+            [('name', 'in', ('Customer Invoices', 'Fatture cliente'))],
+            limit=1
+        )
         seq_date = self.env['ir.sequence.date_range'].search([
             ('sequence_id', '=', inv_seq.id),
             ('date_from', '<=', dt),

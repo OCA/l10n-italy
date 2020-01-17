@@ -426,8 +426,12 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                         self.tax_22.id})]
                 }),
                 (0, 0, {
+                    'account_id': self.a_sale.id,
                     'display_type': 'line_note',
                     'name': 'Notes',
+                    'quantity': 0,
+                    'uom_id': self.product_uom_unit.id,
+                    'price_unit': 0,
                     'invoice_line_tax_ids': [(6, 0, {
                         self.tax_22.id})]
                 })],
