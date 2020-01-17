@@ -10,7 +10,7 @@ class AccountJournal(models.Model):
         [
             ('0', 'Cash'),
             ('1', 'Cheque'),
-            ('2', 'Credit/Credit Card'),
+            ('2', 'Not collected / Electronic payment'),
             ('3', 'Ticket')
         ],
         'Payment type',

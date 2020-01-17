@@ -155,7 +155,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                     var rejected = add_info.responseData[17] + add_info.responseData[18] + add_info.responseData[19] + add_info.responseData[20];
                     var msg = _t("Files waiting to be sent: ") + to_be_sent + "; " + _t("Old files: ") + old + "; " + _t("Rejected files: ") + rejected;
                     sender.pos.gui.show_popup('alert', {
-                        'title': _t('ADE files'),
+                        'title': _t('IRA files'),
                         'body': msg,
                     });
                     return;

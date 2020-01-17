@@ -6,10 +6,11 @@
 # License GPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
 
 {
-    'name': 'Driver for ePOS-Print XML compatible fiscal printers',
+    'name': 'ITA - Driver per stampanti fiscali compatibili ePOS-Print XML',
     'version': '10.0.1.0.0',
-    'category': 'POS, Fiscal, Hardware, Driver',
-    'summary': 'ePOS-Print XML Fiscal Printer Driver',
+    'category': 'Point Of Sale',
+    'summary': 'ePOS-Print XML Fiscal Printer Driver - Stampanti Epson compatibili'
+               'FP81II, FP90III',
     'author': (
         'Agile Business Group, '
         'Leonardo Donelli @ Creativi Quadrati, TAKOBI, '
