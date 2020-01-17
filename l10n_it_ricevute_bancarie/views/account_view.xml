@@ -43,7 +43,7 @@
         <field name="name">C/O Issue</field>
         <field name="model">account.move.line</field>
         <field name="arch" type="xml">
-            <tree string="C/O Issue" colors="grey:reconciled!=False;red:date_maturity&lt;current_date">
+            <tree string="C/O Issue" create="false" colors="grey:reconciled!=False;red:date_maturity&lt;current_date">
                 <field name="partner_id" readonly="1"/>
                 <field name="iban" readonly="1"/>
                 <!-- TODO: field name="partner_ref" readonly="1"/>
