@@ -6,42 +6,44 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2020-01-19 17:13+0000\n"
+"Last-Translator: Galoperd <jvcsan@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__additional_units_required
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section1__additional_units_required
 msgid "Additional Unit Required"
-msgstr ""
+msgstr "Unidad Adicional Necesaria"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__additional_units_uom
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section1__additional_units_uom
 msgid "Additional Unit of Measure"
-msgstr ""
+msgstr "Unidad de Medida Adicional"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__additional_units
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section1__additional_units
 msgid "Additional Units"
-msgstr ""
+msgstr "Unidades Adicionales"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section2__sign_variation
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section2__sign_variation
 msgid "Adjustment Sign"
-msgstr ""
+msgstr "Señal Ajuste"
 
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement,intrastat_type_data:0
 msgid "All (Fiscal and Statistic)"
-msgstr ""
+msgstr "Todo (Fiscal y Estadística)"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__amount_currency
@@ -50,7 +52,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section4__amount_currency
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section__amount_currency
 msgid "Amount in Currency"
-msgstr ""
+msgstr "Importe en Moneda"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__amount_euro
@@ -65,7 +67,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section__amount_euro
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_section__amount_euro
 msgid "Amount in Euro"
-msgstr ""
+msgstr "Importe en EUR"
 
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement.purchase.section3,payment_method:0
@@ -73,7 +75,7 @@ msgstr ""
 #: selection:account.intrastat.statement.sale.section3,payment_method:0
 #: selection:account.intrastat.statement.sale.section4,payment_method:0
 msgid "Bank Transfer"
-msgstr ""
+msgstr "Transferencia Bancaria"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_form_statement_sale_section1
@@ -85,7 +87,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_sale_section3
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_sale_section4
 msgid "Buyer"
-msgstr ""
+msgstr "Comprador"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_form_statement_sale_section1
@@ -97,7 +99,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_sale_section3
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_sale_section4
 msgid "Buyer State"
-msgstr ""
+msgstr "Estado Comprador"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_form_statement_sale_section1
@@ -108,12 +110,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_sale_section3
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_sale_section4
 msgid "Buyer VAT Code"
-msgstr ""
+msgstr "Código VAT Comprador"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement,special_cases:0
