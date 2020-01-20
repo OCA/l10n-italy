@@ -60,6 +60,11 @@ msgid "Accounts"
 msgstr ""
 
 #. module: l10n_it_account
+#: model:ir.model.fields,help:l10n_it_account.field_account_group__account_ids
+msgid "Assigned accounts."
+msgstr ""
+
+#. module: l10n_it_account
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_account_type__account_balance_sign
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_group__account_balance_sign
 msgid "Balance sign"
