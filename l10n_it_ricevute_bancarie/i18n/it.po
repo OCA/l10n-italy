@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-30 21:25+0000\n"
-"PO-Revision-Date: 2019-12-30 23:22+0100\n"
+"PO-Revision-Date: 2020-01-20 21:04+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_account_config_settings_riba
@@ -29,10 +29,10 @@ msgid ""
 "used as Service for C/O Collection Fees\" groups=\"base.group_multi_company"
 "\" role=\"img\"/>"
 msgstr ""
-"<span class=\"o_form_label\">Spese di incasso Ri.Ba.</span>\n"
-"                        <span class=\"fa fa-lg fa-building-o\" title="
-"\"Prodotto usato come servizio per le spese di incasso Ri.Ba.\" aria-label="
-"\"Product used as Service for C/O Collection Fees\" groups=\"base."
+"<span class=\"o_form_label\">Spese di incasso RiBa</span>\n"
+"                        <span class=\"fa fa-lg fa-building-o\" title=\""
+"Prodotto usato come servizio per le spese di incasso RiBa\" aria-label=\""
+"Product used as Service for C/O Collection Fees\" groups=\"base."
 "group_multi_company\" role=\"img\"/>"
 
 #. module: l10n_it_ricevute_bancarie
@@ -94,12 +94,12 @@ msgstr "Accettata"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration__accreditation_account_id
 msgid "Account used when C/O amount is credited by the bank."
-msgstr "Conto usato quando l'importo Ri.Ba. viene accreditato dalla banca."
+msgstr "Conto usato quando l'importo RiBa viene accreditato dalla banca."
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration__acceptance_account_id
 msgid "Account used when C/O is accepted by the bank."
-msgstr "Conto usato quando la Ri.Ba. viene accettata dalla banca."
+msgstr "Conto usato quando la RiBa viene accettata dalla banca."
 
 #. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
@@ -162,7 +162,7 @@ msgstr "Riga estratto conto bancario"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration__bank_id
 msgid "Bank account used for C/O issuing."
-msgstr "Conto bancario usato per l'emissione Ri.Ba."
+msgstr "Conto bancario usato per l'emissione RiBa."
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:125
@@ -187,110 +187,110 @@ msgstr "Importo effetti"
 #: model:ir.ui.menu,name:l10n_it_ricevute_bancarie.menu_riba
 #, python-format
 msgid "C/O"
-msgstr "Ri.Ba."
+msgstr "RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.action_riba_configuration
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_configuration_form
 msgid "C/O - Configuration"
-msgstr "Ri.Ba. - Configurazione"
+msgstr "RiBa - Configurazione"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:account.payment.term,name:l10n_it_ricevute_bancarie.account_payment_term_riba
 #: model:account.payment.term,note:l10n_it_ricevute_bancarie.account_payment_term_riba
 msgid "C/O 30 Days End of Month"
-msgstr "Ri.Ba. 30 gg. fine mese"
+msgstr "RiBa 30 gg. fine mese"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation__accreditation_account_id
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration__accreditation_account_id
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved__riba_bank_account_id
 msgid "C/O Account"
-msgstr "Conto Ri.Ba."
+msgstr "Conto RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved__riba_bank_amount
 msgid "C/O Amount"
-msgstr "Importo Ri.Ba."
+msgstr "Importo RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_payment_term__riba_payment_cost
 msgid "C/O Collection Fees"
-msgstr "Spese di incasso Ri.Ba."
+msgstr "Spese di incasso RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_invoice_line__due_cost_line
 msgid "C/O Collection Fees Line"
-msgstr "Riga spese di incasso Ri.Ba."
+msgstr "Riga spese di incasso RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.menu,name:l10n_it_ricevute_bancarie.menu_riba_configuration
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_account_config_settings_riba
 msgid "C/O Configuration"
-msgstr "Configurazione Ri.Ba."
+msgstr "Configurazione RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.riba_accreditation_action
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_accreditation
 msgid "C/O Credit"
-msgstr "Accredito Ri.Ba."
+msgstr "Accredito RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_accreditation.py:96
 #, python-format
 msgid "C/O Credit %s"
-msgstr "Accredito Ri.Ba. %s"
+msgstr "Accredito RiBa %s"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_move_line__distinta_line_ids
 msgid "C/O Detail"
-msgstr "Dettaglio Ri.Ba."
+msgstr "Dettaglio RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_riba_distinta_line
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_riba_distinta_move_line
 msgid "C/O Details"
-msgstr "Dettagli Ri.Ba."
+msgstr "Dettagli RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta__line_ids
 msgid "C/O Due Dates"
-msgstr "Scadenze Ri.Ba."
+msgstr "Scadenze RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_riba_file_export
 msgid "C/O File Export Wizard"
-msgstr "Procedura esportazione file Ri.Ba."
+msgstr "Procedura esportazione file RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.action_riba_da_emettere
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_issue_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_da_emettere_tree
 msgid "C/O Issue"
-msgstr "Emissione Ri.Ba."
+msgstr "Emissione RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.distinta_riba_action
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_riba_distinta
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
 msgid "C/O Slip"
-msgstr "Distinta Ri.Ba."
+msgstr "Distinta RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_report_l10n_it_ricevute_bancarie_distinta_qweb
 msgid "C/O Slip Report"
-msgstr "Rendiconto distinta Ri.Ba."
+msgstr "Rendiconto distinta RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_distinta_riba_tree
 msgid "C/O Slips"
-msgstr "Distinte Ri.Ba."
+msgstr "Distinte RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_distinta__config_id
 msgid "C/O configuration to be used."
-msgstr "Configurazione Ri.Ba. da utilizzare."
+msgstr "Configurazione RiBa da utilizzare."
 
 #. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_accreditation
@@ -308,7 +308,7 @@ msgstr "Annullata"
 #. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.distinta_qweb
 msgid "Cash Order Slip No."
-msgstr "Distinta Ri.Ba. n."
+msgstr "Distinta RiBa n."
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_riba_issue
@@ -318,7 +318,7 @@ msgstr "Emissione ricevute bancarie"
 #. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.wizard_riba_file_export
 msgid "Close"
-msgstr "Chiuso"
+msgstr "Chiudi"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_company__due_cost_service_id
@@ -464,7 +464,7 @@ msgstr "Accreditata"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_move__riba_accredited_ids
 msgid "Credited C/O Slips"
-msgstr "Distinte Ri.Ba. accreditate"
+msgstr "Distinte RiBa accreditate"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line__partner_id
@@ -490,7 +490,7 @@ msgstr "Servizio spese di incasso predefinito"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_res_config_settings__due_cost_service_id
 msgid "Default Service for C/O Collection Fees on invoice."
-msgstr "Servizio predefinito per le spese di incasso Ri.Ba. nella fattura."
+msgstr "Servizio predefinito per le spese di incasso RiBa nella fattura."
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration__name
@@ -543,12 +543,12 @@ msgstr "Esporta"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.action_wizard_riba_file_export
 msgid "Export C/O"
-msgstr "Esporta Ri.Ba."
+msgstr "Esporta RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.wizard_riba_file_export
 msgid "Export C/O file"
-msgstr "Esporta file Ri.Ba."
+msgstr "Esporta file RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation__expense_amount
@@ -601,13 +601,13 @@ msgstr "Raggruppa per..."
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_partner__group_riba
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_users__group_riba
 msgid "Group C/O"
-msgstr "Raggruppa Ri.Ba."
+msgstr "Raggruppa RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_res_partner__group_riba
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_res_users__group_riba
 msgid "Group C/O by customer while issuing."
-msgstr "All'emissione, raggruppa le Ri.Ba. per cliente."
+msgstr "All'emissione, raggruppa le RiBa per cliente."
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_move_line__iban
@@ -666,7 +666,7 @@ msgstr "Numero fattura"
 #: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:243
 #, python-format
 msgid "Invoice is linked to C/O slip No. {riba}"
-msgstr "La fattura è collegata alla distinta Ri.Ba. n. {riba}"
+msgstr "La fattura è collegata alla distinta RiBa n. {riba}"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_invoice__is_unsolved
@@ -681,7 +681,7 @@ msgstr "Emissione"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.riba_issue_action
 msgid "Issue C/O"
-msgstr "Emetti Ri.Ba."
+msgstr "Emetti RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration__type
@@ -701,23 +701,23 @@ msgstr "Registrazioni contabili"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_move_line
 msgid "Journal Item"
-msgstr "Registrazioni"
+msgstr "Movimento contabile"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration__accreditation_journal_id
 msgid "Journal used when C/O amount is credited by the bank."
 msgstr ""
-"Registro utilizzato quando l'importo Ri.Ba. viene accreditato dalla banca."
+"Registro utilizzato quando l'importo RiBa viene accreditato dalla banca."
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration__acceptance_journal_id
 msgid "Journal used when C/O is accepted by the bank."
-msgstr "Registro utilizzato quanto la Ri.Ba. viene accettata dalla banca."
+msgstr "Registro utilizzato quanto la RiBa viene accettata dalla banca."
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration__unsolved_journal_id
 msgid "Journal used when C/O is past due."
-msgstr "Registro utilizzato quando la Ri.Ba. è insoluta."
+msgstr "Registro utilizzato quando la RiBa è insoluta."
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration__settlement_journal_id
@@ -769,7 +769,7 @@ msgstr "Ultimo aggionamento il"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_riba_unsolved
 msgid "Manage Past Due C/Os"
-msgstr "Gestione Ri.Ba. insolute"
+msgstr "Gestione RiBa insolute"
 
 #. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
@@ -902,19 +902,19 @@ msgstr "Importo effetti insoluti"
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:120
 #, python-format
 msgid "Past Due C/O %s - Line %s"
-msgstr "Ri.Ba. insoluta %s - Riga %s"
+msgstr "RiBa insoluta %s - Riga %s"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_move__riba_unsolved_ids
 msgid "Past Due C/O Slips"
-msgstr "Distinte Ri.Ba. insolute"
+msgstr "Distinte RiBa insolute"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.riba_unsolved_action
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.invoice_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_unsolved
 msgid "Past Due C/Os"
-msgstr "Ri.Ba. insolute"
+msgstr "RiBa insolute"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta__date_unsolved
@@ -994,7 +994,7 @@ msgstr "Prodotto"
 #. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_account_config_settings_riba
 msgid "Product used as Service for C/O Collection Fees"
-msgstr "Prodotto usato come servizio per le spese di incasso Ri.Ba."
+msgstr "Prodotto usato come servizio per le spese di incasso RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration__protest_charge_account_id
@@ -1106,13 +1106,13 @@ msgstr "Salvo buon fine"
 #. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_issue_view
 msgid "This wizard will generate the C/O slip"
-msgstr "Questa procedura genera la distinta Ri.Ba."
+msgstr "Questa procedura genera la distinta RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_unsolved
 msgid "This wizard will generate the journal entry related to an past due C/O"
 msgstr ""
-"Questa procedura genera la registrazione contabile relativa a una Ri.Ba. "
+"Questa procedura genera la registrazione contabile relativa a una RiBa "
 "insoluta"
 
 #. module: l10n_it_ricevute_bancarie
