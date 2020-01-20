@@ -1,4 +1,4 @@
-# coding=utf-8
+# -*- coding: utf-8 -*-
 # Leonardo Donelli - Creativi Quadrati
 # © 2016 Alessio Gerace - Agile Business Group
 # © 2018-2019 Lorenzo Battistini
