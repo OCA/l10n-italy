@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="workflow" id="wkf_riba_distinta">
+            <field name="name">riba.distinta.wkf</field>
+            <field name="osv">riba.distinta</field>
+            <field name="on_create">True</field>
+        </record>
+
+        <record model="workflow.activity" id="act_new">
+            <field name="wkf_id" ref="wkf_riba_distinta" />
+            <field name="flow_start">True</field>
+            <field name="name">new</field>
+            <field name="kind">function</field>
+            <field name="action">riba_new()</field>
+        </record>
+
+        <record model="workflow.activity" id="act_accepted">
+            <field name="wkf_id" ref="wkf_riba_distinta" />
+            <field name="name">accepted</field>
+            <field name="kind">function</field>
+            <field name="action">riba_accepted()</field>
+        </record>
+
+        <record model="workflow.activity" id="act_accredited">
+            <field name="wkf_id" ref="wkf_riba_distinta" />
+            <field name="name">accredited</field>
+            <field name="kind">function</field>
+            <field name="action">riba_accredited()</field>
+        </record>
+
+        <record model="workflow.activity" id="act_paid">
+            <field name="wkf_id" ref="wkf_riba_distinta" />
+            <field name="name">paid</field>
+            <field name="kind">function</field>
+            <field name="action">riba_paid()</field>
+        </record>
+
+        <record model="workflow.activity" id="act_unsolved">
+            <field name="wkf_id" ref="wkf_riba_distinta" />
+            <field name="name">unsolved</field>
+            <field name="kind">function</field>
+            <field name="action">riba_unsolved()</field>
+        </record>
+
+        <record model="workflow.activity" id="act_cancel">
+            <field name="wkf_id" ref="wkf_riba_distinta" />
+            <field name="name">cancel</field>
+            <field name="kind">function</field>
+            <field name="action">riba_cancel()</field>
+            <field name="flow_stop">True</field>
+        </record>
+
+        <!-- transitions -->
+
+        <record model="workflow.transition" id="new_to_accepted">
+            <field name="act_from" ref="act_new" />
+            <field name="act_to" ref="act_accepted" />
+            <field name="signal">accepted</field>
+            <field name="condition">test_accepted()</field>
+        </record>
+        <record model="workflow.transition" id="accepted_to_accredited">
+            <field name="act_from" ref="act_accepted" />
+            <field name="act_to" ref="act_accredited" />
+            <field name="signal">accredited</field>
+        </record>
+        <record model="workflow.transition" id="accredited_to_paid">
+            <field name="act_from" ref="act_accredited" />
+            <field name="act_to" ref="act_paid" />
+            <field name="signal">paid</field>
+            <field name="condition">test_paid()</field>
+        </record>
+        <record model="workflow.transition" id="accepted_to_paid">
+            <field name="act_from" ref="act_accepted" />
+            <field name="act_to" ref="act_paid" />
+            <field name="signal">paid</field>
+            <field name="condition">test_paid()</field>
+        </record>
+        <record model="workflow.transition" id="accepted_to_cancel">
+            <field name="act_from" ref="act_accepted" />
+            <field name="act_to" ref="act_cancel" />
+            <field name="signal">cancel</field>
+        </record>
+        <record model="workflow.transition" id="new_to_cancel">
+            <field name="act_from" ref="act_new" />
+            <field name="act_to" ref="act_cancel" />
+            <field name="signal">cancel</field>
+        </record>
+        <record model="workflow.transition" id="accredited_to_cancel">
+            <field name="act_from" ref="act_accredited" />
+            <field name="act_to" ref="act_cancel" />
+            <field name="signal">cancel</field>
+        </record>
+        <record model="workflow.transition" id="paid_to_cancel">
+            <field name="act_from" ref="act_paid" />
+            <field name="act_to" ref="act_cancel" />
+            <field name="signal">cancel</field>
+        </record>
+        <record model="workflow.transition" id="paid_to_accredited">
+            <field name="act_from" ref="act_paid" />
+            <field name="act_to" ref="act_accredited" />
+            <field name="signal">accredited</field>
+        </record>
+        <record model="workflow.transition" id="unsolved_to_accredited">
+            <field name="act_from" ref="act_unsolved" />
+            <field name="act_to" ref="act_accredited" />
+            <field name="signal">accredited</field>
+        </record>
+        <record model="workflow.transition" id="paid_to_accepted">
+            <field name="act_from" ref="act_paid" />
+            <field name="act_to" ref="act_accepted" />
+            <field name="signal">accepted</field>
+        </record>
+        <record model="workflow.transition" id="unsolved_to_accepted">
+            <field name="act_from" ref="act_unsolved" />
+            <field name="act_to" ref="act_accepted" />
+            <field name="signal">accepted</field>
+        </record>
+        <record model="workflow.transition" id="accredited_to_unsolved">
+            <field name="act_from" ref="act_accredited" />
+            <field name="act_to" ref="act_unsolved" />
+            <field name="signal">unsolved</field>
+            <field name="condition">test_unsolved()</field>
+        </record>
+        <record model="workflow.transition" id="unsolved_to_cancel">
+            <field name="act_from" ref="act_unsolved" />
+            <field name="act_to" ref="act_cancel" />
+            <field name="signal">cancel</field>
+        </record>
+
+    </data>
+</openerp>

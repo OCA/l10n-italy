@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <!-- TODO: record model="ir.ui.view" id="account_config_view_service_due_cost">
+        <field name="name">account.config.view.service.due.cost</field>
+        <field name="model">account.config.settings</field>
+        <field name="inherit_id" ref="account.view_account_config_settings"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='bank_cash']" position="after">
+                <separator string="C/O Collection Fees Config"/>
+                <group name="riba_config">
+                    <label for="id" string="Collection Fees Service"/>
+                        <div>
+                            <div>
+                                <field name="due_cost_service_id"
+                                       class="oe_inline"/>
+                            </div>
+                        </div>
+                </group>
+            </xpath>
+        </field>
+    </record-->
+    <record id="view_account_config_settings_riba" model="ir.ui.view">
+        <field name="name">view_account_config_settings_riba</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <div id="eu_service" position="after">
+                <div class="col-12 col-lg-6 o_setting_box"
+                     title="C/O Configuration">
+                    <div class="o_setting_left_pane"/>
+                    <div class="o_setting_right_pane">
+                        <span class="o_form_label">C/O Collection Fees</span>
+                        <span class="fa fa-lg fa-building-o" title="Product used as Service for C/O Collection Fees"
+                              aria-label="Product used as Service for C/O Collection Fees"
+                              groups="base.group_multi_company" role="img"/>
+                        <div class="text-muted">
+                           Product used as Service for C/O Collection Fees
+                        </div>
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label string="Product" for="due_cost_service_id" class="col-lg-3 o_light_label"/>
+                                <field name="due_cost_service_id"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+</odoo>

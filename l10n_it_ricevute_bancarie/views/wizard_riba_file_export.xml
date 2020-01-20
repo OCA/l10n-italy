@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="wizard_riba_file_export" model="ir.ui.view">
+        <field name="name">Export C/O</field>
+        <field name="model">riba.file.export</field>
+        <field name="arch" type="xml">
+            <form string="Export C/O file">
+                <group col="4">
+                    <group colspan="4">
+                        <field name="riba_txt" readonly="1" filename="file_name"/>
+                        <field name="file_name" invisible="1"></field>
+                    </group>
+                    <footer colspan="4" >
+                        <button name="act_getfile" string="Export" type="object"/>
+                        <button special="cancel" string="Close"/>
+                    </footer>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <act_window name="Export C/O"
+        res_model="riba.file.export"
+        src_model="riba.distinta"
+        view_mode="form"
+        target="new"
+        key2="client_action_multi"
+        id="action_wizard_riba_file_export"
+        view_id="wizard_riba_file_export"/>
+
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <report
+        string="Print Slip"
+        id="print_distinta_qweb"
+        model="riba.distinta"
+        report_type="qweb-pdf"
+        name="l10n_it_ricevute_bancarie.distinta_qweb"
+        file="l10n_it_ricevute_bancarie.distinta_qweb"
+        />
+
+    </data>
+</odoo>

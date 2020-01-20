@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="distinta_layout">
+        <div class="header o_clean_header">
+            <t t-set="company" t-value="res_company" />
+            <t t-call="web.external_layout_standard" />
+         </div>
+        <div class="article o_report_layout_clean">
+            <t t-raw="0" />
+        </div>
+    </template>
+
+    <template id="distinta_qweb">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="l10n_it_ricevute_bancarie.distinta_layout">
+                    <div class="page">
+                        <div class="row with_bord" style="padding: 2px;">
+                            <p>
+                                Cash Order Slip No. <span t-esc="o.name or 'Draft'"/> of <span t-field="o.registration_date"/>
+                            </p>
+                        </div>
+
+                        <div class="row">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <p>Number</p>
+                                        </th>
+                                        <th>
+                                            <p>Invoice Number</p>
+                                        </th>
+                                        <th>
+                                            <p>Invoice Date</p>
+                                        </th>
+                                        <th>
+                                            <p>Customer</p>
+                                        </th>
+                                        <th>
+                                            <p>IBAN</p>
+                                        </th>
+                                        <th>
+                                            <p>Amount</p>
+                                        </th>
+                                        <th>
+                                            <p>Due Date</p>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="tot_amount" t-value="0" />
+                                    <tr t-foreach="o.line_ids" t-as="line">
+                                        <td>
+                                            <p><span t-field="line.sequence" /></p>
+                                        </td>
+                                        <td>
+                                            <p><span t-field="line.invoice_number" /></p>
+                                        </td>
+                                        <td>
+                                            <p><span t-field="line.invoice_date" /></p>
+                                        </td>
+                                        <td>
+                                            <p><span t-field="line.partner_id" /></p>
+                                        </td>
+                                        <td>
+                                            <p><span t-field="line.iban" /></p>
+                                        </td>
+                                        <td>
+                                            <p><span t-field="line.amount" /></p>
+                                        </td>
+                                        <td>
+                                            <p><span t-field="line.due_date" /></p>
+                                        </td>
+                                        <t t-set="tot_amount" t-value="tot_amount + line.amount" />
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-4 pull-right">
+                                <table class="table table-condensed">
+                                    <tr class="border-black">
+                                        <td><strong>Total</strong></td>
+                                        <td class="text-right">
+                                            <span t-esc="tot_amount"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

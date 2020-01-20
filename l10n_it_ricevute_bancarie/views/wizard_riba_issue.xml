@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+        
+    <!-- ====================================================== -->
+    <!--                     WIZARD EMISSIONE RIBA                -->
+    <!-- ====================================================== -->
+    <record id="riba_issue_view" model="ir.ui.view">
+        <field name="name">riba.issue.wizard</field>
+        <field name="model">riba.issue</field>
+        <field name="arch" type="xml">
+            <form string="C/O Issue">
+                <separator string="This wizard will generate the C/O slip" colspan="4"/>
+                <group>
+                    <field name="configuration_id"/>
+                </group>
+                <footer>
+                    <button string="Create" name="create_list" type="object" default_focus="1" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- ====================================================== -->
+    <!--                     ACTION EMISSIONE RIBA                -->
+    <!-- ====================================================== -->
+    <record id="riba_issue_action" model="ir.actions.act_window">
+        <field name="name">Issue C/O</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">riba.issue</field>
+        <field name="src_model">account.move.line</field>
+        <field name="binding_model_id" ref="account.model_account_move_line"/>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="riba_issue_view"/>
+    </record>
+
+</odoo>
