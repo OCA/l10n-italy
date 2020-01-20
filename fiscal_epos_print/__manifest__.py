@@ -10,13 +10,13 @@
     'version': '10.0.1.0.0',
     'category': 'Point Of Sale',
     'summary': 'ePOS-Print XML Fiscal Printer Driver - Stampanti Epson compatibili'
-               'FP81II, FP90III',
+               ' FP81II, FP90III',
     'author': (
-        'Agile Business Group, '
-        'Leonardo Donelli @ Creativi Quadrati, TAKOBI, '
-        'Roberto Fichera @ Level Prime Srl'
+        'Odoo Community Association (OCA), Agile Business Group, '
+        'Leonardo Donelli, TAKOBI, Level Prime Srl'
     ),
-    'website': 'https://takobi.online',
+    'license': 'GPL-3',
+    'website': 'https://github.com/OCA/l10n-italy',
     'depends': [
         'point_of_sale',
         'pos_order_mgmt',

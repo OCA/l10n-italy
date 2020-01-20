@@ -7,7 +7,7 @@ class PosOrder(models.Model):
     _inherit = 'pos.order'
 
     refund_date = fields.Date(string='Refund date reference')
-    refund_report = fields.Integer(string='Report reference', digits=(4, 0))
+    refund_report = fields.Integer(string='Closure reference', digits=(4, 0))
     refund_doc_num = fields.Integer(string='Document Number', digits=(4, 0))
     refund_cash_fiscal_serial = fields.Char(string='Refund Cash Serial')
 

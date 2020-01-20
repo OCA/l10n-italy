@@ -10,16 +10,6 @@ odoo.define("fiscal_epos_print.screens", function (require) {
     var eposDriver = epson_epos_print.eposDriver;
 
     ReceiptScreenWidget.include({
-        show: function(){
-            if (!this.pos.config.printer_ip || (this.pos.config.printer_ip && this.pos.config.show_receipt_when_printing) ){
-                this._super();
-            }
-            else
-            {
-                this.click_next();
-            }
-        },
-
         lock_screen: function(locked) {
             this._super.apply(this, arguments);
             if (locked) {

@@ -29,16 +29,15 @@ odoo.define("fiscal_epos_print.pos_order_mgmt", function (require) {
         },
 
         sendToFP90Printer: function(receipt, printer_options) {
-            for (var i = 0; i < printer_options.length; i++){
-                var printer_option = printer_options[i];
-                var fp90 = new eposDriver(printer_option, this);
-                fp90.printFiscalReceipt(receipt);
-            }
+            var fp90 = new eposDriver(printer_options, this);
+            fp90.printFiscalReceipt(receipt);
         },
 
         action_print: function (order_data, order) {
             if (this.pos.config.printer_ip) {
                 if (order_data.fiscal_receipt_number) {
+                    this.chrome.loading_show();
+                    this.chrome.loading_message(_t('Connecting to the fiscal printer'));
                     this.pos.gui.show_popup('error', {
                         'title': _t('Order already printed'),
                         'body': order_data.pos_reference + _t(": order already has a fiscal number, ") + order_data.fiscal_receipt_number,
