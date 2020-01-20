@@ -60,6 +60,13 @@ msgid "Accounts"
 msgstr "Conti"
 
 #. module: l10n_it_account
+#: model:ir.model.fields,help:l10n_it_account.field_account_group__account_ids
+#, fuzzy
+#| msgid "Accounts"
+msgid "Assigned accounts."
+msgstr "Conti"
+
+#. module: l10n_it_account
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_account_type__account_balance_sign
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_group__account_balance_sign
 msgid "Balance sign"
