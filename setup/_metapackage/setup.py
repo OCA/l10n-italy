@@ -50,6 +50,7 @@ setuptools.setup(
         'odoo12-addon-l10n_it_pos_fiscalcode',
         'odoo12-addon-l10n_it_rea',
         'odoo12-addon-l10n_it_reverse_charge',
+        'odoo12-addon-l10n_it_ricevute_bancarie',
         'odoo12-addon-l10n_it_sdi_channel',
         'odoo12-addon-l10n_it_split_payment',
         'odoo12-addon-l10n_it_vat_registries',
