@@ -370,13 +370,14 @@ class WizardExportFatturapa(models.TransientModel):
                 raise UserError(
                     _('VAT number and fiscal code are not set for %s.') %
                     partner.name)
-        if partner.fiscalcode:
-            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
-                DatiAnagrafici.CodiceFiscale = partner.fiscalcode
         if partner.vat:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
                     IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
+        if partner.fiscalcode \
+                and (not partner.vat or partner.vat == partner.fiscalcode):
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+                DatiAnagrafici.CodiceFiscale = partner.fiscalcode
         if partner.company_name:
             # This is valorized by e-commerce orders typically
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
