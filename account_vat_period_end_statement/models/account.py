@@ -123,6 +123,7 @@ class AccountVatPeriodEndStatement(models.Model):
             'paid': [('readonly', True)],
             'draft': [('readonly', False)]
         }, digits=dp.get_precision('Account'))
+    previous_year_credit = fields.Boolean("Previous year credits")
     previous_debit_vat_account_id = fields.Many2one(
         'account.account', 'Previous Debits VAT',
         help='Debit VAT from previous periods',
@@ -500,6 +501,17 @@ class AccountVatPeriodEndStatement(models.Model):
                     statement.write(
                         {'previous_credit_vat_amount': (
                             - prev_statement.authority_vat_amount)})
+                    company = statement.company_id or self.env.user.company_id
+                    statement_fiscal_year_dates = (
+                        company.compute_fiscalyear_dates(statement.date))
+                    prev_statement_fiscal_year_dates = (
+                        company.compute_fiscalyear_dates(prev_statement.date))
+                    if (
+                        prev_statement_fiscal_year_dates['date_to'] <
+                        statement_fiscal_year_dates['date_from']
+                    ):
+                        statement.write({
+                            'previous_year_credit': True})
 
             credit_line_ids, debit_line_ids = self._get_credit_debit_lines(
                 statement)
