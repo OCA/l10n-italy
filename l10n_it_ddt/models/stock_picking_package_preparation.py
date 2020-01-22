@@ -453,10 +453,11 @@ class StockPickingPackagePreparation(models.Model):
                         invoices[group_key].id, line.product_uom_qty)
             if references.get(invoices.get(group_key)):
                 if ddt not in references[invoices[group_key]]:
-                    references[invoice] = references[invoice] | ddt
+                    references[invoices[group_key]] = \
+                        references[invoices[group_key]] | ddt
 
             # Allow additional operations from ddt
-            ddt.other_operations_on_ddt(invoice)
+            ddt.other_operations_on_ddt(invoices[group_key])
 
         if not invoices:
             raise UserError(_('There is no invoiceable line.'))
