@@ -272,7 +272,7 @@ class StockPickingPackagePreparation(models.Model):
         It returns the first sale order of the ddt.
         """
         self.ensure_one()
-        sale_order = False
+        sale_order = self.env['sale.order'].browse()
         for sm in self.picking_ids.mapped('move_lines'):
             if sm.sale_line_id:
                 sale_order = sm.sale_line_id.order_id
@@ -398,77 +398,22 @@ class StockPickingPackagePreparation(models.Model):
     @api.multi
     def action_invoice_create(self):
         """
-        Create the invoice associated to the DDT.
+        Create the invoice associated to the TD.
         :returns: list of created invoices
         """
-        inv_obj = self.env['account.invoice']
-        invoices = {}
-        references = {}
-        for ddt in self:
-            if not ddt.to_be_invoiced or ddt.invoice_id:
-                continue
-            order = ddt._get_sale_order_ref()
+        grouped_invoices = self.create_td_grouped_invoices()
 
-            if order:
-                group_method = (
-                    order and order.ddt_invoicing_group or 'shipping_partner')
-                group_partner_invoice_id = order.partner_invoice_id.id
-                group_currency_id = order.currency_id.id
-            else:
-                group_method = ddt.partner_shipping_id.ddt_invoicing_group
-                group_partner_invoice_id = ddt.partner_id.id
-                group_currency_id = ddt.partner_id.currency_id.id
-
-            if group_method == 'billing_partner':
-                group_key = (group_partner_invoice_id,
-                             group_currency_id)
-            elif group_method == 'shipping_partner':
-                group_key = (ddt.partner_shipping_id.id,
-                             ddt.company_id.currency_id.id)
-            elif group_method == 'code_group':
-                group_key = (ddt.partner_shipping_id.ddt_code_group,
-                             group_partner_invoice_id)
-            else:
-                group_key = ddt.id
-
-            for line in ddt.line_ids:
-                if group_key not in invoices:
-                    inv_data = ddt._prepare_invoice()
-                    invoice = inv_obj.create(inv_data)
-                    references[invoice] = ddt
-                    invoices[group_key] = invoice
-                    ddt.invoice_id = invoice.id
-                elif group_key in invoices:
-                    vals = {}
-
-                    origin = invoices[group_key].origin
-                    if origin and ddt.ddt_number not in origin.split(', '):
-                        vals['origin'] = invoices[
-                            group_key].origin + ', ' + ddt.ddt_number
-                    invoices[group_key].write(vals)
-                    ddt.invoice_id = invoices[group_key].id
-
-                if line.product_uom_qty > 0:
-                    line.invoice_line_create(
-                        invoices[group_key].id, line.product_uom_qty)
-            if references.get(invoices.get(group_key)):
-                if ddt not in references[invoices[group_key]]:
-                    references[invoices[group_key]] = \
-                        references[invoices[group_key]] | ddt
-
-            # Allow additional operations from ddt
-            ddt.other_operations_on_ddt(invoices[group_key])
-
-        if not invoices:
+        if not grouped_invoices:
             raise UserError(_('There is no invoiceable line.'))
 
-        for invoice in list(invoices.values()):
-            if not invoice.name:
-                invoice.write({
-                    'name': invoice.origin
-                })
+        for invoice in grouped_invoices.values():
             if not invoice.invoice_line_ids:
                 raise UserError(_('There is no invoiceable line.'))
+
+            if not invoice.name:
+                invoice.update({
+                    'name': invoice.origin
+                })
             # If invoice is negative, do a refund invoice instead
             if invoice.amount_untaxed < 0:
                 invoice.type = 'out_refund'
@@ -481,12 +426,83 @@ class StockPickingPackagePreparation(models.Model):
             # they are triggered
             # by onchanges, which are not triggered when doing a create.
             invoice.compute_taxes()
+
+            related_tds = self.filtered(lambda td: td.invoice_id == invoice)
             invoice.message_post_with_view(
                 'mail.message_origin_link',
                 values={
-                    'self': invoice, 'origin': references[invoice]},
+                    'self': invoice,
+                    'origin': related_tds,
+                },
                 subtype_id=self.env.ref('mail.mt_note').id)
-        return [inv.id for inv in list(invoices.values())]
+        return [inv.id for inv in list(grouped_invoices.values())]
+
+    @api.multi
+    def create_td_grouped_invoices(self):
+        """
+        Create the invoices, grouped by `group_key` (see `get_td_group_key`).
+        :return: dictionary group_key -> invoice record-set
+        """
+        inv_obj = self.env['account.invoice']
+        grouped_invoices = {}
+        for td in self:
+            if not td.to_be_invoiced or td.invoice_id:
+                continue
+
+            group_key = td.get_td_group_key()
+            if group_key not in grouped_invoices:
+                inv_data = td._prepare_invoice()
+                grouped_invoices[group_key] = inv_obj.create(inv_data)
+
+            invoice = grouped_invoices.get(group_key)
+            td.invoice_id = invoice.id
+
+            origin = invoice.origin
+            if origin and td.ddt_number not in origin.split(', '):
+                invoice.update({
+                    'origin': origin + ', ' + td.ddt_number
+                })
+
+            for line in td.line_ids:
+                if line.product_uom_qty > 0:
+                    line.invoice_line_create(invoice.id, line.product_uom_qty)
+
+            # Allow additional operations from td
+            td.other_operations_on_ddt(invoice)
+        return grouped_invoices
+
+    @api.multi
+    def get_td_group_key(self):
+        """
+        Get the grouping key for current TD.
+        """
+        self.ensure_one()
+
+        # Try to get the invoicing group from the order,
+        # fallback on the shipping partner's invoicing group.
+        order = self._get_sale_order_ref()
+        if order:
+            group_method = order.ddt_invoicing_group or 'shipping_partner'
+            group_partner_invoice_id = order.partner_invoice_id.id
+            group_currency_id = order.currency_id.id
+        else:
+            group_method = self.partner_shipping_id.ddt_invoicing_group
+            group_partner_invoice_id = self.partner_id.id
+            group_currency_id = self.partner_id.currency_id.id
+
+        group_key = ''
+        if group_method == 'billing_partner':
+            group_key = (group_partner_invoice_id,
+                         group_currency_id)
+        elif group_method == 'shipping_partner':
+            group_key = (self.partner_shipping_id.id,
+                         self.company_id.currency_id.id)
+        elif group_method == 'code_group':
+            group_key = (self.partner_shipping_id.ddt_code_group,
+                         group_partner_invoice_id)
+        elif group_method == 'nothing':
+            group_key = self.id
+        return group_key
 
     @api.multi
     def action_send_ddt_mail(self):

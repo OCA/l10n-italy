@@ -8,6 +8,11 @@
 
 from odoo import fields, models, api
 
+TD_INVOICING_GROUPS = [('nothing', 'One TD - One Invoice'),
+                       ('billing_partner', 'Billing Partner'),
+                       ('shipping_partner', 'Shipping Partner'),
+                       ('code_group', 'Code group')]
+
 
 class SaleOrder(models.Model):
 
@@ -41,11 +46,10 @@ class SaleOrder(models.Model):
         compute='_compute_ddt_ids')
     create_ddt = fields.Boolean('Automatically create the TD')
     ddt_invoicing_group = fields.Selection(
-        [('nothing', 'One TD - One Invoice'),
-         ('billing_partner', 'Billing Partner'),
-         ('shipping_partner', 'Shipping Partner'),
-         ('code_group', 'Code group')], 'TD invoicing group',
-        default='billing_partner')
+        TD_INVOICING_GROUPS, 'TD invoicing group',
+        default='billing_partner',
+        required=True,
+    )
 
     ddt_invoice_exclude = fields.Boolean(
         string='DDT do not invoice services',
