@@ -72,8 +72,8 @@ Configuration
 * Per i clienti e i fornitori che sono soggetti obbligati all'emissione della fattura 
   elettronica va abilitata la casella "Soggetto obbligato".
 
-   * Le pubbliche amministrazioni devono avere un codice IPA.
-   * Gli altri devono avere il codice destinatario o la PEC.
+  * Le pubbliche amministrazioni devono avere un codice IPA.
+  * Gli altri devono avere il codice destinatario o la PEC.
 
 * Configurare le imposte riguardo a "Natura non imponibile", "Riferimento normativo" ed 
   "Esigibilità IVA".
@@ -92,8 +92,8 @@ Configuration
 * Enable "Obliged Subject" for customers and suppliers subject to the obligation to 
   issue electronic invoices.
 
-   * Public administrations must have IPA code.
-   * Others must have Addressee Code or PEC.
+  * Public administrations must have IPA code.
+  * Others must have Addressee Code or PEC.
 
 * Configure taxes about 'Non taxable nature', 'Law reference' and 'VAT payability'.
 
