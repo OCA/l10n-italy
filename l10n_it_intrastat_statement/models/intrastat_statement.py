@@ -26,7 +26,7 @@ class AccountIntrastatStatement(models.Model):
         else:
             round_amount = round(amount)
 
-        return max(round_amount or 0, company.intrastat_min_amount)
+        return max(round_amount or 1, company.intrastat_min_amount)
 
     @api.multi
     def _compute_amount_section(self, section_type, section_number):
