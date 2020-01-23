@@ -131,8 +131,8 @@ class IntrastatStatementPurchaseSection1(models.Model):
 
         res.update({
             'transaction_nature_id': transaction_nature_id.id,
-            'weight_kg': round(inv_intra_line.weight_kg) or 0,
-            'additional_units': round(inv_intra_line.additional_units) or 0,
+            'weight_kg': round(inv_intra_line.weight_kg) or 1,
+            'additional_units': round(inv_intra_line.additional_units) or 1,
             'statistic_amount_euro': statistic_amount,
             'delivery_code_id': delivery_code_id.id,
             'transport_code_id': transport_code_id,
