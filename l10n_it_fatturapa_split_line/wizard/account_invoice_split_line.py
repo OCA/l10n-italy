@@ -15,26 +15,35 @@ class SplitInvoiceLines(models.TransientModel):
                 self.env.context.get('active_ids')
             )
             for invoice in invoices:
-                for line in invoice.invoice_line.filtered(
-                    lambda x: len(x.name) > 1000
-                ):
-                    a = 0
-                    line_list_985 = \
-                        [line.name[i:i + 985] for i in
-                         range(0, len(line.name), 985)]
-                    for inv_line985 in line_list_985:
-                        a += 1
-                        if a == 1:
-                            continue
-                        line.copy(
-                            default={
-                                'name': _('(...follow) %s') % inv_line985,
-                                'sequence': line.sequence + a,
-                                'quantity': 0,
-                                'price_unit': 0,
-                                'price_subtotal': 0,
-                                'product_id': False,
-                                'invoice_id': line.invoice_id.id,
-                            }
-                        )
-                    line.name = line.name[:985]
+                if any(x for x in invoice.invoice_line if len(x.name) > 1000):
+                    s = 0
+                    for line in invoice.invoice_line.sorted(
+                            key=lambda x: (x.sequence or x.id)):
+                        s += 1
+                        a = 0
+                        if len(line.name) > 1000:
+                            line_list_985 = \
+                                [line.name[i:i + 985] for i in
+                                 range(0, len(line.name), 985)]
+                            for inv_line985 in line_list_985:
+                                a += 1
+                                if a == 1:
+                                    line.sequence = (line.sequence and
+                                                     line.sequence + s or s) * 100 + a
+                                    continue
+                                line.copy(
+                                    default={
+                                        'name': _('(...follow) %s') % inv_line985,
+                                        'sequence': line.sequence + a,
+                                        'quantity': 0,
+                                        'price_unit': 0,
+                                        'price_subtotal': 0,
+                                        'product_id': False,
+                                        'invoice_id': line.invoice_id.id,
+                                    }
+                                )
+                            line.name = line.name[:985]
+                        else:
+                            a += 1
+                            line.sequence = (line.sequence and
+                                             line.sequence + s or s) * 100 + a
