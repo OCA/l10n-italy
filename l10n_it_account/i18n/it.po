@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-21 10:38+0000\n"
-"PO-Revision-Date: 2020-01-20 21:04+0000\n"
+"PO-Revision-Date: 2020-01-24 20:13+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -74,7 +74,7 @@ msgstr "Segno del saldo"
 #: code:addons/l10n_it_account/models/account_type.py:42
 #, python-format
 msgid "Balance sign's value can only be 1 or -1."
-msgstr ""
+msgstr "Il valore del segno per il saldo può essere solo 1 o -1."
 
 #. module: l10n_it_account
 #: code:addons/l10n_it_account/models/account_group.py:27
@@ -93,7 +93,7 @@ msgstr "Includere nel registro IVA"
 #: code:addons/l10n_it_account/models/account_group.py:58
 #, python-format
 msgid "Incoherent balance signs for '{}' and its subgroups."
-msgstr ""
+msgstr "Segni del saldo incoerenti per \"{}\" e i sottogruppi."
 
 #. module: l10n_it_account
 #: model:ir.ui.menu,name:l10n_it_account.account_italian_localization
