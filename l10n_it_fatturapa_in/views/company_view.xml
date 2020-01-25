@@ -41,6 +41,19 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <label for="in_invoice_registration_date"/>
+                            <span class="fa fa-lg fa-building-o" title="Values set here are company-specific."
+                                  aria-label="Values set here are company-specific."
+                                  groups="base.group_multi_company" role="img"/>
+                            <div class="text-muted">
+                                Set default date used to register vendor invoices: date of invoice or received date.
+                            </div>
+                            <div>
+                                <field name="in_invoice_registration_date"/>
+                            </div>
+                        </div>
                         <div class="o_setting_left_pane">
                             <field name="enasarco_relax_checks"/>
                         </div>
