@@ -27,6 +27,10 @@
                     <label for="arrotondamenti_tax_id"/>
                     <field name="arrotondamenti_tax_id" class="oe_inline"/>
                 </div>
+                <div>
+                    <label for="in_invoice_registration_date"/>
+                    <field name="in_invoice_registration_date" class="oe_inline"/>
+                </div>
             </xpath>
         </field>
     </record>
