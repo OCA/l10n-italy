@@ -5,7 +5,7 @@
 
 {
     'name': 'Italian Regions Import',
-    'version': '8.0.1.0.1',
+    'version': '8.0.1.0.2',
     'category': 'Extra Tools',
     'license': 'AGPL-3',
     'summary': 'Import Italian regions from Geonames',
