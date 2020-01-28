@@ -20,7 +20,7 @@
 ##############################################################################
 {
     "name": "Ateco codes",
-    "version": "8.0.1.0.0",
+    "version": "8.0.1.0.1",
     "category": "Localisation/Italy",
     "description": """Italian Localisation module - Ateco codes
 
