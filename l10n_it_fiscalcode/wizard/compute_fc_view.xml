@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <openerp>
-	<data>
+    <data>
 
         <record id="wizard_compute_fc_form" model="ir.ui.view">
             <field name="name">wizard.compute.fc.form</field>
@@ -48,5 +48,5 @@
             </field>
         </record>
 
-	</data>
+    </data>
 </openerp>

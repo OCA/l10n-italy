@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <openerp>
-	<data>
-	    <record id="view_ateco_category_form" model="ir.ui.view">
+    <data>
+        <record id="view_ateco_category_form" model="ir.ui.view">
             <field name="name">ateco.category.form</field>
             <field name="model">ateco.category</field>
             <field name="type">form</field>
