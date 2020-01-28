@@ -22,7 +22,7 @@
 
 {
     'name': 'Split Payment',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.0.1',
     'category': 'Localization/Italy',
     'summary': 'Split Payment',
     'author': 'Abstract, Odoo Community Association (OCA)',
