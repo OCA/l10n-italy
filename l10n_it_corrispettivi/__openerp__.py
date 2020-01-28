@@ -6,7 +6,7 @@
 
 {
     'name': 'Italian Localization - Corrispettivi',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.0.1',
     'category': 'Accounting & Finance',
     'author': 'Odoo Italian Community, Agile Business Group, '
               'Odoo Community Association (OCA)',
