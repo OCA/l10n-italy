@@ -426,7 +426,9 @@ class WizardImportFatturapa(models.TransientModel):
             'account_id': credit_account_id,
             'price_unit': float(line.PrezzoUnitario),
         })
-        if line.Quantita:
+        if line.Quantita is None:
+            retLine['quantity'] = 1.0
+        else:
             retLine['quantity'] = float(line.Quantita)
         if (
             float(line.PrezzoUnitario) and

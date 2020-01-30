@@ -480,6 +480,13 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.e_invoice_amount_tax, 0.0)
         self.assertEqual(invoice.e_invoice_amount_total, 34.32)
 
+    def test_26_xml_import(self):
+        res = self.run_wizard('test26', 'IT05979361218_014.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.invoice_line_ids[0].quantity, 0)
+        self.assertEqual(invoice.invoice_line_ids[1].quantity, 1)
+
     def test_31_xml_import(self):
         res = self.run_wizard('test31', 'IT01234567890_FPR05.xml')
         invoice_id = res.get('domain')[0][2][0]
