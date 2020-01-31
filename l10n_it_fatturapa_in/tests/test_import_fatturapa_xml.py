@@ -610,6 +610,13 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertTrue(orig_invoice.reference)
         self.assertTrue(orig_invoice.date_invoice)
 
+    def test_01_xml_zero_quantity_line(self):
+        res = self.run_wizard('test_zeroq_01', 'IT05979361218_q0.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.invoice_line_ids[0].quantity, 0)
+        self.assertEqual(invoice.invoice_line_ids[1].quantity, 1)
+
 
 class TestFatturaPAEnasarco(FatturapaCommon):
 
