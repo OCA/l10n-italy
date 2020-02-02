@@ -11,6 +11,7 @@
                 <page name='invoicing' position="inside">
                     <group string="Tax stamp">
                         <field name="is_stamp"/>
+                        <field name="auto_compute" attrs="{'invisible': [('is_stamp', '=', False)]}"/>
                         <p attrs="{'invisible': [('is_stamp', '=', False)]}" colspan="2">
                             For each invoice, the base amount for each selected tax will be added up and used to determine the application of the account stamp.
                         </p>

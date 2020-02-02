@@ -22,7 +22,7 @@
         'data/data.xml',
         'views/invoice_view.xml',
         'views/product_view.xml',
-        'views/res_config_settings_view.xml',
+        'views/company_view.xml',
     ],
     'installable': True,
 }

@@ -3,4 +3,3 @@
 from . import invoice
 from . import product
 from . import company
-from . import res_config_settings
