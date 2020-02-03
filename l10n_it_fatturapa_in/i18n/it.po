@@ -30,7 +30,7 @@ msgid "Account used for passive rounding amount on bills."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1075
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1078
 #, python-format
 msgid "Active Rounding"
 msgstr ""
@@ -82,7 +82,7 @@ msgid "Attachment id"
 msgstr "Allegato"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/attachment.py:102
+#: code:addons/l10n_it_fatturapa_in/models/attachment.py:104
 #, python-format
 msgid "Attachment without name"
 msgstr "Allegato senza nome"
@@ -128,7 +128,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1297
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1300
 #, python-format
 msgid "Bill total %s is different from document total amount %s"
 msgstr ""
@@ -188,7 +188,7 @@ msgid "Company Name field contains '%s'. Your System contains '%s'"
 msgstr "Il campo nome azienda contiene \"%s\", il sistema contiene \"%s\""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1312
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1315
 #, python-format
 msgid "Computed amount untaxed %s is different from summary data %s"
 msgstr "L'imponibile calcolato %s è diverso da quello dei dati di riepilogo %s"
@@ -312,6 +312,12 @@ msgid "E invoice validation message"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice_e_invoice_received_date
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in_e_invoice_received_date
+msgid "E-Bill Received Date"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice_e_invoice_amount_tax
 msgid "E-Invoice Tax Amount"
 msgstr ""
@@ -418,7 +424,7 @@ msgid "File Size"
 msgstr "Dimensione file"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1335
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1338
 #, python-format
 msgid "File is linked to bills yet."
 msgstr "Il file è già collegato alle fatture."
@@ -517,7 +523,7 @@ msgid "Invoice Line"
 msgstr "Riga fattura"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/account.py:143
+#: code:addons/l10n_it_fatturapa_in/models/account.py:146
 #, python-format
 msgid ""
 "Invoice date ({bill_date_invoice}) does not match with e-bill invoice date "
@@ -681,7 +687,7 @@ msgstr ""
 "Imposta con aliquota %s e natura %s non trovata, configurare questa imposta."
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1151
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1154
 #, python-format
 msgid "No withholding tax found with document payment reason %s and rate %s."
 msgstr "Ritenuta con causale documento %s e aliquota %s non trovata."
@@ -703,7 +709,7 @@ msgid "Partner"
 msgstr "Partner"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1066
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1069
 #, python-format
 msgid "Passive Rounding"
 msgstr ""
@@ -721,13 +727,13 @@ msgid "Payment method %s is not defined in your system."
 msgstr "Modalità di pagamento %s non definita nel sistema."
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1118
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1121
 #, python-format
 msgid "Payment method code %s is incorrect."
 msgstr "Codice modalità di pagamento %s non corretto."
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1113
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1116
 #, python-format
 msgid "Payment method code not found in document."
 msgstr "Codice modalità di pagamento non trovato nel documento."
@@ -909,7 +915,7 @@ msgid "Tax used for rounding amount on bills."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/account.py:79
+#: code:addons/l10n_it_fatturapa_in/models/account.py:82
 #, python-format
 msgid ""
 "Taxed amount ({bill_amount_tax}) does not match with e-bill taxed amount "
@@ -922,7 +928,7 @@ msgid "Text Reference"
 msgstr "Riferimento testo"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1139
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1142
 #, python-format
 msgid ""
 "The bill contains withholding tax with payment reason %s, but such a tax is "
@@ -937,7 +943,7 @@ msgid "The database object this attachment will be attached to."
 msgstr "L'oggetto del database a cui verrà assegnato questo allegato."
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/account.py:50
+#: code:addons/l10n_it_fatturapa_in/models/account.py:53
 #, python-format
 msgid "The invoice '%s' doesn't match the related e-invoice"
 msgstr ""
@@ -973,7 +979,7 @@ msgid "Total Price"
 msgstr "Prezzo totale"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/account.py:96
+#: code:addons/l10n_it_fatturapa_in/models/account.py:99
 #, python-format
 msgid ""
 "Total amount ({bill_amount_total}) does not match with e-bill total amount "
@@ -1006,7 +1012,7 @@ msgid "Unit of measure"
 msgstr "Unità di misura"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/account.py:62
+#: code:addons/l10n_it_fatturapa_in/models/account.py:65
 #, python-format
 msgid ""
 "Untaxed amount ({bill_amount_untaxed}) does not match with e-bill untaxed "
@@ -1035,7 +1041,7 @@ msgid "VAT Rate"
 msgstr "Aliquota IVA"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/account.py:132
+#: code:addons/l10n_it_fatturapa_in/models/account.py:135
 #, python-format
 msgid ""
 "Vendor reference ({bill_vendor_ref}) does not match with e-bill vendor "
@@ -1065,7 +1071,7 @@ msgid "Welfare Fund Details"
 msgstr "Dettagli cassa previdenziale"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1186
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1189
 #, python-format
 msgid ""
 "Welfare Fund data %s has withholding tax but no withholding tax was found in "
@@ -1081,7 +1087,7 @@ msgid "Welfare Fund is not defined."
 msgstr "Cassa previdenziale non definita."
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1178
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1181
 #, python-format
 msgid "Welfare Fund: %s"
 msgstr "Cassa previdenziale: %s"
