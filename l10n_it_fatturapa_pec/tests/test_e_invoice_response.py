@@ -4,6 +4,8 @@
 
 from .e_invoice_common import EInvoiceCommon
 from odoo.modules import get_module_resource
+from odoo.fields import Datetime
+
 import mock
 
 
@@ -91,6 +93,9 @@ class TestEInvoiceResponse(EInvoiceCommon):
 
         e_invoices = self.attach_in_model.search([])
 
+        msg_dict = self.env['mail.thread'] \
+            .message_parse(message=incoming_mail)
+
         self.env['mail.thread'] \
             .with_context(fetchmail_server_id=self.PEC_server.id) \
             .message_process(False, incoming_mail)
@@ -98,6 +103,9 @@ class TestEInvoiceResponse(EInvoiceCommon):
         e_invoices = self.attach_in_model.search([]) - e_invoices
 
         self.assertTrue(e_invoices)
+        self.assertEqual(
+            Datetime.from_string(e_invoices.e_invoice_received_date),
+            Datetime.from_string(msg_dict['date']))
         self.assertEqual(e_invoices.xml_supplier_id.vat,
                          'IT02652600210')
 

@@ -20,6 +20,7 @@
                         <group>
                             <field name="xml_supplier_id"/>
                             <field name="invoices_number"/>
+                            <field name="e_invoice_received_date"/>
                             <field name="registered"/>
                             <field name="invoices_total"/>
                         </group>
@@ -123,6 +124,7 @@
             <field name="date_invoice" position="before">
                 <field name="sender" readonly="1" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}"></field>
                 <field name="protocol_number" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}"></field>
+                <field name="e_invoice_received_date" readonly="1" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}"></field>
             </field>
             <field name="price_unit" position="before">
                 <field name="fatturapa_attachment_in_id" invisible="1"/>
