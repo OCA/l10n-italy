@@ -74,6 +74,23 @@ class TestDdt(TransactionCase):
             })
         return order
 
+    def _create_order_ddt(self, partner):
+        order = self._create_sale_order()
+        order.partner_id = partner
+        order.onchange_partner_id()
+        self.product3.ddt_invoice_exclude = False
+        self.product3.invoice_policy = 'order'
+        self._create_sale_order_line(order, self.product1)
+        self._create_sale_order_line(order, self.product3)
+        order.create_ddt = True
+        order.action_confirm()
+        order.picking_ids.action_assign()
+        ddt = order.ddt_ids[0]
+        ddt.action_put_in_pack()
+        ddt.action_done()
+        ddt.to_be_invoiced = True
+        return ddt, order
+
     def _create_sale_order_line(self, order, product, quantity=1.0):
         line = self.env['sale.order.line'].create({
             'order_id': order.id,
@@ -605,3 +622,58 @@ class TestDdt(TransactionCase):
         self.assertTrue(
             "Relevant period: " in
             self.env['account.invoice'].browse(res['domain'][0][2][0]).name)
+
+    def test_td_multi_invoicing(self):
+        """
+        TDs to be grouped as follows:
+        Order1/TD1 group A (new invoiceA)
+        Order2/TD2 group B (new invoiceB)
+        Order3/TD3 group A (included in invoice A)
+
+        Check that lines from order1 are only in invoiceA.
+        Check that lines from order2 are only in invoiceB.
+        Check that lines from order3 are only in invoiceA.
+        """
+
+        ddt, order1 = self._create_order_ddt(self.partner)
+        ddt2, order2 = self._create_order_ddt(self.partner2)
+        ddt3, order3 = self._create_order_ddt(self.partner)
+
+        invoicing_wiz = self.env['ddt.invoicing'].create({
+            'date_from': datetime.now().date(),
+            'date_to': datetime.now().date(),
+        })
+        action = invoicing_wiz.create_invoices()
+        # context manager translates dates to strings when launching actions
+        ctx = action['context'].copy()
+        ctx['ddt_date_from'] = fields.Date.to_string(ctx['ddt_date_from'])
+        ctx['ddt_date_to'] = fields.Date.to_string(ctx['ddt_date_to'])
+        ctx['active_ids'] = [ddt.id, ddt2.id, ddt3.id]
+        invoice_wiz = self.env['ddt.create.invoice'].with_context(
+            ctx).create({})
+        res = invoice_wiz.create_invoice()
+        invoice_ids = res['domain'][0][2]
+        invoices = self.env['account.invoice'].browse(invoice_ids)
+
+        self.assertEqual(len(invoices), 2)
+        invoice_a = ddt.invoice_id
+        invoice_b = ddt2.invoice_id
+        self.assertNotEqual(invoice_a, invoice_b)
+
+        invoice_a_sale_lines = \
+            invoice_a.invoice_line_ids.mapped('sale_line_ids')
+        self.assertTrue(set(order1.order_line.ids)
+                        .issubset(invoice_a_sale_lines.ids))
+        self.assertFalse(set(order2.order_line.ids)
+                         .issubset(invoice_a_sale_lines.ids))
+        self.assertTrue(set(order3.order_line.ids)
+                        .issubset(invoice_a_sale_lines.ids))
+
+        invoice_b_sale_lines = \
+            invoice_b.invoice_line_ids.mapped('sale_line_ids')
+        self.assertFalse(set(order1.order_line.ids)
+                         .issubset(invoice_b_sale_lines.ids))
+        self.assertTrue(set(order2.order_line.ids)
+                        .issubset(invoice_b_sale_lines.ids))
+        self.assertFalse(set(order3.order_line.ids)
+                         .issubset(invoice_b_sale_lines.ids))
