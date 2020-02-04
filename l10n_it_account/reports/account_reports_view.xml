@@ -65,7 +65,14 @@
                   <div class="col-xs-4 col-xs-offset-4 text-right">
                     <span style="display: none;" id="l10n_it_count_fiscal_page_base" t-esc="l10n_it_count_fiscal_page_base" />
                     <ul class="list-inline">Pag:
-                        <li><span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y')"/></li>
+                        <li>
+                            <t t-if="l10n_it_count_fiscal_year">
+                                <span t-esc="l10n_it_count_fiscal_year"/>
+                            </t>
+                            <t t-if="not l10n_it_count_fiscal_year">
+                                <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y')"/>
+                            </t>
+                        </li>
                         <li>/</li>
                         <li><span class="page"/></li>
                     </ul>

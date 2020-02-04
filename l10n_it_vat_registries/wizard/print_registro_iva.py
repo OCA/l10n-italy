@@ -32,6 +32,9 @@ class WizardRegistroIva(models.TransientModel):
     only_totals = fields.Boolean(
         string='Prints only totals')
     fiscal_page_base = fields.Integer('Last printed page', required=True)
+    year_footer = fields.Char(
+        string='Year for Footer',
+        help="Value printed near number of page in the footer")
 
     @api.multi
     def load_journal_ids(self):
@@ -73,6 +76,7 @@ class WizardRegistroIva(models.TransientModel):
         datas_form['journal_ids'] = [j.id for j in wizard.journal_ids]
         datas_form['fiscal_page_base'] = wizard.fiscal_page_base
         datas_form['registry_type'] = wizard.layout_type
+        datas_form['year_footer'] = wizard.year_footer
 
         lang_code = self.env.user.company_id.partner_id.lang
         lang = self.env['res.lang']
