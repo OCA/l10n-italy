@@ -461,3 +461,10 @@ class TestFatturaPAXMLValidation(SingleTransactionCase):
         self.assertEqual(invoice.invoice_line_ids[1].discount, 100)
         self.assertEqual(invoice.invoice_line_ids[1].price_subtotal, 0)
         self.assertEqual(invoice.amount_total, 12.2)
+
+    def test_01_xml_zero_quantity_line(self):
+        res = self.run_wizard('test_zeroq_01', 'IT05979361218_q0.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.invoice_line_ids[0].quantity, 0)
+        self.assertEqual(invoice.invoice_line_ids[1].quantity, 1)
