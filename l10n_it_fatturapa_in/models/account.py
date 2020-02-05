@@ -107,6 +107,17 @@ class AccountInvoice(models.Model):
                 ))
         return error_message
 
+    def e_inv_dati_ritenuta(self):
+        error_message = ''
+        # ftpa_withholding_type is set when DatiRitenuta is set,
+        # withholding_tax is not set if no lines with Ritenuta = SI are found
+        if self.ftpa_withholding_type and not self.withholding_tax:
+            error_message = (_(
+                "E-bill contains DatiRitenuta but no lines subjected to Ritenuta was "
+                "found. Please manually check Withholding tax Amount"
+            ))
+        return error_message
+
     @api.depends('type', 'state', 'fatturapa_attachment_in_id',
                  'amount_untaxed', 'amount_tax', 'amount_total',
                  'reference', 'date_invoice')
@@ -128,6 +139,10 @@ class AccountInvoice(models.Model):
                 error_messages.append(error_message)
 
             error_message = bill.e_inv_check_amount_total()
+            if error_message:
+                error_messages.append(error_message)
+
+            error_message = bill.e_inv_dati_ritenuta()
             if error_message:
                 error_messages.append(error_message)
 
