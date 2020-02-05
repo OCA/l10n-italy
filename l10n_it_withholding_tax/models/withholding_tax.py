@@ -8,27 +8,9 @@ from openerp.exceptions import ValidationError
 from openerp import netsvc
 
 
-class withholding_tax(models.Model):
+class WithholdingTax(models.Model):
     _name = 'withholding.tax'
     _description = 'Withholding Tax'
-
-    @api.one
-    @api.depends('rate_ids.date_start', 'rate_ids.date_stop', 'rate_ids.base',
-                 'rate_ids.tax')
-    def _get_rate(self):
-        self.env.cr.execute('''
-            SELECT tax, base FROM withholding_tax_rate
-                WHERE withholding_tax_id = %s
-                 and (date_start <= current_date or date_start is null)
-                ORDER by date_start LIMIT 1''',
-                            (self.id,))
-        rate = self.env.cr.fetchone()
-        if rate:
-            self.tax = rate[0]
-            self.base = rate[1]
-        else:
-            self.tax = 0
-            self.base = 1
 
     active = fields.Boolean('Active', default=True)
     name = fields.Char('Name', size=256, required=True)
@@ -43,10 +25,32 @@ class withholding_tax(models.Model):
         'Account Payable', required=True, domain=[('type', '=', 'payable')])
     payment_term = fields.Many2one('account.payment.term', 'Payment Terms',
                                    required=True)
-    tax = fields.Float(string='Tax %', compute='_get_rate')
-    base = fields.Float(string='Base', compute='_get_rate')
+    tax = fields.Float(string='Tax %', compute='_compute_withholding')
+    base = fields.Float(string='Base', compute='_compute_withholding')
     rate_ids = fields.One2many('withholding.tax.rate', 'withholding_tax_id',
                                'Rates', required=True)
+
+    @api.one
+    @api.depends('rate_ids.date_start', 'rate_ids.date_stop',
+                 'rate_ids.base', 'rate_ids.tax')
+    def _compute_withholding(self):
+        rate_domain = [
+            ('withholding_tax_id', '=', self.id),
+
+            '|',
+            ('date_start', '<=', fields.Date.today()),
+            ('date_start', '=', False),
+
+            '|',
+            ('date_stop', '>=', fields.Date.today()),
+            ('date_stop', '=', False),
+        ]
+
+        rate = self.env['withholding.tax.rate'].search(rate_domain, limit=1,
+                                                       order='date_start ASC')
+
+        self.tax = rate and rate.tax or 0.0
+        self.base = rate and rate.base or 1.0
 
     def compute_amount(self, amount_invoice, invoice_id=None):
         invoice_obj = self.env['account.invoice']
@@ -71,11 +75,11 @@ class withholding_tax(models.Model):
 
     @api.one
     def get_base_from_tax(self, wt_amount):
-        '''
+        """
         100 * wt_amount        1
         ---------------  *  -------
               % tax          Coeff
-        '''
+        """
         dp_obj = self.env['decimal.precision']
         base = 0
         if wt_amount:
@@ -85,7 +89,7 @@ class withholding_tax(models.Model):
         return base
 
 
-class withholding_tax_rate(models.Model):
+class WithholdingTaxRate(models.Model):
     _name = 'withholding.tax.rate'
     _description = 'Withholding Tax Rates'
 
@@ -93,26 +97,24 @@ class withholding_tax_rate(models.Model):
     @api.constrains('date_start', 'date_stop')
     def _check_date(self):
         if self.withholding_tax_id.active:
-            where = []
+            domain = [
+                ('withholding_tax_id', '=', self.withholding_tax_id.id),
+                ('id', '!=', self.id)]
             if self.date_start:
-                where.append("((date_stop>='%s') or (date_stop is null))" %
-                             (self.date_start,))
+                domain.extend([
+                    '|',
+                    ('date_stop', '>=', self.date_start),
+                    ('date_stop', '=', False)])
             if self.date_stop:
-                where.append("((date_start<='%s') or (date_start is null))" %
-                             (self.date_stop,))
+                domain.extend([
+                    '|',
+                    ('date_start', '<=', self.date_stop),
+                    ('date_start', '=', False)])
 
-            self.env.cr.execute(
-                'SELECT id '
-                'FROM withholding_tax_rate '
-                'WHERE ' + ' and '.join(where) + (where and ' and ' or '') +
-                'withholding_tax_id = %s '
-                'AND id <> %s', (
-                    self.withholding_tax_id.id,
-                    self.id))
-            if self.env.cr.fetchall():
+            overlapping_rate = self.env['withholding.tax.rate'].search(domain, limit=1)
+            if overlapping_rate:
                 raise ValidationError(
-                    _('Error! You cannot have 2 pricelist versions that \
-                    overlap!'))
+                    _('Error! You cannot have 2 rates that overlap!'))
 
     withholding_tax_id = fields.Many2one('withholding.tax',
                                          string='Withholding Tax',
@@ -124,11 +126,11 @@ class withholding_tax_rate(models.Model):
     tax = fields.Float(string='Tax %')
 
 
-class withholding_tax_statement(models.Model):
+class WithholdingTaxStatement(models.Model):
 
-    '''
+    """
     The Withholding tax statement are created at the invoice validation
-    '''
+    """
 
     _name = 'withholding.tax.statement'
     _description = 'Withholding Tax Statement'
@@ -175,12 +177,12 @@ class withholding_tax_statement(models.Model):
             st.display_name = name
 
 
-class withholding_tax_move(models.Model):
+class WithholdingTaxMove(models.Model):
 
-    '''
+    """
     The Withholding tax moves are created at the payment of invoice using
     voucher
-    '''
+    """
     _name = 'withholding.tax.move'
     _description = 'Withholding Tax Move'
 
@@ -256,4 +258,4 @@ class withholding_tax_move(models.Model):
                 raise ValidationError(
                     _('Warning! You cannot delet move linked to voucher.You \
                     must before delete the voucher.'))
-        return super(withholding_tax_move, self).unlink()
+        return super(WithholdingTaxMove, self).unlink()
