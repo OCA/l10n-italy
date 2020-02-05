@@ -89,7 +89,7 @@ class DdTCreateInvoice(models.TransientModel):
                             raise UserError(
                                 _("Move {m} is not invoiceable ({d})".format(
                                     m=move.name.encode(
-                                        'latin', 'ignore').decode('latin'),
+                                        'ascii', 'ignore').decode('ascii'),
                                     d=ddt.ddt_number)))
             invoice_ids = []
             for partner_id in ddt_partner.keys():
