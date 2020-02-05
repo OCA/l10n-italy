@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_account
-#: code:addons/l10n_it_account/models/account_group.py:99
+#: code:addons/l10n_it_account/models/account_group.py:97
 #, python-format
 msgid "A recursion in '{}' parents has been found."
 msgstr ""
