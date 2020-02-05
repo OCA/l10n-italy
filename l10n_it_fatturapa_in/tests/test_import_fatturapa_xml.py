@@ -550,6 +550,18 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.e_invoice_amount_untaxed, -20.0)
         self.assertEqual(invoice.e_invoice_amount_tax, -4.4)
 
+    def test_34_xml_import(self):
+        # No Ritenuta lines set
+        res = self.run_wizard('test34', 'IT01234567890_FPR08.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertTrue(invoice.e_invoice_validation_error)
+        self.assertEqual(
+            invoice.e_invoice_validation_message,
+            "E-bill contains DatiRitenuta but no lines subjected to Ritenuta was "
+            "found. Please manually check Withholding tax Amount."
+        )
+
     def test_01_xml_link(self):
         """
         E-invoice lines are created.
