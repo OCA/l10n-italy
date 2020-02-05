@@ -26,8 +26,8 @@ class AccountGroup(models.Model):
                 raise ValidationError(
                     _("Can't set '{}' as parent for group '{}'."
                       "\n{}")
-                    .format(group.parent_id.name_get()[0][-1],
-                            group.name_get()[0][-1],
+                    .format(group.parent_id.display_name,
+                            group.display_name,
                             err.name)
                 )
 
@@ -93,13 +93,14 @@ class AccountGroup(models.Model):
         parent_ids = []
         parent = self.parent_id
         while parent:
-            parent_ids.append(parent.id)
-            parent = parent.parent_id
-            if parent == self:
+            if parent.id in parent_ids:
                 raise ValidationError(
                     _("A recursion in '{}' parents has been found.")
                     .format(self.name_get()[0][-1])
                 )
+            else:
+                parent_ids.append(parent.id)
+                parent = parent.parent_id
         return self.browse(parent_ids)
 
     def get_group_subgroups(self):
