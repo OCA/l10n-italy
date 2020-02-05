@@ -92,13 +92,14 @@ class AccountGroup(models.Model):
         parent_ids = []
         parent = self.parent_id
         while parent:
-            parent_ids.append(parent.id)
-            parent = parent.parent_id
-            if parent == self:
+            if parent.id in parent_ids:
                 raise ValidationError(
                     _("A recursion in '{}' parents has been found.")
                     .format(self.name_get()[0][-1])
                 )
+            else:
+                parent_ids.append(parent.id)
+                parent = parent.parent_id
         return self.browse(parent_ids)
 
     def get_group_subgroups(self):
