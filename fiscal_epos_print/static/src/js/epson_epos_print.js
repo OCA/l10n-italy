@@ -300,11 +300,12 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
         // but before <beginFiscalReceipt /> otherwise it will not be printed
         // as additional header messageType=1
         printFiscalReceiptHeader: function(receipt){
+            var self = this;
             var msg = '';
             if (receipt.header != '' && receipt.header.length > 0) {
                 var hdr = receipt.header.split(/\r\n|\r|\n/);
                 _.each(hdr, function(m, i) {
-                    msg += '<printRecMessage' + ' messageType="1" message="' + this.encodeXml(m)
+                    msg += '<printRecMessage' + ' messageType="1" message="' + self.encodeXml(m)
                          + '" font="1" index="' + (i+1) + '"'
                          + ' operator="' + (receipt.operator || '1') + '" />'
                     });
@@ -315,11 +316,12 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
         // Remember that the footer goes within <printerFiscalReceipt><beginFiscalReceipt />
         // as PROMO code messageType=3
         printFiscalReceiptFooter: function(receipt){
+            var self = this;
             var msg = '';
             if (receipt.footer != '' && receipt.footer.length > 0) {
                 var hdr = receipt.footer.split(/\r\n|\r|\n/);
                 _.each(hdr, function(m, i) {
-                    msg += '<printRecMessage' + ' messageType="3" message="' + this.encodeXml(m)
+                    msg += '<printRecMessage' + ' messageType="3" message="' + self.encodeXml(m)
                          + '" font="1" index="' + (i+1) + '"'
                          + ' operator="' + (receipt.operator || '1') + '" />'
                     });
