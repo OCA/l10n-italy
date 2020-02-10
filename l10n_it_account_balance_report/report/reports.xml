@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report id="report_account_balance_report_html"
+            model="account_balance_report"
+            string="Account Balance Report HTML"
+            report_type="qweb-html"
+            paperformat="l10n_it_account.l10n_it_account_a4_landscape"
+            name="l10n_it_account_balance_report.account_balance_report_qweb"
+            file="l10n_it_account_balance_report.account_balance_report_html"/>
+
+    <report id="report_account_balance_report_pdf"
+            model="account_balance_report"
+            string="Account Balance Report PDF"
+            report_type="qweb-pdf"
+            paperformat="l10n_it_account.l10n_it_account_a4_landscape"
+            name="l10n_it_account_balance_report.account_balance_report_qweb"
+            file="l10n_it_account_balance_report.account_balance_report_qweb"/>
+
+    <report id="report_account_balance_report_xlsx"
+            model="account_balance_report"
+            string="Account Balance Report XLSX"
+            report_type="xlsx"
+            name="l10n_it_a_b_r.account_balance_report_xlsx"
+            file="l10n_it_a_b_r.account_balance_report_xlsx"/>
+
+</odoo>
