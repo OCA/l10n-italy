@@ -79,3 +79,26 @@ class PosOrder(models.Model):
             if order['data'].get('fiscal_receipt_number'):
                 self.update_fiscal_receipt_values(order['data'])
         return res
+
+    @api.depends('statement_ids', 'lines.price_subtotal_incl', 'lines.discount')
+    def _compute_amount_all(self):
+        for order in self:
+            if not (order.config_id.iface_tax_included and
+                    order.company_id.
+                    tax_calculation_rounding_method == 'round_globally'):
+                super(PosOrder, order)._compute_amount_all()
+            else:
+                order.amount_paid = order.amount_return = order.amount_tax = 0.0
+                currency = order.pricelist_id.currency_id
+                order.amount_paid = \
+                    sum(payment.amount for payment in order.statement_ids)
+                order.amount_return = \
+                    sum(payment.amount < 0 and payment.amount or 0
+                        for payment in order.statement_ids)
+                order.amount_tax = \
+                    currency.round(sum(
+                        self._amount_line_tax(line, order.fiscal_position_id)
+                        for line in order.lines))
+                order.amount_total = \
+                    currency.round(sum(line.price_subtotal_incl
+                                       for line in order.lines))
