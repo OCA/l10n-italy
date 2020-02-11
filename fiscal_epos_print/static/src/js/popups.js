@@ -61,17 +61,6 @@ odoo.define("fiscal_epos_print.popups", function (require) {
             if (element && !this.datepicker) {
                 this.datepicker = new Pikaday({
                     field: element,
-                    parse: function(str) {
-                        return new Date(str.slice(4, 8),
-                                        str.slice(2, 4),
-                                        str.slice(0, 2))
-                    },
-                    toString: function(date) {
-                        var str = date.toLocaleDateString().split('/');
-                        return addPadding(str[1], 2) +
-                            addPadding(str[0], 2) +
-                            addPadding(str[2]);
-                    }
                 });
             }
         },
