@@ -99,7 +99,7 @@ class WizardGiornale(models.TransientModel):
             aml.date >= %(date_from)s
             AND aml.date <= %(date_to)s
             AND am.state in %(target_type)s
-            AND journal_id in %(journal_ids)s
+            AND aml.journal_id in %(journal_ids)s
             ORDER BY am.date, am.name
         """
         params = {
