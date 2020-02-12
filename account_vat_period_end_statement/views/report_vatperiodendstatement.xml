@@ -137,7 +137,7 @@
                     <table class="table table-condensed">
                             <t t-foreach="statement.payment_ids" t-as="payment_line">
                                 <tr>
-                                    <td t-esc="'Importo versato (Estremi del versamento: data '+ time.strftime('%d/%m/%Y', time.strptime(payment_line.date, '%Y-%m-%d')) + ' - ' +payment_line.journal_id.name+')'" />
+                                    <td t-esc="'Importo versato (Estremi del versamento: data '+ payment_line.date.strftime('%d/%m/%Y') + ' - ' +payment_line.journal_id.name+')'" />
                                     <td class="text-right" t-esc="formatLang(env, payment_line.debit)" />
                                </tr>
                                <tr>
