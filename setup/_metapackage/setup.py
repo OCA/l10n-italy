@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo12-addon-account_invoice_report_ddt_group',
         'odoo12-addon-account_vat_period_end_statement',
         'odoo12-addon-fiscal_epos_print',
+        'odoo12-addon-fiscal_epos_print_fiscalcode',
         'odoo12-addon-l10n_it_abicab',
         'odoo12-addon-l10n_it_account',
         'odoo12-addon-l10n_it_account_balance_report',
