@@ -7,6 +7,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields, models
+from .sale import TD_INVOICING_GROUPS
 
 
 class ResPartner(models.Model):
@@ -25,11 +26,10 @@ class ResPartner(models.Model):
         'stock.picking.transportation_method',
         string='Method of Transportation')
     ddt_invoicing_group = fields.Selection(
-        [('nothing', 'One TD - One Invoice'),
-         ('billing_partner', 'Billing Partner'),
-         ('shipping_partner', 'Shipping Partner'),
-         ('code_group', 'Code group')], 'TD invoicing group',
-        default='billing_partner')
+        TD_INVOICING_GROUPS, 'TD invoicing group',
+        default='billing_partner',
+        required=True,
+    )
     ddt_code_group = fields.Char(string='Code group')
     ddt_show_price = fields.Boolean(
         string='TD show prices', default=False, help="Show prices and \
