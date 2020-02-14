@@ -1,0 +1,959 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_mis_reports
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-19 20:45+0000\n"
+"PO-Revision-Date: 2020-02-19 20:45+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_biii1
+msgid "1) Investments in:"
+msgstr "1) Partecipazioni in:"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_d1
+msgid "1) accrued income"
+msgstr "1) Ratei attivi"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_e1
+msgid "1) accrued liabilities"
+msgstr "1) Ratei passivi"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_d1
+msgid "1) bonds"
+msgstr "1) Obbligazioni"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_civ1
+msgid "1) deposit accounts"
+msgstr "1) Depositi bancari e postali"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_b1
+msgid "1) directors' termination benefits and similar provisions"
+msgstr "1) Per trattamento di quiescenza e obblighi simili"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_cii1
+msgid "1) from customers"
+msgstr "1) Verso clienti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c16a1
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c16d1
+msgid "1) from subsidiaries"
+msgstr "1) verso imprese controllate"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_ciii1
+msgid "1) investments in subsidiaries"
+msgstr "1) Partecipazioni in imprese controllate"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_bii1
+msgid "1) land and buildings"
+msgstr "1) Terreni e fabbricati"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_ci1
+msgid "1) raw materials and consumables"
+msgstr "1) Materie prime, sussidiarie e di consumo"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_a1
+msgid "1) revenues from sales and services"
+msgstr "1) ricavi delle vendite e delle prestazioni"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_bi1
+msgid "1) start-up costs"
+msgstr "1) Costi di impianto e di ampliamento"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_b10
+msgid "10) Amortisation, depreciation and write-downs:"
+msgstr "10) ammortamenti e svalutazioni:"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_d10
+msgid "10) payables to associates"
+msgstr "10) Debiti verso imprese collegate"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_b11
+msgid "11) change in raw materials, consumables and merchandise"
+msgstr "11) variazioni delle rimanenze di materie prime, sussidiarie, di consumo e merci"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_d11
+msgid "11) payables to parents"
+msgstr "11) Debiti verso imprese controllanti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_b12
+msgid "12) accruals for provisions"
+msgstr "12) accantonamenti per rischi"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_d12
+msgid "12) tax payables"
+msgstr "12) Debiti tributari"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_b13
+msgid "13) other accruals"
+msgstr "13) altri accantonamenti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_d13
+msgid "13) payables to social security and welfare institutions"
+msgstr "13) Debiti verso istituti di previdenza e di sicurezza sociale"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_b14
+msgid "14) other operating expenses"
+msgstr "14) oneri diversi di gestione"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_d14
+msgid "14) other payables"
+msgstr "14) Altri debiti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c15
+msgid "15) financial income from investments:"
+msgstr "15) proventi da partecipazioni:"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c16
+msgid "16) other financial income:"
+msgstr "16) altri proventi finanziari:"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c17
+msgid "17) interest and other financial expenses:"
+msgstr "17) Interessi ed altri oneri finanziari:"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c17bis
+msgid "17bis) Gains and losses on foreign currency translation"
+msgstr "17bis) Utile e perdite su cambi"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_d18
+msgid "18) write-ups:"
+msgstr "18) rivalutazioni:"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_d19
+msgid "19) write-downs:"
+msgstr "19) svalutazioni:"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_biii2
+msgid "2) Receivables:"
+msgstr "2) Crediti:"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_a2
+msgid "2) change in work in process and finished goods"
+msgstr "2) variazione delle rimanenze di prodotti in corso di lavorazione, semilavorati e finiti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_civ2
+msgid "2) cheques"
+msgstr "2) Assegni"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_d2
+msgid "2) convertible bonds"
+msgstr "2) Obbligazioni convertibili"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_e2
+msgid "2) deferred income"
+msgstr "2) Risconti passivi"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c16a2
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c16d2
+msgid "2) from associates"
+msgstr "2) verso imprese collegate"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_cii2
+msgid "2) from subsidiaries"
+msgstr "2) Verso imprese controllate"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_ciii2
+msgid "2) investments in associates"
+msgstr "2) Partecipazioni in imprese collegate"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_bii2
+msgid "2) plants and machinery"
+msgstr "2) Impianti e macchinario"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_d2
+msgid "2) prepaid expenses"
+msgstr "2) Risconti attivi"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_bi2
+msgid "2) research, development and advertising costs"
+msgstr "2) Costi di ricerca, di sviluppo e di pubblicità"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_b2
+msgid "2) tax provisions, including deferred tax liabilities"
+msgstr "2) Per imposte, anche differite"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_ci2
+msgid "2) work in process"
+msgstr "2) Prodotti in corso lavorazione e semilavorati"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_e20
+msgid "20) extraordinary gains:"
+msgstr "20) proventi straordinari:"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_e21
+msgid "21) extraordinary losses:"
+msgstr "21) oneri straordinari:"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_22
+msgid "22) Current and deferred income taxes"
+msgstr "22) Imposte sul reddito dell'esercizio, correnti, differite e anticipate"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_23
+msgid "23) Net income (loss)"
+msgstr "23) Risultato d'esercizio"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_b3
+msgid "3) Passive financial derivative instruments"
+msgstr "3) Per strumenti finanziari derivati passivi"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_civ3
+msgid "3) cash on hand"
+msgstr "3) Denaro e valori in cassa"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_a3
+msgid "3) change in work in process on long-term contracts"
+msgstr "3) variazione dei lavori in corso su ordinazione"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_cii3
+msgid "3) from associates"
+msgstr "3) Verso imprese collegate"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c16a3
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c16d3
+msgid "3) from parents"
+msgstr "3) verso imprese controllanti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_bii3
+msgid "3) industrial and commercial equipment"
+msgstr "3) Diritti di brevetto industriale e diritti di utilizzazione delle opere dell'ingegno"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_bi3
+msgid "3) industrial patents and similar intellectual property rights"
+msgstr "3) Diritti di brevetto industriale e diritti di utilizzazione delle opere dell'ingegno"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_ciii3
+msgid "3) investments in parents"
+msgstr "3) Partecipazioni in imprese controllanti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_biii3
+msgid "3) other securities"
+msgstr "3) Altri titoli"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_d3
+msgid "3) securities issuance discounts"
+msgstr "3) Disaggio su prestiti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_e3
+msgid "3) securities issuance premiums"
+msgstr "3) Aggio su prestiti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_d3
+msgid "3) shareholders' financing"
+msgstr "3) Debiti verso soci per finanziamenti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_ci3
+msgid "3) work in process on long-term contracts"
+msgstr "3) Lavori in corso su ordinazione"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_d4
+msgid "4) bank financing"
+msgstr "4) Debiti verso banche"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_bi4
+msgid "4) concessions, licenses, trademarks and similar rights"
+msgstr "4) Concessioni, licenze, marchi e diritti simili"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_ci4
+msgid "4) finished goods and merchandise"
+msgstr "4) Prodotti finiti e merci"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c16a4
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c16d4
+msgid "4) from others"
+msgstr "4) verso altri"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_cii4
+msgid "4) from parents"
+msgstr "4) Verso imprese controllanti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_a4
+msgid "4) internally generated Fixed assets"
+msgstr "4) incrementi di immobilizzazioni per lavori interni"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_ciii4
+msgid "4) other investments"
+msgstr "4) Altre partecipazioni"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_b4
+msgid "4) other provisions"
+msgstr "4) Altri"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_bii4
+msgid "4) other tangible fixed assets"
+msgstr "4) Altri beni"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_biii4
+msgid "4) treasury shares"
+msgstr "4) Azioni proprie"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_ci5
+msgid "5) advances"
+msgstr "5) Acconti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_cii5
+msgid "5) from companies subject to control by the parent companies"
+msgstr "5) Verso imprese sottoposte al controllo delle controllanti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_bi5
+msgid "5) goodwill"
+msgstr "5) Avviamento"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_d5
+msgid "5) other financing"
+msgstr "5) Debiti verso altri finanziatori"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_a5
+msgid "5) other revenues and income"
+msgstr "5) altri ricavi e proventi"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_ciii5
+msgid "5) treasury shares"
+msgstr "5) Azioni proprie"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_bii5
+msgid "5) under construction and advances"
+msgstr "5) Immobilizzazioni in corso e acconti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_cii5quater
+msgid "5Quater) from others"
+msgstr "5Quater) Verso altri"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_cii5bis
+msgid "5bis) tax receivables"
+msgstr "5Bis) crediti tributari"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_cii5ter
+msgid "5ter) deferred tax assets"
+msgstr "5Ter) imposte anticipate"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_d6
+msgid "6) advances"
+msgstr "6) Acconti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_b6
+msgid "6) cost of raw materials, consumables and merchandise"
+msgstr "6) per materie prime, sussidiarie, di consumo e di merci"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_ciii6
+msgid "6) other securities"
+msgstr "6) Altri titoli"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_bi6
+msgid "6) under construction and advances"
+msgstr "6) Immobilizzazioni in corso e acconti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_b7
+msgid "7) cost of services"
+msgstr "7) per servizi"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_bi7
+msgid "7) other intangible fixed asset"
+msgstr "7) Altre"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_d7
+msgid "7) payables to suppliers"
+msgstr "7) Debiti verso fornitori"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_b8
+msgid "8) cost of rents and leases"
+msgstr "8) per godimento di beni di terzi"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_d8
+msgid "8) notes payable"
+msgstr "8) Debiti rappresentati da titoli di credito"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_d9
+msgid "9) payables to subsidiaries"
+msgstr "9) Debiti verso imprese controllate"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_b9
+msgid "9) personnel costs:"
+msgstr "9) per il personale:"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_a
+msgid "A) Net equity"
+msgstr "A) Patrimonio netto"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_a
+msgid "A) Production value"
+msgstr "A) Valore della produzione"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_a
+msgid "A) RECEIVABLES FROM SHAREHOLDERS FOR SHARE CAPITAL"
+msgstr "A) Crediti verso soci per versamenti ancora dovuti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_b
+msgid "B) FIXED ASSETS"
+msgstr "B) Immobilizzazioni"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_b
+msgid "B) Production costs"
+msgstr "B) Costi della produzione"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_b
+msgid "B) Provisions"
+msgstr "B) Fondi per rischi e oneri"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa
+msgid "BALANCE SHEET ASSETS"
+msgstr "STATO PATRIMONIALE ATTIVO"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl
+msgid "BALANCE SHEET LIABILITIES AND NET EQUITY"
+msgstr "STATO PATRIMONIALE PASSIVO"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_c
+msgid "C) CURRENT ASSETS"
+msgstr "C) Attivo circolante"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_c
+msgid "C) Employees' termination benefits provision"
+msgstr "C) Trattamento di fine rapporto di lavoro subordinato"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c
+msgid "C) Financial income and expenses"
+msgstr "C) Proventi e oneri finanziari"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_d
+msgid "D) ACCRUALS AND PREPAYMENTS"
+msgstr "D) Ratei e risconti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_d
+msgid "D) Adjustments to the carrying value of financial assets"
+msgstr "D) Rettifiche di valore di attività finanziarie"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_d
+msgid "D) Payables"
+msgstr "D) Debiti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_a-b
+msgid "Difference between Production value and Production costs (A - B)"
+msgstr "Differenza tra valore e costi della produzione (A - B)"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_e
+msgid "E) Accruals and deferrals"
+msgstr "E) Ratei e risconti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_e
+msgid "E) Extraordinary gains and losses"
+msgstr "E) Proventi e oneri straordinari"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_bi
+msgid "I) Intangible fixed assets"
+msgstr "I - Immobilizzazioni immateriali"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_ci
+msgid "I) Inventory"
+msgstr "I - Rimanenze"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_ai
+msgid "I) Share capital"
+msgstr "I. Capitale"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_aii
+msgid "II) Paid-in capital in excess of par"
+msgstr "II. Riserve da sovrapprezzo delle azioni"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_cii
+msgid "II) Receivables"
+msgstr "II - Crediti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_bii
+msgid "II) Tangible Fixed Assets"
+msgstr "II - Immobilizzazioni materiali"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_ciii
+msgid "III) Current financial assets"
+msgstr "III - Attività finanziarie che non costituiscono immobilizzazioni"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_biii
+msgid "III) Financial fixed assets"
+msgstr "III) Immobilizzazioni finanziarie"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_aiii
+msgid "III) Revaluation reserves"
+msgstr "III. Riserve di rivalutazione"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_plx
+msgid "INCOME STATEMENT"
+msgstr "CONTO ECONOMICO"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_civ
+msgid "IV) Cash and cash equivalents"
+msgstr "IV - Disponibilità liquide"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_aiv
+msgid "IV) Legal reserve"
+msgstr "IV. Riserva legale"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_aix
+msgid "IX) Current earnings (losses)"
+msgstr "IX. Utile (perdita) dell'esercizio"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report,name:l10n_it_mis_reports.mis_report_bs
+msgid "CEE Balance Sheet"
+msgstr "Bilancio CEE Stato Patrimoniale"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report,name:l10n_it_mis_reports.mis_report_pl
+msgid "CEE income statement balance sheet"
+msgstr "Bilancio CEE Conto Economico"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_dt
+msgid "Net Adjustments to the carrying value of financial assets (D)"
+msgstr "Totale rettifiche di valore attività finanziarie (D)"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_et
+msgid "Net Extraordinary gains and losses (E)"
+msgstr "Totale delle partite straordinarie (E)"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_ct
+msgid "Net Financial income (expenses) (C)"
+msgstr "Differenza tra proventi e oneri finanziari (C)"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_a-b-c-d-e
+msgid "Net income before income taxes (A - B ± C ± D ± E)"
+msgstr "Risultato prima delle imposte (A - B ± C ± D ± E)"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_dt
+msgid "TOTAL ACCRUALS AND PREPAYMENTS (D)"
+msgstr "TOTALE RATEI E RISCONTI"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_t
+msgid "TOTAL BALANCE SHEET ASSETS"
+msgstr "TOTALE STATO PATRIMONIALE ATTIVO"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_t
+msgid "TOTAL BALANCE SHEET LIABILITIES AND NET EQUITY"
+msgstr "TOTALE STATO PATRIMONIALE PASSIVO"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_ct
+msgid "TOTAL CURRENT ASSETS (C)"
+msgstr "TOTALE ATTIVO CIRCOLANTE"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_et
+msgid "Total Accruals and deferrals (E)"
+msgstr "Totale Ratei e risconti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_civt
+msgid "Total Cash and cash equivalents"
+msgstr "Totale disponibilità liquide"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_ciiit
+msgid "Total Current financial assets"
+msgstr "Totale Attività finanziarie che non costituiscono immobilizzazioni"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_biiit
+msgid "Total Financial fixed assets"
+msgstr "Totale immobilizzazioni finanziarie"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_bt
+msgid "Total Fixed assets (B)"
+msgstr "Totale immobilizzazioni (B)"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_bit
+msgid "Total Intangible fixed assets"
+msgstr "Totale immobilizzazion immateriali"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_cit
+msgid "Total Inventory"
+msgstr "Totale Rimanenze"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_at
+msgid "Total Net equity"
+msgstr "Totale patrimonio Netto"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_dt
+msgid "Total Payables (D)"
+msgstr "Totale Debiti (D)"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_bt
+msgid "Total Production costs (B)"
+msgstr "Totale Costi della produzione (B)"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_at
+msgid "Total Production value (A)"
+msgstr "Totale Valore della produzione (A)"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_bt
+msgid "Total Provisions (B)"
+msgstr "Totale Fondi per rischi e oneri (B)"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_ciit
+msgid "Total Receivables"
+msgstr "Totale Crediti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_biit
+msgid "Total Tangible Fixed Assets"
+msgstr "Totale Immobilizzazioni materiali"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_av
+msgid "V) Statutory reserves"
+msgstr "V. Riserve statutarie"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_avi
+msgid "VI) Other reserves"
+msgstr "VI. Altre riserve"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_avii
+msgid "VII) Reserve for hedging operations of expected cash flows"
+msgstr "VII. Riserva per operazioni di copertura dei flussi finanziari attesi"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsl_aviii
+msgid "VIII) Retained earnings (losses)"
+msgstr "VIII. Utili (perdite) portati a nuovo"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_b10a
+msgid "a) amortisation"
+msgstr "a) ammortamento delle immobilizzazioni immateriali"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c16a
+msgid "a) financial income from long-term financial receivables:"
+msgstr "a) da crediti iscritti nelle immobilizzazioni:"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_biii2a
+msgid "a) from subsidiaries"
+msgstr "A) verso imprese controllate"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_e20a
+msgid "a) gains on disposals (other than Other revenues under point 5, above)"
+msgstr "a) plusvalenze da alienazioni (ricavi non iscrivibili al n. 5)"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c15a
+msgid "a) in subsidiaries"
+msgstr "a) in imprese controllate"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_e21a
+msgid "a) losses on disposals (other than Other operating expenses under point 14, above)"
+msgstr "a) minusvalenze da alienazioni (ricavi non iscrivibili al n. 14)"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_d18a
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_d19a
+msgid "a) of investments"
+msgstr "a) di partecipazioni"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c17a
+msgid "a) on financing from subsidiaries"
+msgstr "a) da debiti verso imprese controllate"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_b9a
+msgid "a) salaries and wages"
+msgstr "a) salari e stipendi"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_biii1a
+msgid "a) subsidiaries"
+msgstr "A) imprese controllate"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_biii1b
+msgid "b) associates"
+msgstr "B) imprese collegate"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_b10b
+msgid "b) depreciation"
+msgstr "b) ammortamento delle immobilizzazioni materiali"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c16b
+msgid "b) financial income from long-term financial securities"
+msgstr "b) proventi da titoli iscritti nelle immobilizzazioni"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_biii2b
+msgid "b) from associates"
+msgstr "B) verso imprese collegate"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c15b
+msgid "b) in associates"
+msgstr "b) in imprese collegate"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_d18b
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_d19b
+msgid "b) of financial fixed assets"
+msgstr "b) di immobilizzazioni finanziarie"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c17b
+msgid "b) on financing from associates"
+msgstr "b) da debiti verso imprese collegate"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_e20b
+msgid "b) other extraordinary gains"
+msgstr "b) altri proventi straordinari"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_e21b
+msgid "b) prior years' taxes"
+msgstr "b) imposte relative ad esercizi precedenti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_b9b
+msgid "b) social security and welfare contributions"
+msgstr "b) oneri sociali"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_b9c
+msgid "c) employees' termination benefits"
+msgstr "c) trattamento di fine rapporto"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c16c
+msgid "c) financial income from short-term financial securities"
+msgstr "c) proventi da titoli iscritti nell'attivo circolante"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_biii2c
+msgid "c) from parents"
+msgstr "C) verso controllanti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c15c
+msgid "c) in other companies"
+msgstr "c) in altre imprese"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_d18c
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_d19c
+msgid "c) of current financial assets"
+msgstr "c) di titoli iscritti nell'attivo circolante"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c17c
+msgid "c) on financing from parents"
+msgstr "c) da debiti verso imprese controllanti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_e21c
+msgid "c) other extraordinary losses"
+msgstr "c) altri oneri straordinari"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_biii1c
+msgid "c) parents"
+msgstr "C) imprese controllanti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_b10c
+msgid "c) write-down of fixed assets"
+msgstr "c) altre svalutazioni delle immobilizzazioni"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_b9d
+msgid "d) directors' termination benefits"
+msgstr "d) trattamento di quiescenza e simili"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_biii2d
+msgid "d) from others"
+msgstr "D) verso altri"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c17d
+msgid "d) on bank financing"
+msgstr "d) da debiti verso banche"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_bsa_biii1d
+msgid "d) other companies"
+msgstr "D) altre imprese"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c16d
+msgid "d) other financial income:"
+msgstr "d) proventi diversi dai precedenti:"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_b10d
+msgid "d) write-down of current receivables and of cash and cash equivalents"
+msgstr "d) svalutazioni dei crediti compresi nell'attivo circolante e delle disponibilità liquide"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c17e
+msgid "e) on bonds"
+msgstr "e) da debiti per obbligazioni"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_b9e
+msgid "e) other personnel costs"
+msgstr "e) altri costi"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c17f
+msgid "f) on other financing"
+msgstr "f) da altri debiti"
+
+#. module: l10n_it_mis_reports
+#: model:mis.report.kpi,description:l10n_it_mis_reports.mis_report_pl_c17g
+msgid "g) other financial expenses"
+msgstr "g) oneri finanziari diversi"
+
