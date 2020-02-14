@@ -119,7 +119,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:378
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:380
 #, python-format
 msgid "Discount"
 msgstr ""
@@ -498,7 +498,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:386
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:388
 #, python-format
 msgid "Refund >>> "
 msgstr ""
