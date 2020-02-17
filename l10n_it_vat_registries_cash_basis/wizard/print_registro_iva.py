@@ -116,6 +116,7 @@ class WizardRegistroIva(models.TransientModel):
         datas_form['journal_ids'] = [j.id for j in wizard.journal_ids]
         datas_form['fiscal_page_base'] = wizard.fiscal_page_base
         datas_form['registry_type'] = wizard.layout_type
+        datas_form['year_footer'] = wizard.year_footer
         datas_form['cash_move_ids'] = cash_move_ids
 
         lang_code = self.env.user.company_id.partner_id.lang
