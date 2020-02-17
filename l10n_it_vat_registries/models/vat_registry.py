@@ -40,7 +40,8 @@ class ReportRegistroIva(models.AbstractModel):
             'compute_totals_tax': self._compute_totals_tax,
             'l10n_it_count_fiscal_page_base': data['form']['fiscal_page_base'],
             'only_totals': data['form']['only_totals'],
-            'date_format': date_format
+            'date_format': date_format,
+            'year_footer': data['form']['year_footer']
         }
 
         return self.env['report'].render(
