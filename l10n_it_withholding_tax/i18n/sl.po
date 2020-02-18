@@ -118,8 +118,7 @@ msgstr "Ustvaril"
 
 #. module: l10n_it_withholding_tax
 #: field:account.invoice.withholding.tax,create_date:0
-#: field:withholding.tax,create_date:0
-#: field:withholding.tax.move,create_date:0
+#: field:withholding.tax,create_date:0 field:withholding.tax.move,create_date:0
 #: field:withholding.tax.rate,create_date:0
 #: field:withholding.tax.statement,create_date:0
 #: field:withholding.tax.voucher.line,create_date:0
@@ -177,10 +176,12 @@ msgid "Due"
 msgstr "Zapadlost"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:114
-#, python-format
-msgid ""
-"Error! You cannot have 2 pricelist versions that                     overlap!"
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:117
+#, fuzzy, python-format
+#| msgid ""
+#| "Error! You cannot have 2 pricelist versions that                     "
+#| "overlap!"
+msgid "Error! You cannot have 2 rates that overlap!"
 msgstr "Napaka! Ne morete imeti 2 prekrivajočih se verzij cenika!"
 
 #. module: l10n_it_withholding_tax
@@ -197,8 +198,7 @@ msgstr "Združi po..."
 #. module: l10n_it_withholding_tax
 #: field:account.invoice.withholding.tax,id:0 field:withholding.tax,id:0
 #: field:withholding.tax.move,id:0 field:withholding.tax.rate,id:0
-#: field:withholding.tax.statement,id:0
-#: field:withholding.tax.voucher.line,id:0
+#: field:withholding.tax.statement,id:0 field:withholding.tax.voucher.line,id:0
 #: field:withholding.tax.wizard.create.statement,id:0
 msgid "ID"
 msgstr "ID"
@@ -417,7 +417,7 @@ msgid "Warning!"
 msgstr "Opozorilo!"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:257
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:259
 #, python-format
 msgid ""
 "Warning! You cannot delet move linked to voucher.You                     "
