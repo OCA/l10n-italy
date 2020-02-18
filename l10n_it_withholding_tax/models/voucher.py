@@ -6,18 +6,18 @@ from openerp.osv import orm, fields
 import openerp.addons.decimal_precision as dp
 
 
-class account_voucher(orm.Model):
+class AccountVoucher(orm.Model):
     _inherit = "account.voucher"
 
     def recompute_voucher_lines(self, cr, uid, ids, partner_id, journal_id,
                                 price, currency_id, ttype, date, context=None):
-        '''
+        """
         Compute original amount of WT of rate
-        '''
+        """
         move_line_obj = self.pool['account.move.line']
         voucher_line_obj = self.pool['account.voucher.line']
         dp_obj = self.pool['decimal.precision']
-        res = super(account_voucher, self).recompute_voucher_lines(
+        res = super(AccountVoucher, self).recompute_voucher_lines(
             cr, uid, ids, partner_id, journal_id, price, currency_id, ttype,
             date, context=context)
 
@@ -125,23 +125,23 @@ class account_voucher(orm.Model):
     def voucher_move_line_create(
             self, cr, uid, voucher_id, line_total, move_id, company_currency,
             current_currency, context=None):
-        '''
+        """
         Add WT line to registration and change amount on debit/credit line of
         the invoice
-        '''
+        """
         move_line_obj = self.pool['account.move.line']
         voucher_line_obj = self.pool['account.voucher.line']
         payment_term_obj = self.pool['account.payment.term']
         reconcile_obj = self.pool['account.move.reconcile']
-        line_total, rec_list_ids = super(account_voucher, self).\
+        line_total, rec_list_ids = super(AccountVoucher, self).\
             voucher_move_line_create(cr, uid, voucher_id, line_total, move_id,
                                      company_currency, current_currency,
                                      context=context)
 
         def _unreconcile_move_line(move_line):
-            '''
+            """
             Remove reconciliation to change amounts
-            '''
+            """
             recs = []
             recs_to_rereconcile = []
             if move_line.reconcile_id:
@@ -245,10 +245,10 @@ class account_voucher(orm.Model):
         return (line_total, rec_list_ids)
 
     def action_move_line_create(self, cr, uid, ids, context=None):
-        '''
+        """
         Assign payment move to wt lines
-        '''
-        res = super(account_voucher, self).action_move_line_create(
+        """
+        res = super(AccountVoucher, self).action_move_line_create(
             cr, uid, ids, context=None)
         for voucher in self.browse(cr, uid, ids):
             for v_line in voucher.line_ids:
@@ -258,7 +258,7 @@ class account_voucher(orm.Model):
         return res
 
 
-class account_voucher_line(orm.Model):
+class AccountVoucherLine(orm.Model):
     _inherit = "account.voucher.line"
 
     def _amount_withholding_tax(self, cr, uid, ids, name, args, context=None):
@@ -272,10 +272,10 @@ class account_voucher_line(orm.Model):
         return res
 
     def _compute_balance(self, cr, uid, ids, name, args, context=None):
-        '''
+        """
         Extends the compute of original amounts for exclude from total the WT
         amount
-        '''
+        """
         currency_pool = self.pool.get('res.currency')
         rs_data = {}
         for line in self.browse(cr, uid, ids, context=context):
@@ -344,7 +344,7 @@ class account_voucher_line(orm.Model):
 
     def onchange_amount(self, cr, uid, ids, amount, amount_unreconciled,
                         amount_residual_withholding_tax, context=None):
-        res = super(account_voucher_line, self).onchange_amount(
+        res = super(AccountVoucherLine, self).onchange_amount(
             cr, uid, ids, amount, amount_unreconciled, context=context)
         dp_obj = self.pool['decimal.precision']
         wt_amount = self.compute_amount_withholdin_tax(
@@ -364,10 +364,10 @@ class account_voucher_line(orm.Model):
                            amount_unreconciled,
                            amount_residual_withholding_tax,
                            context=None):
-        '''
+        """
         TO CONSIDER: Amount tot = amount net + amount WT
-        '''
-        res = super(account_voucher_line, self).onchange_reconcile(
+        """
+        res = super(AccountVoucherLine, self).onchange_reconcile(
             cr, uid, ids, reconcile, amount, amount_unreconciled,
             context=context)
         if reconcile:
@@ -380,9 +380,9 @@ class account_voucher_line(orm.Model):
 
     def compute_amount_residual_withholdin_tax(
             self, cr, uid, line, context=None):
-        '''
+        """
         WT residual = WT amount original - (All WT amounts in voucher posted)
-        '''
+        """
         wt_amount_residual = 0.0
         if 'move_line_id' not in line or not line['move_line_id']:
             return wt_amount_residual
@@ -415,9 +415,9 @@ class account_voucher_line(orm.Model):
 
     def recompute_withholding_tax_voucher_line(
             self, cr, uid, voucher_line_id, context=None):
-        '''
+        """
         Split amount voucher line second WT lines invoice
-        '''
+        """
         res = []
         invoice_obj = self.pool['account.invoice']
         wt_voucher_line_obj = self.pool['withholding.tax.voucher.line']
@@ -461,14 +461,14 @@ class account_voucher_line(orm.Model):
         return res
 
     def create(self, cr, uid, vals, *args, **kwargs):
-        res_id = super(account_voucher_line, self).create(
+        res_id = super(AccountVoucherLine, self).create(
             cr, uid, vals, *args, **kwargs)
         self.recompute_withholding_tax_voucher_line(
             cr, uid, res_id, context=None)
         return res_id
 
     def write(self, cr, uid, ids, vals, context=None):
-        res = super(account_voucher_line, self).write(
+        res = super(AccountVoucherLine, self).write(
             cr, uid, ids, vals, context)
         if 'amount_withholding_tax' in vals:
             for line_id in ids:
@@ -476,7 +476,7 @@ class account_voucher_line(orm.Model):
         return res
 
 
-class withholding_tax_voucher_line(orm.Model):
+class WithholdingTaxVoucherLine(orm.Model):
     _name = 'withholding.tax.voucher.line'
     _description = 'Withholding Tax Voucher Line'
 
@@ -490,9 +490,9 @@ class withholding_tax_voucher_line(orm.Model):
     }
 
     def _align_wt_move(self, cr, uid, ids, context=None):
-        '''
+        """
         Align with wt move lines
-        '''
+        """
         wt_statement_obj = self.pool['withholding.tax.statement']
         wt_move_obj = self.pool['withholding.tax.move']
         payment_term_obj = self.pool['account.payment.term']
@@ -546,14 +546,14 @@ class withholding_tax_voucher_line(orm.Model):
         return True
 
     def create(self, cr, uid, vals, *args, **kwargs):
-        res_id = super(withholding_tax_voucher_line, self).create(
+        res_id = super(WithholdingTaxVoucherLine, self).create(
             cr, uid, vals, *args, **kwargs)
         # Align with wt move
         self._align_wt_move(cr, uid, [res_id])
         return res_id
 
     def write(self, cr, uid, ids, vals, context=None):
-        res = super(withholding_tax_voucher_line, self).write(
+        res = super(WithholdingTaxVoucherLine, self).write(
             cr, uid, ids, vals, context)
         # Align with wt move
         self._align_wt_move(cr, uid, ids)
