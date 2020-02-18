@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-09 12:56+0000\n"
-"PO-Revision-Date: 2020-01-07 11:13+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2020-02-18 16:13+0000\n"
+"Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -277,7 +277,7 @@ msgstr "Interessi dovuti per liquidazioni trimestrali"
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__fiscal_year
 msgid "Fiscal year for report"
-msgstr ""
+msgstr "Anno fiscale per la stampa"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__id
@@ -462,10 +462,8 @@ msgstr "IVA a debito periodo precedente"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__previous_year_credit
-#, fuzzy
-#| msgid "Previous credit vat"
 msgid "Previous year credits"
-msgstr "IVA a credito periodo precedente"
+msgstr "Crediti anno precedente"
 
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
