@@ -64,7 +64,7 @@ addon | version | summary
 [l10n_it_sepa_bonifici](l10n_it_sepa_bonifici/) | 8.0.1.0.1 | Banking SEPA Italian Credit Transfer CBI
 [l10n_it_split_payment](l10n_it_split_payment/) | 8.0.1.0.1 | Split Payment
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 8.0.2.0.0 | Italian Localization - VAT Registries
-[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 8.0.3.0.0 | Italian Withholding Tax
+[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 8.0.3.0.1 | Italian Withholding Tax
 [l10n_it_withholding_tax_causali](l10n_it_withholding_tax_causali/) | 8.0.1.0.0 | Causali pagamento per ritenute d'acconto
 [l10n_it_withholding_tax_payment](l10n_it_withholding_tax_payment/) | 8.0.2.0.1 | Italian Withholding Tax Payment
 
