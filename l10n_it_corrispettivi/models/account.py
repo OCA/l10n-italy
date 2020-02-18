@@ -1,6 +1,6 @@
 # Copyright 2016 Lorenzo Battistini - Agile Business Group
 # Copyright 2018 Simone Rubino - Agile Business Group
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError

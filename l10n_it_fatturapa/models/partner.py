@@ -1,6 +1,6 @@
 # Copyright 2014 Davide Corio <davide.corio@abstract.it>
 # Copyright 2019 Sergio Zanchetta <https://github.com/primes2h>
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models, api, _
 from odoo.exceptions import ValidationError

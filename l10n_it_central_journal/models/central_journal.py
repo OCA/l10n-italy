@@ -1,5 +1,5 @@
 # Copyright 2018 Gianmarco Conte (gconte@dinamicheaziendali.it)
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, api
 from odoo.tools.misc import formatLang

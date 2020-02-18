@@ -1,7 +1,7 @@
 # © 2017 Alessandro Camilli - Openforce
 # Copyright 2019 Stefano Consolaro (Associazione PNLUG - Gruppo Odoo)
 #
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
     'name': 'Codici carica',
@@ -14,7 +14,7 @@
               "Odoo Community Association (OCA)",
     'website':  'https://github.com/OCA/l10n-italy/tree/12.0/'
                 'l10n_it_codici_carica',
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
     'depends': ['account'],
     'data': [
         'security/ir.model.access.csv',
