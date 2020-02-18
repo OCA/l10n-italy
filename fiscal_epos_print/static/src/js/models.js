@@ -25,6 +25,17 @@ odoo.define('fiscal_epos_print.models', function (require) {
             this.fiscal_z_rep_number = null;
             this.fiscal_printer_serial = this.pos.config.fiscal_printer_serial || null;
         },
+
+        // Manages the case in which after printing an invoice
+        // you pass a barcode in the mask of the registered invoice
+        add_product: function(product, options) {
+            if(this._printed || this.finalized == true) {
+                this.destroy();
+                return this.pos.get_order().add_product(product, options);
+            }
+            OrderSuper.prototype.add_product.apply(this, arguments);
+        },
+
         check_order_has_refund: function() {
             var order = this.pos.get_order();
             if (order) {
