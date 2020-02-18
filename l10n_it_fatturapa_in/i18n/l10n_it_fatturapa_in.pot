@@ -371,6 +371,12 @@ msgid "E-bill Inconsistencies"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: code:addons/l10n_it_fatturapa_in/models/account.py:115
+#, python-format
+msgid "E-bill contains DatiRitenuta but no lines subjected to Ritenuta was found. Please manually check Withholding tax Amount"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice_line__e_invoice_descr
 msgid "E-bill description"
 msgstr ""
@@ -574,7 +580,7 @@ msgid "Invoice Line"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/account.py:148
+#: code:addons/l10n_it_fatturapa_in/models/account.py:163
 #, python-format
 msgid "Invoice date ({bill_date_invoice}) does not match with e-bill invoice date ({e_bill_date_invoice})"
 msgstr ""
@@ -1197,7 +1203,7 @@ msgid "Vendor invoice registration default date"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/account.py:137
+#: code:addons/l10n_it_fatturapa_in/models/account.py:152
 #, python-format
 msgid "Vendor reference ({bill_vendor_ref}) does not match with e-bill vendor reference ({e_bill_vendor_ref})"
 msgstr ""
