@@ -30,7 +30,8 @@ class AccountVatPeriodEndStatement(models.Model):
                 statement.previous_credit_vat_amount +
                 statement.previous_debit_vat_amount -
                 statement.tax_credit_amount +
-                statement.interests_debit_vat_amount
+                statement.interests_debit_vat_amount -
+                statement.advance_amount
             )
             statement.authority_vat_amount = authority_amount
 
@@ -168,6 +169,20 @@ class AccountVatPeriodEndStatement(models.Model):
             'paid': [('readonly', True)],
             'draft': [('readonly', False)]
         }, digits=dp.get_precision('Account'))
+    advance_account_id = fields.Many2one(
+        'account.account', 'Down payment',
+        states={
+            'confirmed': [('readonly', True)],
+            'paid': [('readonly', True)],
+            'draft': [('readonly', False)]
+        })
+    advance_amount = fields.Float(
+        'Down payment Amount',
+        states={
+            'confirmed': [('readonly', True)],
+            'paid': [('readonly', True)],
+            'draft': [('readonly', False)]
+        }, digits=dp.get_precision('Account'))
     generic_vat_account_line_ids = fields.One2many(
         'statement.generic.account.line', 'statement_id',
         'Other VAT Credits / Debits or Tax Compensations',
@@ -190,6 +205,7 @@ class AccountVatPeriodEndStatement(models.Model):
     authority_vat_amount = fields.Float(
         'Authority VAT Amount', compute="_compute_authority_vat_amount",
         digits=dp.get_precision('Account'))
+    # TODO is this field needed?
     deductible_vat_amount = fields.Float(
         'Deductible VAT Amount', compute="_compute_deductible_vat_amount",
         digits=dp.get_precision('Account'))
@@ -389,6 +405,25 @@ class AccountVatPeriodEndStatement(models.Model):
                     tax_credit_vat_data['credit'] = math.fabs(
                         statement.tax_credit_amount)
                 lines_to_create.append((0, 0, tax_credit_vat_data))
+
+            if statement.advance_amount:
+                advance_vat_data = {
+                    'name': _('Tax Credits'),
+                    'account_id': statement.advance_account_id.id,
+                    'move_id': move_id,
+                    'journal_id': statement.journal_id.id,
+                    'debit': 0.0,
+                    'credit': 0.0,
+                    'date': statement_date,
+                    'company_id': statement.company_id.id,
+                }
+                if statement.advance_amount < 0:
+                    advance_vat_data['debit'] = math.fabs(
+                        statement.advance_amount)
+                else:
+                    advance_vat_data['credit'] = math.fabs(
+                        statement.advance_amount)
+                lines_to_create.append((0, 0, advance_vat_data))
 
             if statement.previous_debit_vat_amount:
                 previous_debit_vat_data = {
