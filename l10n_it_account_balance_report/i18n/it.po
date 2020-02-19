@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-05 15:44+0000\n"
-"PO-Revision-Date: 2020-02-17 13:13+0000\n"
+"PO-Revision-Date: 2020-02-19 18:13+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -42,13 +42,13 @@ msgstr "Bilancio contabile"
 #: model:ir.actions.act_window,name:l10n_it_account_balance_report.action_account_balance_wizard
 #: model:ir.ui.menu,name:l10n_it_account_balance_report.menu_account_balance_wizard
 msgid "Account Balance Report"
-msgstr "Resoconto bilancio contabile"
+msgstr "Bilancio contabile"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_account__account_balance_report_section
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_account_type__account_balance_report_section
 msgid "Account Balance Report - Section"
-msgstr "Resoconto bilancio contabile - Sezione"
+msgstr "Bilancio contabile - Sezione"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.actions.report,name:l10n_it_account_balance_report.report_account_balance_report_html
@@ -284,7 +284,7 @@ msgstr "Alla data"
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_filters
 #, python-format
 msgid "Date range filter"
-msgstr "Filtro intervallo di date"
+msgstr "Filtro intervallo date"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__debit
@@ -303,7 +303,7 @@ msgstr "Nome visualizzato"
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__hide_parent_hierarchy_level
 msgid "Do not display parent levels"
-msgstr "Non mostrare livelli genitori"
+msgstr "Non visualizzare livelli genitori"
 
 #. module: l10n_it_account_balance_report
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_lines_header
@@ -412,7 +412,7 @@ msgstr ""
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__show_hierarchy_level
 msgid "Hierarchy Levels to display"
-msgstr "Livelli da mostrare"
+msgstr "Livelli gerarchici da visualizzare"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__hierarchy_on
@@ -500,7 +500,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_filters
 #, python-format
 msgid "Limit hierarchy levels"
-msgstr "Limitare i livelli della gerarchia"
+msgstr "Limita livelli della gerarchia"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__name
@@ -619,7 +619,7 @@ msgstr ""
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_trial_balance_report_wizard__account_balance_report_type
 msgid "Report Type"
-msgstr "Tipo resoconto"
+msgstr "Tipo di rendiconto"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__right_col_name
@@ -662,12 +662,12 @@ msgstr "Mostra"
 #. module: l10n_it_account_balance_report
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.wizard_report_account_balance_report
 msgid "Show Ending Balance in Currency"
-msgstr ""
+msgstr "Mostra bilancio finale in valuta"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__show_partner_details
 msgid "Show Partner Details"
-msgstr "Mostrare dettagli partner"
+msgstr "Mostra dettagli partner"
 
 #. module: l10n_it_account_balance_report
 #: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:124
@@ -762,7 +762,7 @@ msgstr "account_balance_report_partner"
 #. module: l10n_it_account_balance_report
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.wizard_report_account_balance_report
 msgid "or"
-msgstr "o"
+msgstr "oppure"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model,name:l10n_it_account_balance_report.model_report_l10n_it_a_b_r_account_balance_report_xlsx
