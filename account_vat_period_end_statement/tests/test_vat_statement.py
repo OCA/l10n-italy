@@ -48,7 +48,7 @@ class TestTax(TransactionCase):
             ('date_end', '>=', self.last_year_date)
         ])
         self.vat_statement_model = self.env['account.vat.period.end.statement']
-        paid_vat_account = self.env['account.account'].search([
+        self.paid_vat_account = self.env['account.account'].search([
             (
                 'user_type_id', '=',
                 self.env.ref(
@@ -83,7 +83,7 @@ class TestTax(TransactionCase):
             'name': '22% credit',
             'amount': 22,
             'amount_type': 'percent',
-            'vat_statement_account_id': paid_vat_account,
+            'vat_statement_account_id': self.paid_vat_account,
             'type_tax_use': 'purchase',
             })
 
@@ -218,7 +218,12 @@ class TestTax(TransactionCase):
             len(self.vat_statement.debit_vat_account_line_ids), 1)
         self.assertEqual(
             len(self.vat_statement.credit_vat_account_line_ids), 1)
+        self.vat_statement.advance_account_id = self.paid_vat_account
+        self.vat_statement.advance_amount = 100
+        self.vat_statement.refresh()
+        self.assertEqual(self.vat_statement.authority_vat_amount, -100)
         self.vat_statement.create_move()
         self.assertEqual(self.vat_statement.state, 'confirmed')
         self.assertTrue(self.vat_statement.move_id)
+        self.assertEqual(self.vat_statement.move_id.amount, 122)
         # TODO payment
