@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-05 15:44+0000\n"
-"PO-Revision-Date: 2020-02-19 18:13+0000\n"
+"PO-Revision-Date: 2020-02-20 00:13+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:188
 #, python-format
 msgid "ASSETS"
-msgstr ""
+msgstr "ATTIVITÀ"
 
 #. module: l10n_it_account_balance_report
 #: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:150
@@ -104,7 +104,7 @@ msgstr "Tutte le registrazioni confermate"
 #. module: l10n_it_account_balance_report
 #: selection:account.account.type,account_balance_report_section:0
 msgid "Assets"
-msgstr ""
+msgstr "Attività"
 
 #. module: l10n_it_account_balance_report
 #: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:194
@@ -135,7 +135,7 @@ msgstr "Stato patrimoniale"
 #: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:199
 #, python-format
 msgid "COSTS"
-msgstr ""
+msgstr "COSTI"
 
 #. module: l10n_it_account_balance_report
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.wizard_report_account_balance_report
@@ -220,6 +220,8 @@ msgid ""
 "Could not retrieve table datas for report '{}': unknown columns to be "
 "printed."
 msgstr ""
+"Impossibile recuperare i dati tabella per il rendiconto \"{}\": colonne da "
+"stampare sconosciute."
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__create_uid
@@ -258,12 +260,12 @@ msgstr "Valuta"
 #: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:543
 #, python-format
 msgid "DEFICIT"
-msgstr ""
+msgstr "DISAVANZO"
 
 #. module: l10n_it_account_balance_report
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_totals
 msgid "DEFICIT:"
-msgstr ""
+msgstr "DISAVANZO:"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__date_from
@@ -312,21 +314,19 @@ msgstr "Saldo finale"
 
 #. module: l10n_it_account_balance_report
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_lines_header
-#, fuzzy
-#| msgid "Ending blance cur."
 msgid "Ending balance cur."
-msgstr "Saldo finale val."
+msgstr "Valuta saldo finale"
 
 #. module: l10n_it_account_balance_report
 #: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:167
 #, python-format
 msgid "Ending balance in cur."
-msgstr ""
+msgstr "Saldo finale in valuta"
 
 #. module: l10n_it_account_balance_report
 #: selection:account.account.type,account_balance_report_section:0
 msgid "Expenses"
-msgstr ""
+msgstr "Spese"
 
 #. module: l10n_it_account_balance_report
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.wizard_report_account_balance_report
@@ -346,7 +346,7 @@ msgstr "Filtro conto"
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__filter_journal_ids
 msgid "Filter Journal"
-msgstr ""
+msgstr "Filtro registro"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__filter_partner_ids
@@ -373,13 +373,13 @@ msgstr "Valuta estera"
 #. module: l10n_it_account_balance_report
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_filters
 msgid "From:"
-msgstr ""
+msgstr "Da:"
 
 #. module: l10n_it_account_balance_report
 #: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:115
 #, python-format
 msgid "From: {} To: {}"
-msgstr ""
+msgstr "Da: {} A: {}"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__fy_start_date
@@ -401,7 +401,7 @@ msgstr "Nascondi"
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__hide_account_at_0
 msgid "Hide Account At 0"
-msgstr ""
+msgstr "Nascondi conti a 0"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__hide_line
@@ -448,7 +448,7 @@ msgstr "Saldo iniziale valuta estera"
 #: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:192
 #, python-format
 msgid "LIABILITIES"
-msgstr ""
+msgstr "PASSIVITÀ"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report____last_update
@@ -475,7 +475,7 @@ msgstr "Ultimo aggiornamento il"
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__left_col_name
 msgid "Left Col Name"
-msgstr ""
+msgstr "Nome col. sinistra"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__level
@@ -492,7 +492,7 @@ msgstr "Livello %s"
 #. module: l10n_it_account_balance_report
 #: selection:account.account.type,account_balance_report_section:0
 msgid "Liabilities"
-msgstr ""
+msgstr "Passività"
 
 #. module: l10n_it_account_balance_report
 #: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:128
@@ -500,7 +500,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_filters
 #, python-format
 msgid "Limit hierarchy levels"
-msgstr "Limita livelli della gerarchia"
+msgstr "Limite livelli gerarchia"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__name
@@ -512,7 +512,7 @@ msgstr "Nome"
 #: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:127
 #, python-format
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #. module: l10n_it_account_balance_report
 #: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:131
@@ -565,13 +565,13 @@ msgstr "Partner"
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__period_balance
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner__period_balance
 msgid "Period Balance"
-msgstr ""
+msgstr "Saldo periodo"
 
 #. module: l10n_it_account_balance_report
 #: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:155
 #, python-format
 msgid "Period balance"
-msgstr ""
+msgstr "Saldo periodo"
 
 #. module: l10n_it_account_balance_report
 #: selection:account_balance_report,account_balance_report_type:0
@@ -583,7 +583,7 @@ msgstr "Conto economico"
 #: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:203
 #, python-format
 msgid "REVENUES"
-msgstr ""
+msgstr "RICAVI"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__report_id
@@ -624,28 +624,28 @@ msgstr "Tipo di rendiconto"
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__right_col_name
 msgid "Right Col Name"
-msgstr ""
+msgstr "Nome col. destra"
 
 #. module: l10n_it_account_balance_report
 #: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:543
 #, python-format
 msgid "SURPLUS"
-msgstr ""
+msgstr "ECCEDENZA"
 
 #. module: l10n_it_account_balance_report
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_totals
 msgid "SURPLUS:"
-msgstr ""
+msgstr "ECCEDENZA:"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__section_credit_ids
 msgid "Section Credit"
-msgstr ""
+msgstr "Sezione avere"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__section_debit_ids
 msgid "Section Debit"
-msgstr ""
+msgstr "Sezione dare"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__sequence
@@ -662,7 +662,7 @@ msgstr "Mostra"
 #. module: l10n_it_account_balance_report
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.wizard_report_account_balance_report
 msgid "Show Ending Balance in Currency"
-msgstr "Mostra bilancio finale in valuta"
+msgstr "Mostra saldo finale in valuta"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__show_partner_details
@@ -680,7 +680,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_filters
 #, python-format
 msgid "Target moves filter"
-msgstr "Filtro registrazioni"
+msgstr "Filtro movimenti obiettivo"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__title
@@ -690,7 +690,7 @@ msgstr "Titolo"
 #. module: l10n_it_account_balance_report
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_filters
 msgid "To:"
-msgstr ""
+msgstr "A:"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__total_balance
@@ -700,12 +700,12 @@ msgstr "Saldo totale"
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__total_credit
 msgid "Total Credit"
-msgstr ""
+msgstr "Totale avere"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__total_debit
 msgid "Total Debit"
-msgstr ""
+msgstr "Totale dare"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__trial_balance_id
@@ -742,7 +742,7 @@ msgstr "Vista"
 #: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:125
 #, python-format
 msgid "Yes"
-msgstr ""
+msgstr "Sì"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model,name:l10n_it_account_balance_report.model_account_balance_report
