@@ -135,7 +135,7 @@ class IntrastatStatementPurchaseSection1(models.Model):
             'additional_units': round(inv_intra_line.additional_units) or 1,
             'statistic_amount_euro': statistic_amount,
             'delivery_code_id': delivery_code_id.id,
-            'transport_code_id': transport_code_id,
+            'transport_code_id': transport_code_id.id,
             'country_origin_id': inv_intra_line.country_origin_id.id,
             'country_good_origin_id': inv_intra_line.country_good_origin_id.id,
             'province_destination_id': province_destination_id.id
