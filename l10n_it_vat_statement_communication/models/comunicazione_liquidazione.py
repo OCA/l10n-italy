@@ -462,6 +462,11 @@ class ComunicazioneLiquidazioneVp(models.Model):
         for quadro in self:
             quadro.iva_da_versare = 0
             quadro.iva_a_credito = 0
+            if quadro.period_type == 'quarter' and quadro.quarter == 4:
+                # VP14 non deve essere compilato dai contribuenti trimestrali di cui
+                # all’art. 7 del d.P.R. 14 ottobre 1999, n.542,
+                # relativamente al 4° trimestre
+                continue
             debito = (
                 quadro.iva_dovuta_debito + quadro.debito_periodo_precedente +
                 quadro.interessi_dovuti
