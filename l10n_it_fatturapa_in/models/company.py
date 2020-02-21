@@ -30,6 +30,11 @@ class ResCompany(models.Model):
         domain=[('type_tax_use', '=', 'purchase'), ('amount', '=', 0.0)],
         help="Tax used for rounding amount on bills."
         )
+    in_invoice_registration_date = fields.Selection([
+        ('inv_date', 'Invoice Date'),
+        ('rec_date', 'Received Date'),
+    ], string='Vendor invoice registration default date',
+        default='inv_date')
 
 
 class AccountConfigSettings(models.TransientModel):
@@ -49,4 +54,7 @@ class AccountConfigSettings(models.TransientModel):
     )
     arrotondamenti_tax_id = fields.Many2one(
         related='company_id.arrotondamenti_tax_id',
+    )
+    in_invoice_registration_date = fields.Selection(
+        related='company_id.in_invoice_registration_date', readonly=False
     )
