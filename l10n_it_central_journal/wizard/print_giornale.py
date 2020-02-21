@@ -7,6 +7,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import Warning as UserError
 from datetime import datetime, timedelta
+from odoo.tools.misc import flatten
 
 
 class WizardGiornale(models.TransientModel):
@@ -79,21 +80,33 @@ class WizardGiornale(models.TransientModel):
             if self.last_def_date_print == self.daterange.date_end:
                 self.date_move_line_from_view = self.last_def_date_print
 
-    def print_giornale(self):
+    def get_line_ids(self):
         wizard = self
         if wizard.target_move == 'all':
             target_type = ['posted', 'draft']
         else:
             target_type = [wizard.target_move]
-        move_line_obj = self.env['account.move.line']
-        move_line_ids = move_line_obj.search([
-            ('date', '>=', wizard.date_move_line_from),
-            ('date', '<=', wizard.date_move_line_to),
-            ('journal_id', 'in', [j.id for j in wizard.journal_ids]),
-            ('move_id.state', 'in', target_type)
-        ], order='date, move_id asc')
-        if not move_line_ids:
-            raise UserError(_('No documents found in the current selection'))
+        sql = """
+            SELECT aml.id FROM account_move_line aml
+            LEFT JOIN account_move am ON (am.id = aml.move_id)
+            WHERE
+            aml.date >= %(date_from)s
+            AND aml.date <= %(date_to)s
+            AND am.state in %(target_type)s
+            ORDER BY am.date, am.name
+        """
+        params = {
+            'date_from': wizard.date_move_line_from,
+            'date_to': wizard.date_move_line_to,
+            'target_type': tuple(target_type)
+            }
+        self.env.cr.execute(sql, params)
+        res = self.env.cr.fetchall()
+        move_line_ids = flatten(res)
+        return move_line_ids
+
+    def _prepare_datas_form(self):
+        wizard = self
         datas_form = {}
         datas_form['date_move_line_from'] = wizard.date_move_line_from
         datas_form['last_def_date_print'] = wizard.last_def_date_print
@@ -103,10 +116,17 @@ class WizardGiornale(models.TransientModel):
         datas_form['progressive_credit'] = wizard.progressive_credit
         datas_form['start_row'] = wizard.start_row
         datas_form['daterange'] = wizard.daterange.id
+        return datas_form
+
+    def print_giornale(self):
+        move_line_ids = self.get_line_ids()
+        if not move_line_ids:
+            raise UserError(_('No documents found in the current selection'))
+        datas_form = self._prepare_datas_form()
         datas_form['print_state'] = 'draft'
         report_name = 'l10n_it_central_journal.report_giornale'
         datas = {
-            'ids': move_line_ids.ids,
+            'ids': move_line_ids,
             'model': 'account.move',
             'form': datas_form}
         return self.env['report'].get_action([], report_name, data=datas)
@@ -117,32 +137,15 @@ class WizardGiornale(models.TransientModel):
         if wizard.date_move_line_from <= wizard.last_def_date_print:
             raise UserError(_('Date already printed'))
         else:
-            if wizard.target_move == 'all':
-                target_type = ['posted', 'draft']
-            else:
-                target_type = [wizard.target_move]
-            move_line_obj = self.env['account.move.line']
-            move_line_ids = move_line_obj.search([
-                ('date', '>=', wizard.date_move_line_from),
-                ('date', '<=', wizard.date_move_line_to),
-                ('move_id.state', 'in', target_type)
-            ], order='date, move_id asc')
+            move_line_ids = self.get_line_ids()
             if not move_line_ids:
                 raise UserError(
                     _('No documents found in the current selection'))
-            datas_form = {}
-            datas_form['date_move_line_from'] = wizard.date_move_line_from
-            datas_form['last_def_date_print'] = wizard.last_def_date_print
-            datas_form['date_move_line_to'] = wizard.date_move_line_to
-            datas_form['fiscal_page_base'] = wizard.fiscal_page_base
-            datas_form['progressive_debit'] = wizard.progressive_debit2
-            datas_form['progressive_credit'] = wizard.progressive_credit
-            datas_form['daterange'] = wizard.daterange.id
-            datas_form['start_row'] = wizard.start_row
+            datas_form = self._prepare_datas_form()
             datas_form['print_state'] = 'def'
             report_name = 'l10n_it_central_journal.report_giornale'
             datas = {
-                'ids': move_line_ids.ids,
+                'ids': move_line_ids,
                 'model': 'account.move',
                 'form': datas_form
             }
