@@ -6,7 +6,7 @@
 
 {
     'name': 'Italian Localization - Account central journal',
-    'version': '10.0.0.0.2',
+    'version': '10.0.0.1.0',
     'category': 'Localization/Italy',
     'author': 'Dinamiche Aziendali, Odoo Community Association (OCA)',
     'website': 'http://www.dinamicheaziendali.it',
