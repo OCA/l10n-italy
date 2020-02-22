@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-05 15:44+0000\n"
-"PO-Revision-Date: 2020-02-22 22:35+0000\n"
+"PO-Revision-Date: 2020-02-22 23:02+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -36,39 +36,39 @@ msgstr "Conto"
 #. module: l10n_it_account_balance_report
 #: model:ir.actions.client,name:l10n_it_account_balance_report.action_account_balance_report
 msgid "Account Balance"
-msgstr "Bilancio contabile"
+msgstr "Saldo contabile"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.actions.act_window,name:l10n_it_account_balance_report.action_account_balance_wizard
 #: model:ir.ui.menu,name:l10n_it_account_balance_report.menu_account_balance_wizard
 msgid "Account Balance Report"
-msgstr "Bilancio contabile"
+msgstr "Saldo contabile"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_account__account_balance_report_section
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_account_type__account_balance_report_section
 msgid "Account Balance Report - Section"
-msgstr "Bilancio contabile - Sezione"
+msgstr "Saldo contabile - Sezione"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.actions.report,name:l10n_it_account_balance_report.report_account_balance_report_html
 msgid "Account Balance Report HTML"
-msgstr "Bilancio contabile in HTML"
+msgstr "Saldo contabile in HTML"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.actions.report,name:l10n_it_account_balance_report.report_account_balance_report_pdf
 msgid "Account Balance Report PDF"
-msgstr "Bilancio contabile in PDF"
+msgstr "Saldo contabile in PDF"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__account_balance_report_type
 msgid "Account Balance Report Type"
-msgstr "Tipo di bilancio contabile"
+msgstr "Tipo di saldo contabile"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.actions.report,name:l10n_it_account_balance_report.report_account_balance_report_xlsx
 msgid "Account Balance Report XLSX"
-msgstr "Bilancio contabile in XLSX"
+msgstr "Saldo contabile in XLSX"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__account_group_id
@@ -115,7 +115,7 @@ msgstr "STATO PATRIMONIALE"
 #. module: l10n_it_account_balance_report
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_totals
 msgid "BALANCE:"
-msgstr ""
+msgstr "SALDO:"
 
 #. module: l10n_it_account_balance_report
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.wizard_report_account_balance_report
