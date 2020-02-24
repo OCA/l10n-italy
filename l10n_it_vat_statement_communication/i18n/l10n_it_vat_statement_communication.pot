@@ -248,13 +248,13 @@ msgid "Display Name"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__iva_esigibile
-msgid "Due VAT"
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__accounto_dovuto
+msgid "Down payment due"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__accounto_dovuto
-msgid "Due down payment"
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__iva_esigibile
+msgid "Due VAT"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
