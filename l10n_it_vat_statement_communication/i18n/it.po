@@ -260,14 +260,16 @@ msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__accounto_dovuto
+#, fuzzy
+#| msgid "Due down payment"
+msgid "Down payment due"
+msgstr "Acconto"
+
+#. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__iva_esigibile
 msgid "Due VAT"
 msgstr "IVA dovuta"
-
-#. module: l10n_it_vat_statement_communication
-#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__accounto_dovuto
-msgid "Due down payment"
-msgstr "Acconto"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__interessi_dovuti
