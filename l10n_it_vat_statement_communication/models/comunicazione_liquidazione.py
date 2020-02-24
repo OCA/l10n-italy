@@ -462,6 +462,11 @@ class ComunicazioneLiquidazioneVp(models.Model):
         for quadro in self:
             quadro.iva_da_versare = 0
             quadro.iva_a_credito = 0
+            if quadro.period_type == 'quarter' and quadro.quarter == 4:
+                # VP14 non deve essere compilato dai contribuenti trimestrali di cui
+                # all’art. 7 del d.P.R. 14 ottobre 1999, n.542,
+                # relativamente al 4° trimestre
+                continue
             debito = (
                 quadro.iva_dovuta_debito + quadro.debito_periodo_precedente +
                 quadro.interessi_dovuti
@@ -509,7 +514,7 @@ class ComunicazioneLiquidazioneVp(models.Model):
     crediti_imposta = fields.Float(string='Tax credits')
     interessi_dovuti = fields.Float(
         string='Due interests for quarterly statements')
-    accounto_dovuto = fields.Float(string='Due down payment')
+    accounto_dovuto = fields.Float(string='Down payment due')
     iva_da_versare = fields.Float(
         string='VAT to pay',
         compute="_compute_VP14_iva_da_versare_credito", store=True)
@@ -605,7 +610,7 @@ class ComunicazioneLiquidazioneVp(models.Model):
                 else:
                     quadro.credito_periodo_precedente =\
                         liq.previous_credit_vat_amount
-                # Credito anno precedente (NON GESTITO)
+                quadro.accounto_dovuto = liq.advance_amount
                 # Versamenti auto UE (NON GESTITO)
                 # Crediti d’imposta (NON GESTITO)
                 # Da altri crediti e debiti calcolo:
