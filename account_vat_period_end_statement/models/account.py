@@ -206,7 +206,7 @@ class AccountVatPeriodEndStatement(models.Model):
             'paid': [('readonly', True)],
             'draft': [('readonly', False)]})
     authority_vat_account_id = fields.Many2one(
-        'account.account', 'Tax Authority VAT Account', required=True,
+        'account.account', 'Tax Authority VAT Account',
         states={
             'confirmed': [('readonly', True)],
             'paid': [('readonly', True)],
@@ -272,6 +272,7 @@ class AccountVatPeriodEndStatement(models.Model):
     year_footer = fields.Char(
         string='Year for Footer',
         help="Value printed near number of page in the footer")
+    annual = fields.Boolean("Annual prospect")
 
     @api.multi
     def unlink(self):

@@ -13,13 +13,11 @@
                     <group>
                         <field name="journal_id"   widget="selection" select="1"/>
                         <field name="date"  select="1" />
-                        <!-- TODO check if it's manageable
-                        <button name="open_chart_of_taxes" string="View chart of taxes for selected period" type="object"/>
-                        -->
-                        <field name="move_id"  select="1"/>
-                        <field name="payment_term_id"  select="1"/>
-                        <field name="authority_partner_id" domain="[('supplier', '=', True)]" contenxt="{'default_supplier': True}"/>
-                        <field name="authority_vat_account_id" />
+                        <field name="annual"/>
+                        <field name="move_id" attrs="{'invisible': [('annual', '=', True)]}"/>
+                        <field name="payment_term_id" attrs="{'invisible': [('annual', '=', True)]}"/>
+                        <field name="authority_partner_id" domain="[('supplier', '=', True)]" contenxt="{'default_supplier': True}" attrs="{'invisible': [('annual', '=', True)]}"/>
+                        <field name="authority_vat_account_id" attrs="{'invisible': [('annual', '=', True)], 'required': [('annual', '=', False)]}"/>
                         <field name="company_id" groups="base.group_multi_company"/>
                         <field name="interest" />
                         <field name="interest_percent"
@@ -94,14 +92,14 @@
                                 </field>
                             </group>
                             <button type="object" name="compute_amounts" string="Recompute amounts" states="draft"></button>
-                            <group>
-                                <field name="state"  select="1"/>
+                            <group attrs="{'invisible': [('annual', '=', True)]}">
+                                <field name="state"/>
                                 <field name="reconciled"/>
                             </group>
-                            <button name="create_move" states="draft" type="object" string="Create Move" colspan="2"/>
+                            <button name="create_move" attrs="{'invisible': ['|', ('annual', '=', True), ('state', '!=', 'draft')]}" type="object" string="Create Move" colspan="2"/>
                             <button name="statement_draft" type="object" states="confirmed,paid" string="Set to draft" colspan="2"/>
                         </page>
-                        <page string="Tax Authority">
+                        <page string="Tax Authority" attrs="{'invisible': [('annual', '=', True)]}">
                             <group>
                                 <field name="authority_vat_amount" />
                                 <field name="residual" />
