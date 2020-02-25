@@ -115,6 +115,13 @@ odoo.define('fiscal_epos_print.models', function (require) {
                 'body': _t('No taxes found'),
             });
         },
+        set_quantity: function(quantity, keep_price) {
+            if (quantity == '0') {
+                // Epson FP doesn't allow lines with quantity 0
+                quantity = 'remove';
+            }
+            return _orderline_super.set_quantity.call(this, quantity, keep_price);
+        },
         compute_all: function(taxes, price_unit, quantity, currency_rounding, no_map_tax) {
             var res = _orderline_super.compute_all.call(this, taxes, price_unit, quantity, currency_rounding, no_map_tax);
             var self = this;
