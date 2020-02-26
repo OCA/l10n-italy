@@ -414,6 +414,10 @@ class ComunicazioneLiquidazione(models.Model):
         InteressiDovuti.text = "{:.2f}".format(
             quadro.interessi_dovuti).replace('.', ',')
         # 1.2.2.1.17 Acconto
+        if quadro.metodo_calcolo_acconto:
+            Metodo = etree.SubElement(
+                xModulo, etree.QName(NS_IV, "Metodo"))
+            Metodo.text = quadro.metodo_calcolo_acconto
         Acconto = etree.SubElement(
             xModulo, etree.QName(NS_IV, "Acconto"))
         Acconto.text = "{:.2f}".format(
@@ -515,6 +519,12 @@ class ComunicazioneLiquidazioneVp(models.Model):
     interessi_dovuti = fields.Float(
         string='Due interests for quarterly statements')
     accounto_dovuto = fields.Float(string='Down payment due')
+    metodo_calcolo_acconto = fields.Selection([
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+    ], string="Down payment computation method")
     iva_da_versare = fields.Float(
         string='VAT to pay',
         compute="_compute_VP14_iva_da_versare_credito", store=True)
