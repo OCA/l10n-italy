@@ -74,10 +74,11 @@ class FatturaPAAttachmentIn(models.Model):
     @api.depends('ir_attachment_id.datas')
     def _compute_xml_data(self):
         for att in self:
-            fatt = self.env['wizard.import.fatturapa'].get_invoice_obj(att)
+            wiz_obj = self.env['wizard.import.fatturapa'] \
+                .with_context(from_attachment=att)
+            fatt = wiz_obj.get_invoice_obj(att)
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
-            partner_id = self.env['wizard.import.fatturapa'].getCedPrest(
-                cedentePrestatore)
+            partner_id = wiz_obj.getCedPrest(cedentePrestatore)
             att.xml_supplier_id = partner_id
             att.invoices_number = len(fatt.FatturaElettronicaBody)
             att.invoices_total = 0
