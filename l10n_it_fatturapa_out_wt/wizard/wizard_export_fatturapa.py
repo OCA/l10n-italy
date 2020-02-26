@@ -30,8 +30,8 @@ class WizardExportFatturapa(models.TransientModel):
                                 % wt_line.withholding_tax_id.name)
             body.DatiGenerali.DatiGeneraliDocumento.DatiRitenuta\
                 = DatiRitenutaType(
-                    TipoRitenuta="RT02" if invoice.partner_id.is_company
-                    else "RT01",  # RT02 persona giuridica
+                    TipoRitenuta="RT02" if invoice.company_id.is_company # RT02 persona giuridica
+                    else "RT01",  # RT01 persona fisica
                     ImportoRitenuta='%.2f' % float_round(wt_line.tax, 2),
                     AliquotaRitenuta='%.2f' % float_round(
                         wt_line.withholding_tax_id.tax, 2),
