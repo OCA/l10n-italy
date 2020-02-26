@@ -187,7 +187,7 @@
 
                     <hr colspan="3"/>
                     <group><div><b>VP13</b> Due down payment</div></group>
-                    <group></group>
+                    <group><div attrs="{'invisible': [('accounto_dovuto', '=', 0)]}"><span>Computation method: </span><field attrs="{'required': [('accounto_dovuto', '!=', 0)]}" name="metodo_calcolo_acconto" nolabel="1" class="oe_inline"/></div></group>
                     <group><field name="accounto_dovuto" nolabel="1"/></group>
 
                     <hr colspan="3"/>
@@ -200,5 +200,5 @@
         </field>
     </record>
 
-        
+
 </odoo>
