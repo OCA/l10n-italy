@@ -125,13 +125,25 @@ class WizardImportFatturapa(models.TransientModel):
                 )
         partners = partner_model
         if vat:
-            partners = partner_model.search([
-                ('vat', '=', vat),
-            ])
+            domain = [('vat', '=', vat)]
+            if self.env.context.get('from_attachment'):
+                att = self.env.context.get('from_attachment')
+                domain.extend([
+                    '|',
+                    ('company_id', 'child_of', att.company_id.id),
+                    ('company_id', '=', False)
+                ])
+            partners = partner_model.search(domain)
         if not partners and cf:
-            partners = partner_model.search([
-                ('fiscalcode', '=', cf),
-            ])
+            domain = [('fiscalcode', '=', cf)]
+            if self.env.context.get('from_attachment'):
+                att = self.env.context.get('from_attachment')
+                domain.extend([
+                    '|',
+                    ('company_id', 'child_of', att.company_id.id),
+                    ('company_id', '=', False)
+                ])
+            partners = partner_model.search(domain)
         commercial_partner_id = False
         if len(partners) > 1:
             for partner in partners:
