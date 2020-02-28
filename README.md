@@ -19,7 +19,7 @@ addon | version | summary
 [account_invoice_report_ddt_group](account_invoice_report_ddt_group/) | 10.0.0.3.1 | Account invoice report grouped by DDT
 [account_vat_period_end_statement](account_vat_period_end_statement/) | 10.0.1.4.2 | Period End VAT Statement
 [l10n_it_abicab](l10n_it_abicab/) | 10.0.1.0.0 | Base Bank ABI/CAB codes
-[l10n_it_account](l10n_it_account/) | 10.0.1.2.3 | Italian Localization - Account
+[l10n_it_account](l10n_it_account/) | 10.0.1.2.4 | Italian Localization - Account
 [l10n_it_account_stamp](l10n_it_account_stamp/) | 10.0.1.0.1 | Tax stamp automatic management
 [l10n_it_account_stamp_ddt](l10n_it_account_stamp_ddt/) | 10.0.1.0.0 | Modulo ponte tra imposta di bollo e DDT
 [l10n_it_account_stamp_sale](l10n_it_account_stamp_sale/) | 10.0.1.0.1 | Modulo ponte tra imposta di bollo e vendite
@@ -61,8 +61,8 @@ addon | version | summary
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 10.0.1.3.0 | Ricevute Bancarie
 [l10n_it_sdi_channel](l10n_it_sdi_channel/) | 10.0.1.2.0 | Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI
 [l10n_it_split_payment](l10n_it_split_payment/) | 10.0.1.1.0 | Split Payment
-[l10n_it_vat_registries](l10n_it_vat_registries/) | 10.0.1.3.0 | ITA - Registri IVA
-[l10n_it_vat_registries_cash_basis](l10n_it_vat_registries_cash_basis/) | 10.0.1.0.0 | Italian Localization - VAT Registries - Cash Basis
+[l10n_it_vat_registries](l10n_it_vat_registries/) | 10.0.1.3.1 | ITA - Registri IVA
+[l10n_it_vat_registries_cash_basis](l10n_it_vat_registries_cash_basis/) | 10.0.1.0.1 | Italian Localization - VAT Registries - Cash Basis
 [l10n_it_vat_registries_split_payment](l10n_it_vat_registries_split_payment/) | 10.0.1.0.0 | Bridge module to make VAT registries work with Split Payment
 [l10n_it_website_portal_fatturapa](l10n_it_website_portal_fatturapa/) | 10.0.1.0.2 | Add fatturapa fields and checks in frontend user's details
 [l10n_it_website_portal_fiscalcode](l10n_it_website_portal_fiscalcode/) | 10.0.1.0.0 | Add fiscal code to details of frontend user
