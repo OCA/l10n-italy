@@ -269,6 +269,9 @@ class AccountVatPeriodEndStatement(models.Model):
         'res.company', 'Company',
         default=lambda self: self.env['res.company']._company_default_get(
             'account.invoice'))
+    year_footer = fields.Char(
+        string='Year for Footer',
+        help="Value printed near number of page in the footer")
 
     @api.multi
     def unlink(self):

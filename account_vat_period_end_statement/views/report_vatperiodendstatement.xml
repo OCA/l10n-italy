@@ -240,6 +240,7 @@ Main
 
         <t t-set="title" t-value="'Liquidazione IVA'"/>
         <t t-foreach="docs" t-as="statement">
+            <t t-set="l10n_it_count_fiscal_year" t-value="statement.year_footer"/>
             <t t-set="l10n_it_count_fiscal_page_base" t-value="statement.fiscal_page_base"/>
             <t t-call="account_vat_period_end_statement.report_vatperiodendstatement_document"/>
         </t>

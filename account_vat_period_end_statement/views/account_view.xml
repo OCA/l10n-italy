@@ -22,8 +22,8 @@
                         <field name="authority_vat_account_id" />
                         <field name="company_id" groups="base.group_multi_company"/>
                         <field name="interest" />
-                    <field name="interest_percent"
-                        attrs="{'invisible': [('interest', '=', False)], 'required': [('interest', '=', True)]}"/>
+                        <field name="interest_percent"
+                            attrs="{'invisible': [('interest', '=', False)], 'required': [('interest', '=', True)]}"/>
                     </group>
                     <notebook colspan="4">
                         <page string="Periods">
@@ -111,6 +111,7 @@
                         </page>
                         <page string="Print Options">
                             <group colspan="4" string="Page Number">
+                                <field name="year_footer"/>
                                 <field name="fiscal_page_base"/>
                             </group>
                         </page>
