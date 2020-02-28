@@ -88,6 +88,13 @@ msgid "<span> or credit</span>"
 msgstr "<span> o a credito</span>"
 
 #. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+#, fuzzy
+#| msgid "<span> or credit</span>"
+msgid "<span>Computation method: </span>"
+msgstr "<span> o a credito</span>"
+
+#. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_needaction
 msgid "Action Needed"
 msgstr "Azione richiesta"
@@ -258,6 +265,13 @@ msgstr "Firma incaricato"
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__metodo_calcolo_acconto
+#, fuzzy
+#| msgid "Down payment due"
+msgid "Down payment computation method"
+msgstr "Acconto dovuto"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__accounto_dovuto
