@@ -84,6 +84,11 @@ msgid "<span> or credit</span>"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+msgid "<span>Computation method: </span>"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_needaction
 msgid "Action Needed"
 msgstr ""
@@ -245,6 +250,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_export_file__display_name
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__metodo_calcolo_acconto
+msgid "Down payment computation method"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
