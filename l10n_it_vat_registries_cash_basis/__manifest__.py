@@ -7,7 +7,7 @@
 
 {
     'name': 'Italian Localization - VAT Registries - Cash Basis',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'category': 'Hidden',
     "author": "LinkIt Srl, Agile Business Group"
               ", Odoo Community Association (OCA)",
