@@ -191,7 +191,7 @@ msgid "Message"
 msgstr ""
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/models/vat_registry.py:75
+#: code:addons/l10n_it_vat_registries/models/vat_registry.py:76
 #, python-format
 msgid "Move line %s has too many base taxes"
 msgstr ""
@@ -212,7 +212,7 @@ msgid "Name"
 msgstr ""
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:66
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:77
 #, python-format
 msgid "No journals found in the current selection.\n"
 "Please load them before to retry!"
@@ -304,6 +304,16 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_journal_tax_registry_id
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva_tax_registry_id
 msgid "VAT registry"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,help:l10n_it_vat_registries.field_wizard_registro_iva_year_footer
+msgid "Value printed near number of page in the footer"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva_year_footer
+msgid "Year for Footer"
 msgstr ""
 
 #. module: l10n_it_vat_registries
