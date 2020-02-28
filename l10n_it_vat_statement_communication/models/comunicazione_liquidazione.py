@@ -265,7 +265,7 @@ class ComunicazioneLiquidazione(models.Model):
         if self.last_month:
             x1_2_1_5_UltimoMese = etree.SubElement(
                 x1_2_1_Frontespizio, etree.QName(NS_IV, "UltimoMese"))
-            x1_2_1_5_UltimoMese.text = self.last_month
+            x1_2_1_5_UltimoMese.text = str(self.last_month)
         # Liquidazione Gruppo
         x1_2_1_6_LiquidazioneGruppo = etree.SubElement(
             x1_2_1_Frontespizio, etree.QName(NS_IV, "LiquidazioneGruppo"))
