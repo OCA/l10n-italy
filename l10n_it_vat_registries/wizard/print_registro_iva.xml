@@ -16,6 +16,9 @@
                         <group>
                             <field name="to_date"/>
                         </group>
+                        <group>
+                            <field name="year_footer"/>
+                        </group>
                         <separator string="Journals" colspan="2"/>
                         <group>
                             <field name="tax_registry_id"></field>
