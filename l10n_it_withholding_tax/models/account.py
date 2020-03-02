@@ -272,15 +272,20 @@ class AccountAbstractPayment(models.AbstractModel):
     def _compute_payment_amount(self, invoices=None, currency=None):
         if not invoices:
             invoices = self.invoice_ids
-        original_values = {}
-        for invoice in invoices:
-            if invoice.withholding_tax:
-                original_values[invoice] = invoice.residual_signed
-                invoice.residual_signed = invoice.amount_net_pay_residual
-        res = super(AccountAbstractPayment, self)._compute_payment_amount(
-            invoices, currency)
-        for invoice in original_values:
-            invoice.residual_signed = original_values[invoice]
+
+        if not invoices:
+            res = super()._compute_payment_amount(invoices, currency)
+        elif len(invoices) == 1:
+            if invoices.withholding_tax:
+                res = invoices.amount_net_pay_residual
+            else:
+                res = super()._compute_payment_amount(invoices, currency)
+        else:
+            res = 0
+            for inv in invoices:
+                # Not calling `super` to force recursion and cycle invoices
+                # one by one
+                res += self._compute_payment_amount(inv, currency)
         return res
 
 
