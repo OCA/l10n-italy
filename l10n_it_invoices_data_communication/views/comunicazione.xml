@@ -72,6 +72,7 @@
                         </group>
                         <group name="Summary">
                             <field name="dati_trasmissione" widget="radio"/>
+                            <field name="esterometro"/>
                         </group>
                         <notebook attrs="{'invisible':[('dati_trasmissione', '!=', 'DTE')]}">
                             <page string="Seller" name="page_cedente">
