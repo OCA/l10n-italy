@@ -143,6 +143,10 @@
                 <field name="move_id"/>
                 <field name="payment_term_id"/>
                 <field name="state"/>
+                <filter string="Annual" name="annual_filter"
+                        domain="[('annual', '=', True)]"/>
+                <filter string="Periodic" name="periodic_filter"
+                        domain="[('annual', '=', False)]"/>
            </search>
         </field>
     </record>
@@ -156,6 +160,7 @@
                 <field name="date" />
                 <field name="journal_id" />
                 <field name="authority_vat_amount"   />
+                <field name="annual"/>
                 <field name="state" />
                 <field name="company_id" groups="base.group_multi_company"/>
            </tree>
