@@ -525,7 +525,7 @@ class AccountVatPeriodEndStatement(models.Model):
             statement.previous_debit_vat_amount = 0.0
             prev_statements = self.search(
                 [('date', '<', statement.date)], order='date desc')
-            if prev_statements:
+            if prev_statements and not statement.annual:
                 prev_statement = prev_statements[0]
                 if (
                     prev_statement.residual > 0 and
