@@ -92,7 +92,7 @@ msgid "Date Range"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:138
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:149
 #, python-format
 msgid "Date already printed"
 msgstr ""
@@ -203,8 +203,8 @@ msgid "Name"
 msgstr "ชื่อ"
 
 #. module: l10n_it_central_journal
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:124
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:143
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:135
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:154
 #, python-format
 msgid "No documents found in the current selection"
 msgstr ""
@@ -283,6 +283,16 @@ msgstr ""
 #. module: l10n_it_central_journal
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_date_move_line_to
 msgid "To date"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,help:l10n_it_central_journal.field_wizard_giornale_year_footer
+msgid "Value printed near number of page in the footer"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale_year_footer
+msgid "Year for Footer"
 msgstr ""
 
 #. module: l10n_it_central_journal
