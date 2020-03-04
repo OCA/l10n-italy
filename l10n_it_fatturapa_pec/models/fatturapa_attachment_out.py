@@ -203,7 +203,7 @@ class FatturaPAAttachmentOut(models.Model):
                         esito = esito_committente.find('Esito')
                         if esito is not None:
                             if esito.text == 'EC01':
-                                state = 'validated'
+                                state = 'accepted'
                             elif esito.text == 'EC02':
                                 state = 'rejected'
                             fatturapa_attachment_out.write({
