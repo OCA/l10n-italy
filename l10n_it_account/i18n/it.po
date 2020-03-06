@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-21 10:38+0000\n"
-"PO-Revision-Date: 2020-01-24 20:13+0000\n"
+"PO-Revision-Date: 2020-03-06 12:13+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -30,7 +30,7 @@ msgstr ""
 #: code:addons/l10n_it_account/models/account_group.py:97
 #, python-format
 msgid "A recursion in '{}' parents has been found."
-msgstr ""
+msgstr "Trovata una ricorsività in \"{}\" padre."
 
 #. module: l10n_it_account
 #: model:ir.model,name:l10n_it_account.model_account_account
@@ -83,6 +83,8 @@ msgid ""
 "Can't set '{}' as parent for group '{}'.\n"
 "{}"
 msgstr ""
+"Impossibile impostare \"{}\" come padre per il gruppo \"{}\".\n"
+"{}"
 
 #. module: l10n_it_account
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__cee_type
