@@ -29,7 +29,7 @@ class AccountInvoice(models.Model):
         else:
             return False
 
-    @api.onchange('tax_line_ids')
+    @api.onchange('amount_untaxed', 'tax_line_ids')
     def _onchange_tax_line_ids(self):
         if self.auto_compute_stamp:
             self.tax_stamp = self.is_tax_stamp_applicable()
