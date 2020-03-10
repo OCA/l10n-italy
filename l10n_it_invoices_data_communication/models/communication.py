@@ -188,6 +188,10 @@ class ComunicazioneDatiIva(models.Model):
         help="To fill along with 2.1.2.2 <Nome> and alternatively to "
              "2.1.2.1 <Denominazione>")
     errors = fields.Text(copy=False)
+    esterometro = fields.Boolean(
+        default=True,
+        string="Esterometro"
+    )
 
     @api.onchange('company_id')
     def onchange_company_id(self):
@@ -460,6 +464,10 @@ class ComunicazioneDatiIva(models.Model):
                   ('fiscal_document_type_id.out_invoice', '=', True),
                   ('fiscal_document_type_id.out_refund', '=', True),
                   ]
+        if self.esterometro:
+            domain.append(
+                ('partner_id.country_id.code', 'not in', (False, 'IT'))
+            )
         return domain
 
     def _get_fatture_emesse(self):
@@ -531,6 +539,10 @@ class ComunicazioneDatiIva(models.Model):
                   '|',
                   ('fiscal_document_type_id.in_invoice', '=', True),
                   ('fiscal_document_type_id.in_refund', '=', True), ]
+        if self.esterometro:
+            domain.append(
+                ('partner_id.country_id.code', 'not in', (False, 'IT'))
+            )
         return domain
 
     def _get_fatture_ricevute(self):
