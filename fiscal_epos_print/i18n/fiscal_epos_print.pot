@@ -151,7 +151,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/models.js:103
+#: code:addons/fiscal_epos_print/static/src/js/models.js:114
 #, python-format
 msgid "Error"
 msgstr ""
@@ -314,7 +314,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/models.js:104
+#: code:addons/fiscal_epos_print/static/src/js/models.js:115
 #, python-format
 msgid "No taxes found"
 msgstr ""
