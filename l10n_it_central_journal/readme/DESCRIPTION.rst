@@ -1,6 +1,7 @@
 **Italiano**
 
-Modulo per la stampa del libro giornale
+Modulo per la stampa del libro giornale.
+
 
 **English**
 

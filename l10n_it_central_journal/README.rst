@@ -14,20 +14,21 @@ ITA - Libro giornale
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_central_journal
+    :target: https://github.com/OCA/l10n-italy/tree/12.0_l10n_it_central_journal/l10n_it_central_journal
     :alt: OCA/l10n-italy
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-italy-12-0/l10n-italy-12-0-l10n_it_central_journal
+    :target: https://translation.odoo-community.org/projects/l10n-italy-12-0_l10n_it_central_journal/l10n-italy-12-0_l10n_it_central_journal-l10n_it_central_journal
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/122/12.0
+    :target: https://runbot.odoo-community.org/runbot/122/12.0_l10n_it_central_journal
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 **Italiano**
 
-Modulo per la stampa del libro giornale
+Modulo per la stampa del libro giornale.
+
 
 **English**
 
@@ -38,13 +39,40 @@ Module for print general journal
 .. contents::
    :local:
 
+Usage
+=====
+
+**Italiano**
+
+Molto spesso non è possibile stampare un anno intero in un unico PDF per i limiti dello strumento di stampa di Odoo.
+Quindi è necessario stampare il Libro giornale suddividendolo in periodi più brevi ad esempio un mese alla volta.
+Da normativa quando si suddivide in più periodi bisogna indicare i saldi di riporto tra i vari periodi.
+Al momento per poter riportare i saldi tra i vari periodi è necessario fare queste operazioni.
+
+Creare dei periodi appositi per il Libro giornale.
+Contabilità/Fatturazione -> Configurazione -> Intervalli data -> Intervalli data.
+ad esempio "Libro giornale gennaio 2020", "Libro giornale febbraio 2020", ecc.
+
+Stampare il Libro giornale del mese di gennaio con intervallo data "Libro giornale gennaio 2020" con il pulsante per la stampa definitiva.
+In questo modo nell'intervallo data "Libro giornale gennaio 2020" verranno indicati i progressivi dare avere di gennaio.
+Copiare questi progressivi nell'intervallo data "Libro giornale febbraio 2020" e poi stampare il Libro giornale in stampa definitiva.
+Il report di Febbraio avrà i saldi iniziali indicati in precedenza che con la stampa definitiva vengono aggiornati con i nuovi progressivi di fine febbraio.
+Ripetere l'operazione per tutti i periodi.
+
+Il numero di pagina anch'esso è da riportare a mano in fase di stampa. Questo perché il report viene generato in html e poi trasformato in PDF e quindi non è possibile stabilire a priori quante pagine verranno generate.
+
+**English**
+
+Same time is not possible to print the general ledger in one PDF file this due to the report tool of odoo.
+To solve print smaller periods eg one month by time.
+
 Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_central_journal%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_central_journal%0Aversion:%2012.0_l10n_it_central_journal%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -62,6 +90,7 @@ Contributors
 * Gianmarco Conte <gconte@dinamicheaziendali.it>
 * Lara Baggio <lbaggio@linkgroup.it>
 * Glauco Prina <gprina@linkgroup.it>
+* Marco Calcagni <mcalcagni@dinamicheaziendali.it>
 
 Maintainers
 ~~~~~~~~~~~
@@ -76,6 +105,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_central_journal>`_ project on GitHub.
+This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/12.0_l10n_it_central_journal/l10n_it_central_journal>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
