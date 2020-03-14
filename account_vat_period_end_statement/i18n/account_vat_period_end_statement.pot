@@ -101,6 +101,11 @@ msgid "Amount Due"
 msgstr ""
 
 #. module: account_vat_period_end_statement
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement_search
+msgid "Annual"
+msgstr ""
+
+#. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__annual
 msgid "Annual prospect"
 msgstr ""
@@ -424,6 +429,11 @@ msgstr ""
 #: code:addons/account_vat_period_end_statement/wizard/add_period.py:28
 #, python-format
 msgid "Period %s is associated to statement %s yet"
+msgstr ""
+
+#. module: account_vat_period_end_statement
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement_search
+msgid "Periodic"
 msgstr ""
 
 #. module: account_vat_period_end_statement
