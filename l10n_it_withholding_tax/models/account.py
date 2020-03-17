@@ -3,8 +3,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import models, fields, api, _
-import odoo.addons.decimal_precision as dp
 from odoo.exceptions import ValidationError
+
+import odoo.addons.decimal_precision as dp
+
+from odoo.addons.account.models.account_payment import MAP_INVOICE_TYPE_PAYMENT_SIGN
 
 
 class AccountFullReconcile(models.Model):
@@ -274,19 +277,17 @@ class AccountAbstractPayment(models.AbstractModel):
             invoices = self.invoice_ids
 
         if not invoices:
-            res = super()._compute_payment_amount(invoices, currency)
-        elif len(invoices) == 1:
-            if invoices.withholding_tax:
-                res = invoices.amount_net_pay_residual
+            return super()._compute_payment_amount(invoices, currency)
+
+        amt = 0
+        for inv in invoices:
+            if inv.withholding_tax:
+                sign = MAP_INVOICE_TYPE_PAYMENT_SIGN[inv.type]
+                amt += sign * inv.amount_net_pay_residual
             else:
-                res = super()._compute_payment_amount(invoices, currency)
-        else:
-            res = 0
-            for inv in invoices:
-                # Not calling `super` to force recursion and cycle invoices
-                # one by one
-                res += self._compute_payment_amount(inv, currency)
-        return res
+                amt += super()._compute_payment_amount(inv, currency)
+
+        return amt
 
 
 class AccountMoveLine(models.Model):

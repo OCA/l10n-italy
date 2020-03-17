@@ -114,7 +114,7 @@ class TestWithholdingTax(TransactionCase):
             'active_model': 'account.invoice',
             'active_ids': [self.invoice.id],
             }
-        register_payments = self.env['account.register.payments']\
+        invoice_payment = self.env['account.payment']\
             .with_context(ctx).create({
                 'payment_date': time.strftime('%Y') + '-07-15',
                 'amount': 800,
@@ -122,7 +122,7 @@ class TestWithholdingTax(TransactionCase):
                 'payment_method_id': self.env.ref(
                     "account.account_payment_method_manual_out").id,
                 })
-        register_payments.create_payments()
+        invoice_payment.action_validate_invoice_payment()
 
         # WT payment generation
         self.assertEqual(
