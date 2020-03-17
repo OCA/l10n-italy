@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Tecnativa - Antonio Espinosa
 # Copyright 2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
-from openerp import _, api, exceptions, fields, models
-from openerp.tools import float_is_zero
-from openerp.exceptions import ValidationError
+from odoo import _, api, exceptions, fields, models
+from odoo.tools import float_is_zero
+from odoo.exceptions import ValidationError
 from dateutil.relativedelta import relativedelta
 
 _logger = logging.getLogger(__name__)
@@ -19,13 +18,10 @@ class AccountFiscalyearClosing(models.Model):
 
     def _default_year(self):
         company = self._default_company_id()
-        last_month_day = '%s-%s' % (
-            company.fiscalyear_last_month or '12',
-            company.fiscalyear_last_day or '31',
-        )
         lock_date = company.fiscalyear_lock_date or fields.Date.today()
-        fiscalyear = int(lock_date[:4])
-        if lock_date[5:] < last_month_day:
+        fiscalyear = lock_date.year
+        if lock_date.month < company.fiscalyear_last_month and \
+                lock_date.day < company.fiscalyear_last_day:
             fiscalyear = fiscalyear - 1
         return fiscalyear
 
@@ -220,7 +216,7 @@ class AccountFiscalyearClosing(models.Model):
         self.check_draft_moves = tmpl.check_draft_moves
         for tmpl_config in tmpl.move_config_ids:
             self.move_config_ids += config_obj.new(
-                self._prepare_config(tmpl_config, self.company_id)
+                self._prepare_config(tmpl_config)
             )
 
     @api.onchange('year')
@@ -237,10 +233,10 @@ class AccountFiscalyearClosing(models.Model):
         self.date_opening = fields.Date.to_string(
             date_end + relativedelta(days=1)
         )
-        if self.date_start[:4] != self.date_end[:4]:
-            self.name = "%s-%s" % (self.date_start[:4], self.date_end[:4])
+        if self.date_start != self.date_end:
+            self.name = "%s-%s" % (self.date_start, self.date_end)
         else:
-            self.name = str(self.date_end[:4])
+            self.name = str(self.date_end)
 
     @api.multi
     def action_load_template(self):
@@ -519,15 +515,15 @@ class AccountFiscalyearClosingConfig(models.Model):
             date = self.fyc_id.date_opening
         config = self.config_inverse_get()
         if config.move_id:
-            move_vals = config.move_id._move_reverse_prepare(
+            move_vals = config.move_id.reverse_moves(
                 date=date, journal=self.journal_id,
             )
-            move_vals = config.move_id._move_lines_reverse_prepare(
-                move_vals, date=date, journal=self.journal_id,
-            )
-            move_vals['ref'] = self.name
-            move_vals['closing_type'] = self.move_type
-            move_vals['reversal_id'] = config.move_id.id
+            # move_vals = config.move_id._move_lines_reverse_prepare(
+            #     move_vals, date=date, journal=self.journal_id,
+            # )
+            # move_vals['ref'] = self.name
+            # move_vals['closing_type'] = self.move_type
+            # move_vals['reversal_id'] = config.move_id.id
         return move_vals
 
     @api.multi

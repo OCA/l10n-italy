@@ -1,13 +1,13 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Tecnativa - Antonio Espinosa
 # Copyright 2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import fields, models
+from odoo import fields, models
 
 
 class AccountFiscalyearClosingAbstract(models.AbstractModel):
     _name = "account.fiscalyear.closing.abstract"
+    _description = "Account fiscalyear closing abstract"
 
     name = fields.Char(string="Description", required=True)
     company_id = fields.Many2one(
@@ -23,6 +23,7 @@ class AccountFiscalyearClosingAbstract(models.AbstractModel):
 
 class AccountFiscalyearClosingConfigAbstract(models.AbstractModel):
     _name = "account.fiscalyear.closing.config.abstract"
+    _description = "Account fiscalyear closing config abstract"
     _order = "sequence asc, id asc"
 
     name = fields.Char(string="Description", required=True)
@@ -56,12 +57,14 @@ class AccountFiscalyearClosingConfigAbstract(models.AbstractModel):
 
 class AccountFiscalyearClosingMappingAbstract(models.AbstractModel):
     _name = "account.fiscalyear.closing.mapping.abstract"
+    _description = "Account fiscalyear closing mapping abstract"
 
     name = fields.Char(string="Description")
 
 
 class AccountFiscalyearClosingTypeAbstract(models.AbstractModel):
     _name = "account.fiscalyear.closing.type.abstract"
+    _description = "Account fiscalyear closing type abstract"
 
     closing_type = fields.Selection(
         selection=[

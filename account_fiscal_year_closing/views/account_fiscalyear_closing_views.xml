@@ -5,6 +5,7 @@
 <odoo>
 
     <record id="view_account_fiscalyear_closing_tree" model="ir.ui.view">
+        <field name="name">account.fiscalyear.closing.tree</field>
         <field name="model">account.fiscalyear.closing</field>
         <field name="arch" type="xml">
             <tree string="Fiscal year closing">
@@ -20,6 +21,7 @@
     </record>
 
     <record id="view_account_fiscalyear_closing_form" model="ir.ui.view">
+        <field name="name">account.fiscalyear.closing.form</field>
         <field name="model">account.fiscalyear.closing</field>
         <field name="arch" type="xml">
             <form string="Fiscal year closing">
@@ -75,10 +77,10 @@
                                 icon="fa-list"
                         />
                     </div>
-                    <h1>
-                        <label string="Fiscal closing"/>
+                    <div class="oe_title">
+                        <label for="name" string="Fiscal closing"/>
                         <field name="name" class="oe_inline"/>
-                    </h1>
+                    </div>
                     <group>
                         <group>
                             <field name="chart_template_id" invisible="1"/>
@@ -108,7 +110,7 @@
                             <field name="calculation_date"/>
                         </group>
                     </group>
-                    <group string="Moves configuration">
+                    <group name="moves_config" string="Moves configuration">
                         <field name="move_config_ids" nolabel="1">
                             <tree>
                                 <field name="sequence" widget="handle" />
@@ -138,7 +140,7 @@
                                             <field name="move_type"/>
                                         </group>
                                     </group>
-                                    <group string="Accounts mapping">
+                                    <group name="accounts_mapping" string="Accounts mapping">
                                         <field name="mapping_ids" nolabel="1">
                                             <tree editable="bottom">
                                                 <field name="name"/>
@@ -147,7 +149,8 @@
                                             </tree>
                                         </field>
                                     </group>
-                                    <group string="Accounts closing types">
+                                    <group name="accounts_closing_types"
+                                           string="Accounts closing types">
                                         <field name="closing_type_default"/>
                                     </group>
                                     <group>
@@ -168,14 +171,15 @@
     </record>
 
     <record id="view_account_fiscalyear_closing_search" model="ir.ui.view">
+        <field name="name">account.fiscalyear.closing.search</field>
         <field name="model">account.fiscalyear.closing</field>
         <field name="arch" type="xml">
             <search string="Fiscal year closing">
-                <filter string="Draft" domain="[('state','=','draft')]"/>
-                <filter string="In process" domain="[('state', '=', 'calculated')]"/>
-                <filter string="Posted" domain="[('state', '=', 'posted')]"/>
-                <filter string="Cancelled" domain="[('state', '=', 'cancelled')]"/>
-                <filter string="Company" domain="[]" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+                <filter string="Draft" name="draft" domain="[('state','=','draft')]"/>
+                <filter string="In process" name="in_process" domain="[('state', '=', 'calculated')]"/>
+                <filter string="Posted" name="posted" domain="[('state', '=', 'posted')]"/>
+                <filter string="Cancelled" name="cancelled" domain="[('state', '=', 'cancelled')]"/>
+                <filter string="Company" name="company" domain="[]" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
             </search>
         </field>
     </record>

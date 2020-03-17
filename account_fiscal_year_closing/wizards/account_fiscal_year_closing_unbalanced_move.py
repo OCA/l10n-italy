@@ -1,11 +1,11 @@
-# -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import fields, models
+from odoo import fields, models
 
 
 class AccountFiscalYearClosingUnbalancedMove(models.TransientModel):
     _name = 'account.fiscalyear.closing.unbalanced.move'
+    _description = 'Account fiscalyear closing unbalanced move'
 
     journal_id = fields.Many2one(
         comodel_name="account.journal",
@@ -30,6 +30,7 @@ class AccountFiscalYearClosingUnbalancedMove(models.TransientModel):
 
 class AccountFiscalYearClosingUnbalancedMoveLine(models.TransientModel):
     _name = 'account.fiscalyear.closing.unbalanced.move.line'
+    _description = 'Account fiscalyear closing unbalanced move line'
 
     move_id = fields.Many2one(
         comodel_name='account.fiscalyear.closing.unbalanced.move',
