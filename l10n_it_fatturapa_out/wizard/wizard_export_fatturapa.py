@@ -137,7 +137,7 @@ class WizardExportFatturapa(models.TransientModel):
 
         if not company.country_id:
             raise UserError(
-                _('Company Country not set.'))
+                _('Company %s, Country not set.') % company.display_name)
         IdPaese = company.country_id.code
 
         IdCodice = company.partner_id.fiscalcode
@@ -146,7 +146,8 @@ class WizardExportFatturapa(models.TransientModel):
                 IdCodice = company.vat[2:]
         if not IdCodice:
             raise UserError(
-                _('Company does not have fiscal code or VAT number.'))
+                _('Company %s does not have fiscal code or VAT number.')
+                % company.display_name)
 
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
             IdTrasmittente = IdFiscaleType(
@@ -218,7 +219,7 @@ class WizardExportFatturapa(models.TransientModel):
                 'Fiscal position for electronic invoice not set '
                 'for company %s. '
                 '(Go to Accounting / Configuration / Settings / '
-                'Electronic Invoice)' % company.name
+                'Electronic Invoice)' % company.display_name
             ))
         CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
             IdPaese=company.country_id.code, IdCodice=company.vat[2:])
@@ -244,16 +245,16 @@ class WizardExportFatturapa(models.TransientModel):
 
         if not company.street:
             raise UserError(
-                _('Your company Street is not set.'))
+                _('Company %s, Street is not set.') % company.display_name)
         if not company.zip:
             raise UserError(
-                _('Your company ZIP is not set.'))
+                _('Company %s, ZIP is not set.') % company.display_name)
         if not company.city:
             raise UserError(
-                _('Your company City is not set.'))
+                _('Company %s, City is not set.') % company.display_name)
         if not company.country_id:
             raise UserError(
-                _('Your company Country is not set.'))
+                _('Company %s, Country is not set.') % company.display_name)
         # TODO: manage address number in <NumeroCivico>
         # see https://github.com/OCA/partner-contact/pull/96
         CedentePrestatore.Sede = IndirizzoType(
