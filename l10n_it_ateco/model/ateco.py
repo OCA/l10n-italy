@@ -4,7 +4,7 @@
 #
 #    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class AtecoCategory(models.Model):
@@ -23,3 +23,13 @@ class AtecoCategory(models.Model):
         'res.partner', 'ateco_category_partner_rel',
         'ateco_id', 'partner_id', string='Partners'
     )
+
+    @api.multi
+    def name_get(self):
+        res = []
+        for record in self:
+            name = record.name
+            if record.code:
+                name = record.code + ' - ' + name
+            res.append((record.id, name))
+        return res
