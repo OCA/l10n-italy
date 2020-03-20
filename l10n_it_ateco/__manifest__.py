@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 #    Copyright (C) 2014 Abstract (<http://abstract.it>).
 #    Copyright (C) 2016 Ciro Urselli (<http://www.apuliasoftware.it>).
@@ -6,14 +5,15 @@
 #    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    "name": "Ateco codes",
-    "version": "10.0.1.0.0",
+    "name": "ITA - Codici Ateco",
+    "version": "12.0.1.0.0",
     "category": "Localization/Italy",
     "author": "Abstract,Odoo Community Association (OCA),Odoo Italia Network",
-    "website": "http://abstract.it",
+    "development_status": "Beta",
+    "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
     "depends": [
-        "sales_team"
+        "contacts"
     ],
     "data": [
         "security/ir.model.access.csv",
