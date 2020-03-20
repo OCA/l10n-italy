@@ -14,7 +14,7 @@ addons:
 
 env:
   global:
-  - VERSION="10.0" TESTS="0" LINT_CHECK="0" MAKEPOT="0"
+  - VERSION="10.0" TESTS="0" LINT_CHECK="0" MAKEPOT="0" MQT_DEP="PIP"
 
   matrix:
   - LINT_CHECK="1"
