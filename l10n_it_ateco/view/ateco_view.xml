@@ -9,7 +9,7 @@
             <form string="Ateco Category">
                 <group>
                     <field name="code"/>
-                    <field name="name" select="1"/>
+                    <field name="name"/>
                     <field name="parent_id"/>
                 </group>
                 <group name="Partner" colspan="4">
@@ -58,7 +58,6 @@
     <menuitem
         action="action_ateco_category_search"
         id="menu_ateco_category_form"
-        parent="sales_team.menu_sale_config"
-        groups="sales_team.group_sale_manager" />
+        parent="contacts.res_partner_menu_config" />
 
 </odoo>
