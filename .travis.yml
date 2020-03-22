@@ -25,11 +25,6 @@ install:
   - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
-  - pip install unicodecsv
-  - pip install codicefiscale
-  - pip install unidecode==0.04.17
-  - pip install PyXB==1.2.6
-  - pip install asn1crypto==0.24.0
 
 script:
   - travis_run_tests
