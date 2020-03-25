@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 10:03+0000\n"
-"PO-Revision-Date: 2020-01-07 11:13+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2020-03-25 11:13+0000\n"
+"Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -92,45 +92,39 @@ msgstr "Partita IVA dell'azienda %s non impostata."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:149
-#, fuzzy, python-format
-#| msgid "Company does not have fiscal code or VAT number."
+#, python-format
 msgid "Company %s does not have fiscal code or VAT number."
-msgstr "Codice fiscale o partita IVA dell'azienda non impostati."
+msgstr "L'azienda %s non ha codice fiscale o partita IVA."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:254
-#, fuzzy, python-format
-#| msgid "Your company City is not set."
+#, python-format
 msgid "Company %s, City is not set."
-msgstr "La città dell'azienda non è impostata."
+msgstr "Azienda %s, città non impostata."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:257
-#, fuzzy, python-format
-#| msgid "Company Country not set."
+#, python-format
 msgid "Company %s, Country is not set."
-msgstr "Nazione dell'azienda non impostata."
+msgstr "Azienda %s, nazione non impostata."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:140
-#, fuzzy, python-format
-#| msgid "Company Country not set."
+#, python-format
 msgid "Company %s, Country not set."
-msgstr "Nazione dell'azienda non impostata."
+msgstr "Azienda %s, nazione non impostata."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:248
-#, fuzzy, python-format
-#| msgid "Your company Street is not set."
+#, python-format
 msgid "Company %s, Street is not set."
-msgstr "L'indirizzo dell'azienda non è impostato."
+msgstr "Azienda %s, strada non impostata."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:251
-#, fuzzy, python-format
-#| msgid "Company %s TIN not set."
+#, python-format
 msgid "Company %s, ZIP is not set."
-msgstr "Partita IVA dell'azienda %s non impostata."
+msgstr "Azienda %s, CAP non impostato."
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:287
@@ -394,7 +388,7 @@ msgstr "La riga fattura %s non contiene imposte."
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:705
 #, python-format
 msgid "Invoice {invoice} has no tax lines"
-msgstr ""
+msgstr "La fattura {invoice} non ha righe imposta"
 
 #. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
