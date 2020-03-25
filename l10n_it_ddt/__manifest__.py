@@ -20,6 +20,7 @@
         'sale_stock',
         'stock_account',
         'stock_picking_package_preparation_line',
+        'product_expiry',
     ],
     'data': [
         'security/ir.model.access.csv',

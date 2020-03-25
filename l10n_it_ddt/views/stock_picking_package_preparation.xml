@@ -164,6 +164,7 @@
                                     <field name="gross_weight_uom_id" groups="uom.group_uom" widget="selection"/>
                                 </div>
                                 <field name="show_price"/>
+                                <field name="show_deadline_date"/>
                             </group>
                             <group>
                                 <field name="carriage_condition_id"
