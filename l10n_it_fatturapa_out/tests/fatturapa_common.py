@@ -50,6 +50,7 @@ class FatturaPACommon(AccountTestUsers):
         self.tax_22_SP = self.env.ref('l10n_it_fatturapa.tax_22_SP')
         self.res_partner_fatturapa_0 = self.env.ref(
             'l10n_it_fatturapa.res_partner_fatturapa_0')
+        # B2B Customer
         self.res_partner_fatturapa_2 = self.env.ref(
             'l10n_it_fatturapa.res_partner_fatturapa_2')
         self.intermediario = self.env.ref(
