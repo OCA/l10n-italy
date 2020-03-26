@@ -524,3 +524,46 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
 
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, 'IT06363391001_00011.xml')
+
+    def test_12_xml_export(self):
+        invoicing_partner = self.env['res.partner'].create({
+            'parent_id': self.res_partner_fatturapa_2.id,
+            'type': 'invoice',
+            'city': 'Sanremo',
+            'zip': '18038',
+            'country_id': self.env.ref("base.it").id,
+            'state_id': self.env.ref("base.state_us_2").id,
+            'street': 'Via Roma, 1',
+            'codice_destinatario': '0000000',
+            'pec_destinatario': 'test-invoice@pec.it',
+            'electronic_invoice_use_this_address': True,
+        })
+        self.set_sequences(12, '2020-01-07')
+        invoice = self.invoice_model.create({
+            'date_invoice': '2020-01-07',
+            'partner_id': invoicing_partner.id,
+            'journal_id': self.sales_journal.id,
+            'account_id': self.a_recv.id,
+            'payment_term_id': self.account_payment_term.id,
+            'user_id': self.user_demo.id,
+            'type': 'out_invoice',
+            'currency_id': self.EUR.id,
+            'invoice_line_ids': [
+                (0, 0, {
+                    'account_id': self.a_sale.id,
+                    'product_id': self.product_product_10.id,
+                    'name': 'Mouse Optical',
+                    'quantity': 1,
+                    'uom_id': self.product_uom_unit.id,
+                    'price_unit': 10,
+                    'invoice_line_tax_ids': [(6, 0, {
+                        self.tax_22.id})]
+                })],
+        })
+        invoice.action_invoice_open()
+        res = self.run_wizard(invoice.id)
+        attachment = self.attach_model.browse(res['res_id'])
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00012.xml')
+
+        xml_content = base64.decodebytes(attachment.datas)
+        self.check_content(xml_content, 'IT06363391001_00012.xml')
