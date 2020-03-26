@@ -167,7 +167,7 @@ class WizardExportFatturapa(models.TransientModel):
 
     def _setCodiceDestinatario(self, partner, fatturapa):
         pec_destinatario = None
-        if partner.is_pa:
+        if partner.commercial_partner_id.is_pa:
             if not partner.ipa_code:
                 raise UserError(_(
                     "Partner %s is PA but does not have IPA code."
@@ -204,7 +204,11 @@ class WizardExportFatturapa(models.TransientModel):
             DatiTrasmissioneType())
         self._setIdTrasmittente(company, fatturapa)
         self._setFormatoTrasmissione(partner.commercial_partner_id, fatturapa)
-        self._setCodiceDestinatario(partner.commercial_partner_id, fatturapa)
+        if partner.electronic_invoice_use_this_address:
+            addressee_partner = partner
+        else:
+            addressee_partner = partner.commercial_partner_id
+        self._setCodiceDestinatario(addressee_partner, fatturapa)
         self._setContattiTrasmittente(company, fatturapa)
 
     def _setDatiAnagraficiCedente(self, CedentePrestatore, company):
