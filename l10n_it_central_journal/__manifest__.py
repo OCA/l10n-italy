@@ -6,10 +6,11 @@
 
 {
     'name': 'Italian Localization - Account central journal',
-    'version': '10.0.0.1.1',
+    'version': '10.0.1.0.1',
     'category': 'Localization/Italy',
     'author': 'Dinamiche Aziendali, Odoo Community Association (OCA)',
-    'website': 'http://www.dinamicheaziendali.it',
+    'website': 'https://github.com/OCA/l10n-italy/tree/'
+               '10.0/l10n_it_central_journal',
     'license': 'AGPL-3',
     "depends": [
         'account',

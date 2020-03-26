@@ -89,12 +89,12 @@
                                 </td>
                                 <!-- ref -->
                                 <td class="left_without_line">
-                                    <div style="page-break-inside: avoid"
+                                    <div style="page-break-inside: avoid;word-break: break-all;"
                                     t-esc="line.ref"/>
                                 </td>
                                 <!-- Account move -->
                                 <td class="left_without_line">
-                                    <div style="page-break-inside: avoid"
+                                    <div style="page-break-inside: avoid;word-break: break-all;"
                                     t-esc="line.move_id.name" />
                                 </td>
                                 <!-- Account code -->
@@ -104,17 +104,17 @@
                                 </td>
                                 <!-- Account name -->
                                 <td class="left_without_line">
-                                    <div style="page-break-inside: avoid"
+                                    <div style="page-break-inside: avoid;word-break: break-all;"
                                     t-esc="line.account_id.name" />
                                 </td>
                                 <!-- Name -->
                                 <td class="left_without_line">
                                     <t t-if="line.account_id.user_type_id.type in ['receivable', 'payable']">
-                                        <div style="page-break-inside: avoid"
+                                        <div style="page-break-inside: avoid;word-break: break-all;"
                                         t-esc="line.partner_id.name" />
                                     </t>
                                     <t t-else="">
-                                        <div style="page-break-inside: avoid"
+                                        <div style="page-break-inside: avoid;word-break: break-all;"
                                         t-esc="line.name" />
                                     </t>
                                 </td>
