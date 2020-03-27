@@ -236,8 +236,8 @@ class AccountInvoice(models.Model):
             'credit': credit,
             'debit': debit,
             'currency_id': invoice.currency_id.id\
-            and invoice.currency_id != invoice.company_id.currency_id\
-            or False,
+            if invoice.currency_id != invoice.company_id.currency_id\
+            else False,
             'amount_currency': amount_currency or False,
             'account_id': self.get_rc_inv_line_to_reconcile(
                 invoice).account_id.id,
@@ -264,8 +264,8 @@ class AccountInvoice(models.Model):
             'debit': debit,
             'credit': credit,
             'currency_id': invoice.currency_id.id\
-            and invoice.currency_id != invoice.company_id.currency_id\
-            or False,
+            if invoice.currency_id != invoice.company_id.currency_id\
+            else False,
             'amount_currency': amount_currency or False,
             'account_id': journal.default_credit_account_id.id,
             'company_id': self.company_id.id
