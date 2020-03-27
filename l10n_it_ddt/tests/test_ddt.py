@@ -477,6 +477,7 @@ class TestDdt(TransactionCase):
         action = invoice_wizard.create_invoice()
         invoice_ids = action['domain'][0][2]
         invoice = self.env['account.invoice'].browse(invoice_ids[0])
+        self.assertEqual(invoice.name, invoice.origin)
         self.assertEqual(len(order4.order_line.invoice_lines), 1)
         self.assertEqual(len(order5.order_line.invoice_lines), 1)
         self.assertEqual(order4.order_line.qty_invoiced, 1.0)
