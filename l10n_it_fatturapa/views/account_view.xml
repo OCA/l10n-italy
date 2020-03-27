@@ -17,21 +17,15 @@
                         </group>
                    </div>
                     <group string="Related Documents">
-                        <field name="related_documents" nolabel="1">
-                            <tree editable="bottom" string="Related Documents">
-                                <field name="type"></field>
-                                <field name="name"></field>
-                                <field name="lineRef" readonly="1"></field>
-                                <field name="date"></field>
-                                <field name="numitem"></field>
-                                <field name="code"></field>
-                                <field name="cig"></field>
-                                <field name="cup"></field>
-                            </tree>
-                        </field>
+                        <field name="related_documents" nolabel="1"/>
                     </group>
                 </field>
             </field>
         </record>
+
+        <menuitem
+            id="fatturapa_common_menu"
+            name="Electronic invoicing"
+            parent="l10n_it_account.account_italian_localization"/>
     </data>
 </openerp>

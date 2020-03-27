@@ -170,10 +170,10 @@ class FatturapaRelatedDocumentType(models.Model):
     lineRef = fields.Integer('Line Ref.')
     invoice_line_id = fields.Many2one(
         'account.invoice.line', 'Related Invoice Line',
-        ondelete='cascade', index=True)
+        ondelete='cascade', index=True, readonly=True)
     invoice_id = fields.Many2one(
         'account.invoice', 'Related Invoice',
-        ondelete='cascade', index=True)
+        ondelete='cascade', index=True, readonly=True)
     date = fields.Date('Date')
     numitem = fields.Char('Item Num.', size=20)
     code = fields.Char('Order Agreement Code', size=100)
