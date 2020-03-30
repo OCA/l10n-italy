@@ -25,12 +25,12 @@ class AccountInvoice(models.Model):
         return
 
     @api.multi
-    def action_invoice_cancel(self):
+    def action_cancel(self):
         for invoice in self:
             if invoice.fatturapa_attachment_out_id:
                 raise UserError(_(
                     "Invoice %s has XML and can't be canceled. "
                     "Delete the XML before"
                 ) % invoice.number)
-        res = super(AccountInvoice, self).action_invoice_cancel()
+        res = super(AccountInvoice, self).action_cancel()
         return res
