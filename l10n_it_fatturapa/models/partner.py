@@ -54,6 +54,11 @@ class ResPartner(models.Model):
     electronic_invoice_no_contact_update = fields.Boolean(
         "Do not update the contact from Electronic Invoice Details")
 
+    electronic_invoice_use_this_address = fields.Boolean(
+        "Use this e-invoicing data when invoicing to this address",
+        help="Set this when the main company has got several Addressee Codes or PEC"
+    )
+
     @api.multi
     def _compute_electronic_invoice_data_complete(self):
         check_fatturapa_fields = self._check_ftpa_partner_data._constrains
