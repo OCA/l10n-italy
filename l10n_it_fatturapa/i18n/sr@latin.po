@@ -106,14 +106,14 @@ msgid "Art. 73"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:85
+#: code:addons/l10n_it_fatturapa/models/partner.py:90
 #, python-format
 msgid ""
 "As a Public Administration, partner %s IPA Code must be 6 characters long."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:95
+#: code:addons/l10n_it_fatturapa/models/partner.py:100
 #, python-format
 msgid "As a natural person, partner %s must have Name and Surname."
 msgstr ""
@@ -263,19 +263,19 @@ msgid "Created on"
 msgstr "Kreiran"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:140
+#: code:addons/l10n_it_fatturapa/models/partner.py:145
 #, python-format
 msgid "Customer %s: city is needed for XML generation."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:144
+#: code:addons/l10n_it_fatturapa/models/partner.py:149
 #, python-format
 msgid "Customer %s: country is needed for XML generation."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:132
+#: code:addons/l10n_it_fatturapa/models/partner.py:137
 #, python-format
 msgid "Customer %s: street is needed for XML generation."
 msgstr ""
@@ -434,6 +434,11 @@ msgid "E-invoice summary data"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa.view_partner_form_e_inv
+msgid "E-invoicing"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__eori_code
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__eori_code
 msgid "EORI Code"
@@ -564,6 +569,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_fatturapa
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa.view_partner_form_e_inv
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa.view_partner_form_fatturapa
 msgid "IPA123"
 msgstr ""
@@ -628,13 +634,13 @@ msgid "Is public document"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:127
+#: code:addons/l10n_it_fatturapa/models/partner.py:132
 #, python-format
 msgid "Italian partner %s must have VAT Number or Fiscal Code."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:136
+#: code:addons/l10n_it_fatturapa/models/partner.py:141
 #, python-format
 msgid "Italian partner %s: ZIP is needed for XML generation."
 msgstr ""
@@ -841,19 +847,19 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:111
+#: code:addons/l10n_it_fatturapa/models/partner.py:116
 #, python-format
 msgid "Partner %s Addressee Code must be 7 characters long."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:117
+#: code:addons/l10n_it_fatturapa/models/partner.py:122
 #, python-format
 msgid "Partner %s has Addressee PEC %s, the Addresse Code must be %s."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:103
+#: code:addons/l10n_it_fatturapa/models/partner.py:108
 #, python-format
 msgid "Partner %s must have Addresse Code. Use %s if unknown"
 msgstr ""
@@ -1135,6 +1141,12 @@ msgid "Sender"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: model:ir.model.fields,help:l10n_it_fatturapa.field_res_partner__electronic_invoice_use_this_address
+#: model:ir.model.fields,help:l10n_it_fatturapa.field_res_users__electronic_invoice_use_this_address
+msgid "Set this when the main company has got several Addressee Codes or PEC"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,payability:0
 msgid "Split payment"
 msgstr ""
@@ -1271,6 +1283,12 @@ msgstr "Tip"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__url
 msgid "Url"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__electronic_invoice_use_this_address
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__electronic_invoice_use_this_address
+msgid "Use this e-invoicing data when invoicing to this address"
 msgstr ""
 
 #. module: l10n_it_fatturapa
