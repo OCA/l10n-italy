@@ -340,7 +340,6 @@ msgstr ""
 #. module: l10n_it_ddt
 #: selection:stock.picking.package.preparation,show_deadline_date:0
 #, fuzzy
-#| msgid "Invoice Date"
 msgid "End of Life Date"
 msgstr "Datum računa"
 
@@ -378,7 +377,6 @@ msgstr "Bruto masa"
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__gross_weight_uom_id
 #, fuzzy
-#| msgid "Gross Weight"
 msgid "Gross Weight UoM"
 msgstr "Bruto masa"
 
@@ -431,7 +429,6 @@ msgstr "Pošiljke brez podrobnosti ni mogoče vnesti v pakiranje"
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:199
 #, fuzzy, python-format
-#| msgid "Impossible to put in pack a package without details"
 msgid "Impossible to put in pack a picking whose state is 'done'"
 msgstr "Pošiljke brez podrobnosti ni mogoče vnesti v pakiranje"
 
@@ -712,14 +709,12 @@ msgstr "Prodajni nalog"
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:46
 #, fuzzy, python-format
-#| msgid "Selected Picking %s have different carriage condition"
 msgid "Sale order %s and DDT %s have different carriage condition"
 msgstr "Izbrani zbirnik %s ima drugačen prevozni pogoj"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:57
 #, fuzzy, python-format
-#| msgid "Selected Picking %s have different goods description"
 msgid "Sale order %s and DDT %s have different goods description"
 msgstr "Izbrani zbirnik %s ima drugačen opis blaga"
 
@@ -732,7 +727,6 @@ msgstr "Izbrani zbirnik %s ima drugačen razlog prevoza"
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:68
 #, fuzzy, python-format
-#| msgid "Selected Picking %s have different transportation reason"
 msgid "Sale order %s and DDT %s have different transportation reason"
 msgstr "Izbrani zbirnik %s ima drugačen razlog prevoza"
 
@@ -850,7 +844,6 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 #, fuzzy
-#| msgid "Shipping Address"
 msgid "Shipping date"
 msgstr "Naslov za odpremo"
 
@@ -1099,7 +1092,6 @@ msgstr "Prostornina"
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__volume_uom_id
 #, fuzzy
-#| msgid "Volume"
 msgid "Volume UoM"
 msgstr "Prostornina"
 

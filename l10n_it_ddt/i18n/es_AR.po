@@ -79,7 +79,6 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
 #, fuzzy
-#| msgid "<strong>Lots/Serial Numbers</strong>"
 msgid "<strong>UoM</strong>"
 msgstr "<strong>Muchos/Números de serie</strong>"
 

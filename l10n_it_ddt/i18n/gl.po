@@ -1077,7 +1077,6 @@ msgstr "Volume"
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__volume_uom_id
 #, fuzzy
-#| msgid "Volume"
 msgid "Volume UoM"
 msgstr "Volume"
 
