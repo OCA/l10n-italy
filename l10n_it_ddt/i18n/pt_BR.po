@@ -835,7 +835,6 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 #, fuzzy
-#| msgid "Shipping Address"
 msgid "Shipping date"
 msgstr "Endereço de entrega"
 

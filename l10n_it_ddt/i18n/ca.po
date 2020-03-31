@@ -838,7 +838,6 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 #, fuzzy
-#| msgid "Shipping Address"
 msgid "Shipping date"
 msgstr "Adreça d'enviament"
 
@@ -1080,7 +1079,6 @@ msgstr "Volum"
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__volume_uom_id
 #, fuzzy
-#| msgid "Volume"
 msgid "Volume UoM"
 msgstr "Volum"
 

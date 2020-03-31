@@ -77,7 +77,6 @@ msgstr "<strong>Количество</strong>"
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
 #, fuzzy
-#| msgid "<strong>Quantity</strong>"
 msgid "<strong>UoM</strong>"
 msgstr "<strong>Количество</strong>"
 

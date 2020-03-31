@@ -354,7 +354,6 @@ msgstr "Data di fine"
 #. module: l10n_it_ddt
 #: selection:stock.picking.package.preparation,show_deadline_date:0
 #, fuzzy
-#| msgid "End Date"
 msgid "End of Life Date"
 msgstr "Data di fine"
 
@@ -863,7 +862,6 @@ msgstr "Data di spedizione"
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__show_deadline_date
 #, fuzzy
-#| msgid "Show prices on report"
 msgid "Show lot deadline on report"
 msgstr "Mostrare prezzi sul documento"
 
