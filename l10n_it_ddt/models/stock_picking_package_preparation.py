@@ -10,7 +10,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import Warning as UserError
 import odoo.addons.decimal_precision as dp
 from odoo.tools import float_is_zero
-from odoo.tools.misc import formatLang
+from odoo.tools.misc import formatLang, format_date
 
 
 class StockPickingCarriageCondition(models.Model):
@@ -127,6 +127,11 @@ class StockPickingPackagePreparation(models.Model):
         help="This depends on 'To be Invoiced' field of the Reason for "
              "Transportation of this TD")
     show_price = fields.Boolean(string='Show prices on report')
+    show_deadline_date = fields.Selection([
+        ('life_date', 'End of Life Date'),
+        ('use_date', 'Best before Date'),
+        ('removal_date', 'Removal Date'),
+    ], string='Show lot deadline on report')
     weight_manual = fields.Float(
         string="Force Net Weight",
         help="Fill this field with the value you want to be used as weight. "
@@ -549,6 +554,13 @@ class StockPickingPackagePreparation(models.Model):
                     _("Document {d} has invoice linked".format(
                         d=ddt.ddt_number)))
         return super(StockPickingPackagePreparation, self).unlink()
+
+    def _get_lot_deadline(self, lot):
+        if self.show_deadline_date:
+            lot.ensure_one()
+            deadline = lot.read()[0][self.show_deadline_date]
+            if deadline:
+                return format_date(self.env, deadline)
 
 
 class StockPickingPackagePreparationLine(models.Model):

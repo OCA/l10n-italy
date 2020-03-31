@@ -134,7 +134,8 @@
                                     <t t-set="lot_dict" t-value="line.quantity_by_lot()"/>
                                     <td class="text-right">
                                         <t t-foreach="lot_dict" t-as="lot">
-                                            <div>· <t t-esc="lot.name"/> <t t-if="lot_dict[lot]">(<t t-esc="lot_dict[lot]"/>)</t></div>
+                                            <t t-set="deadline" t-value="o._get_lot_deadline(lot)"/>
+                                            <div>· <t t-esc="lot.name"/> <t t-if="lot_dict[lot]">(<t t-esc="lot_dict[lot]"/>)</t><t t-if="deadline"><br/><i class='fa fa-clock-o'/> <t t-esc="o._get_lot_deadline(lot)"/></t></div>
                                         </t>
                                     </td>
                                 </t>
