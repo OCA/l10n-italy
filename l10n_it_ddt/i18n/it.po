@@ -130,6 +130,11 @@ msgid "Automatically create the TD"
 msgstr "Creare DDT in modo automatico"
 
 #. module: l10n_it_ddt
+#: selection:stock.picking.package.preparation,show_deadline_date:0
+msgid "Best before Date"
+msgstr ""
+
+#. module: l10n_it_ddt
 #: selection:res.partner,ddt_invoicing_group:0
 #: selection:sale.order,ddt_invoicing_group:0
 msgid "Billing Partner"
@@ -326,7 +331,7 @@ msgid "Do not invoice services from DDT"
 msgstr "Non fatturare servizi da DDT"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:549
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:554
 #, python-format
 msgid "Document {d} has invoice linked"
 msgstr "Il documento {d} ha una fattura collegata"
@@ -344,6 +349,13 @@ msgstr "Firma del conducente"
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_invoicing__date_to
 msgid "End Date"
+msgstr "Data di fine"
+
+#. module: l10n_it_ddt
+#: selection:stock.picking.package.preparation,show_deadline_date:0
+#, fuzzy
+#| msgid "End Date"
+msgid "End of Life Date"
 msgstr "Data di fine"
 
 #. module: l10n_it_ddt
@@ -425,13 +437,13 @@ msgid "If flagged this service will not be automatically invoiced from DDT."
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:201
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:206
 #, python-format
 msgid "Impossible to put in pack a package without details"
 msgstr "Impossibile creare un collo senza dettagli"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:194
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:199
 #, python-format
 msgid "Impossible to put in pack a picking whose state is 'done'"
 msgstr "Impossibile creare un collo da un prelievo con stato \"Completato\""
@@ -553,7 +565,7 @@ msgid "Net Weight UoM"
 msgstr "UdM peso netto"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:213
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:218
 #, python-format
 msgid "Not every picking is in done status"
 msgstr "Non tutti i prelievi si trovano nello stato «Completato»"
@@ -639,13 +651,13 @@ msgid "Pickings"
 msgstr "Prelievi"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:330
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:335
 #, python-format
 msgid "Please define an accounting sale journal for this company."
 msgstr "Definire un registro contabile di vendita per questa azienda."
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:675
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:687
 #, python-format
 msgid ""
 "Please define income account for this product: \"%s\" (id:%d) - or for its "
@@ -694,10 +706,15 @@ msgid "Related TDs"
 msgstr "DDT collegati"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:295
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:300
 #, python-format
 msgid "Relevant period:"
 msgstr "Periodo di competenza:"
+
+#. module: l10n_it_ddt
+#: selection:stock.picking.package.preparation,show_deadline_date:0
+msgid "Removal Date"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_sale_order
@@ -746,7 +763,7 @@ msgid "Selected Picking %s have different Partner"
 msgstr "Il prelievo %s selezionato ha un partner diverso"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:185
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:190
 #, python-format
 msgid "Selected Picking is already linked to TD: %s"
 msgstr "Il prelievo selezionato è già collegato al DDT: %s"
@@ -842,6 +859,13 @@ msgstr "Partner di spedizione"
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Shipping date"
 msgstr "Data di spedizione"
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__show_deadline_date
+#, fuzzy
+#| msgid "Show prices on report"
+msgid "Show lot deadline on report"
+msgstr "Mostrare prezzi sul documento"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_res_partner__ddt_show_price
@@ -993,8 +1017,8 @@ msgid "Taxes"
 msgstr "Imposte"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:407
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:411
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:412
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:416
 #, python-format
 msgid "There is no invoiceable line."
 msgstr "Non ci sono righe fatturabili."
