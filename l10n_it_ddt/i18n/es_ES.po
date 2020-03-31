@@ -112,6 +112,11 @@ msgid "Automatically create the TD"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: selection:stock.picking.package.preparation,show_deadline_date:0
+msgid "Best before Date"
+msgstr ""
+
+#. module: l10n_it_ddt
 #: selection:res.partner,ddt_invoicing_group:0
 #: selection:sale.order,ddt_invoicing_group:0
 msgid "Billing Partner"
@@ -308,7 +313,7 @@ msgid "Do not invoice services from DDT"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:549
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:554
 #, python-format
 msgid "Document {d} has invoice linked"
 msgstr ""
@@ -326,6 +331,11 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_invoicing__date_to
 msgid "End Date"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: selection:stock.picking.package.preparation,show_deadline_date:0
+msgid "End of Life Date"
 msgstr ""
 
 #. module: l10n_it_ddt
@@ -405,13 +415,13 @@ msgid "If flagged this service will not be automatically invoiced from DDT."
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:201
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:206
 #, python-format
 msgid "Impossible to put in pack a package without details"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:194
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:199
 #, python-format
 msgid "Impossible to put in pack a picking whose state is 'done'"
 msgstr ""
@@ -533,7 +543,7 @@ msgid "Net Weight UoM"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:213
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:218
 #, python-format
 msgid "Not every picking is in done status"
 msgstr ""
@@ -619,13 +629,13 @@ msgid "Pickings"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:330
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:335
 #, python-format
 msgid "Please define an accounting sale journal for this company."
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:675
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:687
 #, python-format
 msgid ""
 "Please define income account for this product: \"%s\" (id:%d) - or for its "
@@ -672,9 +682,14 @@ msgid "Related TDs"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:295
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:300
 #, python-format
 msgid "Relevant period:"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: selection:stock.picking.package.preparation,show_deadline_date:0
+msgid "Removal Date"
 msgstr ""
 
 #. module: l10n_it_ddt
@@ -724,7 +739,7 @@ msgid "Selected Picking %s have different Partner"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:185
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:190
 #, python-format
 msgid "Selected Picking is already linked to TD: %s"
 msgstr ""
@@ -819,6 +834,11 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Shipping date"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__show_deadline_date
+msgid "Show lot deadline on report"
 msgstr ""
 
 #. module: l10n_it_ddt
@@ -972,8 +992,8 @@ msgid "Taxes"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:407
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:411
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:412
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:416
 #, python-format
 msgid "There is no invoiceable line."
 msgstr ""
