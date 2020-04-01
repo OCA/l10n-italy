@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-25 05:17+0000\n"
-"PO-Revision-Date: 2020-03-31 20:13+0000\n"
+"PO-Revision-Date: 2020-04-01 08:19+0000\n"
 "Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -132,7 +132,7 @@ msgstr "Creare DDT in modo automatico"
 #. module: l10n_it_ddt
 #: selection:stock.picking.package.preparation,show_deadline_date:0
 msgid "Best before Date"
-msgstr ""
+msgstr "Data di scadenza"
 
 #. module: l10n_it_ddt
 #: selection:res.partner,ddt_invoicing_group:0
@@ -353,9 +353,8 @@ msgstr "Data di fine"
 
 #. module: l10n_it_ddt
 #: selection:stock.picking.package.preparation,show_deadline_date:0
-#, fuzzy
 msgid "End of Life Date"
-msgstr "Data di fine"
+msgstr "Data di fine vita"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_product_product__ddt_invoice_exclude
@@ -420,6 +419,9 @@ msgid ""
 "DDT. This parameter can be set on partners and automatically applied to Sale "
 "Orders."
 msgstr ""
+"Se selezionato, i servizi di questo ordine non saranno automaticamente "
+"fatturati dal DDT. Questo parametro può essere impostato sui partner e "
+"automaticamente applicato agli ordini di vendita."
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_res_partner__ddt_invoice_exclude
@@ -428,12 +430,16 @@ msgid ""
 "If flagged services will not be automatically invoiced from DDT. If set on "
 "the partner, this parameter willbe automatically applied to Sale Orders."
 msgstr ""
+"Se selezionato, i servizi non saranno automaticamente fatturati dal DDT. Se "
+"impostato sul partner, questo parametro sarà automaticamente applicato agli "
+"ordini di vendita."
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_product_product__ddt_invoice_exclude
 #: model:ir.model.fields,help:l10n_it_ddt.field_product_template__ddt_invoice_exclude
 msgid "If flagged this service will not be automatically invoiced from DDT."
 msgstr ""
+"Se selezionato, questo servizio non sarà automaticamente fatturato dal DDT."
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:206
@@ -713,7 +719,7 @@ msgstr "Periodo di competenza:"
 #. module: l10n_it_ddt
 #: selection:stock.picking.package.preparation,show_deadline_date:0
 msgid "Removal Date"
-msgstr ""
+msgstr "Data di rimozione"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_sale_order
@@ -861,9 +867,8 @@ msgstr "Data di spedizione"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__show_deadline_date
-#, fuzzy
 msgid "Show lot deadline on report"
-msgstr "Mostrare prezzi sul documento"
+msgstr "Mostrare scadenza lotto sulla stampa"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_res_partner__ddt_show_price
