@@ -4,13 +4,13 @@
 <template id="report_registro_iva">
     <t t-call="web.html_container">
         <t t-if="registry_type == 'customer'">
-            <t t-set="title" t-value="'Registro IVA vendite'"/>
+            <t t-set="title" t-value="tax_registry_name or 'Registro IVA vendite'"/>
         </t>
         <t t-if="registry_type == 'supplier'">
-            <t t-set="title" t-value="'Registro IVA acquisti'"/>
+            <t t-set="title" t-value="tax_registry_name or 'Registro IVA acquisti'"/>
         </t>
         <t t-if="registry_type == 'corrispettivi'">
-            <t t-set="title" t-value="'Registro corrispettivi'"/>
+            <t t-set="title" t-value="tax_registry_name or 'Registro corrispettivi'"/>
         </t>
         <t t-set="l10n_it_count_fiscal_year" t-value="year_footer"/>
         <t t-call="l10n_it_account.internal_layout">
