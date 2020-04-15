@@ -360,11 +360,13 @@ class AccountInvoice(models.Model):
                 self.rc_self_invoice_id = rc_invoice.id
             rc_invoice.action_invoice_open()
 
-            if rc_type.with_supplier_self_invoice:
-                self.reconcile_supplier_invoice()
-            else:
-                rc_payment = self.reconcile_rc_invoice()
-                self.partially_reconcile_supplier_invoice(rc_payment)
+            if self.amount_total:
+                # No need to reconcile invoices with total = 0
+                if rc_type.with_supplier_self_invoice:
+                    self.reconcile_supplier_invoice()
+                else:
+                    rc_payment = self.reconcile_rc_invoice()
+                    self.partially_reconcile_supplier_invoice(rc_payment)
 
     def generate_supplier_self_invoice(self):
         rc_type = self.fiscal_position_id.rc_type_id
@@ -406,7 +408,7 @@ class AccountInvoice(models.Model):
             rc_type = fp and fp.rc_type_id
             if not rc_type:
                 continue
-            if rc_type.method == 'selfinvoice' and invoice.amount_total:
+            if rc_type.method == 'selfinvoice':
                 if not rc_type.with_supplier_self_invoice:
                     invoice.generate_self_invoice()
                 else:
@@ -452,14 +454,15 @@ class AccountInvoice(models.Model):
                 'full_reconcile_id'
             ).mapped('full_reconcile_id.reconciled_line_ids')
             rec_lines.remove_move_reconcile()
-            # cancel self invoice
-            self_invoice = self.browse(
-                inv.rc_self_invoice_id.id)
-            self_invoice.action_invoice_cancel()
             # invalidate and delete the payment move generated
             # by the self invoice creation
             payment_move.button_cancel()
             payment_move.unlink()
+
+        # cancel self invoice
+        self_invoice = self.browse(
+            inv.rc_self_invoice_id.id)
+        self_invoice.action_invoice_cancel()
 
     @api.multi
     def action_cancel(self):
