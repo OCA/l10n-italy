@@ -457,6 +457,50 @@ class TestReverseCharge(TransactionCase):
         invoice.refresh()
         self.assertEqual(invoice.state, 'draft')
 
+    def test_intra_EU_zero_total(self):
+
+        invoice = self.invoice_model.create({
+            'partner_id': self.supplier_intraEU.id,
+            'account_id': self.invoice_account,
+            'type': 'in_invoice',
+        })
+
+        invoice_line_vals = {
+            'name': 'Invoice for sample product',
+            'account_id': self.invoice_line_account,
+            'invoice_id': invoice.id,
+            'product_id': self.sample_product.id,
+            'price_unit': 100,
+            'invoice_line_tax_ids': [(4, self.tax_22ai.id, 0)]}
+        invoice_line = self.invoice_line_model.create(invoice_line_vals)
+        invoice_line.onchange_invoice_line_tax_id()
+        invoice_line_vals = {
+            'name': 'Invoice for sample product',
+            'account_id': self.invoice_line_account,
+            'invoice_id': invoice.id,
+            'product_id': self.sample_product.id,
+            'price_unit': -100,
+            'invoice_line_tax_ids': [(4, self.tax_22ai.id, 0)]}
+        invoice_line = self.invoice_line_model.create(invoice_line_vals)
+        invoice_line.onchange_invoice_line_tax_id()
+
+        invoice.compute_taxes()
+
+        invoice.action_invoice_open()
+        self.assertEqual(invoice.amount_total, 0)
+        self.assertEqual(invoice.rc_self_invoice_id.amount_total, 0)
+        self.assertEqual(invoice.state, 'paid')
+        self.assertEqual(invoice.rc_self_invoice_id.state, 'paid')
+
+        invoice.journal_id.update_posted = True
+        invoice.action_cancel()
+        self.assertEqual(invoice.state, 'cancel')
+        self.assertEqual(invoice.rc_self_invoice_id.state, 'cancel')
+        invoice.action_invoice_draft()
+        invoice.refresh()
+        self.assertEqual(invoice.state, 'draft')
+        self.assertEqual(invoice.rc_self_invoice_id.state, 'draft')
+
     def test_new_refund_flag(self):
         """Check that the lines of a new refund have the RC flag properly set.
         """
