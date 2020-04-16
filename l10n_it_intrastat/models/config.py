@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2019 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -8,7 +9,7 @@ class ResCompany(models.Model):
     _inherit = 'res.company'
 
     intrastat_uom_kg_id = fields.Many2one(
-        comodel_name='uom.uom',
+        comodel_name='product.uom',
         string="Unit of Measure for Kg")
     intrastat_additional_unit_from = fields.Selection(
         selection=[
@@ -38,7 +39,7 @@ class ResCompany(models.Model):
         comodel_name='account.intrastat.transaction.nature',
         string="Sales Transaction Nature")
     intrastat_sale_delivery_code_id = fields.Many2one(
-        comodel_name='account.incoterms',
+        comodel_name='stock.incoterms',
         string="Sales Delivery Terms")
     intrastat_sale_transport_code_id = fields.Many2one(
         comodel_name='account.intrastat.transport',
@@ -54,7 +55,7 @@ class ResCompany(models.Model):
         comodel_name='account.intrastat.transaction.nature',
         string="Purchases Transaction Nature")
     intrastat_purchase_delivery_code_id = fields.Many2one(
-        comodel_name='account.incoterms',
+        comodel_name='stock.incoterms',
         string="Purchases Delivery Terms")
     intrastat_purchase_transport_code_id = fields.Many2one(
         comodel_name='account.intrastat.transport',

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2019 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -35,7 +36,7 @@ class ReportIntrastatCode(models.Model):
             ('none', "None")],
         string="Additional Unit of Measure from")
     additional_unit_uom_id = fields.Many2one(
-        comodel_name='uom.uom',
+        comodel_name='product.uom',
         string="Additional Unit of Measure")
     type = fields.Selection(
         selection=[

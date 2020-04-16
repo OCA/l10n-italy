@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2019 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -268,11 +269,9 @@ class AccountInvoiceLine(models.Model):
         amount_currency = self.price_subtotal
         company_currency = self.invoice_id.company_id.currency_id
         invoice_currency = self.invoice_id.currency_id
-        amount_euro = invoice_currency._convert(
+        amount_euro = invoice_currency.compute(
             amount_currency,
-            company_currency,
-            self.invoice_id.company_id,
-            fields.Date.today())
+            company_currency)
         statistic_amount_euro = amount_euro
         res.update({
             'amount_currency': amount_currency,
@@ -308,7 +307,7 @@ class AccountInvoice(models.Model):
         for invoice in self:
             if not invoice.intrastat_line_ids:
                 invoice.compute_intrastat_lines()
-        super().action_move_create()
+        super(AccountInvoice, self).action_move_create()
         precision_digits = self.env['decimal.precision'] \
             .precision_get('Account')
         for invoice in self:
@@ -439,11 +438,9 @@ class AccountInvoiceIntrastat(models.Model):
             company_currency = line.invoice_id.company_id.currency_id
             invoice_currency = line.invoice_id.currency_id
             if invoice_currency:
-                line.amount_euro = invoice_currency._convert(
+                line.amount_euro = invoice_currency.compute(
                     line.amount_currency,
-                    company_currency,
-                    line.invoice_id.company_id,
-                    fields.Date.today())
+                    company_currency)
 
     @api.depends('invoice_id.partner_id')
     def _compute_partner_data(self):
@@ -609,7 +606,7 @@ class AccountInvoiceIntrastat(models.Model):
         comodel_name='res.country',
         string="Goods Origin Country")
     delivery_code_id = fields.Many2one(
-        comodel_name='account.incoterms',
+        comodel_name='stock.incoterms',
         string="Delivery Terms")
     transport_code_id = fields.Many2one(
         comodel_name='account.intrastat.transport',
