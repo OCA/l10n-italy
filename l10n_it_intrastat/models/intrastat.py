@@ -20,11 +20,8 @@ class AccountIntrastatCustom(models.Model):
 
 
 class ReportIntrastatCode(models.Model):
-    _name = "report.intrastat.code"
-    _description = "Intrastat code"
+    _inherit = "report.intrastat.code"
 
-    name = fields.Char(
-        string="Intrastat Code")
     active = fields.Boolean(
         default=True)
     additional_unit_required = fields.Boolean(
@@ -43,7 +40,6 @@ class ReportIntrastatCode(models.Model):
             ('good', "Goods"),
             ('service', "Service")])
     description = fields.Char(
-        string="Description",
         translate=True)
 
 

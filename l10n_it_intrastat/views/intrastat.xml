@@ -56,11 +56,11 @@
         <record id="view_tree_report_intrastat_code" model="ir.ui.view">
             <field name="name">views.tree.report.intrastat.code</field>
             <field name="model">report.intrastat.code</field>
+            <field name="inherit_id" ref="report_intrastat.view_report_intrastat_code_tree"/>
             <field name="arch" type="xml">
-                <tree string="Codes">
+                <tree position="inside">
                     <field name="active"/>
                     <field name="type"/>
-                    <field name="name"/>
                     <field name="additional_unit_required"/>
                     <field name="additional_unit_from"/>
                     <field name="additional_unit_uom_id"/>
@@ -71,12 +71,9 @@
         <record id="view_form_report_intrastat_code" model="ir.ui.view">
             <field name="name">views.form.report.intrastat.code</field>
             <field name="model">report.intrastat.code</field>
+            <field name="inherit_id" ref="report_intrastat.view_report_intrastat_code_form"/>
             <field name="arch" type="xml">
-                <form string="Intrastat Code">
-                    <group>
-                        <field name="name"/>
-                        <field name="description"/>
-                    </group>
+                <form position="inside">
                     <group>
                         <field name="additional_unit_required"/>
                         <field name="additional_unit_from"/>
@@ -87,7 +84,7 @@
                 </form>
             </field>
         </record>
-        
+
         <record id="action_report_intrastat_code" model="ir.actions.act_window">
             <field name="name">Nomenclature Codes</field>
             <field name="res_model">report.intrastat.code</field>

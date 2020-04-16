@@ -16,6 +16,7 @@
     'depends': [
         'sale',
         'product',
+        'report_intrastat',
         'stock',
         'stock_account',
     ],
