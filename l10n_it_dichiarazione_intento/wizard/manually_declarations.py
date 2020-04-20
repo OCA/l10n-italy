@@ -22,7 +22,7 @@ class SelectManuallyDeclarations(models.TransientModel):
         invoice = self.env['account.invoice'].browse(invoice_id)
         declarations = self.env['dichiarazione.intento'].get_valid(
             invoice.type.split('_')[0],
-            invoice.partner_id.id,
+            invoice.partner_id.commercial_partner_id.id,
             invoice.date_invoice)
         if declarations:
             declarations_ids = [d.id for d in declarations]

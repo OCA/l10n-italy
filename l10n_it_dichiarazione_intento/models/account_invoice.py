@@ -3,6 +3,7 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools.misc import format_date
 
 
 class AccountInvoice(models.Model):
@@ -18,11 +19,15 @@ class AccountInvoice(models.Model):
             if invoice.partner_id and invoice.date_invoice and invoice.type:
                 dichiarazioni = self.env['dichiarazione.intento'].get_valid(
                     invoice.type.split('_')[0],
-                    invoice.partner_id.id,
+                    invoice.partner_id.commercial_partner_id.id,
                     invoice.date_invoice)
                 if dichiarazioni:
                     invoice.fiscal_position_id = \
                         dichiarazioni[0].fiscal_position_id.id
+
+    @api.onchange('date_invoice')
+    def _onchange_date_invoice(self):
+        self._set_fiscal_position()
 
     @api.onchange('partner_id', 'company_id')
     def _onchange_partner_id(self):
@@ -37,7 +42,8 @@ class AccountInvoice(models.Model):
         on the invoice.
         """
         for invoice in self:
-            invoice.invoice_line_ids._compute_tax_id()
+            for inv_line in invoice.invoice_line_ids:
+                inv_line._set_taxes()
 
     @api.multi
     def select_manually_declarations(self):
@@ -152,6 +158,22 @@ class AccountInvoice(models.Model):
                         # ----- Link dichiarazione to invoice
                         invoice.dichiarazione_intento_ids = [
                             (4, dichiarazione.id)]
+                        if invoice.type in ("out_invoice", "out_refund"):
+                            if not invoice.comment:
+                                invoice.comment = ''
+                            invoice.comment += _(
+                                "\n\nVostra dichiarazione d'intento nr %s del %s, "
+                                "nostro protocollo nr %s del %s, "
+                                "protocollo telematico nr %s."
+                                % (
+                                    dichiarazione.partner_document_number,
+                                    format_date(
+                                        self.env, dichiarazione.partner_document_date),
+                                    dichiarazione.number, format_date(
+                                        self.env, dichiarazione.date),
+                                    dichiarazione.telematic_protocol
+                                )
+                            )
 
         return res
 
