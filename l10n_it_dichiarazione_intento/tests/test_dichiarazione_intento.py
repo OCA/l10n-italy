@@ -22,6 +22,7 @@ class TestDichiarazioneIntento(TransactionCase):
             'limit_amount': 1000.00,
             'fiscal_position_id': self.fiscal_position.id,
             'type': type_d,
+            'telematic_protocol': '08060120341234567-000001',
             })
 
     def _create_invoice(self, partner, tax=False, date=False):
