@@ -26,6 +26,8 @@
                                attrs="{'readonly':[('state','!=','valid')]}"/>
                             <field name="partner_id" options="{'no_create': True}"
                                attrs="{'readonly':[('state','!=','valid')]}"/>
+                            <field name="telematic_protocol"
+                               attrs="{'readonly':[('state','!=','valid')]}"/>
                             <field name="force_close" invisible="1" />
                         </group>
                         <group></group>
@@ -107,7 +109,7 @@
         <field name="name">dichiarazione.intento.tree</field>
         <field name="model">dichiarazione.intento</field>
         <field name="arch" type="xml">
-            <tree decoration-info="state == 'valid'" decoration-muted="state == 'close'" 
+            <tree decoration-info="state == 'valid'" decoration-muted="state == 'close'"
                   decoration-warning="state == 'expired'">
                 <field name="type"/>
                 <field name="number"/>
