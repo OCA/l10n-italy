@@ -47,10 +47,11 @@ class DichiarazioneIntento(models.Model):
     date_start = fields.Date(required=True)
     date_end = fields.Date(required=True)
     type = fields.Selection(
-        [('in', 'Issued from company'), ('out', 'Receved from customers')],
+        [('in', 'Issued from company'), ('out', 'Received from customers')],
         required=True, default='in')
     partner_id = fields.Many2one('res.partner', string='Partner',
                                  required=True)
+    telematic_protocol = fields.Char(required=True)
     partner_document_number = fields.Char(
         required=True, string='Document Number',
         help='Number of partner\'s document')
@@ -183,6 +184,26 @@ class DichiarazioneIntento(models.Model):
             else:
                 state = 'valid'
             record.state = state
+
+    @api.onchange("fiscal_position_id", "type")
+    def onchange_fiscal_position_id(self):
+        taxes = self.env['account.tax']
+        for tax_mapping in self.fiscal_position_id.tax_ids:
+            if tax_mapping.tax_dest_id:
+                if (
+                    (
+                        self.type == 'in' and
+                        tax_mapping.tax_dest_id.type_tax_use == 'purchase'
+                    )
+                    or
+                    (
+                        self.type == 'out' and
+                        tax_mapping.tax_dest_id.type_tax_use == 'sale'
+                    )
+                ):
+                    taxes |= tax_mapping.tax_dest_id
+        if taxes:
+            self.taxes_ids = [(6, 0, taxes.ids)]
 
     @api.multi
     def change_force_close(self):
