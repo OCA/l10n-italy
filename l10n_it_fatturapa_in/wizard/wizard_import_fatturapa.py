@@ -1581,4 +1581,7 @@ class WizardImportFatturapa(orm.TransientModel):
 
     def get_invoice_obj(self, cr, uid, fatturapa_attachment):
         xml_string = self.pool.get('ir.attachment').get_xml_string(cr, uid, fatturapa_attachment.ir_attachment_id.id)
+        for num in range(1, 24):
+            to_replace = '+0%s:00' % (num)
+            xml_string = xml_string.replace(to_replace, '')
         return fatturapa_v_1_2.CreateFromDocument(xml_string)
