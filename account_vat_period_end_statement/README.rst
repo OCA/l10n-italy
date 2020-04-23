@@ -152,6 +152,7 @@ Contributors
 * Simone Rubino <simone.rubino@agilebg.com>
 * Giacomo Grasso <giacomo.grasso.82@gmail.com>
 * Lara Baggio <http://linkgroup.it/>
+* Gianmarco Conte <gconte@dinamicheaziendali.it>
 
 
 Maintainers
