@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2019 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -33,7 +34,7 @@ class AccountIntrastatExportFile(models.TransientModel):
 
         filename = statement._get_file_name()
 
-        out = base64.encodebytes(file.encode())
+        out = base64.encodestring(file.encode())
 
         view = self.env['ir.model.data'].get_object_reference(
             'l10n_it_intrastat_statement',

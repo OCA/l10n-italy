@@ -1,4 +1,9 @@
 <?xml version="1.0"?>
+<!--
+  Copyright 2020 Simone Rubino - Agile Business Group
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+
 <odoo>
     <record id="no_header_format_a4_vertical" model="report.paperformat">
         <field name="name">No Header A4 Vertical</field>
@@ -26,7 +31,7 @@
         file="l10n_it_intrastat_statement.report_intrastat_mod1"
         />
 
-    <record id="print_intrastat_mod1" model="ir.actions.report">
+    <record id="print_intrastat_mod1" model="ir.actions.report.xml">
         <field name="paperformat_id" ref="l10n_it_intrastat_statement.no_header_format_a4_vertical"/>
     </record>
 
@@ -40,7 +45,7 @@
         file="l10n_it_intrastat_statement.report_intrastat_mod2"
         />
 
-    <record id="print_intrastat_mod2" model="ir.actions.report">
+    <record id="print_intrastat_mod2" model="ir.actions.report.xml">
         <field name="paperformat_id" ref="l10n_it_intrastat_statement.no_header_format_a4_vertical"/>
     </record>
 
@@ -54,7 +59,7 @@
         file="l10n_it_intrastat_statement.report_intrastat_mod1_bis"
         />
 
-    <record id="print_intrastat_mod1_bis" model="ir.actions.report">
+    <record id="print_intrastat_mod1_bis" model="ir.actions.report.xml">
         <field name="paperformat_id" ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"/>
     </record>
 
@@ -68,7 +73,7 @@
         file="l10n_it_intrastat_statement.report_intrastat_mod1_ter"
         />
 
-    <record id="print_intrastat_mod1_ter" model="ir.actions.report">
+    <record id="print_intrastat_mod1_ter" model="ir.actions.report.xml">
         <field name="paperformat_id" ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"/>
     </record>
 
@@ -82,7 +87,7 @@
         file="l10n_it_intrastat_statement.report_intrastat_mod2_bis"
         />
 
-    <record id="print_intrastat_mod2_bis" model="ir.actions.report">
+    <record id="print_intrastat_mod2_bis" model="ir.actions.report.xml">
         <field name="paperformat_id" ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"/>
     </record>
 </odoo>

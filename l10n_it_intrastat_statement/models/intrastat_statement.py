@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2019 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -139,20 +140,22 @@ class AccountIntrastatStatement(models.Model):
     fiscalyear = fields.Integer(
         string="Year",
         required=True,
-        default=fields.Date.today().year)
+        default=fields.Date.from_string(fields.Date.today()).year)
     period_type = fields.Selection(
         selection=[
             ('M', "Month"),
             ('T', "Quarter"),
         ],
         string="Period Type",
+        default='M',
         required=True)
     period_number = fields.Integer(
         string="Period",
         help="Values accepted:\n"
              " - Month : From 1 to 12\n"
              " - Quarter: From 1 to 4",
-             required=True)
+        default=1,
+        required=True)
     date_start = fields.Date(
         string="Start Date",
         store=True,
@@ -334,13 +337,13 @@ class AccountIntrastatStatement(models.Model):
 
     @api.model
     def create(self, vals):
-        statement = super().create(vals)
+        statement = super(AccountIntrastatStatement, self).create(vals)
         statement._normalize_statement()
         return statement
 
     @api.multi
     def write(self, vals):
-        res = super().write(vals)
+        res = super(AccountIntrastatStatement, self).write(vals)
         self._normalize_statement()
         self.recompute_sequence_lines()
         return res
@@ -359,8 +362,8 @@ class AccountIntrastatStatement(models.Model):
             period_date_start, period_date_stop = \
                 statement.get_dates_start_stop()
 
-            statement.date_start = fields.Date.to_date(period_date_start)
-            statement.date_stop = fields.Date.to_date(period_date_stop)
+            statement.date_start = period_date_start
+            statement.date_stop = period_date_stop
 
     @api.multi
     def get_dates_start_stop(self):
@@ -455,10 +458,11 @@ class AccountIntrastatStatement(models.Model):
         if self.company_id.intrastat_export_file_name:
             return self.company_id.intrastat_export_file_name
         else:
+            statement_date = fields.Date.from_string(self.date)
             return '%s%s%s.%s%s' % (
                 self.company_id.intrastat_ua_code or '',
-                '{:2s}'.format(str(self.date.month).zfill(2)),
-                '{:2s}'.format(str(self.date.day).zfill(2)),
+                '{:2s}'.format(str(statement_date.month).zfill(2)),
+                '{:2s}'.format(str(statement_date.day).zfill(2)),
                 'I',  # doc intrastat
                 '{:2s}'.format(str(prg).zfill(2))
             )

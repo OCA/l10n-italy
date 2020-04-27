@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2020 Simone Rubino - Agile Business Group
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+
 <odoo>
     <record id="wizard_account_intrastat_export_file" model="ir.ui.view">
         <field name="name">Export Intrastat File</field>

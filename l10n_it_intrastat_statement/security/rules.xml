@@ -1,4 +1,9 @@
 <?xml version="1.0" ?>
+<!--
+  Copyright 2020 Simone Rubino - Agile Business Group
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+
 <odoo noupdate="1">
     <record id="statement_multi_company" model="ir.rule">
         <field name="name">Account INTRASTAT - Statement - multi company</field>

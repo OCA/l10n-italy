@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #  Copyright 2019 Simone Rubino - Agile Business Group
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -66,7 +67,7 @@ class IntrastatStatementPurchaseSection1(models.Model):
         string="Statistic Value in Euro",
         digits=dp.get_precision('Account'))
     delivery_code_id = fields.Many2one(
-        comodel_name='account.incoterms',
+        comodel_name='stock.incoterms',
         string="Delivery Terms")
     transport_code_id = fields.Many2one(
         comodel_name='account.intrastat.transport',
@@ -379,7 +380,8 @@ class IntrastatStatementPurchaseSection3(models.Model):
         # Data Fattura
         invoice_date_ddmmyy = False
         if self.invoice_date:
-            invoice_date_ddmmyy = self.invoice_date.strftime('%d%m%y')
+            invoice_date_ddmmyy = fields.Date.from_string(self.invoice_date) \
+                .strftime('%d%m%y')
         rcd += '{:2s}'.format(invoice_date_ddmmyy or '')
         # Codice del servizio
         rcd += '{:6s}'.format(self.intrastat_code_id.name or '')
@@ -523,7 +525,8 @@ class IntrastatStatementPurchaseSection4(models.Model):
         # Data Fattura
         invoice_date_ddmmyy = False
         if self.invoice_date:
-            invoice_date_ddmmyy = self.invoice_date.strftime('%d%m%y')
+            invoice_date_ddmmyy = fields.Date.from_string(self.invoice_date) \
+                .strftime('%d%m%y')
         rcd += '{:2s}'.format(invoice_date_ddmmyy or '')
         # Codice del servizio
         rcd += '{:6s}'.format(self.intrastat_code_id.name or '')

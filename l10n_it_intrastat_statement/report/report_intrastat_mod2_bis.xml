@@ -1,4 +1,9 @@
 <?xml version="1.0"?>
+<!--
+  Copyright 2020 Simone Rubino - Agile Business Group
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+
 <odoo>
     <template id="report_intrastat_mod2_bis">
         <t t-call="web.html_container">
@@ -46,7 +51,7 @@
                                 </strong>
                                 <span class="col-offset-1">ANNO: </span>
                                 <strong><span t-esc="o.fiscalyear"/></strong>
-        
+
                                 <span class="col-offset-2">PARTITA IVA</span>
                                 <strong><span t-esc="o.company_id.vat"/></strong>
                             </div>

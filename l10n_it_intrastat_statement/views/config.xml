@@ -1,4 +1,9 @@
 <?xml version="1.0" ?>
+<!--
+  Copyright 2020 Simone Rubino - Agile Business Group
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+
 <odoo>
     <record id="view_intrastat_statement_company_form" model="ir.ui.view">
         <field name="name">view_form_intrastat_statement_company</field>
