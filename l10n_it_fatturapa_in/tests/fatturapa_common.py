@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import base64
 import tempfile
 from odoo.modules import get_module_resource

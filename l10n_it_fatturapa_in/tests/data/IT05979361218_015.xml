@@ -54,9 +54,8 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
                 <Data>2019-05-11</Data>
-                <Numero>A852S1</Numero>
+                <Numero>852S1</Numero>
                 <ImportoTotaleDocumento>34.32</ImportoTotaleDocumento>
-                <Arrotondamento>-0.35</Arrotondamento>
                 <Causale>Rif ordine 908</Causale>
             </DatiGeneraliDocumento>
         </DatiGenerali>
@@ -84,7 +83,8 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
             <DatiRiepilogo>
                 <AliquotaIVA>0.00</AliquotaIVA>
                 <Natura>N4</Natura>
-                <ImponibileImporto>34.67</ImponibileImporto>
+                <Arrotondamento>-0.35</Arrotondamento>
+                <ImponibileImporto>34.32</ImponibileImporto>
                 <Imposta>0.00</Imposta>
                 <EsigibilitaIVA>I</EsigibilitaIVA>
                 <RiferimentoNormativo>Esenzione Art.8 comma 1 DPR 633/72</RiferimentoNormativo>

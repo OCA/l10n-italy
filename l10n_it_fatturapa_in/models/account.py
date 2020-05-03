@@ -1,6 +1,6 @@
 
 from odoo import fields, models, api, _
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
 from odoo.tools import float_compare
 import odoo.addons.decimal_precision as dp
 
@@ -42,6 +42,56 @@ class AccountInvoice(models.Model):
 
     e_invoice_received_date = fields.Date(
         string='E-Bill Received Date')
+
+    @api.depends('invoice_line_ids.price_subtotal', 'tax_line_ids.amount',
+                 'tax_line_ids.amount_rounding', 'currency_id', 'company_id',
+                 'date_invoice', 'type', 'efatt_rounding')
+    def _compute_amount(self):
+        super(AccountInvoice, self)._compute_amount()
+        if self.efatt_rounding != 0:
+            self.amount_total += self.efatt_rounding
+            amount_total_company_signed = self.amount_total
+            if self.currency_id and self.company_id and self.currency_id !=\
+                    self.company_id.currency_id:
+                currency_id = self.currency_id
+                amount_total_company_signed = currency_id._convert(
+                    self.amount_total, self.company_id.currency_id,
+                    self.company_id, self.date_invoice or fields.Date.today())
+            sign = self.type in ['in_refund', 'out_refund'] and -1 or 1
+            self.amount_total_company_signed = amount_total_company_signed * sign
+            self.amount_total_signed = self.amount_total * sign
+
+    @api.model
+    def invoice_line_move_line_get(self):
+        """Append global rounding move lines"""
+        res = super().invoice_line_move_line_get()
+
+        if self.efatt_rounding != 0:
+            if self.efatt_rounding > 0:
+                arrotondamenti_account_id = self.env.user.company_id.\
+                    arrotondamenti_passivi_account_id
+                if not arrotondamenti_account_id:
+                    raise UserError(_("Round down account is not set "
+                                      "in Accounting Settings"))
+                name = _("Rounding down")
+            else:
+                arrotondamenti_account_id = self.env.user.company_id.\
+                    arrotondamenti_attivi_account_id
+                if not arrotondamenti_account_id:
+                    raise UserError(_("Round up account is not set "
+                                      "in Accounting Settings"))
+                name = _("Rounding up")
+
+            res.append({
+                'type': 'global_rounding',
+                'name': name,
+                'price_unit': self.efatt_rounding,
+                'quantity': 1,
+                'price': self.efatt_rounding,
+                'account_id': arrotondamenti_account_id.id,
+                'invoice_id': self.id,
+            })
+        return res
 
     @api.multi
     def invoice_validate(self):
@@ -208,19 +258,23 @@ class AccountInvoice(models.Model):
 
     @api.model
     def compute_xml_amount_untaxed(self, FatturaBody):
-        amount_untaxed = float(
+        amount_untaxed = 0.0
+        for Riepilogo in FatturaBody.DatiBeniServizi.DatiRiepilogo:
+            amount_untaxed += float(Riepilogo.ImponibileImporto or 0.0)
+        return amount_untaxed
+
+    @api.model
+    def compute_xml_amount_total(self, FatturaBody, amount_untaxed, amount_tax):
+        rounding = float(
             FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento
             or 0.0)
-        for Riepilogo in FatturaBody.DatiBeniServizi.DatiRiepilogo:
-            rounding = float(Riepilogo.Arrotondamento or 0.0)
-            amount_untaxed += float(Riepilogo.ImponibileImporto) + rounding
-        return amount_untaxed
+        return amount_untaxed + amount_tax + rounding
 
     @api.model
     def compute_xml_amount_tax(self, DatiRiepilogo):
         amount_tax = 0.0
         for Riepilogo in DatiRiepilogo:
-            amount_tax += float(Riepilogo.Imposta)
+            amount_tax += float(Riepilogo.Imposta or 0.0)
         return amount_tax
 
     def set_einvoice_data(self, fattura):
@@ -228,9 +282,8 @@ class AccountInvoice(models.Model):
         amount_untaxed = self.compute_xml_amount_untaxed(fattura)
         amount_tax = self.compute_xml_amount_tax(
             fattura.DatiBeniServizi.DatiRiepilogo)
-        amount_total = float(
-            fattura.DatiGenerali.DatiGeneraliDocumento.
-            ImportoTotaleDocumento or 0.0)
+        amount_total = self.compute_xml_amount_total(
+            fattura, amount_untaxed, amount_tax)
         reference = fattura.DatiGenerali.DatiGeneraliDocumento.Numero
         date_invoice = fields.Date.from_string(
             fattura.DatiGenerali.DatiGeneraliDocumento.Data)
