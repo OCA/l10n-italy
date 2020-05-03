@@ -315,6 +315,12 @@ class WizardImportFatturapa(models.TransientModel):
 
     def _prepare_generic_line_data(self, line):
         retLine = {}
+        account_taxes = self.get_account_taxes(line.AliquotaIVA, line.Natura)
+        if account_taxes:
+            retLine['invoice_line_tax_ids'] = [(6, 0, [account_taxes[0].id])]
+        return retLine
+
+    def get_account_taxes(self, AliquotaIVA, Natura):
         account_tax_model = self.env['account.tax']
         # check if a default tax exists and generate def_purchase_tax object
         ir_values = self.env['ir.default']
@@ -325,30 +331,30 @@ class WizardImportFatturapa(models.TransientModel):
         def_purchase_tax = False
         if supplier_taxes_ids:
             def_purchase_tax = account_tax_model.browse(supplier_taxes_ids)[0]
-        if float(line.AliquotaIVA) == 0.0 and line.Natura:
+        if float(AliquotaIVA) == 0.0 and Natura:
             account_taxes = account_tax_model.search(
                 [
                     ('type_tax_use', '=', 'purchase'),
-                    ('kind_id.code', '=', line.Natura),
+                    ('kind_id.code', '=', Natura),
                     ('amount', '=', 0.0),
                 ], order='sequence')
             if not account_taxes:
                 self.log_inconsistency(
                     _('No tax with percentage '
                       '%s and nature %s found. Please configure this tax.')
-                    % (line.AliquotaIVA, line.Natura))
+                    % (AliquotaIVA, Natura))
             if len(account_taxes) > 1:
                 self.log_inconsistency(
                     _('Too many taxes with percentage '
                       '%s and nature %s found. Tax %s with lower priority has '
                       'been set on invoice lines.')
-                    % (line.AliquotaIVA, line.Natura,
+                    % (AliquotaIVA, Natura,
                        account_taxes[0].description))
         else:
             account_taxes = account_tax_model.search(
                 [
                     ('type_tax_use', '=', 'purchase'),
-                    ('amount', '=', float(line.AliquotaIVA)),
+                    ('amount', '=', float(AliquotaIVA)),
                     ('price_include', '=', False),
                     # partially deductible VAT must be set by user
                     ('children_tax_ids', '=', False),
@@ -358,7 +364,7 @@ class WizardImportFatturapa(models.TransientModel):
                     _(
                         "XML contains tax with percentage '%s' "
                         "but it does not exist in your system"
-                    ) % line.AliquotaIVA
+                    ) % AliquotaIVA
                 )
             # check if there are multiple taxes with
             # same percentage
@@ -367,18 +373,16 @@ class WizardImportFatturapa(models.TransientModel):
                 _logger.warning(_(
                     "Too many taxes with percentage equals "
                     "to '%s'.\nFix it if required"
-                ) % line.AliquotaIVA)
+                ) % AliquotaIVA)
                 # if there are multiple taxes with same percentage
                 # and there is a default tax with this percentage,
                 # set taxes list equal to supplier_taxes_id, loaded before
                 if (
                     def_purchase_tax and
-                    def_purchase_tax.amount == (float(line.AliquotaIVA))
+                    def_purchase_tax.amount == (float(AliquotaIVA))
                 ):
                     account_taxes = def_purchase_tax
-        if account_taxes:
-            retLine['invoice_line_tax_ids'] = [(6, 0, [account_taxes[0].id])]
-        return retLine
+        return account_taxes
 
     def get_line_product(self, line, partner):
         product = None
@@ -1101,26 +1105,29 @@ class WizardImportFatturapa(models.TransientModel):
                     _('Round up and down tax is not set')
                 )
 
-            line_vals = {}
-            if rounding > 0.0:
-                line_vals = {
-                    'invoice_id': invoice.id,
-                    'name': _("Rounding down"),
-                    'account_id': arrotondamenti_passivi_account_id.id,
-                    'price_unit': rounding,
-                    'invoice_line_tax_ids':
-                        [(6, 0, [arrotondamenti_tax_id.id])],
-                }
-            elif rounding < 0.0:
-                line_vals = {
-                    'invoice_id': invoice.id,
-                    'name': _("Rounding up"),
-                    'account_id': arrotondamenti_attivi_account_id.id,
-                    'price_unit': rounding,
-                    'invoice_line_tax_ids':
-                        [(6, 0, [arrotondamenti_tax_id.id])],
-                }
-
+            line_sequence = max(invoice.invoice_line_ids.mapped('sequence'))
+            line_vals = []
+            for summary in FatturaBody.DatiBeniServizi.DatiRiepilogo:
+                to_round = float(summary.Arrotondamento or 0.0)
+                if to_round != 0.0:
+                    account_taxes = self.get_account_taxes(
+                        summary.AliquotaIVA, summary.Natura)
+                    arrotondamenti_account_id = arrotondamenti_passivi_account_id.id\
+                        if to_round > 0.0 else arrotondamenti_attivi_account_id.id
+                    invoice_line_tax_id = account_taxes[0].id if account_taxes\
+                        else arrotondamenti_tax_id.id
+                    name = _("Rounding down") if to_round > 0.0 else _(
+                        "Rounding up")
+                    line_sequence += 1
+                    line_vals.append({
+                        'sequence': line_sequence,
+                        'invoice_id': invoice.id,
+                        'name': name,
+                        'account_id': arrotondamenti_account_id,
+                        'price_unit': to_round,
+                        'invoice_line_tax_ids':
+                            [(6, 0, [invoice_line_tax_id])],
+                    })
             if line_vals:
                 self.env['account.invoice.line'].create(line_vals)
 
