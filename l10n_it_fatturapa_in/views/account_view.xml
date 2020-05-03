@@ -138,6 +138,9 @@
             <field name="analytic_tag_ids" position="after">
                 <field name="admin_ref"/>
             </field>
+            <field name="amount_tax" position="after">
+                <field name="efatt_rounding" widget="monetary" attrs="{'invisible': [('efatt_rounding', '=', 0)]}"/>
+            </field>
             <xpath expr="//notebook" position="inside">
                 <page string="E-bill Inconsistencies" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}">
                     <group>
@@ -313,7 +316,7 @@
                     </group>
                     <group>
                         <group string="General Data">
-                            <field name="efatt_rounding"/>
+                            <field name="efatt_rounding" widget="monetary"/>
                             <field name="art73"/>
                        </group>
                     </group>
