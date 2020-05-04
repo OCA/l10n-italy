@@ -20,7 +20,7 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:372
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:374
 #, python-format
 msgid "Can't find 1 tax mapping for %s"
 msgstr "Ne najdem 1 davčnega mapiranja za %s"
@@ -313,7 +313,7 @@ msgid "Text on Self Invoice"
 msgstr "Besedilo v računu za samo-obdavčitev"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:428
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:430
 #, python-format
 msgid ""
 "There are more than one payment line.\n"
@@ -345,7 +345,7 @@ msgid "VAT Integration"
 msgstr "Integracija DDV"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:418
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:420
 #, python-format
 msgid ""
 "VAT integration RC type, defined in fiscal position {fp}, is not managed yet"
