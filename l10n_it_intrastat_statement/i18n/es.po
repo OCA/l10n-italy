@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_intrastat_statement
+# 	* l10n_it_intrastat_statement
 #
 msgid ""
 msgstr ""
@@ -125,7 +125,8 @@ msgstr "Actividad Cesante o Cambio de VAT"
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement,content_type:0
 msgid "Change Period in quarter: only first and second month operations"
-msgstr "Cambiar periodo en trimestre: sólo operaciones del primer y segundo mes"
+msgstr ""
+"Cambiar periodo en trimestre: sólo operaciones del primer y segundo mes"
 
 #. module: l10n_it_intrastat_statement
 #: selection:account.intrastat.statement,content_type:0
@@ -536,9 +537,11 @@ msgid "Invoice Number"
 msgstr "Numero de factura"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:835
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:837
 #, python-format
-msgid "Invoice and credit note in the same period with credit note > invoice for partner %s"
+msgid ""
+"Invoice and credit note in the same period with credit note > invoice for "
+"partner %s"
 msgstr ""
 "Factura y nota de crédito en el mismo período con la nota de crédito> "
 "factura para la empresa %s"
@@ -766,7 +769,7 @@ msgid "Normal Period"
 msgstr "Periodo normal"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:724
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:726
 #, python-format
 msgid "Nothing to export"
 msgstr "Nada que exportar"
@@ -931,13 +934,13 @@ msgid "Period"
 msgstr "Período"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:868
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:870
 #, python-format
 msgid "Period Not Valid! Range accepted: from 1 to 12"
 msgstr "Período no válido! Rango aceptado: de 1 a 12"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:872
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:874
 #, python-format
 msgid "Period Not Valid! Range accepted: from 1 to 4"
 msgstr "Período no válido! Rango aceptado: de 1 a 4"
@@ -1170,7 +1173,7 @@ msgid "Statement Sequence"
 msgstr "Secuencia de declaración"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:733
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:735
 #, python-format
 msgid "Statement without lines"
 msgstr "Declaración sin líneas"
@@ -1274,7 +1277,8 @@ msgstr "Modo de transporte"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,help:l10n_it_intrastat_statement.field_account_intrastat_statement__period_number
-msgid "Values accepted:\n"
+msgid ""
+"Values accepted:\n"
 " - Month : From 1 to 12\n"
 " - Quarter: From 1 to 4"
 msgstr ""
