@@ -482,7 +482,9 @@ class AccountIntrastatStatement(models.Model):
         rcd += '{:4s}'.format("")
         # Codice fiscale o numero partita IVA o codice spedizioniere del
         # richiedente (utente autorizzato)
-        rcd += '{:16s}'.format(self.vat_taxpayer.replace(' ', ''))
+        # Partita IVA del presentatore o delegato
+        vat_applicant = self.intrastat_vat_delegate or self.vat_taxpayer
+        rcd += '{:16s}'.format(vat_applicant.replace(' ', ''))
         # Progressivo sede utente autorizzato
         prg = self._get_progressive_interchange()
         rcd += '{:3s}'.format(str(prg).zfill(3))
