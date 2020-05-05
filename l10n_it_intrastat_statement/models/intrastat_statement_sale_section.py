@@ -442,8 +442,8 @@ class IntrastatStatementSaleSection4(models.Model):
             self.protocol and str(self.protocol).zfill(6) or '')
         # Progressivo della sezione 3 da rettificare
         rcd += '{:5s}'.format(
-            self.progressive_to_modify_id and
-            str(self.progressive_to_modify_id.sequence).zfill(5) or '')
+            self.progressive_to_modify and
+            str(self.progressive_to_modify).zfill(5) or '')
         # Codice dello Stato membro dell’acquirente
         country_id = self.country_partner_id or self.partner_id.country_id
         rcd += '{:2s}'.format(country_id.code or '')
