@@ -57,14 +57,15 @@ class Fetchmail(models.Model):
                             result, data = imap_server.fetch(num, '(RFC822)')
                             imap_server.store(num, '-FLAGS', '\\Seen')
                             try:
-                                MailThread.with_context(
-                                    **additional_context
-                                ).message_process(
-                                    server.object_id.model, data[0][1],
-                                    save_original=server.original,
-                                    strip_attachments=(not server.attach)
-                                )
-                                # if message is processed without exceptions
+                                with self.env.cr.savepoint():
+                                    MailThread.with_context(
+                                        **additional_context
+                                    ).message_process(
+                                        server.object_id.model, data[0][1],
+                                        save_original=server.original,
+                                        strip_attachments=(not server.attach)
+                                    )
+                                    # message is processed without exceptions
                                 server.last_pec_error_message = ''
                             except Exception as e:
                                 server.manage_pec_failure(e, error_messages)
@@ -93,14 +94,16 @@ class Fetchmail(models.Model):
                                     num)
                                 message = '\n'.join(messages)
                                 try:
-                                    MailThread.with_context(
-                                        **additional_context
-                                    ).message_process(
-                                        server.object_id.model, message,
-                                        save_original=server.original,
-                                        strip_attachments=(not server.attach)
-                                    )
-                                    pop_server.dele(num)
+                                    with self.env.cr.savepoint():
+                                        MailThread.with_context(
+                                            **additional_context
+                                        ).message_process(
+                                            server.object_id.model, message,
+                                            save_original=server.original,
+                                            strip_attachments=(
+                                                not server.attach)
+                                        )
+                                        pop_server.dele(num)
                                     # See the comments in the IMAP part
                                     server.last_pec_error_message = ''
                                 except Exception as e:
