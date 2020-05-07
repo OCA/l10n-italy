@@ -16,14 +16,16 @@ class AccountInvoice(models.Model):
     @api.multi
     def _set_fiscal_position(self):
         for invoice in self:
-            if invoice.partner_id and invoice.date_invoice and invoice.type:
+            if invoice.partner_id and invoice.type:
                 dichiarazioni = self.env['dichiarazione.intento'].get_valid(
                     invoice.type.split('_')[0],
                     invoice.partner_id.commercial_partner_id.id,
-                    invoice.date_invoice)
+                    invoice.date_invoice or fields.Date.context_today(invoice))
                 if dichiarazioni:
                     invoice.fiscal_position_id = \
                         dichiarazioni[0].fiscal_position_id.id
+                else:
+                    invoice.fiscal_position_id = False
 
     @api.onchange('date_invoice')
     def _onchange_date_invoice(self):
