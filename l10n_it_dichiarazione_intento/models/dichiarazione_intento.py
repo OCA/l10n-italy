@@ -87,8 +87,10 @@ class DichiarazioneIntento(models.Model):
                 dichiarazione_yearly_limit_ids.filtered(
                     lambda r: r.year == year)
             if not platfond:
-                raise UserError(
-                    _('Define a yearly platfond for out documents'))
+                raise UserError(_(
+                    'Define a yearly platfond for in documents in your company '
+                    'settings'
+                ))
             date_start = datetime.strptime(
                 '01-01-{}'.format(year), '%d-%m-%Y')
             date_end = datetime.strptime(
