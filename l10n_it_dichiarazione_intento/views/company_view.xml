@@ -8,7 +8,7 @@
         <field name="inherit_id" ref="base.view_company_form"/>
         <field name="arch" type="xml">
             <xpath expr="//page[last()]" position="after">
-                <page string="Dichiarazioni di Intento">
+                <page string="Declarations of intent">
                     <field name="dichiarazione_yearly_limit_ids">
                         <tree editable="top">
                             <field name="year"/>
