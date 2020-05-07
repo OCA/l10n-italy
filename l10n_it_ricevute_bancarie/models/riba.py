@@ -305,8 +305,14 @@ class RibaListLine(models.Model):
                 'date': line.distinta_id.registration_date,
             })
             to_be_reconciled = self.env['account.move.line']
+            riba_move_line_name = ''
             for riba_move_line in line.move_line_ids:
                 total_credit += riba_move_line.amount
+                if riba_move_line.move_line_id.invoice_id.number:
+                    riba_move_line_name += riba_move_line.move_line_id.invoice_id.number
+                else:
+                    if riba_move_line.move_line_id.name:
+                        riba_move_line_name += riba_move_line.move_line_id.name
                 move_line = move_line_model.with_context({
                     'check_move_validity': False
                 }).create(
@@ -328,8 +334,11 @@ class RibaListLine(models.Model):
             move_line_model.with_context({
                 'check_move_validity': False
             }).create({
-                'name': 'C/O %s - Line %s' % (line.distinta_id.name,
-                                              line.sequence),
+                'name': 'C/O %s-%s Rif. %s - %s' % (
+                    line.distinta_id.name,
+                    line.sequence,
+                    riba_move_line_name,
+                    line.partner_id.name),
                 'account_id': (
                     line.acceptance_account_id.id or
                     line.distinta_id.config_id.acceptance_account_id.id
