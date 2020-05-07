@@ -1,6 +1,19 @@
 <?xml version="1.0" ?>
 <odoo>
 
+        <record id="view_bank_filter_abicab" model="ir.ui.view">
+            <field name="name">res.bank.filter.abicab</field>
+            <field name="model">res.bank</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Bank">
+                    <field name="name"/>
+                    <field name="abi"/>
+                    <field name="cab"/>
+                </search>
+            </field>
+        </record>
+
        <record id="view_bank_tree_abicab" model="ir.ui.view">
             <field name="name">res.bank.tree.abicab</field>
             <field name="model">res.bank</field>
