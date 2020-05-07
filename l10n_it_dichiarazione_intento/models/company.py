@@ -9,4 +9,5 @@ class ResCompany(models.Model):
     _inherit = 'res.company'
 
     dichiarazione_yearly_limit_ids = fields.One2many(
-        'dichiarazione.intento.yearly.limit', 'company_id')
+        'dichiarazione.intento.yearly.limit', 'company_id',
+        string="Declaration yearly limit")

@@ -9,7 +9,7 @@ class AccountFiscalPosition(models.Model):
 
     _inherit = 'account.fiscal.position'
 
-    valid_for_dichiarazione_intento = fields.Boolean()
+    valid_for_dichiarazione_intento = fields.Boolean("Valid for declaration of intent")
 
     @api.constrains('valid_for_dichiarazione_intento', 'tax_ids')
     @api.multi

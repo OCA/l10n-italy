@@ -4,7 +4,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'ITA - Dichiarazione Intento',
+    'name': 'ITA - Dichiarazione di intento',
+    'summary': 'Gestione dichiarazioni di intento',
     'version': '12.0.0.1.0',
     'license': 'AGPL-3',
     'author': 'Francesco Apruzzese, Odoo Community Association (OCA), '

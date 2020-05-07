@@ -77,18 +77,18 @@ class DichiarazioneIntento(models.Model):
 
     @api.model
     def create(self, values):
-        # ----- Check if yearly platfond is enough
+        # ----- Check if yearly plafond is enough
         #       to create an in declaration
         # Declaration issued by company are "IN"
         if values.get('type', False) == 'in':
             year = datetime.strptime(
                 values['date_start'], '%Y-%m-%d').strftime('%Y')
-            platfond = self.env.user.company_id.\
+            plafond = self.env.user.company_id.\
                 dichiarazione_yearly_limit_ids.filtered(
                     lambda r: r.year == year)
-            if not platfond:
+            if not plafond:
                 raise UserError(_(
-                    'Define a yearly platfond for in documents in your company '
+                    'Define a yearly plafond for in documents in your company '
                     'settings'
                 ))
             date_start = datetime.strptime(
@@ -102,7 +102,7 @@ class DichiarazioneIntento(models.Model):
                 ])
             actual_limit_total = sum([d.limit_amount for d in dichiarazioni]) \
                 + values['limit_amount']
-            if actual_limit_total > platfond.limit_amount:
+            if actual_limit_total > plafond.limit_amount:
                 raise UserError(
                     _('Total of documents exceed yearly limit'))
         # ----- Assign a number to dichiarazione
