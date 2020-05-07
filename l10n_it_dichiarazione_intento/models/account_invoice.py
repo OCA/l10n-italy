@@ -11,7 +11,7 @@ class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
     dichiarazione_intento_ids = fields.Many2many(
-        'dichiarazione.intento', string='Dichiarazioni di Intento')
+        'dichiarazione.intento', string='Declarations of intent')
 
     @api.multi
     def _set_fiscal_position(self):
@@ -76,12 +76,8 @@ class AccountInvoice(models.Model):
                 # ---- e non ho dichiarazioni, segnalo errore
                 if self.fiscal_position_id.valid_for_dichiarazione_intento:
                     raise UserError(_(
-                        'Dichiarazione di intento non trovata.\n'
-                        'Aggiungere una nuova dichiarazione di intento '
-                        'o cambiare \n'
-                        'posizione fiscale sul documento e '
-                        'verificare l\'IVA applicata.'))
-
+                        'Declaration of intent not found. Add new declaration or '
+                        'change fiscal position and verify applied tax'))
                 else:
                     continue
             sign = 1 if invoice.type in ['out_invoice', 'in_refund'] else -1
@@ -175,7 +171,7 @@ class AccountInvoice(models.Model):
                         if invoice.type in ("out_invoice", "out_refund"):
                             if not invoice.comment:
                                 invoice.comment = ''
-                            invoice.comment += _(
+                            invoice.comment += (
                                 "\n\nVostra dichiarazione d'intento nr %s del %s, "
                                 "nostro protocollo nr %s del %s, "
                                 "protocollo telematico nr %s."

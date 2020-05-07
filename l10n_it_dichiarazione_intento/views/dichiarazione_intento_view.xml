@@ -88,7 +88,7 @@
         <field name="name">dichiarazione.intento.search</field>
         <field name="model">dichiarazione.intento</field>
         <field name="arch" type="xml">
-            <search string="Dichiarazioni di Intento">
+            <search string="Declarations of intent">
                 <field name="type"/>
                 <field name="number"/>
                 <field name="partner_document_number"/>
@@ -124,7 +124,7 @@
     </record>
 
     <record model="ir.actions.act_window" id="dichiarazione_intento_action">
-        <field name="name">Dichiarazioni di Intento</field>
+        <field name="name">Declarations of intent</field>
         <field name="res_model">dichiarazione.intento</field>
         <field name="view_mode">tree,form</field>
         <field name="context">{'default_search_state_valid': 1}</field>
