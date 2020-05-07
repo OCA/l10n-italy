@@ -101,6 +101,11 @@ presente sia sulla distinta che sulle sue righe. Queste ultime hanno una
 vista dedicata per facilitare le operazioni sul singolo elemento invece
 che su tutta la distinta.
 
+Il campo ``Data accettazione`` è obbligatorio per poter indicare la RiBa
+come accettata. All'accettazione, il valore del campo
+``Data accettazione`` verrà riportato sulle registrazioni contabili di
+accettazione.
+
 La voce di menù 'Presentazione Riba' permette estrarre le riba fino al
 raggiungimento dell'importo massimo inserito dall'utente.
 
@@ -163,6 +168,9 @@ Contributors
    -  Simone Rubino <sir@takobi.online>
 
 -  Nextev Srl <odoo@nextev.it>
+-  `PyTech <https://www.pytech.it>`__:
+
+   -  Simone Rubino <simone.rubino@pytech.it>
 
 Maintainers
 -----------
