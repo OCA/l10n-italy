@@ -21,7 +21,7 @@ class RibaIssue(models.TransientModel):
     @api.multi
     def create_list(self):
         def create_rdl(countme, bank_id, rd_id, date_maturity, partner_id,
-                       acceptance_account_id):
+                       acceptance_account_id, bank_riba_id=None):
             rdl = {
                 'sequence': countme,
                 'bank_id': bank_id,
@@ -30,6 +30,7 @@ class RibaIssue(models.TransientModel):
                 'partner_id': partner_id,
                 'state': 'draft',
                 'acceptance_account_id': acceptance_account_id,
+                'bank_riba_id': bank_riba_id,
             }
             return riba_list_line.create(rdl)
 
@@ -68,7 +69,11 @@ class RibaIssue(models.TransientModel):
         countme = 1
 
         for move_line in move_lines:
-            if move_line.partner_id.bank_ids:
+            # get bank riba from partner, else from banks of partner
+            bank_riba_id = False
+            if move_line.partner_id.bank_riba_id:
+                bank_riba_id = move_line.partner_id.bank_riba_id
+            elif move_line.partner_id.bank_ids:
                 bank_id = move_line.partner_id.bank_ids[0]
             else:
                 raise exceptions.Warning(
@@ -78,10 +83,19 @@ class RibaIssue(models.TransientModel):
                 for key in grouped_lines:
                     if (key[0] == move_line.partner_id.id and
                             key[1] == move_line.date_maturity):
-                        rdl_id = create_rdl(
-                            countme, bank_id.id, rd_id,
-                            move_line.date_maturity, move_line.partner_id.id,
-                            self.configuration_id.acceptance_account_id.id).id
+                        if bank_riba_id:
+                            rdl_id = create_rdl(
+                                countme, None, rd_id,
+                                move_line.date_maturity,
+                                move_line.partner_id.id,
+                                self.configuration_id.acceptance_account_id.id,
+                                bank_riba_id.id).id
+                        else:
+                            rdl_id = create_rdl(
+                                countme, bank_id.id, rd_id,
+                                move_line.date_maturity, move_line.partner_id.id,
+                                self.configuration_id.acceptance_account_id.id,
+                                None).id
                         # total = 0.0
                         # invoice_date_group = ''
                         for grouped_line in grouped_lines[key]:
@@ -93,10 +107,18 @@ class RibaIssue(models.TransientModel):
                         del grouped_lines[key]
                         break
             else:
-                rdl_id = create_rdl(
-                    countme, bank_id.id, rd_id, move_line.date_maturity,
-                    move_line.partner_id.id,
-                    self.configuration_id.acceptance_account_id.id).id
+                if bank_riba_id:
+                    rdl_id = create_rdl(
+                        countme, None, rd_id, move_line.date_maturity,
+                        move_line.partner_id.id,
+                        self.configuration_id.acceptance_account_id.id,
+                        bank_riba_id.id).id
+                else:
+                    rdl_id = create_rdl(
+                        countme, bank_id.id, rd_id, move_line.date_maturity,
+                        move_line.partner_id.id,
+                        self.configuration_id.acceptance_account_id.id,
+                        None).id
                 riba_list_move_line.create({
                     'riba_line_id': rdl_id,
                     'amount': move_line.amount_residual,
