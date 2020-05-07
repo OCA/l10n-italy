@@ -132,8 +132,8 @@ class RibaFileExport(models.TransientModel):
     def _Record50(
         self, importo_debito, invoice_ref, data_invoice, partita_iva_creditore
     ):
-        self._descrizione = 'PER LA FATTURA N. ' + invoice_ref + \
-            ' DEL ' + data_invoice + ' IMP ' + str(importo_debito)
+        # changed to use invoice_ref pre-created with data from move line
+        self._descrizione = invoice_ref
         return (
             " 50" + str(self._progressivo).rjust(7, '0') +
             self._descrizione.ljust(80)[0:80] + " " * 10 +
@@ -259,6 +259,18 @@ class RibaFileExport(models.TransientModel):
                 raise UserError(
                     _('No VAT or Fiscal Code specified for ') +
                     line.partner_id.name)
+            # start change to get invoice number from move line if invoice
+            # is not linked - this happen when and why?
+            invoice_ref = ''
+            if line.invoice_number and line.invoice_number != '':
+                invoice_ref = 'FT N. ' + line.invoice_number + ' DEL ' + \
+                              line.invoice_date
+            else:
+                if line.move_line_ids:
+                    if line.move_line_ids[0].move_line_id:
+                        invoice_ref = line.move_line_ids[0].move_line_id.name \
+                            and line.move_line_ids[0].move_line_id.name or ''
+            # end change
             Riba = [
                 line.sequence,
                 due_date,
@@ -276,7 +288,7 @@ class RibaFileExport(models.TransientModel):
                 debit_cab,
                 debit_bank.bank_name and debit_bank.bank_name[:50] or '',
                 line.partner_id.ref and line.partner_id.ref[:16] or '',
-                line.invoice_number[:40],
+                invoice_ref[:40],
                 line.invoice_date,
             ]
             arrayRiba.append(Riba)
