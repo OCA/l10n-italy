@@ -267,6 +267,10 @@ class RibaListLine(models.Model):
     iban = fields.Char(
         related='bank_id.acc_number', string='IBAN', store=False,
         readonly=True)
+    abi = fields.Char(
+        related='bank_riba_id.abi', string='ABI', store=False, readonly=True)
+    cab = fields.Char(
+        related='bank_riba_id.cab', string='CAB', store=False, readonly=True)
     distinta_id = fields.Many2one(
         'riba.distinta', string='Slip', required=True, ondelete='cascade')
     partner_id = fields.Many2one(

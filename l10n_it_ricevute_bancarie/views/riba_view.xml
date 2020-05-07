@@ -138,6 +138,8 @@
                                 <field name="invoice_date"/>
                                 <field name="partner_id"/>
                                 <field name="iban"/>
+                                <field name="abi"/>
+                                <field name="cab"/>
                                 <field name="amount" sum="Amount"/>
                                 <field name="due_date"/>
                                 <field name="state"/>

@@ -59,6 +59,12 @@ class AccountMoveLine(models.Model):
         'invoice_id', 'Past Due Invoices')
     iban = fields.Char(
         related='partner_id.bank_ids.acc_number', string='IBAN', store=False)
+    abi = fields.Char(
+        related='partner_id.bank_riba_id.abi', string='ABI',
+        store=False)
+    cab = fields.Char(
+        related='partner_id.bank_riba_id.cab', string='CAB',
+        store=False)
 
     @api.model
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,

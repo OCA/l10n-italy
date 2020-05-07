@@ -47,6 +47,8 @@
                 <field name="partner_id" readonly="1"/>
                 <field name="invoice_id" readonly="1"/>
                 <field name="iban" readonly="1"/>
+                <field name="abi" readonly="1"/>
+                <field name="cab" readonly="1"/>
                 <!-- TODO: field name="partner_ref" readonly="1"/>
                 <field name="invoice_date" readonly="1"/>
                 <field name="stored_invoice_id" readonly="1"/>
