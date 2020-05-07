@@ -595,9 +595,6 @@ class ComunicazioneLiquidazioneVp(models.Model):
             # Reset valori
             quadro._reset_values()
 
-            interests_account_id = quadro.comunicazione_id.company_id.\
-                of_account_end_vat_statement_interest_account_id.id or False
-
             for liq in quadro.liquidazioni_ids:
 
                 for period in liq.date_range_ids:
@@ -624,17 +621,15 @@ class ComunicazioneLiquidazioneVp(models.Model):
                     quadro.credito_periodo_precedente =\
                         liq.previous_credit_vat_amount
                 quadro.accounto_dovuto = liq.advance_amount
+                if liq.interests_debit_vat_account_id:
+                    quadro.interessi_dovuti += liq.interests_debit_vat_amount
                 # Versamenti auto UE (NON GESTITO)
                 # Crediti d’imposta (NON GESTITO)
                 # Da altri crediti e debiti calcolo:
-                # 1 - Interessi dovuti per liquidazioni trimestrali
-                # 2 - Decremento iva esigibile con righe positive
-                # 3 - Decremento iva detratta con righe negative
+                # 1 - Decremento iva esigibile con righe positive
+                # 2 - Decremento iva detratta con righe negative
                 for line in liq.generic_vat_account_line_ids:
-                    if interests_account_id and \
-                            (line.account_id.id == interests_account_id):
-                        quadro.interessi_dovuti += (-1 * line.amount)
-                    elif line.amount > 0:
+                    if line.amount > 0:
                         quadro.iva_esigibile -= line.amount
                     else:
                         quadro.iva_detratta += line.amount
