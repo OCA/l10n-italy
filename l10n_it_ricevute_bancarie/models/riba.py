@@ -202,9 +202,13 @@ class RibaListLine(models.Model):
                         ).strftime('%d/%m/%Y')))
                 if not line.invoice_number:
                     line.invoice_number = str(
+                        move_line.move_line_id.invoice_id.move_id.name if
+                        move_line.move_line_id.invoice_id.move_name == '/' else
                         move_line.move_line_id.invoice_id.move_name)
                 else:
                     line.invoice_number = "%s, %s" % (line.invoice_number, str(
+                        move_line.move_line_id.invoice_id.move_id.name if
+                        move_line.move_line_id.invoice_id.move_name == '/' else
                         move_line.move_line_id.invoice_id.move_name))
 
     amount = fields.Float(
