@@ -125,9 +125,16 @@
                     <field name="state"     widget="statusbar" />
                 </header>
                 <group>
-                    <field name="name" />
-                    <field name="config_id" widget="selection"/>
-                    <field name="registration_date" />
+                    <group>
+                        <field name="name" />
+                        <field name="config_id" widget="selection"/>
+                        <field name="registration_date" />
+                    </group>
+                    <group>
+                        <field name="date_accepted" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                        <field name="date_accreditation" attrs="{'readonly':[('state', 'not in', ['draft', 'accepted'])]}"/>
+                        <field name="date_paid"/>
+                    </group>
                 </group>
                 <notebook colspan="4">
                     <page string="General">
@@ -152,9 +159,6 @@
                         <group>
                             <field name="user_id" />
                             <field name="date_created" />
-                            <field name="date_accepted" attrs="{'readonly':[('state','!=','draft')]}"/>
-                            <field name="date_accreditation" attrs="{'readonly':[('state','!=','draft'), ('state','!=','accepted')]}"/>
-                            <field name="date_paid" />
                         </group>
                     </page>
                     <page string="Accounting">
