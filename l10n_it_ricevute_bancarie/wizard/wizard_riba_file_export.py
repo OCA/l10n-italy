@@ -230,10 +230,20 @@ class RibaFileExport(models.TransientModel):
         ]
         arrayRiba = []
         for line in order_obj.line_ids:
-            debit_bank = line.bank_id
             debitor_address = line.partner_id
             debitor_street = debitor_address.street or ''
             debitor_zip = debitor_address.zip or ''
+            debit_abi = False
+            debit_cab = False
+            debit_bank_name = False
+            if line.bank_riba_id:
+                debit_riba_bank = line.bank_riba_id
+                if debit_riba_bank.abi and debit_riba_bank.cab:
+                    debit_abi = debit_riba_bank.abi
+                    debit_cab = debit_riba_bank.cab
+                debit_bank_name = debit_riba_bank.name
+            elif line.bank_id:
+                debit_bank = line.bank_id
             if debit_bank.bank_abi and debit_bank.bank_cab:
                 debit_abi = debit_bank.bank_abi
                 debit_cab = debit_bank.bank_cab
@@ -241,10 +251,14 @@ class RibaFileExport(models.TransientModel):
                 debit_iban = debit_bank.acc_number.replace(" ", "")
                 debit_abi = debit_iban[5:10]
                 debit_cab = debit_iban[10:15]
+                debit_bank_name = debit_bank.bank_id and debit_bank.bank_id.name or ''
             else:
                 raise UserError(
                     _('No IBAN or ABI/CAB specified for ') +
                     line.partner_id.name)
+            if not debit_bank_name:
+                raise UserError(
+                    _('No debit_bank specified for ') + line.partner_id.name)
             debitor_city = debitor_address.city and debitor_address.city.ljust(
                 23)[0:23] or ''
             debitor_province = (
@@ -274,7 +288,7 @@ class RibaFileExport(models.TransientModel):
                 debitor_province,
                 debit_abi,
                 debit_cab,
-                debit_bank.bank_name and debit_bank.bank_name[:50] or '',
+                debit_bank_name[:50] or '',
                 line.partner_id.ref and line.partner_id.ref[:16] or '',
                 line.invoice_number[:40],
                 line.invoice_date,

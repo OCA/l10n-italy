@@ -213,6 +213,8 @@ class RibaListLine(models.Model):
         compute='_compute_line_values', string="Invoice Date", size=256)
     invoice_number = fields.Char(
         compute='_compute_line_values', string="Invoice Number", size=256)
+    bank_riba_id = fields.Many2one(
+        'res.bank', string='Debitor Bank for ri.ba.')
 
     @api.multi
     def move_line_id_payment_get(self):

@@ -17,3 +17,7 @@ class ResPartner(models.Model):
     group_riba = fields.Boolean(
         "Group C/O",
         help="Group C/O by customer while issuing.")
+    bank_riba_id = fields.Many2one(
+        'res.bank',
+        'Bank for ri.ba.',
+        help='If not filled, it will be used the first bank of the partner')
