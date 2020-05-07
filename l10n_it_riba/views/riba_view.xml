@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
   ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ Copyright 2025 Simone Rubino - PyTech
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
   -->
 <odoo>
@@ -185,9 +186,25 @@
                         />
                     </div>
                     <group>
-                        <field name="name" />
-                        <field name="config_id" widget="selection" />
-                        <field name="registration_date" />
+                        <group>
+                            <field name="name" />
+                            <field name="config_id" widget="selection" />
+                            <field name="registration_date" />
+                        </group>
+                        <group>
+                            <field
+                                name="date_accepted"
+                                attrs="{
+                                    'readonly': [('state','!=','draft')],
+                                    'required': [('state','=','draft')],
+                                }"
+                            />
+                            <field
+                                name="date_credited"
+                                attrs="{'readonly':[('state', 'not in', ['draft', 'accepted'])]}"
+                            />
+                            <field name="date_paid" />
+                        </group>
                     </group>
                     <notebook colspan="4">
                         <page string="General">
@@ -224,16 +241,6 @@
                             <group>
                                 <field name="user_id" />
                                 <field name="date_created" />
-                                <field
-                                    name="date_accepted"
-                                    attrs="{'readonly':[('state','!=','draft')]}"
-                                />
-                                <field
-                                    name="date_credited"
-                                    attrs="{'readonly':[('state','!=','draft'), ('state','!=','accepted')]}"
-                                />
-                                <field name="date_paid" />
-                                <field name="total_amount" widget="monetary" />
                             </group>
                         </page>
                         <page string="Accounting">
