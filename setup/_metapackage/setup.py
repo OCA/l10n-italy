@@ -27,6 +27,7 @@ setuptools.setup(
         'odoo12-addon-l10n_it_corrispettivi_fatturapa_out',
         'odoo12-addon-l10n_it_corrispettivi_sale',
         'odoo12-addon-l10n_it_ddt',
+        'odoo12-addon-l10n_it_dichiarazione_intento',
         'odoo12-addon-l10n_it_esigibilita_iva',
         'odoo12-addon-l10n_it_fatturapa',
         'odoo12-addon-l10n_it_fatturapa_export_zip',
