@@ -3,7 +3,7 @@
 
 {
     'name': "ITA - Dichiarazione Intrastat",
-    'version': '12.0.1.1.1',
+    'version': '12.0.1.1.2',
     'category': 'Account',
     'summary': 'Dichiarazione Intrastat per l\'Agenzia delle Dogane',
     'author': "Openforce, Link IT srl, Agile Business Group, "
