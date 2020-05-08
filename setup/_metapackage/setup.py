@@ -40,6 +40,7 @@ setuptools.setup(
         'odoo10-addon-l10n_it_fiscal_payment_term',
         'odoo10-addon-l10n_it_fiscalcode',
         'odoo10-addon-l10n_it_fiscalcode_invoice',
+        'odoo10-addon-l10n_it_intrastat',
         'odoo10-addon-l10n_it_invoices_data_communication',
         'odoo10-addon-l10n_it_invoices_data_communication_fatturapa',
         'odoo10-addon-l10n_it_ipa',
