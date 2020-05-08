@@ -540,7 +540,7 @@ msgid "Invoice Number"
 msgstr "Numero fattura"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:835
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:837
 #, python-format
 msgid ""
 "Invoice and credit note in the same period with credit note > invoice for "
@@ -776,7 +776,7 @@ msgid "Normal Period"
 msgstr "Periodo regolare"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:724
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:726
 #, python-format
 msgid "Nothing to export"
 msgstr "Nulla da esportare"
@@ -941,13 +941,13 @@ msgid "Period"
 msgstr "Periodo"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:868
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:870
 #, python-format
 msgid "Period Not Valid! Range accepted: from 1 to 12"
 msgstr "Periodo non valido. Intervallo ammesso: da 1 a 12"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:872
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:874
 #, python-format
 msgid "Period Not Valid! Range accepted: from 1 to 4"
 msgstr "Periodo non valido. Intervallo ammesso: da 1 a 4"
@@ -1180,7 +1180,7 @@ msgid "Statement Sequence"
 msgstr "Sequenza dichiarazione"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:733
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:735
 #, python-format
 msgid "Statement without lines"
 msgstr "Dichiarazione senza righe"
