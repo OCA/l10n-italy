@@ -40,6 +40,7 @@ class RibaList(models.Model):
 
     _name = 'riba.distinta'
     _description = 'C/O Slip'
+    _order = 'date_created desc'
 
     name = fields.Char(
         'Reference', required=True, readonly=True,
