@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <record id="invoice_tree_unsolved" model="ir.ui.view">
+        <field name="name">invoice.invoice.tree.unsolved</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="is_unsolved" invisible="1"/>
+            </field>
+            <tree position="attributes">
+                <attribute name="colors">
+                    red:is_unsolved == True;blue:state == 'draft';black:state in ('proforma','proforma2','open');gray:state == 'cancel'
+                </attribute>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

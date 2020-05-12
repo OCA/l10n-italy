@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="riba_line_accrual" model="ir.ui.view">
+        <field name="name">riba.accrual.line.wizard</field>
+        <field name="model">riba.accrual</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Ri.Ba. Line Accrual">
+                <separator string="This wizard generates the journal entry related to accrual received from the bank" colspan="4"/>
+                <group>
+                    <field name="accreditation_journal_id"/>
+                    <field name="date_accrual"/>
+                </group>
+                <group>
+                    <field name="accreditation_account_id"/>
+                    <field name="accrual_amount"/>
+                    <field name="acceptance_account_id"/>
+                </group>
+                <button string="Cancel" special="cancel" icon="fa-times-circle text-danger" colspan="2"/>
+                <button string="Create" name="create_accrue_move" type="object" icon="fa-check text-success" colspan="2"/>
+            </form>
+        </field>
+    </record>
+
+    <act_window name="C/O Accrual"
+        res_model="riba.accrual"
+        src_model="riba.distinta.line"
+        key2="client_action_multi"
+        view_mode="form"
+        view_type="form"
+        target="new"
+        multi="True"
+        id="action_riba_line_accrual"
+        view_id="riba_line_accrual"/>
+
+</odoo>
