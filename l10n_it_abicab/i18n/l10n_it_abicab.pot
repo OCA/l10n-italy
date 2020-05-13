@@ -42,3 +42,8 @@ msgstr ""
 msgid "CAB"
 msgstr ""
 
+#. module: l10n_it_abicab
+#: model_terms:ir.ui.view,arch_db:l10n_it_abicab.view_bank_filter_abicab
+msgid "Search Bank"
+msgstr ""
+
