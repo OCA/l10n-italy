@@ -69,21 +69,21 @@ msgid "Is a stamp"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:56
+#: code:addons/l10n_it_account_stamp/models/invoice.py:62
 #, python-format
 msgid "Missing account income configuration for %s"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:18
-#: code:addons/l10n_it_account_stamp/models/invoice.py:46
-#: code:addons/l10n_it_account_stamp/models/invoice.py:129
+#: code:addons/l10n_it_account_stamp/models/invoice.py:19
+#: code:addons/l10n_it_account_stamp/models/invoice.py:52
+#: code:addons/l10n_it_account_stamp/models/invoice.py:135
 #, python-format
 msgid "Missing tax stamp product in company settings!"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:84
+#: code:addons/l10n_it_account_stamp/models/invoice.py:90
 #, python-format
 msgid "Product %s must have income and expense accounts"
 msgstr ""
@@ -135,13 +135,13 @@ msgid "Tax Stamp 2 euro"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:102
+#: code:addons/l10n_it_account_stamp/models/invoice.py:108
 #, python-format
 msgid "Tax Stamp Expense"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:89
+#: code:addons/l10n_it_account_stamp/models/invoice.py:95
 #, python-format
 msgid "Tax Stamp Income"
 msgstr ""
@@ -160,13 +160,13 @@ msgid "Tax stamp"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:41
+#: code:addons/l10n_it_account_stamp/models/invoice.py:47
 #, python-format
 msgid "Tax stamp is not applicable"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:50
+#: code:addons/l10n_it_account_stamp/models/invoice.py:56
 #, python-format
 msgid "Tax stamp line %s already present. Remove it first."
 msgstr ""
