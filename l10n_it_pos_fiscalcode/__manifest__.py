@@ -5,7 +5,7 @@
     "name": "ITA - POS - Codice fiscale",
     "summary": "Gestione codice fiscale del cliente all'interno "
                "dell'interfaccia del POS",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "development_status": "Beta",
     "category": "Point Of Sale",
     "website": "https://github.com/OCA/l10n-italy",

@@ -7,7 +7,7 @@
     'name': "ITA - Stampa fattura raggruppata per DDT",
     'summary': 'Raggruppa le righe fattura per DDT che le ha '
                'generate, mostrando eventualmente i lotti/seriali',
-    'version': '12.0.1.0.2',
+    'version': '12.0.1.0.3',
     'category': 'Localization/Italy',
     'author': 'Agile Business Group, Apulia Software, Openforce,'
               'Odoo Community Association (OCA)',

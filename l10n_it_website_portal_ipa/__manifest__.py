@@ -4,7 +4,7 @@
     "name": "ITA - Indice PA nel portale",
     "summary": "Aggiunge l'indice PA (IPA) "
                "tra i dettagli dell'utente nel portale.",
-    "version": "12.0.1.1.0",
+    "version": "12.0.1.1.1",
     "category": "Localization/Italy",
     "website": "https://github.com/OCA/l10n-italy/tree/"
                "12.0/l10n_it_website_portal_ipa",

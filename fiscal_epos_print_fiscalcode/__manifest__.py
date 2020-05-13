@@ -3,7 +3,7 @@
 
 {
     'name': 'ITA - Codice fiscale negli scontrini',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'category': 'Point of Sale',
     'summary': 'Consente di includere il codice fiscale negli scontrini',
     'author': 'Agile Business Group, '

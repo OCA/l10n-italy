@@ -5,7 +5,7 @@
 
 {
     'name': 'Codici carica',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'category': 'Localization/Italy',
     'summary':
         'Aggiunge la tabella dei codici carica da usare nelle dichiarazioni'
