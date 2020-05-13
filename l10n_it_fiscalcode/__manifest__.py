@@ -6,7 +6,7 @@
 
 {
     'name': 'Italian Localization - Fiscal Code',
-    'version': '12.0.1.1.2',
+    'version': '12.0.1.1.3',
     'development_status': 'Production/Stable',
     'category': 'Localisation/Italy',
     'author': "Link IT s.r.l., "
