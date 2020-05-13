@@ -4,7 +4,7 @@
 
 from odoo import api, fields, models, _
 import odoo.addons.decimal_precision as dp
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 
 
 class IntrastatStatementSection(models.AbstractModel):
@@ -92,3 +92,11 @@ class IntrastatStatementSection(models.AbstractModel):
     @api.multi
     def get_amount_euro(self):
         return sum(section.amount_euro for section in self)
+
+    @api.model
+    def get_section_number(self):
+        raise UserError("Section number must be overridden by every section")
+
+    @api.model
+    def get_section_type(self):
+        raise UserError("Section type must be overridden by every section")

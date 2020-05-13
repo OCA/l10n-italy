@@ -120,6 +120,27 @@ class TestIntrastatStatement (AccountingTestCase):
             .generate_file_export()
         self.assertIn(invoice.partner_id.vat[2:], file_content)
 
+        # Last line is section line, for monthly report it should be 103 chars
+        self.assertEqual(len(file_content.splitlines()[-1]), 103)
+
+    def test_statement_sale_quarter(self):
+        invoice = self._get_intrastat_computed_invoice()
+        month = invoice.date_invoice.month
+        quarter = 1 + (month - 1) // 3
+        statement = self.statement_model.create({
+            'period_number': quarter,
+            'period_type': 'T',
+        })
+
+        statement.compute_statement()
+        file_content = statement \
+            .with_context(sale=True) \
+            .generate_file_export()
+        self.assertIn(invoice.partner_id.vat[2:], file_content)
+
+        # Last line is section line, for quarter report it should be 64 chars
+        self.assertEqual(len(file_content.splitlines()[-1]), 64)
+
     def test_statement_purchase(self):
         bill = self._get_intrastat_computed_bill()
 
@@ -138,6 +159,27 @@ class TestIntrastatStatement (AccountingTestCase):
             .with_context(purchase=True) \
             .generate_file_export()
         self.assertIn(bill.partner_id.vat[2:], file_content)
+
+        # Last line is section line, for monthly report it should be 118 chars
+        self.assertEqual(len(file_content.splitlines()[-1]), 118)
+
+    def test_statement_purchase_quarter(self):
+        bill = self._get_intrastat_computed_bill()
+        month = bill.date_invoice.month
+        quarter = 1 + (month - 1) // 3
+        statement = self.statement_model.create({
+            'period_number': quarter,
+            'period_type': 'T',
+        })
+
+        statement.compute_statement()
+        file_content = statement \
+            .with_context(purchase=True) \
+            .generate_file_export()
+        self.assertIn(bill.partner_id.vat[2:], file_content)
+
+        # Last line is section line, for quarter report it should be 77 chars
+        self.assertEqual(len(file_content.splitlines()[-1]), 77)
 
     def test_statement_export_file(self):
         invoice = self._get_intrastat_computed_invoice()
