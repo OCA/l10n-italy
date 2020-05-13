@@ -47,3 +47,8 @@ msgstr "Bankdetaljer"
 #: model:ir.model.fields,field_description:l10n_it_abicab.field_res_partner_bank__bank_cab
 msgid "CAB"
 msgstr "CAB"
+
+#. module: l10n_it_abicab
+#: model_terms:ir.ui.view,arch_db:l10n_it_abicab.view_bank_filter_abicab
+msgid "Search Bank"
+msgstr ""
