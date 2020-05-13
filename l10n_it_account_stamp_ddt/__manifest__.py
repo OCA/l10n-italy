@@ -4,7 +4,7 @@
 {
     'name': 'Italian Localization - Imposta di bollo - DDT',
     'summary': "Modulo ponte tra imposta di bollo e DDT",
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'category': 'Localization/Italy',
     'license': 'AGPL-3',
     'author': 'Agile Business Group, Odoo Community Association (OCA)',

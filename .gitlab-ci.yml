@@ -1,0 +1,33 @@
+# versione 1.0.1
+
+stages:
+  - release
+
+release:2:
+  stage: release
+  image: python:2
+  script:
+    - export PIP_INDEX_URL=$DEVPI_INDEX_URL
+    - export PIP_TRUSTED_HOST=$DEVPI_HOST
+    - pip install --no-cache-dir --upgrade --upgrade-strategy only-if-needed devpi-client setuptools-odoo wheel
+    - devpi use $DEVPI_SERVER
+    - devpi login  gitlab --password=$DEVPI_PASSWORD
+    - devpi use $DEVPI_INDEX
+    - for f in $(find $CI_PROJECT_DIR/setup -name setup.py); do cd $(dirname $f); devpi upload --formats bdist_wheel; done
+  only:
+    - '10.0'
+
+release:3:
+  stage: release
+  image: python:3
+  script:
+    - export PIP_INDEX_URL=$DEVPI_INDEX_URL
+    - export PIP_TRUSTED_HOST=$DEVPI_HOST
+    - pip3 install --no-cache-dir --upgrade --upgrade-strategy only-if-needed devpi-client setuptools-odoo wheel
+    - devpi use $DEVPI_SERVER
+    - devpi login  gitlab --password=$DEVPI_PASSWORD
+    - devpi use $DEVPI_INDEX
+    - for f in $(find $CI_PROJECT_DIR/setup -name setup.py); do cd $(dirname $f); devpi upload --formats bdist_wheel; done
+  only:
+    - '11.0'
+    - '12.0'

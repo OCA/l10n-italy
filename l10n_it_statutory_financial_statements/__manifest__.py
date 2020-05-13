@@ -7,7 +7,7 @@
     "name": "ITA - Bilancio civilistico",
     "summary": "Stampa del bilancio riclassificato secondo la IV direttiva "
                "CEE",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "development_status": "Beta",
     "category": "Accounting",
     "website": "https://github.com/OCA/l10n-italy",

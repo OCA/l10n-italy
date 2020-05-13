@@ -5,7 +5,7 @@
 
 {
     'name': 'Italian Localization - Termini fiscali di pagamento',
-    'version': '12.0.1.1.0',
+    'version': '12.0.1.1.1',
     'category': 'Localization/Italy',
     'summary': 'Condizioni di pagamento delle fatture elettroniche',
     'author': 'Davide Corio, Agile Business Group, Innoviu, '

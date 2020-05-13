@@ -5,7 +5,7 @@
     "name": "Italian Localization - Fattura elettronica - Export ZIP",
     "summary": "Permette di esportare in uno ZIP diversi file XML di "
                "fatture elettroniche",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "development_status": "Beta",
     "category": "other",
     "website": "https://github.com/OCA/l10n-italy",
