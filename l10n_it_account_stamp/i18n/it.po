@@ -86,21 +86,21 @@ msgid "Is a stamp"
 msgstr "È un bollo"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:56
+#: code:addons/l10n_it_account_stamp/models/invoice.py:62
 #, python-format
 msgid "Missing account income configuration for %s"
 msgstr "Configurazione mancante del conto di ricavo per %s"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:18
-#: code:addons/l10n_it_account_stamp/models/invoice.py:46
-#: code:addons/l10n_it_account_stamp/models/invoice.py:129
+#: code:addons/l10n_it_account_stamp/models/invoice.py:19
+#: code:addons/l10n_it_account_stamp/models/invoice.py:52
+#: code:addons/l10n_it_account_stamp/models/invoice.py:135
 #, python-format
 msgid "Missing tax stamp product in company settings!"
 msgstr "Prodotto imposta di bollo mancante nelle impostazioni dell'azienda!"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:84
+#: code:addons/l10n_it_account_stamp/models/invoice.py:90
 #, python-format
 msgid "Product %s must have income and expense accounts"
 msgstr "È necessario impostare i conti di ricavo e di costo per il prodotto %s"
@@ -135,8 +135,8 @@ msgid ""
 "June\n"
 "17, 2014"
 msgstr ""
-"Assolvimento dell’imposta di bollo ai sensi dell’articolo 6, comma 2, del "
-"D.M.\n"
+"Assolvimento dell’imposta di bollo ai sensi dell’articolo 6, comma 2, del D."
+"M.\n"
 "17 giugno 2014"
 
 #. module: l10n_it_account_stamp
@@ -157,13 +157,13 @@ msgid "Tax Stamp 2 euro"
 msgstr "Imposta di bollo 2 euro"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:102
+#: code:addons/l10n_it_account_stamp/models/invoice.py:108
 #, python-format
 msgid "Tax Stamp Expense"
 msgstr "Costo imposta di bollo"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:89
+#: code:addons/l10n_it_account_stamp/models/invoice.py:95
 #, python-format
 msgid "Tax Stamp Income"
 msgstr "Ricavo imposta di bollo"
@@ -182,13 +182,13 @@ msgid "Tax stamp"
 msgstr "Imposta di bollo"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:41
+#: code:addons/l10n_it_account_stamp/models/invoice.py:47
 #, python-format
 msgid "Tax stamp is not applicable"
 msgstr "Imposta di bollo non applicabile"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:50
+#: code:addons/l10n_it_account_stamp/models/invoice.py:56
 #, python-format
 msgid "Tax stamp line %s already present. Remove it first."
 msgstr "Riga per l'imposta di bollo %s già presente, prima rimuoverla."
