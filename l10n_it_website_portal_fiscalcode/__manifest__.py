@@ -4,7 +4,7 @@
 {
     "name": "Italian Localization - Website portal fiscalcode",
     "summary": "Add fiscal code to details of frontend user",
-    "version": "12.0.1.0.1",
+    "version": "12.0.1.0.2",
     "author": "Odoo Community Association (OCA)",
     "category": "Localization/Italy",
     "website": "https://github.com/OCA/l10n-italy/tree/"
