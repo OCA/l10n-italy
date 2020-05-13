@@ -4,7 +4,7 @@
 
 {
     'name': 'Italian Localization - Email PEC',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'category': 'Localization/Italy',
     'summary': 'Aggiunge il campo email PEC al partner',
     'author': "Odoo Italia Network,Odoo Community Association (OCA)",
