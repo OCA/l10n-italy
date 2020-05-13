@@ -58,6 +58,7 @@ setuptools.setup(
         'odoo12-addon-l10n_it_ricevute_bancarie',
         'odoo12-addon-l10n_it_sdi_channel',
         'odoo12-addon-l10n_it_split_payment',
+        'odoo12-addon-l10n_it_statutory_financial_statements',
         'odoo12-addon-l10n_it_vat_registries',
         'odoo12-addon-l10n_it_vat_registries_split_payment',
         'odoo12-addon-l10n_it_vat_statement_communication',
