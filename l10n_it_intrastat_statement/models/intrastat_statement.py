@@ -10,6 +10,36 @@ from dateutil.relativedelta import relativedelta
 from odoo.tools import float_round
 
 
+def format_x(value, length):
+    """
+    Format for alphanumeric characters.
+
+    > i dati alfanumerici (rappresentati con “X”) vanno allineati a sinistra,
+    > riempiendo il campo, ove occorra, di spazi non significativi a destra;
+
+    :param value: value to be formatted
+    :param length: length of the formatted field
+    :return: formatted value
+    """
+    value = str(value or "")[:length]  # Formatting only sets minimum width
+    return ('{: <' + str(length) + '}').format(value)
+
+
+def format_9(value, length):
+    """
+    Format for numeric characters.
+
+    > i dati numerici (rappresentati con “9”) vanno allineati a destra,
+    > riempiendo il campo, ove occorra, di zeri non significativi a sinistra.
+
+    :param value: value to be formatted
+    :param length: length of the formatted field
+    :return: formatted value
+    """
+    value = str(value or "")[:length]  # Formatting only sets minimum width
+    return ('{:0>' + str(length) + '}').format(value)
+
+
 class AccountIntrastatStatement(models.Model):
     _name = 'account.intrastat.statement'
     _description = "Intrastat Statement"
@@ -146,6 +176,7 @@ class AccountIntrastatStatement(models.Model):
             ('T', "Quarter"),
         ],
         string="Period Type",
+        default='M',
         required=True)
     period_number = fields.Integer(
         string="Period",
@@ -469,27 +500,27 @@ class AccountIntrastatStatement(models.Model):
 
         rcd = ''
         # Codice utente abilitato (mittente)
-        rcd += '{:4s}'.format(self.company_id.intrastat_ua_code or '')
+        rcd += format_x(self.company_id.intrastat_ua_code, 4)
         # Riservato a SDA
-        rcd += '{:12s}'.format("")
+        rcd += format_x("", 12)
         # Nome del flusso
-        rcd += '{:12s}'.format(self._get_file_name())
+        rcd += format_x(self._get_file_name(), 12)
         # Riservato a SDA
-        rcd += '{:12s}'.format("")
+        rcd += format_x("", 12)
         # Codice sezione doganale presso la quale si effettua l'operazione
-        rcd += '{:6s}'.format(self.intrastat_custom_id.code or '')
+        rcd += format_x(self.intrastat_custom_id.code, 6)
         # Riservato a SDA
-        rcd += '{:4s}'.format("")
+        rcd += format_x("", 4)
         # Codice fiscale o numero partita IVA o codice spedizioniere del
         # richiedente (utente autorizzato)
         # Partita IVA del presentatore o delegato
         vat_applicant = self.intrastat_vat_delegate or self.vat_taxpayer
-        rcd += '{:16s}'.format(vat_applicant.replace(' ', ''))
+        rcd += format_x(vat_applicant.replace(' ', ''), 16)
         # Progressivo sede utente autorizzato
         prg = self._get_progressive_interchange()
-        rcd += '{:3s}'.format(str(prg).zfill(3))
+        rcd += format_9(prg, 3)
         # Riservato a SDA
-        rcd += '{:1s}'.format("")
+        rcd += format_x("", 1)
         # Numero di record presenti nel flusso
         tot_lines = (
             self.sale_section1_operation_number +
@@ -518,34 +549,52 @@ class AccountIntrastatStatement(models.Model):
                 or self.purchase_section4_operation_number
         ):
             tot_lines += 1
-        rcd += '{:5s}'.format(str(tot_lines).zfill(5))
+        rcd += format_9(tot_lines, 5)
 
         rcd += "\r\n"
         return rcd
 
     @api.multi
-    def _prepare_export_prefix(self, kind='sale'):
+    def _prepare_export_prefix(self, ref_number, line=None):
         """
-        :param kind: 'sale' or 'purchase
-        :return: Export prefix
+        Fixed part for every line of the exported file
+
+        :param ref_number: number of the listing
+        :param line: statement line, if None this is the frontispiece's prefix
+        :return: Prefix for all statement lines
         """
         self.ensure_one()
+        is_frontispiece = not bool(line)
         # Campo fisso: “EUROX”
-        prefix = 'EUROX'
+        prefix = format_x('EUROX', 5)
 
-        # Partita IVA del presentatore o delegato
-        if self.intrastat_vat_delegate:
-            prefix += '{:11s}'.format(self.intrastat_vat_delegate)
+        # Partita IVA del presentatore (soggetto obbligato o soggetto delegato)
+        vat_applicant = self.intrastat_vat_delegate or self.vat_taxpayer
+        prefix += format_9(vat_applicant, 11)
+
+        # Numero di riferimento dell’elenco
+        prefix += format_9(ref_number, 6)
+
+        # Tipo record:
+        #  0 = frontespizio
+        #  1 = righe dettaglio sezione 1
+        #  2 = righe dettaglio sezione 2
+        #  3 = righe dettaglio sezione 3
+        #  4 = righe dettaglio sezione 4
+        if is_frontispiece:
+            record_type = 0
         else:
-            prefix += '{:11s}'.format(self.vat_taxpayer)
+            record_type = line.get_section_number()
+        prefix += format_9(record_type, 1)
 
-        # Numero progressivo dell’elenco
-        if kind == 'sale':
-            prefix += '{:6s}'.format(
-                str(self.sale_statement_sequence).zfill(6))
-        elif kind == 'purchase':
-            prefix += '{:6s}'.format(
-                str(self.purchase_statement_sequence).zfill(6))
+        # Numero progressivo di riga dettaglio all’interno
+        # delle sezioni 1, 2, 3 e 4, viene impostato a zero
+        # solo nel record frontespizio
+        if is_frontispiece:
+            prog_number = 0
+        else:
+            prog_number = line.sequence
+        prefix += format_9(prog_number, 5)
         return prefix
 
     @api.model
@@ -561,76 +610,41 @@ class AccountIntrastatStatement(models.Model):
         return ''.join(number)
 
     @api.multi
-    def _prepare_export_frontispiece(self, kind):
+    def _prepare_export_frontispiece(self, kind, ref_number):
         self.ensure_one()
-        rcd = self._prepare_export_prefix(kind)
-        rcd += '{:1s}'.format("0")
-        rcd += '{:5s}'.format("".zfill(5))
+        rcd = self._prepare_export_prefix(ref_number)
         # Tipo riepilogo: A = acquisti C = cessioni
+        summary_type = None
         if kind == 'purchase':
-            rcd += '{:1s}'.format("A")
+            summary_type = "A"
         elif kind == 'sale':
-            rcd += '{:1s}'.format("C")
+            summary_type = "C"
+        rcd += format_x(summary_type, 1)
         # Anno
-        rcd += '{:2s}'.format(str(self.fiscalyear)[2:])
+        rcd += format_9(str(self.fiscalyear)[2:], 2)
         # Periodicità
-        rcd += '{:1s}'.format(self.period_type)
+        rcd += format_x(self.period_type, 1)
         # Periodo
-        rcd += '{:2s}'.format(str(self.period_number).zfill(2))
+        rcd += format_9(self.period_number, 2)
         # Partita IVA del contribuente
-        rcd += '{:11s}'.format(self.vat_taxpayer)
-        # Contenuto degli elenchì
-        rcd += '{:1s}'.format(self.content_type)
-        # Casi particolari riferiti al soggetto obbligatò
-        rcd += '{:1s}'.format(self.special_cases)
+        rcd += format_9(self.vat_taxpayer, 11)
+        # Contenuto degli elenchi
+        rcd += format_9(self.content_type, 1)
+        # Casi particolari riferiti al soggetto obbligato
+        rcd += format_9(self.special_cases, 1)
         # Partita IVA del soggetto delegato
-        rcd += '{:11s}'.format(self.intrastat_vat_delegate or "".zfill(11))
-        # Numero e importo dettagli della sezione 1
-        if kind == "purchase":
-            rcd += '{:5s}'.format(
-                str(self.purchase_section1_operation_number).zfill(5))
-            rcd += '{:13s}'.format(
-                str(self.purchase_section1_operation_amount).zfill(13))
-        elif kind == 'sale':
-            rcd += '{:5s}'.format(
-                str(self.sale_section1_operation_number).zfill(5))
-            rcd += '{:13s}'.format(
-                str(self.sale_section1_operation_amount).zfill(13))
-        # Numero dettagli della sezione 2
-        if kind == "purchase":
-            rcd += '{:5s}'.format(
-                str(self.purchase_section2_operation_number).zfill(5))
-            amount_format = self._format_negative_number_frontispiece(
-                self.purchase_section2_operation_amount)
-            rcd += '{:13s}'.format(str(amount_format).zfill(13))
-        elif kind == 'sale':
-            rcd += '{:5s}'.format(
-                str(self.sale_section2_operation_number).zfill(5))
-            amount_format = self._format_negative_number_frontispiece(
-                self.sale_section2_operation_amount)
-            rcd += '{:13s}'.format(str(amount_format).zfill(13))
-        # Numero dettagli della sezione 3
-        if kind == "purchase":
-            rcd += '{:5s}'.format(
-                str(self.purchase_section3_operation_number).zfill(5))
-            rcd += '{:13s}'.format(
-                str(self.purchase_section3_operation_amount).zfill(13))
-        else:
-            rcd += '{:5s}'.format(
-                str(self.sale_section3_operation_number).zfill(5))
-            rcd += '{:13s}'.format(
-                str(self.sale_section3_operation_amount).zfill(13))
-        # Numero dettagli della sezione 4
-        if kind == "purchase":
-            rcd += '{:5s}'.format(
-                str(self.purchase_section4_operation_number).zfill(5))
-            rcd += '{:13s}'.format(
-                str(self.purchase_section4_operation_amount).zfill(13))
-        else:
-            rcd += '{:5s}'.format(
-                str(self.sale_section4_operation_number).zfill(5))
-            rcd += '{:13s}'.format(
-                str(self.sale_section4_operation_amount).zfill(13))
+        rcd += format_9(self.intrastat_vat_delegate, 11)
+        for section_number in range(1, 5):
+            section_op_number_field = \
+                '%s_section%s_operation_number' % (kind, section_number)
+            rcd += format_9(self[section_op_number_field], 5)
+
+            section_op_amount_field = \
+                '%s_section%s_operation_amount' % (kind, section_number)
+            amount = self[section_op_amount_field]
+            if section_number == 2:
+                self._format_negative_number_frontispiece(amount)
+            rcd += format_9(self[section_op_amount_field], 13)
 
         rcd += "\r\n"
         return rcd
@@ -651,37 +665,22 @@ class AccountIntrastatStatement(models.Model):
                 self.purchase_section3_operation_number or
                 self.purchase_section4_operation_number
         ) and content_purchase:
+            ref_number = self.purchase_statement_sequence
             # frontispiece
-            file_content += self._prepare_export_frontispiece("purchase")
+            file_content += self._prepare_export_frontispiece(
+                'purchase', ref_number)
             # Section 1
-            for line in self.purchase_section1_ids:
-                rcd = self._prepare_export_prefix("purchase")
-                rcd += '{:1s}'.format("1")
-                rcd += '{:5s}'.format(str(line.sequence).zfill(5))
-                rcd += line._prepare_export_line()
-                file_content += rcd
-            # Section 2
-            for line in self.purchase_section2_ids:
-                rcd = self._prepare_export_prefix("purchase")
-                rcd += '{:1s}'.format("2")
-                rcd += '{:5s}'.format(str(line.sequence).zfill(5))
-                rcd += line._prepare_export_line()
-                file_content += rcd
-            # Section 3
-            for line in self.purchase_section3_ids:
-                rcd = self._prepare_export_prefix("purchase")
-                rcd += '{:1s}'.format("3")
-                rcd += '{:5s}'.format(str(line.sequence).zfill(5))
-                rcd += line._prepare_export_line()
-                file_content += rcd
-            # Section 4
-            for line in self.purchase_section4_ids:
-                rcd = self._prepare_export_prefix("purchase")
-                rcd += '{:1s}'.format("4")
-                rcd += '{:5s}'.format(str(line.sequence).zfill(5))
-                rcd += line._prepare_export_line()
-                file_content += rcd
-
+            purchase_lines = {
+                self.purchase_section1_ids,
+                self.purchase_section2_ids,
+                self.purchase_section3_ids,
+                self.purchase_section4_ids,
+            }
+            for section_lines in purchase_lines:
+                for line in section_lines:
+                    rcd = self._prepare_export_prefix(ref_number, line)
+                    rcd += line._prepare_export_line()
+                    file_content += rcd
         # Sale
         if (
                 (self.sale_section1_operation_number
@@ -689,37 +688,21 @@ class AccountIntrastatStatement(models.Model):
                  or self.sale_section3_operation_number
                  or self.sale_section4_operation_number)
                 and content_sale):
+            ref_number = self.sale_statement_sequence
             # frontispiece
-            rec_frontispiece = self._prepare_export_frontispiece("sale")
-            file_content += rec_frontispiece
-            # Section 1
-            for line in self.sale_section1_ids:
-                rcd = self._prepare_export_prefix("sale")
-                rcd += '{:1s}'.format("1")
-                rcd += '{:5s}'.format(str(line.sequence).zfill(5))
-                rcd += line._prepare_export_line()
-                file_content += rcd
-            # Section 2
-            for line in self.sale_section2_ids:
-                rcd = self._prepare_export_prefix("sale")
-                rcd += '{:1s}'.format("2")
-                rcd += '{:5s}'.format(str(line.sequence).zfill(5))
-                rcd += line._prepare_export_line()
-                file_content += rcd
-            # Section 3
-            for line in self.sale_section3_ids:
-                rcd = self._prepare_export_prefix("sale")
-                rcd += '{:1s}'.format("3")
-                rcd += '{:5s}'.format(str(line.sequence).zfill(5))
-                rcd += line._prepare_export_line()
-                file_content += rcd
-            # Section 4
-            for line in self.sale_section4_ids:
-                rcd = self._prepare_export_prefix("sale")
-                rcd += '{:1s}'.format("4")
-                rcd += '{:5s}'.format(str(line.sequence).zfill(5))
-                rcd += line._prepare_export_line()
-                file_content += rcd
+            file_content += self._prepare_export_frontispiece(
+                'sale', ref_number)
+            sale_lines = {
+                self.sale_section1_ids,
+                self.sale_section2_ids,
+                self.sale_section3_ids,
+                self.sale_section4_ids,
+            }
+            for section_lines in sale_lines:
+                for line in section_lines:
+                    rcd = self._prepare_export_prefix(ref_number, line)
+                    rcd += line._prepare_export_line()
+                    file_content += rcd
 
         # Data validation
         if not file_content:
