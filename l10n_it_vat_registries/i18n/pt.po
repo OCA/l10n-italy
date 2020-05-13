@@ -313,6 +313,7 @@ msgid "VAT registries"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_bank_statement_import_journal_creation__tax_registry_id
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_journal__tax_registry_id
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__tax_registry_id
 msgid "VAT registry"
@@ -329,6 +330,7 @@ msgid "Year for Footer"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#: model:ir.model.fields,help:l10n_it_vat_registries.field_account_bank_statement_import_journal_creation__tax_registry_id
 #: model:ir.model.fields,help:l10n_it_vat_registries.field_account_journal__tax_registry_id
 msgid ""
 "You can group several journals within 1 registry. In printing wizard, you "
