@@ -6,7 +6,7 @@
 
 {
     "name": "ITA - Codici Ateco",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "category": "Localization/Italy",
     "author": "Abstract,Odoo Community Association (OCA),Odoo Italia Network",
     "development_status": "Beta",
