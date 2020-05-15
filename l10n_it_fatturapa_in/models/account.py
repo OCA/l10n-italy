@@ -112,9 +112,16 @@ class AccountInvoice(models.Model):
         # ftpa_withholding_type is set when DatiRitenuta is set,
         # withholding_tax is not set if no lines with Ritenuta = SI are found
         if self.ftpa_withholding_type and not self.withholding_tax:
-            error_message = (_(
+            error_message += (_(
                 "E-bill contains DatiRitenuta but no lines subjected to Ritenuta was "
-                "found. Please manually check Withholding tax Amount"
+                "found. Please manually check Withholding tax Amount\n"
+            ))
+        if self.ftpa_withholding_amount != self.withholding_tax_amount:
+            error_message += (_(
+                "E-bill contains ImportoRitenuta %s but created invoice has got"
+                " %s\n" % (
+                    self.ftpa_withholding_amount, self.withholding_tax_amount
+                )
             ))
         return error_message
 
