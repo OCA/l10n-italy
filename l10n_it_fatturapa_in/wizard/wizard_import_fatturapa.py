@@ -1214,6 +1214,7 @@ class WizardImportFatturapa(models.TransientModel):
                     Withholding.AliquotaRitenuta
                 ))
         invoice_data['ftpa_withholding_type'] = Withholding.TipoRitenuta
+        invoice_data['ftpa_withholding_amount'] = Withholding.ImportoRitenuta
         return wt_found
 
     def set_welfares_fund(

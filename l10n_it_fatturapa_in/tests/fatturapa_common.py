@@ -30,6 +30,30 @@ class FatturapaCommon(SingleTransactionCase):
                 self.env.ref('l10n_it_causali_pagamento.a').id,
         })
 
+    def create_wt_23_20(self):
+        return self.env['withholding.tax'].create({
+            'name': '2320',
+            'code': '2320',
+            'account_receivable_id': self.payable_account_id,
+            'account_payable_id': self.payable_account_id,
+            'payment_term': self.env.ref('account.account_payment_term').id,
+            'rate_ids': [(0, 0, {'tax': 23.0, 'base': 0.2})],
+            'causale_pagamento_id':
+                self.env.ref('l10n_it_causali_pagamento.a').id,
+        })
+
+    def create_wt_23_50(self):
+        return self.env['withholding.tax'].create({
+            'name': '2320',
+            'code': '2320',
+            'account_receivable_id': self.payable_account_id,
+            'account_payable_id': self.payable_account_id,
+            'payment_term': self.env.ref('account.account_payment_term').id,
+            'rate_ids': [(0, 0, {'tax': 23.0, 'base': 0.5})],
+            'causale_pagamento_id':
+                self.env.ref('l10n_it_causali_pagamento.a').id,
+        })
+
     def run_wizard(self, name, file_name, datas_fname=None,
                    mode='import', wiz_values=None, module_name=None):
         if module_name is None:
