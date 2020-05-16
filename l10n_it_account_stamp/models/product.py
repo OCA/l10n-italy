@@ -22,4 +22,5 @@ class ProductTemplate(models.Model):
     stamp_apply_min_total_base = fields.Float(
         'Stamp apply min total base',
         digits=dp.get_precision('Account'))
-    is_stamp = fields.Boolean('Is stamp')
+    is_stamp = fields.Boolean('Is a stamp')
+    auto_compute = fields.Boolean('Auto-compute')
