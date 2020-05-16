@@ -18,20 +18,6 @@ msgstr ""
 "X-Generator: Weblate 3.4\n"
 
 #. module: l10n_it_account_stamp
-#: model:product.product,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro
-#: model:product.template,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
-msgid ""
-"\n"
-"Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree "
-"July\n"
-"17, 2014"
-msgstr ""
-"\n"
-"Assolvimento dell’imposta di bollo ai sensi dell’articolo 6, comma 2, del "
-"D.M.\n"
-"17 giugno 2014"
-
-#. module: l10n_it_account_stamp
 #: model:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings
 msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
@@ -46,6 +32,13 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_it_account_stamp.invoice_form_stamp
 msgid "Add tax stamp line"
 msgstr "Aggiungi riga bollo"
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_invoice_auto_compute_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product_auto_compute
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template_auto_compute
+msgid "Auto-compute"
+msgstr ""
 
 #. module: l10n_it_account_stamp
 #: model:ir.model,name:l10n_it_account_stamp.model_res_company
@@ -81,7 +74,9 @@ msgstr "Riga fattura"
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_invoice_line_is_stamp_line
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product_is_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template_is_stamp
-msgid "Is stamp"
+#, fuzzy
+#| msgid "Is stamp"
+msgid "Is a stamp"
 msgstr "È un bollo"
 
 #. module: l10n_it_account_stamp
@@ -91,7 +86,7 @@ msgid "Missing account income configuration for %s"
 msgstr "Configurazione mancante del conto di ricavo per %s"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:16
+#: code:addons/l10n_it_account_stamp/models/invoice.py:18
 #: code:addons/l10n_it_account_stamp/models/invoice.py:46
 #: code:addons/l10n_it_account_stamp/models/invoice.py:129
 #, python-format
@@ -125,6 +120,24 @@ msgstr "Prodotto usato come imposta di bollo nelle fatture cliente."
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template_stamp_apply_min_total_base
 msgid "Stamp apply min total base"
 msgstr "Totale imponibile minimo per applicabilità bollo"
+
+#. module: l10n_it_account_stamp
+#: model:product.product,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro
+#: model:product.template,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree "
+#| "July\n"
+#| "17, 2014"
+msgid ""
+"Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree "
+"June 17, 2014"
+msgstr ""
+"\n"
+"Assolvimento dell’imposta di bollo ai sensi dell’articolo 6, comma 2, del D."
+"M.\n"
+"17 giugno 2014"
 
 #. module: l10n_it_account_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product_stamp_apply_tax_ids
@@ -163,6 +176,7 @@ msgid "Tax Stamp Product"
 msgstr "Prodotto imposta di bollo"
 
 #. module: l10n_it_account_stamp
+#: model:ir.ui.view,arch_db:l10n_it_account_stamp.invoice_form_stamp
 #: model:ir.ui.view,arch_db:l10n_it_account_stamp.product_template_form_view_account_stamp
 msgid "Tax stamp"
 msgstr "Imposta di bollo"
