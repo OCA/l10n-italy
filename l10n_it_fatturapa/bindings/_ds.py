@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # PyXB bindings for NM:f1c343a882e7a65fb879f4ee813309f8231f28c8
 # Generated 2016-12-12 16:50:59.495293
-# by PyXB version 1.2.5 using Python 2.7.12.final.0
+# by PyXB version 1.2.6 using Python 2.7.12.final.0
 # By Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 # Namespace http://www.w3.org/2000/09/xmldsig# [xmlns:ds]
 
@@ -29,7 +29,7 @@ _GenerationUID = pyxb.utils.utility.UniqueIdentifier(
     'urn:uuid:bd31195e-c082-11e6-8130-08edb9323673')
 
 # Version of PyXB used to generate the bindings
-_PyXBVersion = '1.2.5'
+_PyXBVersion = '1.2.6'
 # Generated bindings are not compatible across PyXB versions
 if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)

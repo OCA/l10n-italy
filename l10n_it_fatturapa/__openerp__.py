@@ -42,7 +42,7 @@ See l10n_it_fatturapa_out and l10n_it_fatturapa_in.
 Installation
 ============
 
-This module requires PyXB 1.2.5
+This module requires PyXB 1.2.6
 http://pyxb.sourceforge.net/
 http://github.com/OCA/partner-contact.git
 
@@ -111,7 +111,7 @@ To contribute to this module, please visit http://odoo-community.org.
     "installable": True,
     'external_dependencies': {
         'python': [
-            'pyxb',  # pyxb 1.2.5
+            'pyxb',  # pyxb 1.2.6
             'asn1crypto'
         ],
     }
