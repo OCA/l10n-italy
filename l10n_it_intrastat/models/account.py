@@ -530,6 +530,7 @@ class AccountInvoiceIntrastat(models.Model):
     invoice_id = fields.Many2one(
         comodel_name='account.invoice',
         string='Invoice',
+        ondelete='cascade',
         required=True)
     partner_id = fields.Many2one(
         string='Partner',
