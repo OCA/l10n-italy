@@ -123,7 +123,7 @@ msgid "Bill number {bill_nbr} of {bill_date}.\n"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1403
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1404
 #, python-format
 msgid "Bill total %s is different from document total amount %s"
 msgstr ""
@@ -181,7 +181,7 @@ msgid "Company Name field contains '%s'. Your System contains '%s'"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1418
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1419
 #, python-format
 msgid "Computed amount untaxed %s is different from summary data %s"
 msgstr ""
@@ -373,7 +373,15 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/models/account.py:115
 #, python-format
-msgid "E-bill contains DatiRitenuta but no lines subjected to Ritenuta was found. Please manually check Withholding tax Amount"
+msgid "E-bill contains DatiRitenuta but no lines subjected to Ritenuta was found. Please manually check Withholding tax Amount\n"
+""
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: code:addons/l10n_it_fatturapa_in/models/account.py:122
+#, python-format
+msgid "E-bill contains ImportoRitenuta %s but created invoice has got %s\n"
+""
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -445,7 +453,7 @@ msgid "File Size"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1441
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1442
 #, python-format
 msgid "File is linked to bills yet."
 msgstr ""
@@ -580,7 +588,7 @@ msgid "Invoice Line"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/account.py:163
+#: code:addons/l10n_it_fatturapa_in/models/account.py:170
 #, python-format
 msgid "Invoice date ({bill_date_invoice}) does not match with e-bill invoice date ({e_bill_date_invoice})"
 msgstr ""
@@ -1066,13 +1074,13 @@ msgid "Text Reference"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1265
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1266
 #, python-format
 msgid "The bill contains Welfare Fund tax with Type %s and Tax %s but such a tax is not found in your system. Please set it."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1247
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1248
 #, python-format
 msgid "The bill contains Welfare Fund tax with Type %s, but such a tax is not found in your system. Please set it."
 msgstr ""
@@ -1203,7 +1211,7 @@ msgid "Vendor invoice registration default date"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/account.py:152
+#: code:addons/l10n_it_fatturapa_in/models/account.py:159
 #, python-format
 msgid "Vendor reference ({bill_vendor_ref}) does not match with e-bill vendor reference ({e_bill_vendor_ref})"
 msgstr ""
@@ -1251,7 +1259,7 @@ msgid "Welfare Fund Details"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1292
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1293
 #, python-format
 msgid "Welfare Fund data %s has withholding tax but no withholding tax was found in the system."
 msgstr ""
@@ -1263,7 +1271,7 @@ msgid "Welfare Fund is not defined."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1284
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1285
 #, python-format
 msgid "Welfare Fund: %s"
 msgstr ""
