@@ -25,6 +25,16 @@ msgid ": order already has a fiscal number, "
 msgstr ": l'ordine ha già un numero fiscale\t, "
 
 #. module: fiscal_epos_print
+#: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_pos_config_printer_form
+msgid "<span class=\"o_form_label\">Fiscal Printer Serial</span>"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_pos_config_printer_form
+msgid "<span class=\"o_form_label\">Printer address</span>"
+msgstr ""
+
+#. module: fiscal_epos_print
 #. openerp-web
 #: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:147
 #, python-format
@@ -656,6 +666,7 @@ msgstr "Imposta"
 
 #. module: fiscal_epos_print
 #: model:ir.model.fields,help:fiscal_epos_print.field_pos_config__printer_ip
+#: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_pos_config_printer_form
 msgid "The hostname or IP address of the fiscal printer"
 msgstr "L'hostname o indirizzo IP della stampante fiscale"
 

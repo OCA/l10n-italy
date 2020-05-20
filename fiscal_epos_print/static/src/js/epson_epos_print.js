@@ -351,8 +351,6 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             if (!has_refund) {
                 xml += '<beginFiscalReceipt/>';
             }
-            // footer can go only as promo code so within a fiscal receipt body
-            xml += this.printFiscalReceiptFooter(receipt);
             if (has_refund)
             {
                 xml += this.printFiscalRefundDetails({
@@ -401,6 +399,8 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                     });
                 }
             });
+            // footer can go only as promo code so within a fiscal receipt body
+            xml += this.printFiscalReceiptFooter(receipt);
             if (has_refund) {
                 xml += self.printRecTotalRefund({});
             }
