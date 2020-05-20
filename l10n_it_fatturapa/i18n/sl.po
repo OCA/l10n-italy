@@ -1372,6 +1372,11 @@ msgid "Withholding Type"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__ftpa_withholding_amount
+msgid "Withholding amount"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_fatturapa_attachments__type
 msgid ""
 "You can either upload a file from your computer or copy/paste an internet "
