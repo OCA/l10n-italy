@@ -1,12 +1,16 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api
-
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     
+    fiscalcode = fields.Char(
+        'Fiscal Code', size=16, help="Italian Fiscal Code")
+    
+    @api.constrains('fiscalcode')
     def check_fiscalcode(self):
         for partner in self:
             if not partner.fiscalcode:
@@ -21,13 +25,7 @@ class ResPartner(models.Model):
                     continue
                 if len(partner.fiscalcode) != 16:
                     # Check fiscalcode of a person
-                    return False
+                    raise ValidationError(_("The fiscal code doesn't seem to be correct. %s") %
+                                          partner.fiscalcode)
         return True
-
-    fiscalcode = fields.Char(
-        'Fiscal Code', size=16, help="Italian Fiscal Code")
-
-    _constraints = [
-        (check_fiscalcode,
-         "The fiscal code doesn't seem to be correct.", ["fiscalcode"])
-    ]
+    

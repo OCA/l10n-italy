@@ -17,7 +17,7 @@
     'license': 'AGPL-3',
     'depends': ['base_vat'],
     'external_dependencies': {
-        'python': ['codicefiscale'],
+        'python': ['codicefiscale>=0.9'],
     },
     'data': [
         "security/ir.model.access.csv",
