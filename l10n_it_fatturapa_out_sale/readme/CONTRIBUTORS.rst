@@ -1,1 +1,1 @@
-* Sergio Corato <info@efatto.it>
+* Sergio Corato <https://github.com/sergiocorato>

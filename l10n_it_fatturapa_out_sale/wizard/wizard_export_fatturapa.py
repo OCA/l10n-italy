@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-from openerp import models
+from odoo import models
 
-from openerp.addons.l10n_it_fatturapa.bindings.fatturapa import (
+from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
+from odoo.addons.l10n_it_fatturapa.bindings.fatturapa import (
     DatiDocumentiCorrelatiType,
 )
 
@@ -14,19 +15,15 @@ class WizardExportFatturapa(models.TransientModel):
     def setRelatedDocumentTypes(self, invoice, body):
         res = super(WizardExportFatturapa, self).setRelatedDocumentTypes(
             invoice, body)
-<<<<<<< HEAD
-        if invoice.partner_id.fatturapa_sale_order_data:
-=======
         if invoice.partner_id.fatturapa_sale_order_data or \
                 self.env.user.company_id.fatturapa_sale_order_data:
->>>>>>> f569cedfd... index on 10.0: 4442cb74 Update translation files
             doc_type = 'DatiOrdineAcquisto'
             # if sale_order refer to the whole invoice create only 1 rel doc
-            if invoice.picking_ids and set(self.env['sale.order'].search([
-                ('name', 'in', invoice.picking_ids.mapped('origin'))]).mapped(
-                'client_order_ref')) == 1 or \
-                    len(set(invoice.invoice_line_ids.mapped('origin'))) == 1:
-                doc_data = self.prepareRelDocsLine(
+            only_one_sale_ref = bool(
+                invoice.picking_ids and len(invoice.mapped('picking_ids.sale_id') == 1)
+                or len(set(invoice.invoice_line_ids.mapped('origin'))) == 1)
+            if invoice.picking_ids and only_one_sale_ref:
+                doc_data = self.prepareDatiOrdineAcquisto(
                     invoice, invoice.invoice_line_ids[0])
                 if doc_data:
                     documento = DatiDocumentiCorrelatiType()
@@ -35,7 +32,7 @@ class WizardExportFatturapa(models.TransientModel):
                     getattr(body.DatiGenerali, doc_type).append(documento)
             else:
                 for line in invoice.invoice_line_ids:
-                    doc_data = self.prepareRelDocsLine(invoice, line)
+                    doc_data = self.prepareDatiOrdineAcquisto(invoice, line)
                     if doc_data:
                         documento = DatiDocumentiCorrelatiType()
                         documento.IdDocumento = doc_data['name']
@@ -45,34 +42,19 @@ class WizardExportFatturapa(models.TransientModel):
                         getattr(body.DatiGenerali, doc_type).append(documento)
         return res
 
-    def prepareRelDocsLine(self, invoice, line):
+    def prepareDatiOrdineAcquisto(self, invoice, line):
         res = False
-        sale_order_name = False
         if line.origin:
-            # if invoiced from picking, get sale_order from picking
-            for picking in invoice.picking_ids:
-                if picking.name == line.origin:
-                    sale_order_name = picking.origin
-                    break
-            # else use origin directly
-            if not sale_order_name:
-                sale_order_name = line.origin
-            order = self.env['sale.order'].search(
-                [('name', '=', sale_order_name)])
-            if order:
-<<<<<<< HEAD
-                name = order.client_order_ref or order.name
-=======
-                company_id = self.env.user.company_id
-                name = order.name if company_id.\
-                    fatturapa_out_sale_internal_ref \
-                    or not order.client_order_ref \
-                    else order.client_order_ref
->>>>>>> f569cedfd... index on 10.0: 4442cb74 Update translation files
+            orders = invoice.mapped('picking_ids.sale_id')
+            orders |= self.env['sale.order'].search([('name', '=', line.origin)])
+            for order in orders:
+                # get name of internal order if configured in company or if not exists
+                # a client order ref
+                name = order.name if \
+                    self.env.user.company_id.fatturapa_out_sale_internal_ref \
+                    or not order.client_order_ref else order.client_order_ref
                 res = {
-                    'name': name.replace('\n', ' ').replace
-                    ('\t', ' ').replace('\r', ' ').encode(
-                        'latin', 'ignore').decode('latin')[:20],
-                    'date': order.date_order[:10],
+                    'name': encode_for_export(name, 20, 'ascii'),
+                    'date': order.date_order.date(),
                 }
         return res

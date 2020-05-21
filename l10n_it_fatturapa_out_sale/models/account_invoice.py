@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-from openerp import fields, models
+from odoo import fields, models
 
 
 class AccountInvoice(models.Model):

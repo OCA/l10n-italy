@@ -2,17 +2,15 @@
 <odoo>
     <record id="view_account_config_settings" model="ir.ui.view">
         <field name="name">view_account_config_settings</field>
-        <field name="model">account.config.settings</field>
+        <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="l10n_it_fatturapa.view_account_config_settings"/>
         <field name="arch" type="xml">
-            <xpath expr="//div[@id='fatturapa_settings']" position="inside">
-                <div>
-                    <label for="fatturapa_sale_order_data"/>
-                    <field name="fatturapa_sale_order_data" class="oe_inline"/>
-                </div>
-                <div>
-                    <label for="fatturapa_out_sale_internal_ref"/>
-                    <field name="fatturapa_out_sale_internal_ref" class="oe_inline"/>
+            <xpath expr="//div[@id='fatturapa_settings']/div/div[hasclass('o_setting_right_pane')]/div[hasclass('content-group')]" position="inside">
+                <div class="row">
+                    <label for="fatturapa_sale_order_data" class="col-lg-3 o_light_label"/>
+                    <field name="fatturapa_sale_order_data"/>
+                    <label for="fatturapa_out_sale_internal_ref" class="col-lg-3 o_light_label"/>
+                    <field name="fatturapa_out_sale_internal_ref"/>
                 </div>
             </xpath>
         </field>

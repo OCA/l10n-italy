@@ -5,7 +5,7 @@
     "name": "ITA - Fattura elettronica - Integrazione SO",
     "summary": "Modulo ponte tra emissione fatture elettroniche e dati "
                "ordine di vendita",
-    "version": "10.0.1.0.0",
+    "version": "12.0.1.0.0",
     "development_status": "Beta",
     "category": "Hidden",
     "website": "https://github.com/OCA/l10n-italy",
@@ -14,7 +14,7 @@
     "maintainers": ["sergiocorato"],
     "license": "LGPL-3",
     "installable": True,
-    "auto_install": True,
+    "auto_install": False,
     "depends": [
         "l10n_it_fatturapa_out",
         "sale",
