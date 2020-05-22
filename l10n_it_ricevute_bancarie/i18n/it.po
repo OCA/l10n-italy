@@ -450,7 +450,7 @@ msgid "Credit Move Lines"
 msgstr "Righe movimento di accredito"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:144
+#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:145
 #, python-format
 msgid "Credit date must be greater or equal to acceptance date."
 msgstr ""
@@ -976,7 +976,7 @@ msgid "Payments"
 msgstr "Pagamenti"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:356
+#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:357
 #, python-format
 msgid "Please define a Settlement Journal."
 msgstr "Definire un registro pagamenti."
@@ -1071,7 +1071,7 @@ msgid "Slip"
 msgstr "Distinta"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:108
+#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:109
 #, python-format
 msgid ""
 "Slip %s is in state '%s'. You can only delete documents in state 'Draft' or "
