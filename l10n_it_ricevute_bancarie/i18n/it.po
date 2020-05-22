@@ -30,9 +30,9 @@ msgid ""
 "\" role=\"img\"/>"
 msgstr ""
 "<span class=\"o_form_label\">Spese di incasso RiBa</span>\n"
-"                        <span class=\"fa fa-lg fa-building-o\" title=\""
-"Prodotto usato come servizio per le spese di incasso RiBa\" aria-label=\""
-"Product used as Service for C/O Collection Fees\" groups=\"base."
+"                        <span class=\"fa fa-lg fa-building-o\" title="
+"\"Prodotto usato come servizio per le spese di incasso RiBa\" aria-label="
+"\"Product used as Service for C/O Collection Fees\" groups=\"base."
 "group_multi_company\" role=\"img\"/>"
 
 #. module: l10n_it_ricevute_bancarie
@@ -976,7 +976,7 @@ msgid "Payments"
 msgstr "Pagamenti"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:352
+#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:356
 #, python-format
 msgid "Please define a Settlement Journal."
 msgstr "Definire un registro pagamenti."
