@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-30 21:25+0000\n"
-"PO-Revision-Date: 2020-01-20 21:04+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2020-05-22 09:36+0000\n"
+"Last-Translator: SimoneVagile <simone.vanin@agilebg.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -30,9 +30,9 @@ msgid ""
 "\" role=\"img\"/>"
 msgstr ""
 "<span class=\"o_form_label\">Spese di incasso RiBa</span>\n"
-"                        <span class=\"fa fa-lg fa-building-o\" title=\""
-"Prodotto usato come servizio per le spese di incasso RiBa\" aria-label=\""
-"Product used as Service for C/O Collection Fees\" groups=\"base."
+"                        <span class=\"fa fa-lg fa-building-o\" title="
+"\"Prodotto usato come servizio per le spese di incasso RiBa\" aria-label="
+"\"Product used as Service for C/O Collection Fees\" groups=\"base."
 "group_multi_company\" role=\"img\"/>"
 
 #. module: l10n_it_ricevute_bancarie
@@ -450,7 +450,7 @@ msgid "Credit Move Lines"
 msgstr "Righe movimento di accredito"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:144
+#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:145
 #, python-format
 msgid "Credit date must be greater or equal to acceptance date."
 msgstr ""
@@ -976,7 +976,7 @@ msgid "Payments"
 msgstr "Pagamenti"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:352
+#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:357
 #, python-format
 msgid "Please define a Settlement Journal."
 msgstr "Definire un registro pagamenti."
@@ -1071,7 +1071,7 @@ msgid "Slip"
 msgstr "Distinta"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:108
+#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:109
 #, python-format
 msgid ""
 "Slip %s is in state '%s'. You can only delete documents in state 'Draft' or "
@@ -1174,12 +1174,12 @@ msgstr ""
 #. module: l10n_it_ricevute_bancarie
 #: selection:riba.file.export,state:0
 msgid "choose"
-msgstr ""
+msgstr "Scegli"
 
 #. module: l10n_it_ricevute_bancarie
 #: selection:riba.file.export,state:0
 msgid "get"
-msgstr ""
+msgstr "Scarica"
 
 #. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.distinta_qweb
