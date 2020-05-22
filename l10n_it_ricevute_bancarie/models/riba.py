@@ -308,11 +308,18 @@ class RibaListLine(models.Model):
             riba_move_line_name = ''
             for riba_move_line in line.move_line_ids:
                 total_credit += riba_move_line.amount
-                if riba_move_line.move_line_id.invoice_id.number:
-                    riba_move_line_name += riba_move_line.move_line_id.invoice_id.number
-                else:
-                    if riba_move_line.move_line_id.name:
-                        riba_move_line_name += riba_move_line.move_line_id.name
+                if riba_move_line.move_line_id.invoice_id.number and \
+                        riba_move_line.move_line_id.invoice_id.number \
+                        not in riba_move_line_name:
+                    riba_move_line_name = ' '.join([
+                        riba_move_line_name,
+                        riba_move_line.move_line_id.invoice_id.number
+                    ]).lstrip()
+                elif riba_move_line.move_line_id.name and \
+                        riba_move_line.move_line_id.name not in riba_move_line_name:
+                    riba_move_line_name = ' '.join([
+                        riba_move_line_name, riba_move_line.move_line_id.name
+                    ]).lstrip()
                 move_line = move_line_model.with_context({
                     'check_move_validity': False
                 }).create(
@@ -334,7 +341,7 @@ class RibaListLine(models.Model):
             move_line_model.with_context({
                 'check_move_validity': False
             }).create({
-                'name': 'C/O %s-%s Rif. %s - %s' % (
+                'name': 'C/O %s-%s Ref. %s - %s' % (
                     line.distinta_id.name,
                     line.sequence,
                     riba_move_line_name,
