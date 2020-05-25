@@ -87,6 +87,7 @@ msgid "Acceptance Journal"
 msgstr "Registro accettazione"
 
 #. module: l10n_it_ricevute_bancarie
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_filter
 #: selection:riba.distinta,state:0
 msgid "Accepted"
 msgstr "Accettata"
@@ -108,6 +109,13 @@ msgid "Accounting"
 msgstr "Contabilità"
 
 #. module: l10n_it_ricevute_bancarie
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_filter
+#, fuzzy
+#| msgid "Credited"
+msgid "Accredited"
+msgstr "Accreditata"
+
+#. module: l10n_it_ricevute_bancarie
 #: selection:riba.configuration,type:0
 msgid "After Collection"
 msgstr "Al dopo incasso"
@@ -116,6 +124,7 @@ msgstr "Al dopo incasso"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line__amount
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_move_line__amount
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.distinta_qweb
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_tree
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
 msgid "Amount"
 msgstr "Importo"
@@ -289,6 +298,7 @@ msgstr "Distinte RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_distinta__config_id
+#: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_distinta_line__config_id
 msgid "C/O configuration to be used."
 msgstr "Configurazione RiBa da utilizzare."
 
@@ -352,6 +362,7 @@ msgstr "Impostazioni di configurazione"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta__config_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line__config_id
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_issue__configuration_id
 msgid "Configuration"
 msgstr "Configurazione"
@@ -362,6 +373,7 @@ msgid "Configuration parameters for Cash Orders"
 msgstr "Parametri di configurazione delle ricevute bancarie"
 
 #. module: l10n_it_ricevute_bancarie
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_filter
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
 #: selection:riba.distinta.line,state:0
 msgid "Confirmed"
@@ -504,6 +516,21 @@ msgid "Detail"
 msgstr "Dettaglio"
 
 #. module: l10n_it_ricevute_bancarie
+#: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.detail_riba_action
+msgid "Dettaglio distinta Ri.Ba."
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.ui.menu,name:l10n_it_ricevute_bancarie.menu_riba_detail
+msgid "Dettaglio distinte"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_tree
+msgid "Dettaglio distinte Ri.Ba."
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_report_l10n_it_ricevute_bancarie_distinta_qweb__display_name
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation__display_name
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration__display_name
@@ -517,6 +544,12 @@ msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: l10n_it_ricevute_bancarie
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_filter
+msgid "Distinte Ri.Ba."
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_filter
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
 #: selection:riba.distinta,state:0 selection:riba.distinta.line,state:0
 msgid "Draft"
@@ -787,6 +820,7 @@ msgid "Mark as Credited"
 msgstr "Segna come accreditata"
 
 #. module: l10n_it_ricevute_bancarie
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_tree
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
 msgid "Mark as Past Due"
 msgstr "Segna come insoluta"
@@ -858,6 +892,7 @@ msgid "Other Info"
 msgstr "Altre informazioni"
 
 #. module: l10n_it_ricevute_bancarie
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_filter
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
 #: selection:riba.distinta,state:0 selection:riba.distinta.line,state:0
 msgid "Paid"
@@ -976,7 +1011,7 @@ msgid "Payments"
 msgstr "Pagamenti"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:357
+#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:360
 #, python-format
 msgid "Please define a Settlement Journal."
 msgstr "Definire un registro pagamenti."
@@ -1144,6 +1179,11 @@ msgstr "Importo totale"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line__type
 msgid "Type"
 msgstr "Tipo"
+
+#. module: l10n_it_ricevute_bancarie
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_filter
+msgid "Unsolved"
+msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta__user_id
