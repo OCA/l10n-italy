@@ -909,6 +909,8 @@ msgid "Partial Reconcile"
 msgstr "Riconciliazione parziale"
 
 #. module: l10n_it_ricevute_bancarie
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.invoice_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.invoice_tree
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_filter
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_account_invoice_filter_unsolved
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_configuration_form
