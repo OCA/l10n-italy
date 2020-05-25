@@ -9,7 +9,7 @@
 
 {
     'name': "ITA - Ricevute bancarie",
-    'version': "12.0.1.1.0",
+    'version': "12.0.1.2.0",
     'author': "Odoo Community Association (OCA)",
     'category': 'Localization/Italy',
     'summary': 'Ricevute bancarie',
