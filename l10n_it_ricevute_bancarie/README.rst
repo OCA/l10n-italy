@@ -113,6 +113,7 @@ Contributors
 * Alex Comba <alex.comba@agilebg.com>
 * Marco Calcagni <mcalcagni@dinamicheaziendali.it>
 * Sergio Zanchetta <https://github.com/primes2h>
+* Simone Vanin <simone.vanin@agilebg.com>
 
 Maintainers
 ~~~~~~~~~~~
