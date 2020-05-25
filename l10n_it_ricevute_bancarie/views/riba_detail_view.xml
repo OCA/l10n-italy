@@ -5,16 +5,16 @@
         <field name="name">riba.distinta.line.filtri</field>
         <field name="model">riba.distinta.line</field>
         <field name="arch" type="xml">
-            <search string="Distinte Ri.Ba.">
+		<search string="C/0 Slips">
                 <filter name="draft" string="Draft" help="Draft"
                         domain="[('state','=','draft')]"/>
                 <filter name="confirmed" string="Confirmed" help="Accepted"
                         domain="[('state','=','accepted')]"/>
                 <filter name="paid" string="Paid" help="Paid"
                         domain="[('state','=','paid')]"/>
-                <filter name="accredited" string="Accredited" help="Accredited"
+                <filter name="accredited" string="Credited" help="Credited"
                         domain="[('state','=','accredited')]"/>
-                <filter name="unsolved" string="Unsolved" help="Unsolved"
+                <filter name="unsolved" string="Past Due" help="Past Due"
                         domain="[('state','=','unsolved')]"/>
                 <separator orientation="vertical"/>
                 <field name="partner_id"/>
@@ -28,7 +28,7 @@
         <field name="name">riba.distinta.line.tree</field>
         <field name="model">riba.distinta.line</field>
         <field name="arch" type="xml">
-            <tree create="false" string="Dettaglio distinte Ri.Ba.">
+		<tree create="false" string="C/O Slips Detail">
                 <field name="config_id"/>
                 <field name="sequence"/>
                 <field name="invoice_number"/>
@@ -47,7 +47,7 @@
     </record>
 
     <record id="detail_riba_action" model="ir.actions.act_window">
-        <field name="name">Dettaglio distinta Ri.Ba.</field>
+	    <field name="name">C/O Slip Detail</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">riba.distinta.line</field>
         <field name="src_model">riba.distinta.line</field>
@@ -56,7 +56,7 @@
         <field name="search_view_id" ref="view_detail_riba_filter"/>
     </record>
 
-    <menuitem name="Dettaglio distinte" parent="menu_riba"
+    <menuitem name="Slips Detail" parent="menu_riba"
         id="menu_riba_detail" action="detail_riba_action"/>
 
 </odoo>
