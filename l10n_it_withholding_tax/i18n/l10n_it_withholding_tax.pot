@@ -263,6 +263,11 @@ msgid "Net To Pay"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
+#: model:ir.ui.view,arch_db:l10n_it_withholding_tax.invoice_supplier_tree
+msgid "Net to pay"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_form
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
 #: selection:withholding.tax.move,state:0
