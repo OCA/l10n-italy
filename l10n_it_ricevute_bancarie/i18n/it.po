@@ -109,13 +109,6 @@ msgid "Accounting"
 msgstr "Contabilità"
 
 #. module: l10n_it_ricevute_bancarie
-#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_filter
-#, fuzzy
-#| msgid "Credited"
-msgid "Accredited"
-msgstr "Accreditata"
-
-#. module: l10n_it_ricevute_bancarie
 #: selection:riba.configuration,type:0
 msgid "After Collection"
 msgstr "Al dopo incasso"
@@ -188,6 +181,13 @@ msgstr "Conto effetti"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved__effects_amount
 msgid "Bills Amount"
 msgstr "Importo effetti"
+
+#. module: l10n_it_ricevute_bancarie
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_filter
+#, fuzzy
+#| msgid "C/O Slips"
+msgid "C/0 Slips"
+msgstr "Distinte RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_unsolved.py:132
@@ -286,6 +286,13 @@ msgid "C/O Slip"
 msgstr "Distinta RiBa"
 
 #. module: l10n_it_ricevute_bancarie
+#: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.detail_riba_action
+#, fuzzy
+#| msgid "C/O Detail"
+msgid "C/O Slip Detail"
+msgstr "Dettaglio RiBa"
+
+#. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_report_l10n_it_ricevute_bancarie_distinta_qweb
 msgid "C/O Slip Report"
 msgstr "Rendiconto distinta RiBa"
@@ -295,6 +302,13 @@ msgstr "Rendiconto distinta RiBa"
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_distinta_riba_tree
 msgid "C/O Slips"
 msgstr "Distinte RiBa"
+
+#. module: l10n_it_ricevute_bancarie
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_tree
+#, fuzzy
+#| msgid "C/O Detail"
+msgid "C/O Slips Detail"
+msgstr "Dettaglio RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_distinta__config_id
@@ -469,6 +483,7 @@ msgstr ""
 "La data di accredito deve essere maggiore o pari alla data di accettazione."
 
 #. module: l10n_it_ricevute_bancarie
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_filter
 #: selection:riba.distinta,state:0 selection:riba.distinta.line,state:0
 msgid "Credited"
 msgstr "Accreditata"
@@ -516,21 +531,6 @@ msgid "Detail"
 msgstr "Dettaglio"
 
 #. module: l10n_it_ricevute_bancarie
-#: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.detail_riba_action
-msgid "Dettaglio distinta Ri.Ba."
-msgstr ""
-
-#. module: l10n_it_ricevute_bancarie
-#: model:ir.ui.menu,name:l10n_it_ricevute_bancarie.menu_riba_detail
-msgid "Dettaglio distinte"
-msgstr ""
-
-#. module: l10n_it_ricevute_bancarie
-#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_tree
-msgid "Dettaglio distinte Ri.Ba."
-msgstr ""
-
-#. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_report_l10n_it_ricevute_bancarie_distinta_qweb__display_name
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation__display_name
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration__display_name
@@ -542,11 +542,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
-
-#. module: l10n_it_ricevute_bancarie
-#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_filter
-msgid "Distinte Ri.Ba."
-msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_filter
@@ -913,6 +908,7 @@ msgstr "Riconciliazione parziale"
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.invoice_tree
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_filter
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_account_invoice_filter_unsolved
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_filter
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_configuration_form
 #: selection:riba.distinta,state:0 selection:riba.distinta.line,state:0
 msgid "Past Due"
@@ -1128,6 +1124,13 @@ msgid "Slips"
 msgstr "Distinte"
 
 #. module: l10n_it_ricevute_bancarie
+#: model:ir.ui.menu,name:l10n_it_ricevute_bancarie.menu_riba_detail
+#, fuzzy
+#| msgid "Detail"
+msgid "Slips Detail"
+msgstr "Dettaglio"
+
+#. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta__state
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line__state
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_file_export__state
@@ -1183,11 +1186,6 @@ msgid "Type"
 msgstr "Tipo"
 
 #. module: l10n_it_ricevute_bancarie
-#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_filter
-msgid "Unsolved"
-msgstr ""
-
-#. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta__user_id
 msgid "User"
 msgstr "Utente"
@@ -1233,6 +1231,11 @@ msgstr "del"
 #, python-format
 msgid "{line_name} for {month}-{year}"
 msgstr "{line_name} per {month}-{year}"
+
+#, fuzzy
+#~| msgid "Credited"
+#~ msgid "Accredited"
+#~ msgstr "Accreditata"
 
 #~ msgid "Is an overdue invoice"
 #~ msgstr "È una fattura insoluta"
