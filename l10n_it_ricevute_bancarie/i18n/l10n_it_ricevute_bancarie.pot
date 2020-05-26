@@ -93,11 +93,6 @@ msgid "Accounting"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_filter
-msgid "Accredited"
-msgstr ""
-
-#. module: l10n_it_ricevute_bancarie
 #: selection:riba.configuration,type:0
 msgid "After Collection"
 msgstr ""
@@ -169,6 +164,11 @@ msgstr ""
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved__effects_amount
 msgid "Bills Amount"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_filter
+msgid "C/0 Slips"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
@@ -268,6 +268,11 @@ msgid "C/O Slip"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
+#: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.detail_riba_action
+msgid "C/O Slip Detail"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_report_l10n_it_ricevute_bancarie_distinta_qweb
 msgid "C/O Slip Report"
 msgstr ""
@@ -276,6 +281,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_distinta_riba_tree
 msgid "C/O Slips"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_tree
+msgid "C/O Slips Detail"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
@@ -447,6 +457,7 @@ msgid "Credit date must be greater or equal to acceptance date."
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_filter
 #: selection:riba.distinta,state:0
 #: selection:riba.distinta.line,state:0
 msgid "Credited"
@@ -495,21 +506,6 @@ msgid "Detail"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.detail_riba_action
-msgid "Dettaglio distinta Ri.Ba."
-msgstr ""
-
-#. module: l10n_it_ricevute_bancarie
-#: model:ir.ui.menu,name:l10n_it_ricevute_bancarie.menu_riba_detail
-msgid "Dettaglio distinte"
-msgstr ""
-
-#. module: l10n_it_ricevute_bancarie
-#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_tree
-msgid "Dettaglio distinte Ri.Ba."
-msgstr ""
-
-#. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_report_l10n_it_ricevute_bancarie_distinta_qweb__display_name
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_accreditation__display_name
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration__display_name
@@ -520,11 +516,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_issue__display_name
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved__display_name
 msgid "Display Name"
-msgstr ""
-
-#. module: l10n_it_ricevute_bancarie
-#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_filter
-msgid "Distinte Ri.Ba."
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
@@ -893,6 +884,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.invoice_tree
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_filter
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_account_invoice_filter_unsolved
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_filter
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_configuration_form
 #: selection:riba.distinta,state:0
 #: selection:riba.distinta.line,state:0
@@ -1103,6 +1095,11 @@ msgid "Slips"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
+#: model:ir.ui.menu,name:l10n_it_ricevute_bancarie.menu_riba_detail
+msgid "Slips Detail"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta__state
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line__state
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_file_export__state
@@ -1149,11 +1146,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta__type
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line__type
 msgid "Type"
-msgstr ""
-
-#. module: l10n_it_ricevute_bancarie
-#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_filter
-msgid "Unsolved"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
