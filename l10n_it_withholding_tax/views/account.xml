@@ -110,6 +110,17 @@
             </field>
         </record>
 
+        <record id="invoice_supplier_tree" model="ir.ui.view">
+            <field name="name">view.withholding.invoice.supplier.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_tree"/>
+            <field name="arch" type="xml">
+                    <field name="residual_signed" position="after">
+                        <field name="amount_net_pay" widget="monetary" options="{'currency_field': 'currency_id'}" sum="Net to pay"/>
+                    </field>
+            </field>
+        </record>
+
         <!--
         INVOICE LINE
         -->
