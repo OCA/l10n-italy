@@ -130,10 +130,14 @@ class RibaFileExport(models.TransientModel):
             descrizione_domiciliataria.ljust(50)[0:50] + "\r\n")
 
     def _Record50(
-        self, importo_debito, invoice_ref, data_invoice, partita_iva_creditore
+        self, importo_debito, invoice_ref, data_invoice, partita_iva_creditore,
+        description
     ):
-        self._descrizione = 'PER LA FATTURA N. ' + invoice_ref + \
-            ' DEL ' + data_invoice + ' IMP ' + str(importo_debito)
+        if description:
+            self._descrizione = description
+        else:
+            self._descrizione = 'PER LA FATTURA N. ' + invoice_ref + \
+                ' DEL ' + data_invoice + ' IMP ' + str(importo_debito)
         return (
             " 50" + str(self._progressivo).rjust(7, '0') +
             self._descrizione.ljust(80)[0:80] + " " * 10 +
@@ -178,7 +182,7 @@ class RibaFileExport(models.TransientModel):
                     value[5], value[6], value[7], value[8], value[11])
             accumulatore = accumulatore + \
                 self._Record50(
-                    value[2], value[13], value[14], intestazione[11])
+                    value[2], value[13], value[14], intestazione[11], value[15])
             accumulatore = accumulatore + self._Record51(value[0])
             accumulatore = accumulatore + self._Record70()
         accumulatore = accumulatore + self._RecordEF()
@@ -281,6 +285,7 @@ class RibaFileExport(models.TransientModel):
                 line.partner_id.ref and line.partner_id.ref[:16] or '',
                 line.invoice_number[:40],
                 line.invoice_date,
+                line.description,
             ]
             arrayRiba.append(Riba)
 

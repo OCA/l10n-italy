@@ -282,6 +282,7 @@ class RibaListLine(models.Model):
                 list(set(payment_lines)))
 
     sequence = fields.Integer('Number')
+    description = fields.Char('Description', size=40)
     move_line_ids = fields.One2many(
         'riba.distinta.move.line', 'riba_line_id', string='Credit move lines')
     acceptance_move_id = fields.Many2one(

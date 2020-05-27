@@ -22,17 +22,27 @@ class RibaIssue(models.TransientModel):
     @api.multi
     def create_list(self):
         def create_rdl(countme, bank_id, rd_id, date_maturity, partner_id,
-                       acceptance_account_id):
+                       acceptance_account_id, description):
             rdl = {
                 'sequence': countme,
                 'bank_id': bank_id,
                 'distinta_id': rd_id,
+                'description': description,
                 'due_date': date_maturity,
                 'partner_id': partner_id,
                 'state': 'draft',
                 'acceptance_account_id': acceptance_account_id,
             }
             return riba_list_line.create(rdl)
+
+        def riba_description(move_line):
+            description = None
+            if move_line:
+                if move_line.invoice_date and move_line.display_name:
+                    description = 'FT ' + \
+                        move_line.display_name + ' DEL ' + \
+                        move_line.invoice_date
+            return description
 
         self.ensure_one()
         # Qui creiamo la distinta
@@ -82,7 +92,9 @@ class RibaIssue(models.TransientModel):
                         rdl_id = create_rdl(
                             countme, bank_id.id, rd_id,
                             move_line.date_maturity, move_line.partner_id.id,
-                            self.configuration_id.acceptance_account_id.id).id
+                            self.configuration_id.acceptance_account_id.id,
+                            riba_description(move_line)
+                        ).id
                         # total = 0.0
                         # invoice_date_group = ''
                         for grouped_line in grouped_lines[key]:
@@ -97,7 +109,8 @@ class RibaIssue(models.TransientModel):
                 rdl_id = create_rdl(
                     countme, bank_id.id, rd_id, move_line.date_maturity,
                     move_line.partner_id.id,
-                    self.configuration_id.acceptance_account_id.id).id
+                    self.configuration_id.acceptance_account_id.id,
+                    riba_description(move_line)).id
                 riba_list_move_line.create({
                     'riba_line_id': rdl_id,
                     'amount': move_line.amount_residual,

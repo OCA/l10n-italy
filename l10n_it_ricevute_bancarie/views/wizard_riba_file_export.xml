@@ -10,7 +10,7 @@
                     <group col="4">
                         <group colspan="4">
                             <field name="riba_txt" readonly="1" filename="file_name"/>
-                            <field name="file_name" invisible="1"></field>
+                            <field name="file_name" invisible="1"/>
                         </group>
                         <footer colspan="4" >
                             <button name="act_getfile" string="Export" type="object"/>
