@@ -173,7 +173,9 @@ class AccountInvoice(models.Model):
             'credit': credit,
             'debit': debit,
             'amount_currency': amount_tax_currency or False,
-            'currency_id': self.currency_id.id,
+            'currency_id': self.currency_id.id
+            if self.currency_id != self.company_id.currency_id
+            else False,
             'account_id': journal.default_credit_account_id.id,
             'company_id': self.company_id.id,
         }
@@ -203,7 +205,9 @@ class AccountInvoice(models.Model):
             'debit': debit,
             'credit': credit,
             'amount_currency': amount_tax_currency or False,
-            'currency_id': self.currency_id.id,
+            'currency_id': self.currency_id.id
+            if self.currency_id != self.company_id.currency_id
+            else False,
             'account_id': self.get_inv_line_to_reconcile().account_id.id,
             'partner_id': self.partner_id.id,
             'company_id': self.company_id.id
