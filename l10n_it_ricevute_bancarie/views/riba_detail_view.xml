@@ -5,7 +5,7 @@
         <field name="name">riba.distinta.line.filtri</field>
         <field name="model">riba.distinta.line</field>
         <field name="arch" type="xml">
-		<search string="C/0 Slips">
+		<search string="C/O Slips">
                 <filter name="draft" string="Draft" help="Draft"
                         domain="[('state','=','draft')]"/>
                 <filter name="confirmed" string="Confirmed" help="Accepted"
