@@ -986,7 +986,7 @@ msgid "Payments"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:360
+#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:376
 #, python-format
 msgid "Please define a Settlement Journal."
 msgstr ""
