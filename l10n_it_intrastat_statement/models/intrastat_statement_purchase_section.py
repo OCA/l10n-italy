@@ -256,7 +256,7 @@ class IntrastatStatementPurchaseSection2(models.Model):
             'quarterly': ref_period.get('quarterly'),
             'year_id': ref_period.get('year_id'),
             'sign_variation': sign_variation,
-            'transaction_nature_id': transaction_nature_id,
+            'transaction_nature_id': transaction_nature_id.id,
             'statistic_amount_euro': statistic_amount,
         })
         return res
