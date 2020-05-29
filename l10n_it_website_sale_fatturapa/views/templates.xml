@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  Copyright 2019 Simone Rubino
+  Copyright 2019 Lorenzo Battistini
+  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+
+<odoo>
+    <template id="assets_frontend" inherit_id="website.assets_frontend">
+        <xpath expr="script[last()]" position="after">
+            <script type="text/javascript"
+                    src="/l10n_it_website_sale_fatturapa/static/src/js/l10n_it_website_sale_fatturapa.js"/>
+        </xpath>
+    </template>
+
+    <template id="address" inherit_id="website_sale.address">
+        <xpath expr="//input[@name='name']/.." position="attributes">
+            <attribute name="t-attf-class" separator=" " add="o_hidden"/>
+        </xpath>
+        <xpath expr="//input[@name='name']/.." position="after">
+            <div t-attf-class="form-group #{error.get('firstname') and 'o_has_error' or ''} col-lg-6 div_firstname">
+                <label class="col-form-label" for="name">First name</label>
+                <input type="text" name="firstname"
+                       t-attf-class="form-control #{error.get('firstname') and 'is-invalid' or ''}"
+                       t-att-value="'firstname' in checkout and checkout['firstname']" />
+            </div>
+            <div t-attf-class="form-group #{error.get('lastname') and 'o_has_error' or ''} col-lg-6 div_lastname">
+                <label class="col-form-label" for="name">Last name</label>
+                <input type="text" name="lastname"
+                       t-attf-class="form-control #{error.get('lastname') and 'is-invalid' or ''}"
+                       t-att-value="'lastname' in checkout and checkout['lastname']" />
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('clearfix')][last()]" position="after">
+            <div class="col-lg-12 div_electronic_invoice_subjected" t-if="mode[1] != 'shipping'">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" class="mr8" name='electronic_invoice_subjected'
+                           t-att-checked="'electronic_invoice_subjected' in checkout and checkout['electronic_invoice_subjected']"/>I want to receive electronic invoice
+                    </label>
+                </div>
+            </div>
+            <div t-attf-class="form-group #{error.get('codice_destinatario') and 'o_has_error' or ''} col-lg-6 div_codice_destinatario" t-if="mode[1] != 'shipping'">
+                <label class="col-form-label label-optional" for="name">Addressee code</label>
+                <input type="text" name="codice_destinatario"
+                       t-attf-class="form-control #{error.get('codice_destinatario') and 'is-invalid' or ''}"
+                       t-att-value="'codice_destinatario' in checkout and checkout['codice_destinatario'] or '0000000'" />
+            </div>
+            <div t-attf-class="form-group #{error.get('pec_destinatario') and 'o_has_error' or ''} col-lg-6 div_pec_destinatario"
+                 t-if="mode[1] != 'shipping'">
+                <label class="col-form-label label-optional" for="name">or PEC email</label>
+                <input type="text" name="pec_destinatario"
+                       t-attf-class="form-control #{error.get('pec_destinatario') and 'is-invalid' or ''}"
+                       t-att-value="'pec_destinatario' in checkout and checkout['pec_destinatario']" />
+            </div>
+            <div class="clearfix"/>
+        </xpath>
+    </template>
+</odoo>
