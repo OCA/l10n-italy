@@ -134,7 +134,7 @@ msgstr "Reparto sulla stampante fiscale 1~99"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:380
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:378
 #, python-format
 msgid "Discount"
 msgstr "Sconto"
@@ -518,7 +518,7 @@ msgstr "Scontrino inviato alla stampante"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:388
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:386
 #, python-format
 msgid "Refund >>> "
 msgstr "Reso >>> "
