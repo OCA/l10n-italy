@@ -61,6 +61,7 @@ setuptools.setup(
         'odoo10-addon-l10n_it_website_portal_fatturapa',
         'odoo10-addon-l10n_it_website_portal_fiscalcode',
         'odoo10-addon-l10n_it_website_sale_corrispettivi',
+        'odoo10-addon-l10n_it_website_sale_fatturapa',
         'odoo10-addon-l10n_it_website_sale_fiscalcode',
         'odoo10-addon-l10n_it_withholding_tax',
         'odoo10-addon-l10n_it_withholding_tax_causali',
