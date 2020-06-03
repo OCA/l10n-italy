@@ -54,6 +54,7 @@
                             <group>
                                 <field name="state"/>
                                 <field name="type"/>
+                                <field name="description"/>
                                 <field name="invoice_number"/>
                                 <field name="invoice_date"/>
                                 <field name="partner_id"/>
@@ -134,6 +135,7 @@
                         <field name="line_ids" nolabel="1" colspan="4">
                             <tree string="Detail">
                                 <field name="sequence"/>
+                                <field name="description"/>
                                 <field name="invoice_number"/>
                                 <field name="invoice_date"/>
                                 <field name="partner_id"/>
