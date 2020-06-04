@@ -62,10 +62,29 @@ from openerp.tools.translate import _
 _logger = logging.getLogger(__name__)
 
 try:
+    from pyxb.utils import domutils
+    from pyxb.binding.datatypes import decimal as pyxb_decimal
     from unidecode import unidecode
     from pyxb.exceptions_ import SimpleFacetValueError, SimpleTypeValueError
 except ImportError as err:
     _logger.debug(err)
+
+
+class FatturapaBDS(domutils.BindingDOMSupport):
+
+    def valueAsText(self, value, enable_default_namespace=True):
+        if isinstance(value, pyxb_decimal) and hasattr(value, '_CF_pattern'):
+            # PyXB changes the text representation of decimals
+            # so that it breaks pattern matching.
+            # We have to use directly the string value
+            # instead of letting PyXB edit it
+            return str(value)
+        return super(FatturapaBDS, self) \
+            .valueAsText(value, enable_default_namespace)
+
+
+fatturapaBDS = FatturapaBDS()
+
 
 class WizardExportFatturapa(orm.TransientModel):
     _name = "wizard.export.fatturapa"
@@ -104,10 +123,15 @@ class WizardExportFatturapa(orm.TransientModel):
             vat = company.fatturapa_sender_partner.vat
         vat = vat.replace(' ', '').replace('.', '').replace('-', '')
         attach_obj = self.pool['fatturapa.attachment.out']
+        attach_str = fatturapa.toxml(
+            encoding="UTF-8",
+            bds=fatturapaBDS,
+        )
+        fatturapaBDS.reset()
         attach_vals = {
             'name': '%s_%s.xml' % (vat, str(number)),
             'datas_fname': '%s_%s.xml' % (vat, str(number)),
-            'datas': base64.encodestring(fatturapa.toxml("latin1")),
+            'datas': base64.encodestring(attach_str),
         }
         attach_id = attach_obj.create(cr, uid, attach_vals, context=context)
 
