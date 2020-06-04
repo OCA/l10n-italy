@@ -25,7 +25,7 @@ import phonenumbers
 import os
 from openerp.osv import orm
 from openerp.osv import fields
-from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
+from openerp.addons.l10n_it_fatturapa.bindings.fatturapa import (
     IdFiscaleType,
     ContattiTrasmittenteType,
     CedentePrestatoreType,

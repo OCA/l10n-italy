@@ -24,7 +24,6 @@ try:
     import pyxb.binding.datatypes
 except (ImportError) as err:
     _logger.debug(err)
-
 # Unique identifier for bindings created at the same time
 _GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:ead586f0-a39d-11e9-8600-d43b049899a0')
 

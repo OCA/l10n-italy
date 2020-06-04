@@ -4,7 +4,7 @@ from openerp.osv import fields
 from openerp.osv import orm
 from openerp.tools.translate import _
 from openerp.osv.osv import except_osv
-from openerp.addons.l10n_it_fatturapa.bindings import fatturapa_v_1_2
+from openerp.addons.l10n_it_fatturapa.bindings import fatturapa
 
 
 class WizardLinkToInvoice(orm.TransientModel):
@@ -19,7 +19,7 @@ class WizardLinkToInvoice(orm.TransientModel):
     def get_invoice_obj(self, cr, uid, fatturapa_attachment):
         xml_string = self.pool.get('ir.attachment').get_xml_string(
             cr, uid, fatturapa_attachment.ir_attachment_id.id)
-        return fatturapa_v_1_2.CreateFromDocument(xml_string)
+        return fatturapa.CreateFromDocument(xml_string)
 
     def link(self, cr, uid, ids, context={}):
         active_ids = context.get('active_ids')

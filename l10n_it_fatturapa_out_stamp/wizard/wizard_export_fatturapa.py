@@ -4,7 +4,7 @@
 from openerp.osv import osv
 from openerp.tools.translate import _
 from openerp.exceptions import Warning as UserError
-from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
+from openerp.addons.l10n_it_fatturapa.bindings.fatturapa import (
     DatiBolloType
 )
 

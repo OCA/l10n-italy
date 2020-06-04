@@ -27,7 +27,7 @@ from openerp.tools.translate import _
 from openerp.osv import fields
 import logging
 
-from openerp.addons.l10n_it_fatturapa.bindings import fatturapa_v_1_2
+from openerp.addons.l10n_it_fatturapa.bindings import fatturapa
 from openerp.addons.base_iban import base_iban
 from openerp.osv.osv import except_osv
 from lxml import etree
@@ -1584,4 +1584,4 @@ class WizardImportFatturapa(orm.TransientModel):
         for num in range(1, 24):
             to_replace = '+0%s:00' % (num)
             xml_string = xml_string.replace(to_replace, '')
-        return fatturapa_v_1_2.CreateFromDocument(xml_string)
+        return fatturapa.CreateFromDocument(xml_string)
