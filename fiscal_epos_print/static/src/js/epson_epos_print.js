@@ -170,7 +170,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                     if (!order.fiscal_receipt_number) {
                         order.fiscal_receipt_number = parseInt(add_info.fiscalReceiptNumber);
                         order.fiscal_receipt_amount = parseFloat(add_info.fiscalReceiptAmount.replace(',', '.'));
-                        var fiscalReceiptDate = new Date(add_info.fiscalReceiptDate.replace(/(\d{2})\/(\d{1,2})\/(\d{4})/, '$3/$2/$1'));
+                        var fiscalReceiptDate = new Date(add_info.fiscalReceiptDate.replace(/(\d{1,2})\/(\d{1,2})\/(\d{4})/, '$3/$2/$1'));
                         order.fiscal_receipt_date = moment(fiscalReceiptDate).format('YYYY-MM-DD');
                         order.fiscal_z_rep_number = add_info.zRepNumber;
                         order.fiscal_printer_serial = sender.pos.config.fiscal_printer_serial;
