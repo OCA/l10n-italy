@@ -48,6 +48,7 @@ class TestIntrastatStatement (AccountingTestCase):
             self.account_account_payable
         self.product01 = self.env.ref('product.product_product_10')
         self.tax22_sale = self.env.ref('l10n_it_intrastat.tax_22')
+        self.currency_gbp = self.env.ref("base.GBP")
 
         company = self.env.user.company_id
         company.partner_id.vat = 'IT03339130126'
@@ -57,7 +58,7 @@ class TestIntrastatStatement (AccountingTestCase):
         company.intrastat_sale_transaction_nature_id = \
             self.ref('l10n_it_intrastat.code_9')
 
-    def _get_intrastat_computed_bill(self):
+    def _get_intrastat_computed_bill(self, currency=None):
         invoice = self.invoice_model.create({
             'partner_id': self.partner01.id,
             'type': 'in_invoice',
@@ -75,6 +76,8 @@ class TestIntrastatStatement (AccountingTestCase):
                 })]
             })]
         })
+        if currency:
+            invoice.currency_id = currency
         invoice.compute_taxes()
         invoice.action_invoice_open()
         invoice.compute_intrastat_lines()
@@ -161,6 +164,19 @@ class TestIntrastatStatement (AccountingTestCase):
 
         # Last line is section line, for monthly report it should be 118 chars
         self.assertEqual(len(file_content.splitlines()[-1]), 118)
+
+    def test_statement_purchase_currency(self):
+        bill = self._get_intrastat_computed_bill(currency=self.currency_gbp)
+
+        statement = self.statement_model.create({
+            'period_number': bill.date_invoice.month,
+        })
+
+        statement.compute_statement()
+        line = statement.purchase_section1_ids.filtered(
+            lambda l: l.invoice_id == bill)
+        self.assertEqual(bill.intrastat_line_ids.amount_currency,
+                         line.amount_currency)
 
     def test_statement_purchase_refund(self):
         bill = self._get_intrastat_computed_bill()
