@@ -27,19 +27,18 @@ class IntrastatStatementPurchaseSection(models.AbstractModel):
         invoice_id = inv_intra_line.invoice_id
 
         # Amounts
-        dp_model = self.env['decimal.precision']
-        amount_currency = statement_id.round_min_amount(
-            inv_intra_line.amount_currency,
-            statement_id.company_id or company_id,
-            dp_model.precision_get('Account'))
+        amount_currency = 0
+        if invoice_id.currency_id != invoice_id.company_id.currency_id \
+           and invoice_id.currency_id != self.env.ref("base.EUR"):
+            # Only for non-Euro countries
+            dp_model = self.env['decimal.precision']
+            amount_currency = statement_id.round_min_amount(
+                inv_intra_line.amount_currency,
+                statement_id.company_id or company_id,
+                dp_model.precision_get('Account'))
 
         res.update({
-            # Only for non-Euro countries
-            'amount_currency':
-                amount_currency
-                if not invoice_id.company_id.currency_id.id
-                and invoice_id.currency_id.id
-                else 0,
+            'amount_currency': amount_currency,
         })
         return res
 
