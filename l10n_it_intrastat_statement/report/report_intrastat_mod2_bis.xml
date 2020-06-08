@@ -46,7 +46,7 @@
                                 </strong>
                                 <span class="col-offset-1">ANNO: </span>
                                 <strong><span t-esc="o.fiscalyear"/></strong>
-        
+
                                 <span class="col-offset-2">PARTITA IVA</span>
                                 <strong><span t-esc="o.company_id.vat"/></strong>
                             </div>
@@ -112,7 +112,7 @@
                                         <td><span t-field="l.country_partner_id.code"/></td>
                                         <td><span t-field="l.vat_code"/></td>
                                         <td><span t-field="l.amount_euro"/></td>
-                                        <td></td>
+                                        <td><span t-if="l.amount_currency" t-field="l.amount_currency"/></td>
                                         <td><span t-field="l.transaction_nature_id.code"/></td>
                                         <td><span t-field="l.intrastat_code_id.name"/></td>
                                         <td><span t-field="l.weight_kg"/></td>
