@@ -66,7 +66,7 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:if test="$importo">
-          <xsl:value-of select="format-number($importo,  '###.###.##0,00', 'euro')" />
+          <xsl:value-of select="format-number($importo,  '###.###.##0,00######', 'euro')" />
         </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
@@ -100,7 +100,7 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:if test="$importo">
-          <xsl:value-of select="format-number($importo,  '###.###.##0,00', 'euro')" />
+          <xsl:value-of select="format-number($importo,  '###.###.##0,00######', 'euro')" />
         </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
@@ -143,6 +143,27 @@
     </xsl:if>
   </xsl:template>
 
+  <xsl:template match="DatiDDT">
+	  <xsl:variable name="descri_DAO" >
+
+		  <xsl:text>DDT </xsl:text>
+		  <xsl:value-of select="NumeroDDT" />
+		  <xsl:if test="DataDDT">
+			<xsl:text> del </xsl:text>
+			<xsl:call-template name="FormatDateIta">
+			  <xsl:with-param name="DateTime" select="DataDDT" />
+			</xsl:call-template>
+		  </xsl:if>
+
+	  </xsl:variable>
+
+	  <xsl:if test="$descri_DAO">
+		<xsl:call-template name="AltraDescrizioneLinea">
+		  <xsl:with-param name="textDescrizione" select = "$descri_DAO" />
+		</xsl:call-template>
+	  </xsl:if>
+  </xsl:template>
+
   <xsl:template match="DettaglioLinee">
     <xsl:param name="r" />
     <xsl:param name="posASWRELSTD" />
@@ -151,11 +172,11 @@
 
     <!--Numero Linea -->
     <xsl:variable name="valNumeroLinea" >
-      <xsl:value-of select="floor(NumeroLinea)" />
+      <xsl:value-of select="number(NumeroLinea)" />
     </xsl:variable>
-   
 
     <!--Pre LINEA OpzPreLineaDatiDDT -->
+
     <xsl:choose>
 
       <xsl:when test="OpzPreLineaDatiDDT">
@@ -165,35 +186,15 @@
             <xsl:with-param name="textDescrizione" select = "." />
           </xsl:call-template>
         </xsl:for-each>
-        
+
       </xsl:when>
+	    <xsl:otherwise>
 
-      <xsl:when test="count($TipoFattura/FatturaElettronicaBody[$IndiceBody]/DatiGenerali/DatiDDT/RiferimentoNumeroLinea[.=$valNumeroLinea] ) > 0">
-        <xsl:for-each select="$TipoFattura/FatturaElettronicaBody[$IndiceBody]/DatiGenerali/DatiDDT[./RiferimentoNumeroLinea = $valNumeroLinea]"  >
-          <xsl:variable name="descri_DAO" >
-            <xsl:if test="RiferimentoNumeroLinea = $valNumeroLinea">
-              <xsl:text>DDT </xsl:text>
-              <xsl:value-of select="NumeroDDT" />
-              <xsl:if test="DataDDT">
-                <xsl:text> del </xsl:text>
-                <xsl:call-template name="FormatDateIta">
-                  <xsl:with-param name="DateTime" select="DataDDT" />
-                </xsl:call-template>
-              </xsl:if>
-            </xsl:if>
-          </xsl:variable>
-
-          <xsl:if test="$descri_DAO">
-            <xsl:call-template name="AltraDescrizioneLinea">
-              <xsl:with-param name="textDescrizione" select = "$descri_DAO" />
-            </xsl:call-template>
-          </xsl:if>
+	   <xsl:for-each select="$TipoFattura/FatturaElettronicaBody[$IndiceBody]/DatiGenerali/DatiDDT[ number(./RiferimentoNumeroLinea) = $valNumeroLinea] ">
+				<xsl:apply-templates select="."/>	<!-- apply DatiDDT template -->
         </xsl:for-each>
-      </xsl:when>
-      <xsl:otherwise>
-     
-      </xsl:otherwise>
 
+      </xsl:otherwise>
     </xsl:choose>
 
 
@@ -208,9 +209,10 @@
         </xsl:for-each>
       </xsl:when>
 
-      <xsl:when test="count($TipoFattura/FatturaElettronicaBody[$IndiceBody]/DatiGenerali/DatiOrdineAcquisto/RiferimentoNumeroLinea[.=$valNumeroLinea] ) > 0">
-        <xsl:for-each select="$TipoFattura/FatturaElettronicaBody[$IndiceBody]/DatiGenerali/DatiOrdineAcquisto[./RiferimentoNumeroLinea = $valNumeroLinea]" >
-          <xsl:call-template name="DatiCorrelati" >
+      <xsl:otherwise>
+
+	  <xsl:for-each select="$TipoFattura/FatturaElettronicaBody[$IndiceBody]/DatiGenerali/DatiOrdineAcquisto[ number(./RiferimentoNumeroLinea) = $valNumeroLinea] ">
+			<xsl:call-template name="DatiCorrelati" >
             <xsl:with-param name="Prefix"   select='"Vs.Ord. "'/>
             <xsl:with-param name="IdDocumento" select="IdDocumento"/>
             <xsl:with-param name="Data" select="Data"/>
@@ -218,8 +220,9 @@
             <xsl:with-param name="CodiceCIG" select="CodiceCIG"/>
           </xsl:call-template >
         </xsl:for-each>
-      </xsl:when>
-      <xsl:otherwise></xsl:otherwise>
+
+
+	  </xsl:otherwise>
     </xsl:choose>
 
     <!--DatiContratto  -->
@@ -232,18 +235,19 @@
           </xsl:call-template>
         </xsl:for-each>
       </xsl:when>
-      <xsl:when test="count($TipoFattura/FatturaElettronicaBody[$IndiceBody]/DatiGenerali/DatiContratto/RiferimentoNumeroLinea[.=$valNumeroLinea] ) > 0">
-        <xsl:for-each select="$TipoFattura/FatturaElettronicaBody[$IndiceBody]/DatiGenerali/DatiContratto[./RiferimentoNumeroLinea = $valNumeroLinea]" >
-          <xsl:call-template name="DatiCorrelati" >
+
+      <xsl:otherwise>
+		<xsl:for-each select="$TipoFattura/FatturaElettronicaBody[$IndiceBody]/DatiGenerali/DatiContratto[ number(./RiferimentoNumeroLinea) = $valNumeroLinea] ">
+	    <xsl:call-template name="DatiCorrelati" >
             <xsl:with-param name="Prefix"  select='"Contratto "'/>
             <xsl:with-param name="IdDocumento" select="IdDocumento"/>
             <xsl:with-param name="Data" select="Data"/>
             <xsl:with-param name="CodiceCUP" select="CodiceCUP"/>
             <xsl:with-param name="CodiceCIG" select="CodiceCIG"/>
           </xsl:call-template >
-        </xsl:for-each>
-      </xsl:when>
-      <xsl:otherwise></xsl:otherwise>
+	    </xsl:for-each>
+
+	  </xsl:otherwise>
     </xsl:choose>
 
     <!--DatiConvenzione -->
@@ -256,8 +260,10 @@
           </xsl:call-template>
         </xsl:for-each>
       </xsl:when>
-      <xsl:when test="count($TipoFattura/FatturaElettronicaBody[$IndiceBody]/DatiGenerali/DatiConvenzione/RiferimentoNumeroLinea[.=$valNumeroLinea] ) > 0">
-        <xsl:for-each select="$TipoFattura/FatturaElettronicaBody[$IndiceBody]/DatiGenerali/DatiConvenzione[./RiferimentoNumeroLinea = $valNumeroLinea]" >
+
+      <xsl:otherwise>
+
+	  <xsl:for-each select="$TipoFattura/FatturaElettronicaBody[$IndiceBody]/DatiGenerali/DatiConvenzione[ number(./RiferimentoNumeroLinea) = $valNumeroLinea] ">
           <xsl:call-template name="DatiCorrelati" >
             <xsl:with-param name="Prefix"  select='"Convenzione "'/>
             <xsl:with-param name="IdDocumento" select="IdDocumento"/>
@@ -266,8 +272,8 @@
             <xsl:with-param name="CodiceCIG" select="CodiceCIG"/>
           </xsl:call-template >
         </xsl:for-each>
-      </xsl:when>
-      <xsl:otherwise></xsl:otherwise>
+
+	  </xsl:otherwise>
     </xsl:choose>
 
     <!--DatiRicezione -->
@@ -280,8 +286,10 @@
           </xsl:call-template>
         </xsl:for-each>
       </xsl:when>
-      <xsl:when test="count($TipoFattura/FatturaElettronicaBody[$IndiceBody]/DatiGenerali/DatiRicezione/RiferimentoNumeroLinea[.=$valNumeroLinea] ) > 0">
-        <xsl:for-each select="$TipoFattura/FatturaElettronicaBody[$IndiceBody]/DatiGenerali/DatiRicezione[./RiferimentoNumeroLinea = $valNumeroLinea]" >
+
+      <xsl:otherwise>
+
+	 <xsl:for-each select="$TipoFattura/FatturaElettronicaBody[$IndiceBody]/DatiGenerali/DatiRicezione[ number(./RiferimentoNumeroLinea) = $valNumeroLinea] ">
           <xsl:call-template name="DatiCorrelati" >
             <xsl:with-param name="Prefix"  select='"Ricezione "'/>
             <xsl:with-param name="IdDocumento" select="IdDocumento"/>
@@ -290,11 +298,9 @@
             <xsl:with-param name="CodiceCIG" select="CodiceCIG"/>
           </xsl:call-template >
         </xsl:for-each>
-      </xsl:when>
-      <xsl:otherwise></xsl:otherwise>
+
+	  </xsl:otherwise>
     </xsl:choose>
-
-
 
     <!--DatiFattureCollegate-->
     <xsl:choose>
@@ -306,8 +312,9 @@
           </xsl:call-template>
         </xsl:for-each>
       </xsl:when>
-      <xsl:when test="count($TipoFattura/FatturaElettronicaBody[$IndiceBody]/DatiGenerali/DatiFattureCollegate/RiferimentoNumeroLinea[.=$valNumeroLinea] ) > 0">
-        <xsl:for-each select="$TipoFattura/FatturaElettronicaBody[$IndiceBody]/DatiGenerali/DatiFattureCollegate[./RiferimentoNumeroLinea = $valNumeroLinea]" >
+      <xsl:otherwise>
+
+     <xsl:for-each select="$TipoFattura/FatturaElettronicaBody[$IndiceBody]/DatiGenerali/DatiFattureCollegate[ number(./RiferimentoNumeroLinea) = $valNumeroLinea] ">
           <xsl:call-template name="DatiCorrelati" >
             <xsl:with-param name="Prefix"  select='"Fatt.coll. "'/>
             <xsl:with-param name="IdDocumento" select="IdDocumento"/>
@@ -316,8 +323,8 @@
             <xsl:with-param name="CodiceCIG" select="CodiceCIG"/>
           </xsl:call-template >
         </xsl:for-each>
-      </xsl:when>
-      <xsl:otherwise></xsl:otherwise>
+
+	  </xsl:otherwise>
     </xsl:choose>
 
     <!--DETTAGLIO LINEE -->
@@ -378,17 +385,12 @@
               <xsl:if test=" translate( TipoDato,
                                      'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
                                      'abcdefghijklmnopqrstuvwxyz'
-                                    ) != 'aswrelstd' 
-									and 									
+                                    ) != 'aswrelstd'
+									and
 									translate( TipoDato,
                                      'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
                                      'abcdefghijklmnopqrstuvwxyz'
-                                    ) != 'aswswhouse'  
-         and 									
-									translate( TipoDato,
-                                     'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-                                     'abcdefghijklmnopqrstuvwxyz'
-                                    ) != 'aswtriga'   ">
+                                    ) != 'aswswhouse'   ">
 
 
                 <div class="tx-xsmall">
@@ -580,8 +582,8 @@
           <xsl:if test=" translate( TipoDato,
 														 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 														 'abcdefghijklmnopqrstuvwxyz'
-														) != 'aswrelstd' 
-														and 									
+														) != 'aswrelstd'
+														and
 														translate( TipoDato,
 														 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 														 'abcdefghijklmnopqrstuvwxyz'
@@ -649,24 +651,9 @@
 
   </xsl:template>
 
-
-
-
-
-
   <xsl:template match="DatiRitenuta">
 
-    <table class="tbFoglio">
 
-      <thead>
-        <tr>
-          <th class="title"> Dati ritenuta d'acconto</th>
-          <th class="perc">Aliquota ritenuta</th>
-          <th>Causale	</th>
-          <th width="15%">Importo </th>
-        </tr>
-      </thead>
-      <tbody>
         <tr>
           <td >
 
@@ -680,11 +667,23 @@
               </xsl:variable>
               <xsl:choose>
                 <xsl:when test="$TR='RT01'">
-                  (ritenuta persone fisiche)
+                  Ritenuta persone fisiche
                 </xsl:when>
                 <xsl:when test="$TR='RT02'">
-                  (ritenuta persone giuridiche)
+                  Ritenuta persone giuridiche
                 </xsl:when>
+				<xsl:when test="$TR='RT03'">
+					Contributo INPS
+				</xsl:when>
+				<xsl:when test="$TR='RT04'">
+					Contributo ENASARCO
+				</xsl:when>
+				<xsl:when test="$TR='RT05'">
+					Contributo ENPAM
+				</xsl:when>
+				<xsl:when test="$TR='RT06'">
+					Altro contributo previdenziale
+				</xsl:when>
                 <xsl:when test="$TR=''">
                 </xsl:when>
                 <xsl:otherwise>
@@ -712,7 +711,7 @@
                 <xsl:value-of select="CausalePagamento" />
               </xsl:variable>
               <xsl:if test="$CP!=''">
-                (decodifica come da modello 770S)
+                (decodifica come da modello CU)
               </xsl:if>
 
             </xsl:if>
@@ -727,10 +726,89 @@
           </td>
 
         </tr>
-      </tbody>
-    </table>
+
   </xsl:template>
 
+  <xsl:template match="DettaglioPagamento">
+
+    <xsl:if test="Beneficiario">
+      Beneficiario  <xsl:value-of select="Beneficiario" /> <br/>
+    </xsl:if>
+
+    <xsl:if test="IBAN">
+      IBAN
+      <xsl:value-of select="IBAN" /> <br/>
+    </xsl:if>
+
+    <xsl:if test="ABI or CAB or BIC ">
+
+      <xsl:if test="ABI">
+        ABI  <xsl:value-of select="ABI" />
+      </xsl:if>
+
+      <xsl:if test="CAB">
+        CAB  <xsl:value-of select="CAB" />
+      </xsl:if>
+
+      <xsl:if test="BIC">
+        BIC  <xsl:value-of select="BIC" />
+      </xsl:if>
+      <br/>
+    </xsl:if>
+
+    <xsl:if test="IstitutoFinanziario">
+      <xsl:value-of select="IstitutoFinanziario" />
+      <br/>
+    </xsl:if>
+
+    <xsl:if test="CodUfficioPostale">
+      Codice ufficio postale
+      <xsl:value-of select="CodUfficioPostale" />
+      <br/>
+    </xsl:if>
+
+    <xsl:if test="TitoloQuietanzante or CognomeQuietanzante or NomeQuietanzante or CFQuietanzante">
+      Quietanzante
+      <xsl:value-of select="concat(TitoloQuietanzante , ' ',CognomeQuietanzante, ' ', NomeQuietanzante, ' ', CFQuietanzante )"/>
+      <br/>
+    </xsl:if>
+
+    <xsl:if test="DataLimitePagamentoAnticipato or ScontoPagamentoAnticipato">
+
+      <xsl:if test="DataLimitePagamentoAnticipato">
+        Data limite pagamento anticipato <xsl:call-template name="FormatDateIta">
+          <xsl:with-param name="DateTime" select="DataLimitePagamentoAnticipato" />
+        </xsl:call-template>
+      </xsl:if>
+
+      <xsl:if test="ScontoPagamentoAnticipato">
+        Sconto anticipato
+        <xsl:value-of select="format-number(ScontoPagamentoAnticipato,  '###.###.##0,00', 'euro')" />
+      </xsl:if>
+      <br/>
+    </xsl:if>
+
+    <xsl:if test="DataDecorrenzaPenale or PenalitaPagamentiRitardati">
+
+      <xsl:if test="DataDecorrenzaPenale">
+        Data penale <xsl:call-template name="FormatDateIta">
+          <xsl:with-param name="DateTime" select="DataDecorrenzaPenale" />
+        </xsl:call-template>
+      </xsl:if>
+
+      <xsl:if test="PenalitaPagamentiRitardati">
+        Importo penale
+        <xsl:value-of select="format-number(PenalitaPagamentiRitardati,  '###.###.##0,00', 'euro')" />
+      </xsl:if>
+
+      <br/>
+    </xsl:if>
+
+    <xsl:if test="CodicePagamento">
+      Codice pagamento  <xsl:value-of select="CodicePagamento" />
+    </xsl:if>
+
+  </xsl:template>
 
   <xsl:template name="FatturaElettronica">
 
@@ -762,7 +840,15 @@
         <!-- FatturaElettronicaHeader -->
         <xsl:if test="$TipoFattura/FatturaElettronicaHeader">
 
-
+			  <xsl:if test="$TipoFattura/FatturaElettronicaHeader/NomeDocumento">
+			      <table class="tbNoBorder">
+				  <tr >
+						<td>
+                       <xsl:value-of select="$TipoFattura/FatturaElettronicaHeader/NomeDocumento"/>
+				  </td>
+				  </tr>
+				  </table>
+                </xsl:if>
 
           <table id="tbHeader" class="tbHeader">
 
@@ -861,63 +947,61 @@
                                     </xsl:variable>
                                     <xsl:choose>
                                       <xsl:when test="$RF='RF01'">
-                                        (ordinario)
+                                        ordinario
                                       </xsl:when>
                                       <xsl:when test="$RF='RF02'">
-                                        (contribuenti minimi)
+                                        contribuenti minimi
                                       </xsl:when>
                                       <xsl:when test="$RF='RF03'">
-                                        (nuove iniziative produttive)
+                                        nuove iniziative produttive - Non più valido in quanto abrogato dalla legge di stabilità 2015
                                       </xsl:when>
                                       <xsl:when test="$RF='RF04'">
-                                        (agricoltura e attività connesse e pesca)
+                                        agricoltura e attività connesse e pesca
                                       </xsl:when>
                                       <xsl:when test="$RF='RF05'">
-                                        (vendita sali e tabacchi)
+                                        vendita sali e tabacchi
                                       </xsl:when>
                                       <xsl:when test="$RF='RF06'">
-                                        (commercio fiammiferi)
+                                        commercio fiammiferi
                                       </xsl:when>
                                       <xsl:when test="$RF='RF07'">
-                                        (editoria)
+                                        editoria
                                       </xsl:when>
                                       <xsl:when test="$RF='RF08'">
-                                        (gestione servizi telefonia pubblica)
+                                        gestione servizi telefonia pubblica
                                       </xsl:when>
                                       <xsl:when test="$RF='RF09'">
-                                        (rivendita documenti di trasporto pubblico e di sosta)
+                                        rivendita documenti di trasporto pubblico e di sosta
                                       </xsl:when>
                                       <xsl:when test="$RF='RF10'">
-                                        (intrattenimenti, giochi e altre attività di cui alla tariffa allegata al DPR 640/72)
+                                        intrattenimenti, giochi e altre attività di cui alla tariffa allegata al DPR 640/72
                                       </xsl:when>
                                       <xsl:when test="$RF='RF11'">
-                                        (agenzie viaggi e turismo)
+                                        agenzie viaggi e turismo
                                       </xsl:when>
                                       <xsl:when test="$RF='RF12'">
-                                        (agriturismo)
+                                        agriturismo
                                       </xsl:when>
                                       <xsl:when test="$RF='RF13'">
-                                        (vendite a domicilio)
+                                        vendite a domicilio
                                       </xsl:when>
                                       <xsl:when test="$RF='RF14'">
-                                        (rivendita beni usati, oggetti d’arte,
-                                        d’antiquariato o da collezione)
+                                        rivendita beni usati, oggetti d’arte, d’antiquariato o da collezione
                                       </xsl:when>
                                       <xsl:when test="$RF='RF15'">
-                                        (agenzie di vendite all’asta di oggetti d’arte,
-                                        antiquariato o da collezione)
+                                        agenzie di vendite all’asta di oggetti d’arte, antiquariato o da collezione
                                       </xsl:when>
                                       <xsl:when test="$RF='RF16'">
-                                        (IVA per cassa P.A.)
+                                        IVA per cassa P.A.
                                       </xsl:when>
                                       <xsl:when test="$RF='RF17'">
-                                        (IVA per cassa - art. 32-bis, D.L. 83/2012)
+                                        IVA per cassa - art. 32-bis, D.L. 83/2012
                                       </xsl:when>
                                       <xsl:when test="$RF='RF19'">
-                                        (Regime forfettario)
+                                        Regime forfettario
                                       </xsl:when>
                                       <xsl:when test="$RF='RF18'">
-                                        (altro)
+                                        altro
                                       </xsl:when>
                                       <xsl:when test="$RF=''">
                                       </xsl:when>
@@ -1072,7 +1156,7 @@
 
                               </div>
 
-                              <xsl:if test="Denominazione">                              
+                              <xsl:if test="Denominazione">
                                 <div class="headContent">
 
                                   Denominazione:
@@ -1115,68 +1199,66 @@
                                   </xsl:variable>
                                   <xsl:choose>
                                     <xsl:when test="$RF='RF01'">
-                                      (ordinario)
+                                      ordinario
                                     </xsl:when>
                                     <xsl:when test="$RF='RF02'">
-                                      (contribuenti minimi)
+                                      contribuenti minimi
                                     </xsl:when>
                                     <xsl:when test="$RF='RF03'">
-                                      (nuove iniziative produttive)
+                                      nuove iniziative produttive - Non più valido in quanto abrogato dalla legge di stabilità 2015
                                     </xsl:when>
                                     <xsl:when test="$RF='RF04'">
-                                      (agricoltura e attività connesse e pesca)
+                                      agricoltura e attività connesse e pesca
                                     </xsl:when>
                                     <xsl:when test="$RF='RF05'">
-                                      (vendita sali e tabacchi)
+                                      vendita sali e tabacchi
                                     </xsl:when>
                                     <xsl:when test="$RF='RF06'">
-                                      (commercio fiammiferi)
+                                      commercio fiammiferi
                                     </xsl:when>
                                     <xsl:when test="$RF='RF07'">
-                                      (editoria)
+                                      editoria
                                     </xsl:when>
                                     <xsl:when test="$RF='RF08'">
-                                      (gestione servizi telefonia pubblica)
+                                      gestione servizi telefonia pubblica
                                     </xsl:when>
                                     <xsl:when test="$RF='RF09'">
-                                      (rivendita documenti di trasporto pubblico e di sosta)
+                                      rivendita documenti di trasporto pubblico e di sosta
                                     </xsl:when>
                                     <xsl:when test="$RF='RF10'">
-                                      (intrattenimenti, giochi e altre attività di cui alla tariffa allegata al DPR 640/72)
+                                      intrattenimenti, giochi e altre attività di cui alla tariffa allegata al DPR 640/72
                                     </xsl:when>
                                     <xsl:when test="$RF='RF11'">
-                                      (agenzie viaggi e turismo)
+                                      agenzie viaggi e turismo
                                     </xsl:when>
                                     <xsl:when test="$RF='RF12'">
-                                      (agriturismo)
+                                      agriturismo
                                     </xsl:when>
                                     <xsl:when test="$RF='RF13'">
-                                      (vendite a domicilio)
+                                      vendite a domicilio
                                     </xsl:when>
                                     <xsl:when test="$RF='RF14'">
-                                      (rivendita beni usati, oggetti d’arte,
-                                      d’antiquariato o da collezione)
+                                      rivendita beni usati, oggetti d’arte, d’antiquariato o da collezione
                                     </xsl:when>
                                     <xsl:when test="$RF='RF15'">
-                                      (agenzie di vendite all’asta di oggetti d’arte,
-                                      antiquariato o da collezione)
+                                      agenzie di vendite all’asta di oggetti d’arte, antiquariato o da collezione
                                     </xsl:when>
                                     <xsl:when test="$RF='RF16'">
-                                      (IVA per cassa P.A.)
+                                      IVA per cassa P.A.
                                     </xsl:when>
                                     <xsl:when test="$RF='RF17'">
-                                      (IVA per cassa - art. 32-bis, D.L. 83/2012)
+                                      IVA per cassa - art. 32-bis, D.L. 83/2012
                                     </xsl:when>
                                     <xsl:when test="$RF='RF19'">
-                                      (Regime forfettario)
+                                      Regime forfettario
                                     </xsl:when>
                                     <xsl:when test="$RF='RF18'">
-                                      (altro)
+                                      altro
                                     </xsl:when>
                                     <xsl:when test="$RF=''">
                                     </xsl:when>
                                     <xsl:otherwise>
-                                      <span>(!!! codice non previsto !!!)</span>
+                                      <span>!!! codice non previsto !!!</span>
                                     </xsl:otherwise>
                                   </xsl:choose>
 
@@ -1253,8 +1335,96 @@
                           </xsl:choose>
 
                         </xsl:for-each>
-                      </div>
 
+                        <!--INIZIO TerzoIntermediarioOSoggettoEmittente-->
+                        <xsl:if test="$TipoFattura/FatturaElettronicaHeader/TerzoIntermediarioOSoggettoEmittente">
+                          <br/>
+
+                          <xsl:choose>
+                            <xsl:when test="$TipoFattura/FatturaElettronicaHeader/SoggettoEmittente='CC'">
+                              <label class= "headerLabel">Soggetto Emittente (cessionario committente)  </label>
+
+                            </xsl:when>
+                            <xsl:when test="$TipoFattura/FatturaElettronicaHeader/SoggettoEmittente='TZ'">
+                              <label class= "headerLabel">Terzo Intermediario  </label>
+                            </xsl:when>
+
+                            <xsl:otherwise>
+                              <label class= "headerLabel">Terzo Intermediario o Soggetto Emittente </label>
+                            </xsl:otherwise>
+                          </xsl:choose>
+
+                          <xsl:for-each select="$TipoFattura/FatturaElettronicaHeader/TerzoIntermediarioOSoggettoEmittente/DatiAnagrafici">
+
+                            <div class="headContent mt5">
+                              <xsl:if test="IdFiscaleIVA">
+
+                                Identificativo fiscale ai fini IVA:
+                                <span>
+                                  <xsl:value-of select="IdFiscaleIVA/IdPaese" />
+                                  <xsl:value-of select="IdFiscaleIVA/IdCodice" />
+                                </span>
+
+                              </xsl:if>
+                            </div>
+
+                            <div class="headContent" >
+
+                              <xsl:if test="CodiceFiscale">
+
+                                Codice fiscale:
+                                <span>
+                                  <xsl:value-of select="CodiceFiscale" />
+                                </span>
+
+                              </xsl:if>
+
+                            </div>
+
+                            <div class="headContent" >
+
+                              <xsl:if test="Anagrafica/Denominazione">
+
+                                Denominazione:
+                                <span>
+                                  <xsl:value-of select="Anagrafica/Denominazione" />
+                                </span>
+
+                              </xsl:if>
+
+                            </div>
+
+                            <div class="headContent" >
+
+                              <xsl:if test="Anagrafica/Nome | Anagrafica/Cognome">
+
+                                Cognome nome:
+
+                                <xsl:if test="Anagrafica/Cognome">
+                                  <span>
+                                    <xsl:value-of select="Anagrafica/Cognome" />
+                                    <xsl:text> </xsl:text>
+                                  </span>
+                                </xsl:if>
+                                <xsl:if test="Anagrafica/Nome">
+                                  <span>
+                                    <xsl:value-of select="Anagrafica/Nome" />
+                                  </span>
+                                </xsl:if>
+
+                              </xsl:if>
+
+                            </div>
+
+
+                             </xsl:for-each>
+
+
+
+                        </xsl:if>
+                        <!--FINE TerzoIntermediarioOSoggettoEmittente-->
+
+                      </div>
                       <!--FINE CEDENTE PRESTATORE-->
 
                     </td>
@@ -1267,10 +1437,10 @@
               </td>
               <td class="tdHead">
 
+                <!--INIZIO CESSIONARIO COMMITTENTE-->
                 <table class="tableHead">
                   <tr>
                     <td >
-                      <!--INIZIO CESSIONARIO COMMITTENTE-->
 
                       <div class="headBorder" >
                         <label class= "headerLabel"  >Cessionario/committente (cliente) </label>
@@ -1573,24 +1743,15 @@
                             </xsl:otherwise>
                           </xsl:choose>
                         </xsl:for-each>
-
                       </div>
-
-
-
-                      <!--FINE CESSIONARIO COMMITTENTE-->
 
                     </td>
                   </tr>
 
                 </table>
-
-
-
-
+                <!--FINE CESSIONARIO COMMITTENTE-->
               </td>
             </tr>
-
 
 
           </table>
@@ -1607,12 +1768,12 @@
 
 
           <xsl:variable name="BodyIndex" select="position()"/>
-          
+
           <!-- Conforme Standard AssoSoftware se altridatigestionali presenta ASWRELSTD   -->
           <xsl:variable name="posASWRELSTD" >
             <xsl:for-each select="DatiBeniServizi/DettaglioLinee">
               <xsl:variable name="DettaglioLinee" select="."/>
-              
+
               <xsl:variable name="posDettaglioLinee" select="position()"/>
               <xsl:for-each select="AltriDatiGestionali">
 
@@ -1638,7 +1799,14 @@
               <tr>
 
                 <th>Tipologia documento</th>
-                <th class="perc">Art. 73</th>
+				<xsl:if test="$IsFPRS='0'">
+					<th class="perc">Art. 73</th>
+				</xsl:if>
+
+				<xsl:if test="$IsFPRS='1'">
+                  <th class="perc">Imposta bollo</th>
+                </xsl:if>
+
                 <th >Numero documento</th>
                 <th class="data">Data documento</th>
                 <th >Codice destinatario</th>
@@ -1658,35 +1826,69 @@
                     </xsl:variable>
                     <xsl:choose>
                       <xsl:when test="$TD='TD01'">
-                        (fattura)
+                        fattura
                       </xsl:when>
                       <xsl:when test="$TD='TD02'">
-                        (acconto/anticipo su fattura)
+                        acconto/anticipo su fattura
                       </xsl:when>
                       <xsl:when test="$TD='TD03'">
-                        (acconto/anticipo su parcella)
+                        acconto/anticipo su parcella
                       </xsl:when>
                       <xsl:when test="$TD='TD04'">
-                        (nota di credito)
+                        nota di credito
                       </xsl:when>
                       <xsl:when test="$TD='TD05'">
-                        (nota di debito)
+                        nota di debito
                       </xsl:when>
                       <xsl:when test="$TD='TD06'">
-                        (parcella)
+                        parcella
                       </xsl:when>
-                      <xsl:when test="$TD='TD20'">
-                        (autofattura)
-                      </xsl:when>
+                     <xsl:when test="$TD='TD16'">
+							integrazione fattura reverse charge interno
+						</xsl:when>
+						<xsl:when test="$TD='TD17'">
+							integrazione/autofattura per acquisto servizi da estero
+						</xsl:when>
+						<xsl:when test="$TD='TD18'">
+							integrazione per acquisto beni intracomunitari
+						</xsl:when>
+						<xsl:when test="$TD='TD19'">
+							integrazione/autofattura per acquisto beni ex art.17 c.2 DPR 633/72
+						</xsl:when>
+						<xsl:when test="$TD='TD20'">
+							autofattura per regolarizzazione e integrazione delle fatture - art.6 c.8 d.lgs.471/97 o art.46 c.5 D.L.331/93
+						</xsl:when>
+						<xsl:when test="$TD='TD21'">
+							autofattura per splafonamento
+						</xsl:when>
+						<xsl:when test="$TD='TD22'">
+							estrazione beni da Deposito IVA
+						</xsl:when>
+						<xsl:when test="$TD='TD23'">
+							estrazione beni da Deposito IVA con versamento IVA
+						</xsl:when>
+						<xsl:when test="$TD='TD24'">
+							fattura differita - art.21 c.4 lett. a)
+						</xsl:when>
+						<xsl:when test="$TD='TD25'">
+							fattura differita - art.21 c.4 terzo periodo lett. b)
+						</xsl:when>
+						<xsl:when test="$TD='TD26'">
+							cessione di beni ammortizzabili e per passaggi interni - art.36 DPR 633/72
+						</xsl:when>
+						<xsl:when test="$TD='TD27'">
+							fattura per autoconsumo o per cessioni gratuite senza rivalsa
+						</xsl:when>
+
                       <!--FPRS-->
                       <xsl:when test="$TD='TD07'">
-                        (fattura semplificata)
+                        fattura semplificata
                       </xsl:when>
                       <xsl:when test="$TD='TD08'">
-                        (nota di credito semplificata)
+                        nota di credito semplificata
                       </xsl:when>
                       <xsl:when test="$TD='TD09'">
-                        (nota di debito semplificata)
+                        nota di debito semplificata
                       </xsl:when>
                       <xsl:when test="$TD=''">
                       </xsl:when>
@@ -1698,11 +1900,21 @@
                   </xsl:if>
                 </td>
 
-                <td class="ritenuta"  >
-                  <xsl:if test="DatiGenerali/DatiGeneraliDocumento/Art73">
-                    <xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Art73" />
-                  </xsl:if>
-                </td>
+				<xsl:if test="$IsFPRS='0'">
+					<td class="ritenuta"  >
+					  <xsl:if test="DatiGenerali/DatiGeneraliDocumento/Art73">
+						<xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Art73" />
+					  </xsl:if>
+					</td>
+				</xsl:if>
+
+				 <xsl:if test="$IsFPRS='1'">
+                  <td class="textCenter">
+                    <xsl:if test="DatiGenerali/DatiGeneraliDocumento/BolloVirtuale">
+                      <xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/BolloVirtuale" />
+                    </xsl:if>
+                  </td>
+                </xsl:if>
 
                 <td class="textCenter" >
 
@@ -1758,6 +1970,7 @@
 
                       <xsl:for-each select="DatiGenerali/DatiGeneraliDocumento/Causale"  >
                         <xsl:value-of select="." />
+						<br/>
                       </xsl:for-each>
 
                     </xsl:if>
@@ -1855,7 +2068,7 @@
                 <tbody>
 
 
-                  <xsl:if test="count(DatiGenerali/DatiOrdineAcquisto[not(./RiferimentoNumeroLinea) or normalize-space(./RiferimentoNumeroLinea)='']) + 
+                  <xsl:if test="count(DatiGenerali/DatiOrdineAcquisto[not(./RiferimentoNumeroLinea) or normalize-space(./RiferimentoNumeroLinea)='']) +
 				  count(DatiGenerali/DatiContratto[not(./RiferimentoNumeroLinea) or normalize-space(./RiferimentoNumeroLinea)='']) +
 				  count(DatiGenerali/DatiDDT[not(./RiferimentoNumeroLinea) or normalize-space(./RiferimentoNumeroLinea)='']) +
 				  count(DatiGenerali/DatiFattureCollegate[not(./RiferimentoNumeroLinea) or  normalize-space(./RiferimentoNumeroLinea)='']) +
@@ -1928,33 +2141,12 @@
                     </xsl:for-each>
 
                     <xsl:for-each select="DatiGenerali/DatiDDT[not(./RiferimentoNumeroLinea) or normalize-space(./RiferimentoNumeroLinea)=''] ">
-
-                      <xsl:variable name="descri_DAO" >
-
-                        <xsl:text>DDT </xsl:text>
-                        <xsl:value-of select="NumeroDDT" />
-                        <xsl:if test="DataDDT">
-                          <xsl:text> del </xsl:text>
-                          <xsl:call-template name="FormatDateIta">
-                            <xsl:with-param name="DateTime" select="DataDDT" />
-                          </xsl:call-template>
-                        </xsl:if>
-
-                      </xsl:variable>
-
-                      <xsl:if test="$descri_DAO">
-                        <xsl:call-template name="AltraDescrizioneLinea">
-                          <xsl:with-param name="textDescrizione" select = "$descri_DAO" />
-                        </xsl:call-template>
-                      </xsl:if>
+                      <xsl:apply-templates select="."/>	<!-- apply DatiDDT template -->
                     </xsl:for-each>
-
 
                     <xsl:call-template name="AltraDescrizioneLinea">
                       <xsl:with-param name="textDescrizione" select = '"------------------------"' />
                     </xsl:call-template>
-
-
                   </xsl:if>
 
 
@@ -2293,13 +2485,13 @@
                   <tr >
 
                     <th  colspan="2">
-                      Importo bollo
+                      Imposta bollo
                     </th>
                     <th  colspan="3">
                       Sconto/Maggiorazione
                     </th>
 
-                
+
 
 					 <th class="perc">Arr.</th>
                     <th colspan="4" >
@@ -2311,11 +2503,19 @@
 
                   <tr >
                     <td colspan="2" class="import" >
-                      <xsl:if test="DatiGenerali/DatiGeneraliDocumento/DatiBollo/ImportoBollo">
 
-                        <xsl:value-of select="format-number(DatiGenerali/DatiGeneraliDocumento/DatiBollo/ImportoBollo,  '###.###.##0,00', 'euro')" />
-
+					 <xsl:if test="DatiGenerali/DatiGeneraliDocumento/DatiBollo">
+                        <xsl:choose>
+						<xsl:when test="DatiGenerali/DatiGeneraliDocumento/DatiBollo/ImportoBollo">
+							<xsl:value-of select="format-number(DatiGenerali/DatiGeneraliDocumento/DatiBollo/ImportoBollo,  '###.###.##0,00', 'euro')" />
+						</xsl:when>
+						<xsl:when test="DatiGenerali/DatiGeneraliDocumento/DatiBollo/BolloVirtuale">
+							<xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/DatiBollo/BolloVirtuale" />
+						</xsl:when>
+						<xsl:otherwise></xsl:otherwise>
+					  </xsl:choose>
                       </xsl:if>
+
                     </td>
                     <td colspan="3" class="import">
                       <xsl:for-each select="DatiGenerali/DatiGeneraliDocumento/ScontoMaggiorazione"  >
@@ -2331,8 +2531,8 @@
                     </td>
 
 
-                    
-					
+
+
 					<td class="import">
 
                       <xsl:if test="DatiGenerali/DatiGeneraliDocumento/Arrotondamento">
@@ -2362,7 +2562,25 @@
               <!--   Dati Ritenuta Acconto   -->
               <xsl:if test="DatiGenerali/DatiGeneraliDocumento/DatiRitenuta">
                 <div class="separa"> </div>
-                <xsl:apply-templates select="DatiGenerali/DatiGeneraliDocumento/DatiRitenuta"/>
+
+				   <table class="tbFoglio">
+
+					  <thead>
+						<tr>
+						  <th class="title"> Dati ritenuta d'acconto</th>
+						  <th class="perc">Aliquota ritenuta</th>
+						  <th>Causale	</th>
+						  <th width="15%">Importo </th>
+						</tr>
+					  </thead>
+					  <tbody>
+
+					   <xsl:for-each select="DatiGenerali/DatiGeneraliDocumento/DatiRitenuta"  >
+							<xsl:apply-templates select="." />
+						</xsl:for-each>
+					  </tbody>
+					</table>
+
               </xsl:if>
               <!--  Fine Dati Ritenuta   -->
 
@@ -2375,15 +2593,19 @@
               <table class="tbFoglio" >
                 <thead>
                   <tr>
-                    <th>Modalità pagamento</th>
-                    <th>IBAN</th>
-                    <th>Istituto</th>
-                    <th class="data">Data scadenza</th>
+                    <th style="width:200px">Modalità pagamento</th>
+                    <th>Dettagli</th>
+                    <th  style="width:180px">Scadenze</th>
                     <th class="ximport">Importo</th>
                   </tr>
                 </thead>
                 <tbody>
                   <xsl:for-each select="DatiPagamento" >
+
+                    <xsl:variable name="CountDettaglioPagamento">
+                      <xsl:value-of select="count(DettaglioPagamento)" />
+                    </xsl:variable>
+
 
                     <xsl:for-each select="DettaglioPagamento">
 
@@ -2464,6 +2686,9 @@
                               <xsl:when test="$MP='MP22'">
                                 Trattenuta su somme già riscosse
                               </xsl:when>
+							  <xsl:when test="$MP='MP23'">
+								  PagoPA
+								</xsl:when>
                               <xsl:when test="$MP=''">
                               </xsl:when>
                               <xsl:otherwise>
@@ -2478,30 +2703,48 @@
                         </td>
 
 
+                          <td>
+                            <xsl:apply-templates select="."/>
+                            <xsl:if test="(position( )) !=  $CountDettaglioPagamento">
+                              <xsl:if test="Beneficiario or CodUfficioPostale or CognomeQuietanzante or CognomeQuietanzante or CFQuietanzante or TitoloQuietanzante
+							or IstitutoFinanziario or IBAN or ABI or CAB or BIC or ScontoPagamentoAnticipato or DataLimitePagamentoAnticipato or PenalitaPagamentiRitardati
+							or DataDecorrenzaPenale or CodicePagamento">
+                                <xsl:text>------------------------</xsl:text>
+                              </xsl:if>
+                            </xsl:if>
+
+                          </td>
+
                         <td>
 
-                          <xsl:if test="IBAN">
+                          <xsl:if test="DataRiferimentoTerminiPagamento or GiorniTerminiPagamento">
 
-                            <xsl:value-of select="IBAN" />
+                            <xsl:choose>
+                              <xsl:when test="DataRiferimentoTerminiPagamento">
+                                <xsl:text>Data termine </xsl:text>
+                                <xsl:call-template name="FormatDateIta">
+                                  <xsl:with-param name="DateTime" select="DataRiferimentoTerminiPagamento" />
+                                </xsl:call-template>
 
+                                <xsl:if test="GiorniTerminiPagamento">
+                                  <xsl:text> </xsl:text><xsl:value-of select="GiorniTerminiPagamento" />gg
+                                </xsl:if>
+                              </xsl:when>
+                              <xsl:otherwise>
+                                <xsl:text>Giorni termine </xsl:text>
+                                <xsl:value-of select="GiorniTerminiPagamento" />
+
+                              </xsl:otherwise>
+                            </xsl:choose>
+                            <br/>
                           </xsl:if>
-                        </td>
 
-                        <td>
-
-                          <xsl:if test="IstitutoFinanziario">
-                            <xsl:value-of select="IstitutoFinanziario" />
-                          </xsl:if>
-                        </td>
-
-                        <td class="data">
                           <xsl:if test="DataScadenzaPagamento">
-                            <xsl:call-template name="FormatDateIta">
+                            Data scadenza <xsl:call-template name="FormatDateIta">
                               <xsl:with-param name="DateTime" select="DataScadenzaPagamento" />
                             </xsl:call-template>
                           </xsl:if>
                         </td>
-
                         <td class="import">
 
                           <xsl:if test="ImportoPagamento">
@@ -2625,7 +2868,7 @@
           .headBorder
           {
           <!--border: 2px solid black;
-			width:100%; 
+			width:100%;
 			height: 210px;
 			border-bottom-left-radius:30px;
 			border-bottom-right-radius:30px; -->
@@ -2689,7 +2932,7 @@
           border-collapse: collapse;
           word-wrap:break-word;
           }
-		  
+
           table.tbFoglio th {
           padding-left: 5px;
           padding-right: 5px;
@@ -2820,6 +3063,14 @@
           text-align:right;
           }
 
+		  table.tbNoBorder
+          {
+			  border-collapse: collapse;
+			  margin-bottom: 5px;
+			  font-size:small;
+			  text-align:center;
+			  width:800px;
+          }
 
         </style>
       </head>

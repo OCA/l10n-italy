@@ -1,0 +1,44 @@
+diff --git a/l10n_it_fatturapa/bindings/binding.py b/l10n_it_fatturapa/bindings/binding.py
+index 7f239610..28ff679d 100644
+--- a/l10n_it_fatturapa/bindings/binding.py
++++ b/l10n_it_fatturapa/bindings/binding.py
+@@ -4,14 +4,23 @@
+ # Namespace http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2
+
+ from __future__ import unicode_literals
+-import pyxb
+-import pyxb.binding
+-import pyxb.binding.saxer
++import logging
+ import io
+-import pyxb.utils.utility
+-import pyxb.utils.domutils
+ import sys
+-import pyxb.utils.six as _six
++
++_logger = logging.getLogger(__name__)
++
++try:
++    import pyxb
++    import pyxb.binding
++    import pyxb.binding.saxer
++    import pyxb.utils.utility
++    import pyxb.utils.domutils
++    import pyxb.utils.six as _six
++    # Import bindings for namespaces imported into schema
++    import pyxb.binding.datatypes
++except (ImportError) as err:
++    _logger.debug(err)
+ # Unique identifier for bindings created at the same time
+ _GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:f33a6cc4-abea-11ea-89e6-e09467884037')
+
+@@ -25,8 +34,6 @@ if pyxb.__version__ != _PyXBVersion:
+ # inside class definitions where property names may conflict.
+ _module_typeBindings = pyxb.utils.utility.Object()
+
+-# Import bindings for namespaces imported into schema
+-import pyxb.binding.datatypes
+-import _ds as _ImportedBinding__ds
++from . import _ds as _ImportedBinding__ds
+
+ # NOTE: All namespace declarations are reserved within the binding
