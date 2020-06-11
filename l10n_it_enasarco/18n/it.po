@@ -1,0 +1,131 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_enasarco
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-21 20:43+0000\n"
+"PO-Revision-Date: 2018-05-21 22:45+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: en\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#. module: l10n_it_enasarco
+#: model:ir.model,name:l10n_it_enasarco.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: l10n_it_enasarco
+#: model:ir.model.fields,help:l10n_it_enasarco.field_account_invoice_enasarco_date
+msgid "Date for account move"
+msgstr "Date for account move"
+
+#. module: l10n_it_enasarco
+#. openerp-web
+#: code:addons/l10n_it_enasarco/static/src/xml/account_payment.xml:10
+#: model:ir.model.fields,field_description:l10n_it_enasarco.field_account_invoice_enasarco
+#: model:ir.ui.view,arch_db:l10n_it_enasarco.view_ensarco_config_settings_default
+#: model:ir.ui.view,arch_db:l10n_it_enasarco.view_invoice_enasarco_form
+#, python-format
+msgid "Enasarco"
+msgstr "Enasarco"
+
+#. module: l10n_it_enasarco
+#: model:ir.model.fields,field_description:l10n_it_enasarco.field_res_company_enasarco_account_id
+#: model:ir.ui.view,arch_db:l10n_it_enasarco.view_ensarco_config_settings_default
+msgid "Enasarco Account"
+msgstr "Enasarco Conto"
+
+#. module: l10n_it_enasarco
+#: model:ir.model.fields,field_description:l10n_it_enasarco.field_account_config_settings_enasarco_account_id
+msgid "Enasarco Account *"
+msgstr "Enasarco Conti *"
+
+#. module: l10n_it_enasarco
+#: model:ir.model.fields,field_description:l10n_it_enasarco.field_account_invoice_enasarco_move_id
+msgid "Enasarco Account Move"
+msgstr "Registratione Enasarco"
+
+#. module: l10n_it_enasarco
+#: model:ir.model.fields,field_description:l10n_it_enasarco.field_res_company_enasarco_journal_id
+#: model:ir.ui.view,arch_db:l10n_it_enasarco.view_ensarco_config_settings_default
+msgid "Enasarco Journal"
+msgstr "Enasarco Sezionale"
+
+#. module: l10n_it_enasarco
+#: model:ir.model.fields,field_description:l10n_it_enasarco.field_account_config_settings_enasarco_journal_id
+msgid "Enasarco Journal *"
+msgstr "Enasarco Sezionale *"
+
+#. module: l10n_it_enasarco
+#: model:ir.model.fields,field_description:l10n_it_enasarco.field_account_move_line_enasarco_move
+msgid "Enasarco Move"
+msgstr "Registrazione Enasarco"
+
+#. module: l10n_it_enasarco
+#: model:ir.model.fields,field_description:l10n_it_enasarco.field_account_invoice_enasarco_amount
+#: model:ir.model.fields,field_description:l10n_it_enasarco.field_account_invoice_enasarco_amount_total
+msgid "Enasarco amount"
+msgstr "Enasarco"
+
+#. module: l10n_it_enasarco
+#: model:ir.model.fields,field_description:l10n_it_enasarco.field_account_invoice_enasarco_date
+msgid "Enasarco date"
+msgstr "Enasarco data"
+
+#. module: l10n_it_enasarco
+#: code:addons/l10n_it_enasarco/models/account_invoice.py:80
+#, python-format
+msgid "Enasarco per {}"
+msgstr "Enasarco per {}"
+
+#. module: l10n_it_enasarco
+#: code:addons/l10n_it_enasarco/models/account_invoice.py:91
+#: code:addons/l10n_it_enasarco/models/account_invoice.py:105
+#, python-format
+msgid "Enasarco per {} - {}"
+msgstr "Enasarco per {} - {}"
+
+#. module: l10n_it_enasarco
+#: model:ir.model,name:l10n_it_enasarco.model_account_invoice
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: l10n_it_enasarco
+#: model:ir.model,name:l10n_it_enasarco.model_account_move_line
+msgid "Journal Item"
+msgstr "Voce sezionale"
+
+#. module: l10n_it_enasarco
+#: code:addons/l10n_it_enasarco/models/account_invoice.py:58
+#, python-format
+msgid "Missing Enasarco Account in the company configuration"
+msgstr "Manca il Conto Enasarco nella configurazione dell’azienda"
+
+#. module: l10n_it_enasarco
+#: code:addons/l10n_it_enasarco/models/account_invoice.py:61
+#, python-format
+msgid "Missing Enasarco journal in the company configuration"
+msgstr "Manca il Sezionale Enasarco nella configurazione dell’azienda"
+
+#. module: l10n_it_enasarco
+#: model:ir.model,name:l10n_it_enasarco.model_account_partial_reconcile
+msgid "Partial Reconcile"
+msgstr "Riconciliazione parziale"
+
+#. module: l10n_it_enasarco
+#: model:ir.model,name:l10n_it_enasarco.model_account_payment
+msgid "Payments"
+msgstr "Pagamenti"
+
+#. module: l10n_it_enasarco
+#: model:ir.model,name:l10n_it_enasarco.model_account_config_settings
+msgid "res.config.settings"
+msgstr "res.config.settings"

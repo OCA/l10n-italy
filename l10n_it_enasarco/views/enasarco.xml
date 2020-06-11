@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="enasarco_backend" name="enasarco assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/l10n_it_enasarco/static/src/js/enasarco_payment.js"></script>
+            </xpath>
+        </template>
+    </data>
+</odoo>

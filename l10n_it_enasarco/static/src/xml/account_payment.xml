@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<template id="enasarco_payment" xml:space="preserve">
+	<t t-name="ShowPaymentInfo" t-extend="ShowPaymentInfo">
+		<t t-jquery='.oe_form_field_monetary' t-operation='append'>
+		<!--
+		TO DO: manca js per rendere disponibile il valore line.enasarco_move
+		-->
+			<t t-if="line.enasarco_move">
+            		<span>Enasarco</span>
+            	</t>
+        </t>
+	</t>
+</template>
