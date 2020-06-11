@@ -14,6 +14,7 @@ _logger = logging.getLogger(__name__)
 try:
     import pyxb
     import pyxb.binding
+    import pyxb.binding.datatypes
     import pyxb.binding.saxer
     import pyxb.utils.utility
     import pyxb.utils.domutils
@@ -37,8 +38,7 @@ if pyxb.__version__ != _PyXBVersion:
 _module_typeBindings = pyxb.utils.utility.Object()
 
 # Import bindings for namespaces imported into schema
-import pyxb.binding.datatypes
-import _ds as _ImportedBinding__ds
+from . import _ds as _ImportedBinding__ds
 
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI('http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2', create_if_missing=True)
