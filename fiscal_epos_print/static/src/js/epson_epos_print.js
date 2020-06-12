@@ -362,21 +362,17 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             _.each(receipt.orderlines, function(l, i, list) {
                 if (l.price >= 0) {
                     if(l.quantity>=0) {
-                        var full_price = l.price;
-                        if (l.discount) {
-                            full_price = round_pr(l.price / (1 - (l.discount / 100)), self.sender.pos.currency.rounding);
-                        }
                         xml += self.printRecItem({
                             description: l.product_name,
                             quantity: l.quantity,
-                            unitPrice: full_price,
+                            unitPrice: l.full_price,
                             department: l.tax_department.code
                         });
                         if (l.discount) {
                             xml += self.printRecItemAdjustment({
                                 adjustmentType: 0,
                                 description: _t('Discount') + ' ' + l.discount + '%',
-                                amount: round_pr((l.quantity * full_price) - (l.quantity * l.price), self.sender.pos.currency.rounding),
+                                amount: round_pr((l.quantity * l.full_price) - (l.quantity * l.price), self.sender.pos.currency.rounding),
                             });
                         }
                     }
