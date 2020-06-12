@@ -100,6 +100,12 @@ odoo.define('fiscal_epos_print.models', function (require) {
         export_for_printing: function(){
             var res = _orderline_super.export_for_printing.call(this, arguments);
             res['tax_department'] = this.get_tax_details_r();
+            if (res['tax_department']['included_in_price'] == true) {
+                res['full_price'] = this.price
+            }
+            else {
+                res['full_price'] = this.price * (1 + (res['tax_department']['tax_amount'] / 100))
+            }
             return res;
         },
         get_tax_details_r: function(){
@@ -108,6 +114,8 @@ odoo.define('fiscal_epos_print.models', function (require) {
                 return {
                     code: this.pos.taxes_by_id[i].fpdeptax,
                     taxname: this.pos.taxes_by_id[i].name,
+                    included_in_price: this.pos.taxes_by_id[i].price_include,
+                    tax_amount: this.pos.taxes_by_id[i].amount,
                 }
             }
             this.pos.gui.show_popup('error', {
