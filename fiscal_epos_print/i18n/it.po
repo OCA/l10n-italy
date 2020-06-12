@@ -134,7 +134,7 @@ msgstr "Reparto sulla stampante fiscale 1~99"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:378
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:374
 #, python-format
 msgid "Discount"
 msgstr "Sconto"
@@ -145,6 +145,7 @@ msgid "Document Number"
 msgstr "Numero documento"
 
 #. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_account_bank_statement_import_journal_creation__fiscalprinter_payment_index
 #: model:ir.model.fields,field_description:fiscal_epos_print.field_account_journal__fiscalprinter_payment_index
 msgid "Electronic Payment / Ticket Index"
 msgstr "Index pagamento elettronico / ticket"
@@ -166,7 +167,7 @@ msgstr "Operazione Epson ePOS"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/models.js:114
+#: code:addons/fiscal_epos_print/static/src/js/models.js:122
 #, python-format
 msgid "Error"
 msgstr "Errore"
@@ -329,7 +330,7 @@ msgstr "Errore di rete"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/models.js:115
+#: code:addons/fiscal_epos_print/static/src/js/models.js:123
 #, python-format
 msgid "No taxes found"
 msgstr "Nessuna imposta trovata"
@@ -404,6 +405,7 @@ msgid "Payment in progress"
 msgstr "Pagamento in corso"
 
 #. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_account_bank_statement_import_journal_creation__fiscalprinter_payment_type
 #: model:ir.model.fields,field_description:fiscal_epos_print.field_account_journal__fiscalprinter_payment_type
 msgid "Payment type"
 msgstr "Tipo di pagamento"
@@ -518,7 +520,7 @@ msgstr "Scontrino inviato alla stampante"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:386
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:382
 #, python-format
 msgid "Refund >>> "
 msgstr "Reso >>> "
@@ -624,6 +626,7 @@ msgid "Send fiscal closure command to the fiscal printer"
 msgstr "Inviare comando di chiusura fiscale alla stampante fiscale"
 
 #. module: fiscal_epos_print
+#: model:ir.model.fields,help:fiscal_epos_print.field_account_bank_statement_import_journal_creation__fiscalprinter_payment_index
 #: model:ir.model.fields,help:fiscal_epos_print.field_account_journal__fiscalprinter_payment_index
 msgid ""
 "Set the index of the given payment type to specify the detail. Such index of "
@@ -670,6 +673,7 @@ msgid "The hostname or IP address of the fiscal printer"
 msgstr "L'hostname o indirizzo IP della stampante fiscale"
 
 #. module: fiscal_epos_print
+#: model:ir.model.fields,help:fiscal_epos_print.field_account_bank_statement_import_journal_creation__fiscalprinter_payment_type
 #: model:ir.model.fields,help:fiscal_epos_print.field_account_journal__fiscalprinter_payment_type
 msgid "The payment type to send to the Fiscal Printer."
 msgstr "Il tipo di pagamento da inviare alla stampante fiscale."
