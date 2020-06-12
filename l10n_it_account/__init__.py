@@ -25,6 +25,7 @@
 from . import models
 
 import logging
+import tools
 from openerp import SUPERUSER_ID
 
 
