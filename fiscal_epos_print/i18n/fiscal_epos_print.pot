@@ -129,7 +129,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:378
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:374
 #, python-format
 msgid "Discount"
 msgstr ""
@@ -161,7 +161,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/models.js:114
+#: code:addons/fiscal_epos_print/static/src/js/models.js:122
 #, python-format
 msgid "Error"
 msgstr ""
@@ -324,7 +324,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/models.js:115
+#: code:addons/fiscal_epos_print/static/src/js/models.js:123
 #, python-format
 msgid "No taxes found"
 msgstr ""
@@ -508,7 +508,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:386
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:382
 #, python-format
 msgid "Refund >>> "
 msgstr ""
