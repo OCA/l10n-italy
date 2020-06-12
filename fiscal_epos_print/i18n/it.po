@@ -134,7 +134,7 @@ msgstr "Reparto sulla stampante fiscale 1~99"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:378
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:374
 #, python-format
 msgid "Discount"
 msgstr "Sconto"
@@ -166,7 +166,7 @@ msgstr "Operazione Epson ePOS"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/models.js:114
+#: code:addons/fiscal_epos_print/static/src/js/models.js:122
 #, python-format
 msgid "Error"
 msgstr "Errore"
@@ -329,7 +329,7 @@ msgstr "Errore di rete"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/models.js:115
+#: code:addons/fiscal_epos_print/static/src/js/models.js:123
 #, python-format
 msgid "No taxes found"
 msgstr "Nessuna imposta trovata"
@@ -518,7 +518,7 @@ msgstr "Scontrino inviato alla stampante"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:386
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:382
 #, python-format
 msgid "Refund >>> "
 msgstr "Reso >>> "
