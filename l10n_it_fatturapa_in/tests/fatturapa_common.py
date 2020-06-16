@@ -54,6 +54,12 @@ class FatturapaCommon(SingleTransactionCase):
                 self.env.ref('l10n_it_causali_pagamento.a').id,
         })
 
+    def create_res_bank(self):
+        return self.env['res.bank'].create({
+            'name': 'Banca generica',
+            'bic': 'BCITITMM',
+        })
+
     def setUp(self):
         super(FatturapaCommon, self).setUp()
         self.wizard_model = self.env['wizard.import.fatturapa']
