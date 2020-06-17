@@ -524,7 +524,8 @@ class AccountVatPeriodEndStatement(models.Model):
         for statement in self:
             statement.previous_debit_vat_amount = 0.0
             prev_statements = self.search(
-                [('date', '<', statement.date)], order='date desc')
+                [('date', '<', statement.date), ('annual', '=', False)],
+                order='date desc')
             if prev_statements and not statement.annual:
                 prev_statement = prev_statements[0]
                 if (
@@ -539,9 +540,15 @@ class AccountVatPeriodEndStatement(models.Model):
                             - prev_statement.authority_vat_amount)})
                     company = statement.company_id or self.env.user.company_id
                     statement_fiscal_year_dates = (
-                        company.compute_fiscalyear_dates(statement.date))
+                        company.compute_fiscalyear_dates(
+                            statement.date_range_ids and
+                            statement.date_range_ids[0].date_start or
+                            statement.date))
                     prev_statement_fiscal_year_dates = (
-                        company.compute_fiscalyear_dates(prev_statement.date))
+                        company.compute_fiscalyear_dates(
+                            prev_statement.date_range_ids and
+                            prev_statement.date_range_ids[0].date_start or
+                            prev_statement.date))
                     if (
                         prev_statement_fiscal_year_dates['date_to'] <
                         statement_fiscal_year_dates['date_from']
