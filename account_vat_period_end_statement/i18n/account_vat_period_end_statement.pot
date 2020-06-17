@@ -594,7 +594,7 @@ msgid "Tax credits Amount"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:662
+#: code:addons/account_vat_period_end_statement/models/account.py:669
 #, python-format
 msgid "The account for vat interest must be configurated"
 msgstr ""
