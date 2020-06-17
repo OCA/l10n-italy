@@ -6,7 +6,7 @@
 
 {
     "name": "ITA - Liquidazione IVA",
-    "version": "12.0.1.5.2",
+    "version": "12.0.1.5.3",
     'category': 'Localization/Italy',
     'summary': "Allow to create the 'VAT Statement'.",
     'license': 'AGPL-3',
