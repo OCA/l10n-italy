@@ -72,6 +72,13 @@ class AccountInvoice(models.Model):
                                           date=invoice.date_invoice)
             # ----- If partner hasn't dichiarazioni, do nothing
             if not dichiarazioni:
+                # check if declaration is valid in this context: can be a vendor invoice
+                # but declaration in only for sales, and viceversa
+                # better solution would be put anoother boolean of validity:
+                # valid_for_dichiarazione_intento_emitted
+                if invoice.mapped('invoice_line_ids.invoice_line_tax_ids')\
+                        not in invoice.fiscal_position_id.mapped('tax_ids.tax_dest_id'):
+                    continue
                 # ----  check se posizione fiscale dichiarazione di intento
                 # ---- e non ho dichiarazioni, segnalo errore
                 if self.fiscal_position_id.valid_for_dichiarazione_intento:
