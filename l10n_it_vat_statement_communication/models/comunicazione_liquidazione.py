@@ -1,6 +1,7 @@
 
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
+from datetime import datetime
 from lxml import etree
 
 
@@ -308,8 +309,14 @@ class ComunicazioneLiquidazione(models.Model):
         if self.date_commitment:
             x1_2_1_13_DataImpegno = etree.SubElement(
                 x1_2_1_Frontespizio, etree.QName(NS_IV, "DataImpegno"))
-            x1_2_1_13_DataImpegno.text = self.date_commitment.strftime(
-                '%d%m%Y')
+            date_commitment = datetime.strptime(
+                self.date_commitment,
+                '%Y-%m-%d'
+            )
+            x1_2_1_13_DataImpegno.text = datetime.strftime(
+                date_commitment,
+                '%d%m%Y'
+            )
         # FirmaIntermediario
         if self.delegate_fiscalcode:
             x1_2_1_14_FirmaIntermediario = etree.SubElement(
