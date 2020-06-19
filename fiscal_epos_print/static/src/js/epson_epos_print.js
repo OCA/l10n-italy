@@ -372,7 +372,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                             xml += self.printRecItemAdjustment({
                                 adjustmentType: 0,
                                 description: _t('Discount') + ' ' + l.discount + '%',
-                                amount: round_pr((l.quantity * l.full_price) - (l.quantity * l.price), self.sender.pos.currency.rounding),
+                                amount: round_pr((l.full_price * (l.discount / 100)) * l.quantity, self.sender.pos.currency.rounding),
                             });
                         }
                     }
