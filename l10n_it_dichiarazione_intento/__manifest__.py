@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2017 Francesco Apruzzese <f.apruzzese@apuliasoftware.it>,
 # Copyright 2019 Alessandro Camilli <alessandrocamilli@openforce.it>,
 # Link IT <info@linkgroup.it>
@@ -6,12 +7,12 @@
 {
     'name': 'ITA - Dichiarazione di intento',
     'summary': 'Gestione dichiarazioni di intento',
-    'version': '12.0.0.1.4',
+    'version': '10.0.1.0.0',
     'license': 'AGPL-3',
     'author': 'Francesco Apruzzese, Odoo Community Association (OCA), '
               'Sergio Corato, Glauco Prina, Lara Baggio',
     'website': 'https://github.com/OCA/l10n-italy/tree/'
-               '12.0/l10n_it_dichiarazione_intento',
+               '10.0/l10n_it_dichiarazione_intento',
     'depends': [
         'account',
         'sale',

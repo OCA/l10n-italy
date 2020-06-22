@@ -1,9 +1,10 @@
+# -*- coding: utf-8 -*-
 # Copyright 2017 Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from babel.dates import format_date
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools.misc import format_date
 
 
 class AccountInvoice(models.Model):
@@ -24,11 +25,16 @@ class AccountInvoice(models.Model):
                     )
                 if not all_dichiarazioni:
                     return
-                valid_date = invoice.date_invoice or fields.Date.context_today(invoice)
+                valid_date = fields.Date.from_string(invoice.date_invoice) \
+                    or fields.Date.context_today(invoice)
 
                 dichiarazioni_valide = all_dichiarazioni.filtered(
-                    lambda d: d.date_start <= valid_date <= d.date_end
+                    lambda d:
+                    fields.Date.from_string(d.date_start)
+                    <= valid_date
+                    <= fields.Date.from_string(d.date_end)
                     )
+
                 if dichiarazioni_valide:
                     invoice.fiscal_position_id = \
                         dichiarazioni_valide[0].fiscal_position_id.id
@@ -75,7 +81,8 @@ class AccountInvoice(models.Model):
                 # ---- e non ho dichiarazioni, segnalo errore
                 if self.fiscal_position_id.valid_for_dichiarazione_intento:
                     raise UserError(_(
-                        'Declaration of intent not found. Add new declaration or '
+                        'Declaration of intent not found. '
+                        'Add new declaration or '
                         'change fiscal position and verify applied tax'))
                 else:
                     continue
@@ -99,8 +106,8 @@ class AccountInvoice(models.Model):
             # Check se con nota credito ho superato il plafond
             for dich in dichiarazioni_amounts:
                 dichiarazione = dichiarazione_model.browse(dich)
-                # dichiarazioni_amounts contains residual, so, if > limit_amount,
-                # used_amount went < 0
+                # dichiarazioni_amounts contains residual,
+                # so, if > limit_amount, used_amount went < 0
                 if dichiarazioni_amounts[dich] > dichiarazione.limit_amount:
                     raise UserError(_(
                         'Available plafond insufficent.\n'
@@ -109,6 +116,7 @@ class AccountInvoice(models.Model):
                                 dichiarazione.limit_amount)
                     ))
         # ----- Assign account move lines to dichiarazione for invoices
+        locale = self._context.get('lang') or 'en_US'
         for invoice in self:
             if invoice.dichiarazione_intento_ids:
                 dichiarazioni = invoice.dichiarazione_intento_ids
@@ -170,16 +178,24 @@ class AccountInvoice(models.Model):
                         if invoice.type in ("out_invoice", "out_refund"):
                             if not invoice.comment:
                                 invoice.comment = ''
+                            partner_date = fields.Date.from_string(
+                                dichiarazione.partner_document_date)
+                            partner_date = format_date(
+                                partner_date, locale=locale)
+                            dichiarazione_date = fields.Date.from_string(
+                                dichiarazione.date)
+                            dichiarazione_date = format_date(
+                                dichiarazione_date, locale=locale)
                             invoice.comment += (
-                                "\n\nVostra dichiarazione d'intento nr %s del %s, "
+                                "\n\nVostra dichiarazione d'intento "
+                                "nr %s del %s, "
                                 "nostro protocollo nr %s del %s, "
                                 "protocollo telematico nr %s."
                                 % (
                                     dichiarazione.partner_document_number,
-                                    format_date(
-                                        self.env, dichiarazione.partner_document_date),
-                                    dichiarazione.number, format_date(
-                                        self.env, dichiarazione.date),
+                                    partner_date,
+                                    dichiarazione.number,
+                                    dichiarazione_date,
                                     dichiarazione.telematic_protocol
                                 )
                             )

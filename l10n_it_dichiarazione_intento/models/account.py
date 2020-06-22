@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2017 Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -9,7 +10,8 @@ class AccountFiscalPosition(models.Model):
 
     _inherit = 'account.fiscal.position'
 
-    valid_for_dichiarazione_intento = fields.Boolean("Valid for declaration of intent")
+    valid_for_dichiarazione_intento = fields.Boolean(
+        "Valid for declaration of intent")
 
     @api.constrains('valid_for_dichiarazione_intento', 'tax_ids')
     @api.multi

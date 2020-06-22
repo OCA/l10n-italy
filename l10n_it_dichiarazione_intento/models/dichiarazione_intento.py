@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2017 Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -181,7 +182,8 @@ class DichiarazioneIntento(models.Model):
                 state = 'close'
             # ----- If date is passed, close document
             elif record.date_end and \
-                    record.date_end < datetime.today().date():
+                    fields.Date.from_string(record.date_end) \
+                    < datetime.today().date():
                 state = 'expired'
             else:
                 state = 'valid'

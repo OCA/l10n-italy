@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2017 Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -224,8 +225,6 @@ class TestDichiarazioneIntento(TransactionCase):
         self.refund1.invoice_line_ids[0].quantity = 10
 
         # Check that base amount has been updated
-        self.assertNotEqual(self.refund1.tax_line_ids[0].base, 1000)
-        self.refund1.tax_line_ids._compute_base_amount()
         self.assertEqual(self.refund1.tax_line_ids[0].base, 1000)
 
         # Refund goes over plafond: 100 + 1000 > 1000
