@@ -89,8 +89,7 @@ class FatturaPAAttachment(orm.Model):
             for attachment in self.browse(cr, uid, ids):
                 attachment.message_post(cr, uid, [attachment.id],
                     subject=_("E-invoice attachment changed"),
-                    body=_("User %s uploaded a new e-invoice file"
-                        ) % user_name
+                    body=_("User %s uploaded a new e-invoice file") % user_name
                 )
         return res
 
