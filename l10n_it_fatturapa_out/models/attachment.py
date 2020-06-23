@@ -89,7 +89,7 @@ class FatturaPAAttachment(orm.Model):
         logging.info(user_name)
         if 'datas' in vals and 'message_ids' not in vals:
             for attachment in self.browse(cr, uid, ids):
-                self.pool.get('ir.attachment').message_post(cr, uid, [attachment.id],
+                self.message_post(cr, uid, [attachment.id],
                     "User %s uploaded a new e-invoice file" % (user_name),
                     "E-invoice attachment changed",
                 )
