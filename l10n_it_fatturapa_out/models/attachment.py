@@ -90,8 +90,8 @@ class FatturaPAAttachment(orm.Model):
         if 'datas' in vals and 'message_ids' not in vals:
             for attachment in self.browse(cr, uid, ids):
                 attachment.message_post(cr, uid, [attachment.id],
-                    body="User %s uploaded a new e-invoice file" % (user_name),
-                    subject=_("E-invoice attachment changed"),
+                    "User %s uploaded a new e-invoice file" % (user_name),
+                    _("E-invoice attachment changed"),
                 )
         return res
 
