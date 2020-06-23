@@ -67,13 +67,13 @@ class MailThread(models.AbstractModel):
                 if att:
                     return self.manage_pec_sdi_response(att, message_dict)
                 raise UserError(_(
-                    "PEC message with Message-Id %s has been read "
+                    "PEC message \"%s\" has been read "
                     "but not processed, as not related to an "
                     "e-invoice.\n"
                     "Please check PEC mailbox %s, at server %s,"
                     " with user %s."
                 ) % (
-                    message.get('Message-Id'),
+                    message_dict['subject'],
                     fetchmail_server.name, fetchmail_server.server,
                     fetchmail_server.user
                 ))
