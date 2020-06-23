@@ -85,12 +85,12 @@ class FatturaPAAttachment(orm.Model):
     def write(self, cr, uid, ids, vals, context={}):
         res = super(FatturaPAAttachment, self).write(cr, uid, ids, vals, context=context)
         userRead = self.pool.get('res.users').read(cr, uid, uid, ['display_name'], context=context)
-        user_name = userRead.get('display_name', str(uid))
+        user_name = userRead.get('display_name', str(uid)).replace(',', '')
         logging.info(user_name)
         if 'datas' in vals and 'message_ids' not in vals:
             for attachment in self.browse(cr, uid, ids):
                 attachment.message_post(cr, uid, [attachment.id],
-                    body="User " + user_name.replace(',', '') + " uploaded a new e-invoice file",
+                    body="User %s uploaded a new e-invoice file" % (user_name),
                     subject=_("E-invoice attachment changed"),
                 )
         return res
