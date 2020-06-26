@@ -1,0 +1,12 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+asset_user,asset_user,model_asset_asset,base.group_user,1,1,1,1
+asset_accounting_info_user,asset_accounting_info_user,model_asset_accounting_info,base.group_user,1,1,1,1
+asset_category_user,asset_category_user,model_asset_category,base.group_user,1,1,1,1
+asset_category_depreciation_type_user,asset_category_depreciation_type_user,model_asset_category_depreciation_type,base.group_user,1,1,1,1
+asset_depreciation_user,asset_depreciation_user,model_asset_depreciation,base.group_user,1,1,1,1
+asset_depreciation_line_user,asset_depreciation_line_user,model_asset_depreciation_line,base.group_user,1,1,1,1
+asset_depreciation_line_type_user,asset_depreciation_line_type_user,model_asset_depreciation_line_type,base.group_user,1,1,1,1
+asset_depreciation_mode_user,asset_depreciation_mode_user,model_asset_depreciation_mode,base.group_user,1,1,1,1
+asset_depreciation_mode_line_user,asset_depreciation_mode_line_user,model_asset_depreciation_mode_line,base.group_user,1,1,1,1
+asset_depreciation_type_user,asset_depreciation_type_user,model_asset_depreciation_type,base.group_user,1,1,1,1
+asset_tag_user,asset_tag_user,model_asset_tag,base.group_user,1,1,1,1
