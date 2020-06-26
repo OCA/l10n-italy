@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report id="report_asset_journal_html"
+            model="report_asset_journal"
+            string="Asset Report HTML"
+            report_type="qweb-html"
+            paperformat="assets_management.asset_journal_a4_landscape"
+            name="assets_management.template_asset_journal_qweb"
+            file="assets_management.template_asset_journal_html"/>
+
+    <report id="report_asset_journal_pdf"
+            model="report_asset_journal"
+            string="Asset Report PDF"
+            report_type="qweb-pdf"
+            paperformat="assets_management.asset_journal_a4_landscape"
+            name="assets_management.template_asset_journal_qweb"
+            file="assets_management.template_asset_journal_qweb"/>
+
+    <report id="report_asset_journal_xlsx"
+            model="report_asset_journal"
+            string="Asset Report XLSX"
+            report_type="xlsx"
+            name="assets_management.report_asset_journal_xlsx"
+            file="assets_management.report_asset_journal_xlsx"/>
+
+    <report id="report_asset_previsional_html"
+            model="report_asset_previsional"
+            string="Asset Previsional Report HTML"
+            report_type="qweb-html"
+            paperformat="assets_management.asset_previsional_a4_landscape"
+            name="assets_management.template_asset_previsional_qweb"
+            file="assets_management.template_asset_previsional_html"/>
+
+    <report id="report_asset_previsional_pdf"
+            model="report_asset_previsional"
+            string="Asset Previsional Report PDF"
+            report_type="qweb-pdf"
+            paperformat="assets_management.asset_previsional_a4_landscape"
+            name="assets_management.template_asset_previsional_qweb"
+            file="assets_management.template_asset_previsional_qweb"/>
+
+    <report id="report_asset_previsional_xlsx"
+            model="report_asset_previsional"
+            string="Asset Previsional Report XLSX"
+            report_type="xlsx"
+            name="assets_management.report_asset_previsional_xlsx"
+            file="assets_management.report_asset_previsional_xlsx"/>
+
+</odoo>
