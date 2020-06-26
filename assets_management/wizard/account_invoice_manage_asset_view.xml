@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="wizard_invoice_mange_asset_form_view">
+        <field name="name">wizard.invoice.manage.asset.form.view</field>
+        <field name="model">wizard.invoice.manage.asset</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div name="wrong_state_alert"
+                         class="alert alert-info"
+                         role="alert"
+                         style="margin-bottom:10px;"
+                         attrs="{'invisible': [('is_invoice_state_ok', '=', True)]}">
+                        Only confirmed invoices can be used to create, update or dismiss assets!<br/>
+                        Please select only open or paid invoices.
+                    </div>
+                    <div name="wrong_type_alert"
+                         class="alert alert-info"
+                         role="alert"
+                         style="margin-bottom:10px;"
+                         attrs="{'invisible': [('invoice_type', '!=', 'wrong')]}">
+                        Please select only invoices of the same type!<br/>
+                        Choose one of the following invoices type:
+                        <ul>
+                            <li><span>Customer Invoices</span></li>
+                            <li><span>Customer Credit Notes</span></li>
+                            <li><span>Vendor Bills</span></li>
+                            <li><span>Vendor Credit Notes</span></li>
+                        </ul>
+                    </div>
+                    <div name="no_create_alert"
+                         class="alert alert-danger"
+                         role="alert"
+                         style="margin-bottom:10px;"
+                         attrs="{'invisible': ['|', '|', ('invoice_type', 'in', ('in_invoice', 'out_refund')), ('is_invoice_state_ok', '=', False), ('management_type', '!=', 'create')]}">
+                        Attention! You cannot create an asset from customer invoices or vendor bills refunds.
+                    </div>
+                    <div name="no_dismiss_alert"
+                         class="alert alert-danger"
+                         role="alert"
+                         style="margin-bottom:10px;"
+                         attrs="{'invisible': ['|', '|', ('invoice_type', 'in', ('in_refund', 'out_invoice')), ('is_invoice_state_ok', '=', False), ('management_type', 'not in', ('dismiss', 'partial_dismiss'))]}">
+                        Attention! You cannot dismiss an asset from vendor bills or customer refunds.
+                    </div>
+                    <div class="oe_title"
+                         attrs="{'invisible': ['|', ('invoice_type', '=', 'wrong'), ('is_invoice_state_ok', '=', False)]}">
+                        <field name="management_type"
+                               options="{'horizontal': true}"
+                               widget="radio"/>
+                        <h1>
+                            <field name="name"
+                                   placeholder="Asset Name"
+                                   attrs="{'invisible': [('management_type', '!=', 'create')], 'required': [('management_type', '=', 'create')]}"/>
+                            <field name="asset_id"
+                                   placeholder="Choose Your Asset"
+                                   options="{'no_create': True}"
+                                   attrs="{'invisible': [('management_type', '=', 'create')], 'required': [('management_type', '!=', 'create')]}"/>
+                        </h1>
+                    </div>
+                    <group name="create_asset_settings"
+                           attrs="{'invisible': ['|', '|', ('invoice_type', '=', 'wrong'), ('is_invoice_state_ok', '=', False), ('management_type', '!=', 'create')]}">
+                        <group>
+                            <field name="category_id"
+                                   options="{'no_create': True}"
+                                   attrs="{'required': [('management_type', '=', 'create')]}"/>
+                            <field name="code"/>
+                            <field name="used"/>
+                        </group>
+                        <group>
+                            <field name="purchase_date"/>
+                            <field name="company_id"
+                                   readonly="1"
+                                   options="{'no_open':1, 'no_create_edit': True}"
+                                   groups="base.group_multi_company"/>
+                            <field name="currency_id"
+                                   groups="base.group_multi_currency"/>
+                            <field name="invoice_ids" invisible="1"/>
+                            <field name="invoice_type" invisible="1"/>
+                            <field name="is_invoice_state_ok" invisible="1"/>
+                        </group>
+                    </group>
+                    <group name="update_asset_settings"
+                           attrs="{'invisible': ['|', '|', ('invoice_type', '=', 'wrong'), ('is_invoice_state_ok', '=', False), ('management_type', '!=', 'update')], 'required': [('management_type', '=', 'update')]}">
+                        <group>
+                            <field name="depreciation_type_ids"
+                                   options="{'no_create_edit': 1}"
+                                   widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <group name="partial_dismiss_asset_settings"
+                           attrs="{'invisible': ['|', '|', ('invoice_type', '=', 'wrong'), ('is_invoice_state_ok', '=', False), ('management_type', '!=', 'partial_dismiss')]}">
+                        <group>
+                            <field name="dismiss_date"
+                                   attrs="{'required': [('management_type', '=', 'partial_dismiss')]}"/>
+                            <field name="asset_purchase_amount"
+                                   attrs="{'required': [('management_type', '=', 'partial_dismiss')]}"/>
+                            <field name="depreciated_fund_amount"
+                                   attrs="{'required': [('management_type', '=', 'partial_dismiss')]}"/>
+                        </group>
+                    </group>
+                    <group name="dismiss_asset_settings"
+                           attrs="{'invisible': ['|', '|', ('invoice_type', '=', 'wrong'), ('is_invoice_state_ok', '=', False), ('management_type', '!=', 'dismiss')]}">
+                        <group>
+                            <field name="dismiss_date"
+                                   attrs="{'required': [('management_type', '=', 'dismiss')]}"/>
+                        </group>
+                    </group>
+                    <group name="invoice_lines"
+                           string="Invoice Lines"
+                           attrs="{'invisible': ['|', ('invoice_type', '=', 'wrong'), ('is_invoice_state_ok', '=', False)]}">
+                        <field name="invoice_line_ids"
+                               domain="[('invoice_id', 'in', invoice_ids), ('asset_accounting_info_ids', '=', False)]"
+                               nolabel="1">
+                            <tree string="Invoice lines" editable="bottom">
+                                <field name="product_id"
+                                       options="{'no_open':1}"
+                                       readonly="1"/>
+                                <field name="name"
+                                       readonly="1"/>
+                                <field name="company_id"
+                                       options="{'no_open':1, 'no_create_edit': True}"
+                                       invisible="1"
+                                       readonly="1"/>
+                                <field name="account_id"
+                                       options="{'no_open':1}"
+                                       groups="account.group_account_user"
+                                       readonly="1"/>
+                                <field name="account_analytic_id"
+                                       options="{'no_open':1}"
+                                       groups="analytic.group_analytic_accounting"
+                                       readonly="1"/>
+                                <field name="analytic_tag_ids"
+                                       groups="analytic.group_analytic_accounting"
+                                       widget="many2many_tags"
+                                       readonly="1"/>
+                                <field name="quantity"
+                                       readonly="1"/>
+                                <field name="uom_id"
+                                       options="{'no_open':1}"
+                                       groups="uom.group_uom"
+                                       readonly="1"/>
+                                <field name="price_unit"
+                                       readonly="1"/>
+                                <field name="discount"
+                                       groups="base.group_no_one"
+                                       readonly="1"/>
+                                <field name="invoice_line_tax_ids"
+                                       widget="many2many_tags"
+                                       readonly="1"/>
+                                <field name="price_subtotal"
+                                       readonly="1"/>
+                                <field name="currency_id"
+                                       options="{'no_open':1}"
+                                       invisible="1"
+                                       readonly="1"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+                <footer attrs="{'invisible': ['|', ('invoice_type', '=', 'wrong'), ('is_invoice_state_ok', '=', False)]}">
+                    <button name="link_asset"
+                            type="object"
+                            string="Create Asset and Show"
+                            attrs="{'invisible': ['|', ('invoice_type', 'in', ('in_refund', 'out_invoice')), ('management_type', '!=', 'create')]}"
+                            context="{'show_asset': 1}"
+                            class="oe_highlight"/>
+                    <button name="link_asset"
+                            type="object"
+                            string="Create Asset"
+                            attrs="{'invisible': ['|', ('invoice_type', 'in', ('in_refund', 'out_invoice')), ('management_type', '!=', 'create')]}"
+                            context="{'show_asset': 0}"
+                            class="oe_highlight"/>
+                    <button name="link_asset"
+                            type="object"
+                            string="Update Asset and Show"
+                            attrs="{'invisible': [('management_type', '!=', 'update')]}"
+                            context="{'show_asset': 1}"
+                            class="oe_highlight"/>
+                    <button name="link_asset"
+                            type="object"
+                            string="Update Asset"
+                            attrs="{'invisible': [('management_type', '!=', 'update')]}"
+                            context="{'show_asset': 0}"
+                            class="oe_highlight"/>
+                    <button name="link_asset"
+                            type="object"
+                            string="Partial Dismiss Asset and Show"
+                            attrs="{'invisible': ['|', ('invoice_type', 'in', ('in_invoice', 'out_refund')), ('management_type', '!=', 'partial_dismiss')]}"
+                            context="{'show_asset': 1}"
+                            class="oe_highlight"/>
+                    <button name="link_asset"
+                            type="object"
+                            string="Partial Dismiss Asset"
+                            attrs="{'invisible': ['|', ('invoice_type', 'in', ('in_invoice', 'out_refund')), ('management_type', '!=', 'partial_dismiss')]}"
+                            context="{'show_asset': 0}"
+                            class="oe_highlight"/>
+                    <button name="link_asset"
+                            type="object"
+                            string="Dismiss Asset and Show"
+                            attrs="{'invisible': ['|', ('invoice_type', 'in', ('in_invoice', 'out_refund')), ('management_type', '!=', 'dismiss')]}"
+                            context="{'show_asset': 1}"
+                            class="oe_highlight"/>
+                    <button name="link_asset"
+                            type="object"
+                            string="Dismiss Asset"
+                            attrs="{'invisible': ['|', ('invoice_type', 'in', ('in_invoice', 'out_refund')), ('management_type', '!=', 'dismiss')]}"
+                            context="{'show_asset': 0}"
+                            class="oe_highlight"/>
+                    <button special="cancel"
+                            string="Cancel"/>
+                </footer>
+                <footer attrs="{'invisible': [('invoice_type', '!=', 'wrong'), ('is_invoice_state_ok', '=', True)]}">
+                    <button special="cancel"
+                            string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_wizard_invoice_manage_asset"
+                name="Link to Assets"
+                context="{'invoice_ids': active_ids}"
+                src_model="account.invoice"
+                res_model="wizard.invoice.manage.asset"
+                view_mode="form"
+                view_type="form"
+                multi="True"
+                key2="client_action_multi"
+                target="new"/>
+
+</odoo>
