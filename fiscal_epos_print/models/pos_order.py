@@ -16,6 +16,7 @@ class PosOrder(models.Model):
         "Fiscal receipt date", digits=(4, 0))
     fiscal_z_rep_number = fields.Integer("Fiscal closure number")
     fiscal_printer_serial = fields.Char(string='Fiscal Printer Serial')
+    fiscal_printer_debug_info = fields.Text("Debug info", readonly=True)
 
     @api.model
     def _order_fields(self, ui_order):
@@ -33,6 +34,8 @@ class PosOrder(models.Model):
         res['fiscal_z_rep_number'] = ui_order['fiscal_z_rep_number'] or False
         res['fiscal_printer_serial'] = \
             ui_order['fiscal_printer_serial'] or False
+        res['fiscal_printer_debug_info'] = \
+            ui_order['fiscal_printer_debug_info'] or False
         return res
 
     # This is on pos_order_mgmt to send back the fields of already existing
@@ -49,7 +52,18 @@ class PosOrder(models.Model):
         res['fiscal_receipt_date'] = self.fiscal_receipt_date
         res['fiscal_z_rep_number'] = self.fiscal_z_rep_number
         res['fiscal_printer_serial'] = self.fiscal_printer_serial
+        res['fiscal_printer_debug_info'] = self.fiscal_printer_debug_info
         return res
+
+    @api.model
+    def update_fiscal_receipt_debug_info(self, pos_order):
+        po = self.search([('pos_reference', '=', pos_order.get('name'))])
+        debug_info = pos_order.get('fiscal_printer_debug_info')
+        if po:
+            po.write({
+                'fiscal_printer_debug_info': debug_info,
+            })
+        return True
 
     @api.model
     def update_fiscal_receipt_values(self, pos_order):
@@ -76,4 +90,6 @@ class PosOrder(models.Model):
         for order in orders:
             if order['data'].get('fiscal_receipt_number'):
                 self.update_fiscal_receipt_values(order['data'])
+            if order['data'].get('fiscal_printer_debug_info'):
+                self.update_fiscal_receipt_debug_info(order['data'])
         return res
