@@ -122,12 +122,10 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             options = options || {};
             this.url = options.url || 'http://192.168.1.1/cgi-bin/fpmate.cgi';
             this.fiscalPrinter = new epson.fiscalPrint();
-            this.fpresponse = false;
             this.sender = sender;
             this.order = options.order || null;
             this.fiscalPrinter.onreceive = function(res, tag_list_names, add_info) {
                 sender.chrome.loading_hide();
-                self.fpresponse = tag_list_names
                 var tagStatus = (tag_list_names ? tag_list_names.filter(getStatusField) : []);
                 var msgPrinter = "";
 
@@ -137,6 +135,9 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                 }
 
                 if (!res.success) {
+                    var order = self.order;
+                    order.fiscal_printer_debug_info = JSON.stringify(res) + '\n' + JSON.stringify(tag_list_names) + '\n' + JSON.stringify(add_info);
+                    sender.pos.push_order(order);
                     if (tagStatus.length > 0) {
                         var info = add_info[tagStatus[0]];
                         var msgPrinter = decodeFpStatus(info);

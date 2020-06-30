@@ -24,6 +24,7 @@ odoo.define('fiscal_epos_print.models', function (require) {
             this.fiscal_receipt_date = null;
             this.fiscal_z_rep_number = null;
             this.fiscal_printer_serial = this.pos.config.fiscal_printer_serial || null;
+            this.fiscal_printer_debug_info = null;
         },
 
         // Manages the case in which after printing an invoice
@@ -56,6 +57,7 @@ odoo.define('fiscal_epos_print.models', function (require) {
             this.fiscal_receipt_date = json.fiscal_receipt_date;
             this.fiscal_z_rep_number = json.fiscal_z_rep_number;
             this.fiscal_printer_serial = json.fiscal_printer_serial;
+            this.fiscal_printer_debug_info = json.fiscal_printer_debug_info;
         },
 
         export_as_JSON: function() {
@@ -69,6 +71,7 @@ odoo.define('fiscal_epos_print.models', function (require) {
             result.fiscal_receipt_date = this.fiscal_receipt_date; // parsed by backend
             result.fiscal_z_rep_number = this.fiscal_z_rep_number;
             result.fiscal_printer_serial = this.fiscal_printer_serial || null;
+            result.fiscal_printer_debug_info = this.fiscal_printer_debug_info;
             return result;
         },
 
@@ -84,6 +87,7 @@ odoo.define('fiscal_epos_print.models', function (require) {
             receipt.fiscal_receipt_date = this.fiscal_receipt_date;
             receipt.fiscal_z_rep_number = this.fiscal_z_rep_number;
             receipt.fiscal_printer_serial = this.fiscal_printer_serial;
+            receipt.fiscal_printer_debug_info = this.fiscal_printer_debug_info;
 
             return receipt
         },
