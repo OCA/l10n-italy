@@ -70,6 +70,7 @@
                                 <field name="fiscal_receipt_date"/>
                                 <field name="fiscal_z_rep_number"/>
                                 <field name="fiscal_printer_serial"/>
+                                <field name="fiscal_printer_debug_info" groups="base.group_no_one"/>
                             </group>
                             <group string="Refund Info">
                                 <field name="refund_date"/>
