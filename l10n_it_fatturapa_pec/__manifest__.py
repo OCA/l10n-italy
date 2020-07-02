@@ -7,7 +7,7 @@
 
 {
     'name': 'ITA - Fattura elettronica - Supporto PEC',
-    'version': '12.0.1.6.0',
+    'version': '12.0.1.6.1',
     'category': 'Localization/Italy',
     'summary': 'Invio fatture elettroniche tramite PEC',
     'author': 'Openforce Srls Unipersonale, Odoo Community Association (OCA)',
