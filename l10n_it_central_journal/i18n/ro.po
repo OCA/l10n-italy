@@ -113,6 +113,7 @@ msgid "Draft"
 msgstr ""
 
 #. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_account_bank_statement_import_journal_creation__central_journal_exclude
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_account_journal__central_journal_exclude
 msgid "Exclude from General Journal"
 msgstr ""
