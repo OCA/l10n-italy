@@ -613,6 +613,7 @@ msgid "Esterometro"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_account_bank_statement_import_journal_creation__comunicazione_dati_iva_escludi
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_account_invoice__comunicazione_dati_iva_escludi
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_account_journal__comunicazione_dati_iva_escludi
 msgid "Exclude from invoices communication"
