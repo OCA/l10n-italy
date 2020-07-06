@@ -143,13 +143,27 @@ class MailThread(models.AbstractModel):
         if 'CONSEGNA: ' in subject:
             att_name = subject.replace('CONSEGNA: ', '')
             fatturapa_attachment_out = attachment_out_model \
-                .search([('datas_fname', '=', att_name)])
+                .search([
+                    ('datas_fname', '=', att_name)
+                ])
+            if not fatturapa_attachment_out:
+                fatturapa_attachment_out = attachment_out_model \
+                    .search([
+                        ('name', '=', att_name)
+                    ])
             if len(fatturapa_attachment_out) == 1:
                 return fatturapa_attachment_out
         if 'ACCETTAZIONE: ' in subject:
             att_name = subject.replace('ACCETTAZIONE: ', '')
             fatturapa_attachment_out = attachment_out_model \
-                .search([('datas_fname', '=', att_name)])
+                .search([
+                    ('datas_fname', '=', att_name)
+                ])
+            if not fatturapa_attachment_out:
+                fatturapa_attachment_out = attachment_out_model \
+                    .search([
+                        ('name', '=', att_name)
+                    ])
             if len(fatturapa_attachment_out) == 1:
                 return fatturapa_attachment_out
         return attachment_out_model.browse()
