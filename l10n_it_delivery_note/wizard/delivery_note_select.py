@@ -1,7 +1,7 @@
 # Copyright (c) 2019, Link IT Europe Srl
 # @author: Matteo Bilotta <mbilotta@linkeurope.it>
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class StockDeliveryNoteSelectWizard(models.TransientModel):

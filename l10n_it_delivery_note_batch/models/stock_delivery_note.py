@@ -1,7 +1,7 @@
 # Copyright (c) 2020 Marco Colombo
 # @author: Marco Colombo <marco.colombo@gmail.com>
 
-from odoo import _, fields, models
+from odoo import fields, models
 # from odoo.exceptions import UserError
 
 

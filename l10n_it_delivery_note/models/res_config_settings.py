@@ -1,7 +1,7 @@
 # Copyright (c) 2019, Link IT Europe Srl
 # @author: Matteo Bilotta <mbilotta@linkeurope.it>
 
-from odoo import _, fields, models
+from odoo import fields, models
 
 
 class ResConfigSettings(models.TransientModel):
