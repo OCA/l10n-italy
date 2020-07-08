@@ -1,0 +1,402 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_delivery_note_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-11 10:29+0000\n"
+"PO-Revision-Date: 2020-06-11 10:29+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_delivery_note_base
+#: code:addons/l10n_it_delivery_note_base/models/stock_delivery_note_type.py:15
+#: code:addons/l10n_it_delivery_note_base/models/stock_picking_goods_appearance.py:15
+#: code:addons/l10n_it_delivery_note_base/models/stock_picking_transport_condition.py:22
+#: code:addons/l10n_it_delivery_note_base/models/stock_picking_transport_method.py:15
+#: code:addons/l10n_it_delivery_note_base/models/stock_picking_transport_reason.py:15
+#, python-format
+msgid "Active"
+msgstr "Attiva"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__next_sequence_number
+msgid "Actual Next Number"
+msgstr "Prossimo numero attuale"
+
+#. module: l10n_it_delivery_note_base
+#: code:addons/l10n_it_delivery_note_base/models/stock_picking_goods_appearance.py:17
+#, python-format
+msgid "Appearance name"
+msgstr "Nome aspetto"
+
+#. module: l10n_it_delivery_note_base
+#: code:addons/l10n_it_delivery_note_base/models/stock_delivery_note_type.py:21
+#: model:ir.model,name:l10n_it_delivery_note_base.model_stock_picking_goods_appearance
+#, python-format
+msgid "Appearance of goods"
+msgstr "Aspetto dei beni"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__default_goods_appearance_id
+msgid "Aspetto dei beni"
+msgstr "Aspetto dei beni"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__active
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_goods_appearance__active
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_condition__active
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_method__active
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_reason__active
+msgid "Attivo"
+msgstr "Attivo"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__company_id
+msgid "Azienda"
+msgstr "Azienda"
+
+#. module: l10n_it_delivery_note_base
+#: model:stock.picking.goods.appearance,name:l10n_it_delivery_note_base.goods_appearance_CAR
+msgid "Box"
+msgstr "Cartone"
+
+#. module: l10n_it_delivery_note_base
+#: model:stock.picking.goods.appearance,name:l10n_it_delivery_note_base.goods_appearance_CBA
+msgid "Box / Pallet"
+msgstr "Cartone / Bancale"
+
+#. module: l10n_it_delivery_note_base
+#: model:stock.picking.goods.appearance,name:l10n_it_delivery_note_base.goods_appearance_SFU
+msgid "Bulk"
+msgstr "Sfusi"
+
+#. module: l10n_it_delivery_note_base
+#: model:stock.picking.transport.condition,name:l10n_it_delivery_note_base.transport_condition_PA
+msgid "Carriage forward"
+msgstr "Porto assegnato"
+
+#. module: l10n_it_delivery_note_base
+#: model:stock.picking.transport.condition,name:l10n_it_delivery_note_base.transport_condition_PF
+msgid "Carriage paid"
+msgstr "Porto franco"
+
+#. module: l10n_it_delivery_note_base
+#: model:stock.picking.transport.method,name:l10n_it_delivery_note_base.transport_method_COR
+msgid "Carrier"
+msgstr "Vettore"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__default_transport_reason_id
+msgid "Causale di trasporto"
+msgstr "Causale di trasporto"
+
+#. module: l10n_it_delivery_note_base
+#: model:stock.picking.transport.condition,name:l10n_it_delivery_note_base.transport_condition_PAF
+msgid "Charged in invoice"
+msgstr "Con addebito in fattura"
+
+#. module: l10n_it_delivery_note_base
+#: code:addons/l10n_it_delivery_note_base/models/stock_delivery_note_type.py:27
+#, python-format
+msgid "Company"
+msgstr "Azienda"
+
+#. module: l10n_it_delivery_note_base
+#: code:addons/l10n_it_delivery_note_base/models/stock_picking_transport_condition.py:24
+#, python-format
+msgid "Condition name"
+msgstr "Nome condizione"
+
+#. module: l10n_it_delivery_note_base
+#: code:addons/l10n_it_delivery_note_base/models/stock_delivery_note_type.py:20
+#: model:ir.model,name:l10n_it_delivery_note_base.model_stock_picking_transport_condition
+#, python-format
+msgid "Condition of transport"
+msgstr "Condizione di trasporto"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__default_transport_condition_id
+msgid "Condizione di trasporto"
+msgstr "Condizione di trasporto"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__create_uid
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_goods_appearance__create_uid
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_condition__create_uid
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_method__create_uid
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_reason__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__create_date
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_goods_appearance__create_date
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_condition__create_date
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_method__create_date
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_reason__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: l10n_it_delivery_note_base
+#: model:stock.delivery.note.type,name:l10n_it_delivery_note_base.delivery_note_type_ddt
+msgid "DdT"
+msgstr "DdT"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model,name:l10n_it_delivery_note_base.model_stock_delivery_note_type
+msgid "Delivery note type"
+msgstr "Tipo DdT"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__display_name
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_goods_appearance__display_name
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_condition__display_name
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_method__display_name
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_reason__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: l10n_it_delivery_note_base
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_base.stock_delivery_note_type_tree_view
+msgid "Go to sequence"
+msgstr "Vai alla sequenza"
+
+#. module: l10n_it_delivery_note_base
+#: model:stock.picking.transport.reason,name:l10n_it_delivery_note_base.transport_reason_VIS
+msgid "Goods on approval"
+msgstr "Conto visione"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_goods_appearance__id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_condition__id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_method__id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_reason__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_delivery_note_base
+#: code:addons/l10n_it_delivery_note_base/models/stock_delivery_note_type.py:28
+#: code:addons/l10n_it_delivery_note_base/models/stock_picking_goods_appearance.py:18
+#: code:addons/l10n_it_delivery_note_base/models/stock_picking_transport_condition.py:36
+#: code:addons/l10n_it_delivery_note_base/models/stock_picking_transport_method.py:18
+#: code:addons/l10n_it_delivery_note_base/models/stock_picking_transport_reason.py:18
+#, python-format
+msgid "Internal note"
+msgstr "Nota interna"
+
+#. module: l10n_it_delivery_note_base
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_base.stock_delivery_note_type_form_view
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_base.stock_picking_goods_appearance_form_view
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_base.stock_picking_transport_condition_form_view
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_base.stock_picking_transport_method_form_view
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_base.stock_picking_transport_reason_form_view
+msgid "Internal notes"
+msgstr "Note interne"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type____last_update
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_goods_appearance____last_update
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_condition____last_update
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_method____last_update
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_reason____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__write_uid
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_goods_appearance__write_uid
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_condition__write_uid
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_method__write_uid
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_reason__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__write_date
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_goods_appearance__write_date
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_condition__write_date
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_method__write_date
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_reason__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: l10n_it_delivery_note_base
+#: code:addons/l10n_it_delivery_note_base/models/stock_picking_transport_method.py:17
+#, python-format
+msgid "Method name"
+msgstr "Nome metodo"
+
+#. module: l10n_it_delivery_note_base
+#: code:addons/l10n_it_delivery_note_base/models/stock_delivery_note_type.py:23
+#: model:ir.model,name:l10n_it_delivery_note_base.model_stock_picking_transport_method
+#, python-format
+msgid "Method of transport"
+msgstr "Metodo di trasporto"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__default_transport_method_id
+msgid "Metodo di trasporto"
+msgstr "Metodo di trasporto"
+
+#. module: l10n_it_delivery_note_base
+#: code:addons/l10n_it_delivery_note_base/models/stock_delivery_note_type.py:17
+#, python-format
+msgid "Name"
+msgstr "Nome"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,help:l10n_it_delivery_note_base.field_stock_delivery_note_type__next_sequence_number
+msgid "Next number that will be used. This number can be incremented frequently so the displayed value might already be obsolete"
+msgstr "Il numero che verrà usato come successivo. Il valore visualizzato potrebbe essere già obsoleto dato che può essere incrementato in modo frequente"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__name
+msgid "Nome"
+msgstr "Nome"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_goods_appearance__name
+msgid "Nome aspetto"
+msgstr "Nome aspetto"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_condition__name
+msgid "Nome condizione"
+msgstr "Nome condizione"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_method__name
+msgid "Nome metodo"
+msgstr "Nome metodo"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_reason__name
+msgid "Nome motivo"
+msgstr "Nome motivo"
+
+#. module: l10n_it_delivery_note_base
+#: selection:stock.picking.transport.condition,price_to_show:0
+msgid "None"
+msgstr ""
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_goods_appearance__note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_condition__note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_method__note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_reason__note
+msgid "Nota interna"
+msgstr "Nota interna"
+
+#. module: l10n_it_delivery_note_base
+#: model:stock.picking.goods.appearance,name:l10n_it_delivery_note_base.goods_appearance_BAN
+msgid "Pallet"
+msgstr "Bancale"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_condition__price_to_show
+msgid "Prezzo da mostrare"
+msgstr "Prezzo da mostrare"
+
+#. module: l10n_it_delivery_note_base
+#: code:addons/l10n_it_delivery_note_base/models/stock_picking_transport_condition.py:26
+#, python-format
+msgid "Price to show"
+msgstr "Prezzo da mostrare"
+
+#. module: l10n_it_delivery_note_base
+#: code:addons/l10n_it_delivery_note_base/models/stock_picking_transport_reason.py:17
+#, python-format
+msgid "Reason name"
+msgstr "Nome motivo"
+
+#. module: l10n_it_delivery_note_base
+#: code:addons/l10n_it_delivery_note_base/models/stock_delivery_note_type.py:22
+#: model:ir.model,name:l10n_it_delivery_note_base.model_stock_picking_transport_reason
+#, python-format
+msgid "Reason of transport"
+msgstr "Causale di trasporto"
+
+#. module: l10n_it_delivery_note_base
+#: model:stock.picking.transport.method,name:l10n_it_delivery_note_base.transport_method_DES
+msgid "Recipient"
+msgstr "Destinatario"
+
+#. module: l10n_it_delivery_note_base
+#: model:stock.picking.transport.reason,name:l10n_it_delivery_note_base.transport_reason_RES
+msgid "Returned"
+msgstr "Reso"
+
+#. module: l10n_it_delivery_note_base
+#: model:stock.picking.transport.reason,name:l10n_it_delivery_note_base.transport_reason_VEN
+msgid "Sale"
+msgstr "Vendita"
+
+#. module: l10n_it_delivery_note_base
+#: model:stock.picking.transport.method,name:l10n_it_delivery_note_base.transport_method_MIT
+msgid "Sender"
+msgstr "Mittente"
+
+#. module: l10n_it_delivery_note_base
+#: code:addons/l10n_it_delivery_note_base/models/stock_delivery_note_type.py:16
+#: code:addons/l10n_it_delivery_note_base/models/stock_picking_goods_appearance.py:16
+#: code:addons/l10n_it_delivery_note_base/models/stock_picking_transport_condition.py:23
+#: code:addons/l10n_it_delivery_note_base/models/stock_picking_transport_method.py:16
+#: code:addons/l10n_it_delivery_note_base/models/stock_picking_transport_reason.py:16
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__sequence_id
+#, python-format
+msgid "Sequence"
+msgstr "Sequenza"
+
+#. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__sequence
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_goods_appearance__sequence
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_condition__sequence
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_method__sequence
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_reason__sequence
+msgid "Sequenza"
+msgstr "Sequenza"
+
+#. module: l10n_it_delivery_note_base
+#: sql_constraint:stock.picking.goods.appearance:0
+msgid "This appearance of goods already exists!"
+msgstr "Questo aspetto dei beni esiste già!"
+
+#. module: l10n_it_delivery_note_base
+#: sql_constraint:stock.picking.transport.condition:0
+msgid "This condition of transport already exists!"
+msgstr "Questa condizione di trasporto esiste già!"
+
+#. module: l10n_it_delivery_note_base
+#: sql_constraint:stock.delivery.note.type:0
+msgid "This delivery note type already exists!"
+msgstr "Questo tipo di DdT esiste già!"
+
+#. module: l10n_it_delivery_note_base
+#: sql_constraint:stock.picking.transport.method:0
+msgid "This method of transport already exists!"
+msgstr "Questo metodo di trasporto esiste già!"
+
+#. module: l10n_it_delivery_note_base
+#: sql_constraint:stock.picking.transport.reason:0
+msgid "This reason of transport already exists!"
+msgstr "Questa causale di trasporto esiste già!"
+
+#. module: l10n_it_delivery_note_base
+#: selection:stock.picking.transport.condition,price_to_show:0
+msgid "Total price"
+msgstr "Prezzo totale"
+
+#. module: l10n_it_delivery_note_base
+#: selection:stock.picking.transport.condition,price_to_show:0
+msgid "Unit price"
+msgstr "Prezzo unitario"
+
