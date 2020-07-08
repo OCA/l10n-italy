@@ -186,8 +186,8 @@ class StockDeliveryNote(models.Model):
     picking_ids = fields.One2many('stock.picking', 'delivery_note_id',
                                   string="Pickings")
     pickings_picker = fields.Many2many('stock.picking',
-                                       compute='_get_pickings',
-                                       inverse='_set_pickings')
+                                       compute='_compute_get_pickings',
+                                       inverse='_inverse_set_pickings')
 
     picking_type = fields.Selection(PICKING_TYPES,
                                     string="Picking type",
@@ -253,12 +253,12 @@ class StockDeliveryNote(models.Model):
                 note.invoice_status = DOMAIN_INVOICE_STATUSES[0]
 
     @api.multi
-    def _get_pickings(self):
+    def _compute_get_pickings(self):
         for note in self:
             note.pickings_picker = note.picking_ids
 
     @api.multi
-    def _set_pickings(self):
+    def _inverse_set_pickings(self):
         for note in self:
             if note.pickings_picker:
                 self.check_compliance(note.pickings_picker)

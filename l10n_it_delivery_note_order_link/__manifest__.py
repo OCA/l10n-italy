@@ -7,10 +7,11 @@
 {
     'name': 'ITA - Documento di Trasporto link from purchase order',
     'summary': 'Delivery Note link from purchase order',
-    'author': 'Openindustry.it Sas',
+    'author': 'Openindustry.it Sas, Odoo Community Association (OCA)',
     'website': "https://github.com/OCA/l10n-italy/tree/12.0/"
                "l10n_it_delivery_note_order_link",
     'version': '12.0.1.0.0',
+    'license': 'AGPL-3',
     'category': 'Localization',
     'depends': [
         'purchase_stock',

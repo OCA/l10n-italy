@@ -7,12 +7,13 @@
     'name': "ITA - Documento di Trasporto Batch Picking",
     'summary': "Crea i DdT partendo dai Gruppi di Trasferimenti",
 
-    'author': "Marco Colombo",
+    'author': "Marco Colombo, Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/l10n-italy/tree/12.0/"
                "l10n_it_delivery_note_batch",
 
     'version': '12.0.1.0.0',
     'category': "Localization",
+    'license': 'AGPL-3',
 
     'depends': [
         'stock_picking_batch',
