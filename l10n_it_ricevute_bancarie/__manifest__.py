@@ -18,10 +18,8 @@
     'license': "AGPL-3",
     'depends': [
         'account',
-        'account_group_menu',
         'l10n_it_fiscalcode',
         'base_iban',
-        #'l10n_it_abicab',
         'account_due_list'],
     'data': [
         "data/riba_sequence.xml",
