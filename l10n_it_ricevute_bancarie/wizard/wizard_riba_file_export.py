@@ -189,10 +189,11 @@ class RibaFileExport(models.TransientModel):
         order_obj = self.env['riba.distinta'].browse(active_ids)[0]
         credit_bank = order_obj.config_id.bank_id
         name_company = order_obj.config_id.company_id.partner_id.name
-        if not credit_bank.acc_number:
+        credit_iban = credit_bank.acc_number.replace(" ", "") \
+            if credit_bank.acc_number else None
+        if not credit_iban or not len(credit_iban) == 27:
             raise UserError(_('No IBAN specified.'))
         # remove spaces automatically added by odoo
-        credit_iban = credit_bank.acc_number.replace(" ", "")
         credit_abi = credit_iban[5:10]
         credit_cab = credit_iban[10:15]
         credit_conto = credit_iban[-12:]
@@ -234,12 +235,13 @@ class RibaFileExport(models.TransientModel):
             debitor_address = line.partner_id
             debitor_street = debitor_address.street or ''
             debitor_zip = debitor_address.zip or ''
+            debit_iban = debit_bank.acc_number.replace(" ", "") \
+                if debit_bank.acc_number else None
             #TODO: for compatibility only remove in the next release
-            if debit_bank.bank_abi and 'bank_cab' in debit_bank:
+            if hasattr(debit_bank, "bank_abi") and debit_bank.bank_cab:
                 debit_abi = debit_bank.bank_abi
                 debit_cab = debit_bank.bank_cab
-            elif debit_bank.acc_number:
-                debit_iban = debit_bank.acc_number.replace(" ", "")
+            elif debit_iban and len(debit_bank) == 27:
                 debit_abi = debit_iban[5:10]
                 debit_cab = debit_iban[10:15]
             else:
