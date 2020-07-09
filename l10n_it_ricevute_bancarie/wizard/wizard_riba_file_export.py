@@ -234,7 +234,8 @@ class RibaFileExport(models.TransientModel):
             debitor_address = line.partner_id
             debitor_street = debitor_address.street or ''
             debitor_zip = debitor_address.zip or ''
-            if debit_bank.bank_abi and debit_bank.bank_cab:
+            #TODO: for compatibility only remove in the next release
+            if debit_bank.bank_abi and 'bank_cab' in debit_bank:
                 debit_abi = debit_bank.bank_abi
                 debit_cab = debit_bank.bank_cab
             elif debit_bank.acc_number:
