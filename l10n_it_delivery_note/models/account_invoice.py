@@ -8,8 +8,7 @@
 
 from odoo import _, api, fields, models
 
-# from .stock_delivery_note import DATETIME_FORMAT
-DATE_FORMAT = '%d/%m/%Y'
+from .stock_delivery_note import DATE_FORMAT
 
 
 class AccountInvoice(models.Model):

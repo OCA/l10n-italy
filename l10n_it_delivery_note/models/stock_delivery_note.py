@@ -10,6 +10,7 @@ from odoo.exceptions import UserError
 from ..mixins.picking_checker import DONE_PICKING_STATE, PICKING_TYPES
 
 DATETIME_FORMAT = '%d/%m/%Y %H:%M:%S'
+DATE_FORMAT = '%d/%m/%Y'
 
 DELIVERY_NOTE_STATES = [
     ('draft', "Draft"),
