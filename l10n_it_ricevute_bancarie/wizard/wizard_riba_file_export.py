@@ -189,16 +189,17 @@ class RibaFileExport(models.TransientModel):
         order_obj = self.env['riba.distinta'].browse(active_ids)[0]
         credit_bank = order_obj.config_id.bank_id
         name_company = order_obj.config_id.company_id.partner_id.name
-        if not credit_bank.acc_number:
-            raise UserError(_('No IBAN specified.'))
         # remove spaces automatically added by odoo
-        credit_iban = credit_bank.acc_number.replace(" ", "")
+        credit_iban = credit_bank.acc_number.replace(" ", "") \
+            if credit_bank.acc_number else None
+        if not credit_iban or not len(credit_iban) == 27:
+            raise UserError(_('No IBAN specified.'))
         credit_abi = credit_iban[5:10]
         credit_cab = credit_iban[10:15]
         credit_conto = credit_iban[-12:]
         if not credit_bank.codice_sia:
             raise UserError(
-                _('No SIA Code specified for ') + name_company)
+                _('No SIA Code specified for %s') % name_company)
         credit_sia = credit_bank.codice_sia
         dataemissione = datetime.datetime.now().strftime("%d%m%y")
         nome_supporto = datetime.datetime.now().strftime(
@@ -210,7 +211,7 @@ class RibaFileExport(models.TransientModel):
             order_obj.config_id.company_id.partner_id.fiscalcode
         ):
             raise UserError(
-                _('No VAT or Fiscal Code specified for ') + name_company)
+                _('No VAT or Fiscal Code specified for %s') % name_company)
         array_testata = [
             credit_sia,
             credit_abi,
@@ -234,16 +235,17 @@ class RibaFileExport(models.TransientModel):
             debitor_address = line.partner_id
             debitor_street = debitor_address.street or ''
             debitor_zip = debitor_address.zip or ''
+            debit_iban = debit_bank.acc_number.replace(" ", "") \
+                if debit_bank.acc_number else None
             if debit_bank.bank_abi and debit_bank.bank_cab:
                 debit_abi = debit_bank.bank_abi
                 debit_cab = debit_bank.bank_cab
-            elif debit_bank.acc_number:
-                debit_iban = debit_bank.acc_number.replace(" ", "")
+            elif debit_iban and len(debit_iban) == 27:
                 debit_abi = debit_iban[5:10]
                 debit_cab = debit_iban[10:15]
             else:
                 raise UserError(
-                    _('No IBAN or ABI/CAB specified for ') +
+                    _('No IBAN or ABI/CAB specified for %s') %
                     line.partner_id.name)
             debitor_city = debitor_address.city and debitor_address.city.ljust(
                 23)[0:23] or ''
@@ -257,7 +259,7 @@ class RibaFileExport(models.TransientModel):
 
             if not line.partner_id.vat and not line.partner_id.fiscalcode:
                 raise UserError(
-                    _('No VAT or Fiscal Code specified for ') +
+                    _('No VAT or Fiscal Code specified for %s') %
                     line.partner_id.name)
             Riba = [
                 line.sequence,
