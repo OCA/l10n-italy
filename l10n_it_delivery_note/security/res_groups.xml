@@ -14,7 +14,7 @@
 
     <record id="can_change_number" model="res.groups">
         <field name="name">Allow user to change the delivery note number</field>
-        <field name="category_id" ref="module_category_inventory_checkboxes" />
+        <field name="category_id" ref="l10n_it_delivery_note_base.module_category_inventory_checkboxes" />
     </record>
 
 </odoo>
