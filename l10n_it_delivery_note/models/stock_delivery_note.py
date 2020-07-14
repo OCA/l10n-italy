@@ -9,8 +9,8 @@ from odoo.exceptions import UserError
 
 from ..mixins.picking_checker import DONE_PICKING_STATE, PICKING_TYPES
 
-DATETIME_FORMAT = '%d/%m/%Y %H:%M:%S'
 DATE_FORMAT = '%d/%m/%Y'
+DATETIME_FORMAT = '%d/%m/%Y %H:%M:%S'
 
 DELIVERY_NOTE_STATES = [
     ('draft', "Draft"),
@@ -307,7 +307,7 @@ class StockDeliveryNote(models.Model):
         can_change_number = self.user_has_groups(
             'l10n_it_delivery_note.can_change_number')
         show_product_information = self.user_has_groups(
-            'l10n_it_delivery_note.show_product_related_fields')
+            'l10n_it_delivery_note_base.show_product_related_fields')
 
         for note in self:
             note.can_change_number = \

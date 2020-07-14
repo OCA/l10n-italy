@@ -43,7 +43,11 @@ class StockDeliveryNoteType(models.Model):
     default_transport_method_id = fields.Many2one(
         'stock.picking.transport.method', string="Method of transport")
 
-    sequence_id = fields.Many2one('ir.sequence', required=True)
+    sequence_id = fields.Many2one(
+        'ir.sequence',
+        string="Numeration",
+        required=True
+    )
     next_sequence_number = fields.Integer(
         related='sequence_id.number_next_actual')
     company_id = fields.Many2one('res.company', string="Company",

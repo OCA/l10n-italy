@@ -9,12 +9,12 @@
 
         <record id="base.user_root" model="res.users">
             <field name="groups_id"
-                   eval="[(4, ref('can_change_number'))]" />
+                   eval="[(4, ref('show_product_related_fields'))]" />
         </record>
 
         <record id="base.user_admin" model="res.users">
             <field name="groups_id"
-                   eval="[(4, ref('can_change_number'))]" />
+                   eval="[(4, ref('show_product_related_fields'))]" />
         </record>
 
     </data>

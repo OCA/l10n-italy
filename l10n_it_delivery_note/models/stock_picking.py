@@ -31,8 +31,11 @@ class StockPicking(models.Model):
         fields.Many2one('res.partner',
                         related='delivery_note_id.partner_shipping_id')
 
-    delivery_note_carrier_id = \
-        fields.Many2one('res.partner', related='delivery_note_id.carrier_id')
+    delivery_note_carrier_id = fields.Many2one(
+        'res.partner',
+        string="Delivery note carrier",
+        related='delivery_note_id.carrier_id'
+    )
     delivery_method_id = \
         fields.Many2one('delivery.carrier',
                         related='delivery_note_id.delivery_method_id')
@@ -62,7 +65,10 @@ class StockPicking(models.Model):
         related='delivery_note_id.transport_datetime')
 
     parcels = fields.Integer(related='delivery_note_id.parcels')
-    delivery_note_volume = fields.Float(related='delivery_note_id.volume')
+    delivery_note_volume = fields.Float(
+        related='delivery_note_id.volume',
+        string="Delivery note volume"
+    )
     delivery_note_volume_uom_id = \
         fields.Many2one('uom.uom', related='delivery_note_id.volume_uom_id')
     gross_weight = fields.Float(related='delivery_note_id.gross_weight')
@@ -76,7 +82,10 @@ class StockPicking(models.Model):
 
     valid_move_ids = fields.One2many('stock.move', 'picking_id', domain=[
         ('state', '!=', CANCEL_MOVE_STATE)])
-    picking_type_code = fields.Selection(related='picking_type_id.code')
+    picking_type_code = fields.Selection(
+        related='picking_type_id.code',
+        string="Delivery note operation type"
+    )
 
     use_delivery_note = fields.Boolean(compute='_compute_boolean_flags')
     use_advanced_behaviour = fields.Boolean(compute='_compute_boolean_flags')

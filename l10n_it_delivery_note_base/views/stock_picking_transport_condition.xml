@@ -22,7 +22,7 @@
                     </div>
                     <group>
                         <group>
-                            <field name="price_to_show" groups="l10n_it_delivery_note.show_product_related_fields" />
+                            <field name="price_to_show" groups="l10n_it_delivery_note_base.show_product_related_fields" />
                         </group>
                     </group>
                     <notebook>
@@ -43,7 +43,7 @@
             <tree>
                 <field name="sequence" widget="handle" />
                 <field name="name" />
-                <field name="price_to_show" groups="l10n_it_delivery_note.show_product_related_fields" />
+                <field name="price_to_show" groups="l10n_it_delivery_note_base.show_product_related_fields" />
             </tree>
         </field>
     </record>

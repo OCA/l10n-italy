@@ -23,6 +23,8 @@
         'data/delivery_note_data.xml',
 
         'security/ir_rule.xml',
+        'security/res_groups.xml',
+        'security/res_users.xml',
 
         'views/stock_delivery_note_type.xml',
         'views/stock_picking_goods_appearance.xml',

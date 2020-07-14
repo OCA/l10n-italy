@@ -151,7 +151,8 @@
                                         <field name="delivery_note_carrier_id"
                                                attrs="{'readonly': [('delivery_note_readonly', '=', True)]}"
                                                domain="[('supplier', '=', True)]"
-                                               context="{'default_supplier': True}" />
+                                               context="{'default_supplier': True}"
+                                               string="Carrier" />
                                         <field name="delivery_method_id"
                                                attrs="{'readonly': [('delivery_note_readonly', '=', True)]}" />
                                     </group>
@@ -183,7 +184,8 @@
                                         <label for="volume" />
                                         <div class="o_row">
                                             <field name="delivery_note_volume"
-                                                   attrs="{'readonly': [('delivery_note_readonly', '=', True)]}" />
+                                                   attrs="{'readonly': [('delivery_note_readonly', '=', True)]}"
+                                                   string="Volume" />
                                             <field name="delivery_note_volume_uom_id"
                                                    groups="uom.group_uom"
                                                    widget="selection"
