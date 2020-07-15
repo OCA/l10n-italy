@@ -210,7 +210,7 @@ class StockDeliveryNote(models.Model):
     print_prices = fields.Boolean(string="Print prices on report",
                                   related="type_id.print_prices",
                                   store=True)
-    note = fields.Html(string="Internal note",
+    note = fields.Text(string="Internal note",
                        states=DONE_READONLY_STATE)
 
     can_change_number = fields.Boolean(compute='_compute_boolean_flags')
@@ -288,7 +288,7 @@ class StockDeliveryNote(models.Model):
             #
             # SMELLS: Perché solo quelli 'da fatturare'?
             #
-            sales = self.mapped('picking_ids.sale_id') \
+            sales = note.mapped('picking_ids.sale_id') \
                 .filtered(
                 lambda o: o.invoice_status == DOMAIN_INVOICE_STATUSES[1])
 

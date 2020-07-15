@@ -17,7 +17,7 @@ class StockPickingTransportReason(models.Model):
     sequence = fields.Integer(string="Sequence", index=True, default=10)
     name = fields.Char(string="Reason name", index=True,
                        required=True, translate=True)
-    note = fields.Html(string="Internal note")
+    note = fields.Text(string="Internal note")
 
     _sql_constraints = [(
         'name_uniq',

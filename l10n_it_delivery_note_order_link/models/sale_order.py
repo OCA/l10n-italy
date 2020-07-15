@@ -14,7 +14,7 @@ class SaleOrder(models.Model):
     @api.multi
     def _compute_delivery_notes(self):
         for order in self:
-            delivery_notes = self.order_line.mapped(
+            delivery_notes = order.order_line.mapped(
                 'delivery_note_line_ids.delivery_note_id')
 
             order.delivery_note_ids = delivery_notes

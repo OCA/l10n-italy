@@ -52,7 +52,7 @@ class StockDeliveryNoteType(models.Model):
         related='sequence_id.number_next_actual')
     company_id = fields.Many2one('res.company', string="Company",
                                  default=lambda self: self.env.user.company_id)
-    note = fields.Html(string="Internal note")
+    note = fields.Text(string="Internal note")
 
     _sql_constraints = [(
         'name_uniq',
