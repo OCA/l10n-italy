@@ -215,10 +215,21 @@ class DichiarazioneIntento(models.Model):
     def get_valid(self, type_d=None, partner_id=False, date=False):
         if not partner_id or not type_d or not date:
             return False
-        # ----- return valid documents for partner
-        domain = [('partner_id', '=', partner_id), ('type', '=', type_d),
-                  ('date_start', '<=', date), ('date_end', '>=', date)]
         ignore_state = self.env.context.get('ignore_state', False)
+        all_for_partner = self.get_all_for_partner(type_d, partner_id, ignore_state)
+        # # ----- return valid documents for partner
+        records = all_for_partner.filtered(
+            lambda d: d.date_start <= date <= d.date_end
+        )
+        return records
+
+    def get_all_for_partner(self, type_d=None, partner_id=False,
+                            ignore_state=False):
+        if not partner_id or not type_d:
+            return False
+        # ----- return all documents for partner
+        domain = [('partner_id', '=', partner_id),
+                  ('type', '=', type_d)]
         if not ignore_state:
             domain.append(('state', '!=', 'close'), )
         records = self.search(domain, order='state desc, date')
