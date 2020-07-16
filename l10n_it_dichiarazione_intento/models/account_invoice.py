@@ -48,13 +48,11 @@ class AccountInvoice(models.Model):
         self._set_fiscal_position()
         return res
 
-    @api.multi
     def select_manually_declarations(self):
         self.ensure_one()
         action = self.env.ref(
             'l10n_it_dichiarazione_intento.select_manually_declarations_action'
             ).read()[0]
-        action['context'] = self.env.context.copy()
         return action
 
     @api.multi
