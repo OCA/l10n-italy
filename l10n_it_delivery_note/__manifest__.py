@@ -18,6 +18,7 @@
     'version': '12.0.1.0.0',
     'category': "Localization",
     'license': 'AGPL-3',
+    'maintainers': ['As400it', 'Byloth'],
 
     'depends': [
         'delivery',

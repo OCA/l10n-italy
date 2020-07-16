@@ -35,7 +35,7 @@ class StockPickingTransportCondition(models.Model):
     #        solo ed esclusivamente nelle stampe del DdT?
     #
 
-    note = fields.Text(string="Internal note")
+    note = fields.Html(string="Internal note")
 
     _sql_constraints = [(
         'name_uniq',

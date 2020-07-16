@@ -210,7 +210,7 @@ class StockDeliveryNote(models.Model):
     print_prices = fields.Boolean(string="Print prices on report",
                                   related="type_id.print_prices",
                                   store=True)
-    note = fields.Text(string="Internal note",
+    note = fields.Html(string="Internal note",
                        states=DONE_READONLY_STATE)
 
     can_change_number = fields.Boolean(compute='_compute_boolean_flags')
@@ -592,7 +592,7 @@ class StockDeliveryNoteLine(models.Model):
 
     sequence = fields.Integer(string="Sequence", required=True, default=10,
                               index=True)
-    name = fields.Text(string="Description", required=True)
+    name = fields.Html(string="Description", required=True)
     display_type = fields.Selection(LINE_DISPLAY_TYPES, string="Line type",
                                     default=False)
     product_id = fields.Many2one('product.product', string="Product")
