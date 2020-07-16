@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-08 06:01+0000\n"
-"PO-Revision-Date: 2020-05-08 06:01+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2020-07-16 11:19+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: l10n_it_dichiarazione_intento
 #: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_form
@@ -127,7 +128,7 @@ msgstr "Data inizio"
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,help:l10n_it_dichiarazione_intento.field_dichiarazione_intento__partner_document_date
 msgid "Date of partner's document"
-msgstr "Data del documento del partner"
+msgstr "Data documento del partner"
 
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_line__dichiarazione_id
@@ -232,7 +233,7 @@ msgstr "Posizione fiscale"
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__force_close
 #: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_form
 msgid "Force Close"
-msgstr "Forzare chiusura"
+msgstr "Forza chiusura"
 
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_account_invoice_line__force_dichiarazione_intento_id
@@ -243,7 +244,7 @@ msgstr "Forzare dichiarazione d'intento"
 #. module: l10n_it_dichiarazione_intento
 #: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_form
 msgid "Force Reopen"
-msgstr "Forzare riapertura"
+msgstr "Forza riapertura"
 
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__id
@@ -251,7 +252,7 @@ msgstr "Forzare riapertura"
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_yearly_limit__id
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_select_manually_declarations__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_it_dichiarazione_intento
 #: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:119
@@ -333,7 +334,7 @@ msgstr "Righe"
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_line__move_line_ids
 msgid "Move Lines"
-msgstr ""
+msgstr "Righe movimenti"
 
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__number
@@ -343,13 +344,13 @@ msgstr "Numero"
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,help:l10n_it_dichiarazione_intento.field_dichiarazione_intento__partner_document_number
 msgid "Number of partner's document"
-msgstr "Numero del documento del partner"
+msgstr "Numero documento del partner"
 
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__partner_id
 #: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_search
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model,name:l10n_it_dichiarazione_intento.model_product_product
@@ -375,13 +376,13 @@ msgstr "Ordine di vendita"
 #: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_invoice_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_invoice_supplier_form
 msgid "Select Manually"
-msgstr "Selezionare manualmente"
+msgstr "Seleziona manualmente"
 
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.actions.act_window,name:l10n_it_dichiarazione_intento.select_manually_declarations_action
 #: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.select_manually_declarations_wizard
 msgid "Select Manually Declarations"
-msgstr "Selezionare manualmente le dichiarazioni"
+msgstr "Selezione manuale delle dichiarazioni"
 
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model,name:l10n_it_dichiarazione_intento.model_select_manually_declarations
