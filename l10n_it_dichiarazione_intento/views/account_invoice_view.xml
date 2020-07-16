@@ -12,13 +12,13 @@
                 <div>
                     <field name="dichiarazione_intento_ids" widget="many2many_tags"
                            readonly="1" class="oe_inline oe_link"/>
-                    <button type="object" name="select_manually_declarations" 
+                    <button type="object" name="select_manually_declarations"
                             states="draft" string="Select Manually"
                             class="oe_inline oe_link"/>
                 </div>
             </field>
             <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='invoice_line_tax_ids']" position="after">
-                <field name="force_dichiarazione_intento_id" 
+                <field name="force_dichiarazione_intento_id"
                        domain="[('partner_id', '=', parent.partner_id), ('state', '!=', 'close'), ('date_start', '&lt;=', parent.date_invoice), ('date_end', '&gt;=', parent.date_invoice)]"/>
             </xpath>
         </field>
@@ -30,7 +30,7 @@
         <field name="inherit_id" ref="account.view_invoice_line_form"/>
         <field name="arch" type="xml">
             <field name="invoice_line_tax_ids" position="after">
-                <field name="force_dichiarazione_intento_id" 
+                <field name="force_dichiarazione_intento_id"
                        domain="[('partner_id', '=', parent.partner_id), ('state', '!=', 'close'), ('date_start', '&lt;=', parent.date_invoice), ('date_end', '&gt;=', parent.date_invoice)]"/>
             </field>
         </field>
@@ -46,13 +46,13 @@
                 <div>
                     <field name="dichiarazione_intento_ids" widget="many2many_tags"
                            readonly="1" class="oe_inline oe_link"/>
-                    <button type="object" name="select_manually_declarations" 
+                    <button type="object" name="select_manually_declarations"
                             states="draft" string="Select Manually"
                             class="oe_inline oe_link"/>
                 </div>
             </field>
             <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='invoice_line_tax_ids']" position="after">
-                <field name="force_dichiarazione_intento_id" 
+                <field name="force_dichiarazione_intento_id"
                        domain="[('partner_id', '=', parent.partner_id), ('state', '!=', 'close'), ('date_start', '&lt;=', parent.date_invoice), ('date_end', '&gt;=', parent.date_invoice)]"/>
             </xpath>
         </field>
