@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-06-23 16:19+0000\n"
+"PO-Revision-Date: 2020-07-20 06:19+0000\n"
 "Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -216,30 +216,22 @@ msgstr "Numero errori PEC"
 
 #. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:69
-#, fuzzy, python-format
-#| msgid ""
-#| "<p>PEC message with Message-Id %s has been read but not processed, as not "
-#| "related to an e-invoice.</p><p>Please check PEC mailbox %s, at server %s, "
-#| "with user %s</p>"
+#, python-format
 msgid ""
 "PEC message \"%s\" has been read but not processed, as not related to an e-"
 "invoice.\n"
 "Please check PEC mailbox %s, at server %s, with user %s."
 msgstr ""
-"<p>Il messaggio PEC con Message-Id %s è stato letto ma non elaborato, non è "
-"relativo a una e-fattura.</p><p>Controllare la casella PEC %s: server %s, "
-"utente %s</p>"
+"Il messaggio PEC \"%s\" è stato letto ma non processato, in quanto non "
+"relativo a una fattura elettronica.\n"
+"Prego controllare la casella PEC %s, sul server %s, con utente %s."
 
 #. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:162
-#, fuzzy, python-format
-#| msgid ""
-#| "<p>PEC server %s has been reset. Last error message is</p><p><strong>%s</"
-#| "strong></p>"
+#, python-format
 msgid "PEC server %s has been reset.Last error message is '%s'"
 msgstr ""
-"<p>Il server PEC %s è stato reimpostato. L'ultimo messaggio di errore è</"
-"p><p><strong>%s</strong></p>"
+"Il server PEC %s è stato reimpostato. L'ultimo messaggio di errore è '%s'"
 
 #. module: l10n_it_fatturapa_pec
 #: selection:account.invoice,fatturapa_state:0
