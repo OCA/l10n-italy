@@ -136,7 +136,7 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                 <UnitaMisuraPeso>KGM</UnitaMisuraPeso>
                 <TipoResa>DAP</TipoResa>
                 <IndirizzoResa>
-                    <Indirizzo>strada dei test</Indirizzo>
+                    <Indirizzo>strada dei test tostißimi</Indirizzo>
                     <NumeroCivico>150/B</NumeroCivico>
                     <CAP>12042</CAP>
                     <Comune>Bra</Comune>
