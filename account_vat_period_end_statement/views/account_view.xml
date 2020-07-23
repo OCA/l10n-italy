@@ -127,7 +127,12 @@
                 <tree string="Vat statement">
                     <field name="date" />
                     <field name="journal_id" />
-                    <field name="authority_vat_amount"   />
+                    <field name="previous_credit_vat_amount"/>
+                    <field name="previous_debit_vat_amount"/>
+                    <field name="interests_debit_vat_amount"/>
+                    <field name="tax_credit_amount"/>
+                    <field name="deductible_vat_amount"/>
+                    <field name="authority_vat_amount"/>
                     <field name="state" />
                     <field name="company_id" groups="base.group_multi_company"/>
                </tree>
