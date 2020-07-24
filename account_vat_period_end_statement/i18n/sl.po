@@ -92,7 +92,6 @@ msgstr "Dodaj obdobje"
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_add_period_to_vat_statement
 #, fuzzy
-#| msgid "Account used for VAT statement"
 msgid "Add period to VAT Statement"
 msgstr "Konto za DDV izjavo"
 
@@ -267,7 +266,6 @@ msgstr "Prikazni naziv"
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__advance_account_id
 #, fuzzy
-#| msgid "Payments"
 msgid "Down payment"
 msgstr "Plačila"
 
@@ -452,7 +450,6 @@ msgstr "Obdobje %s še ni povezano z izjavo %s"
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement_search
 #, fuzzy
-#| msgid "Period"
 msgid "Periodic"
 msgstr "Obdobje"
 
@@ -501,7 +498,6 @@ msgstr "Prejšnji DDV v breme"
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__previous_year_credit
 #, fuzzy
-#| msgid "Previous credit vat"
 msgid "Previous year credits"
 msgstr "Prejšnji DDV v dobro"
 
@@ -545,18 +541,12 @@ msgstr "Odstrani obdobje"
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_remove_period_from_vat_statement
 #, fuzzy
-#| msgid "Account used for VAT statement"
 msgid "Remove period from VAT Statement"
 msgstr "Konto za DDV izjavo"
 
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
 #, fuzzy
-#| msgid ""
-#| "Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in "
-#| "Italia, Beni FUE in Italia, Cell., Microproc.\n"
-#| "Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge "
-#| "UE, Cell. UE, Microproc. UE"
 msgid ""
 "Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in "
 "Italia, Beni FUE in Italia, Cell., Microproc.\n"
@@ -677,14 +667,12 @@ msgstr "Neodbitni"
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_statement_credit_account_line
 #, fuzzy
-#| msgid "Credit Account Lines"
 msgid "VAT Statement credit account line"
 msgstr "Postavke konta terjatev"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_statement_debit_account_line
 #, fuzzy
-#| msgid "VAT statement move"
 msgid "VAT Statement debit account line"
 msgstr "Premik DDV izjave"
 
@@ -696,14 +684,12 @@ msgstr ""
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_report_account_vat_period_end_statement_vat_statement
 #, fuzzy
-#| msgid "VAT statement move"
 msgid "VAT Statement report"
 msgstr "Premik DDV izjave"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model,name:account_vat_period_end_statement.model_account_vat_period_end_statement
 #, fuzzy
-#| msgid "Print Vat Period End Statement"
 msgid "VAT period end statement"
 msgstr "Natisni zaključno izjavo ob koncu DDV obdobja"
 
