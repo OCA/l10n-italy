@@ -116,13 +116,6 @@ msgid "Connection to the printer failed"
 msgstr ""
 
 #. module: fiscal_epos_print
-#. openerp-web
-#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:61
-#, python-format
-msgid "DDMMYYYY"
-msgstr ""
-
-#. module: fiscal_epos_print
 #: model:ir.model.fields,field_description:fiscal_epos_print.field_account_tax__fpdeptax
 msgid "Department on fiscal printer 1~99"
 msgstr ""
@@ -723,6 +716,13 @@ msgstr ""
 #: code:addons/fiscal_epos_print/static/src/js/screens.js:82
 #, python-format
 msgid "Wrong tax configuration"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:61
+#, python-format
+msgid "YYYY-MM-DD"
 msgstr ""
 
 #. module: fiscal_epos_print
