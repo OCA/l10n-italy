@@ -58,7 +58,7 @@
                 <div class='client-detail'>
                     <div class='label'>Receipt Date</div>
                     <input id="refund_date" class="detail refund_date" type='text' t-att-value="widget.options.refund_date || ''"
-                           placeholder="DDMMYYYY"/>
+                           placeholder="YYYY-MM-DD"/>
                 </div>
                 <div class='client-detail'>
                     <div class='label'>RT Serial</div>
