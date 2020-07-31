@@ -17,7 +17,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [account_invoice_report_ddt_group](account_invoice_report_ddt_group/) | 10.0.0.3.1 | Account invoice report grouped by DDT
-[account_vat_period_end_statement](account_vat_period_end_statement/) | 10.0.1.5.0 | Period End VAT Statement
+[account_vat_period_end_statement](account_vat_period_end_statement/) | 10.0.1.5.1 | Period End VAT Statement
 [l10n_it_abicab](l10n_it_abicab/) | 10.0.1.0.0 | Base Bank ABI/CAB codes
 [l10n_it_account](l10n_it_account/) | 10.0.1.2.4 | Italian Localization - Account
 [l10n_it_account_stamp](l10n_it_account_stamp/) | 10.0.1.0.1 | Tax stamp automatic management
