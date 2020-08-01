@@ -37,7 +37,7 @@ class EInvoiceCommon(FatturaPACommon):
                 'smtp_host': 'smtp_host',
                 'email_from_for_fatturaPA': 'dummy@fatturapa.it'})
 
-    def _create_e_invoice(self):
+    def _create_invoice(self):
         invoice_line_data = {
             'product_id': self.product.id,
             'quantity': 1,
@@ -47,18 +47,25 @@ class EInvoiceCommon(FatturaPACommon):
             'invoice_line_tax_ids': [
                 (6, 0, [self.ref('l10n_it_fatturapa.tax_22')])]
         }
-        invoice = self.invoice_model.create(
+        return self.invoice_model.create(
             dict(
                 name='Test Invoice',
                 account_id=self.account_receivable_id.id,
                 invoice_line_ids=[(0, 0, invoice_line_data)],
                 partner_id=self.partner.id
             ))
+
+    def _get_export_wizard(self, invoice):
+        wizard = self.wizard_model.create({})
+        return wizard.with_context(
+            {'active_ids': [invoice.id]})
+
+    def _create_e_invoice(self):
+        invoice = self._create_invoice()
         invoice.action_invoice_open()
 
-        wizard = self.wizard_model.create({})
-        action = wizard.with_context(
-            {'active_ids': [invoice.id]}).exportFatturaPA()
+        wizard = self._get_export_wizard(invoice)
+        action = wizard.exportFatturaPA()
 
         return self.env[action['res_model']].browse(action['res_id'])
 
