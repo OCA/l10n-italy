@@ -90,7 +90,6 @@ msgstr "<span> o a credito</span>"
 #. module: l10n_it_vat_statement_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
 #, fuzzy
-#| msgid "<span> or credit</span>"
 msgid "<span>Computation method: </span>"
 msgstr "<span> o a credito</span>"
 
@@ -269,7 +268,6 @@ msgstr "Nome visualizzato"
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__metodo_calcolo_acconto
 #, fuzzy
-#| msgid "Down payment due"
 msgid "Down payment computation method"
 msgstr "Acconto dovuto"
 

@@ -288,7 +288,7 @@ class ComunicazioneLiquidazione(models.Model):
                 x1_2_1_Frontespizio,
                 etree.QName(NS_IV, "CodiceFiscaleSocieta"))
             x1_2_1_9_CodiceFiscaleSocieta.text =\
-                self.declarant_fiscalcode_company.code
+                self.declarant_fiscalcode_company
         # FirmaDichiarazione
         x1_2_1_10_FirmaDichiarazione = etree.SubElement(
             x1_2_1_Frontespizio, etree.QName(NS_IV, "FirmaDichiarazione"))
