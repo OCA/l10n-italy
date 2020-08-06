@@ -50,7 +50,8 @@ class SaleOrder(models.Model):
         default='billing_partner',
         required=True,
     )
-
+    ddt_show_price = fields.Boolean(
+        string='TD show prices', help='Show prices and discounts in TD report')
     ddt_invoice_exclude = fields.Boolean(
         string='DDT do not invoice services',
         help="If flagged services from this SO will not be automatically "
@@ -73,6 +74,7 @@ class SaleOrder(models.Model):
                 self.partner_id.ddt_invoicing_group)
             self.ddt_invoice_exclude = (
                 self.partner_id.ddt_invoice_exclude)
+            self.ddt_show_price = self.partner_id.ddt_show_price
         return result
 
     @api.multi
@@ -109,6 +111,7 @@ class SaleOrder(models.Model):
             'gross_weight': self.gross_weight,
             'volume': self.volume,
             'picking_ids': [(6, 0, picking_ids)],
+            'ddt_show_price': self.ddt_show_price,
         }
 
     @api.multi

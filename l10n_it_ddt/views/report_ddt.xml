@@ -119,7 +119,7 @@
                                 <th name="lot_serial" t-if="has_serial_number" class="text-right">
                                     <strong>Lots/Serial Numbers</strong>
                                 </th>
-                                <t t-if="o.show_price">
+                                <t t-if="o.ddt_show_price">
                                     <th class="text-right"><strong>Price</strong></th>
                                     <th class="text-right"><strong>Discount</strong></th>
                                 </t>
@@ -139,7 +139,7 @@
                                         </t>
                                     </td>
                                 </t>
-                                <t t-if="o.show_price">
+                                <t t-if="o.ddt_show_price">
                                     <td class="text-right" id="line_price_unit"><span t-field="line.price_unit"></span></td>
                                     <td class="text-right" id="line_discount"><span t-field="line.discount"></span></td>
                                 </t>

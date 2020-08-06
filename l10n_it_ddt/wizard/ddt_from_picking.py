@@ -43,8 +43,10 @@ class DdTFromPickings(models.TransientModel):
             partner = current_ddt_shipping_partner
             sale_order = picking.sale_id
             if sale_order:
+                values['ddt_show_price'] = sale_order.ddt_show_price
                 values['partner_id'] = sale_order.partner_id.id
             else:
+                values['ddt_show_price'] = partner.ddt_show_price
                 values['partner_id'] = partner.commercial_partner_id.id
             if not picking.picking_type_code == 'internal':
                 values['partner_shipping_id'] = partner.id

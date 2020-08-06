@@ -32,8 +32,7 @@ class ResPartner(models.Model):
     )
     ddt_code_group = fields.Char(string='Code group')
     ddt_show_price = fields.Boolean(
-        string='TD show prices', default=False, help="Show prices and \
-        discounts in TD report")
+        string='TD show prices', help='Show prices and discounts in TD report')
     ddt_invoice_exclude = fields.Boolean(
         string='Do not invoice services from DDT',
         help="If flagged services will not be automatically "
