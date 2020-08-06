@@ -29,6 +29,7 @@
                             <group>
                                 <field name="create_ddt"/>
                                 <field name="ddt_invoicing_group"/>
+                                <field name="ddt_show_price"/>
                                 <field name="ddt_invoice_exclude"/>
                             </group>
                         </group>

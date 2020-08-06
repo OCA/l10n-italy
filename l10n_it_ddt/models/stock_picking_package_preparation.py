@@ -126,7 +126,7 @@ class StockPickingPackagePreparation(models.Model):
         string='To be Invoiced',
         help="This depends on 'To be Invoiced' field of the Reason for "
              "Transportation of this TD")
-    show_price = fields.Boolean(string='Show prices on report')
+    ddt_show_price = fields.Boolean(string='Show prices on report')
     show_deadline_date = fields.Selection([
         ('life_date', 'End of Life Date'),
         ('use_date', 'Best before Date'),
@@ -180,7 +180,6 @@ class StockPickingPackagePreparation(models.Model):
                 self.partner_id.transportation_method_id.id
                 if self.partner_id.transportation_method_id
                 else self.ddt_type_id.default_transportation_method_id)
-            self.show_price = self.partner_id.ddt_show_price
 
     @api.model
     def check_linked_picking(self, picking):

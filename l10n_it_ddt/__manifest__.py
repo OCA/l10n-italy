@@ -8,7 +8,7 @@
 
 {
     'name': 'ITA - DDT: documento di trasporto',
-    'version': '12.0.1.6.1',
+    'version': '12.0.1.7.1',
     'category': 'Localization/Italy',
     'summary': 'Documento di Trasporto',
     'author': 'Davide Corio, Odoo Community Association (OCA),'
