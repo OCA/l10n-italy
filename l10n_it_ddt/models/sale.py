@@ -56,12 +56,18 @@ class SaleOrder(models.Model):
          ('shipping_partner', 'Shipping Partners'),
          ('code_group', 'Code group')], 'DDT invoicing group',
         default='billing_partner')
+    ddt_count = fields.Integer(string='DDTs', compute='_compute_ddt_count')
 
     ddt_invoice_exclude = fields.Boolean(
         string='DDT do not invoice services',
         help="If flagged services from this SO will not be automatically "
              "invoiced from DDT. This parameter can be set on partners and "
              "automatically applied to Sale Orders.")
+
+    @api.multi
+    def _compute_ddt_count(self):
+        for order in self:
+            order.ddt_count = len(order.ddt_ids)
 
     @api.multi
     @api.onchange('partner_id')

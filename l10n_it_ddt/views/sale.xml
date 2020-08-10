@@ -48,8 +48,8 @@
                        name="action_view_ddt"
                        class="oe_stat_button"
                        icon="fa-truck"
-                       attrs="{'invisible': ['|',('ddt_ids','=',False),('ddt_ids','=',[])]}" groups="base.group_user"
-                       string="View DdT">
+                       attrs="{'invisible': ['|',('ddt_ids','=',False),('ddt_ids','=',[])]}" groups="base.group_user">
+                       <field name="ddt_count" widget="statinfo" string="DDT"/>
                    </button>
                 </xpath>
             </field>
