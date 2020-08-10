@@ -676,19 +676,19 @@ class WizardExportFatturapa(models.TransientModel):
         if line.admin_ref:
             DettaglioLinea.RiferimentoAmministrazione = line.admin_ref
         if line.product_id:
-            if line.product_id.default_code:
+            product_code = line.product_id.default_code
+            if product_code:
                 CodiceArticolo = CodiceArticoloType(
                     CodiceTipo=self.env['ir.config_parameter'].sudo(
                     ).get_param('fatturapa.codicetipo.odoo', 'ODOO'),
-                    CodiceValore=encode_for_export(
-                        line.product_id.default_code, 35, 'ascii')
+                    CodiceValore=product_code[:35],
                 )
                 DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
-            if line.product_id.barcode:
+            product_barcode = line.product_id.barcode
+            if product_barcode:
                 CodiceArticolo = CodiceArticoloType(
                     CodiceTipo='EAN',
-                    CodiceValore=encode_for_export(
-                        line.product_id.barcode, 35, 'ascii')
+                    CodiceValore=product_barcode[:35],
                 )
                 DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
         body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
