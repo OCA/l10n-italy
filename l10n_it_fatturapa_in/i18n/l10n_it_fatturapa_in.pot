@@ -84,7 +84,7 @@ msgid "Attachment URL"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/attachment.py:107
+#: code:addons/l10n_it_fatturapa_in/models/attachment.py:115
 #, python-format
 msgid "Attachment without name"
 msgstr ""
@@ -591,6 +591,11 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_in/models/account.py:220
 #, python-format
 msgid "Invoice date ({bill_date_invoice}) does not match with e-bill invoice date ({e_bill_date_invoice})"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__invoices_date
+msgid "Invoices date"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
