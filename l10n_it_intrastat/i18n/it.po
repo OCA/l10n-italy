@@ -433,7 +433,6 @@ msgstr "Modalità di incasso"
 #. module: l10n_it_intrastat
 #: model:ir.model,name:l10n_it_intrastat.model_account_payment_term
 #, fuzzy
-#| msgid "Payment Terms"
 msgid "Payment Term"
 msgstr "Termini di pagamento"
 
