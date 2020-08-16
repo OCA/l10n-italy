@@ -75,7 +75,6 @@ msgstr "Riga fattura"
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product_is_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template_is_stamp
 #, fuzzy
-#| msgid "Is stamp"
 msgid "Is a stamp"
 msgstr "È un bollo"
 
@@ -125,11 +124,6 @@ msgstr "Totale imponibile minimo per applicabilità bollo"
 #: model:product.product,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro
 #: model:product.template,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
 #, fuzzy
-#| msgid ""
-#| "\n"
-#| "Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree "
-#| "July\n"
-#| "17, 2014"
 msgid ""
 "Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree "
 "June 17, 2014"
