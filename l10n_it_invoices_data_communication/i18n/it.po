@@ -129,7 +129,6 @@ msgstr ""
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_IdFiscaleIVA_IdCodice
 #, fuzzy
-#| msgid "Declarant fiscal code"
 msgid "Cedente Idfiscaleiva Idcodice"
 msgstr "Codice fiscale dichiarante"
 
@@ -1072,7 +1071,6 @@ msgstr "Partner"
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__partner_cedente_id
 #, fuzzy
-#| msgid "Partner"
 msgid "Partner Cedente"
 msgstr "Partner"
 
@@ -1148,7 +1146,6 @@ msgstr "Rimuovere spazi intorno all'indirizzo della stabile organizzazione"
 #: code:addons/l10n_it_invoices_data_communication/models/communication.py:834
 #: code:addons/l10n_it_invoices_data_communication/models/communication.py:1029
 #, fuzzy, python-format
-#| msgid "Remove empty characters around adrress of permanent establishment %s"
 msgid "Remove empty characters around address of permanent establishment %s"
 msgstr "Rimuovere spazi intorno all'indirizzo della stabile organizzazione %s"
 
