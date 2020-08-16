@@ -22,7 +22,6 @@ msgstr ""
 #. module: l10n_it_central_journal
 #: model:ir.actions.report,name:l10n_it_central_journal.action_report_giornale
 #, fuzzy
-#| msgid "Account central journal"
 msgid "Account General Journal"
 msgstr "Osrednji knjigovodski dnevnik"
 
@@ -118,7 +117,6 @@ msgstr "Osnutek"
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_account_bank_statement_import_journal_creation__central_journal_exclude
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_account_journal__central_journal_exclude
 #, fuzzy
-#| msgid "Exclude from Central             Journal"
 msgid "Exclude from General Journal"
 msgstr "Izključi iz osrednjega dnevnika"
 
@@ -142,14 +140,12 @@ msgstr "Od datuma"
 #: model:ir.ui.menu,name:l10n_it_central_journal.menu_giornale
 #: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
 #, fuzzy
-#| msgid "Central Journal"
 msgid "General Journal"
 msgstr "Osrednji dnevnik"
 
 #. module: l10n_it_central_journal
 #: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.view_date_range_form_inherit_view
 #, fuzzy
-#| msgid "Central journal info"
 msgid "General Journal Info"
 msgstr "Podatki o osrednjem dnevniku"
 
@@ -172,7 +168,6 @@ msgstr "Dnevnik"
 #. module: l10n_it_central_journal
 #: model:ir.model,name:l10n_it_central_journal.model_report_l10n_it_central_journal_report_giornale
 #, fuzzy
-#| msgid "Journal"
 msgid "Journal report"
 msgstr "Dnevnik"
 
