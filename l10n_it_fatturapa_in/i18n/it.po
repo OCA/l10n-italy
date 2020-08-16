@@ -638,7 +638,6 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__invoices_date
 #, fuzzy
-#| msgid "Invoice Date"
 msgid "Invoices date"
 msgstr "Data fattura"
 
