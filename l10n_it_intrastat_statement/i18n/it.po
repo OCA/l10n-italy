@@ -501,7 +501,6 @@ msgstr "Dichiarazioni Intrastat"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section_intrastat_code_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_section_intrastat_code_id
 #, fuzzy
-#| msgid "Intrastat Code"
 msgid "Intrastat code id"
 msgstr "Codice Intrastat"
 
@@ -919,7 +918,6 @@ msgstr "Stato del partner"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section_partner_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_section_partner_id
 #, fuzzy
-#| msgid "Partner"
 msgid "Partner id"
 msgstr "Partner"
 
@@ -1310,7 +1308,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section_vat_code
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_section_vat_code
 #, fuzzy
-#| msgid "Vat Code"
 msgid "Vat code"
 msgstr "Codice IVA"
 
