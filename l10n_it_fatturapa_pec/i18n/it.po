@@ -117,7 +117,6 @@ msgstr "Errore"
 #. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:181
 #, fuzzy, python-format
-#| msgid "Fetchmail PEC server [%s] reset"
 msgid "Fetchmail PEC server [%s] error"
 msgstr "Ripristino server PEC fetchmail [%s]"
 
@@ -187,10 +186,6 @@ msgstr "Numero errori PEC"
 #. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:70
 #, fuzzy, python-format
-#| msgid ""
-#| "<p>PEC message with Message-Id %s has been read but not processed, as not "
-#| "related to an e-invoice.</p><p>Please check PEC mailbox %s, at server %s, "
-#| "with user %s</p>"
 msgid ""
 "PEC message with Message-Id %s has been read but not processed, as not "
 "related to an e-invoice.\n"
@@ -203,9 +198,6 @@ msgstr ""
 #. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:162
 #, fuzzy, python-format
-#| msgid ""
-#| "<p>PEC server %s has been reset. Last error message is</p><p><strong>%s</"
-#| "strong></p>"
 msgid "PEC server %s has been reset.Last error message is '%s'"
 msgstr ""
 "<p>Il server PEC %s è stato ripristinato. L'ultimo messaggio di errore è</"
