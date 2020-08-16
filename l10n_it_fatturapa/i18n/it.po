@@ -1404,7 +1404,6 @@ msgstr "Tipo ritenuta"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__ftpa_withholding_amount
 #, fuzzy
-#| msgid "Withholding Type"
 msgid "Withholding amount"
 msgstr "Tipo ritenuta"
 
