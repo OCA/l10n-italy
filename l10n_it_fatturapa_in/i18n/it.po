@@ -946,7 +946,6 @@ msgstr "Cassa previdenziale"
 #: field:account.config.settings,cassa_previdenziale_product_id:0
 #: field:res.company,cassa_previdenziale_product_id:0
 #, fuzzy
-#| msgid "Welfare Fund Details"
 msgid "Welfare Fund Data Product"
 msgstr "Dettagli cassa previdenziale"
 
@@ -958,9 +957,6 @@ msgstr "Dettagli cassa previdenziale"
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:957
 #, fuzzy, python-format
-#| msgid ""
-#| "CassaPrevidenziale %s has Ritenuta but no withholding tax was found in "
-#| "the system"
 msgid ""
 "Welfare Fund data %s has withholding tax but no withholding tax was found in "
 "the system."
