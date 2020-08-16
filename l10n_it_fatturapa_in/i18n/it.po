@@ -77,7 +77,6 @@ msgstr "URL allegato"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice_attachment_id
 #, fuzzy
-#| msgid "Attachment"
 msgid "Attachment id"
 msgstr "Allegato"
 
@@ -114,7 +113,6 @@ msgstr "Fattura"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice_line_e_invoice_nbr
 #, fuzzy
-#| msgid "Bills Number"
 msgid "Bill number in XML"
 msgstr "Numero fatture"
 
@@ -325,7 +323,6 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice_e_invoice_amount_total
 #, fuzzy
-#| msgid "Invoices total"
 msgid "E-Invoice Total Amount"
 msgstr "Totale fatture"
 
@@ -364,7 +361,6 @@ msgstr "Incongruenze e-fattura"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice_line_e_invoice_descr
 #, fuzzy
-#| msgid "Description"
 msgid "E-bill description"
 msgstr "Descrizione"
 
@@ -388,7 +384,6 @@ msgstr "Dati sconto maggiorazione e-fattura"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice_e_invoice_date_invoice
 #, fuzzy
-#| msgid "einvoice.line.other.data"
 msgid "E-invoice invoice date"
 msgstr "einvoice.line.other.data"
 
@@ -520,7 +515,6 @@ msgstr "Fattura"
 #. module: l10n_it_fatturapa_in
 #: selection:res.company,in_invoice_registration_date:0
 #, fuzzy
-#| msgid "Invoice Line"
 msgid "Invoice Date"
 msgstr "Riga fattura"
 
@@ -540,7 +534,6 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice_line_invoice_id
 #, fuzzy
-#| msgid "Invoice"
 msgid "Invoice id"
 msgstr "Fattura"
 
@@ -595,7 +588,6 @@ msgstr "Numero riga"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice_line_ids
 #, fuzzy
-#| msgid "Line Detail"
 msgid "Line ids"
 msgstr "Dettaglio riga"
 
@@ -613,7 +605,6 @@ msgstr "Collega"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model,name:l10n_it_fatturapa_in.model_wizard_link_to_invoice_line
 #, fuzzy
-#| msgid "Link to Bill"
 msgid "Link e-bill to bill"
 msgstr "Collega a fattura"
 
@@ -626,7 +617,6 @@ msgstr "Collega a fattura"
 #: model:ir.actions.act_window,name:l10n_it_fatturapa_in.action_wizard_link_supplier_invoice
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.wizard_link_supplier_invoice
 #, fuzzy
-#| msgid "Link to existing supplier bill"
 msgid "Link to existing supplier bills"
 msgstr "Collega a fattura fornitore esistente"
 
