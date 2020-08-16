@@ -39,7 +39,6 @@ msgstr "Dettagli Banca"
 #. module: l10n_it_abicab
 #: view:res.bank:l10n_it_abicab.view_bank_search_abicab
 #, fuzzy
-#| msgid "Bank"
 msgid "Banks"
 msgstr "Banca"
 
