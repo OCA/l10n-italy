@@ -179,9 +179,6 @@ msgstr "Da pagare"
 #. module: l10n_it_withholding_tax
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:117
 #, fuzzy, python-format
-#| msgid ""
-#| "Error! You cannot have 2 pricelist versions that                     "
-#| "overlap!"
 msgid "Error! You cannot have 2 rates that overlap!"
 msgstr "Errore! I periodi si sovrappongono"
 
