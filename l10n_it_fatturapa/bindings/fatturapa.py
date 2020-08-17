@@ -90,7 +90,7 @@ def CreateFromDocument(xml_string):
     # pyxb will fail to compare with
     for path, mandatory in date_types.items():
         for element in root.xpath(path):
-            result = pyxb.binding.datatypes.date(element.text)
+            result = pyxb.binding.datatypes.date(element.text.strip())
             if result.tzinfo is not None:
                 result = result.replace(tzinfo=None)
                 element.text = result.XsdLiteral(result)
