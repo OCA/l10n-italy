@@ -8,8 +8,8 @@
             <field name="arch" type="xml">
                 <field name="line_ids" position="after">
                     <group col="2" colspan="2">
-                        <field name="fatturapa_pt_id"/>
-                        <field name="fatturapa_pm_id"/>
+                        <field name="fatturapa_pt_id" options="{'no_create': True, 'no_edit': True}"/>
+                        <field name="fatturapa_pm_id" options="{'no_create': True, 'no_edit': True}"/>
                     </group>
                 </field>
             </field>
