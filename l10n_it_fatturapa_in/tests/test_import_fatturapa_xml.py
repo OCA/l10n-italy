@@ -40,8 +40,6 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(
             invoice.partner_id.register_fiscalpos.code, 'RF02')
         self.assertEqual(invoice.reference, 'FT/2015/0006')
-        self.assertEqual(invoice.fatturapa_attachment_in_id.invoices_date,
-                         '2015-02-16')
         self.assertEqual(invoice.amount_total, 57.00)
         self.assertEqual(invoice.gross_weight, 0.00)
         self.assertEqual(invoice.net_weight, 0.00)
@@ -80,8 +78,6 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.reference, '123')
         self.assertEqual(invoice.amount_untaxed, 34.00)
         self.assertEqual(invoice.amount_tax, 7.48)
-        self.assertEqual(invoice.fatturapa_attachment_in_id.invoices_date,
-                         '2014-12-18')
         self.assertEqual(
             len(invoice.invoice_line_ids[0].invoice_line_tax_ids), 1)
         self.assertEqual(
@@ -332,8 +328,6 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice_ids = res.get('domain')[0][2]
         invoices = self.invoice_model.browse(invoice_ids)
         self.assertEqual(len(invoices), 2)
-        self.assertEqual(invoices[0].fatturapa_attachment_in_id.invoices_date,
-                         '2014-12-18 2014-12-20')
         for invoice in invoices:
             self.assertEqual(invoice.inconsistencies, '')
             self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
@@ -613,6 +607,25 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(
             invoice.fatturapa_payments[0].payment_methods[0].payment_bank.bank_id.name,
             'Banca generica')
+
+    def test_37_xml_import_dates(self):
+        self.env.user.lang = 'it_IT'
+        res = self.run_wizard('test37', 'IT02780790107_11004.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.fatturapa_attachment_in_id.invoices_date,
+                         '18/12/2014')
+
+    def test_38_xml_import_dates(self):
+        # file B2B downloaded from
+        # http://www.fatturapa.gov.it/export/fatturazione/it/a-3.htm
+        self.env.user.lang = 'it_IT'
+        res = self.run_wizard('test38', 'IT01234567890_FPR03.xml')
+        invoice_ids = res.get('domain')[0][2]
+        invoices = self.invoice_model.browse(invoice_ids)
+        self.assertEqual(len(invoices), 2)
+        self.assertEqual(invoices[0].fatturapa_attachment_in_id.invoices_date,
+                         '18/12/2014 20/12/2014')
 
     def test_01_xml_link(self):
         """
