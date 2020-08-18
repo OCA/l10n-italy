@@ -127,3 +127,4 @@ class FatturapaCommon(SingleTransactionCase):
             arrotondamenti_passivi_account_id)
         self.env.user.company_id.arrotondamenti_tax_id = (
             arrotondamenti_tax_id)
+        self.env['res.lang'].load_lang('it_IT')

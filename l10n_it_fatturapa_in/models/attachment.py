@@ -1,6 +1,7 @@
 
 import base64
 from odoo import fields, models, api, _
+from odoo.tools import format_date
 
 
 class FatturaPAAttachmentIn(models.Model):
@@ -90,8 +91,10 @@ class FatturaPAAttachmentIn(models.Model):
                     invoice_body.DatiGenerali.DatiGeneraliDocumento.
                     ImportoTotaleDocumento or 0
                 )
-                invoice_date = fields.Date.to_string(fields.Date.from_string(
-                    invoice_body.DatiGenerali.DatiGeneraliDocumento.Data))
+                invoice_date = format_date(
+                    att.with_context(
+                        lang=att.env.user.lang).env, fields.Date.from_string(
+                            invoice_body.DatiGenerali.DatiGeneraliDocumento.Data))
                 if invoice_date not in invoices_date:
                     invoices_date.append(invoice_date)
             att.invoices_date = ' '.join(invoices_date)
