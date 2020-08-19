@@ -728,7 +728,7 @@ class ReportDepreciationLineByYear(models.TransientModel):
             lambda l: l.sequence == self.sequence - 1
         )
         asset = self.report_depreciation_id.report_asset_id.asset_id
-        fy_start = self.fiscal_year_id.date_start
+        fy_start = self.fiscal_year_id.date_from
         fy_end = self.fiscal_year_id.date_to
         if asset.sold and asset.sale_date \
                 and fy_start <= asset.sale_date <= fy_end:
