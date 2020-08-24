@@ -595,10 +595,10 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             "75.41\n."
         )
 
-    def test_35_xml_import(self):
+    def test_36_xml_import(self):
         # creating a res.bank and importing an XML without "IstitutoFinanziario"
         self.create_res_bank()
-        res = self.run_wizard('test35', 'IT01234567890_FPR10.xml')
+        res = self.run_wizard('test36', 'IT01234567890_FPR10.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(
