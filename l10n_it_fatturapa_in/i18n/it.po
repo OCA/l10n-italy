@@ -102,7 +102,7 @@ msgid "Attachment URL"
 msgstr "URL allegato"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/attachment.py:115
+#: code:addons/l10n_it_fatturapa_in/models/attachment.py:118
 #, python-format
 msgid "Attachment without name"
 msgstr "Allegato senza nome"
