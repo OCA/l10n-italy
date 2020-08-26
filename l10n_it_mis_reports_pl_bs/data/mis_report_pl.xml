@@ -4,14 +4,14 @@
 <odoo>
     <data noupdate="0">
         <record model="mis.report" id="mis_report_pl">
-            <field name="name">CEE income statement balance sheet</field>
+            <field name="name">EEC Financial Statements - Profit and Loss</field>
             <field name="style_id" ref="mis_report_style_l10n_it_base"/>
         </record>
 
     <record model="mis.report.kpi" id="mis_report_plx">
       <field name="report_id" ref="mis_report_pl"/>
-      <field name="name">incomestatement</field>
-      <field name="description">INCOME STATEMENT</field>
+      <field name="name">profitandloss</field>
+      <field name="description">PROFIT AND LOSS</field>
       <field name="expression"></field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
