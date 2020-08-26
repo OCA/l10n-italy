@@ -221,7 +221,7 @@ class DichiarazioneIntento(models.Model):
         ignore_state = self.env.context.get('ignore_state', False)
         if not ignore_state:
             domain.append(('state', '!=', 'close'), )
-        records = self.search(domain, order='state desc, date desc')
+        records = self.search(domain, order='state desc, date')
         return records
 
 
