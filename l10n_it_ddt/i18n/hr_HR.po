@@ -314,7 +314,7 @@ msgid "Do not invoice services from DDT"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:554
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:553
 #, python-format
 msgid "Document {d} has invoice linked"
 msgstr ""
@@ -417,13 +417,13 @@ msgid "If flagged this service will not be automatically invoiced from DDT."
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:206
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:205
 #, python-format
 msgid "Impossible to put in pack a package without details"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:199
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:198
 #, python-format
 msgid "Impossible to put in pack a picking whose state is 'done'"
 msgstr ""
@@ -548,7 +548,7 @@ msgid "Net Weight UoM"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:218
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:217
 #, python-format
 msgid "Not every picking is in done status"
 msgstr ""
@@ -635,13 +635,13 @@ msgid "Pickings"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:335
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:334
 #, python-format
 msgid "Please define an accounting sale journal for this company."
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:687
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:686
 #, python-format
 msgid ""
 "Please define income account for this product: \"%s\" (id:%d) - or for its "
@@ -688,7 +688,7 @@ msgid "Related TDs"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:300
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:299
 #, python-format
 msgid "Relevant period:"
 msgstr ""
@@ -745,7 +745,7 @@ msgid "Selected Picking %s have different Partner"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:190
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:189
 #, python-format
 msgid "Selected Picking is already linked to TD: %s"
 msgstr ""
@@ -757,43 +757,43 @@ msgid "Selected Pickings have different Partner"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:81
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:83
 #, python-format
 msgid "Selected Pickings have different carriage condition"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:182
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:184
 #, python-format
 msgid "Selected Pickings have different carrier"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:106
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:108
 #, python-format
 msgid "Selected Pickings have different goods description"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:71
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:73
 #, python-format
 msgid "Selected Pickings have different parcels"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:157
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:159
 #, python-format
 msgid "Selected Pickings have different transportation method"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:131
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:133
 #, python-format
 msgid "Selected Pickings have different transportation reason"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:59
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:61
 #, python-format
 msgid "Selected pickings have different destinations"
 msgstr ""
@@ -850,11 +850,12 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:ir.model.fields,help:l10n_it_ddt.field_res_partner__ddt_show_price
 #: model:ir.model.fields,help:l10n_it_ddt.field_res_users__ddt_show_price
-msgid "Show prices and         discounts in TD report"
+#: model:ir.model.fields,help:l10n_it_ddt.field_sale_order__ddt_show_price
+msgid "Show prices and discounts in TD report"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__show_price
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__ddt_show_price
 msgid "Show prices on report"
 msgstr ""
 
@@ -891,7 +892,7 @@ msgstr ""
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:95
-#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:211
+#: code:addons/l10n_it_ddt/wizard/ddt_from_picking.py:213
 #: model:ir.actions.report,name:l10n_it_ddt.action_report_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice__ddt_ids
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice_line__ddt_id
@@ -987,6 +988,7 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_res_partner__ddt_show_price
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_res_users__ddt_show_price
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order__ddt_show_price
 msgid "TD show prices"
 msgstr ""
 
@@ -1002,8 +1004,8 @@ msgid "Taxes"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:412
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:416
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:411
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:415
 #, python-format
 msgid "There is no invoiceable line."
 msgstr ""
