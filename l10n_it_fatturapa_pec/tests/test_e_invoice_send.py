@@ -97,6 +97,9 @@ class TestEInvoiceSend(EInvoiceCommon):
             exportFatturaPARegenerate()
         e_invoice = self.env[action['res_model']].browse(action['res_id'])
 
+        # set SDI address after first sending
+        self.env.user.company_id.sdi_channel_id.email_exchange_system = (
+            'sdi01@pec.fatturapa.it')
         # Send it again
         e_invoice.send_via_pec()
         self.assertEqual(e_invoice.state, 'sent')

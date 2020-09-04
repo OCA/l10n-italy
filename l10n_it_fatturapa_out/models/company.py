@@ -24,10 +24,10 @@ class ResCompany(models.Model):
 
 
 class AccountConfigSettings(models.TransientModel):
-    _inherit = 'account.config.settings'
+    _inherit = 'res.config.settings'
 
     max_invoice_in_xml = fields.Integer(
-        related='company_id.max_invoice_in_xml')
+        related='company_id.max_invoice_in_xml', readonly=False)
 
     @api.onchange('company_id')
     def onchange_company_id(self):
