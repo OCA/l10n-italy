@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import models
+from odoo.tools.float_utils import float_round
 from odoo.addons.l10n_it_fatturapa.bindings.fatturapa import (
     ScontoMaggiorazioneType
 )
@@ -21,12 +22,12 @@ class WizardExportFatturapa(models.TransientModel):
                 DettaglioLinea.ScontoMaggiorazione.append(
                     ScontoMaggiorazioneType(
                         Tipo='SC',
-                        Percentuale='%.2f' % line.discount2
+                        Percentuale='%.8f' % float_round(line.discount2, 8)
                     ))
             if line.discount3:
                 DettaglioLinea.ScontoMaggiorazione.append(
                     ScontoMaggiorazioneType(
                         Tipo='SC',
-                        Percentuale='%.2f' % line.discount3
+                        Percentuale='%.8f' % float_round(line.discount3, 8)
                     ))
         return res
