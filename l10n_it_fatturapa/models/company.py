@@ -43,8 +43,8 @@ class ResCompany(models.Model):
              'non-resident, with a stable organization in Italy'
         )
     fatturapa_preview_style = fields.Selection([
-        ('fatturaordinaria_v1.2.1.xsl', 'FatturaOrdinaria v1.2.1'),
-        ('FoglioStileAssoSoftware_v1.1.xsl', 'AssoSoftware v1.1')],
+        ('fatturaordinaria_v1.2.1.xsl', 'Fattura Ordinaria'),
+        ('FoglioStileAssoSoftware_v1.1.xsl', 'AssoSoftware')],
         string='Preview Format Style', required=True,
         default='fatturaordinaria_v1.2.1.xsl')
 
