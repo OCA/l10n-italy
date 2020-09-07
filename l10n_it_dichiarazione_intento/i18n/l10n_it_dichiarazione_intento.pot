@@ -35,8 +35,8 @@ msgid "Available Amount"
 msgstr ""
 
 #. module: l10n_it_dichiarazione_intento
-#: code:addons/l10n_it_dichiarazione_intento/models/account_invoice.py:97
-#: code:addons/l10n_it_dichiarazione_intento/models/account_invoice.py:106
+#: code:addons/l10n_it_dichiarazione_intento/models/account_invoice.py:96
+#: code:addons/l10n_it_dichiarazione_intento/models/account_invoice.py:105
 #, python-format
 msgid "Available plafond insufficent.\n"
 "Excess value: %s"
@@ -131,7 +131,7 @@ msgid "Declaration of intent"
 msgstr ""
 
 #. module: l10n_it_dichiarazione_intento
-#: code:addons/l10n_it_dichiarazione_intento/models/account_invoice.py:78
+#: code:addons/l10n_it_dichiarazione_intento/models/account_invoice.py:77
 #, python-format
 msgid "Declaration of intent not found. Add new declaration or change fiscal position and verify applied tax"
 msgstr ""
