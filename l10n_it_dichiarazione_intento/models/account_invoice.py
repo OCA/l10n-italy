@@ -17,14 +17,25 @@ class AccountInvoice(models.Model):
     def _set_fiscal_position(self):
         for invoice in self:
             if invoice.partner_id and invoice.type:
-                dichiarazioni = self.env['dichiarazione.intento'].get_valid(
+                all_dichiarazioni = self.env[
+                    'dichiarazione.intento'].get_all_for_partner(
                     invoice.type.split('_')[0],
-                    invoice.partner_id.commercial_partner_id.id,
-                    invoice.date_invoice or fields.Date.context_today(invoice))
-                if dichiarazioni:
+                    invoice.partner_id.commercial_partner_id.id
+                    )
+                if not all_dichiarazioni:
+                    return
+                valid_date = invoice.date_invoice or fields.Date.context_today(invoice)
+
+                dichiarazioni_valide = all_dichiarazioni.filtered(
+                    lambda d: d.date_start <= valid_date <= d.date_end
+                    )
+                if dichiarazioni_valide:
                     invoice.fiscal_position_id = \
-                        dichiarazioni[0].fiscal_position_id.id
-                else:
+                        dichiarazioni_valide[0].fiscal_position_id.id
+                elif (
+                    invoice.fiscal_position_id and
+                    invoice.fiscal_position_id.id in [
+                        d.fiscal_position_id.id for d in all_dichiarazioni]):
                     invoice.fiscal_position_id = False
 
     @api.onchange('date_invoice')
@@ -37,23 +48,11 @@ class AccountInvoice(models.Model):
         self._set_fiscal_position()
         return res
 
-    @api.onchange('fiscal_position_id')
-    def _onchange_fiscal_position(self):
-        """
-        Trigger the recompute of the taxes if the fiscal position is changed
-        on the invoice.
-        """
-        for invoice in self:
-            for inv_line in invoice.invoice_line_ids:
-                inv_line._set_taxes()
-
-    @api.multi
     def select_manually_declarations(self):
         self.ensure_one()
         action = self.env.ref(
             'l10n_it_dichiarazione_intento.select_manually_declarations_action'
             ).read()[0]
-        action['context'] = self.env.context.copy()
         return action
 
     @api.multi
