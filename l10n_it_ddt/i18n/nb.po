@@ -350,6 +350,7 @@ msgstr "Opprettet den"
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_create_invoice
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_invoicing
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_order_form_view_ddt
 msgid "DDT"
 msgstr ""
 
@@ -412,6 +413,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_res_partner_ddt_show_price
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_res_users_ddt_show_price
 msgid "DDT show prices"
+msgstr ""
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order_ddt_count
+msgid "DDTs"
 msgstr ""
 
 #. module: l10n_it_ddt
@@ -1161,11 +1167,6 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.report_ddt
 msgid "VAT number:"
-msgstr ""
-
-#. module: l10n_it_ddt
-#: model:ir.ui.view,arch_db:l10n_it_ddt.view_order_form_view_ddt
-msgid "View DdT"
 msgstr ""
 
 #. module: l10n_it_ddt
