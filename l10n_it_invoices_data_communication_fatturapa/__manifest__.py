@@ -1,5 +1,5 @@
 # Copyright 2019 Lorenzo Battistini
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     'name': 'ITA - Comunicazione dati fatture - '
@@ -11,7 +11,7 @@
     'author': "Agile Business Group, "
               "Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/l10n-italy/',
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
     'depends': [
         'l10n_it_invoices_data_communication',
         'l10n_it_fatturapa_in',
