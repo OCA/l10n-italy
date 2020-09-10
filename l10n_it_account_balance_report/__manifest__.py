@@ -13,7 +13,7 @@
     'maintainers': ["SilvioGregorini"],
     'website': "https://github.com/OCA/l10n-italy/tree/12.0"
                "/l10n_it_account_balance_report",
-    'license': "LGPL-3",
+    'license': "AGPL-3",
     'depends': [
         'account_financial_report',
         'account_type_menu',
