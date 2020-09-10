@@ -7,12 +7,12 @@
     'name': 'ITA - Fattura elettronica - Integrazione '
             'ritenuta',
     'summary': 'Modulo ponte tra emissione fatture elettroniche e ritenute.',
-    'version': '12.0.1.1.2',
+    'version': '12.0.1.1.3',
     'development_status': 'Beta',
     'category': 'Hidden',
     'website': 'https://github.com/OCA/l10n-italy',
     'author': 'Sergio Corato, Odoo Community Association (OCA)',
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
     'depends': [
         'l10n_it_fatturapa',
         'l10n_it_fatturapa_out',
