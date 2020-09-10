@@ -87,7 +87,7 @@ msgid "Company"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:51
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:50
 #, python-format
 msgid "Company %s TIN not set."
 msgstr ""
@@ -204,7 +204,7 @@ msgid "E-invoice Export Files"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:111
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:110
 #, python-format
 msgid "E-invoice attachment changed"
 msgstr ""
@@ -262,7 +262,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:80
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:79
 #, python-format
 msgid "File %s already present."
 msgstr ""
@@ -361,7 +361,7 @@ msgid "Invoice %s does not have a number."
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/account.py:30
+#: code:addons/l10n_it_fatturapa_out/models/account.py:29
 #, python-format
 msgid "Invoice %s has XML and can't be canceled. Delete the XML before."
 msgstr ""
@@ -507,7 +507,7 @@ msgid "Out Invoices"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:44
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:43
 #, python-format
 msgid "Partner %s TIN not set."
 msgstr ""
@@ -687,7 +687,7 @@ msgid "Url"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:112
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:111
 #, python-format
 msgid "User %s uploaded a new e-invoice file"
 msgstr ""
