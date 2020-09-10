@@ -1,4 +1,3 @@
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 from . import account
 from . import fatturapa_attachment_out
