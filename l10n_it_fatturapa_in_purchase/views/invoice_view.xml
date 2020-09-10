@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2018 Lorenzo Battistini
-     Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
-     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+     Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo) -->
 <odoo>
 
     <record id="view_invoice_line_form_fatturapa_po_line" model="ir.ui.view">

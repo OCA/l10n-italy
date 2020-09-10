@@ -1,7 +1,6 @@
 # Author(s): Andrea Colangelo (andreacolangelo@openforce.it)
 # Copyright © 2018 Openforce Srls Unipersonale (www.openforce.it)
 # Copyright 2019 Lorenzo Battistini <https://github.com/eLBati>
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 
 from odoo import api, fields, models
