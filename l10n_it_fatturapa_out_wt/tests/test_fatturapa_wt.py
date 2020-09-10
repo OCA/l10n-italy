@@ -1,4 +1,3 @@
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 import base64
 from odoo.addons.l10n_it_fatturapa_out.tests.fatturapa_common import (
