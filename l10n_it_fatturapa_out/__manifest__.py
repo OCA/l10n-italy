@@ -2,7 +2,7 @@
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2018 Sergio Corato
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     'name': 'ITA - Fattura elettronica - Emissione',
@@ -14,7 +14,7 @@
               'Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
                'l10n_it_fatturapa_out',
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
     'depends': [
         'l10n_it_account',
         'l10n_it_fatturapa',
