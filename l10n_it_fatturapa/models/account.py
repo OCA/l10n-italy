@@ -1,5 +1,4 @@
 # Copyright 2014 Davide Corio <davide.corio@abstract.it>
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import fields, models, api
 import odoo.addons.decimal_precision as dp
