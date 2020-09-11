@@ -65,7 +65,7 @@
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
                 <Data>2019-01-07</Data>
-                <Numero>INV/2019/0015</Numero>
+                <Numero>INV/2019/0018</Numero>
                 <DatiRitenuta>
                     <TipoRitenuta>RT02</TipoRitenuta>
                     <ImportoRitenuta>2.00</ImportoRitenuta>
@@ -73,15 +73,15 @@
                     <CausalePagamento>A</CausalePagamento>
                 </DatiRitenuta>
                 <DatiRitenuta>
-                    <TipoRitenuta>RT04</TipoRitenuta>
-                    <ImportoRitenuta>0.83</ImportoRitenuta>
-                    <AliquotaRitenuta>8.25</AliquotaRitenuta>
+                    <TipoRitenuta>RT03</TipoRitenuta>
+                    <ImportoRitenuta>0.53</ImportoRitenuta>
+                    <AliquotaRitenuta>5.25</AliquotaRitenuta>
                     <CausalePagamento>A</CausalePagamento>
                 </DatiRitenuta>
                 <DatiCassaPrevidenziale>
-                    <TipoCassa>TC07</TipoCassa>
-                    <AlCassa>8.25</AlCassa>
-                    <ImportoContributoCassa>0.83</ImportoContributoCassa>
+                    <TipoCassa>TC22</TipoCassa>
+                    <AlCassa>5.25</AlCassa>
+                    <ImportoContributoCassa>0.53</ImportoContributoCassa>
                     <AliquotaIVA>0.00</AliquotaIVA>
                     <Natura>N2</Natura>
                 </DatiCassaPrevidenziale>
@@ -118,7 +118,7 @@
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
                 <DataScadenzaPagamento>2019-02-28</DataScadenzaPagamento>
-                <ImportoPagamento>9.37</ImportoPagamento>
+                <ImportoPagamento>9.67</ImportoPagamento>
             </DettaglioPagamento>
         </DatiPagamento>
     </FatturaElettronicaBody>
