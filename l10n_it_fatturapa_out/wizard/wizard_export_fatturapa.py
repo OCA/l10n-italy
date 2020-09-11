@@ -9,11 +9,11 @@ import base64
 import logging
 import os
 
-
 import openerp
 from openerp import fields, models, api, _
 from openerp.exceptions import Warning as UserError
 from openerp.addons.l10n_it_account.tools.account_tools import encode_for_export
+from openerp.tools.float_utils import float_round
 from openerp.tools.safe_eval import safe_eval
 import time
 
@@ -644,12 +644,8 @@ class WizardExportFatturapa(models.TransientModel):
                 unidecode(line.uos_id.name)) or None,
             PrezzoTotale='%.2f' % line.price_subtotal,
             AliquotaIVA=AliquotaIVA)
-        if line.discount:
-            ScontoMaggiorazione = ScontoMaggiorazioneType(
-                Tipo='SC',
-                Percentuale='%.2f' % line.discount
-            )
-            DettaglioLinea.ScontoMaggiorazione.append(ScontoMaggiorazione)
+        DettaglioLinea.ScontoMaggiorazione.extend(
+            self.setScontoMaggiorazione(line))
         if aliquota == 0.0:
             if not line.invoice_line_tax_id[0].kind_id:
                 raise UserError(
@@ -678,7 +674,16 @@ class WizardExportFatturapa(models.TransientModel):
                 DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
 
         body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
-        return True
+        return DettaglioLinea
+
+    def setScontoMaggiorazione(self, line):
+        res = []
+        if line.discount:
+            res.append(ScontoMaggiorazioneType(
+                Tipo='SC',
+                Percentuale='%.8f' % float_round(line.discount, 8)
+            ))
+        return res
 
     def setDatiRiepilogo(self, invoice, body):
         model_tax = self.env['account.tax']
