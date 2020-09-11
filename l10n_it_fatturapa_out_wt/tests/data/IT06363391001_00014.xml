@@ -70,6 +70,12 @@
                     <AliquotaRitenuta>20.00</AliquotaRitenuta>
                     <CausalePagamento>A</CausalePagamento>
                 </DatiRitenuta>
+                <DatiRitenuta>
+                    <TipoRitenuta>RT04</TipoRitenuta>
+                    <ImportoRitenuta>0.83</ImportoRitenuta>
+                    <AliquotaRitenuta>8.25</AliquotaRitenuta>
+                    <CausalePagamento>A</CausalePagamento>
+                </DatiRitenuta>
                 <ImportoTotaleDocumento>12.20</ImportoTotaleDocumento>
                 <Art73>SI</Art73>
             </DatiGeneraliDocumento>
@@ -84,11 +90,6 @@
                 <PrezzoTotale>10.00</PrezzoTotale>
                 <AliquotaIVA>22.00</AliquotaIVA>
                 <Ritenuta>SI</Ritenuta>
-                <AltriDatiGestionali>
-                    <TipoDato>CASSA-PREV</TipoDato>
-                    <RiferimentoTesto>ENASARCO TC07 (8.25%)</RiferimentoTesto>
-                    <RiferimentoNumero>0.83</RiferimentoNumero>
-                </AltriDatiGestionali>
             </DettaglioLinee>
             <DatiRiepilogo>
                 <AliquotaIVA>22.00</AliquotaIVA>
