@@ -699,7 +699,7 @@ class WizardExportFatturapa(models.TransientModel):
         if line.discount:
             res.append(ScontoMaggiorazioneType(
                 Tipo='SC',
-                Percentuale='%.2f' % float_round(line.discount, 2)
+                Percentuale='%.8f' % float_round(line.discount, 8)
             ))
         return res
 
