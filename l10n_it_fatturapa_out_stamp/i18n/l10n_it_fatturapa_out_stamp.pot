@@ -18,9 +18,3 @@ msgstr ""
 msgid "Export E-invoice"
 msgstr ""
 
-#. module: l10n_it_fatturapa_out_stamp
-#: code:addons/l10n_it_fatturapa_out_stamp/wizard/wizard_export_fatturapa.py:20
-#, python-format
-msgid "Tax Stamp Product not set for company %s"
-msgstr ""
-
