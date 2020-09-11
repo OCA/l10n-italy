@@ -7,7 +7,7 @@
                 <IdPaese>IT</IdPaese>
                 <IdCodice>06363391001</IdCodice>
             </IdTrasmittente>
-            <ProgressivoInvio>00015</ProgressivoInvio>
+            <ProgressivoInvio>00016</ProgressivoInvio>
             <FormatoTrasmissione>FPR12</FormatoTrasmissione>
             <CodiceDestinatario>0000000</CodiceDestinatario>
             <ContattiTrasmittente>
@@ -65,7 +65,7 @@
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
                 <Data>2019-01-07</Data>
-                <Numero>INV/2019/0015</Numero>
+                <Numero>INV/2019/0019</Numero>
                 <DatiRitenuta>
                     <TipoRitenuta>RT02</TipoRitenuta>
                     <ImportoRitenuta>2.00</ImportoRitenuta>
@@ -73,19 +73,19 @@
                     <CausalePagamento>A</CausalePagamento>
                 </DatiRitenuta>
                 <DatiRitenuta>
-                    <TipoRitenuta>RT04</TipoRitenuta>
-                    <ImportoRitenuta>0.83</ImportoRitenuta>
-                    <AliquotaRitenuta>8.25</AliquotaRitenuta>
+                    <TipoRitenuta>RT03</TipoRitenuta>
+                    <ImportoRitenuta>0.53</ImportoRitenuta>
+                    <AliquotaRitenuta>5.25</AliquotaRitenuta>
                     <CausalePagamento>A</CausalePagamento>
                 </DatiRitenuta>
                 <DatiCassaPrevidenziale>
-                    <TipoCassa>TC07</TipoCassa>
-                    <AlCassa>8.25</AlCassa>
-                    <ImportoContributoCassa>0.83</ImportoContributoCassa>
+                    <TipoCassa>TC22</TipoCassa>
+                    <AlCassa>5.25</AlCassa>
+                    <ImportoContributoCassa>0.53</ImportoContributoCassa>
                     <AliquotaIVA>0.00</AliquotaIVA>
                     <Natura>N2</Natura>
                 </DatiCassaPrevidenziale>
-                <ImportoTotaleDocumento>12.20</ImportoTotaleDocumento>
+                <ImportoTotaleDocumento>10.00</ImportoTotaleDocumento>
                 <Art73>SI</Art73>
             </DatiGeneraliDocumento>
         </DatiGenerali>
@@ -97,18 +97,14 @@
                 <UnitaMisura>Unit(s)</UnitaMisura>
                 <PrezzoUnitario>10.00000</PrezzoUnitario>
                 <PrezzoTotale>10.00</PrezzoTotale>
-                <AliquotaIVA>22.00</AliquotaIVA>
+                <AliquotaIVA>0.00</AliquotaIVA>
                 <Ritenuta>SI</Ritenuta>
+                <Natura>N2</Natura>
             </DettaglioLinee>
-            <DatiRiepilogo>
-                <AliquotaIVA>22.00</AliquotaIVA>
-                <ImponibileImporto>10.00</ImponibileImporto>
-                <Imposta>2.20</Imposta>
-            </DatiRiepilogo>
             <DatiRiepilogo>
                 <AliquotaIVA>0.00</AliquotaIVA>
                 <Natura>N2</Natura>
-                <ImponibileImporto>0.83</ImponibileImporto>
+                <ImponibileImporto>10.83</ImponibileImporto>
                 <Imposta>0.00</Imposta>
                 <RiferimentoNormativo>Escluso Art. 13 5C DPR 633/72</RiferimentoNormativo>
             </DatiRiepilogo>
@@ -118,7 +114,7 @@
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
                 <DataScadenzaPagamento>2019-02-28</DataScadenzaPagamento>
-                <ImportoPagamento>9.37</ImportoPagamento>
+                <ImportoPagamento>7.47</ImportoPagamento>
             </DettaglioPagamento>
         </DatiPagamento>
     </FatturaElettronicaBody>
