@@ -132,7 +132,7 @@ class TestIntrastatStatement (AccountingTestCase):
 
     def test_statement_sale_quarter(self):
         invoice = self._get_intrastat_computed_invoice()
-        month = invoice.date_invoice.month
+        month = fields.Date.from_string(invoice.date_invoice).month
         quarter = 1 + (month - 1) // 3
         statement = self.statement_model.create({
             'period_number': quarter,
@@ -174,7 +174,7 @@ class TestIntrastatStatement (AccountingTestCase):
         bill = self._get_intrastat_computed_bill(currency=self.currency_gbp)
 
         statement = self.statement_model.create({
-            'period_number': bill.date_invoice.month,
+            'period_number': fields.Date.from_string(bill.date_invoice).month,
         })
 
         statement.compute_statement()
@@ -195,7 +195,8 @@ class TestIntrastatStatement (AccountingTestCase):
         bill_refund.compute_intrastat_lines()
 
         statement = self.statement_model.create({
-            'period_number': bill_refund.date_invoice.month,
+            'period_number': fields.Date.from_string(
+                bill_refund.date_invoice).month,
         })
 
         # Check that before computation, file generation raises an exception
@@ -214,7 +215,7 @@ class TestIntrastatStatement (AccountingTestCase):
 
     def test_statement_purchase_quarter(self):
         bill = self._get_intrastat_computed_bill()
-        month = bill.date_invoice.month
+        month = fields.Date.from_string(bill.date_invoice).month
         quarter = 1 + (month - 1) // 3
         statement = self.statement_model.create({
             'period_number': quarter,
