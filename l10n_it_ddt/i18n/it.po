@@ -331,7 +331,7 @@ msgid "Do not invoice services from DDT"
 msgstr "Non fatturare servizi da DDT"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:553
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:544
 #, python-format
 msgid "Document {d} has invoice linked"
 msgstr "Il documento {d} ha una fattura collegata"
@@ -442,13 +442,13 @@ msgstr ""
 "Se selezionato, questo servizio non sarà automaticamente fatturato dal DDT."
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:205
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:207
 #, python-format
 msgid "Impossible to put in pack a package without details"
 msgstr "Impossibile creare un collo senza dettagli"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:198
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:200
 #, python-format
 msgid "Impossible to put in pack a picking whose state is 'done'"
 msgstr "Impossibile creare un collo da un prelievo con stato \"Completato\""
@@ -570,7 +570,7 @@ msgid "Net Weight UoM"
 msgstr "UdM peso netto"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:217
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:219
 #, python-format
 msgid "Not every picking is in done status"
 msgstr "Non tutti i prelievi si trovano nello stato «Completato»"
@@ -656,13 +656,13 @@ msgid "Pickings"
 msgstr "Prelievi"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:334
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:338
 #, python-format
 msgid "Please define an accounting sale journal for this company."
 msgstr "Definire un registro contabile di vendita per questa azienda."
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:686
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:677
 #, python-format
 msgid ""
 "Please define income account for this product: \"%s\" (id:%d) - or for its "
@@ -711,7 +711,7 @@ msgid "Related TDs"
 msgstr "DDT collegati"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:299
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:303
 #, python-format
 msgid "Relevant period:"
 msgstr "Periodo di competenza:"
@@ -768,7 +768,7 @@ msgid "Selected Picking %s have different Partner"
 msgstr "Il prelievo %s selezionato ha un partner diverso"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:189
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:191
 #, python-format
 msgid "Selected Picking is already linked to TD: %s"
 msgstr "Il prelievo selezionato è già collegato al DDT: %s"
@@ -1022,8 +1022,7 @@ msgid "Taxes"
 msgstr "Imposte"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:411
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:415
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:414
 #, python-format
 msgid "There is no invoiceable line."
 msgstr "Non ci sono righe fatturabili."
