@@ -158,7 +158,7 @@ msgid "Date Stop"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__use_daticassaprev_for_enasarco
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__use_daticassaprev
 msgid "DatiCassa export"
 msgstr ""
 
@@ -406,7 +406,7 @@ msgid "Set to Due"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: model:ir.model.fields,help:l10n_it_withholding_tax.field_withholding_tax__use_daticassaprev_for_enasarco
+#: model:ir.model.fields,help:l10n_it_withholding_tax.field_withholding_tax__use_daticassaprev
 msgid "Setting this, while exporting e-invoice XML, Enasarco data will be also added to DatiCassaPrevidenziale"
 msgstr ""
 

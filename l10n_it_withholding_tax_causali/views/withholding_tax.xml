@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="l10n_it_withholding_tax.view_withholding_tax_form"/>
         <field name="arch" type="xml">
             <field name="payment_term" position="after">
-                <field name="causale_pagamento_id" attrs="{'invisible': [('wt_types', '!=', 'ritenuta')]}"/>
+                <field name="causale_pagamento_id"/>
             </field>
         </field>
     </record>
