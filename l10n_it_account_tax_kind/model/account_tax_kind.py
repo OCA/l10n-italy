@@ -13,7 +13,7 @@ class AccountTaxKind(models.Model):
     _name = 'account.tax.kind'
     _rec_name = 'display_name'
 
-    code = fields.Char(string='Code', size=3, required=True)
+    code = fields.Char(string='Code', size=4, required=True)
     name = fields.Char(string='Name', required=True)
     display_name = fields.Char(string='Name', compute='_compute_display_name')
 

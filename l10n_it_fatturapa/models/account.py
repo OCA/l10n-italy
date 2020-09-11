@@ -270,13 +270,32 @@ class FaturapaSummaryData(models.Model):
     _name = "faturapa.summary.data"
     tax_rate = fields.Float('Tax Rate')
     non_taxable_nature = fields.Selection([
-        ('N1', 'escluse ex art. 15'),
-        ('N2', 'non soggette'),
-        ('N3', 'non imponibili'),
-        ('N4', 'esenti'),
-        ('N5', 'regime del margine'),
-        ('N6', 'inversione contabile (reverse charge)'),
-        ('N7', 'IVA assolta in altro stato UE')
+        ('N1', 'excluding ex Art. 15'),
+        ('N2', 'not subject'),
+        ('N2.1', 'not subject ex Artt. from 7 to 7-septies of DPR 633/72'),
+        ('N2.2', 'not subject – other'),
+        ('N3', 'not taxable'),
+        ('N3.1', 'not taxable – export'),
+        ('N3.2', 'not taxable – intercommunity cession'),
+        ('N3.3', 'not taxable – cession to San Marino'),
+        ('N3.4', 'not taxable – operation similar to export cession'),
+        ('N3.5', 'not taxable – following declarations of intent'),
+        ('N3.6', 'not taxable – other operations that do not contribute '
+                 'to the formation of the ceiling'),
+        ('N4', 'exempt'),
+        ('N5', 'margin regime'),
+        ('N6', 'reverse charge'),
+        ('N6.1', 'reverse charge – disposal of scrap and other recycled '
+                 'materials'),
+        ('N6.2', 'reverse charge – supply of gold and pure silver'),
+        ('N6.3', 'reverse charge – subcontracting in the construction sector'),
+        ('N6.4', 'reverse charge – sale of buildings'),
+        ('N6.5', 'reverse charge – transfer of cell phones'),
+        ('N6.6', 'reverse charge – sale of electronic products'),
+        ('N6.7', 'reverse charge – construction sector and related sectors'),
+        ('N6.8', 'reverse charge – energy sector operations'),
+        ('N6.9', 'reverse charge – other cases'),
+        ('N7', 'VAT paid in another EU country')
     ], string="Non taxable nature")
     incidental_charges = fields.Float('Incidental Charges')
     rounding = fields.Float('Rounding')
