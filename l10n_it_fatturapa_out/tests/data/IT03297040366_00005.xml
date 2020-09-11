@@ -90,7 +90,7 @@
                 <PrezzoUnitario>10.00000</PrezzoUnitario>
                 <ScontoMaggiorazione>
                     <Tipo>SC</Tipo>
-                    <Percentuale>10.00</Percentuale>
+                    <Percentuale>10.00000000</Percentuale>
                 </ScontoMaggiorazione>
                 <PrezzoTotale>9.00</PrezzoTotale>
                 <AliquotaIVA>22.00</AliquotaIVA>
