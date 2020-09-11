@@ -498,6 +498,11 @@ msgid "Electronic Invoices"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: model:ir.ui.menu,name:l10n_it_fatturapa.fatturapa_common_menu
+msgid "Electronic invoicing"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__electronic_invoice_subjected
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_users__electronic_invoice_subjected
 msgid "Enable electronic invoicing"
@@ -1100,6 +1105,12 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail__payment_data_id
 msgid "Related Payments Data"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: model:ir.actions.act_window,name:l10n_it_fatturapa.fatturapa_related_document_type_action
+#: model:ir.ui.menu,name:l10n_it_fatturapa.fatturapa_related_document_type_menu
+msgid "Related documents"
 msgstr ""
 
 #. module: l10n_it_fatturapa
