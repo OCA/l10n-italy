@@ -72,6 +72,12 @@
                     <AliquotaRitenuta>20.00</AliquotaRitenuta>
                     <CausalePagamento>A</CausalePagamento>
                 </DatiRitenuta>
+                 <DatiRitenuta>
+                    <TipoRitenuta>RT04</TipoRitenuta>
+                    <ImportoRitenuta>0.83</ImportoRitenuta>
+                    <AliquotaRitenuta>8.25</AliquotaRitenuta>
+                    <CausalePagamento>A</CausalePagamento>
+                </DatiRitenuta>
                 <DatiCassaPrevidenziale>
                     <TipoCassa>TC07</TipoCassa>
                     <AlCassa>8.25</AlCassa>
@@ -94,11 +100,6 @@
                 <AliquotaIVA>0.00</AliquotaIVA>
                 <Ritenuta>SI</Ritenuta>
                 <Natura>N2</Natura>
-                <AltriDatiGestionali>
-                    <TipoDato>CASSA-PREV</TipoDato>
-                    <RiferimentoTesto>ENASARCO TC07 (8.25%)</RiferimentoTesto>
-                    <RiferimentoNumero>0.83</RiferimentoNumero>
-                </AltriDatiGestionali>
             </DettaglioLinee>
             <DatiRiepilogo>
                 <AliquotaIVA>0.00</AliquotaIVA>
