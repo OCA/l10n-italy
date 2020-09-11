@@ -26,7 +26,7 @@ TC_CODE = {
 
 class WizardExportFatturapa(models.TransientModel):
     _inherit = "wizard.export.fatturapa"
-    
+
     def getTipoRitenuta(self, wt_types, partner):
         if wt_types == 'ritenuta':
             if partner.is_company:
@@ -36,7 +36,7 @@ class WizardExportFatturapa(models.TransientModel):
         else:
             tipoRitenuta = WT_TAX_CODE[wt_types]
         return tipoRitenuta
-        
+
     def setDatiGeneraliDocumento(self, invoice, body):
         res = super(WizardExportFatturapa, self).setDatiGeneraliDocumento(
             invoice, body)
@@ -89,7 +89,7 @@ class WizardExportFatturapa(models.TransientModel):
         res = super(WizardExportFatturapa, self).setDatiRiepilogo(
             invoice, body)
         wt_lines_to_write = invoice.withholding_tax_line_ids.filtered(
-            lambda x: x.withholding_tax_id.wt_types not in ('ritenuta', 'other') 
+            lambda x: x.withholding_tax_id.wt_types not in ('ritenuta', 'other')
             and x.withholding_tax_id.use_daticassaprev
         )
         for wt_line in wt_lines_to_write:

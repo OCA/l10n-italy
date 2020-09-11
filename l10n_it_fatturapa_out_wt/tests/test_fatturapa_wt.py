@@ -244,7 +244,7 @@ class TestInvoiceWT(FatturaPACommon):
         self.check_content(
             xml_content, 'IT06363391001_00016.xml',
             module_name='l10n_it_fatturapa_out_wt')
-        
+
 def test_e_invoice_wt_inps_0(self):
         self.set_sequences(17, '2019-01-07')
         invoice = self.invoice_model.create({
@@ -283,7 +283,7 @@ def test_e_invoice_wt_inps_0(self):
         self.check_content(
             xml_content, 'IT06363391001_00017.xml',
             module_name='l10n_it_fatturapa_out_wt')
-        
+
 def test_e_invoice_wt_inps_1(self):
         """
         Fill DatiCassaPrevidenziale with INPS data
@@ -327,7 +327,7 @@ def test_e_invoice_wt_inps_1(self):
         self.check_content(
             xml_content, 'IT06363391001_00018.xml',
             module_name='l10n_it_fatturapa_out_wt')
-        
+
 def test_e_invoice_wt_inps_2(self):
         """
         Fill DatiCassaPrevidenziale with INPS data,
@@ -372,4 +372,3 @@ def test_e_invoice_wt_inps_2(self):
         self.check_content(
             xml_content, 'IT06363391001_00019.xml',
             module_name='l10n_it_fatturapa_out_wt')
-        
