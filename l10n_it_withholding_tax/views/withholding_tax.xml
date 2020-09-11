@@ -40,6 +40,9 @@
                                 <field name="account_receivable_id"/>
                                 <field name="account_payable_id"/>
                                 <field name="payment_term"/>
+                                <field name="use_daticassaprev" attrs="{'invisible': [('wt_types', 'in', ('ritenuta', 'other'))]}"/>
+                                <field name="daticassprev_tax_id" domain="[('amount', '=', 0.0)]" attrs="{'invisible': [('use_daticassaprev', '=', False)]}"/>
+                                <field name="wt_types" widget='radio'/>
                             </group>
                             <group>
                                 <field name="certification"/>

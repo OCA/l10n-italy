@@ -38,6 +38,20 @@ class WithholdingTax(models.Model):
     rate_ids = fields.One2many('withholding.tax.rate', 'withholding_tax_id',
                                'Rates', required=True)
 
+    wt_types = fields.Selection([
+        ('enasarco', 'Enasarco tax'),
+        ('ritenuta', 'Withholding tax'),
+        ('inps', 'Inps Tax'),
+        ('enpam', 'Enpam Tax'),
+        ('other', 'Other Tax')
+    ], 'Withholding tax type', required=True, default='ritenuta')
+    use_daticassaprev = fields.Boolean(
+        "DatiCassa export",
+        help="Setting this, while exporting e-invoice XML, "
+             "data will be also added to DatiCassaPrevidenziale"
+    )
+    daticassprev_tax_id = fields.Many2one('account.tax')
+
     @api.one
     @api.constrains('rate_ids')
     def _check_rate_ids(self):
