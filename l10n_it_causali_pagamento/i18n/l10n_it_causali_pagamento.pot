@@ -76,7 +76,7 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: l10n_it_causali_pagamento
-#: code:addons/l10n_it_causali_pagamento/models/causale_pagamento.py:18
+#: code:addons/l10n_it_causali_pagamento/models/causale_pagamento.py:17
 #, python-format
 msgid "The element with code %s already exists"
 msgstr ""
