@@ -7,7 +7,7 @@
 {
     'name': 'ITA - Fattura elettronica - Integrazione acquisti',
     "summary": "Modulo ponte tra ricezione fatture elettroniche e acquisti",
-    'version': '12.0.1.0.1',
+    'version': '12.0.1.0.2',
     'category': 'Hidden',
     'author': 'Agile Business Group, '
               'Odoo Community Association (OCA)',
