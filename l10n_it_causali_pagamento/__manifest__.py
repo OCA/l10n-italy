@@ -6,7 +6,7 @@
     'summary':
         'Aggiunge la tabella delle causali di pagamento da usare ad esempio '
         'nelle ritenute d\'acconto',
-    'version': '12.0.1.0.1',
+    'version': '12.0.1.0.2',
     "development_status": "Production/Stable",
     'category': 'Account',
     'author': "Agile Business Group,"
