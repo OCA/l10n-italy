@@ -1,7 +1,7 @@
 # Copyright 2018 Lorenzo Battistini
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2018 Ruben Tonetto (Associazione PNLUG - Gruppo Odoo)
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     'name': 'Italian Localization - Fattura elettronica - Integrazione DDT',
@@ -13,7 +13,7 @@
                'l10n_it_fatturapa_out_ddt',
     "author": "Agile Business Group, Odoo Community Association (OCA)",
     "maintainers": [],
-    "license": "LGPL-3",
+    "license": "AGPL-3",
     "application": False,
     "installable": True,
     "auto_install": True,

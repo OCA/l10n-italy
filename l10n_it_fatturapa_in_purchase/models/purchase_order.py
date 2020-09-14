@@ -1,7 +1,6 @@
 # Copyright 2018 Lorenzo Battistini
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2019 Simone Rubino - Agile Business Group
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import models, fields, api
 from odoo.tools import float_compare

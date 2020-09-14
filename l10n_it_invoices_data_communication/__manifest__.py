@@ -1,7 +1,7 @@
 # Copyright 2017 Alessandro Camilli - Openforce
 # Copyright 2017-2019 Lorenzo Battistini
 # Copyright 2019 Glauco Prina - Linkit
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     'name': 'ITA - Comunicazione dati fatture',
@@ -12,7 +12,7 @@
     'author': "Openforce di Camilli Alessandro, "
               "Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/l10n-italy/',
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
     'depends': [
         'account', 'l10n_it_fiscal_document_type', 'l10n_it_codici_carica',
         'l10n_it_fiscalcode', 'l10n_it_esigibilita_iva',
