@@ -6,7 +6,7 @@
             'Integrazione e-fattura',
     'summary': 'Integrazione fatturazione elettronica e comunicazione dati '
                'fatture (c.d. "nuovo spesometro")',
-    'version': '12.0.1.0.1',
+    'version': '12.0.1.0.2',
     'category': 'Hidden',
     'author': "Agile Business Group, "
               "Odoo Community Association (OCA)",
