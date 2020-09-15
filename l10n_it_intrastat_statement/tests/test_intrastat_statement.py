@@ -41,11 +41,17 @@ class TestIntrastatStatement (AccountingTestCase):
         })
 
         self.partner01 = self.env.ref('base.res_partner_1')
-        self.partner01.vat = 'IT02780790107'
-        self.partner01.property_account_receivable_id = \
-            self.account_account_receivable
-        self.partner01.property_account_payable_id = \
-            self.account_account_payable
+        self.partner01.update({
+            'vat': 'IT02780790107',
+            'property_account_receivable_id': self.account_account_receivable.id,
+            'property_account_payable_id': self.account_account_payable.id,
+        })
+        self.partner02 = self.env.ref('base.res_partner_2')
+        self.partner02.update({
+            'vat': 'IT12345670017',
+            'property_account_receivable_id': self.account_account_receivable.id,
+            'property_account_payable_id': self.account_account_payable.id,
+        })
         self.product01 = self.env.ref('product.product_product_10')
         self.tax22_sale = self.env.ref('l10n_it_intrastat.tax_22')
         self.currency_gbp = self.env.ref("base.GBP")
@@ -182,6 +188,7 @@ class TestIntrastatStatement (AccountingTestCase):
         bill = self._get_intrastat_computed_bill()
 
         bill_refund = bill.refund()
+        # This refund will be subtracted from bill
         bill_refund.update({
             'intrastat': True,
         })
@@ -204,8 +211,52 @@ class TestIntrastatStatement (AccountingTestCase):
             .generate_file_export()
         self.assertIn(bill_refund.partner_id.vat[2:], file_content)
 
-        # Last line is section line, for monthly report it should be 118 chars
-        self.assertEqual(len(file_content.splitlines()[-1]), 118)
+        # Monthly Purchase file lengths
+        # File head line: 75
+        # Frontispiece: 130
+        # Goods bill: 118
+        file_lines = file_content.splitlines()
+        self.assertEqual(len(file_lines), 3)
+        self.assertSetEqual({len(line) for line in file_lines},
+                            {75, 130, 118})
+
+    def test_statement_purchase_refund_no_subtract(self):
+        bill = self._get_intrastat_computed_bill()
+
+        bill_refund = bill.refund()
+        # Change the partner so that this refund is not subtracted from bill
+        bill_refund.update({
+            'partner_id': self.partner02.id,
+            'intrastat': True,
+        })
+        bill_refund.compute_taxes()
+        bill_refund.action_invoice_open()
+        bill_refund.compute_intrastat_lines()
+
+        statement = self.statement_model.create({
+            'period_number': bill_refund.date_invoice.month,
+        })
+
+        # Check that before computation, file generation raises an exception
+        # because statement is still empty
+        with self.assertRaises(ValidationError):
+            statement.generate_file_export()
+
+        statement.compute_statement()
+        file_content = statement \
+            .with_context(purchase=True) \
+            .generate_file_export()
+        self.assertIn(bill_refund.partner_id.vat[2:], file_content)
+
+        # Monthly Purchase file lengths
+        # File head line: 75
+        # Frontispiece: 130
+        # Goods bill: 118
+        # Goods refund: 96
+        file_lines = file_content.splitlines()
+        self.assertEqual(len(file_lines), 4)
+        self.assertSetEqual({len(line) for line in file_lines},
+                            {75, 130, 118, 96})
 
     def test_statement_purchase_quarter(self):
         bill = self._get_intrastat_computed_bill()
