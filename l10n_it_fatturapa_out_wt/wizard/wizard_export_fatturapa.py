@@ -6,7 +6,6 @@ from odoo.exceptions import Warning as UserError
 from odoo.tools.float_utils import float_round
 from odoo.addons.l10n_it_fatturapa.bindings.fatturapa import (
     DatiRitenutaType,
-    AltriDatiGestionaliType,
     DatiCassaPrevidenzialeType,
     DatiRiepilogoType
 )
@@ -23,6 +22,7 @@ TC_CODE = {
     'enasarco': 'TC07',
     'enpam': 'TC09',
 }
+
 
 class WizardExportFatturapa(models.TransientModel):
     _inherit = "wizard.export.fatturapa"
@@ -82,7 +82,7 @@ class WizardExportFatturapa(models.TransientModel):
     def get_tax_riepilogo(self, body, tax_id):
         for riepilogo in body.DatiBeniServizi.DatiRiepilogo:
             if float(riepilogo.AliquotaIVA) == 0.0 \
-                and riepilogo.Natura == tax_id.kind_id.code:
+                    and riepilogo.Natura == tax_id.kind_id.code:
                 return riepilogo
 
     def setDatiRiepilogo(self, invoice, body):
