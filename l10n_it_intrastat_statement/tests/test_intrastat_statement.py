@@ -53,6 +53,12 @@ class TestIntrastatStatement (AccountingTestCase):
             'property_account_payable_id': self.account_account_payable.id,
         })
         self.product01 = self.env.ref('product.product_product_10')
+        self.service01 = self.env.ref('product.product_product_1')
+        self.service01.update({
+            'intrastat_type': 'service',
+            'intrastat_code_id': self.env.ref(
+                'l10n_it_intrastat.intrastat_intrastat_01012100'),
+        })
         self.tax22_sale = self.env.ref('l10n_it_intrastat.tax_22')
         self.currency_gbp = self.env.ref("base.GBP")
 
@@ -64,7 +70,7 @@ class TestIntrastatStatement (AccountingTestCase):
         company.intrastat_sale_transaction_nature_id = \
             self.ref('l10n_it_intrastat.code_9')
 
-    def _get_intrastat_computed_bill(self, currency=None):
+    def _get_intrastat_computed_bill(self, product, currency=None):
         invoice = self.invoice_model.create({
             'partner_id': self.partner01.id,
             'type': 'in_invoice',
@@ -72,8 +78,8 @@ class TestIntrastatStatement (AccountingTestCase):
             'account_id': self.account_account_payable.id,
             'intrastat': True,
             'invoice_line_ids': [(0, 0, {
-                'name': 'service',
-                'product_id': self.product01.id,
+                'name': 'test intrastat bill',
+                'product_id': product.id,
                 'account_id': self.account_account_payable.id,
                 'quantity': 1,
                 'price_unit': 100,
@@ -151,7 +157,7 @@ class TestIntrastatStatement (AccountingTestCase):
         self.assertEqual(len(file_content.splitlines()[-1]), 64)
 
     def test_statement_purchase(self):
-        bill = self._get_intrastat_computed_bill()
+        bill = self._get_intrastat_computed_bill(self.product01)
 
         statement = self.statement_model.create({
             'period_number': bill.date_invoice.month,
@@ -172,7 +178,8 @@ class TestIntrastatStatement (AccountingTestCase):
         self.assertEqual(len(file_content.splitlines()[-1]), 118)
 
     def test_statement_purchase_currency(self):
-        bill = self._get_intrastat_computed_bill(currency=self.currency_gbp)
+        bill = self._get_intrastat_computed_bill(self.product01,
+                                                 currency=self.currency_gbp)
 
         statement = self.statement_model.create({
             'period_number': bill.date_invoice.month,
@@ -185,7 +192,7 @@ class TestIntrastatStatement (AccountingTestCase):
                          line.amount_currency)
 
     def test_statement_purchase_refund(self):
-        bill = self._get_intrastat_computed_bill()
+        bill = self._get_intrastat_computed_bill(self.product01)
 
         bill_refund = bill.refund()
         # This refund will be subtracted from bill
@@ -221,7 +228,7 @@ class TestIntrastatStatement (AccountingTestCase):
                             {75, 130, 118})
 
     def test_statement_purchase_refund_no_subtract(self):
-        bill = self._get_intrastat_computed_bill()
+        bill = self._get_intrastat_computed_bill(self.product01)
 
         bill_refund = bill.refund()
         # Change the partner so that this refund is not subtracted from bill
@@ -258,8 +265,57 @@ class TestIntrastatStatement (AccountingTestCase):
         self.assertSetEqual({len(line) for line in file_lines},
                             {75, 130, 118, 96})
 
+    def test_statement_purchase_service_refund_no_subtract(self):
+        bill = self._get_intrastat_computed_bill(self.service01)
+
+        bill_refund = bill.refund()
+        # Change the partner so that this refund is not subtracted from bill
+        bill_refund.update({
+            'partner_id': self.partner02.id,
+            'intrastat': True,
+        })
+        bill_refund.compute_taxes()
+        bill_refund.action_invoice_open()
+        bill_refund.compute_intrastat_lines()
+
+        statement = self.statement_model.create({
+            'period_number': bill_refund.date_invoice.month,
+        })
+
+        # Check that before computation, file generation raises an exception
+        # because statement is still empty
+        with self.assertRaises(ValidationError):
+            statement.generate_file_export()
+
+        statement.compute_statement()
+        # When there are refund lines, fields
+        # protocol number and progressive to modify must be provided
+        with self.assertRaises(ValidationError):
+            statement.with_context(purchase=True).generate_file_export()
+
+        statement.purchase_section4_ids.update({
+            'protocol': 123456,
+            'progressive_to_modify': 1,
+        })
+        file_content = statement \
+            .with_context(purchase=True) \
+            .generate_file_export()
+        self.assertIn(bill_refund.partner_id.vat[2:], file_content)
+
+        # Monthly Purchase file lengths
+        # File head line: 75
+        # Frontispiece: 130
+        # Services bill: 99
+        # Services refund: 118
+        file_lines = file_content.splitlines()
+        self.assertEqual(len(file_lines), 4)
+        self.assertEqual(len(file_lines[0]), 75)
+        self.assertEqual(len(file_lines[1]), 130)
+        self.assertSetEqual({len(line) for line in file_lines[2:]},
+                            {99, 118})
+
     def test_statement_purchase_quarter(self):
-        bill = self._get_intrastat_computed_bill()
+        bill = self._get_intrastat_computed_bill(self.product01)
         month = bill.date_invoice.month
         quarter = 1 + (month - 1) // 3
         statement = self.statement_model.create({
@@ -293,7 +349,7 @@ class TestIntrastatStatement (AccountingTestCase):
 
     def test_purchase_default_transaction_nature(self):
         """Check default value for purchase's transaction nature."""
-        bill = self._get_intrastat_computed_bill()
+        bill = self._get_intrastat_computed_bill(self.product01)
 
         statement = self.statement_model.create({
             'period_number': bill.date_invoice.month,
