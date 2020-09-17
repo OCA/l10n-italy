@@ -354,10 +354,10 @@
                             <field name="amount_euro"/>
                         </group>
                         <group>
-                            <field name="invoice_number" required="1"/>
-                            <field name="invoice_date" required="1"/>
-                            <field name="supply_method" required="1"/>
-                            <field name="payment_method" required="1"/>
+                            <field name="invoice_number"/>
+                            <field name="invoice_date"/>
+                            <field name="supply_method"/>
+                            <field name="payment_method"/>
                             <field name="country_payment_id" required="1"/>
                         </group>
                     </group>
@@ -409,10 +409,10 @@
                             <field name="amount_euro"/>
                         </group>
                         <group>
-                            <field name="invoice_number" required="1"/>
-                            <field name="invoice_date" required="1"/>
-                            <field name="supply_method" required="1"/>
-                            <field name="payment_method" required="1"/>
+                            <field name="invoice_number"/>
+                            <field name="invoice_date"/>
+                            <field name="supply_method"/>
+                            <field name="payment_method"/>
                             <field name="country_payment_id" required="1"/>
                         </group>
                     </group>
@@ -632,10 +632,10 @@
                             <field name="amount_currency"/>
                         </group>
                         <group>
-                            <field name="invoice_number" required="1"/>
-                            <field name="invoice_date" required="1"/>
-                            <field name="supply_method" required="1"/>
-                            <field name="payment_method" required="1"/>
+                            <field name="invoice_number"/>
+                            <field name="invoice_date"/>
+                            <field name="supply_method"/>
+                            <field name="payment_method"/>
                             <field name="country_payment_id" required="1"/>
                         </group>
                     </group>
