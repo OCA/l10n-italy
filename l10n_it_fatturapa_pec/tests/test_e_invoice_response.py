@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-
+from odoo.tools import mute_logger
 from .e_invoice_common import EInvoiceCommon
 from odoo.modules import get_module_resource
 from odoo.fields import Datetime
@@ -127,10 +127,15 @@ class TestEInvoiceResponse(EInvoiceCommon):
             instance.stat.return_value = (1, 1)
             instance.retr.return_value = ('', [incoming_mail], '')
 
-            self.PEC_server.fetch_mail()
+            with mute_logger(
+                    'odoo.addons.l10n_it_fatturapa_pec.models.fetchmail'):
+                self.PEC_server.fetch_mail()
 
-        error_mails_nbr = outbound_mail_model.search_count(error_mail_domain)
-        self.assertEqual(error_mails_nbr, 1)
+        error_mails = outbound_mail_model.search(error_mail_domain)
+        self.assertEqual(len(error_mails), 1)
+        xml_error = 'unbound prefix'
+        self.assertIn(xml_error, error_mails.body_html)
+        self.assertIn(xml_error, self.PEC_server.last_pec_error_message)
 
     def test_process_response_MC(self):
         """Receiving a 'Mancata consegna' sets the state of the
