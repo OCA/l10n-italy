@@ -7,7 +7,6 @@ from openerp.exceptions import Warning as UserError
 from openerp.tools.float_utils import float_round
 from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
     DatiRitenutaType,
-    AltriDatiGestionaliType,
     DatiCassaPrevidenzialeType,
     DatiRiepilogoType
 )
@@ -25,6 +24,7 @@ TC_CODE = {
     'enpam': 'TC09',
 }
 
+
 class WizardExportFatturapa(models.TransientModel):
     _inherit = "wizard.export.fatturapa"
 
@@ -41,10 +41,9 @@ class WizardExportFatturapa(models.TransientModel):
     def setDatiGeneraliDocumento(self, invoice, body):
         res = super(WizardExportFatturapa, self).setDatiGeneraliDocumento(
             invoice, body)
-        ritenuta_lines = invoice.withholding_tax_line
-        # if len(ritenuta_lines) > 1:
-        #     raise UserError(
-        #         _("More than one withholding tax in invoice!"))
+        # Get consistent ordering for file generation for compare with test XML
+        ritenuta_lines = invoice.withholding_tax_line_ids.sorted(
+            key=lambda l: l.withholding_tax_id.code)
         for wt_line in ritenuta_lines:
             if not wt_line.withholding_tax_id.causale_pagamento_id.code:
                 raise UserError(_('Missing payment reason for '
@@ -83,7 +82,7 @@ class WizardExportFatturapa(models.TransientModel):
     def get_tax_riepilogo(self, body, tax_id):
         for riepilogo in body.DatiBeniServizi.DatiRiepilogo:
             if float(riepilogo.AliquotaIVA) == 0.0 \
-                and riepilogo.Natura == tax_id.kind_id.code:
+                    and riepilogo.Natura == tax_id.kind_id.code:
                 return riepilogo
 
     def setDatiRiepilogo(self, invoice, body):

@@ -881,11 +881,11 @@ class WizardImportFatturapa(models.TransientModel):
         self.set_art73(FatturaBody, invoice_data)
 
         # 2.1.1.5
-        wt_found = self.set_withholding_tax(FatturaBody, invoice_data)
+        wt_founds = self.set_withholding_tax(FatturaBody, invoice_data)
 
         # 2.2.1
         self.set_invoice_line_ids(
-            FatturaBody, credit_account_id, partner, wt_found, invoice_data)
+            FatturaBody, credit_account_id, partner, wt_founds, invoice_data)
 
         self.set_e_invoice_lines(FatturaBody, invoice_data)
 
@@ -897,7 +897,7 @@ class WizardImportFatturapa(models.TransientModel):
 
         # 2.1.1.7
         self.set_welfares_fund(
-            FatturaBody, credit_account_id, invoice, wt_found)
+            FatturaBody, credit_account_id, invoice, wt_founds)
 
         rel_docs_dict = {
             # 2.1.2
@@ -1117,37 +1117,45 @@ class WizardImportFatturapa(models.TransientModel):
                 self._createPaymentsLine(PayDataId, PaymentLine, partner_id)
 
     def set_withholding_tax(self, FatturaBody, invoice_data):
-        Withholding = FatturaBody.DatiGenerali. \
+        Withholdings = FatturaBody.DatiGenerali. \
             DatiGeneraliDocumento.DatiRitenuta
-        if not Withholding:
+        if not Withholdings:
             return None
-        wts = self.env['withholding.tax'].search([
-            ('causale_pagamento_id.code', '=', Withholding.CausalePagamento)
-        ])
-        if not wts:
-            raise UserError(_(
-                "The bill contains withholding tax with "
-                "payment reason %s, "
-                "but such a tax is not found in your system. Please "
-                "set it."
-            ) % Withholding.CausalePagamento)
+        invoice_data['ftpa_withholding_ids'] = []
+        wt_founds = []
+        for Withholding in Withholdings:
+            wts = self.env['withholding.tax'].search([
+                ('causale_pagamento_id.code', '=', Withholding.CausalePagamento)
+            ])
+            if not wts:
+                raise UserError(_(
+                    "The bill contains withholding tax with "
+                    "payment reason %s, "
+                    "but such a tax is not found in your system. Please "
+                    "set it."
+                ) % Withholding.CausalePagamento)
 
-        for wt in wts:
-            if wt.tax == float(Withholding.AliquotaRitenuta):
-                wt_found = wt
-                break
-        else:
-            raise UserError(_(
-                "No withholding tax found with "
-                "document payment reason %s and rate %s.")
-                % (
-                    Withholding.CausalePagamento,
-                    Withholding.AliquotaRitenuta
-                ))
-        invoice_data['ftpa_withholding_type'] = Withholding.TipoRitenuta
-        invoice_data['ftpa_withholding_amount'] = Withholding.ImportoRitenuta
-        return wt_found
+            for wt in wts:
+                if wt.tax == float(Withholding.AliquotaRitenuta):
+                    wt_founds.append(wt)
+                    break
+            else:
+                raise UserError(_(
+                    "No withholding tax found with "
+                    "document payment reason %s and rate %s.")
+                    % (
+                        Withholding.CausalePagamento,
+                        Withholding.AliquotaRitenuta
+                    ))
+            invoice_data['ftpa_withholding_ids'].append((
+                0, 0, {
+                    'name': Withholding.TipoRitenuta,
+                    'amount': Withholding.ImportoRitenuta,
+                }))
+        return wt_founds
 
+    # CAUTION: THIS COMMINT DOESN'T FIX THE FOLLOWING BECAUSE
+    # OTHER BACKPORTS ARE NECESSARY. CODE NOT EXECUTABLE FOR NOW.
     def set_welfares_fund(
         self, FatturaBody, credit_account_id, invoice, wt_found
     ):
@@ -1249,7 +1257,7 @@ class WizardImportFatturapa(models.TransientModel):
             invoice_data['e_invoice_line_ids'] = [(6, 0, e_invoice_lines.ids)]
 
     def set_invoice_line_ids(
-            self, FatturaBody, credit_account_id, partner, wt_found,
+            self, FatturaBody, credit_account_id, partner, wt_founds,
             invoice_data):
         if not self.e_invoice_detail_level == '2':
             return
@@ -1258,7 +1266,7 @@ class WizardImportFatturapa(models.TransientModel):
         invoice_line_model = self.env['account.invoice.line']
         for line in FatturaBody.DatiBeniServizi.DettaglioLinee:
             invoice_line_data = self._prepareInvoiceLine(
-                credit_account_id, line, wt_found)
+                credit_account_id, line, wt_founds)
             product = self.get_line_product(line, partner)
             if product:
                 invoice_line_data['product_id'] = product.id

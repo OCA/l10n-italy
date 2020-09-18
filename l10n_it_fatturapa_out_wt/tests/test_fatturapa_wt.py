@@ -60,9 +60,9 @@ class TestInvoiceWT(FatturaPACommon):
             'causale_pagamento_id': self.env.ref(
                 'l10n_it_causali_pagamento.a').id,
             'rate_ids': [(0, 0, {
-                    'tax': 8.25,
-                    'base': 1,
-                })]
+                'tax': 8.25,
+                'base': 1,
+            })]
             }
         self.enasarco = self.env['withholding.tax'].create(wt_vals)
         wt_vals = {
@@ -77,9 +77,9 @@ class TestInvoiceWT(FatturaPACommon):
             'causale_pagamento_id': self.env.ref(
                 'l10n_it_causali_pagamento.a').id,
             'rate_ids': [(0, 0, {
-                    'tax': 5.25,
-                    'base': 1,
-                })]
+                'tax': 5.25,
+                'base': 1,
+            })]
             }
         self.inps = self.env['withholding.tax'].create(wt_vals)
 
