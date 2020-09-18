@@ -5,7 +5,6 @@ from odoo.exceptions import Warning as UserError
 from odoo.tools.float_utils import float_round
 from odoo.addons.l10n_it_fatturapa.bindings.fatturapa import (
     DatiRitenutaType,
-    AltriDatiGestionaliType,
     DatiCassaPrevidenzialeType,
     DatiRiepilogoType
 )
@@ -23,9 +22,10 @@ TC_CODE = {
     'enpam': 'TC09',
 }
 
+
 class WizardExportFatturapa(models.TransientModel):
     _inherit = "wizard.export.fatturapa"
-    
+
     def getTipoRitenuta(self, wt_types, partner):
         if wt_types == 'ritenuta':
             if partner.is_company:
@@ -35,14 +35,13 @@ class WizardExportFatturapa(models.TransientModel):
         else:
             tipoRitenuta = WT_TAX_CODE[wt_types]
         return tipoRitenuta
-        
+
     def setDatiGeneraliDocumento(self, invoice, body):
         res = super(WizardExportFatturapa, self).setDatiGeneraliDocumento(
             invoice, body)
-        ritenuta_lines = invoice.withholding_tax_line_ids
-        # if len(ritenuta_lines) > 1:
-        #     raise UserError(
-        #         _("More than one withholding tax in invoice!"))
+        # Get consistent ordering for file generation for compare with test XML
+        ritenuta_lines = invoice.withholding_tax_line_ids.sorted(
+            key=lambda l: l.withholding_tax_id.code)
         for wt_line in ritenuta_lines:
             if not wt_line.withholding_tax_id.causale_pagamento_id.code:
                 raise UserError(_('Missing payment reason for '
@@ -81,14 +80,14 @@ class WizardExportFatturapa(models.TransientModel):
     def get_tax_riepilogo(self, body, tax_id):
         for riepilogo in body.DatiBeniServizi.DatiRiepilogo:
             if float(riepilogo.AliquotaIVA) == 0.0 \
-                and riepilogo.Natura == tax_id.kind_id.code:
+                    and riepilogo.Natura == tax_id.kind_id.code:
                 return riepilogo
 
     def setDatiRiepilogo(self, invoice, body):
         res = super(WizardExportFatturapa, self).setDatiRiepilogo(
             invoice, body)
         wt_lines_to_write = invoice.withholding_tax_line_ids.filtered(
-            lambda x: x.withholding_tax_id.wt_types not in ('ritenuta', 'other') 
+            lambda x: x.withholding_tax_id.wt_types not in ('ritenuta', 'other')
             and x.withholding_tax_id.use_daticassaprev
         )
         for wt_line in wt_lines_to_write:

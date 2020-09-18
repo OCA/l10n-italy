@@ -19,14 +19,8 @@ msgid "Export E-invoice"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_wt
-#: code:addons/l10n_it_fatturapa_out_wt/wizard/wizard_export_fatturapa.py:27
+#: code:addons/l10n_it_fatturapa_out_wt/wizard/wizard_export_fatturapa.py:47
 #, python-format
 msgid "Missing payment reason for withholding tax %s!"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out_wt
-#: code:addons/l10n_it_fatturapa_out_wt/wizard/wizard_export_fatturapa.py:24
-#, python-format
-msgid "More than one withholding tax in invoice!"
 msgstr ""
 
