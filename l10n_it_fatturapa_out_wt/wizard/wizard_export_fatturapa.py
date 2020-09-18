@@ -40,10 +40,9 @@ class WizardExportFatturapa(models.TransientModel):
     def setDatiGeneraliDocumento(self, invoice, body):
         res = super(WizardExportFatturapa, self).setDatiGeneraliDocumento(
             invoice, body)
-        ritenuta_lines = invoice.withholding_tax_line_ids
-        # if len(ritenuta_lines) > 1:
-        #     raise UserError(
-        #         _("More than one withholding tax in invoice!"))
+        # Get consistent ordering for file generation for compare with test XML
+        ritenuta_lines = invoice.withholding_tax_line_ids.sorted(
+            key=lambda l: l.withholding_tax_id.code)
         for wt_line in ritenuta_lines:
             if not wt_line.withholding_tax_id.causale_pagamento_id.code:
                 raise UserError(_('Missing payment reason for '
