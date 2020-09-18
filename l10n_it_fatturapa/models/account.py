@@ -346,7 +346,7 @@ class AccountInvoice(models.Model):
     sender = fields.Selection(
         [('CC', 'Assignee / Partner'), ('TZ', 'Third Person')], 'Sender')
     #  2.1.1.5
-    # todo migration script to new ftpa_withholding_ids
+    # fields migrated to new ftpa_withholding_ids
     # #  2.1.1.5.1
     # ftpa_withholding_type = fields.Selection(
     #     [('RT01', 'Natural Person'), ('RT02', 'Legal Person')],
