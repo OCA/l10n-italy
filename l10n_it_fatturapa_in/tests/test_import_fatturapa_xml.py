@@ -627,6 +627,17 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoices[0].fatturapa_attachment_in_id.invoices_date,
                          '18/12/2014 20/12/2014')
 
+    def test_39_xml_import_withholding(self):
+        self.wt = self.create_wt_4q()
+        self.wtq = self.create_wt_23_20q()
+        res = self.run_wizard('test39', 'IT01234567890_FPR11.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertTrue(len(invoice.ftpa_withholding_ids), 2)
+        self.assertAlmostEquals(invoice.amount_total, 1220.0)
+        self.assertAlmostEquals(invoice.withholding_tax_amount, 86.0)
+        self.assertAlmostEquals(invoice.amount_net_pay, 1134.0)
+
     def test_01_xml_link(self):
         """
         E-invoice lines are created.
