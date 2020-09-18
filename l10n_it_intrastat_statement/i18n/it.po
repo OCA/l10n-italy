@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-12 11:04+0000\n"
-"PO-Revision-Date: 2019-12-21 15:02+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2020-09-18 13:00+0000\n"
+"Last-Translator: Simone Rubino <simone.rubino@agilebg.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1_additional_units_required
@@ -500,7 +500,6 @@ msgstr "Dichiarazioni Intrastat"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4_intrastat_code_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section_intrastat_code_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_section_intrastat_code_id
-#, fuzzy
 msgid "Intrastat code id"
 msgstr "Codice Intrastat"
 
@@ -677,7 +676,7 @@ msgstr "Progressivo da rettificare mancante in \"Cessioni - Sezione 4\""
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:490
 #, python-format
 msgid "Missing protocol number on 'Purchases - Section 4'"
-msgstr "Numero di protocollo mancante in \"Cessioni - Sezione 4\""
+msgstr "Numero di protocollo mancante in \"Acquisti - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:438
@@ -917,7 +916,6 @@ msgstr "Stato del partner"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4_partner_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section_partner_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_section_partner_id
-#, fuzzy
 msgid "Partner id"
 msgstr "Partner"
 
@@ -1307,7 +1305,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4_vat_code
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section_vat_code
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_section_vat_code
-#, fuzzy
 msgid "Vat code"
 msgstr "Codice IVA"
 
