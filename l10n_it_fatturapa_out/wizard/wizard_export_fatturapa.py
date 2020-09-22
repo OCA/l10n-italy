@@ -772,7 +772,7 @@ class WizardExportFatturapa(models.TransientModel):
                 if partner_bank.bank_name:
                     DettaglioPagamento.IstitutoFinanziario = \
                         partner_bank.bank_name
-                if partner_bank.acc_number:
+                if partner_bank.acc_number and partner_bank.acc_type == 'iban':
                     DettaglioPagamento.IBAN = \
                         ''.join(partner_bank.acc_number.split())
                 if partner_bank.bank_bic:
