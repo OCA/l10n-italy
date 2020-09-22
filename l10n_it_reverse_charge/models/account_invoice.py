@@ -139,18 +139,6 @@ class AccountInvoice(models.Model):
                 product=rc_line.product_id,
                 partner=rc_line.partner_id)['taxes']
             rc_amount_tax += sum([tax['amount'] for tax in taxes])
-
-        # convert the amount to main company currency, as
-        # compute_rc_amount_tax is used for debit/credit fields
-        invoice_currency = self.currency_id.with_context(
-            date=self.date_invoice)
-        main_currency = self.company_currency_id.with_context(
-            date=self.date_invoice)
-        if invoice_currency != main_currency:
-            round_curr = main_currency.round
-            rc_amount_tax = invoice_currency.compute(
-                rc_amount_tax, main_currency)
-
         return round_curr(rc_amount_tax)
 
     def rc_credit_line_vals(self, journal):
