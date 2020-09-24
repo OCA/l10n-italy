@@ -25,7 +25,7 @@ msgid "Fiscal Code"
 msgstr "Fiskalna koda"
 
 #. module: l10n_it_website_sale_fiscalcode
-#: code:addons/l10n_it_website_sale_fiscalcode/controllers/main.py:31
+#: code:addons/l10n_it_website_sale_fiscalcode/controllers/main.py:30
 #, fuzzy, python-format
 msgid "Fiscal Code not valid"
 msgstr "Fiskalna koda"
