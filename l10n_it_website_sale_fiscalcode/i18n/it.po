@@ -23,7 +23,7 @@ msgid "Fiscal Code"
 msgstr "Codice fiscale"
 
 #. module: l10n_it_website_sale_fiscalcode
-#: code:addons/l10n_it_website_sale_fiscalcode/controllers/main.py:31
+#: code:addons/l10n_it_website_sale_fiscalcode/controllers/main.py:30
 #, python-format
 msgid "Fiscal Code not valid"
 msgstr "Codice fiscale non valido"
