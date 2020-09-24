@@ -3,6 +3,7 @@
 # Copyright 2018 Ermanno Gnan (ermannognan@gmail.com)
 # Copyright 2018 Lorenzo Battistini (https://github.com/eLBati)
 # Copyright 2018-2019 Sergio Zanchetta (https://github.com/primes2h)
+# Copyright 2020 Matteo Mircoli (matteomircoli@openforce.it)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 {
