@@ -1,6 +1,5 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # Copyright 2019 Alex Comba - Agile Business Group
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import json
 from odoo.exceptions import UserError
