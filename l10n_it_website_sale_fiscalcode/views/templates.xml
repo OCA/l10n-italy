@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2017 Nicola Malcontenti - Agile Business Group
-     Copyright 2019 Simone Rubino
-     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+     Copyright 2019 Simone Rubino -->
 
 <odoo>
     <template id="l10n_it_website_sale_fiscalcode" inherit_id="website_sale.address">
