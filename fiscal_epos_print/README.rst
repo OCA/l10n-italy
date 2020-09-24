@@ -10,9 +10,9 @@ ITA - Driver per stampanti fiscali compatibili ePOS-Print XML
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-GPL--3-blue.png
-    :target: http://www.gnu.org/licenses/gpl-3.0-standalone.html
-    :alt: License: GPL-3
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+    :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
     :target: https://github.com/OCA/l10n-italy/tree/12.0/fiscal_epos_print
     :alt: OCA/l10n-italy
