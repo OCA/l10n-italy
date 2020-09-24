@@ -1,7 +1,7 @@
 # Copyright 2017 Alessandro Camilli
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2018 Lorenzo Battistini (https://github.com/eLBati)
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     'name': 'Italian Localization - '
@@ -11,7 +11,7 @@
     'author': "Link It srl, Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
                'l10n_it_fiscal_document_type',
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
     'depends': ['l10n_it_account'],
     'data': [
         'views/fiscal_document_type_view.xml',
