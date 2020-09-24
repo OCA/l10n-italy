@@ -32,7 +32,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:147
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:148
 #, python-format
 msgid "An error happened while sending data to the printer. Error code: "
 msgstr ""
@@ -110,9 +110,14 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:146
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:147
 #, python-format
 msgid "Connection to the printer failed"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__fiscal_printer_debug_info
+msgid "Debug info"
 msgstr ""
 
 #. module: fiscal_epos_print
@@ -122,7 +127,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:374
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:375
 #, python-format
 msgid "Discount"
 msgstr ""
@@ -155,14 +160,14 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/models.js:122
+#: code:addons/fiscal_epos_print/static/src/js/models.js:126
 #, python-format
 msgid "Error"
 msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:147
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:148
 #, python-format
 msgid "Error Message: "
 msgstr ""
@@ -183,7 +188,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:157
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:158
 #, python-format
 msgid "Files waiting to be sent: "
 msgstr ""
@@ -269,7 +274,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:159
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:160
 #, python-format
 msgid "IRA files"
 msgstr ""
@@ -311,14 +316,14 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:195
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:196
 #, python-format
 msgid "Network error"
 msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/models.js:123
+#: code:addons/fiscal_epos_print/static/src/js/models.js:127
 #, python-format
 msgid "No taxes found"
 msgstr ""
@@ -344,7 +349,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:157
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:158
 #, python-format
 msgid "Old files: "
 msgstr ""
@@ -380,7 +385,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:284
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:285
 #, python-format
 msgid "Payment"
 msgstr ""
@@ -443,7 +448,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:196
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:197
 #, python-format
 msgid "Printer can not be reached"
 msgstr ""
@@ -503,7 +508,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:382
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:383
 #, python-format
 msgid "Refund >>> "
 msgstr ""
@@ -546,7 +551,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:157
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:158
 #, python-format
 msgid "Rejected files: "
 msgstr ""
