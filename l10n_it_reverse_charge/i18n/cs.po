@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:374
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:373
 #, python-format
 msgid "Can't find 1 tax mapping for %s"
 msgstr ""
@@ -89,7 +89,7 @@ msgid "Invoice Line"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:329
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:328
 #, python-format
 msgid ""
 "Invoice line\n"
@@ -204,7 +204,7 @@ msgid "Reverse Charge Types"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:78
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:77
 #, python-format
 msgid ""
 "Reverse charge self invoice.\n"
@@ -280,7 +280,7 @@ msgid "Tax Mapping for self invoices"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:337
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:336
 #, python-format
 msgid ""
 "Tax code used is not a RC tax.\n"
@@ -303,7 +303,7 @@ msgid "Text on Self Invoice"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:430
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:429
 #, python-format
 msgid ""
 "There are more than one payment line.\n"
@@ -312,7 +312,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:314
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:313
 #, python-format
 msgid ""
 "There is no default credit account defined \n"
@@ -330,14 +330,14 @@ msgid "VAT Integration"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:420
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:419
 #, python-format
 msgid ""
 "VAT integration RC type, defined in fiscal position {fp}, is not managed yet"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_rc_type.py:95
+#: code:addons/l10n_it_reverse_charge/models/account_rc_type.py:94
 #, python-format
 msgid ""
 "When \"With additional supplier self invoice\" you must set only one tax "
