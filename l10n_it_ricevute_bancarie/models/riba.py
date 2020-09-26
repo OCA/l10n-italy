@@ -218,6 +218,23 @@ class RibaListLine(models.Model):
         compute='_compute_line_values', string="Invoice Date", size=256)
     invoice_number = fields.Char(
         compute='_compute_line_values', string="Invoice Number", size=256)
+    cig = fields.Char(
+        compute='_get_cig_cup_values', string="CIG", size=256)
+    cup = fields.Char(
+        compute='_get_cig_cup_values', string="CUP", size=256)
+
+    @api.multi
+    def _get_cig_cup_values(self):
+        for line in self:
+            line.cig = ""
+            line.cup = ""
+            for move_line in line.move_line_ids:
+                for related_document in move_line.move_line_id.invoice_id.\
+                        related_documents:
+                    if related_document.cup:
+                        line.cup = str(related_document.cup)
+                    if related_document.cig:
+                        line.cig = str(related_document.cig)
 
     @api.multi
     def move_line_id_payment_get(self):
