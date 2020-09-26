@@ -3,6 +3,7 @@
 # Copyright (C) 2017 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import base64
 import os
 from . import riba_common
 from odoo.tools import config
@@ -294,3 +295,140 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         self.assertEqual(riba_list.state, 'accredited')
         self.assertEqual(len(riba_list.line_ids), 1)
         self.assertEqual(riba_list.line_ids[0].state, 'accredited')
+
+    def test_riba_fatturapa(self):
+        recent_date = self.env['account.invoice'].search(
+            [('date_invoice', '!=', False)], order='date_invoice desc',
+            limit=1).date_invoice
+        invoice = self.env['account.invoice'].create({
+            'date_invoice': recent_date,
+            'journal_id': self.sale_journal.id,
+            'partner_id': self.partner.id,
+            'payment_term_id': self.account_payment_term_riba.id,
+            'account_id': self.account_rec1_id.id,
+            'invoice_line_ids': [(
+                0, 0, {
+                    'name': 'product1',
+                    'product_id': self.product1.id,
+                    'quantity': 1.0,
+                    'price_unit': 450.00,
+                    'account_id': self.sale_account.id
+                }
+            )],
+            'related_documents': [(
+                0, 0, {
+                    'type': 'order',
+                    'name': 'SO1232',
+                    'cig': '7987210EG5',
+                    'cup': 'H71N17000690124',
+                }
+            )],
+        })
+        invoice.action_invoice_open()
+        # issue wizard
+        riba_move_line_id = invoice.move_id.line_ids.filtered(
+            lambda x: x.account_id == self.account_rec1_id
+        )
+        wizard_riba_issue = self.env['riba.issue'].create({
+            'configuration_id': self.riba_config.id
+        })
+        action = wizard_riba_issue.with_context(
+            {'active_ids': [riba_move_line_id.id]}
+        ).create_list()
+        riba_list_id = action and action['res_id'] or False
+        riba_list = self.distinta_model.browse(riba_list_id)
+        riba_list.confirm()
+        self.assertEqual(riba_list.line_ids[0].cig, '7987210EG5')
+        self.assertEqual(riba_list.line_ids[0].cup, 'H71N17000690124')
+        wizard_riba_export = self.env['riba.file.export'].create({})
+        wizard_riba_export.with_context(
+            {'active_ids': [riba_list.id]}
+        ).act_getfile()
+        riba_txt = base64.decodebytes(wizard_riba_export.riba_txt)
+        self.assertTrue(
+            b'CIG: 7987210EG5 CUP: H71N17000690124' in riba_txt
+        )
+
+    def test_riba_fatturapa_group(self):
+        self.partner.group_riba = True
+        recent_date = self.env['account.invoice'].search(
+            [('date_invoice', '!=', False)], order='date_invoice desc',
+            limit=1).date_invoice
+        invoice = self.env['account.invoice'].create({
+            'date_invoice': recent_date,
+            'journal_id': self.sale_journal.id,
+            'partner_id': self.partner.id,
+            'payment_term_id': self.account_payment_term_riba.id,
+            'account_id': self.account_rec1_id.id,
+            'invoice_line_ids': [(
+                0, 0, {
+                    'name': 'product1',
+                    'product_id': self.product1.id,
+                    'quantity': 1.0,
+                    'price_unit': 450.00,
+                    'account_id': self.sale_account.id
+                }
+            )],
+            'related_documents': [(
+                0, 0, {
+                    'type': 'order',
+                    'name': 'SO1232',
+                    'cig': '7987210EG5',
+                    'cup': 'H71N17000690124',
+                }
+            )],
+        })
+        invoice.action_invoice_open()
+        invoice1 = self.env['account.invoice'].create({
+            'date_invoice': recent_date,
+            'journal_id': self.sale_journal.id,
+            'partner_id': self.partner.id,
+            'payment_term_id': self.account_payment_term_riba.id,
+            'account_id': self.account_rec1_id.id,
+            'invoice_line_ids': [(
+                0, 0, {
+                    'name': 'product1',
+                    'product_id': self.product1.id,
+                    'quantity': 1.0,
+                    'price_unit': 450.00,
+                    'account_id': self.sale_account.id
+                }
+            )],
+            'related_documents': [(
+                0, 0, {
+                    'type': 'order',
+                    'name': 'SO1232',
+                    'cig': '7987210EG5',
+                    'cup': 'H71N17000690125',
+                }
+            )],
+        })
+        invoice1.action_invoice_open()
+        # issue wizard
+        riba_move_line_id = invoice.move_id.line_ids.filtered(
+            lambda x: x.account_id == self.account_rec1_id
+        )
+        riba_move_line1_id = invoice1.move_id.line_ids.filtered(
+            lambda x: x.account_id == self.account_rec1_id
+        )
+        wizard_riba_issue = self.env['riba.issue'].create({
+            'configuration_id': self.riba_config.id
+        })
+        action = wizard_riba_issue.with_context(
+            {'active_ids': [riba_move_line_id.id, riba_move_line1_id.id]}
+        ).create_list()
+        riba_list_id = action and action['res_id'] or False
+        riba_list = self.distinta_model.browse(riba_list_id)
+        riba_list.confirm()
+        self.assertTrue(len(riba_list.line_ids), 2)
+        wizard_riba_export = self.env['riba.file.export'].create({})
+        wizard_riba_export.with_context(
+            {'active_ids': [riba_list.id]}
+        ).act_getfile()
+        riba_txt = base64.decodebytes(wizard_riba_export.riba_txt)
+        self.assertTrue(
+            b'CIG: 7987210EG5 CUP: H71N17000690124' in riba_txt
+        )
+        self.assertTrue(
+            b'CIG: 7987210EG5 CUP: H71N17000690125' in riba_txt
+        )
