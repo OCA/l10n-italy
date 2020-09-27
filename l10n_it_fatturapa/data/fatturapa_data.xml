@@ -95,7 +95,7 @@
         </record>
         <record id="fatturapa_RF17" model="fatturapa.fiscal_position">
             <field name="code">RF17</field>
-            <field name="name">IVA per cassa soggetti con volume d’affari inferiore ad euro 200.000 (art. 7, D.L. 185/2008)</field>
+            <field name="name">IVA per cassa (art. 32-bis, DL 83/2012)</field>
         </record>
         <record id="fatturapa_RF18" model="fatturapa.fiscal_position">
             <field name="code">RF18</field>
