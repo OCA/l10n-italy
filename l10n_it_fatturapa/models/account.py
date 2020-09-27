@@ -138,6 +138,28 @@ class WelfareFundDataLine(models.Model):
     )
 
 
+class WithholdingDataLine(models.Model):
+    _name = "withholding.data.line"
+    _description = 'E-invoice Withholding Data'
+
+    name = fields.Selection(
+        selection=[
+            ('RT01', 'Natural Person'),
+            ('RT02', 'Legal Person'),
+            ('RT03', 'INPS'),
+            ('RT04', 'ENASARCO'),
+            ('RT05', 'ENPAM'),
+            ('RT06', 'OTHER'),
+        ],
+        string='Withholding Type'
+    )
+    amount = fields.Float('Withholding amount')
+    invoice_id = fields.Many2one(
+        'account.invoice', 'Related Invoice',
+        ondelete='cascade', index=True
+    )
+
+
 class DiscountRisePrice(models.Model):
     # _position = ['2.1.1.8', '2.2.1.10']
     _name = "discount.rise.price"
@@ -271,10 +293,29 @@ class FaturapaSummaryData(models.Model):
     non_taxable_nature = fields.Selection([
         ('N1', 'excluding ex Art. 15'),
         ('N2', 'not subject'),
+        ('N2.1', 'not subject ex Artt. from 7 to 7-septies of DPR 633/72'),
+        ('N2.2', 'not subject – other'),
         ('N3', 'not taxable'),
+        ('N3.1', 'not taxable – export'),
+        ('N3.2', 'not taxable – intercommunity cession'),
+        ('N3.3', 'not taxable – cession to San Marino'),
+        ('N3.4', 'not taxable – operation similar to export cession'),
+        ('N3.5', 'not taxable – following declarations of intent'),
+        ('N3.6', 'not taxable – other operations that do not contribute '
+                 'to the formation of the ceiling'),
         ('N4', 'exempt'),
         ('N5', 'margin regime'),
         ('N6', 'reverse charge'),
+        ('N6.1', 'reverse charge – disposal of scrap and other recycled '
+                 'materials'),
+        ('N6.2', 'reverse charge – supply of gold and pure silver'),
+        ('N6.3', 'reverse charge – subcontracting in the construction sector'),
+        ('N6.4', 'reverse charge – sale of buildings'),
+        ('N6.5', 'reverse charge – transfer of cell phones'),
+        ('N6.6', 'reverse charge – sale of electronic products'),
+        ('N6.7', 'reverse charge – construction sector and related sectors'),
+        ('N6.8', 'reverse charge – energy sector operations'),
+        ('N6.9', 'reverse charge – other cases'),
         ('N7', 'VAT paid in another EU country')
     ], string="Non taxable nature")
     incidental_charges = fields.Float('Incidental Charges')
@@ -310,9 +351,9 @@ class AccountInvoice(models.Model):
         [('CC', 'Assignee / Partner'), ('TZ', 'Third Person')], 'Sender')
     #  2.1.1.5
     #  2.1.1.5.1
-    ftpa_withholding_type = fields.Selection(
-        [('RT01', 'Natural Person'), ('RT02', 'Legal Person')],
-        'Withholding Type'
+    ftpa_withholding_ids = fields.One2many(
+        'withholding.data.line', 'invoice_id',
+        'Withholding', copy=False
     )
     #  2.1.1.5.2 2.1.1.5.3 2.1.1.5.4 mapped to l10n_it_withholding_tax fields
 

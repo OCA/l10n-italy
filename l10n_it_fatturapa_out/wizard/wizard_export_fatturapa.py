@@ -13,6 +13,7 @@ import string
 import random
 
 from odoo import api, fields, models
+from odoo.tools.float_utils import float_round
 from odoo.tools.translate import _
 from odoo.exceptions import UserError
 
@@ -687,28 +688,30 @@ class WizardExportFatturapa(models.TransientModel):
         if line.admin_ref:
             DettaglioLinea.RiferimentoAmministrazione = line.admin_ref
         if line.product_id:
-            if line.product_id.default_code:
+            product_code = line.product_id.default_code
+            if product_code:
                 CodiceArticolo = CodiceArticoloType(
                     CodiceTipo=self.env['ir.config_parameter'].sudo(
                     ).get_param('fatturapa.codicetipo.odoo', 'ODOO'),
-                    CodiceValore=line.product_id.default_code
+                    CodiceValore=product_code[:35]
                 )
                 DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
-            if line.product_id.barcode:
+            product_barcode = line.product_id.barcode
+            if product_barcode:
                 CodiceArticolo = CodiceArticoloType(
                     CodiceTipo='EAN',
-                    CodiceValore=line.product_id.barcode
+                    CodiceValore=product_barcode[:35]
                 )
                 DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
         body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
-        return True
+        return DettaglioLinea
 
     def setScontoMaggiorazione(self, line):
         res = []
         if line.discount:
             res.append(ScontoMaggiorazioneType(
                 Tipo='SC',
-                Percentuale='%.2f' % line.discount
+                Percentuale='%.2f' % float_round(line.discount, 8)
             ))
         return res
 

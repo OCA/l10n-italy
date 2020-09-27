@@ -58,7 +58,7 @@ class AccountInvoice(models.Model):
         error_message = ''
         if (self.e_invoice_amount_untaxed and
                 float_compare(self.amount_untaxed,
-                              self.e_invoice_amount_untaxed,
+                              abs(self.e_invoice_amount_untaxed),
                               precision_rounding=self.currency_id
                               .rounding) != 0):
             error_message = (
@@ -75,7 +75,7 @@ class AccountInvoice(models.Model):
         error_message = ''
         if (self.e_invoice_amount_tax and
                 float_compare(self.amount_tax,
-                              self.e_invoice_amount_tax,
+                              abs(self.e_invoice_amount_tax),
                               precision_rounding=self.currency_id
                               .rounding) != 0):
             error_message = (
@@ -92,7 +92,7 @@ class AccountInvoice(models.Model):
         error_message = ''
         if (self.e_invoice_amount_total and
                 float_compare(self.amount_total,
-                              self.e_invoice_amount_total,
+                              abs(self.e_invoice_amount_total),
                               precision_rounding=self.currency_id
                               .rounding) != 0):
             error_message = (
@@ -103,6 +103,26 @@ class AccountInvoice(models.Model):
                     bill_amount_total=self.amount_total or 0,
                     e_bill_amount_total=self.e_invoice_amount_total
                 ))
+        return error_message
+
+    def e_inv_dati_ritenuta(self):
+        error_message = ''
+        # ftpa_withholding_type is set when DatiRitenuta is set,
+        # withholding_tax is not set if no lines with Ritenuta = SI are found
+        if self.ftpa_withholding_ids and not self.withholding_tax:
+            error_message += (_(
+                "E-bill contains DatiRitenuta but no lines subjected to Ritenuta was "
+                "found. Please manually check Withholding tax Amount\n"
+            ))
+        if sum(self.ftpa_withholding_ids.mapped('amount'))\
+                != self.withholding_tax_amount:
+            error_message += (_(
+                "E-bill contains ImportoRitenuta %s but created invoice has got"
+                " %s\n" % (
+                    sum(self.ftpa_withholding_ids.mapped('amount')),
+                    self.withholding_tax_amount
+                )
+            ))
         return error_message
 
     @api.depends('type', 'state', 'fatturapa_attachment_in_id',
@@ -126,6 +146,10 @@ class AccountInvoice(models.Model):
                 error_messages.append(error_message)
 
             error_message = bill.e_inv_check_amount_total()
+            if error_message:
+                error_messages.append(error_message)
+
+            error_message = bill.e_inv_dati_ritenuta()
             if error_message:
                 error_messages.append(error_message)
 
@@ -184,19 +208,23 @@ class AccountInvoice(models.Model):
 
     @api.model
     def compute_xml_amount_untaxed(self, FatturaBody):
-        amount_untaxed = float(
+        amount_untaxed = 0.0
+        for Riepilogo in FatturaBody.DatiBeniServizi.DatiRiepilogo:
+            amount_untaxed += float(Riepilogo.ImponibileImporto or 0.0)
+        return amount_untaxed
+
+    @api.model
+    def compute_xml_amount_total(self, FatturaBody, amount_untaxed, amount_tax):
+        rounding = float(
             FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento
             or 0.0)
-        for Riepilogo in FatturaBody.DatiBeniServizi.DatiRiepilogo:
-            rounding = float(Riepilogo.Arrotondamento or 0.0)
-            amount_untaxed += float(Riepilogo.ImponibileImporto) + rounding
-        return amount_untaxed
+        return amount_untaxed + amount_tax + rounding
 
     @api.model
     def compute_xml_amount_tax(self, DatiRiepilogo):
         amount_tax = 0.0
         for Riepilogo in DatiRiepilogo:
-            amount_tax += float(Riepilogo.Imposta)
+            amount_tax += float(Riepilogo.Imposta or 0.0)
         return amount_tax
 
     def set_einvoice_data(self, fattura):
@@ -204,9 +232,8 @@ class AccountInvoice(models.Model):
         amount_untaxed = self.compute_xml_amount_untaxed(fattura)
         amount_tax = self.compute_xml_amount_tax(
             fattura.DatiBeniServizi.DatiRiepilogo)
-        amount_total = float(
-            fattura.DatiGenerali.DatiGeneraliDocumento.
-            ImportoTotaleDocumento or 0.0)
+        amount_total = self.compute_xml_amount_total(
+            fattura, amount_untaxed, amount_tax)
         reference = fattura.DatiGenerali.DatiGeneraliDocumento.Numero
         date_invoice = fattura.DatiGenerali.DatiGeneraliDocumento.Data
 

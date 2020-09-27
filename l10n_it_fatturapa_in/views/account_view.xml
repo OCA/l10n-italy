@@ -271,6 +271,14 @@
                             </tree>
                         </field>
                     </group>
+                    <group string="Withholding">
+                        <field name="ftpa_withholding_ids" nolabel="1" readonly="1">
+                            <tree editable="bottom" string="Withholding Details">
+                                <field name="name"/>
+                                <field name="amount"/>
+                            </tree>
+                        </field>
+                    </group>
                     <group string="Payments">
                         <field name="fatturapa_payments" nolabel="1" readonly="1">
                             <tree string="Payments">
