@@ -1,7 +1,7 @@
 # Copyright 2017 Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, models
+from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
@@ -15,7 +15,7 @@ class SaleOrder(models.Model):
                 dichiarazioni = self.env['dichiarazione.intento'].get_valid(
                     'out',
                     sale.partner_id.id,
-                    sale.date_order)
+                    fields.Date.to_date(sale.date_order))
                 if dichiarazioni:
                     sale.fiscal_position_id = \
                         dichiarazioni[0].fiscal_position_id.id
