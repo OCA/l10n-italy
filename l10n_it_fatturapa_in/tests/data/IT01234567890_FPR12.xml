@@ -6,7 +6,7 @@
         <IdPaese>IT</IdPaese>
         <IdCodice>05979361218</IdCodice>
       </IdTrasmittente>
-      <ProgressivoInvio>FPR11</ProgressivoInvio>
+      <ProgressivoInvio>FPR12</ProgressivoInvio>
       <FormatoTrasmissione>FPR12</FormatoTrasmissione>
       <CodiceDestinatario>0000000</CodiceDestinatario>
       <ContattiTrasmittente />
@@ -55,8 +55,8 @@
         <Numero>124</Numero>
         <DatiRitenuta>
             <TipoRitenuta>RT02</TipoRitenuta>
-            <ImportoRitenuta>52.00</ImportoRitenuta>
-            <AliquotaRitenuta>26.00</AliquotaRitenuta>
+            <ImportoRitenuta>54.00</ImportoRitenuta>
+            <AliquotaRitenuta>27.00</AliquotaRitenuta>
             <CausalePagamento>Q</CausalePagamento>
         </DatiRitenuta>
         <DatiRitenuta>

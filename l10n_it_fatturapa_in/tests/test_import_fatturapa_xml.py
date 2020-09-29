@@ -629,14 +629,33 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
 
     def test_39_xml_import_withholding(self):
         self.wt = self.create_wt_4q()
-        self.wtq = self.create_wt_23_20q()
-        res = self.run_wizard('test39', 'IT01234567890_FPR11.xml')
+        with self.assertRaises(UserError):
+            self.run_wizard('test39', 'IT01234567890_FPR11.xml')
+
+    def test_40_xml_import_withholding(self):
+        self.wt = self.create_wt_4q()
+        self.wt4q = self.create_wt_26_40q()
+        self.wt2q = self.create_wt_26_20q()
+        res = self.run_wizard('test40', 'IT01234567890_FPR11.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertTrue(invoice.e_invoice_validation_error)
+        self.assertEqual(
+            invoice.e_invoice_validation_message,
+            "E-bill contains ImportoRitenuta 92.0 but created invoice has got "
+            "144.0\n."
+        )
+
+    def test_41_xml_import_withholding(self):
+        self.wt = self.create_wt_4q()
+        self.wtq = self.create_wt_27_20q()
+        res = self.run_wizard('test41', 'IT01234567890_FPR12.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertTrue(len(invoice.ftpa_withholding_ids), 2)
         self.assertAlmostEquals(invoice.amount_total, 1220.0)
-        self.assertAlmostEquals(invoice.withholding_tax_amount, 86.0)
-        self.assertAlmostEquals(invoice.amount_net_pay, 1134.0)
+        self.assertAlmostEquals(invoice.withholding_tax_amount, 94.0)
+        self.assertAlmostEquals(invoice.amount_net_pay, 1126.0)
 
     def test_01_xml_link(self):
         """
