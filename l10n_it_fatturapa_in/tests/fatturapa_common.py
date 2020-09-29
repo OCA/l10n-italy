@@ -52,14 +52,38 @@ class FatturapaCommon(SingleTransactionCase):
                 self.env.ref('l10n_it_causali_pagamento.a').id,
         })
 
-    def create_wt_23_20q(self):
+    def create_wt_26_20q(self):
         return self.env['withholding.tax'].create({
-            'name': '2320q',
-            'code': '2320q',
+            'name': '2620q',
+            'code': '2620q',
             'account_receivable_id': self.payable_account_id,
             'account_payable_id': self.payable_account_id,
             'payment_term': self.env.ref('account.account_payment_term').id,
-            'rate_ids': [(0, 0, {'tax': 23.0, 'base': 0.2})],
+            'rate_ids': [(0, 0, {'tax': 26.0, 'base': 0.2})],
+            'causale_pagamento_id':
+                self.env.ref('l10n_it_causali_pagamento.q').id,
+        })
+
+    def create_wt_26_40q(self):
+        return self.env['withholding.tax'].create({
+            'name': '2640q',
+            'code': '2640q',
+            'account_receivable_id': self.payable_account_id,
+            'account_payable_id': self.payable_account_id,
+            'payment_term': self.env.ref('account.account_payment_term').id,
+            'rate_ids': [(0, 0, {'tax': 26.0, 'base': 0.4})],
+            'causale_pagamento_id':
+                self.env.ref('l10n_it_causali_pagamento.q').id,
+        })
+
+    def create_wt_27_20q(self):
+        return self.env['withholding.tax'].create({
+            'name': '2720q',
+            'code': '2720q',
+            'account_receivable_id': self.payable_account_id,
+            'account_payable_id': self.payable_account_id,
+            'payment_term': self.env.ref('account.account_payment_term').id,
+            'rate_ids': [(0, 0, {'tax': 27.0, 'base': 0.2})],
             'causale_pagamento_id':
                 self.env.ref('l10n_it_causali_pagamento.q').id,
         })
