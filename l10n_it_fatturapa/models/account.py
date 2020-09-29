@@ -344,16 +344,7 @@ class AccountInvoice(models.Model):
     #  1.6
     sender = fields.Selection(
         [('CC', 'Assignee / Partner'), ('TZ', 'Third Person')], 'Sender')
-    #  2.1.1.5
-    # fields migrated to new ftpa_withholding_ids
-    # #  2.1.1.5.1
-    # ftpa_withholding_type = fields.Selection(
-    #     [('RT01', 'Natural Person'), ('RT02', 'Legal Person')],
-    #     'Withholding Type'
-    # )
-    # #  2.1.1.5.2
-    # ftpa_withholding_amount = fields.Float('Withholding amount')
-    #  2.1.1.5.2 2.1.1.5.3 2.1.1.5.4 mapped to l10n_it_withholding_tax fields
+    # 2.1.1.5 mapped to l10n_it_withholding_tax fields
     ftpa_withholding_ids = fields.One2many(
         'withholding.data.line', 'invoice_id',
         'Withholding', copy=False
