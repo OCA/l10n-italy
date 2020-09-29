@@ -629,6 +629,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
 
     def test_39_xml_import_withholding(self):
         self.wt = self.create_wt_4q()
+        with self.assertRaises(UserError):
+            self.run_wizard('test39a', 'IT01234567890_FPR11.xml')
         self.wtq = self.create_wt_23_20q()
         res = self.run_wizard('test39', 'IT01234567890_FPR11.xml')
         invoice_id = res.get('domain')[0][2][0]
