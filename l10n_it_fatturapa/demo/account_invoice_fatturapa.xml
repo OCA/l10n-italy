@@ -123,8 +123,8 @@
             <field name="email">info@mypa.it</field>
             <field name="phone">003901141622023</field>
             <field name="website">www.mypa.it</field>
-            <field name="fiscalcode">00146089990</field>
-            <field name="vat">IT00146089990</field>
+            <field name="fiscalcode">06363391001</field>
+            <field name="vat">IT06363391001</field>
             <field name="ipa_code">UFPQ1O</field>
         </record>
 
