@@ -97,29 +97,6 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.intermediary.vat, 'IT03339130126')
 
-    # def test_02_xml_import(self):
-    #     res = self.run_wizard('test2', 'IT03638121008_X11111.xml')
-    #     invoice_id = res.get('domain')[0][2][0]
-    #     invoice = self.invoice_model.browse(invoice_id)
-    #     self.assertEqual(invoice.supplier_invoice_number, '00001')
-    #     self.assertEqual(invoice.amount_untaxed, 3)
-    #     self.assertEqual(invoice.amount_tax, 0.66)
-    #     self.assertEqual(
-    #         invoice.fatturapa_summary_ids[0].amount_untaxed, 3)
-    #     self.assertEqual(
-    #         invoice.fatturapa_summary_ids[0].amount_tax, 0.66)
-    #     self.assertEqual(invoice.partner_id.name, "Societa' alpha S.r.l.")
-
-    # def test_03_xml_import(self):
-    #     res = self.run_wizard('test3', 'IT05979361218_002.xml.p7m')
-    #     invoice_id = res.get('domain')[0][2][0]
-    #     invoice = self.invoice_model.browse(invoice_id)
-    #     self.assertEqual(invoice.partner_id.register_code, 'TO1258B')
-    #     self.assertEqual(
-    #         invoice.partner_id.register_fiscalpos.code, 'RF02')
-    #     self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0007')
-    #     self.assertEqual(invoice.amount_total, 54.00)
-
     def test_04_xml_import(self):
         res = self.run_wizard('test4', 'IT02780790107_11005.xml')
         invoice_id = res.get('domain')[0][2][0]
