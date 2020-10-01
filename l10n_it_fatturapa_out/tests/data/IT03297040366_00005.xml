@@ -41,9 +41,9 @@
             <DatiAnagrafici>
                 <IdFiscaleIVA>
                     <IdPaese>IT</IdPaese>
-                    <IdCodice>00146089990</IdCodice>
+                    <IdCodice>06363391001</IdCodice>
                 </IdFiscaleIVA>
-                <CodiceFiscale>00146089990</CodiceFiscale>
+                <CodiceFiscale>06363391001</CodiceFiscale>
                 <Anagrafica>
                     <Denominazione>Public Administration</Denominazione>
                 </Anagrafica>
@@ -90,7 +90,7 @@
                 <PrezzoUnitario>10.00000</PrezzoUnitario>
                 <ScontoMaggiorazione>
                     <Tipo>SC</Tipo>
-                    <Percentuale>10.00000000</Percentuale>
+                    <Percentuale>10.00</Percentuale>
                 </ScontoMaggiorazione>
                 <PrezzoTotale>9.00</PrezzoTotale>
                 <AliquotaIVA>22.00</AliquotaIVA>
