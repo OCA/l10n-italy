@@ -200,6 +200,7 @@ class AccountInvoice(models.Model):
                             year=pay_date[0][:4],
                         ),
                         'account_id': account.id,
+                        'sequence': 9999,
                     }
                     # ---- Update Line Value with tax if is set on product
                     if invoice.company_id.due_cost_service_id.taxes_id:
