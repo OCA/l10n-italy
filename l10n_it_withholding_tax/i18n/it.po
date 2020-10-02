@@ -166,9 +166,14 @@ msgid "Date Stop"
 msgstr "Data fine"
 
 #. module: l10n_it_withholding_tax
-#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__use_daticassaprev_for_enasarco
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__use_daticassaprev
 msgid "DatiCassa export"
 msgstr "Esportazione DatiCassa"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__daticassprev_tax_id
+msgid "Daticassprev Tax"
+msgstr ""
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax__display_name
@@ -191,13 +196,18 @@ msgid "Enasarco tax"
 msgstr "Contributo Enasarco"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:80
+#: selection:withholding.tax,wt_types:0
+msgid "Enpam Tax"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:84
 #, python-format
 msgid "Error! Rates are required"
 msgstr "Errore! Le aliquote sono obbligatorie"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:149
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:153
 #, python-format
 msgid "Error! You cannot have 2 rates that overlap!"
 msgstr "Errore, due aliquote non possono sovrapporsi."
@@ -236,6 +246,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
 msgid "In type"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
+#: selection:withholding.tax,wt_types:0
+msgid "Inps Tax"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
@@ -311,7 +326,7 @@ msgid "MISC"
 msgstr "VARIE"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:413
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:417
 #, python-format
 msgid "Move %s is reconciled (%s). You must unreconcile it first"
 msgstr ""
@@ -338,6 +353,11 @@ msgstr "Netto a pagare"
 #, fuzzy
 msgid "Net to pay"
 msgstr "Netto a pagare"
+
+#. module: l10n_it_withholding_tax
+#: selection:withholding.tax,wt_types:0
+msgid "Other Tax"
+msgstr ""
 
 #. module: l10n_it_withholding_tax
 #: selection:withholding.tax.statement,wt_type:0
@@ -419,13 +439,11 @@ msgid "Set to Due"
 msgstr "Imposta a dovuto"
 
 #. module: l10n_it_withholding_tax
-#: model:ir.model.fields,help:l10n_it_withholding_tax.field_withholding_tax__use_daticassaprev_for_enasarco
+#: model:ir.model.fields,help:l10n_it_withholding_tax.field_withholding_tax__use_daticassaprev
 msgid ""
-"Setting this, while exporting e-invoice XML, Enasarco data will be also "
-"added to DatiCassaPrevidenziale"
+"Setting this, while exporting e-invoice XML, data will be also added to "
+"DatiCassaPrevidenziale"
 msgstr ""
-"Se impostato, i dati Enasarco verranno aggiunti a DatiCassaPrevidenziale "
-"durante l'esportazione XML della e-fattura"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__statement_id
@@ -510,13 +528,13 @@ msgid "W.T. Reg. on"
 msgstr "RdA registrata il"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:317
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:321
 #, python-format
 msgid "WT %s - %s"
 msgstr "RdA %s - %s"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:327
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:331
 #, python-format
 msgid "WT %s - %s - %s"
 msgstr "RdA %s - %s - %s"
@@ -558,7 +576,7 @@ msgstr "Riconciliazione RdA"
 
 #. module: l10n_it_withholding_tax
 #: code:addons/l10n_it_withholding_tax/models/account.py:160
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:429
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:433
 #, python-format
 msgid ""
 "Warning! Only Withholding Tax moves in Due status                     can be "
@@ -568,7 +586,7 @@ msgstr ""
 "pagare»"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:313
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:317
 #, python-format
 msgid "Warning! Wt account move already exists: %s"
 msgstr "Attenzione, movimento contabile RdA già esistente: %s"
@@ -665,6 +683,13 @@ msgstr "Registro ritenuta d'acconto"
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__wt_types
 msgid "Withholding tax type"
 msgstr "Tipologia ritenuta d'acconto"
+
+#~ msgid ""
+#~ "Setting this, while exporting e-invoice XML, Enasarco data will be also "
+#~ "added to DatiCassaPrevidenziale"
+#~ msgstr ""
+#~ "Se impostato, i dati Enasarco verranno aggiunti a DatiCassaPrevidenziale "
+#~ "durante l'esportazione XML della e-fattura"
 
 #~ msgid "Payments"
 #~ msgstr "Pagamenti"
