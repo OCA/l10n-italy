@@ -131,6 +131,28 @@ class WelfareFundDataLine(models.Model):
     )
 
 
+class WithholdingDataLine(models.Model):
+    _name = "withholding.data.line"
+    _description = 'E-invoice Withholding Data'
+
+    name = fields.Selection(
+        selection=[
+            ('RT01', 'Natural Person'),
+            ('RT02', 'Legal Person'),
+            ('RT03', 'INPS'),
+            ('RT04', 'ENASARCO'),
+            ('RT05', 'ENPAM'),
+            ('RT06', 'OTHER'),
+        ],
+        string='Withholding Type'
+    )
+    amount = fields.Float('Withholding amount')
+    invoice_id = fields.Many2one(
+        'account.invoice', 'Related Invoice',
+        ondelete='cascade', index=True
+    )
+
+
 class DiscountRisePrice(models.Model):
     # _position = ['2.1.1.8', '2.2.1.10']
     _name = "discount.rise.price"
@@ -264,13 +286,34 @@ class FaturapaSummaryData(models.Model):
     _description = "E-invoice summary data"
     tax_rate = fields.Float('Tax Rate')
     non_taxable_nature = fields.Selection([
-        ('N1', 'excluding ex Art. 15'),
+        ('N1', 'excluded pursuant to Art. 15'),
         ('N2', 'not subject'),
+        ('N2.1', 'not subject to VAT under the articles from 7 to '
+                 '7-septies of DPR 633/72'),
+        ('N2.2', 'not subject – other cases'),
         ('N3', 'not taxable'),
+        ('N3.1', 'not taxable – exportations'),
+        ('N3.2', 'not taxable – intra Community transfers'),
+        ('N3.3', 'not taxable – transfers to San Marino'),
+        ('N3.4', 'not taxable – transactions treated as export supplies'),
+        ('N3.5', 'not taxable – for declaration of intent'),
+        ('N3.6', 'not taxable – other transactions that don’t contribute to the '
+                 'determination of ceiling'),
         ('N4', 'exempt'),
         ('N5', 'margin regime'),
         ('N6', 'reverse charge'),
-        ('N7', 'VAT paid in another EU country')
+        ('N6.1', 'reverse charge – transfer of scrap and of other recyclable '
+                 'materials'),
+        ('N6.2', 'reverse charge – transfer of gold and pure silver'),
+        ('N6.3', 'reverse charge – subcontracting in the construction sector'),
+        ('N6.4', 'reverse charge – transfer of buildings'),
+        ('N6.5', 'reverse charge – transfer of mobile phones'),
+        ('N6.6', 'reverse charge – transfer of electronic products'),
+        ('N6.7', 'reverse  charge – provisions in the construction and related '
+                 'sectors'),
+        ('N6.8', 'reverse charge – transactions in the energy sector'),
+        ('N6.9', 'reverse charge – other cases'),
+        ('N7', 'VAT paid in other EU countries')
     ], string="Non taxable nature")
     incidental_charges = fields.Float('Incidental Charges')
     rounding = fields.Float('Rounding')
@@ -303,16 +346,11 @@ class AccountInvoice(models.Model):
     #  1.6
     sender = fields.Selection(
         [('CC', 'Assignee / Partner'), ('TZ', 'Third Person')], 'Sender')
-    #  2.1.1.5
-    #  2.1.1.5.1
-    ftpa_withholding_type = fields.Selection(
-        [('RT01', 'Natural Person'), ('RT02', 'Legal Person')],
-        'Withholding Type'
+    # 2.1.1.5 mapped to l10n_it_withholding_tax fields
+    ftpa_withholding_ids = fields.One2many(
+        'withholding.data.line', 'invoice_id',
+        'Withholding', copy=False
     )
-    #  2.1.1.5.2
-    ftpa_withholding_amount = fields.Float('Withholding amount')
-    #  2.1.1.5.2 2.1.1.5.3 2.1.1.5.4 mapped to l10n_it_withholding_tax fields
-
     #  2.1.1.7
     welfare_fund_ids = fields.One2many(
         'welfare.fund.data.line', 'invoice_id',
