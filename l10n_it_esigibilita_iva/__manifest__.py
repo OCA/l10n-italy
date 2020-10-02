@@ -4,7 +4,7 @@
 
 {
     'name': "Italian Localization - Esigibilita' IVA",
-    'version': '12.0.1.0.1',
+    'version': '12.0.2.0.0',
     'development_status': 'Beta',
     'category': 'Account',
     'author': "Openforce di Camilli Alessandro, "
