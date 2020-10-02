@@ -7,7 +7,7 @@
     'name': 'ITA - Fattura elettronica - Integrazione '
             'ritenuta',
     'summary': 'Modulo ponte tra emissione fatture elettroniche e ritenute.',
-    'version': '12.0.1.1.3',
+    'version': '12.0.2.0.0',
     'development_status': 'Beta',
     'category': 'Hidden',
     'website': 'https://github.com/OCA/l10n-italy',
