@@ -20,21 +20,6 @@ msgstr ""
 "X-Generator: Weblate 3.2.1\n"
 
 #. module: l10n_it_esigibilita_iva
-#: selection:account.tax,payability:0
-msgid "Deferred payability"
-msgstr "Esigibilità differita"
-
-#. module: l10n_it_esigibilita_iva
-#: selection:account.tax,payability:0
-msgid "Immediate payability"
-msgstr "Esigibilità immediata"
-
-#. module: l10n_it_esigibilita_iva
-#: selection:account.tax,payability:0
-msgid "Split payment"
-msgstr "Scissione dei pagamenti"
-
-#. module: l10n_it_esigibilita_iva
 #: model:ir.model,name:l10n_it_esigibilita_iva.model_account_tax
 msgid "Tax"
 msgstr "Imposta"
@@ -43,3 +28,27 @@ msgstr "Imposta"
 #: model:ir.model.fields,field_description:l10n_it_esigibilita_iva.field_account_tax__payability
 msgid "VAT payability"
 msgstr "Esigibilità IVA"
+
+#. module: l10n_it_esigibilita_iva
+#: selection:account.tax,payability:0
+msgid "VAT payable immediately"
+msgstr ""
+
+#. module: l10n_it_esigibilita_iva
+#: selection:account.tax,payability:0
+msgid "split payments"
+msgstr ""
+
+#. module: l10n_it_esigibilita_iva
+#: selection:account.tax,payability:0
+msgid "unrealized VAT"
+msgstr ""
+
+#~ msgid "Deferred payability"
+#~ msgstr "Esigibilità differita"
+
+#~ msgid "Immediate payability"
+#~ msgstr "Esigibilità immediata"
+
+#~ msgid "Split payment"
+#~ msgstr "Scissione dei pagamenti"
