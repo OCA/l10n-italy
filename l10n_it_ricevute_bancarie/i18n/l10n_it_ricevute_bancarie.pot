@@ -663,7 +663,7 @@ msgid "Invoice Number"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:243
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:244
 #, python-format
 msgid "Invoice is linked to C/O slip No. {riba}"
 msgstr ""
