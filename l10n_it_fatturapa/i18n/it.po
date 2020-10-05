@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-08 09:34+0000\n"
-"PO-Revision-Date: 2020-03-31 20:13+0000\n"
+"PO-Revision-Date: 2020-10-05 08:16+0000\n"
 "Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -527,7 +527,7 @@ msgstr "Fatture elettroniche"
 #. module: l10n_it_fatturapa
 #: model:ir.ui.menu,name:l10n_it_fatturapa.fatturapa_common_menu
 msgid "Electronic invoicing"
-msgstr ""
+msgstr "Fatturazione elettronica"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__electronic_invoice_subjected
@@ -832,7 +832,7 @@ msgstr "Numero di elementi"
 #. module: l10n_it_fatturapa
 #: selection:withholding.data.line,name:0
 msgid "OTHER"
-msgstr ""
+msgstr "ALTRO"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__electronic_invoice_obliged_subject
@@ -1167,7 +1167,7 @@ msgstr "Dati pagamenti collegati"
 #: model:ir.actions.act_window,name:l10n_it_fatturapa.fatturapa_related_document_type_action
 #: model:ir.ui.menu,name:l10n_it_fatturapa.fatturapa_related_document_type_menu
 msgid "Related documents"
-msgstr ""
+msgstr "Documenti collegati"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__res_model_name
@@ -1382,7 +1382,7 @@ msgstr "Aliquota IVA"
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "VAT paid in other EU countries"
-msgstr ""
+msgstr "IVA pagata in altri paesi UE"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_summary_data__payability
@@ -1443,7 +1443,7 @@ msgstr "Imponibile cassa"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice__ftpa_withholding_ids
 msgid "Withholding"
-msgstr ""
+msgstr "Ritenuta"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_withholding_data_line__name
@@ -1452,9 +1452,8 @@ msgstr "Tipo ritenuta"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_withholding_data_line__amount
-#, fuzzy
 msgid "Withholding amount"
-msgstr "Tipo ritenuta"
+msgstr "Importo ritenuta"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_fatturapa_attachments__type
@@ -1473,7 +1472,7 @@ msgstr "CAP"
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "excluded pursuant to Art. 15"
-msgstr ""
+msgstr "escluse ex Art. 15"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
@@ -1493,12 +1492,12 @@ msgstr "non soggette"
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "not subject to VAT under the articles from 7 to 7-septies of DPR 633/72"
-msgstr ""
+msgstr "non soggette a IVA secondo gli articoli da 7 a 7-septies del DPR 633/72"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "not subject – other cases"
-msgstr ""
+msgstr "non soggette - altri casi"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
@@ -1508,17 +1507,17 @@ msgstr "non imponibili"
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "not taxable – exportations"
-msgstr ""
+msgstr "non imponibili - esportazioni"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "not taxable – for declaration of intent"
-msgstr ""
+msgstr "non imponibili - per dichiarazione di intento"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "not taxable – intra Community transfers"
-msgstr ""
+msgstr "non imponibili - cessioni intracomunitarie"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
@@ -1526,21 +1525,23 @@ msgid ""
 "not taxable – other transactions that don’t contribute to the determination "
 "of ceiling"
 msgstr ""
+"non imponibili - altre operazioni che non concorrono alla formazione del "
+"plafond"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "not taxable – transactions treated as export supplies"
-msgstr ""
+msgstr "non imponibili - operazioni assimilate alle cessioni all’esportazione"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "not taxable – transfers to San Marino"
-msgstr ""
+msgstr "non imponibili - cessioni verso San Marino"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "reverse  charge – provisions in the construction and related sectors"
-msgstr ""
+msgstr "inversione contabile – prestazioni comparto edile e settori connessi"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
@@ -1550,42 +1551,43 @@ msgstr "inversione contabile"
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "reverse charge – other cases"
-msgstr ""
+msgstr "inversione contabile – altri casi"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "reverse charge – subcontracting in the construction sector"
-msgstr ""
+msgstr "inversione contabile – subappalto nel settore edile"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "reverse charge – transactions in the energy sector"
-msgstr ""
+msgstr "inversione contabile – operazioni settore energetico"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "reverse charge – transfer of buildings"
-msgstr ""
+msgstr "inversione contabile – cessione di fabbricati"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "reverse charge – transfer of electronic products"
-msgstr ""
+msgstr "inversione contabile – cessione di prodotti elettronici"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "reverse charge – transfer of gold and pure silver"
-msgstr ""
+msgstr "inversione contabile – cessione di oro e argento puro"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "reverse charge – transfer of mobile phones"
-msgstr ""
+msgstr "inversione contabile – cessione di telefoni cellulari"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "reverse charge – transfer of scrap and of other recyclable materials"
 msgstr ""
+"inversione contabile – cessione di rottami e altri materiali di recupero"
 
 #~ msgid "AssoSoftware v1.1"
 #~ msgstr "AssoSoftware v1.1"
