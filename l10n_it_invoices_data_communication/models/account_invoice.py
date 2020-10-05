@@ -37,7 +37,7 @@ class AccountInvoice(models.Model):
                 if (
                     tax.cee_type and
                     tax.amount < 0 and
-                    main_tax.kind_id.code == 'N6'
+                    main_tax.kind_id.code.startswith('N6')
                 ):
                     continue
             else:
