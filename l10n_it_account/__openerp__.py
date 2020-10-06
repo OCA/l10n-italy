@@ -21,7 +21,7 @@
 ##############################################################################
 {
     'name': 'Italian Localization - Account',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.1.0',
     'category': 'Hidden',
     'author': "Agile Business Group,Abstract,Odoo Community Association (OCA)",
     'website': 'http://www.odoo-italia.org',
