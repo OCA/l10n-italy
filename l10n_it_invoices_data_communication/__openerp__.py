@@ -17,6 +17,7 @@
     'depends': [
         'account',
         'account_invoice_entry_date',
+        'l10n_it_account',
         'l10n_it_account_tax_kind',
         'l10n_it_codici_carica',
         'l10n_it_esigibilita_iva',

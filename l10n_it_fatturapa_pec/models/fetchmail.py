@@ -73,7 +73,7 @@ class Fetchmail(models.Model):
                             # We need to commit because message is processed:
                             # Possible next exceptions, out of try, should not
                             # rollback processed messages
-                            self._cr.commit()
+                            self._cr.commit()  # pylint: disable=invalid-commit
                     except Exception as e:
                         server.manage_pec_failure(e, error_messages)
                     finally:
@@ -107,7 +107,7 @@ class Fetchmail(models.Model):
                                     server.manage_pec_failure(
                                         e, error_messages)
                                     continue
-                                self._cr.commit()
+                                self._cr.commit()  # pylint: disable=invalid-commit
                             if num_messages < MAX_POP_MESSAGES:
                                 break
                             pop_server.quit()

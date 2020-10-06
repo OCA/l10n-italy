@@ -127,12 +127,11 @@ class AccountInvoice(models.Model):
                 period_id, date_start, date_stop = self._get_period_from_dates(
                     cr, uid, inv)
 
-                sql = "update account_move_line set period_id="+str(
-                    period_id
-                    ) + ",date='" + mov_date + "' where move_id = " + str(
-                    inv.move_id.id)
-
-                cr.execute(sql)
+                cr.execute(
+                    'update account_move_line '
+                    'set period_id = %s ,date=%s where move_id = %s',
+                    (str(period_id), mov_date, str(inv.move_id.id),)
+                )
 
                 account_move_model.write(
                     cr, uid, [inv.move_id.id],
