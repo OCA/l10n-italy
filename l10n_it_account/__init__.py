@@ -23,10 +23,10 @@
 ##############################################################################
 
 from . import models
+from . import tools
+from openerp import SUPERUSER_ID
 
 import logging
-import tools
-from openerp import SUPERUSER_ID
 
 
 def post_init_hook(cr, registry):
