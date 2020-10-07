@@ -90,7 +90,7 @@ class Fetchmail(models.Model):
                             ):
                                 (header, messages, octets) = pop_server.retr(
                                     num)
-                                message = '\n'.join(messages)
+                                message = (b'\n').join(messages)
                                 try:
                                     MailThread.with_context(
                                         **additional_context
