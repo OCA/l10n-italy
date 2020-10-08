@@ -36,7 +36,7 @@ msgstr "<span class=\"o_form_label\">Indirizzo stampante</span>"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:148
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:150
 #, python-format
 msgid "An error happened while sending data to the printer. Error code: "
 msgstr ""
@@ -115,7 +115,7 @@ msgstr "Connessione alla stampante fiscale"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:147
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:149
 #, python-format
 msgid "Connection to the printer failed"
 msgstr "Connessione alla stampante fallita"
@@ -132,7 +132,7 @@ msgstr "Reparto sulla stampante fiscale 1~99"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:375
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:377
 #, python-format
 msgid "Discount"
 msgstr "Sconto"
@@ -172,7 +172,7 @@ msgstr "Errore"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:148
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:150
 #, python-format
 msgid "Error Message: "
 msgstr "Messaggio errore: "
@@ -193,7 +193,7 @@ msgstr "Errore ultimo comando ESC/POS con Non fiscale aperto"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:158
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:160
 #, python-format
 msgid "Files waiting to be sent: "
 msgstr "File in attesa di essere inviati: "
@@ -279,7 +279,7 @@ msgstr "Di altro misuratore"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:160
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:162
 #, python-format
 msgid "IRA files"
 msgstr "File ADE"
@@ -321,7 +321,7 @@ msgstr "Scontrino in negativo"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:196
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:198
 #, python-format
 msgid "Network error"
 msgstr "Errore di rete"
@@ -354,7 +354,7 @@ msgstr "Offline (fine carta o coperchio aperto)"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:158
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:160
 #, python-format
 msgid "Old files: "
 msgstr "Vecchi file: "
@@ -390,7 +390,7 @@ msgstr "Carta in esaurimento"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:285
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:287
 #, python-format
 msgid "Payment"
 msgstr "Pagamento"
@@ -454,7 +454,7 @@ msgstr "Indirizzo IP stampante"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:197
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:199
 #, python-format
 msgid "Printer can not be reached"
 msgstr "La stampante non può essere raggiunta"
@@ -518,7 +518,7 @@ msgstr "Scontrino inviato alla stampante"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:383
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:385
 #, python-format
 msgid "Refund >>> "
 msgstr "Reso >>> "
@@ -561,7 +561,7 @@ msgstr "Data riferimento reso"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:158
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:160
 #, python-format
 msgid "Rejected files: "
 msgstr "File rifiutati: "
