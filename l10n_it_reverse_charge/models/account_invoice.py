@@ -263,16 +263,17 @@ class AccountInvoice(models.Model):
 
     def partially_reconcile_supplier_invoice(self, rc_payment):
         move_line_model = self.env['account.move.line']
+        payment_debit_line = None
         for move_line in rc_payment.line_ids:
-            # testa se nota credito o debito
-            if (self.type == 'in_invoice') and move_line.debit:
+            if move_line.account_id.internal_type == 'payable' and (
+                    move_line.debit or move_line.credit):
                 payment_debit_line = move_line
-            elif (self.type == 'in_refund') and move_line.credit:
-                payment_debit_line = move_line
-        inv_lines_to_rec = move_line_model.browse(
-            [self.get_inv_line_to_reconcile().id,
-                payment_debit_line.id])
-        inv_lines_to_rec.reconcile()
+                break
+        if payment_debit_line:
+            inv_lines_to_rec = move_line_model.browse(
+                [self.get_inv_line_to_reconcile().id,
+                    payment_debit_line.id])
+            inv_lines_to_rec.reconcile()
 
     def reconcile_rc_invoice(self):
         rc_type = self.fiscal_position_id.rc_type_id
