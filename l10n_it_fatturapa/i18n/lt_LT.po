@@ -158,6 +158,11 @@ msgid "Assignee / Partner"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: selection:res.company,fatturapa_preview_style:0
+msgid "AssoSoftware v1.1"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_ir_attachment_id
 msgid "Attachment"
 msgstr ""
@@ -518,6 +523,11 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:account.tax,name:l10n_it_fatturapa.tax_00_minimi_acq
 msgid "Exempt Pur"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: selection:res.company,fatturapa_preview_style:0
+msgid "FatturaOrdinaria v1.2.1"
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -941,6 +951,12 @@ msgid "Prepayment Discount"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company_fatturapa_preview_style
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_config_settings_fatturapa_preview_style
+msgid "Preview Format Style"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments_ftpa_preview_link
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_ir_attachment_ftpa_preview_link
 msgid "Preview link"
@@ -1165,13 +1181,13 @@ msgid "Sequence"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/company.py:67
+#: code:addons/l10n_it_fatturapa/models/company.py:72
 #, python-format
 msgid "Sequence %s already used by journal %s. Please select another one."
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/company.py:60
+#: code:addons/l10n_it_fatturapa/models/company.py:65
 #, python-format
 msgid "Sequence %s can't use subsequences."
 msgstr ""
