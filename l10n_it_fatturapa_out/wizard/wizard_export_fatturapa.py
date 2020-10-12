@@ -293,7 +293,7 @@ class WizardExportFatturapa(models.TransientModel):
                 NumeroREA=company.fatturapa_rea_number or None,
                 CapitaleSociale=(
                     company.fatturapa_rea_capital and
-                    '%.2f' % company.fatturapa_rea_capital or None),
+                    '%.2f' % float_round(company.fatturapa_rea_capital, 2) or None),
                 SocioUnico=(company.fatturapa_rea_partner or None),
                 StatoLiquidazione=company.fatturapa_rea_liquidation or None
             )
@@ -515,7 +515,7 @@ class WizardExportFatturapa(models.TransientModel):
             Divisa=invoice.currency_id.name,
             Data=invoice.date_invoice,
             Numero=invoice.number,
-            ImportoTotaleDocumento='%.2f' % ImportoTotaleDocumento)
+            ImportoTotaleDocumento='%.2f' % float_round(ImportoTotaleDocumento, 2))
 
         # TODO: DatiRitenuta, DatiBollo, DatiCassaPrevidenziale,
         # ScontoMaggiorazione, Arrotondamento,
@@ -624,7 +624,7 @@ class WizardExportFatturapa(models.TransientModel):
             raise UserError(
                 _("Too many taxes for invoice line %s") % line.name)
         aliquota = line.invoice_line_tax_id[0].amount
-        AliquotaIVA = '%.2f' % (aliquota * 100)
+        AliquotaIVA = '%.2f' % float_round(aliquota * 100, 2)
         line.ftpa_line_number = line_no
         prezzo_unitario = self._get_prezzo_unitario(line)
         DettaglioLinea = DettaglioLineeType(
@@ -636,13 +636,13 @@ class WizardExportFatturapa(models.TransientModel):
             Descrizione=encode_for_export(line.name.replace('\n', ' '), 1000),
             PrezzoUnitario=('%.' + str(
                 price_precision
-            ) + 'f') % prezzo_unitario,
+            ) + 'f') % float_round(prezzo_unitario, 2),
             Quantita=('%.' + str(
                 uom_precision
             ) + 'f') % line.quantity,
             UnitaMisura=line.uos_id and (
                 unidecode(line.uos_id.name)) or None,
-            PrezzoTotale='%.2f' % line.price_subtotal,
+            PrezzoTotale='%.2f' % float_round(line.price_subtotal, 2),
             AliquotaIVA=AliquotaIVA)
         DettaglioLinea.ScontoMaggiorazione.extend(
             self.setScontoMaggiorazione(line))
@@ -694,9 +694,9 @@ class WizardExportFatturapa(models.TransientModel):
         for tax_line in invoice.tax_line:
             tax = model_tax.get_tax_by_invoice_tax(tax_line.name)
             riepilogo = DatiRiepilogoType(
-                AliquotaIVA='%.2f' % (tax.amount * 100),
-                ImponibileImporto='%.2f' % tax_line.base,
-                Imposta='%.2f' % tax_line.amount
+                AliquotaIVA='%.2f' % float_round(tax.amount * 100, 2),
+                ImponibileImporto='%.2f' % float_round(tax_line.base, 2),
+                Imposta='%.2f' % float_round(tax_line.amount, 2)
             )
             if tax.amount == 0.0:
                 if not tax.kind_id:
@@ -739,8 +739,8 @@ class WizardExportFatturapa(models.TransientModel):
             move_line_pool = self.env['account.move.line']
             for move_line_id in payment_line_ids:
                 move_line = move_line_pool.browse(move_line_id)
-                ImportoPagamento = '%.2f' % (
-                    move_line.amount_currency or move_line.debit)
+                ImportoPagamento = '%.2f' % float_round(
+                    move_line.amount_currency or move_line.debit, 2)
                 DettaglioPagamento = DettaglioPagamentoType(
                     ModalitaPagamento=(
                         invoice.payment_term.fatturapa_pm_id.code),
