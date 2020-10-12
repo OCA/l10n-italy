@@ -13,7 +13,15 @@ class WithholdingTax(models.Model):
     _description = 'Withholding Tax'
 
     active = fields.Boolean('Active', default=True)
+    company_id = fields.Many2one(
+        comodel_name='res.company',
+        string=_('Company'),
+        default=lambda self: self.env['res.company'].browse(
+            self.env['res.company']._company_default_get('l10n_it_withholding_tax')
+        )
+    )
     name = fields.Char('Name', size=256, required=True)
+    code = fields.Char('Code', size=256, required=True)
     certification = fields.Boolean('Certification')
     comment = fields.Text('Text')
     account_receivable_id = fields.Many2one(
@@ -29,6 +37,29 @@ class WithholdingTax(models.Model):
     base = fields.Float(string='Base', compute='_compute_withholding')
     rate_ids = fields.One2many('withholding.tax.rate', 'withholding_tax_id',
                                'Rates', required=True)
+
+    @api.one
+    @api.constrains('rate_ids')
+    def _check_rate_ids(self):
+        if not self.rate_ids:
+            raise ValidationError(
+                _('Error! Rates are required'))
+
+    @api.multi
+    def name_get(self):
+        return [(w.id, w.code + ' - ' + w.name) for w in self]
+
+    @api.model
+    def name_search(self, name, args=None, operator='ilike', limit=100):
+        results = super(WithholdingTax, self).name_search(
+            name, args=args, operator=operator, limit=limit)
+
+        if name and not results:
+            domain = args + [('code', operator, name)]
+            res = self.search(domain, limit=limit)
+            results = res.name_get()
+
+        return results
 
     @api.one
     @api.depends('rate_ids.date_start', 'rate_ids.date_stop',
