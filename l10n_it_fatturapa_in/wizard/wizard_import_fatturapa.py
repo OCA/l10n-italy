@@ -121,6 +121,10 @@ class WizardImportFatturapa(models.TransientModel):
             partners = partner_model.search([
                 ('vat', '=', vat),
             ])
+            if len(partners) > 1:
+                partners = partners.mapped('commercial_partner_id')
+            if len(partners) > 1 and cf:
+                partners = partners.filtered(lambda p: p.fiscalcode == cf)
         if not partners and cf:
             partners = partner_model.search([
                 ('fiscalcode', '=', cf),
