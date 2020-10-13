@@ -27,14 +27,14 @@ class WizardExportFatturapa(models.TransientModel):
         return res
 
     include_ddt_data = fields.Selection([
-        ('dati_ddt', 'Include DDT Data'),
+        ('dati_ddt', 'Include TD Data'),
         ('dati_trasporto', 'Include transport data'),
         ],
-        string="DDT Data",
-        help="Include DDT data: The field must be entered when a transport "
+        string="TD Data",
+        help="Include TD data: The field must be entered when a transport "
              "document associated with a deferred invoice is present\n"
              "Include transport data: The field must be entered when a "
-             "shipping invoice to be filled with transport data is present"
+             "accompanying invoice to be filled with transport data is present"
     )
 
     def setDatiDDT(self, invoice, body):
