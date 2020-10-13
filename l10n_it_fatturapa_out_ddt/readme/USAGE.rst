@@ -8,8 +8,8 @@ Nel secondo i dati relativi alla "fattura accompagnatoria", per fornire le infor
 
 **English**
 
-In export electronic invoice wizard, you can choose 'include DDT data' or 'include transport data'.
+In export electronic invoice wizard, you can choose 'include TD data' or 'include transport data'.
 
-In the first case, the system will add to XML file data related to 'deferred invoice', to specify the documents (DDT) that delivered goods.
+In the first case, the system will add to XML file data related to 'deferred invoice', to specify the documents (TD) that delivered goods.
 
-In the second one, data related to 'shipping invoice', to specify information about transport.
+In the second one, data related to 'accompanying invoice', to specify information about transport.
