@@ -625,7 +625,7 @@ class ComunicazioneLiquidazioneVp(models.Model):
                 quadro.debito_periodo_precedente =\
                     liq.previous_debit_vat_amount
                 quadro.credito_periodo_precedente =\
-                        liq.previous_credit_vat_amount
+                    liq.previous_credit_vat_amount
                 # Versamenti auto UE (NON GESTITO)
                 # Crediti d’imposta (NON GESTITO)
                 # Da altri crediti e debiti calcolo:
