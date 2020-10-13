@@ -43,6 +43,8 @@ class RibaUnsolved(models.TransientModel):
                         (0, 0, {
                             'name': _('Overdue Effects %s') %
                             riba_move_line.move_line_id.invoice_id.move_name,
+                            'invoice_number': riba_move_line.move_line_id.\
+                            invoice_id.move_name,
                             'account_id': distinta_line.partner_id.\
                             property_account_receivable_id.id,
                             'debit': riba_move_line.amount,
@@ -76,21 +78,22 @@ class RibaUnsolved(models.TransientModel):
             'ref': _('Unsolved Ri.Ba. %s - line %s') % (
                 distinta_lines[0].distinta_id.name, unsolved_desc),
             'journal_id': wizard.unsolved_journal_id.id,
-            'line_id': lines,
+            'line_ids': lines,
         }
         move_id = move_model.create(move_vals)
 
         for unsolved_move_line in unsolved_move_line_ids:
-            invoice = invoice_model.browse(unsolved_move_line.invoice_id)
+            invoice = unsolved_move_line.invoice_id
             distinta_line = unsolved_move_line_ids[unsolved_move_line]
-            for move_line in move_id.line_id:
+            for move_line in move_id.line_ids:
                 if move_line.account_id.id == distinta_line.partner_id. \
-                        property_account_receivable_id.id and \
-                        move_line.invoice_id.number == distinta_line.\
-                        move_line_id.invoice_id.move_name:
-                    invoice.write({
-                        'unsolved_move_line_ids': [(4, move_line.id)]})
-                    break
+                        property_account_receivable_id.id:
+                    for riba_move_line_id in distinta_line.move_line_ids:
+                        if riba_move_line_id.move_line_id.invoice_id.move_name == \
+                                move_line.invoice_number:
+                            invoice.write({
+                                'unsolved_move_line_ids': [(4, move_line.id)]})
+                            break
             distinta_line.write({
                 'unsolved_move_id': move_id.id,
                 'state': 'unsolved',
