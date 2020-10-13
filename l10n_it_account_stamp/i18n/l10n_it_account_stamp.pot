@@ -71,9 +71,15 @@ msgstr ""
 #. module: l10n_it_account_stamp
 #: code:addons/l10n_it_account_stamp/models/invoice.py:18
 #: code:addons/l10n_it_account_stamp/models/invoice.py:46
-#: code:addons/l10n_it_account_stamp/models/invoice.py:129
+#: code:addons/l10n_it_account_stamp/models/invoice.py:125
 #, python-format
 msgid "Missing tax stamp product in company settings!"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product_omit_move_from_missing_payback
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template_omit_move_from_missing_payback
+msgid "Omit Move From Missing Payback"
 msgstr ""
 
 #. module: l10n_it_account_stamp
