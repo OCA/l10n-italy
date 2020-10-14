@@ -1,11 +1,12 @@
 # Copyright 2017 Alessandro Camilli
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
+# Copyright 2018 Lorenzo Battistini (https://github.com/eLBati)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 {
     'name': 'Italian Localization - '
             'Tipi di documento fiscale per dichiarativi',
-    'version': '11.0.1.1.4',
+    'version': '11.0.2.0.0',
     'category': 'Localisation/Italy',
     'author': "Link It srl, Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/l10n-italy/tree/11.0/'
