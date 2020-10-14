@@ -61,7 +61,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             len(invoice.invoice_line[0].invoice_line_tax_id), 1)
         self.assertEqual(
             invoice.invoice_line[0].invoice_line_tax_id[0].name,
-            '22% ftPA acq')
+            '22% e-bill')
         self.assertEqual(
             invoice.fatturapa_summary_ids[0].amount_untaxed, 34.00)
         self.assertEqual(
@@ -126,10 +126,10 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
         self.assertEqual(
             invoice.invoice_line[0].invoice_line_tax_id[0].name,
-            '22% ftPA acq')
+            '22% e-bill')
         self.assertEqual(
             invoice.invoice_line[1].invoice_line_tax_id[0].name,
-            '22% ftPA acq')
+            '22% e-bill')
         self.assertEqual(
             invoice.invoice_line[0].invoice_line_tax_id[0].amount, 0.22)
         self.assertEqual(
@@ -146,8 +146,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
                     e_line.cod_article_ids[0].code_val, '12345')
         self.assertEqual(
             invoice.inconsistencies,
-            u'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
-            u'Alpha SRL\". Your System contains \"SOCIETA\' ALPHA SRL\"\n\n')
+            u'Company Name field contains "Societa\' '
+            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\n\n')
 
     def test_05_xml_import(self):
         res = self.run_wizard('test5', 'IT05979361218_003.xml')
@@ -216,7 +216,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(
             invoice.inconsistencies,
             'Computed amount untaxed 1030.42 is different from'
-            ' DatiRiepilogo 1173.6')
+            ' summary data 1173.6')
 
     def test_10_xml_import(self):
         # Fix Date format
@@ -273,12 +273,12 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice2 = self.invoice_model.browse(invoice2_id)
         self.assertEqual(
             invoice1.inconsistencies,
-            u'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
-            u'Alpha SRL\". Your System contains \"SOCIETA\' ALPHA SRL\"\n\n')
+            u'Company Name field contains "Societa\' '
+            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\n\n')
         self.assertEqual(
             invoice2.inconsistencies,
-            u'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
-            u'Alpha SRL\". Your System contains \"SOCIETA\' ALPHA SRL\"\n\n')
+            u'Company Name field contains "Societa\' '
+            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\n\n')
 
     def test_14_xml_import(self):
         # check: no tax code found , write inconsisteance and anyway
@@ -292,11 +292,12 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.amount_tax, 0.0)
         self.assertEqual(
             invoice.inconsistencies,
-            u'DatiAnagrafici.Anagrafica.Denominazione contains "Societa\' '
-            u'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\n\n'
-            u'XML contains tax with percentage "15.55" but it does not exist'
-            u' in your system\nXML contains tax with percentage "15.55" but'
-            u' it does not exist in your system')
+            u'Company Name field contains "Societa\' '
+            'Alpha SRL". Your System contains "SOCIETA\' ALPHA SRL"\n\n'
+            'XML contains tax with percentage "15.55"'
+            ' but it does not exist in your system\n'
+            'XML contains tax with percentage "15.55"'
+            ' but it does not exist in your system')
 
     def test_15_xml_import(self):
         self.wt = self.create_wt()
