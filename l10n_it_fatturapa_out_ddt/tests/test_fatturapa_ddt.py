@@ -1,4 +1,3 @@
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 import codecs
 from odoo.addons.l10n_it_fatturapa_out.tests.fatturapa_common import (
     FatturaPACommon)
@@ -69,13 +68,16 @@ class TestInvoiceDDT(FatturaPACommon):
         self.so2.ddt_ids[0].ddt_number = 'DDT/0101'
         self.so1.ddt_ids[0].set_done()
         self.so2.ddt_ids[0].set_done()
+        # Set sequence to have the expected order in XML
+        self.so1.ddt_ids.line_ids[0].sequence = 1
+        self.so2.ddt_ids.line_ids[0].sequence = 2
         invoice_wizard = self.env['ddt.create.invoice'].with_context(
             {'active_ids': (self.so1.ddt_ids | self.so2.ddt_ids).ids}
         ).create({})
         action = invoice_wizard.create_invoice()
         invoice_ids = action['domain'][0][2]
         invoice = self.env['account.invoice'].browse(invoice_ids[0])
-        self.set_sequences(6, 13, '2018-01-07')
+        self.set_sequences(13, '2018-01-07')
         invoice.date_invoice = '2018-01-07'
         invoice.action_invoice_open()
         wizard = self.wizard_model.with_context(
@@ -85,6 +87,7 @@ class TestInvoiceDDT(FatturaPACommon):
         self.assertEqual(wizard.include_ddt_data, 'dati_ddt')
         res = wizard.exportFatturaPA()
         attachment = self.attach_model.browse(res['res_id'])
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00006.xml')
         xml_content = codecs.decode(attachment.datas, 'base64')
         self.assertEqual(
             attachment.datas_fname, 'IT06363391001_00006.xml')
@@ -124,7 +127,7 @@ class TestInvoiceDDT(FatturaPACommon):
         action = invoice_wizard.create_invoice()
         invoice_ids = action['domain'][0][2]
         invoice = self.env['account.invoice'].browse(invoice_ids[0])
-        self.set_sequences(7, 14, '2018-01-07')
+        self.set_sequences(14, '2018-01-07')
         invoice.date_invoice = '2018-01-07'
         invoice.action_invoice_open()
         wizard = self.wizard_model.with_context(
@@ -133,6 +136,7 @@ class TestInvoiceDDT(FatturaPACommon):
         wizard.include_ddt_data = 'dati_trasporto'
         res = wizard.exportFatturaPA()
         attachment = self.attach_model.browse(res['res_id'])
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00007.xml')
         xml_content = codecs.decode(attachment.datas, 'base64')
         self.assertEqual(
             attachment.datas_fname, 'IT06363391001_00007.xml')
