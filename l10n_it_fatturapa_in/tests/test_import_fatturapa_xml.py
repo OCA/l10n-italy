@@ -501,7 +501,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertTrue(orig_invoice.e_invoice_validation_error)
         self.assertEqual(
             invoice_values['supplier_invoice_number'],
-            orig_invoice.reference,
+            orig_invoice.supplier_invoice_number,
         )
 
     def test_02_xml_link(self):
