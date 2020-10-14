@@ -51,6 +51,57 @@ class AccountInvoice(models.Model):
                     invoice.display_name)
         return super(AccountInvoice, self).invoice_validate()
 
+    def e_inv_check_amount_untaxed(self):
+        error_message = ''
+        if (self.e_invoice_amount_untaxed and
+                float_compare(self.amount_untaxed,
+                              self.e_invoice_amount_untaxed,
+                              precision_rounding=self.currency_id
+                              .rounding) != 0):
+            error_message = (
+                _("Untaxed amount ({bill_amount_untaxed}) "
+                  "does not match with "
+                  "e-bill untaxed amount ({e_bill_amount_untaxed})")
+                .format(
+                    bill_amount_untaxed=self.amount_untaxed or 0,
+                    e_bill_amount_untaxed=self.e_invoice_amount_untaxed
+                ))
+        return error_message
+
+    def e_inv_check_amount_tax(self):
+        error_message = ''
+        if (self.e_invoice_amount_tax and
+                float_compare(self.amount_tax,
+                              self.e_invoice_amount_tax,
+                              precision_rounding=self.currency_id
+                              .rounding) != 0):
+            error_message = (
+                _("Taxed amount ({bill_amount_tax}) "
+                  "does not match with "
+                  "e-bill taxed amount ({e_bill_amount_tax})")
+                .format(
+                    bill_amount_tax=self.amount_tax or 0,
+                    e_bill_amount_tax=self.e_invoice_amount_tax
+                ))
+        return error_message
+
+    def e_inv_check_amount_total(self):
+        error_message = ''
+        if (self.e_invoice_amount_total and
+                float_compare(self.amount_total,
+                              self.e_invoice_amount_total,
+                              precision_rounding=self.currency_id
+                              .rounding) != 0):
+            error_message = (
+                _("Total amount ({bill_amount_total}) "
+                  "does not match with "
+                  "e-bill total amount ({e_bill_amount_total})")
+                .format(
+                    bill_amount_total=self.amount_total or 0,
+                    e_bill_amount_total=self.e_invoice_amount_total
+                ))
+        return error_message
+
     @api.depends('type', 'state', 'fatturapa_attachment_in_id',
                  'amount_untaxed', 'amount_tax', 'amount_total',
                  'reference', 'date_invoice')
@@ -62,47 +113,18 @@ class AccountInvoice(models.Model):
                 inv.fatturapa_attachment_in_id)
         for bill in bills_to_check:
             error_messages = list()
-            if (bill.e_invoice_amount_untaxed and
-                    float_compare(bill.amount_untaxed,
-                                  bill.e_invoice_amount_untaxed,
-                                  precision_rounding=bill.currency_id
-                                  .rounding) != 0):
-                error_messages.append(
-                    _("Untaxed amount ({bill_amount_untaxed}) "
-                      "does not match with "
-                      "e-bill untaxed amount ({e_bill_amount_untaxed})")
-                    .format(
-                        bill_amount_untaxed=bill.amount_untaxed or 0,
-                        e_bill_amount_untaxed=bill.e_invoice_amount_untaxed
-                    ))
 
-            if (bill.e_invoice_amount_tax and
-                    float_compare(bill.amount_tax,
-                                  bill.e_invoice_amount_tax,
-                                  precision_rounding=bill.currency_id
-                                  .rounding) != 0):
-                error_messages.append(
-                    _("Taxed amount ({bill_amount_tax}) "
-                      "does not match with "
-                      "e-bill taxed amount ({e_bill_amount_tax})")
-                    .format(
-                        bill_amount_tax=bill.amount_tax or 0,
-                        e_bill_amount_tax=bill.e_invoice_amount_tax
-                    ))
+            error_message = bill.e_inv_check_amount_untaxed()
+            if error_message:
+                error_messages.append(error_message)
 
-            if (bill.e_invoice_amount_total and
-                    float_compare(bill.amount_total,
-                                  bill.e_invoice_amount_total,
-                                  precision_rounding=bill.currency_id
-                                  .rounding) != 0):
-                error_messages.append(
-                    _("Total amount ({bill_amount_total}) "
-                      "does not match with "
-                      "e-bill total amount ({e_bill_amount_total})")
-                    .format(
-                        bill_amount_total=bill.amount_total or 0,
-                        e_bill_amount_total=bill.e_invoice_amount_total
-                    ))
+            error_message = bill.e_inv_check_amount_tax()
+            if error_message:
+                error_messages.append(error_message)
+
+            error_message = bill.e_inv_check_amount_total()
+            if error_message:
+                error_messages.append(error_message)
 
             if (bill.e_invoice_reference and
                     bill.reference != bill.e_invoice_reference):
@@ -140,6 +162,10 @@ class AccountInvoice(models.Model):
             invoice = self.browse(tup[0])
             if invoice.type in ('in_invoice', 'in_refund'):
                 name = "%s, %s" % (tup[1], invoice.partner_id.name)
+                if invoice.amount_total_signed:
+                    name += ', %s %s' % (
+                        invoice.amount_total_signed, invoice.currency_id.symbol
+                    )
                 if invoice.origin:
                     name += ', %s' % invoice.origin
                 res.append((invoice.id, name))
@@ -189,15 +215,15 @@ class AccountInvoice(models.Model):
         })
 
 
-class fatturapa_article_code(models.Model):
+class FatturapaArticleCode(models.Model):
     # _position = ['2.2.1.3']
     _name = "fatturapa.article.code"
-    _description = 'FatturaPA Article Code'
+    _description = 'E-bill Article Code'
 
-    name = fields.Char('Cod Type')
+    name = fields.Char('Code Type')
     code_val = fields.Char('Code Value')
     e_invoice_line_id = fields.Many2one(
-        'einvoice.line', 'Related E-Invoice line', readonly=True
+        'einvoice.line', 'Related E-bill Line', readonly=True
     )
 
 
@@ -209,60 +235,62 @@ class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
     fatturapa_attachment_in_id = fields.Many2one(
-        'fatturapa.attachment.in', 'E-Invoice Import File',
+        'fatturapa.attachment.in', 'E-bill Import File',
         readonly=True, related='invoice_id.fatturapa_attachment_in_id')
 
 
 class DiscountRisePrice(models.Model):
     _inherit = "discount.rise.price"
     e_invoice_line_id = fields.Many2one(
-        'einvoice.line', 'Related E-Invoice line', readonly=True
+        'einvoice.line', 'Related E-bill Line', readonly=True
     )
 
 
 class EInvoiceLine(models.Model):
     _name = 'einvoice.line'
+    _description = 'E-invoice line'
     invoice_id = fields.Many2one(
-        "account.invoice", "Invoice", readonly=True)
-    line_number = fields.Integer('Numero Linea', readonly=True)
-    service_type = fields.Char('Tipo Cessione Prestazione', readonly=True)
+        "account.invoice", "Bill", readonly=True, ondelete='cascade')
+    line_number = fields.Integer('Line Number', readonly=True)
+    service_type = fields.Char('Sale Provision Type', readonly=True)
     cod_article_ids = fields.One2many(
         'fatturapa.article.code', 'e_invoice_line_id',
-        'Cod. Articles', readonly=True
+        'Articles Code', readonly=True
     )
-    name = fields.Char("Descrizione", readonly=True)
+    name = fields.Char("Description", readonly=True)
     qty = fields.Float(
-        "Quantita'", readonly=True,
+        "Quantity", readonly=True,
         digits=dp.get_precision('Product Unit of Measure')
     )
-    uom = fields.Char("Unita' di misura", readonly=True)
-    period_start_date = fields.Date("Data Inizio Periodo", readonly=True)
-    period_end_date = fields.Date("Data Fine Periodo", readonly=True)
+    uom = fields.Char("Unit of measure", readonly=True)
+    period_start_date = fields.Date("Period Start Date", readonly=True)
+    period_end_date = fields.Date("Period End Date", readonly=True)
     unit_price = fields.Float(
-        "Prezzo unitario", readonly=True,
+        "Unit Price", readonly=True,
         digits=dp.get_precision('Product Price')
     )
     discount_rise_price_ids = fields.One2many(
         'discount.rise.price', 'e_invoice_line_id',
-        'Discount and Rise Price Details', readonly=True
+        'Discount and Supplement Details', readonly=True
     )
-    total_price = fields.Float("Prezzo Totale", readonly=True)
-    tax_amount = fields.Float("Aliquota IVA", readonly=True)
-    wt_amount = fields.Char("Ritenuta", readonly=True)
-    tax_kind = fields.Char("Natura", readonly=True)
-    admin_ref = fields.Char("Riferimento mministrazione", readonly=True)
+    total_price = fields.Float("Total Price", readonly=True)
+    tax_amount = fields.Float("VAT Rate", readonly=True)
+    wt_amount = fields.Char("Tax Withholding", readonly=True)
+    tax_kind = fields.Char("Nature", readonly=True)
+    admin_ref = fields.Char("Administration Reference", readonly=True)
     other_data_ids = fields.One2many(
         "einvoice.line.other.data", "e_invoice_line_id",
-        string="Altri dati gestionali", readonly=True)
+        string="Other Administrative Data", readonly=True)
 
 
 class EInvoiceLineOtherData(models.Model):
     _name = 'einvoice.line.other.data'
+    _description = 'E-invoice line other data'
 
     e_invoice_line_id = fields.Many2one(
-        'einvoice.line', 'Related E-Invoice line', readonly=True
+        'einvoice.line', 'Related E-bill Line', readonly=True
     )
-    name = fields.Char("Tipo Dato", readonly=True)
-    text_ref = fields.Char("Riferimento Testo", readonly=True)
-    num_ref = fields.Float("Riferimento Numero", readonly=True)
-    date_ref = fields.Char("Riferimento Data", readonly=True)
+    name = fields.Char("Data Type", readonly=True)
+    text_ref = fields.Char("Text Reference", readonly=True)
+    num_ref = fields.Float("Number Reference", readonly=True)
+    date_ref = fields.Char("Date Reference", readonly=True)
