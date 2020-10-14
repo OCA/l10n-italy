@@ -46,6 +46,21 @@ class FatturapaCommon(SingleTransactionCase):
         self.imac = self.env.ref(
             'product.product_product_8_product_template')
         self.service = self.env.ref('product.product_product_1')
+        arrotondamenti_attivi_account_id = self.env['account.account'].\
+            search([('user_type', '=', self.env.ref(
+                'account.data_account_type_other_income').id)], limit=1).id
+        arrotondamenti_passivi_account_id = self.env['account.account'].\
+            search([('user_type', '=', self.env.ref(
+                'account.data_account_type_direct_costs').id)], limit=1).id
+        arrotondamenti_tax_id = self.env['account.tax'].search(
+            [('type_tax_use', '=', 'purchase'),
+             ('amount', '=', 0.0)], order='sequence', limit=1)
+        self.env.user.company_id.arrotondamenti_attivi_account_id = (
+            arrotondamenti_attivi_account_id)
+        self.env.user.company_id.arrotondamenti_passivi_account_id = (
+            arrotondamenti_passivi_account_id)
+        self.env.user.company_id.arrotondamenti_tax_id = (
+            arrotondamenti_tax_id)
 
     def run_wizard(self, name, file_name, datas_fname=None,
                    mode='import', wiz_values=None, module_name=None):
