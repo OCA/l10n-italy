@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ns1:FatturaElettronica xmlns:ns1="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2" versione="FPA12">
+<ns1:FatturaElettronica xmlns:ns1="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2" versione="FPR12">
     <FatturaElettronicaHeader>
         <DatiTrasmissione>
             <IdTrasmittente>
                 <IdPaese>IT</IdPaese>
                 <IdCodice>06363391001</IdCodice>
             </IdTrasmittente>
-            <ProgressivoInvio>00002</ProgressivoInvio>
-            <FormatoTrasmissione>FPA12</FormatoTrasmissione>
-            <CodiceDestinatario>UFPQ1O</CodiceDestinatario>
+            <ProgressivoInvio>00011</ProgressivoInvio>
+            <FormatoTrasmissione>FPR12</FormatoTrasmissione>
+            <CodiceDestinatario>XXXXXXX</CodiceDestinatario>
             <ContattiTrasmittente>
                 <Telefono>06543534343</Telefono>
                 <Email>info@yourcompany.example.com</Email>
@@ -40,20 +40,19 @@
         <CessionarioCommittente>
             <DatiAnagrafici>
                 <IdFiscaleIVA>
-                    <IdPaese>IT</IdPaese>
-                    <IdCodice>06363391001</IdCodice>
+                    <IdPaese>SI</IdPaese>
+                    <IdCodice>12345679</IdCodice>
                 </IdFiscaleIVA>
-                <CodiceFiscale>06363391001</CodiceFiscale>
                 <Anagrafica>
-                    <Denominazione>Public Administration</Denominazione>
+                    <Denominazione>REMODELA&#199;&#195;O DECORA&#199;&#195;O ?ALEC LDA?</Denominazione>
                 </Anagrafica>
             </DatiAnagrafici>
             <Sede>
-                <Indirizzo>Via Roma, 1</Indirizzo>
-                <CAP>10100</CAP>
-                <Comune>Torino</Comune>
-                <Provincia>AK</Provincia>
-                <Nazione>IT</Nazione>
+                <Indirizzo>M?aja ?tra&#199;&#195; 14</Indirizzo>
+                <CAP>00000</CAP>
+                <Comune>?of?a</Comune>
+                <Provincia>EE</Provincia>
+                <Nazione>SI</Nazione>
             </Sede>
         </CessionarioCommittente>
     </FatturaElettronicaHeader>
@@ -62,23 +61,20 @@
             <DatiGeneraliDocumento>
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
-                <Data>2016-06-15</Data>
-                <Numero>INV/2016/0014</Numero>
+                <Data>2018-01-07</Data>
+                <Numero>INV/2018/0011</Numero>
                 <ImportoTotaleDocumento>17.08</ImportoTotaleDocumento>
-                <Causale>prima riga</Causale>
-                <Causale>seconda riga</Causale>
                 <Art73>SI</Art73>
             </DatiGeneraliDocumento>
-            <DatiOrdineAcquisto>
-                <IdDocumento>PO123</IdDocumento>
-                <CodiceCUP>456</CodiceCUP>
-                <CodiceCIG>123</CodiceCIG>
-            </DatiOrdineAcquisto>
         </DatiGenerali>
         <DatiBeniServizi>
             <DettaglioLinee>
                 <NumeroLinea>1</NumeroLinea>
-                <Descrizione>Mouse, Optical</Descrizione>
+                <CodiceArticolo>
+                    <CodiceTipo>ODOO</CodiceTipo>
+                    <CodiceValore>GH82&#216;23&#8364;&#358;D11</CodiceValore>
+                </CodiceArticolo>
+                <Descrizione>Mouse Optical &#216;23 &#223;11</Descrizione>
                 <Quantita>1.000</Quantita>
                 <UnitaMisura>Unit(s)</UnitaMisura>
                 <PrezzoUnitario>10.00000</PrezzoUnitario>
@@ -87,7 +83,11 @@
             </DettaglioLinee>
             <DettaglioLinee>
                 <NumeroLinea>2</NumeroLinea>
-                <Descrizione>Zed+ Antivirus</Descrizione>
+                <CodiceArticolo>
+                    <CodiceTipo>ODOO</CodiceTipo>
+                    <CodiceValore>GZD11</CodiceValore>
+                </CodiceArticolo>
+                <Descrizione>Zed+^ Antiv&#176; (&#163;)</Descrizione>
                 <Quantita>1.000</Quantita>
                 <UnitaMisura>Unit(s)</UnitaMisura>
                 <PrezzoUnitario>4.00000</PrezzoUnitario>
@@ -104,7 +104,7 @@
             <CondizioniPagamento>TP02</CondizioniPagamento>
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
-                <DataScadenzaPagamento>2016-07-31</DataScadenzaPagamento>
+                <DataScadenzaPagamento>2018-02-28</DataScadenzaPagamento>
                 <ImportoPagamento>17.08</ImportoPagamento>
             </DettaglioPagamento>
         </DatiPagamento>

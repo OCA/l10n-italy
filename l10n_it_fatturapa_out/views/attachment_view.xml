@@ -32,7 +32,11 @@
                     <div>
                         <group>
                             <group>
-                                <field name="datas" filename="datas_fname" />
+                                <label for="datas"/>
+                                <div>
+                                    <field name="datas" filename="datas_fname"/>
+                                    <field name="ftpa_preview_link" widget="url" text="Show preview"/>
+                                </div>
                                 <field name="datas_fname" />
                                 <field name="name" readonly="1"/>
                             </group>
@@ -41,10 +45,21 @@
                                 <field name="invoice_partner_id"/>
                             </group>
                         </group>
-                        <field name="ftpa_preview_link" widget="url" text="Show preview" class="btn btn-default"/>
                         <separator string="Invoices"/>
                         <field name="out_invoice_ids"
-                               context="{'form_view_ref': 'account.invoice_form', 'tree_view_ref': 'account.invoice_tree'}"/>
+                               context="{'form_view_ref': 'account.invoice_form', 'tree_view_ref': 'account.invoice_tree'}">
+                            <tree>
+                                <field name="partner_id"/>
+                                <field name="date_invoice"/>
+                                <field name="number"/>
+                                <field name="origin"/>
+                                <field name="amount_total"/>
+                                <field name="residual"/>
+                                <field name="state"/>
+                                <button name="open_form_current" type="object" string="Open full-screen" icon="fa-external-link"
+                                        context="{'form_view_ref': 'account.invoice_form'}"/>
+                            </tree>
+                        </field>
                         <group string="History">
                             <label for="create_uid" string="Created by"/>
                             <div name="creation_div">
