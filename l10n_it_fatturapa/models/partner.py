@@ -1,8 +1,10 @@
 # Copyright 2014 Davide Corio <davide.corio@abstract.it>
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# Copyright 2019 Sergio Zanchetta <https://github.com/primes2h>
 
 from odoo import fields, models, api, _
 from odoo.exceptions import ValidationError
+
+STANDARD_ADDRESSEE_CODE = '0000000'
 
 
 class ResPartner(models.Model):
@@ -31,18 +33,43 @@ class ResPartner(models.Model):
         help="The code, 7 characters long, assigned by ES to subjects with an "
              "accredited channel; if the addressee didn't accredit a channel "
              "to ES and invoices are received by PEC, the field must be "
-             "filled with zeros ('0000000').",
-        default='0000000')
+             "the standard value ('%s')." % STANDARD_ADDRESSEE_CODE,
+        default=STANDARD_ADDRESSEE_CODE)
     # 1.1.6
     pec_destinatario = fields.Char(
         "Addressee PEC",
         help="PEC to which the electronic invoice will be sent. "
              "Must be filled "
              "ONLY when the information element "
-             "<CodiceDestinatario> is '0000000'"
+             "<CodiceDestinatario> is '%s'" % STANDARD_ADDRESSEE_CODE
     )
     electronic_invoice_subjected = fields.Boolean(
-        "Subjected to Electronic Invoice")
+        "Enable electronic invoicing")
+    electronic_invoice_obliged_subject = fields.Boolean(
+        "Obliged Subject")
+    electronic_invoice_data_complete = fields.Boolean(
+        compute="_compute_electronic_invoice_data_complete")
+
+    electronic_invoice_no_contact_update = fields.Boolean(
+        "Do not update the contact from Electronic Invoice Details")
+
+    electronic_invoice_use_this_address = fields.Boolean(
+        "Use this e-invoicing data when invoicing to this address",
+        help="Set this when the main company has got several Addressee Codes or PEC"
+    )
+
+    @api.multi
+    def _compute_electronic_invoice_data_complete(self):
+        check_fatturapa_fields = self._check_ftpa_partner_data._constrains
+        for partner in self:
+            partner.electronic_invoice_data_complete = True
+            partner_values = partner.read(check_fatturapa_fields)[0]
+            partner_values['electronic_invoice_subjected'] = True
+            partner_dummy = self.new(partner_values)
+            try:
+                partner_dummy._check_ftpa_partner_data()
+            except ValidationError:
+                partner.electronic_invoice_data_complete = False
 
     @api.multi
     @api.constrains(
@@ -75,6 +102,13 @@ class ResPartner(models.Model):
                     ) % partner.name)
                 if (
                     not partner.is_pa
+                    and not partner.codice_destinatario
+                ):
+                    raise ValidationError(_(
+                        "Partner %s must have Addresse Code. Use %s if unknown"
+                    ) % (partner.name, STANDARD_ADDRESSEE_CODE))
+                if (
+                    not partner.is_pa
                     and partner.codice_destinatario
                     and len(partner.codice_destinatario) != 7
                 ):
@@ -82,6 +116,14 @@ class ResPartner(models.Model):
                         "Partner %s Addressee Code "
                         "must be 7 characters long."
                     ) % partner.name)
+                if partner.pec_destinatario:
+                    if partner.codice_destinatario != STANDARD_ADDRESSEE_CODE:
+                        raise ValidationError(_(
+                            "Partner %s has Addressee PEC %s, "
+                            "the Addresse Code must be %s."
+                        ) % (partner.name,
+                             partner.pec_destinatario,
+                             STANDARD_ADDRESSEE_CODE))
                 if (
                     not partner.vat and not partner.fiscalcode and
                     partner.country_id.code == 'IT'
@@ -111,6 +153,22 @@ class ResPartner(models.Model):
     @api.onchange('country_id')
     def onchange_country_id_e_inv(self):
         if self.country_id.code == 'IT':
-            self.codice_destinatario = '0000000'
+            self.codice_destinatario = STANDARD_ADDRESSEE_CODE
         else:
             self.codice_destinatario = 'XXXXXXX'
+
+    @api.onchange('electronic_invoice_subjected')
+    def onchange_electronic_invoice_subjected(self):
+        if not self.electronic_invoice_subjected:
+            self.electronic_invoice_obliged_subject = False
+        else:
+            if self.supplier:
+                self.onchange_country_id_e_inv()
+                self.electronic_invoice_obliged_subject = True
+
+    @api.onchange('electronic_invoice_obliged_subject')
+    def onchange_e_inv_obliged_subject(self):
+        if not self.electronic_invoice_obliged_subject:
+            self.onchange_country_id_e_inv()
+            self.pec_destinatario = ''
+            self.eori_code = ''

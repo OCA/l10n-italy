@@ -1,8 +1,6 @@
 # Copyright 2014 Davide Corio <davide.corio@abstract.it>
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import fields, models, api, _
-from odoo.exceptions import ValidationError
+from odoo import fields, models, api
 
 
 class ResCompany(models.Model):
@@ -12,29 +10,10 @@ class ResCompany(models.Model):
         'fatturapa.fiscal_position', 'Fiscal Position',
         help="Fiscal position used by electronic invoice",
         )
-    fatturapa_sequence_id = fields.Many2one(
-        'ir.sequence', 'E-invoice Sequence',
-        help="The univocal progressive of the file is represented by "
-             "an alphanumeric sequence of maximum length 5, "
-             "its values are included in 'A'-'Z' and '0'-'9'"
-        )
     fatturapa_art73 = fields.Boolean('Art. 73')
     fatturapa_pub_administration_ref = fields.Char(
         'Public Administration Reference Code', size=20,
         )
-    fatturapa_rea_office = fields.Many2one(
-        related="partner_id.rea_office", string='REA office')
-    fatturapa_rea_number = fields.Char(
-        related="partner_id.rea_code", string='Rea Number')
-    fatturapa_rea_capital = fields.Float(
-        related='partner_id.rea_capital',
-        string='Rea Capital')
-    fatturapa_rea_partner = fields.Selection(
-        related='partner_id.rea_member_type',
-        string='Member Type')
-    fatturapa_rea_liquidation = fields.Selection(
-        related='partner_id.rea_liquidation_state',
-        string='Liquidation State')
     fatturapa_tax_representative = fields.Many2one(
         'res.partner', 'Legal Tax Representative'
         )
@@ -49,30 +28,10 @@ class ResCompany(models.Model):
              'non-resident, with a stable organization in Italy'
         )
     fatturapa_preview_style = fields.Selection([
-        ('fatturaordinaria_v1.2.1.xsl', 'FatturaOrdinaria v1.2.1'),
-        ('FoglioStileAssoSoftware_v1.1.xsl', 'AssoSoftware v1.1')],
+        ('fatturaordinaria_v1.2.1.xsl', 'Fattura Ordinaria'),
+        ('FoglioStileAssoSoftware_v1.1.xsl', 'AssoSoftware')],
         string='Preview Format Style', required=True,
         default='fatturaordinaria_v1.2.1.xsl')
-
-    @api.multi
-    @api.constrains(
-        'fatturapa_sequence_id'
-    )
-    def _check_fatturapa_sequence_id(self):
-        for company in self:
-            if company.fatturapa_sequence_id:
-                if company.fatturapa_sequence_id.use_date_range:
-                    raise ValidationError(_(
-                        "Sequence %s can't use subsequences."
-                    ) % company.fatturapa_sequence_id.name)
-                journal = self.env['account.journal'].search([
-                    ('sequence_id', '=', company.fatturapa_sequence_id.id)
-                ], limit=1)
-                if journal:
-                    raise ValidationError(_(
-                        "Sequence %s already used by journal %s. Please select"
-                        " another one."
-                    ) % (company.fatturapa_sequence_id.name, journal.name))
 
 
 class AccountConfigSettings(models.TransientModel):
@@ -83,14 +42,6 @@ class AccountConfigSettings(models.TransientModel):
         string="Fiscal Position",
         help='Fiscal position used by electronic invoice',
         readonly=False,
-        )
-    fatturapa_sequence_id = fields.Many2one(
-        related='company_id.fatturapa_sequence_id',
-        string="Sequence",
-        help="The univocal progressive of the file is represented by "
-             "an alphanumeric sequence of maximum length 5, "
-             "its values are included in 'A'-'Z' and '0'-'9'",
-        readonly=False
         )
     fatturapa_art73 = fields.Boolean(
         related='company_id.fatturapa_art73',
@@ -164,18 +115,9 @@ class AccountConfigSettings(models.TransientModel):
     def onchange_company_id(self):
         if self.company_id:
             company = self.company_id
-            default_sequence = self.env['ir.sequence'].search([
-                ('code', '=', 'account.invoice.fatturapa')
-            ])
-            default_sequence = (
-                default_sequence[0].id if default_sequence else False)
             self.fatturapa_fiscal_position_id = (
                 company.fatturapa_fiscal_position_id and
                 company.fatturapa_fiscal_position_id.id or False
-                )
-            self.fatturapa_sequence_id = (
-                company.fatturapa_sequence_id and
-                company.fatturapa_sequence_id.id or default_sequence
                 )
             self.fatturapa_art73 = (
                 company.fatturapa_art73 or False
@@ -184,20 +126,18 @@ class AccountConfigSettings(models.TransientModel):
                 company.fatturapa_pub_administration_ref or False
                 )
             self.fatturapa_rea_office = (
-                company.fatturapa_rea_office and
-                company.fatturapa_rea_office.id or False
+                company.rea_office and
+                company.rea_office.id or False
                 )
-            self.fatturapa_rea_number = (
-                company.fatturapa_rea_number or False
-                )
+            self.fatturapa_rea_number = company.rea_code or False
             self.fatturapa_rea_capital = (
-                company.fatturapa_rea_capital or False
+                company.rea_capital or False
                 )
             self.fatturapa_rea_partner = (
-                company.fatturapa_rea_partner or False
+                company.rea_member_type or False
                 )
             self.fatturapa_rea_liquidation = (
-                company.fatturapa_rea_liquidation or False
+                company.rea_liquidation_state or False
                 )
             self.fatturapa_tax_representative = (
                 company.fatturapa_tax_representative and
@@ -216,7 +156,6 @@ class AccountConfigSettings(models.TransientModel):
             )
         else:
             self.fatturapa_fiscal_position_id = False
-            self.fatturapa_sequence_id = False
             self.fatturapa_art73 = False
             self.fatturapa_pub_administration_ref = False
             self.fatturapa_rea_office = False

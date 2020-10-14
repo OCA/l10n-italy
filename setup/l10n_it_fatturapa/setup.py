@@ -5,7 +5,7 @@ setuptools.setup(
     odoo_addon={
         'external_dependencies_override': {
             'python': {
-                'pyxb': 'PyXB==1.2.5',
+                'pyxb': 'PyXB==1.2.6',
             },
         },
     },
