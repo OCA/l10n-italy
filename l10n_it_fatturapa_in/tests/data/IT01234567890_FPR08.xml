@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<p:FatturaElettronica versione="FPR12" xmlns:ds="http://www.w3.org/2000/09/xmldsig" xmlns:p="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2 http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<p:FatturaElettronica xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" versione="FPR12" xmlns:p="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2">
   <FatturaElettronicaHeader>
     <DatiTrasmissione>
       <IdTrasmittente>
         <IdPaese>IT</IdPaese>
         <IdCodice>05979361218</IdCodice>
       </IdTrasmittente>
-      <ProgressivoInvio>FPR05</ProgressivoInvio>
+      <ProgressivoInvio>FPR08</ProgressivoInvio>
       <FormatoTrasmissione>FPR12</FormatoTrasmissione>
       <CodiceDestinatario>0000000</CodiceDestinatario>
-      <ContattiTrasmittente/>
+      <ContattiTrasmittente />
     </DatiTrasmissione>
     <CedentePrestatore>
       <DatiAnagrafici>
@@ -49,39 +49,39 @@
   <FatturaElettronicaBody>
     <DatiGenerali>
       <DatiGeneraliDocumento>
-        <TipoDocumento>TD01</TipoDocumento>
+        <TipoDocumento>TD06</TipoDocumento>
         <Divisa>EUR</Divisa>
-        <Data>  2014-12-18 </Data>
-        <Numero>123</Numero>
-        <Causale>LA FATTURA FA RIFERIMENTO AD UNA OPERAZIONE AAAA BBBBBBBBBBBBBBBBBB CCC DDDDDDDDDDDDDDD E FFFFFFFFFFFFFFFFFFFF GGGGGGGGGG HHHHHHH II LLLLLLLLLLLLLLLLL MMM NNNNN OO PPPPPPPPPPP QQQQ RRRR SSSSSSSSSSSSSS</Causale>
-        <Causale>SEGUE DESCRIZIONE CAUSALE NEL CASO IN CUI NON SIANO STATI SUFFICIENTI 200 CARATTERI AAAAAAAAAAA BBBBBBBBBBBBBBBBB</Causale>
+        <Data>2020-01-09</Data>
+        <Numero>124</Numero>
+        <DatiRitenuta>
+          <TipoRitenuta>RT01</TipoRitenuta>
+          <ImportoRitenuta>360.00</ImportoRitenuta>
+          <AliquotaRitenuta>20.00</AliquotaRitenuta>
+          <CausalePagamento>A</CausalePagamento>
+        </DatiRitenuta>
+        <DatiCassaPrevidenziale>
+          <TipoCassa>TC02</TipoCassa>
+          <AlCassa>4.00</AlCassa>
+          <ImportoContributoCassa>72.00</ImportoContributoCassa>
+          <ImponibileCassa>1800.00</ImponibileCassa>
+          <AliquotaIVA>22.00</AliquotaIVA>
+        </DatiCassaPrevidenziale>
+        <ImportoTotaleDocumento>2283.84</ImportoTotaleDocumento>
+        <Causale>PARCELLA</Causale>
       </DatiGeneraliDocumento>
     </DatiGenerali>
     <DatiBeniServizi>
       <DettaglioLinee>
         <NumeroLinea>1</NumeroLinea>
-        <Descrizione>LA DESCRIZIONE</Descrizione>
-        <Quantita>1.00</Quantita>
-        <PrezzoUnitario>10.00</PrezzoUnitario>
-        <PrezzoTotale>10.00</PrezzoTotale>
-        <AliquotaIVA>22.00</AliquotaIVA>
-      </DettaglioLinee>
-      <DettaglioLinee>
-        <NumeroLinea>2</NumeroLinea>
-        <Descrizione>FORNITURE VARIE PER UFFICIO</Descrizione>
-        <Quantita>1.00</Quantita>
-        <PrezzoUnitario>20.00</PrezzoUnitario>
-        <ScontoMaggiorazione>
-          <Tipo>SC</Tipo>
-          <Percentuale>100.00</Percentuale>
-        </ScontoMaggiorazione>
-        <PrezzoTotale>0.00</PrezzoTotale>
+        <Descrizione>ASSISTENZA TRIBUTARIA</Descrizione>
+        <PrezzoUnitario>1800.00</PrezzoUnitario>
+        <PrezzoTotale>1800.00</PrezzoTotale>
         <AliquotaIVA>22.00</AliquotaIVA>
       </DettaglioLinee>
       <DatiRiepilogo>
         <AliquotaIVA>22.00</AliquotaIVA>
-        <ImponibileImporto>10.00</ImponibileImporto>
-        <Imposta>2.20</Imposta>
+        <ImponibileImporto>1872.00</ImponibileImporto>
+        <Imposta>411.84</Imposta>
         <EsigibilitaIVA>I</EsigibilitaIVA>
       </DatiRiepilogo>
     </DatiBeniServizi>

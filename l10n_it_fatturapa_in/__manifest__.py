@@ -5,8 +5,8 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Italian Localization - Fattura elettronica - Ricezione',
-    'version': '11.0.1.1.6',
+    'name': 'ITA - Fattura elettronica - Ricezione',
+    'version': '11.0.2.0.0',
     "development_status": "Beta",
     'category': 'Localization/Italy',
     'summary': 'Ricezione fatture elettroniche',
@@ -23,9 +23,10 @@
         'views/account_view.xml',
         'views/partner_view.xml',
         'wizard/wizard_import_fatturapa_view.xml',
-        'security/ir.model.access.csv',
         'wizard/link_to_existing_invoice.xml',
         'views/company_view.xml',
+        'security/ir.model.access.csv',
+        'security/rules.xml',
     ],
     "installable": True
 }
