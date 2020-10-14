@@ -19,10 +19,10 @@ msgstr ""
 
 #. module: l10n_it_vat_registries
 #: model:ir.actions.act_window,help:l10n_it_vat_registries.action_account_tax_registry_form
-msgid "A VAT registry is used to group several journals in one registry."
+msgid ""
+"A VAT registry is used to group several journals in one\n"
+"                registry."
 msgstr ""
-"Un registro IVA viene usato per raggruppare insieme diversi registri "
-"contabili."
 
 #. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
@@ -197,6 +197,11 @@ msgid "Layout"
 msgstr "Struttura"
 
 #. module: l10n_it_vat_registries
+#: model:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
+msgid "Load Journals"
+msgstr "Carica registri contabili"
+
+#. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva_message
 msgid "Message"
 msgstr "Messaggio"
@@ -225,14 +230,14 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:64
-#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:77
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:68
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:81
 #, python-format
 msgid "No documents found in the current selection"
 msgstr "Nessun documento trovato nella selezione corrente"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:73
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:77
 #, python-format
 msgid ""
 "No journals found in the current selection.\n"
@@ -251,6 +256,12 @@ msgstr "P.IVA"
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
 msgid "Print"
 msgstr "Stampa"
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry_daily_totals
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva_daily_totals
+msgid "Print daily totals"
+msgstr ""
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva_only_totals
@@ -279,6 +290,11 @@ msgstr "Registro IVA"
 #: model:ir.model.fields,help:l10n_it_vat_registries.field_wizard_registro_iva_journal_ids
 msgid "Select journals you want retrieve documents from"
 msgstr "Selezionare i registri dai quali prelevare i documenti"
+
+#. module: l10n_it_vat_registries
+#: model:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
+msgid "Settings"
+msgstr ""
 
 #. module: l10n_it_vat_registries
 #: selection:account.tax.registry,layout_type:0
@@ -323,6 +339,11 @@ msgstr "Alla data"
 #, fuzzy
 msgid "Totale generale euro"
 msgstr "Totale generale euro"
+
+#. module: l10n_it_vat_registries
+#: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
+msgid "Totale giornaliero euro"
+msgstr ""
 
 #. module: l10n_it_vat_registries
 #: model:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
@@ -377,8 +398,10 @@ msgstr ""
 msgid "or"
 msgstr "o"
 
-#~ msgid "Load Journals"
-#~ msgstr "Carica registri contabili"
+#~ msgid "A VAT registry is used to group several journals in one registry."
+#~ msgstr ""
+#~ "Un registro IVA viene usato per raggruppare insieme diversi registri "
+#~ "contabili."
 
 #~ msgid "account.tax.registry"
 #~ msgstr "account.tax.registry"
