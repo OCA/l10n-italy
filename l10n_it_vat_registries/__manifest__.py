@@ -7,7 +7,7 @@
 
 {
     'name': 'Italian Localization - Registri IVA',
-    'version': '11.0.1.0.0',
+    'version': '11.0.1.1.0',
     'category': 'Localization/Italy',
     "author": "Agile Business Group, Odoo Community Association (OCA)"
               ", LinkIt Srl",
