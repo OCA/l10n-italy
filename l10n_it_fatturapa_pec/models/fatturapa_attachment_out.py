@@ -2,7 +2,6 @@
 # Copyright 2018 Openforce Srls Unipersonale (www.openforce.it)
 # Copyright 2018 Sergio Corato (https://efatto.it)
 # Copyright 2018-2019 Lorenzo Battistini <https://github.com/eLBati>
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 import logging
 import re
@@ -62,12 +61,15 @@ class FatturaPAAttachmentOut(models.Model):
     @api.multi
     def send_via_pec(self):
         self._check_fetchmail()
+        self.env.user.company_id.sdi_channel_id.check_first_pec_sending()
         states = self.mapped('state')
         if set(states) != set(['ready']):
             raise UserError(
                 _("You can only send files in 'Ready to Send' state.")
             )
         for att in self:
+            if not att.datas or not att.datas_fname:
+                raise UserError(_("File content and file name are mandatory"))
             mail_message = self.env['mail.message'].create({
                 'model': self._name,
                 'res_id': att.id,
@@ -102,9 +104,11 @@ class FatturaPAAttachmentOut(models.Model):
                     att.state = 'sent'
                     att.sending_date = fields.Datetime.now()
                     att.sending_user = self.env.user.id
+                    self.env.user.company_id.sdi_channel_id.\
+                        update_after_first_pec_sending()
                 except MailDeliveryException as e:
                     att.state = 'sender_error'
-                    mail.body = e[1]
+                    mail.body = str(e)
 
     @api.multi
     def parse_pec_response(self, message_dict):
@@ -158,7 +162,7 @@ class FatturaPAAttachmentOut(models.Model):
                     error_list = root.find('ListaErrori')
                     error_str = ''
                     for error in error_list:
-                        error_str += u"\n[%s] %s %s" % (
+                        error_str += "\n[%s] %s %s" % (
                             error.find('Codice').text if error.find(
                                 'Codice') is not None else '',
                             error.find('Descrizione').text if error.find(
@@ -168,18 +172,18 @@ class FatturaPAAttachmentOut(models.Model):
                         )
                     fatturapa_attachment_out.write({
                         'state': 'sender_error',
-                        'last_sdi_response': u'SdI ID: {}; '
-                        u'Message ID: {}; Receipt date: {}; '
-                        u'Error: {}'.format(
+                        'last_sdi_response': 'SdI ID: {}; '
+                        'Message ID: {}; Receipt date: {}; '
+                        'Error: {}'.format(
                             id_sdi, message_id, receipt_dt, error_str)
                     })
                 elif message_type == 'MC':  # 3A. Mancata consegna
                     missed_delivery_note = root.find('Descrizione').text
                     fatturapa_attachment_out.write({
                         'state': 'recipient_error',
-                        'last_sdi_response': u'SdI ID: {}; '
-                        u'Message ID: {}; Receipt date: {}; '
-                        u'Missed delivery note: {}'.format(
+                        'last_sdi_response': 'SdI ID: {}; '
+                        'Message ID: {}; Receipt date: {}; '
+                        'Missed delivery note: {}'.format(
                             id_sdi, message_id, receipt_dt,
                             missed_delivery_note)
                     })
@@ -200,13 +204,13 @@ class FatturaPAAttachmentOut(models.Model):
                         esito = esito_committente.find('Esito')
                         if esito is not None:
                             if esito.text == 'EC01':
-                                state = 'validated'
+                                state = 'accepted'
                             elif esito.text == 'EC02':
                                 state = 'rejected'
                             fatturapa_attachment_out.write({
                                 'state': state,
-                                'last_sdi_response': u'SdI ID: {}; '
-                                u'Message ID: {}; Response: {}; '.format(
+                                'last_sdi_response': 'SdI ID: {}; '
+                                'Message ID: {}; Response: {}; '.format(
                                     id_sdi, message_id, esito.text)
                             })
                 elif message_type == 'DT':  # 5. Decorrenza Termini per PA
@@ -214,9 +218,9 @@ class FatturaPAAttachmentOut(models.Model):
                     if description is not None:
                         fatturapa_attachment_out.write({
                             'state': 'validated',
-                            'last_sdi_response': u'SdI ID: {}; '
-                            u'Message ID: {}; Receipt date: {}; '
-                            u'Description: {}'.format(
+                            'last_sdi_response': 'SdI ID: {}; '
+                            'Message ID: {}; Receipt date: {}; '
+                            'Description: {}'.format(
                                 id_sdi, message_id, receipt_dt,
                                 description.text)
                         })
@@ -227,9 +231,8 @@ class FatturaPAAttachmentOut(models.Model):
                         fatturapa_attachment_out.write({
                             'state': 'accepted',
                             'last_sdi_response': (
-                                u'SdI ID: {}; Message ID: {}; '
-                                u'Receipt date: {};'
-                                u' Description: {}'
+                                'SdI ID: {}; Message ID: {}; Receipt date: {};'
+                                ' Description: {}'
                             ).format(
                                 id_sdi, message_id, receipt_dt,
                                 description.text)

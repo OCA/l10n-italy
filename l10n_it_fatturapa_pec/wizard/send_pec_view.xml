@@ -7,7 +7,7 @@
             <form string="Send Electronic Invoice">
                 <sheet>
                     <group>
-                        <label colspan="2" string="Selected files will be sent to the Exchange System"/>
+                        <separator colspan="2" string="Selected files will be sent to the Exchange System"/>
                     </group>
                 </sheet>
                 <footer>

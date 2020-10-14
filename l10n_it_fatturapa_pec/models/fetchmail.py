@@ -1,5 +1,4 @@
 # Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 import logging
 from odoo import models, api, fields, _
@@ -46,7 +45,7 @@ class Fetchmail(models.Model):
                 additional_context['server_type'] = server.type
                 imap_server = None
                 pop_server = None
-                error_raised = False
+                error_messages = list()
                 if server.type == 'imap':
                     try:
                         imap_server = server.connect()
@@ -66,27 +65,15 @@ class Fetchmail(models.Model):
                                 # if message is processed without exceptions
                                 server.last_pec_error_message = ''
                             except Exception as e:
-                                _logger.info(
-                                    'Failed to process mail from %s server '
-                                    '%s. Resetting server status',
-                                    server.type, server.name, exc_info=True
-                                )
-                                # Here is where we need to intervene.
-                                server.last_pec_error_message = str(e)
-                                error_raised = True
+                                server.manage_pec_failure(e, error_messages)
                                 continue
                             imap_server.store(num, '+FLAGS', '\\Seen')
                             # We need to commit because message is processed:
                             # Possible next exceptions, out of try, should not
                             # rollback processed messages
-                            self._cr.commit()
+                            self._cr.commit()  # pylint: disable=invalid-commit
                     except Exception as e:
-                        _logger.info(
-                            "General failure when trying to fetch mail from "
-                            "%s server %s.",
-                            server.type, server.name, exc_info=True)
-                        server.last_pec_error_message = str(e)
-                        error_raised = True
+                        server.manage_pec_failure(e, error_messages)
                     finally:
                         if imap_server:
                             imap_server.close()
@@ -115,31 +102,21 @@ class Fetchmail(models.Model):
                                     # See the comments in the IMAP part
                                     server.last_pec_error_message = ''
                                 except Exception as e:
-                                    _logger.info(
-                                        'Failed to process mail from %s server'
-                                        '%s. Resetting server status',
-                                        server.type, server.name, exc_info=True
-                                    )
-                                    # See the comments in the IMAP part
-                                    error_raised = True
-                                    server.last_pec_error_message = str(e)
+                                    server.manage_pec_failure(
+                                        e, error_messages)
                                     continue
+                                # pylint: disable=invalid-commit
                                 self._cr.commit()
                             if num_messages < MAX_POP_MESSAGES:
                                 break
                             pop_server.quit()
                     except Exception as e:
-                        _logger.info(
-                            "General failure when trying to fetch mail from %s"
-                            " server %s.",
-                            server.type, server.name, exc_info=True)
-                        # See the comments in the IMAP part
-                        error_raised = True
-                        server.last_pec_error_message = str(e)
+                        server.manage_pec_failure(e, error_messages)
                     finally:
                         if pop_server:
                             pop_server.quit()
-                if error_raised:
+                if error_messages:
+                    server.notify_or_log(error_messages)
                     server.pec_error_count += 1
                     max_retry = self.env['ir.config_parameter'].get_param(
                         'fetchmail.pec.max.retry')
@@ -156,26 +133,60 @@ class Fetchmail(models.Model):
             server.write({'date': fields.Datetime.now()})
         return True
 
+    @api.multi
+    def manage_pec_failure(self, exception, error_messages):
+        self.ensure_one()
+        _logger.info(
+            "Failure when fetching emails "
+            "using {serv_type} server {serv_name}.".format(
+                serv_type=self.type,
+                serv_name=self.name),
+            exc_info=True)
+
+        exception_msg = str(exception)
+        # `str` on Odoo exceptions does not return
+        # a nice representation of the error
+        odoo_exc_string = getattr(exception, 'name', None)
+        if odoo_exc_string:
+            exception_msg = odoo_exc_string
+
+        self.last_pec_error_message = exception_msg
+        error_messages.append(exception_msg)
+        return True
+
     def notify_about_server_reset(self):
+        self.ensure_one()
+        self.notify_or_log(
+            _("PEC server %s has been reset."
+              "Last error message is '%s'")
+            % (self.name, self.last_pec_error_message))
+
+    @api.multi
+    def notify_or_log(self, message):
+        """
+        Send an email to partners in
+        self.e_inv_notify_partner_ids containing message.
+
+        :param: message
+        :type message: list of str, or str
+        """
+        self.ensure_one()
+        if isinstance(message, list):
+            message = "<br/>".join(message)
+
         if self.e_inv_notify_partner_ids:
             self.env['mail.mail'].create({
-                'subject': _(
-                    "Fetchmail PEC server [%s] reset"
-                ) % self.name,
-                'body_html': _(
-                    "<p>"
-                    "PEC server %s has been reset. Last error message is</p>"
-                    "<p><strong>%s</strong></p>"
-                ) % (self.name, self.last_pec_error_message),
+                'subject': _("Fetchmail PEC server [%s] error") % self.name,
+                'body_html': message,
                 'recipient_ids': [(
                     6, 0,
                     self.e_inv_notify_partner_ids.ids
                 )]
-            })
+            }).send()
             _logger.info(
-                'Notifying partners %s about PEC server %s reset'
+                'Notifying partners %s about PEC server %s error'
                 % (self.e_inv_notify_partner_ids.ids, self.name)
             )
         else:
             _logger.error(
-                "Can't notify anyone about PEC server %s reset" % self.name)
+                "Can't notify anyone about PEC server %s error" % self.name)

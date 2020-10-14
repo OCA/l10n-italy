@@ -1,10 +1,8 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.exceptions import UserError
-from odoo.addons.l10n_it_fatturapa_pec.tests.e_invoice_common \
-    import EInvoiceCommon
+from .e_invoice_common import EInvoiceCommon
 
 
 class TestEInvoiceSend(EInvoiceCommon):
@@ -21,6 +19,18 @@ class TestEInvoiceSend(EInvoiceCommon):
         with self.assertRaises(UserError):
             e_invoice.send_via_pec()
 
+    def test_sender_error(self):
+        """Sending e-invoice without configuring email_from_for_fatturaPA
+        fails to send the email"""
+        e_invoice = self._create_e_invoice()
+
+        self._create_fetchmail_pec_server()
+        self.env.user.company_id.sdi_channel_id. \
+            pec_server_id.email_from_for_fatturaPA = False
+
+        e_invoice.send_via_pec()
+        self.assertEqual(e_invoice.state, 'sender_error')
+
     def test_send(self):
         """Sending e-invoice changes its state to 'sent'"""
         e_invoice = self._create_e_invoice()
@@ -28,6 +38,15 @@ class TestEInvoiceSend(EInvoiceCommon):
         self._create_fetchmail_pec_server()
         e_invoice.send_via_pec()
         self.assertEqual(e_invoice.state, 'sent')
+
+    def test_send_empty_file(self):
+        """Sending e-invoice without file content must be blocked"""
+        e_invoice = self._create_e_invoice()
+
+        self._create_fetchmail_pec_server()
+        e_invoice.datas = False
+        with self.assertRaises(UserError):
+            e_invoice.send_via_pec()
 
     def test_wizard_send(self):
         """Sending e-invoice with wizard changes its state to 'sent'"""
