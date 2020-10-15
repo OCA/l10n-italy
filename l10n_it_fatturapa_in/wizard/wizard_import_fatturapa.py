@@ -1154,8 +1154,6 @@ class WizardImportFatturapa(models.TransientModel):
                 }))
         return wt_founds
 
-    # CAUTION: THIS COMMINT DOESN'T FIX THE FOLLOWING BECAUSE
-    # OTHER BACKPORTS ARE NECESSARY. CODE NOT EXECUTABLE FOR NOW.
     def set_welfares_fund(
         self, FatturaBody, credit_account_id, invoice, wt_found
     ):
