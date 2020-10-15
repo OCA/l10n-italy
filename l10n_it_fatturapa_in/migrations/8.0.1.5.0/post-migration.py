@@ -5,10 +5,10 @@
 from openupgradelib import openupgrade
 
 
-def create_withholding_data_lines(env):
+def create_withholding_data_lines(cr):
     # create ftpa_withholding_ids from ftpa_withholding_type and ftpa_withholding_amount
     openupgrade.logged_query(
-        env.cr, """
+        cr, """
             INSERT INTO withholding_data_line
             (
                 name,
@@ -34,7 +34,9 @@ def create_withholding_data_lines(env):
 
 
 @openupgrade.migrate()
-def migrate(env, version):
+def migrate(cr, version):
     if not version:
         return
-    create_withholding_data_lines(env)
+    # TODO MOMENTANEAMENTE SOSPESA IN ATTESA DI VERIFICA
+    # sospesa perché su v8 non esiste il campo 'ftpa_withholding_amount'
+    # create_withholding_data_lines(cr)
