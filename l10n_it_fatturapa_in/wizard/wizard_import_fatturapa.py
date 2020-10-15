@@ -20,7 +20,7 @@ class WizardImportFatturapa(models.TransientModel):
         # ('1', 'Aliquote'),
         ('2', 'Maximum'),
     ], string="E-bills Detail Level",
-        help="Minumum level: Bill is created with no lines; "
+        help="Minimum level: Bill is created with no lines; "
              "User will have to create them, according to what specified in "
              "the electronic bill.\n"
              # "Livello Aliquote: viene creata una riga fattura per ogni "
@@ -81,16 +81,16 @@ class WizardImportFatturapa(models.TransientModel):
             partner.name != DatiAnagrafici.Anagrafica.Denominazione
         ):
             self.log_inconsistency(_(
-                "Company Name field contains \"%s\"."
-                " Your System contains \"%s\""
+                "Company Name field contains '%s'."
+                " Your System contains '%s'"
             ) % (DatiAnagrafici.Anagrafica.Denominazione, partner.name))
         if (
             DatiAnagrafici.Anagrafica.Nome and
             partner.firstname != DatiAnagrafici.Anagrafica.Nome
         ):
             self.log_inconsistency(_(
-                "Name field contains \"%s\"."
-                " Your System contains \"%s\""
+                "Name field contains '%s'."
+                " Your System contains '%s'"
             ) % (DatiAnagrafici.Anagrafica.Nome, partner.firstname))
         if (
             DatiAnagrafici.Anagrafica.Cognome and
@@ -98,8 +98,8 @@ class WizardImportFatturapa(models.TransientModel):
         ):
             self.log_inconsistency(
                 _(
-                    "Surname field contains \"%s\"."
-                    " Your System contains \"%s\""
+                    "Surname field contains '%s'."
+                    " Your System contains '%s'"
                 )
                 % (DatiAnagrafici.Anagrafica.Cognome, partner.lastname)
             )
@@ -141,8 +141,8 @@ class WizardImportFatturapa(models.TransientModel):
                 ):
                     raise UserError(
                         _("Two distinct partners with "
-                          "VAT number %s and Fiscal Code %s already "
-                          "present in db" %
+                          "VAT number %s or Fiscal Code %s already "
+                          "present in db." %
                           (vat, cf))
                         )
                 commercial_partner_id = partner.commercial_partner_id.id
@@ -161,7 +161,7 @@ class WizardImportFatturapa(models.TransientModel):
                     country_id = countries[0].id
                 else:
                     raise UserError(
-                        _("Country Code %s not found in system") % CountryCode
+                        _("Country Code %s not found in system.") % CountryCode
                     )
             vals = {
                 'vat': vat,
@@ -228,7 +228,7 @@ class WizardImportFatturapa(models.TransientModel):
                 )
                 if not FiscalPos:
                     raise UserError(
-                        _('Tax Regime %s not present in your system')
+                        _('Tax Regime %s not present in your system.')
                         % rfPos
                     )
                 else:
@@ -509,7 +509,7 @@ class WizardImportFatturapa(models.TransientModel):
         WelfareTypeModel = self.env['welfare.fund.type']
         if not TipoCassa:
             raise UserError(
-                _('Welfare Fund is not defined ')
+                _('Welfare Fund is not defined.')
             )
         WelfareType = WelfareTypeModel.search(
             [('name', '=', TipoCassa)]
@@ -527,7 +527,7 @@ class WizardImportFatturapa(models.TransientModel):
         }
         if not WelfareType:
             raise UserError(
-                _('Welfare Fund %s not present in your system') % TipoCassa)
+                _('Welfare Fund %s not present in your system.') % TipoCassa)
         else:
             res['name'] = WelfareType[0].id
 
@@ -610,7 +610,7 @@ class WizardImportFatturapa(models.TransientModel):
                 if not method:
                     raise UserError(
                         _(
-                            'Payment method %s is not defined in your system'
+                            'Payment method %s is not defined in your system.'
                             % dline.ModalitaPagamento
                         )
                     )
@@ -667,7 +667,7 @@ class WizardImportFatturapa(models.TransientModel):
                     if not banks:
                         if not dline.IstitutoFinanziario:
                             self.log_inconsistency(
-                                _("Name of Bank with BIC \"%s\" is not set."
+                                _("Name of Bank with BIC '%s' is not set."
                                   " Can't create bank") % dline.BIC
                             )
                         else:
@@ -746,8 +746,8 @@ class WizardImportFatturapa(models.TransientModel):
         if not journals:
             raise UserError(
                 _(
-                    'Define a purchase journal '
-                    'for this company: "%s" (id:%d).'
+                    "Define a purchase journal "
+                    "for this company: '%s' (id: %d)."
                 ) % (company.name, company.id)
             )
         return journals[0]
@@ -823,7 +823,7 @@ class WizardImportFatturapa(models.TransientModel):
         if not currency:
             raise UserError(
                 _(
-                    'No currency found with code %s'
+                    'No currency found with code %s.'
                     % FatturaBody.DatiGenerali.DatiGeneraliDocumento.Divisa
                 )
             )
@@ -844,7 +844,7 @@ class WizardImportFatturapa(models.TransientModel):
                 docType_id = docType_record[0].id
             else:
                 raise UserError(
-                    _("Document type %s not handled")
+                    _("Document type %s not handled.")
                     % docType)
             if docType == 'TD04':
                 invtype = 'in_refund'
@@ -1340,7 +1340,7 @@ class WizardImportFatturapa(models.TransientModel):
                 invoice.amount_total-ImportoTotaleDocumento, precision_digits=2
             ):
                 self.log_inconsistency(
-                    _('Invoice total %s is different from '
+                    _('Bill total %s is different from '
                       'document total amount %s')
                     % (invoice.amount_total, ImportoTotaleDocumento)
                 )
@@ -1378,7 +1378,7 @@ class WizardImportFatturapa(models.TransientModel):
                 fatturapa_attachment_id)
             if fatturapa_attachment.in_invoice_ids:
                 raise UserError(
-                    _("File is linked to bills yet"))
+                    _("File is linked to bills yet."))
             fatt = self.get_invoice_obj(fatturapa_attachment)
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             # 1.2
