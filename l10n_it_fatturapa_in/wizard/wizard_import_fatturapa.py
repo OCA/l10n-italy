@@ -707,8 +707,9 @@ class WizardImportFatturapa(models.TransientModel):
                             {
                                 'acc_number': dline.IBAN.strip(),
                                 'partner_id': partner_id,
-                                'bank_id': bankid,
-                                'bank_bic': dline.BIC
+                                'bank': bankid,
+                                'bank_bic': dline.BIC,
+                                'state': 'iban',
                             }
                         ).id
                     if payment_banks:
