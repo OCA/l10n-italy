@@ -42,7 +42,7 @@ class WizardExportFatturapa(models.TransientModel):
         res = super(WizardExportFatturapa, self).setDatiGeneraliDocumento(
             invoice, body)
         # Get consistent ordering for file generation for compare with test XML
-        ritenuta_lines = invoice.withholding_tax_line_ids.sorted(
+        ritenuta_lines = invoice.withholding_tax_line.sorted(
             key=lambda l: l.withholding_tax_id.code)
         for wt_line in ritenuta_lines:
             if not wt_line.withholding_tax_id.causale_pagamento_id.code:
