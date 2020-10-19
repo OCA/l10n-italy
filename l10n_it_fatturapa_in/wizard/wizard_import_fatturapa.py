@@ -1212,10 +1212,10 @@ class WizardImportFatturapa(models.TransientModel):
                     else:
                         raise UserError(msg)
 
-                for line in invoice.invoice_line_ids:
+                for line in invoice.invoice_line:
                     line.invoice_line_tax_wt_ids = [(4, wt_found.id)]
-                invoice._onchange_invoice_line_wt_ids()
-                invoice.write(invoice._convert_to_write(invoice._cache))
+                # invoice._onchange_invoice_line_wt_ids()
+                # invoice.write(invoice._convert_to_write(invoice._cache))
                 continue
 
             line_vals = self._prepare_generic_line_data(welfareLine)

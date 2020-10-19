@@ -485,6 +485,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             'partner_id': supplier.id,
             'type': 'in_invoice',
             'supplier_invoice_number': 'original_ref',
+            'account_id': self.env.ref('account.a_pay').id,
+            'journal_id': self.env.ref('account.expenses_journal').id,
         }
         orig_invoice = self.invoice_model.create(invoice_values)
         wiz_values = {
@@ -509,6 +511,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice_values = {
             'partner_id': supplier.id,
             'type': 'in_invoice',
+            'account_id': self.env.ref('account.a_pay').id,
+            'journal_id': self.env.ref('account.expenses_journal').id,
         }
         orig_invoice = self.invoice_model.create(invoice_values)
         wiz_values = {
@@ -551,7 +555,7 @@ class TestFatturaPAEnasarco(FatturapaCommon):
                 'account.data_account_type_receivable').id,
             'reconcile': True})
         misc_journal = self.env['account.journal']. \
-            search([("code", "=", "MISC")])
+            search([("code", "=", "MISC")], limit=1)
         welfare_fund_type_id = self.env['welfare.fund.type']. \
             search([('name', '=', 'TC07')])
         self.env['withholding.tax'].create({
