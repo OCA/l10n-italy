@@ -391,9 +391,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                 }
                 else {
                     xml += self.printRecItemAdjustment({
-                        adjustmentType: 3,
                         description: l.product_name,
-                        department: l.tax_department.code,
                         amount: -l.price,
                     });
                 }
