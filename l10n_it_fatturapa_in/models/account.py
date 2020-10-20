@@ -281,8 +281,7 @@ class AccountInvoice(models.Model):
         amount_total = self.compute_xml_amount_total(
             fattura, amount_untaxed, amount_tax)
         reference = fattura.DatiGenerali.DatiGeneraliDocumento.Numero
-        date_invoice = fields.Date.from_string(
-            fattura.DatiGenerali.DatiGeneraliDocumento.Data)
+        date_invoice = fattura.DatiGenerali.DatiGeneraliDocumento.Data
 
         self.update({
             'e_invoice_amount_untaxed': amount_untaxed,
