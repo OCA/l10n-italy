@@ -131,6 +131,9 @@
                 <field name="price_unit" position="before">
                     <field name="fatturapa_attachment_in_id" invisible="1"/>
                 </field>
+                <field name="amount_tax" position="after">
+                    <field name="efatt_rounding" widget="monetary" attrs="{'invisible': [('efatt_rounding', '=', 0)]}"/>
+                </field>
                 <xpath expr="//form/sheet/notebook/page[@string='Invoice']/field[@name='invoice_line']/tree/field[@name='quantity']"
                        position="before">
                     <field name="admin_ref"/>
@@ -318,7 +321,7 @@
                         </group>
                         <group>
                         <group string="General Data">
-                                <field name="efatt_rounding"/>
+                            <field name="efatt_rounding" widget="monetary"/>
                                 <field name="art73"/>
                             </group>
                         </group>
