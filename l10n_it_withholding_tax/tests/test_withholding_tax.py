@@ -1,5 +1,9 @@
+# Copyright 2018 Lorenzo Battistini (https://github.com/eLBati)
 
 from odoo.tests.common import TransactionCase
+from datetime import date, timedelta
+from odoo import fields
+from odoo.exceptions import ValidationError
 import time
 
 
@@ -55,7 +59,7 @@ class TestWithholdingTax(TransactionCase):
         self.wt1040 = self.env['withholding.tax'].create(wt_vals)
 
         # Supplier Invoice with WT
-        invoice_vals = [
+        invoice_line_vals = [
             (0, 0, {
                 'quantity': 1.0,
                 'account_id': self.env['account.account'].search(
@@ -75,23 +79,22 @@ class TestWithholdingTax(TransactionCase):
                 [('user_type_id', '=', self.env.ref(
                     'account.data_account_type_receivable').id)],
                 limit=1, order='id').id,
-            'invoice_line_ids': invoice_vals,
+            'invoice_line_ids': invoice_line_vals,
+            'type': 'in_invoice',
         })
         self.invoice._onchange_invoice_line_wt_ids()
         self.invoice.action_invoice_open()
 
-    def test_creation_withholding_tax(self):
+    def test_withholding_tax(self):
         domain = [('name', '=', 'Code 1040')]
         wts = self.env['withholding.tax'].search(domain)
         self.assertEqual(len(wts), 1, msg="Withholding tax was not created")
 
-    def test_invoice_values(self):
         self.assertEqual(
             self.invoice.withholding_tax_amount, 200, msg='Invoice WT amount')
         self.assertEqual(
             self.invoice.amount_net_pay, 800, msg='Invoice WT amount net pay')
 
-    def test_creation_statement(self):
         domain = [('invoice_id', '=', self.invoice.id),
                   ('withholding_tax_id', '=', self.wt1040.id)]
         wt_statement = self.env['withholding.tax.statement'].search(domain)
@@ -104,7 +107,9 @@ class TestWithholdingTax(TransactionCase):
         self.assertEqual(
             wt_statement.amount_paid, 0, msg='WT statement Base paid')
 
-    def test_invoice_payment(self):
+        self.assertEqual(self.invoice.amount_net_pay, 800)
+        self.assertEqual(self.invoice.amount_net_pay_residual, 800)
+
         ctx = {
             'active_model': 'account.invoice',
             'active_ids': [self.invoice.id],
@@ -124,13 +129,61 @@ class TestWithholdingTax(TransactionCase):
             len(self.invoice.payment_move_line_ids), 2,
             msg='Missing WT payment')
 
-        # WT amount in account move
-        wt_line = self.invoice.payment_move_line_ids.filtered(
-            lambda r: r.account_id.id == self.wt_account_payable.id)
-        self.assertEqual(wt_line.debit, 200, msg='WT amount payment')
+        # WT amount in payment move lines
+        self.assertTrue(
+            set(self.invoice.payment_move_line_ids.mapped('debit')) ==
+            set([800, 200])
+        )
 
         # WT aomunt applied in statement
         domain = [('invoice_id', '=', self.invoice.id),
                   ('withholding_tax_id', '=', self.wt1040.id)]
         wt_statement = self.env['withholding.tax.statement'].search(domain)
         self.assertEqual(wt_statement.amount, 200)
+        self.assertEqual(self.invoice.state, 'paid')
+        self.assertEqual(self.invoice.amount_net_pay, 800)
+        self.assertEqual(self.invoice.amount_net_pay_residual, 0)
+
+    def test_partial_payment(self):
+        self.assertEqual(self.invoice.amount_net_pay, 800)
+        self.assertEqual(self.invoice.amount_net_pay_residual, 800)
+        ctx = {
+            'active_model': 'account.invoice',
+            'active_ids': [self.invoice.id],
+            'active_id': self.invoice.id,
+            'default_invoice_ids': [(4, self.invoice.id, None)],
+            }
+        register_payments = self.env['account.payment'].with_context(
+            ctx
+        ).create({
+            'payment_date': time.strftime('%Y') + '-07-15',
+            'amount': 600,
+            'journal_id': self.journal_bank.id,
+            'payment_method_id': self.env.ref(
+                "account.account_payment_method_manual_out").id,
+            })
+        register_payments.action_validate_invoice_payment()
+
+        # WT amount in payment move lines
+        self.assertTrue(
+            set(self.invoice.payment_move_line_ids.mapped('debit')) ==
+            set([600, 150])
+        )
+
+        # WT aomunt applied in statement
+        domain = [('invoice_id', '=', self.invoice.id),
+                  ('withholding_tax_id', '=', self.wt1040.id)]
+        wt_statement = self.env['withholding.tax.statement'].search(domain)
+        self.assertEqual(wt_statement.amount, 150)
+        self.assertEqual(self.invoice.amount_net_pay, 800)
+        self.assertEqual(self.invoice.amount_net_pay_residual, 200)
+        self.assertEqual(self.invoice.residual, 250)
+        self.assertEqual(self.invoice.state, 'open')
+
+    def test_overlapping_rates(self):
+        """Check that overlapping rates cannot be created"""
+        with self.assertRaises(ValidationError):
+            self.wt1040.rate_ids = [(0, 0, {
+                'date_start': fields.Date.to_string(
+                    date.today() - timedelta(days=1))
+            })]
