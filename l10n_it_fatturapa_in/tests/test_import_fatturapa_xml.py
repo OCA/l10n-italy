@@ -458,10 +458,10 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(
-            invoice.fatturapa_payments[0].payment_methods[0].payment_bank.bank_id.bic,
+            invoice.fatturapa_payments[0].payment_methods[0].payment_bank.bank.bic,
             'BCITITMM')
         self.assertEqual(
-            invoice.fatturapa_payments[0].payment_methods[0].payment_bank.bank_id.name,
+            invoice.fatturapa_payments[0].payment_methods[0].payment_bank.bank.name,
             'Banca generica')
 
     def test_39_xml_import_withholding(self):
