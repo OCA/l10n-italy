@@ -14,7 +14,7 @@ class AccountInvoice(models.Model):
         ondelete='restrict', copy=False)
     inconsistencies = fields.Text('Import Inconsistencies', copy=False)
     e_invoice_line_ids = fields.One2many(
-        "einvoice.line", "invoice_id", string="Lines detail",
+        "einvoice.line", "invoice_id", string="Lines Detail",
         readonly=True, copy=False)
 
     e_invoice_amount_untaxed = fields.Float(
@@ -295,12 +295,12 @@ class AccountInvoice(models.Model):
 class FatturapaArticleCode(models.Model):
     # _position = ['2.2.1.3']
     _name = "fatturapa.article.code"
-    _description = 'FatturaPA Article Code'
+    _description = 'E-bill Article Code'
 
-    name = fields.Char('Cod Type')
+    name = fields.Char('Code Type')
     code_val = fields.Char('Code Value')
     e_invoice_line_id = fields.Many2one(
-        'einvoice.line', 'Related E-bill line', readonly=True
+        'einvoice.line', 'Related E-bill Line', readonly=True
     )
 
 
@@ -319,7 +319,7 @@ class AccountInvoiceLine(models.Model):
 class DiscountRisePrice(models.Model):
     _inherit = "discount.rise.price"
     e_invoice_line_id = fields.Many2one(
-        'einvoice.line', 'Related E-bill line', readonly=True
+        'einvoice.line', 'Related E-bill Line', readonly=True
     )
 
 
@@ -332,7 +332,7 @@ class EInvoiceLine(models.Model):
     service_type = fields.Char('Sale Provision Type', readonly=True)
     cod_article_ids = fields.One2many(
         'fatturapa.article.code', 'e_invoice_line_id',
-        'Cod. Articles', readonly=True
+        'Articles Code', readonly=True
     )
     name = fields.Char("Description", readonly=True)
     qty = fields.Float(
@@ -348,7 +348,7 @@ class EInvoiceLine(models.Model):
     )
     discount_rise_price_ids = fields.One2many(
         'discount.rise.price', 'e_invoice_line_id',
-        'Discount and Supplement Price Details', readonly=True
+        'Discount and Supplement Details', readonly=True
     )
     total_price = fields.Float("Total Price", readonly=True)
     tax_amount = fields.Float("VAT Rate", readonly=True)

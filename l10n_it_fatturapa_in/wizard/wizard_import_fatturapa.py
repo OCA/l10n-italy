@@ -42,7 +42,7 @@ class WizardImportFatturapa(models.TransientModel):
                 fatturapa_attachment_id)
             if fatturapa_attachment.in_invoice_ids:
                 raise UserError(
-                    _("File %s is linked to bills yet")
+                    _("File %s is linked to bills yet.")
                     % fatturapa_attachment.name)
             partners |= fatturapa_attachment.xml_supplier_id
             if len(partners) == 1:
@@ -141,7 +141,7 @@ class WizardImportFatturapa(models.TransientModel):
                 ):
                     raise UserError(
                         _("Two distinct partners with "
-                          "VAT number %s or Fiscal Code %s already "
+                          "VAT number %s and Fiscal Code %s already "
                           "present in db." %
                           (vat, cf))
                         )
