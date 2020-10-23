@@ -1,5 +1,7 @@
 
 import logging
+import xmlschema
+from datetime import datetime
 from odoo import models, api, fields
 from odoo.tools import float_is_zero
 from odoo.tools.translate import _
@@ -893,7 +895,7 @@ class WizardImportFatturapa(models.TransientModel):
                 e_invoice_received_date.date()
         else:
             e_invoice_received_date = fatturapa_attachment.create_date.date()
-        e_invoice_date = FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data.date()
+        e_invoice_date = datetime.strptime(FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data, '%Y-%m-%d').date()
 
         invoice_data = {
             'e_invoice_received_date': e_invoice_received_date,
@@ -1004,7 +1006,7 @@ class WizardImportFatturapa(models.TransientModel):
         if not invoice.date_invoice:
             invoice.update({
                 'date_invoice':
-                    FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data.date(),
+                    datetime.strptime(FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data, '%Y-%m-%d').date(),
             })
         if not invoice.reference:
             invoice.update({
@@ -1436,7 +1438,21 @@ class WizardImportFatturapa(models.TransientModel):
 
     def get_invoice_obj(self, fatturapa_attachment):
         xml_string = fatturapa_attachment.get_xml_string()
-        return fatturapa.CreateFromDocument(xml_string)
+
+        # il codice seguente rimpiazza fatturapa.CreateFromDocument(xml_string)
+        class ObjectDict(object):
+            def __getattr__(self, attr):
+                try:
+                    return getattr(self.__dict__, attr)
+                except AttributeError:
+                    return None
+            def __getitem__(self, *attr, **kwattr):
+                return self.__dict__.__getitem__(*attr, **kwattr)
+            def __setitem__(self, *attr, **kwattr):
+                return self.__dict__.__setitem__(*attr, **kwattr)
+
+        validator = xmlschema.XMLSchema(fatturapa._xsd_schema)
+        return validator.to_dict(xml_string.decode(), dict_class=ObjectDict)
 
     @api.multi
     def importFatturaPA(self):
