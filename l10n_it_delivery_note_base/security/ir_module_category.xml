@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright (c) 2019, Link IT Europe Srl
+    @author: Matteo Bilotta <mbilotta@linkeurope.it>
+  -->
+
+<odoo>
+    <data>
+
+        <record id="module_category_inventory_checkboxes" model="ir.module.category">
+            <field name="name">Inventory settings</field>
+            <field name="description">Define some other extra rights on inventory management.</field>
+            <field name="sequence">10</field>
+        </record>
+
+    </data>
+</odoo>
