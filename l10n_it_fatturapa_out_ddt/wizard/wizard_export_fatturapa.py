@@ -3,6 +3,7 @@
 
 from openerp import models, fields, api, _
 from openerp.exceptions import Warning as UserError
+from openerp.tools.float_utils import float_round
 from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
     DatiDDTType,
     DatiTrasportoType,
@@ -73,8 +74,8 @@ class WizardExportFatturapa(models.TransientModel):
                 CausaleTrasporto=invoice.transportation_reason_id.name or None,
                 NumeroColli=invoice.parcels or None,
                 Descrizione=invoice.goods_description_id.name or None,
-                PesoLordo='%.2f' % invoice.gross_weight,
-                PesoNetto='%.2f' % invoice.net_weight,
+                PesoLordo='%.2f' % float_round(invoice.gross_weight, 2),
+                PesoNetto='%.2f' % float_round(invoice.net_weight, 2),
                 TipoResa=None  # invoice.incoterms_id.code or None
             )
             if invoice.carrier_id:

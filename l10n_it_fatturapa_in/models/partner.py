@@ -8,22 +8,22 @@ class Partner(models.Model):
 
     e_invoice_default_product_id = fields.Many2one(
         comodel_name='product.product',
-        string='Default product electronic invoice',
+        string='E-bill Default Product',
         help="Used by electronic invoice XML import. "
              "If filled, generated invoice lines will use this product, when "
              "no other possible product is found."
     )
     e_invoice_detail_level = fields.Selection([
-        ('0', 'Minimo'),
+        ('0', 'Minimum'),
         # ('1', 'Aliquote'),
-        ('2', 'Massimo'),
-    ], string="Livello di dettaglio Fatture elettroniche passive",
-        help="Livello minimo: La fattura passiva viene creata senza righe; "
-             "sara' l'utente a doverle creare in base a quanto indicato dal "
-             "fornitore nella fattura elettronica\n"
+        ('2', 'Maximum'),
+    ], string="E-bills Detail Level",
+        help="Minumum level: Bill is created with no lines; "
+             "User will have to create them, according to what specified in "
+             "the electronic bill.\n"
              # "Livello Aliquote: viene creata una riga fattura per ogni "
              # "aliquota presente nella fattura elettronica\n"
-             "Livello Massimo: tutte le righe presenti nella fattura "
-             "elettronica vengono create come righe della fattura passiva",
+             "Maximum level: every line contained in the electronic bill "
+             "will create a line in the bill.",
         default='2', required=True
     )

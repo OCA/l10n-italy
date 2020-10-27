@@ -6,7 +6,7 @@ from openerp import fields, models, api, _
 
 class FatturaPAAttachmentIn(models.Model):
     _name = "fatturapa.attachment.in"
-    _description = "FatturaPA import File"
+    _description = "E-bill import file"
     _inherits = {'ir.attachment': 'ir_attachment_id'}
     _inherit = ['mail.thread']
     _order = 'id desc'
@@ -15,20 +15,43 @@ class FatturaPAAttachmentIn(models.Model):
         'ir.attachment', 'Attachment', required=True, ondelete="cascade")
     in_invoice_ids = fields.One2many(
         'account.invoice', 'fatturapa_attachment_in_id',
-        string="In Invoices", readonly=True)
+        string="In Bills", readonly=True)
     xml_supplier_id = fields.Many2one(
         "res.partner", string="Supplier", compute="_compute_xml_data",
         store=True)
     invoices_number = fields.Integer(
-        "Invoices number", compute="_compute_xml_data", store=True)
+        "Bills Number", compute="_compute_xml_data", store=True)
     invoices_total = fields.Float(
-        "Invoices total", compute="_compute_xml_data", store=True,
-        help="Se indicato dal fornitore, Importo totale del documento al "
-             "netto dell'eventuale sconto e comprensivo di imposta a debito "
-             "del cessionario / committente"
+        "Bills Total", compute="_compute_xml_data", store=True,
+        help="If specified by supplier, total amount of the document net of "
+             "any discount and including tax charged to the buyer/ordered"
     )
     registered = fields.Boolean(
         "Registered", compute="_compute_registered", store=True)
+
+    e_invoice_validation_error = fields.Boolean(
+        compute='_compute_e_invoice_validation_error')
+
+    e_invoice_validation_message = fields.Text(
+        compute='_compute_e_invoice_validation_error')
+
+    @api.depends('in_invoice_ids.e_invoice_validation_error')
+    def _compute_e_invoice_validation_error(self):
+        for att in self:
+            bills_with_error = att.in_invoice_ids.filtered(
+                lambda b: b.e_invoice_validation_error
+            )
+            if not bills_with_error:
+                continue
+            att.e_invoice_validation_error = True
+            errors_message_template = u"{bill}:\n{errors}"
+            error_messages = list()
+            for bill in bills_with_error:
+                error_messages.append(
+                    errors_message_template.format(
+                        bill=bill.display_name,
+                        errors=bill.e_invoice_validation_message))
+            att.e_invoice_validation_message = "\n\n".join(error_messages)
 
     @api.onchange('datas_fname')
     def onchagne_datas_fname(self):

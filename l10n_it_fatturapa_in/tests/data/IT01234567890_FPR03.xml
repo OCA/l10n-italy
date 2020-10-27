@@ -62,16 +62,16 @@
         <NumItem>1</NumItem>
       </DatiOrdineAcquisto>
       <DatiTrasporto>
-	<DatiAnagraficiVettore>				
-	  <IdFiscaleIVA>
-	    <IdPaese>IT</IdPaese>
-	    <IdCodice>04507990150</IdCodice>
-	  </IdFiscaleIVA>
-    	  <Anagrafica>
-	    <Denominazione>Trasporto spa</Denominazione>
-	  </Anagrafica>
-	</DatiAnagraficiVettore>
-	<DataOraConsegna>2012-10-22T16:46:12.000+02:00</DataOraConsegna>
+        <DatiAnagraficiVettore>
+          <IdFiscaleIVA>
+            <IdPaese>IT</IdPaese>
+            <IdCodice>04507990150</IdCodice>
+          </IdFiscaleIVA>
+          <Anagrafica>
+            <Denominazione>Trasporto spa</Denominazione>
+          </Anagrafica>
+        </DatiAnagraficiVettore>
+        <DataOraConsegna>2012-10-22T16:46:12.000+02:00</DataOraConsegna>
       </DatiTrasporto>
     </DatiGenerali>
     <DatiBeniServizi>
