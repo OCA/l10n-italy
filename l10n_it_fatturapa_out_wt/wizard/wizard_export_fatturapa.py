@@ -7,6 +7,8 @@ from openerp.exceptions import Warning as UserError
 from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
     DatiRitenutaType,
     AltriDatiGestionaliType,
+    DettaglioPagamentoType,
+    DatiPagamentoType,
 )
 
 
@@ -57,4 +59,47 @@ class WizardExportFatturapa(models.TransientModel):
                     RiferimentoNumero='%.2f' % wt_line.tax,
                 )
             )
+        return res
+
+    def setDatiPagamento(self, invoice, body):
+        if invoice.payment_term and invoice.withholding_tax_line:
+            DatiPagamento = DatiPagamentoType()
+            if not invoice.payment_term.fatturapa_pt_id:
+                raise UserError(
+                    _('Payment term %s does not have a linked e-invoice '
+                      'payment term') % invoice.payment_term.name)
+            if not invoice.payment_term.fatturapa_pm_id:
+                raise UserError(
+                    _('Payment term %s does not have a linked e-invoice '
+                      'payment method') % invoice.payment_term.name)
+            DatiPagamento.CondizioniPagamento = (
+                invoice.payment_term.fatturapa_pt_id.code)
+            move_line_pool = self.env['account.move.line']
+            payment_line_ids = invoice.move_line_id_payment_get()
+            for move_line_id in payment_line_ids:
+                move_line = move_line_pool.browse(move_line_id)
+                ImportoPagamento = '%.2f' % invoice.amount_net_pay
+                DettaglioPagamento = DettaglioPagamentoType(
+                    ModalitaPagamento=(
+                        invoice.payment_term.fatturapa_pm_id.code),
+                    DataScadenzaPagamento=move_line.date_maturity,
+                    ImportoPagamento=ImportoPagamento
+                )
+                if invoice.partner_bank_id:
+                    DettaglioPagamento.IstitutoFinanziario = (
+                        invoice.partner_bank_id.bank_name)
+                    if invoice.partner_bank_id.acc_number:
+                        DettaglioPagamento.IBAN = (
+                            ''.join(invoice.partner_bank_id.acc_number.split())
+                        )
+                    if invoice.partner_bank_id.bank_bic:
+                        DettaglioPagamento.BIC = (
+                            invoice.partner_bank_id.bank_bic)
+                DatiPagamento.DettaglioPagamento.append(DettaglioPagamento)
+            body.DatiPagamento.append(DatiPagamento)
+
+            res = True
+        else:
+            res = super(WizardExportFatturapa, self).setDatiPagamento(
+                invoice, body)
         return res
