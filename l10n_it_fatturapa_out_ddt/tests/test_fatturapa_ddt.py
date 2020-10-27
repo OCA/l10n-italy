@@ -89,8 +89,10 @@ class TestInvoiceDDT(FatturaPACommon):
         self.assertEqual(wizard.include_ddt_data, 'dati_ddt')
         res = wizard.exportFatturaPA()
         attachment = self.attach_model.browse(res['res_id'])
-        xml_content = attachment.datas.decode('base64')
         self.set_e_invoice_file_id(attachment, 'IT06363391001_00006.xml')
+        xml_content = attachment.datas.decode('base64')
+        self.assertEqual(
+            attachment.datas_fname, 'IT06363391001_00006.xml')
         self.check_content(
             xml_content, 'IT06363391001_00006.xml',
             module_name='l10n_it_fatturapa_out_ddt'
@@ -138,8 +140,10 @@ class TestInvoiceDDT(FatturaPACommon):
         wizard.include_ddt_data = 'dati_trasporto'
         res = wizard.exportFatturaPA()
         attachment = self.attach_model.browse(res['res_id'])
-        xml_content = attachment.datas.decode('base64')
         self.set_e_invoice_file_id(attachment, 'IT06363391001_00007.xml')
+        xml_content = attachment.datas.decode('base64')
+        self.assertEqual(
+            attachment.datas_fname, 'IT06363391001_00007.xml')
         self.check_content(
             xml_content, 'IT06363391001_00007.xml',
             module_name='l10n_it_fatturapa_out_ddt'
