@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from openerp import fields, models, api
+from openerp import fields, models
 
 
 class ResCompany(models.Model):

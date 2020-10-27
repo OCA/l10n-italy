@@ -1,5 +1,4 @@
 
-import base64
 from openerp.addons.l10n_it_fatturapa_out.tests.fatturapa_common import (
     FatturaPACommon)
 
@@ -291,6 +290,7 @@ class TestInvoiceWT(FatturaPACommon):
             xml_content, 'IT06363391001_00017.xml',
             module_name='l10n_it_fatturapa_out_wt')
 
+
 def test_e_invoice_wt_inps_1(self):
         """
         Fill DatiCassaPrevidenziale with INPS data
@@ -335,6 +335,7 @@ def test_e_invoice_wt_inps_1(self):
         self.check_content(
             xml_content, 'IT06363391001_00018.xml',
             module_name='l10n_it_fatturapa_out_wt')
+
 
 def test_e_invoice_wt_inps_2(self):
         """
