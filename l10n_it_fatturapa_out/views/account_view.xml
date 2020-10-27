@@ -39,6 +39,17 @@
                                 </tree>
                             </field>
                         </group>
+                        <group string="Related Mngt Datas">
+                            <field name="related_mngt_data_ids" nolabel="1">
+                                <tree editable="bottom" string="Related Mngt Datas">
+                                    <field name="name"/>
+                                    <field name="lineRef" readonly="0"/>
+                                    <field name="text_ref"/>
+                                    <field name="number_ref"/>
+                                    <field name="date_ref"/>
+                                </tree>
+                            </field>
+                        </group>
                     </page>
                     <page string="Electronic Invoice"
                           attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">
