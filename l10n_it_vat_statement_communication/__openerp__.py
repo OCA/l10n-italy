@@ -3,8 +3,8 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 {
     'name': 'ITA - Comunicazione liquidazione IVA',
-    'summary': 'Comunicazione liquidazione IVA ed esportazione file xml'
-               'conforme alle specifiche dell\'Agenzia delle Entrate',
+    'description': 'Comunicazione liquidazione IVA ed esportazione file xml'
+                   'conforme alle specifiche dell\'Agenzia delle Entrate',
     'version': '8.0.1.0.0',
     'category': 'Account',
     'author': "Openforce di Camilli Alessandro, "
