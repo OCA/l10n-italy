@@ -1153,7 +1153,7 @@ class WizardImportFatturapa(models.TransientModel):
                 AttachmentsData, invoice_id)
 
         # compute the invoice
-        # invoice.compute_taxes()
+        invoice.button_reset_taxes()
         account_invoice_tax = self.env['account.invoice.tax']
         compute_taxes = account_invoice_tax.compute(
             invoice.with_context(lang=invoice.partner_id.lang))
