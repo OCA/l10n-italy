@@ -7,7 +7,6 @@ from openerp.exceptions import Warning as UserError
 from openerp.tools.float_utils import float_round
 from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
     DatiRitenutaType,
-    AltriDatiGestionaliType,
     DettaglioPagamentoType,
     DatiPagamentoType,
     DatiCassaPrevidenzialeType,

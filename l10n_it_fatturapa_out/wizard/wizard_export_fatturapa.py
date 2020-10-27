@@ -939,8 +939,8 @@ class WizardExportFatturapa(models.TransientModel):
             context_partner.update({'lang': partner.lang})
             try:
                 res = self.with_context(
-                        context_partner).setFatturaElettronicaHeader(
-                            company, partner, fatturapa)
+                    context_partner).setFatturaElettronicaHeader(
+                        company, partner, fatturapa)
                 if res is not None:
                     continue
                 for invoice_id in invoice_ids:
