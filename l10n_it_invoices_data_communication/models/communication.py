@@ -288,8 +288,8 @@ class ComunicazioneDatiIva(models.Model):
         vals['cedente_Denominazione'] = encode_for_export(partner.name, 80)
         # Sede
         vals['cedente_sede_Indirizzo'] = '{} {}'.format(
-            encode_for_export(partner.street or '', 60),
-            encode_for_export(partner.street2 or '', 60)).strip()
+            encode_for_export(partner.street or '', 60, encoding='ascii'),
+            encode_for_export(partner.street2 or '', 60, encoding='ascii')).strip()
         vals['cedente_sede_Cap'] = encode_for_export(
             partner.zip or '', 5, encoding='ascii')
         vals['cedente_sede_Comune'] = encode_for_export(partner.city or '', 60)
@@ -363,8 +363,8 @@ class ComunicazioneDatiIva(models.Model):
         vals['cessionario_Denominazione'] = encode_for_export(partner.name or '', 80)
         # Sede
         vals['cessionario_sede_Indirizzo'] = '{} {}'.format(
-            encode_for_export(partner.street or '', 60),
-            encode_for_export(partner.street2 or '', 60)).strip()
+            encode_for_export(partner.street or '', 60, encoding='ascii'),
+            encode_for_export(partner.street2 or '', 60, encoding='ascii')).strip()
         vals['cessionario_sede_Cap'] = encode_for_export(
             partner.zip or '', 5, encoding='ascii')
         vals['cessionario_sede_Comune'] = encode_for_export(partner.city or '', 60)
