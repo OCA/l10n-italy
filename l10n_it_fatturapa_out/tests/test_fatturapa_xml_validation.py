@@ -415,7 +415,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.check_content(xml_content, 'IT06363391001_00009.xml')
 
     def test_11_xml_export(self):
-        self.set_sequences(21, '2018')
+        self.set_sequences(11, '2018')
         self.product_product_10.default_code = 'GH82Ø23€ŦD11'
         self.product_order_01.default_code = 'GZD11'
         partner = self.res_partner_fatturapa_2
