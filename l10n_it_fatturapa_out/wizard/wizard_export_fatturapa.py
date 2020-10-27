@@ -663,15 +663,11 @@ class WizardExportFatturapa(models.TransientModel):
             # and '&#10;' would not be correctly visualized anyway
             # (for example firefox replaces '&#10;' with space
             Descrizione=encode_for_export(line.name.replace('\n', ' '), 1000),
-            PrezzoUnitario=('%.' + str(
-                price_precision
-            ) + 'f') % float_round(prezzo_unitario, 2),
-            Quantita=('%.' + str(
-                uom_precision
-            ) + 'f') % line.quantity,
-            UnitaMisura=line.uos_id and (
-                unidecode(line.uos_id.name)) or None,
-            PrezzoTotale='%.2f' % float_round(line.price_subtotal, 2),
+            PrezzoUnitario=('%.' + str(price_precision) + 'f') % float_round(
+                prezzo_unitario, price_precision),
+            Quantita=('%.' + str(uom_precision) + 'f') % line.quantity,
+            UnitaMisura=line.uos_id and (unidecode(line.uos_id.name)) or None,
+            PrezzoTotale='%.2f' % float_round(line.price_subtotal, price_precision),
             AliquotaIVA=AliquotaIVA)
         DettaglioLinea.ScontoMaggiorazione.extend(
             self.setScontoMaggiorazione(line))
