@@ -52,7 +52,8 @@ class AccountInvoice(models.Model):
         if tax_grouped:
             for key in tax_grouped:
                 val = tax_grouped[key]
-                val = self._check_tax_comunicazione_dati_iva(key, val)
+                val = self._check_tax_comunicazione_dati_iva(
+                    self.env['account.tax'].browse(key), val)
                 tax_lines.append((0, 0, val))
         tot_vals = {
             'tot_imponibile': tot_imponibile,
