@@ -12,6 +12,7 @@
                             <field name="report_print_menu"
                                    string="Attached report"
                                    widget="selection"/>
+                            <field name="ignore_errors"/>
                         </group>
                         <newline/>
                         <group col="3">
