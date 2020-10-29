@@ -613,7 +613,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertTrue(orig_invoice.e_invoice_line_ids)
         self.assertFalse(orig_invoice.invoice_line)
         self.assertTrue(orig_invoice.e_invoice_validation_error)
-        self.assertTrue(orig_invoice.reference)
+        self.assertTrue(orig_invoice.supplier_invoice_number)
         self.assertTrue(orig_invoice.date_invoice)
 
     def test_31_xml_import(self):
