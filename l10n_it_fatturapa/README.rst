@@ -51,13 +51,13 @@ Installation
 
 **Italiano**
 
-Questo modulo richiede PyXB 1.2.5
+Questo modulo richiede PyXB 1.2.6
 
 http://pyxb.sourceforge.net/
 
 **English**
 
-This module requires PyXB 1.2.5
+This module requires PyXB 1.2.6
 
 http://pyxb.sourceforge.net/
 
@@ -117,7 +117,8 @@ Contributors
 * Roberto Fichera <https://github.com/robyf70>
 * Sergio Corato <https://github.com/sergiocorato>
 * Sergio Zanchetta <https://github.com/primes2h>
-* Vincenzo Terzulli
+* Copyright 2019 Gianluigi Tiesi - Netfarm S.r.l.
+* Copyright 2020 Vincenzo Terzulli <v.terzulli@elvenstudio.it>
 
 Maintainers
 ~~~~~~~~~~~

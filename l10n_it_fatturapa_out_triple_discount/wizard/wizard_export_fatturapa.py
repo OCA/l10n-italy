@@ -4,7 +4,7 @@
 
 from openerp import models
 from openerp.tools.float_utils import float_round
-from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
+from openerp.addons.l10n_it_fatturapa.bindings.fatturapa import (
     ScontoMaggiorazioneType
 )
 

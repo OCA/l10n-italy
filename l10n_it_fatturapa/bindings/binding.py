@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 # flake8: noqa
-# ./binding.py
-# -*- coding: utf-8 -*-
 # PyXB bindings for NM:32e521a6da5b62d07147ea75b23acb0fb9726893
-# Generated 2020-06-11 15:28:14.741421 by PyXB version 1.2.5 using Python 2.7.12.final.0
+# Generated 2020-10-29 12:37:34.584439 by PyXB version 1.2.6 using Python 2.7.12.final.0
 # By Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-# By Vincenzo Terzulli <v.terzulli@elvenstudio.it>
+# By 2019 Gianluigi Tiesi - Netfarm S.r.l.
+# By 2020 Vincenzo Terzulli <v.terzulli@elvenstudio.it>
 # Namespace http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2
 
 from __future__ import unicode_literals
@@ -25,10 +24,10 @@ except ImportError as err:
     _logger.debug(err)
 
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:5e138c78-abe7-11ea-849b-9cb6d0f47f3b')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:19e03b20-19db-11eb-80f2-9cb6d0f47f3b')
 
 # Version of PyXB used to generate the bindings
-_PyXBVersion = '1.2.5'
+_PyXBVersion = '1.2.6'
 # Generated bindings are not compatible across PyXB versions
 if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
@@ -45,7 +44,6 @@ Namespace = pyxb.namespace.NamespaceForURI('http://ivaservizi.agenziaentrate.gov
 Namespace.configureCategories(['typeBinding', 'elementBinding'])
 _Namespace_ds = _ImportedBinding__ds.Namespace
 _Namespace_ds.configureCategories(['typeBinding', 'elementBinding'])
-
 
 def CreateFromDocument (xml_text, default_namespace=None, location_base=None):
     """Parse the given XML and use the document element to create a
@@ -309,10 +307,10 @@ class RiferimentoNumeroLineaType (pyxb.binding.datatypes.integer):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RiferimentoNumeroLineaType')
     _XSDLocation = pyxb.utils.utility.Location('https://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.3/Schema_del_file_xml_FatturaPA_versione_1.2.1.xsd', 482, 2)
     _Documentation = None
-RiferimentoNumeroLineaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=RiferimentoNumeroLineaType, value=pyxb.binding.datatypes.integer(9999))
 RiferimentoNumeroLineaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=RiferimentoNumeroLineaType, value=pyxb.binding.datatypes.integer(1))
-RiferimentoNumeroLineaType._InitializeFacetMap(RiferimentoNumeroLineaType._CF_maxInclusive,
-   RiferimentoNumeroLineaType._CF_minInclusive)
+RiferimentoNumeroLineaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=RiferimentoNumeroLineaType, value=pyxb.binding.datatypes.integer(9999))
+RiferimentoNumeroLineaType._InitializeFacetMap(RiferimentoNumeroLineaType._CF_minInclusive,
+   RiferimentoNumeroLineaType._CF_maxInclusive)
 Namespace.addCategoryObject('typeBinding', 'RiferimentoNumeroLineaType', RiferimentoNumeroLineaType)
 _module_typeBindings.RiferimentoNumeroLineaType = RiferimentoNumeroLineaType
 
@@ -922,11 +920,11 @@ class EmailType (pyxb.binding.datatypes.normalizedString):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'EmailType')
     _XSDLocation = pyxb.utils.utility.Location('https://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.3/Schema_del_file_xml_FatturaPA_versione_1.2.1.xsd', 1363, 2)
     _Documentation = None
-EmailType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(256))
 EmailType._CF_pattern = pyxb.binding.facets.CF_pattern()
 EmailType._CF_pattern.addPattern(pattern='([!#-\'*+/-9=?A-Z^-~-]+(\\.[!#-\'*+/-9=?A-Z^-~-]+)*|"(\\[\\]!#-[^-~ \\t]|(\\\\[\\t -~]))+")@([!#-\'*+/-9=?A-Z^-~-]+(\\.[!#-\'*+/-9=?A-Z^-~-]+)*|\\[[\\t -Z^-~]*\\])')
-EmailType._InitializeFacetMap(EmailType._CF_maxLength,
-   EmailType._CF_pattern)
+EmailType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(256))
+EmailType._InitializeFacetMap(EmailType._CF_pattern,
+   EmailType._CF_maxLength)
 Namespace.addCategoryObject('typeBinding', 'EmailType', EmailType)
 _module_typeBindings.EmailType = EmailType
 
@@ -996,10 +994,10 @@ class RiferimentoFaseType (pyxb.binding.datatypes.integer):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RiferimentoFaseType')
     _XSDLocation = pyxb.utils.utility.Location('https://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.3/Schema_del_file_xml_FatturaPA_versione_1.2.1.xsd', 1391, 2)
     _Documentation = None
-RiferimentoFaseType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=RiferimentoFaseType, value=pyxb.binding.datatypes.integer(999))
 RiferimentoFaseType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=RiferimentoFaseType, value=pyxb.binding.datatypes.integer(1))
-RiferimentoFaseType._InitializeFacetMap(RiferimentoFaseType._CF_maxInclusive,
-   RiferimentoFaseType._CF_minInclusive)
+RiferimentoFaseType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=RiferimentoFaseType, value=pyxb.binding.datatypes.integer(999))
+RiferimentoFaseType._InitializeFacetMap(RiferimentoFaseType._CF_minInclusive,
+   RiferimentoFaseType._CF_maxInclusive)
 Namespace.addCategoryObject('typeBinding', 'RiferimentoFaseType', RiferimentoFaseType)
 _module_typeBindings.RiferimentoFaseType = RiferimentoFaseType
 
@@ -1011,10 +1009,10 @@ class NumeroColliType (pyxb.binding.datatypes.integer):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NumeroColliType')
     _XSDLocation = pyxb.utils.utility.Location('https://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.3/Schema_del_file_xml_FatturaPA_versione_1.2.1.xsd', 1397, 2)
     _Documentation = None
-NumeroColliType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=NumeroColliType, value=pyxb.binding.datatypes.integer(9999))
 NumeroColliType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=NumeroColliType, value=pyxb.binding.datatypes.integer(1))
-NumeroColliType._InitializeFacetMap(NumeroColliType._CF_maxInclusive,
-   NumeroColliType._CF_minInclusive)
+NumeroColliType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=NumeroColliType, value=pyxb.binding.datatypes.integer(9999))
+NumeroColliType._InitializeFacetMap(NumeroColliType._CF_minInclusive,
+   NumeroColliType._CF_maxInclusive)
 Namespace.addCategoryObject('typeBinding', 'NumeroColliType', NumeroColliType)
 _module_typeBindings.NumeroColliType = NumeroColliType
 
@@ -1026,10 +1024,10 @@ class NumeroLineaType (pyxb.binding.datatypes.integer):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NumeroLineaType')
     _XSDLocation = pyxb.utils.utility.Location('https://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.3/Schema_del_file_xml_FatturaPA_versione_1.2.1.xsd', 1403, 2)
     _Documentation = None
-NumeroLineaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=NumeroLineaType, value=pyxb.binding.datatypes.integer(9999))
 NumeroLineaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=NumeroLineaType, value=pyxb.binding.datatypes.integer(1))
-NumeroLineaType._InitializeFacetMap(NumeroLineaType._CF_maxInclusive,
-   NumeroLineaType._CF_minInclusive)
+NumeroLineaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=NumeroLineaType, value=pyxb.binding.datatypes.integer(9999))
+NumeroLineaType._InitializeFacetMap(NumeroLineaType._CF_minInclusive,
+   NumeroLineaType._CF_maxInclusive)
 Namespace.addCategoryObject('typeBinding', 'NumeroLineaType', NumeroLineaType)
 _module_typeBindings.NumeroLineaType = NumeroLineaType
 
@@ -1083,10 +1081,10 @@ class GiorniTerminePagamentoType (pyxb.binding.datatypes.integer):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'GiorniTerminePagamentoType')
     _XSDLocation = pyxb.utils.utility.Location('https://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.3/Schema_del_file_xml_FatturaPA_versione_1.2.1.xsd', 1424, 2)
     _Documentation = None
-GiorniTerminePagamentoType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=GiorniTerminePagamentoType, value=pyxb.binding.datatypes.integer(999))
 GiorniTerminePagamentoType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=GiorniTerminePagamentoType, value=pyxb.binding.datatypes.integer(0))
-GiorniTerminePagamentoType._InitializeFacetMap(GiorniTerminePagamentoType._CF_maxInclusive,
-   GiorniTerminePagamentoType._CF_minInclusive)
+GiorniTerminePagamentoType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=GiorniTerminePagamentoType, value=pyxb.binding.datatypes.integer(999))
+GiorniTerminePagamentoType._InitializeFacetMap(GiorniTerminePagamentoType._CF_minInclusive,
+   GiorniTerminePagamentoType._CF_maxInclusive)
 Namespace.addCategoryObject('typeBinding', 'GiorniTerminePagamentoType', GiorniTerminePagamentoType)
 _module_typeBindings.GiorniTerminePagamentoType = GiorniTerminePagamentoType
 

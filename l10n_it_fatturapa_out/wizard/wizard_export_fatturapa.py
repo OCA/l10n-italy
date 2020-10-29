@@ -22,7 +22,7 @@ from openerp.tools.float_utils import float_round
 from openerp.tools.safe_eval import safe_eval
 import time
 
-from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
+from openerp.addons.l10n_it_fatturapa.bindings.fatturapa import (
     FatturaElettronica,
     FatturaElettronicaHeaderType,
     DatiTrasmissioneType,

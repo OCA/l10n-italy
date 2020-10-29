@@ -2,12 +2,12 @@
 
 from openerp import models, api, fields, _
 from openerp.exceptions import Warning as UserError
-from openerp.addons.l10n_it_fatturapa.bindings import fatturapa_v_1_2
+from openerp.addons.l10n_it_fatturapa.bindings import fatturapa
 
 
 def get_invoice_obj(fatturapa_attachment):
         xml_string = fatturapa_attachment.get_xml_string()
-        return fatturapa_v_1_2.CreateFromDocument(xml_string)
+        return fatturapa.CreateFromDocument(xml_string)
 
 
 class WizardLinkToInvoiceLine(models.TransientModel):

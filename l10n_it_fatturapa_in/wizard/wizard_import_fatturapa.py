@@ -5,7 +5,7 @@ from openerp import models, api, fields, _
 from openerp.tools import float_is_zero
 from openerp.exceptions import Warning as UserError
 
-from openerp.addons.l10n_it_fatturapa.bindings import fatturapa_v_1_2
+from openerp.addons.l10n_it_fatturapa.bindings import fatturapa
 from openerp.addons.base_iban.base_iban import _pretty_iban
 
 _logger = logging.getLogger(__name__)
@@ -1382,7 +1382,7 @@ class WizardImportFatturapa(models.TransientModel):
 
     def get_invoice_obj(self, fatturapa_attachment):
         xml_string = fatturapa_attachment.get_xml_string()
-        return fatturapa_v_1_2.CreateFromDocument(xml_string)
+        return fatturapa.CreateFromDocument(xml_string)
 
     @api.multi
     def importFatturaPA(self):
@@ -1414,6 +1414,10 @@ class WizardImportFatturapa(models.TransientModel):
             if self.env.context.get('inconsistencies'):
                 generic_inconsistencies = (
                     self.env.context['inconsistencies'] + '\n\n')
+
+            xmlproblems = getattr(fatt, '_xmldoctor', None)
+            if xmlproblems:  # None or []
+                generic_inconsistencies += '\n'.join(xmlproblems) + '\n\n'
 
             # 2
             for fattura in fatt.FatturaElettronicaBody:

@@ -3,6 +3,8 @@
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
 # Copyright 2018 Gianmarco Conte, Marco Calcagni - Dinamiche Aziendali srl
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
+# Copyright 2019 Gianluigi Tiesi - Netfarm S.r.l.
+# Copyright 2020 Vincenzo Terzulli <v.terzulli@elvenstudio.it>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
@@ -41,7 +43,7 @@
     'installable': True,
     'external_dependencies': {
         'python': [
-            'pyxb',  # pyxb 1.2.5
+            'pyxb',  # pyxb 1.2.6
             'asn1crypto'
         ],
     }
