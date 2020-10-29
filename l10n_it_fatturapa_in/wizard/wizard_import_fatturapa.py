@@ -1070,7 +1070,7 @@ class WizardImportFatturapa(models.TransientModel):
                 )
 
             line_sequence = max(invoice.invoice_line.mapped('sequence'))
-            line_vals = []
+            line_vals = {}
             for summary in FatturaBody.DatiBeniServizi.DatiRiepilogo:
                 to_round = float(summary.Arrotondamento or 0.0)
                 if to_round != 0.0:
@@ -1083,7 +1083,7 @@ class WizardImportFatturapa(models.TransientModel):
                     name = _("Rounding down") if to_round > 0.0 else _(
                         "Rounding up")
                     line_sequence += 1
-                    line_vals.append({
+                    line_vals.update({
                         'sequence': line_sequence,
                         'invoice_id': invoice.id,
                         'name': name,
