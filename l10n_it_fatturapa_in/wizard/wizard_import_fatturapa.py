@@ -434,8 +434,8 @@ class WizardImportFatturapa(models.TransientModel):
             retLine['admin_ref'] = line.RiferimentoAmministrazione
 
         # TODO MOMENTANEAMENTE SOSPESA IN ATTESA DI VERIFICA
-        if wt_founds and line.Ritenuta:
-            retLine['invoice_line_tax_wt_ids'] = [(6, 0, [x.id for x in wt_founds])]
+        # if wt_founds and line.Ritenuta:
+        #     retLine['invoice_line_tax_wt_ids'] = [(6, 0, [x.id for x in wt_founds])]
 
         return retLine
 
@@ -1235,8 +1235,9 @@ class WizardImportFatturapa(models.TransientModel):
                     else:
                         raise UserError(msg)
 
-                for line in invoice.invoice_line:
-                    line.invoice_line_tax_wt_ids = [(4, wt_found.id)]
+                # TODO MOMENTANEAMENTE SOSPESA IN ATTESA DI VERIFICA
+                # for line in invoice.invoice_line:
+                #     line.invoice_line_tax_wt_ids = [(4, wt_found.id)]
                 # invoice._onchange_invoice_line_wt_ids()
                 # invoice.write(invoice._convert_to_write(invoice._cache))
                 continue
@@ -1255,8 +1256,9 @@ class WizardImportFatturapa(models.TransientModel):
                         "Welfare Fund data %s has withholding tax but no "
                         "withholding tax was found in the system."
                     ) % welfareLine.TipoCassa)
-                line_vals['invoice_line_tax_wt_ids'] = [
-                    (6, 0, [wt_found.id])]
+                # TODO MOMENTANEAMENTE SOSPESA IN ATTESA DI VERIFICA
+                # line_vals['invoice_line_tax_wt_ids'] = [
+                #     (6, 0, [wt_found.id])]
             if self.env.user.company_id.cassa_previdenziale_product_id:
                 cassa_previdenziale_product = self.env.user.company_id \
                     .cassa_previdenziale_product_id
