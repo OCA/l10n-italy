@@ -302,7 +302,7 @@ class AccountInvoice(models.Model):
         # if every line is negative, change them all
         for line in self.invoice_line:
             line.price_unit = -line.price_unit
-        self.compute_taxes()
+        self.button_reset_taxes()
 
 
 class FatturapaArticleCode(models.Model):

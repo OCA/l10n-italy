@@ -405,7 +405,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertFalse(invoice.delivery_datetime)
 
         # DatiBeniServizi/DettaglioLinee/Descrizione
-        self.assertEqual(invoice.invoice_line_ids[0].name, ' ')
+        self.assertEqual(invoice.invoice_line[0].name, ' ')
 
         # DatiPagamento/DettaglioPagamento/DataDecorrenzaPenale
         payment_data = self.env['fatturapa.payment.data'].search(
@@ -440,7 +440,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.efatt_rounding, -0.35)
         invoice.signal_workflow('invoice_open')
         move_line = False
-        for line in invoice.move_id.line_ids:
+        for line in invoice.move_id.line_id:
             if line.account_id.id == self.env.user.\
                     company_id.arrotondamenti_attivi_account_id.id:
                 move_line = True

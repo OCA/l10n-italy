@@ -273,7 +273,8 @@ class WizardImportFatturapa(models.TransientModel):
                 vals['phone'] = cedPrest.Contatti.Telefono
                 vals['email'] = cedPrest.Contatti.Email
                 vals['fax'] = cedPrest.Contatti.Fax
-            partner_model.browse(partner_id).write(vals)
+            # partner_model.browse(partner_id).write(vals)
+            partner_model.browse(partner_id).update(vals)
         return partner_id
 
     def getCarrirerPartner(self, Carrier):
@@ -958,6 +959,7 @@ class WizardImportFatturapa(models.TransientModel):
 
         # compute the invoice
         # invoice.compute_taxes()
+        invoice.button_reset_taxes()
         # this can happen with refunds with negative amounts
         invoice.process_negative_lines()
         return invoice_id
