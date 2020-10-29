@@ -970,9 +970,9 @@ class WizardImportFatturapa(models.TransientModel):
                 'date_invoice':
                     FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data.date(),
             })
-        if not invoice.reference:
+        if not invoice.supplier_invoice_number:
             invoice.update({
-                'reference':
+                'supplier_invoice_number':
                     FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
             })
 
