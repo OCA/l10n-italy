@@ -116,21 +116,23 @@ def CreateFromDocument(xml_string):
             #     _logger.warn(msg)
 
     # remove bogus dates accepted by ADE but not by python
-    for path, mandatory in datetime_types.items():
-        for element in root.xpath(path):
-            try:
-                pyxb.binding.datatypes.dateTime(element.text)
-            except OverflowError as e:
-                element_path = tree.getpath(element)
-                if mandatory:
-                    _logger.error('element %s is invalid but is mandatory: '
-                                  '%s' % (element_path, element.text))
-                else:
-                    element.getparent().remove(element)
-                    msg = 'removed invalid dateTime element %s: %s (%s)' % (
-                        element_path, element.text, e)
-                    problems.append(msg)
-                    _logger.warn(msg)
+    #for path, mandatory in datetime_types.items():
+    #    for element in root.xpath(path):
+    #        try:
+    #            d = datetime.datetime.strptime(element.text, '%Y-%m-%dT%H:%M:%S.%f%z')
+    #            if d < datetime.datetime(1970, 1, 1):
+    #                raise ValueError
+    #        except Exception as e:
+    #            element_path = tree.getpath(element)
+    #            if mandatory:
+    #                _logger.error('element %s is invalid but is mandatory: '
+    #                              '%s' % (element_path, element.text))
+    #            else:
+    #                element.getparent().remove(element)
+    #                msg = 'removed invalid dateTime element %s: %s (%s)' % (
+    #                    element_path, element.text, e)
+    #                problems.append(msg)
+    #                _logger.warn(msg)
 
     validat = validator.to_dict(tree, dict_class=ObjectDict)
     setattr(validat, '_xmldoctor', problems)
