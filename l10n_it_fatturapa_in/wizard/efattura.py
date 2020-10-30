@@ -126,7 +126,7 @@ def CreateFromDocument(xml_string):
         for element in root.xpath(path):
             try:
                 d = parse_datetime(element.text)
-                if d < parse_datetime('19700101T00:00:00.000+0000'):
+                if d < parse_datetime('1970-01-01T00:00:00.000+0000'):
                     raise ValueError
             except Exception as e:
                 element_path = tree.getpath(element)
