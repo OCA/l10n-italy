@@ -37,7 +37,6 @@ class WizardComputeFc(models.TransientModel):
         [("M", "Male"), ("F", "Female")], required=True, string="Sex"
     )
 
-    @api.multi
     @api.onchange("birth_city")
     def onchange_birth_city(self):
         self.ensure_one()
@@ -69,7 +68,6 @@ class WizardComputeFc(models.TransientModel):
 
         return res
 
-    @api.multi
     @api.onchange("birth_province")
     def onchange_birth_province(self):
         self.ensure_one()
@@ -177,7 +175,6 @@ class WizardComputeFc(models.TransientModel):
 
         return nc
 
-    @api.multi
     def compute_fc(self):
         active_id = self._context.get("active_id")
         partner = self.env["res.partner"].browse(active_id)
