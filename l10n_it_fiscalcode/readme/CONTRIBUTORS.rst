@@ -10,3 +10,4 @@
 * Andrea Cometa <info@andreacometa.it>
 * Andrea Gallina
 * Matteo Bilotta <mbilotta@linkgroup.it>
+* Giuseppe Borruso - Dinamiche Aziendali srl <gborruso@dinamicheaziendali.it>

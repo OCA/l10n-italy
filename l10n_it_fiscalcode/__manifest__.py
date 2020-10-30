@@ -2,13 +2,13 @@
 # Copyright 2016 Andrea Gallina (Apulia Software)
 # Copyright 2018 Matteo Bilotta (Link IT s.r.l.)
 # Copyright 2018 Lorenzo Battistini (https://github.com/eLBati)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 {
     "name": "Italian Localization - Fiscal Code",
-    "version": "12.0.1.1.3",
+    "version": "14.0.1.0.0",
     "development_status": "Production/Stable",
-    "category": "Localisation/Italy",
+    "category": "Localization/Italy",
     "author": "Link IT s.r.l., "
     "Apulia Software, "
     "Odoo Italia Network, "
