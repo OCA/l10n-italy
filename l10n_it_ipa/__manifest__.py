@@ -10,13 +10,12 @@
     "version": "12.0.1.0.1",
     "development_status": "Beta",
     "category": "Localisation/Italy",
-    "author": "KTec S.r.l,Odoo Community Association (OCA),"
-              "Odoo Italia Network",
+    "author": "KTec S.r.l,Odoo Community Association (OCA)," "Odoo Italia Network",
     "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
-    "depends": ['base'],
+    "depends": ["base"],
     "data": [
-        'view/partner_view.xml',
+        "view/partner_view.xml",
     ],
-    'installable': True,
+    "installable": True,
 }
