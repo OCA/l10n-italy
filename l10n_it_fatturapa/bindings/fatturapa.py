@@ -1,8 +1,4 @@
 import logging
-from datetime import datetime
-
-import xmlschema
-
 from odoo.modules.module import get_module_resource
 from lxml import etree
 
@@ -14,7 +10,7 @@ try:
 except (ImportError) as err:
     _logger.debug(err)
 
-# from .binding import *  # noqa: F403
+from .binding import *  # noqa: F403
 
 XSD_SCHEMA = 'Schema_del_file_xml_FatturaPA_versione_1.2.1.xsd'
 
@@ -22,7 +18,7 @@ _xsd_schema = get_module_resource('l10n_it_fatturapa', 'bindings', 'xsd',
                                   XSD_SCHEMA)
 _root = etree.parse(_xsd_schema)
 
-# _CreateFromDocument = CreateFromDocument  # noqa: F405
+_CreateFromDocument = CreateFromDocument  # noqa: F405
 
 date_types = {}
 datetime_types = {}
@@ -81,27 +77,11 @@ def collect_types():
 
 
 def CreateFromDocument(xml_string):
-    # il codice seguente rimpiazza fatturapa.CreateFromDocument(xml_string)
-    class ObjectDict(object):
-        def __getattr__(self, attr):
-            try:
-                return getattr(self.__dict__, attr)
-            except AttributeError:
-                return None
-
-        def __getitem__(self, *attr, **kwattr):
-            return self.__dict__.__getitem__(*attr, **kwattr)
-
-        def __setitem__(self, *attr, **kwattr):
-            return self.__dict__.__setitem__(*attr, **kwattr)
-
-    validator = xmlschema.XMLSchema(_xsd_schema)
-
-    # try:
-    root = etree.fromstring(xml_string)
-    # except Exception as e:
-    #     _logger.warn('lxml was unable to parse xml: %s' % e)
-    #     return _CreateFromDocument(xml_string)
+    try:
+        root = etree.fromstring(xml_string)
+    except Exception as e:
+        _logger.warn('lxml was unable to parse xml: %s' % e)
+        return _CreateFromDocument(xml_string)
 
     problems = []
     tree = etree.ElementTree(root)
@@ -110,20 +90,14 @@ def CreateFromDocument(xml_string):
     # pyxb will fail to compare with
     for path, mandatory in date_types.items():
         for element in root.xpath(path):
-            result = element.text.strip()
-            if len(result) > 10:
+            result = pyxb.binding.datatypes.date(element.text.strip())
+            if result.tzinfo is not None:
+                result = result.replace(tzinfo=None)
+                element.text = result.XsdLiteral(result)
                 msg = 'removed timezone information from date only element ' \
-                          '%s: %s' % (tree.getpath(element), element.text)
+                      '%s: %s' % (tree.getpath(element), element.text)
                 problems.append(msg)
-            element.text = result[:10]
-            # result = datetime.strptime(result, '%Y-%m-%d')
-            # if result.tzinfo is not None:
-            #     result = result.replace(tzinfo=None)
-            #     element.text = result.strftime('%Y-%m-%d')
-            #     msg = 'removed timezone information from date only element ' \
-            #           '%s: %s' % (tree.getpath(element), element.text)
-            #     problems.append(msg)
-            #     _logger.warn(msg)
+                _logger.warn(msg)
 
     # remove bogus dates accepted by ADE but not by python
     for path, mandatory in datetime_types.items():
@@ -142,12 +116,9 @@ def CreateFromDocument(xml_string):
                     problems.append(msg)
                     _logger.warn(msg)
 
-    # fatturapa = _CreateFromDocument(etree.tostring(root))
-    # return fatturapa
-
-    validat = validator.to_dict(tree, dict_class=ObjectDict)
-    setattr(validat, '_xmldoctor', problems)
-    return validat
+    fatturapa = _CreateFromDocument(etree.tostring(root))
+    setattr(fatturapa, '_xmldoctor', problems)
+    return fatturapa
 
 
 collect_types()

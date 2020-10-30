@@ -44,7 +44,6 @@
     'external_dependencies': {
         'python': [
             'pyxb',  # pyxb 1.2.6
-            'xmlschema',
             'asn1crypto'
         ],
     }
