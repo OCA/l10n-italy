@@ -1,10 +1,10 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api
+from odoo import api, fields, models
 
 
 class ResPartner(models.Model):
-    _inherit = 'res.partner'
+    _inherit = "res.partner"
 
     @api.multi
     def check_fiscalcode(self):
@@ -12,7 +12,7 @@ class ResPartner(models.Model):
             if not partner.fiscalcode:
                 # Because it is not mandatory
                 continue
-            elif partner.company_type == 'person':
+            elif partner.company_type == "person":
                 # Person case
                 if partner.company_name:
                     # In E-commerce, if there is company_name,
@@ -24,10 +24,12 @@ class ResPartner(models.Model):
                     return False
         return True
 
-    fiscalcode = fields.Char(
-        'Fiscal Code', size=16, help="Italian Fiscal Code")
+    fiscalcode = fields.Char("Fiscal Code", size=16, help="Italian Fiscal Code")
 
     _constraints = [
-        (check_fiscalcode,
-         "The fiscal code doesn't seem to be correct.", ["fiscalcode"])
+        (
+            check_fiscalcode,
+            "The fiscal code doesn't seem to be correct.",
+            ["fiscalcode"],
+        )
     ]

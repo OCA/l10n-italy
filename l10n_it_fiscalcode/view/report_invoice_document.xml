@@ -4,7 +4,7 @@
         <xpath expr="//div[@t-if='o.partner_id.vat']" position="after">
             <div t-if="o.partner_id.fiscalcode" class="mt16">
                 Fiscal code:
-                <span t-field="o.partner_id.fiscalcode"/>
+                <span t-field="o.partner_id.fiscalcode" />
             </div>
         </xpath>
     </template>
