@@ -28,8 +28,8 @@
         'security/ir.model.access.csv',
         'security/rules.xml',
     ],
-    "installable": True
-        'external_dependencies': {
+    "installable": True,
+    'external_dependencies': {
         'python': [
             'elementpath',
             'xmlschema',
