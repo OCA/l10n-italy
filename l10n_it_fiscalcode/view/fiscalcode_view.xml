@@ -3,7 +3,7 @@
     <record id="view_partner_form_fiscalcode_data" model="ir.ui.view">
         <field name="name">res.partner.fiscalcode.data</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base_vat.view_partner_form"/>
+        <field name="inherit_id" ref="base_vat.view_partner_form" />
         <field name="arch" type="xml">
             <field name="type" position="after">
                 <label for="fiscalcode" />
@@ -16,10 +16,10 @@
     <record id="view_res_partner_filter_fiscalcode_data" model="ir.ui.view">
         <field name="name">res.partner.fiscalcode.filter</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="inherit_id" ref="base.view_res_partner_filter" />
         <field name="arch" type="xml">
             <search>
-                <field name="fiscalcode"/>
+                <field name="fiscalcode" />
             </search>
         </field>
     </record>
