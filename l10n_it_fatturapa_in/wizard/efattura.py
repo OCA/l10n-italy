@@ -74,7 +74,7 @@ def parse_datetime(s):
     m = re.match(r'(.*?)(\+|-)(\d+):(\d+)', s)
     if m:
         s = "".join(m.group(1,2,3,4))
-    return datetime.datetime.strptime(s, '%Y-%m-%dT%H:%M:%S.%f%z')
+    return datetime.strptime(s, '%Y-%m-%dT%H:%M:%S.%f%z')
 
 def CreateFromDocument(xml_string):
     # il codice seguente rimpiazza fatturapa.CreateFromDocument(xml_string)
@@ -126,7 +126,7 @@ def CreateFromDocument(xml_string):
         for element in root.xpath(path):
             try:
                 d = parse_datetime(element.text)
-                if d < datetime.datetime(1970, 1, 1):
+                if d < datetime(1970, 1, 1):
                     raise ValueError
             except Exception as e:
                 element_path = tree.getpath(element)
