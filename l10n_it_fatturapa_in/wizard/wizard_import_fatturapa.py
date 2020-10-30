@@ -389,7 +389,7 @@ class WizardImportFatturapa(models.TransientModel):
     def get_line_product(self, line, partner):
         product = None
         supplier_info = self.env['product.supplierinfo']
-        if len(line.CodiceArticolo) == 1:
+        if len(line.CodiceArticolo or []) == 1:
             supplier_code = line.CodiceArticolo[0].CodiceValore
             supplier_infos = supplier_info.search([
                 ('product_code', '=', supplier_code),
@@ -895,6 +895,7 @@ class WizardImportFatturapa(models.TransientModel):
                 e_invoice_received_date.date()
         else:
             e_invoice_received_date = fatturapa_attachment.create_date.date()
+
         e_invoice_date = datetime.strptime(FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data, '%Y-%m-%d').date()
 
         invoice_data = {
@@ -1005,8 +1006,7 @@ class WizardImportFatturapa(models.TransientModel):
     def set_vendor_bill_data(self, FatturaBody, invoice):
         if not invoice.date_invoice:
             invoice.update({
-                'date_invoice':
-                    datetime.strptime(FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data, '%Y-%m-%d').date(),
+                'date_invoice': datetime.strptime(FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data, '%Y-%m-%d').date(),
             })
         if not invoice.reference:
             invoice.update({
@@ -1154,7 +1154,7 @@ class WizardImportFatturapa(models.TransientModel):
 
     def _get_last_due_date(self, DatiPagamento):
         dates = []
-        for PaymentLine in DatiPagamento:
+        for PaymentLine in DatiPagamento or []:
             details = PaymentLine.DettaglioPagamento
             if details:
                 for dline in details:
@@ -1438,21 +1438,8 @@ class WizardImportFatturapa(models.TransientModel):
 
     def get_invoice_obj(self, fatturapa_attachment):
         xml_string = fatturapa_attachment.get_xml_string()
+        return fatturapa.CreateFromDocument(xml_string)
 
-        # il codice seguente rimpiazza fatturapa.CreateFromDocument(xml_string)
-        class ObjectDict(object):
-            def __getattr__(self, attr):
-                try:
-                    return getattr(self.__dict__, attr)
-                except AttributeError:
-                    return None
-            def __getitem__(self, *attr, **kwattr):
-                return self.__dict__.__getitem__(*attr, **kwattr)
-            def __setitem__(self, *attr, **kwattr):
-                return self.__dict__.__setitem__(*attr, **kwattr)
-
-        validator = xmlschema.XMLSchema(fatturapa._xsd_schema)
-        return validator.to_dict(xml_string.decode(), dict_class=ObjectDict)
 
     @api.multi
     def importFatturaPA(self):
