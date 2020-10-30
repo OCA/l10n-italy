@@ -7,7 +7,7 @@ from odoo.tools import float_is_zero
 from odoo.tools.translate import _
 from odoo.exceptions import UserError
 
-from odoo.addons.l10n_it_fatturapa.bindings import fatturapa
+from . import efattura
 from odoo.addons.base_iban.models.res_partner_bank import pretty_iban
 
 _logger = logging.getLogger(__name__)
@@ -1438,7 +1438,7 @@ class WizardImportFatturapa(models.TransientModel):
 
     def get_invoice_obj(self, fatturapa_attachment):
         xml_string = fatturapa_attachment.get_xml_string()
-        return fatturapa.CreateFromDocument(xml_string)
+        return efattura.CreateFromDocument(xml_string)
 
 
     @api.multi
