@@ -3,10 +3,10 @@
 import base64
 import tempfile
 from openerp.modules import get_module_resource
-from openerp.tests.common import SingleTransactionCase
+from openerp.tests.common import TransactionCase
 
 
-class FatturapaCommon(SingleTransactionCase):
+class FatturapaCommon(TransactionCase):
 
     def getFile(self, filename, module_name=None):
         if module_name is None:
@@ -108,6 +108,24 @@ class FatturapaCommon(SingleTransactionCase):
             'bic': 'BCITITMM',
         })
 
+    def create_fiscal_years(self):
+        self.fiscalyear2019 = self.account_fiscalyear_model.create(
+            vals={
+                'name': '2019',
+                'code': '2019',
+                'date_start': '2019-01-01',
+                'date_stop': '2019-12-31',
+            }
+        )
+        self.period_2019_05 = self.account_period_model.create({
+            'name': 'Period 05/2019',
+            'code': '05/2019',
+            'date_start': '2019-05-01',
+            'date_stop': '2019-05-31',
+            'special': False,
+            'fiscalyear_id': self.fiscalyear2019.id,
+        })
+
     def setUp(self):
         super(FatturapaCommon, self).setUp()
         self.wizard_model = self.env['wizard.import.fatturapa']
@@ -115,6 +133,9 @@ class FatturapaCommon(SingleTransactionCase):
         self.data_model = self.env['ir.model.data']
         self.attach_model = self.env['fatturapa.attachment.in']
         self.invoice_model = self.env['account.invoice']
+        self.account_fiscalyear_model = self.env['account.fiscalyear']
+        self.account_period_model = self.env['account.period']
+        self.create_fiscal_years()
         self.payable_account_id = self.env['account.account'].search([
             ('user_type', '=', self.env.ref(
                 'account.data_account_type_payable').id)
