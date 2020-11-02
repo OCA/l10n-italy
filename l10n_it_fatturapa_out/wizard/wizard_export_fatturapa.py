@@ -635,7 +635,7 @@ class WizardExportFatturapa(models.TransientModel):
             self, line_no, line, body, price_precision, uom_precision):
         if not line.invoice_line_tax_id:
             raise UserError(
-                    _("Invoice line %s does not have tax.") % line.name)
+                _("Invoice line %s does not have tax.") % line.name)
         if len(line.invoice_line_tax_id) > 1:
             raise UserError(
                 _("Too many taxes for invoice line %s.") % line.name)
