@@ -160,6 +160,11 @@ class FatturapaCommon(TransactionCase):
             arrotondamenti_passivi_account_id)
         self.env.user.company_id.arrotondamenti_tax_id = (
             arrotondamenti_tax_id)
+        self.provinceSS = self.env['res.country.state'].create({
+            'name': 'Sassari',
+            'code': 'SS',
+            'country_id': self.env.ref('base.it').id
+        })
 
     def run_wizard(self, name, file_name, datas_fname=None,
                    mode='import', wiz_values=None, module_name=None):
