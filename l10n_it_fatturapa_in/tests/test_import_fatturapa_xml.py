@@ -372,7 +372,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
 
     def test_21_xml_import(self):
         supplier = self.env['res.partner'].search(
-            [('vat', '=', 'IT02780790107')])[0]
+            [('vat', '=', 'IT07973780013')])[0]
         # in order to make the system create the invoice lines
         supplier.e_invoice_detail_level = '2'
         res = self.run_wizard('test21', 'IT01234567890_FPR04.xml')
@@ -559,7 +559,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         """
 
         supplier = self.env['res.partner'].search(
-            [('vat', '=', 'IT02780790107')], limit=1)
+            [('vat', '=', 'IT07973780013')], limit=1)
         invoice_values = {
             'partner_id': supplier.id,
             'type': 'in_invoice',
@@ -595,7 +595,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         """
 
         supplier = self.env['res.partner'].search(
-            [('vat', '=', 'IT02780790107')], limit=1)
+            [('vat', '=', 'IT07973780013')], limit=1)
         invoice_values = {
             'partner_id': supplier.id,
             'type': 'in_invoice',
