@@ -110,6 +110,14 @@ class FatturaPACommon(TransactionCase):
                 'date_stop': '2018-12-31',
             }
         )
+        self.fiscalyear2019 = obj_acc_fiscalyear.create(
+            vals={
+                'name': '2019',
+                'code': '2019',
+                'date_start': '2019-01-01',
+                'date_stop': '2019-12-31',
+            }
+        )
         period_obj = self.env['account.period']
         self.period = period_obj.create({
             'name': "Period 01/2016",
@@ -143,6 +151,14 @@ class FatturaPACommon(TransactionCase):
             'special': False,
             'fiscalyear_id': self.fiscalyear1.id,
         })
+        self.period_2019_01 = period_obj.create({
+            'name': 'Period 01/2019',
+            'code': '01/2019',
+            'date_start': '2019-01-01',
+            'date_stop': '2019-01-31',
+            'special': False,
+            'fiscalyear_id': self.fiscalyear2019.id,
+        })
         self.pricelist = self.env.ref('product.list0')
 
     def AttachFileToInvoice(self, InvoiceId, filename):
@@ -156,7 +172,8 @@ class FatturaPACommon(TransactionCase):
         )
 
     def set_sequences(self, invoice_number, year):
-        inv_seq = self.seq_model.search([('name', '=', 'Sales Journal')])[0]
+        inv_seq = self.seq_model.search(
+            [('name', '=', 'Account Default Sales Journal')])[0]
         inv_seq.write({
             'prefix': 'INV/%s/' % year,
             'padding': 4,
