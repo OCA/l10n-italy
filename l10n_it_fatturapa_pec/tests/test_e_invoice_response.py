@@ -13,7 +13,7 @@ class TestEInvoiceResponse(EInvoiceCommon):
         super(TestEInvoiceResponse, self).setUp()
         self.PEC_server = self._create_fetchmail_pec_server()
         self.env.user.company_id.vat = 'IT03339130126'
-        self.set_sequences(9, 15, '2018-01-07')
+        self.set_sequences(15, '2018')
         self.attach_in_model = self.env['fatturapa.attachment.in']
 
     @staticmethod
