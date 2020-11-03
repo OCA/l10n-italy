@@ -17,10 +17,10 @@ def migrate(cr, version):
         env = api.Environment(cr, SUPERUSER_ID, {})
         env.ref('l10n_it_causali_pagamento.z').write({'code': 'ZO'})
         name = (
-            "Redditi derivanti dall’utilizzazione economica di opere "
-            "dell’ingegno, di brevetti industriali e di processi, formule e "
-            "informazioni relativi a esperienze acquisite in campo "
-            "industriale, commerciale o scientifico, che sono percepiti dagli "
-            "aventi causa a titolo gratuito (ad es. eredi e "
-            "legatari dell’autore e inventore)")
+            u"Redditi derivanti dall’utilizzazione economica di opere "
+            u"dell’ingegno, di brevetti industriali e di processi, formule e "
+            u"informazioni relativi a esperienze acquisite in campo "
+            u"industriale, commerciale o scientifico, che sono percepiti dagli "
+            u"aventi causa a titolo gratuito (ad es. eredi e "
+            u"legatari dell’autore e inventore)")
         env.ref('l10n_it_causali_pagamento.l').write({'name': name})
