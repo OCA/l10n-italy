@@ -11,9 +11,6 @@ import os
 import string
 import random
 
-from pyxb.utils import domutils
-from pyxb.binding.datatypes import decimal as pyxb_decimal
-
 import openerp
 from openerp import fields, models, api, _
 from openerp.exceptions import Warning as UserError
@@ -59,6 +56,8 @@ from openerp.addons.l10n_it_fatturapa.models.account import (
 _logger = logging.getLogger(__name__)
 
 try:
+    from pyxb.utils import domutils
+    from pyxb.binding.datatypes import decimal as pyxb_decimal
     from unidecode import unidecode
     from pyxb.exceptions_ import SimpleFacetValueError, SimpleTypeValueError
 except ImportError as err:
