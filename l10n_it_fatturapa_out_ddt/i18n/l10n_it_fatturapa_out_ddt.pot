@@ -14,29 +14,29 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_fatturapa_out_ddt
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_ddt.field_wizard_export_fatturapa__include_ddt_data
-msgid "DDT Data"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out_ddt
 #: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_wizard_export_fatturapa
 msgid "Export E-invoice"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_ddt
 #: selection:wizard.export.fatturapa,include_ddt_data:0
-msgid "Include DDT Data"
+msgid "Include TD Data"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_ddt
 #: model:ir.model.fields,help:l10n_it_fatturapa_out_ddt.field_wizard_export_fatturapa__include_ddt_data
-msgid "Include DDT data: The field must be entered when a transport document associated with a deferred invoice is present\n"
-"Include transport data: The field must be entered when a shipping invoice to be filled with transport data is present"
+msgid "Include TD data: The field must be entered when a transport document associated with a deferred invoice is present\n"
+"Include transport data: The field must be entered when a accompanying invoice to be filled with transport data is present"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_ddt
 #: selection:wizard.export.fatturapa,include_ddt_data:0
 msgid "Include transport data"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_ddt.field_wizard_export_fatturapa__include_ddt_data
+msgid "TD Data"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_ddt
