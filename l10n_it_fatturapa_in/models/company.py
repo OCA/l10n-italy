@@ -30,7 +30,6 @@ class ResCompany(models.Model):
         domain=[('type_tax_use', '=', 'purchase'), ('amount', '=', 0.0)],
         help="Tax used to both round up and down bills amount."
     )
-    enasarco_relax_checks = fields.Boolean('Relax checks for Enasarco')
     in_invoice_registration_date = fields.Selection([
         ('inv_date', 'Invoice Date'),
         ('rec_date', 'Received Date'),
@@ -60,9 +59,6 @@ class AccountConfigSettings(models.TransientModel):
     arrotondamenti_tax_id = fields.Many2one(
         related='company_id.arrotondamenti_tax_id',
         readonly=False
-    )
-    enasarco_relax_checks = fields.Boolean(
-        related='company_id.enasarco_relax_checks', readonly=False
     )
     in_invoice_registration_date = fields.Selection(
         related='company_id.in_invoice_registration_date', readonly=False
