@@ -92,6 +92,7 @@ class FatturapaCommon(SingleTransactionCase):
         return self.env['withholding.tax'].create({
             'name': '4q',
             'code': '4q',
+            'wt_types': 'enasarco',
             'account_receivable_id': self.payable_account_id,
             'account_payable_id': self.payable_account_id,
             'payment_term': self.env.ref('account.account_payment_term').id,
