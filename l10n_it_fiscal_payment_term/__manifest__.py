@@ -4,8 +4,8 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    "name": "Italian Localization - Termini fiscali di pagamento",
-    "version": "12.0.2.0.0",
+    "name": "ITA - Termini fiscali di pagamento",
+    "version": "14.0.1.0.0",
     "category": "Localization/Italy",
     "summary": "Condizioni di pagamento delle fatture elettroniche",
     "author": "Davide Corio, Agile Business Group, Innoviu, "
