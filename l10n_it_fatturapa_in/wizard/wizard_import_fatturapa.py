@@ -9,6 +9,15 @@ from odoo.addons.base_iban.models.res_partner_bank import pretty_iban
 
 _logger = logging.getLogger(__name__)
 
+WT_CODES_MAPPING = {
+    'RT01': 'ritenuta',
+    'RT02': 'ritenuta',
+    'RT03': 'inps',
+    'RT04': 'enasarco',
+    'RT05': 'enpam',
+    'RT06': 'other',
+}
+
 
 class WizardImportFatturapa(models.TransientModel):
     _name = "wizard.import.fatturapa"
@@ -945,16 +954,17 @@ class WizardImportFatturapa(models.TransientModel):
         self.set_e_invoice_lines(FatturaBody, invoice_data)
 
         invoice = invoice_model.create(invoice_data)
+
+        # 2.1.1.7
+        self.set_welfares_fund(
+            FatturaBody, credit_account_id, invoice, wt_founds)
+
         invoice._onchange_invoice_line_wt_ids()
         invoice._onchange_payment_term_date_invoice()
         invoice.write(invoice._convert_to_write(invoice._cache))
         invoice_id = invoice.id
 
         self.set_vendor_bill_data(FatturaBody, invoice)
-
-        # 2.1.1.7
-        self.set_welfares_fund(
-            FatturaBody, credit_account_id, invoice, wt_founds)
 
         rel_docs_dict = {
             # 2.1.2
@@ -1226,16 +1236,20 @@ class WizardImportFatturapa(models.TransientModel):
                 ) % Withholding.CausalePagamento)
 
             for wt in wts:
-                if wt.tax == float(Withholding.AliquotaRitenuta):
+                if (
+                    wt.tax == float(Withholding.AliquotaRitenuta) and
+                    WT_CODES_MAPPING[Withholding.TipoRitenuta] == wt.wt_types
+                ):
                     wt_founds.append(wt)
                     break
             else:
                 raise UserError(_(
                     "No withholding tax found with "
-                    "document payment reason %s and rate %s.")
+                    "document payment reason %s, rate %s and type %s.")
                     % (
                         Withholding.CausalePagamento,
-                        Withholding.AliquotaRitenuta
+                        Withholding.AliquotaRitenuta,
+                        WT_CODES_MAPPING[Withholding.TipoRitenuta]
                     ))
             invoice_data['ftpa_withholding_ids'].append((
                 0, 0, {
@@ -1256,55 +1270,11 @@ class WizardImportFatturapa(models.TransientModel):
             return
 
         WelfareFundLineModel = self.env['welfare.fund.data.line']
-
-        wts = False
-        enasarco_relax_checks = self.env.user.company_id.enasarco_relax_checks
-        if any([welfareLine for welfareLine in Welfares
-                if welfareLine.TipoCassa == 'TC07']):
-            # Search the matching withholding tax
-            wts = self.env['withholding.tax'].search(
-                [('wt_types', '=', 'enasarco')])
-
         for welfareLine in Welfares:
             WalfarLineVals = self._prepareWelfareLine(invoice.id, welfareLine)
             WelfareFundLineModel.create(WalfarLineVals)
 
-            # Handle only TC07
             if welfareLine.TipoCassa == 'TC07':
-                if not wts:
-                    msg = _(
-                        "The bill contains Welfare Fund tax with "
-                        "Type %s, "
-                        "but such a tax is not found in your system. Please "
-                        "set it."
-                    ) % welfareLine.TipoCassa
-                    if enasarco_relax_checks:
-                        self.log_inconsistency(msg)
-                    else:
-                        raise UserError(msg)
-
-                wt_found = False
-                for wt in wts:
-                    if wt.tax == float(welfareLine.AlCassa):
-                        wt_found = wt
-                        break
-
-                if not wt_found:
-                    msg = _(
-                        "The bill contains Welfare Fund tax with "
-                        "Type %s and Tax %s "
-                        "but such a tax is not found in your system. Please "
-                        "set it."
-                    ) % (welfareLine.TipoCassa, float(welfareLine.AlCassa))
-                    if enasarco_relax_checks:
-                        self.log_inconsistency(msg)
-                    else:
-                        raise UserError(msg)
-
-                for line in invoice.invoice_line_ids:
-                    line.invoice_line_tax_wt_ids = [(4, wt_found.id)]
-                invoice._onchange_invoice_line_wt_ids()
-                invoice.write(invoice._convert_to_write(invoice._cache))
                 continue
 
             line_vals = self._prepare_generic_line_data(welfareLine)
@@ -1316,13 +1286,13 @@ class WizardImportFatturapa(models.TransientModel):
                 'account_id': credit_account_id,
             })
             if welfareLine.Ritenuta:
-                if not wt_found:
+                if not wt_founds:
                     raise UserError(_(
                         "Welfare Fund data %s has withholding tax but no "
                         "withholding tax was found in the system."
                     ) % welfareLine.TipoCassa)
                 line_vals['invoice_line_tax_wt_ids'] = [
-                    (6, 0, [wt_found.id])]
+                    (6, 0, [wt.id for wt in wt_founds])]
             if self.env.user.company_id.cassa_previdenziale_product_id:
                 cassa_previdenziale_product = self.env.user.company_id \
                     .cassa_previdenziale_product_id
