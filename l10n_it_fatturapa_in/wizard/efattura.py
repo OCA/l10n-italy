@@ -76,6 +76,28 @@ def parse_datetime(s):
         s = "".join(m.group(1,2,3,4))
     return datetime.strptime(s, '%Y-%m-%dT%H:%M:%S.%f%z')
 
+def _fix_xmlstring(xml_string):
+    """Possono arrivare dallo SdI URL con entity/caratteri aggiuntivi, tronchiamo all'URL corretto
+
+    Sulla sintassi, il W3.org dice:
+      In general, however, users should assume that the namespace URI is simply a
+      name, not the address of a document on the Web.
+    Tuttavia, in questo caso, non è un namespace name deciso arbitrariamente dall'utente che ha
+    generato l'XML, ma uno specifico URI, http://www.w3.org/2000/09/xmldsig, perché quello è
+    il namespace previsto dalle specifiche, anche se il software dell SdI non fa la verifica dell'URI.
+
+    Il controllo effettuato è che l'URI che arriva inizi per http://www.w3.org/2000/09/xmldsig, e
+    si tronca il resto.
+    """
+
+    # xmlns:ds="http://www.w3.org/2000/09/xmldsig#&quot;"
+    xml_string = xml_string.decode()
+    xml_string = re.sub(r'xmlns:ds="http://www.w3.org/2000/09/xmldsig([^"]*)"',
+                    'xmlns:ds="http://www.w3.org/2000/09/xmldsig#"', xml_string)
+    xml_string = re.sub(r"xmlns:ds='http://www.w3.org/2000/09/xmldsig([^']*)'",
+                    "xmlns:ds='http://www.w3.org/2000/09/xmldsig#'", xml_string)
+    return xml_string.encode()
+
 def CreateFromDocument(xml_string):
     # il codice seguente rimpiazza fatturapa.CreateFromDocument(xml_string)
     class ObjectDict(object):
@@ -91,13 +113,10 @@ def CreateFromDocument(xml_string):
         def __setitem__(self, *attr, **kwattr):
             return self.__dict__.__setitem__(*attr, **kwattr)
 
-    validator = xmlschema.XMLSchema(_xsd_schema)
+    validator = xmlschema.XMLSchema(_xsd_schema) # TODO: crearlo una tantum?
 
-    # try:
+    xml_string = _fix_xmlstring(xml_string)
     root = etree.fromstring(xml_string)
-    # except Exception as e:
-    #     _logger.warn('lxml was unable to parse xml: %s' % e)
-    #     return _CreateFromDocument(xml_string)
 
     problems = []
     tree = etree.ElementTree(root)
