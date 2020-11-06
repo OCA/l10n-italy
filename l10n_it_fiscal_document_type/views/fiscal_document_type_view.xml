@@ -5,12 +5,12 @@
         <field name="model">fiscal.document.type</field>
         <field name="arch" type="xml">
             <tree string="Fiscal Document Types">
-                <field name="code"/>
-                <field name="name"/>
-                <field name="out_invoice"/>
-                <field name="in_invoice"/>
-                <field name="out_refund"/>
-                <field name="in_refund"/>
+                <field name="code" />
+                <field name="name" />
+                <field name="out_invoice" />
+                <field name="in_invoice" />
+                <field name="out_refund" />
+                <field name="in_refund" />
             </tree>
         </field>
     </record>
@@ -21,13 +21,13 @@
         <field name="arch" type="xml">
             <form string="Fiscal Document Types">
                 <group>
-                    <field name="code"/>
-                    <field name="name"/>
-                    <field name="out_invoice"/>
-                    <field name="in_invoice"/>
-                    <field name="out_refund"/>
-                    <field name="in_refund"/>
-                    <field name="journal_ids" widget="many2many_tags"/>
+                    <field name="code" />
+                    <field name="name" />
+                    <field name="out_invoice" />
+                    <field name="in_invoice" />
+                    <field name="out_refund" />
+                    <field name="in_refund" />
+                    <field name="journal_ids" widget="many2many_tags" />
                 </group>
             </form>
         </field>
@@ -39,14 +39,16 @@
         <field name="res_model">fiscal.document.type</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="view_fiscal_document_type_tree"/>
+        <field name="view_id" ref="view_fiscal_document_type_tree" />
     </record>
 
-    <menuitem id="menu_fiscal_document_type"
-                parent="l10n_it_account.account_italian_localization"
-                name="Fiscal Document Types"
-                action="action_view_fiscal_document_type"
-                groups="account.group_account_manager"
-                sequence="10"/>
+    <menuitem
+        id="menu_fiscal_document_type"
+        parent="l10n_it_account.account_italian_localization"
+        name="Fiscal Document Types"
+        action="action_view_fiscal_document_type"
+        groups="account.group_account_manager"
+        sequence="10"
+    />
 
 </odoo>
