@@ -95,7 +95,7 @@ msgid "Attachments"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:727
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:750
 #, python-format
 msgid "BIC is required and not exist in Xml\n"
 "Curr bank data is: \n"
@@ -123,7 +123,7 @@ msgid "Bill number {bill_nbr} of {bill_date}.\n"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1417
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1419
 #, python-format
 msgid "Bill total %s is different from document total amount %s"
 msgstr ""
@@ -175,13 +175,13 @@ msgid "Company"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:83
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:91
 #, python-format
 msgid "Company Name field contains '%s'. Your System contains '%s'"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1432
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1434
 #, python-format
 msgid "Computed amount untaxed %s is different from summary data %s"
 msgstr ""
@@ -197,7 +197,7 @@ msgid "Contact"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:176
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:184
 #, python-format
 msgid "Country Code %s not found in system."
 msgstr ""
@@ -230,7 +230,7 @@ msgid "Creation"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:286
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:294
 #, python-format
 msgid "Current invoice is from {} with REA Code {}. Yet it seems that partners {} have the same REA Code. This code should be unique; please fix it."
 msgstr ""
@@ -256,7 +256,7 @@ msgid "Default products used in electronic supplier invoices"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:782
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:805
 #, python-format
 msgid "Define a purchase journal for this company: '%s' (id: %d)."
 msgstr ""
@@ -300,12 +300,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
-msgid "Do not block e-bill import in case of missing Enasarco configuration"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:881
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:904
 #, python-format
 msgid "Document type %s not handled."
 msgstr ""
@@ -437,7 +432,7 @@ msgid "Electronic Bill Import"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:45
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:53
 #, python-format
 msgid "File %s is linked to bills yet."
 msgstr ""
@@ -453,7 +448,7 @@ msgid "File Size"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1455
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1457
 #, python-format
 msgid "File is linked to bills yet."
 msgstr ""
@@ -489,7 +484,7 @@ msgid "General Data"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:615
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:638
 #, python-format
 msgid "Global bill discount from document general data"
 msgstr ""
@@ -725,6 +720,7 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_users__e_invoice_detail_level
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_wizard_import_fatturapa__e_invoice_detail_level
 msgid "Minimum level: Bill is created with no lines; User will have to create them, according to what specified in the electronic bill.\n"
+"Tax rate level: Rate level: an invoice line is created for each rate present in the electronic invoice\n"
 "Maximum level: every line contained in the electronic bill will create a line in the bill."
 msgstr ""
 
@@ -734,13 +730,13 @@ msgid "Name"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:91
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:99
 #, python-format
 msgid "Name field contains '%s'. Your System contains '%s'"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:703
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:726
 #, python-format
 msgid "Name of Bank with BIC '%s' is not set. Can't create bank"
 msgstr ""
@@ -751,21 +747,21 @@ msgid "Nature"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:859
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:882
 #, python-format
 msgid "No currency found with code %s."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:343
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:351
 #, python-format
 msgid "No tax with percentage %s and nature %s found. Please configure this tax."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1219
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1246
 #, python-format
-msgid "No withholding tax found with document payment reason %s and rate %s."
+msgid "No withholding tax found with document payment reason %s, rate %s and type %s."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -810,19 +806,19 @@ msgid "Other Administrative Data"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:645
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:668
 #, python-format
 msgid "Payment method %s is not defined in your system."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1183
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1207
 #, python-format
 msgid "Payment method code %s is incorrect."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1178
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1202
 #, python-format
 msgid "Payment method code not found in document."
 msgstr ""
@@ -870,7 +866,7 @@ msgid "Progress data"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:229
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:237
 #, python-format
 msgid "Province ( %s ) not present in your system"
 msgstr ""
@@ -881,7 +877,7 @@ msgid "Quantity"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:261
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:269
 #, python-format
 msgid "REA Office Province Code ( %s ) not present in your system"
 msgstr ""
@@ -892,7 +888,7 @@ msgid "Received Date"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:218
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:226
 #, python-format
 msgid "Register Province ( %s ) not present in your system"
 msgstr ""
@@ -912,12 +908,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data__e_invoice_line_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_article_code__e_invoice_line_id
 msgid "Related E-bill Line"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_company__enasarco_relax_checks
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_config_settings__enasarco_relax_checks
-msgid "Relax checks for Enasarco"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -964,20 +954,20 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/models/account.py:74
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1098
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1122
 #, python-format
 msgid "Round down account is not set in Accounting Settings"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/models/account.py:81
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1092
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1116
 #, python-format
 msgid "Round up account is not set in Accounting Settings"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1105
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1129
 #, python-format
 msgid "Round up and down tax is not set"
 msgstr ""
@@ -990,14 +980,14 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/models/account.py:76
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1119
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1143
 #, python-format
 msgid "Rounding down"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/models/account.py:83
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1119
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1143
 #, python-format
 msgid "Rounding up"
 msgstr ""
@@ -1038,13 +1028,18 @@ msgid "Supplier data"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:100
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:108
 #, python-format
 msgid "Surname field contains '%s'. Your System contains '%s'"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:247
+#: selection:res.partner,e_invoice_detail_level:0
+msgid "Tax Rate"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:255
 #, python-format
 msgid "Tax Regime %s not present in your system."
 msgstr ""
@@ -1055,9 +1050,14 @@ msgid "Tax Withholding"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:536
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:559
 #, python-format
 msgid "Tax kind %s not found"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: selection:wizard.import.fatturapa,e_invoice_detail_level:0
+msgid "Tax rate"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -1083,19 +1083,7 @@ msgid "Text Reference"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1279
-#, python-format
-msgid "The bill contains Welfare Fund tax with Type %s and Tax %s but such a tax is not found in your system. Please set it."
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1261
-#, python-format
-msgid "The bill contains Welfare Fund tax with Type %s, but such a tax is not found in your system. Please set it."
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1207
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1231
 #, python-format
 msgid "The bill contains withholding tax with payment reason %s, but such a tax is not found in your system. Please set it."
 msgstr ""
@@ -1137,13 +1125,13 @@ msgid "To Register"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:348
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:356
 #, python-format
 msgid "Too many taxes with percentage %s and nature %s found. Tax %s with lower priority has been set on invoice lines."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:373
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:381
 #, python-format
 msgid "Too many taxes with percentage equals to '%s'.\n"
 "Fix it if required"
@@ -1161,7 +1149,7 @@ msgid "Total amount ({bill_amount_total}) does not match with e-bill total amoun
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:158
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:166
 #, python-format
 msgid "Two distinct partners with VAT number %s or Fiscal Code %s already present in db."
 msgstr ""
@@ -1251,7 +1239,7 @@ msgid "Welfare Fund"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:563
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:586
 #, python-format
 msgid "Welfare Fund %s not present in your system."
 msgstr ""
@@ -1268,19 +1256,19 @@ msgid "Welfare Fund Details"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1306
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1290
 #, python-format
 msgid "Welfare Fund data %s has withholding tax but no withholding tax was found in the system."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:545
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:568
 #, python-format
 msgid "Welfare Fund is not defined."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1298
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1282
 #, python-format
 msgid "Welfare Fund: %s"
 msgstr ""
@@ -1301,13 +1289,13 @@ msgid "Wizard"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:433
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:441
 #, python-format
 msgid "XML contains tax %s. Product %s has tax %s. Using the XML one"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:364
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:372
 #, python-format
 msgid "XML contains tax with percentage '%s' but it does not exist in your system"
 msgstr ""
