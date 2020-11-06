@@ -5,4 +5,3 @@ Configurare le condizioni di pagamento compilando i campi fiscali relativi a ter
 **English**
 
 Configure payment terms filling the fiscal fields related to payment terms and methods
-
