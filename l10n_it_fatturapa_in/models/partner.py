@@ -14,14 +14,14 @@ class Partner(models.Model):
     )
     e_invoice_detail_level = fields.Selection([
         ('0', 'Minimum'),
-        # ('1', 'Aliquote'),
+        ('1', 'Tax Rate'),
         ('2', 'Maximum'),
     ], string="E-bills Detail Level",
         help="Minimum level: Bill is created with no lines; "
              "User will have to create them, according to what specified in "
              "the electronic bill.\n"
-             # "Livello Aliquote: viene creata una riga fattura per ogni "
-             # "aliquota presente nella fattura elettronica\n"
+             "Tax rate level: Rate level: an invoice line is created for each "
+             "rate present in the electronic invoice\n"
              "Maximum level: every line contained in the electronic bill "
              "will create a line in the bill.",
         default='2', required=True
