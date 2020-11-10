@@ -1,4 +1,3 @@
-
 import logging
 from odoo import models, api, fields
 from odoo.tools import float_is_zero
@@ -17,14 +16,14 @@ class WizardImportFatturapa(models.TransientModel):
 
     e_invoice_detail_level = fields.Selection([
         ('0', 'Minimum'),
-        # ('1', 'Aliquote'),
+        ('1', 'Tax rate'),
         ('2', 'Maximum'),
     ], string="E-bills Detail Level",
         help="Minimum level: Bill is created with no lines; "
              "User will have to create them, according to what specified in "
              "the electronic bill.\n"
-             # "Livello Aliquote: viene creata una riga fattura per ogni "
-             # "aliquota presente nella fattura elettronica\n"
+             "Tax rate level: Rate level: an invoice line is created for each "
+             "rate present in the electronic invoice\n"
              "Maximum level: every line contained in the electronic bill "
              "will create a line in the bill.",
         required=True
@@ -439,6 +438,21 @@ class WizardImportFatturapa(models.TransientModel):
                     # I use it. Typical case: 22% det 50%
                     line_vals['invoice_line_tax_ids'] = [
                         (6, 0, [new_tax.id])]
+
+    def _prepareInvoiceLineAliquota(self, credit_account_id, line, nline):
+        retLine = {}
+        account_taxes = self.get_account_taxes(line.AliquotaIVA, line.Natura)
+        if account_taxes:
+            retLine['invoice_line_tax_ids'] = [(6, 0, [account_taxes[0].id])]
+
+        retLine.update({
+            'name': 'Riepilogo Aliquota {}'.format(line.AliquotaIVA),
+            'sequence': nline,
+            'account_id': credit_account_id,
+            'price_unit': float(line.ImponibileImporto),
+            'quantity': 1.0
+        })
+        return retLine
 
     def _prepareInvoiceLine(self, credit_account_id, line, wt_founds=False):
         retLine = self._prepare_generic_line_data(line)
@@ -1377,24 +1391,42 @@ class WizardImportFatturapa(models.TransientModel):
         if e_invoice_lines:
             invoice_data['e_invoice_line_ids'] = [(6, 0, e_invoice_lines.ids)]
 
+    def _set_invoice_lines(self, product, invoice_line_data, invoice_lines,
+                           invoice_line_model):
+
+        if product:
+            invoice_line_data['product_id'] = product.id
+            self.adjust_accounting_data(product, invoice_line_data)
+        invoice_line_id = invoice_line_model.create(
+            invoice_line_data).id
+        invoice_lines.append(invoice_line_id)
+
     def set_invoice_line_ids(
             self, FatturaBody, credit_account_id, partner, wt_founds,
             invoice_data):
-        if not self.e_invoice_detail_level == '2':
+
+        if self.e_invoice_detail_level == '0':
             return
 
         invoice_lines = []
         invoice_line_model = self.env['account.invoice.line']
-        for line in FatturaBody.DatiBeniServizi.DettaglioLinee:
-            invoice_line_data = self._prepareInvoiceLine(
-                credit_account_id, line, wt_founds)
-            product = self.get_line_product(line, partner)
-            if product:
-                invoice_line_data['product_id'] = product.id
-                self.adjust_accounting_data(product, invoice_line_data)
-            invoice_line_id = invoice_line_model.create(
-                invoice_line_data).id
-            invoice_lines.append(invoice_line_id)
+        if self.e_invoice_detail_level == '1':
+            for nline, line in enumerate(FatturaBody.DatiBeniServizi.DatiRiepilogo):
+                invoice_line_data = self._prepareInvoiceLineAliquota(
+                    credit_account_id, line, nline)
+
+                product = partner.e_invoice_default_product_id
+                self._set_invoice_lines(product, invoice_line_data, invoice_lines,
+                                        invoice_line_model)
+
+        elif self.e_invoice_detail_level == '2':
+            for line in FatturaBody.DatiBeniServizi.DettaglioLinee:
+                invoice_line_data = self._prepareInvoiceLine(
+                    credit_account_id, line, wt_founds)
+                product = self.get_line_product(line, partner)
+                self._set_invoice_lines(product, invoice_line_data, invoice_lines,
+                                        invoice_line_model)
+
         invoice_data['invoice_line_ids'] = [(6, 0, invoice_lines)]
 
     def check_invoice_amount(self, invoice, FatturaElettronicaBody):

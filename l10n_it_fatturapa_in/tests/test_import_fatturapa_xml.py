@@ -711,6 +711,24 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.invoice_line_ids[0].quantity, 0)
         self.assertEqual(invoice.invoice_line_ids[1].quantity, 1)
 
+    def test_xml_import_summary_tax_rate(self):
+        # Invoice  with positive total. Detail Level:  '1' -- Tax Rate
+        supplier = self.env['res.partner'].search(
+            [('vat', '=', 'IT02780790107')])[0]
+        # in order to make the system create the invoice lines
+        supplier.e_invoice_detail_level = '1'
+        res = self.run_wizard('test_summary_tax_rate',
+                              'IT05979361218_ripilogoiva.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.amount_total, 204.16)
+        self.assertEqual(len(invoice.invoice_line_ids), 2)
+
+        self.assertEqual(invoice.invoice_line_ids[0].price_unit, 164.46)
+        self.assertEqual(invoice.invoice_line_ids[0].quantity, 1.0)
+        self.assertEqual(invoice.invoice_line_ids[1].price_unit, 3.52)
+        self.assertEqual(invoice.invoice_line_ids[1].quantity, 1.0)
+
 
 class TestFatturaPAEnasarco(FatturapaCommon):
 
