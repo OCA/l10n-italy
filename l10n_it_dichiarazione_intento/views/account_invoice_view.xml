@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+    <record id="dichiarazione_intento_invoice_form" model="ir.ui.view">
+        <field name="name">dichiarazione.intento.invoice.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <field name="fiscal_position_id" position="after">
+                <label for="dichiarazione_intento_ids" />
+                <div>
+                    <field name="dichiarazione_intento_ids" widget="many2many_tags"
+                           readonly="1" class="oe_inline oe_link"/>
+                    <button type="object" name="select_manually_declarations"
+                            states="draft" string="Select Manually"
+                            class="oe_inline oe_link"/>
+                </div>
+            </field>
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='invoice_line_tax_ids']" position="after">
+                <field name="force_dichiarazione_intento_id"
+                       domain="[('partner_id', '=', parent.partner_id), ('state', '!=', 'close'), ('date_start', '&lt;=', parent.date_invoice), ('date_end', '&gt;=', parent.date_invoice)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="dichiarazione_intento_invoice_line_form" model="ir.ui.view">
+        <field name="name">dichiarazione.intento.invoice.line.form</field>
+        <field name="model">account.invoice.line</field>
+        <field name="inherit_id" ref="account.view_invoice_line_form"/>
+        <field name="arch" type="xml">
+            <field name="invoice_line_tax_ids" position="after">
+                <field name="force_dichiarazione_intento_id"
+                       domain="[('partner_id', '=', parent.partner_id), ('state', '!=', 'close'), ('date_start', '&lt;=', parent.date_invoice), ('date_end', '&gt;=', parent.date_invoice)]"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="dichiarazione_intento_invoice_supplier_form" model="ir.ui.view">
+        <field name="name">dichiarazione.intento.invoice.supplier.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <field name="fiscal_position_id" position="after">
+                <label for="dichiarazione_intento_ids" />
+                <div>
+                    <field name="dichiarazione_intento_ids" widget="many2many_tags"
+                           readonly="1" class="oe_inline oe_link"/>
+                    <button type="object" name="select_manually_declarations"
+                            states="draft" string="Select Manually"
+                            class="oe_inline oe_link"/>
+                </div>
+            </field>
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='invoice_line_tax_ids']" position="after">
+                <field name="force_dichiarazione_intento_id"
+                       domain="[('partner_id', '=', parent.partner_id), ('state', '!=', 'close'), ('date_start', '&lt;=', parent.date_invoice), ('date_end', '&gt;=', parent.date_invoice)]"/>
+            </xpath>
+        </field>
+    </record>
+
+</data>
+</odoo>
