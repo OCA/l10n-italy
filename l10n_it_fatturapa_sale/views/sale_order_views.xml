@@ -11,7 +11,7 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']/form/field[@name='name']" position="after">
-                <group name="e_invoice" string="Electronic Invoice">
+                <group name="e_invoice" string="Electronic Invoice" groups="account.group_account_user">
                     <field name="admin_ref"/>
                     <field name="related_documents"/>
                 </group>
@@ -20,7 +20,7 @@
                 <field name="admin_ref"/>
             </xpath>
             <notebook position="inside">
-                <page name="e_invoice" string="Electronic Invoice">
+                <page name="e_invoice" string="Electronic Invoice" groups="account.group_account_user">
                     <group name="related_documents">
                         <field name="related_documents"/>
                     </group>

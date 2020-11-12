@@ -12,11 +12,13 @@ class SaleOrderLine (models.Model):
         inverse_name='sale_order_line_id',
         string='Related Documents',
         copy=False,
+        groups="account.group_account_user",
     )
     admin_ref = fields.Char(
         string="Admin. ref.",
         size=20,
         copy=False,
+        groups="account.group_account_user",
     )
 
     @api.multi
