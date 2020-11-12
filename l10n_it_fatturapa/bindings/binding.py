@@ -3573,13 +3573,21 @@ class FatturaElettronicaType (pyxb.binding.basis.complexTypeDefinition):
     
     versione = property(__versione.value, __versione.set, None, None)
 
+    # Attribute SistemaEmittente uses Python identifier SistemaEmittente
+    __SistemaEmittente = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'SistemaEmittente'), 'SistemaEmittente', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_SistemaEmittente', _module_typeBindings.String10Type)
+    __SistemaEmittente._DeclarationLocation = pyxb.utils.utility.Location('https://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.3/Schema_del_file_xml_FatturaPA_versione_1.2.1.xsd', 23, 4)
+    __SistemaEmittente._UseLocation = pyxb.utils.utility.Location('https://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.3/Schema_del_file_xml_FatturaPA_versione_1.2.1.xsd', 23, 4)
+
+    SistemaEmittente = property(__SistemaEmittente.value, __SistemaEmittente.set, None, None)
+
     _ElementMap.update({
         __FatturaElettronicaHeader.name() : __FatturaElettronicaHeader,
         __FatturaElettronicaBody.name() : __FatturaElettronicaBody,
         __Signature.name() : __Signature
     })
     _AttributeMap.update({
-        __versione.name() : __versione
+        __versione.name() : __versione,
+        __SistemaEmittente.name() : __SistemaEmittente
     })
 _module_typeBindings.FatturaElettronicaType = FatturaElettronicaType
 Namespace.addCategoryObject('typeBinding', 'FatturaElettronicaType', FatturaElettronicaType)
