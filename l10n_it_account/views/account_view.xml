@@ -16,7 +16,7 @@
         <field name="model">account.group</field>
         <field name="inherit_id" ref="account.view_account_group_form" />
         <field name="arch" type="xml">
-            <field name="code_prefix" position="after">
+            <field name="name" position="after">
                 <field name="account_balance_sign" />
             </field>
         </field>
