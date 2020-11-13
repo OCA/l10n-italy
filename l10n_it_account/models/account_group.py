@@ -60,7 +60,6 @@ class AccountGroup(models.Model):
                     )
                 )
 
-    @api.multi
     def _compute_account_balance_sign(self):
         for group in self:
             group.account_balance_sign = group.get_account_balance_sign()
@@ -93,22 +92,11 @@ class AccountGroup(models.Model):
         parent_ids = []
         parent = self.parent_id
         while parent:
-            if parent.id in parent_ids:
-                raise ValidationError(
-                    _("A recursion in '{}' parents has been found.").format(
-                        self.name_get()[0][-1]
-                    )
-                )
-            else:
-                parent_ids.append(parent.id)
-                parent = parent.parent_id
+            parent_ids.append(parent.id)
+            parent = parent.parent_id
         return self.browse(parent_ids)
 
     def get_group_subgroups(self):
         """ Retrieves every subgroup for groups `self`. """
-        # Avoid recursion upon empty recordsets
-        if not self:
-            return self
-        subgroups = self.search([("parent_id", "in", self.ids)])
-        subgroup_ids = subgroups.ids + subgroups.get_group_subgroups().ids
-        return self.browse(tuple(set(subgroup_ids)))
+        subgroups_ids = self.search([("id", "child_of", self.ids)])
+        return subgroups_ids
