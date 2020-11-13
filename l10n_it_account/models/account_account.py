@@ -6,7 +6,7 @@ from odoo import api, models
 class Account(models.Model):
     _inherit = "account.account"
 
-    @api.constrains("group_id")
+    @api.constrains("code")
     def check_balance_sign_coherence(self):
         """
         Checks whether adding an account to (or removing it from) a group

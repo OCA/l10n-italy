@@ -3,12 +3,13 @@
 # Copyright 2015 Link It Spa (<http://www.linkgroup.it/>)
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
+# Copyright 2020 Gianmarco Conte <gconte@dinamicheaziendali.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "ITA - Contabilità base",
     "summary": "Modulo base usato come dipendenza di altri moduli contabili",
-    "version": "12.0.1.4.2",
+    "version": "14.0.1.0.0",
     "category": "Hidden",
     "author": "Agile Business Group, Abstract, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
