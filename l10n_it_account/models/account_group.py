@@ -60,7 +60,6 @@ class AccountGroup(models.Model):
                     )
                 )
 
-    @api.multi
     def _compute_account_balance_sign(self):
         for group in self:
             group.account_balance_sign = group.get_account_balance_sign()

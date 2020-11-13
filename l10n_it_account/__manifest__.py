@@ -3,6 +3,7 @@
 # Copyright 2015 Link It Spa (<http://www.linkgroup.it/>)
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
+# Copyright 2020 Gianmarco Conte <gconte@dinamicheaziendali.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
