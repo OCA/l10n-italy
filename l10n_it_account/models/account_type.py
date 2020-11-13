@@ -4,20 +4,20 @@ from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 ACCOUNT_TYPES_NEGATIVE_SIGN = [
-    'account.data_unaffected_earnings',
-    'account.data_account_type_equity',
-    'account.data_account_type_revenue',
-    'account.data_account_type_other_income',
-    'account.data_account_type_payable',
-    'account.data_account_type_credit_card',
-    'account.data_account_type_prepayments',
-    'account.data_account_type_current_liabilities',
-    'account.data_account_type_non_current_liabilities',
+    "account.data_unaffected_earnings",
+    "account.data_account_type_equity",
+    "account.data_account_type_revenue",
+    "account.data_account_type_other_income",
+    "account.data_account_type_payable",
+    "account.data_account_type_credit_card",
+    "account.data_account_type_prepayments",
+    "account.data_account_type_current_liabilities",
+    "account.data_account_type_non_current_liabilities",
 ]
 
 
 class AccountType(models.Model):
-    _inherit = 'account.account.type'
+    _inherit = "account.account.type"
 
     account_balance_sign = fields.Integer(
         default=1,
@@ -30,19 +30,18 @@ class AccountType(models.Model):
             acc_type = self.env.ref(xml_id, raise_if_not_found=False)
             if acc_type:
                 acc_type.with_context(
-                    skip_check_balance_sign_coherence=True).account_balance_sign = -1
+                    skip_check_balance_sign_coherence=True
+                ).account_balance_sign = -1
 
-    @api.constrains('account_balance_sign')
+    @api.constrains("account_balance_sign")
     def check_balance_sign_value(self):
         """
         Checks whether `account_balance_sign` gets a correct value of +1 or -1.
         """
         if any(t.account_balance_sign not in (-1, 1) for t in self):
-            raise ValidationError(
-                _("Balance sign's value can only be 1 or -1.")
-            )
+            raise ValidationError(_("Balance sign's value can only be 1 or -1."))
 
-    @api.constrains('account_balance_sign')
+    @api.constrains("account_balance_sign")
     def check_balance_sign_coherence(self):
         """
         Checks whether changes upon `account_balance_sign` create incoherencies
@@ -50,9 +49,9 @@ class AccountType(models.Model):
         """
         # Force check upon sign itself before checking groups signs coherence
         self.check_balance_sign_value()
-        acc_obj = self.env['account.account']
+        acc_obj = self.env["account.account"]
         for account_type in self:
-            accounts = acc_obj.search([('user_type_id', '=', account_type.id)])
+            accounts = acc_obj.search([("user_type_id", "=", account_type.id)])
             # Avoid check upon empty recordset to make it faster
             if accounts:
                 accounts.check_balance_sign_coherence()
