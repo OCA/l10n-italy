@@ -3,6 +3,7 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # Copyright 2018 Sergio Corato
 # Copyright 2019 Alex Comba - Agile Business Group
+# Copyright 2020 Andrei Levin - Didotech srl
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import base64
@@ -832,7 +833,7 @@ class WizardExportFatturapa(models.TransientModel):
 
         return partner
 
-    def group_invoices_by_partner(self):
+    def group_invoices_by_partner_old(self):
         invoice_ids = self.env.context.get('active_ids', False)
         res = {}
         for invoice in self.env['account.invoice'].browse(invoice_ids):
@@ -841,12 +842,37 @@ class WizardExportFatturapa(models.TransientModel):
             res[invoice.partner_id.id].append(invoice.id)
         return res
 
+    def group_invoices_by_partner(self):
+        invoice_model = self.env['account.invoice']
+        invoice_ids = self.env.context.get('active_ids', False)
+        res = {}
+        for invoice in invoice_model.browse(invoice_ids):
+            if invoice.partner_id.id not in res:
+                res[invoice.partner_id.id] = invoice_model
+            res[invoice.partner_id.id] += invoice
+        return res
+
+    def ungrouped_invoices(self):
+        invoice_ids = self.env.context.get('active_ids', False)
+        if invoice_ids:
+            return {invoice.id: invoice for invoice in
+                    self.env['account.invoice'].browse(invoice_ids)}
+        else:
+            return {}
+
     def exportFatturaPA(self):
-        invoice_obj = self.env['account.invoice']
-        invoices_by_partner = self.group_invoices_by_partner()
+        company = self.env['res.users'].browse(self._uid).company_id
+
+        if company.invoices_group_by_partner:
+            invoices_grouped = self.group_invoices_by_partner()
+        else:
+            invoices_grouped = self.ungrouped_invoices()
+
         attachments = self.env['fatturapa.attachment.out']
-        for partner_id in invoices_by_partner:
-            invoice_ids = invoices_by_partner[partner_id]
+
+        xml_quantity = len(invoices_grouped)
+        for counter, (key, invoices) in enumerate(invoices_grouped.items(), start=1):
+            invoice_ids = invoices.ids
             partner = self.getPartnerId(invoice_ids)
             if partner.is_pa:
                 fatturapa = FatturaElettronica(versione='FPA12')
@@ -859,22 +885,22 @@ class WizardExportFatturapa(models.TransientModel):
             try:
                 self.with_context(context_partner).setFatturaElettronicaHeader(
                     company, partner, fatturapa)
-                for invoice_id in invoice_ids:
-                    inv = invoice_obj.with_context(context_partner).browse(
-                        invoice_id)
-                    inv.set_taxes_for_descriptive_lines()
-                    if inv.fatturapa_attachment_out_id:
+                for invoice in invoices:
+                    _logger.info(
+                        'Generating E-Invoice for invoice {} {}/{} ...'.format(invoice.number, counter, xml_quantity))
+                    invoice.set_taxes_for_descriptive_lines()
+                    if invoice.fatturapa_attachment_out_id:
                         raise UserError(
                             _("Invoice %s has e-invoice export file yet.") % (
-                                inv.number))
+                                invoice.number))
                     if self.report_print_menu:
-                        self.generate_attach_report(inv)
+                        self.generate_attach_report(invoice)
                     invoice_body = FatturaElettronicaBodyType()
-                    inv.preventive_checks()
+                    invoice.preventive_checks()
                     self.with_context(
                         context_partner
                     ).setFatturaElettronicaBody(
-                        inv, invoice_body)
+                        invoice, invoice_body)
                     fatturapa.FatturaElettronicaBody.append(invoice_body)
                     # TODO DatiVeicoli
 
@@ -885,9 +911,8 @@ class WizardExportFatturapa(models.TransientModel):
             attach = self.saveAttachment(fatturapa, number)
             attachments |= attach
 
-            for invoice_id in invoice_ids:
-                inv = invoice_obj.browse(invoice_id)
-                inv.write({'fatturapa_attachment_out_id': attach.id})
+            for invoice in invoices:
+                invoice.write({'fatturapa_attachment_out_id': attach.id})
 
         action = {
             'view_type': 'form',

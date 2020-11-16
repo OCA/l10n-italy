@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_account_config_out_settings" model="ir.ui.view">
+        <field name="name">view_account_config_out_settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="l10n_it_fatturapa.view_account_config_settings"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='fatturapa_settings']/div[1]/div[2]/div/div[last()]" position="after">
+                <div class="row">
+                    <label for="invoices_group_by_partner" class="col-lg-3 o_light_label"/>
+                    <field name="invoices_group_by_partner"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
