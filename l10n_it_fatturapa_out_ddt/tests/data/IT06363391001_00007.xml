@@ -82,8 +82,8 @@
             <MezzoTrasporto>Recipient</MezzoTrasporto>
             <CausaleTrasporto>Sale</CausaleTrasporto>
             <Descrizione>Box</Descrizione>
-            <PesoLordo>0.0</PesoLordo>
-            <PesoNetto>0.0</PesoNetto>
+            <PesoLordo>0.00</PesoLordo>
+            <PesoNetto>0.00</PesoNetto>
          </DatiTrasporto>
       </DatiGenerali>
       <DatiBeniServizi>
