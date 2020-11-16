@@ -117,9 +117,8 @@ class WizardExportFatturapa(models.TransientModel):
         DettaglioLinea = super(WizardExportFatturapa, self).setDettaglioLinea(
             line_no, line, body, price_precision, uom_precision
         )
-        # TODO MOMENTANEAMENTE SOSPESA IN ATTESA DI VERIFICA
-        # if any([wt for wt in line.invoice_line_tax_wt_ids]):
-        #     DettaglioLinea.Ritenuta = 'SI'
+        if any([wt for wt in line.invoice_line_tax_wt_ids]):
+            DettaglioLinea.Ritenuta = 'SI'
         return DettaglioLinea
 
     def setDatiPagamento(self, invoice, body):

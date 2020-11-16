@@ -36,8 +36,7 @@ class TestInvoiceWT(FatturaPACommon):
             'certification': True,
             'account_receivable_id': self.wt_account_receivable.id,
             'account_payable_id': self.wt_account_payable.id,
-            # TODO MOMENTANEAMENTE SOSPESA IN ATTESA DI VERIFICA
-            # 'journal_id': self.journal_misc.id,
+            'journal_id': self.journal_misc.id,
             'payment_term': self.payment_term_15.id,
             'causale_pagamento_id': self.env.ref(
                 'l10n_it_causali_pagamento.a').id,
@@ -52,8 +51,7 @@ class TestInvoiceWT(FatturaPACommon):
             'code': 'Enasarco',
             'account_receivable_id': self.wt_account_receivable.id,
             'account_payable_id': self.wt_account_payable.id,
-            # TODO MOMENTANEAMENTE SOSPESA IN ATTESA DI VERIFICA
-            # 'journal_id': self.journal_misc.id,
+            'journal_id': self.journal_misc.id,
             'wt_types': 'enasarco',
             'payment_term': self.payment_term_15.id,
             'causale_pagamento_id': self.env.ref(
@@ -69,9 +67,8 @@ class TestInvoiceWT(FatturaPACommon):
             'code': 'INPS',
             'account_receivable_id': self.wt_account_receivable.id,
             'account_payable_id': self.wt_account_payable.id,
-            # TODO MOMENTANEAMENTE SOSPESA IN ATTESA DI VERIFICA
-            # 'journal_id': self.journal_misc.id,
-            'wt_types': 'enasarco',
+            'journal_id': self.journal_misc.id,
+            'wt_types': 'inps',
             'payment_term': self.payment_term_15.id,
             'causale_pagamento_id': self.env.ref(
                 'l10n_it_causali_pagamento.a').id,
@@ -101,12 +98,11 @@ class TestInvoiceWT(FatturaPACommon):
                     'uos_id': self.product_uom_unit.id,
                     'price_unit': 10,
                     'invoice_line_tax_id': [(6, 0, [self.tax_22.id])],
-                    # TODO MOMENTANEAMENTE SOSPESA IN ATTESA DI VERIFICA
-                    # 'invoice_line_tax_wt_ids': [(6, 0, [self.wt1040.id])]
+                    'invoice_line_tax_wt_ids': [(6, 0, [self.wt1040.id])]
                 }),
             ],
         })
-        # invoice._onchange_invoice_line_wt_ids()
+        invoice._onchange_invoice_line_wt_ids()
         invoice.signal_workflow('invoice_open')
         res = self.run_wizard(invoice.id)
 
@@ -138,15 +134,14 @@ class TestInvoiceWT(FatturaPACommon):
                     'uos_id': self.product_uom_unit.id,
                     'price_unit': 10,
                     'invoice_line_tax_id': [(6, 0, [self.tax_22.id])],
-                    # TODO MOMENTANEAMENTE SOSPESA IN ATTESA DI VERIFICA
-                    # 'invoice_line_tax_wt_ids': [(6, 0, [
-                    #     self.wt1040.id,
-                    #     self.enasarco.id,
-                    # ])]
+                    'invoice_line_tax_wt_ids': [(6, 0, [
+                        self.wt1040.id,
+                        self.enasarco.id,
+                    ])]
                 }),
             ],
         })
-        # invoice._onchange_invoice_line_wt_ids
+        invoice._onchange_invoice_line_wt_ids()
         invoice.signal_workflow('invoice_open')
         res = self.run_wizard(invoice.id)
 
@@ -183,15 +178,14 @@ class TestInvoiceWT(FatturaPACommon):
                     'uos_id': self.product_uom_unit.id,
                     'price_unit': 10,
                     'invoice_line_tax_id': [(6, 0, [self.tax_22.id])],
-                    # TODO MOMENTANEAMENTE SOSPESA IN ATTESA DI VERIFICA
-                    # 'invoice_line_tax_wt_ids': [(6, 0, [
-                    #     self.wt1040.id,
-                    #     self.enasarco.id,
-                    # ])]
+                    'invoice_line_tax_wt_ids': [(6, 0, [
+                        self.wt1040.id,
+                        self.enasarco.id,
+                    ])]
                 }),
             ],
         })
-        # invoice._onchange_invoice_line_wt_ids
+        invoice._onchange_invoice_line_wt_ids()
         invoice.signal_workflow('invoice_open')
         res = self.run_wizard(invoice.id)
 
@@ -229,15 +223,14 @@ class TestInvoiceWT(FatturaPACommon):
                     'uos_id': self.product_uom_unit.id,
                     'price_unit': 10,
                     'invoice_line_tax_id': [(6, 0, [self.tax_0.id])],
-                    # TODO MOMENTANEAMENTE SOSPESA IN ATTESA DI VERIFICA
-                    # 'invoice_line_tax_wt_ids': [(6, 0, [
-                    #     self.wt1040.id,
-                    #     self.enasarco.id,
-                    # ])]
+                    'invoice_line_tax_wt_ids': [(6, 0, [
+                        self.wt1040.id,
+                        self.enasarco.id,
+                    ])]
                 }),
             ],
         })
-        # invoice._onchange_invoice_line_wt_ids
+        invoice._onchange_invoice_line_wt_ids()
         invoice.signal_workflow('invoice_open')
         res = self.run_wizard(invoice.id)
 
@@ -269,15 +262,14 @@ class TestInvoiceWT(FatturaPACommon):
                     'uos_id': self.product_uom_unit.id,
                     'price_unit': 10,
                     'invoice_line_tax_id': [(6, 0, [self.tax_22.id])],
-                    # TODO MOMENTANEAMENTE SOSPESA IN ATTESA DI VERIFICA
-                    # 'invoice_line_tax_wt_ids': [(6, 0, [
-                    #     self.wt1040.id,
-                    #     self.inps.id,
-                    # ])]
+                    'invoice_line_tax_wt_ids': [(6, 0, [
+                        self.wt1040.id,
+                        self.inps.id,
+                    ])]
                 }),
             ],
         })
-        # invoice._onchange_invoice_line_wt_ids
+        invoice._onchange_invoice_line_wt_ids()
         invoice.signal_workflow('invoice_open')
         res = self.run_wizard(invoice.id)
 
@@ -314,15 +306,14 @@ class TestInvoiceWT(FatturaPACommon):
                     'uos_id': self.product_uom_unit.id,
                     'price_unit': 10,
                     'invoice_line_tax_id': [(6, 0, [self.tax_22.id])],
-                    # TODO MOMENTANEAMENTE SOSPESA IN ATTESA DI VERIFICA
-                    # 'invoice_line_tax_wt_ids': [(6, 0, [
-                    #     self.wt1040.id,
-                    #     self.inps.id,
-                    # ])]
+                    'invoice_line_tax_wt_ids': [(6, 0, [
+                        self.wt1040.id,
+                        self.inps.id,
+                    ])]
                 }),
             ],
         })
-        # invoice._onchange_invoice_line_wt_ids
+        invoice._onchange_invoice_line_wt_ids()
         invoice.signal_workflow('invoice_open')
         res = self.run_wizard(invoice.id)
 
@@ -360,14 +351,14 @@ class TestInvoiceWT(FatturaPACommon):
                     'uos_id': self.product_uom_unit.id,
                     'price_unit': 10,
                     'invoice_line_tax_id': [(6, 0, [self.tax_0.id])],
-                    # 'invoice_line_tax_wt_ids': [(6, 0, [
-                    #     self.wt1040.id,
-                    #     self.inps.id,
-                    # ])]
+                    'invoice_line_tax_wt_ids': [(6, 0, [
+                        self.wt1040.id,
+                        self.inps.id,
+                    ])]
                 }),
             ],
         })
-        # invoice._onchange_invoice_line_wt_ids
+        invoice._onchange_invoice_line_wt_ids()
         invoice.signal_workflow('invoice_open')
         res = self.run_wizard(invoice.id)
 
