@@ -62,36 +62,38 @@ class AccountInvoice(models.Model):
             self.amount_total_company_signed = amount_total_company_signed * sign
             self.amount_total_signed = self.amount_total * sign
 
-    @api.model
-    def invoice_line_move_line_get(self):
+    @api.multi
+    def action_move_create(self):
         """Append global rounding move lines"""
-        res = super(AccountInvoice).invoice_line_move_line_get()
-
-        if self.efatt_rounding != 0:
-            if self.efatt_rounding > 0:
-                arrotondamenti_account_id = self.env.user.company_id.\
-                    arrotondamenti_passivi_account_id
-                if not arrotondamenti_account_id:
-                    raise UserError(_("Round down account is not set "
-                                      "in Accounting Settings"))
-                name = _("Rounding down")
-            else:
-                arrotondamenti_account_id = self.env.user.company_id.\
-                    arrotondamenti_attivi_account_id
-                if not arrotondamenti_account_id:
-                    raise UserError(_("Round up account is not set "
-                                      "in Accounting Settings"))
-                name = _("Rounding up")
-
-            res.append({
-                'type': 'global_rounding',
-                'name': name,
-                'price_unit': self.efatt_rounding,
-                'quantity': 1,
-                'price': self.efatt_rounding,
-                'account_id': arrotondamenti_account_id.id,
-                'invoice_id': self.id,
-            })
+        res = super(AccountInvoice, self).action_move_create()
+        for invoice in self:
+            if invoice.efatt_rounding != 0:
+                if invoice.efatt_rounding > 0:
+                    arrotondamenti_account_id = self.env.user.company_id.\
+                        arrotondamenti_passivi_account_id
+                    if not arrotondamenti_account_id:
+                        raise UserError(_("Round down account is not set "
+                                          "in Accounting Settings"))
+                    name = _("Rounding down")
+                else:
+                    arrotondamenti_account_id = self.env.user.company_id.\
+                        arrotondamenti_attivi_account_id
+                    if not arrotondamenti_account_id:
+                        raise UserError(_("Round up account is not set "
+                                          "in Accounting Settings"))
+                    name = _("Rounding up")
+                line_model = self.env['account.move.line']
+                line_vals = {
+                    'type': 'global_rounding',
+                    'name': name,
+                    'price_unit': invoice.efatt_rounding,
+                    'quantity': 1,
+                    'price': invoice.efatt_rounding,
+                    'account_id': arrotondamenti_account_id.id,
+                    'invoice_id': invoice.id,
+                    'move_id': invoice.move_id.id,
+                }
+                line_model.create(line_vals)
         return res
 
     @api.multi

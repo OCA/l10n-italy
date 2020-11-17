@@ -3,10 +3,10 @@
 import base64
 import tempfile
 from openerp.modules import get_module_resource
-from openerp.tests.common import TransactionCase
+from openerp.tests.common import SingleTransactionCase
 
 
-class FatturapaCommon(TransactionCase):
+class FatturapaCommon(SingleTransactionCase):
 
     def getFile(self, filename, module_name=None):
         if module_name is None:
@@ -24,7 +24,10 @@ class FatturapaCommon(TransactionCase):
             'code': '1040',
             'account_receivable_id': self.payable_account_id,
             'account_payable_id': self.payable_account_id,
+            'journal_id': self.env['account.journal'].search(
+                [('type', '=', 'general')], limit=1).id,
             'payment_term': self.env.ref('account.account_payment_term').id,
+            'wt_types': 'ritenuta',
             'rate_ids': [(0, 0, {'tax': 20.0})],
             'causale_pagamento_id':
                 self.env.ref('l10n_it_causali_pagamento.a').id,
@@ -36,7 +39,10 @@ class FatturapaCommon(TransactionCase):
             'code': '2320',
             'account_receivable_id': self.payable_account_id,
             'account_payable_id': self.payable_account_id,
+            'journal_id': self.env['account.journal'].search(
+                [('type', '=', 'general')], limit=1).id,
             'payment_term': self.env.ref('account.account_payment_term').id,
+            'wt_types': 'ritenuta',
             'rate_ids': [(0, 0, {'tax': 23.0, 'base': 0.2})],
             'causale_pagamento_id':
                 self.env.ref('l10n_it_causali_pagamento.a').id,
@@ -48,7 +54,10 @@ class FatturapaCommon(TransactionCase):
             'code': '2320',
             'account_receivable_id': self.payable_account_id,
             'account_payable_id': self.payable_account_id,
+            'journal_id': self.env['account.journal'].search(
+                [('type', '=', 'general')], limit=1).id,
             'payment_term': self.env.ref('account.account_payment_term').id,
+            'wt_types': 'ritenuta',
             'rate_ids': [(0, 0, {'tax': 23.0, 'base': 0.5})],
             'causale_pagamento_id':
                 self.env.ref('l10n_it_causali_pagamento.a').id,
@@ -60,7 +69,10 @@ class FatturapaCommon(TransactionCase):
             'code': '2620q',
             'account_receivable_id': self.payable_account_id,
             'account_payable_id': self.payable_account_id,
+            'journal_id': self.env['account.journal'].search(
+                [('type', '=', 'general')], limit=1).id,
             'payment_term': self.env.ref('account.account_payment_term').id,
+            'wt_types': 'ritenuta',
             'rate_ids': [(0, 0, {'tax': 26.0, 'base': 0.2})],
             'causale_pagamento_id':
                 self.env.ref('l10n_it_causali_pagamento.q').id,
@@ -72,7 +84,10 @@ class FatturapaCommon(TransactionCase):
             'code': '2640q',
             'account_receivable_id': self.payable_account_id,
             'account_payable_id': self.payable_account_id,
+            'journal_id': self.env['account.journal'].search(
+                [('type', '=', 'general')], limit=1).id,
             'payment_term': self.env.ref('account.account_payment_term').id,
+            'wt_types': 'ritenuta',
             'rate_ids': [(0, 0, {'tax': 26.0, 'base': 0.4})],
             'causale_pagamento_id':
                 self.env.ref('l10n_it_causali_pagamento.q').id,
@@ -84,7 +99,10 @@ class FatturapaCommon(TransactionCase):
             'code': '2720q',
             'account_receivable_id': self.payable_account_id,
             'account_payable_id': self.payable_account_id,
+            'journal_id': self.env['account.journal'].search(
+                [('type', '=', 'general')], limit=1).id,
             'payment_term': self.env.ref('account.account_payment_term').id,
+            'wt_types': 'ritenuta',
             'rate_ids': [(0, 0, {'tax': 27.0, 'base': 0.2})],
             'causale_pagamento_id':
                 self.env.ref('l10n_it_causali_pagamento.q').id,
@@ -96,7 +114,10 @@ class FatturapaCommon(TransactionCase):
             'code': '4q',
             'account_receivable_id': self.payable_account_id,
             'account_payable_id': self.payable_account_id,
+            'journal_id': self.env['account.journal'].search(
+                [('type', '=', 'general')], limit=1).id,
             'payment_term': self.env.ref('account.account_payment_term').id,
+            'wt_types': 'ritenuta',
             'rate_ids': [(0, 0, {'tax': 4.0, 'base': 1.0})],
             'causale_pagamento_id':
                 self.env.ref('l10n_it_causali_pagamento.q').id,
@@ -124,46 +145,6 @@ class FatturapaCommon(TransactionCase):
             'date_stop': '2019-05-31',
             'special': False,
             'fiscalyear_id': self.fiscalyear2019.id,
-        })
-
-    def setUp(self):
-        super(FatturapaCommon, self).setUp()
-        self.wizard_model = self.env['wizard.import.fatturapa']
-        self.wizard_link_model = self.env['wizard.link.to.invoice']
-        self.data_model = self.env['ir.model.data']
-        self.attach_model = self.env['fatturapa.attachment.in']
-        self.invoice_model = self.env['account.invoice']
-        self.account_fiscalyear_model = self.env['account.fiscalyear']
-        self.account_period_model = self.env['account.period']
-        self.create_fiscal_years()
-        self.payable_account_id = self.env['account.account'].search([
-            ('user_type', '=', self.env.ref(
-                'account.data_account_type_payable').id)
-        ], limit=1).id
-        self.headphones = self.env.ref(
-            'product.product_product_7_product_template')
-        self.imac = self.env.ref(
-            'product.product_product_8_product_template')
-        self.service = self.env.ref('product.product_product_1')
-        arrotondamenti_attivi_account_id = self.env['account.account'].\
-            search([('user_type', '=', self.env.ref(
-                'account.data_account_type_income').id)], limit=1).id
-        arrotondamenti_passivi_account_id = self.env['account.account'].\
-            search([('user_type', '=', self.env.ref(
-                'account.data_account_type_expense').id)], limit=1).id
-        arrotondamenti_tax_id = self.env['account.tax'].search(
-            [('type_tax_use', '=', 'purchase'),
-             ('amount', '=', 0.0)], order='sequence', limit=1)
-        self.env.user.company_id.arrotondamenti_attivi_account_id = (
-            arrotondamenti_attivi_account_id)
-        self.env.user.company_id.arrotondamenti_passivi_account_id = (
-            arrotondamenti_passivi_account_id)
-        self.env.user.company_id.arrotondamenti_tax_id = (
-            arrotondamenti_tax_id)
-        self.provinceSS = self.env['res.country.state'].create({
-            'name': 'Sassari',
-            'code': 'SS',
-            'country_id': self.env.ref('base.it').id
         })
 
     def run_wizard(self, name, file_name, datas_fname=None,
@@ -203,3 +184,53 @@ class FatturapaCommon(TransactionCase):
         wizard = self.wizard_model.with_context(
             active_ids=active_ids).create({})
         return wizard.importFatturaPA()
+
+    def setUp(self):
+        super(FatturapaCommon, self).setUp()
+        self.wizard_model = self.env['wizard.import.fatturapa']
+        self.wizard_link_model = self.env['wizard.link.to.invoice']
+        self.data_model = self.env['ir.model.data']
+        self.attach_model = self.env['fatturapa.attachment.in']
+        self.invoice_model = self.env['account.invoice']
+        self.account_fiscalyear_model = self.env['account.fiscalyear']
+        self.account_period_model = self.env['account.period']
+        self.payable_account_id = self.env['account.account'].search([
+            ('user_type', '=', self.env.ref(
+                'account.data_account_type_payable').id)
+        ], limit=1).id
+        self.headphones = self.env.ref(
+            'product.product_product_7_product_template')
+        self.imac = self.env.ref(
+            'product.product_product_8_product_template')
+        self.service = self.env.ref('product.product_product_1')
+        arrotondamenti_attivi_account_id = self.env['account.account'].\
+            search([('user_type', '=', self.env.ref(
+                'account.data_account_type_income').id)], limit=1).id
+        arrotondamenti_passivi_account_id = self.env['account.account'].\
+            search([('user_type', '=', self.env.ref(
+                'account.data_account_type_expense').id)], limit=1).id
+        arrotondamenti_tax_id = self.env['account.tax'].search(
+            [('type_tax_use', '=', 'purchase'),
+             ('amount', '=', 0.0)], order='sequence', limit=1)
+        self.env.user.company_id.arrotondamenti_attivi_account_id = (
+            arrotondamenti_attivi_account_id)
+        self.env.user.company_id.arrotondamenti_passivi_account_id = (
+            arrotondamenti_passivi_account_id)
+        self.env.user.company_id.arrotondamenti_tax_id = (
+            arrotondamenti_tax_id)
+        sconto_maggiorazione_product_id = self.env[
+            'product.product'
+        ].create({
+            'name': 'Global discount',
+            'taxes_id': [(6, 0, [self.env.ref(
+                'l10n_it_fatturapa.tax_22').id])],
+            'supplier_taxes_id': [(6, 0, [self.env.ref(
+                'l10n_it_fatturapa.tax_22_acq').id])],
+        })
+        self.env.user.company_id.sconto_maggiorazione_product_id \
+            = sconto_maggiorazione_product_id
+        self.provinceSS = self.env['res.country.state'].create({
+            'name': 'Sassari',
+            'code': 'SS',
+            'country_id': self.env.ref('base.it').id
+        })
