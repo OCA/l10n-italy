@@ -235,6 +235,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0012')
         self.assertEqual(invoice.sender, 'TZ')
+        self.assertEqual(invoice.intermediary.name, 'MARIO ROSSI')
         self.assertEqual(invoice.intermediary.firstname, 'MARIO')
         self.assertEqual(invoice.intermediary.lastname, 'ROSSI')
 
@@ -288,7 +289,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
     def test_16_xml_import(self):
         # file B2B downloaded from
         # http://www.fatturapa.gov.it/export/fatturazione/it/a-3.htm
-        res = self.run_wizard('test16', 'IT01234567890_FPR03.xml')
+        res = self.run_wizard('test16a', 'IT01234567890_FPR03.xml')
         invoice_ids = res.get('domain')[0][2]
         invoices = self.invoice_model.browse(invoice_ids)
         self.assertEqual(len(invoices), 2)
@@ -314,7 +315,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             'product_tmpl_id': self.headphones.id,
             'product_code': 'ART123',
         })
-        res = self.run_wizard('test17', 'IT01234567890_FPR03.xml')
+        res = self.run_wizard('test16b', 'IT01234567890_FPR03.xml')
         invoice_ids = res.get('domain')[0][2]
         invoices = self.invoice_model.browse(invoice_ids)
         for invoice in invoices:
@@ -333,7 +334,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
 
         # change Livello di dettaglio Fatture elettroniche to Minimo
         partner.e_invoice_detail_level = '0'
-        res = self.run_wizard('test17', 'IT01234567890_FPR03.xml')
+        res = self.run_wizard('test16c', 'IT01234567890_FPR03.xml')
         invoice_ids = res.get('domain')[0][2]
         invoices = self.invoice_model.browse(invoice_ids)
         self.assertTrue(len(invoices) == 2)
@@ -506,6 +507,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
 
     def test_34_xml_import(self):
         # No Ritenuta lines set
+        self.wt = self.create_wt()
         res = self.run_wizard('test34', 'IT01234567890_FPR08.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
@@ -668,9 +670,7 @@ class TestFatturaPAEnasarco(FatturapaCommon):
                 'account.data_account_type_receivable').id,
             'reconcile': True})
         misc_journal = self.env['account.journal']. \
-            search([("code", "=", "MISC")], limit=1)
-        welfare_fund_type_id = self.env['welfare.fund.type']. \
-            search([('name', '=', 'TC07')])
+            search([('type', '=', 'general')], limit=1)
         self.env['withholding.tax'].create({
             'name': 'Enasarco',
             'code': 'TC07',
@@ -679,7 +679,6 @@ class TestFatturaPAEnasarco(FatturapaCommon):
             'journal_id': misc_journal.id,
             'payment_term': self.env.ref(
                 'account.account_payment_term_advance').id,
-            'welfare_fund_type_id': welfare_fund_type_id.id,
             'wt_types': 'enasarco',
             'rate_ids': [(0, 0, {
                 'tax': 1.57,
@@ -694,7 +693,6 @@ class TestFatturaPAEnasarco(FatturapaCommon):
             'journal_id': misc_journal.id,
             'payment_term': self.env.ref(
                 'account.account_payment_term_advance').id,
-            'welfare_fund_type_id': False,
             'wt_types': 'ritenuta',
             'causale_pagamento_id': self.env.ref(
                 'l10n_it_causali_pagamento.a').id,

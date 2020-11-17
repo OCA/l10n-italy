@@ -24,7 +24,10 @@ class FatturapaCommon(TransactionCase):
             'code': '1040',
             'account_receivable_id': self.payable_account_id,
             'account_payable_id': self.payable_account_id,
+            'journal_id': self.env['account.journal'].search(
+                [('type', '=', 'general')], limit=1).id,
             'payment_term': self.env.ref('account.account_payment_term').id,
+            'wt_types': 'ritenuta',
             'rate_ids': [(0, 0, {'tax': 20.0})],
             'causale_pagamento_id':
                 self.env.ref('l10n_it_causali_pagamento.a').id,
@@ -36,7 +39,10 @@ class FatturapaCommon(TransactionCase):
             'code': '2320',
             'account_receivable_id': self.payable_account_id,
             'account_payable_id': self.payable_account_id,
+            'journal_id': self.env['account.journal'].search(
+                [('type', '=', 'general')], limit=1).id,
             'payment_term': self.env.ref('account.account_payment_term').id,
+            'wt_types': 'ritenuta',
             'rate_ids': [(0, 0, {'tax': 23.0, 'base': 0.2})],
             'causale_pagamento_id':
                 self.env.ref('l10n_it_causali_pagamento.a').id,
@@ -48,7 +54,10 @@ class FatturapaCommon(TransactionCase):
             'code': '2320',
             'account_receivable_id': self.payable_account_id,
             'account_payable_id': self.payable_account_id,
+            'journal_id': self.env['account.journal'].search(
+                [('type', '=', 'general')], limit=1).id,
             'payment_term': self.env.ref('account.account_payment_term').id,
+            'wt_types': 'ritenuta',
             'rate_ids': [(0, 0, {'tax': 23.0, 'base': 0.5})],
             'causale_pagamento_id':
                 self.env.ref('l10n_it_causali_pagamento.a').id,
@@ -60,7 +69,10 @@ class FatturapaCommon(TransactionCase):
             'code': '2620q',
             'account_receivable_id': self.payable_account_id,
             'account_payable_id': self.payable_account_id,
+            'journal_id': self.env['account.journal'].search(
+                [('type', '=', 'general')], limit=1).id,
             'payment_term': self.env.ref('account.account_payment_term').id,
+            'wt_types': 'ritenuta',
             'rate_ids': [(0, 0, {'tax': 26.0, 'base': 0.2})],
             'causale_pagamento_id':
                 self.env.ref('l10n_it_causali_pagamento.q').id,
@@ -72,7 +84,10 @@ class FatturapaCommon(TransactionCase):
             'code': '2640q',
             'account_receivable_id': self.payable_account_id,
             'account_payable_id': self.payable_account_id,
+            'journal_id': self.env['account.journal'].search(
+                [('type', '=', 'general')], limit=1).id,
             'payment_term': self.env.ref('account.account_payment_term').id,
+            'wt_types': 'ritenuta',
             'rate_ids': [(0, 0, {'tax': 26.0, 'base': 0.4})],
             'causale_pagamento_id':
                 self.env.ref('l10n_it_causali_pagamento.q').id,
@@ -84,7 +99,10 @@ class FatturapaCommon(TransactionCase):
             'code': '2720q',
             'account_receivable_id': self.payable_account_id,
             'account_payable_id': self.payable_account_id,
+            'journal_id': self.env['account.journal'].search(
+                [('type', '=', 'general')], limit=1).id,
             'payment_term': self.env.ref('account.account_payment_term').id,
+            'wt_types': 'ritenuta',
             'rate_ids': [(0, 0, {'tax': 27.0, 'base': 0.2})],
             'causale_pagamento_id':
                 self.env.ref('l10n_it_causali_pagamento.q').id,
@@ -96,7 +114,10 @@ class FatturapaCommon(TransactionCase):
             'code': '4q',
             'account_receivable_id': self.payable_account_id,
             'account_payable_id': self.payable_account_id,
+            'journal_id': self.env['account.journal'].search(
+                [('type', '=', 'general')], limit=1).id,
             'payment_term': self.env.ref('account.account_payment_term').id,
+            'wt_types': 'ritenuta',
             'rate_ids': [(0, 0, {'tax': 4.0, 'base': 1.0})],
             'causale_pagamento_id':
                 self.env.ref('l10n_it_causali_pagamento.q').id,
