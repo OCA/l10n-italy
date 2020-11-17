@@ -460,9 +460,8 @@ class WizardImportFatturapa(models.TransientModel):
         if line.RiferimentoAmministrazione:
             retLine['admin_ref'] = line.RiferimentoAmministrazione
 
-        # TODO MOMENTANEAMENTE SOSPESA IN ATTESA DI VERIFICA
-        # if wt_founds and line.Ritenuta:
-        #     retLine['invoice_line_tax_wt_ids'] = [(6, 0, [x.id for x in wt_founds])]
+        if wt_founds and line.Ritenuta:
+            retLine['invoice_line_tax_wt_ids'] = [(6, 0, [x.id for x in wt_founds])]
 
         return retLine
 
@@ -1262,11 +1261,10 @@ class WizardImportFatturapa(models.TransientModel):
                     else:
                         raise UserError(msg)
 
-                # TODO MOMENTANEAMENTE SOSPESA IN ATTESA DI VERIFICA
-                # for line in invoice.invoice_line:
-                #     line.invoice_line_tax_wt_ids = [(4, wt_found.id)]
-                # invoice._onchange_invoice_line_wt_ids()
-                # invoice.write(invoice._convert_to_write(invoice._cache))
+                for line in invoice.invoice_line:
+                    line.invoice_line_tax_wt_ids = [(4, wt_found.id)]
+                invoice._onchange_invoice_line_wt_ids()
+                invoice.write(invoice._convert_to_write(invoice._cache))
                 continue
 
             line_vals = self._prepare_generic_line_data(welfareLine)
@@ -1283,9 +1281,8 @@ class WizardImportFatturapa(models.TransientModel):
                         "Welfare Fund data %s has withholding tax but no "
                         "withholding tax was found in the system."
                     ) % welfareLine.TipoCassa)
-                # TODO MOMENTANEAMENTE SOSPESA IN ATTESA DI VERIFICA
-                # line_vals['invoice_line_tax_wt_ids'] = [
-                #     (6, 0, [wt_found.id])]
+                line_vals['invoice_line_tax_wt_ids'] = [
+                    (6, 0, [wt_found.id])]
             if self.env.user.company_id.cassa_previdenziale_product_id:
                 cassa_previdenziale_product = self.env.user.company_id \
                     .cassa_previdenziale_product_id
