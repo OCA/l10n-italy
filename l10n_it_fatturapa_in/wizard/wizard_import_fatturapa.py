@@ -428,8 +428,8 @@ class WizardImportFatturapa(models.TransientModel):
                 line_vals['invoice_line_tax_id'][0][2][0]
             )
             line_tax = self.env['account.tax'].browse(line_tax_id)
-            if new_tax.id != line_tax_id:
-                if new_tax.amount != line_tax.amount:
+            if new_tax.id != line_tax_id or not line_tax:
+                if line_tax and new_tax.amount != line_tax.amount:
                     self.log_inconsistency(_(
                         "XML contains tax %s. Product %s has tax %s. Using "
                         "the XML one"
@@ -996,9 +996,9 @@ class WizardImportFatturapa(models.TransientModel):
                 'date_invoice':
                     FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data.date(),
             })
-        if not invoice.supplier_invoice_number:
+        if not invoice.reference:
             invoice.update({
-                'supplier_invoice_number':
+                'reference':
                     FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
             })
 
