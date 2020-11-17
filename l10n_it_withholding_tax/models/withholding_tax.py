@@ -197,7 +197,7 @@ class WithholdingTaxStatement(models.Model):
 
     @api.multi
     @api.depends('move_ids.amount', 'move_ids.state',)
-                 # 'move_ids.reconcile_partial_id')
+    #  'move_ids.reconcile_partial_id')
     def _compute_total(self):
         for statement in self:
             tot_wt_amount = 0
@@ -228,7 +228,7 @@ class WithholdingTaxStatement(models.Model):
     tax = fields.Float('Tax')
     amount = fields.Float(
         string='WT amount applied', store=True, readonly=True,
-                          compute='_compute_total')
+        compute='_compute_total')
     amount_paid = fields.Float(string='WT amount paid', store=True,
                                readonly=True, compute='_compute_total')
     move_ids = fields.One2many('withholding.tax.move',
