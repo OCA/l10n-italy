@@ -21,7 +21,6 @@
         'l10n_it_withholding_tax_causali',
     ],
     'data': [
-        'views/withholding_tax_view.xml',
     ],
     'installable': True,
     'auto_install': True,
