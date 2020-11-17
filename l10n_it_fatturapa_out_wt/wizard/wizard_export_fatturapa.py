@@ -124,8 +124,8 @@ class WizardExportFatturapa(models.TransientModel):
     def setDatiPagamento(self, invoice, body):
         res = super(WizardExportFatturapa, self).setDatiPagamento(
             invoice, body)
-        if invoice.withholding_tax_line and invoice.payment_term_id:
-            payment_line_ids = invoice.get_receivable_line_ids()
+        if invoice.withholding_tax_line and invoice.payment_term:
+            payment_line_ids = invoice.move_line_id_payment_get()
             index = 0
             rate = invoice.amount_net_pay / invoice.amount_total
             move_line_pool = self.env['account.move.line']
