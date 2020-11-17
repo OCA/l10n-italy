@@ -653,7 +653,7 @@ class WizardExportFatturapa(models.TransientModel):
                 prezzo_unitario, price_precision),
             Quantita=('%.' + str(uom_precision) + 'f') % line.quantity,
             UnitaMisura=line.uos_id and (unidecode(line.uos_id.name)) or None,
-            PrezzoTotale='%.2f' % float_round(line.price_subtotal, price_precision),
+            PrezzoTotale='%.2f' % float_round(line.price_subtotal, 2),
             AliquotaIVA=AliquotaIVA)
         DettaglioLinea.ScontoMaggiorazione.extend(
             self.setScontoMaggiorazione(line))
