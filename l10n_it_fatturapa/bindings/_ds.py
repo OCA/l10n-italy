@@ -2,7 +2,7 @@
 # flake8: noqa
 # -*- coding: utf-8 -*-
 # PyXB bindings for NM:f1c343a882e7a65fb879f4ee813309f8231f28c8
-# Generated 2020-10-29 12:37:34.584252 by PyXB version 1.2.6 using Python 2.7.12.final.0
+# Generated 2020-11-18 09:24:57.262615 by PyXB version 1.2.6 using Python 2.7.12.final.0
 # By Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 # By Vincenzo Terzulli <v.terzulli@elvenstudio.it>
 # Namespace http://www.w3.org/2000/09/xmldsig# [xmlns:ds]
@@ -25,7 +25,7 @@ except ImportError as err:
     _logger.debug(err)
 
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:19e03b20-19db-11eb-80f2-9cb6d0f47f3b')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:818c28aa-2977-11eb-b820-9cb6d0f47f3b')
 
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.6'
