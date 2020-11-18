@@ -22,12 +22,12 @@ class WizardExportFatturapa(models.TransientModel):
                 DettaglioLinea.ScontoMaggiorazione.append(
                     ScontoMaggiorazioneType(
                         Tipo='SC',
-                        Percentuale='%.8f' % float_round(line.discount2, 8)
+                        Percentuale='%.2f' % float_round(line.discount2, 2)
                     ))
             if line.discount3:
                 DettaglioLinea.ScontoMaggiorazione.append(
                     ScontoMaggiorazioneType(
                         Tipo='SC',
-                        Percentuale='%.8f' % float_round(line.discount3, 8)
+                        Percentuale='%.2f' % float_round(line.discount3, 2)
                     ))
         return res
