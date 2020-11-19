@@ -130,7 +130,7 @@ class AccountVoucher(orm.Model):
         the invoice
         """
         move_line_obj = self.pool['account.move.line']
-        account_move_obj = self.pool['account.move']  #Apulia
+        account_move_obj = self.pool['account.move']  # Apulia
         voucher_line_obj = self.pool['account.voucher.line']
         payment_term_obj = self.pool['account.payment.term']
         reconcile_obj = self.pool['account.move.reconcile']
@@ -237,8 +237,8 @@ class AccountVoucher(orm.Model):
                     # la registrazione è già validata la riporta in bozza
                     cc_move = line_payment.move_id
                     if cc_move.state == 'posted':
-                         account_move_obj.button_cancel(
-                             cr, uid, [cc_move.id], context)
+                        account_move_obj.button_cancel(
+                            cr, uid, [cc_move.id], context)
                     move_line_obj.write(cr, uid, [line_payment.id], val)
                     # una volta corretta la riga rivalida la registrazione
                     if cc_move.journal_id.entry_posted:
