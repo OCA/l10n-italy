@@ -5,6 +5,7 @@
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2019 Gianluigi Tiesi - Netfarm S.r.l.
 # Copyright 2020 Vincenzo Terzulli <v.terzulli@elvenstudio.it>
+# Copyright 2019 Sergio Corato
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
