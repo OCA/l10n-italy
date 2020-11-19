@@ -191,6 +191,9 @@ class WizardImportFatturapa(models.TransientModel):
                 vals['lastname'] = DatiAnagrafici.Anagrafica.Cognome
             if DatiAnagrafici.Anagrafica.Denominazione:
                 vals['name'] = DatiAnagrafici.Anagrafica.Denominazione
+            else:
+                # in v8 name field is not auto-completed
+                vals['name'] = vals['lastname'] + ' ' + vals['firstname']
 
             return partner_model.create(vals).id
 
