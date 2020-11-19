@@ -164,7 +164,7 @@ class AccountVoucher(orm.Model):
         for rec in rec_list_ids:
             line_move_to_pay = move_line_obj.browse(cr, uid, rec[1])
             line_payment = move_line_obj.browse(cr, uid, rec[0])
-            #verifica che la registrazione non sia validata e la riporta in bozza
+            # verifica che la registrazione non sia validata e la riporta in bozza
             # Remove reconciliation to change amounts
             lines_to_rereconcile = _unreconcile_move_line(line_move_to_pay)
             for r_line_id in lines_to_rereconcile:
