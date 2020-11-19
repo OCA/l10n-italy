@@ -23,6 +23,8 @@
         'wizard/wizard_export_fatturapa_view.xml',
         'views/attachment_view.xml',
         'views/account_view.xml',
+        'views/partner_view.xml',
+        'views/company_view.xml',
         'security/ir.model.access.csv',
         'security/rules.xml',
     ],

@@ -61,3 +61,30 @@ class TestEInvoiceSend(EInvoiceCommon):
         # Cannot reset e-invoice whose state is 'sent'
         with self.assertRaises(UserError):
             e_invoice.reset_to_ready()
+
+    def test_resend_after_regenerate(self):
+        """Re-sending e-invoice raises UserError"""
+        invoice = self._create_invoice()
+        invoice.action_invoice_open()
+
+        wizard = self._get_export_wizard(invoice)
+        action = wizard.exportFatturaPA()
+        e_invoice = self.env[action['res_model']].browse(action['res_id'])
+
+        self._create_fetchmail_pec_server()
+        e_invoice.send_via_pec()
+        self.assertEqual(e_invoice.state, 'sent')
+
+        # Set the e_invoice to error
+        e_invoice.state = 'sender_error'
+
+        # We can reset e-invoice whose state is 'sender_error'
+        e_invoice.reset_to_ready()
+
+        action = wizard.with_context(active_id=invoice.id).\
+            exportFatturaPARegenerate()
+        e_invoice = self.env[action['res_model']].browse(action['res_id'])
+
+        # Send it again
+        e_invoice.send_via_pec()
+        self.assertEqual(e_invoice.state, 'sent')
