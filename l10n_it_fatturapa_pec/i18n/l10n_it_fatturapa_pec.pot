@@ -112,6 +112,11 @@ msgid "Error"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_wizard_export_fatturapa
+msgid "Export E-invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:181
 #, python-format
 msgid "Fetchmail PEC server [%s] error"
@@ -199,6 +204,21 @@ msgid "POP/IMAP Server"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_export_fatturapa_form_view_regenerate
+msgid "Re-Export"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_invoice_fatturapa_out_pec_form
+msgid "Re-Export E-invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.actions.act_window,name:l10n_it_fatturapa_pec.action_wizard_export_fatturapa_regenerate
+msgid "Re-Export Electronic Invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_attachment_search_state
 msgid "Ready"
 msgstr ""
@@ -274,6 +294,18 @@ msgstr ""
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_account_config_settings_e_invoice_user_id
 msgid "Supplier e-invoice creator"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/wizard/wizard_export_fatturapa.py:49
+#, python-format
+msgid "The invoice cannot be regenerated because doesn't have a e-invoice attachment associated to it"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/wizard/wizard_export_fatturapa.py:39
+#, python-format
+msgid "The method can be called with a valid active_id"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
