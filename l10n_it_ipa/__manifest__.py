@@ -7,7 +7,7 @@
 
 {
     "name": "ITA - Codice IPA",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.0.2",
     "development_status": "Beta",
     "category": "Localization/Italy",
     "author": "KTec S.r.l,Odoo Community Association (OCA),Odoo Italia Network",
