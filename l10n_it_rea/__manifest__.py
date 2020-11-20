@@ -8,7 +8,7 @@
 
 {
     "name": "ITA - Registro REA",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Localisation/Italy",
     "development_status": "Production/Stable",
     "summary": "Gestisce i campi del Repertorio Economico Amministrativo",
