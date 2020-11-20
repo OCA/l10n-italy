@@ -47,4 +47,3 @@ To configure this module, you need to:
 .. figure:: static/fiscal_position.png
    :alt: Fiscal position
    :width: 600 px
-
