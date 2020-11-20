@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="fiscal_position_sp" model="account.fiscal.position">
+            <field name="name">Split payment</field>
+            <field name="split_payment" eval="True" />
+        </record>
+
+    </data>
+</odoo>
