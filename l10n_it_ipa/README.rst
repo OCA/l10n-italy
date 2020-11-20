@@ -26,11 +26,13 @@ ITA - Codice IPA
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
 **Italiano**
+
 Questo modulo aggiunge il codice IPA sul partner.
 
 http://www.indicepa.gov.it/
 
 **English**
+
 This module adds the IPA code field to the partner.
 
 http://www.indicepa.gov.it/
