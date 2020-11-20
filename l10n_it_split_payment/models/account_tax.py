@@ -1,15 +1,15 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class AccountTax(models.Model):
     _inherit = "account.tax"
+
     is_split_payment = fields.Boolean(
         "Is split payment", compute="_compute_is_split_payment"
     )
 
-    @api.multi
     def _compute_is_split_payment(self):
         for tax in self:
             fp_lines = self.env["account.fiscal.position.tax"].search(
