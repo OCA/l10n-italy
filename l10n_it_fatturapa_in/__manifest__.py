@@ -28,5 +28,12 @@
         'security/ir.model.access.csv',
         'security/rules.xml',
     ],
-    "installable": True
+    "installable": True,
+    'external_dependencies': {
+        'python': [
+            'elementpath',
+            'xmlschema',
+            'asn1crypto'
+        ],
+    }
 }
