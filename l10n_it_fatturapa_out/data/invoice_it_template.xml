@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <template id="account_invoice_line_it_FatturaPA">
+            <t t-set="taxes" t-value="line.tax_ids.compute_all(line.price_unit)" />
+            <DettaglioLinee>
+                <NumeroLinea t-esc="line_counter" />
+                <!--                <TipoCessionePrestazione t-esc=""/>-->
+                <CodiceArticolo t-if="line.product_id.barcode">
+                    <!--2.2.1.3-->
+                    <CodiceTipo>EAN</CodiceTipo>
+                    <CodiceValore t-esc="line.product_id.barcode[:35]" />
+                </CodiceArticolo>
+                <CodiceArticolo t-if="line.product_id.default_code">
+                    <CodiceTipo t-esc="codice_articolo" />
+                    <CodiceValore t-esc="line.product_id.default_code[:35]" />
+                </CodiceArticolo>
+                <Descrizione>
+                    <t t-esc="encode_for_export(line.name, 1000)" />
+                    <t t-if="not line.name" t-esc="'NO NAME'" />
+                </Descrizione>
+                <Quantita t-esc="format_numbers(line.quantity)" />
+                <UnitaMisura
+                    t-if="line.product_uom_id.category_id != env.ref('uom.product_uom_categ_unit')"
+                    t-esc="unidecode(line.product_uom_id.name)"
+                />
+                <!--                <DataInizioPeriodo t-esc=""/>-->
+                <!--                <DataFinePeriodo t-esc=""/>-->
+                <PrezzoUnitario
+                    t-esc="format_monetary(taxes['total_excluded'], currency)"
+                />
+                <ScontoMaggiorazione t-if="line.discount != 0">
+                    <!-- [2.2.1.10] -->
+                    <Tipo t-if="line.discount > 0" t-esc="SC" />
+                    <Tipo t-if="not line.discount > 0" t-esc="MG" />
+                    <Percentuale t-esc="format_numbers(abs(line.discount))" />
+                    <!--                    <Importo t-esc=""/>-->
+                </ScontoMaggiorazione>
+                <PrezzoTotale t-esc="format_monetary(line.price_subtotal, currency)" />
+                <!-- without tax, must include any discounts and any extra charge-->
+                <AliquotaIVA
+                    t-if="line.tax_ids.amount_type == 'percent'"
+                    t-esc="format_numbers(line.tax_ids.amount)"
+                />
+                <AliquotaIVA
+                    t-if="line.tax_ids.amount_type != 'percent'"
+                    t-esc="'0.00'"
+                />
+                <!--                <Ritenuta t-esc=""/>-->
+                <Natura
+                    t-if="line.tax_ids.kind_id.code"
+                    t-esc="line.tax_ids.kind_id.code"
+                />
+                <RiferimentoAmministrazione
+                    t-if="line.admin_ref"
+                    t-esc="line.admin_ref"
+                />
+                <!--                <AltriDatiGestionali>-->
+                <!--                    <TipoDato t-esc=""/>-->
+                <!--                    <RiferimentoTesto t-esc=""/>-->
+                <!--                    <RiferimentoNumero t-esc=""/>-->
+                <!--                    <RiferimentoData t-esc=""/>-->
+                <!--                </AltriDatiGestionali>-->
+            </DettaglioLinee>
+        </template>
+        <template id="account_invoice_line_it_dati_riepilogo">
+            <DatiRiepilogo>
+                <!--2.2.2-->
+                <AliquotaIVA t-esc="format_numbers(tax_line.tax_line_id.amount)" />
+                <Natura
+                    t-if="tax_line.tax_line_id.kind_id.code"
+                    t-esc="tax_line.tax_line_id.kind_id.code"
+                />
+                <!--                <SpeseAccessorie t-esc=""/>-->
+                <!--                <Arrotondamento t-esc=""/>-->
+                <ImponibileImporto
+                    t-esc="format_monetary(tax_line.tax_base_amount, currency)"
+                />
+                <Imposta t-esc="format_monetary(tax_line.price_unit, currency)" />
+                <EsigibilitaIVA
+                    t-if="tax_line.tax_line_id.payability"
+                    t-esc="tax_line.tax_line_id.payability"
+                />
+                <RiferimentoNormativo
+                    t-if="tax_line.tax_line_id.law_reference"
+                    t-esc="encode_for_export(tax_line.tax_line_id.law_reference, 100)"
+                />
+            </DatiRiepilogo>
+        </template>
+        <template id="account_invoice_it_FatturaPA_sede">
+            <Indirizzo>
+                <t t-if="partner_id.street" t-esc="partner_id.street" />
+                <t t-if="partner_id.street2" t-esc="partner_id.street2" />
+            </Indirizzo>
+            <!--            <NumeroCivico t-esc=""/>-->
+            <CAP>
+                <t t-if="partner_id.country_id.code != 'IT'" t-esc="'00000'" />
+                <t t-else="" t-esc="partner_id.zip" />
+            </CAP>
+            <Comune t-esc="partner_id.city" />
+            <Provincia
+                t-if="partner_id.country_id.code == 'IT'"
+                t-esc="partner_id.state_id.code"
+            />
+            <Nazione t-esc="partner_id.country_id.code" />
+        </template>
+        <template id="account_invoice_it_dati_documenti_correlati">
+            <RiferimentoNumeroLinea t-esc="" />
+            <IdDocumento t-esc="" />
+            <Data t-esc="" />
+            <NumItem t-esc="" />
+            <CodiceCommessaConvenzione t-esc="" />
+            <CodiceCUP t-esc="" />
+            <CodiceCIG t-esc="" />
+        </template>
+        <template id="account_invoice_it_dati_trasmissione">
+            <DatiTrasmissione>
+                <IdTrasmittente>
+                    <IdPaese t-esc="get_vat_country(company_id.vat)" />
+                    <IdCodice t-esc="company_id.partner_id.fiscalcode" />
+                </IdTrasmittente>
+                <ProgressivoInvio t-esc="progressivo_invio" />
+                <FormatoTrasmissione t-esc="formato_trasmissione" />
+                <CodiceDestinatario
+                    t-if="codice_destinatario"
+                    t-esc="codice_destinatario"
+                />
+                <ContattiTrasmittente>
+                    <Telefono
+                        t-if="format_phone(company_id.partner_id.phone)"
+                        t-esc="format_phone(company_id.partner_id.phone)"
+                    />
+                    <Telefono
+                        t-if="not format_phone(company_id.partner_id.phone) and format_phone(company_id.partner_id.mobile)"
+                        t-esc="format_phone(company_id.partner_id.mobile)"
+                    />
+                    <Email t-if="company_id.email" t-esc="company_id.email" />
+                </ContattiTrasmittente>
+                <PECDestinatario
+                    t-if="codice_destinatario == '0000000'"
+                    t-esc="partner_id.pec_destinatario"
+                />
+            </DatiTrasmissione>
+        </template>
+        <template id="account_invoice_it_cedente_prestatore">
+            <CedentePrestatore>
+                <DatiAnagrafici>
+                    <IdFiscaleIVA>
+                        <IdPaese t-esc="get_vat_country(company_id.vat)" />
+                        <IdCodice t-esc="get_vat_number(company_id.vat)" />
+                    </IdFiscaleIVA>
+                    <CodiceFiscale
+                        t-if="company_id.partner_id.fiscalcode"
+                        t-esc="company_id.partner_id.fiscalcode"
+                    />
+                    <Anagrafica>
+                        <Denominazione t-esc="company_id.partner_id.display_name" />
+                        <Nome
+                            t-if="not company_id.partner_id.is_company"
+                            t-esc="company_id.partner_id.firstname"
+                        />
+                        <Cognome
+                            t-if="not company_id.partner_id.is_company"
+                            t-esc="company_id.partner_id.lastname"
+                        />
+                        <!--                        <Titolo t-esc=""/>-->
+                        <CodEORI
+                            t-if="company_id.partner_id.eori_code"
+                            t-esc="company_id.partner_id.eori_code"
+                        />
+                    </Anagrafica>
+                    <!--                    <AlboProfessionale t-esc=""/>-->
+                    <!--                    <ProvinciaAlbo t-esc=""/>-->
+                    <!--                    <NumeroIscrizioneAlbo t-esc=""/>-->
+                    <!--                    <DataIscrizioneAlbo t-esc=""/>-->
+                    <RegimeFiscale
+                        t-esc="company_id.fatturapa_fiscal_position_id.code"
+                    />
+                </DatiAnagrafici>
+                <Sede>
+                    <t t-call="l10n_it_fatturapa_out.account_invoice_it_FatturaPA_sede">
+                        <t t-set="partner_id" t-value="company_id.partner_id" />
+                    </t>
+                </Sede>
+                <StabileOrganizzazione
+                    t-if="company_id.fatturapa_stabile_organizzazione"
+                >
+                    <t t-call="l10n_it_fatturapa_out.account_invoice_it_FatturaPA_sede">
+                        <t
+                            t-set="partner_id"
+                            t-value="company_id.fatturapa_stabile_organizzazione"
+                        />
+                    </t>
+                </StabileOrganizzazione>
+                <IscrizioneREA
+                    t-if="company_id.rea_office and company_id.rea_code and company_id.rea_liquidation_state"
+                >
+                    <!--1.2.4-->
+                    <Ufficio
+                        t-if="company_id.rea_office.code"
+                        t-esc="company_id.rea_office.code"
+                    />
+                    <NumeroREA t-esc="company_id.rea_code" />
+                    <CapitaleSociale
+                        t-if="company_id.rea_capital"
+                        t-esc="format_numbers_two(company_id.rea_capital)"
+                    />
+                    <SocioUnico
+                        t-if="company_id.rea_member_type"
+                        t-esc="company_id.rea_member_type"
+                    />
+                    <StatoLiquidazione t-esc="company_id.rea_liquidation_state" />
+                </IscrizioneREA>
+                <Contatti>
+                    <Telefono
+                        t-if="format_phone(company_id.partner_id.phone)"
+                        t-esc="format_phone(company_id.partner_id.phone)"
+                    />
+                    <Telefono
+                        t-if="not format_phone(company_id.partner_id.phone) and format_phone(company_id.partner_id.mobile)"
+                        t-esc="format_phone(company_id.partner_id.mobile)"
+                    />
+                    <Email t-if="company_id.email" t-esc="company_id.email" />
+                </Contatti>
+                <RiferimentoAmministrazione
+                    t-if="company_id.fatturapa_pub_administration_ref"
+                    t-esc="company_id.fatturapa_pub_administration_ref"
+                />
+            </CedentePrestatore>
+        </template>
+        <template id="account_invoice_it_rappresentante_fiscale">
+            <RappresentanteFiscale t-if="company_id.fatturapa_tax_representative">
+                <!--1.3-->
+                <DatiAnagrafici>
+                    <IdFiscaleIVA>
+                        <IdPaese
+                            t-esc="get_vat_country(company_id.fatturapa_tax_representative.vat)"
+                        />
+                        <IdCodice
+                            t-esc="get_vat_number(company_id.fatturapa_tax_representative.vat)"
+                        />
+                    </IdFiscaleIVA>
+                    <CodiceFiscale
+                        t-if="company_id.fatturapa_tax_representative.fiscalcode"
+                        t-esc="company_id.fatturapa_tax_representative.fiscalcode"
+                    />
+                    <Anagrafica>
+                        <Denominazione
+                            t-if="company_id.fatturapa_tax_representative.is_company"
+                            t-esc="company_id.fatturapa_tax_representative.display_name"
+                        />
+                        <Nome
+                            t-if="not company_id.fatturapa_tax_representative.is_company"
+                            t-esc="company_id.fatturapa_tax_representative.firstname"
+                        />
+                        <Cognome
+                            t-if="not company_id.fatturapa_tax_representative.is_company"
+                            t-esc="company_id.fatturapa_tax_representative.lastname"
+                        />
+                        <!--                        <Titolo t-esc=""/>-->
+                        <CodEORI
+                            t-if="company_id.fatturapa_tax_representative.eori_code"
+                            t-esc="company_id.fatturapa_tax_representative.eori_code"
+                        />
+                    </Anagrafica>
+                </DatiAnagrafici>
+            </RappresentanteFiscale>
+        </template>
+        <template id="account_invoice_it_cessionario_committente">
+            <CessionarioCommittente>
+                <DatiAnagrafici>
+                    <IdFiscaleIVA
+                        t-if="partner_id.commercial_partner_id.vat and in_eu(partner_id.commercial_partner_id)"
+                    >
+                        <IdPaese
+                            t-esc="get_vat_country(partner_id.commercial_partner_id.vat)"
+                        />
+                        <IdCodice
+                            t-esc="get_vat_number(partner_id.commercial_partner_id.vat)"
+                        />
+                    </IdFiscaleIVA>
+                    <IdFiscaleIVA
+                        t-if="partner_id.commercial_partner_id.vat and not in_eu(partner_id.commercial_partner_id)"
+                    >
+                        <IdPaese
+                            t-esc="partner_id.commercial_partner_id.country_id.code"
+                        />
+                        <IdCodice t-esc="'OO99999999999'" />
+                    </IdFiscaleIVA>
+                    <IdFiscaleIVA
+                        t-if="not partner_id.commercial_partner_id.vat and partner_id.commercial_partner_id.country_id.code != 'IT'"
+                    >
+                        <IdCodice t-esc="'0000000'" />
+                    </IdFiscaleIVA>
+                    <CodiceFiscale
+                        t-if="not partner_id.commercial_partner_id.vat"
+                        t-esc="partner_id.commercial_partner_id.fiscalcode"
+                    />
+                    <CodiceFiscale
+                        t-if="not partner_id.commercial_partner_id.vat and not partner_id.commercial_partner_id.fiscalcode"
+                        t-esc="99999999999"
+                    />
+                    <Anagrafica>
+                        <Denominazione
+                            t-if="partner_id.commercial_partner_id.is_company"
+                            t-esc="partner_id.commercial_partner_id.display_name"
+                        />
+                        <Nome
+                            t-if="not partner_id.commercial_partner_id.is_company"
+                            t-esc="partner_id.commercial_partner_id.firstname"
+                        />
+                        <Cognome
+                            t-if="not partner_id.commercial_partner_id.is_company"
+                            t-esc="partner_id.commercial_partner_id.lastname"
+                        />
+                        <!--                        <Titolo t-esc=""/>-->
+                        <CodEORI
+                            t-if="partner_id.commercial_partner_id.eori_code"
+                            t-esc="partner_id.commercial_partner_id.eori_code"
+                        />
+                    </Anagrafica>
+                </DatiAnagrafici>
+                <Sede>
+                    <t t-call="l10n_it_edi.account_invoice_it_FatturaPA_sede">
+                        <t
+                            t-set="partner_id"
+                            t-value="partner_id.commercial_partner_id"
+                        />
+                    </t>
+                </Sede>
+                <!--                <StabileOrganizzazione t-if="formato_trasmissione == 'FPR12' and partner_id.commercial_partner_id.fatturapa_stabile_organizzazione">-->
+                <!--                    <t t-call="l10n_it_edi.account_invoice_it_FatturaPA_sede">-->
+                <!--                        <t t-set="partner_id" t-value="partner_id.commercial_partner_id"/>-->
+                <!--                    </t>-->
+                <!--                </StabileOrganizzazione>-->
+                <!--                <RappresentanteFiscale t-if="formato_trasmissione == 'FPR12'">-->
+                <!--                    <IdFiscaleIVA>-->
+                <!--                        <IdPaese t-esc="get_vat_country(partner_id.commercial_partner_id.vat)"/>-->
+                <!--                        <IdCodice t-esc="get_vat_number(partner_id.commercial_partner_id.vat)"/>-->
+                <!--                    </IdFiscaleIVA>-->
+                <!--                    <Denominazione t-if="partner_id.commercial_partner_id.is_company" t-esc="partner_id.commercial_partner_id.display_name"/>-->
+                <!--                    <Nome t-if="not partner_id.commercial_partner_id.is_company" t-esc="' '.join(partner_id.commercial_partner_id.firstname)"/>-->
+                <!--                    <Cognome t-if="not partner_id.commercial_partner_id.is_company" t-esc="' '.join(partner_id.commercial_partner_id.lastname)"/>-->
+                <!--                </RappresentanteFiscale>-->
+            </CessionarioCommittente>
+        </template>
+        <template id="account_invoice_it_terzo_intermediario_soggetto_emittente">
+            <TerzoIntermediarioOSoggettoEmittente
+                t-if="company_id.fatturapa_sender_partner"
+            >
+                <DatiAnagrafici>
+                    <IdFiscaleIVA>
+                        <IdPaese
+                            t-esc="get_vat_country(company_id.fatturapa_sender_partner.vat)"
+                        />
+                        <IdCodice
+                            t-esc="get_vat_number(company_id.fatturapa_sender_partner.vat)"
+                        />
+                    </IdFiscaleIVA>
+                    <Denominazione
+                        t-esc="company_id.fatturapa_sender_partner.display_name"
+                    />
+                    <Nome
+                        t-if="not company_id.fatturapa_sender_partner.is_company"
+                        t-esc="company_id.fatturapa_sender_partner.firstname"
+                    />
+                    <Cognome
+                        t-if="not company_id.fatturapa_sender_partner.is_company"
+                        t-esc="company_id.fatturapa_sender_partner.lastname"
+                    />
+                    <!--                    <Titolo t-esc=""/>-->
+                    <CodEORI
+                        t-if="company_id.fatturapa_sender_partner.eori_code"
+                        t-esc="company_id.fatturapa_sender_partner.eori_code"
+                    />
+                </DatiAnagrafici>
+            </TerzoIntermediarioOSoggettoEmittente>
+        </template>
+        <template id="account_invoice_it_fattura_elettronica_body">
+            <t
+                t-set="currency"
+                t-value="record.currency_id or record.company_currency_id"
+            />
+            <t t-set="bank" t-value="record.partner_bank_id" />
+            <FatturaElettronicaBody>
+                <DatiGenerali>
+                    <DatiGeneraliDocumento>
+                        <!--2.1.1-->
+                        <TipoDocumento t-esc="document_type" />
+                        <Divisa t-esc="currency.name" />
+                        <Data t-esc="format_date(record.invoice_date)" />
+                        <Numero t-esc="record.name[-20:]" />
+                        <!--                        <DatiRitenuta>-->
+                        <!--                            <TipoRitenuta t-esc=""/>-->
+                        <!--                            <ImportoRitenuta t-esc=""/>-->
+                        <!--                            <AliquotaRitenuta t-esc=""/>-->
+                        <!--                            <CausalePagamento t-esc=""/>-->
+                        <!--                        </DatiRitenuta>-->
+                        <!--                        <DatiBollo t-if="record.l10n_it_stamp_duty">-->
+                        <!--                            &lt;!&ndash;2.1.1.6&ndash;&gt;-->
+                        <!--                            <BolloVirtuale>SI</BolloVirtuale>-->
+                        <!--                            <ImportoBollo t-esc="format_numbers(record.l10n_it_stamp_duty)"/>-->
+                        <!--                        </DatiBollo>-->
+                        <!--                        <DatiCassaPrevidenziale>-->
+                        <!--                            <TipoCassa t-esc=""/>-->
+                        <!--                            <AlCassa t-esc=""/>-->
+                        <!--                            <ImportoContributoCassa t-esc=""/>-->
+                        <!--                            <ImponibileCassa t-esc=""/>-->
+                        <!--                            <AliquotaIVA t-esc=""/>-->
+                        <!--                            <Ritenuta t-esc=""/>-->
+                        <!--                            <Natura t-esc=""/>-->
+                        <!--                            <RiferimentoAmministrazione t-esc=""/>-->
+                        <!--                        </DatiCassaPrevidenziale>-->
+                        <!--                        <ScontoMaggiorazione>-->
+                        <!--                            <Tipo t-esc=""/>-->
+                        <!--                            <Percentuale t-esc=""/>-->
+                        <!--                            <Importo t-esc=""/>-->
+                        <!--                        </ScontoMaggiorazione>-->
+                        <ImportoTotaleDocumento
+                            t-esc="format_number_two(record.amount_total)"
+                        />
+                        <!--                        <Arrotondamento t-esc=""/>-->
+                        <Causale t-esc="get_causale(record)" />
+                        <Art73 t-if="record.company_id.fatturapa_art73" t-esc="SI" />
+                    </DatiGeneraliDocumento>
+                    <!--                    <DatiOrdineAcquisto>-->
+                    <!--                        <t t-call="account_invoice_it_dati_documenti_correlati"/>-->
+                    <!--                    </DatiOrdineAcquisto>-->
+                    <!--                    <DatiContratto>-->
+                    <!--                        <t t-call="account_invoice_it_dati_documenti_correlati"/>-->
+                    <!--                    </DatiContratto>-->
+                    <!--                    <DatiConvenzione>-->
+                    <!--                        <t t-call="account_invoice_it_dati_documenti_correlati"/>-->
+                    <!--                    </DatiConvenzione>-->
+                    <!--                    <DatiRicezione>-->
+                    <!--                        <t t-call="account_invoice_it_dati_documenti_correlati"/>-->
+                    <!--                    </DatiRicezione>-->
+                    <!--                    <DatiFattureCollegate>-->
+                    <!--                        <t t-call="account_invoice_it_dati_documenti_correlati"/>-->
+                    <!--                    </DatiFattureCollegate>-->
+                    <!--                    <DatiSAL>-->
+                    <!--                        <RiferimentoFase t-esc=""/>-->
+                    <!--                    </DatiSAL>-->
+                    <!--                    <DatiDDT t-if="record.l10n_it_ddt_id">-->
+                    <!--                        &lt;!&ndash;2.1.8&ndash;&gt;-->
+                    <!--                        <NumeroDDT t-esc="record.l10n_it_ddt_id.name"/>-->
+                    <!--                        <DataDDT t-esc="format_date(record.l10n_it_ddt_id.date)"/>-->
+                    <!--                        <RiferimentoNumeroLinea t-esc=""/>-->
+                    <!--                    </DatiDDT>-->
+                    <!--                    <DatiTrasporto>-->
+                    <!--                        <DatiAnagraficiVettore>-->
+                    <!--                            <IdFiscaleIVA>-->
+                    <!--                                <IdPaese t-esc=""/>-->
+                    <!--                                <IdCodice t-esc=""/>-->
+                    <!--                            </IdFiscaleIVA>-->
+                    <!--                            <CodiceFiscale t-esc=""/>-->
+                    <!--                            <Anagrafica>-->
+                    <!--                                <Denominazione t-esc=""/>-->
+                    <!--                                <Nome t-esc=""/>-->
+                    <!--                                <Cognome t-esc=""/>-->
+                    <!--                                <Titolo t-esc=""/>-->
+                    <!--                                <CodEORI t-esc=""/>-->
+                    <!--                            </Anagrafica>-->
+                    <!--                            <NumeroLicenzaGuida t-esc=""/>-->
+                    <!--                        </DatiAnagraficiVettore>-->
+                    <!--                        <MezzoTrasporto t-esc=""/>-->
+                    <!--                        <CausaleTrasporto t-esc=""/>-->
+                    <!--                        <NumeroColli t-esc=""/>-->
+                    <!--                        <Descrizione t-esc=""/>-->
+                    <!--                        <UnitaMisuraPeso t-esc=""/>-->
+                    <!--                        <PesoLordo t-esc=""/>-->
+                    <!--                        <PesoNetto t-esc=""/>-->
+                    <!--                        <DataOraRitiro t-esc=""/>-->
+                    <!--                        <DataInizioTrasporto t-esc=""/>-->
+                    <!--                        <TipoResa t-esc=""/>-->
+                    <!--                        <IndirizzoResa>-->
+                    <!--                            <Indirizzo t-esc=""/>-->
+                    <!--                            <CAP t-esc=""/>-->
+                    <!--                            <Comune t-esc=""/>-->
+                    <!--                            <Provincia t-esc=""/>-->
+                    <!--                            <Nazione t-esc=""/>-->
+                    <!--                        </IndirizzoResa>-->
+                    <!--                        <DataOraConsegna t-esc=""/>-->
+                    <!--                    </DatiTrasporto>-->
+                    <!--                    <FatturaPrincipale>-->
+                    <!--                        <NumeroFatturaPrincipale t-esc=""/>-->
+                    <!--                        <DataFatturaPrincipale t-esc=""/>-->
+                    <!--                    </FatturaPrincipale>-->
+                </DatiGenerali>
+                <DatiBeniServizi>
+                    <!-- Invoice lines. -->
+                    <t t-set="line_counter" t-value="0" />
+                    <t
+                        t-foreach="record.invoice_line_ids.filtered(lambda l: not l.display_type)"
+                        t-as="line"
+                    >
+                        <t t-set="line_counter" t-value="line_counter + 1" />
+                        <t t-call="account_invoice_line_it_FatturaPA" />
+                    </t>
+                    <t
+                        t-foreach="record.line_ids.filtered(lambda line: line.tax_line_id)"
+                        t-as="tax_line"
+                    >
+                        <t t-call="account_invoice_line_it_dati_riepilogo" />
+                    </t>
+                </DatiBeniServizi>
+                <!--                <DatiVeicoli>-->
+                <!--                    <Data t-esc=""/>-->
+                <!--                    <TotalePercorso t-esc=""/>-->
+                <!--                </DatiVeicoli>-->
+                <DatiPagamento t-if="record.payment_term_id">
+                    <t
+                        t-set="payments"
+                        t-value="record.line_ids.filtered(lambda line: line.account_id.user_type_id.type in ('receivable', 'payable'))"
+                    />
+                    <!--                    <CondizioniPagamento><t t-if="len(payments) == 1">TP02</t><t t-else="">TP01</t></CondizioniPagamento>-->
+                    <CondizioniPagamento
+                        t-esc="record.payment_term_id.fatturapa_pt_id.code"
+                    />
+                    <t t-foreach="payments" t-as="move_line">
+                        <DettaglioPagamento>
+                            <t
+                                t-set="company_bank_account"
+                                t-value="record.partner_bank_id"
+                            />
+                            <!--                            <Beneficiario t-esc=""/>-->
+                            <ModalitaPagamento
+                                t-esc="record.payment_term_id.fatturapa_pm_id.code"
+                            />
+                            <!--                            <DataRiferimentoTerminiPagamento t-esc=""/>-->
+                            <!--                            <GiorniTerminiPagamento t-esc=""/>-->
+                            <!--                            <DataScadenzaPagamento t-esc="format_date(record.invoice_date_due)"/>-->
+                            <ImportoPagamento
+                                t-esc="format_numbers_two(move_line.amount_currency or move_line.debit)"
+                            />
+                            <!--                            <CodUfficioPostale t-esc=""/>-->
+                            <!--                            <CognomeQuietanzante t-esc=""/>-->
+                            <!--                            <NomeQuietanzante t-esc=""/>-->
+                            <!--                            <CFQuietanzante t-esc=""/>-->
+                            <!--                            <TitoloQuietanzante t-esc=""/>-->
+                            <IstitutoFinanziario
+                                t-if="company_bank_account.bank_id"
+                                t-esc="company_bank_account.bank_id.name[:80]"
+                            />
+                            <IBAN
+                                t-if="company_bank_account.acc_type == 'iban' and company_bank_account.sanitized_acc_number"
+                                t-esc="company_bank_account.sanitized_acc_number"
+                            />
+                            <!--                            <ABI t-esc=""/>-->
+                            <!--                            <CAB t-esc=""/>-->
+                            <BIC
+                                t-if="company_bank_account.acc_type == 'bank' and company_bank_account.bank_id.bic"
+                                t-esc="company_bank_account.bank_id.bic"
+                            />
+                            <!--                            <ScontoPagamentoAnticipato t-esc=""/>-->
+                            <!--                            <DataLimitePagamentoAnticipato t-esc=""/>-->
+                            <!--                            <PenalitaPagamentiRitardati t-esc=""/>-->
+                            <!--                            <DataDecorrenzaPenale t-esc=""/>-->
+                            <!--                            <CodicePagamento t-esc="record.payment_reference[:60]"/>-->
+                        </DettaglioPagamento>
+                    </t>
+                </DatiPagamento>
+                <Allegati t-foreach="record.fatturapa_doc_attachments" t-as="doc_id">
+                    <NomeAttachment t-esc="get_nome_attachment(doc_id)" />
+                    <!--                    <AlgoritmoCompressione t-esc=""/>-->
+                    <!--                    <FormatoAttachment>PDF</FormatoAttachment>-->
+                    <!--                    <DescrizioneAttachment  t-esc=""/>-->
+                    <Attachment t-esc="base64.decodestring(doc_id.datas)" />
+                </Allegati>
+            </FatturaElettronicaBody>
+        </template>
+        <template id="account_invoice_it_FatturaPA_export">
+            <t t-if="partner_id.is_pa">
+                <t t-set="formato_trasmissione" t-value="FPA12" />
+            </t>
+            <t t-else="">
+                <t t-set="formato_trasmissione" t-value="FPR12" />
+            </t>
+            <p:FatturaElettronica
+                t-att-versione="formato_trasmissione"
+                xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+                xmlns:p="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2 http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd"
+            >
+                <FatturaElettronicaHeader>
+                    <t t-call="account_invoice_it_dati_trasmissione" />
+                    <t t-call="account_invoice_it_cedente_prestatore" />
+                    <t t-call="account_invoice_it_rappresentante_fiscale" />
+                    <t t-call="account_invoice_it_cessionario_committente" />
+                    <t
+                        t-call="account_invoice_it_terzo_intermediario_soggetto_emittente"
+                    />
+                    <SoggettoEmittente
+                        t-if="company_id.fatturapa_sender_partner"
+                        t-esc="TZ"
+                    />
+                    <!--                    <SoggettoEmittente t-if="False" t-esc="CC"/>-->
+                </FatturaElettronicaHeader>
+                <t t-foreach="invoices" t-as="record">
+                    <t t-call="account_invoice_it_fattura_elettronica_body" />
+                </t>
+            </p:FatturaElettronica>
+        </template>
+    </data>
+</odoo>

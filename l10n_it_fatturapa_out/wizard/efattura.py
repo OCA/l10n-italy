@@ -1,0 +1,112 @@
+import re
+import os
+from datetime import datetime
+from unidecode import unidecode
+from odoo.tools import float_repr
+
+DEFAULT_INVOICE_ITALIAN_DATE_FORMAT = '%Y-%m-%d'
+
+
+class efattura_out:
+
+    def to_xml(self, env):
+        ''' Create the xml file content.
+        :return: The XML content as str.
+        '''
+
+        def encode_for_export(string_to_encode, max_chars, encoding='latin'):
+            reg_whitespace = re.compile(r'\s+')
+            return reg_whitespace.sub(' ', string_to_encode)\
+                .encode(encoding, errors='replace').decode(encoding)[:max_chars]
+
+        def format_date(dt):
+            # Format the date in the italian standard.
+            dt = dt or datetime.now()
+            return dt.strftime(DEFAULT_INVOICE_ITALIAN_DATE_FORMAT)
+
+        def format_monetary(number, currency):
+            # Format the monetary values to avoid trailing decimals
+            # (e.g. 90.85000000000001).
+            return float_repr(number, min(2, currency.decimal_places))
+
+        def format_numbers(number):
+            # format number to str with between 2 and 8 decimals (event if it's .00)
+            number_splited = str(number).split('.')
+            if len(number_splited) == 1:
+                return "%.02f" % number
+
+            cents = number_splited[1]
+            if len(cents) > 8:
+                return "%.08f" % number
+            return float_repr(number, max(2, len(cents)))
+
+        def format_numbers_two(number):
+            # format number to str with 2 (event if it's .00)
+            return "%.02f" % number
+
+        def format_phone(number):
+            if not number:
+                return False
+            number = number.replace(' ', '').replace('/', '').replace('.', '')
+            if len(number) > 4 and len(number) < 13:
+                return number
+            return False
+
+        def get_vat_number(vat):
+            return vat[2:].replace(' ', '')
+
+        def get_vat_country(vat):
+            return vat[:2].upper()
+
+        def get_causale(causale):
+            return causale
+
+        def get_nome_attachment(doc_id):
+            file_name, file_extension = os.path.splitext(doc_id.name)
+            attachment_name = doc_id.datas_fname if len(
+                doc_id.datas_fname) <= 60 else ''.join(
+                [file_name[:(60 - len(file_extension))], file_extension])
+            return encode_for_export(attachment_name, 60)
+
+        def in_eu(partner):
+            europe = self.env.ref('base.europe', raise_if_not_found=False)
+            country = partner.country_id
+            if not europe or not country or country in europe.country_ids:
+                return True
+            return False
+
+        if self.partner_id.commercial_partner_id.is_pa:
+            # check value code
+            code = self.partner_id.ipa_code
+        else:
+            code = self.partner_id.codice_destinatario
+
+        # Create file content.
+        template_values = {
+            'company_id': self.company_id,
+            'partner_id': self.partner_id,
+            'invoices': self.invoices,
+            'progressivo_invio': self.progressivo_invio,
+            'format_date': format_date,
+            'format_monetary': format_monetary,
+            'format_numbers': format_numbers,
+            'format_numbers_two': format_numbers_two,
+            'format_phone': format_phone,
+            'get_vat_number': get_vat_number,
+            'get_vat_country': get_vat_country,
+            'get_causale': get_causale,
+            'get_nome_attachment': get_nome_attachment,
+            'codice_destinatario': code.upper(),
+            'in_eu': in_eu,
+            'abs': abs,
+            'unidecode': unidecode,
+        }
+        content = env.ref('l10n_it_fatturapa_out.account_invoice_it_FatturaPA_export')\
+            ._render(template_values)
+        return content
+
+    def __init__(self, company_id, partner_id, invoices, progressivo_invio):
+        self.company_id = company_id
+        self.partner_id = partner_id
+        self.invoices = invoices
+        self.progressivo_invio = progressivo_invio
