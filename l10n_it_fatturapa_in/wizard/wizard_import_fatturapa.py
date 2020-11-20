@@ -973,6 +973,9 @@ class WizardImportFatturapa(models.TransientModel):
 
         # compute the invoice
         invoice.compute_taxes()
+        # We need set fiscal_document_type_id again because it's a calculated
+        # field linked with a @api.depends()
+        invoice.write({'fiscal_document_type_id': docType_id})
         return invoice_id
 
     def set_vendor_bill_data(self, FatturaBody, invoice):
