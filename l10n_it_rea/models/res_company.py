@@ -21,17 +21,11 @@ class Company(models.Model):
         "Share Capital", related="partner_id.rea_capital", store=True, readonly=False
     )
     rea_member_type = fields.Selection(
-        [("SU", "Unique Member"), ("SM", "Multiple Members")],
-        "Member Type",
         related="partner_id.rea_member_type",
-        store=True,
         readonly=False,
     )
     rea_liquidation_state = fields.Selection(
-        [("LS", "In liquidation"), ("LN", "Not in liquidation")],
-        "Liquidation State",
         related="partner_id.rea_liquidation_state",
-        store=True,
         readonly=False,
     )
 
@@ -43,8 +37,6 @@ class Company(models.Model):
         "rea_liquidation_state",
     )
     def onchange_rea_data(self):
-        self.company_registry = ""
-        rea_member_type = ""
         if (
             self.rea_office
             or self.rea_code
@@ -52,6 +44,7 @@ class Company(models.Model):
             or self.rea_member_type
             or self.rea_liquidation_state
         ):
+            rea_member_type = ""
             if self.rea_member_type:
                 rea_member_type = dict(
                     self.env["res.partner"]

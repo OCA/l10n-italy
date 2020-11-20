@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_rea
+# 	* l10n_it_rea
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_rea
-#: code:addons/l10n_it_rea/models/res_company.py:54
+#: code:addons/l10n_it_rea/models/res_company.py:0
 #, python-format
 msgid "%s - %s / Share Cap. %s € / %s / %s"
 msgstr ""
@@ -30,8 +30,26 @@ msgid "Contact"
 msgstr ""
 
 #. module: l10n_it_rea
-#: selection:res.partner,rea_liquidation_state:0
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__display_name
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_rea
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__id
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_rea
+#: model:ir.model.fields.selection,name:l10n_it_rea.selection__res_partner__rea_liquidation_state__ls
 msgid "In liquidation"
+msgstr ""
+
+#. module: l10n_it_rea
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_company____last_update
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner____last_update
+msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_it_rea
@@ -49,12 +67,12 @@ msgid "Member Type"
 msgstr ""
 
 #. module: l10n_it_rea
-#: selection:res.partner,rea_member_type:0
+#: model:ir.model.fields.selection,name:l10n_it_rea.selection__res_partner__rea_member_type__sm
 msgid "Multiple Members"
 msgstr ""
 
 #. module: l10n_it_rea
-#: selection:res.partner,rea_liquidation_state:0
+#: model:ir.model.fields.selection,name:l10n_it_rea.selection__res_partner__rea_liquidation_state__ln
 msgid "Not in liquidation"
 msgstr ""
 
@@ -90,12 +108,11 @@ msgid "Share Capital"
 msgstr ""
 
 #. module: l10n_it_rea
-#: sql_constraint:res.partner:0
+#: model:ir.model.constraint,message:l10n_it_rea.constraint_res_partner_rea_code_uniq
 msgid "The rea code code must be unique per company !"
 msgstr ""
 
 #. module: l10n_it_rea
-#: selection:res.partner,rea_member_type:0
+#: model:ir.model.fields.selection,name:l10n_it_rea.selection__res_partner__rea_member_type__su
 msgid "Unique Member"
 msgstr ""
-
