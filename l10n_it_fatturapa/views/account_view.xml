@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <menuitem name="Electronic Invoice" id="menu_fattura_pa_receivables" parent="account.menu_finance_receivables"></menuitem>
-        <menuitem name="Electronic Invoice" id="menu_fattura_pa_payables" parent="account.menu_finance_payables"></menuitem>
-
         <record id="view_invoice_line_form_fatturapa" model="ir.ui.view">
             <field name="name">account.invoice.line.fatturapa</field>
             <field name="model">account.invoice.line</field>

@@ -118,7 +118,7 @@
         </record>
 
         <record id="action_fattura_pa_in" model="ir.actions.act_window">
-        <field name="name">Incoming E-bill Files</field>
+        <field name="name">Supplier e-Invoices</field>
             <field name="res_model">fatturapa.attachment.in</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
@@ -126,8 +126,11 @@
             <field name="view_id" ref="view_fatturapa_in_attachment_tree"></field>
         </record>
 
-        <menuitem action="action_fattura_pa_in" id="menu_fattura_pa_in_tree"
-                  parent="l10n_it_fatturapa.menu_fattura_pa_payables"></menuitem>
+        <menuitem id="menu_fattura_pa_in_tree"
+                  parent="account.menu_finance_payables"
+                  action="action_fattura_pa_in"
+                  sequence="0" />
+
         <!-- Extend purchase invoice line -->
         <record id="view_invoice_line_form_fatturapa_in" model="ir.ui.view">
             <field name="name">account.invoice.line.fatturapa.in</field>
