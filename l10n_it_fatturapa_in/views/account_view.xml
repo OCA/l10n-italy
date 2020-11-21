@@ -6,58 +6,86 @@
             <field name="name">fatturapa.attachment.in.form</field>
             <field name="model">fatturapa.attachment.in</field>
             <field name="arch" type="xml">
-            <form string="Import e-bill" duplicate="false">
-                <div class="alert alert-info" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('e_invoice_validation_error','=',False)]}">
-                     <bold><field name="e_invoice_validation_message" nolabel="1"/></bold>
-                </div>
-                <field name="e_invoice_validation_error" invisible="1"/>
-                    <div>
-                        <group>
+                <form string="Import e-bill" duplicate="false">
+                    <header>
+                        <button name="action_show_preview"
+                                type="object"
+                                string="Show preview"
+                                attrs="{'invisible':[('datas_fname', '=', False)]}" />
+                        <button name="%(action_wizard_import_fatturapa)d"
+                                type="action"
+                                string="Import Invoice"
+                                class="oe_highlight"
+                                attrs="{'invisible':[('registered', '=', True)]}" />
+                        <button name="%(action_wizard_link_supplier_invoice)d"
+                                type="action"
+                                string="Link to invoice"
+                                attrs="{'invisible':[('registered', '=', True)]}" />
+                        <button name="action_show_invoices" type="object"
+                                string="Show Invoices"
+                                attrs="{'invisible':[('registered', '=', False)]}" />
+                        <button name="action_reload_data_from_e_invoice"
+                                type="object"
+                                string="Reload data from e-invoice"
+                                attrs="{'invisible':[('datas_fname', '=', False)]}"/>
+                    </header>
+                    <sheet>
+                        <div class="alert alert-info" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('e_invoice_validation_error','=',False)]}">
+                             <bold><field name="e_invoice_validation_message" nolabel="1"/></bold>
+                        </div>
+                        <field name="e_invoice_validation_error" invisible="1"/>
+                        <div>
                             <group>
-                                <field filename="datas_fname" name="datas"></field>
-                                <field name="datas_fname" invisible="1"></field>
-                                <field name="name"></field>
-                            </group>
-                            <group>
-                                <field name="xml_supplier_id"/>
-                                <field name="invoices_number"/>
-                                <field name="registered"/>
-                                <field name="invoices_total"/>
-                            </group>
-                        </group>
-                        <field name="ftpa_preview_link" widget="url" text="Show preview" class="btn btn-default"/>
-                        <notebook>
-                        <page string="Bills">
-                                <field name="in_invoice_ids"
-                                       context="{'form_view_ref': 'account.invoice_supplier_form'}">
-                                    <tree>
-                                        <field name="partner_id"/>
-                                        <field name="date_invoice"/>
-                                        <field name="reference"/>
-                                        <field name="origin"/>
-                                        <field name="amount_total"/>
-                                        <field name="state"/>
-                                        <button name="remove_attachment_link" type="object" string="Remove" icon="fa-times"/>
-                                    </tree>
-                                </field>
-                                <group groups="base.group_no_one" string="History">
-                                    <label for="create_uid" string="Creation"></label>
-                                    <div name="creation_div">
-                                        <field class="oe_inline" name="create_uid" readonly="1"></field>
-                                        on
-                                        <field class="oe_inline" name="create_date" readonly="1"></field>
-                                    </div>
+                                <group>
+                                    <field filename="datas_fname" name="datas"></field>
+                                    <field name="datas_fname" invisible="1"></field>
+                                    <field name="name"></field>
                                 </group>
-                            </page>
-                        </notebook>
-                    </div>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids" widget="mail_followers"></field>
-                        <field name="message_ids" widget="mail_thread"></field>
-                    </div>
+                                <group>
+                                    <field name="xml_supplier_id"/>
+                                    <field name="invoices_number"/>
+                                    <field name="registered"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="invoices_total"
+                                           widget="monetary"
+                                           options="{'currency_field': 'currency_id'}"/>
+                                </group>
+                            </group>
+                            <!--<field name="ftpa_preview_link" widget="url" text="Show preview" class="btn btn-default"/>-->
+                            <notebook>
+                            <page string="Bills">
+                                    <field name="in_invoice_ids"
+                                           context="{'form_view_ref': 'account.invoice_supplier_form'}">
+                                        <tree>
+                                            <field name="partner_id"/>
+                                            <field name="date_invoice"/>
+                                            <field name="reference"/>
+                                            <field name="origin"/>
+                                            <field name="amount_total"/>
+                                            <field name="state"/>
+                                            <button name="remove_attachment_link" type="object" string="Remove" icon="gtk-cancel"/>
+                                        </tree>
+                                    </field>
+                                    <group groups="base.group_no_one" string="History">
+                                        <label for="create_uid" string="Creation"></label>
+                                        <div name="creation_div">
+                                            <field class="oe_inline" name="create_uid" readonly="1"></field>
+                                            on
+                                            <field class="oe_inline" name="create_date" readonly="1"></field>
+                                        </div>
+                                    </group>
+                                </page>
+                            </notebook>
+                        </div>
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids" widget="mail_followers"></field>
+                            <field name="message_ids" widget="mail_thread"></field>
+                        </div>
+                    </sheet>
                 </form>
             </field>
         </record>
+
         <record id="view_fatturapa_in_attachment_tree" model="ir.ui.view">
             <field name="name">fatturapa.attachment.in.tree</field>
             <field name="model">fatturapa.attachment.in</field>
@@ -80,9 +108,15 @@
                     <field name="name"/>
                     <field name="xml_supplier_id"/>
                     <filter name="to_register" string="To Register" domain="[('registered','=',False)]"/>
+                    <filter name="registered" string="Registered" domain="[('registered','=',True)]"/>
+
+                    <group expand="0" string="Group By" name="group_by">
+                        <filter name="group_by_xml_supplier_id" string="Supplier" domain="[]" context="{'group_by': 'xml_supplier_id'}"/>
+                    </group>
                 </search>
             </field>
         </record>
+
         <record id="action_fattura_pa_in" model="ir.actions.act_window">
         <field name="name">Incoming E-bill Files</field>
             <field name="res_model">fatturapa.attachment.in</field>
@@ -91,6 +125,7 @@
             <field name="context">{'search_default_to_register': True}</field>
             <field name="view_id" ref="view_fatturapa_in_attachment_tree"></field>
         </record>
+
         <menuitem action="action_fattura_pa_in" id="menu_fattura_pa_in_tree"
                   parent="l10n_it_fatturapa.menu_fattura_pa_payables"></menuitem>
         <!-- Extend purchase invoice line -->
@@ -104,6 +139,7 @@
                 </field>
             </field>
         </record>
+
         <!-- Extend purchase invoice  -->
         <record id="view_invoice_form_fatturapa_in" model="ir.ui.view">
             <field name="name">account.invoice.fatturapa_in</field>
@@ -302,7 +338,7 @@
                                 </form>
                             </field>
                         </group>
-                    <group string="Progress data">
+                        <group string="Progress data">
                             <field name="activity_progress_ids" nolabel="1" readonly="1" colspan="2">
                                 <tree>
                                     <field name="fatturapa_activity_progress"></field>

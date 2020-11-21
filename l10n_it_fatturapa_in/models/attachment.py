@@ -2,6 +2,7 @@
 
 import base64
 from openerp import fields, models, api, _
+from openerp.exceptions import ValidationError
 
 
 class FatturaPAAttachmentIn(models.Model):
@@ -34,6 +35,13 @@ class FatturaPAAttachmentIn(models.Model):
 
     e_invoice_validation_message = fields.Text(
         compute='_compute_e_invoice_validation_error')
+
+    currency_id = fields.Many2one(
+        comodel_name='res.currency',
+        string=_('Currency'),
+        related='company_id.currency_id',
+        readonly=True,
+    )
 
     @api.depends('in_invoice_ids.e_invoice_validation_error')
     def _compute_e_invoice_validation_error(self):
@@ -108,3 +116,31 @@ class FatturaPAAttachmentIn(models.Model):
                 'invoice_id': invoice_id,
             }
             AttachModel.create(_attach_dict)
+
+    @api.multi
+    def action_show_preview(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_url',
+            'url': self.ftpa_preview_link,
+            'target': 'new',
+        }
+
+    @api.multi
+    def action_show_invoices(self):
+        self.ensure_one()
+        if not self.in_invoice_ids:
+            raise ValidationError(_('No invoices to show!'))
+
+        action = self.env['ir.model.data'] \
+            .get_object_reference('account', 'action_invoice_tree2')
+        action_id = action and action[1] or False
+        result = self.env['ir.actions.act_window'].browse(action_id).read()[0]
+        result['domain'] = "[('id','in'," + str(self.in_invoice_ids.ids) + ")]"
+        return result
+
+    @api.multi
+    def action_reload_data_from_e_invoice(self):
+        self.ensure_one()
+        self._compute_xml_data()
+        return True
