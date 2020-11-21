@@ -302,6 +302,12 @@ class AccountInvoice(models.Model):
             use_wt = True
         self.withholding_tax = use_wt
 
+    @api.one
+    def button_reset_taxes(self):
+        res = super(AccountInvoice, self).button_reset_taxes()
+        self._onchange_invoice_line_wt_ids()
+        return res
+
 
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"

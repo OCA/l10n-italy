@@ -37,6 +37,7 @@
                             <group>
                                 <field name="name"/>
                                 <field name="code"/>
+                                <field name="journal_id"/>
                                 <field name="account_receivable_id"/>
                                 <field name="account_payable_id"/>
                                 <field name="payment_term"/>
