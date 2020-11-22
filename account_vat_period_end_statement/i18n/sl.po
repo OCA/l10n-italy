@@ -489,11 +489,6 @@ msgstr "Poročilo"
 #. module: account_vat_period_end_statement
 #: view:website:account_vat_period_end_statement.report_vatperiodendstatement_document
 #, fuzzy
-#| msgid ""
-#| "Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in "
-#| "Italia, Beni FUE in Italia, Cell., Microproc.\n"
-#| "Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge "
-#| "UE, Cell. UE, Microproc. UE"
 msgid ""
 "Reverse charge: comprende RevCharge, Op.SM,\n"
 "                                        Op.Vat., Op.FUE, Beni UE in Italia, "
