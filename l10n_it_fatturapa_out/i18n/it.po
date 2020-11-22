@@ -69,7 +69,6 @@ msgstr "Città non impostata per %s."
 #. module: l10n_it_fatturapa_out
 #: model:ir.model,name:l10n_it_fatturapa_out.model_res_company
 #, fuzzy
-#| msgid "Company"
 msgid "Companies"
 msgstr "Azienda"
 

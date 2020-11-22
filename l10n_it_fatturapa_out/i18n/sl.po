@@ -71,7 +71,6 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model:ir.model,name:l10n_it_fatturapa_out.model_res_company
 #, fuzzy
-#| msgid "Company"
 msgid "Companies"
 msgstr "Družba"
 
