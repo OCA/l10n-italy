@@ -146,7 +146,6 @@ msgstr "Azienda"
 #: field:comunicazione.dati.iva.fatture.ricevute,cedente_Denominazione:0
 #: field:comunicazione.dati.iva.fatture.ricevute,cedente_rf_Denominazione:0
 #, fuzzy
-#| msgid "Company, denomination, business name"
 msgid "Company, denomination or business name"
 msgstr "Azienda, denominazione, ragione sociale"
 
@@ -512,10 +511,6 @@ msgstr ""
 #. module: l10n_it_invoices_data_communication
 #: view:wizard.split.big.invoices.communication:l10n_it_invoices_data_communication.wizard_split_big_communication
 #, fuzzy
-#| msgid ""
-#| "If the communication contains more than 1000 partners or more than 1000 "
-#| "invoices per partner, it will be (recursively) splitted in smaller "
-#| "communications."
 msgid ""
 "If the communication contains more than 1000\n"
 "                            partners or more than 1000 invoices per partner, "
@@ -656,7 +651,6 @@ msgstr "Limite non superato. Divisione non necessaria"
 #: code:addons/l10n_it_invoices_data_communication/models/communication.py:779
 #: code:addons/l10n_it_invoices_data_communication/models/communication.py:991
 #, fuzzy, python-format
-#| msgid "Limit of 1000 assegnees per communication exceeded"
 msgid "Limit of 1000 assignees per communication exceeded"
 msgstr "Limite di 1000 cessionari per comunicazione superato"
 
@@ -800,7 +794,6 @@ msgstr "Rimuovere spazi intorno all'indirizzo della stabile organizzazione"
 #: code:addons/l10n_it_invoices_data_communication/models/communication.py:872
 #: code:addons/l10n_it_invoices_data_communication/models/communication.py:1086
 #, fuzzy, python-format
-#| msgid "Remove empty characters around adrress of permanent establishment %s"
 msgid "Remove empty characters around address of permanent establishment %s"
 msgstr "Rimuovere spazi intorno all'indirizzo della stabile organizzazione %s"
 
@@ -1188,9 +1181,6 @@ msgstr ""
 #. module: l10n_it_invoices_data_communication
 #: help:comunicazione.dati.iva,cessionario_Nome:0
 #, fuzzy
-#| msgid ""
-#| "To fill along with 2.1.2.3 <Cognome> and alternatively to 2.1.2.1 "
-#| "<Denominazione>"
 msgid ""
 "To fill along with 3.1.2.3 <Cognome> and alternatively to 3.1.2.1 "
 "<Denominazione>"
@@ -1201,9 +1191,6 @@ msgstr ""
 #. module: l10n_it_invoices_data_communication
 #: help:comunicazione.dati.iva,cessionario_Cognome:0
 #, fuzzy
-#| msgid ""
-#| "To fill along with 2.1.2.2 <Nome> and alternatively to 2.1.2.1 "
-#| "<Denominazione>"
 msgid ""
 "To fill along with 3.1.2.3 <Nome> and alternatively to 3.1.2.1 "
 "<Denominazione>"
@@ -1259,7 +1246,6 @@ msgstr "Totale IVA"
 #: field:comunicazione.dati.iva.fatture.ricevute,totale_imponibile:0
 #: field:comunicazione.dati.iva.fatture.ricevute.body,totale_imponibile:0
 #, fuzzy
-#| msgid "Total base amount"
 msgid "Total untaxed amount"
 msgstr "Totale imponibile"
 
@@ -1310,7 +1296,6 @@ msgstr "CAP"
 #. module: l10n_it_invoices_data_communication
 #: code:addons/l10n_it_invoices_data_communication/models/communication.py:959
 #, fuzzy, python-format
-#| msgid "ZIP %s of assignee %s is not 5 characters"
 msgid "ZIP %s of assignee %s is not 5 numeric characters"
 msgstr "CAP %s del cessionario %s non è di 5 caratteri"
 
@@ -1335,9 +1320,6 @@ msgstr ""
 #. module: l10n_it_invoices_data_communication
 #: view:comunicazione.dati.iva.ricalcolo.tipo.document.fiscale:l10n_it_invoices_data_communication.wizard_compute_fiscal_document_type
 #, fuzzy
-#| msgid ""
-#| "Click on <strong>Compute</strong> to assign the fiscal document type to "
-#| "the invoices of communication's <strong>period</strong>."
 msgid "to assign the fiscal document type to the invoices of communication's"
 msgstr ""
 "Fare click su <strong>Calcola</strong> per assegnare il tipo di documento "
@@ -1346,7 +1328,6 @@ msgstr ""
 #. module: l10n_it_invoices_data_communication
 #: view:comunicazione.dati.iva.export.file:l10n_it_invoices_data_communication.wizard_dati_iva_export_file
 #, fuzzy
-#| msgid "Export file invoices data communication"
 msgid "to generate invoices data communication file."
 msgstr "Esportazione file comunicazione dati fatture"
 
