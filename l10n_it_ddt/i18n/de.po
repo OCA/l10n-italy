@@ -253,7 +253,6 @@ msgstr ""
 #. module: l10n_it_ddt
 #: model:stock.picking.carriage_condition,name:l10n_it_ddt.carriage_condition_PF
 #, fuzzy
-#| msgid "Carrier"
 msgid "Carriage Paid"
 msgstr "Spediteur"
 

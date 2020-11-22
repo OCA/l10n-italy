@@ -230,7 +230,6 @@ msgstr "Annulla"
 #. module: l10n_it_ddt
 #: model:stock.picking.carriage_condition,name:l10n_it_ddt.carriage_condition_PA
 #, fuzzy
-#| msgid "Carriage Condition"
 msgid "Carriage Collect"
 msgstr "Condizioni di Trasporto"
 
@@ -257,7 +256,6 @@ msgstr "Condizioni di Trasporto"
 #. module: l10n_it_ddt
 #: model:stock.picking.carriage_condition,name:l10n_it_ddt.carriage_condition_PF
 #, fuzzy
-#| msgid "Carriage Condition"
 msgid "Carriage Paid"
 msgstr "Condizioni di Trasporto"
 
@@ -283,7 +281,6 @@ msgstr "Cessionario"
 #. module: l10n_it_ddt
 #: model:stock.picking.carriage_condition,name:l10n_it_ddt.carriage_condition_PAF
 #, fuzzy
-#| msgid "Create Invoice"
 msgid "Charged in Invoice"
 msgstr "Crea fattura"
 
@@ -542,7 +539,6 @@ msgstr "Nome Visualizzato"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_res_partner_ddt_invoice_exclude
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_res_users_ddt_invoice_exclude
 #, fuzzy
-#| msgid "Invoices from DDT"
 msgid "Do not invoice services from DDT"
 msgstr "Fatture da DDT"
 
@@ -572,7 +568,6 @@ msgstr "Data di fine"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_product_product_ddt_invoice_exclude
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_product_template_ddt_invoice_exclude
 #, fuzzy
-#| msgid "DDT Invoicing"
 msgid "Exclude from DDT invoicing"
 msgstr "Fatturazione DDT"
 
@@ -658,7 +653,6 @@ msgstr "Impossibile mettere nel pacco un pacco senza dettagli"
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:184
 #, fuzzy, python-format
-#| msgid "Impossible to put in pack a package without details"
 msgid "Impossible to put in pack a picking whose state is 'done'"
 msgstr "Impossibile mettere nel pacco un pacco senza dettagli"
 
@@ -906,7 +900,6 @@ msgstr "Causali trasporto"
 #. module: l10n_it_ddt
 #: model:stock.picking.transportation_method,name:l10n_it_ddt.transportation_method_DES
 #, fuzzy
-#| msgid "Recipient's Signature"
 msgid "Recipient"
 msgstr "Firma destinatario"
 

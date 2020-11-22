@@ -228,7 +228,6 @@ msgstr "Preklic"
 #. module: l10n_it_ddt
 #: model:stock.picking.carriage_condition,name:l10n_it_ddt.carriage_condition_PA
 #, fuzzy
-#| msgid "Carriage Condition"
 msgid "Carriage Collect"
 msgstr "Prevozni pogoj"
 
@@ -255,7 +254,6 @@ msgstr "Prevozni pogoji"
 #. module: l10n_it_ddt
 #: model:stock.picking.carriage_condition,name:l10n_it_ddt.carriage_condition_PF
 #, fuzzy
-#| msgid "Carriage Condition"
 msgid "Carriage Paid"
 msgstr "Prevozni pogoj"
 
@@ -648,7 +646,6 @@ msgstr "Pošiljke brez podrobnosti ni mogoče vnesti v pakiranje"
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:184
 #, fuzzy, python-format
-#| msgid "Impossible to put in pack a package without details"
 msgid "Impossible to put in pack a picking whose state is 'done'"
 msgstr "Pošiljke brez podrobnosti ni mogoče vnesti v pakiranje"
 
@@ -894,7 +891,6 @@ msgstr "Razlogi prevoza"
 #. module: l10n_it_ddt
 #: model:stock.picking.transportation_method,name:l10n_it_ddt.transportation_method_DES
 #, fuzzy
-#| msgid "Recipient's Signature"
 msgid "Recipient"
 msgstr "Podpis prejemnika"
 
