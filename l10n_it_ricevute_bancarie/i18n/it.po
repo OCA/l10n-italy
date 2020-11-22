@@ -793,7 +793,6 @@ msgstr "Il partner %s non ha banca!"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.account_config_view_service_due_cost
 #, fuzzy
-#| msgid "Payments"
 msgid "Payment Response"
 msgstr "Pagamenti"
 
@@ -887,7 +886,6 @@ msgstr "Banca Ri.Ba."
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.account_config_view_service_due_cost
 #, fuzzy
-#| msgid "Ri.Ba. Configuration"
 msgid "Ri.Ba. Config"
 msgstr "Ri.Ba. Configurazione"
 
