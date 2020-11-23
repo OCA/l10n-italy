@@ -57,7 +57,7 @@
             <field name="fiscalcode" position="after">
                 <button
                     name="%(l10n_it_fiscalcode.action_compute_fc)d"
-                    string="Compute F.C."
+                    string="Compute FC"
                     type="action"
                     icon="fa-gear"
                     colspan="2"
