@@ -614,7 +614,7 @@ msgstr "Dismissione bene: "
 #: code:addons/assets_management/models/asset_depreciation_line.py:389
 #, python-format
 msgid "Asset: "
-msgstr "Bene ammortizzabile"
+msgstr "Cespite: "
 
 #. module: assets_management
 #: model:ir.actions.act_window,name:assets_management.action_asset
