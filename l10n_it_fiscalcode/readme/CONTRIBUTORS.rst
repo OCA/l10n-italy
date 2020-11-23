@@ -11,3 +11,4 @@
 * Andrea Gallina
 * Matteo Bilotta <mbilotta@linkgroup.it>
 * Giuseppe Borruso - Dinamiche Aziendali srl <gborruso@dinamicheaziendali.it>
+* Alex Comba <alex.comba@agilebg.com>
