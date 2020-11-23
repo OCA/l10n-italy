@@ -5,8 +5,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 {
-    "name": "Italian Localization - Fiscal Code",
-    "version": "14.0.1.0.0",
+    "name": "ITA - Codice fiscale",
+    "version": "14.0.1.0.1",
     "development_status": "Production/Stable",
     "category": "Localization/Italy",
     "author": "Link IT s.r.l., "
