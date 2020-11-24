@@ -48,20 +48,22 @@ class AccountInvoice(models.Model):
                  'date_invoice', 'type', 'efatt_rounding')
     def _compute_amount(self):
         super(AccountInvoice, self)._compute_amount()
-        if self.efatt_rounding != 0:
-            self.amount_total += self.efatt_rounding
-            amount_total_company_signed = self.amount_total
-            if self.currency_id and self.company_id and self.currency_id !=\
-                    self.company_id.currency_id:
-                ctx = self.env.context.copy()
-                ctx['date'] = self.date_invoice
-                ctx['company'] = self.company_id.id
-                currency_id = self.with_context(ctx).currency_id
-                amount_total_company_signed = \
-                    self.amount_total * currency_id.rate
-            sign = self.type in ['in_refund', 'out_refund'] and -1 or 1
-            self.amount_total_company_signed = amount_total_company_signed * sign
-            self.amount_total_signed = self.amount_total * sign
+        for invoice in self:
+            if invoice.efatt_rounding != 0:
+                invoice.amount_total += invoice.efatt_rounding
+                amount_total_company_signed = invoice.amount_total
+                if invoice.currency_id and invoice.company_id and\
+                        invoice.currency_id != invoice.company_id.currency_id:
+                    ctx = self.env.context.copy()
+                    ctx['date'] = invoice.date_invoice
+                    ctx['company'] = invoice.company_id.id
+                    currency_id = invoice.with_context(ctx).currency_id
+                    amount_total_company_signed = \
+                        invoice.amount_total * currency_id.rate
+                sign = invoice.type in ['in_refund', 'out_refund'] and -1 or 1
+                invoice.amount_total_company_signed =\
+                    amount_total_company_signed * sign
+                invoice.amount_total_signed = invoice.amount_total * sign
 
     @api.model
     def invoice_line_move_line_get(self):
