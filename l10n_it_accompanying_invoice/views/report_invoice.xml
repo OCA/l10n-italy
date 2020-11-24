@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+    <report
+        id="accompanying_invoice_report"
+        model="account.invoice"
+        string="Accompanying Invoice"
+        report_type="qweb-pdf"
+        name="l10n_it_accompanying_invoice.accompanying_invoice_template"
+        file="l10n_it_accompanying_invoice.accompanying_invoice_template"
+    />
+
+    <template id="accompanying_invoice_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="account.report_invoice_document" t-lang="o.partner_id.lang">
+                    <t t-set="print_ddt_data" t-value="True"/>
+                </t>
+            </t>
+        </t>
+    </template>
+    <template id="report_accompanying_invoice" inherit_id="account.report_invoice_document">
+        <xpath expr="//p[@t-if='o.fiscal_position_id.note']" position="after">
+            <p t-if="print_ddt_data">
+                <t t-call="l10n_it_ddt.delivery_data">
+                    <t t-set="ddt" t-value="o"/>
+                </t>
+            </p>
+        </xpath>
+    </template>
+
+</data>
+</odoo>
