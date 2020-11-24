@@ -116,6 +116,15 @@ class FatturaPAAttachment(models.Model):
                     'is_pdf_invoice_print').unlink()
         return super(FatturaPAAttachment, self).unlink()
 
+    @api.multi
+    def action_show_preview(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_url',
+            'url': self.ftpa_preview_link,
+            'target': 'new',
+        }
+
 
 class FatturaAttachments(models.Model):
     _inherit = "fatturapa.attachments"
