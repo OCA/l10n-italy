@@ -8,7 +8,9 @@ from openerp.tools.float_utils import float_round
 from openerp.addons.l10n_it_fatturapa.bindings.fatturapa import (
     DatiRitenutaType,
     DatiCassaPrevidenzialeType,
-    DatiRiepilogoType
+    DatiRiepilogoType,
+    DettaglioPagamentoType,
+    DatiPagamentoType,
 )
 
 WT_TAX_CODE = {
@@ -122,17 +124,43 @@ class WizardExportFatturapa(models.TransientModel):
         return DettaglioLinea
 
     def setDatiPagamento(self, invoice, body):
-        res = super(WizardExportFatturapa, self).setDatiPagamento(
-            invoice, body)
-        if invoice.withholding_tax_line and invoice.payment_term:
-            payment_line_ids = invoice.move_line_id_payment_get()
-            index = 0
-            rate = invoice.amount_net_pay / invoice.amount_total
+        if invoice.payment_term and invoice.withholding_tax_line:
+            DatiPagamento = DatiPagamentoType()
+            if not invoice.payment_term.fatturapa_pt_id:
+                raise UserError(
+                    _('Payment term %s does not have a linked e-invoice '
+                      'payment term') % invoice.payment_term.name)
+            if not invoice.payment_term.fatturapa_pm_id:
+                raise UserError(
+                    _('Payment term %s does not have a linked e-invoice '
+                      'payment method') % invoice.payment_term.name)
+            DatiPagamento.CondizioniPagamento = (
+                invoice.payment_term.fatturapa_pt_id.code)
             move_line_pool = self.env['account.move.line']
+            payment_line_ids = invoice.move_line_id_payment_get()
             for move_line_id in payment_line_ids:
                 move_line = move_line_pool.browse(move_line_id)
-                body.DatiPagamento[0].DettaglioPagamento[index].\
-                    ImportoPagamento = '%.2f' % float_round(
-                        (move_line.amount_currency or move_line.debit) * rate, 2)
-                index += 1
+                ImportoPagamento = '%.2f' % float_round(invoice.amount_net_pay, 2)
+                DettaglioPagamento = DettaglioPagamentoType(
+                    ModalitaPagamento=(
+                        invoice.payment_term.fatturapa_pm_id.code),
+                    DataScadenzaPagamento=move_line.date_maturity,
+                    ImportoPagamento=ImportoPagamento
+                )
+                if invoice.partner_bank_id:
+                    DettaglioPagamento.IstitutoFinanziario = (
+                        invoice.partner_bank_id.bank_name)
+                    if invoice.partner_bank_id.acc_number:
+                        DettaglioPagamento.IBAN = (
+                            ''.join(invoice.partner_bank_id.acc_number.split())
+                        )
+                    if invoice.partner_bank_id.bank_bic:
+                        DettaglioPagamento.BIC = (
+                            invoice.partner_bank_id.bank_bic)
+                DatiPagamento.DettaglioPagamento.append(DettaglioPagamento)
+            body.DatiPagamento.append(DatiPagamento)
+            res = True
+        else:
+            res = super(WizardExportFatturapa, self).setDatiPagamento(
+                invoice, body)
         return res
