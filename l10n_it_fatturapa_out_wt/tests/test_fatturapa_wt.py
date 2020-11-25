@@ -68,7 +68,7 @@ class TestInvoiceWT(FatturaPACommon):
             'account_receivable_id': self.wt_account_receivable.id,
             'account_payable_id': self.wt_account_payable.id,
             'journal_id': self.journal_misc.id,
-            'wt_types': 'enasarco',
+            'wt_types': 'inps',
             'payment_term': self.payment_term_15.id,
             'causale_pagamento_id': self.env.ref(
                 'l10n_it_causali_pagamento.a').id,
@@ -78,7 +78,6 @@ class TestInvoiceWT(FatturaPACommon):
             })]
             }
         self.inps = self.env['withholding.tax'].create(wt_vals)
-        self.inps.write({'wt_types': 'inps'})
 
     def test_e_invoice_wt(self):
         self.set_sequences(13, '2019')
