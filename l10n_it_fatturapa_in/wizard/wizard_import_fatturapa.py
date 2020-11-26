@@ -2,7 +2,7 @@
 
 import logging
 from odoo import models, api, fields
-from odoo.tools import float_is_zero
+from odoo.tools import float_is_zero, float_round
 from odoo.tools.translate import _
 from odoo.exceptions import UserError
 
@@ -1055,10 +1055,10 @@ class WizardImportFatturapa(models.TransientModel):
         rounding = 0.0
         if FatturaBody.DatiBeniServizi.DatiRiepilogo:
             for summary in FatturaBody.DatiBeniServizi.DatiRiepilogo:
-                rounding += float(summary.Arrotondamento or 0.0)
+                rounding += float_round(float(summary.Arrotondamento or 0.0), 2)
         if FatturaBody.DatiGenerali.DatiGeneraliDocumento:
             summary = FatturaBody.DatiGenerali.DatiGeneraliDocumento
-            rounding += float(summary.Arrotondamento or 0.0)
+            rounding += float_round(float(summary.Arrotondamento or 0.0), 2)
         if rounding:
             arrotondamenti_attivi_account_id = self.env.user.company_id.\
                 arrotondamenti_attivi_account_id
@@ -1091,9 +1091,9 @@ class WizardImportFatturapa(models.TransientModel):
 
     def set_efatt_rounding(self, FatturaBody, invoice_data):
         if FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento:
-            invoice_data['efatt_rounding'] = float(
+            invoice_data['efatt_rounding'] = float_round(float(
                 FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento
-            )
+            ), 2)
 
     def set_activity_progress(self, FatturaBody, invoice_id):
         SalDatas = FatturaBody.DatiGenerali.DatiSAL
