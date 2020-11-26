@@ -20,7 +20,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [l10n_it_ipa](l10n_it_ipa/) | 14.0.1.0.2 | ITA - Codice IPA
-[l10n_it_rea](l10n_it_rea/) | 14.0.1.0.0 | Gestisce i campi del Repertorio Economico Amministrativo
+[l10n_it_rea](l10n_it_rea/) | 14.0.1.0.1 | Gestisce i campi del Repertorio Economico Amministrativo
 
 [//]: # (end addons)
 
