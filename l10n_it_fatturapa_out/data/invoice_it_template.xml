@@ -1,8 +1,69 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
+        <template id="account_invoice_it_dati_documento_correlato">
+            <RiferimentoNumeroLinea t-if="doc.lineRef" t-esc="doc.lineRef" />
+            <IdDocumento t-if="doc.name" t-esc="doc.name" />
+            <Data t-if="doc.date" t-esc="doc.date" />
+            <NumItem t-if="doc.numitem" t-esc="doc.numitem" />
+            <CodiceCommessaConvenzione t-if="doc.code" t-esc="doc.code" />
+            <CodiceCUP t-if="doc.cup" t-esc="doc.cup" />
+            <CodiceCIG t-if="doc.cig" t-esc="doc.cig" />
+        </template>
+        <template id="account_invoice_it_dati_documenti_correlati">
+            <t t-set="related_orders" t-value="record.related_documents.browse()" />
+            <t t-set="related_contracts" t-value="record.related_documents.browse()" />
+            <t t-set="related_agreements" t-value="record.related_documents.browse()" />
+            <t t-set="related_receptions" t-value="record.related_documents.browse()" />
+            <t t-set="related_invoices" t-value="record.related_documents.browse()" />
+            <t t-set="line_counter" t-value="0" />
+            <t t-foreach="record.invoice_line_ids" t-as="line" >
+                <t t-set="line_counter" t-value="line_counter + 1" />
+                <t t-foreach="line.related_documents.filtered(lambda doc: doc.type == 'order')" t-as="doc">
+                    <t t-set="doc.lineRef" t-value="line_counter" />
+                    <t t-set="related_orders" t-value="related_orders + doc" />
+                </t>
+                <t t-foreach="line.related_documents.filtered(lambda doc: doc.type == 'contract')" t-as="doc">
+                    <t t-set="doc.lineRef" t-value="line_counter" />
+                    <t t-set="related_contracts" t-value="related_contracts + doc" />
+                </t>
+                <t t-foreach="line.related_documents.filtered(lambda doc: doc.type == 'agreement')" t-as="doc">
+                    <t t-set="doc.lineRef" t-value="line_counter" />
+                    <t t-set="related_agreements" t-value="related_agreements + doc" />
+                </t>
+                <t t-foreach="line.related_documents.filtered(lambda doc: doc.type == 'reception')" t-as="doc">
+                    <t t-set="doc.lineRef" t-value="line_counter" />
+                    <t t-set="related_receptions" t-value="related_receptions + doc" />
+                </t>
+                <t t-foreach="line.related_documents.filtered(lambda doc: doc.type == 'invoice')" t-as="doc">
+                    <t t-set="doc.lineRef" t-value="line_counter" />
+                    <t t-set="related_invoices" t-value="related_invoices + doc" />
+                </t>
+            </t>
+            <t t-set="related_orders" t-value="related_orders + record.related_documents.filtered(lambda doc: doc.type == 'order')" />
+            <t t-set="related_contracts" t-value="related_contracts + record.related_documents.filtered(lambda doc: doc.type == 'contract')" />
+            <t t-set="related_agreements" t-value="related_agreements + record.related_documents.filtered(lambda doc: doc.type == 'agreement')" />
+            <t t-set="related_receptions" t-value="related_receptions + record.related_documents.filtered(lambda doc: doc.type == 'reception')" />
+            <t t-set="related_invoices" t-value="related_invoices + record.related_documents.filtered(lambda doc: doc.type == 'invoice')" />
+            <DatiOrdineAcquisto t-foreach="related_orders" t-as="doc">
+                <t t-call="l10n_it_fatturapa_out.account_invoice_it_dati_documento_correlato" />
+            </DatiOrdineAcquisto>
+            <DatiContratto t-foreach="related_contracts" t-as="doc">
+                <t t-call="l10n_it_fatturapa_out.account_invoice_it_dati_documento_correlato" />
+            </DatiContratto>
+            <DatiConvenzione t-foreach="related_agreements" t-as="doc">
+                <t t-call="l10n_it_fatturapa_out.account_invoice_it_dati_documento_correlato" />
+            </DatiConvenzione>
+            <DatiRicezione t-foreach="related_receptions" t-as="doc">
+                <t t-call="l10n_it_fatturapa_out.account_invoice_it_dati_documento_correlato" />
+            </DatiRicezione>
+            <DatiFattureCollegate t-foreach="related_invoices" t-as="doc">
+                <t t-call="l10n_it_fatturapa_out.account_invoice_it_dati_documento_correlato" />
+            </DatiFattureCollegate>
+        </template>
         <template id="account_invoice_line_it_FatturaPA">
-            <t t-set="taxes" t-value="line.tax_ids.compute_all(line.price_unit)" />
+            <t t-set="tax_ids" t-value="line.invoice_line_tax_ids" />
+            <t t-set="taxes" t-value="tax_ids.compute_all(line.price_unit)" />
             <DettaglioLinee>
                 <NumeroLinea t-esc="line_counter" />
                 <!--                <TipoCessionePrestazione t-esc=""/>-->
@@ -12,44 +73,39 @@
                     <CodiceValore t-esc="line.product_id.barcode[:35]" />
                 </CodiceArticolo>
                 <CodiceArticolo t-if="line.product_id.default_code">
-                    <CodiceTipo t-esc="codice_articolo" />
+                    <CodiceTipo t-esc="env['ir.config_parameter'].sudo().get_param('fatturapa.codicetipo.odoo', 'ODOO')" />
                     <CodiceValore t-esc="line.product_id.default_code[:35]" />
                 </CodiceArticolo>
-                <Descrizione>
-                    <t t-esc="encode_for_export(line.name, 1000)" />
-                    <t t-if="not line.name" t-esc="'NO NAME'" />
-                </Descrizione>
-                <Quantita t-esc="format_numbers(line.quantity)" />
+                <Descrizione><t t-if="line.name" t-esc="encode_for_export(line.name, 1000)" /><t t-if="not line.name" t-esc="'NO NAME'" /></Descrizione>
+                <Quantita t-esc="format_quantity(line)" />
                 <UnitaMisura
-                    t-if="line.product_uom_id.category_id != env.ref('uom.product_uom_categ_unit')"
-                    t-esc="unidecode(line.product_uom_id.name)"
+                    t-if="line.uom_id.name"
+                    t-esc="unidecode(line.uom_id.name)"
                 />
                 <!--                <DataInizioPeriodo t-esc=""/>-->
                 <!--                <DataFinePeriodo t-esc=""/>-->
-                <PrezzoUnitario
-                    t-esc="format_monetary(taxes['total_excluded'], currency)"
-                />
+                <PrezzoUnitario t-esc="format_price(line)" />
                 <ScontoMaggiorazione t-if="line.discount != 0">
                     <!-- [2.2.1.10] -->
-                    <Tipo t-if="line.discount > 0" t-esc="SC" />
-                    <Tipo t-if="not line.discount > 0" t-esc="MG" />
+		    <Tipo t-if="line.discount > 0" t-esc="'SC'" />
+		    <Tipo t-if="not line.discount > 0" t-esc="'MG'" />
                     <Percentuale t-esc="format_numbers(abs(line.discount))" />
                     <!--                    <Importo t-esc=""/>-->
                 </ScontoMaggiorazione>
                 <PrezzoTotale t-esc="format_monetary(line.price_subtotal, currency)" />
                 <!-- without tax, must include any discounts and any extra charge-->
                 <AliquotaIVA
-                    t-if="line.tax_ids.amount_type == 'percent'"
-                    t-esc="format_numbers(line.tax_ids.amount)"
+                    t-if="tax_ids.amount_type == 'percent'"
+                    t-esc="format_numbers(tax_ids.amount)"
                 />
                 <AliquotaIVA
-                    t-if="line.tax_ids.amount_type != 'percent'"
+                    t-if="tax_ids.amount_type != 'percent'"
                     t-esc="'0.00'"
                 />
                 <!--                <Ritenuta t-esc=""/>-->
                 <Natura
-                    t-if="line.tax_ids.kind_id.code"
-                    t-esc="line.tax_ids.kind_id.code"
+                    t-if="tax_ids.kind_id.code"
+                    t-esc="tax_ids.kind_id.code"
                 />
                 <RiferimentoAmministrazione
                     t-if="line.admin_ref"
@@ -408,21 +464,9 @@
                         <Causale t-esc="get_causale(record)" />
                         <Art73 t-if="record.company_id.fatturapa_art73" t-esc="SI" />
                     </DatiGeneraliDocumento>
-                    <!--                    <DatiOrdineAcquisto>-->
-                    <!--                        <t t-call="account_invoice_it_dati_documenti_correlati"/>-->
-                    <!--                    </DatiOrdineAcquisto>-->
-                    <!--                    <DatiContratto>-->
-                    <!--                        <t t-call="account_invoice_it_dati_documenti_correlati"/>-->
-                    <!--                    </DatiContratto>-->
-                    <!--                    <DatiConvenzione>-->
-                    <!--                        <t t-call="account_invoice_it_dati_documenti_correlati"/>-->
-                    <!--                    </DatiConvenzione>-->
-                    <!--                    <DatiRicezione>-->
-                    <!--                        <t t-call="account_invoice_it_dati_documenti_correlati"/>-->
-                    <!--                    </DatiRicezione>-->
-                    <!--                    <DatiFattureCollegate>-->
-                    <!--                        <t t-call="account_invoice_it_dati_documenti_correlati"/>-->
-                    <!--                    </DatiFattureCollegate>-->
+<!--
+-->
+                    <t t-call="l10n_it_fatturapa_out.account_invoice_it_dati_documenti_correlati" />
                     <!--                    <DatiSAL>-->
                     <!--                        <RiferimentoFase t-esc=""/>-->
                     <!--                    </DatiSAL>-->
