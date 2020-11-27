@@ -111,11 +111,12 @@ class TestEInvoiceResponse(EInvoiceCommon):
     def test_process_response_INVIO_broken_XML(self):
         """Receiving a 'Invio File' with a broken XML sends an email
         to e_inv_notify_partner_ids"""
+        xml_error = 'Namespace prefix ns1 on Fattura is not defined'
         incoming_mail = self._get_file(
             'POSTA CERTIFICATA: Invio File 7339338 (broken XML).txt')
         outbound_mail_model = self.env['mail.mail']
         error_mail_domain = [
-            ('body_html', 'like', 'unbound_prefix'),
+            ('body_html', 'like', xml_error),
             ('recipient_ids', 'in',
              self.PEC_server.e_inv_notify_partner_ids.ids)]
         error_mails_nbr = outbound_mail_model.search_count(error_mail_domain)
@@ -133,7 +134,6 @@ class TestEInvoiceResponse(EInvoiceCommon):
 
         error_mails = outbound_mail_model.search(error_mail_domain)
         self.assertEqual(len(error_mails), 1)
-        xml_error = 'unbound prefix'
         self.assertIn(xml_error, error_mails.body_html)
         self.assertIn(xml_error, self.PEC_server.last_pec_error_message)
 
