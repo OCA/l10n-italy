@@ -3,7 +3,11 @@
 
     <data>
 
-        <menuitem id="of_wt_main" name="Withholding tax" parent="account.menu_finance" sequence="5" />
+        <menuitem id="of_wt_main"
+                  name="Withholding tax"
+                  parent="account.menu_finance"
+                  sequence="5" />
+
         <!--
         WITHHOLDING TAX
          -->
@@ -11,8 +15,9 @@
             <field name="name">view.withholding.tax.tree</field>
             <field name="model">withholding.tax</field>
             <field name="arch" type="xml">
-                <tree string="Withholding Tax" version="7.0">
+                <tree string="Withholding Tax">
                     <field name="name"/>
+                    <field name="code"/>
                     <field name="tax"/>
                     <field name="base"/>
                     <field name="certification"/>
@@ -26,58 +31,94 @@
             <field name="name">view.withholding.tax.form</field>
             <field name="model">withholding.tax</field>
             <field name="arch" type="xml">
-                <form string="Withholding Tax" version="7.0">
-                    <group>
+                <form string="Withholding Tax">
+                    <sheet>
                         <group>
-                            <field name="name"/>
-                            <field name="certification"/>
-                            <field name="account_receivable_id"/>
-                            <field name="account_payable_id"/>
-                            <field name="payment_term"/>
+                            <group>
+                                <field name="name"/>
+                                <field name="code"/>
+                                <field name="journal_id"/>
+                                <field name="account_receivable_id"/>
+                                <field name="account_payable_id"/>
+                                <field name="payment_term"/>
+                                <field name="use_daticassaprev" attrs="{'invisible': [('wt_types', 'in', ('ritenuta', 'other'))]}"/>
+                                <field name="daticassprev_tax_id" domain="[('amount', '=', 0.0)]" attrs="{'invisible': [('use_daticassaprev', '=', False)]}"/>
+                                <field name="wt_types" widget='radio'/>
+                            </group>
+                            <group>
+                                <field name="certification"/>
+                                <field name="active"/>
+                                <field name="company_id"/>
+                            </group>
                         </group>
-                        <group>
-                            <field name="active"/>
+                        <field name="comment"/>
+                        <newline/>
+                        <group string="Rates">
+                            <field name="rate_ids" nolabel="1">
+                                <tree>
+                                    <field name="base"/>
+                                    <field name="tax"/>
+                                    <field name="date_start"/>
+                                    <field name="date_stop"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field name="tax"/>
+                                        </group>
+                                        <group>
+                                            <field name="base"/>
+                                        </group>
+                                        <newline/>
+                                        <group>
+                                            <field name="date_start"/>
+                                            <field name="date_stop"/>
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
                         </group>
-                    </group>
-                    <field name="comment"/>
-                    <newline/>
-                    <group string="Rates">
-                        <field name="rate_ids" nolabel="1">
-                            <tree>
-                                <field name="base"/>
-                                <field name="tax"/>
-                                <field name="date_start"/>
-                                <field name="date_stop"/>
-                            </tree>
-                            <form>
-                                <group>
-                                    <group>
-                                        <field name="tax"/>
-                                    </group>
-                                    <group>
-                                        <field name="base"/>
-                                    </group>
-                                    <newline/>
-                                    <group>
-                                        <field name="date_start"/>
-                                        <field name="date_stop"/>
-                                    </group>
-                                </group>
-                            </form>
-                        </field>
-                    </group>
+                    </sheet>
                 </form>
             </field>
         </record>
 
+        <record id="withholding_tax_search_view" model="ir.ui.view">
+            <field name="name">withholding.tax.search.view</field>
+            <field name="model">withholding.tax</field>
+            <field name="arch" type="xml">
+                <search string="Withholding Tax">
+                    <field name="code" />
+                    <field name="name" />
+                    <field name="payment_term" />
+                    <field name="account_payable_id" />
+                    <field name="account_receivable_id" />
+                    <field name="company_id" />
+
+                    <filter string="Certificated" domain="[('certification','=',True)]" name="certification_true"/>
+                    <filter string="Not Certificated" domain="[('certification','=',False)]" name="certification_false"/>
+                    <separator/>
+
+                    <group string="Group By...">
+                        <filter string="Partners" context="{'group_by':'partner_id'}" name="group_by_partner_id"/>
+                        <!--<filter string="Journal" context="{'group_by':'journal_id'}" name="group_by_journal_id"/>-->
+                        <filter string="Company" context="{'group_by':'company_id'}" name="group_by_company_id"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
         <record id="action_withholding_tax" model="ir.actions.act_window">
-            <field name="name">Withhoulding Tax</field>
+            <field name="name">Withholding Tax</field>
             <field name="res_model">withholding.tax</field>
             <field name="view_id" ref="view_withholding_tax_tree"/>
         </record>
 
-        <menuitem id="menu_withholding_tax" name="Withholding Tax" 
-            action="action_withholding_tax" parent="account.menu_finance_configuration" sequence="45"/>
+        <menuitem id="menu_withholding_tax"
+                  name="Withholding Tax"
+                  action="action_withholding_tax"
+                  parent="account.menu_finance_configuration"
+                  sequence="45"/>
 
 
         <!--
@@ -129,7 +170,7 @@
                                 <field name="amount"/>
                                 <field name="state"/>
                             </tree>
-                        </field>    
+                        </field>
                     </group>
                 </form>
             </field>
@@ -152,19 +193,19 @@
         </record>
 
         <record id="action_withholding_tax_statement" model="ir.actions.act_window">
-            <field name="name">Withhoulding Tax Statement</field>
+            <field name="name">Withholding Tax Statement</field>
             <field name="res_model">withholding.tax.statement</field>
             <field name="view_id" ref="view_withholding_statement_tree"/>
             <field name="search_view_id" ref="view_withholding_tax_statement_search" />
         </record>
 
-        <menuitem id="menu_withholding_tax_statement" name="WT Statements" 
+        <menuitem id="menu_withholding_tax_statement" name="WT Statements"
             action="action_withholding_tax_statement" parent="of_wt_main" sequence="5"/>
 
         <!--
         WITHHOLDING TAX MOVE
-         -->
-         <record id="view_withholding_move_tree" model="ir.ui.view">
+        -->
+        <record id="view_withholding_move_tree" model="ir.ui.view">
             <field name="name">view.withholding.tax.move.tree</field>
             <field name="model">withholding.tax.move</field>
             <field name="arch" type="xml">
@@ -233,13 +274,16 @@
         </record>
 
         <record id="action_withholding_tax_move" model="ir.actions.act_window">
-            <field name="name">Withhoulding Tax Move</field>
+            <field name="name">Withholding Tax Move</field>
             <field name="res_model">withholding.tax.move</field>
             <field name="view_id" ref="view_withholding_move_tree"/>
             <field name="search_view_id" ref="view_withholding_move_search" />
         </record>
 
-        <menuitem id="menu_withholding_tax_move" name="WT Moves" 
-            action="action_withholding_tax_move" parent="of_wt_main" sequence="10"/>
+        <menuitem id="menu_withholding_tax_move"
+                  name="WT Moves"
+                  action="action_withholding_tax_move"
+                  parent="of_wt_main"
+                  sequence="10"/>
     </data>
 </openerp>

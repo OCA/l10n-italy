@@ -5,7 +5,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Italian Localization - Fattura elettronica - Integrazione DDT',
+    'name': 'ITA - Fattura elettronica - Integrazione DDT',
     "summary": "Modulo ponte tra emissione fatture elettroniche e DDT",
     "version": "8.0.1.0.1",
     "development_status": "Beta",

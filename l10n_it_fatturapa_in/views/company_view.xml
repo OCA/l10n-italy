@@ -16,6 +16,30 @@
                         <label for="sconto_maggiorazione_product_id"/>
                         <field name="sconto_maggiorazione_product_id" class="oe_inline"/>
                     </div>
+                    <div>
+                        <label for="arrotondamenti_attivi_account_id"/>
+                        <field name="arrotondamenti_attivi_account_id" class="oe_inline"/>
+                    </div>
+                    <div>
+                        <label for="arrotondamenti_passivi_account_id"/>
+                        <field name="arrotondamenti_passivi_account_id" class="oe_inline"/>
+                    </div>
+                    <div>
+                        <label for="arrotondamenti_tax_id"/>
+                        <field name="arrotondamenti_tax_id" class="oe_inline"/>
+                    </div>
+                    <div class="o_setting_left_pane">
+                        <field name="enasarco_relax_checks"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="enasarco_relax_checks"/>
+                        <span class="fa fa-lg fa-building-o" title="Values set here are company-specific."
+                              aria-label="Values set here are company-specific."
+                              groups="base.group_multi_company" role="img"/>
+                        <div class="text-muted">
+                            Do not block e-bill import in case of missing Enasarco configuration
+                        </div>
+                    </div>
                 </xpath>
             </field>
         </record>

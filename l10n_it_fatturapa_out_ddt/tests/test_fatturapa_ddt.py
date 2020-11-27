@@ -73,13 +73,16 @@ class TestInvoiceDDT(FatturaPACommon):
         self.so2.ddt_ids[0].ddt_number = 'DDT/0101'
         self.so1.ddt_ids[0].set_done()
         self.so2.ddt_ids[0].set_done()
+        # Set sequence to have the expected order in XML
+        self.so1.ddt_ids.line_ids[0].sequence = 1
+        self.so2.ddt_ids.line_ids[0].sequence = 2
         invoice_wizard = self.env['ddt.create.invoice'].with_context(
             {'active_ids': (self.so1.ddt_ids | self.so2.ddt_ids).ids}
         ).create({'journal_id': self.sales_journal.id})
         action = invoice_wizard.create_invoice()
         invoice_ids = action['domain'][1][2]
         invoice = self.env['account.invoice'].browse(invoice_ids[0])
-        self.set_sequences(6, 13, '2018')
+        self.set_sequences(13, '2018')
         invoice.date_invoice = '2018-01-07'
         invoice.signal_workflow('invoice_open')
         wizard = self.wizard_model.with_context(
@@ -89,6 +92,7 @@ class TestInvoiceDDT(FatturaPACommon):
         self.assertEqual(wizard.include_ddt_data, 'dati_ddt')
         res = wizard.exportFatturaPA()
         attachment = self.attach_model.browse(res['res_id'])
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00006.xml')
         xml_content = attachment.datas.decode('base64')
         self.assertEqual(
             attachment.datas_fname, 'IT06363391001_00006.xml')
@@ -130,7 +134,7 @@ class TestInvoiceDDT(FatturaPACommon):
         invoice_ids = action['domain'][1][2]
         invoice = self.env['account.invoice'].browse(invoice_ids[0])
         invoice.carrier_id = self.intermediario.id
-        self.set_sequences(7, 14, '2018')
+        self.set_sequences(14, '2018')
         invoice.date_invoice = '2018-01-07'
         invoice.signal_workflow('invoice_open')
         wizard = self.wizard_model.with_context(
@@ -139,6 +143,7 @@ class TestInvoiceDDT(FatturaPACommon):
         wizard.include_ddt_data = 'dati_trasporto'
         res = wizard.exportFatturaPA()
         attachment = self.attach_model.browse(res['res_id'])
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00007.xml')
         xml_content = attachment.datas.decode('base64')
         self.assertEqual(
             attachment.datas_fname, 'IT06363391001_00007.xml')

@@ -20,7 +20,7 @@ class ResPartner(models.Model):
     register_province = fields.Many2one(
         'res.country.state', string='Register Province')
     # 1.2.1.6
-    register_code = fields.Char('Register Code', size=60)
+    register_code = fields.Char('Register Registration Number', size=60)
     # 1.2.1.7
     register_regdate = fields.Date('Register Registration Date')
     # 1.2.1.8
@@ -29,22 +29,25 @@ class ResPartner(models.Model):
         string="Register Fiscal Position")
     # 1.1.4
     codice_destinatario = fields.Char(
-        "Codice Destinatario",
-        help="Il codice, di 7 caratteri, assegnato dal Sdi ai soggetti che "
-             "hanno accreditato un canale; qualora il destinatario non abbia "
-             "accreditato un canale presso Sdi e riceva via PEC le fatture, "
-             "l'elemento deve essere valorizzato con tutti zeri ('0000000'). ",
+        "Addressee Code",
+        help="The code, 7 characters long, assigned by ES to subjects with an "
+             "accredited channel; if the addressee didn't accredit a channel "
+             "to ES and invoices are received by PEC, the field must be "
+             "filled with zeros ('0000000').",
         default='0000000')
     # 1.1.6
     pec_destinatario = fields.Char(
-        "PEC destinatario",
-        help="Indirizzo PEC al quale inviare la fattura elettronica. "
-             "Da valorizzare "
-             "SOLO nei casi in cui l'elemento informativo "
-             "<CodiceDestinatario> vale '0000000'"
+        "Addressee PEC",
+        help="PEC to which the Electronic Invoice will be sent. "
+             "Must be filled "
+             "ONLY when the information element "
+             "<CodiceDestinatario> is '0000000'"
     )
     electronic_invoice_subjected = fields.Boolean(
         "Subjected to electronic invoice")
+
+    electronic_invoice_no_contact_update = fields.Boolean(
+        "Do not update the contact from Electronic Invoice Details")
 
     @api.multi
     @api.constrains(

@@ -13,7 +13,7 @@ class TestEInvoiceResponse(EInvoiceCommon):
         super(TestEInvoiceResponse, self).setUp()
         self.PEC_server = self._create_fetchmail_pec_server()
         self.env.user.company_id.vat = 'IT03339130126'
-        self.set_sequences(9, 15, '2018-01-07')
+        self.set_sequences(15, '2018')
         self.attach_in_model = self.env['fatturapa.attachment.in']
 
     @staticmethod
@@ -27,6 +27,7 @@ class TestEInvoiceResponse(EInvoiceCommon):
         """Receiving a 'Ricevuta di consegna' sets the state of the
         e-invoice to 'validated'"""
         e_invoice = self._create_e_invoice()
+        self.set_e_invoice_file_id(e_invoice, 'IT03339130126_00009.xml')
         e_invoice.send_via_pec()
 
         incoming_mail = self._get_file(
@@ -40,6 +41,7 @@ class TestEInvoiceResponse(EInvoiceCommon):
     def test_process_response_CONSEGNA(self):
         """Receiving a 'CONSEGNA' posts a mail.message in the e-invoice"""
         e_invoice = self._create_e_invoice()
+        self.set_e_invoice_file_id(e_invoice, 'IT03339130126_00009.xml')
         e_invoice.send_via_pec()
 
         incoming_mail = self._get_file(
@@ -62,6 +64,7 @@ class TestEInvoiceResponse(EInvoiceCommon):
     def test_process_response_ACCETTAZIONE(self):
         """Receiving a 'ACCETTAZIONE' posts a mail.message in the e-invoice"""
         e_invoice = self._create_e_invoice()
+        self.set_e_invoice_file_id(e_invoice, 'IT03339130126_00009.xml')
         e_invoice.send_via_pec()
 
         incoming_mail = self._get_file(
@@ -81,7 +84,7 @@ class TestEInvoiceResponse(EInvoiceCommon):
 
         self.assertTrue(messages_nbr)
 
-    def test_process_response_INVO(self):
+    def test_process_response_INVIO(self):
         """Receiving a 'Invio File' creates a new e-invoice"""
         incoming_mail = self._get_file(
             'POSTA CERTIFICATA: Invio File 7339338.txt')

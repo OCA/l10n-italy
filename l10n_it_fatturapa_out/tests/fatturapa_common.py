@@ -110,6 +110,14 @@ class FatturaPACommon(TransactionCase):
                 'date_stop': '2018-12-31',
             }
         )
+        self.fiscalyear2019 = obj_acc_fiscalyear.create(
+            vals={
+                'name': '2019',
+                'code': '2019',
+                'date_start': '2019-01-01',
+                'date_stop': '2019-12-31',
+            }
+        )
         period_obj = self.env['account.period']
         self.period = period_obj.create({
             'name': "Period 01/2016",
@@ -143,6 +151,14 @@ class FatturaPACommon(TransactionCase):
             'special': False,
             'fiscalyear_id': self.fiscalyear1.id,
         })
+        self.period_2019_01 = period_obj.create({
+            'name': 'Period 01/2019',
+            'code': '01/2019',
+            'date_start': '2019-01-01',
+            'date_stop': '2019-01-31',
+            'special': False,
+            'fiscalyear_id': self.fiscalyear2019.id,
+        })
         self.pricelist = self.env.ref('product.list0')
 
     def AttachFileToInvoice(self, InvoiceId, filename):
@@ -155,15 +171,9 @@ class FatturaPACommon(TransactionCase):
             }
         )
 
-    def set_sequences(self, file_number, invoice_number, year):
-        seq_id = self.data_model.xmlid_to_res_id(
-            'l10n_it_fatturapa.seq_fatturapa')
-        ftpa_seq = self.seq_model.browse(seq_id)
-        ftpa_seq.write({
-            'implementation': 'no_gap',
-            'number_next_actual': file_number, })
-        inv_seq = self.seq_model.search([(
-            'name', '=', 'Account Default Sales Journal')])[0]
+    def set_sequences(self, invoice_number, year):
+        inv_seq = self.seq_model.search(
+            [('name', '=', 'Account Default Sales Journal')])[0]
         inv_seq.write({
             'prefix': 'INV/%s/' % year,
             'padding': 4,
@@ -174,6 +184,19 @@ class FatturaPACommon(TransactionCase):
         wizard = self.wizard_model.create({})
         return wizard.with_context(
             {'active_ids': [invoice_id]}).exportFatturaPA()
+
+    def set_e_invoice_file_id(self, e_invoice, file_name):
+        # We need this because file name is random and we can't predict it
+        partial_file_name = file_name.replace('.xml', '')
+        test_file_id = partial_file_name.split('_')[1]
+        # xml_content = base64.decodebytes(e_invoice.datas)
+        xml_content = base64.decodestring(e_invoice.datas)
+        parser = etree.XMLParser(remove_blank_text=True)
+        xml = etree.fromstring(xml_content, parser)
+        file_id = xml.findall('.//ProgressivoInvio')
+        file_id[0].text = test_file_id
+        e_invoice.datas = base64.encodestring(etree.tostring(xml))
+        e_invoice.datas_fname = file_name
 
     def check_content(self, xml_content, file_name, module_name=None):
         parser = etree.XMLParser(remove_blank_text=True)

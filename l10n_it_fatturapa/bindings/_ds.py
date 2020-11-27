@@ -2,7 +2,7 @@
 # flake8: noqa
 # -*- coding: utf-8 -*-
 # PyXB bindings for NM:f1c343a882e7a65fb879f4ee813309f8231f28c8
-# Generated 2020-06-11 15:28:14.741148 by PyXB version 1.2.5 using Python 2.7.12.final.0
+# Generated 2020-11-18 09:24:57.262615 by PyXB version 1.2.6 using Python 2.7.12.final.0
 # By Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 # By Vincenzo Terzulli <v.terzulli@elvenstudio.it>
 # Namespace http://www.w3.org/2000/09/xmldsig# [xmlns:ds]
@@ -25,10 +25,10 @@ except ImportError as err:
     _logger.debug(err)
 
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:5e138c78-abe7-11ea-849b-9cb6d0f47f3b')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:818c28aa-2977-11eb-b820-9cb6d0f47f3b')
 
 # Version of PyXB used to generate the bindings
-_PyXBVersion = '1.2.5'
+_PyXBVersion = '1.2.6'
 # Generated bindings are not compatible across PyXB versions
 if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
@@ -40,7 +40,6 @@ _module_typeBindings = pyxb.utils.utility.Object()
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI('http://www.w3.org/2000/09/xmldsig#', create_if_missing=True)
 Namespace.configureCategories(['typeBinding', 'elementBinding'])
-
 
 def CreateFromDocument (xml_text, default_namespace=None, location_base=None):
     """Parse the given XML and use the document element to create a

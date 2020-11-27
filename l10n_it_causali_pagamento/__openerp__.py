@@ -8,7 +8,7 @@
     'summary':
         'Aggiunge la tabella delle causali di pagamento da usare ad esempio '
         'nelle ritenute d\'acconto',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.1.0',
     'category': 'Account',
     'author': "Agile Business Group,"
         "Odoo Community Association (OCA)",

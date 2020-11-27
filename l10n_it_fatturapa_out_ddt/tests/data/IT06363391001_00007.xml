@@ -46,7 +46,7 @@
             </IdFiscaleIVA>
             <CodiceFiscale>07973780013</CodiceFiscale>
             <Anagrafica>
-               <Denominazione>Cliente B2B</Denominazione>
+               <Denominazione>B2B Customer</Denominazione>
             </Anagrafica>
          </DatiAnagrafici>
          <Sede>
@@ -76,14 +76,14 @@
                </IdFiscaleIVA>
                <CodiceFiscale>03297040366</CodiceFiscale>
                <Anagrafica>
-                  <Denominazione>Intermediario</Denominazione>
+                  <Denominazione>Intermediary</Denominazione>
                </Anagrafica>
             </DatiAnagraficiVettore>
             <MezzoTrasporto>Recipient</MezzoTrasporto>
             <CausaleTrasporto>Sale</CausaleTrasporto>
             <Descrizione>Box</Descrizione>
-            <PesoLordo>0.0</PesoLordo>
-            <PesoNetto>0.0</PesoNetto>
+            <PesoLordo>0.00</PesoLordo>
+            <PesoNetto>0.00</PesoNetto>
          </DatiTrasporto>
       </DatiGenerali>
       <DatiBeniServizi>

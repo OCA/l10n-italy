@@ -23,9 +23,20 @@ Italian Localization - Fattura Elettronica - Base
     :target: https://runbot.odoo-community.org/runbot/122/8.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
+
+**Italiano**
+
+Modulo base per gestire le fatture elettroniche.
+
+http://fatturapa.gov.it
+
+Consultare anche i file README di l10n_it_fatturapa_out e l10n_it_fatturapa_in.
+
+**English**
 
 Base module to handle Electronic Invoices.
+
 http://fatturapa.gov.it
 
 See also l10n_it_fatturapa_out and l10n_it_fatturapa_in README files.
@@ -38,7 +49,16 @@ See also l10n_it_fatturapa_out and l10n_it_fatturapa_in README files.
 Installation
 ============
 
-This module requires PyXB 1.2.5
+**Italiano**
+
+Questo modulo richiede PyXB 1.2.6
+
+http://pyxb.sourceforge.net/
+
+**English**
+
+This module requires PyXB 1.2.6
+
 http://pyxb.sourceforge.net/
 
 Configuration
@@ -48,7 +68,7 @@ Configuration
 
 * Nella scheda "Fattura elettronica" del partner, selezionare "Soggetto a fattura elettronica" per i clienti e i fornitori soggetti alla fatturazione elettronica.
 * Le pubbliche amministrazioni devono avere un codice IPA
-* Gli altri devono avere il codice destinatario o la PEC
+* Gli altri devono avere il Codice Destinatario o la PEC
 * Configurare le imposte riguardo a "Natura non imponibile", "Riferimento normativo" ed "Esigibilità IVA"
 * Configurare i dati della fattura elettronica nella configurazione della contabilità, dove necessario
 * Opzionalmente configurare lo style della preview della fattura elettronica, selezionando "Preview Format Style" in "Configurazione Contabilità"
@@ -96,6 +116,9 @@ Contributors
 * Sergio Zanchetta <https://github.com/primes2h>
 * Roberto Fichera <https://github.com/robyf70>
 * Sergio Corato <https://github.com/sergiocorato>
+* Sergio Zanchetta <https://github.com/primes2h>
+* Copyright 2019 Gianluigi Tiesi - Netfarm S.r.l.
+* Copyright 2020 Vincenzo Terzulli <v.terzulli@elvenstudio.it>
 
 Maintainers
 ~~~~~~~~~~~

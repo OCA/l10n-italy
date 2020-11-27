@@ -6,21 +6,20 @@
         <field name="model">fatturapa.attachment.out</field>
         <field name="inherit_id" ref="l10n_it_fatturapa_out.view_fatturapa_out_attachment_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//div" position="before">
-                <header>
-                    <button name="send_via_pec" states="ready" string="Send Via PEC" type="object" class="oe_highlight"/>
-                    <button name="reset_to_ready" states="sender_error" string="Reset to ready" type="object" />
-                    <field name="state" widget="statusbar"/>
-                </header>
+            <header position="inside">
+                <button name="send_via_pec" states="ready" string="Send Via PEC" type="object" class="oe_highlight"/>
+                <button name="reset_to_ready" states="sender_error" string="Reset to ready" type="object" />
+                <field name="state" widget="statusbar" statusbar_visible="ready,sent,validated" />
+            </header>
+
+            <xpath expr="//page[@name='history']/group/group[last()]" position="inside">
+                <field name="last_sdi_response" attrs="{'invisible':[('state', '=', 'ready')]}"/>
             </xpath>
-            <xpath expr="//div/group[last()]" position="after">
-                <group name="last_sdi_response" string="Last Response from Exchange System" attrs="{'invisible':[('state', '=', 'ready')]}">
-                    <field name="last_sdi_response" nolabel="1"/>
-                </group>
-            </xpath>
+
             <field name="datas" position="attributes">
                 <attribute name="attrs">{'readonly': [('state', 'not in', ['ready', 'sender_error'])]}</attribute>
             </field>
+
             <div name="creation_div" position="after">
                 <label for="sending_user" string="Sent by" attrs="{'invisible': [('sending_user' ,'=', False)]}"/>
                 <div name="sending_user" attrs="{'invisible': [('sending_user' ,'=', False)]}">
@@ -68,6 +67,10 @@
                 <field name="state"/>
                 <filter name="ready" string="Ready" domain="[('state','=','ready')]"/>
             </field>
+
+            <filter name="group_by_partner" position="after">
+                <filter name="group_by_state" string="State" domain="[]" context="{'group_by': 'state'}"/>
+            </filter>
         </field>
     </record>
 

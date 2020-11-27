@@ -21,6 +21,10 @@
                 <search>
                     <field name="name"/>
                     <field name="invoice_partner_id"/>
+
+                    <group expand="0" string="Group By" name="group_by">
+                        <filter name="group_by_partner" string="Partner" domain="[]" context="{'group_by': 'invoice_partner_id'}"/>
+                    </group>
                 </search>
             </field>
         </record>
@@ -30,7 +34,10 @@
             <field name="model">fatturapa.attachment.out</field>
             <field name="arch" type="xml">
                 <form string="Export Electronic Invoice" create="false">
-                    <div>
+                    <header>
+                        <button name="action_show_preview" type="object" string="Show preview" />
+                    </header>
+                    <sheet>
                         <group>
                             <group>
                                 <field name="datas" filename="datas_fname"/>
@@ -42,19 +49,25 @@
                                 <field name="invoice_partner_id"/>
                             </group>
                         </group>
-                        <field name="ftpa_preview_link" widget="url" text="Show preview" class="btn btn-default"/>
-                        <separator string="Invoices"/>
-                        <field name="out_invoice_ids"
-                               context="{'form_view_ref': 'account.invoice_form', 'tree_view_ref': 'account.invoice_tree'}"/>
-                        <group string="History">
-                            <label for="create_uid" string="Created by"/>
-                            <div name="creation_div">
-                                <field name="create_uid" readonly="1" class="oe_inline"/>
-                                on
-                                <field name="create_date" readonly="1" class="oe_inline"/>
-                            </div>
-                        </group>
-                    </div>
+                        <notebook>
+                            <page name="invoices" string="Invoices">
+                                <field name="out_invoice_ids"
+                                       context="{'form_view_ref': 'account.invoice_form', 'tree_view_ref': 'account.invoice_tree'}"/>
+                            </page>
+                            <page name="history" string="History">
+                                <group>
+                                    <group>
+                                        <label for="create_uid" string="Created by"/>
+                                        <div name="creation_div">
+                                            <field name="create_uid" readonly="1" class="oe_inline"/>
+                                            on
+                                            <field name="create_date" readonly="1" class="oe_inline"/>
+                                        </div>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers"/>
                         <field name="message_ids" widget="mail_thread"/>
@@ -64,7 +77,7 @@
         </record>
 
         <record id="action_fatturapa_attachment" model="ir.actions.act_window">
-            <field name="name">Electronic Invoice Export Files</field>
+            <field name="name">Customer e-Invoices</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">fatturapa.attachment.out</field>
             <field name="view_type">form</field>
@@ -72,10 +85,10 @@
             <field name="view_id" ref="view_fatturapa_out_attachment_tree"/>
         </record>
 
-        <menuitem action="action_fatturapa_attachment"
-                  parent="l10n_it_fatturapa.menu_fattura_pa_receivables"
-                  name="Electronic Invoice Export Files"
-                  id="fatturapa_attachment_menu"/>
+        <menuitem id="fatturapa_attachment_menu"
+                  parent="account.menu_finance_receivables"
+                  action="action_fatturapa_attachment"
+                  sequence="0"/>
 
     </data>
 </openerp>

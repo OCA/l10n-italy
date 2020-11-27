@@ -7,7 +7,7 @@ class AccountTax(models.Model):
     _inherit = 'account.tax'
 
     payability = fields.Selection([
-        ('I', 'Immediate payability'),
-        ('D', 'Deferred payability'),
-        ('S', 'Split payment'),
+        ('I', 'VAT payable immediately'),
+        ('D', 'unrealized VAT'),
+        ('S', 'split payments'),
     ], string="VAT payability")

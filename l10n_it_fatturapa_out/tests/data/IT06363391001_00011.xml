@@ -62,7 +62,7 @@
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
                 <Data>2018-01-07</Data>
-                <Numero>INV/2018/0021</Numero>
+                <Numero>INV/2018/0011</Numero>
                 <ImportoTotaleDocumento>17.08</ImportoTotaleDocumento>
                 <Art73>SI</Art73>
             </DatiGeneraliDocumento>
@@ -72,7 +72,7 @@
                 <NumeroLinea>1</NumeroLinea>
                 <CodiceArticolo>
                     <CodiceTipo>ODOO</CodiceTipo>
-                    <CodiceValore>GH82?23??D11</CodiceValore>
+                    <CodiceValore>GH82&#216;23&#8364;&#358;D11</CodiceValore>
                 </CodiceArticolo>
                 <Descrizione>Mouse Optical &#216;23 &#223;11</Descrizione>
                 <Quantita>1.000</Quantita>

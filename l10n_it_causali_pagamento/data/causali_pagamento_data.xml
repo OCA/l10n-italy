@@ -38,8 +38,7 @@
     </record>
     <record model="causale.pagamento" id="l">
       <field name="code">L</field>
-      <field name="name">Utilizzazione economica, da parte di soggetto diverso dall'autore o dall'inventore, di opere dell'ingegno, di brevetti industriali e di processi, formule e informazioni relative a esperienze acquisite in campo industriale, commerciale o scientifico
-       </field>
+      <field name="name">Redditi derivanti dall’utilizzazione economica di opere dell’ingegno, di brevetti industriali e di processi, formule e informazioni relativi a esperienze acquisite in campo industriale, commerciale o scientifico, che sono percepiti dagli aventi causa a titolo gratuito (ad es. eredi e legatari dell’autore e inventore)</field>
     </record>
     <record model="causale.pagamento" id="m">
       <field name="code">M</field>
@@ -106,10 +105,34 @@
       </field>
     </record>
     <record model="causale.pagamento" id="z">
-      <field name="code">Z</field>
+      <field name="code">ZO</field>
       <field name="name">Titolo diverso dai precedenti
       </field>
     </record>
-    
+    <record model="causale.pagamento" id="l1">
+      <field name="code">L1</field>
+      <field name="name">Redditi derivanti dall’utilizzazione economica di opere dell’ingegno, di brevetti industriali e di processi, formule e informazioni relativi a esperienze acquisite in campo industriale, commerciale o scientifico, che sono percepiti da soggetti che abbiano acquistato a titolo oneroso i diritti alla loro utilizzazione
+      </field>
+    </record>
+     <record model="causale.pagamento" id="m1">
+      <field name="code">M1</field>
+      <field name="name">Redditi derivanti dall’assunzione di obblighi di fare, di non fare o permettere
+      </field>
+    </record>
+    <record model="causale.pagamento" id="m2">
+      <field name="code">M2</field>
+      <field name="name">Prestazioni di lavoro autonomo non esercitate abitualmente per le quali sussiste l’obbligo di iscrizione alla Gestione Separata ENPAPI
+      </field>
+    </record>
+    <record model="causale.pagamento" id="o1">
+      <field name="code">O1</field>
+      <field name="name">Redditi derivanti dall’assunzione di obblighi di fare, di non fare o permettere, per le quali non sussiste l’obbligo di iscrizione alla gestione separata (Circ. INPS n. 104/2001)
+      </field>
+    </record>
+    <record model="causale.pagamento" id="v1">
+      <field name="code">V1</field>
+      <field name="name">Redditi derivanti da attività commerciali non esercitate abitualmente (ad esempio, provvigioni corrisposte per prestazioni occasionali ad agente o rappresentante di commercio, mediatore, procacciatore d’affari)
+      </field>
+    </record>
   </data>
 </openerp>

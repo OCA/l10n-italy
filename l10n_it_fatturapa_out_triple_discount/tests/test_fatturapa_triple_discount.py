@@ -12,13 +12,13 @@ class TestInvoiceTripleDiscount(FatturaPACommon):
         super(TestInvoiceTripleDiscount, self).setUp()
 
     def test_xml_export_triple_discount(self):
-        self.set_sequences(1, 13, '2016')
+        self.set_sequences(13, '2016')
         invoice = self.invoice_model.create({
             'date_invoice': '2016-01-07',
             'partner_id': self.res_partner_fatturapa_0.id,
             'journal_id': self.sales_journal.id,
             'account_id': self.a_recv.id,
-            'payment_term_id': self.account_payment_term.id,
+            'payment_term': self.account_payment_term.id,
             'user_id': self.user_demo.id,
             'type': 'out_invoice',
             'currency_id': self.EUR.id,
@@ -28,7 +28,7 @@ class TestInvoiceTripleDiscount(FatturaPACommon):
                     'product_id': self.product_product_10.id,
                     'name': 'Mouse\nOptical',
                     'quantity': 1,
-                    'uom_id': self.product_uom_unit.id,
+                    'uos_id': self.product_uom_unit.id,
                     'price_unit': 10,
                     'discount': 50,
                     'discount2': 50,
@@ -42,7 +42,7 @@ class TestInvoiceTripleDiscount(FatturaPACommon):
 
         self.assertTrue(res)
         attachment = self.attach_model.browse(res['res_id'])
-        self.assertEqual(attachment.datas_fname, 'IT06363391001_00001.xml')
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00001.xml')
 
         # XML doc to be validated
         xml_content = attachment.datas.decode('base64')
