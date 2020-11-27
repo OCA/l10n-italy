@@ -163,6 +163,10 @@ def CreateFromDocument(xml_string):
                     problems.append(msg)
                     _logger.warn(msg)
 
+    # fix trailing spaces in <PECDestinatario/>
+    for pec in root.xpath("//PECDestinatario"):
+        pec.text = pec.text.rstrip()
+
     validat = validator.to_dict(tree, dict_class=ObjectDict)
     setattr(validat, '_xmldoctor', problems)
     return validat
