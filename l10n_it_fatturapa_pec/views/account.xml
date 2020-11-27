@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
+    <act_window id="action_wizard_export_fatturapa_regenerate"
+                name="Re-Export Electronic Invoice"
+                res_model="wizard.export.fatturapa"
+                target="new"
+                view_id="wizard_export_fatturapa_form_view_regenerate"
+                view_mode="form"/>
+
     <record id="view_invoice_fatturapa_out_pec_tree" model="ir.ui.view">
         <field name="name">view.invoice.fatturapa.out.pec.tree</field>
         <field name="model">account.invoice</field>
-        <field name="inherit_id" ref="account.invoice_tree"></field>
+        <field name="inherit_id" ref="account.invoice_tree"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='state']" position="before">
                 <field name="fatturapa_state"/>
@@ -14,18 +22,23 @@
     <record id="view_invoice_fatturapa_out_pec_form" model="ir.ui.view">
         <field name="name">view.invoice.fatturapa.out.pec.form</field>
         <field name="model">account.invoice</field>
-        <field name="inherit_id" ref="account.invoice_form"></field>
+        <field name="inherit_id" ref="account.invoice_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='date_invoice']" position="after">
                 <field name="fatturapa_state"/>
             </xpath>
+            <button name="preview_invoice" position="before">
+                <button name="%(action_wizard_export_fatturapa_regenerate)d" type="action"
+                        string="Re-Export E-invoice" class="oe_highlight"
+                        attrs="{'invisible': ['|', '|', ('fatturapa_attachment_out_id', '=', False), ('fatturapa_state', 'not in', ['error']), ('state', 'not in', ['open', 'paid'])]}"/>
+            </button>
         </field>
     </record>
 
     <record id="view_account_invoice_fatturapa_out_pec_filter" model="ir.ui.view">
         <field name="name">view.account.invoice.fatturapa.out.pec.filter</field>
         <field name="model">account.invoice</field>
-        <field name="inherit_id" ref="account.view_account_invoice_filter"></field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
         <field name="arch" type="xml">
             <xpath expr="//filter[@name='late']" position="after">
                 <separator/>
@@ -38,4 +51,5 @@
             </xpath>
         </field>
     </record>
+
 </odoo>
