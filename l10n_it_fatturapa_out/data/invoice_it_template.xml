@@ -120,26 +120,27 @@
             </DettaglioLinee>
         </template>
         <template id="account_invoice_line_it_dati_riepilogo">
+            <t t-set="tax" t-value="tax_line.tax_id" />
             <DatiRiepilogo>
                 <!--2.2.2-->
-                <AliquotaIVA t-esc="format_numbers(tax_line.tax_line_id.amount)" />
+                <AliquotaIVA t-esc="format_numbers(tax.amount)" />
                 <Natura
-                    t-if="tax_line.tax_line_id.kind_id.code"
-                    t-esc="tax_line.tax_line_id.kind_id.code"
+                    t-if="tax.kind_id.code"
+                    t-esc="tax.kind_id.code"
                 />
                 <!--                <SpeseAccessorie t-esc=""/>-->
                 <!--                <Arrotondamento t-esc=""/>-->
                 <ImponibileImporto
-                    t-esc="format_monetary(tax_line.tax_base_amount, currency)"
+                    t-esc="format_monetary(tax_line.base, currency)"
                 />
-                <Imposta t-esc="format_monetary(tax_line.price_unit, currency)" />
+                <Imposta t-esc="format_monetary(tax_line.amount, currency)" />
                 <EsigibilitaIVA
-                    t-if="tax_line.tax_line_id.payability"
-                    t-esc="tax_line.tax_line_id.payability"
+                    t-if="tax.payability"
+                    t-esc="tax.payability"
                 />
                 <RiferimentoNormativo
-                    t-if="tax_line.tax_line_id.law_reference"
-                    t-esc="encode_for_export(tax_line.tax_line_id.law_reference, 100)"
+                    t-if="tax.law_reference"
+                    t-esc="encode_for_export(tax.law_reference, 100)"
                 />
             </DatiRiepilogo>
         </template>
