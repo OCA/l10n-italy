@@ -468,8 +468,10 @@
                             t-esc="format_numbers_two(record.amount_total)"
                         />
                         <!--                        <Arrotondamento t-esc=""/>-->
-                        <Causale t-esc="get_causale(record)" />
-                        <Art73 t-if="record.company_id.fatturapa_art73" t-esc="SI" />
+			<t t-foreach="get_causale(record)" t-as="causale">
+                            <Causale t-if="causale" t-esc="causale" />
+			</t>
+                        <Art73 t-if="record.company_id.fatturapa_art73">SI</Art73>
                     </DatiGeneraliDocumento>
 <!--
 -->
