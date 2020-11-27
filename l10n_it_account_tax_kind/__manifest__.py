@@ -5,21 +5,21 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    'name': 'Italian Localisation - Natura delle aliquote IVA',
-    'version': '12.0.2.0.0',
-    'development_status': 'Production/Stable',
-    'category': 'Localisation/Italy',
-    'author': "Odoo Community Association (OCA), Apulia Software s.r.l",
-    'website': 'https://github.com/OCA/l10n-italy',
-    'license': 'AGPL-3',
-    'depends': [
-        'l10n_it_account',
-        ],
-    'data': [
-        'view/account_tax_kind_view.xml',
-        'view/account_tax_view.xml',
-        'data/account.tax.kind.csv',
-        'security/ir.model.access.csv',
-        ],
-    'installable': True
+    "name": "Italian Localisation - Natura delle aliquote IVA",
+    "version": "12.0.2.0.0",
+    "development_status": "Production/Stable",
+    "category": "Localisation/Italy",
+    "author": "Odoo Community Association (OCA), Apulia Software s.r.l",
+    "website": "https://github.com/OCA/l10n-italy",
+    "license": "AGPL-3",
+    "depends": [
+        "l10n_it_account",
+    ],
+    "data": [
+        "view/account_tax_kind_view.xml",
+        "view/account_tax_view.xml",
+        "data/account.tax.kind.csv",
+        "security/ir.model.access.csv",
+    ],
+    "installable": True,
 }

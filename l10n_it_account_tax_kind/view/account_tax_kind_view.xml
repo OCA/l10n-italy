@@ -6,8 +6,8 @@
         <field name="model">account.tax.kind</field>
         <field name="arch" type="xml">
             <tree string="Tax Exemption Kind">
-                <field name="code"/>
-                <field name="name"/>
+                <field name="code" />
+                <field name="name" />
             </tree>
         </field>
     </record>
@@ -18,8 +18,8 @@
         <field name="arch" type="xml">
             <form string="Tax Exemption Kind">
                 <group>
-                    <field name="code"/>
-                    <field name="name"/>
+                    <field name="code" />
+                    <field name="name" />
                 </group>
             </form>
         </field>
@@ -31,14 +31,16 @@
         <field name="res_model">account.tax.kind</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="view_account_tax_kind_tree"/>
+        <field name="view_id" ref="view_account_tax_kind_tree" />
     </record>
 
-    <menuitem id="account_tax_kind_menu"
-                parent="l10n_it_account.account_italian_localization"
-                name="Tax Exemption Kind"
-                action="view_account_tax_kind_action"
-                groups="account.group_account_manager"
-                sequence="40"/>
+    <menuitem
+        id="account_tax_kind_menu"
+        parent="l10n_it_account.account_italian_localization"
+        name="Tax Exemption Kind"
+        action="view_account_tax_kind_action"
+        groups="account.group_account_manager"
+        sequence="40"
+    />
 
 </odoo>
