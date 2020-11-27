@@ -124,6 +124,8 @@ class efattura_out:
             'format_numbers': format_numbers,
             'format_numbers_two': format_numbers_two,
             'format_phone': format_phone,
+            'format_quantity': format_quantity,
+            'format_price': format_price,
             'get_vat_number': get_vat_number,
             'get_vat_country': get_vat_country,
             'get_causale': get_causale,
