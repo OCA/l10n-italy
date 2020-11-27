@@ -189,3 +189,47 @@ class TestTaxSP(AccountTestUsers):
         self.assertEqual(self.vat_statement.residual, 0)
         self.assertEqual(self.vat_statement.generic_vat_account_line_ids.amount,
                          22.0)
+
+    def test_account_sp_company(self):
+        account_user_type = self.env.ref(
+            'account.data_account_type_receivable'
+        )
+        account_sp = self.account_model.sudo(self.account_manager.id).create(
+            dict(
+                code="split_payment_acc",
+                name="Split payment account",
+                user_type_id=account_user_type.id,
+                reconcile=True,
+            ))
+        self.company.sp_account_id = account_sp.id
+
+        invoice = self.invoice_model.create({
+            'date_invoice': self.recent_date,
+            'partner_id': self.env.ref('base.res_partner_3').id,
+            'journal_id': self.sales_journal.id,
+            'account_id': self.a_recv.id,
+            'fiscal_position_id': self.sp_fp.id,
+            'invoice_line_ids': [(0, 0, {
+                'name': 'service',
+                'account_id': self.a_sale.id,
+                'quantity': 1,
+                'price_unit': 100,
+                'invoice_line_tax_ids': [(6, 0, {
+                    self.account_tax_22sp.id
+                    })]
+                })]
+            })
+        invoice.compute_taxes()
+        invoice.action_invoice_open()
+
+        self.vat_statement = self.vat_statement_model.create({
+            'journal_id': self.general_journal.id,
+            'authority_vat_account_id': self.vat_authority.id,
+            'payment_term_id': self.account_payment_term.id,
+            })
+        self.current_period.vat_statement_id = self.vat_statement
+        self.vat_statement.compute_amounts()
+        self.assertEqual(
+            self.vat_statement.generic_vat_account_line_ids.account_id.id,
+            account_sp.id
+        )
