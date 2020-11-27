@@ -145,30 +145,24 @@
             </DatiRiepilogo>
         </template>
         <template id="account_invoice_it_FatturaPA_sede">
-            <Indirizzo>
-                <t t-if="partner_id.street" t-esc="partner_id.street" />
-                <t t-if="partner_id.street2" t-esc="partner_id.street2" />
-            </Indirizzo>
+            <t t-set="indirizzo"><t t-if="partner_id.street2" t-esc="partner_id.street + '\n' + partner_id.street2" /><t t-if="not partner_id.street2" t-esc="partner_id.street" /></t>
+            <Indirizzo t-esc="encode_for_export(indirizzo, 60)" />
             <!--            <NumeroCivico t-esc=""/>-->
-            <CAP>
-                <t t-if="partner_id.country_id.code != 'IT'" t-esc="'00000'" />
-                <t t-else="" t-esc="partner_id.zip" />
-            </CAP>
-            <Comune t-esc="partner_id.city" />
+<!-- XXX da controllare, if vecchio codice fa diversamente
+            <CAP><t t-if="partner_id.country_id.code == 'IT'" t-esc="partner_id.zip" /><t t-if="partner_id.country_id.code != 'IT'" t-esc="'00000'" /></CAP>
+-->
+            <CAP t-if="partner_id.codice_destinatario == 'XXXXXXX' or not partner_id.zip" t-esc="'00000'" />
+            <CAP t-if="partner_id.codice_destinatario != 'XXXXXXX' and partner_id.zip" t-esc="partner_id.zip" />
+            <Comune t-esc="encode_for_export(partner_id.city, 60)" />
             <Provincia
                 t-if="partner_id.country_id.code == 'IT'"
                 t-esc="partner_id.state_id.code"
             />
+            <Provincia
+                t-if="partner_id.codice_destinatario == 'XXXXXXX'"
+                t-esc="'EE'"
+            />
             <Nazione t-esc="partner_id.country_id.code" />
-        </template>
-        <template id="account_invoice_it_dati_documenti_correlati">
-            <RiferimentoNumeroLinea t-esc="" />
-            <IdDocumento t-esc="" />
-            <Data t-esc="" />
-            <NumItem t-esc="" />
-            <CodiceCommessaConvenzione t-esc="" />
-            <CodiceCUP t-esc="" />
-            <CodiceCIG t-esc="" />
         </template>
         <template id="account_invoice_it_dati_trasmissione">
             <DatiTrasmissione>
