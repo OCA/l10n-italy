@@ -270,48 +270,31 @@
             <CessionarioCommittente>
                 <DatiAnagrafici>
                     <IdFiscaleIVA
-                        t-if="partner_id.commercial_partner_id.vat and in_eu(partner_id.commercial_partner_id)"
-                    >
-                        <IdPaese
-                            t-esc="get_vat_country(partner_id.commercial_partner_id.vat)"
-                        />
-                        <IdCodice
-                            t-esc="get_vat_number(partner_id.commercial_partner_id.vat)"
-                        />
+                        t-if="not in_eu(partner_id.commercial_partner_id)">
+                        <IdPaese t-esc="partner_id.commercial_partner_id.country_id.code" />
+                        <IdCodice>99999999999</IdCodice>
                     </IdFiscaleIVA>
-                    <IdFiscaleIVA
-                        t-if="partner_id.commercial_partner_id.vat and not in_eu(partner_id.commercial_partner_id)"
-                    >
-                        <IdPaese
-                            t-esc="partner_id.commercial_partner_id.country_id.code"
-                        />
-                        <IdCodice t-esc="'OO99999999999'" />
+                    <IdFiscaleIVA t-if="in_eu(partner_id.commercial_partner_id) and partner_id.commercial_partner_id.vat">
+                        <IdPaese t-esc="get_vat_country(partner_id.commercial_partner_id.vat)" />
+                        <IdCodice t-esc="get_vat_number(partner_id.commercial_partner_id.vat)" />
                     </IdFiscaleIVA>
-                    <IdFiscaleIVA
-                        t-if="not partner_id.commercial_partner_id.vat and partner_id.commercial_partner_id.country_id.code != 'IT'"
-                    >
-                        <IdCodice t-esc="'0000000'" />
-                    </IdFiscaleIVA>
+<!--                        t-if="not partner_id.commercial_partner_id.vat" -->
                     <CodiceFiscale
-                        t-if="not partner_id.commercial_partner_id.vat"
+                        t-if="partner_id.commercial_partner_id.fiscalcode"
                         t-esc="partner_id.commercial_partner_id.fiscalcode"
-                    />
-                    <CodiceFiscale
-                        t-if="not partner_id.commercial_partner_id.vat and not partner_id.commercial_partner_id.fiscalcode"
-                        t-esc="99999999999"
                     />
                     <Anagrafica>
                         <Denominazione
                             t-if="partner_id.commercial_partner_id.is_company"
-                            t-esc="partner_id.commercial_partner_id.display_name"
+                            t-esc="encode_for_export(partner_id.commercial_partner_id.display_name, 80)"
                         />
                         <Nome
                             t-if="not partner_id.commercial_partner_id.is_company"
-                            t-esc="partner_id.commercial_partner_id.firstname"
+                            t-esc="encode_for_export(partner_id.commercial_partner_id.firstname, 60)"
                         />
                         <Cognome
                             t-if="not partner_id.commercial_partner_id.is_company"
-                            t-esc="partner_id.commercial_partner_id.lastname"
+                            t-esc="encode_for_export(partner_id.commercial_partner_id.lastname, 60)"
                         />
                         <!--                        <Titolo t-esc=""/>-->
                         <CodEORI
@@ -321,15 +304,12 @@
                     </Anagrafica>
                 </DatiAnagrafici>
                 <Sede>
-                    <t t-call="l10n_it_edi.account_invoice_it_FatturaPA_sede">
-                        <t
-                            t-set="partner_id"
-                            t-value="partner_id.commercial_partner_id"
-                        />
+                    <t t-call="l10n_it_fatturapa_out.account_invoice_it_FatturaPA_sede">
+                        <t t-set="partner_id" t-value="partner_id" />
                     </t>
                 </Sede>
                 <!--                <StabileOrganizzazione t-if="formato_trasmissione == 'FPR12' and partner_id.commercial_partner_id.fatturapa_stabile_organizzazione">-->
-                <!--                    <t t-call="l10n_it_edi.account_invoice_it_FatturaPA_sede">-->
+                <!--                    <t t-call="l10n_it_fatturapa_out.account_invoice_it_FatturaPA_sede">-->
                 <!--                        <t t-set="partner_id" t-value="partner_id.commercial_partner_id"/>-->
                 <!--                    </t>-->
                 <!--                </StabileOrganizzazione>-->
@@ -386,10 +366,10 @@
                 <DatiGenerali>
                     <DatiGeneraliDocumento>
                         <!--2.1.1-->
-                        <TipoDocumento t-esc="document_type" />
+                        <TipoDocumento t-esc="record.fiscal_document_type_id.code" />
                         <Divisa t-esc="currency.name" />
-                        <Data t-esc="format_date(record.invoice_date)" />
-                        <Numero t-esc="record.name[-20:]" />
+                        <Data t-esc="format_date(record.date_invoice)" />
+                        <Numero t-esc="record.number" />
                         <!--                        <DatiRitenuta>-->
                         <!--                            <TipoRitenuta t-esc=""/>-->
                         <!--                            <ImportoRitenuta t-esc=""/>-->
@@ -417,7 +397,12 @@
                         <!--                            <Importo t-esc=""/>-->
                         <!--                        </ScontoMaggiorazione>-->
                         <ImportoTotaleDocumento
-                            t-esc="format_number_two(record.amount_total)"
+			    t-if="record.split_payment"
+                            t-esc="format_numbers_two(record.amount_total + record.amount_sp)"
+                        />
+                        <ImportoTotaleDocumento
+			    t-if="not record.split_payment"
+                            t-esc="format_numbers_two(record.amount_total)"
                         />
                         <!--                        <Arrotondamento t-esc=""/>-->
                         <Causale t-esc="get_causale(record)" />
@@ -565,24 +550,12 @@
                     <!--                    <AlgoritmoCompressione t-esc=""/>-->
                     <!--                    <FormatoAttachment>PDF</FormatoAttachment>-->
                     <!--                    <DescrizioneAttachment  t-esc=""/>-->
-                    <Attachment t-esc="base64.decodestring(doc_id.datas)" />
+                    <Attachment t-esc="doc_id.datas" />
                 </Allegati>
             </FatturaElettronicaBody>
         </template>
         <template id="account_invoice_it_FatturaPA_export">
-            <t t-if="partner_id.is_pa">
-                <t t-set="formato_trasmissione" t-value="FPA12" />
-            </t>
-            <t t-else="">
-                <t t-set="formato_trasmissione" t-value="FPR12" />
-            </t>
-            <p:FatturaElettronica
-                t-att-versione="formato_trasmissione"
-                xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
-                xmlns:p="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2"
-                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2 http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd"
-            >
+            <ns1:FatturaElettronica xmlns:ns1="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2" t-att-versione="formato_trasmissione">
                 <FatturaElettronicaHeader>
                     <t t-call="account_invoice_it_dati_trasmissione" />
                     <t t-call="account_invoice_it_cedente_prestatore" />
@@ -598,9 +571,9 @@
                     <!--                    <SoggettoEmittente t-if="False" t-esc="CC"/>-->
                 </FatturaElettronicaHeader>
                 <t t-foreach="invoices" t-as="record">
-                    <t t-call="account_invoice_it_fattura_elettronica_body" />
+                    <t t-call="l10n_it_fatturapa_out.account_invoice_it_fattura_elettronica_body" />
                 </t>
-            </p:FatturaElettronica>
+		</ns1:FatturaElettronica>
         </template>
     </data>
 </odoo>

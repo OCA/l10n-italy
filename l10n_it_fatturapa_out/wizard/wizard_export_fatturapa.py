@@ -14,7 +14,7 @@ from odoo import api, fields, models
 from odoo.tools.translate import _
 from odoo.exceptions import UserError
 
-from efattura_out import efattura_out
+from .efattura import efattura_out
 
 _logger = logging.getLogger(__name__)
 
@@ -97,6 +97,8 @@ class WizardExportFatturapa(models.TransientModel):
 
             invoice_ids = self.env["account.invoice"]\
                 .with_context(context_partner).browse(invoice_ids)
+            for invoice in invoice_ids:
+                invoice.set_taxes_for_descriptive_lines()
 
             fatturapa = efattura_out(
                 company,

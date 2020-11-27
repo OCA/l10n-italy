@@ -1,8 +1,12 @@
+# Copyright 2020 Giuseppe Borruso
+# Copyright 2020 Marco Colombo
 import re
 import os
+import base64
 from datetime import datetime
 from unidecode import unidecode
 from odoo.tools import float_repr
+from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
 
 DEFAULT_INVOICE_ITALIAN_DATE_FORMAT = '%Y-%m-%d'
 
@@ -13,11 +17,6 @@ class efattura_out:
         ''' Create the xml file content.
         :return: The XML content as str.
         '''
-
-        def encode_for_export(string_to_encode, max_chars, encoding='latin'):
-            reg_whitespace = re.compile(r'\s+')
-            return reg_whitespace.sub(' ', string_to_encode)\
-                .encode(encoding, errors='replace').decode(encoding)[:max_chars]
 
         def format_date(dt):
             # Format the date in the italian standard.
@@ -52,8 +51,39 @@ class efattura_out:
                 return number
             return False
 
+        def format_price(line):
+            res = line.price_unit
+            if (
+                line.invoice_line_tax_ids and
+                line.invoice_line_tax_ids[0].price_include
+            ):
+                res = line.price_unit / (
+                    1 + (line.invoice_line_tax_ids[0].amount / 100))
+            price_precision = env['decimal.precision'].precision_get(
+                'Product Price for XML e-invoices')
+            if price_precision < 2:
+                price_precision = 2
+
+            # XXX arrotondamento?
+            res = '{prezzo:.{precision}f}'.format(
+                prezzo=res, precision=price_precision)
+            return res
+
+        def format_quantity(line):
+            uom_precision = env['decimal.precision'].precision_get(
+                'Product Unit of Measure')
+            if uom_precision < 2:
+                uom_precision = 2
+
+            quantity = line.quantity + 0
+            # XXX arrotondamento?
+            res='{qta:.{precision}f}'.format(
+                qta=quantity, precision=uom_precision),
+            return res[0]
+
         def get_vat_number(vat):
-            return vat[2:].replace(' ', '')
+            #return vat[2:].replace(' ', '') if vat else ""
+            return vat[2:] if vat else ""
 
         def get_vat_country(vat):
             return vat[:2].upper()
@@ -69,7 +99,7 @@ class efattura_out:
             return encode_for_export(attachment_name, 60)
 
         def in_eu(partner):
-            europe = self.env.ref('base.europe', raise_if_not_found=False)
+            europe = env.ref('base.europe', raise_if_not_found=False)
             country = partner.country_id
             if not europe or not country or country in europe.country_ids:
                 return True
@@ -83,10 +113,12 @@ class efattura_out:
 
         # Create file content.
         template_values = {
+            'formato_trasmissione': "FPA12" if self.partner_id.is_pa else "FPR12",
             'company_id': self.company_id,
             'partner_id': self.partner_id,
             'invoices': self.invoices,
             'progressivo_invio': self.progressivo_invio,
+            'encode_for_export': encode_for_export,
             'format_date': format_date,
             'format_monetary': format_monetary,
             'format_numbers': format_numbers,
@@ -100,9 +132,10 @@ class efattura_out:
             'in_eu': in_eu,
             'abs': abs,
             'unidecode': unidecode,
+            'base64': base64,
         }
         content = env.ref('l10n_it_fatturapa_out.account_invoice_it_FatturaPA_export')\
-            ._render(template_values)
+            .render(template_values)
         return content
 
     def __init__(self, company_id, partner_id, invoices, progressivo_invio):
