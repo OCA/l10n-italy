@@ -549,8 +549,10 @@
                 <DatiPagamento t-if="record.payment_term_id">
                     <t
                         t-set="payments"
-                        t-value="record.line_ids.filtered(lambda line: line.account_id.user_type_id.type in ('receivable', 'payable'))"
+                        t-value="env['account.move.line'].browse(record.get_receivable_line_ids())"
                     />
+<!-- t-value="record.invoice_line_ids.filtered(lambda line: line.account_id.user_type_id.type in ('receivable', 'payable'))" -->
+
                     <!--                    <CondizioniPagamento><t t-if="len(payments) == 1">TP02</t><t t-else="">TP01</t></CondizioniPagamento>-->
                     <CondizioniPagamento
                         t-esc="record.payment_term_id.fatturapa_pt_id.code"
@@ -567,7 +569,7 @@
                             />
                             <!--                            <DataRiferimentoTerminiPagamento t-esc=""/>-->
                             <!--                            <GiorniTerminiPagamento t-esc=""/>-->
-                            <!--                            <DataScadenzaPagamento t-esc="format_date(record.invoice_date_due)"/>-->
+                            <DataScadenzaPagamento t-if="move_line.date_maturity" t-esc="format_date(move_line.date_maturity)" />
                             <ImportoPagamento
                                 t-esc="format_numbers_two(move_line.amount_currency or move_line.debit)"
                             />
