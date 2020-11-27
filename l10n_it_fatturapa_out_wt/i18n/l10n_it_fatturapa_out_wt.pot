@@ -14,55 +14,25 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_fatturapa_out_wt
-#: selection:withholding.tax,wt_types:0
-msgid "Enasarco tax"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out_wt
 #: model:ir.model,name:l10n_it_fatturapa_out_wt.model_wizard_export_fatturapa
 msgid "Export E-invoice"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_wt
-#: code:addons/l10n_it_fatturapa_out_wt/wizard/wizard_export_fatturapa.py:26
+#: code:addons/l10n_it_fatturapa_out_wt/wizard/wizard_export_fatturapa.py:51
 #, python-format
-msgid "Missing causale pagamento for withholding tax %s!"
+msgid "Missing payment reason for withholding tax %s!"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_wt
-#: code:addons/l10n_it_fatturapa_out_wt/wizard/wizard_export_fatturapa.py:48
+#: code:addons/l10n_it_fatturapa_out_wt/wizard/wizard_export_fatturapa.py:135
 #, python-format
-msgid "More than one Enasarco tax in invoice!"
+msgid "Payment term %s does not have a linked e-invoice payment method"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_wt
-#: code:addons/l10n_it_fatturapa_out_wt/wizard/wizard_export_fatturapa.py:23
+#: code:addons/l10n_it_fatturapa_out_wt/wizard/wizard_export_fatturapa.py:131
 #, python-format
-msgid "More than one withholding tax in invoice!"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out_wt
-#: field:withholding.tax,welfare_fund_type_id:0
-msgid "Welfare Fund Type"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out_wt
-#: model:ir.model,name:l10n_it_fatturapa_out_wt.model_withholding_tax
-msgid "Withholding Tax"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out_wt
-#: selection:withholding.tax,wt_types:0
-msgid "Withholding tax"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out_wt
-#: field:withholding.tax,wt_types:0
-msgid "Withholding tax type"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out_wt
-#: view:withholding.tax:l10n_it_fatturapa_out_wt.view_withholding_tax_form_inh
-msgid "{'invisible': [('wt_types', '!=', 'ritenuta')]}"
+msgid "Payment term %s does not have a linked e-invoice payment term"
 msgstr ""
 
