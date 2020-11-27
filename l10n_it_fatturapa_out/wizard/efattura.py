@@ -1,6 +1,5 @@
 # Copyright 2020 Giuseppe Borruso
 # Copyright 2020 Marco Colombo
-import re
 import os
 import base64
 from datetime import datetime
@@ -77,12 +76,12 @@ class efattura_out:
 
             quantity = line.quantity + 0
             # XXX arrotondamento?
-            res='{qta:.{precision}f}'.format(
+            res = '{qta:.{precision}f}'.format(
                 qta=quantity, precision=uom_precision),
             return res[0]
 
         def get_vat_number(vat):
-            #return vat[2:].replace(' ', '') if vat else ""
+            # return vat[2:].replace(' ', '') if vat else ""
             return vat[2:] if vat else ""
 
         def get_vat_country(vat):

@@ -617,7 +617,7 @@
                     <t t-call="l10n_it_fatturapa_out.account_invoice_it_rappresentante_fiscale" />
                     <t t-call="l10n_it_fatturapa_out.account_invoice_it_cessionario_committente" />
                     <t t-call="l10n_it_fatturapa_out.account_invoice_it_terzo_intermediario_soggetto_emittente" />
-                <SoggettoEmittente t-if="company_id.fatturapa_sender_partner"/>TZ</SoggettoEmittente>
+                <SoggettoEmittente t-if="company_id.fatturapa_sender_partner">TZ</SoggettoEmittente>
                     <!--                    <SoggettoEmittente t-if="False" t-esc="CC"/>-->
                 </FatturaElettronicaHeader>
                 <t t-foreach="invoices" t-as="record">
