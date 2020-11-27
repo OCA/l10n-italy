@@ -14,16 +14,16 @@ Italian Localization - Fattura elettronica - Emissione
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-italy/tree/8.0/l10n_it_fatturapa_out
+    :target: https://github.com/OCA/l10n-italy/tree/8.0-l10n_it_fatturapa-1.6/l10n_it_fatturapa_out
     :alt: OCA/l10n-italy
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-italy-8-0/l10n-italy-8-0-l10n_it_fatturapa_out
+    :target: https://translation.odoo-community.org/projects/l10n-italy-8-0-l10n_it_fatturapa-1-6/l10n-italy-8-0-l10n_it_fatturapa-1-6-l10n_it_fatturapa_out
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/122/8.0
+    :target: https://runbot.odoo-community.org/runbot/122/8.0-l10n_it_fatturapa-1.6
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 **Italiano**
 
@@ -70,6 +70,7 @@ Usage
  * Selezionare 1 o N fatture ed eseguire la procedura guidata "Esporta fattura elettronica"
  * Per le fatture estere, è possibile inviarle a soli fini fiscali inserendo il codice identificativo XXXXXXX (7 volte X) ed avendo cura di indicare il paese del partner.
    Le fatture vanno comunque spedite al cliente, ma si evita la predisposizione dell'esterometro.
+ * È possibile valorizzare l'elemento XML AltriDatiGestionali con valori aggiuntivi.
 
 **English**
 
@@ -77,6 +78,7 @@ Usage
  * Select 1 or N invoices and run 'Export Electronic Invoice' wizard
  * For foreign invoices, it is possible to send them only for tax purposes with code XXXXXXX (7 times X) and assuring to set the country of the partner.
    Invoices must be sent anyway to the customer, but in this way it is not needed to prepare esterometro.
+ * It is possible to fill XML element AltriDatiGestionali with datas.
 
 Bug Tracker
 ===========
@@ -84,7 +86,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_fatturapa_out%0Aversion:%208.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_fatturapa_out%0Aversion:%208.0-l10n_it_fatturapa-1.6%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -124,6 +126,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/8.0/l10n_it_fatturapa_out>`_ project on GitHub.
+This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/8.0-l10n_it_fatturapa-1.6/l10n_it_fatturapa_out>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
