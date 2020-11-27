@@ -55,6 +55,7 @@ msgid "Created on"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#: view:account.invoice:l10n_it_fatturapa_pec.view_account_invoice_fatturapa_out_pec_filter
 #: selection:account.invoice,fatturapa_state:0
 #: view:fatturapa.attachment.out:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
 #: selection:fatturapa.attachment.out,state:0
@@ -69,6 +70,11 @@ msgstr ""
 #. module: l10n_it_fatturapa_pec
 #: field:wizard.fatturapa.send.pec,display_name:0
 msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: view:account.invoice:l10n_it_fatturapa_pec.view_account_invoice_fatturapa_out_pec_filter
+msgid "E-Invoice"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
@@ -87,21 +93,6 @@ msgid "E-invoice State"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: view:account.invoice:l10n_it_fatturapa_pec.view_account_invoice_fatturapa_out_pec_filter
-msgid "Electronic Invoice Error"
-msgstr ""
-
-#. module: l10n_it_fatturapa_pec
-#: view:account.invoice:l10n_it_fatturapa_pec.view_account_invoice_fatturapa_out_pec_filter
-msgid "Electronic Invoice Ready to Send"
-msgstr ""
-
-#. module: l10n_it_fatturapa_pec
-#: view:account.invoice:l10n_it_fatturapa_pec.view_account_invoice_fatturapa_out_pec_filter
-msgid "Electronic Invoice State"
-msgstr ""
-
-#. module: l10n_it_fatturapa_pec
 #: model:ir.model,name:l10n_it_fatturapa_pec.model_mail_thread
 msgid "Email Thread"
 msgstr ""
@@ -109,6 +100,16 @@ msgstr ""
 #. module: l10n_it_fatturapa_pec
 #: selection:account.invoice,fatturapa_state:0
 msgid "Error"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: view:account.invoice:l10n_it_fatturapa_pec.view_account_invoice_fatturapa_out_pec_filter
+msgid "Failed"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: view:account.invoice:l10n_it_fatturapa_pec.view_account_invoice_fatturapa_out_pec_filter
+msgid "Fattura Elettronica State"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
@@ -121,6 +122,11 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:73
 #, python-format
 msgid "File content and file name are mandatory"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: view:account.invoice:l10n_it_fatturapa_pec.view_account_invoice_fatturapa_out_pec_filter
+msgid "Group By"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
@@ -144,7 +150,6 @@ msgid "Last PEC Error Message"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: view:fatturapa.attachment.out:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
 #: field:fatturapa.attachment.out,last_sdi_response:0
 msgid "Last Response from Exchange System"
 msgstr ""
@@ -204,6 +209,12 @@ msgid "Ready"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#: view:account.invoice:l10n_it_fatturapa_pec.view_account_invoice_fatturapa_out_pec_filter
+msgid "Ready for export"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: view:account.invoice:l10n_it_fatturapa_pec.view_account_invoice_fatturapa_out_pec_filter
 #: selection:account.invoice,fatturapa_state:0
 #: selection:fatturapa.attachment.out,state:0
 msgid "Ready to Send"
@@ -267,6 +278,7 @@ msgid "Sent by"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#: view:fatturapa.attachment.out:l10n_it_fatturapa_pec.view_fatturapa_out_attachment_search_state
 #: field:fatturapa.attachment.out,state:0
 msgid "State"
 msgstr ""
@@ -284,6 +296,11 @@ msgstr ""
 #. module: l10n_it_fatturapa_pec
 #: help:account.config.settings,e_invoice_user_id:0
 msgid "This user will be used at supplier e-bill creation. This setting is relevant in multi-company environments"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: view:account.invoice:l10n_it_fatturapa_pec.view_account_invoice_fatturapa_out_pec_filter
+msgid "Waiting Response"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
