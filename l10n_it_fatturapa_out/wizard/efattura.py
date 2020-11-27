@@ -86,10 +86,24 @@ class efattura_out:
             return vat[2:] if vat else ""
 
         def get_vat_country(vat):
-            return vat[:2].upper()
+            return vat[:2].upper() if vat else ""
 
-        def get_causale(causale):
-            return causale
+        def get_causale(invoice):
+            res = []
+            if invoice.comment:
+                # max length of Causale is 200
+                caus_list = invoice.comment.split('\n')
+                for causale in caus_list:
+                    if not causale:
+                        continue
+                    causale_list_200 = \
+                        [causale[i:i+200] for i in range(0, len(causale), 200)]
+                    for causale200 in causale_list_200:
+                        # Remove non latin chars, but go back to unicode string,
+                        # as expected by String200LatinType
+                        causale = encode_for_export(causale200, 200)
+                        res.append(causale)
+            return res
 
         def get_nome_attachment(doc_id):
             file_name, file_extension = os.path.splitext(doc_id.name)
