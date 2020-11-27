@@ -168,7 +168,8 @@
             <DatiTrasmissione>
                 <IdTrasmittente>
                     <IdPaese t-esc="get_vat_country(company_id.vat)" />
-                    <IdCodice t-esc="company_id.partner_id.fiscalcode" />
+                    <IdCodice t-if="company_id.partner_id.fiscalcode" t-esc="company_id.partner_id.fiscalcode" />
+                    <IdCodice t-if="not company_id.partner_id.fiscalcode" t-esc="get_vat_number(company_id.vat)" />
                 </IdTrasmittente>
                 <ProgressivoInvio t-esc="progressivo_invio" />
                 <FormatoTrasmissione t-esc="formato_trasmissione" />
