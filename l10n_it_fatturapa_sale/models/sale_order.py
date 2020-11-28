@@ -12,6 +12,7 @@ class SaleOrder (models.Model):
         inverse_name='sale_order_id',
         string='Related Documents',
         copy=False,
+        groups="account.group_account_user",
     )
 
     @api.multi
