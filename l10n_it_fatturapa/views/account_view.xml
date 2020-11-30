@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <menuitem name="Fattura Elettronica" id="menu_fattura_pa_receivables" parent="account.menu_finance_receivables"></menuitem>
-        <menuitem name="Fattura Elettronica" id="menu_fattura_pa_payables" parent="account.menu_finance_payables"></menuitem>
-
         <record id="view_invoice_line_form_fatturapa" model="ir.ui.view">
             <field name="name">account.invoice.line.fatturapa</field>
             <field name="model">account.invoice.line</field>
             <field name="inherit_id" ref="account.view_invoice_line_form"></field>
             <field name="arch" type="xml">
                 <field name="name" position="after">
-                    <separator string="Fattura Elettronica"></separator>
+                    <separator string="Electronic Invoice"></separator>
                     <div id="admin_ref">
                         <group>
                             <field name="admin_ref"/>

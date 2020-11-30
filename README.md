@@ -32,7 +32,7 @@ addon | version | summary
 [l10n_it_ateco](l10n_it_ateco/) | 8.0.1.0.1 | Ateco codes
 [l10n_it_base](l10n_it_base/) | 8.0.0.1.0 | Italian Localisation - Base
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 8.0.0.1.0 | Import base_location entries (provinces) from Geonames
-[l10n_it_causali_pagamento](l10n_it_causali_pagamento/) | 8.0.1.0.0 | Aggiunge la tabella delle causali di pagamento da usare ad esempio nelle ritenute d'acconto
+[l10n_it_causali_pagamento](l10n_it_causali_pagamento/) | 8.0.1.1.0 | Aggiunge la tabella delle causali di pagamento da usare ad esempio nelle ritenute d'acconto
 [l10n_it_central_journal](l10n_it_central_journal/) | 8.0.2.0.1 | Italian Localization - Account central journal
 [l10n_it_codici_carica](l10n_it_codici_carica/) | 8.0.1.0.0 | Aggiunge la tabella dei codici carica da usare nei dichiarativi fiscali italiani
 [l10n_it_corrispettivi](l10n_it_corrispettivi/) | 8.0.1.0.1 | Italian Localization - Corrispettivi
@@ -41,7 +41,7 @@ addon | version | summary
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 8.0.1.0.0 | Esigibilità IVA
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.2.3.1 | Electronic invoices
 [l10n_it_fatturapa_export_zip](l10n_it_fatturapa_export_zip/) | 8.0.1.0.0 | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche
-[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 8.0.1.3.0 | Electronic invoices reception
+[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 8.0.1.5.0 | Electronic invoices reception
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.3.4.0 | Electronic invoices emission
 [l10n_it_fatturapa_out_ddt](l10n_it_fatturapa_out_ddt/) | 8.0.1.0.1 | Modulo ponte tra emissione fatture elettroniche e DDT
 [l10n_it_fatturapa_out_sale](l10n_it_fatturapa_out_sale/) | 8.0.1.0.0 | Modulo ponte tra emissione fatture elettroniche e dati ordine di vendita

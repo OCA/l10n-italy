@@ -14,21 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_esigibilita_iva
-#: selection:account.tax,payability:0
-msgid "Deferred payability"
-msgstr ""
-
-#. module: l10n_it_esigibilita_iva
-#: selection:account.tax,payability:0
-msgid "Immediate payability"
-msgstr ""
-
-#. module: l10n_it_esigibilita_iva
-#: selection:account.tax,payability:0
-msgid "Split payment"
-msgstr ""
-
-#. module: l10n_it_esigibilita_iva
 #: model:ir.model,name:l10n_it_esigibilita_iva.model_account_tax
 msgid "Tax"
 msgstr ""
@@ -36,5 +21,20 @@ msgstr ""
 #. module: l10n_it_esigibilita_iva
 #: field:account.tax,payability:0
 msgid "VAT payability"
+msgstr ""
+
+#. module: l10n_it_esigibilita_iva
+#: selection:account.tax,payability:0
+msgid "VAT payable immediately"
+msgstr ""
+
+#. module: l10n_it_esigibilita_iva
+#: selection:account.tax,payability:0
+msgid "split payments"
+msgstr ""
+
+#. module: l10n_it_esigibilita_iva
+#: selection:account.tax,payability:0
+msgid "unrealized VAT"
 msgstr ""
 

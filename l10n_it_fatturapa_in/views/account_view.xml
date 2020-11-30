@@ -6,54 +6,86 @@
             <field name="name">fatturapa.attachment.in.form</field>
             <field name="model">fatturapa.attachment.in</field>
             <field name="arch" type="xml">
-                <form string="Import Fattura Elettronica" duplicate="false">
-                    <div>
-                        <group>
+                <form string="Import e-bill" duplicate="false">
+                    <header>
+                        <button name="action_show_preview"
+                                type="object"
+                                string="Show preview"
+                                attrs="{'invisible':[('datas_fname', '=', False)]}" />
+                        <button name="%(action_wizard_import_fatturapa)d"
+                                type="action"
+                                string="Import Invoice"
+                                class="oe_highlight"
+                                attrs="{'invisible':[('registered', '=', True)]}" />
+                        <button name="%(action_wizard_link_supplier_invoice)d"
+                                type="action"
+                                string="Link to invoice"
+                                attrs="{'invisible':[('registered', '=', True)]}" />
+                        <button name="action_show_invoices" type="object"
+                                string="Show Invoices"
+                                attrs="{'invisible':[('registered', '=', False)]}" />
+                        <button name="action_reload_data_from_e_invoice"
+                                type="object"
+                                string="Reload data from e-invoice"
+                                attrs="{'invisible':[('datas_fname', '=', False)]}"/>
+                    </header>
+                    <sheet>
+                        <div class="alert alert-info" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('e_invoice_validation_error','=',False)]}">
+                             <bold><field name="e_invoice_validation_message" nolabel="1"/></bold>
+                        </div>
+                        <field name="e_invoice_validation_error" invisible="1"/>
+                        <div>
                             <group>
-                                <field filename="datas_fname" name="datas"></field>
-                                <field name="datas_fname" invisible="1"></field>
-                                <field name="name"></field>
-                            </group>
-                            <group>
-                                <field name="xml_supplier_id"/>
-                                <field name="invoices_number"/>
-                                <field name="registered"/>
-                                <field name="invoices_total"/>
-                            </group>
-                        </group>
-                        <field name="ftpa_preview_link" widget="url" text="Show preview" class="btn btn-default"/>
-                        <notebook>
-                            <page string="Invoices">
-                                <field name="in_invoice_ids"
-                                       context="{'form_view_ref': 'account.invoice_supplier_form'}">
-                                    <tree>
-                                        <field name="partner_id"/>
-                                        <field name="date_invoice"/>
-                                        <field name="reference"/>
-                                        <field name="origin"/>
-                                        <field name="amount_total"/>
-                                        <field name="state"/>
-                                        <button name="remove_attachment_link" type="object" string="Remove" icon="fa-times"/>
-                                    </tree>
-                                </field>
-                                <group groups="base.group_no_one" string="History">
-                                    <label for="create_uid" string="Creation"></label>
-                                    <div name="creation_div">
-                                        <field class="oe_inline" name="create_uid" readonly="1"></field>
-                                        on
-                                        <field class="oe_inline" name="create_date" readonly="1"></field>
-                                    </div>
+                                <group>
+                                    <field filename="datas_fname" name="datas"></field>
+                                    <field name="datas_fname" invisible="1"></field>
+                                    <field name="name"></field>
                                 </group>
-                            </page>
-                        </notebook>
-                    </div>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids" widget="mail_followers"></field>
-                        <field name="message_ids" widget="mail_thread"></field>
-                    </div>
+                                <group>
+                                    <field name="xml_supplier_id"/>
+                                    <field name="invoices_number"/>
+                                    <field name="registered"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="invoices_total"
+                                           widget="monetary"
+                                           options="{'currency_field': 'currency_id'}"/>
+                                </group>
+                            </group>
+                            <!--<field name="ftpa_preview_link" widget="url" text="Show preview" class="btn btn-default"/>-->
+                            <notebook>
+                            <page string="Bills">
+                                    <field name="in_invoice_ids"
+                                           context="{'form_view_ref': 'account.invoice_supplier_form'}">
+                                        <tree>
+                                            <field name="partner_id"/>
+                                            <field name="date_invoice"/>
+                                            <field name="reference"/>
+                                            <field name="origin"/>
+                                            <field name="amount_total"/>
+                                            <field name="state"/>
+                                            <button name="remove_attachment_link" type="object" string="Remove" icon="gtk-cancel"/>
+                                        </tree>
+                                    </field>
+                                    <group groups="base.group_no_one" string="History">
+                                        <label for="create_uid" string="Creation"></label>
+                                        <div name="creation_div">
+                                            <field class="oe_inline" name="create_uid" readonly="1"></field>
+                                            on
+                                            <field class="oe_inline" name="create_date" readonly="1"></field>
+                                        </div>
+                                    </group>
+                                </page>
+                            </notebook>
+                        </div>
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids" widget="mail_followers"></field>
+                            <field name="message_ids" widget="mail_thread"></field>
+                        </div>
+                    </sheet>
                 </form>
             </field>
         </record>
+
         <record id="view_fatturapa_in_attachment_tree" model="ir.ui.view">
             <field name="name">fatturapa.attachment.in.tree</field>
             <field name="model">fatturapa.attachment.in</field>
@@ -76,19 +108,29 @@
                     <field name="name"/>
                     <field name="xml_supplier_id"/>
                     <filter name="to_register" string="To Register" domain="[('registered','=',False)]"/>
+                    <filter name="registered" string="Registered" domain="[('registered','=',True)]"/>
+
+                    <group expand="0" string="Group By" name="group_by">
+                        <filter name="group_by_xml_supplier_id" string="Supplier" domain="[]" context="{'group_by': 'xml_supplier_id'}"/>
+                    </group>
                 </search>
             </field>
         </record>
+
         <record id="action_fattura_pa_in" model="ir.actions.act_window">
-            <field name="name">Incoming Fattura Elettronica files</field>
+        <field name="name">Supplier e-Invoices</field>
             <field name="res_model">fatturapa.attachment.in</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="context">{'search_default_to_register': True}</field>
             <field name="view_id" ref="view_fatturapa_in_attachment_tree"></field>
         </record>
-        <menuitem action="action_fattura_pa_in" id="menu_fattura_pa_in_tree"
-                  parent="l10n_it_fatturapa.menu_fattura_pa_payables"></menuitem>
+
+        <menuitem id="menu_fattura_pa_in_tree"
+                  parent="account.menu_finance_payables"
+                  action="action_fattura_pa_in"
+                  sequence="0" />
+
         <!-- Extend purchase invoice line -->
         <record id="view_invoice_line_form_fatturapa_in" model="ir.ui.view">
             <field name="name">account.invoice.line.fatturapa.in</field>
@@ -100,12 +142,22 @@
                 </field>
             </field>
         </record>
+
         <!-- Extend purchase invoice  -->
         <record id="view_invoice_form_fatturapa_in" model="ir.ui.view">
             <field name="name">account.invoice.fatturapa_in</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_form"></field>
             <field name="arch" type="xml">
+                <xpath expr="//form/sheet/div[@class='oe_title']" position="before">
+                    <div class="alert alert-info"
+                         role="alert"
+                         style="margin-bottom:20px;"
+                         attrs="{'invisible': [('e_invoice_validation_error','=',False)]}">
+                         <bold><field name="e_invoice_validation_message" nolabel="1"/></bold>
+                    </div>
+                    <field name="e_invoice_validation_error" invisible="1"/>
+                </xpath>
                 <field name="partner_id" position="after">
                     <field name="electronic_invoice_subjected" invisible="1"/>
                     <field name="tax_representative_id" readonly="1" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}"></field>
@@ -118,18 +170,31 @@
                 <field name="price_unit" position="before">
                     <field name="fatturapa_attachment_in_id" invisible="1"/>
                 </field>
+                <field name="amount_tax" position="after">
+                    <field name="efatt_rounding" widget="monetary" attrs="{'invisible': [('efatt_rounding', '=', 0)]}"/>
+                </field>
                 <xpath expr="//form/sheet/notebook/page[@string='Invoice']/field[@name='invoice_line']/tree/field[@name='quantity']"
                        position="before">
                     <field name="admin_ref"/>
                 </xpath>
                 <xpath expr="//notebook" position="inside">
-                    <page string="E-invoice Inconsistencies" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}">
+                    <page string="E-bill Inconsistencies" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}">
+                        <group>
+                            <field name="e_invoice_force_validation" attrs="{'invisible': [('e_invoice_validation_error','=',False)]}"/>
+                        </group>
                         <field name="inconsistencies" nolabel="1" colspan="4" readonly="1"></field>
                     </page>
-                    <page string="E-invoice details" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}">
-                        <group string="Dettaglio Linee">
+                    <page string="E-bill Details" attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}">
+                        <group>
+                            <group string="Amount Summary">
+                                <field name="e_invoice_amount_untaxed"/>
+                                <field name="e_invoice_amount_tax"/>
+                                <field name="e_invoice_amount_total"/>
+                            </group>
+                        </group>
+                        <group string="Lines Detail">
                             <field name="e_invoice_line_ids" nolabel="1">
-                                <tree string="Dettaglio Linee">
+                            <tree string="Lines Detail">
                                     <field name="line_number"></field>
                                     <field name="name"></field>
                                     <field name="qty"></field>
@@ -138,7 +203,7 @@
                                     <field name="tax_amount"></field>
                                     <field name="total_price"></field>
                                 </tree>
-                                <form string="Dettaglio Linea">
+                            <form string="Line Detail">
                                     <group>
                                         <group>
                                             <field name="line_number"></field>
@@ -157,13 +222,13 @@
                                             <field name="tax_kind"></field>
                                             <field name="admin_ref"></field>
                                         </group>
-                                        <separator string="Codice Articoli"/>
+                                    <separator string="Articles Code"/>
                                         <field name="cod_article_ids" nolabel="1" colspan="4">
                                         </field>
-                                        <separator string="Sconto Maggiorazione"/>
+                                    <separator string="Discount Supplement"/>
                                         <field name="discount_rise_price_ids" nolabel="1" colspan="4">
                                         </field>
-                                        <separator string="Altri Dati Gestionali"/>
+                                    <separator string="Other Administrative Data"/>
                                         <field name="other_data_ids" nolabel="1" colspan="4">
                                         </field>
                                     </group>
@@ -251,6 +316,14 @@
                                 </tree>
                             </field>
                         </group>
+                        <group string="Withholding">
+                            <field name="ftpa_withholding_ids" nolabel="1" readonly="1">
+                                <tree editable="bottom" string="Withholding Details">
+                                    <field name="name"/>
+                                    <field name="amount"/>
+                                </tree>
+                            </field>
+                        </group>
                         <group string="Payments">
                             <field name="fatturapa_payments" nolabel="1" readonly="1">
                                 <tree string="Payments">
@@ -268,7 +341,7 @@
                                 </form>
                             </field>
                         </group>
-                        <group string="SAL data">
+                        <group string="Progress data">
                             <field name="activity_progress_ids" nolabel="1" readonly="1" colspan="2">
                                 <tree>
                                     <field name="fatturapa_activity_progress"></field>
@@ -276,7 +349,7 @@
                             </field>
                         </group>
                         <group>
-                            <group string="Stabile Organizzazione">
+                        <group string="Stable Organization">
                                 <field name="efatt_stabile_organizzazione_indirizzo"/>
                                 <field name="efatt_stabile_organizzazione_civico"/>
                                 <field name="efatt_stabile_organizzazione_cap"/>
@@ -286,8 +359,8 @@
                             </group>
                         </group>
                         <group>
-                            <group string="Dati generali">
-                                <field name="efatt_rounding"/>
+                        <group string="General Data">
+                            <field name="efatt_rounding" widget="monetary"/>
                                 <field name="art73"/>
                             </group>
                         </group>

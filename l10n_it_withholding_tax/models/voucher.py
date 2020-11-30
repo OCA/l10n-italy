@@ -130,6 +130,7 @@ class AccountVoucher(orm.Model):
         the invoice
         """
         move_line_obj = self.pool['account.move.line']
+        account_move_obj = self.pool['account.move']  # Apulia
         voucher_line_obj = self.pool['account.voucher.line']
         payment_term_obj = self.pool['account.payment.term']
         reconcile_obj = self.pool['account.move.reconcile']
@@ -163,6 +164,7 @@ class AccountVoucher(orm.Model):
         for rec in rec_list_ids:
             line_move_to_pay = move_line_obj.browse(cr, uid, rec[1])
             line_payment = move_line_obj.browse(cr, uid, rec[0])
+            # verifica che la registrazione non sia validata e la riporta in bozza
             # Remove reconciliation to change amounts
             lines_to_rereconcile = _unreconcile_move_line(line_move_to_pay)
             for r_line_id in lines_to_rereconcile:
@@ -232,7 +234,15 @@ class AccountVoucher(orm.Model):
                         'credit': line_payment.credit + debit,
                         'debit': line_payment.debit + credit
                     }
+                    # la registrazione è già validata la riporta in bozza
+                    cc_move = line_payment.move_id
+                    if cc_move.state == 'posted':
+                        account_move_obj.button_cancel(
+                            cr, uid, [cc_move.id], context)
                     move_line_obj.write(cr, uid, [line_payment.id], val)
+                    # una volta corretta la riga rivalida la registrazione
+                    if cc_move.journal_id.entry_posted:
+                        account_move_obj.post(cr, uid, [cc_move.id], context={})
 
         # Merge with existing lines to reconcile
         if rec_list_new_moves:
@@ -433,30 +443,38 @@ class AccountVoucherLine(orm.Model):
             domain = [('move_id', '=', voucher_line.move_line_id.move_id.id)]
             inv_ids = invoice_obj.search(cr, uid, domain)
             for inv in invoice_obj.browse(cr, uid, inv_ids):
-                if len(inv.withholding_tax_line):
-                    rate_num = len(inv.withholding_tax_line)
-                    # Rates
-                    wt_amount_rate = round(
-                        voucher_line.amount_withholding_tax / rate_num,
-                        dp_obj.precision_get(cr, uid, 'Account'))
-                    wt_residual = voucher_line.amount_withholding_tax
-                    # Re-read move lines to assign the amounts of wt
-                    i = 0
-                    for wt_invoice_line in inv.withholding_tax_line:
-                        i += 1
-                        if i == rate_num:
-                            wt_amount = wt_residual
-                        else:
-                            wt_amount = wt_amount_rate
-                        wt_residual -= wt_amount
+                for wt_tax in inv.withholding_tax_line:
+                    if len(wt_tax.filtered(lambda x: x == wt_tax)):
+                        rate_num = len(wt_tax.filtered(lambda x: x == wt_tax))
+                        # Rates
+                        wt_amount_rate = round(
+                            voucher_line.amount_withholding_tax / rate_num * (
+                                wt_tax.tax / sum(
+                                    x.tax for x in inv.withholding_tax_line)
+                                ),
+                            dp_obj.precision_get(cr, uid, 'Account'))
+                        wt_residual = voucher_line.amount_withholding_tax * (
+                            wt_tax.tax / sum(
+                                x.tax for x in inv.withholding_tax_line)
+                            )
+                        # Re-read move lines to assign the amounts of wt
+                        i = 0
+                        for wt_invoice_line in inv.withholding_tax_line.\
+                                filtered(lambda x: x == wt_tax):
+                            i += 1
+                            if i == rate_num:
+                                wt_amount = wt_residual
+                            else:
+                                wt_amount = wt_amount_rate
+                            wt_residual -= wt_amount
 
-                        val = {
-                            'voucher_line_id': voucher_line_id,
-                            'withholding_tax_id':
-                                wt_invoice_line.withholding_tax_id.id,
-                            'amount': wt_amount
-                        }
-                        wt_voucher_line_obj.create(cr, uid, val)
+                            val = {
+                                'voucher_line_id': voucher_line_id,
+                                'withholding_tax_id':
+                                    wt_invoice_line.withholding_tax_id.id,
+                                'amount': wt_amount
+                            }
+                            wt_voucher_line_obj.create(cr, uid, val)
 
         return res
 
@@ -542,7 +560,6 @@ class WithholdingTaxVoucherLine(orm.Model):
             wt_move_vals.update({'amount': wt_v_line.amount})
             wt_move_obj.write(cr, uid, [wt_move_id], wt_move_vals)
             # wt_move.write(wt_move_vals)
-
         return True
 
     def create(self, cr, uid, vals, *args, **kwargs):

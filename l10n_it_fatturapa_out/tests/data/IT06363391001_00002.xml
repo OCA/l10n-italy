@@ -41,11 +41,11 @@
             <DatiAnagrafici>
                 <IdFiscaleIVA>
                     <IdPaese>IT</IdPaese>
-                    <IdCodice>00146089990</IdCodice>
+                    <IdCodice>06363391001</IdCodice>
                 </IdFiscaleIVA>
-                <CodiceFiscale>00146089990</CodiceFiscale>
+                <CodiceFiscale>06363391001</CodiceFiscale>
                 <Anagrafica>
-                    <Denominazione>Pubblica Amministrazione</Denominazione>
+                    <Denominazione>Public Administration</Denominazione>
                 </Anagrafica>
             </DatiAnagrafici>
             <Sede>

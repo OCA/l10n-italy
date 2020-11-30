@@ -42,11 +42,11 @@
             <DatiAnagrafici>
                 <IdFiscaleIVA>
                     <IdPaese>IT</IdPaese>
-                    <IdCodice>00146089990</IdCodice>
+                    <IdCodice>06363391001</IdCodice>
                 </IdFiscaleIVA>
-                <CodiceFiscale>00146089990</CodiceFiscale>
+                <CodiceFiscale>06363391001</CodiceFiscale>
                 <Anagrafica>
-                    <Denominazione>Pubblica Amministrazione</Denominazione>
+                    <Denominazione>Public Administration</Denominazione>
                 </Anagrafica>
             </DatiAnagrafici>
             <Sede>
@@ -74,6 +74,7 @@
                 <NumeroLinea>1</NumeroLinea>
                 <Descrizione>Mouse Optical</Descrizione>
                 <Quantita>1.000</Quantita>
+                <UnitaMisura>Unit(s)</UnitaMisura>
                 <PrezzoUnitario>10.00000</PrezzoUnitario>
                 <ScontoMaggiorazione>
                     <Tipo>SC</Tipo>
@@ -96,5 +97,13 @@
                 <Imposta>0.28</Imposta>
             </DatiRiepilogo>
         </DatiBeniServizi>
+        <DatiPagamento>
+            <CondizioniPagamento>TP02</CondizioniPagamento>
+            <DettaglioPagamento>
+                <ModalitaPagamento>MP05</ModalitaPagamento>
+                <DataScadenzaPagamento>2016-02-29</DataScadenzaPagamento>
+                <ImportoPagamento>1.53</ImportoPagamento>
+            </DettaglioPagamento>
+        </DatiPagamento>
     </FatturaElettronicaBody>
 </ns1:FatturaElettronica>

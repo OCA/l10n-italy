@@ -5,7 +5,7 @@
     "name": "Italian Localization - Fattura elettronica - Integrazione SO",
     "summary": "Modulo ponte tra emissione fatture elettroniche e dati "
                "ordine di vendita",
-    "version": "8.0.1.0.0",
+    "version": "8.0.2.0.0",
     "development_status": "Beta",
     "category": "Hidden",
     "website": "https://github.com/OCA/l10n-italy",

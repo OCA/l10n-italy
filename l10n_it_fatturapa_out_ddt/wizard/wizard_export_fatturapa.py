@@ -3,7 +3,8 @@
 
 from openerp import models, fields, api, _
 from openerp.exceptions import Warning as UserError
-from openerp.addons.l10n_it_fatturapa.bindings.fatturapa_v_1_2 import (
+from openerp.tools.float_utils import float_round
+from openerp.addons.l10n_it_fatturapa.bindings.fatturapa import (
     DatiDDTType,
     DatiTrasportoType,
     DatiAnagraficiVettoreType,
@@ -27,14 +28,14 @@ class WizardExportFatturapa(models.TransientModel):
         return res
 
     include_ddt_data = fields.Selection([
-        ('dati_ddt', 'Include DDT Data'),
+        ('dati_ddt', 'Include TD Data'),
         ('dati_trasporto', 'Include transport data'),
         ],
-        string="DDT Data",
-        help="Include DDT data: The field must be entered when a transport "
+        string="TD Data",
+        help="Include TD data: The field must be entered when a transport "
              "document associated with a deferred invoice is present\n"
              "Include transport data: The field must be entered when a "
-             "shipping invoice to be filled with transport data is present"
+             "accompanying invoice to be filled with transport data is present"
     )
 
     def setDatiDDT(self, invoice, body):
@@ -73,8 +74,8 @@ class WizardExportFatturapa(models.TransientModel):
                 CausaleTrasporto=invoice.transportation_reason_id.name or None,
                 NumeroColli=invoice.parcels or None,
                 Descrizione=invoice.goods_description_id.name or None,
-                PesoLordo='%.2f' % invoice.gross_weight,
-                PesoNetto='%.2f' % invoice.net_weight,
+                PesoLordo='%.2f' % float_round(invoice.gross_weight, 2),
+                PesoNetto='%.2f' % float_round(invoice.net_weight, 2),
                 TipoResa=None  # invoice.incoterms_id.code or None
             )
             if invoice.carrier_id:

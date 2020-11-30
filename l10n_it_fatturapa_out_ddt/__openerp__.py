@@ -5,9 +5,9 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Italian Localization - Fattura elettronica - Integrazione DDT',
+    'name': 'ITA - Fattura elettronica - Integrazione DDT',
     "summary": "Modulo ponte tra emissione fatture elettroniche e DDT",
-    "version": "8.0.1.0.1",
+    "version": "8.0.2.0.0",
     "development_status": "Beta",
     "category": "Hidden",
     'website': 'https://github.com/OCA/l10n-italy/tree/10.0/'
