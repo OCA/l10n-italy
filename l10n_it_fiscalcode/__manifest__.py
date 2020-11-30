@@ -6,7 +6,7 @@
 
 {
     "name": "ITA - Codice fiscale",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "development_status": "Production/Stable",
     "category": "Localization/Italy",
     "author": "Link IT s.r.l., "
