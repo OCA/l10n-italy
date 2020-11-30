@@ -44,7 +44,7 @@ msgid "CAUS."
 msgstr "RAZLOG"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/vat_registry.py:185
+#: code:addons/l10n_it_vat_registries/vat_registry.py:184
 #, python-format
 msgid "Can't compute base amount for tax %s"
 msgstr "Za davek %s ne morem izračunati osnove"
@@ -194,7 +194,7 @@ msgid "Message"
 msgstr "Sporočilo"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/vat_registry.py:95
+#: code:addons/l10n_it_vat_registries/vat_registry.py:94
 #, python-format
 msgid "Move %s contains different invoices"
 msgstr "Premik %s vsebuje različne račune"

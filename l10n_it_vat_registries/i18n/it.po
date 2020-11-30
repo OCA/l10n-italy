@@ -49,7 +49,7 @@ msgid "CAUS."
 msgstr ""
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/vat_registry.py:185
+#: code:addons/l10n_it_vat_registries/vat_registry.py:184
 #, python-format
 msgid "Can't compute base amount for tax %s"
 msgstr "Non è possibile calcolare l'importo base per l'imposta %s"
@@ -199,7 +199,7 @@ msgid "Message"
 msgstr "Messaggio"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/vat_registry.py:95
+#: code:addons/l10n_it_vat_registries/vat_registry.py:94
 #, python-format
 msgid "Move %s contains different invoices"
 msgstr "Il movimento %s contiene diverse fatture"
