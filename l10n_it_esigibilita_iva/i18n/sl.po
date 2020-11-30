@@ -20,21 +20,6 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #. module: l10n_it_esigibilita_iva
-#: selection:account.tax,payability:0
-msgid "Deferred payability"
-msgstr "Odloženo plačilo"
-
-#. module: l10n_it_esigibilita_iva
-#: selection:account.tax,payability:0
-msgid "Immediate payability"
-msgstr "Takojšnje plačilo"
-
-#. module: l10n_it_esigibilita_iva
-#: selection:account.tax,payability:0
-msgid "Split payment"
-msgstr "Razdelitev plačila"
-
-#. module: l10n_it_esigibilita_iva
 #: model:ir.model,name:l10n_it_esigibilita_iva.model_account_tax
 msgid "Tax"
 msgstr "Davek"
@@ -43,3 +28,27 @@ msgstr "Davek"
 #: field:account.tax,payability:0
 msgid "VAT payability"
 msgstr "Plačljivost DDV"
+
+#. module: l10n_it_esigibilita_iva
+#: selection:account.tax,payability:0
+msgid "VAT payable immediately"
+msgstr ""
+
+#. module: l10n_it_esigibilita_iva
+#: selection:account.tax,payability:0
+msgid "split payments"
+msgstr ""
+
+#. module: l10n_it_esigibilita_iva
+#: selection:account.tax,payability:0
+msgid "unrealized VAT"
+msgstr ""
+
+#~ msgid "Deferred payability"
+#~ msgstr "Odloženo plačilo"
+
+#~ msgid "Immediate payability"
+#~ msgstr "Takojšnje plačilo"
+
+#~ msgid "Split payment"
+#~ msgstr "Razdelitev plačila"
