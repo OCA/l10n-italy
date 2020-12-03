@@ -12,12 +12,14 @@ odoo.define("fiscal_epos_print.pos_order_mgmt", function (require) {
         _prepare_order_from_order_data: function (order_data, action) {
             var order = this._super(order_data, action);
             if (action === 'print') {
+                order.lottery_code = order_data.lottery_code;
                 order.refund_report = order_data.refund_report;
                 order.refund_date = order_data.refund_date;
                 order.refund_doc_num = order_data.refund_doc_num;
                 order.refund_cash_fiscal_serial = order_data.refund_cash_fiscal_serial;
             }
             else if (action === 'return') {
+                order.lottery_code = order_data.lottery_code;
                 order.refund_report = order_data.fiscal_z_rep_number;
                 order.refund_date = order_data.fiscal_receipt_date;
                 order.refund_doc_num = order_data.fiscal_receipt_number;
