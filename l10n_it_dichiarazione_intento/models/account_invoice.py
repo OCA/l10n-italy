@@ -96,18 +96,19 @@ class AccountInvoice(models.Model):
                 raise UserError(_(
                     'Available plafond insufficent.\n'
                     'Excess value: %s') % (abs(dichiarazioni_residual)))
-            # Check se con nota credito ho superato il plafond
-            for dich in dichiarazioni_amounts:
-                dichiarazione = dichiarazione_model.browse(dich)
-                # dichiarazioni_amounts contains residual, so, if > limit_amount,
-                # used_amount went < 0
-                if dichiarazioni_amounts[dich] > dichiarazione.limit_amount:
-                    raise UserError(_(
-                        'Available plafond insufficent.\n'
-                        'Excess value: %s') % (
-                            abs(dichiarazioni_amounts[dich] -
-                                dichiarazione.limit_amount)
-                    ))
+            if invoice.type == 'in_refund':
+                # Check se con nota credito ho superato il plafond
+                for dich in dichiarazioni_amounts:
+                    dichiarazione = dichiarazione_model.browse(dich)
+                    # dichiarazioni_amounts contains residual, so, if > limit_amount,
+                    # used_amount went < 0
+                    if dichiarazioni_amounts[dich] > dichiarazione.limit_amount:
+                        raise UserError(_(
+                            'Available plafond insufficent.\n'
+                            'Excess value: %s') % (
+                                abs(dichiarazioni_amounts[dich] -
+                                    dichiarazione.limit_amount)
+                        ))
         # ----- Assign account move lines to dichiarazione for invoices
         for invoice in self:
             if invoice.dichiarazione_intento_ids:
