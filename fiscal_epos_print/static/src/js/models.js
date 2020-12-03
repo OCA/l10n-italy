@@ -14,6 +14,7 @@ odoo.define('fiscal_epos_print.models', function (require) {
     models.Order = models.Order.extend({
         initialize: function(attributes, options){
             OrderSuper.prototype.initialize.call(this, attributes, options);
+            this.lottery_code = null;
             this.refund_report = null;
             this.refund_date = null;
             this.refund_doc_num = null;
@@ -47,6 +48,7 @@ odoo.define('fiscal_epos_print.models', function (require) {
 
         init_from_JSON: function (json) {
             OrderSuper.prototype.init_from_JSON.apply(this, arguments);
+            this.lottery_code = json.lottery_code;
             this.refund_report = json.refund_report;
             this.refund_date = json.refund_date;
             this.refund_doc_num = json.refund_doc_num;
@@ -62,6 +64,7 @@ odoo.define('fiscal_epos_print.models', function (require) {
 
         export_as_JSON: function() {
             var result = OrderSuper.prototype.export_as_JSON.call(this);
+            result.lottery_code = this.lottery_code;
             result.refund_report = this.refund_report;
             result.refund_date = this.refund_date;
             result.refund_doc_num = this.refund_doc_num;
@@ -78,6 +81,7 @@ odoo.define('fiscal_epos_print.models', function (require) {
         export_for_printing: function(){
             var receipt = OrderSuper.prototype.export_for_printing.call(this);
 
+            receipt.lottery_code = this.lottery_code;
             receipt.refund_date = this.refund_date;
             receipt.refund_report = this.refund_report;
             receipt.refund_doc_num = this.refund_doc_num;

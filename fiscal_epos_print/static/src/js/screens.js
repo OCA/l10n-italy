@@ -190,8 +190,50 @@ odoo.define("fiscal_epos_print.screens", function (require) {
         'widget': set_refund_info_button,
     });
 
+    // TODO Evaluate how to set lottery code without popup, automatically on barcode scanned
+    var set_lottery_code_button = screens.ActionButtonWidget.extend({
+        template: 'SetLotteryCodeButton',
+        init: function(parent, options) {
+            this._super(parent, options);
+            var self = this;
+            this.pos.bind('change:selectedOrder',function(){
+                self.renderElement();
+            },this);
+        },
+        renderElement: function() {
+            this._super();
+            var color = this.lottery_get_button_color();
+            this.$el.css('background', color);
+        },
+        button_click: function () {
+            var self = this;
+            var current_order = self.pos.get_order();
+            self.gui.show_popup('lotterycode', {
+                title: _t('Lottery Code'),
+                lottery_code: current_order.lottery_code,
+                update_lottery_info_button: function(){
+                    self.renderElement();
+                },
+            });
+        },
+        lottery_get_button_color: function() {
+            var order = this.pos.get_order();
+            var color = '#e2e2e2';
+            if(order.lottery_code != null) {
+                color = 'lightgreen';
+            }
+            return color;
+        },
+    });
+
+    screens.define_action_button({
+        'name': 'set_lottery_code',
+        'widget': set_lottery_code_button,
+    });
+
     return {
-        RefundInfoButtonActionWidget: set_refund_info_button
+        RefundInfoButtonActionWidget: set_refund_info_button,
+        LotteryCodeButtonActionWidget: set_lottery_code_button
     };
 
 });
