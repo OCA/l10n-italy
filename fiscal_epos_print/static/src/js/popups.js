@@ -66,6 +66,44 @@ odoo.define("fiscal_epos_print.popups", function (require) {
         },
     });
 
+    var LotteryCodePopupWidget = popups.extend({
+        template: 'LotteryCodePopupWidget',
+        init: function(parent) {
+            this.lottery_code = null;
+            return this._super(parent);
+        },
+        show: function(options){
+            options = options || {};
+            this._super(options);
+            this.update_lottery_info_button = options.update_lottery_info_button;
+            this.renderElement();
+            this.$('lottery_code').focus();
+        },
+        // TODO automatically close popup on barcode scanned
+        click_confirm: function(){
+            var self = this;
+            function allValid() {
+                return self.$('input').toArray().every(function(element) {
+                    return element.value && element.value != ''
+                })
+            }
+
+            if (allValid()) {
+                this.$('#lottery-error-message-dialog').hide()
+
+                var order = this.pos.get_order();
+                order.lottery_code = this.$('#lottery_code').val();
+                this.gui.close_popup();
+                if (this.update_lottery_info_button && this.update_lottery_info_button instanceof Function) {
+                    this.update_lottery_info_button();
+                }
+            } else {
+                this.$('#lottery-error-message-dialog').show()
+            }
+        },
+    });
+
     gui.define_popup({name:'refundinfo', widget: RefundInfoPopupWidget});
+    gui.define_popup({name:'lotterycode', widget: LotteryCodePopupWidget});
 
 });
