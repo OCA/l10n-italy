@@ -5,12 +5,18 @@ from odoo import api, fields, models, _
 import odoo.addons.decimal_precision as dp
 from odoo.exceptions import ValidationError
 
+from .intrastat_statement import format_9, format_x
+
 
 class IntrastatStatementSaleSection(models.AbstractModel):
     _inherit = 'account.intrastat.statement.section'
     _name = 'account.intrastat.statement.sale.section'
     _description = "Fields and methods " \
                    "common to all Intrastat sale sections"
+
+    @api.model
+    def get_section_type(self):
+        return 'sale'
 
 
 class IntrastatStatementSaleSection1(models.Model):
@@ -48,6 +54,10 @@ class IntrastatStatementSaleSection1(models.Model):
     province_origin_id = fields.Many2one(
         comodel_name='res.country.state',
         string="Origin Province")
+
+    @api.model
+    def get_section_number(self):
+        return 1
 
     @api.multi
     def apply_partner_data(self, partner_data):
@@ -109,36 +119,37 @@ class IntrastatStatementSaleSection1(models.Model):
     @api.model
     def _prepare_export_line(self):
         self.ensure_one()
-        self._export_line_checks(_("Sales"), 1)
+        self._export_line_checks(_("Sales"), self.get_section_number())
 
         rcd = ''
         # Codice dello Stato membro dell’acquirente
         country_id = self.country_partner_id or self.partner_id.country_id
-        rcd += '{:2s}'.format(country_id.code or '')
+        rcd += format_x(country_id.code, 2)
         #  Codice IVA dell’acquirente
-        rcd += '{:12s}'.format(self.vat_code.replace(' ', '') or '')
+        rcd += format_x(self.vat_code.replace(' ', ''), 12)
         # Ammontare delle operazioni in euro
-        rcd += '{:13s}'.format(str(self.amount_euro).zfill(13))
+        rcd += format_9(self.amount_euro, 13)
         # Codice della natura della transazione
-        rcd += '{:1s}'.format(self.transaction_nature_id.code or '')
+        rcd += format_x(self.transaction_nature_id.code, 1)
         # Codice della nomenclatura combinata della merce
-        rcd += '{:8s}'.format(self.intrastat_code_id.name or '')
-        #  Massa netta in chilogrammi
-        rcd += '{:10s}'.format(str(self.weight_kg).zfill(10))
-        #  Quantità espressa nell'unità di misura supplementare
-        rcd += '{:10s}'.format(str(self.additional_units).zfill(10))
-        #  Valore statistico in euro
-        rcd += '{:13s}'.format(str(self.statistic_amount_euro).zfill(13))
-        #  Codice delle condizioni di consegna
-        rcd += '{:1s}'.format(
-            self.delivery_code_id and self.delivery_code_id.code[:1] or '')
-        #  Codice del modo di trasporto
-        rcd += '{:1s}'.format(
-            self.transport_code_id and str(self.transport_code_id.code) or '')
-        #  Codice del paese di destinazione
-        rcd += '{:2s}'.format(self.country_destination_id.code or '')
-        #  Codice del paese di origine della merce
-        rcd += '{:2s}'.format(self.province_origin_id.code or '')
+        rcd += format_9(self.intrastat_code_id.name, 8)
+        if self.statement_id.period_type == 'M':
+            #  Massa netta in chilogrammi
+            rcd += format_9(self.weight_kg, 10)
+            #  Quantità espressa nell'unità di misura supplementare
+            rcd += format_9(self.additional_units, 10)
+            #  Valore statistico in euro
+            rcd += format_9(self.statistic_amount_euro, 13)
+            #  Codice delle condizioni di consegna
+            delivery_code = self.delivery_code_id.code or ''
+            rcd += format_x(delivery_code[:1], 1)
+            #  Codice del modo di trasporto
+            transport_code = self.transport_code_id.code
+            rcd += format_9(transport_code, 1)
+            #  Codice del paese di destinazione
+            rcd += format_x(self.country_destination_id.code, 2)
+            #  Codice del paese di origine della merce
+            rcd += format_x(self.province_origin_id.code, 2)
 
         rcd += "\r\n"
         return rcd
@@ -166,6 +177,10 @@ class IntrastatStatementSaleSection2(models.Model):
     statistic_amount_euro = fields.Integer(
         string="Statistic Value in Euro",
         digits=dp.get_precision('Account'))
+
+    @api.model
+    def get_section_number(self):
+        return 2
 
     @api.model
     def _prepare_statement_line(self, inv_intra_line, statement_id=None):
@@ -228,32 +243,32 @@ class IntrastatStatementSaleSection2(models.Model):
     @api.model
     def _prepare_export_line(self):
         self.ensure_one()
-        self._export_line_checks(_("Sales"), 2)
+        self._export_line_checks(_("Sales"), self.get_section_number())
 
         rcd = ''
         # Mese di riferimento del riepilogo da rettificare
-        rcd += '{:2s}'.format(str(self.month).zfill(2))
+        rcd += format_9(self.month, 2)
         #  Trimestre di riferimento del riepilogo da rettificare
-        rcd += '{:1s}'.format(str(self.quarterly).zfill(1))
+        rcd += format_9(self.quarterly, 1)
         # Anno periodo di ref da modificare
-        rcd += '{:2s}'.format(self.year_id and str(self.year_id)[2:] or '')
+        year = (self.year_id or 0) // 100
+        rcd += format_9(year, 2)
         # Codice dello Stato membro dell’acquirente
         country_id = self.country_partner_id or self.partner_id.country_id
-        rcd += '{:2s}'.format(country_id.code or '')
+        rcd += format_x(country_id.code, 2)
         #  Codice IVA dell’acquirente
-        rcd += '{:12s}'.format(self.vat_code.replace(' ', '') or '')
+        rcd += format_x(self.vat_code.replace(' ', ''), 12)
         #  Segno da attribuire alle variazioni da X(1) apportare
-        rcd += '{:1s}'.format(self.sign_variation or '')
+        rcd += format_x(self.sign_variation, 1)
         # Ammontare delle operazioni in euro
-        rcd += '{:13s}'.format(str(self.amount_euro).zfill(13))
+        rcd += format_9(self.amount_euro, 13)
         # Codice della natura della transazione
-        rcd += '{:1s}'.format(
-            self.transaction_nature_id and self.transaction_nature_id.code or '')
+        rcd += format_x(self.transaction_nature_id.code, 1)
         # Codice della nomenclatura combinata della merce
-        rcd += '{:8s}'.format(
-            self.intrastat_code_id and self.intrastat_code_id.name or '')
-        #  Valore statistico in euro
-        rcd += '{:13s}'.format(str(self.statistic_amount_euro).zfill(13))
+        rcd += format_9(self.intrastat_code_id.name, 8)
+        if self.statement_id.period_type == 'M':
+            #  Valore statistico in euro
+            rcd += format_9(self.statistic_amount_euro, 13)
 
         rcd += "\r\n"
         return rcd
@@ -294,6 +309,10 @@ class IntrastatStatementSaleSection3(models.Model):
         string="Payment Country")
 
     @api.model
+    def get_section_number(self):
+        return 3
+
+    @api.model
     def _prepare_statement_line(self, inv_intra_line, statement_id=None):
         res = super(IntrastatStatementSaleSection3, self) \
             ._prepare_statement_line(inv_intra_line, statement_id)
@@ -309,31 +328,31 @@ class IntrastatStatementSaleSection3(models.Model):
     @api.model
     def _prepare_export_line(self):
         self.ensure_one()
-        self._export_line_checks(_("Sales"), 3)
+        self._export_line_checks(_("Sales"), self.get_section_number())
 
         rcd = ''
         # Codice dello Stato membro dell’acquirente
         country_id = self.country_partner_id or self.partner_id.country_id
-        rcd += '{:2s}'.format(country_id.code or '')
+        rcd += format_x(country_id.code, 2)
         #  Codice IVA del fornitore
-        rcd += '{:12s}'.format(self.vat_code.replace(' ', '') or '')
+        rcd += format_x(self.vat_code.replace(' ', ''), 12)
         # Ammontare delle operazioni in euro
-        rcd += '{:13s}'.format(str(self.amount_euro).zfill(13))
+        rcd += format_9(self.amount_euro, 13)
         # Numero Fattura
-        rcd += '{:15s}'.format(str(self.invoice_number).zfill(15))
+        rcd += format_x(self.invoice_number, 15)
         # Data Fattura
         invoice_date_ddmmyy = False
         if self.invoice_date:
             invoice_date_ddmmyy = self.invoice_date.strftime('%d%m%y')
-        rcd += '{:2s}'.format(invoice_date_ddmmyy or '')
+        rcd += format_x(invoice_date_ddmmyy, 6)
         # Codice del servizio
-        rcd += '{:6s}'.format(self.intrastat_code_id.name or '')
+        rcd += format_9(self.intrastat_code_id.name, 6)
         # Modalità di erogazione
-        rcd += '{:1s}'.format(self.supply_method or '')
+        rcd += format_x(self.supply_method, 1)
         # Modalità di incasso
-        rcd += '{:1s}'.format(self.payment_method or '')
+        rcd += format_x(self.payment_method, 1)
         # Codice del paese di pagamento
-        rcd += '{:2s}'.format(self.country_payment_id.code or '')
+        rcd += format_x(self.country_payment_id.code, 2)
 
         rcd += "\r\n"
         return rcd
@@ -376,6 +395,10 @@ class IntrastatStatementSaleSection4(models.Model):
     country_payment_id = fields.Many2one(
         comodel_name='res.country',
         string="Payment Country")
+
+    @api.model
+    def get_section_number(self):
+        return 4
 
     @api.model
     def _prepare_statement_line(self, inv_intra_line, statement_id=None):
@@ -429,43 +452,41 @@ class IntrastatStatementSaleSection4(models.Model):
 
     @api.model
     def _prepare_export_line(self):
-        self._export_line_checks(_("Sales"), 4)
+        self._export_line_checks(_("Sales"), self.get_section_number())
 
         rcd = ''
         # Codice della sezione doganale in cui è stato registrata la
         # dichiarazione da rettificare
-        rcd += '{:6s}'.format(self.intrastat_custom_id.code or '')
+        rcd += format_9(self.intrastat_custom_id.code, 6)
         # Anno di registrazione della dichiarazione da rettificare
-        rcd += '{:2s}'.format(self.year_id and str(self.year_id)[2:] or '')
+        year = (self.year_id or 0) // 100
+        rcd += format_9(year, 2)
         # Protocollo della dichiarazione da rettificare
-        rcd += '{:6s}'.format(
-            self.protocol and str(self.protocol).zfill(6) or '')
+        rcd += format_9(self.protocol, 6)
         # Progressivo della sezione 3 da rettificare
-        rcd += '{:5s}'.format(
-            self.progressive_to_modify and
-            str(self.progressive_to_modify).zfill(5) or '')
+        rcd += format_9(self.progressive_to_modify, 5)
         # Codice dello Stato membro dell’acquirente
         country_id = self.country_partner_id or self.partner_id.country_id
-        rcd += '{:2s}'.format(country_id.code or '')
+        rcd += format_x(country_id.code, 2)
         #  Codice IVA dell’acquirente
-        rcd += '{:12s}'.format(self.vat_code.replace(' ', '') or '')
+        rcd += format_x(self.vat_code.replace(' ', ''), 12)
         # Ammontare delle operazioni in euro
-        rcd += '{:13s}'.format(str(self.amount_euro).zfill(13))
+        rcd += format_9(self.amount_euro, 13)
         # Numero Fattura
-        rcd += '{:15s}'.format(str(self.invoice_number).zfill(15))
+        rcd += format_x(self.invoice_number, 15)
         # Data Fattura
         invoice_date_ddmmyy = False
         if self.invoice_date:
             invoice_date_ddmmyy = self.invoice_date.strftime('%d%m%y')
-        rcd += '{:2s}'.format(invoice_date_ddmmyy or '')
+        rcd += format_x(invoice_date_ddmmyy, 6)
         # Codice del servizio
-        rcd += '{:6s}'.format(self.intrastat_code_id.name or '')
+        rcd += format_9(self.intrastat_code_id.name, 6)
         # Modalità di erogazione
-        rcd += '{:1s}'.format(self.supply_method or '')
+        rcd += format_x(self.supply_method, 1)
         # Modalità di incasso
-        rcd += '{:1s}'.format(self.payment_method or '')
+        rcd += format_x(self.payment_method, 1)
         # Codice del paese di pagamento
-        rcd += '{:2s}'.format(self.country_payment_id.code or '')
+        rcd += format_x(self.country_payment_id.code, 2)
 
         rcd += "\r\n"
         return rcd
