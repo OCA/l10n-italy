@@ -78,6 +78,9 @@
                                 <field name="refund_doc_num"/>
                                 <field name="refund_cash_fiscal_serial"/>
                             </group>
+                            <group string="Lottery">
+                                <field name="lottery_code"/>
+                            </group>
                         </group>
                     </page>
                 </xpath>
