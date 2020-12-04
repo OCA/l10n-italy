@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <template id="account_invoice_line_it_sconto_maggiorazione"
+                inherit_id="l10n_it_fatturapa_out.account_invoice_line_it_sconto_maggiorazione">
+            <xpath expr="ScontoMaggiorazione" position="after">
+                <ScontoMaggiorazione t-if="line.discount2 != 0">
+                    <Tipo t-if="line.discount2 > 0" t-esc="'SC'" />
+                    <Tipo t-if="not line.discount2 > 0" t-esc="'MG'" />
+                    <Percentuale t-esc="format_numbers(abs(line.discount2))"/>
+                </ScontoMaggiorazione>
+                <ScontoMaggiorazione t-if="line.discount3 != 0">
+                    <Tipo t-if="line.discount3 > 0" t-esc="'SC'" />
+                    <Tipo t-if="not line.discount3 > 0" t-esc="'MG'" />
+                    <Percentuale t-esc="format_numbers(abs(line.discount3))"/>
+                </ScontoMaggiorazione>
+            </xpath>
+        </template>
+    </data>
+</odoo>

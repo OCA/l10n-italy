@@ -16,5 +16,8 @@
     "depends": [
         "l10n_it_fatturapa_out",
         "account_invoice_triple_discount",
-    ]
+    ],
+    "data": [
+        "views/invoice_it_template.xml",
+    ],
 }
