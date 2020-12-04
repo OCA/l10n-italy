@@ -61,6 +61,17 @@
                 <t t-call="l10n_it_fatturapa_out.account_invoice_it_dati_documento_correlato" />
             </DatiFattureCollegate>
         </template>
+
+        <template id="account_invoice_line_it_sconto_maggiorazione">
+            <ScontoMaggiorazione t-if="line.discount != 0">
+                <!-- [2.2.1.10] -->
+                <Tipo t-if="line.discount > 0" t-esc="'SC'" />
+                <Tipo t-if="not line.discount > 0" t-esc="'MG'" />
+                <Percentuale t-esc="format_numbers(abs(line.discount))" />
+                <!-- XXX                   <Importo t-esc=""/>-->
+            </ScontoMaggiorazione>
+        </template>
+
         <template id="account_invoice_line_it_FatturaPA">
             <t t-set="tax_ids" t-value="line.invoice_line_tax_ids" />
             <t t-set="taxes" t-value="tax_ids.compute_all(line.price_unit)" />
@@ -85,13 +96,7 @@
                 <!--                <DataInizioPeriodo t-esc=""/>-->
                 <!--                <DataFinePeriodo t-esc=""/>-->
                 <PrezzoUnitario t-esc="format_price(line)" />
-                <ScontoMaggiorazione t-if="line.discount != 0">
-                    <!-- [2.2.1.10] -->
-		    <Tipo t-if="line.discount > 0" t-esc="'SC'" />
-		    <Tipo t-if="not line.discount > 0" t-esc="'MG'" />
-                    <Percentuale t-esc="format_numbers(abs(line.discount))" />
-                    <!--                    <Importo t-esc=""/>-->
-                </ScontoMaggiorazione>
+                <t t-call="l10n_it_fatturapa_out.account_invoice_line_it_sconto_maggiorazione" />
                 <PrezzoTotale t-esc="format_monetary(line.price_subtotal, currency)" />
                 <!-- without tax, must include any discounts and any extra charge-->
                 <AliquotaIVA
@@ -119,6 +124,7 @@
                 <!--                </AltriDatiGestionali>-->
             </DettaglioLinee>
         </template>
+
         <template id="account_invoice_line_it_dati_riepilogo">
             <t t-set="tax" t-value="tax_line.tax_id" />
             <DatiRiepilogo>
@@ -419,6 +425,12 @@
                 </DatiAnagrafici>
             </TerzoIntermediarioOSoggettoEmittente>
         </template>
+
+	<!-- abstract templates per moduli -->
+	<template id="account_invoice_it_dati_ritenuta"><t/></template>
+	<template id="account_invoice_it_dati_bollo"><t/></template>
+	<template id="account_invoice_it_dati_cassa_previdenziale"><t/></template>
+
         <template id="account_invoice_it_fattura_elettronica_body">
             <t
                 t-set="currency"
@@ -433,27 +445,9 @@
                         <Divisa t-esc="currency.name" />
                         <Data t-esc="format_date(record.date_invoice)" />
                         <Numero t-esc="record.number" />
-                        <!--                        <DatiRitenuta>-->
-                        <!--                            <TipoRitenuta t-esc=""/>-->
-                        <!--                            <ImportoRitenuta t-esc=""/>-->
-                        <!--                            <AliquotaRitenuta t-esc=""/>-->
-                        <!--                            <CausalePagamento t-esc=""/>-->
-                        <!--                        </DatiRitenuta>-->
-                        <!--                        <DatiBollo t-if="record.l10n_it_stamp_duty">-->
-                        <!--                            &lt;!&ndash;2.1.1.6&ndash;&gt;-->
-                        <!--                            <BolloVirtuale>SI</BolloVirtuale>-->
-                        <!--                            <ImportoBollo t-esc="format_numbers(record.l10n_it_stamp_duty)"/>-->
-                        <!--                        </DatiBollo>-->
-                        <!--                        <DatiCassaPrevidenziale>-->
-                        <!--                            <TipoCassa t-esc=""/>-->
-                        <!--                            <AlCassa t-esc=""/>-->
-                        <!--                            <ImportoContributoCassa t-esc=""/>-->
-                        <!--                            <ImponibileCassa t-esc=""/>-->
-                        <!--                            <AliquotaIVA t-esc=""/>-->
-                        <!--                            <Ritenuta t-esc=""/>-->
-                        <!--                            <Natura t-esc=""/>-->
-                        <!--                            <RiferimentoAmministrazione t-esc=""/>-->
-                        <!--                        </DatiCassaPrevidenziale>-->
+                        <t t-call="l10n_it_fatturapa_out.account_invoice_it_dati_ritenuta"/>
+                        <t t-call="l10n_it_fatturapa_out.account_invoice_it_dati_bollo"/>
+                        <t t-call="l10n_it_fatturapa_out.account_invoice_it_dati_cassa_previdenziale"/>
                         <!--                        <ScontoMaggiorazione>-->
                         <!--                            <Tipo t-esc=""/>-->
                         <!--                            <Percentuale t-esc=""/>-->
@@ -473,8 +467,6 @@
 			</t>
                         <Art73 t-if="record.company_id.fatturapa_art73">SI</Art73>
                     </DatiGeneraliDocumento>
-<!--
--->
                     <t t-call="l10n_it_fatturapa_out.account_invoice_it_dati_documenti_correlati" />
                     <!--                    <DatiSAL>-->
                     <!--                        <RiferimentoFase t-esc=""/>-->
