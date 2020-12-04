@@ -20,5 +20,6 @@
         "l10n_it_account_stamp",
     ],
     "data": [
+        "views/invoice_it_template.xml",
     ],
 }
