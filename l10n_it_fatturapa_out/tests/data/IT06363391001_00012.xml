@@ -14,7 +14,7 @@
                 <Telefono>06543534343</Telefono>
                 <Email>info@yourcompany.example.com</Email>
             </ContattiTrasmittente>
-            <PECDestinatario>test-invoice@pec.it</PECDestinatario>
+            <PECDestinatario>test_invoice@pec.it</PECDestinatario>
         </DatiTrasmissione>
         <CedentePrestatore>
             <DatiAnagrafici>
