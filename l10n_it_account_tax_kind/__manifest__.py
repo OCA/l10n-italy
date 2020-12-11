@@ -2,6 +2,7 @@
 # @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
+# Copyright 2020 Gianmarco Conte <gconte@dinamicheaziendali.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
