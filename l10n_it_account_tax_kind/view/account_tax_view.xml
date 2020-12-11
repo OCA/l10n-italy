@@ -6,7 +6,7 @@
         <field name="model">account.tax</field>
         <field name="inherit_id" ref="account.view_tax_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='tag_ids']" position="after">
+            <xpath expr="//field[@name='tax_group_id']" position="after">
                 <field name="kind_id" />
                 <field
                     name="law_reference"

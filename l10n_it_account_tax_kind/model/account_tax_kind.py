@@ -2,14 +2,12 @@ from odoo import api, fields, models
 
 
 class AccountTaxKind(models.Model):
-
     _name = "account.tax.kind"
     _description = "Tax exemption kind"
 
     code = fields.Char(string="Code", size=4, required=True)
     name = fields.Char(string="Name", required=True)
 
-    @api.multi
     def name_get(self):
         res = []
         for tax_kind in self:

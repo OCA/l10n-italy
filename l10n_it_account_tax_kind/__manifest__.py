@@ -2,13 +2,15 @@
 # @author Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
+# Copyright 2021 Gianmarco Conte <gconte@dinamicheaziendali.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    "name": "Italian Localisation - Natura delle aliquote IVA",
-    "version": "12.0.2.0.0",
+    "name": "ITA - Natura delle aliquote IVA",
+    "version": "14.0.1.0.0",
     "development_status": "Production/Stable",
-    "category": "Localisation/Italy",
+    "category": "Localization/Italy",
+    "summary": "Gestione natura delle aliquote IVA",
     "author": "Odoo Community Association (OCA), Apulia Software s.r.l",
     "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
