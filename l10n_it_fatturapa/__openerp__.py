@@ -96,6 +96,7 @@ To contribute to this module, please visit http://odoo-community.org.
         'l10n_it_rea',
         'base_iban',
         'partner_firstname',
+        'l10n_it_account_tax_kind',
         ],
 
     "data": [
@@ -105,6 +106,7 @@ To contribute to this module, please visit http://odoo-community.org.
         'views/company_view.xml',
         'views/partner_view.xml',
         'views/account_tax_view.xml',
+        'views/related_document_type_views.xml',
         'security/ir.model.access.csv',
     ],
     "demo": ['demo/account_invoice_fatturapa.xml'],

@@ -14,15 +14,7 @@
                         <div>
                             <div>
                                 <label for="fatturapa_fiscal_position_id"/>
-                                <field name="fatturapa_fiscal_position_id" required="1" class="oe_inline"/>
-                            </div>
-                            <div>
-                                <label for="fatturapa_sequence_id"/>
-                                <field name="fatturapa_sequence_id" required="1" class="oe_inline"/>
-                            </div>
-                            <div>
-                                <label for="fatturapa_art73"/>
-                                <field name="fatturapa_art73" class="oe_inline"/>
+                                <field name="fatturapa_fiscal_position_id" options="{'no_create': True, 'no_open':True}" class="oe_inline"/>
                             </div>
                             <div>
                                 <label for="fatturapa_tax_representative"/>
@@ -36,6 +28,22 @@
                                 <label for="fatturapa_sender_partner"/>
                                 <field name="fatturapa_sender_partner" class="oe_inline"/>
                             </div>
+                            <div>
+                                <label for="fatturapa_preview_style"/>
+                                <field name="fatturapa_preview_style" class="oe_inline"/>
+                            </div>
+                            
+                            
+                           
+                            <div>
+                                <label for="fatturapa_art73"/>
+                                <field name="fatturapa_art73" class="oe_inline"/>
+                            </div>
+                            <div>
+                                <label for="fatturapa_pub_administration_ref"/>
+                                <field name="fatturapa_pub_administration_ref" class="oe_inline"/>
+                            </div> 
+
                             <div>
                                 <label for="fatturapa_rea_office"/>
                                 <field name="fatturapa_rea_office" class="oe_inline"/>
@@ -56,10 +64,32 @@
                                 <label for="fatturapa_rea_liquidation"/>
                                 <field name="fatturapa_rea_liquidation" class="oe_inline"/>
                             </div>
+                            <div>
+                                <label for="fatturapa_sequence_id"/>
+                                <field name="fatturapa_sequence_id" class="oe_inline"/>
+                            </div> 
                         </div>
                     </group>
                 </xpath>
             </field>
         </record>
+
+    <record id="view_company_form_e_invoice" model="ir.ui.view">
+        <field name="name">view_company_form_e_invoice</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="E-invoice">
+                    <group>
+                        <group>
+                            <field name="fatturapa_fiscal_position_id" required="1" options="{'no_create': True, 'no_open':True}"/>
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+ 
 	</data>
 </openerp>

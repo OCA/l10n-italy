@@ -29,16 +29,37 @@ class res_company(orm.Model):
             'fatturapa.fiscal_position', 'Fiscal Position',
             help="Fiscal position used by FatturaPA",
             ),
+        'fatturapa_art73': fields.boolean('Art73'),
+        'fatturapa_pub_administration_ref': fields.char(
+            'Public Administration Reference Code', size=20,
+            ),
+        'fatturapa_tax_representative': fields.many2one(
+            'res.partner', 'Legal Tax Representative'
+            ),
+        'fatturapa_sender_partner': fields.many2one(
+            'res.partner', 'Third Party/Sender'
+            ),
+        'fatturapa_stabile_organizzazione': fields.many2one(
+        'res.partner', 'Stabile Organizzazione',
+        help='Blocco da valorizzare nei casi di cedente / prestatore non '
+             'residente, con stabile organizzazione in Italia'
+        ),
         'fatturapa_sequence_id': fields.many2one(
             'ir.sequence', 'Sequence',
             help="il progressivo univoco del file è rappresentato da una "
                  "stringa alfanumerica di lunghezza massima di 5 caratteri "
                  "e con valori ammessi da “A” a “Z” e da “0” a “9”.",
-            ),
-        'fatturapa_art73': fields.boolean('Art73'),
-        'fatturapa_pub_administration_ref': fields.char(
-            'Public Administration Reference Code', size=20,
-            ),
+            ), 
+
+    'fatturapa_preview_style': fields.selection([
+        ('fatturaordinaria_v1.2.1.xsl', 'Fattura Ordinaria'),
+        ('FoglioStileAssoSoftware_v1.1.xsl', 'AssoSoftware')],
+        string='Preview Format Style', required=True,
+        ),
+        
+        
+        
+        # campi non presenti in V12
         'fatturapa_rea_office': fields.related(
             'partner_id', 'rea_office', type='many2one',
             relation='res.province', string='REA office'),
@@ -62,18 +83,13 @@ class res_company(orm.Model):
                 ('LN', 'Not in liquidation'),
                 ],
             string='Liquidation State'),
-        'fatturapa_tax_representative': fields.many2one(
-            'res.partner', 'Legal Tax Representative'
-            ),
-        'fatturapa_sender_partner': fields.many2one(
-            'res.partner', 'Third Party/Sender'
-            ),
-    'fatturapa_stabile_organizzazione': fields.many2one(
-        'res.partner', 'Stabile Organizzazione',
-        help='Blocco da valorizzare nei casi di cedente / prestatore non '
-             'residente, con stabile organizzazione in Italia'
-        ),
+
+
     }
+
+    _defaults = {
+        'fatturapa_preview_style': 'fatturaordinaria_v1.2.1.xsl',
+        }
 
     def _check_fatturapa_sequence_id(self, cr, uid, ids, context=None):
         for company in self.browse(cr, uid, ids, context):
@@ -100,15 +116,6 @@ class account_config_settings(orm.TransientModel):
             string="Fiscal Position",
             help='Fiscal position used by FatturaPA'
             ),
-        'fatturapa_sequence_id': fields.related(
-            'company_id', 'fatturapa_sequence_id',
-            type='many2one',
-            relation="ir.sequence",
-            string="Sequence",
-            help="il progressivo univoco del file è rappresentato da una "
-                 "stringa alfanumerica di lunghezza massima di 5 caratteri "
-                 "e con valori ammessi da “A” a “Z” e da “0” a “9”.",
-            ),
         'fatturapa_art73': fields.related(
             'company_id', 'fatturapa_art73',
             type='boolean',
@@ -133,25 +140,25 @@ class account_config_settings(orm.TransientModel):
             string="Rea Office",
             ),
         'fatturapa_rea_number': fields.related(
-            'company_id', 'fatturapa_rea_number',
+            'company_id', 'rea_code',
             type='char',
             size=20,
             string="Rea Number",
             ),
         'fatturapa_rea_capital': fields.related(
-            'company_id', 'fatturapa_rea_capital',
+            'company_id', 'rea_capital',
             type='float',
             string="Rea Capital",
             ),
         'fatturapa_rea_partner': fields.related(
-            'company_id', 'fatturapa_rea_partner',
+            'company_id', 'rea_member_type',
             type='selection',
             selection=[('SU', 'Single Partner'),
                        ('SM', 'Many Partners')],
             string="Rea Copartner",
             ),
         'fatturapa_rea_liquidation': fields.related(
-            'company_id', 'fatturapa_rea_liquidation',
+            'company_id', 'rea_liquidation_state',
             type='selection',
             selection=[('LN', 'Company Not in Liquidation'),
                        ('LS', 'Company In Liquidation')],
@@ -184,7 +191,28 @@ class account_config_settings(orm.TransientModel):
             help="Blocco da valorizzare nei casi di cedente / prestatore non "
              "residente, con stabile organizzazione in Italia"
             ),
-
+        'fatturapa_sequence_id': fields.related(
+            'company_id', 'fatturapa_sequence_id',
+            type='many2one',
+            relation="ir.sequence",
+            string="Sequence",
+            help="il progressivo univoco del file è rappresentato da una "
+                 "stringa alfanumerica di lunghezza massima di 5 caratteri "
+                 "e con valori ammessi da “A” a “Z” e da “0” a “9”.",
+            ),
+        
+        'fatturapa_preview_style': fields.related(
+            'company_id', 'fatturapa_preview_style',
+            type='selection',
+            selection=[
+        ('fatturaordinaria_v1.2.1.xsl', 'Fattura Ordinaria'),
+        ('FoglioStileAssoSoftware_v1.1.xsl', 'AssoSoftware')],
+            string="Preview Format Style",
+            required=True,
+            readonly=False,
+            ),
+        
+        
     }
 
 
@@ -242,6 +270,9 @@ class account_config_settings(orm.TransientModel):
                     company.fatturapa_stabile_organizzazione and
                     company.fatturapa_stabile_organizzazione.id or False
                     ),
+                'fatturapa_preview_style': (
+                    company.fatturapa_preview_style or False
+                    ),
                 })
         else:
             res['value'].update({
@@ -257,5 +288,6 @@ class account_config_settings(orm.TransientModel):
                 'fatturapa_tax_representative': False,
                 'fatturapa_sender_partner': False,
                 'fatturapa_stabile_organizzazione': False,
+                'fatturapa_preview_style': 'fatturaordinaria_v1.2.1.xsl',
                 })
         return res

@@ -1,17 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.1" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2">
-	<xsl:output method="html"/>
+﻿<?xml version="1.0"?>
+<xsl:stylesheet 
+	version="1.1" 
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+	xmlns:a="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2">
+	<xsl:output method="html" />
 
 	<xsl:template name="FormatDate">
-		<xsl:param name="DateTime"/>
+		<xsl:param name="DateTime" />
 
-		<xsl:variable name="year" select="substring($DateTime,1,4)"/>
-		<xsl:variable name="month" select="substring($DateTime,6,2)"/>
-		<xsl:variable name="day" select="substring($DateTime,9,2)"/>
+		<xsl:variable name="year" select="substring($DateTime,1,4)" />
+		<xsl:variable name="month" select="substring($DateTime,6,2)" />
+		<xsl:variable name="day" select="substring($DateTime,9,2)" />
 
-		<xsl:value-of select="' ('"/>
-		<xsl:value-of select="$day"/>
-		<xsl:value-of select="' '"/>
+		<xsl:value-of select="' ('" />
+		<xsl:value-of select="$day" />
+		<xsl:value-of select="' '" />
 		<xsl:choose>
 			<xsl:when test="$month = '1' or $month = '01'">
 				Gennaio
@@ -53,29 +56,29 @@
 				Mese non riconosciuto
 			</xsl:otherwise>
 		</xsl:choose>
-		<xsl:value-of select="' '"/>
-		<xsl:value-of select="$year"/>
+		<xsl:value-of select="' '" />
+		<xsl:value-of select="$year" />
 
-		<xsl:variable name="time" select="substring($DateTime,12)"/>
+		<xsl:variable name="time" select="substring($DateTime,12)" />
 		<xsl:if test="$time != ''">
-			<xsl:variable name="hh" select="substring($time,1,2)"/>
-			<xsl:variable name="mm" select="substring($time,4,2)"/>
-			<xsl:variable name="ss" select="substring($time,7,2)"/>
+			<xsl:variable name="hh" select="substring($time,1,2)" />
+			<xsl:variable name="mm" select="substring($time,4,2)" />
+			<xsl:variable name="ss" select="substring($time,7,2)" />
 
-			<xsl:value-of select="' '"/>
-			<xsl:value-of select="$hh"/>
-			<xsl:value-of select="':'"/>
-			<xsl:value-of select="$mm"/>
-			<xsl:value-of select="':'"/>
-			<xsl:value-of select="$ss"/>
+			<xsl:value-of select="' '" />
+			<xsl:value-of select="$hh" />
+			<xsl:value-of select="':'" />
+			<xsl:value-of select="$mm" />
+			<xsl:value-of select="':'" />
+			<xsl:value-of select="$ss" />
 		</xsl:if>
-		<xsl:value-of select="')'"/>
+		<xsl:value-of select="')'" />
 	</xsl:template>
 
 	<xsl:template match="/">
 		<html>
 			<head>
-				<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+				<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 				<style type="text/css">
 					#fattura-container { width: 100%; position: relative; }
 
@@ -140,8 +143,8 @@
 														<li>
 															Identificativo del trasmittente:
 															<span>
-																<xsl:value-of select="IdTrasmittente/IdPaese"/>
-																<xsl:value-of select="IdTrasmittente/IdCodice"/>
+																<xsl:value-of select="IdTrasmittente/IdPaese" />
+																<xsl:value-of select="IdTrasmittente/IdCodice" />
 															</span>
 														</li>
 													</xsl:if>
@@ -149,7 +152,7 @@
 														<li>
 															Progressivo di invio:
 															<span>
-																<xsl:value-of select="ProgressivoInvio"/>
+																<xsl:value-of select="ProgressivoInvio" />
 															</span>
 														</li>
 													</xsl:if>
@@ -157,7 +160,7 @@
 														<li>
 															Formato Trasmissione:
 															<span>
-																<xsl:value-of select="FormatoTrasmissione"/>
+																<xsl:value-of select="FormatoTrasmissione" />
 															</span>
 														</li>
 													</xsl:if>
@@ -165,7 +168,7 @@
 														<li>
 															Codice identificativo destinatario:
 															<span>
-																<xsl:value-of select="CodiceDestinatario"/>
+																<xsl:value-of select="CodiceDestinatario" />
 															</span>
 														</li>
 													</xsl:if>
@@ -173,7 +176,7 @@
 														<li>
 															Telefono del trasmittente:
 															<span>
-																<xsl:value-of select="ContattiTrasmittente/Telefono"/>
+																<xsl:value-of select="ContattiTrasmittente/Telefono" />
 															</span>
 														</li>
 													</xsl:if>
@@ -181,7 +184,7 @@
 														<li>
 															E-mail del trasmittente:
 															<span>
-																<xsl:value-of select="ContattiTrasmittente/Email"/>
+																<xsl:value-of select="ContattiTrasmittente/Email" />
 															</span>
 														</li>
 													</xsl:if>
@@ -189,7 +192,7 @@
 														<li>
 															Destinatario PEC:
 															<span>
-																<xsl:value-of select="PECDestinatario"/>
+																<xsl:value-of select="PECDestinatario" />
 															</span>
 														</li>
 													</xsl:if>
@@ -213,8 +216,8 @@
 															<li>
 																Identificativo fiscale ai fini IVA:
 																<span>
-																	<xsl:value-of select="IdFiscaleIVA/IdPaese"/>
-																	<xsl:value-of select="IdFiscaleIVA/IdCodice"/>
+																	<xsl:value-of select="IdFiscaleIVA/IdPaese" />
+																	<xsl:value-of select="IdFiscaleIVA/IdCodice" />
 																</span>
 															</li>
 														</xsl:if>
@@ -222,7 +225,7 @@
 															<li>
 																Codice fiscale:
 																<span>
-																	<xsl:value-of select="CodiceFiscale"/>
+																	<xsl:value-of select="CodiceFiscale" />
 																</span>
 															</li>
 														</xsl:if>
@@ -230,7 +233,7 @@
 															<li>
 																Denominazione:
 																<span>
-																	<xsl:value-of select="Anagrafica/Denominazione"/>
+																	<xsl:value-of select="Anagrafica/Denominazione" />
 																</span>
 															</li>
 														</xsl:if>
@@ -238,7 +241,7 @@
 															<li>
 																Nome:
 																<span>
-																	<xsl:value-of select="Anagrafica/Nome"/>
+																	<xsl:value-of select="Anagrafica/Nome" />
 																</span>
 															</li>
 														</xsl:if>
@@ -246,7 +249,7 @@
 															<li>
 																Cognome:
 																<span>
-																	<xsl:value-of select="Anagrafica/Cognome"/>
+																	<xsl:value-of select="Anagrafica/Cognome" />
 																</span>
 															</li>
 														</xsl:if>
@@ -254,7 +257,7 @@
 															<li>
 																Titolo:
 																<span>
-																	<xsl:value-of select="Anagrafica/Titolo"/>
+																	<xsl:value-of select="Anagrafica/Titolo" />
 																</span>
 															</li>
 														</xsl:if>
@@ -262,7 +265,7 @@
 															<li>
 																Codice EORI:
 																<span>
-																	<xsl:value-of select="Anagrafica/CodEORI"/>
+																	<xsl:value-of select="Anagrafica/CodEORI" />
 																</span>
 															</li>
 														</xsl:if>
@@ -270,7 +273,7 @@
 															<li>
 																Albo professionale di appartenenza:
 																<span>
-																	<xsl:value-of select="AlboProfessionale"/>
+																	<xsl:value-of select="AlboProfessionale" />
 																</span>
 															</li>
 														</xsl:if>
@@ -278,7 +281,7 @@
 															<li>
 																Provincia di competenza dell'Albo:
 																<span>
-																	<xsl:value-of select="ProvinciaAlbo"/>
+																	<xsl:value-of select="ProvinciaAlbo" />
 																</span>
 															</li>
 														</xsl:if>
@@ -286,7 +289,7 @@
 															<li>
 																Numero iscrizione all'Albo:
 																<span>
-																	<xsl:value-of select="NumeroIscrizioneAlbo"/>
+																	<xsl:value-of select="NumeroIscrizioneAlbo" />
 																</span>
 															</li>
 														</xsl:if>
@@ -294,10 +297,10 @@
 															<li>
 																Data iscrizione all'Albo:
 																<span>
-																	<xsl:value-of select="DataIscrizioneAlbo"/>
+																	<xsl:value-of select="DataIscrizioneAlbo" />
 																</span>
 																<xsl:call-template name="FormatDate">
-																	<xsl:with-param name="DateTime" select="DataIscrizioneAlbo"/>
+																	<xsl:with-param name="DateTime" select="DataIscrizioneAlbo" />
 																</xsl:call-template>
 															</li>
 														</xsl:if>
@@ -305,11 +308,11 @@
 															<li>
 																Regime fiscale:
 																<span>
-																	<xsl:value-of select="RegimeFiscale"/>
+																	<xsl:value-of select="RegimeFiscale" />
 																</span>
 
 																<xsl:variable name="RF">
-																	<xsl:value-of select="RegimeFiscale"/>
+																	<xsl:value-of select="RegimeFiscale" />
 																</xsl:variable>
 																<xsl:choose>
 																	<xsl:when test="$RF='RF01'">
@@ -391,7 +394,7 @@
 															<li>
 																Indirizzo:
 																<span>
-																	<xsl:value-of select="Indirizzo"/>
+																	<xsl:value-of select="Indirizzo" />
 																</span>
 															</li>
 														</xsl:if>
@@ -399,7 +402,7 @@
 															<li>
 																Numero civico:
 																<span>
-																	<xsl:value-of select="NumeroCivico"/>
+																	<xsl:value-of select="NumeroCivico" />
 																</span>
 															</li>
 														</xsl:if>
@@ -407,7 +410,7 @@
 															<li>
 																CAP:
 																<span>
-																	<xsl:value-of select="CAP"/>
+																	<xsl:value-of select="CAP" />
 																</span>
 															</li>
 														</xsl:if>
@@ -415,7 +418,7 @@
 															<li>
 																Comune:
 																<span>
-																	<xsl:value-of select="Comune"/>
+																	<xsl:value-of select="Comune" />
 																</span>
 															</li>
 														</xsl:if>
@@ -423,7 +426,7 @@
 															<li>
 																Provincia:
 																<span>
-																	<xsl:value-of select="Provincia"/>
+																	<xsl:value-of select="Provincia" />
 																</span>
 															</li>
 														</xsl:if>
@@ -431,7 +434,7 @@
 															<li>
 																Nazione:
 																<span>
-																	<xsl:value-of select="Nazione"/>
+																	<xsl:value-of select="Nazione" />
 																</span>
 															</li>
 														</xsl:if>
@@ -447,7 +450,7 @@
 															<li>
 																Indirizzo:
 																<span>
-																	<xsl:value-of select="Indirizzo"/>
+																	<xsl:value-of select="Indirizzo" />
 																</span>
 															</li>
 														</xsl:if>
@@ -455,7 +458,7 @@
 															<li>
 																Numero civico:
 																<span>
-																	<xsl:value-of select="NumeroCivico"/>
+																	<xsl:value-of select="NumeroCivico" />
 																</span>
 															</li>
 														</xsl:if>
@@ -463,7 +466,7 @@
 															<li>
 																CAP:
 																<span>
-																	<xsl:value-of select="CAP"/>
+																	<xsl:value-of select="CAP" />
 																</span>
 															</li>
 														</xsl:if>
@@ -471,7 +474,7 @@
 															<li>
 																Comune:
 																<span>
-																	<xsl:value-of select="Comune"/>
+																	<xsl:value-of select="Comune" />
 																</span>
 															</li>
 														</xsl:if>
@@ -479,7 +482,7 @@
 															<li>
 																Provincia:
 																<span>
-																	<xsl:value-of select="Provincia"/>
+																	<xsl:value-of select="Provincia" />
 																</span>
 															</li>
 														</xsl:if>
@@ -487,7 +490,7 @@
 															<li>
 																Nazione:
 																<span>
-																	<xsl:value-of select="Nazione"/>
+																	<xsl:value-of select="Nazione" />
 																</span>
 															</li>
 														</xsl:if>
@@ -504,7 +507,7 @@
 															<li>
 																Provincia Ufficio Registro Imprese:
 																<span>
-																	<xsl:value-of select="Ufficio"/>
+																	<xsl:value-of select="Ufficio" />
 																</span>
 															</li>
 														</xsl:if>
@@ -512,7 +515,7 @@
 															<li>
 																Numero di iscrizione:
 																<span>
-																	<xsl:value-of select="NumeroREA"/>
+																	<xsl:value-of select="NumeroREA" />
 																</span>
 															</li>
 														</xsl:if>
@@ -520,7 +523,7 @@
 															<li>
 																Capitale sociale:
 																<span>
-																	<xsl:value-of select="CapitaleSociale"/>
+																	<xsl:value-of select="CapitaleSociale" />
 																</span>
 															</li>
 														</xsl:if>
@@ -528,11 +531,11 @@
 															<li>
 																Numero soci:
 																<span>
-																	<xsl:value-of select="SocioUnico"/>
+																	<xsl:value-of select="SocioUnico" />
 																</span>
 
 																<xsl:variable name="NS">
-																	<xsl:value-of select="SocioUnico"/>
+																	<xsl:value-of select="SocioUnico" />
 																</xsl:variable>
 																<xsl:choose>
 																	<xsl:when test="$NS='SU'">
@@ -553,11 +556,11 @@
 															<li>
 																Stato di liquidazione:
 																<span>
-																	<xsl:value-of select="StatoLiquidazione"/>
+																	<xsl:value-of select="StatoLiquidazione" />
 																</span>
 
 																<xsl:variable name="SL">
-																	<xsl:value-of select="StatoLiquidazione"/>
+																	<xsl:value-of select="StatoLiquidazione" />
 																</xsl:variable>
 																<xsl:choose>
 																	<xsl:when test="$SL='LS'">
@@ -586,7 +589,7 @@
 															<li>
 																Telefono:
 																<span>
-																	<xsl:value-of select="Telefono"/>
+																	<xsl:value-of select="Telefono" />
 																</span>
 															</li>
 														</xsl:if>
@@ -594,7 +597,7 @@
 															<li>
 																Fax:
 																<span>
-																	<xsl:value-of select="Fax"/>
+																	<xsl:value-of select="Fax" />
 																</span>
 															</li>
 														</xsl:if>
@@ -602,7 +605,7 @@
 															<li>
 																E-mail:
 																<span>
-																	<xsl:value-of select="Email"/>
+																	<xsl:value-of select="Email" />
 																</span>
 															</li>
 														</xsl:if>
@@ -616,7 +619,7 @@
 													<li>
 														Riferimento:
 														<span>
-															<xsl:value-of select="a:FatturaElettronica/FatturaElettronicaHeader/CedentePrestatore/RiferimentoAmministrazione"/>
+															<xsl:value-of select="a:FatturaElettronica/FatturaElettronicaHeader/CedentePrestatore/RiferimentoAmministrazione" />
 														</span>
 													</li>
 												</ul>
@@ -639,8 +642,8 @@
 															<li>
 																Identificativo fiscale ai fini IVA:
 																<span>
-																	<xsl:value-of select="IdFiscaleIVA/IdPaese"/>
-																	<xsl:value-of select="IdFiscaleIVA/IdCodice"/>
+																	<xsl:value-of select="IdFiscaleIVA/IdPaese" />
+																	<xsl:value-of select="IdFiscaleIVA/IdCodice" />
 																</span>
 															</li>
 														</xsl:if>
@@ -648,7 +651,7 @@
 															<li>
 																Codice fiscale:
 																<span>
-																	<xsl:value-of select="CodiceFiscale"/>
+																	<xsl:value-of select="CodiceFiscale" />
 																</span>
 															</li>
 														</xsl:if>
@@ -656,7 +659,7 @@
 															<li>
 																Denominazione:
 																<span>
-																	<xsl:value-of select="Anagrafica/Denominazione"/>
+																	<xsl:value-of select="Anagrafica/Denominazione" />
 																</span>
 															</li>
 														</xsl:if>
@@ -664,7 +667,7 @@
 															<li>
 																Nome:
 																<span>
-																	<xsl:value-of select="Anagrafica/Nome"/>
+																	<xsl:value-of select="Anagrafica/Nome" />
 																</span>
 															</li>
 														</xsl:if>
@@ -672,7 +675,7 @@
 															<li>
 																Cognome:
 																<span>
-																	<xsl:value-of select="Anagrafica/Cognome"/>
+																	<xsl:value-of select="Anagrafica/Cognome" />
 																</span>
 															</li>
 														</xsl:if>
@@ -680,7 +683,7 @@
 															<li>
 																Titolo onorifico:
 																<span>
-																	<xsl:value-of select="Anagrafica/Titolo"/>
+																	<xsl:value-of select="Anagrafica/Titolo" />
 																</span>
 															</li>
 														</xsl:if>
@@ -688,7 +691,7 @@
 															<li>
 																Codice EORI:
 																<span>
-																	<xsl:value-of select="Anagrafica/CodEORI"/>
+																	<xsl:value-of select="Anagrafica/CodEORI" />
 																</span>
 															</li>
 														</xsl:if>
@@ -714,8 +717,8 @@
 															<li>
 																Identificativo fiscale ai fini IVA:
 																<span>
-																	<xsl:value-of select="IdFiscaleIVA/IdPaese"/>
-																	<xsl:value-of select="IdFiscaleIVA/IdCodice"/>
+																	<xsl:value-of select="IdFiscaleIVA/IdPaese" />
+																	<xsl:value-of select="IdFiscaleIVA/IdCodice" />
 																</span>
 															</li>
 														</xsl:if>
@@ -723,7 +726,7 @@
 															<li>
 																Codice Fiscale:
 																<span>
-																	<xsl:value-of select="CodiceFiscale"/>
+																	<xsl:value-of select="CodiceFiscale" />
 																</span>
 															</li>
 														</xsl:if>
@@ -731,7 +734,7 @@
 															<li>
 																Denominazione:
 																<span>
-																	<xsl:value-of select="Anagrafica/Denominazione"/>
+																	<xsl:value-of select="Anagrafica/Denominazione" />
 																</span>
 															</li>
 														</xsl:if>
@@ -739,7 +742,7 @@
 															<li>
 																Nome:
 																<span>
-																	<xsl:value-of select="Anagrafica/Nome"/>
+																	<xsl:value-of select="Anagrafica/Nome" />
 																</span>
 															</li>
 														</xsl:if>
@@ -747,7 +750,7 @@
 															<li>
 																Cognome:
 																<span>
-																	<xsl:value-of select="Anagrafica/Cognome"/>
+																	<xsl:value-of select="Anagrafica/Cognome" />
 																</span>
 															</li>
 														</xsl:if>
@@ -755,7 +758,7 @@
 															<li>
 																Titolo onorifico:
 																<span>
-																	<xsl:value-of select="Anagrafica/Titolo"/>
+																	<xsl:value-of select="Anagrafica/Titolo" />
 																</span>
 															</li>
 														</xsl:if>
@@ -763,7 +766,7 @@
 															<li>
 																Codice EORI:
 																<span>
-																	<xsl:value-of select="Anagrafica/CodEORI"/>
+																	<xsl:value-of select="Anagrafica/CodEORI" />
 																</span>
 															</li>
 														</xsl:if>
@@ -781,7 +784,7 @@
 															<li>
 																Indirizzo:
 																<span>
-																	<xsl:value-of select="Indirizzo"/>
+																	<xsl:value-of select="Indirizzo" />
 																</span>
 															</li>
 														</xsl:if>
@@ -789,7 +792,7 @@
 															<li>
 																Numero civico:
 																<span>
-																	<xsl:value-of select="NumeroCivico"/>
+																	<xsl:value-of select="NumeroCivico" />
 																</span>
 															</li>
 														</xsl:if>
@@ -797,7 +800,7 @@
 															<li>
 																CAP:
 																<span>
-																	<xsl:value-of select="CAP"/>
+																	<xsl:value-of select="CAP" />
 																</span>
 															</li>
 														</xsl:if>
@@ -805,7 +808,7 @@
 															<li>
 																Comune:
 																<span>
-																	<xsl:value-of select="Comune"/>
+																	<xsl:value-of select="Comune" />
 																</span>
 															</li>
 														</xsl:if>
@@ -813,7 +816,7 @@
 															<li>
 																Provincia:
 																<span>
-																	<xsl:value-of select="Provincia"/>
+																	<xsl:value-of select="Provincia" />
 																</span>
 															</li>
 														</xsl:if>
@@ -821,7 +824,7 @@
 															<li>
 																Nazione:
 																<span>
-																	<xsl:value-of select="Nazione"/>
+																	<xsl:value-of select="Nazione" />
 																</span>
 															</li>
 														</xsl:if>
@@ -839,7 +842,7 @@
 															<li>
 																Indirizzo:
 																<span>
-																	<xsl:value-of select="Indirizzo"/>
+																	<xsl:value-of select="Indirizzo" />
 																</span>
 															</li>
 														</xsl:if>
@@ -847,7 +850,7 @@
 															<li>
 																Numero civico:
 																<span>
-																	<xsl:value-of select="NumeroCivico"/>
+																	<xsl:value-of select="NumeroCivico" />
 																</span>
 															</li>
 														</xsl:if>
@@ -855,7 +858,7 @@
 															<li>
 																CAP:
 																<span>
-																	<xsl:value-of select="CAP"/>
+																	<xsl:value-of select="CAP" />
 																</span>
 															</li>
 														</xsl:if>
@@ -863,7 +866,7 @@
 															<li>
 																Comune:
 																<span>
-																	<xsl:value-of select="Comune"/>
+																	<xsl:value-of select="Comune" />
 																</span>
 															</li>
 														</xsl:if>
@@ -871,7 +874,7 @@
 															<li>
 																Provincia:
 																<span>
-																	<xsl:value-of select="Provincia"/>
+																	<xsl:value-of select="Provincia" />
 																</span>
 															</li>
 														</xsl:if>
@@ -879,7 +882,7 @@
 															<li>
 																Nazione:
 																<span>
-																	<xsl:value-of select="Nazione"/>
+																	<xsl:value-of select="Nazione" />
 																</span>
 															</li>
 														</xsl:if>
@@ -897,8 +900,8 @@
 																	<li>
 																		Identificativo fiscale ai fini IVA:
 																		<span>
-																			<xsl:value-of select="IdFiscaleIVA/IdPaese"/>
-																			<xsl:value-of select="IdFiscaleIVA/IdCodice"/>
+																			<xsl:value-of select="IdFiscaleIVA/IdPaese" />
+																			<xsl:value-of select="IdFiscaleIVA/IdCodice" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -906,7 +909,7 @@
 																	<li>
 																		Denominazione:
 																		<span>
-																			<xsl:value-of select="Denominazione"/>
+																			<xsl:value-of select="Denominazione" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -914,7 +917,7 @@
 																	<li>
 																		Nome:
 																		<span>
-																			<xsl:value-of select="Nome"/>
+																			<xsl:value-of select="Nome" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -922,7 +925,7 @@
 																	<li>
 																		Cognome:
 																		<span>
-																			<xsl:value-of select="Cognome"/>
+																			<xsl:value-of select="Cognome" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -951,8 +954,8 @@
 															<li>
 																Identificativo fiscale ai fini IVA:
 																<span>
-																	<xsl:value-of select="DatiAnagrafici/IdFiscaleIVA/IdPaese"/>
-																	<xsl:value-of select="DatiAnagrafici/IdFiscaleIVA/IdCodice"/>
+																	<xsl:value-of select="DatiAnagrafici/IdFiscaleIVA/IdPaese" />
+																	<xsl:value-of select="DatiAnagrafici/IdFiscaleIVA/IdCodice" />
 																</span>
 															</li>
 														</xsl:if>
@@ -960,7 +963,7 @@
 															<li>
 																Codice Fiscale:
 																<span>
-																	<xsl:value-of select="DatiAnagrafici/CodiceFiscale"/>
+																	<xsl:value-of select="DatiAnagrafici/CodiceFiscale" />
 																</span>
 															</li>
 														</xsl:if>
@@ -968,7 +971,7 @@
 															<li>
 																Denominazione:
 																<span>
-																	<xsl:value-of select="DatiAnagrafici/Anagrafica/Denominazione"/>
+																	<xsl:value-of select="DatiAnagrafici/Anagrafica/Denominazione" />
 																</span>
 															</li>
 														</xsl:if>
@@ -976,7 +979,7 @@
 															<li>
 																Nome:
 																<span>
-																	<xsl:value-of select="DatiAnagrafici/Anagrafica/Nome"/>
+																	<xsl:value-of select="DatiAnagrafici/Anagrafica/Nome" />
 																</span>
 															</li>
 														</xsl:if>
@@ -984,7 +987,7 @@
 															<li>
 																Cognome:
 																<span>
-																	<xsl:value-of select="DatiAnagrafici/Anagrafica/Cognome"/>
+																	<xsl:value-of select="DatiAnagrafici/Anagrafica/Cognome" />
 																</span>
 															</li>
 														</xsl:if>
@@ -992,7 +995,7 @@
 															<li>
 																Titolo onorifico:
 																<span>
-																	<xsl:value-of select="DatiAnagrafici/Anagrafica/Titolo"/>
+																	<xsl:value-of select="DatiAnagrafici/Anagrafica/Titolo" />
 																</span>
 															</li>
 														</xsl:if>
@@ -1000,7 +1003,7 @@
 															<li>
 																Codice EORI:
 																<span>
-																	<xsl:value-of select="DatiAnagrafici/Anagrafica/CodEORI"/>
+																	<xsl:value-of select="DatiAnagrafici/Anagrafica/CodEORI" />
 																</span>
 															</li>
 														</xsl:if>
@@ -1019,10 +1022,10 @@
 												<li>
 													Soggetto emittente:
 													<span>
-														<xsl:value-of select="a:FatturaElettronica/FatturaElettronicaHeader/SoggettoEmittente"/>
+														<xsl:value-of select="a:FatturaElettronica/FatturaElettronicaHeader/SoggettoEmittente" />
 													</span>
 													<xsl:variable name="SC">
-														<xsl:value-of select="a:FatturaElettronica/FatturaElettronicaHeader/SoggettoEmittente"/>
+														<xsl:value-of select="a:FatturaElettronica/FatturaElettronicaHeader/SoggettoEmittente" />
 													</xsl:variable>
 													<xsl:choose>
 														<xsl:when test="$SC='CC'">
@@ -1043,6 +1046,10 @@
 									</xsl:if>
 									<!--FINE DATI SOGGETTO EMITTENTE-->
 
+									<div class="footer">
+										Versione prodotta con foglio di stile SdI
+										<a href="http://www.fatturapa.gov.it">www.fatturapa.gov.it</a>
+									</div>
 								</div>
 							</xsl:if>
 							<!--FINE DATI HEADER-->
@@ -1050,14 +1057,14 @@
 							<!--INIZIO DATI BODY-->
 
 							<xsl:variable name="TOTALBODY">
-								<xsl:value-of select="count(a:FatturaElettronica/FatturaElettronicaBody)"/>
+								<xsl:value-of select="count(a:FatturaElettronica/FatturaElettronicaBody)" />
 							</xsl:variable>
 
 							<xsl:for-each select="a:FatturaElettronica/FatturaElettronicaBody">
-								<xsl:if test="$TOTALBODY&gt;1">
+								<xsl:if test="$TOTALBODY>1">
 									<h2>
 										Numero documento nel lotto:
-										<xsl:value-of select="position()"/>
+										<xsl:value-of select="position()" />
 									</h2>
 								</xsl:if>
 
@@ -1081,11 +1088,11 @@
 															<li>
 																Tipologia documento:
 																<span>
-																	<xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/TipoDocumento"/>
+																	<xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/TipoDocumento" />
 																</span>
 
 																<xsl:variable name="TD">
-																	<xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/TipoDocumento"/>
+																	<xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/TipoDocumento" />
 																</xsl:variable>
 																<xsl:choose>
 																	<xsl:when test="$TD='TD01'">
@@ -1106,6 +1113,51 @@
 																	<xsl:when test="$TD='TD06'">
 																		(parcella)
 																	</xsl:when>
+																	<xsl:when test="$TD='TD16'">
+																		(integrazione fattura 
+																		reverse charge interno)
+																	</xsl:when>
+																	<xsl:when test="$TD='TD17'">
+																		(integrazione/autofattura per 
+																		acquisto servizi da estero)
+																	</xsl:when>
+																	<xsl:when test="$TD='TD18'">
+																		(integrazione per acquisto 
+																		beni intracomunitari)
+																	</xsl:when>
+																	<xsl:when test="$TD='TD19'">
+																		(integrazione/autofattura per 
+																		acquisto beni ex art.17 c.2 DPR 633/72)
+																	</xsl:when>
+																	<xsl:when test="$TD='TD20'">
+																		(autofattura per regolarizzazione e 
+																		integrazione delle fatture - 
+																		art.6 c.8 d.lgs.471/97 o art.46 c.5 D.L.331/93)
+																	</xsl:when>
+																	<xsl:when test="$TD='TD21'">
+																		(autofattura per splafonamento)
+																	</xsl:when>
+																	<xsl:when test="$TD='TD22'">
+																		(estrazione beni da Deposito IVA)
+																	</xsl:when>
+																	<xsl:when test="$TD='TD23'">
+																		(estrazione beni da Deposito IVA 
+																		con versamento IVA)
+																	</xsl:when>
+																	<xsl:when test="$TD='TD24'">
+																		(fattura differita - art.21 c.4 lett. a)
+																	</xsl:when>
+																	<xsl:when test="$TD='TD25'">
+																		(fattura differita - art.21 c.4 terzo periodo lett. b)
+																	</xsl:when>
+																	<xsl:when test="$TD='TD26'">
+																		(cessione di beni ammortizzabili e per 
+																		passaggi interni - art.36 DPR 633/72)
+																	</xsl:when>
+																	<xsl:when test="$TD='TD27'">
+																		(fattura per autoconsumo o per cessioni 
+																		gratuite senza rivalsa)
+																	</xsl:when>
 																	<xsl:when test="$TD=''">
 																	</xsl:when>
 																	<xsl:otherwise>
@@ -1118,7 +1170,7 @@
 															<li>
 																Valuta importi:
 																<span>
-																	<xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Divisa"/>
+																	<xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Divisa" />
 																</span>
 															</li>
 														</xsl:if>
@@ -1126,10 +1178,10 @@
 															<li>
 																Data documento:
 																<span>
-																	<xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Data"/>
+																	<xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Data" />
 																</span>
 																<xsl:call-template name="FormatDate">
-																	<xsl:with-param name="DateTime" select="DatiGenerali/DatiGeneraliDocumento/Data"/>
+																	<xsl:with-param name="DateTime" select="DatiGenerali/DatiGeneraliDocumento/Data" />
 																</xsl:call-template>
 															</li>
 														</xsl:if>
@@ -1137,7 +1189,7 @@
 															<li>
 																Numero documento:
 																<span>
-																	<xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Numero"/>
+																	<xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Numero" />
 																</span>
 															</li>
 														</xsl:if>
@@ -1145,7 +1197,7 @@
 															<li>
 																Importo totale documento:
 																<span>
-																	<xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/ImportoTotaleDocumento"/>
+																	<xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/ImportoTotaleDocumento" />
 																</span>
 															</li>
 														</xsl:if>
@@ -1153,7 +1205,7 @@
 															<li>
 																Arrotondamento su Importo totale documento:
 																<span>
-																	<xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Arrotondamento"/>
+																	<xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Arrotondamento" />
 																</span>
 															</li>
 														</xsl:if>
@@ -1162,7 +1214,7 @@
 															<li>
 																Causale:
 																<span>
-																	<xsl:value-of select="current()"/>
+																	<xsl:value-of select="current()" />
 																</span>
 															</li>
 															
@@ -1171,7 +1223,7 @@
 															<li>
 																Art. 73 DPR 633/72:
 																<span>
-																	<xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Art73"/>
+																	<xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Art73" />
 																</span>
 															</li>
 														</xsl:if>
@@ -1187,10 +1239,10 @@
 																		<li>
 																			Tipologia ritenuta:
 																			<span>
-																				<xsl:value-of select="TipoRitenuta"/>
+																				<xsl:value-of select="TipoRitenuta" />
 																			</span>
 																			<xsl:variable name="TR">
-																				<xsl:value-of select="TipoRitenuta"/>
+																				<xsl:value-of select="TipoRitenuta" />
 																			</xsl:variable>
 																			<xsl:choose>
 																				<xsl:when test="$TR='RT01'">
@@ -1198,6 +1250,18 @@
 																				</xsl:when>
 																				<xsl:when test="$TR='RT02'">
 																					(ritenuta persone giuridiche)
+																				</xsl:when>
+																				<xsl:when test="$TR='RT03'">
+																					(contributo INPS)
+																				</xsl:when>
+																				<xsl:when test="$TR='RT04'">
+																					(contributo ENASARCO)
+																				</xsl:when>
+																				<xsl:when test="$TR='RT05'">
+																					(contributo ENPAM)
+																				</xsl:when>
+																				<xsl:when test="$TR='RT06'">
+																					(altro contributo previdenziale)
 																				</xsl:when>
 																				<xsl:when test="$TR=''">
 																				</xsl:when>
@@ -1211,7 +1275,7 @@
 																		<li>
 																			Importo ritenuta:
 																			<span>
-																				<xsl:value-of select="ImportoRitenuta"/>
+																				<xsl:value-of select="ImportoRitenuta" />
 																			</span>
 																		</li>
 																	</xsl:if>
@@ -1219,7 +1283,7 @@
 																		<li>
 																			Aliquota ritenuta (%):
 																			<span>
-																				<xsl:value-of select="AliquotaRitenuta"/>
+																				<xsl:value-of select="AliquotaRitenuta" />
 																			</span>
 																		</li>
 																	</xsl:if>
@@ -1227,13 +1291,13 @@
 																		<li>
 																			Causale di pagamento:
 																			<span>
-																				<xsl:value-of select="CausalePagamento"/>
+																				<xsl:value-of select="CausalePagamento" />
 																			</span>
 																			<xsl:variable name="CP">
-																				<xsl:value-of select="CausalePagamento"/>
+																				<xsl:value-of select="CausalePagamento" />
 																			</xsl:variable>
 																			<xsl:if test="$CP!=''">
-																				(decodifica come da modello 770S)
+																				(decodifica come da modello CU)
 																			</xsl:if>
 																		</li>
 																	</xsl:if>
@@ -1253,7 +1317,7 @@
 																		<li>
 																			Bollo virtuale:
 																			<span>
-																				<xsl:value-of select="BolloVirtuale"/>
+																				<xsl:value-of select="BolloVirtuale" />
 																			</span>
 																		</li>
 																	</xsl:if>
@@ -1261,7 +1325,7 @@
 																		<li>
 																			Importo bollo:
 																			<span>
-																				<xsl:value-of select="ImportoBollo"/>
+																				<xsl:value-of select="ImportoBollo" />
 																			</span>
 																		</li>
 																	</xsl:if>
@@ -1281,10 +1345,10 @@
 																		<li>
 																			Tipologia cassa previdenziale:
 																			<span>
-																				<xsl:value-of select="TipoCassa"/>
+																				<xsl:value-of select="TipoCassa" />
 																			</span>
 																			<xsl:variable name="TC">
-																				<xsl:value-of select="TipoCassa"/>
+																				<xsl:value-of select="TipoCassa" />
 																			</xsl:variable>
 																			<xsl:choose>
 																				<xsl:when test="$TC='TC01'">
@@ -1383,7 +1447,7 @@
 																		<li>
 																			Aliquota contributo cassa (%):
 																			<span>
-																				<xsl:value-of select="AlCassa"/>
+																				<xsl:value-of select="AlCassa" />
 																			</span>
 																		</li>
 																	</xsl:if>
@@ -1391,7 +1455,7 @@
 																		<li>
 																			Importo contributo cassa:
 																			<span>
-																				<xsl:value-of select="ImportoContributoCassa"/>
+																				<xsl:value-of select="ImportoContributoCassa" />
 																			</span>
 																		</li>
 																	</xsl:if>
@@ -1399,7 +1463,7 @@
 																		<li>
 																			Imponibile previdenziale:
 																			<span>
-																				<xsl:value-of select="ImponibileCassa"/>
+																				<xsl:value-of select="ImponibileCassa" />
 																			</span>
 																		</li>
 																	</xsl:if>
@@ -1407,7 +1471,7 @@
 																		<li>
 																			Aliquota IVA applicata:
 																			<span>
-																				<xsl:value-of select="AliquotaIVA"/>
+																				<xsl:value-of select="AliquotaIVA" />
 																			</span>
 																		</li>
 																	</xsl:if>
@@ -1415,7 +1479,7 @@
 																		<li>
 																			Contributo cassa soggetto a ritenuta:
 																			<span>
-																				<xsl:value-of select="Ritenuta"/>
+																				<xsl:value-of select="Ritenuta" />
 																			</span>
 																		</li>
 																	</xsl:if>
@@ -1423,10 +1487,10 @@
 																		<li>
 																			Tipologia di non imponibilità del contributo:
 																			<span>
-																				<xsl:value-of select="Natura"/>
+																				<xsl:value-of select="Natura" />
 																			</span>
 																			<xsl:variable name="NT">
-																				<xsl:value-of select="Natura"/>
+																				<xsl:value-of select="Natura" />
 																			</xsl:variable>
 																			<xsl:choose>
 																				<xsl:when test="$NT='N1'">
@@ -1435,8 +1499,36 @@
 																				<xsl:when test="$NT='N2'">
 																					(non soggette)
 																				</xsl:when>
+																				<xsl:when test="$NT='N2.1'">
+																					(non soggette ad IVA - artt. da 7 a 7-septies 
+																					del DPR 633/72)
+																				</xsl:when>
+																				<xsl:when test="$NT='N2.2'">
+																					(non soggette - altri casi)
+																				</xsl:when>
 																				<xsl:when test="$NT='N3'">
 																					(non imponibili)
+																				</xsl:when>
+																				<xsl:when test="$NT='N3.1'">
+																					(non imponibili - esportazioni)
+																				</xsl:when>
+																				<xsl:when test="$NT='N3.2'">
+																					(non imponibili - cessioni intracomunitarie)
+																				</xsl:when>
+																				<xsl:when test="$NT='N3.3'">
+																					(non imponibili - cessioni verso S.Marino)
+																				</xsl:when>
+																				<xsl:when test="$NT='N3.4'">
+																					(non imponibili - operazioni assimilate alle 
+																					cessioni all'esportazione)
+																				</xsl:when>
+																				<xsl:when test="$NT='N3.5'">
+																					(non imponibili - a seguito di dichiarazioni 
+																					d'intento)
+																				</xsl:when>
+																				<xsl:when test="$NT='N3.6'">
+																					(non imponibili - altre operazioni che non 
+																					concorrono alla formazione del plafond)
 																				</xsl:when>
 																				<xsl:when test="$NT='N4'">
 																					(esenti)
@@ -1445,10 +1537,51 @@
 																					(regime del margine / IVA non esposta in fattura)
 																				</xsl:when>
 																				<xsl:when test="$NT='N6'">
-																					(inversione contabile)
+																					(inversione contabile per le operazioni in reverse 
+																					charge ovvero nei casi di autofatturazione per 
+																					acquisti extra UE di servizi ovvero per importazioni 
+																					di beni nei soli casi previsti)
+																				</xsl:when>
+																				<xsl:when test="$NT='N6.1'">
+																					(inversione contabile - cessione di rottami e 
+																					altri materiali di recupero)
+																				</xsl:when>
+																				<xsl:when test="$NT='N6.2'">
+																					(inversione contabile - cessione di oro e 
+																					argento puro)
+																				</xsl:when>
+																				<xsl:when test="$NT='N6.3'">
+																					(inversione contabile - subappalto nel settore 
+																					edile)
+																				</xsl:when>
+																				<xsl:when test="$NT='N6.4'">
+																					(inversione contabile - cessione di fabbricati)
+																				</xsl:when>
+																				<xsl:when test="$NT='N6.5'">
+																					(inversione contabile - cessione di telefoni 
+																					cellulari)
+																				</xsl:when>
+																				<xsl:when test="$NT='N6.6'">
+																					(inversione contabile - cessione di prodotti 
+																					elettronici)
+																				</xsl:when>
+																				<xsl:when test="$NT='N6.7'">
+																					(inversione contabile - prestazioni comparto 
+																					edile e settori connessi)
+																				</xsl:when>
+																				<xsl:when test="$NT='N6.8'">
+																					(inversione contabile - operazioni settore 
+																					energetico)
+																				</xsl:when>
+																				<xsl:when test="$NT='N6.9'">
+																					(inversione contabile - altri casi)
 																				</xsl:when>
 																				<xsl:when test="$NT='N7'">
-																					(IVA assolta in altro Stato UE)
+																					(IVA assolta in altro stato UE - vendite a distanza 
+																					ex art.40 c.3 e 4 e art.41 c.1 lett. b DL 331/93; 
+																					prestazione di servizi di telecomunicazioni, 
+																					tele-radiodiffusione ed elettronici ex art.7-sexies 
+																					lett. f, g, e art.74-sexies DPR 633/72)
 																				</xsl:when>
 																				<xsl:when test="$NT=''">
 																				</xsl:when>
@@ -1462,7 +1595,7 @@
 																		<li>
 																			Riferimento amministrativo / contabile:
 																			<span>
-																				<xsl:value-of select="RiferimentoAmministrazione"/>
+																				<xsl:value-of select="RiferimentoAmministrazione" />
 																			</span>
 																		</li>
 																	</xsl:if>
@@ -1482,10 +1615,10 @@
 																		<li>
 																			Tipologia:
 																			<span>
-																				<xsl:value-of select="Tipo"/>
+																				<xsl:value-of select="Tipo" />
 																			</span>
 																			<xsl:variable name="TSM">
-																				<xsl:value-of select="Tipo"/>
+																				<xsl:value-of select="Tipo" />
 																			</xsl:variable>
 																			<xsl:choose>
 																				<xsl:when test="$TSM='SC'">
@@ -1507,7 +1640,7 @@
 																		<li>
 																			Percentuale:
 																			<span>
-																				<xsl:value-of select="Percentuale"/>
+																				<xsl:value-of select="Percentuale" />
 																			</span>
 																		</li>
 																	</xsl:if>
@@ -1515,7 +1648,7 @@
 																		<li>
 																			Importo:
 																			<span>
-																				<xsl:value-of select="Importo"/>
+																				<xsl:value-of select="Importo" />
 																			</span>
 																		</li>
 																	</xsl:if>
@@ -1541,10 +1674,10 @@
 																	Numero linea di fattura a cui si riferisce:
 																	<xsl:for-each select="RiferimentoNumeroLinea">
 																		<span>
-																			<xsl:if test="(position( )) &gt; 1">
+																			<xsl:if test="(position( )) > 1">
 																				,
 																			</xsl:if>
-																			<xsl:value-of select="."/>
+																			<xsl:value-of select="." />
 																		</span>
 																	</xsl:for-each>
 																</li>
@@ -1553,7 +1686,7 @@
 																<li>
 																	Identificativo ordine di acquisto:
 																	<span>
-																		<xsl:value-of select="IdDocumento"/>
+																		<xsl:value-of select="IdDocumento" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1561,10 +1694,10 @@
 																<li>
 																	Data ordine di acquisto:
 																	<span>
-																		<xsl:value-of select="Data"/>
+																		<xsl:value-of select="Data" />
 																	</span>
 																	<xsl:call-template name="FormatDate">
-																		<xsl:with-param name="DateTime" select="Data"/>
+																		<xsl:with-param name="DateTime" select="Data" />
 																	</xsl:call-template>
 																</li>
 															</xsl:if>
@@ -1572,7 +1705,7 @@
 																<li>
 																	Numero linea ordine di acquisto:
 																	<span>
-																		<xsl:value-of select="NumItem"/>
+																		<xsl:value-of select="NumItem" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1580,7 +1713,7 @@
 																<li>
 																	Codice commessa/convenzione:
 																	<span>
-																		<xsl:value-of select="CodiceCommessaConvenzione"/>
+																		<xsl:value-of select="CodiceCommessaConvenzione" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1588,7 +1721,7 @@
 																<li>
 																	Codice Unitario Progetto (CUP):
 																	<span>
-																		<xsl:value-of select="CodiceCUP"/>
+																		<xsl:value-of select="CodiceCUP" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1596,7 +1729,7 @@
 																<li>
 																	Codice Identificativo Gara (CIG):
 																	<span>
-																		<xsl:value-of select="CodiceCIG"/>
+																		<xsl:value-of select="CodiceCIG" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1617,10 +1750,10 @@
 																	Numero linea di fattura a cui si riferisce:
 																	<xsl:for-each select="RiferimentoNumeroLinea">
 																		<span>
-																			<xsl:if test="(position( )) &gt; 1">
+																			<xsl:if test="(position( )) > 1">
 																				,
 																			</xsl:if>
-																			<xsl:value-of select="."/>
+																			<xsl:value-of select="." />
 																		</span>
 																	</xsl:for-each>
 																</li>
@@ -1629,7 +1762,7 @@
 																<li>
 																	Identificativo contratto:
 																	<span>
-																		<xsl:value-of select="IdDocumento"/>
+																		<xsl:value-of select="IdDocumento" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1637,10 +1770,10 @@
 																<li>
 																	Data contratto:
 																	<span>
-																		<xsl:value-of select="Data"/>
+																		<xsl:value-of select="Data" />
 																	</span>
 																	<xsl:call-template name="FormatDate">
-																		<xsl:with-param name="DateTime" select="Data"/>
+																		<xsl:with-param name="DateTime" select="Data" />
 																	</xsl:call-template>
 																</li>
 															</xsl:if>
@@ -1648,7 +1781,7 @@
 																<li>
 																	Numero linea contratto:
 																	<span>
-																		<xsl:value-of select="NumItem"/>
+																		<xsl:value-of select="NumItem" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1656,7 +1789,7 @@
 																<li>
 																	Codice commessa/convenzione:
 																	<span>
-																		<xsl:value-of select="CodiceCommessaConvenzione"/>
+																		<xsl:value-of select="CodiceCommessaConvenzione" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1664,7 +1797,7 @@
 																<li>
 																	Codice Unitario Progetto (CUP):
 																	<span>
-																		<xsl:value-of select="CodiceCUP"/>
+																		<xsl:value-of select="CodiceCUP" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1672,7 +1805,7 @@
 																<li>
 																	Codice Identificativo Gara (CIG):
 																	<span>
-																		<xsl:value-of select="CodiceCIG"/>
+																		<xsl:value-of select="CodiceCIG" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1693,10 +1826,10 @@
 																	Numero linea di fattura a cui si riferisce:
 																	<xsl:for-each select="RiferimentoNumeroLinea">
 																		<span>
-																			<xsl:if test="(position( )) &gt; 1">
+																			<xsl:if test="(position( )) > 1">
 																				,
 																			</xsl:if>
-																			<xsl:value-of select="."/>
+																			<xsl:value-of select="." />
 																		</span>
 
 																	</xsl:for-each>
@@ -1706,7 +1839,7 @@
 																<li>
 																	Identificativo convenzione:
 																	<span>
-																		<xsl:value-of select="IdDocumento"/>
+																		<xsl:value-of select="IdDocumento" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1714,10 +1847,10 @@
 																<li>
 																	Data convenzione:
 																	<span>
-																		<xsl:value-of select="Data"/>
+																		<xsl:value-of select="Data" />
 																	</span>
 																	<xsl:call-template name="FormatDate">
-																		<xsl:with-param name="DateTime" select="Data"/>
+																		<xsl:with-param name="DateTime" select="Data" />
 																	</xsl:call-template>
 																</li>
 															</xsl:if>
@@ -1725,7 +1858,7 @@
 																<li>
 																	Numero linea convenzione:
 																	<span>
-																		<xsl:value-of select="NumItem"/>
+																		<xsl:value-of select="NumItem" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1733,7 +1866,7 @@
 																<li>
 																	Codice commessa/convenzione:
 																	<span>
-																		<xsl:value-of select="CodiceCommessaConvenzione"/>
+																		<xsl:value-of select="CodiceCommessaConvenzione" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1741,7 +1874,7 @@
 																<li>
 																	Codice Unitario Progetto (CUP):
 																	<span>
-																		<xsl:value-of select="CodiceCUP"/>
+																		<xsl:value-of select="CodiceCUP" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1749,7 +1882,7 @@
 																<li>
 																	Codice Identificativo Gara (CIG):
 																	<span>
-																		<xsl:value-of select="CodiceCIG"/>
+																		<xsl:value-of select="CodiceCIG" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1770,10 +1903,10 @@
 																	Numero linea di fattura a cui si riferisce:
 																	<xsl:for-each select="RiferimentoNumeroLinea">
 																		<span>
-																			<xsl:if test="(position( )) &gt; 1">
+																			<xsl:if test="(position( )) > 1">
 																				,
 																			</xsl:if>
-																			<xsl:value-of select="."/>
+																			<xsl:value-of select="." />
 																		</span>
 
 																	</xsl:for-each>
@@ -1783,7 +1916,7 @@
 																<li>
 																	Identificativo ricezione:
 																	<span>
-																		<xsl:value-of select="IdDocumento"/>
+																		<xsl:value-of select="IdDocumento" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1791,10 +1924,10 @@
 																<li>
 																	Data ricezione:
 																	<span>
-																		<xsl:value-of select="Data"/>
+																		<xsl:value-of select="Data" />
 																	</span>
 																	<xsl:call-template name="FormatDate">
-																		<xsl:with-param name="DateTime" select="Data"/>
+																		<xsl:with-param name="DateTime" select="Data" />
 																	</xsl:call-template>
 																</li>
 															</xsl:if>
@@ -1802,7 +1935,7 @@
 																<li>
 																	Numero linea ricezione:
 																	<span>
-																		<xsl:value-of select="NumItem"/>
+																		<xsl:value-of select="NumItem" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1810,7 +1943,7 @@
 																<li>
 																	Codice commessa/convenzione:
 																	<span>
-																		<xsl:value-of select="CodiceCommessaConvenzione"/>
+																		<xsl:value-of select="CodiceCommessaConvenzione" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1818,7 +1951,7 @@
 																<li>
 																	Codice Unitario Progetto (CUP):
 																	<span>
-																		<xsl:value-of select="CodiceCUP"/>
+																		<xsl:value-of select="CodiceCUP" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1826,7 +1959,7 @@
 																<li>
 																	Codice Identificativo Gara (CIG):
 																	<span>
-																		<xsl:value-of select="CodiceCIG"/>
+																		<xsl:value-of select="CodiceCIG" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1847,10 +1980,10 @@
 																	Numero linea di fattura a cui si riferisce:
 																	<xsl:for-each select="RiferimentoNumeroLinea">
 																		<span>
-																			<xsl:if test="(position( )) &gt; 1">
+																			<xsl:if test="(position( )) > 1">
 																				,
 																			</xsl:if>
-																			<xsl:value-of select="."/>
+																			<xsl:value-of select="." />
 																		</span>
 
 																	</xsl:for-each>
@@ -1860,7 +1993,7 @@
 																<li>
 																	Identificativo fattura collegata:
 																	<span>
-																		<xsl:value-of select="IdDocumento"/>
+																		<xsl:value-of select="IdDocumento" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1868,10 +2001,10 @@
 																<li>
 																	Data fattura collegata:
 																	<span>
-																		<xsl:value-of select="Data"/>
+																		<xsl:value-of select="Data" />
 																	</span>
 																	<xsl:call-template name="FormatDate">
-																		<xsl:with-param name="DateTime" select="Data"/>
+																		<xsl:with-param name="DateTime" select="Data" />
 																	</xsl:call-template>
 																</li>
 															</xsl:if>
@@ -1879,7 +2012,7 @@
 																<li>
 																	Numero linea fattura collegata:
 																	<span>
-																		<xsl:value-of select="NumItem"/>
+																		<xsl:value-of select="NumItem" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1887,7 +2020,7 @@
 																<li>
 																	Codice commessa/convenzione:
 																	<span>
-																		<xsl:value-of select="CodiceCommessaConvenzione"/>
+																		<xsl:value-of select="CodiceCommessaConvenzione" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1895,7 +2028,7 @@
 																<li>
 																	Codice Unitario Progetto (CUP):
 																	<span>
-																		<xsl:value-of select="CodiceCUP"/>
+																		<xsl:value-of select="CodiceCUP" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1903,7 +2036,7 @@
 																<li>
 																	Codice Identificativo Gara (CIG):
 																	<span>
-																		<xsl:value-of select="CodiceCIG"/>
+																		<xsl:value-of select="CodiceCIG" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1923,10 +2056,10 @@
 																Numero fase avanzamento:
 																<xsl:for-each select="DatiGenerali/DatiSAL/RiferimentoFase">
 																	<span>
-																		<xsl:if test="(position( )) &gt; 1">
+																		<xsl:if test="(position( )) > 1">
 																			,
 																		</xsl:if>
-																		<xsl:value-of select="."/>
+																		<xsl:value-of select="." />
 																	</span>
 																</xsl:for-each>
 															</li>
@@ -1946,7 +2079,7 @@
 																<li>
 																	Numero DDT:
 																	<span>
-																		<xsl:value-of select="NumeroDDT"/>
+																		<xsl:value-of select="NumeroDDT" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -1954,10 +2087,10 @@
 																<li>
 																	Data DDT:
 																	<span>
-																		<xsl:value-of select="DataDDT"/>
+																		<xsl:value-of select="DataDDT" />
 																	</span>
 																	<xsl:call-template name="FormatDate">
-																		<xsl:with-param name="DateTime" select="DataDDT"/>
+																		<xsl:with-param name="DateTime" select="DataDDT" />
 																	</xsl:call-template>
 																</li>
 															</xsl:if>
@@ -1966,10 +2099,10 @@
 																	Numero linea di fattura a cui si riferisce:
 																	<xsl:for-each select="RiferimentoNumeroLinea">
 																		<span>
-																			<xsl:if test="(position( )) &gt; 1">
+																			<xsl:if test="(position( )) > 1">
 																				,
 																			</xsl:if>
-																			<xsl:value-of select="."/>
+																			<xsl:value-of select="." />
 																		</span>
 																	</xsl:for-each>
 																</li>
@@ -1994,8 +2127,8 @@
 																	<li>
 																		Identificativo fiscale ai fini IVA:
 																		<span>
-																			<xsl:value-of select="IdFiscaleIVA/IdPaese"/>
-																			<xsl:value-of select="IdFiscaleIVA/IdCodice"/>
+																			<xsl:value-of select="IdFiscaleIVA/IdPaese" />
+																			<xsl:value-of select="IdFiscaleIVA/IdCodice" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2003,7 +2136,7 @@
 																	<li>
 																		Codice Fiscale:
 																		<span>
-																			<xsl:value-of select="CodiceFiscale"/>
+																			<xsl:value-of select="CodiceFiscale" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2011,7 +2144,7 @@
 																	<li>
 																		Denominazione:
 																		<span>
-																			<xsl:value-of select="Anagrafica/Denominazione"/>
+																			<xsl:value-of select="Anagrafica/Denominazione" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2019,7 +2152,7 @@
 																	<li>
 																		Nome:
 																		<span>
-																			<xsl:value-of select="Anagrafica/Nome"/>
+																			<xsl:value-of select="Anagrafica/Nome" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2027,7 +2160,7 @@
 																	<li>
 																		Cognome:
 																		<span>
-																			<xsl:value-of select="Anagrafica/Cognome"/>
+																			<xsl:value-of select="Anagrafica/Cognome" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2035,7 +2168,7 @@
 																	<li>
 																		Titolo onorifico:
 																		<span>
-																			<xsl:value-of select="Anagrafica/Titolo"/>
+																			<xsl:value-of select="Anagrafica/Titolo" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2043,7 +2176,7 @@
 																	<li>
 																		Codice EORI:
 																		<span>
-																			<xsl:value-of select="Anagrafica/CodEORI"/>
+																			<xsl:value-of select="Anagrafica/CodEORI" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2051,7 +2184,7 @@
 																	<li>
 																		Numero licenza di guida:
 																		<span>
-																			<xsl:value-of select="NumeroLicenzaGuida"/>
+																			<xsl:value-of select="NumeroLicenzaGuida" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2059,7 +2192,8 @@
 														</ul>
 													</xsl:if>
 
-													<xsl:if test="DatiGenerali/DatiTrasporto/MezzoTrasporto or DatiGenerali/DatiTrasporto/CausaleTrasporto or DatiGenerali/DatiTrasporto/NumeroColli or DatiGenerali/DatiTrasporto/Descrizione or DatiGenerali/DatiTrasporto/UnitaMisuraPeso or DatiGenerali/DatiTrasporto/PesoLordo or DatiGenerali/DatiTrasporto/PesoNetto or DatiGenerali/DatiTrasporto/DataOraRitiro or DatiGenerali/DatiTrasporto/DataInizioTrasporto or DatiGenerali/DatiTrasporto/TipoResa or DatiGenerali/DatiTrasporto/IndirizzoResa">
+													<xsl:if
+														test="DatiGenerali/DatiTrasporto/MezzoTrasporto or DatiGenerali/DatiTrasporto/CausaleTrasporto or DatiGenerali/DatiTrasporto/NumeroColli or DatiGenerali/DatiTrasporto/Descrizione or DatiGenerali/DatiTrasporto/UnitaMisuraPeso or DatiGenerali/DatiTrasporto/PesoLordo or DatiGenerali/DatiTrasporto/PesoNetto or DatiGenerali/DatiTrasporto/DataOraRitiro or DatiGenerali/DatiTrasporto/DataInizioTrasporto or DatiGenerali/DatiTrasporto/TipoResa or DatiGenerali/DatiTrasporto/IndirizzoResa">
 														<h4>Altri dati</h4>
 
 														<ul>
@@ -2068,7 +2202,7 @@
 																	<li>
 																		Mezzo di trasporto:
 																		<span>
-																			<xsl:value-of select="MezzoTrasporto"/>
+																			<xsl:value-of select="MezzoTrasporto" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2076,7 +2210,7 @@
 																	<li>
 																		Causale trasporto:
 																		<span>
-																			<xsl:value-of select="CausaleTrasporto"/>
+																			<xsl:value-of select="CausaleTrasporto" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2084,7 +2218,7 @@
 																	<li>
 																		Numero colli trasportati:
 																		<span>
-																			<xsl:value-of select="NumeroColli"/>
+																			<xsl:value-of select="NumeroColli" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2092,7 +2226,7 @@
 																	<li>
 																		Descrizione beni trasportati:
 																		<span>
-																			<xsl:value-of select="Descrizione"/>
+																			<xsl:value-of select="Descrizione" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2100,7 +2234,7 @@
 																	<li>
 																		Unità di misura del peso merce:
 																		<span>
-																			<xsl:value-of select="UnitaMisuraPeso"/>
+																			<xsl:value-of select="UnitaMisuraPeso" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2108,7 +2242,7 @@
 																	<li>
 																		Peso lordo:
 																		<span>
-																			<xsl:value-of select="PesoLordo"/>
+																			<xsl:value-of select="PesoLordo" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2116,7 +2250,7 @@
 																	<li>
 																		Peso netto:
 																		<span>
-																			<xsl:value-of select="PesoNetto"/>
+																			<xsl:value-of select="PesoNetto" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2124,10 +2258,10 @@
 																	<li>
 																		Data e ora ritiro merce:
 																		<span>
-																			<xsl:value-of select="DataOraRitiro"/>
+																			<xsl:value-of select="DataOraRitiro" />
 																		</span>
 																		<xsl:call-template name="FormatDate">
-																			<xsl:with-param name="DateTime" select="DataOraRitiro"/>
+																			<xsl:with-param name="DateTime" select="DataOraRitiro" />
 																		</xsl:call-template>
 																	</li>
 																</xsl:if>
@@ -2135,10 +2269,10 @@
 																	<li>
 																		Data inizio trasporto:
 																		<span>
-																			<xsl:value-of select="DataInizioTrasporto"/>
+																			<xsl:value-of select="DataInizioTrasporto" />
 																		</span>
 																		<xsl:call-template name="FormatDate">
-																			<xsl:with-param name="DateTime" select="DataInizioTrasporto"/>
+																			<xsl:with-param name="DateTime" select="DataInizioTrasporto" />
 																		</xsl:call-template>
 																	</li>
 																</xsl:if>
@@ -2146,7 +2280,7 @@
 																	<li>
 																		Tipologia di resa:
 																		<span>
-																			<xsl:value-of select="TipoResa"/>
+																			<xsl:value-of select="TipoResa" />
 																		</span>
 
 																		(codifica secondo standard ICC)
@@ -2156,7 +2290,7 @@
 																	<li>
 																		Indirizzo di resa:
 																		<span>
-																			<xsl:value-of select="IndirizzoResa/Indirizzo"/>
+																			<xsl:value-of select="IndirizzoResa/Indirizzo" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2164,7 +2298,7 @@
 																	<li>
 																		Numero civico indirizzo di resa:
 																		<span>
-																			<xsl:value-of select="IndirizzoResa/NumeroCivico"/>
+																			<xsl:value-of select="IndirizzoResa/NumeroCivico" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2172,7 +2306,7 @@
 																	<li>
 																		CAP indirizzo di resa:
 																		<span>
-																			<xsl:value-of select="IndirizzoResa/CAP"/>
+																			<xsl:value-of select="IndirizzoResa/CAP" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2180,7 +2314,7 @@
 																	<li>
 																		Comune di resa:
 																		<span>
-																			<xsl:value-of select="IndirizzoResa/Comune"/>
+																			<xsl:value-of select="IndirizzoResa/Comune" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2188,7 +2322,7 @@
 																	<li>
 																		Provincia di resa:
 																		<span>
-																			<xsl:value-of select="IndirizzoResa/Provincia"/>
+																			<xsl:value-of select="IndirizzoResa/Provincia" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2196,7 +2330,7 @@
 																	<li>
 																		Nazione di resa:
 																		<span>
-																			<xsl:value-of select="IndirizzoResa/Nazione"/>
+																			<xsl:value-of select="IndirizzoResa/Nazione" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2217,7 +2351,7 @@
 															<li>
 																Numero fattura principale:
 																<span>
-																	<xsl:value-of select="DatiGenerali/FatturaPrincipale/NumeroFatturaPrincipale"/>
+																	<xsl:value-of select="DatiGenerali/FatturaPrincipale/NumeroFatturaPrincipale" />
 																</span>
 															</li>
 														</xsl:if>
@@ -2225,10 +2359,10 @@
 															<li>
 																Data fattura principale:
 																<span>
-																	<xsl:value-of select="DatiGenerali/FatturaPrincipale/DataFatturaPrincipale"/>
+																	<xsl:value-of select="DatiGenerali/FatturaPrincipale/DataFatturaPrincipale" />
 																</span>
 																<xsl:call-template name="FormatDate">
-																	<xsl:with-param name="DateTime" select="DatiGenerali/FatturaPrincipale/DataFatturaPrincipale"/>
+																	<xsl:with-param name="DateTime" select="DatiGenerali/FatturaPrincipale/DataFatturaPrincipale" />
 																</xsl:call-template>
 															</li>
 														</xsl:if>
@@ -2254,7 +2388,7 @@
 														<h5>
 															Nr. linea:
 															<span>
-																<xsl:value-of select="NumeroLinea"/>
+																<xsl:value-of select="NumeroLinea" />
 															</span>
 														</h5>
 
@@ -2263,10 +2397,10 @@
 																<li>
 																	Tipo cessione/prestazione:
 																	<span>
-																		<xsl:value-of select="TipoCessionePrestazione"/>
+																		<xsl:value-of select="TipoCessionePrestazione" />
 																	</span>
 																	<xsl:variable name="TCP">
-																		<xsl:value-of select="TipoCessionePrestazione"/>
+																		<xsl:value-of select="TipoCessionePrestazione" />
 																	</xsl:variable>
 																	<xsl:choose>
 																		<xsl:when test="$TCP='SC'">
@@ -2296,7 +2430,7 @@
 																				<li>
 																					Tipo:
 																					<span>
-																						<xsl:value-of select="CodiceTipo"/>
+																						<xsl:value-of select="CodiceTipo" />
 																					</span>
 																				</li>
 																			</xsl:if>
@@ -2304,7 +2438,7 @@
 																				<li>
 																					Valore:
 																					<span>
-																						<xsl:value-of select="CodiceValore"/>
+																						<xsl:value-of select="CodiceValore" />
 																					</span>
 																				</li>
 																			</xsl:if>
@@ -2316,7 +2450,7 @@
 																<li>
 																	Descrizione bene/servizio:
 																	<span>
-																		<xsl:value-of select="Descrizione"/>
+																		<xsl:value-of select="Descrizione" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -2324,7 +2458,7 @@
 																<li>
 																	Quantità:
 																	<span>
-																		<xsl:value-of select="Quantita"/>
+																		<xsl:value-of select="Quantita" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -2332,7 +2466,7 @@
 																<li>
 																	Unità di misura:
 																	<span>
-																		<xsl:value-of select="UnitaMisura"/>
+																		<xsl:value-of select="UnitaMisura" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -2340,10 +2474,10 @@
 																<li>
 																	Data inizio periodo di riferimento:
 																	<span>
-																		<xsl:value-of select="DataInizioPeriodo"/>
+																		<xsl:value-of select="DataInizioPeriodo" />
 																	</span>
 																	<xsl:call-template name="FormatDate">
-																		<xsl:with-param name="DateTime" select="DataInizioPeriodo"/>
+																		<xsl:with-param name="DateTime" select="DataInizioPeriodo" />
 																	</xsl:call-template>
 																</li>
 															</xsl:if>
@@ -2351,10 +2485,10 @@
 																<li>
 																	Data fine periodo di riferimento:
 																	<span>
-																		<xsl:value-of select="DataFinePeriodo"/>
+																		<xsl:value-of select="DataFinePeriodo" />
 																	</span>
 																	<xsl:call-template name="FormatDate">
-																		<xsl:with-param name="DateTime" select="DataFinePeriodo"/>
+																		<xsl:with-param name="DateTime" select="DataFinePeriodo" />
 																	</xsl:call-template>
 																</li>
 															</xsl:if>
@@ -2362,7 +2496,7 @@
 																<li>
 																	Valore unitario:
 																	<span>
-																		<xsl:value-of select="PrezzoUnitario"/>
+																		<xsl:value-of select="PrezzoUnitario" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -2376,10 +2510,10 @@
 																				<li>
 																					Tipo:
 																					<span>
-																						<xsl:value-of select="Tipo"/>
+																						<xsl:value-of select="Tipo" />
 																					</span>
 																					<xsl:variable name="TSCM">
-																						<xsl:value-of select="Tipo"/>
+																						<xsl:value-of select="Tipo" />
 																					</xsl:variable>
 																					<xsl:choose>
 																						<xsl:when test="$TSCM='SC'">
@@ -2401,7 +2535,7 @@
 																				<li>
 																					Percentuale (%):
 																					<span>
-																						<xsl:value-of select="Percentuale"/>
+																						<xsl:value-of select="Percentuale" />
 																					</span>
 																				</li>
 																			</xsl:if>
@@ -2409,7 +2543,7 @@
 																				<li>
 																					Importo:
 																					<span>
-																						<xsl:value-of select="Importo"/>
+																						<xsl:value-of select="Importo" />
 																					</span>
 																				</li>
 																			</xsl:if>
@@ -2421,7 +2555,7 @@
 																<li>
 																	Valore totale:
 																	<span>
-																		<xsl:value-of select="PrezzoTotale"/>
+																		<xsl:value-of select="PrezzoTotale" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -2429,7 +2563,7 @@
 																<li>
 																	IVA (%):
 																	<span>
-																		<xsl:value-of select="AliquotaIVA"/>
+																		<xsl:value-of select="AliquotaIVA" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -2437,7 +2571,7 @@
 																<li>
 																	Soggetta a ritenuta:
 																	<span>
-																		<xsl:value-of select="Ritenuta"/>
+																		<xsl:value-of select="Ritenuta" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -2445,10 +2579,10 @@
 																<li>
 																	Natura operazione:
 																	<span>
-																		<xsl:value-of select="Natura"/>
+																		<xsl:value-of select="Natura" />
 																	</span>
 																	<xsl:variable name="NAT">
-																		<xsl:value-of select="Natura"/>
+																		<xsl:value-of select="Natura" />
 																	</xsl:variable>
 																	<xsl:choose>
 																		<xsl:when test="$NAT='N1'">
@@ -2457,20 +2591,89 @@
 																		<xsl:when test="$NAT='N2'">
 																			(non soggetta)
 																		</xsl:when>
+																		<xsl:when test="$NAT='N2.1'">
+																			(non soggette ad IVA - artt. da 7 a 7-septies 
+																			del DPR 633/72)
+																		</xsl:when>
+																		<xsl:when test="$NAT='N2.2'">
+																			(non soggette - altri casi)
+																		</xsl:when>
 																		<xsl:when test="$NAT='N3'">
-																			(non imponibile)
+																			(non imponibili)
+																		</xsl:when>
+																		<xsl:when test="$NAT='N3.1'">
+																			(non imponibili - esportazioni)
+																		</xsl:when>
+																		<xsl:when test="$NAT='N3.2'">
+																			(non imponibili - cessioni intracomunitarie)
+																		</xsl:when>
+																		<xsl:when test="$NAT='N3.3'">
+																			(non imponibili - cessioni verso S.Marino)
+																		</xsl:when>
+																		<xsl:when test="$NAT='N3.4'">
+																			(non imponibili - operazioni assimilate alle 
+																			cessioni all'esportazione)
+																		</xsl:when>
+																		<xsl:when test="$NAT='N3.5'">
+																			(non imponibili - a seguito di dichiarazioni 
+																			d'intento)
+																		</xsl:when>
+																		<xsl:when test="$NAT='N3.6'">
+																			(non imponibili - altre operazioni che non 
+																			concorrono alla formazione del plafond)
 																		</xsl:when>
 																		<xsl:when test="$NAT='N4'">
-																			(esente)
+																			(esenti)
 																		</xsl:when>
 																		<xsl:when test="$NAT='N5'">
 																			(regime del margine / IVA non esposta in fattura)
 																		</xsl:when>
 																		<xsl:when test="$NAT='N6'">
-																			(inversione contabile)
+																			(inversione contabile per le operazioni in reverse 
+																			charge ovvero nei casi di autofatturazione per 
+																			acquisti extra UE di servizi ovvero per importazioni 
+																			di beni nei soli casi previsti)
+																		</xsl:when>
+																		<xsl:when test="$NAT='N6.1'">
+																			(inversione contabile - cessione di rottami e 
+																			altri materiali di recupero)
+																		</xsl:when>
+																		<xsl:when test="$NAT='N6.2'">
+																			(inversione contabile - cessione di oro e 
+																			argento puro)
+																		</xsl:when>
+																		<xsl:when test="$NAT='N6.3'">
+																			(inversione contabile - subappalto nel settore 
+																			edile)
+																		</xsl:when>
+																		<xsl:when test="$NAT='N6.4'">
+																			(inversione contabile - cessione di fabbricati)
+																		</xsl:when>
+																		<xsl:when test="$NAT='N6.5'">
+																			(inversione contabile - cessione di telefoni 
+																			cellulari)
+																		</xsl:when>
+																		<xsl:when test="$NAT='N6.6'">
+																			(inversione contabile - cessione di prodotti 
+																			elettronici)
+																		</xsl:when>
+																		<xsl:when test="$NAT='N6.7'">
+																			(inversione contabile - prestazioni comparto 
+																			edile e settori connessi)
+																		</xsl:when>
+																		<xsl:when test="$NAT='N6.8'">
+																			(inversione contabile - operazioni settore 
+																			energetico)
+																		</xsl:when>
+																		<xsl:when test="$NAT='N6.9'">
+																			(inversione contabile - altri casi)
 																		</xsl:when>
 																		<xsl:when test="$NAT='N7'">
-																			(IVA assolta in altro Stato UE)
+																			(IVA assolta in altro stato UE - vendite a distanza 
+																			ex art.40 c.3 e 4 e art.41 c.1 lett. b DL 331/93; 
+																			prestazione di servizi di telecomunicazioni, 
+																			tele-radiodiffusione ed elettronici ex art.7-sexies 
+																			lett. f, g, e art.74-sexies DPR 633/72)
 																		</xsl:when>
 																		<xsl:otherwise>
 																			<span>(!!! codice non previsto !!!)</span>
@@ -2482,7 +2685,7 @@
 																<li>
 																	Riferimento amministrativo/contabile:
 																	<span>
-																		<xsl:value-of select="RiferimentoAmministrazione"/>
+																		<xsl:value-of select="RiferimentoAmministrazione" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -2495,7 +2698,7 @@
 																				<li>
 																					Tipo dato:
 																					<span>
-																						<xsl:value-of select="TipoDato"/>
+																						<xsl:value-of select="TipoDato" />
 																					</span>
 																				</li>
 																			</xsl:if>
@@ -2503,7 +2706,7 @@
 																				<li>
 																					Valore testo:
 																					<span>
-																						<xsl:value-of select="RiferimentoTesto"/>
+																						<xsl:value-of select="RiferimentoTesto" />
 																					</span>
 																				</li>
 																			</xsl:if>
@@ -2511,7 +2714,7 @@
 																				<li>
 																					Valore numerico:
 																					<span>
-																						<xsl:value-of select="RiferimentoNumero"/>
+																						<xsl:value-of select="RiferimentoNumero" />
 																					</span>
 																				</li>
 																			</xsl:if>
@@ -2519,10 +2722,10 @@
 																				<li>
 																					Valore data:
 																					<span>
-																						<xsl:value-of select="RiferimentoData"/>
+																						<xsl:value-of select="RiferimentoData" />
 																					</span>
 																					<xsl:call-template name="FormatDate">
-																						<xsl:with-param name="DateTime" select="RiferimentoData"/>
+																						<xsl:with-param name="DateTime" select="RiferimentoData" />
 																					</xsl:call-template>
 																				</li>
 																			</xsl:if>
@@ -2546,7 +2749,7 @@
 																<li>
 																	Aliquota IVA (%):
 																	<span>
-																		<xsl:value-of select="AliquotaIVA"/>
+																		<xsl:value-of select="AliquotaIVA" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -2554,10 +2757,10 @@
 																<li>
 																	Natura operazioni:
 																	<span>
-																		<xsl:value-of select="Natura"/>
+																		<xsl:value-of select="Natura" />
 																	</span>
 																	<xsl:variable name="NAT1">
-																		<xsl:value-of select="Natura"/>
+																		<xsl:value-of select="Natura" />
 																	</xsl:variable>
 																	<xsl:choose>
 																		<xsl:when test="$NAT1='N1'">
@@ -2566,8 +2769,36 @@
 																		<xsl:when test="$NAT1='N2'">
 																			(non soggette)
 																		</xsl:when>
+																		<xsl:when test="$NAT1='N2.1'">
+																			(non soggette ad IVA - artt. da 7 a 7-septies 
+																			del DPR 633/72)
+																		</xsl:when>
+																		<xsl:when test="$NAT1='N2.2'">
+																			(non soggette - altri casi)
+																		</xsl:when>
 																		<xsl:when test="$NAT1='N3'">
 																			(non imponibili)
+																		</xsl:when>
+																		<xsl:when test="$NAT1='N3.1'">
+																			(non imponibili - esportazioni)
+																		</xsl:when>
+																		<xsl:when test="$NAT1='N3.2'">
+																			(non imponibili - cessioni intracomunitarie)
+																		</xsl:when>
+																		<xsl:when test="$NAT1='N3.3'">
+																			(non imponibili - cessioni verso S.Marino)
+																		</xsl:when>
+																		<xsl:when test="$NAT1='N3.4'">
+																			(non imponibili - operazioni assimilate alle 
+																			cessioni all'esportazione)
+																		</xsl:when>
+																		<xsl:when test="$NAT1='N3.5'">
+																			(non imponibili - a seguito di dichiarazioni 
+																			d'intento)
+																		</xsl:when>
+																		<xsl:when test="$NAT1='N3.6'">
+																			(non imponibili - altre operazioni che non 
+																			concorrono alla formazione del plafond)
 																		</xsl:when>
 																		<xsl:when test="$NAT1='N4'">
 																			(esenti)
@@ -2576,10 +2807,51 @@
 																			(regime del margine / IVA non esposta in fattura)
 																		</xsl:when>
 																		<xsl:when test="$NAT1='N6'">
-																			(inversione contabile)
+																			(inversione contabile per le operazioni in reverse 
+																			charge ovvero nei casi di autofatturazione per 
+																			acquisti extra UE di servizi ovvero per importazioni 
+																			di beni nei soli casi previsti)
+																		</xsl:when>
+																		<xsl:when test="$NAT1='N6.1'">
+																			(inversione contabile - cessione di rottami e 
+																			altri materiali di recupero)
+																		</xsl:when>
+																		<xsl:when test="$NAT1='N6.2'">
+																			(inversione contabile - cessione di oro e 
+																			argento puro)
+																		</xsl:when>
+																		<xsl:when test="$NAT1='N6.3'">
+																			(inversione contabile - subappalto nel settore 
+																			edile)
+																		</xsl:when>
+																		<xsl:when test="$NAT1='N6.4'">
+																			(inversione contabile - cessione di fabbricati)
+																		</xsl:when>
+																		<xsl:when test="$NAT1='N6.5'">
+																			(inversione contabile - cessione di telefoni 
+																			cellulari)
+																		</xsl:when>
+																		<xsl:when test="$NAT1='N6.6'">
+																			(inversione contabile - cessione di prodotti 
+																			elettronici)
+																		</xsl:when>
+																		<xsl:when test="$NAT1='N6.7'">
+																			(inversione contabile - prestazioni comparto 
+																			edile e settori connessi)
+																		</xsl:when>
+																		<xsl:when test="$NAT1='N6.8'">
+																			(inversione contabile - operazioni settore 
+																			energetico)
+																		</xsl:when>
+																		<xsl:when test="$NAT1='N6.9'">
+																			(inversione contabile - altri casi)
 																		</xsl:when>
 																		<xsl:when test="$NAT1='N7'">
-																			(IVA assolta in altro Stato UE)
+																			(IVA assolta in altro stato UE - vendite a distanza 
+																			ex art.40 c.3 e 4 e art.41 c.1 lett. b DL 331/93; 
+																			prestazione di servizi di telecomunicazioni, 
+																			tele-radiodiffusione ed elettronici ex art.7-sexies 
+																			lett. f, g, e art.74-sexies DPR 633/72)
 																		</xsl:when>
 																		<xsl:otherwise>
 																			<span>(!!! codice non previsto !!!)</span>
@@ -2591,7 +2863,7 @@
 																<li>
 																	Spese accessorie:
 																	<span>
-																		<xsl:value-of select="SpeseAccessorie"/>
+																		<xsl:value-of select="SpeseAccessorie" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -2599,7 +2871,7 @@
 																<li>
 																	Arrotondamento:
 																	<span>
-																		<xsl:value-of select="Arrotondamento"/>
+																		<xsl:value-of select="Arrotondamento" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -2607,7 +2879,7 @@
 																<li>
 																	Totale imponibile/importo:
 																	<span>
-																		<xsl:value-of select="ImponibileImporto"/>
+																		<xsl:value-of select="ImponibileImporto" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -2615,7 +2887,7 @@
 																<li>
 																	Totale imposta:
 																	<span>
-																		<xsl:value-of select="Imposta"/>
+																		<xsl:value-of select="Imposta" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -2623,10 +2895,10 @@
 																<li>
 																	Esigibilità IVA:
 																	<span>
-																		<xsl:value-of select="EsigibilitaIVA"/>
+																		<xsl:value-of select="EsigibilitaIVA" />
 																	</span>
 																	<xsl:variable name="EI">
-																		<xsl:value-of select="EsigibilitaIVA"/>
+																		<xsl:value-of select="EsigibilitaIVA" />
 																	</xsl:variable>
 																	<xsl:choose>
 																		<xsl:when test="$EI='I'">
@@ -2648,7 +2920,7 @@
 																<li>
 																	Riferimento normativo:
 																	<span>
-																		<xsl:value-of select="RiferimentoNormativo"/>
+																		<xsl:value-of select="RiferimentoNormativo" />
 																	</span>
 																</li>
 															</xsl:if>
@@ -2672,10 +2944,10 @@
 														<li>
 															Data prima immatricolazione / iscrizione PR:
 															<span>
-																<xsl:value-of select="Data"/>
+																<xsl:value-of select="Data" />
 															</span>
 															<xsl:call-template name="FormatDate">
-																<xsl:with-param name="DateTime" select="Data"/>
+																<xsl:with-param name="DateTime" select="Data" />
 															</xsl:call-template>
 														</li>
 													</xsl:if>
@@ -2683,7 +2955,7 @@
 														<li>
 															Totale percorso:
 															<span>
-																<xsl:value-of select="TotalePercorso"/>
+																<xsl:value-of select="TotalePercorso" />
 															</span>
 														</li>
 													</xsl:if>
@@ -2703,10 +2975,10 @@
 														<li>
 															Condizioni di pagamento:
 															<span>
-																<xsl:value-of select="CondizioniPagamento"/>
+																<xsl:value-of select="CondizioniPagamento" />
 															</span>
 															<xsl:variable name="CP">
-																<xsl:value-of select="CondizioniPagamento"/>
+																<xsl:value-of select="CondizioniPagamento" />
 															</xsl:variable>
 															<xsl:choose>
 																<xsl:when test="$CP='TP01'">
@@ -2736,7 +3008,7 @@
 																	<li>
 																		Beneficiario del pagamento:
 																		<span>
-																			<xsl:value-of select="Beneficiario"/>
+																			<xsl:value-of select="Beneficiario" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2744,10 +3016,10 @@
 																	<li>
 																		Modalità:
 																		<span>
-																			<xsl:value-of select="ModalitaPagamento"/>
+																			<xsl:value-of select="ModalitaPagamento" />
 																		</span>
 																		<xsl:variable name="MP">
-																			<xsl:value-of select="ModalitaPagamento"/>
+																			<xsl:value-of select="ModalitaPagamento" />
 																		</xsl:variable>
 																		<xsl:choose>
 																			<xsl:when test="$MP='MP01'">
@@ -2816,6 +3088,9 @@
 																			<xsl:when test="$MP='MP22'">
 																				(Trattenuta su somme già riscosse)
 																			</xsl:when>
+																			<xsl:when test="$MP='MP23'">
+																				(PagoPA)
+																			</xsl:when>
 																			<xsl:when test="$MP=''">
 																			</xsl:when>
 																			<xsl:otherwise>
@@ -2828,10 +3103,10 @@
 																	<li>
 																		Decorrenza termini di pagamento:
 																		<span>
-																			<xsl:value-of select="DataRiferimentoTerminiPagamento"/>
+																			<xsl:value-of select="DataRiferimentoTerminiPagamento" />
 																		</span>
 																		<xsl:call-template name="FormatDate">
-																			<xsl:with-param name="DateTime" select="DataRiferimentoTerminiPagamento"/>
+																			<xsl:with-param name="DateTime" select="DataRiferimentoTerminiPagamento" />
 																		</xsl:call-template>
 																	</li>
 																</xsl:if>
@@ -2839,7 +3114,7 @@
 																	<li>
 																		Termini di pagamento (in giorni):
 																		<span>
-																			<xsl:value-of select="GiorniTerminiPagamento"/>
+																			<xsl:value-of select="GiorniTerminiPagamento" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2847,10 +3122,10 @@
 																	<li>
 																		Data scadenza pagamento:
 																		<span>
-																			<xsl:value-of select="DataScadenzaPagamento"/>
+																			<xsl:value-of select="DataScadenzaPagamento" />
 																		</span>
 																		<xsl:call-template name="FormatDate">
-																			<xsl:with-param name="DateTime" select="DataScadenzaPagamento"/>
+																			<xsl:with-param name="DateTime" select="DataScadenzaPagamento" />
 																		</xsl:call-template>
 																	</li>
 																</xsl:if>
@@ -2858,7 +3133,7 @@
 																	<li>
 																		Importo:
 																		<span>
-																			<xsl:value-of select="ImportoPagamento"/>
+																			<xsl:value-of select="ImportoPagamento" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2866,7 +3141,7 @@
 																	<li>
 																		Codice Ufficio Postale:
 																		<span>
-																			<xsl:value-of select="CodUfficioPostale"/>
+																			<xsl:value-of select="CodUfficioPostale" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2874,7 +3149,7 @@
 																	<li>
 																		Cognome del quietanzante:
 																		<span>
-																			<xsl:value-of select="CognomeQuietanzante"/>
+																			<xsl:value-of select="CognomeQuietanzante" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2882,7 +3157,7 @@
 																	<li>
 																		Nome del quietanzante:
 																		<span>
-																			<xsl:value-of select="NomeQuietanzante"/>
+																			<xsl:value-of select="NomeQuietanzante" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2890,7 +3165,7 @@
 																	<li>
 																		CF del quietanzante:
 																		<span>
-																			<xsl:value-of select="CFQuietanzante"/>
+																			<xsl:value-of select="CFQuietanzante" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2898,7 +3173,7 @@
 																	<li>
 																		Titolo del quietanzante:
 																		<span>
-																			<xsl:value-of select="TitoloQuietanzante"/>
+																			<xsl:value-of select="TitoloQuietanzante" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2906,7 +3181,7 @@
 																	<li>
 																		Istituto finanziario:
 																		<span>
-																			<xsl:value-of select="IstitutoFinanziario"/>
+																			<xsl:value-of select="IstitutoFinanziario" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2914,7 +3189,7 @@
 																	<li>
 																		Codice IBAN:
 																		<span>
-																			<xsl:value-of select="IBAN"/>
+																			<xsl:value-of select="IBAN" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2922,7 +3197,7 @@
 																	<li>
 																		Codice ABI:
 																		<span>
-																			<xsl:value-of select="ABI"/>
+																			<xsl:value-of select="ABI" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2930,7 +3205,7 @@
 																	<li>
 																		Codice CAB:
 																		<span>
-																			<xsl:value-of select="CAB"/>
+																			<xsl:value-of select="CAB" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2938,7 +3213,7 @@
 																	<li>
 																		Codice BIC:
 																		<span>
-																			<xsl:value-of select="BIC"/>
+																			<xsl:value-of select="BIC" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2946,7 +3221,7 @@
 																	<li>
 																		Sconto per pagamento anticipato:
 																		<span>
-																			<xsl:value-of select="ScontoPagamentoAnticipato"/>
+																			<xsl:value-of select="ScontoPagamentoAnticipato" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2954,10 +3229,10 @@
 																	<li>
 																		Data limite per il pagamento anticipato:
 																		<span>
-																			<xsl:value-of select="DataLimitePagamentoAnticipato"/>
+																			<xsl:value-of select="DataLimitePagamentoAnticipato" />
 																		</span>
 																		<xsl:call-template name="FormatDate">
-																			<xsl:with-param name="DateTime" select="DataLimitePagamentoAnticipato"/>
+																			<xsl:with-param name="DateTime" select="DataLimitePagamentoAnticipato" />
 																		</xsl:call-template>
 																	</li>
 																</xsl:if>
@@ -2965,7 +3240,7 @@
 																	<li>
 																		Penale per ritardato pagamento:
 																		<span>
-																			<xsl:value-of select="PenalitaPagamentiRitardati"/>
+																			<xsl:value-of select="PenalitaPagamentiRitardati" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -2973,10 +3248,10 @@
 																	<li>
 																		Data di decorrenza della penale:
 																		<span>
-																			<xsl:value-of select="DataDecorrenzaPenale"/>
+																			<xsl:value-of select="DataDecorrenzaPenale" />
 																		</span>
 																		<xsl:call-template name="FormatDate">
-																			<xsl:with-param name="DateTime" select="DataDecorrenzaPenale"/>
+																			<xsl:with-param name="DateTime" select="DataDecorrenzaPenale" />
 																		</xsl:call-template>
 																	</li>
 																</xsl:if>
@@ -2984,7 +3259,7 @@
 																	<li>
 																		Codice pagamento:
 																		<span>
-																			<xsl:value-of select="CodicePagamento"/>
+																			<xsl:value-of select="CodicePagamento" />
 																		</span>
 																	</li>
 																</xsl:if>
@@ -3009,7 +3284,7 @@
 														<li>
 															Nome dell'allegato:
 															<span>
-																<xsl:value-of select="NomeAttachment"/>
+																<xsl:value-of select="NomeAttachment" />
 															</span>
 														</li>
 													</xsl:if>
@@ -3017,7 +3292,7 @@
 														<li>
 															Algoritmo di compressione:
 															<span>
-																<xsl:value-of select="AlgoritmoCompressione"/>
+																<xsl:value-of select="AlgoritmoCompressione" />
 															</span>
 														</li>
 													</xsl:if>
@@ -3025,7 +3300,7 @@
 														<li>
 															Formato:
 															<span>
-																<xsl:value-of select="FormatoAttachment"/>
+																<xsl:value-of select="FormatoAttachment" />
 															</span>
 														</li>
 													</xsl:if>
@@ -3033,7 +3308,7 @@
 														<li>
 															Descrizione:
 															<span>
-																<xsl:value-of select="DescrizioneAttachment"/>
+																<xsl:value-of select="DescrizioneAttachment" />
 															</span>
 														</li>
 													</xsl:if>

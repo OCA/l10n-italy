@@ -35,7 +35,7 @@ RELATED_DOCUMENT_TYPES = {
 class fatturapa_format(orm.Model):
     # _position = ['1.1.3']
     _name = "fatturapa.format"
-    _description = 'FatturaPA Format'
+    _description = 'E-invoice Format'
 
     _columns = {
         'name': fields.char('Description', size=128),
@@ -46,29 +46,7 @@ class fatturapa_format(orm.Model):
 class fatturapa_document_type(orm.Model):
     # _position = ['2.1.1.1']
     _name = "fatturapa.document_type"
-    _description = 'FatturaPA Document Type'
-
-    _columns = {
-        'name': fields.char('Description', size=128),
-        'code': fields.char('Code', size=4),
-    }
-
-
-class fatturapa_payment_term(orm.Model):
-    # _position = ['2.4.1']
-    _name = "fatturapa.payment_term"
-    _description = 'FatturaPA Payment Term'
-
-    _columns = {
-        'name': fields.char('Description', size=128),
-        'code': fields.char('Code', size=4),
-    }
-
-
-class fatturapa_payment_method(orm.Model):
-    # _position = ['2.4.2.2']
-    _name = "fatturapa.payment_method"
-    _description = 'FatturaPA Payment Method'
+    _description = 'E-invoice Document Type'
 
     _columns = {
         'name': fields.char('Description', size=128),
@@ -80,12 +58,12 @@ class fatturapa_payment_method(orm.Model):
 class fatturapa_payment_data(orm.Model):
     # _position = ['2.4.2.2']
     _name = "fatturapa.payment.data"
-    _description = 'FatturaPA Payment Data'
+    _description = 'E-invoice Payment Data'
 
     _columns = {
         #  2.4.1
         'payment_terms': fields.many2one(
-            'fatturapa.payment_term', string="FatturaPA Payment Method"),
+            'fatturapa.payment_term', string="Electronic Invoice Payment Method"),
         #  2.4.2
         'payment_methods': fields.one2many(
             'fatturapa.payment.detail', 'payment_data_id',
@@ -100,19 +78,20 @@ class fatturapa_payment_data(orm.Model):
 class fatturapa_payment_detail(orm.Model):
     # _position = ['2.4.2']
     _name = "fatturapa.payment.detail"
+    _description = "E-invoice payment details"
     _columns = {
         'recipient': fields.char('Recipient', size=200),
         'fatturapa_pm_id': fields.many2one(
-            'fatturapa.payment_method', string="FatturaPA Payment Method"),
+            'fatturapa.payment_method', string="Electronic Invoice Payment Method"),
         'payment_term_start': fields.date('Payment Term Start'),
         'payment_days': fields.integer('Payment Term Days'),
         'payment_due_date': fields.date('Payment due Date'),
         'payment_amount': fields.float('Payment Amount'),
         'post_office_code': fields.char('Post Office Code', size=20),
-        'recepit_name': fields.char("Recepit payment partner contact"),
-        'recepit_surname': fields.char("Recepit payment partner contact"),
-        'recepit_cf': fields.char("Recepit payment partner contact"),
-        'recepit_title': fields.char("Recepit payment partner contact"),
+        'recepit_name': fields.char("Receipt Issuer Name"),
+        'recepit_surname': fields.char("Receipt Issuer Surname"),
+        'recepit_cf': fields.char("Receipt Issuer FC"),
+        'recepit_title': fields.char("Receipt Issuer Title"),
         'payment_bank_name': fields.char("Bank name"),
         'payment_bank_iban': fields.char("IBAN"),
         'payment_bank_abi': fields.char("ABI"),
@@ -128,28 +107,15 @@ class fatturapa_payment_detail(orm.Model):
         'account_move_line_id': fields.many2one(
             'account.move.line', string="Payment Line"),
         'payment_data_id': fields.many2one(
-            'fatturapa.payment.data', 'Related payments Data',
+            'fatturapa.payment.data', 'Related Payments Data',
             ondelete='cascade', select=True),
-    }
-
-
-#  used in fatturaPa export
-class account_payment_term(orm.Model):
-    # _position = ['2.4.2.2']
-    _inherit = 'account.payment.term'
-
-    _columns = {
-        'fatturapa_pt_id': fields.many2one(
-            'fatturapa.payment_term', string="FatturaPA Payment Term"),
-        'fatturapa_pm_id': fields.many2one(
-            'fatturapa.payment_method', string="FatturaPA Payment Method"),
     }
 
 
 class fatturapa_fiscal_position(orm.Model):
     # _position = ['2.1.1.7.7', '2.2.1.14']
     _name = "fatturapa.fiscal_position"
-    _description = 'FatturaPA Fiscal Position'
+    _description = 'Electronic Invoice Fiscal Position'
 
     _columns = {
         'name': fields.char('Description', size=128),
@@ -160,22 +126,30 @@ class fatturapa_fiscal_position(orm.Model):
 class welfare_fund_type(orm.Model):
     # _position = ['2.1.1.7.1']
     _name = "welfare.fund.type"
-    _description = 'welfare fund type'
+    _description = 'Welfare Fund Type'
 
     _columns = {
         'name': fields.char('name'),
         'description': fields.char('description'),
     }
 
+    def name_get(self, cr, uid, ids, context={}):
+        res = []
+        for record in self.browse(cr, uid, ids, context=context):
+            res.append(
+                (record.id, u'[%s] %s' % (record.name, record.description)))
+        return res
+
 
 class welfare_fund_data_line(orm.Model):
     # _position = ['2.1.1.7']
     _name = "welfare.fund.data.line"
-    _description = 'FatturaPA Welfare Fund Data'
+    _description = 'E-invoice Welfare Fund Data'
 
     _columns = {
         'name': fields.many2one(
             'welfare.fund.type', string="Welfare Fund Type"),
+        'kind_id': fields.many2one('account.tax.kind', string="Non taxable nature"),
         'fund_nature': fields.selection([
             ('N1', 'escluse ex art. 15'),
             ('N2', 'non soggette'),
@@ -280,7 +254,7 @@ class faturapa_activity_progress(orm.Model):
 class fattura_attachments(orm.Model):
     # _position = ['2.5']
     _name = "fatturapa.attachments"
-    _description = "FatturaPA attachments"
+    _description = "E-invoice attachments"
     _inherits = {'ir.attachment': 'ir_attachment_id'}
 
     _columns = {
@@ -297,7 +271,7 @@ class fattura_attachments(orm.Model):
 class fatturapa_related_ddt(orm.Model):
     # _position = ['2.1.2', '2.2.3', '2.1.4', '2.1.5', '2.1.6']
     _name = 'fatturapa.related_ddt'
-    _description = 'FatturaPA Related DdT'
+    _description = 'E-invoice Related DDT'
 
     _columns = {
         'name': fields.char('DocumentID', size=20, required=True),
@@ -342,7 +316,7 @@ class account_invoice_line(orm.Model):
         
     'discount_rise_price_ids': fields.one2many(
         'discount.rise.price', 'invoice_line_id',
-        'Discount and Rise Price Details', copy=False
+        'Discount or Supplement Price Details', copy=False
     ),
     'ftpa_line_number': fields.integer("Line number", readonly=True, copy=False) ,
     }
@@ -383,7 +357,7 @@ class faturapa_summary_data(orm.Model):
         ('N6.9', 'reverse charge – other cases'),
         ('N7', 'VAT paid in other EU countries'),
     ], string="Non taxable nature"),
-        'incidental charges': fields.float('Incidental Charges'),
+        'incidental_charges': fields.float('Incidental Charges'),
         'rounding': fields.float('Rounding'),
         'amount_untaxed': fields.float('Amount untaxed'),
         'amount_tax': fields.float('Amount tax'),
@@ -416,6 +390,15 @@ class account_invoice(orm.Model):
         #  1.6
         'sender': fields.selection(
             [('CC', 'assignee / partner'), ('TZ', 'third person')], 'Sender'),
+        
+        'ftpa_withholding_ids': fields.one2many(
+            'withholding.data.line', 'invoice_id',
+            'Withholding'
+            ),
+        'welfare_fund_ids': fields.one2many(
+            'welfare.fund.data.line', 'invoice_id',
+            'Welfare Fund'
+        ),
         #  2.1.1.1
         'doc_type': fields.many2one(
             'fatturapa.document_type', string="Document Type"),
@@ -434,11 +417,6 @@ class account_invoice(orm.Model):
         #  2.1.1.6
         'virtual_stamp': fields.boolean('Virtual Stamp'),
         'stamp_amount': fields.float('Stamp Amount'),
-        #  2.1.1.7
-        'welfare_fund_ids': fields.one2many(
-            'welfare.fund.data.line', 'invoice_id',
-            'Welfare Fund'
-        ),
         #  2.1.1.8
         'discount_rise_price_ids': fields.one2many(
             'discount.rise.price', 'invoice_id',
@@ -557,3 +535,36 @@ class account_invoice(orm.Model):
         default['fatturapa_attachment_out_id'] = False
         ret_id = super(account_invoice, self).copy(cr, uid, id, default, context=context)
         return ret_id
+
+class fatturapa_payment_term(orm.Model):
+    # _position = ['2.4.1']
+    _name = "fatturapa.payment_term"
+    _description = 'FatturaPA Payment Term'
+
+    _columns = {
+        'name': fields.char('Description', size=128),
+        'code': fields.char('Code', size=4),
+    }
+
+
+class fatturapa_payment_method(orm.Model):
+    # _position = ['2.4.2.2']
+    _name = "fatturapa.payment_method"
+    _description = 'FatturaPA Payment Method'
+
+    _columns = {
+        'name': fields.char('Description', size=128),
+        'code': fields.char('Code', size=4),
+    }
+
+#  used in fatturaPa export
+class account_payment_term(orm.Model):
+    # _position = ['2.4.2.2']
+    _inherit = 'account.payment.term'
+
+    _columns = {
+        'fatturapa_pt_id': fields.many2one(
+            'fatturapa.payment_term', string="FatturaPA Payment Term"),
+        'fatturapa_pm_id': fields.many2one(
+            'fatturapa.payment_method', string="FatturaPA Payment Method"),
+    }

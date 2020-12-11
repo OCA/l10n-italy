@@ -19,9 +19,14 @@ try:
 except (ImportError, IOError) as err:
     _logger.debug(err)
 
-re_xml = re.compile(br'(\xef\xbb\xbf)*\s*<\?xml', re.I)
 re_base64 = re.compile(
     br'^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$')
+
+
+def is_base64(s):
+    s = s or b""
+    s = s.replace(b"\r", b"").replace(b"\n", b"")
+    return re_base64.match(s)
 
 
 class Attachment(orm.Model):
@@ -57,19 +62,11 @@ class Attachment(orm.Model):
     def strip_xml_content(self, xml):
         recovering_parser = ET.XMLParser(recover=True)
         root = ET.XML(xml, parser=recovering_parser)
-        for elem in root.iter('*'):
-            if elem.text is not None:
-                elem.text = elem.text.strip()
         return ET.tostring(root)
-
 
     @staticmethod
     def extract_cades(data):
-        try:
-            info = cms.ContentInfo.load(data)
-        except Exception as ex:
-            logging.info('Error loading data for descript Exception: %r' % (ex))
-            info = cms.ContentInfo.load(base64.b64decode(data))
+        info = cms.ContentInfo.load(data)
         return info['content']['encap_content_info']['content'].native
 
     def cleanup_xml(self, xml_string):
@@ -85,14 +82,14 @@ class Attachment(orm.Model):
             raise UserError(
                 _('Corrupted attachment {}.'.format(e.args))
             )
-        if re_xml.match(data) is not None:
-            return self.cleanup_xml(data)
-        if re_base64.match(data) is not None:
+        if is_base64(data):
             try:
                 data = base64.b64decode(data)
             except binascii.Error as e:
                 raise UserError(
-                    _('Base64 encoded file {}.'.format(e.args))
+                    _(
+                        'Base64 encoded file %s.'
+                    ) % e.args
                 )
         # Amazon sends invalid xml files, so they cannot be detected
         # using a pattern, we try to parse as asn1, if it fails
@@ -111,7 +108,8 @@ class Attachment(orm.Model):
 
     def get_fattura_elettronica_preview(self):
         xsl_path = get_module_resource(
-            'l10n_it_fatturapa', 'data', 'fatturaordinaria_v1.2.1.xsl')
+            'l10n_it_fatturapa', 'data',
+            self.env.user.company_id.fatturapa_preview_style)
         xslt = ET.parse(xsl_path)
         xml_string = self.get_xml_string(
             self._cr, self._uid, self._ids, self._context)

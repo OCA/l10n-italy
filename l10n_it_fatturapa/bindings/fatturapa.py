@@ -91,7 +91,7 @@ def CreateFromDocument(xml_string):
     # pyxb will fail to compare with
     for path, mandatory in date_types.items():
         for element in root.xpath(path):
-            result = pyxb.binding.datatypes.date(element.text)
+            result = pyxb.binding.datatypes.date(element.text.strip())
             if result.tzinfo is not None:
                 result = result.replace(tzinfo=None)
                 element.text = result.XsdLiteral(result)
@@ -116,6 +116,10 @@ def CreateFromDocument(xml_string):
                         element_path, element.text, e)
                     problems.append(msg)
                     _logger.warn(msg)
+
+    # fix trailing spaces in <PECDestinatario/>
+    for pec in root.xpath("//PECDestinatario"):
+        pec.text = pec.text.rstrip()
 
     fatturapa = _CreateFromDocument(etree.tostring(root))
     setattr(fatturapa, '_xmldoctor', problems)
