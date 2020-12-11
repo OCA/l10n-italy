@@ -1,7 +1,7 @@
 # Copyright (c) 2019, Link IT Europe Srl
 # @author: Matteo Bilotta <mbilotta@linkeurope.it>
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class PurchaseOrder(models.Model):
@@ -12,7 +12,6 @@ class PurchaseOrder(models.Model):
     )
     delivery_note_count = fields.Integer(compute="_compute_delivery_notes")
 
-    @api.multi
     def _compute_delivery_notes(self):
         for order in self:
             delivery_notes = order.order_line.mapped(
@@ -22,11 +21,10 @@ class PurchaseOrder(models.Model):
             order.delivery_note_ids = delivery_notes
             order.delivery_note_count = len(delivery_notes)
 
-    @api.multi
     def goto_delivery_notes(self, **kwargs):
         delivery_notes = self.mapped("delivery_note_ids")
         action = self.env.ref(
-            "l10n_it_delivery_note.stock_delivery_note_action"
+            "l10n_it_delivery_note." "stock_delivery_note_action"
         ).read()[0]
         action.update(kwargs)
 
@@ -37,7 +35,7 @@ class PurchaseOrder(models.Model):
             action["views"] = [
                 (
                     self.env.ref(
-                        "l10n_it_delivery_note.stock_delivery_note_form_view"
+                        "l10n_it_delivery_note." "stock_delivery_note_form_view"
                     ).id,
                     "form",
                 )
