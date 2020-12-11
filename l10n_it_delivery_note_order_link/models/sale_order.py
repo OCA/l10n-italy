@@ -1,7 +1,7 @@
 # Copyright (c) 2019, Openindustry.it Sas
 # @author: Andrea Piovesana <andrea.m.piovesana@gmail.com>
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class SaleOrder(models.Model):
@@ -12,7 +12,6 @@ class SaleOrder(models.Model):
     )
     delivery_note_count = fields.Integer(compute="_compute_delivery_notes")
 
-    @api.multi
     def _compute_delivery_notes(self):
         for order in self:
             delivery_notes = order.order_line.mapped(
