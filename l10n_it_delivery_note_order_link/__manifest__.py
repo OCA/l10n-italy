@@ -4,14 +4,15 @@
 
 # noinspection PyStatementEffect
 {
-    "name": "ITA - Documento di trasporto - Collegamento con ordine di vendita",
-    "summary": "Crea collegamento tra i DDT e ordine di vendita",
+    "name": "ITA - Documento di trasporto - Collegamento con ordine di "
+    "vendita/acquisto",
+    "summary": "Crea collegamento tra i DDT e ordine di vendita/acquisto",
     "author": "Openindustry.it Sas, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/l10n-italy" "l10n_it_delivery_note_order_link",
-    "version": "12.0.1.0.0",
+    "website": "https://github.com/OCA/l10n-italy",
+    "version": "14.0.1.0.0",
     "license": "AGPL-3",
-    "maintainers": ["As400it", "andreampiovesana"],
-    "category": "Localization",
+    "maintainers": ["andreampiovesana"],
+    "category": "Localization/Italy",
     "depends": [
         "purchase_stock",
         "sale_stock",
