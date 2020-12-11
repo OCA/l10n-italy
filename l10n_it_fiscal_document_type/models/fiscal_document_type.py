@@ -29,7 +29,6 @@ class FiscalDocumentType(models.Model):
         res.journal_ids.check_doc_type_relation()
         return res
 
-    @api.multi
     def write(self, vals):
         res = super(FiscalDocumentType, self).write(vals)
         for doc in self:

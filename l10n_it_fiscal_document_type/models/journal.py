@@ -1,4 +1,4 @@
-from odoo import api, models
+from odoo import models
 from odoo.exceptions import Warning as UserError
 from odoo.tools.translate import _
 
@@ -6,7 +6,6 @@ from odoo.tools.translate import _
 class AccountJournal(models.Model):
     _inherit = "account.journal"
 
-    @api.multi
     def check_doc_type_relation(self):
         doc_model = self.env["fiscal.document.type"]
         for journal in self:

@@ -7,17 +7,16 @@ from odoo.tests.common import TransactionCase
 class TestDocType(TransactionCase):
     def setUp(self):
         super(TestDocType, self).setUp()
-        self.journalrec = self.env["account.journal"].search([("type", "=", "sale")])[0]
+        self.journalrec = self.env["account.journal"].search([("type", "=", "general")], limit=1)
         self.doc_type_model = self.env["fiscal.document.type"]
         self.TD01 = self.doc_type_model.search([("code", "=", "TD01")], limit=1)
+        self.TD01.journal_ids = self.journalrec
         self.TD04 = self.doc_type_model.search([("code", "=", "TD04")], limit=1)
-        self.inv_model = self.env["account.invoice"]
+        self.inv_model = self.env["account.move"]
         self.partner3 = self.env.ref("base.res_partner_3")
 
     def test_doc_type(self):
-        self.TD01.journal_ids = [self.journalrec.id]
         invoice = self.inv_model.create({"partner_id": self.partner3.id})
-        invoice._set_document_fiscal_type()
         self.assertEqual(invoice.fiscal_document_type_id.id, self.TD01.id)
 
         invoice2 = self.inv_model.create({"partner_id": self.partner3.id})
@@ -49,5 +48,23 @@ class TestDocType(TransactionCase):
         )
         self.assertEqual(invoice.fiscal_document_type_id, self.TD01)
 
-        invoice.type = "out_refund"
+        invoice = self.inv_model.create(
+            {
+                "partner_id": self.partner3.id,
+                "move_type": "out_refund",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.env.ref("product.product_product_5").id,
+                            "quantity": 10.0,
+                            "account_id": revenue_account.id,
+                            "name": "product test 5",
+                            "price_unit": 100.00,
+                        },
+                    )
+                ],
+            }
+        )
         self.assertEqual(invoice.fiscal_document_type_id, self.TD04)
