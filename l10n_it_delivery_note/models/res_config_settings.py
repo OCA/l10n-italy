@@ -5,13 +5,13 @@ from odoo import fields, models
 
 
 class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _inherit = "res.config.settings"
 
     group_use_advanced_delivery_notes = fields.Boolean(
         string="Use Advanced DN Features",
-        implied_group='l10n_it_delivery_note.'
-                      'use_advanced_delivery_notes')
+        implied_group="l10n_it_delivery_note." "use_advanced_delivery_notes",
+    )
 
     draft_delivery_note_invoicing_notify = fields.Boolean(
-        related='company_id.draft_delivery_note_invoicing_notify',
-        readonly=False)
+        related="company_id.draft_delivery_note_invoicing_notify", readonly=False
+    )

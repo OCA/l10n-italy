@@ -49,7 +49,7 @@ class StockDeliveryNoteType(models.Model):
     sequence_id = fields.Many2one("ir.sequence", string="Numeration", required=True)
     next_sequence_number = fields.Integer(related="sequence_id.number_next_actual")
     company_id = fields.Many2one(
-        "res.company", string="Company", default=lambda self: self.env.user.company_id
+        "res.company", string="Company", default=lambda self: self.env.company
     )
     note = fields.Html(string="Internal note")
 
@@ -69,7 +69,6 @@ class StockDeliveryNoteType(models.Model):
             "res_model": "ir.sequence",
             "res_id": self.sequence_id.id,
             "views": [(False, "form")],
-            "view_type": "form",
             "view_mode": "form",
             "target": "current",
             **kwargs,

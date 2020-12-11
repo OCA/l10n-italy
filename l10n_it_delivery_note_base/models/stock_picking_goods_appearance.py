@@ -16,7 +16,10 @@ class StockPickingGoodsAppearance(models.Model):
     active = fields.Boolean(default=True)
     sequence = fields.Integer(string="Sequence", index=True, default=10)
     name = fields.Char(
-        string="Appearance name", index=True, required=True, translate=True
+        string="Appearance name",
+        index=True,
+        required=True,
+        translate=True,
     )
     note = fields.Html(string="Internal note")
 
