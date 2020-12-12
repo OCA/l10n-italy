@@ -1,7 +1,7 @@
 ﻿//
 // ePOS-Print and Fiscal Print API
 //
-// Version 1.1.0
+// Version 1.1.1
 //
 // Copyright (C) SEIKO EPSON CORPORATION 2018. All rights reserved.
 //
@@ -25,6 +25,12 @@
 //    If null, defaults to async.
 //    Timeout only valid for async mode.
 
+// 14/06/2018	1.1.1
+// 1. Added responseText and responseXML fields to onerror result object.
+
+
+// 06/07/2018	1.1.2
+// 1. Added radix to parseInt for best practice.
 
 (function (window)
 {
@@ -1365,7 +1371,7 @@
 				{
 					success: /^(1|true)$/.test(res[0].getAttribute('success')),
 					code: res[0].getAttribute('code'),
-					status: parseInt(res[0].getAttribute('status')),
+					status: parseInt(res[0].getAttribute('status'), 10),
 					statusText: res[0].getAttribute('status')
 				};
 
@@ -1384,7 +1390,7 @@
 						var node = res_add[0].getElementsByTagName(tag_names_array[tnai])[0];
 						var node_child = node.childNodes[0];
 						var node_val = "";
-						// 21/02/2018 Philip Barnett. Alcuni comandi tornano con responseData vuoto. Senza la verifica, possono vericarsi i null Exceptiom.
+						// 21/02/2018 Philip Barnett. Alcuni comandi tornano con responseData vuoto. Senza la verifica, possono vericarsi i null Exception.
 						// Questa riga non ha risolto il problema - if(node_child.nodeValue != null && node_child.nodeValue != "")
 						try
 						{
@@ -1431,7 +1437,9 @@
 				{
 					success: 'false',
 					code: "FP_NO_ANSWER_NETWORK",
-					status: 0
+					status: 0,
+					responseXML: xhr.responseXML,
+					responseText: xhr.responseText
 				};
 
 				epos.onerror(result)
