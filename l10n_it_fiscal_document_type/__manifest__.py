@@ -4,9 +4,9 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 {
-    "name": "Italian Localization - " "Tipi di documento fiscale per dichiarativi",
+    "name": "ITA - Tipi di documento fiscale per dichiarativi",
     "version": "14.0.1.0.0",
-    "category": "Localisation/Italy",
+    "category": "Localization/Italy",
     "author": "Link It srl, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
     "license": "LGPL-3",

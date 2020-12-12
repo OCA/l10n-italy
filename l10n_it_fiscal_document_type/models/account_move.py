@@ -43,7 +43,11 @@ class AccountMove(models.Model):
                 .search([("journal_ids", "in", [journal.id])])
                 .ids
             )
-        if not doc_id and not dt and move_type in ["out_invoice", "out_refund", "in_invoice", "in_refund"]:
+        if (
+            not doc_id
+            and not dt
+            and move_type in ["out_invoice", "out_refund", "in_invoice", "in_refund"]
+        ):
             dt = self.env["fiscal.document.type"].search([(move_type, "=", True)]).ids
         if doc_id:
             dt.append(doc_id)

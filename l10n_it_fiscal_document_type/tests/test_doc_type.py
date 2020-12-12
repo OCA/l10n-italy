@@ -7,7 +7,9 @@ from odoo.tests.common import TransactionCase
 class TestDocType(TransactionCase):
     def setUp(self):
         super(TestDocType, self).setUp()
-        self.journalrec = self.env["account.journal"].search([("type", "=", "general")], limit=1)
+        self.journalrec = self.env["account.journal"].search(
+            [("type", "=", "general")], limit=1
+        )
         self.doc_type_model = self.env["fiscal.document.type"]
         self.TD01 = self.doc_type_model.search([("code", "=", "TD01")], limit=1)
         self.TD01.journal_ids = self.journalrec
