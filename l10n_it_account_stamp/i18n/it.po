@@ -61,12 +61,17 @@ msgstr "Configurazione imposta di bollo"
 #. module: l10n_it_account_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.product_template_form_view_account_stamp
 msgid ""
-"For each invoice, the base amount for each selected tax will be added up and "
-"used to determine the application of the account stamp."
+"For each invoice, manually enable 'Tax Stamp' checkbox. The base amount for "
+"each selected tax will be added up and used to determine the application of "
+"the account stamp."
 msgstr ""
-"Per ciascuna fattura, l'applicabilità dell'imposta di bollo verrà calcolata "
-"in modo automatico in base alla somma degli imponibili relativi alle imposte "
-"selezionate."
+
+#. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.product_template_form_view_account_stamp
+msgid ""
+"For each invoice, the base amount for each selected tax will be added up and "
+"used to automatically determine the application of the account stamp."
+msgstr ""
 
 #. module: l10n_it_account_stamp
 #: model:ir.model,name:l10n_it_account_stamp.model_account_invoice
@@ -210,3 +215,11 @@ msgstr "Unità"
 #: model:product.template,weight_uom_name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
 msgid "kg"
 msgstr "kg"
+
+#~ msgid ""
+#~ "For each invoice, the base amount for each selected tax will be added up "
+#~ "and used to determine the application of the account stamp."
+#~ msgstr ""
+#~ "Per ciascuna fattura, l'applicabilità dell'imposta di bollo verrà "
+#~ "calcolata in modo automatico in base alla somma degli imponibili relativi "
+#~ "alle imposte selezionate."
