@@ -366,14 +366,14 @@ msgid "E-bill Inconsistencies"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/account.py:165
+#: code:addons/l10n_it_fatturapa_in/models/account.py:168
 #, python-format
 msgid "E-bill contains DatiRitenuta but no lines subjected to Ritenuta was found. Please manually check Withholding tax Amount\n"
 ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/account.py:174
+#: code:addons/l10n_it_fatturapa_in/models/account.py:177
 #, python-format
 msgid "E-bill contains ImportoRitenuta %s but created invoice has got %s\n"
 ""
@@ -583,7 +583,7 @@ msgid "Invoice Line"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/account.py:222
+#: code:addons/l10n_it_fatturapa_in/models/account.py:225
 #, python-format
 msgid "Invoice date ({bill_date_invoice}) does not match with e-bill invoice date ({e_bill_date_invoice})"
 msgstr ""
@@ -953,14 +953,14 @@ msgid "Round Up Account"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/account.py:74
+#: code:addons/l10n_it_fatturapa_in/models/account.py:77
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1122
 #, python-format
 msgid "Round down account is not set in Accounting Settings"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/account.py:81
+#: code:addons/l10n_it_fatturapa_in/models/account.py:84
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1116
 #, python-format
 msgid "Round up account is not set in Accounting Settings"
@@ -979,14 +979,14 @@ msgid "Rounding Tax"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/account.py:76
+#: code:addons/l10n_it_fatturapa_in/models/account.py:79
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1143
 #, python-format
 msgid "Rounding down"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/account.py:83
+#: code:addons/l10n_it_fatturapa_in/models/account.py:86
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1143
 #, python-format
 msgid "Rounding up"
@@ -1067,7 +1067,7 @@ msgid "Tax used to both round up and down bills amount."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/account.py:134
+#: code:addons/l10n_it_fatturapa_in/models/account.py:137
 #, python-format
 msgid "Taxed amount ({bill_amount_tax}) does not match with e-bill taxed amount ({e_bill_amount_tax})"
 msgstr ""
@@ -1094,7 +1094,7 @@ msgid "The database object this attachment will be attached to."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/account.py:102
+#: code:addons/l10n_it_fatturapa_in/models/account.py:105
 #, python-format
 msgid "The invoice '%s' doesn't match the related e-invoice"
 msgstr ""
@@ -1143,7 +1143,7 @@ msgid "Total Price"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/account.py:151
+#: code:addons/l10n_it_fatturapa_in/models/account.py:154
 #, python-format
 msgid "Total amount ({bill_amount_total}) does not match with e-bill total amount ({e_bill_amount_total})"
 msgstr ""
@@ -1180,7 +1180,7 @@ msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/account.py:117
+#: code:addons/l10n_it_fatturapa_in/models/account.py:120
 #, python-format
 msgid "Untaxed amount ({bill_amount_untaxed}) does not match with e-bill untaxed amount ({e_bill_amount_untaxed})"
 msgstr ""
@@ -1208,7 +1208,7 @@ msgid "Vendor invoice registration default date"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/account.py:211
+#: code:addons/l10n_it_fatturapa_in/models/account.py:214
 #, python-format
 msgid "Vendor reference ({bill_vendor_ref}) does not match with e-bill vendor reference ({e_bill_vendor_ref})"
 msgstr ""
