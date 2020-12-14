@@ -4,6 +4,7 @@
 
 from odoo.exceptions import UserError
 from .e_invoice_common import EInvoiceCommon
+from odoo.tools import mute_logger
 
 
 class TestEInvoiceSend(EInvoiceCommon):
@@ -20,6 +21,7 @@ class TestEInvoiceSend(EInvoiceCommon):
         with self.assertRaises(UserError):
             e_invoice.send_via_pec()
 
+    @mute_logger("odoo.addons.mail.models.mail_mail")
     def test_sender_error(self):
         """Sending e-invoice without configuring email_from_for_fatturaPA
         fails to send the email"""
