@@ -57,10 +57,13 @@ class AccountVatPeriodEndStatement(models.Model):
                     name = "{} {} - {}".format(
                         basename, group_key[1].description, date_string)
 
+                    account = statement.company_id.sp_account_id\
+                        or group_key[0]
+
                     StatementGenericAccountLine.create({
                         'name': name,
                         'amount': amount,
-                        'account_id': group_key[0].id,
+                        'account_id': account.id,
                         'statement_id': statement.id,
                         'is_split_payment': True
                     })
