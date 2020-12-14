@@ -23,6 +23,7 @@ import base64
 import logging
 import phonenumbers
 import os
+from openerp.tools.float_utils import float_round
 from openerp.osv import orm
 from openerp.osv import fields
 from openerp.addons.l10n_it_fatturapa.bindings.fatturapa import (
@@ -420,18 +421,18 @@ class WizardExportFatturapa(orm.TransientModel):
         fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
             DatiAnagrafici = DatiAnagraficiCessionarioType()
         if not partner.vat and not partner.fiscalcode:
-            if (
-                    partner.codice_destinatario == 'XXXXXXX'
-                    and partner.country_id.code
-                    and partner.country_id.code != 'IT'
-            ):
+            if partner.codice_destinatario == 'XXXXXXX' \
+                    and partner.country_id.code:
+                # SDI accpets missing VAT# for foreign customers by setting a
+                # fake IdCodice and a valid IdPaese
+                # Otherwise raise error if we havo no VAT# and no Fiscal code
                 fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
-                DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-                    IdPaese=partner.country_id.code,
-                    IdCodice='99999999999')
+                    DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
+                        IdPaese=partner.country_id.code, IdCodice='99999999999'
+                    )
             else:
-                raise orm.except_orm(_('Error!'),
-                    _('VAT number and fiscal code are not set for %s') % partner.name)
+                raise orm.except_orm(
+                    _('Error!'), _('Partner VAT and Fiscalcode not set.'))
         if partner.fiscalcode:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.CodiceFiscale = partner.fiscalcode
@@ -442,15 +443,18 @@ class WizardExportFatturapa(orm.TransientModel):
         if partner.is_company:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.Anagrafica = AnagraficaType(
-                    Denominazione=partner.name)
+                    Denominazione=partner.name.encode(
+                        'latin', 'ignore').decode('latin'))
         else:
             if not partner.lastname or not partner.firstname:
                 raise orm.except_orm(_('Error!'),
                     _("Partner %s deve avere nome e cognome") % partner.name)
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.Anagrafica = AnagraficaType(
-                    Cognome=partner.lastname,
-                    Nome=partner.firstname
+                    Cognome=partner.lastname.encode(
+                        'latin', 'ignore').decode('latin'),
+                    Nome=partner.firstname.encode(
+                        'latin', 'ignore').decode('latin')
                 )
         # not using for now
 
@@ -553,9 +557,11 @@ class WizardExportFatturapa(orm.TransientModel):
         if partner.codice_destinatario == 'XXXXXXX':
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede = (
                 IndirizzoType(
-                    Indirizzo=partner.street,
+                    Indirizzo=partner.street.encode(
+                        'latin', 'ignore').decode('latin'),
                     CAP='00000',
-                    Comune=partner.city,
+                    Comune=partner.city.encode(
+                        'latin', 'ignore').decode('latin'),
                     Provincia='EE',
                     Nazione=partner.country_id.code))
         else:
@@ -569,8 +575,8 @@ class WizardExportFatturapa(orm.TransientModel):
                     Comune=partner.city,
                     Nazione=partner.country_id.code))
             if partner.province:
-                fatturapa.FatturaElettronicaHeader.CessionarioCommittente.Sede.\
-                    Provincia=partner.province.code
+                fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+                    Sede.Provincia = partner.province.code
 
         return True
 
@@ -645,11 +651,15 @@ class WizardExportFatturapa(orm.TransientModel):
             for causale in caus_list:
                 if not causale:
                     continue
-                # Remove non latin chars, but go back to unicode string,
-                # as expected by String200LatinType
-                causale = causale.encode(
-                    'latin', 'ignore').decode('latin')
-                body.DatiGenerali.DatiGeneraliDocumento.Causale.append(causale)
+                causale_list_200 = \
+                    [causale[i:i+200] for i in range(0, len(causale), 200)]
+                for causale200 in causale_list_200:
+                    # Remove non latin chars, but go back to unicode string,
+                    # as expected by String200LatinType
+                    causale = causale200.encode(
+                        'latin', 'ignore').decode('latin')
+                    body.DatiGenerali.DatiGeneraliDocumento.Causale\
+                        .append(causale)
 
         if invoice.company_id.fatturapa_art73:
             body.DatiGenerali.DatiGeneraliDocumento.Art73 = 'SI'
@@ -732,76 +742,81 @@ class WizardExportFatturapa(orm.TransientModel):
         line_no = 1
         price_precision = self.pool['decimal.precision'].precision_get(cr, uid, 
             'Product Price')
+        if price_precision < 2:
+            # XML wants at least 2 decimals always
+            price_precision = 2
         uom_precision = self.pool['decimal.precision'].precision_get(cr, uid, 
             'Product Unit of Measure')
+        if uom_precision < 2:
+            uom_precision = 2
         for line in self._get_regular_invoice_lines(invoice):
-            if not line.invoice_line_tax_id:
-                raise orm.except_orm(
-                    _('Error'),
-                    _("Invoice line %s does not have tax") % line.name)
-            if len(line.invoice_line_tax_id) > 1:
-                raise orm.except_orm(
-                    _('Error'),
-                    _("Too many taxes for invoice line %s") % line.name)
-            aliquota = line.invoice_line_tax_id[0].amount * 100
-            AliquotaIVA = '%.2f' % (aliquota)
-            line.ftpa_line_number = line_no
-            prezzo_unitario = self._get_prezzo_unitario(cr, uid, line)
-            DettaglioLinea = DettaglioLineeType(
-                NumeroLinea=str(line_no),
-                Descrizione=unidecode(line.name.replace('\n', ' ')),
-                PrezzoUnitario=('%.' + str(
-                    price_precision
-                ) + 'f') % prezzo_unitario,
-                Quantita=('%.' + str(
-                    uom_precision
-                ) + 'f') % line.quantity,
-                UnitaMisura=line.uos_id and (
-                    unidecode(line.uos_id.name)) or None,
-                PrezzoTotale='%.2f' % line.price_subtotal,
-                AliquotaIVA=AliquotaIVA)
-            if line.discount:
-                ScontoMaggiorazione = ScontoMaggiorazioneType(
-                    Tipo='SC',
-                    Percentuale='%.2f' % line.discount
-                )
-                DettaglioLinea.ScontoMaggiorazione.append(ScontoMaggiorazione)
-            if aliquota == 0.0:
-#                 if not line.invoice_line_tax_id[0].non_taxable_nature:
-#                     raise orm.except_orm(
-#                         _('Error'),
-#                         _("No 'nature' field for tax %s") %
-#                         line.invoice_line_tax_id[0].name)
-#                 DettaglioLinea.Natura = line.invoice_line_tax_id[
-#                     0
-#                 ].non_taxable_nature
-                if not line.invoice_line_tax_ids[0].kind_id:
-                    raise orm.except_orm(
-                        _('Error'),
-                        _("No 'nature' field for tax %s.") %
-                        line.invoice_line_tax_ids[0].name)
-                DettaglioLinea.Natura = line.invoice_line_tax_ids[0].kind_id.code
-            if line.admin_ref:
-                DettaglioLinea.RiferimentoAmministrazione = line.admin_ref
-            if line.product_id:
-                if line.product_id.default_code:
-                    CodiceArticolo = CodiceArticoloType(
-                        CodiceTipo='ODOO',
-                        CodiceValore=line.product_id.default_code
-                    )
-                    DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
-                if line.product_id.ean13:
-                    CodiceArticolo = CodiceArticoloType(
-                        CodiceTipo='EAN',
-                        CodiceValore=line.product_id.ean13
-                    )
-                    DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
+            self.setDettaglioLinea(
+                cr, uid, line_no, line, body, price_precision, uom_precision)
             line_no += 1
 
-            body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
+    def setDettaglioLinea(
+        self, cr, uid, line_no, line, body, price_precision, uom_precision
+    ):
+        if not line.invoice_line_tax_id:
+            raise orm.except_orm(
+                _('Error'),
+                _("Invoice line %s does not have tax") % line.name)
+        if len(line.invoice_line_tax_id) > 1:
+            raise orm.except_orm(
+                _('Error'),
+                _("Too many taxes for invoice line %s.") % line.name)
+        aliquota = line.invoice_line_tax_id[0].amount * 100
+        AliquotaIVA = '%.2f' % float_round(aliquota, 2)
+        line.ftpa_line_number = line_no
+        prezzo_unitario = self._get_prezzo_unitario(cr, uid, line)
+        DettaglioLinea = DettaglioLineeType(
+            NumeroLinea=str(line_no),
+            Descrizione=unidecode(line.name.replace('\n', ' '))[:1000],
+            PrezzoUnitario='{prezzo:.{precision}f}'.format(
+                prezzo=prezzo_unitario, precision=price_precision),
+            Quantita='{qta:.{precision}f}'.format(
+                qta=line.quantity, precision=uom_precision),
+            UnitaMisura=line.uos_id and (
+                unidecode(line.uos_id.name)) or None,
+            PrezzoTotale='%.2f' % float_round(line.price_subtotal, 2),
+            AliquotaIVA=AliquotaIVA)
+        DettaglioLinea.ScontoMaggiorazione.extend(
+            self.setScontoMaggiorazione(cr, uid, line))
+        if aliquota == 0.0:
+            if not line.invoice_line_tax_ids[0].kind_id:
+                raise orm.except_orm(
+                    _('Error'),
+                    _("No 'nature' field for tax %s.") %
+                    line.invoice_line_tax_ids[0].name)
+            DettaglioLinea.Natura = line.invoice_line_tax_ids[0].kind_id.code
+        if line.admin_ref:
+            DettaglioLinea.RiferimentoAmministrazione = line.admin_ref
+        if line.product_id:
+            product_code = line.product_id.default_code
+            if product_code:
+                CodiceArticolo = CodiceArticoloType(
+                    CodiceTipo='ODOO',
+                    CodiceValore=product_code[:35],
+                )
+                DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
+            product_barcode = line.product_id.ean13
+            if product_barcode:
+                CodiceArticolo = CodiceArticoloType(
+                    CodiceTipo='EAN',
+                    CodiceValore=product_barcode[:35],
+                )
+                DettaglioLinea.CodiceArticolo.append(CodiceArticolo)
+        body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
+        return DettaglioLinea
 
-        return True
-
+    def setScontoMaggiorazione(self, cr, uid, line):
+        res = []
+        if line.discount:
+            res.append(ScontoMaggiorazioneType(
+                Tipo='SC',
+                Percentuale='%.8f' % float_round(line.discount, 8)
+            ))
+        return res
     def setDatiRiepilogo(self, cr, uid, invoice, body, context=None):
         if context is None:
             context = {}

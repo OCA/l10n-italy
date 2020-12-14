@@ -973,8 +973,8 @@ class WizardImportFatturapa(orm.TransientModel):
             'journal_id': purchase_journal.id,
             'invoice_line': [(6, 0, invoice_lines)],
             # 'origin': xmlData.datiOrdineAcquisto,
-            'fiscal_position': False,
-            'payment_term': False,
+            'fiscal_position': (partner.property_account_position.id or False),
+            'payment_term': (partner.property_supplier_payment_term.id or False),
             'company_id': company.id,
             'fatturapa_attachment_in_id': fatturapa_attachment.id,
             'comment': comment,
@@ -1160,7 +1160,7 @@ class WizardImportFatturapa(orm.TransientModel):
                 if stock_incoterm_id:
                     delivery_dict['incoterm'] = stock_incoterm_id[0]
             invoice_model.write(
-                cr, uid, invoice_id, delivery_dict, context=context)
+                cr, uid, [invoice_id], delivery_dict, context=context)
         # 2.2.2
         Summary_datas = FatturaBody.DatiBeniServizi.DatiRiepilogo
         if Summary_datas:

@@ -10,11 +10,11 @@ class AccountInvoice(orm.Model):
         inv_partner = False
         inv_fiscal_pos = False
         inv_journal = False
-        if 'partner_id' in vals:
+        if 'partner_id' in vals and vals['partner_id']:
             inv_partner = self.pool.get('res.partner').browse(cr, uid, vals['partner_id'], context=context)
-        if 'fiscal_position' in vals:
+        if 'fiscal_position' in vals and vals['fiscal_position']:
             inv_fiscal_pos = self.pool.get('account.fiscal.position').browse(cr, uid, vals['fiscal_position'], context=context)
-        if 'journal_id' in vals:
+        if 'journal_id' in vals and vals['journal_id']:
             inv_journal = self.pool.get('account.journal').browse(cr, uid, vals['journal_id'], context=context)
         dt = self._get_document_fiscal_type(cr, uid, [],
             vals.get('type', ''), inv_partner, inv_fiscal_pos, inv_journal, context=context)
@@ -23,6 +23,8 @@ class AccountInvoice(orm.Model):
         return super(AccountInvoice, self).create(cr, uid, vals, context=context)
 
     def write(self, cr, uid, ids, vals, context={}):
+        if isinstance(ids, (int, float, long)):
+            ids = [ids]
         invoice_list = self.browse(cr, uid, ids, context=context)
         for invoice in invoice_list:
             if invoice.state == 'draft':
@@ -30,16 +32,15 @@ class AccountInvoice(orm.Model):
                 inv_partner = invoice.partner_id
                 inv_fiscal_pos = invoice.fiscal_position
                 inv_journal = invoice.journal_id
-                if 'type' in vals:
+                if 'type' in vals and vals['type']:
                     inv_type = vals['type']
-                if 'partner_id' in vals:
+                if 'partner_id' in vals and vals['partner_id']:
                     inv_partner = self.pool.get('res.partner').browse(cr, uid, vals['partner_id'], context=context)
-                if 'fiscal_position' in vals:
+                if 'fiscal_position' in vals and vals['fiscal_position']:
                     inv_fiscal_pos = self.pool.get('account.fiscal.position').browse(cr, uid, vals['fiscal_position'], context=context)
-                if 'journal_id' in vals:
+                if 'journal_id' in vals and vals['journal_id']:
                     inv_journal = self.pool.get('account.journal').browse(cr, uid, vals['journal_id'], context=context)
-                dt = self._get_document_fiscal_type(cr, uid, ids,
-                    inv_type, inv_partner, inv_fiscal_pos, inv_journal, context=context)
+                dt = self._get_document_fiscal_type(cr, uid, ids, inv_type, inv_partner, inv_fiscal_pos, inv_journal, context=context)
                 if dt:
                     vals['fiscal_document_type_id'] = dt[0]
         ret = super(AccountInvoice, self).write(cr, uid, ids, vals, context=context)
