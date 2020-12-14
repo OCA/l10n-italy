@@ -275,7 +275,7 @@
                                         <tree editable="bottom" string="Summary Data">
                                             <field name="tax_rate"></field>
                                             <field name="non_taxable_nature"></field>
-                                            <field name="incidental charges" readonly="1"></field>
+                                            <field name="incidental_charges" readonly="1"></field>
                                             <field name="rounding"></field>
                                             <field name="amount_untaxed"></field>
                                             <field name="amount_tax"></field>

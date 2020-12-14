@@ -34,6 +34,32 @@ class account_invoice(orm.Model):
         'e_invoice_line_ids': fields.one2many(
             "einvoice.line", "invoice_id", string="Dettaglio Linee",
             readonly=True, copy=False),
+    'e_invoice_amount_untaxed': fields.float(
+        string='E-Invoice Untaxed Amount', readonly=True),
+    'e_invoice_amount_tax': fields.float(string='E-Invoice Tax Amount',
+                                           readonly=True),
+    'e_invoice_amount_total': fields.float(string='E-Invoice Total Amount',
+                                             readonly=True),
+
+    'e_invoice_reference': fields.char(
+        string="E-invoice vendor reference",
+        readonly=True),
+
+    'e_invoice_date_invoice': fields.date(
+        string="E-invoice invoice date",
+        readonly=True),
+
+    'e_invoice_validation_error': fields.boolean(
+        compute='_compute_e_invoice_validation_error'),
+
+    'e_invoice_validation_message': fields.text(
+        compute='_compute_e_invoice_validation_error'),
+
+    'e_invoice_force_validation': fields.boolean(
+        string='Force E-Invoice Validation'),
+
+    'e_invoice_received_date': fields.date(
+        string='E-Bill Received Date'),
     }
 
     def name_get(self, cr, uid, ids, context={}):

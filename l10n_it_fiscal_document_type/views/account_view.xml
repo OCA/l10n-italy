@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<openerp>
+<data>
+    <record id="view_account_position_fdt_form" model="ir.ui.view">
+        <field name="name">account.fiscal.position.fdt.form</field>
+        <field name="model">account.fiscal.position</field>
+        <field name="inherit_id" ref="account.view_account_position_form"/>
+        <field name="arch" type="xml">
+            <field name="company_id" position="after" >
+                <field name="fiscal_document_type_id" />
+            </field>
+        </field>
+    </record>
+</data>
+</openerp>

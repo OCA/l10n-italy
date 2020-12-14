@@ -850,7 +850,7 @@ class WizardImportFatturapa(orm.TransientModel):
         invoice_model = self.pool['account.invoice']
         currency_model = self.pool['res.currency']
         invoice_line_model = self.pool['account.invoice.line']
-        ftpa_doctype_poll = self.pool['fatturapa.document_type']
+        ftpa_doctype_poll = self.pool['fiscal.document.type']
         rel_docs_model = self.pool['fatturapa.related_document_type']
         WelfareFundLineModel = self.pool['welfare.fund.data.line']
         DiscRisePriceModel = self.pool['discount.rise.price']
@@ -965,7 +965,8 @@ class WizardImportFatturapa(orm.TransientModel):
             'payment_term': False,
             'company_id': company.id,
             'fatturapa_attachment_in_id': fatturapa_attachment.id,
-            'comment': comment
+            'comment': comment,
+            'fiscal_document_type_id': docType_id,
         }
         invoice_data['e_invoice_line_ids'] = [(6, 0, e_invoice_line_ids)]
         # 2.1.1.5
@@ -1155,7 +1156,7 @@ class WizardImportFatturapa(orm.TransientModel):
                 summary_line = {
                     'tax_rate': summary.AliquotaIVA or 0.0,
                     'non_taxable_nature': summary.Natura or False,
-                    'incidental charges': summary.SpeseAccessorie or 0.0,
+                    'incidental_charges': summary.SpeseAccessorie or 0.0,
                     'rounding': summary.Arrotondamento or 0.0,
                     'amount_untaxed': summary.ImponibileImporto or 0.0,
                     'amount_tax': summary.Imposta or 0.0,

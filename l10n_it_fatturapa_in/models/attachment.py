@@ -99,7 +99,33 @@ class FatturaPAAttachmentIn(orm.Model):
                  "del cessionario / committente"),
         'registered': fields.function(_compute_registered,
             string="Registered", type="boolean", fnct_search=_search_is_registered, store=False),
+
+    'e_invoice_received_date': fields.datetime(string='E-Bill Received Date'),
+
+    'e_invoice_validation_error': fields.boolean(
+        compute='_compute_e_invoice_validation_error'),
+
+    'e_invoice_validation_message': fields.text(
+        compute='_compute_e_invoice_validation_error'),
+
     }
+
+    def _compute_e_invoice_validation_error(self, cr, uid, ids, context={}):
+        for att in self.browse(cr, uid, ids, context):
+            bills_with_error = att.in_invoice_ids.filtered(
+                lambda b: b.e_invoice_validation_error
+            )
+            if not bills_with_error:
+                continue
+            att.e_invoice_validation_error = True
+            errors_message_template = u"{bill}:\n{errors}"
+            error_messages = list()
+            for bill in bills_with_error:
+                error_messages.append(
+                    errors_message_template.format(
+                        bill=bill.display_name,
+                        errors=bill.e_invoice_validation_message))
+            att.e_invoice_validation_message = "\n\n".join(error_messages)
 
     def get_xml_string(self, cr, uid, ids, context={}):
         for fattAttInBrws in self.browse(cr, uid, ids, context):
