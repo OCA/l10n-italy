@@ -579,6 +579,17 @@ class WizardImportFatturapa(orm.TransientModel):
             line.AliquotaIVA and (float(line.AliquotaIVA)/100) or None)
         Ritenuta = line.Ritenuta or ''
         Natura = line.Natura or False
+        kind_id = False
+        if Natura:
+            kind = self.pool['account.tax.kind'].search(cr, uid, [
+                ('code', '=', Natura)
+            ])
+            if not kind:
+                self.log_inconsistency(
+                    _("Tax kind %s not found") % Natura
+                )
+            else:
+                kind_id = kind[0]
         RiferimentoAmministrazione = line.RiferimentoAmministrazione or ''
         WelfareTypeModel = self.pool['welfare.fund.type']
         if not TipoCassa:
@@ -599,6 +610,7 @@ class WizardImportFatturapa(orm.TransientModel):
             'welfare_Iva_tax': AliquotaIVA,
             'subjected_withholding': Ritenuta,
             'fund_nature': Natura or False,
+            'kind_id': kind_id,
             'pa_line_code': RiferimentoAmministrazione,
             'invoice_id': invoice_id,
         }
