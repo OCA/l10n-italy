@@ -53,11 +53,12 @@ class AccountGroup(models.Model):
 
         for progenitor in self.browse(tuple(set(progenitor_ids))):
             accounts = progenitor.get_group_accounts()
-            if not accounts.mapped('user_type_id').have_same_sign():
-                raise ValidationError(
-                    _("Incoherent balance signs for '{}' and its subgroups.")
-                    .format(progenitor.name_get()[0][-1])
-                )
+            if accounts and accounts[0].company_id.is_country_id_code_it():
+                if not accounts.mapped('user_type_id').have_same_sign():
+                    raise ValidationError(
+                        _("Incoherent balance signs for '{}' and its subgroups.")
+                        .format(progenitor.name_get()[0][-1])
+                    )
 
     @api.multi
     def _compute_account_balance_sign(self):
