@@ -29,4 +29,4 @@ class AccountTaxKind(orm.Model):
                 ] + args, limit=limit)
         else:
             records = self.search(cr, uid, args, limit=limit)
-        return self.browse(cr, uid, records).name_get()
+        return self.name_get(cr, uid, records)

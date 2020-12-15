@@ -7,15 +7,10 @@
             <field name="model">account.tax</field>
             <field name="inherit_id" ref="account.view_tax_form"></field>
             <field name="arch" type="xml">
-                <notebook position="inside">
-                    <page string="FatturaPA">
-                        <group>
-                            <field name="non_taxable_nature"></field>
-                            <field name="law_reference" attrs="{'required': [('non_taxable_nature', '!=', False),('type_tax_use', '!=', 'purchase')], 'invisible': ['|',('non_taxable_nature', '=', False),('type_tax_use', '=', 'purchase')]}"></field>
-                            <field name="payability"></field>
-                        </group>
-                    </page>
-                </notebook>
+            	<xpath expr="//field[@name='tax_sign']" position="after">
+                   <field name="non_taxable_nature" readonly="True"></field>
+                   <field name="payability"></field>
+                </xpath>
             </field>
         </record>
 
