@@ -14,7 +14,7 @@ from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.translate import _
 
-from .efattura import EfatturaOut
+from .efattura import EFatturaOut
 
 _logger = logging.getLogger(__name__)
 
@@ -51,14 +51,13 @@ class WizardExportFatturapa(models.TransientModel):
         attach_str = fatturapa.to_xml(self.env)
         attach_vals = {
             "name": "{}_{}.xml".format(vat, number),
-            "datas_fname": "{}_{}.xml".format(vat, number),
-            "datas": base64.encodestring(attach_str),
+            "datas": base64.encodebytes(attach_str),
         }
         return attach_obj.create(attach_vals)
 
     def getPartnerId(self, invoice_ids):
 
-        invoice_model = self.env["account.invoice"]
+        invoice_model = self.env["account.move"]
         partner = False
 
         invoices = invoice_model.browse(invoice_ids)
@@ -77,7 +76,7 @@ class WizardExportFatturapa(models.TransientModel):
     def group_invoices_by_partner(self):
         invoice_ids = self.env.context.get("active_ids", False)
         res = {}
-        for invoice in self.env["account.invoice"].browse(invoice_ids):
+        for invoice in self.env["account.move"].browse(invoice_ids):
             if invoice.partner_id.id not in res:
                 res[invoice.partner_id.id] = []
             res[invoice.partner_id.id].append(invoice.id)
@@ -89,7 +88,6 @@ class WizardExportFatturapa(models.TransientModel):
         for partner_id in invoices_by_partner:
             invoice_ids = invoices_by_partner[partner_id]
             partner = self.getPartnerId(invoice_ids)
-            company = self.env.user.company_id
             context_partner = self.env.context.copy()
             context_partner.update({"lang": partner.lang})
 
@@ -100,14 +98,16 @@ class WizardExportFatturapa(models.TransientModel):
                 progressivo_invio = id_generator()
 
             invoice_ids = (
-                self.env["account.invoice"]
+                self.env["account.move"]
                 .with_context(context_partner)
                 .browse(invoice_ids)
             )
             for invoice in invoice_ids:
                 invoice.set_taxes_for_descriptive_lines()
 
-            fatturapa = EfatturaOut(company, partner, invoice_ids, progressivo_invio)
+            fatturapa = EFatturaOut(
+                self.env.company, partner, invoice_ids, progressivo_invio
+            )
 
             attach = self.saveAttachment(fatturapa, progressivo_invio)
             attachments |= attach
@@ -115,7 +115,6 @@ class WizardExportFatturapa(models.TransientModel):
             invoice_ids.write({"fatturapa_attachment_out_id": attach.id})
 
         action = {
-            "view_type": "form",
             "name": "Export Electronic Invoice",
             "res_model": "fatturapa.attachment.out",
             "type": "ir.actions.act_window",
@@ -141,11 +140,10 @@ class WizardExportFatturapa(models.TransientModel):
         attachment, attachment_type = report_model.render_qweb_pdf(inv.ids)
         att_id = self.env["ir.attachment"].create(
             {
-                "name": inv.number,
+                "name": "{}.pdf".format(inv.number),
                 "type": "binary",
                 "datas": base64.encodebytes(attachment),
-                "datas_fname": "{}.pdf".format(inv.number),
-                "res_model": "account.invoice",
+                "res_model": "account.move",
                 "res_id": inv.id,
                 "mimetype": "application/x-pdf",
             }

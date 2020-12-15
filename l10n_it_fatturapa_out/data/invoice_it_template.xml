@@ -126,7 +126,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
         </template>
 
         <template id="account_invoice_line_it_FatturaPA">
-            <t t-set="tax_ids" t-value="line.invoice_line_tax_ids" />
+            <t t-set="tax_ids" t-value="line.tax_ids" />
             <t t-set="taxes" t-value="tax_ids.compute_all(line.price_unit)" />
             <DettaglioLinee>
                 <NumeroLinea t-esc="line_counter" />
@@ -148,8 +148,8 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     /><t t-if="not line.name" t-esc="'NO NAME'" /></Descrizione>
                 <Quantita t-esc="format_quantity(line)" />
                 <UnitaMisura
-                    t-if="line.uom_id.name"
-                    t-esc="unidecode(line.uom_id.name)"
+                    t-if="line.product_uom_id.name"
+                    t-esc="unidecode(line.product_uom_id.name)"
                 />
                 <!--                <DataInizioPeriodo t-esc=""/>-->
                 <!--                <DataFinePeriodo t-esc=""/>-->
@@ -180,15 +180,17 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
         </template>
 
         <template id="account_invoice_line_it_dati_riepilogo">
-            <t t-set="tax" t-value="tax_line.tax_id" />
+            <t t-set="tax" t-value="tax_line.tax_line_id" />
             <DatiRiepilogo>
                 <!--2.2.2-->
                 <AliquotaIVA t-esc="format_numbers(tax.amount)" />
                 <Natura t-if="tax.kind_id.code" t-esc="tax.kind_id.code" />
                 <!--                <SpeseAccessorie t-esc=""/>-->
                 <!--                <Arrotondamento t-esc=""/>-->
-                <ImponibileImporto t-esc="format_monetary(tax_line.base, currency)" />
-                <Imposta t-esc="format_monetary(tax_line.amount, currency)" />
+                <ImponibileImporto
+                    t-esc="format_monetary(tax_line.tax_base_amount, currency)"
+                />
+                <Imposta t-esc="format_monetary(tax_line.price_total, currency)" />
                 <EsigibilitaIVA t-if="tax.payability" t-esc="tax.payability" />
                 <RiferimentoNormativo
                     t-if="tax.law_reference"
@@ -506,8 +508,8 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                         <!--2.1.1-->
                         <TipoDocumento t-esc="record.fiscal_document_type_id.code" />
                         <Divisa t-esc="currency.name" />
-                        <Data t-esc="format_date(record.date_invoice)" />
-                        <Numero t-esc="record.number" />
+                        <Data t-esc="format_date(record.invoice_date)" />
+                        <Numero t-esc="record.name" />
                         <t
                             t-call="l10n_it_fatturapa_out.account_invoice_it_dati_ritenuta"
                         />
@@ -560,7 +562,11 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                             t-call="l10n_it_fatturapa_out.account_invoice_line_it_FatturaPA"
                         />
                     </t>
-                    <t t-foreach="record.tax_line_ids" t-as="tax_line">
+                    <t
+                        t-set="tax_line_ids"
+                        t-value="record.line_ids.filtered(lambda line: line.tax_line_id)"
+                    />
+                    <t t-foreach="tax_line_ids" t-as="tax_line">
                         <t
                             t-call="l10n_it_fatturapa_out.account_invoice_line_it_dati_riepilogo"
                         />
@@ -570,16 +576,14 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                 <!--                    <Data t-esc=""/>-->
                 <!--                    <TotalePercorso t-esc=""/>-->
                 <!--                </DatiVeicoli>-->
-                <DatiPagamento t-if="record.payment_term_id">
+                <DatiPagamento t-if="record.invoice_payment_term_id">
                     <t
                         t-set="payments"
-                        t-value="env['account.move.line'].browse(record.get_receivable_line_ids())"
+                        t-value="record.line_ids.filtered(lambda line: line.account_id.user_type_id.type in ('receivable', 'payable'))"
                     />
-<!-- t-value="record.invoice_line_ids.filtered(lambda line: line.account_id.user_type_id.type in ('receivable', 'payable'))" -->
-
                     <!--                    <CondizioniPagamento><t t-if="len(payments) == 1">TP02</t><t t-else="">TP01</t></CondizioniPagamento>-->
                     <CondizioniPagamento
-                        t-esc="record.payment_term_id.fatturapa_pt_id.code"
+                        t-esc="record.invoice_payment_term_id.fatturapa_pt_id.code"
                     />
                     <t t-foreach="payments" t-as="move_line">
                         <DettaglioPagamento>
@@ -589,7 +593,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                             />
                             <!--                            <Beneficiario t-esc=""/>-->
                             <ModalitaPagamento
-                                t-esc="record.payment_term_id.fatturapa_pm_id.code"
+                                t-esc="record.invoice_payment_term_id.fatturapa_pm_id.code"
                             />
                             <!--                            <DataRiferimentoTerminiPagamento t-esc=""/>-->
                             <!--                            <GiorniTerminiPagamento t-esc=""/>-->

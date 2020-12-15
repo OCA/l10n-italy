@@ -34,15 +34,14 @@
                             <group>
                                 <label for="datas" />
                                 <div>
-                                    <field name="datas" filename="datas_fname" />
+                                    <field name="datas" filename="name" />
                                     <field
                                         name="ftpa_preview_link"
                                         widget="url"
                                         text="Show preview"
                                     />
                                 </div>
-                                <field name="datas_fname" />
-                                <field name="name" readonly="1" />
+                                <field name="name" />
                             </group>
                             <group>
                                 <field name="has_pdf_invoice_print" />
@@ -52,22 +51,22 @@
                         <separator string="Invoices" />
                         <field
                             name="out_invoice_ids"
-                            context="{'form_view_ref': 'account.invoice_form', 'tree_view_ref': 'account.invoice_tree'}"
+                            context="{'form_view_ref': 'account.view_move_form', 'tree_view_ref': 'account.view_move_tree'}"
                         >
                             <tree>
                                 <field name="partner_id" />
-                                <field name="date_invoice" />
-                                <field name="number" />
-                                <field name="origin" />
+                                <field name="invoice_date" />
+                                <field name="name" />
+                                <field name="invoice_origin" />
                                 <field name="amount_total" />
-                                <field name="residual" />
+                                <field name="amount_residual" />
                                 <field name="state" />
                                 <button
                                     name="open_form_current"
                                     type="object"
                                     string="Open full-screen"
                                     icon="fa-external-link"
-                                    context="{'form_view_ref': 'account.invoice_form'}"
+                                    context="{'form_view_ref': 'account.view_move_form'}"
                                 />
                             </tree>
                         </field>
@@ -99,7 +98,6 @@
             <field name="name">Electronic Invoice Export Files</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">fatturapa.attachment.out</field>
-            <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_fatturapa_out_attachment_tree" />
         </record>

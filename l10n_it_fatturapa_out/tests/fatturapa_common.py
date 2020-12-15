@@ -7,16 +7,30 @@ from lxml import etree
 
 from odoo.modules.module import get_module_resource
 
-from odoo.addons.account.tests.account_test_users import AccountTestUsers
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
+from odoo.addons.mail.tests.common import mail_new_test_user
 
 
-class FatturaPACommon(AccountTestUsers):
+class FatturaPACommon(AccountTestInvoicingCommon):
     def setUp(self):
         super(FatturaPACommon, self).setUp()
+        # used to be in AccountTestUsers
+        self.account_model = self.env["account.account"]
+
+        # self.company = self.env.ref("base.main_company")
+        self.company = self.env["res.company"].browse(self.env.companies.ids[0])
+        self.account_manager = mail_new_test_user(
+            self.env,
+            name="Adviser",
+            login="fm",
+            email="accountmanager@yourcompany.com",
+            groups="account.group_account_manager,base.group_partner_manager",
+            company_ids=[(6, 0, self.env.companies.ids)],
+        )
         self.wizard_model = self.env["wizard.export.fatturapa"]
         self.data_model = self.env["ir.model.data"]
         self.attach_model = self.env["fatturapa.attachment.out"]
-        self.invoice_model = self.env["account.invoice"]
+        self.invoice_model = self.env["account.move"]
         self.fatturapa_attach = self.env["fatturapa.attachments"]
         self.context = {}
         self.maxDiff = None
@@ -24,7 +38,7 @@ class FatturaPACommon(AccountTestUsers):
             [("type", "=", "sale")]
         )[0]
         account_user_type = self.env.ref("account.data_account_type_receivable")
-        self.a_recv = self.account_model.sudo(self.account_manager.id).create(
+        self.a_recv = self.account_model.with_user(self.account_manager.id).create(
             dict(
                 code="cust_acc",
                 name="customer account",
@@ -42,7 +56,9 @@ class FatturaPACommon(AccountTestUsers):
             ],
             limit=1,
         )
-        self.account_payment_term = self.env.ref("account.account_payment_term")
+        self.account_payment_term = self.env.ref(
+            "account.account_payment_term_immediate"
+        )
         self.user_demo = self.env.ref("base.user_demo")
         self.product_uom_unit = self.env.ref("uom.product_uom_unit")
         self.product_product_10 = self.env.ref("product.product_product_10")
@@ -69,7 +85,6 @@ class FatturaPACommon(AccountTestUsers):
             "l10n_it_fatturapa.res_partner_fatturapa_4"
         )
         self.fiscal_position_sp = self.env.ref("l10n_it_fatturapa.fiscal_position_sp")
-        self.company = self.env.ref("base.main_company")
         self.company.sp_account_id = self.env["account.account"].search(
             [
                 (
@@ -94,13 +109,12 @@ class FatturaPACommon(AccountTestUsers):
                 "name": filename,
                 "invoice_id": InvoiceId,
                 "datas": self.getAttachment(filename)[1],
-                "datas_fname": filename,
             }
         )
 
     def set_sequences(self, invoice_number, dt):
         seq_pool = self.env["ir.sequence"]
-        inv_seq = seq_pool.search([("name", "=", "INV Sequence")])[0]
+        inv_seq = seq_pool.search([("name", "=", "INV Sequence")], limit=1)
         seq_date = self.env["ir.sequence.date_range"].search(
             [
                 ("sequence_id", "=", inv_seq.id),
@@ -127,7 +141,7 @@ class FatturaPACommon(AccountTestUsers):
         file_id = xml.findall(".//ProgressivoInvio")
         file_id[0].text = test_file_id
         e_invoice.datas = base64.encodestring(etree.tostring(xml))
-        e_invoice.datas_fname = file_name
+        e_invoice.name = file_name
 
     def check_content(self, xml_content, file_name, module_name=None):
         parser = etree.XMLParser(remove_blank_text=True)

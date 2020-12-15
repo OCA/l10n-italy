@@ -19,7 +19,7 @@ class FatturaPAAttachment(models.Model):
         string="E-invoice file name", related="ir_attachment_id.name", store=True
     )
     out_invoice_ids = fields.One2many(
-        "account.invoice",
+        "account.move",
         "fatturapa_attachment_out_id",
         string="Out Invoices",
         readonly=True,
@@ -47,7 +47,7 @@ class FatturaPAAttachment(models.Model):
 
     @api.model
     def get_file_vat(self):
-        company = self.env.user.company_id
+        company = self.env.company
         if company.fatturapa_sender_partner:
             if not company.fatturapa_sender_partner.vat:
                 raise UserError(
@@ -68,37 +68,35 @@ class FatturaPAAttachment(models.Model):
         # Not trying to perfect match file extension, because user could have
         # downloaded, signed and uploaded again the file, thus having changed
         # file extension
-        return bool(self.search([("datas_fname", "=like", "%s%%" % partial_fname)]))
+        return bool(self.search([("name", "=like", "%s%%" % partial_fname)]))
 
-    @api.multi
     @api.depends("out_invoice_ids")
     def _compute_invoice_partner_id(self):
         for att in self:
             partners = att.mapped("out_invoice_ids.partner_id")
+            att.invoice_partner_id = False
             if len(partners) == 1:
                 att.invoice_partner_id = partners.id
 
-    @api.multi
-    @api.constrains("datas_fname")
-    def _check_datas_fname(self):
+    @api.constrains("name")
+    def _check_name(self):
         for att in self:
-            res = self.search([("datas_fname", "=", att.datas_fname)])
+            res = self.search([("name", "=", att.name)])
             if len(res) > 1:
-                raise UserError(_("File %s already present.") % att.datas_fname)
+                raise UserError(_("File %s already present.") % att.name)
 
-    @api.multi
     @api.depends("out_invoice_ids.fatturapa_doc_attachments.is_pdf_invoice_print")
     def _compute_has_pdf_invoice_print(self):
         """Check if all the invoices related to this attachment
         have at least one attachment containing
         the PDF report of the invoice"""
         for attachment_out in self:
+            attachment_out.has_pdf_invoice_print = False
             for invoice in attachment_out.out_invoice_ids:
                 invoice_attachments = invoice.fatturapa_doc_attachments
                 if any([ia.is_pdf_invoice_print for ia in invoice_attachments]):
                     continue
                 else:
-                    attachment_out.has_pdf_invoice_print = False
                     break
             else:
                 # We have examined all the invoices and none of them
@@ -106,7 +104,6 @@ class FatturaPAAttachment(models.Model):
                 # one attachment having is_pdf_invoice_print = True
                 attachment_out.has_pdf_invoice_print = True
 
-    @api.multi
     def write(self, vals):
         res = super(FatturaPAAttachment, self).write(vals)
         if "datas" in vals and "message_ids" not in vals:

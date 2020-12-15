@@ -32,17 +32,17 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         super(TestFatturaPAXMLValidation, self).setUp()
 
     def test_1_xml_export(self):
-        self.env.user.company_id.fatturapa_pub_administration_ref = "F000000111"
+        self.env.company.fatturapa_pub_administration_ref = "F000000111"
         self.set_sequences(13, "2016-01-07")
         invoice = self.invoice_model.create(
             {
-                "date_invoice": "2016-01-07",
+                "invoice_date": "2016-01-07",
                 "partner_id": self.res_partner_fatturapa_0.id,
                 "journal_id": self.sales_journal.id,
-                "account_id": self.a_recv.id,
-                "payment_term_id": self.account_payment_term.id,
+                # "account_id": self.a_recv.id,
+                "invoice_payment_term_id": self.account_payment_term.id,
                 "user_id": self.user_demo.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "currency_id": self.EUR.id,
                 "invoice_line_ids": [
                     (
@@ -53,9 +53,9 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                             "product_id": self.product_product_10.id,
                             "name": "Mouse\nOptical",
                             "quantity": 1,
-                            "uom_id": self.product_uom_unit.id,
+                            "product_uom_id": self.product_uom_unit.id,
                             "price_unit": 10,
-                            "invoice_line_tax_ids": [(6, 0, {self.tax_22.id})],
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
                         },
                     ),
                     (
@@ -66,9 +66,9 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                             "product_id": self.product_order_01.id,
                             "name": "Zed+ Antivirus",
                             "quantity": 1,
-                            "uom_id": self.product_uom_unit.id,
+                            "product_uom_id": self.product_uom_unit.id,
                             "price_unit": 4,
-                            "invoice_line_tax_ids": [(6, 0, {self.tax_22.id})],
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
                         },
                     ),
                 ],
@@ -80,9 +80,9 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
 
         self.assertTrue(res)
         attachment = self.attach_model.browse(res["res_id"])
-        file_name_match = "^%s_[A-Za-z0-9]{5}.xml$" % self.env.user.company_id.vat
+        file_name_match = "^%s_[A-Za-z0-9]{5}.xml$" % self.env.company.vat
         # Checking file name randomly generated
-        self.assertTrue(re.search(file_name_match, attachment.datas_fname))
+        self.assertTrue(re.search(file_name_match, attachment.name))
         self.set_e_invoice_file_id(attachment, "IT06363391001_00001.xml")
         self.assertTrue(self.attach_model.file_name_exists("00001"))
 
@@ -94,15 +94,15 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.set_sequences(14, "2016-06-15")
         invoice = self.invoice_model.create(
             {
-                "date_invoice": "2016-06-15",
+                "invoice_date": "2016-06-15",
                 "partner_id": self.res_partner_fatturapa_0.id,
                 "journal_id": self.sales_journal.id,
-                "account_id": self.a_recv.id,
-                "payment_term_id": self.account_payment_term.id,
+                # "account_id": self.a_recv.id,
+                "invoice_payment_term_id": self.account_payment_term.id,
                 "user_id": self.user_demo.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "currency_id": self.EUR.id,
-                "comment": "prima riga\nseconda riga",
+                "narration": "prima riga\nseconda riga",
                 "invoice_line_ids": [
                     (
                         0,
@@ -112,9 +112,9 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                             "product_id": self.product_product_10.id,
                             "name": "Mouse, Optical",
                             "quantity": 1,
-                            "uom_id": self.product_uom_unit.id,
+                            "product_uom_id": self.product_uom_unit.id,
                             "price_unit": 10,
-                            "invoice_line_tax_ids": [(6, 0, {self.tax_22.id})],
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
                         },
                     ),
                     (
@@ -125,9 +125,9 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                             "product_id": self.product_order_01.id,
                             "name": "Zed+ Antivirus",
                             "quantity": 1,
-                            "uom_id": self.product_uom_unit.id,
+                            "product_uom_id": self.product_uom_unit.id,
                             "price_unit": 4,
-                            "invoice_line_tax_ids": [(6, 0, {self.tax_22.id})],
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
                         },
                     ),
                 ],
@@ -157,15 +157,15 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.set_sequences(15, "2016-06-15")
         invoice = self.invoice_model.create(
             {
-                "date_invoice": "2016-06-15",
+                "invoice_date": "2016-06-15",
                 "partner_id": self.res_partner_fatturapa_0.id,
                 "journal_id": self.sales_journal.id,
-                "account_id": self.a_recv.id,
-                "payment_term_id": self.account_payment_term.id,
+                # "account_id": self.a_recv.id,
+                "invoice_payment_term_id": self.account_payment_term.id,
                 "user_id": self.user_demo.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "currency_id": self.EUR.id,
-                "comment": "prima riga\nseconda riga",
+                "narration": "prima riga\nseconda riga",
                 "invoice_line_ids": [
                     (
                         0,
@@ -175,10 +175,10 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                             "product_id": self.product_product_10.id,
                             "name": "Mouse, Optical",
                             "quantity": 1,
-                            "uom_id": self.product_uom_unit.id,
+                            "product_uom_id": self.product_uom_unit.id,
                             "price_unit": 10,
                             "admin_ref": "D122353",
-                            "invoice_line_tax_ids": [(6, 0, {self.tax_22.id})],
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
                         },
                     ),
                     (
@@ -189,9 +189,9 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                             "product_id": self.product_order_01.id,
                             "name": "Zed+ Antivirus",
                             "quantity": 1,
-                            "uom_id": self.product_uom_unit.id,
+                            "product_uom_id": self.product_uom_unit.id,
                             "price_unit": 4,
-                            "invoice_line_tax_ids": [(6, 0, {self.tax_22.id})],
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
                         },
                     ),
                 ],
@@ -223,13 +223,13 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.set_sequences(16, "2016-06-15")
         invoice = self.invoice_model.create(
             {
-                "date_invoice": "2016-06-15",
+                "invoice_date": "2016-06-15",
                 "partner_id": self.res_partner_fatturapa_0.id,
                 "journal_id": self.sales_journal.id,
-                "account_id": self.a_recv.id,
-                "payment_term_id": self.account_payment_term.id,
+                # "account_id": self.a_recv.id,
+                "invoice_payment_term_id": self.account_payment_term.id,
                 "user_id": self.user_demo.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "currency_id": self.EUR.id,
                 "fiscal_position_id": self.fiscal_position_sp.id,
                 "invoice_line_ids": [
@@ -241,9 +241,9 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                             "product_id": self.product_product_10.id,
                             "name": "Mouse, Optical",
                             "quantity": 1,
-                            "uom_id": self.product_uom_unit.id,
+                            "product_uom_id": self.product_uom_unit.id,
                             "price_unit": 10,
-                            "invoice_line_tax_ids": [(6, 0, {self.tax_22_SP.id})],
+                            "tax_ids": [(6, 0, {self.tax_22_SP.id})],
                         },
                     ),
                     (
@@ -254,9 +254,9 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                             "product_id": self.product_order_01.id,
                             "name": "Zed+ Antivirus",
                             "quantity": 1,
-                            "uom_id": self.product_uom_unit.id,
+                            "product_uom_id": self.product_uom_unit.id,
                             "price_unit": 4,
-                            "invoice_line_tax_ids": [(6, 0, {self.tax_22_SP.id})],
+                            "tax_ids": [(6, 0, {self.tax_22_SP.id})],
                         },
                     ),
                 ],
@@ -270,17 +270,17 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.check_content(xml_content, "IT06363391001_00004.xml")
 
     def test_5_xml_export(self):
-        self.env.user.company_id.fatturapa_sender_partner = self.intermediario.id
+        self.env.company.fatturapa_sender_partner = self.intermediario.id
         self.set_sequences(17, "2016-06-15")
         invoice = self.invoice_model.create(
             {
-                "date_invoice": "2016-06-15",
+                "invoice_date": "2016-06-15",
                 "partner_id": self.res_partner_fatturapa_0.id,
                 "journal_id": self.sales_journal.id,
-                "account_id": self.a_recv.id,
-                "payment_term_id": self.account_payment_term.id,
+                # "account_id": self.a_recv.id,
+                "invoice_payment_term_id": self.account_payment_term.id,
                 "user_id": self.user_demo.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "currency_id": self.EUR.id,
                 "invoice_line_ids": [
                     (
@@ -291,10 +291,10 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                             "product_id": self.product_product_10.id,
                             "name": "Mouse, Optical",
                             "quantity": 1,
-                            "uom_id": self.product_uom_unit.id,
+                            "product_uom_id": self.product_uom_unit.id,
                             "price_unit": 10,
                             "discount": 10,
-                            "invoice_line_tax_ids": [(6, 0, {self.tax_22.id})],
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
                         },
                     ),
                 ],
@@ -313,13 +313,13 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.set_sequences(13, "2018-01-07")
         invoice = self.invoice_model.create(
             {
-                "date_invoice": "2018-01-07",
+                "invoice_date": "2018-01-07",
                 "partner_id": self.res_partner_fatturapa_2.id,
                 "journal_id": self.sales_journal.id,
-                "account_id": self.a_recv.id,
-                "payment_term_id": self.account_payment_term.id,
+                # "account_id": self.a_recv.id,
+                "invoice_payment_term_id": self.account_payment_term.id,
                 "user_id": self.user_demo.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "currency_id": self.EUR.id,
                 "invoice_line_ids": [
                     (
@@ -330,9 +330,9 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                             "product_id": self.product_product_10.id,
                             "name": "Mouse Optical",
                             "quantity": 1,
-                            "uom_id": self.product_uom_unit.id,
+                            "product_uom_id": self.product_uom_unit.id,
                             "price_unit": 10,
-                            "invoice_line_tax_ids": [(6, 0, {self.tax_22.id})],
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
                         },
                     ),
                     (
@@ -343,9 +343,9 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                             "product_id": self.product_order_01.id,
                             "name": "Zed+ Antivirus",
                             "quantity": 1,
-                            "uom_id": self.product_uom_unit.id,
+                            "product_uom_id": self.product_uom_unit.id,
                             "price_unit": 4,
-                            "invoice_line_tax_ids": [(6, 0, {self.tax_22.id})],
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
                         },
                     ),
                 ],
@@ -372,13 +372,13 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.set_sequences(14, "2018-01-07")
         invoice = self.invoice_model.create(
             {
-                "date_invoice": "2018-01-07",
+                "invoice_date": "2018-01-07",
                 "partner_id": self.res_partner_fatturapa_2.id,
                 "journal_id": self.sales_journal.id,
-                "account_id": self.a_recv.id,
-                "payment_term_id": self.account_payment_term.id,
+                # "account_id": self.a_recv.id,
+                "invoice_payment_term_id": self.account_payment_term.id,
                 "user_id": self.user_demo.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "currency_id": self.EUR.id,
                 "invoice_line_ids": [
                     (
@@ -389,9 +389,9 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                             "product_id": self.product_product_10.id,
                             "name": "Mouse Optical",
                             "quantity": 1,
-                            "uom_id": self.product_uom_unit.id,
+                            "product_uom_id": self.product_uom_unit.id,
                             "price_unit": 10,
-                            "invoice_line_tax_ids": [(6, 0, {self.tax_22.id})],
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
                         },
                     ),
                 ],
@@ -410,15 +410,15 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.set_sequences(15, "2018-01-07")
         invoice = self.invoice_model.create(
             {
-                "date_invoice": "2018-01-07",
+                "invoice_date": "2018-01-07",
                 "partner_id": self.res_partner_fatturapa_2.id,
                 "journal_id": self.sales_journal.id,
-                "account_id": self.a_recv.id,
-                "payment_term_id": self.account_payment_term.id,
+                # "account_id": self.a_recv.id,
+                "invoice_payment_term_id": self.account_payment_term.id,
                 "user_id": self.user_demo.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "currency_id": self.EUR.id,
-                "comment": "firsrt line\n\nsecond line",
+                "narration": "firsrt line\n\nsecond line",
                 "invoice_line_ids": [
                     (
                         0,
@@ -428,9 +428,9 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                             "product_id": self.product_product_10.id,
                             "name": "Mouse Optical",
                             "quantity": 1,
-                            "uom_id": self.product_uom_unit.id,
+                            "product_uom_id": self.product_uom_unit.id,
                             "price_unit": 10,
-                            "invoice_line_tax_ids": [(6, 0, {self.tax_22.id})],
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
                         },
                     ),
                     (
@@ -441,9 +441,9 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                             "product_id": self.product_order_01.id,
                             "name": "Zed+ Antivirus",
                             "quantity": 1,
-                            "uom_id": self.product_uom_unit.id,
+                            "product_uom_id": self.product_uom_unit.id,
                             "price_unit": 4,
-                            "invoice_line_tax_ids": [(6, 0, {self.tax_22.id})],
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
                         },
                     ),
                 ],
@@ -466,13 +466,13 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.assertEqual(partner.codice_destinatario, "XXXXXXX")
         invoice = self.invoice_model.create(
             {
-                "date_invoice": "2018-01-07",
+                "invoice_date": "2018-01-07",
                 "partner_id": partner.id,
                 "journal_id": self.sales_journal.id,
-                "account_id": self.a_recv.id,
-                "payment_term_id": self.account_payment_term.id,
+                # "account_id": self.a_recv.id,
+                "invoice_payment_term_id": self.account_payment_term.id,
                 "user_id": self.user_demo.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "currency_id": self.AED.id,
                 "invoice_line_ids": [
                     (
@@ -483,9 +483,9 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                             "product_id": self.product_product_10.id,
                             "name": "Mouse Optical",
                             "quantity": 1,
-                            "uom_id": self.product_uom_unit.id,
+                            "product_uom_id": self.product_uom_unit.id,
                             "price_unit": 10,
-                            "invoice_line_tax_ids": [(6, 0, {self.tax_22.id})],
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
                         },
                     ),
                     (
@@ -496,9 +496,9 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                             "product_id": self.product_order_01.id,
                             "name": "Zed+ Antivirus",
                             "quantity": 1,
-                            "uom_id": self.product_uom_unit.id,
+                            "product_uom_id": self.product_uom_unit.id,
                             "price_unit": 4,
-                            "invoice_line_tax_ids": [(6, 0, {self.tax_22.id})],
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
                         },
                     ),
                 ],
@@ -517,13 +517,13 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.set_sequences(10, "2019-08-07")
         invoice = self.invoice_model.create(
             {
-                "date_invoice": "2019-08-07",
+                "invoice_date": "2019-08-07",
                 "partner_id": self.res_partner_fatturapa_2.id,
                 "journal_id": self.sales_journal.id,
-                "account_id": self.a_recv.id,
-                "payment_term_id": self.account_payment_term.id,
+                # "account_id": self.a_recv.id,
+                "invoice_payment_term_id": self.account_payment_term.id,
                 "user_id": self.user_demo.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "currency_id": self.EUR.id,
                 "invoice_line_ids": [
                     (
@@ -534,9 +534,9 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                             "product_id": self.product_product_10.id,
                             "name": "Mouse\nOptical",
                             "quantity": 1,
-                            "uom_id": self.product_uom_unit.id,
+                            "product_uom_id": self.product_uom_unit.id,
                             "price_unit": 10,
-                            "invoice_line_tax_ids": [(6, 0, {self.tax_10.id})],
+                            "tax_ids": [(6, 0, {self.tax_10.id})],
                         },
                     ),
                     (
@@ -545,7 +545,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                         {
                             "display_type": "line_note",
                             "name": "Notes",
-                            "invoice_line_tax_ids": [(6, 0, {self.tax_22.id})],
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
                         },
                     ),
                 ],
@@ -577,13 +577,13 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.assertEqual(partner.codice_destinatario, "XXXXXXX")
         invoice = self.invoice_model.create(
             {
-                "date_invoice": "2018-01-07",
+                "invoice_date": "2018-01-07",
                 "partner_id": self.res_partner_fatturapa_2.id,
                 "journal_id": self.sales_journal.id,
-                "account_id": self.a_recv.id,
-                "payment_term_id": self.account_payment_term.id,
+                # "account_id": self.a_recv.id,
+                "invoice_payment_term_id": self.account_payment_term.id,
                 "user_id": self.user_demo.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "currency_id": self.EUR.id,
                 "invoice_line_ids": [
                     (
@@ -594,9 +594,9 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                             "product_id": self.product_product_10.id,
                             "name": "Mouse Optical Ø23 ß11",
                             "quantity": 1,
-                            "uom_id": self.product_uom_unit.id,
+                            "product_uom_id": self.product_uom_unit.id,
                             "price_unit": 10,
-                            "invoice_line_tax_ids": [(6, 0, {self.tax_22.id})],
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
                         },
                     ),
                     (
@@ -607,9 +607,9 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                             "product_id": self.product_order_01.id,
                             "name": "Zed+^ Antiv° (£)",
                             "quantity": 1,
-                            "uom_id": self.product_uom_unit.id,
+                            "product_uom_id": self.product_uom_unit.id,
                             "price_unit": 4,
-                            "invoice_line_tax_ids": [(6, 0, {self.tax_22.id})],
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
                         },
                     ),
                 ],
@@ -641,13 +641,13 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.set_sequences(12, "2020-01-07")
         invoice = self.invoice_model.create(
             {
-                "date_invoice": "2020-01-07",
+                "invoice_date": "2020-01-07",
                 "partner_id": invoicing_partner.id,
                 "journal_id": self.sales_journal.id,
-                "account_id": self.a_recv.id,
-                "payment_term_id": self.account_payment_term.id,
+                # "account_id": self.a_recv.id,
+                "invoice_payment_term_id": self.account_payment_term.id,
                 "user_id": self.user_demo.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "currency_id": self.EUR.id,
                 "invoice_line_ids": [
                     (
@@ -658,9 +658,9 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                             "product_id": self.product_product_10.id,
                             "name": "Mouse Optical",
                             "quantity": 1,
-                            "uom_id": self.product_uom_unit.id,
+                            "product_uom_id": self.product_uom_unit.id,
                             "price_unit": 10,
-                            "invoice_line_tax_ids": [(6, 0, {self.tax_22.id})],
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
                         },
                     )
                 ],

@@ -2,13 +2,13 @@
 # Copyright 2016 Lorenzo Battistini - Agile Business Group
 
 
-from odoo import api, fields, models
+from odoo import fields, models
 from odoo.exceptions import UserError
 from odoo.tools.translate import _
 
 
 class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+    _inherit = "account.move"
 
     fatturapa_attachment_out_id = fields.Many2one(
         "fatturapa.attachment.out", "E-invoice Export File", readonly=True, copy=False
@@ -22,7 +22,6 @@ class AccountInvoice(models.Model):
         # hook for preventive checks. Override and raise exception, in case
         return
 
-    @api.multi
     def action_invoice_cancel(self):
         for invoice in self:
             if invoice.fatturapa_attachment_out_id:
@@ -38,12 +37,8 @@ class AccountInvoice(models.Model):
 
     def get_first_non_zero_tax(self):
         for line in self.invoice_line_ids:
-            if (
-                not line.display_type
-                and line.price_subtotal
-                and len(line.invoice_line_tax_ids) == 1
-            ):
-                return line.invoice_line_tax_ids[0]
+            if not line.display_type and line.price_subtotal and len(line.tax_ids) == 1:
+                return line.tax_ids[0]
         return False
 
     def set_taxes_for_descriptive_lines(self):
@@ -51,4 +46,4 @@ class AccountInvoice(models.Model):
             if line.display_type:
                 non_zero_tax = self.get_first_non_zero_tax()
                 if non_zero_tax:
-                    line.invoice_line_tax_ids = [(6, 0, [non_zero_tax.id])]
+                    line.tax_ids = [(6, 0, [non_zero_tax.id])]

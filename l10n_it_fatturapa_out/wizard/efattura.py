@@ -1,23 +1,77 @@
 # Copyright 2020 Giuseppe Borruso
 # Copyright 2020 Marco Colombo
-import base64
+import logging
 import os
 from datetime import datetime
 
+from lxml import etree
 from unidecode import unidecode
 
+from odoo.exceptions import UserError
+from odoo.modules.module import get_module_resource
 from odoo.tools import float_repr
 
 from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
 
+_logger = logging.getLogger(__name__)
+
+# XXX da vedere se spostare in fatturapa e fare una import del validator, es.
+# from from odoo.addons.l10n_it_fatturapa import FPAValidator
+
+
+class FPAValidator(etree.XMLSchema):
+
+    _XSD_SCHEMA = "Schema_del_file_xml_FatturaPA_versione_1.2.1.xsd"
+    _xml_schema_1_2_1 = get_module_resource(
+        "l10n_it_fatturapa", "bindings", "xsd", _XSD_SCHEMA
+    )
+
+    # fix <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
+    #      schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd" /> # noqa: B950
+    class VeryOldXSDSpecResolverTYVMSdI(etree.Resolver):
+
+        _old_xsd_specs = get_module_resource(
+            "l10n_it_fatturapa", "bindings", "xsd", "xmldsig-core-schema.xsd"
+        )
+
+        def resolve(self, system_url, public_id, context):
+            if (
+                system_url
+                == "http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd"  # noqa: B950
+            ):
+                _logger.info(
+                    "mapping URL for %r to local file %r",
+                    system_url,
+                    self._old_xsd_specs,
+                )
+                return self.resolve_filename(self._old_xsd_specs, context)
+            else:
+                return super().resolve(system_url, public_id, context)
+
+    def __init__(self):
+        _parser = etree.XMLParser()
+        _parser.resolvers.add(self.VeryOldXSDSpecResolverTYVMSdI())
+        super().__init__(etree=etree.parse(self._xml_schema_1_2_1, _parser))
+
+
 DEFAULT_INVOICE_ITALIAN_DATE_FORMAT = "%Y-%m-%d"
 
 
-class EfatturaOut:
+class EFatturaOut:
+
+    _validator = FPAValidator()
+
+    def validate(self, tree):
+        ret = self._validator(tree)
+        errors = self._validator.error_log
+        return (ret, errors)
+
     def to_xml(self, env):  # noqa: C901
         """Create the xml file content.
         :return: The XML content as str.
         """
+
+        self.env = env
 
         def format_date(dt):
             # Format the date in the italian standard.
@@ -54,10 +108,8 @@ class EfatturaOut:
 
         def format_price(line):
             res = line.price_unit
-            if line.invoice_line_tax_ids and line.invoice_line_tax_ids[0].price_include:
-                res = line.price_unit / (
-                    1 + (line.invoice_line_tax_ids[0].amount / 100)
-                )
+            if line.tax_ids and line.tax_ids[0].price_include:
+                res = line.price_unit / (1 + (line.tax_ids[0].amount / 100))
             price_precision = env["decimal.precision"].precision_get(
                 "Product Price for XML e-invoices"
             )
@@ -89,9 +141,9 @@ class EfatturaOut:
 
         def get_causale(invoice):
             res = []
-            if invoice.comment:
+            if invoice.narration:
                 # max length of Causale is 200
-                caus_list = invoice.comment.split("\n")
+                caus_list = invoice.narration.split("\n")
                 for causale in caus_list:
                     if not causale:
                         continue
@@ -108,8 +160,8 @@ class EfatturaOut:
         def get_nome_attachment(doc_id):
             file_name, file_extension = os.path.splitext(doc_id.name)
             attachment_name = (
-                doc_id.datas_fname
-                if len(doc_id.datas_fname) <= 60
+                doc_id.name
+                if len(doc_id.name) <= 60
                 else "".join([file_name[: (60 - len(file_extension))], file_extension])
             )
             return encode_for_export(attachment_name, 60)
@@ -148,13 +200,21 @@ class EfatturaOut:
             "get_nome_attachment": get_nome_attachment,
             "codice_destinatario": code.upper(),
             "in_eu": in_eu,
-            "abs": abs,
             "unidecode": unidecode,
-            "base64": base64,
+            # "base64": base64,
         }
         content = env.ref(
             "l10n_it_fatturapa_out.account_invoice_it_FatturaPA_export"
-        ).render(template_values)
+        )._render(template_values)
+        # 14.0 - occorre rimuovere gli spazi tra i tag
+        root = etree.fromstring(content, parser=etree.XMLParser(remove_blank_text=True))
+        # già che ci siamo, validiamo con l'XMLSchema dello SdI
+        ok, errors = self.validate(root)
+        if not ok:
+            # XXX - da migliorare?
+            # i controlli precedenti dovrebbero escludere errori di sintassi XML
+            raise UserError("\n".join(e.message for e in errors))
+        content = etree.tostring(root, xml_declaration=True, encoding="utf-8")
         return content
 
     def __init__(self, company_id, partner_id, invoices, progressivo_invio):
