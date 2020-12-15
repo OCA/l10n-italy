@@ -62,14 +62,13 @@
         </field>
     </record>
 
-    <act_window
-        id="fatturapa_related_document_type_action"
-        name="Related documents"
-        res_model="fatturapa.related_document_type"
-        view_mode="tree,form"
-        view_id="fatturapa_related_document_type_view_tree"
-        context="{'create': False, 'edit': False, 'delete': False}"
-    />
+    <record id="fatturapa_related_document_type_action" model="ir.actions.act_window">
+        <field name="name">Related documents</field>
+        <field name="res_model">fatturapa.related_document_type</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="fatturapa_related_document_type_view_tree" />
+        <field name="context">{'create': False, 'edit': False, 'delete': False}</field>
+    </record>
 
     <menuitem
         id="fatturapa_related_document_type_menu"

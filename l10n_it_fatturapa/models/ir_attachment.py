@@ -6,9 +6,9 @@ from io import BytesIO
 
 import lxml.etree as ET
 
-from odoo import api, fields, models
+from odoo import fields, models
 from odoo.exceptions import UserError
-from odoo.modules import get_module_resource
+from odoo.modules import get_resource_path
 from odoo.tools.translate import _
 
 _logger = logging.getLogger(__name__)
@@ -35,10 +35,11 @@ class Attachment(models.Model):
         "Preview link", readonly=True, compute="_compute_ftpa_preview_link"
     )
 
-    @api.multi
     def _compute_ftpa_preview_link(self):
         for att in self:
-            att.ftpa_preview_link = "/fatturapa/preview/%s" % att.id
+            att.ftpa_preview_link = (
+                att.get_base_url() + "/fatturapa/preview/%s" % att.id
+            )
 
     def remove_xades_sign(self, xml):
         # Recovering parser is needed for files where strings like
@@ -103,10 +104,10 @@ class Attachment(models.Model):
             raise UserError(_("Invalid xml %s.") % e.args)
 
     def get_fattura_elettronica_preview(self):
-        xsl_path = get_module_resource(
+        xsl_path = get_resource_path(
             "l10n_it_fatturapa",
             "data",
-            self.env.user.company_id.fatturapa_preview_style,
+            self.env.company.fatturapa_preview_style,
         )
         xslt = ET.parse(xsl_path)
         xml_string = self.get_xml_string()

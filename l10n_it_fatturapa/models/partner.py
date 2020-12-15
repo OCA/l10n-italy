@@ -58,7 +58,6 @@ class ResPartner(models.Model):
         help="Set this when the main company has got several Addressee Codes or PEC",
     )
 
-    @api.multi
     def _compute_electronic_invoice_data_complete(self):
         check_fatturapa_fields = self._check_ftpa_partner_data._constrains
         for partner in self:
@@ -71,7 +70,6 @@ class ResPartner(models.Model):
             except ValidationError:
                 partner.electronic_invoice_data_complete = False
 
-    @api.multi
     @api.constrains(
         "is_pa",
         "ipa_code",
@@ -82,7 +80,6 @@ class ResPartner(models.Model):
         "fiscalcode",
         "lastname",
         "firstname",
-        "customer",
         "street",
         "zip",
         "city",
@@ -91,9 +88,7 @@ class ResPartner(models.Model):
     )
     def _check_ftpa_partner_data(self):
         for partner in self:
-            if partner.electronic_invoice_subjected and partner.customer:
-                # These checks must be done for customers only, as only
-                # needed for XML generation
+            if partner.electronic_invoice_subjected:
                 if partner.is_pa and (
                     not partner.ipa_code or len(partner.ipa_code) != 6
                 ):
@@ -127,7 +122,7 @@ class ResPartner(models.Model):
                     and len(partner.codice_destinatario) != 7
                 ):
                     raise ValidationError(
-                        _("Partner %s Addressee Code " "must be 7 characters long.")
+                        _("Partner %s Addressee Code must be 7 characters long.")
                         % partner.name
                     )
                 if partner.pec_destinatario:
@@ -149,7 +144,7 @@ class ResPartner(models.Model):
                     and partner.country_id.code == "IT"
                 ):
                     raise ValidationError(
-                        _("Italian partner %s must " "have VAT Number or Fiscal Code.")
+                        _("Italian partner %s must have VAT Number or Fiscal Code.")
                         % partner.name
                     )
                 if not partner.street:
@@ -169,7 +164,7 @@ class ResPartner(models.Model):
                     )
                 if not partner.country_id:
                     raise ValidationError(
-                        _("Customer %s: country is needed for XML" " generation.")
+                        _("Customer %s: country is needed for XML generation.")
                         % partner.name
                     )
 
@@ -185,7 +180,7 @@ class ResPartner(models.Model):
         if not self.electronic_invoice_subjected:
             self.electronic_invoice_obliged_subject = False
         else:
-            if self.supplier:
+            if self.supplier_rank > 0:
                 self.onchange_country_id_e_inv()
                 self.electronic_invoice_obliged_subject = True
 

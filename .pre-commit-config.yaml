@@ -15,11 +15,10 @@ exclude: |
   # You don't usually want a bot to modify your legal texts
   (LICENSE.*|COPYING.*)|
   # official goverment specs
-  (l10n_it_fatturapa/bindings/xsd)|
+  (l10n_it_fatturapa/data/xsd)|
   # external stylesheets
   (l10n_it_fatturapa/data/fatturaordinaria_v1.2.1.xsl)|
   (l10n_it_fatturapa/data/FoglioStileAssoSoftware_v1.1.xsl)
-
 default_language_version:
   python: python3
   node: "14.13.0"

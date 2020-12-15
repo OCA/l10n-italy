@@ -2,8 +2,6 @@
 
 from odoo import api, fields, models
 
-import odoo.addons.decimal_precision as dp
-
 RELATED_DOCUMENT_TYPES = {
     "order": "DatiOrdineAcquisto",
     "contract": "DatiContratto",
@@ -11,24 +9,6 @@ RELATED_DOCUMENT_TYPES = {
     "reception": "DatiRicezione",
     "invoice": "DatiFattureCollegate",
 }
-
-
-class FatturapaFormat(models.Model):
-    # _position = ['1.1.3']
-    _name = "fatturapa.format"
-    _description = "E-invoice Format"
-
-    name = fields.Char("Description", size=128)
-    code = fields.Char("Code", size=5)
-
-
-class FatturapaDocumentType(models.Model):
-    # _position = ['2.1.1.1']
-    _name = "fatturapa.document_type"
-    _description = "E-invoice Document Type"
-
-    name = fields.Char("Description", size=128)
-    code = fields.Char("Code", size=4)
 
 
 #  used in fatturaPa import
@@ -46,7 +26,7 @@ class FatturapaPaymentData(models.Model):
         "fatturapa.payment.detail", "payment_data_id", "Payments Details"
     )
     invoice_id = fields.Many2one(
-        "account.invoice", "Related Invoice", ondelete="cascade", index=True
+        "account.move", "Related Invoice", ondelete="cascade", index=True
     )
 
 
@@ -104,7 +84,6 @@ class WelfareFundType(models.Model):
     name = fields.Char("Name")
     description = fields.Char("Description")
 
-    @api.multi
     def name_get(self):
         res = []
         for record in self:
@@ -126,7 +105,7 @@ class WelfareFundDataLine(models.Model):
     subjected_withholding = fields.Char("Subjected to Withholding", size=2)
     pa_line_code = fields.Char("PA Code for this Record", size=20)
     invoice_id = fields.Many2one(
-        "account.invoice", "Related Invoice", ondelete="cascade", index=True
+        "account.move", "Related Invoice", ondelete="cascade", index=True
     )
 
 
@@ -147,7 +126,7 @@ class WithholdingDataLine(models.Model):
     )
     amount = fields.Float("Withholding amount")
     invoice_id = fields.Many2one(
-        "account.invoice", "Related Invoice", ondelete="cascade", index=True
+        "account.move", "Related Invoice", ondelete="cascade", index=True
     )
 
 
@@ -158,15 +137,15 @@ class DiscountRisePrice(models.Model):
 
     name = fields.Selection([("SC", "Discount"), ("MG", "Supplement")], "Type")
     percentage = fields.Float("Percentage")
-    amount = fields.Float("Amount", digits=dp.get_precision("Discount"))
+    amount = fields.Float("Amount", digits="Discount")
     invoice_line_id = fields.Many2one(
-        "account.invoice.line",
+        "account.move.line",
         "Related Invoice from line",
         ondelete="cascade",
         index=True,
     )
     invoice_id = fields.Many2one(
-        "account.invoice", "Related Invoice", ondelete="cascade", index=True
+        "account.move", "Related Invoice", ondelete="cascade", index=True
     )
 
 
@@ -189,14 +168,14 @@ class FatturapaRelatedDocumentType(models.Model):
     name = fields.Char("Document ID", size=20, required=True)
     lineRef = fields.Integer("Line Ref.")
     invoice_line_id = fields.Many2one(
-        "account.invoice.line",
+        "account.move.line",
         "Related Invoice Line",
         ondelete="cascade",
         index=True,
         readonly=True,
     )
     invoice_id = fields.Many2one(
-        "account.invoice",
+        "account.move",
         "Related Invoice",
         ondelete="cascade",
         index=True,
@@ -211,20 +190,20 @@ class FatturapaRelatedDocumentType(models.Model):
     @api.model
     def create(self, vals):
         if vals.get("invoice_line_id"):
-            line_obj = self.env["account.invoice.line"]
+            line_obj = self.env["account.move.line"]
             line = line_obj.browse(vals["invoice_line_id"])
             vals["lineRef"] = line.sequence
         return super(FatturapaRelatedDocumentType, self).create(vals)
 
 
-class FaturapaActivityProgress(models.Model):
+class FatturapaActivityProgress(models.Model):
     # _position = ['2.1.7']
-    _name = "faturapa.activity.progress"
+    _name = "fatturapa.activity.progress"
     _description = "E-invoice activity progress"
 
     fatturapa_activity_progress = fields.Integer("Activity Progress")
     invoice_id = fields.Many2one(
-        "account.invoice", "Related Invoice", ondelete="cascade", index=True
+        "account.move", "Related Invoice", ondelete="cascade", index=True
     )
 
 
@@ -240,7 +219,7 @@ class FatturaAttachments(models.Model):
     compression = fields.Char("Compression", size=10)
     format = fields.Char("Format", size=10)
     invoice_id = fields.Many2one(
-        "account.invoice", "Related Invoice", ondelete="cascade", index=True
+        "account.move", "Related Invoice", ondelete="cascade", index=True
     )
 
 
@@ -253,16 +232,16 @@ class FatturapaRelatedDdt(models.Model):
     date = fields.Date("Date")
     lineRef = fields.Integer("Line Ref.")
     invoice_line_id = fields.Many2one(
-        "account.invoice.line", "Related Invoice Line", ondelete="cascade", index=True
+        "account.move.line", "Related Invoice Line", ondelete="cascade", index=True
     )
     invoice_id = fields.Many2one(
-        "account.invoice", "Related Invoice", ondelete="cascade", index=True
+        "account.move", "Related Invoice", ondelete="cascade", index=True
     )
 
     @api.model
     def create(self, vals):
         if vals.get("invoice_line_id"):
-            line_obj = self.env["account.invoice.line"]
+            line_obj = self.env["account.move.line"]
             line = line_obj.browse(vals["invoice_line_id"])
             vals["lineRef"] = line.sequence
         return super(FatturapaRelatedDdt, self).create(vals)
@@ -270,7 +249,7 @@ class FatturapaRelatedDdt(models.Model):
 
 class AccountInvoiceLine(models.Model):
     # _position = ['2.2.1']
-    _inherit = "account.invoice.line"
+    _inherit = "account.move.line"
 
     related_documents = fields.One2many(
         "fatturapa.related_document_type",
@@ -291,54 +270,18 @@ class AccountInvoiceLine(models.Model):
     ftpa_line_number = fields.Integer("Line Number", readonly=True, copy=False)
 
 
-class FaturapaSummaryData(models.Model):
+class FatturapaSummaryData(models.Model):
     # _position = ['2.2.2']
-    _name = "faturapa.summary.data"
+    _name = "fatturapa.summary.data"
     _description = "E-invoice summary data"
     tax_rate = fields.Float("Tax Rate")
+
+    @api.model
+    def _get_tax_kinds(self):
+        return [(t.code, t.name) for t in self.env["account.tax.kind"].search([])]
+
     non_taxable_nature = fields.Selection(
-        [
-            ("N1", "excluded pursuant to Art. 15"),
-            ("N2", "not subject"),
-            (
-                "N2.1",
-                "not subject to VAT under the articles from 7 to "
-                "7-septies of DPR 633/72",
-            ),
-            ("N2.2", "not subject – other cases"),
-            ("N3", "not taxable"),
-            ("N3.1", "not taxable – exportations"),
-            ("N3.2", "not taxable – intra Community transfers"),
-            ("N3.3", "not taxable – transfers to San Marino"),
-            ("N3.4", "not taxable – transactions treated as export supplies"),
-            ("N3.5", "not taxable – for declaration of intent"),
-            (
-                "N3.6",
-                "not taxable – other transactions that don’t contribute to the "
-                "determination of ceiling",
-            ),
-            ("N4", "exempt"),
-            ("N5", "margin regime"),
-            ("N6", "reverse charge"),
-            (
-                "N6.1",
-                "reverse charge – transfer of scrap and of other recyclable "
-                "materials",
-            ),
-            ("N6.2", "reverse charge – transfer of gold and pure silver"),
-            ("N6.3", "reverse charge – subcontracting in the construction sector"),
-            ("N6.4", "reverse charge – transfer of buildings"),
-            ("N6.5", "reverse charge – transfer of mobile phones"),
-            ("N6.6", "reverse charge – transfer of electronic products"),
-            (
-                "N6.7",
-                "reverse  charge – provisions in the construction and related "
-                "sectors",
-            ),
-            ("N6.8", "reverse charge – transactions in the energy sector"),
-            ("N6.9", "reverse charge – other cases"),
-            ("N7", "VAT paid in other EU countries"),
-        ],
+        selection="_get_tax_kinds",
         string="Non taxable nature",
     )
     incidental_charges = fields.Float("Incidental Charges")
@@ -355,13 +298,13 @@ class FaturapaSummaryData(models.Model):
     )
     law_reference = fields.Char("Law reference", size=128)
     invoice_id = fields.Many2one(
-        "account.invoice", "Related Invoice", ondelete="cascade", index=True
+        "account.move", "Related Invoice", ondelete="cascade", index=True
     )
 
 
 class AccountInvoice(models.Model):
     # _position = ['2.1', '2.2', '2.3', '2.4', '2.5']
-    _inherit = "account.invoice"
+    _inherit = "account.move"
     protocol_number = fields.Char("Protocol Number", size=64, copy=False)
     # 1.2 -- partner_id
     # 1.3
@@ -387,7 +330,7 @@ class AccountInvoice(models.Model):
     )
     #  2.1.7
     activity_progress_ids = fields.One2many(
-        "faturapa.activity.progress",
+        "fatturapa.activity.progress",
         "invoice_id",
         "Phase of Activity Progress",
         copy=False,
@@ -416,7 +359,7 @@ class AccountInvoice(models.Model):
     #  2.2.1 invoice lines
     #  2.2.2
     fatturapa_summary_ids = fields.One2many(
-        "faturapa.summary.data",
+        "fatturapa.summary.data",
         "invoice_id",
         "Electronic Invoice Summary Data",
         copy=False,
@@ -502,14 +445,12 @@ class AccountInvoice(models.Model):
         readonly=True,
     )
 
-    @api.multi
     def open_form_current(self):
         self.ensure_one()
         return {
             "type": "ir.actions.act_window",
-            "view_type": "form",
             "view_mode": "form",
             "res_model": self._name,
             "res_id": self.id,
-            "taget": "current",
+            "target": "current",
         }
