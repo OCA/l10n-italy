@@ -960,7 +960,7 @@ class WizardImportFatturapa(orm.TransientModel):
             e_invoice_line_ids.append(einvoiceline.id)
             
         invoice_data = {
-            'doc_type': docType_id,
+            #'doc_type': docType_id,
             'date_invoice':
             FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data,
             'supplier_invoice_number':
