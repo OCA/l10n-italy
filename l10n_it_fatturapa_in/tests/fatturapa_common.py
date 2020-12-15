@@ -166,7 +166,7 @@ class FatturapaCommon(SingleTransactionCase):
                 'account.data_account_type_other_income').id)], limit=1).id
         arrotondamenti_passivi_account_id = self.env['account.account'].\
             search([('user_type_id', '=', self.env.ref(
-                'account.data_account_type_direct_costs').id)], limit=1).id
+                'account.data_account_type_expenses').id)], limit=1).id
         arrotondamenti_tax_id = self.env['account.tax'].search(
             [('type_tax_use', '=', 'purchase'),
              ('amount', '=', 0.0)], order='sequence', limit=1)
