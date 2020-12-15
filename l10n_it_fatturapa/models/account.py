@@ -2,8 +2,6 @@
 
 from odoo import api, fields, models
 
-import odoo.addons.decimal_precision as dp
-
 RELATED_DOCUMENT_TYPES = {
     "order": "DatiOrdineAcquisto",
     "contract": "DatiContratto",
@@ -46,7 +44,7 @@ class FatturapaPaymentData(models.Model):
         "fatturapa.payment.detail", "payment_data_id", "Payments Details"
     )
     invoice_id = fields.Many2one(
-        "account.invoice", "Related Invoice", ondelete="cascade", index=True
+        "account.move", "Related Invoice", ondelete="cascade", index=True
     )
 
 
@@ -104,7 +102,6 @@ class WelfareFundType(models.Model):
     name = fields.Char("Name")
     description = fields.Char("Description")
 
-    @api.multi
     def name_get(self):
         res = []
         for record in self:
@@ -126,7 +123,7 @@ class WelfareFundDataLine(models.Model):
     subjected_withholding = fields.Char("Subjected to Withholding", size=2)
     pa_line_code = fields.Char("PA Code for this Record", size=20)
     invoice_id = fields.Many2one(
-        "account.invoice", "Related Invoice", ondelete="cascade", index=True
+        "account.move", "Related Invoice", ondelete="cascade", index=True
     )
 
 
@@ -147,7 +144,7 @@ class WithholdingDataLine(models.Model):
     )
     amount = fields.Float("Withholding amount")
     invoice_id = fields.Many2one(
-        "account.invoice", "Related Invoice", ondelete="cascade", index=True
+        "account.move", "Related Invoice", ondelete="cascade", index=True
     )
 
 
@@ -158,15 +155,15 @@ class DiscountRisePrice(models.Model):
 
     name = fields.Selection([("SC", "Discount"), ("MG", "Supplement")], "Type")
     percentage = fields.Float("Percentage")
-    amount = fields.Float("Amount", digits=dp.get_precision("Discount"))
+    amount = fields.Float("Amount", digits="Discount")
     invoice_line_id = fields.Many2one(
-        "account.invoice.line",
+        "account.move.line",
         "Related Invoice from line",
         ondelete="cascade",
         index=True,
     )
     invoice_id = fields.Many2one(
-        "account.invoice", "Related Invoice", ondelete="cascade", index=True
+        "account.move", "Related Invoice", ondelete="cascade", index=True
     )
 
 
@@ -189,14 +186,14 @@ class FatturapaRelatedDocumentType(models.Model):
     name = fields.Char("Document ID", size=20, required=True)
     lineRef = fields.Integer("Line Ref.")
     invoice_line_id = fields.Many2one(
-        "account.invoice.line",
+        "account.move.line",
         "Related Invoice Line",
         ondelete="cascade",
         index=True,
         readonly=True,
     )
     invoice_id = fields.Many2one(
-        "account.invoice",
+        "account.move",
         "Related Invoice",
         ondelete="cascade",
         index=True,
@@ -211,7 +208,7 @@ class FatturapaRelatedDocumentType(models.Model):
     @api.model
     def create(self, vals):
         if vals.get("invoice_line_id"):
-            line_obj = self.env["account.invoice.line"]
+            line_obj = self.env["account.move.line"]
             line = line_obj.browse(vals["invoice_line_id"])
             vals["lineRef"] = line.sequence
         return super(FatturapaRelatedDocumentType, self).create(vals)
@@ -224,7 +221,7 @@ class FaturapaActivityProgress(models.Model):
 
     fatturapa_activity_progress = fields.Integer("Activity Progress")
     invoice_id = fields.Many2one(
-        "account.invoice", "Related Invoice", ondelete="cascade", index=True
+        "account.move", "Related Invoice", ondelete="cascade", index=True
     )
 
 
@@ -240,7 +237,7 @@ class FatturaAttachments(models.Model):
     compression = fields.Char("Compression", size=10)
     format = fields.Char("Format", size=10)
     invoice_id = fields.Many2one(
-        "account.invoice", "Related Invoice", ondelete="cascade", index=True
+        "account.move", "Related Invoice", ondelete="cascade", index=True
     )
 
 
@@ -253,16 +250,16 @@ class FatturapaRelatedDdt(models.Model):
     date = fields.Date("Date")
     lineRef = fields.Integer("Line Ref.")
     invoice_line_id = fields.Many2one(
-        "account.invoice.line", "Related Invoice Line", ondelete="cascade", index=True
+        "account.move.line", "Related Invoice Line", ondelete="cascade", index=True
     )
     invoice_id = fields.Many2one(
-        "account.invoice", "Related Invoice", ondelete="cascade", index=True
+        "account.move", "Related Invoice", ondelete="cascade", index=True
     )
 
     @api.model
     def create(self, vals):
         if vals.get("invoice_line_id"):
-            line_obj = self.env["account.invoice.line"]
+            line_obj = self.env["account.move.line"]
             line = line_obj.browse(vals["invoice_line_id"])
             vals["lineRef"] = line.sequence
         return super(FatturapaRelatedDdt, self).create(vals)
@@ -270,7 +267,7 @@ class FatturapaRelatedDdt(models.Model):
 
 class AccountInvoiceLine(models.Model):
     # _position = ['2.2.1']
-    _inherit = "account.invoice.line"
+    _inherit = "account.move.line"
 
     related_documents = fields.One2many(
         "fatturapa.related_document_type",
@@ -355,13 +352,13 @@ class FaturapaSummaryData(models.Model):
     )
     law_reference = fields.Char("Law reference", size=128)
     invoice_id = fields.Many2one(
-        "account.invoice", "Related Invoice", ondelete="cascade", index=True
+        "account.move", "Related Invoice", ondelete="cascade", index=True
     )
 
 
 class AccountInvoice(models.Model):
     # _position = ['2.1', '2.2', '2.3', '2.4', '2.5']
-    _inherit = "account.invoice"
+    _inherit = "account.move"
     protocol_number = fields.Char("Protocol Number", size=64, copy=False)
     # 1.2 -- partner_id
     # 1.3
@@ -502,12 +499,10 @@ class AccountInvoice(models.Model):
         readonly=True,
     )
 
-    @api.multi
     def open_form_current(self):
         self.ensure_one()
         return {
             "type": "ir.actions.act_window",
-            "view_type": "form",
             "view_mode": "form",
             "res_model": self._name,
             "res_id": self.id,

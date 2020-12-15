@@ -58,7 +58,6 @@ class ResPartner(models.Model):
         help="Set this when the main company has got several Addressee Codes or PEC",
     )
 
-    @api.multi
     def _compute_electronic_invoice_data_complete(self):
         check_fatturapa_fields = self._check_ftpa_partner_data._constrains
         for partner in self:
@@ -71,7 +70,6 @@ class ResPartner(models.Model):
             except ValidationError:
                 partner.electronic_invoice_data_complete = False
 
-    @api.multi
     @api.constrains(
         "is_pa",
         "ipa_code",

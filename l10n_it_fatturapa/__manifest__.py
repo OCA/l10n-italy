@@ -17,7 +17,7 @@
     "depends": [
         "l10n_it_account",
         "l10n_it_fiscalcode",
-        "document",
+        "attachment_indexation",
         "l10n_it_ipa",
         "l10n_it_rea",
         "base_iban",
@@ -34,13 +34,13 @@
         "views/account_view.xml",
         "views/company_view.xml",
         "views/partner_view.xml",
-        "views/invoice_view.xml",
+        "views/account_move_view.xml",
         "views/related_document_type_views.xml",
         "security/ir.model.access.csv",
     ],
     "demo": ["demo/account_invoice_fatturapa.xml"],
     "installable": True,
     "external_dependencies": {
-        "python": ["pyxb", "asn1crypto"],  # pyxb 1.2.6
+        "python": ["PyXB >= 1.2.6", "asn1crypto"],
     },
 }
