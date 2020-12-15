@@ -568,3 +568,28 @@ class account_payment_term(orm.Model):
         'fatturapa_pm_id': fields.many2one(
             'fatturapa.payment_method', string="FatturaPA Payment Method"),
     }
+
+class WithholdingDataLine(orm.Model):
+    _name = "withholding.data.line"
+    _description = 'E-invoice Withholding Data'
+
+    _columns = {
+        'name': fields.selection(
+            selection=[
+                ('RT01', 'Natural Person'),
+                ('RT02', 'Legal Person'),
+                ('RT03', 'INPS'),
+                ('RT04', 'ENASARCO'),
+                ('RT05', 'ENPAM'),
+                ('RT06', 'OTHER'),
+            ],
+            string='Withholding Type'
+        ),
+        'amount': fields.float('Withholding amount'),
+        'rate': fields.float('Withholding rate'),
+        'reason': fields.char('Withholding reason'),
+        'invoice_id': fields.many2one(
+            'account.invoice', 'Related Invoice',
+            ondelete='cascade', index=True
+        ),
+    }
