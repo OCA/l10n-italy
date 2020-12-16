@@ -44,6 +44,7 @@ class DeliverySlip(report_sxw.rml_parse):
             'invoice_address': self._get_invoice_address,
         })
 
+
 report_sxw.report_sxw('report.ddt_webkit',
                       'stock.picking',
                       'addons/l10n_it_DDT_webkit/report/ddt.mako',

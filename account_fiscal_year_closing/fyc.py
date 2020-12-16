@@ -50,6 +50,7 @@ class fiscal_year_closing_init(osv.osv):
         'name': fields.char('Description', size=60, required=True),
     }
 
+
 fiscal_year_closing_init()
 
 
@@ -82,6 +83,8 @@ class fiscal_year_closing_lp_account_mapping(osv.osv):
             'account.account', 'Dest account', required=False,
             ondelete='cascade'),
     }
+
+
 fiscal_year_closing_lp_account_mapping()
 
 
@@ -110,6 +113,8 @@ class fiscal_year_closing_nlp_account_mapping(osv.osv):
             'account.account', 'Dest account', required=False,
             ondelete='cascade'),
     }
+
+
 fiscal_year_closing_nlp_account_mapping()
 
 
@@ -136,6 +141,8 @@ class fiscal_year_closing_c_account_mapping(osv.osv):
         'dest_account_id': fields.many2one(
             'account.account', 'Dest account', ondelete='cascade'),
     }
+
+
 fiscal_year_closing_c_account_mapping()
 
 # -----------------------------------------------------------------------------

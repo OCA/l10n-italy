@@ -13,13 +13,15 @@ from openerp.osv.orm import Model
 
 from openerp.tools.translate import _
 
+
 class account_invoice(Model):
     _inherit = 'account.invoice'
 
     def _compute_tax_stamp(self, cr, uid, ids, name, args, context=None):
         res = {}
         for invoice in self.browse(cr, uid, ids, context=context):
-            res[invoice.id] = self.is_tax_stamp_applicable(cr, uid, invoice, context)
+            res[invoice.id] = self.is_tax_stamp_applicable(
+                cr, uid, invoice, context)
         return res
 
     def _get_stamp_product(self, cr, uid, invoice, context=None):
@@ -68,7 +70,8 @@ class account_invoice(Model):
         return income_vals, expense_vals
 
     _columns = {
-        'tax_stamp': fields.function(_compute_tax_stamp, type='boolean', string='Tax Stamp'),
+        'tax_stamp': fields.function(
+            _compute_tax_stamp, type='boolean', string='Tax Stamp'),
     }
 
     def is_tax_stamp_line_present(self, cr, uid, invoice, context=None):
@@ -90,7 +93,8 @@ class account_invoice(Model):
         for key in taxes.keys():
             tax_base_amounts[key[1]] = tax_base_amounts.get(
                 key[1], 0.0) + taxes[key]['base_amount']
-        apply_base_code_ids = [t.base_code_id.id for t in stamp_product_id.stamp_apply_tax_ids]
+        apply_base_code_ids = [
+            t.base_code_id.id for t in stamp_product_id.stamp_apply_tax_ids]
         for tax_code_id in tax_base_amounts.keys():
             if tax_code_id in apply_base_code_ids:
                 total_tax_base += tax_base_amounts[tax_code_id]
@@ -104,13 +108,17 @@ class account_invoice(Model):
             ids = [ids]
         for inv in self.browse(cr, uid, ids, context):
             if not inv.tax_stamp:
-                raise openerp.exceptions.Warning(_("Tax stamp is not applicable"))
-            stamp_product_id = self._get_stamp_product(cr, uid, inv, context=context)
-            stamp_line_id = self.is_tax_stamp_line_present(cr, uid, inv, context=context)
+                raise openerp.exceptions.Warning(
+                    _("Tax stamp is not applicable"))
+            stamp_product_id = self._get_stamp_product(
+                cr, uid, inv, context=context)
+            stamp_line_id = self.is_tax_stamp_line_present(
+                cr, uid, inv, context=context)
             if stamp_line_id:
                     raise openerp.exceptions.Warning(_(
                         "Tax stamp line %s already present. Remove it first."
-                    ) % self.pool.get('account.invoice.line').browse(cr, uid, stamp_line_id, context).name)
+                    ) % self.pool.get('account.invoice.line').browse(
+                        cr, uid, stamp_line_id, context).name)
             stamp_account = stamp_product_id.property_account_income
             if not stamp_account:
                 raise openerp.exceptions.Warning(
@@ -119,8 +127,8 @@ class account_invoice(Model):
             self.pool.get('account.invoice.line').create(cr, uid, {
                 'invoice_id': inv.id,
                 'product_id': stamp_product_id.id,
-                'name': stamp_product_id.description_sale or
-                        stamp_product_id.name,
+                'name': (stamp_product_id.description_sale or
+                         stamp_product_id.name),
                 'sequence': 99999,
                 'account_id': stamp_account.id,
                 'price_unit': stamp_product_id.list_price,
@@ -138,11 +146,13 @@ class account_invoice(Model):
         res = super(account_invoice, self).action_move_create(
             cr, uid, ids, context=context)
         for inv in self.browse(cr, uid, ids, context):
-            if inv.tax_stamp and not self.is_tax_stamp_line_present(cr, uid, inv, context=context):
+            if inv.tax_stamp and not self.is_tax_stamp_line_present(
+                    cr, uid, inv, context=context):
                 if inv.move_id.state == 'posted':
                     posted = True
                     inv.move_id.state = 'draft'
-                stamp_product_id = self._get_stamp_product(cr, uid, inv, context=context)
+                stamp_product_id = self._get_stamp_product(
+                    cr, uid, inv, context=context)
                 income_vals, expense_vals = self._build_tax_stamp_lines(
                     cr, uid, inv, stamp_product_id, context=context)
                 income_vals['move_id'] = inv.move_id.id
@@ -159,11 +169,12 @@ class account_invoice(Model):
                     inv.move_id.state = 'posted'
         return res
 
+
 class account_invoice_line(Model):
     _inherit = "account.invoice.line"
 
     _columns = {
-        'is_stamp_line': fields.related('product_id', 'is_stamp',
-            type='boolean', relation='product.product', readonly=True,
-            string='Is stamp line'),
+        'is_stamp_line': fields.related(
+            'product_id', 'is_stamp', type='boolean',
+            relation='product.product', readonly=True, string='Is stamp line'),
     }

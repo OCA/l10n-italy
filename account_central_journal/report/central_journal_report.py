@@ -89,6 +89,7 @@ class central_journal_report(report_sxw.rml_parse):
             'get_movements': self._get_movements,
         })
 
+
 report_sxw.report_sxw(
     'report.central_journal_report',
     'account.move.line',
