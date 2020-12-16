@@ -20,6 +20,7 @@
 from openerp.osv import fields, orm
 from openerp.osv.osv import except_osv
 STANDARD_ADDRESSEE_CODE = '0000000'
+from openerp.tools.translate import _
 
 
 class res_partner(orm.Model):
