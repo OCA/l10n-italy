@@ -134,7 +134,7 @@ class account_config_settings(orm.TransientModel):
             string="Public Administration Reference Code",
             ),
         'fatturapa_rea_office': fields.related(
-            'company_id', 'partner_id', 'fatturapa_rea_office',
+            'company_id', 'partner_id', 'rea_office',
             type='many2one',
             relation="res.province",
             string="Rea Office",
