@@ -10,10 +10,12 @@ class AccountJournal(orm.Model):
     def check_doc_type_relation(self, cr, uid, ids, context={}):
         doc_model = self.pool.get('fiscal.document.type')
         for journal in self.browse(cr, uid, ids, context):
-            docs = doc_model.search(cr, uid,
-                [('journal_ids', 'in', [journal.id])], context=context)
+            docs = doc_model.search(
+                cr, uid, [('journal_ids', 'in', [journal.id])],
+                context=context)
             if len(docs) > 1:
                 raise UserError(
                     _("Journal %s can be linked to only 1 fiscal document "
-                      "type (found in %s)")
-                    % (journal.name, ', '.join([doc_model.browse(cr, uid, d, context=context).code for d in docs])))
+                      "type (found in %s)") % (journal.name, ', '.join(
+                        [doc_model.browse(cr, uid, d, context=context
+                                          ).code for d in docs])))

@@ -22,27 +22,30 @@ class FiscalDocumentType(orm.Model):
             'journal_id',
             'Journals'
         ),
-    
     }
 
     _order = 'code, priority asc'
 
     def create(self, cr, uid, vals, context={}):
-        res = super(FiscalDocumentType, self).create(cr, uid, vals, context=context)
+        res = super(FiscalDocumentType, self).create(
+            cr, uid, vals, context=context)
         journal_ids = self.browse(cr, uid, res, context=context).journal_ids
         jids = []
         for jid in journal_ids:
             jids.append(jid.id)
-        self.pool.get('account.journal').check_doc_type_relation(cr, uid, jids, context)
+        self.pool.get('account.journal').check_doc_type_relation(
+            cr, uid, jids, context)
         return res
 
     def write(self, cr, uid, ids, vals, context={}):
-        res = super(FiscalDocumentType, self).write(cr, uid, ids, vals, context=context)
+        res = super(FiscalDocumentType, self).write(
+            cr, uid, ids, vals, context=context)
         for doc in self.browse(cr, uid, ids, context):
             journal_ids = []
             for journal in doc.journal_ids:
                 journal_ids.append(journal.id)
-            self.pool.get('account.journal').check_doc_type_relation(cr, uid, journal_ids, context)
+            self.pool.get('account.journal').check_doc_type_relation(
+                cr, uid, journal_ids, context)
         return res
 
     def name_get(self, cr, uid, ids, context={}):
@@ -52,7 +55,8 @@ class FiscalDocumentType(orm.Model):
                 (doc_type.id, '[%s] %s' % (doc_type.code, doc_type.name)))
         return res
 
-    def name_search(self, cr, uid, name='', args=None, operator='ilike', limit=100, context={}):
+    def name_search(self, cr, uid, name='', args=None, operator='ilike',
+                    limit=100, context={}):
         if not args:
             args = []
         if name:
