@@ -6,8 +6,7 @@ class AccountFiscalPosition(orm.Model):
     _inherit = 'account.fiscal.position'
 
     _columns = {
-            'fiscal_document_type_id': fields.many2one('fiscal.document.type',
-                                                       string="Fiscal Document Type",
-                                                       readonly=False),
+            'fiscal_document_type_id': fields.many2one(
+                'fiscal.document.type', string="Fiscal Document Type",
+                readonly=False),
         }
-

@@ -910,13 +910,17 @@ class WizardExportFatturapa(orm.TransientModel):
         return True
 
     def isRiba(self, cr, uid, invoice, context={}):
-        try:
-            return invoice.payment_term.riba
-        except Exception as ex:
-            logging.warning('Trying to check if payment term is a RIBA %r' % (ex))
+        riba_module_id = self.pool['ir.module.module'].search(
+            cr, uid, [('name', '=', 'l10n_it_ricevute_bancarie')])
+        if not riba_module_id:
+            return False
+        riba_module = self.pool['ir.module.module'].browse(
+            cr, uid, riba_module_id)[0]
+        if riba_module and riba_module.state == 'installed':
             for line in invoice.payment_term.line_ids:
                 if line.riba:
                     return True
+        else:
             return False
 
     def setAttachments(self, cr, uid, invoice, body, context=None):

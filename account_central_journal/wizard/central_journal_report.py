@@ -165,4 +165,5 @@ class central_journal_report(osv.osv_memory):
         'print_state': 'draft',
     }
 
+
 central_journal_report()

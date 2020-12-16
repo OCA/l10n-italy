@@ -13,6 +13,7 @@ from openerp.osv import fields
 from openerp.osv.orm import Model
 from openerp.tools.translate import _
 
+
 class product_template(Model):
     _inherit = 'product.template'
 
@@ -29,8 +30,6 @@ class product_template(Model):
                     return False
         return True
 
-
-
     _columns = {
         'stamp_apply_tax_ids': fields.many2many(
             'account.tax',
@@ -42,14 +41,11 @@ class product_template(Model):
         'is_stamp': fields.boolean('Is stamp'),
     }
 
-    _constraints = [
-        (
+    _constraints = [(
         _check_stamp_apply_tax,
         'The product must be a stamp to set apply taxes!',
-        ['stamp_apply_tax_ids', 'is_stamp']
-        ),
+        ['stamp_apply_tax_ids', 'is_stamp']),
         (_check_stamp_apply_taxes,
          'The product taxes must have a base code!',
-         ['stamp_apply_tax_ids', 'is_stamp']
-         )
+         ['stamp_apply_tax_ids', 'is_stamp'])
     ]

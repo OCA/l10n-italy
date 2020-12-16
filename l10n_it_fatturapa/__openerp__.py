@@ -101,6 +101,7 @@ To contribute to this module, please visit http://odoo-community.org.
 
     "data": [
         'data/fatturapa_data.xml',
+        'data/payment_term_data.xml',
         'data/welfare.fund.type.csv',
         'views/account_view.xml',
         'views/company_view.xml',

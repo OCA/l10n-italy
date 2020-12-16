@@ -39,13 +39,12 @@ class WizardImportFatturapa(orm.TransientModel):
     _name = "wizard.import.fatturapa"
     _description = "Import FatturaPA"
 
-
     _columns = {
         'e_invoice_detail_level': fields.selection([
             ('0', 'Minimo'),
             # ('1', 'Aliquote'),
-            ('2', 'Massimo'),
-        ], string="Livello di dettaglio Fatture elettroniche",
+            ('2', 'Massimo'), ],
+            string="Livello di dettaglio Fatture elettroniche",
             help="Livello minimo: La fattura passiva viene creata senza righe; "
                  "sara' l'utente a doverle creare in base a quanto indicato dal "
                  "fornitore nella fattura elettronica\n"
@@ -53,27 +52,32 @@ class WizardImportFatturapa(orm.TransientModel):
                  # "aliquota presente nella fattura elettronica\n"
                  "Livello Massimo: tutte le righe presenti nella fattura "
                  "elettronica vengono create come righe della fattura passiva",
-            required=True
-        )
+            required=True)
         }
 
     def default_get(self, cr, uid, fields, context={}):
         logging.info('Calling default get for wizard import fatturaPA')
-        res = super(WizardImportFatturapa, self).default_get(cr, uid, fields, context)
+        res = super(WizardImportFatturapa, self).default_get(
+            cr, uid, fields, context)
         res['e_invoice_detail_level'] = '2'
         fatturapa_attachment_ids = context.get('active_ids', [])
         fatturapa_attachment_obj = self.pool.get('fatturapa.attachment.in')
         partnerList = []
         for fatturapa_attachment_id in fatturapa_attachment_ids:
-            fatturapa_attachment = fatturapa_attachment_obj.browse(cr, uid, fatturapa_attachment_id)
+            fatturapa_attachment = fatturapa_attachment_obj.browse(
+                cr, uid, fatturapa_attachment_id)
             logging.info('Going to get detail level from partner, fattura_pa_id %r, context %r' % (fatturapa_attachment_id, context))
             if fatturapa_attachment.in_invoice_ids:
-                raise except_osv(_('Error' ), _("File %s is linked to invoices yet") % fatturapa_attachment.name)
+                raise except_osv(
+                    _('Error'), _("File %s is linked to invoices yet"
+                                  ) % fatturapa_attachment.name)
             if fatturapa_attachment.xml_supplier_id not in partnerList:
                 partnerList.append(fatturapa_attachment.xml_supplier_id)
             if len(partnerList) == 1:
                 partner_detail_level = partnerList[0].e_invoice_detail_level
-                logging.info('Going to setup partner detail level %r for partner %r' % (partner_detail_level, partnerList[0]))
+                logging.info(
+                    'Going to setup partner detail level %r for partner %r' % (
+                        partner_detail_level, partnerList[0]))
                 if partner_detail_level:
                     res['e_invoice_detail_level'] = (partner_detail_level)
         return res
@@ -89,7 +93,7 @@ class WizardImportFatturapa(orm.TransientModel):
         province_model = self.pool['res.province']
         return province_model.search(
             cr, uid, [('code', '=', provinceCode)], context=context)
-        
+
     def check_partner_base_data(
         self, cr, uid, partner_id, DatiAnagrafici, context=None
     ):
@@ -230,7 +234,7 @@ class WizardImportFatturapa(orm.TransientModel):
 
     def getCedPrest(self, cr, uid, cedPrest, context=None):
         if not context:
-            context={}
+            context = {}
         partner_model = self.pool['res.partner']
         partner_id = self.getPartnerBase(
             cr, uid, cedPrest.DatiAnagrafici, context=context)
@@ -323,13 +327,12 @@ class WizardImportFatturapa(orm.TransientModel):
 
     def getCarrier(self, cr, uid, partner_id, context={}):
         carrier_model = self.pool['delivery.carrier']
-        carrier_ids = carrier_model.search(cr, uid,
-                             [('partner_id', '=', partner_id),
-                              ('active', '=', True),
-                              ]
-                             )
+        carrier_ids = carrier_model.search(
+            cr, uid, [('partner_id', '=', partner_id), ('active', '=', True)])
         if len(carrier_ids) > 1:
-            logging.warning('Found more than one carrier for partner %r, carriers %r' % (partner_id, carrier_ids))
+            logging.warning(
+                'Found more than one carrier for partner %r, carriers %r' % (
+                    partner_id, carrier_ids))
         for carrier_id in carrier_ids:
             return carrier_id
         return False
@@ -485,7 +488,8 @@ class WizardImportFatturapa(orm.TransientModel):
                 product.product_tmpl_id.categ_id.
                 property_account_expense_categ_id.id
             )
-        account = self.pool['account.account'].browse(cr, uid, line_vals['account_id'])
+        account = self.pool['account.account'].browse(
+            cr, uid, line_vals['account_id'])
         new_tax = None
         if len(product.product_tmpl_id.supplier_taxes_id) == 1:
             new_tax = product.product_tmpl_id.supplier_taxes_id[0]
@@ -502,10 +506,9 @@ class WizardImportFatturapa(orm.TransientModel):
                     if context.get('inconsistencies'):
                         context['inconsistencies'] += '\n'
                     context['inconsistencies'] += (
-                        _(
-                        "XML contains tax %s. Product %s has tax %s. Using "
-                        "the XML one"
-                    ) % (line_tax.name, product.name, new_tax.name))
+                        _("XML contains tax %s. Product %s has tax %s. Using "
+                          "the XML one") % (
+                            line_tax.name, product.name, new_tax.name))
                 else:
                     # If product has the same amount of the one in XML,
                     # I use it. Typical case: 22% det 50%
@@ -960,27 +963,20 @@ class WizardImportFatturapa(orm.TransientModel):
             e_invoice_line_ids.append(einvoiceline.id)
             
         invoice_data = {
-            #'doc_type': docType_id,
-            'date_invoice':
-            FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data,
+            'date_invoice': FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data,
             'supplier_invoice_number':
-            FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
+                FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
             'sender': fatt.FatturaElettronicaHeader.SoggettoEmittente or False,
-            'account_id': pay_acc_id,
-            'type': invtype,
-            'partner_id': partner_id,
-            'currency_id': currency_id[0],
-            'journal_id': purchase_journal.id,
+            'account_id': pay_acc_id, 'type': invtype, 'partner_id': partner_id,
+            'currency_id': currency_id[0], 'journal_id': purchase_journal.id,
             'invoice_line': [(6, 0, invoice_lines)],
-            # 'origin': xmlData.datiOrdineAcquisto,
             'fiscal_position': (partner.property_account_position.id or False),
-            'payment_term': (partner.property_supplier_payment_term.id or False),
+            'payment_term': (
+                        partner.property_supplier_payment_term.id or False),
             'company_id': company.id,
             'fatturapa_attachment_in_id': fatturapa_attachment.id,
-            'comment': comment,
-            'fiscal_document_type_id': docType_id,
-        }
-        invoice_data['e_invoice_line_ids'] = [(6, 0, e_invoice_line_ids)]
+            'comment': comment, 'fiscal_document_type_id': docType_id,
+            'e_invoice_line_ids': [(6, 0, e_invoice_line_ids)]}
         # 2.1.1.5
         Withholdings = FatturaBody.DatiGenerali.\
             DatiGeneraliDocumento.DatiRitenuta
@@ -1004,9 +1000,10 @@ class WizardImportFatturapa(orm.TransientModel):
         invoice_id = invoice_model.create(
             cr, uid, invoice_data, context=context)
 
-        self.add_dati_bollo(cr, uid, ids,
-            invoice_id, FatturaBody.DatiGenerali.DatiGeneraliDocumento)
-        
+        self.add_dati_bollo(
+            cr, uid, ids, invoice_id,
+            FatturaBody.DatiGenerali.DatiGeneraliDocumento)
+
         invoice = invoice_model.browse(cr, uid, invoice_id, context=context)
         # 2.1.1.7
         Walfares = FatturaBody.DatiGenerali.\
@@ -1288,20 +1285,19 @@ class WizardImportFatturapa(orm.TransientModel):
         einvoiceline = self.pool['einvoice.line'].create(cr, uid, vals)
         if line.CodiceArticolo:
             for caline in line.CodiceArticolo:
-                self.pool['fatturapa.article.code'].create(cr, uid,
-                    {
+                self.pool['fatturapa.article.code'].create(
+                    cr, uid, {
                         'name': caline.CodiceTipo or '',
                         'code_val': caline.CodiceValore or '',
-                        'e_invoice_line_id': einvoiceline
-                    }
-                )
+                        'e_invoice_line_id': einvoiceline})
         if line.ScontoMaggiorazione:
             for DiscRisePriceLine in line.ScontoMaggiorazione:
                 DiscRisePriceVals = self._prepareDiscRisePriceLine(
                     cr, uid, einvoiceline, DiscRisePriceLine,
                     context={'drtype': 'e_invoice_line_id'}
                 )
-                self.pool['discount.rise.price'].create(cr, uid, DiscRisePriceVals)
+                self.pool['discount.rise.price'].create(
+                    cr, uid, DiscRisePriceVals)
         if line.AltriDatiGestionali:
             for dato in line.AltriDatiGestionali:
                 self.pool['einvoice.line.other.data'].create(cr, uid, 
@@ -1315,7 +1311,8 @@ class WizardImportFatturapa(orm.TransientModel):
                 )
         return self.pool['einvoice.line'].browse(cr, uid, einvoiceline)
 
-    def add_dati_bollo(self, cr, uid, ids, invoice, DatiGeneraliDocumento, context={}):
+    def add_dati_bollo(self, cr, uid, ids, invoice, DatiGeneraliDocumento,
+                       context={}):
         # 2.1.1.6
         Stamps = DatiGeneraliDocumento.DatiBollo
         if Stamps:
@@ -1324,7 +1321,8 @@ class WizardImportFatturapa(orm.TransientModel):
             invoice.stamp_amount = float(Stamps.ImportoBollo)
             for wizardBrws in self.browse(cr, uid, ids):
                 if wizardBrws.e_invoice_detail_level == '2':
-                    journal = self.get_purchase_journal(cr, uid, invoice.company_id, context)
+                    journal = self.get_purchase_journal(
+                        cr, uid, invoice.company_id, context)
                     credit_account_id = journal.default_credit_account_id.id
                     line_vals = {
                         'invoice_id': invoice.id,
@@ -1336,15 +1334,16 @@ class WizardImportFatturapa(orm.TransientModel):
                         'price_unit': invoice.stamp_amount,
                         'quantity': 1,
                         }
-                    if self.pool['res.users'].browse(cr, uid, uid).company_id.dati_bollo_product_id:
+                    if self.pool['res.users'].browse(
+                            cr, uid, uid).company_id.dati_bollo_product_id:
                         dati_bollo_product = (
                             self.pool.user.company_id.dati_bollo_product_id)
                         line_vals['product_id'] = dati_bollo_product.id
                         line_vals['name'] = dati_bollo_product.name
-                        self.adjust_accounting_data(cr, uid,
-                            dati_bollo_product, line_vals, context
-                        )
-                    self.pool['account.invoice.line'].create(cr, uid, line_vals)
+                        self.adjust_accounting_data(
+                            cr, uid, dati_bollo_product, line_vals, context)
+                    self.pool['account.invoice.line'].create(
+                        cr, uid, line_vals)
 
     def check_CessionarioCommittente(
         self, cr, uid, company, FatturaElettronicaHeader, context=None
@@ -1537,7 +1536,8 @@ class WizardImportFatturapa(orm.TransientModel):
                 invoice_id = self.invoiceCreate(
                     cr, uid, ids, fatt, fatturapa_attachment, fattura,
                     partner_id, context=ctx)
-                self.set_StabileOrganizzazione(cr, uid, cedentePrestatore, invoice_id)
+                self.set_StabileOrganizzazione(
+                    cr, uid, cedentePrestatore, invoice_id)
                 if TaxRappresentative:
                     tax_partner_id = self.getPartnerBase(
                         cr, uid, TaxRappresentative.DatiAnagrafici,
@@ -1597,7 +1597,8 @@ class WizardImportFatturapa(orm.TransientModel):
             self.pool.get('account.invoice').write(cr, uid, invoice, vals)
 
     def get_invoice_obj(self, cr, uid, fatturapa_attachment):
-        xml_string = self.pool.get('ir.attachment').get_xml_string(cr, uid, fatturapa_attachment.ir_attachment_id.id)
+        xml_string = self.pool.get('ir.attachment').get_xml_string(
+            cr, uid, fatturapa_attachment.ir_attachment_id.id)
         for num in range(1, 24):
             to_replace = '+0%s:00' % (num)
             xml_string = xml_string.replace(to_replace, '')

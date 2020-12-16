@@ -14,7 +14,7 @@
     'license': 'AGPL-3',
     'depends': [
         'account'
-        #'l10n_it_account'
+        # 'l10n_it_account'
         ],
     'data': [
         'views/fiscal_document_type_view.xml',
