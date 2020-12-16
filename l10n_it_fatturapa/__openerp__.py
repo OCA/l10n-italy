@@ -97,11 +97,11 @@ To contribute to this module, please visit http://odoo-community.org.
         'base_iban',
         'partner_firstname',
         'l10n_it_account_tax_kind',
-        'l10n_it_fiscal_payment_term',
         ],
 
     "data": [
         'data/fatturapa_data.xml',
+        'data/payment_term_data.xml',
         'data/welfare.fund.type.csv',
         'views/account_view.xml',
         'views/company_view.xml',
