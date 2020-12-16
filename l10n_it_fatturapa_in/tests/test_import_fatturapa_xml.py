@@ -27,7 +27,6 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
 
         self.invoice_model = self.env['account.invoice']
 
-
     def test_00_xml_import(self):
         self.env.user.company_id.cassa_previdenziale_product_id = (
             self.service.id)
@@ -159,8 +158,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
                     e_line.cod_article_ids[0].code_val, '12345')
         self.assertEqual(
             invoice.inconsistencies,
-            u"Il campo nome azienda contiene \"Societa\' "
-            u"Alpha SRL\", il sistema contiene \"SOCIETA\' ALPHA SRL\"\n\n")
+            u"Company Name field contains 'Societa' Alpha SRL'. "
+            u"Your System contains 'SOCIETA' ALPHA SRL'\n\n")
 
     def test_05_xml_import(self):
         res = self.run_wizard('test5', 'IT05979361218_003.xml')
@@ -230,8 +229,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertAlmostEqual(invoice.amount_total, 1288.61)
         self.assertEqual(
             invoice.inconsistencies,
-            'L\'imponibile calcolato 1030.42 è diverso da quello dei dati di'
-            ' riepilogo 1173.6')
+            'Computed amount untaxed 1030.42 is different from summary data 1173.6')
 
     def test_10_xml_import(self):
         # Fix Date format
@@ -288,12 +286,12 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice2 = self.invoice_model.browse(invoice2_id)
         self.assertEqual(
             invoice1.inconsistencies,
-            u"Il campo nome azienda contiene \"Societa\' "
-            u"Alpha SRL\", il sistema contiene \"SOCIETA\' ALPHA SRL\"\n\n")
+            u"Company Name field contains 'Societa' Alpha SRL'. "
+            u"Your System contains 'SOCIETA' ALPHA SRL'\n\n")
         self.assertEqual(
             invoice2.inconsistencies,
-            u"Il campo nome azienda contiene \"Societa\' "
-            u"Alpha SRL\", il sistema contiene \"SOCIETA\' ALPHA SRL\"\n\n")
+            u"Company Name field contains 'Societa' Alpha SRL'. "
+            u"Your System contains 'SOCIETA' ALPHA SRL'\n\n")
 
     def test_14_xml_import(self):
         # check: no tax code found , write inconsisteance and anyway
@@ -307,12 +305,12 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.amount_tax, 0.0)
         self.assertEqual(
             invoice.inconsistencies,
-            "Il campo nome azienda contiene \"Societa\' Alpha SRL\", il"
-            "sistema contiene \"SOCIETA\' ALPHA SRL\"\n\n"
-            "Il file XML contiene l\'imposta con aliquota \"15.55\", ma"
-            " questa non esiste nel sistema.\n"
-            "Il file XML contiene l\'imposta con aliquota \"15.55\", ma"
-            " questa non esiste nel sistema.\n")
+            "Company Name field contains 'Societa' Alpha SRL'. "
+            "Your System contains 'SOCIETA' ALPHA SRL'\n\n"
+            "XML contains tax with percentage '15.55' "
+            "but it does not exist in your system\n"
+            "XML contains tax with percentage '15.55' "
+            "but it does not exist in your system")
 
     def test_15_xml_import(self):
         self.wt = self.create_wt()
@@ -400,8 +398,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             if invoice.reference == '123':
                 self.assertEqual(
                     invoice.inconsistencies,
-                    'L\'imponibile calcolato 0.0 è diverso da quello dei dati'
-                    ' di riepilogo 25.0')
+                    'Computed amount untaxed 0.0 is different from summary data 25.0')
             if invoice.reference == '456':
                 self.assertEqual(
                     invoice.inconsistencies,
@@ -471,17 +468,26 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         res = self.run_wizard('test24', 'IT05979361218_011.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
-        self.assertAlmostEqual(invoice.e_invoice_amount_untaxed, 34.32)
-        self.assertEqual(invoice.e_invoice_amount_tax, 0.0)
-        self.assertEqual(invoice.e_invoice_amount_total, 34.32)
+        self.assertEqual(
+            invoice.inconsistencies,
+            'Computed amount untaxed 34.32 is different from'
+            ' summary data 34.67')
 
     def test_25_xml_import(self):
         res = self.run_wizard('test25', 'IT05979361218_013.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
-        self.assertAlmostEqual(invoice.e_invoice_amount_untaxed, 34.32)
+        self.assertAlmostEqual(invoice.e_invoice_amount_untaxed, 34.67)
         self.assertEqual(invoice.e_invoice_amount_tax, 0.0)
         self.assertEqual(invoice.e_invoice_amount_total, 34.32)
+        self.assertAlmostEqual(invoice.efatt_rounding, -0.35)
+        invoice.action_invoice_open()
+        move_line = False
+        for line in invoice.move_id.line_ids:
+            if line.account_id.id == self.env.user.\
+                    company_id.arrotondamenti_attivi_account_id.id:
+                move_line = True
+        self.assertTrue(move_line)
 
     def test_26_xml_import(self):
         res = self.run_wizard('test26', 'IT05979361218_014.xml')

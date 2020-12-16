@@ -112,7 +112,7 @@ class TestInvoiceWT(FatturaPACommon):
         self.set_e_invoice_file_id(attachment, 'IT06363391001_00011.xml')
 
         # XML doc to be validated
-        xml_content = base64.decodebytes(attachment.datas)
+        xml_content = base64.decodestring(attachment.datas)
         self.check_content(
             xml_content, 'IT06363391001_00011.xml',
             module_name='l10n_it_fatturapa_out_wt')
@@ -151,7 +151,7 @@ class TestInvoiceWT(FatturaPACommon):
         self.set_e_invoice_file_id(attachment, 'IT06363391001_00014.xml')
 
         # XML doc to be validated
-        xml_content = base64.decodebytes(attachment.datas)
+        xml_content = base64.decodestring(attachment.datas)
         self.check_content(
             xml_content, 'IT06363391001_00014.xml',
             module_name='l10n_it_fatturapa_out_wt')
@@ -195,7 +195,7 @@ class TestInvoiceWT(FatturaPACommon):
         self.set_e_invoice_file_id(attachment, 'IT06363391001_00015.xml')
 
         # XML doc to be validated
-        xml_content = base64.decodebytes(attachment.datas)
+        xml_content = base64.decodestring(attachment.datas)
         self.check_content(
             xml_content, 'IT06363391001_00015.xml',
             module_name='l10n_it_fatturapa_out_wt')
@@ -240,7 +240,7 @@ class TestInvoiceWT(FatturaPACommon):
         self.set_e_invoice_file_id(attachment, 'IT06363391001_00016.xml')
 
         # XML doc to be validated
-        xml_content = base64.decodebytes(attachment.datas)
+        xml_content = base64.decodestring(attachment.datas)
         self.check_content(
             xml_content, 'IT06363391001_00016.xml',
             module_name='l10n_it_fatturapa_out_wt')
@@ -280,7 +280,7 @@ def test_e_invoice_wt_inps_0(self):
         self.set_e_invoice_file_id(attachment, 'IT06363391001_00017.xml')
 
         # XML doc to be validated
-        xml_content = base64.decodebytes(attachment.datas)
+        xml_content = base64.decodestring(attachment.datas)
         self.check_content(
             xml_content, 'IT06363391001_00017.xml',
             module_name='l10n_it_fatturapa_out_wt')
@@ -325,7 +325,7 @@ def test_e_invoice_wt_inps_1(self):
         self.set_e_invoice_file_id(attachment, 'IT06363391001_00018.xml')
 
         # XML doc to be validated
-        xml_content = base64.decodebytes(attachment.datas)
+        xml_content = base64.decodestring(attachment.datas)
         self.check_content(
             xml_content, 'IT06363391001_00018.xml',
             module_name='l10n_it_fatturapa_out_wt')
@@ -371,7 +371,7 @@ def test_e_invoice_wt_inps_2(self):
         self.set_e_invoice_file_id(attachment, 'IT06363391001_00019.xml')
 
         # XML doc to be validated
-        xml_content = base64.decodebytes(attachment.datas)
+        xml_content = base64.decodestring(attachment.datas)
         self.check_content(
             xml_content, 'IT06363391001_00019.xml',
             module_name='l10n_it_fatturapa_out_wt')

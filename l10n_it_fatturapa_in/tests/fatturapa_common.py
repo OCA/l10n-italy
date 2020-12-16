@@ -33,30 +33,31 @@ class FatturapaCommon(SingleTransactionCase):
 
     def create_wt_23_20q(self):
         return self.env['withholding.tax'].create({
-                        'name': '2320q',
-                        'code': '2320q',
-                        'account_receivable_id': self.payable_account_id,
-                        'account_payable_id': self.payable_account_id,
-                        'journal_id': self.journal_misc.id,
-                        'payment_term': self.env.ref(
-                        'account.account_payment_term').id,
-                        'rate_ids': [(0, 0, { 'tax': 23.0, 'base': 0.2 })],
-                        'causale_pagamento_id':
-                            self.env.ref('l10n_it_causali_pagamento.q').id,
+            'name': '2320q',
+            'code': '2320q',
+            'account_receivable_id': self.payable_account_id,
+            'account_payable_id': self.payable_account_id,
+            'journal_id': self.journal_misc.id,
+            'payment_term': self.env.ref(
+                'account.account_payment_term').id,
+            'rate_ids': [(0, 0, {'tax': 23.0, 'base': 0.2})],
+            'causale_pagamento_id':
+                self.env.ref('l10n_it_causali_pagamento.q').id,
         })
 
     def create_wt_4q(self):
         return self.env['withholding.tax'].create({
-                        'name': '4q',
-                        'code': '4q',
-                        'account_receivable_id': self.payable_account_id,
-                        'account_payable_id': self.payable_account_id,
-                        'journal_id': self.journal_misc.id,
-                        'payment_term': self.env.ref(
-                        'account.account_payment_term').id,
-                        'rate_ids': [(0, 0, { 'tax': 4.0, 'base': 1.0 })],
-                        'causale_pagamento_id':
-                            self.env.ref('l10n_it_causali_pagamento.q').id,
+            'name': '4q',
+            'code': '4q',
+            'wt_types': 'enasarco',
+            'account_receivable_id': self.payable_account_id,
+            'account_payable_id': self.payable_account_id,
+            'journal_id': self.journal_misc.id,
+            'payment_term': self.env.ref(
+                'account.account_payment_term').id,
+            'rate_ids': [(0, 0, {'tax': 4.0, 'base': 1.0})],
+            'causale_pagamento_id':
+                self.env.ref('l10n_it_causali_pagamento.q').id,
         })
 
     def run_wizard(self, name, file_name, datas_fname=None,

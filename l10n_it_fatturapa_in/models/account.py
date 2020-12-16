@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import fields, models, api, _
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 import odoo.addons.decimal_precision as dp
 from odoo.tools import float_compare
 
@@ -43,6 +43,58 @@ class AccountInvoice(models.Model):
 
     e_invoice_received_date = fields.Date(
         string='E-Bill Received Date')
+
+    @api.multi
+    @api.depends('invoice_line_ids.price_subtotal', 'tax_line_ids.amount',
+                 'currency_id', 'company_id', 'date_invoice', 'type',
+                 'efatt_rounding')
+    def _compute_amount(self):
+        super(AccountInvoice, self)._compute_amount()
+        for inv in self:
+            if inv.efatt_rounding != 0:
+                inv.amount_total += inv.efatt_rounding
+                amount_total_company_signed = inv.amount_total
+                if inv.currency_id and inv.company_id and \
+                        inv.currency_id != inv.company_id.currency_id:
+                    currency_id = inv.currency_id
+                    amount_total_company_signed = currency_id.compute(
+                        inv.amount_total, inv.company_id.currency_id)
+                sign = inv.type in ['in_refund', 'out_refund'] and -1 or 1
+                inv.amount_total_company_signed = \
+                    amount_total_company_signed * sign
+                inv.amount_total_signed = inv.amount_total * sign
+
+    @api.model
+    def invoice_line_move_line_get(self):
+        """Append global rounding move lines"""
+        res = super(AccountInvoice, self).invoice_line_move_line_get()
+
+        if self.efatt_rounding != 0:
+            if self.efatt_rounding > 0:
+                arrotondamenti_account_id = self.env.user.company_id.\
+                    arrotondamenti_passivi_account_id
+                if not arrotondamenti_account_id:
+                    raise UserError(_("Round down account is not set "
+                                      "in Accounting Settings"))
+                name = _("Rounding down")
+            else:
+                arrotondamenti_account_id = self.env.user.company_id.\
+                    arrotondamenti_attivi_account_id
+                if not arrotondamenti_account_id:
+                    raise UserError(_("Round up account is not set "
+                                      "in Accounting Settings"))
+                name = _("Rounding up")
+
+            res.append({
+                'type': 'global_rounding',
+                'name': name,
+                'price_unit': self.efatt_rounding,
+                'quantity': 1,
+                'price': self.efatt_rounding,
+                'account_id': arrotondamenti_account_id.id,
+                'invoice_id': self.id,
+            })
+        return res
 
     @api.multi
     def invoice_validate(self):

@@ -320,7 +320,13 @@ class WizardImportFatturapa(models.TransientModel):
 
     def get_account_taxes(self, AliquotaIVA, Natura):
         account_tax_model = self.env['account.tax']
+        # check if a default tax exists and generate def_purchase_tax object
+        ir_values = self.env['ir.values']
+        supplier_taxes_ids = ir_values.get_defaults_dict(
+            'product.template')['supplier_taxes_id']
         def_purchase_tax = False
+        if supplier_taxes_ids:
+            def_purchase_tax = account_tax_model.browse(supplier_taxes_ids)[0]
         if float(AliquotaIVA) == 0.0 and Natura:
             account_taxes = account_tax_model.search(
                 [
@@ -1116,7 +1122,8 @@ class WizardImportFatturapa(models.TransientModel):
                             [(6, 0, [invoice_line_tax_id])],
                     })
             if line_vals:
-                self.env['account.invoice.line'].create(line_vals)
+                for line in line_vals:
+                    self.env['account.invoice.line'].create(line)
 
     def set_efatt_rounding(self, FatturaBody, invoice_data):
         if FatturaBody.DatiGenerali.DatiGeneraliDocumento.Arrotondamento:
@@ -1291,7 +1298,7 @@ class WizardImportFatturapa(models.TransientModel):
                     'tax_rate': summary.AliquotaIVA or 0.0,
                     'non_taxable_nature': summary.Natura or False,
                     'incidental_charges': summary.SpeseAccessorie or 0.0,
-                    'rounding': float_round((summary.Arrotondamento or 0.0), 2),
+                    'rounding': float_round(float(summary.Arrotondamento or 0.0), 2),
                     'amount_untaxed': summary.ImponibileImporto or 0.0,
                     'amount_tax': summary.Imposta or 0.0,
                     'payability': summary.EsigibilitaIVA or False,
