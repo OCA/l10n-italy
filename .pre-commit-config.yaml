@@ -13,7 +13,9 @@ exclude: |
   # Repos using Sphinx to generate docs don't need prettying
   ^docs/_templates/.*\.html$|
   # You don't usually want a bot to modify your legal texts
-  (LICENSE.*|COPYING.*)
+  (LICENSE.*|COPYING.*)|
+  # XML tests should not be reformatted
+  ^l10n_it_fatturapa_out/tests/data
 default_language_version:
   python: python3
   node: "14.13.0"
