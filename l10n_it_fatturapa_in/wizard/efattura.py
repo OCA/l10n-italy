@@ -1,18 +1,18 @@
-import re
 import logging
+import re
+from datetime import datetime
+
 import xmlschema
 from lxml import etree
-from datetime import datetime
 
 from odoo.modules.module import get_module_resource
 
 _logger = logging.getLogger(__name__)
 _logger.setLevel(logging.DEBUG)
 
-XSD_SCHEMA = 'Schema_del_file_xml_FatturaPA_versione_1.2.1.xsd'
+XSD_SCHEMA = "Schema_del_file_xml_FatturaPA_versione_1.2.1.xsd"
 
-_xsd_schema = get_module_resource('l10n_it_fatturapa', 'bindings', 'xsd',
-                                  XSD_SCHEMA)
+_xsd_schema = get_module_resource("l10n_it_fatturapa", "bindings", "xsd", XSD_SCHEMA)
 _root = etree.parse(_xsd_schema)
 
 date_types = {}
@@ -21,26 +21,26 @@ datetime_types = {}
 
 def get_parent_element(e):
     for ancestor in e.iterancestors():
-        if 'name' in ancestor.attrib:
+        if "name" in ancestor.attrib:
             return ancestor
 
 
 def get_type_query(e):
-    return "//*[@type='%s']" % e.attrib['name']
+    return "//*[@type='%s']" % e.attrib["name"]
 
 
 def collect_element(target, element, parent=None):
     if parent is None:
         parent = get_parent_element(element)
 
-    path = '//%s/%s' % (parent.attrib['name'], element.attrib['name'])
-    mandatory = element.attrib.get('minOccurs') != '0'
+    path = "//{}/{}".format(parent.attrib["name"], element.attrib["name"])
+    mandatory = element.attrib.get("minOccurs") != "0"
     if path not in target:
         target[path] = mandatory
     else:
-        assert target[path] == mandatory, \
-            'Element %s is already present with different minOccurs value' % \
-            path
+        assert target[path] == mandatory, (
+            "Element %s is already present with different minOccurs value" % path
+        )
 
 
 def collect_elements_by_type_query(target, query):
@@ -56,12 +56,12 @@ def collect_elements_by_type(target, element_type):
 
 def collect_types():
     # simpleType, we look at the base of restriction
-    for element_type in _root.findall('//{*}simpleType'):
-        base = element_type.find('{*}restriction').attrib['base']
+    for element_type in _root.findall("//{*}simpleType"):
+        base = element_type.find("{*}restriction").attrib["base"]
 
-        if base == 'xs:date':
+        if base == "xs:date":
             collect_elements_by_type(date_types, element_type)
-        elif base == 'xs:dateTime':
+        elif base == "xs:dateTime":
             collect_elements_by_type(datetime_types, element_type)
 
     # complexType containing xs:date children
@@ -72,10 +72,10 @@ def collect_types():
 
 
 def parse_datetime(s):
-    m = re.match(r'(.*?)(\+|-)(\d+):(\d+)', s)
+    m = re.match(r"(.*?)(\+|-)(\d+):(\d+)", s)
     if m:
         s = "".join(m.group(1, 2, 3, 4))
-    return datetime.strptime(s, '%Y-%m-%dT%H:%M:%S.%f%z')
+    return datetime.strptime(s, "%Y-%m-%dT%H:%M:%S.%f%z")
 
 
 def _fix_xmlstring(xml_string):
@@ -100,10 +100,16 @@ def _fix_xmlstring(xml_string):
     # xmlns:ds="http://www.w3.org/2000/09/xmldsig#&quot;"
     xml_string = xml_string.decode()
     # HACK#1 - url invalido
-    xml_string = re.sub(r'xmlns:ds="http://www.w3.org/2000/09/xmldsig([^"]*)"',
-                        'xmlns:ds="http://www.w3.org/2000/09/xmldsig#"', xml_string)
-    xml_string = re.sub(r"xmlns:ds='http://www.w3.org/2000/09/xmldsig([^']*)'",
-                        "xmlns:ds='http://www.w3.org/2000/09/xmldsig#'", xml_string)
+    xml_string = re.sub(
+        r'xmlns:ds="http://www.w3.org/2000/09/xmldsig([^"]*)"',
+        'xmlns:ds="http://www.w3.org/2000/09/xmldsig#"',
+        xml_string,
+    )
+    xml_string = re.sub(
+        r"xmlns:ds='http://www.w3.org/2000/09/xmldsig([^']*)'",
+        "xmlns:ds='http://www.w3.org/2000/09/xmldsig#'",
+        xml_string,
+    )
     # HACK#2 - in attesa di fix su xmlschema
     xml_string = re.sub(r">\s*0.0000000+\s*<", ">0.00<", xml_string)
     return xml_string.encode()
@@ -135,12 +141,14 @@ def CreateFromDocument(xml_string):
 
     # remove timezone from type `xs:date` if any or
     # pyxb will fail to compare with
-    for path, mandatory in date_types.items():
+    for path, _mandatory in date_types.items():
         for element in root.xpath(path):
             result = element.text.strip()
             if len(result) > 10:
-                msg = 'removed timezone information from date only element ' \
-                      '%s: %s' % (tree.getpath(element), element.text)
+                msg = (
+                    "removed timezone information from date only element "
+                    "%s: %s" % (tree.getpath(element), element.text)
+                )
                 problems.append(msg)
             element.text = result[:10]
 
@@ -149,17 +157,22 @@ def CreateFromDocument(xml_string):
         for element in root.xpath(path):
             try:
                 d = parse_datetime(element.text)
-                if d < parse_datetime('1970-01-01T00:00:00.000+0000'):
+                if d < parse_datetime("1970-01-01T00:00:00.000+0000"):
                     raise ValueError
             except Exception as e:
                 element_path = tree.getpath(element)
                 if mandatory:
-                    _logger.error('element %s is invalid but is mandatory: '
-                                  '%s' % (element_path, element.text))
+                    _logger.error(
+                        "element %s is invalid but is mandatory: "
+                        "%s" % (element_path, element.text)
+                    )
                 else:
                     element.getparent().remove(element)
-                    msg = 'removed invalid dateTime element %s: %s (%s)' % (
-                        element_path, element.text, e)
+                    msg = "removed invalid dateTime element {}: {} ({})".format(
+                        element_path,
+                        element.text,
+                        e,
+                    )
                     problems.append(msg)
                     _logger.warn(msg)
 
@@ -168,7 +181,7 @@ def CreateFromDocument(xml_string):
         pec.text = pec.text.rstrip()
 
     validat = validator.to_dict(tree, dict_class=ObjectDict)
-    setattr(validat, '_xmldoctor', problems)
+    validat._xmldoctor = problems
     return validat
 
 
