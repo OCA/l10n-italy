@@ -80,7 +80,6 @@ class ResPartner(models.Model):
         "fiscalcode",
         "lastname",
         "firstname",
-        "customer",
         "street",
         "zip",
         "city",
@@ -89,9 +88,7 @@ class ResPartner(models.Model):
     )
     def _check_ftpa_partner_data(self):
         for partner in self:
-            if partner.electronic_invoice_subjected and partner.customer:
-                # These checks must be done for customers only, as only
-                # needed for XML generation
+            if partner.electronic_invoice_subjected:
                 if partner.is_pa and (
                     not partner.ipa_code or len(partner.ipa_code) != 6
                 ):
@@ -182,10 +179,6 @@ class ResPartner(models.Model):
     def onchange_electronic_invoice_subjected(self):
         if not self.electronic_invoice_subjected:
             self.electronic_invoice_obliged_subject = False
-        else:
-            if self.supplier:
-                self.onchange_country_id_e_inv()
-                self.electronic_invoice_obliged_subject = True
 
     @api.onchange("electronic_invoice_obliged_subject")
     def onchange_e_inv_obliged_subject(self):

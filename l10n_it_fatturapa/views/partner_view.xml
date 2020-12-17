@@ -13,14 +13,8 @@
                     groups="account.group_account_invoice"
                 >
                 <group name="fatturapa_group">
-                    <label
-                            for="electronic_invoice_no_contact_update"
-                            attrs="{'invisible': [('supplier', '=', False)]}"
-                        />
-                    <field
-                            name="electronic_invoice_no_contact_update"
-                            attrs="{'invisible': [('supplier', '=', False)]}"
-                        />
+                    <label for="electronic_invoice_no_contact_update" />
+                    <field name="electronic_invoice_no_contact_update" />
                     <group>
                         <field name="electronic_invoice_subjected" />
                         <field

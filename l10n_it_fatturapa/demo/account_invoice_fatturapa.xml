@@ -124,8 +124,6 @@
 
         <record id="res_partner_fatturapa_0" model="res.partner">
             <field name="name">Public Administration</field>
-            <field name="customer">1</field>
-            <field name="supplier">0</field>
             <field name="is_company">1</field>
             <field name="is_pa">1</field>
             <field name="city">Torino</field>
@@ -143,8 +141,6 @@
 
         <record id="res_partner_fatturapa_1" model="res.partner">
             <field name="name">Intermediary</field>
-            <field name="customer">0</field>
-            <field name="supplier">1</field>
             <field name="is_company">1</field>
             <field name="city">Torino</field>
             <field name="zip">10100</field>
@@ -159,8 +155,6 @@
 
         <record id="res_partner_fatturapa_2" model="res.partner">
             <field name="name">B2B Customer</field>
-            <field name="customer">1</field>
-            <field name="supplier">0</field>
             <field name="is_company">1</field>
             <field name="is_pa">0</field>
             <field name="city">Genova</field>
@@ -186,8 +180,6 @@
 
         <record id="res_partner_fatturapa_4" model="res.partner">
             <field name="name">Foreign Customer</field>
-            <field name="customer">1</field>
-            <field name="supplier">0</field>
             <field name="is_company">1</field>
             <field name="street">29-17 Al Thanya St</field>
             <field name="is_pa">0</field>
