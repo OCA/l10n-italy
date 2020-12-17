@@ -13,7 +13,9 @@ exclude: |
   # Repos using Sphinx to generate docs don't need prettying
   ^docs/_templates/.*\.html$|
   # You don't usually want a bot to modify your legal texts
-  (LICENSE.*|COPYING.*)
+  (LICENSE.*|COPYING.*)|
+  # Do not touch test data
+  l10n_it_fatturapa_in/tests/data/
 default_language_version:
   python: python3
   node: "14.13.0"
@@ -125,6 +127,7 @@ repos:
         args:
           - --rcfile=.pylintrc
           - --exit-zero
+          - --ignore=l10n_it_fatturapa_in/tests/data/
         verbose: true
         additional_dependencies: &pylint_deps
           - pylint-odoo==3.5.0
@@ -132,4 +135,5 @@ repos:
         name: pylint with mandatory checks
         args:
           - --rcfile=.pylintrc-mandatory
+          - --ignore=l10n_it_fatturapa_in/tests/data/
         additional_dependencies: *pylint_deps
