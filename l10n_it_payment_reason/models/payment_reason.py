@@ -2,18 +2,18 @@ from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
-class CausalePagamento(models.Model):
-    _name = "causale.pagamento"
-    _description = "Causale Pagamento"
+class PaymentReason(models.Model):
+    _name = "payment.reason"
+    _description = "Payment Reason"
 
     @api.constrains("code")
     def _check_code(self):
-        for causale in self:
-            domain = [("code", "=", causale.code)]
+        for reason in self:
+            domain = [("code", "=", reason.code)]
             elements = self.search(domain)
             if len(elements) > 1:
                 raise ValidationError(
-                    _("The element with code %s already exists") % causale.code
+                    _("The element with code %s already exists") % reason.code
                 )
 
     def name_get(self):
