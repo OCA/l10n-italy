@@ -16,7 +16,6 @@ class CausalePagamento(models.Model):
                     _("The element with code %s already exists") % causale.code
                 )
 
-    @api.multi
     def name_get(self):
         res = []
         for cau in self:

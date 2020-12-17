@@ -21,17 +21,3 @@ class TestCausali(TransactionCase):
                 )
             ],
         )
-
-    def test_renaming_causali(self):
-        causale_zo = self.env.ref("l10n_it_causali_pagamento.z")
-        self.assertEqual(causale_zo.code, "ZO")
-        causale_l = self.env.ref("l10n_it_causali_pagamento.l")
-        name = (
-            "Redditi derivanti dall’utilizzazione economica di opere "
-            "dell’ingegno, di brevetti industriali e di processi, formule e "
-            "informazioni relativi a esperienze acquisite in campo "
-            "industriale, commerciale o scientifico, che sono percepiti dagli "
-            "aventi causa a titolo gratuito (ad es. eredi e "
-            "legatari dell’autore e inventore)"
-        )
-        self.assertEqual(causale_l.name, name)
