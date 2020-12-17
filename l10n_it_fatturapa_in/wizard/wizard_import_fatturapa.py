@@ -497,8 +497,8 @@ class WizardImportFatturapa(orm.TransientModel):
             new_tax = account.tax_ids[0]
         if new_tax:
             line_tax_id = (
-                line_vals.get('invoice_line_tax_ids') and
-                line_vals['invoice_line_tax_ids'][0][2][0]
+                line_vals.get('invoice_line_tax_id') and
+                line_vals['invoice_line_tax_id'][0][2][0]
             )
             line_tax = self.pool['account.tax'].browse(cr, uid, line_tax_id)
             if new_tax.id != line_tax_id:
@@ -512,7 +512,7 @@ class WizardImportFatturapa(orm.TransientModel):
                 else:
                     # If product has the same amount of the one in XML,
                     # I use it. Typical case: 22% det 50%
-                    line_vals['invoice_line_tax_ids'] = [
+                    line_vals['invoice_line_tax_id'] = [
                         (6, 0, [new_tax.id])]
 
     def _prepareRelDocsLine(

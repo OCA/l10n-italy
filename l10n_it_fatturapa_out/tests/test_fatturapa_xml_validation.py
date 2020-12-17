@@ -268,7 +268,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
                     'quantity': 1,
                     'uom_id': self.product_uom_unit.id,
                     'price_unit': 10,
-                    'invoice_line_tax_ids': [(6, 0, {
+                    'invoice_line_tax_id': [(6, 0, {
                         self.tax_22.id})]
                 }),
                 (0, 0, {
@@ -278,7 +278,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
                     'quantity': 1,
                     'uom_id': self.product_uom_unit.id,
                     'price_unit': 4,
-                    'invoice_line_tax_ids': [(6, 0, {
+                    'invoice_line_tax_id': [(6, 0, {
                         self.tax_22.id})]
                 })],
         })
