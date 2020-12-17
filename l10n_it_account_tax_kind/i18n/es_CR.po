@@ -1,0 +1,93 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_account_tax_kind
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-01 08:10+0000\n"
+"PO-Revision-Date: 2018-06-01 08:10+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Spanish (Costa Rica) (https://www.transifex.com/oca/"
+"teams/23907/es_CR/)\n"
+"Language: es_CR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__code
+msgid "Code"
+msgstr ""
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax__kind_id
+msgid "Exemption Kind"
+msgstr ""
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__write_uid
+msgid "Last Updated by"
+msgstr "Ultima actualización por"
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__write_date
+msgid "Last Updated on"
+msgstr "Ultima actualización en"
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax__law_reference
+msgid "Law reference"
+msgstr ""
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model,name:l10n_it_account_tax_kind.model_account_tax
+msgid "Tax"
+msgstr ""
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.actions.act_window,name:l10n_it_account_tax_kind.view_account_tax_kind_action
+#: model:ir.ui.menu,name:l10n_it_account_tax_kind.account_tax_kind_menu
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_tax_kind.view_account_tax_kind_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_tax_kind.view_account_tax_kind_tree
+msgid "Tax Exemption Kind"
+msgstr ""
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model,name:l10n_it_account_tax_kind.model_account_tax_kind
+msgid "Tax exemption kind"
+msgstr ""
