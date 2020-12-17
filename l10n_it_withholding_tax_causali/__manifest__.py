@@ -17,5 +17,5 @@
     "data": [
         "views/withholding_tax.xml",
     ],
-    'auto_install': True,
+    "auto_install": True,
 }

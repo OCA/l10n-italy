@@ -1,7 +1,8 @@
-from odoo import models, fields
+from odoo import fields, models
 
 
 class WithholdingTax(models.Model):
-    _inherit = 'withholding.tax'
+    _inherit = "withholding.tax"
     causale_pagamento_id = fields.Many2one(
-        'causale.pagamento', string="Causale pagamento")
+        "causale.pagamento", string="Causale pagamento"
+    )
