@@ -23,7 +23,9 @@ class FatturapaCommon(SingleTransactionCase):
                 "code": "1040",
                 "account_receivable_id": self.payable_account_id,
                 "account_payable_id": self.payable_account_id,
-                "payment_term": self.env.ref("account.account_payment_term").id,
+                "payment_term": self.env.ref(
+                    "account.account_payment_term_immediate"
+                ).id,
                 "rate_ids": [(0, 0, {"tax": 20.0})],
                 "causale_pagamento_id": self.env.ref("l10n_it_causali_pagamento.a").id,
             }
@@ -36,7 +38,9 @@ class FatturapaCommon(SingleTransactionCase):
                 "code": "2320",
                 "account_receivable_id": self.payable_account_id,
                 "account_payable_id": self.payable_account_id,
-                "payment_term": self.env.ref("account.account_payment_term").id,
+                "payment_term": self.env.ref(
+                    "account.account_payment_term_immediate"
+                ).id,
                 "rate_ids": [(0, 0, {"tax": 23.0, "base": 0.2})],
                 "causale_pagamento_id": self.env.ref("l10n_it_causali_pagamento.a").id,
             }
@@ -49,7 +53,9 @@ class FatturapaCommon(SingleTransactionCase):
                 "code": "2320",
                 "account_receivable_id": self.payable_account_id,
                 "account_payable_id": self.payable_account_id,
-                "payment_term": self.env.ref("account.account_payment_term").id,
+                "payment_term": self.env.ref(
+                    "account.account_payment_term_immediate"
+                ).id,
                 "rate_ids": [(0, 0, {"tax": 23.0, "base": 0.5})],
                 "causale_pagamento_id": self.env.ref("l10n_it_causali_pagamento.a").id,
             }
@@ -62,7 +68,9 @@ class FatturapaCommon(SingleTransactionCase):
                 "code": "2620q",
                 "account_receivable_id": self.payable_account_id,
                 "account_payable_id": self.payable_account_id,
-                "payment_term": self.env.ref("account.account_payment_term").id,
+                "payment_term": self.env.ref(
+                    "account.account_payment_term_immediate"
+                ).id,
                 "rate_ids": [(0, 0, {"tax": 26.0, "base": 0.2})],
                 "causale_pagamento_id": self.env.ref("l10n_it_causali_pagamento.q").id,
             }
@@ -75,7 +83,9 @@ class FatturapaCommon(SingleTransactionCase):
                 "code": "2640q",
                 "account_receivable_id": self.payable_account_id,
                 "account_payable_id": self.payable_account_id,
-                "payment_term": self.env.ref("account.account_payment_term").id,
+                "payment_term": self.env.ref(
+                    "account.account_payment_term_immediate"
+                ).id,
                 "rate_ids": [(0, 0, {"tax": 26.0, "base": 0.4})],
                 "causale_pagamento_id": self.env.ref("l10n_it_causali_pagamento.q").id,
             }
@@ -88,7 +98,9 @@ class FatturapaCommon(SingleTransactionCase):
                 "code": "2720q",
                 "account_receivable_id": self.payable_account_id,
                 "account_payable_id": self.payable_account_id,
-                "payment_term": self.env.ref("account.account_payment_term").id,
+                "payment_term": self.env.ref(
+                    "account.account_payment_term_immediate"
+                ).id,
                 "rate_ids": [(0, 0, {"tax": 27.0, "base": 0.2})],
                 "causale_pagamento_id": self.env.ref("l10n_it_causali_pagamento.q").id,
             }
@@ -102,7 +114,9 @@ class FatturapaCommon(SingleTransactionCase):
                 "wt_types": "enasarco",
                 "account_receivable_id": self.payable_account_id,
                 "account_payable_id": self.payable_account_id,
-                "payment_term": self.env.ref("account.account_payment_term").id,
+                "payment_term": self.env.ref(
+                    "account.account_payment_term_immediate"
+                ).id,
                 "rate_ids": [(0, 0, {"tax": 4.0, "base": 1.0})],
                 "causale_pagamento_id": self.env.ref("l10n_it_causali_pagamento.q").id,
             }
@@ -120,20 +134,16 @@ class FatturapaCommon(SingleTransactionCase):
         self,
         name,
         file_name,
-        datas_fname=None,
         mode="import",
         wiz_values=None,
         module_name=None,
     ):
         if module_name is None:
             module_name = "l10n_it_fatturapa_in"
-        if datas_fname is None:
-            datas_fname = file_name
         attach_id = self.attach_model.create(
             {
                 "name": name,
                 "datas": self.getFile(file_name, module_name=module_name)[1],
-                "datas_fname": datas_fname,
             }
         ).id
         if mode == "import":
@@ -157,7 +167,6 @@ class FatturapaCommon(SingleTransactionCase):
                     {
                         "name": file_name,
                         "datas": self.getFile(file_name, module_name)[1],
-                        "datas_fname": file_name,
                     }
                 ).id
             )
@@ -170,7 +179,7 @@ class FatturapaCommon(SingleTransactionCase):
         self.wizard_link_model = self.env["wizard.link.to.invoice"]
         self.data_model = self.env["ir.model.data"]
         self.attach_model = self.env["fatturapa.attachment.in"]
-        self.invoice_model = self.env["account.invoice"]
+        self.invoice_model = self.env["account.move"]
         self.payable_account_id = (
             self.env["account.account"]
             .search(
@@ -221,11 +230,11 @@ class FatturapaCommon(SingleTransactionCase):
             order="sequence",
             limit=1,
         )
-        self.env.user.company_id.arrotondamenti_attivi_account_id = (
+        self.env.company.arrotondamenti_attivi_account_id = (
             arrotondamenti_attivi_account_id
         )
-        self.env.user.company_id.arrotondamenti_passivi_account_id = (
+        self.env.company.arrotondamenti_passivi_account_id = (
             arrotondamenti_passivi_account_id
         )
-        self.env.user.company_id.arrotondamenti_tax_id = arrotondamenti_tax_id
-        self.env["res.lang"].load_lang("it_IT")
+        self.env.company.arrotondamenti_tax_id = arrotondamenti_tax_id
+        self.env["res.lang"]._activate_lang("it_IT")

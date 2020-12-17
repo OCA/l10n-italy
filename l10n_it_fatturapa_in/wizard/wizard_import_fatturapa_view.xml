@@ -22,16 +22,15 @@
             </field>
         </record>
 
-        <act_window
-            name="Import Electronic Bill"
-            res_model="wizard.import.fatturapa"
-            src_model="fatturapa.attachment.in"
-            view_mode="form"
-            target="new"
-            key2="client_action_multi"
-            id="action_wizard_import_fatturapa"
-            view_id="wizard_import_fatturapa_form_view"
-        />
+        <record id="action_wizard_import_fatturapa" model="ir.actions.act_window">
+            <field name="name">Import Electronic Bill</field>
+            <field name="res_model">wizard.import.fatturapa</field>
+            <!-- src_model="fatturapa.attachment.in" -->
+            <field name="binding_model_id" ref="model_fatturapa_attachment_in" />
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="wizard_import_fatturapa_form_view" />
+        </record>
 
     </data>
 </odoo>

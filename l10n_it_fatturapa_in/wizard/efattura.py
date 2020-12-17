@@ -174,7 +174,7 @@ def CreateFromDocument(xml_string):
                         e,
                     )
                     problems.append(msg)
-                    _logger.warn(msg)
+                    _logger.warning(msg)
 
     # fix trailing spaces in <PECDestinatario/>
     for pec in root.xpath("//PECDestinatario"):
