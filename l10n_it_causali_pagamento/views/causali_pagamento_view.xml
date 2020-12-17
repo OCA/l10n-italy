@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record id="view_causale_pagamento_tree" model="ir.ui.view">
@@ -6,8 +6,8 @@
         <field name="model">causale.pagamento</field>
         <field name="arch" type="xml">
             <tree string="Causale pagamento">
-                <field name="code"/>
-                <field name="name"/>
+                <field name="code" />
+                <field name="name" />
             </tree>
         </field>
     </record>
@@ -19,8 +19,8 @@
             <form string="Causale pagamento">
                 <sheet>
                     <group>
-                        <field name="code"/>
-                        <field name="name"/>
+                        <field name="code" />
+                        <field name="name" />
                     </group>
                 </sheet>
             </form>
@@ -30,11 +30,16 @@
     <record id="action_causale_pagamento" model="ir.actions.act_window">
         <field name="name">Causali pagamento</field>
         <field name="res_model">causale.pagamento</field>
-        <field name="view_id" ref="view_causale_pagamento_tree"/>
+        <field name="view_id" ref="view_causale_pagamento_tree" />
     </record>
 
-    <menuitem id="menu_causale_pagamento" name="Causali pagamento"
-        action="action_causale_pagamento" parent="l10n_it_account.account_italian_localization"
-        groups="account.group_account_manager" sequence="45"/>
+    <menuitem
+        id="menu_causale_pagamento"
+        name="Causali pagamento"
+        action="action_causale_pagamento"
+        parent="l10n_it_account.account_italian_localization"
+        groups="account.group_account_manager"
+        sequence="45"
+    />
 
 </odoo>
