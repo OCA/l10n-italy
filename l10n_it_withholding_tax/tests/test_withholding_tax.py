@@ -94,7 +94,7 @@ class TestWithholdingTax(TransactionCase):
                 },
             )
         ]
-        self.invoice = self.env["account.invoice"].create(
+        self.invoice = self.env["account.move"].create(
             {
                 "name": "Test Supplier Invoice WT",
                 "journal_id": self.env["account.journal"]
@@ -147,7 +147,7 @@ class TestWithholdingTax(TransactionCase):
         self.assertEqual(self.invoice.amount_net_pay_residual, 800)
 
         ctx = {
-            "active_model": "account.invoice",
+            "active_model": "account.move",
             "active_ids": [self.invoice.id],
         }
         register_payments = (
@@ -191,7 +191,7 @@ class TestWithholdingTax(TransactionCase):
         self.assertEqual(self.invoice.amount_net_pay, 800)
         self.assertEqual(self.invoice.amount_net_pay_residual, 800)
         ctx = {
-            "active_model": "account.invoice",
+            "active_model": "account.move",
             "active_ids": [self.invoice.id],
             "active_id": self.invoice.id,
             "default_invoice_ids": [(4, self.invoice.id, None)],
@@ -226,7 +226,7 @@ class TestWithholdingTax(TransactionCase):
         self.assertEqual(wt_statement.amount, 150)
         self.assertEqual(self.invoice.amount_net_pay, 800)
         self.assertEqual(self.invoice.amount_net_pay_residual, 200)
-        self.assertEqual(self.invoice.residual, 250)
+        self.assertEqual(self.invoice.amount_residual, 250)
         self.assertEqual(self.invoice.state, "open")
 
     def test_overlapping_rates(self):

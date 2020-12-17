@@ -11,11 +11,11 @@ class WithholdingTax(models.Model):
     _name = "withholding.tax"
     _description = "Withholding Tax"
 
-    @api.one
     @api.depends(
         "rate_ids.date_start", "rate_ids.date_stop", "rate_ids.base", "rate_ids.tax"
     )
     def _compute_get_rate(self):
+        self.ensure_one()
         self.env.cr.execute(
             """
             SELECT tax, base FROM withholding_tax_rate
@@ -89,15 +89,14 @@ class WithholdingTax(models.Model):
     )
     use_daticassaprev = fields.Boolean(
         "DatiCassa export",
-        oldname="use_daticassaprev_for_enasarco",
         help="Setting this, while exporting e-invoice XML, "
         "data will be also added to DatiCassaPrevidenziale",
     )
     daticassprev_tax_id = fields.Many2one("account.tax")
 
-    @api.one
     @api.constrains("rate_ids")
     def _check_rate_ids(self):
+        self.ensure_one()
         if not self.rate_ids:
             raise ValidationError(_("Error! Rates are required"))
 
@@ -122,13 +121,13 @@ class WithholdingTax(models.Model):
         self.ensure_one()
         return str(invoice_tax_val["withholding_tax_id"])
 
-    @api.one
     def get_base_from_tax(self, wt_amount):
         """
         100 * wt_amount        1
         ---------------  *  -------
               % tax          Coeff
         """
+        self.ensure_one()
         dp_obj = self.env["decimal.precision"]
         base = 0
         if wt_amount:
@@ -144,9 +143,9 @@ class WithholdingTaxRate(models.Model):
     _name = "withholding.tax.rate"
     _description = "Withholding Tax Rates"
 
-    @api.one
     @api.constrains("date_start", "date_stop")
     def _check_date(self):
+        self.ensure_one()
         if self.withholding_tax_id.active:
             domain = [
                 ("withholding_tax_id", "=", self.withholding_tax_id.id),
@@ -193,7 +192,6 @@ class WithholdingTaxStatement(models.Model):
     _description = "Withholding Tax Statement"
     _order = "id desc"
 
-    @api.multi
     @api.depends("move_ids.amount", "move_ids.state", "move_ids.reconcile_partial_id")
     def _compute_total(self):
         for statement in self:
@@ -217,7 +215,7 @@ class WithholdingTaxStatement(models.Model):
         compute="_compute_type",
     )
     move_id = fields.Many2one("account.move", "Account move", ondelete="cascade")
-    invoice_id = fields.Many2one("account.invoice", "Invoice", ondelete="cascade")
+    invoice_id = fields.Many2one("account.move", "Invoice", ondelete="cascade")
     partner_id = fields.Many2one("res.partner", "Partner")
     withholding_tax_id = fields.Many2one("withholding.tax", string="Withholding Tax")
     company_id = fields.Many2one(
@@ -268,7 +266,7 @@ class WithholdingTaxStatement(models.Model):
                     amount_wt = round(
                         base * wt_inv.tax_coeff, dp_obj.precision_get("Account")
                     )
-                if st.invoice_id.type in ["in_refund", "out_refund"]:
+                if st.invoice_id.move_type in ["in_refund", "out_refund"]:
                     amount_wt = -1 * amount_wt
             elif st.move_id:
                 tax_data = st.withholding_tax_id.compute_tax(amount_reconcile)
@@ -343,7 +341,6 @@ class WithholdingTaxMove(models.Model):
         string="WT reconciliation",
     )
 
-    @api.multi
     def unlink(self):
         for rec in self:
             if rec.state not in ["due"]:
@@ -375,7 +372,7 @@ class WithholdingTaxMove(models.Model):
         }
         # Move - lines
         move_lines = []
-        for type in ("partner", "tax"):
+        for _type in ("partner", "tax"):
             ml_vals = {
                 "ref": _("WT %s - %s - %s")
                 % (
@@ -387,7 +384,7 @@ class WithholdingTaxMove(models.Model):
                 "date": move_vals["date"],
             }
             # Credit/Debit line
-            if type == "partner":
+            if _type == "partner":
                 ml_vals["partner_id"] = self.payment_line_id.partner_id.id
                 ml_vals["account_id"] = self.credit_debit_line_id.account_id.id
                 ml_vals[
@@ -398,14 +395,14 @@ class WithholdingTaxMove(models.Model):
                 else:
                     ml_vals["debit"] = abs(self.amount)
             # Authority tax line
-            elif type == "tax":
+            elif _type == "tax":
                 ml_vals["name"] = "{} - {}".format(
                     self.withholding_tax_id.code,
                     self.credit_debit_line_id.move_id.name,
                 )
                 if self.payment_line_id.credit:
                     ml_vals["debit"] = abs(self.amount)
-                    if self.credit_debit_line_id.invoice_id.type in [
+                    if self.credit_debit_line_id.invoice_id.move_type in [
                         "in_refund",
                         "out_refund",
                     ]:
@@ -418,7 +415,7 @@ class WithholdingTaxMove(models.Model):
                         ] = self.withholding_tax_id.account_receivable_id.id
                 else:
                     ml_vals["credit"] = abs(self.amount)
-                    if self.credit_debit_line_id.invoice_id.type in [
+                    if self.credit_debit_line_id.invoice_id.move_type in [
                         "in_refund",
                         "out_refund",
                     ]:
@@ -448,7 +445,7 @@ class WithholdingTaxMove(models.Model):
                 line_to_reconcile = line
                 break
         if line_to_reconcile:
-            if self.credit_debit_line_id.invoice_id.type in [
+            if self.credit_debit_line_id.invoice_id.move_type in [
                 "in_refund",
                 "out_invoice",
             ]:
@@ -470,13 +467,11 @@ class WithholdingTaxMove(models.Model):
     def _compute_display_name(self):
         self.display_name = self.partner_id.name + " - " + self.withholding_tax_id.name
 
-    @api.multi
     def action_paid(self):
         for move in self:
             if move.state in ["due"]:
                 move.write({"state": "paid"})
 
-    @api.multi
     def action_set_to_draft(self):
         for move in self:
             if move.state in ["paid"]:
@@ -490,7 +485,6 @@ class WithholdingTaxMove(models.Model):
                     )
                 move.write({"state": "due"})
 
-    @api.multi
     def check_unlink(self):
         wt_moves_not_eresable = []
         for move in self:
@@ -504,7 +498,6 @@ class WithholdingTaxMove(models.Model):
                 )
             )
 
-    @api.multi
     def _compute_full_reconcile_id(self):
         for move in self:
             move.full_reconcile_id = None
