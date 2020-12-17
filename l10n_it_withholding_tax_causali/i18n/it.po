@@ -1,0 +1,29 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_withholding_tax_causali
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-08-23 17:50+0000\n"
+"PO-Revision-Date: 2019-05-14 14:09+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.6.1\n"
+
+#. module: l10n_it_withholding_tax_causali
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax_causali.field_withholding_tax__causale_pagamento_id
+#, fuzzy
+msgid "Causale pagamento"
+msgstr "Causale pagamento"
+
+#. module: l10n_it_withholding_tax_causali
+#: model:ir.model,name:l10n_it_withholding_tax_causali.model_withholding_tax
+msgid "Withholding Tax"
+msgstr "Ritenuta d'acconto"
