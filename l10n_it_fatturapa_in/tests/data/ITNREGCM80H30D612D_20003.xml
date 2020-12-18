@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<q1:FatturaElettronica versione="FPR12"
+                       xmlns:q1="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2">
+    <FatturaElettronicaHeader>
+
+        <DatiTrasmissione>
+            <IdTrasmittente>
+                <IdPaese>IT</IdPaese>
+                <IdCodice>06948880486</IdCodice>
+            </IdTrasmittente>
+            <ProgressivoInvio>00005</ProgressivoInvio>
+            <FormatoTrasmissione>FPR12</FormatoTrasmissione>
+            <CodiceDestinatario>0000000</CodiceDestinatario>
+            <ContattiTrasmittente>
+                <Telefono>05543534343</Telefono>
+                <Email>info@yourcompany.example.com</Email>
+            </ContattiTrasmittente>
+            <PECDestinatario>ufficio@pec.bizz.it</PECDestinatario>
+        </DatiTrasmissione>
+
+        <CedentePrestatore>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>06948880486</IdCodice>
+                </IdFiscaleIVA>
+                <Anagrafica>
+                    <Nome>GIACOMO</Nome>
+                    <Cognome>NERI</Cognome>
+                </Anagrafica>
+                <RegimeFiscale>RF01</RegimeFiscale>
+            </DatiAnagrafici>
+            <Sede>
+                <Indirizzo>VIA DEI BOTTEGAI</Indirizzo>
+                <NumeroCivico>11</NumeroCivico>
+                <CAP>50123</CAP>
+                <Comune>FIRENZE</Comune>
+                <Provincia>FI</Provincia>
+                <Nazione>IT</Nazione>
+            </Sede>
+        </CedentePrestatore>
+
+        <CessionarioCommittente>
+            <DatiAnagrafici>
+                <CodiceFiscale>04006460275</CodiceFiscale>
+                <Anagrafica>
+                    <Denominazione>BIZZ SRL</Denominazione>
+                </Anagrafica>
+            </DatiAnagrafici>
+            <Sede>
+                <Indirizzo>VIA TORINO 135</Indirizzo>
+                <CAP>30100</CAP>
+                <Comune>Venezia</Comune>
+                <Provincia>VE</Provincia>
+                <Nazione>IT</Nazione>
+            </Sede>
+        </CessionarioCommittente>
+
+    </FatturaElettronicaHeader>
+
+
+    <FatturaElettronicaBody>
+
+        <DatiGenerali>
+
+            <DatiGeneraliDocumento>
+                <TipoDocumento>TD01</TipoDocumento>
+                <Divisa>EUR</Divisa>
+                <Data>2020-10-25</Data>
+                <Numero>003</Numero>
+
+                <DatiRitenuta>
+                    <TipoRitenuta>RT01</TipoRitenuta>
+                    <ImportoRitenuta>1.15</ImportoRitenuta>
+                    <AliquotaRitenuta>11.50</AliquotaRitenuta>
+                    <CausalePagamento>R</CausalePagamento>
+                </DatiRitenuta>
+
+                <DatiRitenuta>
+                    <TipoRitenuta>RT04</TipoRitenuta>
+                    <ImportoRitenuta>0.85</ImportoRitenuta>
+                    <AliquotaRitenuta>8.50</AliquotaRitenuta>
+                    <CausalePagamento>R</CausalePagamento>
+                </DatiRitenuta>
+
+                <DatiCassaPrevidenziale>
+                    <TipoCassa>TC07</TipoCassa>
+                    <AlCassa>8.50</AlCassa>
+                    <ImportoContributoCassa>0.85</ImportoContributoCassa>
+                    <ImponibileCassa>10.00</ImponibileCassa>
+                    <AliquotaIVA>22.00</AliquotaIVA>
+                    <Ritenuta>SI</Ritenuta>
+                </DatiCassaPrevidenziale>
+
+                <ImportoTotaleDocumento>10.20</ImportoTotaleDocumento>
+
+            </DatiGeneraliDocumento>
+        </DatiGenerali>
+
+        <DatiBeniServizi>
+            <DettaglioLinee>
+                <NumeroLinea>1</NumeroLinea>
+                <Descrizione>PROVVIGIONI</Descrizione>
+                <PrezzoUnitario>10.00</PrezzoUnitario>
+                <PrezzoTotale>10.00</PrezzoTotale>
+                <AliquotaIVA>22.00</AliquotaIVA>
+                <Ritenuta>SI</Ritenuta>
+            </DettaglioLinee>
+            <DatiRiepilogo>
+                <AliquotaIVA>22.00</AliquotaIVA>
+                <ImponibileImporto>10.00</ImponibileImporto>
+                <Imposta>2.20</Imposta>
+                <EsigibilitaIVA>I</EsigibilitaIVA>
+            </DatiRiepilogo>
+        </DatiBeniServizi>
+
+
+        <DatiPagamento>
+            <CondizioniPagamento>TP02</CondizioniPagamento>
+            <DettaglioPagamento>
+                <ModalitaPagamento>MP05</ModalitaPagamento>
+                <DataScadenzaPagamento>2020-09-30</DataScadenzaPagamento>
+                <ImportoPagamento>10.20</ImportoPagamento>
+                <IstitutoFinanziario>FINECO BANK</IstitutoFinanziario>
+                <BIC>UNCRITMMXXX</BIC>
+            </DettaglioPagamento>
+        </DatiPagamento>
+
+    </FatturaElettronicaBody>
+
+</q1:FatturaElettronica>
+
