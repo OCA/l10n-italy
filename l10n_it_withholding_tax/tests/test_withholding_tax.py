@@ -2,13 +2,12 @@
 
 import time
 from datetime import date, timedelta
-
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 from odoo import fields
 from odoo.exceptions import ValidationError
-from odoo.tests.common import TransactionCase
 
 
-class TestWithholdingTax(TransactionCase):
+class TestWithholdingTax(AccountTestInvoicingCommon):
     def setUp(self):
         super(TestWithholdingTax, self).setUp()
 
@@ -69,55 +68,32 @@ class TestWithholdingTax(TransactionCase):
         }
         self.wt1040 = self.env["withholding.tax"].create(wt_vals)
 
+        partner_id = self.env.ref("base.res_partner_12").id
+        self.invoice = self.init_invoice('in_invoice', partner=partner_id)
+
         # Supplier Invoice with WT
-        invoice_line_vals = [
-            (
-                0,
-                0,
-                {
-                    "quantity": 1.0,
-                    "account_id": self.env["account.account"]
-                    .search(
-                        [
-                            (
-                                "user_type_id",
-                                "=",
-                                self.env.ref("account.data_account_type_expenses").id,
-                            )
-                        ],
-                        limit=1,
-                    )
-                    .id,
-                    "name": "Advice",
-                    "price_unit": 1000.00,
-                    "invoice_line_tax_wt_ids": [(6, 0, [self.wt1040.id])],
-                },
-            )
-        ]
-        self.invoice = self.env["account.move"].create(
-            {
-                "name": "Test Supplier Invoice WT",
-                "journal_id": self.env["account.journal"]
-                .search([("type", "=", "purchase")])[0]
-                .id,
-                "partner_id": self.env.ref("base.res_partner_12").id,
-                "account_id": self.env["account.account"]
+        invoice_line_vals = {
+            "quantity": 1.0,
+            "move_id": self.invoice.id,
+            "account_id": self.env["account.account"]
                 .search(
-                    [
-                        (
-                            "user_type_id",
-                            "=",
-                            self.env.ref("account.data_account_type_receivable").id,
-                        )
-                    ],
-                    limit=1,
-                    order="id",
-                )
+                [
+                    (
+                        "user_type_id",
+                        "=",
+                        self.env.ref("account.data_account_type_expenses").id,
+                    )
+                ],
+                limit=1,
+            )
                 .id,
-                "invoice_line_ids": invoice_line_vals,
-                "type": "in_invoice",
-            }
-        )
+            "name": "Advice",
+            "price_unit": 1000.00,
+            "invoice_line_tax_wt_ids": [(6, 0, [self.wt1040.id])],
+        }
+
+        self.env["account.move.line"].create(invoice_line_vals)
+
         self.invoice._onchange_invoice_line_wt_ids()
         self.invoice.action_invoice_open()
 
@@ -152,8 +128,8 @@ class TestWithholdingTax(TransactionCase):
         }
         register_payments = (
             self.env["account.register.payments"]
-            .with_context(ctx)
-            .create(
+                .with_context(ctx)
+                .create(
                 {
                     "payment_date": time.strftime("%Y") + "-07-15",
                     "amount": 800,
@@ -198,8 +174,8 @@ class TestWithholdingTax(TransactionCase):
         }
         register_payments = (
             self.env["account.payment"]
-            .with_context(ctx)
-            .create(
+                .with_context(ctx)
+                .create(
                 {
                     "payment_date": time.strftime("%Y") + "-07-15",
                     "amount": 600,
