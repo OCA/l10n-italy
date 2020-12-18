@@ -44,9 +44,7 @@ class WithholdingTax(models.Model):
         "res.company",
         string="Company",
         required=True,
-        default=lambda self: self.env["res.company"]._company_default_get(
-            "account.account"
-        ),
+        default=lambda self: self.env.company,
     )
     name = fields.Char("Name", size=256, required=True)
     code = fields.Char("Code", size=256, required=True)
