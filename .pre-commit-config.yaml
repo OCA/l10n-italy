@@ -16,6 +16,8 @@ exclude: |
   (LICENSE.*|COPYING.*)|
   # XML tests should not be reformatted
   ^l10n_it_fatturapa_out/tests/data
+  # Do not touch test data
+  l10n_it_fatturapa_in/tests/data/
 default_language_version:
   python: python3
   node: "14.13.0"
@@ -127,6 +129,7 @@ repos:
         args:
           - --rcfile=.pylintrc
           - --exit-zero
+          - --ignore=l10n_it_fatturapa_in/tests/data/
         verbose: true
         additional_dependencies: &pylint_deps
           - pylint-odoo==3.5.0
@@ -134,4 +137,5 @@ repos:
         name: pylint with mandatory checks
         args:
           - --rcfile=.pylintrc-mandatory
+          - --ignore=l10n_it_fatturapa_in/tests/data/
         additional_dependencies: *pylint_deps

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:FatturaElettronica versione="FPA12" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+xmlns:p="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2 http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd">
+    <FatturaElettronicaHeader>
+        <DatiTrasmissione>
+            <IdTrasmittente>
+                <IdPaese>IT</IdPaese>
+                <IdCodice>05979361218</IdCodice>
+            </IdTrasmittente>
+            <ProgressivoInvio>002</ProgressivoInvio>
+            <FormatoTrasmissione>FPA12</FormatoTrasmissione>
+            <CodiceDestinatario>UFPQ1O</CodiceDestinatario>
+        </DatiTrasmissione>
+        <CedentePrestatore>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>05979361218</IdCodice>
+                </IdFiscaleIVA>
+                <Anagrafica>
+                    <Denominazione>SOCIETA' ALPHA BETA SRL</Denominazione>
+                </Anagrafica>
+                <AlboProfessionale>Albo di test</AlboProfessionale>
+                <ProvinciaAlbo>TO</ProvinciaAlbo>
+                <NumeroIscrizioneAlbo>TO1258B</NumeroIscrizioneAlbo>
+                <DataIscrizioneAlbo>2010-01-16</DataIscrizioneAlbo>
+                <RegimeFiscale>RF02</RegimeFiscale>
+            </DatiAnagrafici>
+            <Sede>
+                <Indirizzo>VIALE ROMA 543B</Indirizzo>
+                <CAP>07100</CAP>
+                <Comune>SASSARI</Comune>
+                <Provincia>SS</Provincia>
+                <Nazione>IT</Nazione>
+            </Sede>
+        </CedentePrestatore>
+        <CessionarioCommittente>
+            <DatiAnagrafici>
+                <CodiceFiscale>80213330584</CodiceFiscale>
+                <Anagrafica>
+                    <Denominazione>AMMINISTRAZIONE BETA</Denominazione>
+                </Anagrafica>
+            </DatiAnagrafici>
+            <Sede>
+                <Indirizzo>VIA TORINO 38-B</Indirizzo>
+                <CAP>00145</CAP>
+                <Comune>ROMA</Comune>
+                <Provincia>RM</Provincia>
+                <Nazione>IT</Nazione>
+            </Sede>
+        </CessionarioCommittente>
+    </FatturaElettronicaHeader>
+    <FatturaElettronicaBody>
+        <DatiGenerali>
+            <DatiGeneraliDocumento>
+                <TipoDocumento>TD01</TipoDocumento>
+                <Divisa>EUR</Divisa>
+                <Data>2015-02-16</Data>
+                <Numero>FT/2015/0007</Numero>
+                <DatiCassaPrevidenziale>
+                    <TipoCassa>TC22</TipoCassa>
+                    <AlCassa>0.00</AlCassa>
+                    <ImportoContributoCassa>3.00</ImportoContributoCassa>
+                    <ImponibileCassa>3.00</ImponibileCassa>
+                    <AliquotaIVA>0.00</AliquotaIVA>
+                    <Natura>N4</Natura>
+                </DatiCassaPrevidenziale>
+                <Causale>Rif ordine MAPA: --- Nr. Identificativo Ordine 1234567</Causale>
+            </DatiGeneraliDocumento>
+        </DatiGenerali>
+        <DatiBeniServizi>
+            <DettaglioLinee>
+                <NumeroLinea>1</NumeroLinea>
+                <Descrizione>Prodotto di test al giorno</Descrizione>
+                <Quantita>15.00</Quantita>
+                <UnitaMisura>Giorno(i)</UnitaMisura>
+                <PrezzoUnitario>3.60</PrezzoUnitario>
+                <PrezzoTotale>54.00</PrezzoTotale>
+                <AliquotaIVA>0.00</AliquotaIVA>
+                <Natura>N4</Natura>
+            </DettaglioLinee>
+            <DatiRiepilogo>
+                <AliquotaIVA>0.00</AliquotaIVA>
+                <Natura>N4</Natura>
+                <ImponibileImporto>57.00</ImponibileImporto>
+                <Imposta>0.00</Imposta>
+                <RiferimentoNormativo>Operazioni senza addebito imposta regime contribuenti minimi art.27 c.1-2 DL.98/11</RiferimentoNormativo>
+            </DatiRiepilogo>
+        </DatiBeniServizi>
+        <DatiPagamento>
+            <CondizioniPagamento>TP01</CondizioniPagamento>
+            <DettaglioPagamento>
+                <ModalitaPagamento>MP05</ModalitaPagamento>
+                <DataScadenzaPagamento>2015-03-18</DataScadenzaPagamento>
+                <ImportoPagamento>27.00</ImportoPagamento>
+            </DettaglioPagamento>
+            <DettaglioPagamento>
+                <ModalitaPagamento>MP05</ModalitaPagamento>
+                <DataScadenzaPagamento>2015-04-17</DataScadenzaPagamento>
+                <ImportoPagamento>27.00</ImportoPagamento>
+            </DettaglioPagamento>
+        </DatiPagamento>
+    </FatturaElettronicaBody>
+</p:FatturaElettronica>
