@@ -5,10 +5,10 @@ from openupgradelib import openupgrade
 @openupgrade.migrate()
 def migrate(env, version):
     cr = env.cr
-    if openupgrade.column_exists(env.cr, 'account_invoice', 'ftpa_withholding_amount'):
+    if openupgrade.column_exists(env.cr, 'account_invoice', 'withholding_tax_amount'):
         openupgrade.copy_columns(cr, {
             'account_invoice': [
-                ('ftpa_withholding_amount', None, None),
+                ('withholding_tax_amount', None, None),
             ],
         })
     openupgrade.copy_columns(cr, {

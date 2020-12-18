@@ -10,7 +10,7 @@ def create_withholding_data_lines(env):
     Create ftpa_withholding_ids from ftpa_withholding_type
     and ftpa_withholding_amount
     """
-    column_wht_amount = openupgrade.get_legacy_name('ftpa_withholding_amount')
+    column_wht_amount = openupgrade.get_legacy_name('withholding_tax_amount')
     column_wht_type = openupgrade.get_legacy_name('ftpa_withholding_type')
     exists = openupgrade.column_exists(env.cr, 'account_invoice', column_wht_amount)
     mapping = {
