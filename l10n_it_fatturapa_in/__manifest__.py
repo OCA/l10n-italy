@@ -3,11 +3,12 @@
 # Copyright 2015 innoviu Srl <http://www.innoviu.com>
 # Copyright 2018-2019 Lorenzo Battistini
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
+# Copyright 2020 Simone Rubino - Agile Business Group
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Italian Localization - Fattura elettronica - Ricezione',
-    'version': '10.0.1.14.1',
+    'name': 'ITA - Fattura elettronica - Ricezione',
+    'version': '10.0.2.0.0',
     'category': 'Localization/Italy',
     'summary': 'Ricezione fatture elettroniche',
     'author': 'Agile Business Group, Innoviu, '
