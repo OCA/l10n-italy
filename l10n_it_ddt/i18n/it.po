@@ -307,6 +307,12 @@ msgid "Descriptions of Goods"
 msgstr "Descrizioni dei beni"
 
 #. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice__dimension
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__dimension
+msgid "Dimension"
+msgstr ""
+
+#. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_line__discount
 msgid "Discount (%)"
 msgstr "Sconto (%)"
@@ -331,7 +337,7 @@ msgid "Do not invoice services from DDT"
 msgstr "Non fatturare servizi da DDT"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:544
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:548
 #, python-format
 msgid "Document {d} has invoice linked"
 msgstr "Il documento {d} ha una fattura collegata"
@@ -442,13 +448,13 @@ msgstr ""
 "Se selezionato, questo servizio non sarà automaticamente fatturato dal DDT."
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:207
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:209
 #, python-format
 msgid "Impossible to put in pack a package without details"
 msgstr "Impossibile creare un collo senza dettagli"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:200
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:202
 #, python-format
 msgid "Impossible to put in pack a picking whose state is 'done'"
 msgstr "Impossibile creare un collo da un prelievo con stato \"Completato\""
@@ -570,7 +576,7 @@ msgid "Net Weight UoM"
 msgstr "UdM peso netto"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:219
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:221
 #, python-format
 msgid "Not every picking is in done status"
 msgstr "Non tutti i prelievi si trovano nello stato «Completato»"
@@ -656,13 +662,13 @@ msgid "Pickings"
 msgstr "Prelievi"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:338
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:340
 #, python-format
 msgid "Please define an accounting sale journal for this company."
 msgstr "Definire un registro contabile di vendita per questa azienda."
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:677
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:681
 #, python-format
 msgid ""
 "Please define income account for this product: \"%s\" (id:%d) - or for its "
@@ -711,7 +717,7 @@ msgid "Related TDs"
 msgstr "DDT collegati"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:303
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:305
 #, python-format
 msgid "Relevant period:"
 msgstr "Periodo di competenza:"
@@ -768,7 +774,7 @@ msgid "Selected Picking %s have different Partner"
 msgstr "Il prelievo %s selezionato ha un partner diverso"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:191
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:193
 #, python-format
 msgid "Selected Picking is already linked to TD: %s"
 msgstr "Il prelievo selezionato è già collegato al DDT: %s"
@@ -1022,7 +1028,7 @@ msgid "Taxes"
 msgstr "Imposte"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:414
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:418
 #, python-format
 msgid "There is no invoiceable line."
 msgstr "Non ci sono righe fatturabili."
@@ -1046,6 +1052,12 @@ msgstr "Da fatturare"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_transportation_reason__to_be_invoiced
 msgid "To be Invoiced"
 msgstr "Da fatturare"
+
+#. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice__carrier_tracking_ref
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__carrier_tracking_ref
+msgid "Tracking Reference"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking
