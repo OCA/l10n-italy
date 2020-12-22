@@ -219,7 +219,10 @@ class TestDdt(TransactionCase):
         res = wizard.create_ddt()
         ddt = self.ddt_model.browse(res['res_id'])
         self.assertTrue(ddt.ddt_show_price)
-
+        ddt.write({
+            'carrier_tracking_ref': 'TRACK-1000',
+            'dimension': '50x50x10',
+        })
         self.assertEqual(len(ddt.picking_ids), 2)
         self.assertEqual(len(ddt.line_ids), 2)
         self.assertTrue(self.picking1 | self.picking2 == ddt.picking_ids)
@@ -286,6 +289,8 @@ class TestDdt(TransactionCase):
             self.product1.id in
             [p.id for p in invoice.invoice_line_ids.mapped('product_id')]
         )
+        self.assertEqual(invoice.dimension, '50x50x10')
+        self.assertEqual(invoice.carrier_tracking_ref, 'TRACK-1000')
 
     def test_action_put_in_pack(self):
         self.picking.action_confirm()
