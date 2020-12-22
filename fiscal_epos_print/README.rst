@@ -103,7 +103,11 @@ Contributors
 ~~~~~~~~~~~~
 
 * Leonardo Donelli
-* Lorenzo Battistini
+
+* `TAKOBI <https://takobi.online>`_:
+
+  * Lorenzo Battistini
+
 * Alessio Gerace
 * Roberto Fichera
 
@@ -119,6 +123,14 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-eLBati| image:: https://github.com/eLBati.png?size=40px
+    :target: https://github.com/eLBati
+    :alt: eLBati
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-eLBati| 
 
 This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/12.0/fiscal_epos_print>`_ project on GitHub.
 

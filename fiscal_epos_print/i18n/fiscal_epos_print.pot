@@ -15,7 +15,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/pos_order_mgmt.js:39
+#: code:addons/fiscal_epos_print/static/src/js/pos_order_mgmt.js:41
 #, python-format
 msgid ": order already has a fiscal number, "
 msgstr ""
@@ -39,6 +39,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/lottery.xml:25
 #: code:addons/fiscal_epos_print/static/src/xml/pos.xml:70
 #, python-format
 msgid "Apply"
@@ -46,6 +47,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/lottery.xml:28
 #: code:addons/fiscal_epos_print/static/src/xml/pos.xml:73
 #, python-format
 msgid "Cancel"
@@ -101,7 +103,7 @@ msgstr ""
 #: code:addons/fiscal_epos_print/static/src/js/chrome.js:124
 #: code:addons/fiscal_epos_print/static/src/js/chrome.js:142
 #: code:addons/fiscal_epos_print/static/src/js/chrome.js:151
-#: code:addons/fiscal_epos_print/static/src/js/pos_order_mgmt.js:44
+#: code:addons/fiscal_epos_print/static/src/js/pos_order_mgmt.js:46
 #: code:addons/fiscal_epos_print/static/src/js/screens.js:39
 #: code:addons/fiscal_epos_print/static/src/js/screens.js:72
 #, python-format
@@ -113,6 +115,11 @@ msgstr ""
 #: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:149
 #, python-format
 msgid "Connection to the printer failed"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: selection:account.journal,fiscalprinter_payment_type:0
+msgid "Credit or Credit Card"
 msgstr ""
 
 #. module: fiscal_epos_print
@@ -130,6 +137,11 @@ msgstr ""
 #: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:377
 #, python-format
 msgid "Discount"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: selection:account.journal,fiscalprinter_payment_type:0
+msgid "Discount on payment"
 msgstr ""
 
 #. module: fiscal_epos_print
@@ -160,7 +172,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/models.js:126
+#: code:addons/fiscal_epos_print/static/src/js/models.js:130
 #, python-format
 msgid "Error"
 msgstr ""
@@ -300,6 +312,20 @@ msgid "Journal"
 msgstr ""
 
 #. module: fiscal_epos_print
+#: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_pos_pos_form_refund_info
+msgid "Lottery"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/screens.js:212
+#: code:addons/fiscal_epos_print/static/src/xml/lottery.xml:6
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__lottery_code
+#, python-format
+msgid "Lottery Code"
+msgstr ""
+
+#. module: fiscal_epos_print
 #. openerp-web
 #: code:addons/fiscal_epos_print/static/src/xml/pos.xml:51
 #: code:addons/fiscal_epos_print/static/src/xml/pos.xml:56
@@ -322,8 +348,13 @@ msgid "Network error"
 msgstr ""
 
 #. module: fiscal_epos_print
+#: selection:account.journal,fiscalprinter_payment_type:0
+msgid "No Paid"
+msgstr ""
+
+#. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/models.js:127
+#: code:addons/fiscal_epos_print/static/src/js/models.js:131
 #, python-format
 msgid "No taxes found"
 msgstr ""
@@ -333,11 +364,6 @@ msgstr ""
 #: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:82
 #, python-format
 msgid "Non fiscal open"
-msgstr ""
-
-#. module: fiscal_epos_print
-#: selection:account.journal,fiscalprinter_payment_type:0
-msgid "Not collected / Electronic payment"
 msgstr ""
 
 #. module: fiscal_epos_print
@@ -371,7 +397,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/pos_order_mgmt.js:38
+#: code:addons/fiscal_epos_print/static/src/js/pos_order_mgmt.js:40
 #, python-format
 msgid "Order already printed"
 msgstr ""
@@ -616,7 +642,7 @@ msgstr ""
 #. module: fiscal_epos_print
 #: model:ir.model.fields,help:fiscal_epos_print.field_account_bank_statement_import_journal_creation__fiscalprinter_payment_index
 #: model:ir.model.fields,help:fiscal_epos_print.field_account_journal__fiscalprinter_payment_index
-msgid "Set the index of the given payment type to specify the detail. Such index of the payment type must programmed on the fiscal printer"
+msgid "Set the index of the given payment type to specify the detail."
 msgstr ""
 
 #. module: fiscal_epos_print
@@ -626,6 +652,7 @@ msgstr ""
 
 #. module: fiscal_epos_print
 #. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/lottery.xml:32
 #: code:addons/fiscal_epos_print/static/src/xml/pos.xml:77
 #, python-format
 msgid "Some fields are empty."
@@ -675,6 +702,11 @@ msgid "Ticket"
 msgstr ""
 
 #. module: fiscal_epos_print
+#: selection:account.journal,fiscalprinter_payment_type:0
+msgid "Ticket with number"
+msgstr ""
+
+#. module: fiscal_epos_print
 #. openerp-web
 #: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:106
 #, python-format
@@ -721,6 +753,13 @@ msgstr ""
 #: code:addons/fiscal_epos_print/static/src/js/screens.js:82
 #, python-format
 msgid "Wrong tax configuration"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. openerp-web
+#: code:addons/fiscal_epos_print/static/src/xml/lottery.xml:21
+#, python-format
+msgid "XXXXXXXX"
 msgstr ""
 
 #. module: fiscal_epos_print
