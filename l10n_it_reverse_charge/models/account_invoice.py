@@ -512,3 +512,20 @@ class AccountInvoice(models.Model):
                     inv.rc_self_purchase_invoice_id.id)
                 self_purchase_invoice.action_cancel_draft()
         return True
+
+    @api.multi
+    def get_tax_amount_added_for_rc(self):
+        self.ensure_one()
+        res = 0
+        for line in self.invoice_line:
+            if line.rc:
+                price_unit = line.price_unit * (
+                    1 - (line.discount or 0.0) / 100.0)
+                taxes = line.invoice_line_tax_id.compute_all(
+                    price_unit,
+                    line.quantity,
+                    product=line.product_id,
+                    partner=self.partner_id)['taxes']
+                for tax in taxes:
+                    res += tax['amount']
+        return res
