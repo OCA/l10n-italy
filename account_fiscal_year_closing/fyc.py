@@ -32,10 +32,11 @@ from tools.translate import _
 from datetime import datetime
 from openerp import workflow
 
-#-------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
 # Predeclaration of the FYC object
-#-------------------------------------------------------------------------------
-class fiscal_year_closing_init(osv.osv):
+# ------------------------------------------------------------------------------
+class FiscalYearClosingInit(osv.osv):
     """
     Fiscal Year Closing Wizard
     """
@@ -47,14 +48,15 @@ class fiscal_year_closing_init(osv.osv):
         'name': fields.char('Description', size=60, required=True),
     }
 
-fiscal_year_closing_init()
+
+FiscalYearClosingInit()
 
 
-#-------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Account mapping objects (to be used on the fyc configuration)
-#-------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
-class fiscal_year_closing_lp_account_mapping(osv.osv):
+class FiscalYearClosingLPaccountMapping(osv.osv):
     """
     Loss & Profit Account Mapping
     """
@@ -66,16 +68,22 @@ class fiscal_year_closing_lp_account_mapping(osv.osv):
         'name': fields.char('Description', size=60, required=False),
 
         # Parent eoy
-        'fyc_id': fields.many2one('account_fiscal_year_closing.fyc', 'Fiscal Year Closing', ondelete='cascade', required=True, select=1),
+        'fyc_id': fields.many2one('account_fiscal_year_closing.fyc',
+                                  'Fiscal Year Closing', ondelete='cascade',
+                                  required=True, select=1),
 
         # Accounts
-        'source_account_id':fields.many2one('account.account', 'Source account', required=True, ondelete='cascade'),
-        'dest_account_id':fields.many2one('account.account', 'Dest account', required=False, ondelete='cascade'),
+        'source_account_id': fields.many2one('account.account', 'Source account',
+                                             required=True, ondelete='cascade'),
+        'dest_account_id': fields.many2one('account.account', 'Dest account',
+                                           required=False, ondelete='cascade'),
     }
-fiscal_year_closing_lp_account_mapping()
 
 
-class fiscal_year_closing_nlp_account_mapping(osv.osv):
+FiscalYearClosingLPaccountMapping()
+
+
+class FiscalYearClosingNLPaccountMapping(osv.osv):
     """
     Net Loss & Profit Account Mapping
     """
@@ -87,16 +95,22 @@ class fiscal_year_closing_nlp_account_mapping(osv.osv):
         'name': fields.char('Description', size=60, required=False),
 
         # Parent eoy
-        'fyc_id': fields.many2one('account_fiscal_year_closing.fyc', 'Fiscal Year Closing', ondelete='cascade', required=True, select=1),
+        'fyc_id': fields.many2one('account_fiscal_year_closing.fyc',
+                                  'Fiscal Year Closing', ondelete='cascade',
+                                  required=True, select=1),
 
         # Accounts
-        'source_account_id':fields.many2one('account.account', 'Source account', required=True, ondelete='cascade'),
-        'dest_account_id':fields.many2one('account.account', 'Dest account', required=False, ondelete='cascade'),
+        'source_account_id': fields.many2one('account.account', 'Source account',
+                                             required=True, ondelete='cascade'),
+        'dest_account_id': fields.many2one('account.account', 'Dest account',
+                                           required=False, ondelete='cascade'),
     }
-fiscal_year_closing_nlp_account_mapping()
 
 
-class fiscal_year_closing_c_account_mapping(osv.osv):
+FiscalYearClosingNLPaccountMapping()
+
+
+class FiscalYearClosingCaccountMapping(osv.osv):
     """
     Closing Account Mapping
     """
@@ -108,18 +122,25 @@ class fiscal_year_closing_c_account_mapping(osv.osv):
         'name': fields.char('Description', size=60, required=False),
 
         # Parent eoy
-        'fyc_id': fields.many2one('account_fiscal_year_closing.fyc', 'Fiscal Year Closing', ondelete='cascade', required=True, select=1),
+        'fyc_id': fields.many2one('account_fiscal_year_closing.fyc',
+                                  'Fiscal Year Closing', ondelete='cascade',
+                                  required=True, select=1),
 
         # Accounts
-        'source_account_id':fields.many2one('account.account', 'Account', required=True, ondelete='cascade'),
-        'dest_account_id':fields.many2one('account.account', 'Dest account', ondelete='cascade'),
+        'source_account_id': fields.many2one('account.account', 'Account',
+                                             required=True, ondelete='cascade'),
+        'dest_account_id': fields.many2one('account.account', 'Dest account',
+                                           ondelete='cascade'),
     }
-fiscal_year_closing_c_account_mapping()
 
-#-------------------------------------------------------------------------------
+
+FiscalYearClosingCaccountMapping()
+
+
+# ------------------------------------------------------------------------------
 # Fiscal Year Closing Wizard
-#-------------------------------------------------------------------------------
-class fiscal_year_closing(osv.osv):
+# ------------------------------------------------------------------------------
+class FiscalYearClosing(osv.osv):
     """
     Fiscal Year Closing Wizard
     """
@@ -132,39 +153,59 @@ class fiscal_year_closing(osv.osv):
 
     _columns = {
         # Company
-        'company_id': fields.many2one('res.company', 'Company', ondelete='cascade', readonly=True, required=True),
+        'company_id': fields.many2one('res.company', 'Company', ondelete='cascade',
+                                      readonly=True, required=True),
 
         # Fiscal years
-        'closing_fiscalyear_id':fields.many2one('account.fiscalyear', 'Fiscal year to close', required=True, ondelete='cascade', select=1),
-        'opening_fiscalyear_id':fields.many2one('account.fiscalyear', 'Fiscal year to open', required=True, ondelete='cascade', select=2),
+        'closing_fiscalyear_id': fields.many2one('account.fiscalyear',
+                                                 'Fiscal year to close', required=True,
+                                                 ondelete='cascade', select=1),
+        'opening_fiscalyear_id': fields.many2one('account.fiscalyear',
+                                                 'Fiscal year to open', required=True,
+                                                 ondelete='cascade', select=2),
 
         #
         # Operations (to do), and their account moves (when done)
         #
         'create_loss_and_profit': fields.boolean('Create Loss & Profit move'),
-        'loss_and_profit_move_id': fields.many2one('account.move', 'L&P Move', ondelete='set null', readonly=True),
+        'loss_and_profit_move_id': fields.many2one('account.move', 'L&P Move',
+                                                   ondelete='set null', readonly=True),
         'create_net_loss_and_profit': fields.boolean('Create Net Loss & Profit'),
-        'net_loss_and_profit_move_id': fields.many2one('account.move', 'Net L&P Move', ondelete='set null', readonly=True),
+        'net_loss_and_profit_move_id': fields.many2one('account.move', 'Net L&P Move',
+                                                       ondelete='set null',
+                                                       readonly=True),
         'create_closing': fields.boolean('Close fiscal year'),
-        'closing_move_id': fields.many2one('account.move', 'Closing Move', ondelete='set null', readonly=True),
+        'closing_move_id': fields.many2one('account.move', 'Closing Move',
+                                           ondelete='set null', readonly=True),
         'create_opening': fields.boolean('Open next fiscal year'),
-        'opening_move_id': fields.many2one('account.move', 'Opening Move', ondelete='set null', readonly=True),
+        'opening_move_id': fields.many2one('account.move', 'Opening Move',
+                                           ondelete='set null', readonly=True),
 
         #
         # Extra operations
         #
-        'check_invalid_period_moves': fields.boolean('Check invalid period or date moves', help="Checks that there are no moves, on the fiscal year that is being closed, with dates or periods outside that fiscal year."),
-        'check_draft_moves': fields.boolean('Check draft moves', help="Checks that there are no draft moves on the fiscal year that is being closed. Non-confirmed moves won't be taken in account on the closing operations."),
-        'check_unbalanced_moves': fields.boolean('Check unbalanced moves', help="Checks that there are no unbalanced moves on the fiscal year that is being closed."),
+        'check_invalid_period_moves': fields.boolean(
+            'Check invalid period or date moves',
+            help="Checks that there are no moves, on the fiscal year that is being "
+                 "closed, with dates or periods outside that fiscal year."),
+        'check_draft_moves': fields.boolean(
+            'Check draft moves',
+            help="Checks that there are no draft moves on the fiscal year that is "
+                 "being closed. Non-confirmed moves won't be taken in account on the "
+                 "closing operations."),
+        'check_unbalanced_moves': fields.boolean(
+            'Check unbalanced moves',
+            help="Checks that there are no unbalanced moves on the fiscal year that "
+                 "is being closed."),
 
         # State
         'state': fields.selection([
-                ('new', 'New'),
-                ('draft', 'Draft'),
-                ('in_progress', 'In Progress'),
-                ('done', 'Done'),
-                ('canceled', 'Canceled'),
-            ], 'Status'),
+            ('new', 'New'),
+            ('draft', 'Draft'),
+            ('in_progress', 'In Progress'),
+            ('done', 'Done'),
+            ('canceled', 'Canceled'),
+        ], 'Status'),
 
         #
         # Loss and Profit options
@@ -173,7 +214,9 @@ class fiscal_year_closing(osv.osv):
         'lp_journal_id': fields.many2one('account.journal', 'Journal'),
         'lp_period_id': fields.many2one('account.period', 'Period'),
         'lp_date': fields.date('Date'),
-        'lp_account_mapping_ids': fields.one2many('account_fiscal_year_closing.fyc_lp_account_map', 'fyc_id', 'Account mappings'),
+        'lp_account_mapping_ids': fields.one2many(
+            'account_fiscal_year_closing.fyc_lp_account_map', 'fyc_id',
+            'Account mappings'),
 
         #
         # Net Loss and Profit options
@@ -182,7 +225,9 @@ class fiscal_year_closing(osv.osv):
         'nlp_journal_id': fields.many2one('account.journal', 'Journal'),
         'nlp_period_id': fields.many2one('account.period', 'Period'),
         'nlp_date': fields.date('Date'),
-        'nlp_account_mapping_ids': fields.one2many('account_fiscal_year_closing.fyc_nlp_account_map', 'fyc_id', 'Account mappings'),
+        'nlp_account_mapping_ids': fields.one2many(
+            'account_fiscal_year_closing.fyc_nlp_account_map', 'fyc_id',
+            'Account mappings'),
 
         #
         # Closing options
@@ -191,7 +236,9 @@ class fiscal_year_closing(osv.osv):
         'c_journal_id': fields.many2one('account.journal', 'Journal'),
         'c_period_id': fields.many2one('account.period', 'Period'),
         'c_date': fields.date('Date'),
-        'c_account_mapping_ids': fields.one2many('account_fiscal_year_closing.fyc_c_account_map', 'fyc_id', 'Accounts'),
+        'c_account_mapping_ids': fields.one2many(
+            'account_fiscal_year_closing.fyc_c_account_map', 'fyc_id',
+            'Accounts'),
 
         #
         # Opening options
@@ -210,49 +257,55 @@ class fiscal_year_closing(osv.osv):
         """
         Gets the last (previous) fiscal year
         """
+        if context is None:
+            context = {}
         company = self.pool.get('res.users').browse(cr, uid, uid, context).company_id
         str_date = '%s-06-01' % (datetime.now().year - 1)
         fiscalyear_ids = self.pool.get('account.fiscalyear').search(cr, uid, [
-                            ('company_id', '=', company.id),
-                            ('date_start', '<=', str_date),
-                            ('date_stop', '>=', str_date),
-                        ])
+            ('company_id', '=', company.id),
+            ('date_start', '<=', str_date),
+            ('date_stop', '>=', str_date),
+        ])
         if not fiscalyear_ids:
             fiscalyear_ids = self.pool.get('account.fiscalyear').search(cr, uid, [
-                    ('company_id', '=', False),
-                    ('date_start', '<=', str_date),
-                    ('date_stop', '>=', str_date),
-                ])
+                ('company_id', '=', False),
+                ('date_start', '<=', str_date),
+                ('date_stop', '>=', str_date),
+            ])
         return fiscalyear_ids and fiscalyear_ids[0]
 
     def _get_opening_fiscalyear_id(self, cr, uid, context):
         """
         Gets the current fiscal year
         """
+        if context is None:
+            context = {}
         company = self.pool.get('res.users').browse(cr, uid, uid, context).company_id
         str_date = '%s-06-01' % datetime.now().year
         fiscalyear_ids = self.pool.get('account.fiscalyear').search(cr, uid, [
-                            ('company_id', '=', company.id),
-                            ('date_start', '<=', str_date),
-                            ('date_stop', '>=', str_date),
-                        ])
+            ('company_id', '=', company.id),
+            ('date_start', '<=', str_date),
+            ('date_stop', '>=', str_date),
+        ])
         if not fiscalyear_ids:
             fiscalyear_ids = self.pool.get('account.fiscalyear').search(cr, uid, [
-                    ('company_id', '=', False),
-                    ('date_start', '<=', str_date),
-                    ('date_stop', '>=', str_date),
-                ])
+                ('company_id', '=', False),
+                ('date_start', '<=', str_date),
+                ('date_stop', '>=', str_date),
+            ])
         return fiscalyear_ids and fiscalyear_ids[0]
 
     _defaults = {
         # Current company by default:
-        'company_id': lambda self, cr, uid, context: self.pool.get('res.users').browse(cr, uid, uid, context).company_id.id,
+        'company_id': lambda self, cr, uid, context:
+        self.pool.get('res.users').browse(cr, uid, uid, context).company_id.id,
 
         # Draft state by default:
         'state': lambda *a: 'new',
 
         # Name
-        'name': lambda self, cr, uid, context: _("%s Fiscal Year Closing") % (datetime.now().year - 1),
+        'name': lambda self, cr, uid, context:
+        _("%s Fiscal Year Closing") % (datetime.now().year - 1),
 
         # Fiscal years
         'closing_fiscalyear_id': _get_closing_fiscalyear_id,
@@ -268,26 +321,28 @@ class fiscal_year_closing(osv.osv):
         Gets the journal to use.
         (It will search for a 'GRAL' or 'General' journal)
         """
+        if context is None:
+            context = {}
         assert fyc.company_id, "A company should have been selected"
         journal_ids = self.pool.get('account.journal').search(cr, uid, [
-                            ('company_id', '=', fyc.company_id.id),
-                            ('code', '=', 'GRAL'),
-                        ])
+            ('company_id', '=', fyc.company_id.id),
+            ('code', '=', 'GRAL'),
+        ], context=context)
         if not journal_ids:
             journal_ids = self.pool.get('account.journal').search(cr, uid, [
-                            ('company_id', '=', False),
-                            ('code', '=', 'GRAL'),
-                        ])
+                ('company_id', '=', False),
+                ('code', '=', 'GRAL'),
+            ], context=context)
         if not journal_ids:
             journal_ids = self.pool.get('account.journal').search(cr, uid, [
-                            ('company_id', '=', fyc.company_id.id),
-                            ('name', 'ilike', 'General'),
-                        ])
+                ('company_id', '=', fyc.company_id.id),
+                ('name', 'ilike', 'General'),
+            ], context=context)
         if not journal_ids:
             journal_ids = self.pool.get('account.journal').search(cr, uid, [
-                            ('company_id', '=', False),
-                            ('name', 'ilike', 'General'),
-                        ])
+                ('company_id', '=', False),
+                ('name', 'ilike', 'General'),
+            ], context=context)
         return journal_ids and journal_ids[0]
 
     def _get_lp_period_id(self, cr, uid, fyc, context):
@@ -295,18 +350,20 @@ class fiscal_year_closing(osv.osv):
         Gets the period for the L&P entry
         (It searches for a "PG%" special period on the previous fiscal year)
         """
+        if context is None:
+            context = {}
         period_ids = self.pool.get('account.period').search(cr, uid, [
-                            ('fiscalyear_id', '=', fyc.closing_fiscalyear_id.id),
-                            ('special', '=', True),
-                            ('date_start', '=', fyc.closing_fiscalyear_id.date_stop),
-                            ('code', 'ilike', 'PG'),
-                        ])
+            ('fiscalyear_id', '=', fyc.closing_fiscalyear_id.id),
+            ('special', '=', True),
+            ('date_start', '=', fyc.closing_fiscalyear_id.date_stop),
+            ('code', 'ilike', 'PG'),
+        ], context=context)
         if not period_ids:
             period_ids = self.pool.get('account.period').search(cr, uid, [
-                                ('fiscalyear_id', '=', fyc.closing_fiscalyear_id.id),
-                                ('special', '=', True),
-                                ('date_start', '=', fyc.closing_fiscalyear_id.date_stop),
-                            ])
+                ('fiscalyear_id', '=', fyc.closing_fiscalyear_id.id),
+                ('special', '=', True),
+                ('date_start', '=', fyc.closing_fiscalyear_id.date_stop),
+            ], context=context)
         return period_ids and period_ids[0]
 
     def _get_c_period_id(self, cr, uid, fyc, context):
@@ -314,19 +371,23 @@ class fiscal_year_closing(osv.osv):
         Gets the period for the Closing entry
         (It searches for a "C%" special period on the previous fiscal year)
         """
-        period_ids = self.pool.get('account.period').search(cr, uid, [
-                            ('fiscalyear_id', '=', fyc.closing_fiscalyear_id.id),
-                            ('special', '=', True),
-                            ('date_start', '=', fyc.closing_fiscalyear_id.date_stop),
-                            ('code', 'ilike', 'C'),
-                        ])
+        if context is None:
+            context = {}
+        period_ids = self.pool.get('account.period').search(
+            cr, uid, [
+                ('fiscalyear_id', '=', fyc.closing_fiscalyear_id.id),
+                ('special', '=', True),
+                ('date_start', '=', fyc.closing_fiscalyear_id.date_stop),
+                ('code', 'ilike', 'C'),
+            ], context=context)
 
         if not period_ids:
-            period_ids = self.pool.get('account.period').search(cr, uid, [
-                                ('fiscalyear_id', '=', fyc.closing_fiscalyear_id.id),
-                                ('special', '=', True),
-                                ('date_start', '=', fyc.closing_fiscalyear_id.date_stop),
-                            ])
+            period_ids = self.pool.get('account.period').search(
+                cr, uid, [
+                    ('fiscalyear_id', '=', fyc.closing_fiscalyear_id.id),
+                    ('special', '=', True),
+                    ('date_start', '=', fyc.closing_fiscalyear_id.date_stop),
+                ], context=context)
         return period_ids and period_ids[0]
 
     def _get_o_period_id(self, cr, uid, fyc, context):
@@ -334,44 +395,48 @@ class fiscal_year_closing(osv.osv):
         Gets the period for the Opening entry
         (It searches for a "A%" special period on the previous fiscal year)
         """
+        if context is None:
+            context = {}
         period_ids = self.pool.get('account.period').search(cr, uid, [
-                            ('fiscalyear_id', '=', fyc.opening_fiscalyear_id.id),
-                            ('special', '=', True),
-                            ('date_stop', '=', fyc.opening_fiscalyear_id.date_start),
-                            ('code', 'ilike', 'A'),
-                        ])
+            ('fiscalyear_id', '=', fyc.opening_fiscalyear_id.id),
+            ('special', '=', True),
+            ('date_stop', '=', fyc.opening_fiscalyear_id.date_start),
+            ('code', 'ilike', 'A'),
+        ], context=context)
         if not period_ids:
-            period_ids = self.pool.get('account.period').search(cr, uid, [
-                                ('fiscalyear_id', '=', fyc.opening_fiscalyear_id.id),
-                                ('special', '=', True),
-                                ('date_stop', '=', fyc.opening_fiscalyear_id.date_start),
-                            ])
+            period_ids = self.pool.get('account.period').search(
+                cr, uid, [
+                    ('fiscalyear_id', '=', fyc.opening_fiscalyear_id.id),
+                    ('special', '=', True),
+                    ('date_stop', '=', fyc.opening_fiscalyear_id.date_start),
+                ], context=context)
         return period_ids and period_ids[0]
-
 
     def _get_account_mappings(self, cr, uid, fyc, mapping, context):
         """
         Transforms the mapping dictionary on a list of mapping lines.
         """
+        if context is None:
+            context = {}
         account_mappings = []
         for source, dest, description in mapping:
             #
             # Find the source account
             #
             account_ids = self.pool.get('account.account').search(cr, uid, [
-                            ('company_id', '=', fyc.company_id.id),
-                            ('code', '=like', source),
-                        ])
+                ('company_id', '=', fyc.company_id.id),
+                ('code', '=like', source),
+            ], context=context)
             source_account_id = account_ids and account_ids[0] or None
 
             #
             # Find the dest account
             #
             account_ids = self.pool.get('account.account').search(cr, uid, [
-                            ('company_id', '=', fyc.company_id.id),
-                            ('code', '=like', dest),
-                            ('type', '!=', 'view'),
-                        ])
+                ('company_id', '=', fyc.company_id.id),
+                ('code', '=like', dest),
+                ('type', '!=', 'view'),
+            ], context=context)
             dest_account_id = account_ids and account_ids[0] or None
 
             #
@@ -379,7 +444,8 @@ class fiscal_year_closing(osv.osv):
             #
             if not description:
                 if source_account_id:
-                    description = self.pool.get('account.account').read(cr, uid, source_account_id, ['name'])['name']
+                    description = self.pool.get('account.account').read(
+                        cr, uid, source_account_id, ['name'])['name']
 
             #
             # If the mapping is valid for this chart of accounts
@@ -391,21 +457,20 @@ class fiscal_year_closing(osv.osv):
                 if dest_account_id:
                     # Add the line to the result
                     account_mappings.append({
-                            'name': description,
-                            'source_account_id': source_account_id,
-                            'dest_account_id': dest_account_id,
-                        })
+                        'name': description,
+                        'source_account_id': source_account_id,
+                        'dest_account_id': dest_account_id,
+                    })
                 else:
                     # Add the line to the result
                     account_mappings.append({
-                            'name': _('No destination account %s found for account %s.') % (dest, source),
-                            'source_account_id': source_account_id,
-                            'dest_account_id': None,
-                        })
+                        'name': _('No destination account %s found for account %s.') %
+                                 (dest, source),
+                        'source_account_id': source_account_id,
+                        'dest_account_id': None,
+                    })
 
         return [(0, 0, acc_map) for acc_map in account_mappings]
-
-
 
     def action_draft(self, cr, uid, ids, context=None):
         """
@@ -425,17 +490,27 @@ class fiscal_year_closing(osv.osv):
             #
             fyc_ids = self.search(cr, uid, [('name', '=', fyc.name)])
             if len(fyc_ids) > 1:
-                raise osv.except_osv(_('Error'), _('There is already a fiscal year closing with this name.'))
+                raise osv.except_osv(
+                    _('Error'),
+                    _('There is already a fiscal year closing with this name.'))
 
             assert fyc.closing_fiscalyear_id and fyc.closing_fiscalyear_id.id
-            fyc_ids = self.search(cr, uid, [('closing_fiscalyear_id', '=', fyc.closing_fiscalyear_id.id)])
+            fyc_ids = self.search(cr, uid, [('closing_fiscalyear_id', '=',
+                                             fyc.closing_fiscalyear_id.id)])
             if len(fyc_ids) > 1:
-                raise osv.except_osv(_('Error'), _('There is already a fiscal year closing for the fiscal year to close.'))
+                raise osv.except_osv(
+                    _('Error'),
+                    _('There is already a fiscal year closing for '
+                      'the fiscal year to close.'))
 
             assert fyc.opening_fiscalyear_id and fyc.opening_fiscalyear_id.id
-            fyc_ids = self.search(cr, uid, [('opening_fiscalyear_id', '=', fyc.opening_fiscalyear_id.id)])
+            fyc_ids = self.search(cr, uid, [('opening_fiscalyear_id', '=',
+                                             fyc.opening_fiscalyear_id.id)])
             if len(fyc_ids) > 1:
-                raise osv.except_osv(_('Error'), _('There is already a fiscal year closing for the fiscal year to open.'))
+                raise osv.except_osv(
+                    _('Error'),
+                    _('There is already a fiscal year closing for '
+                      'the fiscal year to open.'))
 
             #
             # Check whether the default values of the fyc object have to be computed
@@ -444,7 +519,7 @@ class fiscal_year_closing(osv.osv):
             if fyc.c_account_mapping_ids:
                 # Fyc wizard reverted to 'new' after canceled
 
-                self.write(cr, uid, [fyc.id], { 'state': 'draft' })
+                self.write(cr, uid, [fyc.id], {'state': 'draft'})
             else:
                 # New fyc wizard object
 
@@ -468,7 +543,8 @@ class fiscal_year_closing(osv.osv):
                     'lp_journal_id': self._get_journal_id(cr, uid, fyc, context),
                     'lp_period_id': self._get_lp_period_id(cr, uid, fyc, context),
                     'lp_date': fyc.closing_fiscalyear_id.date_stop,
-#                    'lp_account_mapping_ids': self._get_account_mappings(cr, uid, fyc, _LP_ACCOUNT_MAPPING, context),
+                    # 'lp_account_mapping_ids': self._get_account_mappings(
+                    #                    cr, uid, fyc, _LP_ACCOUNT_MAPPING, context),
 
                     #
                     # Net L&P options
@@ -477,7 +553,8 @@ class fiscal_year_closing(osv.osv):
                     'nlp_journal_id': self._get_journal_id(cr, uid, fyc, context),
                     'nlp_period_id': self._get_lp_period_id(cr, uid, fyc, context),
                     'nlp_date': fyc.closing_fiscalyear_id.date_stop,
-#                    'nlp_account_mapping_ids': self._get_account_mappings(cr, uid, fyc, _NLP_ACCOUNT_MAPPING, context),
+                    # 'nlp_account_mapping_ids': self._get_account_mappings(
+                    # cr, uid, fyc, _NLP_ACCOUNT_MAPPING, context),
 
                     #
                     # Closing options
@@ -486,7 +563,8 @@ class fiscal_year_closing(osv.osv):
                     'c_journal_id': self._get_journal_id(cr, uid, fyc, context),
                     'c_period_id': self._get_c_period_id(cr, uid, fyc, context),
                     'c_date': fyc.closing_fiscalyear_id.date_stop,
-#                    'c_account_mapping_ids': self._get_account_mappings(cr, uid, fyc, _C_ACCOUNT_MAPPING, context),
+                    # 'c_account_mapping_ids': self._get_account_mappings(
+                    # cr, uid, fyc, _C_ACCOUNT_MAPPING, context),
 
                     #
                     # Opening options
@@ -502,16 +580,16 @@ class fiscal_year_closing(osv.osv):
                 self.write(cr, uid, [fyc.id], vals)
         return True
 
-
     def action_run(self, cr, uid, ids, context=None):
         """
         Called when the create entries button is used.
         """
+        if context is None:
+            context = {}
         # Note: Just change the state, everything else is done on the run wizard
         #       *before* this action is called.
-        self.write(cr, uid, ids, {'state': 'in_progress'})
+        self.write(cr, uid, ids, {'state': 'in_progress'}, context=context)
         return True
-
 
     def action_confirm(self, cr, uid, ids, context=None):
         """
@@ -530,11 +608,14 @@ class fiscal_year_closing(osv.osv):
             # Require the L&P, closing, and opening moves to exist (NL&P is optional)
             #
             if not fyc.loss_and_profit_move_id:
-                raise osv.except_osv(_("Not all the operations have been performed!"), _("The Loss & Profit move is required"))
+                raise osv.except_osv(_("Not all the operations have been performed!"),
+                                     _("The Loss & Profit move is required"))
             if not fyc.closing_move_id:
-                raise osv.except_osv(_("Not all the operations have been performed!"), _("The Closing move is required"))
+                raise osv.except_osv(_("Not all the operations have been performed!"),
+                                     _("The Closing move is required"))
             if not fyc.opening_move_id:
-                raise osv.except_osv(_("Not all the operations have been performed!"), _("The Opening move is required"))
+                raise osv.except_osv(_("Not all the operations have been performed!"),
+                                     _("The Opening move is required"))
 
             ''' needed ?
 
@@ -548,24 +629,16 @@ class fiscal_year_closing(osv.osv):
             moves.append(fyc.closing_move_id)
             moves.append(fyc.opening_move_id)
 
-            #
-            # Check and reconcile each of the moves
-            #
-            for move in moves:
-                netsvc.Logger().notifyChannel('fyc', netsvc.LOG_DEBUG, "Checking %s" % move.ref)
-                #
-                # Check if it has been confirmed
-                #
-                if move.state == 'draft':
-                    raise osv.except_osv(_("Some moves are in draft state!"), _("You have to review and confirm each of the moves before continuing"))
-                #
-                # Check the balance
-                #
-                amount = 0
-                for line in move.line_id:
-                    amount += (line.debit - line.credit)
-                if abs(amount) > 0.5 * 10 ** -int(self.pool.get('decimal.precision').precision_get(cr, uid, 'Account')):
-                    raise osv.except_osv(_("Some moves are unbalanced!"), _("All the moves should be balanced before continuing"))
+            # # Check and reconcile each of the moves # for move in moves:
+            netsvc.Logger().notifyChannel('fyc', netsvc.LOG_DEBUG, "Checking %s" %
+            move.ref) # # Check if it has been confirmed # if move.state == 'draft':
+            raise osv.except_osv(_("Some moves are in draft state!"), _("You have to
+            review and confirm each of the moves before continuing")) # # Check the
+            balance # amount = 0 for line in move.line_id: amount += (line.debit -
+            line.credit) if abs(amount) > 0.5 * 10 ** -int(self.pool.get(
+            'decimal.precision').precision_get(cr, uid, 'Account')): raise
+            osv.except_osv(_("Some moves are unbalanced!"), _("All the moves should
+            be balanced before continuing"))
 
                 #
                 # Reconcile the move
@@ -574,11 +647,14 @@ class fiscal_year_closing(osv.osv):
                 #       to prevent future problems (the user may change the
                 #       reconcile option of an account in the future)
                 #
-                netsvc.Logger().notifyChannel('fyc', netsvc.LOG_DEBUG, "Reconcile %s" % move.ref)
+                netsvc.Logger().notifyChannel('fyc', netsvc.LOG_DEBUG, "Reconcile %s"
+                % move.ref)
                 tmp_context = context.copy()
-                tmp_context['fy_closing'] = True # Fiscal year closing = reconcile everything
+                tmp_context['fy_closing'] = True # Fiscal year closing = reconcile
+                everything
                 line_ids = [line.id for line in move.line_id]
-                self.pool.get('account.move.line').reconcile(cr, uid, line_ids, context=tmp_context)
+                self.pool.get('account.move.line').reconcile(cr, uid, line_ids,
+                context=tmp_context)
 
             #
             # Close the fiscal year and it's periods
@@ -588,11 +664,13 @@ class fiscal_year_closing(osv.osv):
             #       so we have to do it on SQL level :(
             #       This is based on the "account.fiscalyear.close.state" wizard.
             #
-            netsvc.Logger().notifyChannel('fyc', netsvc.LOG_DEBUG, "Closing fiscal year")
+            netsvc.Logger().notifyChannel('fyc', netsvc.LOG_DEBUG,
+            "Closing fiscal year")
             query = """
                     UPDATE account_journal_period
                     SET state = 'done'
-                    WHERE period_id IN (SELECT id FROM account_period WHERE fiscalyear_id = %d)
+                    WHERE period_id IN
+                    (SELECT id FROM account_period WHERE fiscalyear_id = %d)
                     """
             cr.execute(query % fyc.closing_fiscalyear_id.id)
             query = """
@@ -614,7 +692,6 @@ class fiscal_year_closing(osv.osv):
         self.write(cr, uid, ids, {'state': 'done'})
         return True
 
-
     def action_cancel(self, cr, uid, ids, context=None):
         """
         Called when the user clicks the cancel button.
@@ -631,14 +708,14 @@ class fiscal_year_closing(osv.osv):
         # Uncheck all the operations
         #
         self.pool.get('account_fiscal_year_closing.fyc').write(cr, uid, ids, {
-                    'create_loss_and_profit': False,
-                    'create_net_loss_and_profit': False,
-                    'create_closing': False,
-                    'create_opening': False,
-                    'check_invalid_period_moves': False,
-                    'check_draft_moves': False,
-                    'check_unbalanced_moves': False,
-                }, context=context)
+            'create_loss_and_profit': False,
+            'create_net_loss_and_profit': False,
+            'create_closing': False,
+            'create_opening': False,
+            'check_invalid_period_moves': False,
+            'check_draft_moves': False,
+            'check_unbalanced_moves': False,
+        }, context=context)
 
         ''' needed?
 
@@ -656,7 +733,8 @@ class fiscal_year_closing(osv.osv):
             query = """
                     UPDATE account_journal_period
                     SET state = 'draft'
-                    WHERE period_id IN (SELECT id FROM account_period WHERE fiscalyear_id = %d)
+                    WHERE period_id IN
+                    (SELECT id FROM account_period WHERE fiscalyear_id = %d)
                     """
             cr.execute(query % fyc.closing_fiscalyear_id.id)
             query = """
@@ -688,23 +766,18 @@ class fiscal_year_closing(osv.osv):
         self.write(cr, uid, ids, {'state': 'canceled'})
         return True
 
-
     def action_recover(self, cr, uid, ids, context=None):
         """
         Called when the user clicks the draft button to create
         a new workflow instance.
         """
-        self.write(cr, uid, ids, {'state': 'new'})
+        if context is None:
+            context = {}
+        self.write(cr, uid, ids, {'state': 'new'}, context=context)
         for res_id in ids:
             workflow.trg_delete(uid, self._name, res_id, cr)
             workflow.trg_create(uid, self._name, res_id, cr)
         return True
 
 
-fiscal_year_closing()
-
-
-
-
-
-
+FiscalYearClosing()
