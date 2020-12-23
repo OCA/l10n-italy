@@ -5,6 +5,7 @@
 
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
+from openerp.exceptions import ValidationError
 from openerp import netsvc
 from datetime import datetime
 
@@ -16,6 +17,14 @@ class WithholdingTaxMove(orm.Model):
             'withholding.tax.move.payment', 'Move Payment', readonly=True,),
     }
 
+    def unlink(self, cr, uid, ids, context=None):
+        for rec in self.browse(cr, uid, ids, context):
+            if rec.wt_move_payment_id:
+                raise ValidationError(
+                    _(('Warning! Withholding tax move in payment %s: \
+                    you can not delete it') % rec.wt_move_payment_id.name))
+        return super(WithholdingTaxMove, self).unlink(
+            cr, uid, ids, context)
 
 class WithholdingTaxMovePayment(orm.Model):
     _name = 'withholding.tax.move.payment'
@@ -207,3 +216,16 @@ class WithholdingTaxMovePayment(orm.Model):
                     wt_move_obj.action_paid(cr, uid, [wt_move.id])
 
         return True
+
+    def unlink(self, cr, uid, ids, context=None):
+        for payment in self.browse(cr, uid, ids, context):
+            if payment.state != 'draft':
+                raise ValidationError(_("You can only delete draft payments"))
+            if payment.move_id:
+                raise ValidationError(_("You cannot delete payments %s because "
+                                        "an account moves is linked to it.\n"
+                                        "Try to cancel and delete it first, "
+                                        "then retry.")
+                                      % payment.name)
+        return super(WithholdingTaxMovePayment, self).unlink(
+            cr, uid, ids, context)
