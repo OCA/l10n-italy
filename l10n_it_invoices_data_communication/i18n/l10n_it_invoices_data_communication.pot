@@ -421,6 +421,7 @@ msgid "Compute values"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
+#: model:ir.model,name:l10n_it_invoices_data_communication.model_res_country
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_ricevute_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form
@@ -794,6 +795,11 @@ msgstr ""
 #: selection:comunicazione.dati.iva.fatture.emesse.iva,EsigibilitaIVA:0
 #: selection:comunicazione.dati.iva.fatture.ricevute.iva,EsigibilitaIVA:0
 msgid "Immediate"
+msgstr ""
+
+#. module: l10n_it_invoices_data_communication
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_res_country__intrastat
+msgid "Intrastat"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
