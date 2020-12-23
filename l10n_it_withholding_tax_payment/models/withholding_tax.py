@@ -6,7 +6,7 @@
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 from openerp.exceptions import ValidationError
-from openerp import netsvc
+from openerp import workflow
 from datetime import datetime
 
 
@@ -182,17 +182,13 @@ class WithholdingTaxMovePayment(orm.Model):
         return True
 
     def action_confirmed(self, cr, uid, ids, context=None):
-        for pt in self.browse(cr, uid, ids):
-            wf_service = netsvc.LocalService("workflow")
-            wf_service.trg_validate(uid, self._name,
-                                    pt.id, 'confirmed', cr)
+        for res_id in ids:
+            workflow.trg_validate(uid, self._name, res_id, 'confirmed', cr)
         return True
 
     def action_set_to_draft(self, cr, uid, ids, context=None):
-        for pt in self.browse(cr, uid, ids):
-            wf_service = netsvc.LocalService("workflow")
-            wf_service.trg_validate(uid, self._name,
-                                    pt.id, 'cancel', cr)
+        for res_id in ids:
+            workflow.trg_validate(uid, self._name, res_id, 'cancel', cr)
         return True
 
     def move_payment_to_draft(self, cr, uid, ids, *args):
