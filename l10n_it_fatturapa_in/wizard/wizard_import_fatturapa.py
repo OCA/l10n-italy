@@ -1,4 +1,5 @@
 import logging
+import re
 from datetime import datetime
 
 from odoo import api, fields, models, registry
@@ -159,13 +160,13 @@ class WizardImportFatturapa(models.TransientModel):
             # to avoid validation error when creating the given partner
             if DatiAnagrafici.IdFiscaleIVA.IdPaese.upper() == "IT":
                 vat = "{}{}".format(
-                    DatiAnagrafici.IdFiscaleIVA.IdPaese,
-                    DatiAnagrafici.IdFiscaleIVA.IdCodice.rjust(11, "0"),
+                    DatiAnagrafici.IdFiscaleIVA.IdPaese.upper(),
+                    DatiAnagrafici.IdFiscaleIVA.IdCodice.rjust(11, "0")[:11],
                 )
             else:
                 vat = "{}{}".format(
-                    DatiAnagrafici.IdFiscaleIVA.IdPaese,
-                    DatiAnagrafici.IdFiscaleIVA.IdCodice,
+                    DatiAnagrafici.IdFiscaleIVA.IdPaese.upper(),
+                    re.sub(r"\W+", "", DatiAnagrafici.IdFiscaleIVA.IdCodice).upper(),
                 )
         partners = partner_model
         if vat:

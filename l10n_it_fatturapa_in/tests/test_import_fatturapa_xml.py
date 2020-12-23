@@ -84,6 +84,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.partner_id.street, "VIALE ROMA 543")
         self.assertEqual(invoice.partner_id.state_id.code, "SS")
         self.assertEqual(invoice.partner_id.country_id.code, "IT")
+        self.assertEqual(invoice.partner_id.vat, "IT02780790107")
         self.assertEqual(invoice.tax_representative_id.name, "Rappresentante fiscale")
         self.assertEqual(invoice.welfare_fund_ids[0].welfare_rate_tax, 0.04)
         order_related_doc = invoice.related_documents.filtered(
@@ -660,8 +661,19 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice = self.invoice_model.browse(invoice_id)
         self.assertTrue(len(invoice.invoice_line_ids) == 3)
 
-    def test_45_xml_many_zeros(self):
-        res = self.run_wizard("test45", "IT05979361218_016.xml")
+    def test_45_xml_import_no_duplicate_partner(self):
+        partner_id = self.env["res.partner"].search([("vat", "ilike", "05979361218")])
+        partner_id.vat = " %s  " % partner_id.vat
+        res = self.run_wizard("test45", "IT05979361218_001.xml")
+        invoice_id = res.get("domain")[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.partner_id.id, partner_id.id)
+        self.assertEqual(
+            len(self.env["res.partner"].search([("vat", "ilike", "05979361218")])), 1
+        )
+
+    def test_46_xml_many_zeros(self):
+        res = self.run_wizard("test46", "IT05979361218_016.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.amount_total, 18.07)
@@ -671,6 +683,18 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.invoice_line_ids[1].price_unit, 16.60)
         self.assertEqual(invoice.invoice_line_ids[1].quantity, 1.0)
         self.assertEqual(invoice.invoice_line_ids[1].price_subtotal, 0.0)
+
+    def test_47_xml_import(self):
+        res = self.run_wizard("test47", "IT01234567890_FPR14.xml")
+        invoice_id = res.get("domain")[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertTrue(invoice.e_invoice_validation_error)
+        self.assertTrue(
+            "Untaxed amount (44480.0) does not match with e-bill untaxed amount "
+            "(44519.26)" in invoice.e_invoice_validation_message
+        )
+        # Due to multiple SQL transactions, we cannot test the correct importation.
+        # IT01234567890_FPR14.xml should be tested manually
 
     def test_48_xml_import(self):
         # my company bank account is the same as the one in XML:
@@ -689,18 +713,6 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             "Bank account IT59R0100003228000000000622 already exists"
             in invoice.inconsistencies
         )
-
-    def test_47_xml_import(self):
-        res = self.run_wizard("test47", "IT01234567890_FPR14.xml")
-        invoice_id = res.get("domain")[0][2][0]
-        invoice = self.invoice_model.browse(invoice_id)
-        self.assertTrue(invoice.e_invoice_validation_error)
-        self.assertTrue(
-            "Untaxed amount (44480.0) does not match with e-bill untaxed amount "
-            "(44519.26)" in invoice.e_invoice_validation_message
-        )
-        # Due to multiple SQL transactions, we cannot test the correct importation.
-        # IT01234567890_FPR14.xml should be tested manually
 
     def test_01_xml_link(self):
         """
