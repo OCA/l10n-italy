@@ -16,6 +16,7 @@
                'l10n_it_fatturapa_in',
     'license': 'AGPL-3',
     "depends": [
+        'base_vat_sanitized',
         'l10n_it_fatturapa',
         'l10n_it_withholding_tax_causali',
         ],

@@ -1,4 +1,5 @@
 import logging
+import re
 from odoo import models, api, fields
 from odoo.tools import float_is_zero
 from odoo.tools.translate import _
@@ -123,17 +124,17 @@ class WizardImportFatturapa(models.TransientModel):
             # to avoid validation error when creating the given partner
             if DatiAnagrafici.IdFiscaleIVA.IdPaese.upper() == 'IT':
                 vat = "%s%s" % (
-                    DatiAnagrafici.IdFiscaleIVA.IdPaese,
-                    DatiAnagrafici.IdFiscaleIVA.IdCodice.rjust(11, '0')
+                    DatiAnagrafici.IdFiscaleIVA.IdPaese.upper(),
+                    DatiAnagrafici.IdFiscaleIVA.IdCodice.rjust(11, '0')[:11]
                 )
             else:
                 vat = "%s%s" % (
-                    DatiAnagrafici.IdFiscaleIVA.IdPaese,
-                    DatiAnagrafici.IdFiscaleIVA.IdCodice
+                    DatiAnagrafici.IdFiscaleIVA.IdPaese.upper(),
+                    re.sub(r'\W+', '', DatiAnagrafici.IdFiscaleIVA.IdCodice).upper()
                 )
         partners = partner_model
         if vat:
-            domain = [('vat', '=', vat)]
+            domain = [('sanitized_vat', '=', vat)]
             if self.env.context.get('from_attachment'):
                 att = self.env.context.get('from_attachment')
                 domain.extend([
