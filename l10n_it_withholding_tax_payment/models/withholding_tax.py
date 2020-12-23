@@ -58,7 +58,7 @@ class WithholdingTaxMovePayment(orm.Model):
         'date_payment': fields.date('Date Payment'),
         'date_start': fields.date('Date Start', readonly=True),
         'date_stop': fields.date('Date Stop', readonly=True),
-        'move_id': fields.many2one('account.move', 'Account move'),
+        'move_id': fields.many2one('account.move', 'Account move', readonly=True),
         'account_id': fields.many2one('account.account', 'Account'),
         'journal_id': fields.many2one('account.journal', 'Journal'),
         'line_ids': fields.one2many('withholding.tax.move',
