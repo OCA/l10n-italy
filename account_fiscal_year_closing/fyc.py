@@ -30,7 +30,7 @@ __author__ = "Borja López Soilán (Pexego)"
 from osv import fields, osv
 from tools.translate import _
 from datetime import datetime
-import netsvc
+from openerp import workflow
 
 #-------------------------------------------------------------------------------
 # Predeclaration of the FYC object
@@ -243,7 +243,7 @@ class fiscal_year_closing(osv.osv):
                     ('date_stop', '>=', str_date),
                 ])
         return fiscalyear_ids and fiscalyear_ids[0]
-    
+
     _defaults = {
         # Current company by default:
         'company_id': lambda self, cr, uid, context: self.pool.get('res.users').browse(cr, uid, uid, context).company_id.id,
@@ -426,7 +426,7 @@ class fiscal_year_closing(osv.osv):
             fyc_ids = self.search(cr, uid, [('name', '=', fyc.name)])
             if len(fyc_ids) > 1:
                 raise osv.except_osv(_('Error'), _('There is already a fiscal year closing with this name.'))
-            
+
             assert fyc.closing_fiscalyear_id and fyc.closing_fiscalyear_id.id
             fyc_ids = self.search(cr, uid, [('closing_fiscalyear_id', '=', fyc.closing_fiscalyear_id.id)])
             if len(fyc_ids) > 1:
@@ -537,7 +537,7 @@ class fiscal_year_closing(osv.osv):
                 raise osv.except_osv(_("Not all the operations have been performed!"), _("The Opening move is required"))
 
             ''' needed ?
-            
+
             #
             # Calculate the moves to check
             #
@@ -607,7 +607,7 @@ class fiscal_year_closing(osv.osv):
                     WHERE id = %d
                     """
             cr.execute(query % fyc.closing_fiscalyear_id.id)
-            
+
             '''
 
         # Done
@@ -640,7 +640,7 @@ class fiscal_year_closing(osv.osv):
                     'check_unbalanced_moves': False,
                 }, context=context)
 
-        ''' needed? 
+        ''' needed?
 
         #
         # Open the fiscal year and it's periods
@@ -651,7 +651,7 @@ class fiscal_year_closing(osv.osv):
         #       This is based on the "account.fiscalyear.close.state" wizard.
         #
         # TODO check this for 6.1
-        
+
         for fyc in self.browse(cr, uid, ids, context):
             query = """
                     UPDATE account_journal_period
@@ -695,9 +695,9 @@ class fiscal_year_closing(osv.osv):
         a new workflow instance.
         """
         self.write(cr, uid, ids, {'state': 'new'})
-        wf_service = netsvc.LocalService("workflow")
-        for item_id in ids:
-            wf_service.trg_create(uid, 'account_fiscal_year_closing.fyc', item_id, cr)
+        for res_id in ids:
+            workflow.trg_delete(uid, self._name, res_id, cr)
+            workflow.trg_create(uid, self._name, res_id, cr)
         return True
 
 

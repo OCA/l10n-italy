@@ -26,7 +26,7 @@ Create FYC entries wizards
 """
 
 from tools.translate import _
-import netsvc
+from openerp import workflow
 import decimal_precision as dp
 from osv import fields, osv
 
@@ -34,9 +34,9 @@ class wizard_run(osv.osv_memory):
     """
     Wizard to create the FYC entries.
     """
-    
+
     _name = 'fyc.run'
-    
+
     def run(self, cr, uid, ids, context=None):
         """
         Creates / removes FYC entries
@@ -111,7 +111,7 @@ class wizard_run(osv.osv_memory):
         # Refresh the cached fyc object
         fyc = pool.get('account_fiscal_year_closing.fyc').browse(cr, uid, active_id, context=context)
 
-        
+
         #
         # Create the opening move if needed
         #
@@ -127,11 +127,9 @@ class wizard_run(osv.osv_memory):
         # Set the fyc as done (if not in cancel_mode)
         #
         if not fyc.create_opening and not fyc.create_closing and not not fyc.create_net_loss_and_profit and not fyc.create_loss_and_profit:
-            wf_service = netsvc.LocalService("workflow")
-            wf_service.trg_validate(uid, 'account_fiscal_year_closing.fyc', fyc.id, 'cancel', cr)
+            workflow.trg_validate(uid, self._name, active_id, 'cancel', cr)
         else:
-            wf_service = netsvc.LocalService("workflow")
-            wf_service.trg_validate(uid, 'account_fiscal_year_closing.fyc', fyc.id, 'run', cr)
+            workflow.trg_validate(uid, self._name, active_id, 'run', cr)
 
         return {'type': 'ir.actions.act_window_close'}
 
@@ -317,7 +315,7 @@ class wizard_run(osv.osv_memory):
         elif operation == 'net_loss_and_profit':
             '''
             #
-            # Consider all the periods of the fiscal year *BUT* the 
+            # Consider all the periods of the fiscal year *BUT* the
             # Net L&P and the Closing one.
             #
             for period in fyc.closing_fiscalyear_id.period_ids:
@@ -398,13 +396,13 @@ class wizard_run(osv.osv_memory):
             # Find its children accounts (recursively)
             # FIXME: _get_children_and_consol is a protected member of account_account but the OpenERP code base uses it like this :(
             child_ids = pool.get('account.account')._get_children_and_consol(cr, uid, [account_map.source_account_id.id], ctx)
-            
+
             # For each children account. (Notice the context filter! the computed balanced is based on this filter)
             for account in pool.get('account.account').browse(cr, uid, child_ids, ctx):
                 # Check if the children account needs to (and can) be closed
                 # Note: We currently ignore the close_method (account.user_type.close_method)
                 #       and always do a balance close.
-                if account.type != 'view': 
+                if account.type != 'view':
                     # Compute the balance for the account (uses the previous browse context filter)
                     balance = account.balance
                     # Check if the balance is greater than the limit
