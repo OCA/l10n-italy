@@ -8,7 +8,7 @@
 {
     'name': 'ITA - Contabilità base',
     'summary': 'Modulo base usato come dipendenza di altri moduli contabili',
-    'version': '12.0.1.4.2',
+    'version': '12.0.1.4.3',
     'category': 'Hidden',
     'author': "Agile Business Group, Abstract, "
               "Odoo Community Association (OCA)",
