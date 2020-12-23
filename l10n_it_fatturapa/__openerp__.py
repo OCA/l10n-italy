@@ -106,6 +106,7 @@ To contribute to this module, please visit http://odoo-community.org.
         'views/account_view.xml',
         'views/company_view.xml',
         'views/partner_view.xml',
+        'views/account_tax_view.xml',
         'views/related_document_type_views.xml',
         'security/ir.model.access.csv',
     ],
