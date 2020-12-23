@@ -5,7 +5,6 @@
 
 from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
-from openerp import netsvc
 
 
 class WithholdingTax(models.Model):
@@ -319,18 +318,12 @@ class WithholdingTaxMove(models.Model):
 
     @api.multi
     def action_paid(self):
-        for pt in self:
-            wf_service = netsvc.LocalService("workflow")
-            wf_service.trg_validate(self.env.uid, self._name, pt.id, 'paid',
-                                    self.env.cr)
+        self.signal_workflow('paid')
         return True
 
     @api.multi
     def action_set_to_draft(self):
-        for pt in self:
-            wf_service = netsvc.LocalService("workflow")
-            wf_service.trg_validate(self.env.uid, self._name, pt.id, 'cancel',
-                                    self.env.cr)
+        self.signal_workflow('cancel')
         return True
 
     @api.multi
