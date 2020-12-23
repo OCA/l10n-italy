@@ -96,6 +96,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.partner_id.street, "VIALE ROMA 543")
         self.assertEqual(invoice.partner_id.state_id.code, "SS")
         self.assertEqual(invoice.partner_id.country_id.code, "IT")
+        self.assertEqual(invoice.partner_id.vat, "IT02780790107")
         self.assertEqual(
             invoice.tax_representative_id.name, "Rappresentante fiscale")
         self.assertEqual(invoice.welfare_fund_ids[0].welfare_rate_tax, 0.04)
@@ -663,6 +664,20 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertTrue(len(invoice.invoice_line_ids) == 3)
+
+    def test_45_xml_import_no_duplicate_partner(self):
+        partner_id = self.env['res.partner'].search([
+            ('vat', 'ilike', '05979361218')
+        ])
+        partner_id.vat = ' %s  ' % partner_id.vat
+        res = self.run_wizard('test45', 'IT05979361218_001.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.partner_id.id, partner_id.id)
+        self.assertEqual(
+            len(self.env['res.partner'].search([
+                ('vat', 'ilike', '05979361218')
+            ])), 1)
 
     def test_01_xml_link(self):
         """
