@@ -7,7 +7,7 @@
     'name': 'ITA - Comunicazione dati fatture',
     'summary': 'Comunicazione dati fatture (c.d. "nuovo spesometro" o '
                '"esterometro")',
-    'version': '12.0.1.2.3',
+    'version': '12.0.1.3.0',
     'category': 'Account',
     'author': "Openforce di Camilli Alessandro, "
               "Odoo Community Association (OCA)",
