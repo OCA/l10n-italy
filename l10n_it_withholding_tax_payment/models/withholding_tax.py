@@ -26,6 +26,7 @@ class WithholdingTaxMove(orm.Model):
         return super(WithholdingTaxMove, self).unlink(
             cr, uid, ids, context)
 
+
 class WithholdingTaxMovePayment(orm.Model):
     _name = 'withholding.tax.move.payment'
     _description = 'Withholding Tax Move Payment'
