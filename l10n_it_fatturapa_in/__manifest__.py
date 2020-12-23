@@ -14,6 +14,7 @@
     "website": "https://github.com/OCA/l10n-italy" "l10n_it_fatturapa_in",
     "license": "AGPL-3",
     "depends": [
+        "base_vat",
         "l10n_it_fatturapa",
         "l10n_it_fiscal_document_type",
         "l10n_it_withholding_tax_reason",
