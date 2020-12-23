@@ -9,7 +9,7 @@ from openerp import netsvc
 from datetime import datetime
 
 
-class withholding_tax_move(orm.Model):
+class WithholdingTaxMove(orm.Model):
     _inherit = 'withholding.tax.move'
     _columns = {
         'wt_move_payment_id': fields.many2one(
@@ -17,7 +17,7 @@ class withholding_tax_move(orm.Model):
     }
 
 
-class withholding_tax_move_payment(orm.Model):
+class WithholdingTaxMovePayment(orm.Model):
     _name = 'withholding.tax.move.payment'
     _description = 'Withholding Tax Move Payment'
 
