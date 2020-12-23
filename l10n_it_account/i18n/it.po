@@ -27,7 +27,7 @@ msgstr ""
 "                      <span class=\"text-right\">IVA:</span>"
 
 #. module: l10n_it_account
-#: code:addons/l10n_it_account/models/account_group.py:97
+#: code:addons/l10n_it_account/models/account_group.py:98
 #, python-format
 msgid "A recursion in '{}' parents has been found."
 msgstr "Trovata una ricorsività in \"{}\" padre."
@@ -87,12 +87,17 @@ msgstr ""
 "{}"
 
 #. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_it_account
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__cee_type
 msgid "Include in VAT register"
 msgstr "Includere nel registro IVA"
 
 #. module: l10n_it_account
-#: code:addons/l10n_it_account/models/account_group.py:58
+#: code:addons/l10n_it_account/models/account_group.py:59
 #, python-format
 msgid "Incoherent balance signs for '{}' and its subgroups."
 msgstr "Segni del saldo incoerenti per \"{}\" e i sottogruppi."
