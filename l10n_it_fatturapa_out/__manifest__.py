@@ -7,7 +7,7 @@
 
 {
     'name': 'Italian Localization - Fattura elettronica - Emissione',
-    'version': '10.0.1.6.0',
+    'version': '10.0.2.0.0',
     'category': 'Localization/Italy',
     'summary': 'Emissione fatture elettroniche',
     'author': 'Davide Corio, Agile Business Group, Innoviu,'
