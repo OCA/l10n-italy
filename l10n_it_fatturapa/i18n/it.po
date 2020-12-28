@@ -19,6 +19,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:account.tax,description:l10n_it_fatturapa.tax_00_e15
+#: model:account.tax,description:l10n_it_fatturapa.tax_00_enas
 #: model:account.tax,description:l10n_it_fatturapa.tax_00_minimi
 #: model:account.tax,description:l10n_it_fatturapa.tax_00_ni
 #: model:account.tax,description:l10n_it_fatturapa.tax_00_ns
@@ -30,6 +31,16 @@ msgstr "00"
 #: model:account.tax,description:l10n_it_fatturapa.tax_00_minimi_acq
 msgid "00 Pur"
 msgstr "00 acq"
+
+#. module: l10n_it_fatturapa
+#: model:account.tax,description:l10n_it_fatturapa.tax_10
+msgid "10"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: model:account.tax,name:l10n_it_fatturapa.tax_10
+msgid "10% e-inv"
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:account.tax,description:l10n_it_fatturapa.tax_22
@@ -148,7 +159,7 @@ msgstr "Cessionario / Committente"
 
 #. module: l10n_it_fatturapa
 #: selection:res.company,fatturapa_preview_style:0
-msgid "AssoSoftware v1.1"
+msgid "AssoSoftware"
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -261,6 +272,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_summary_data_create_uid
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_create_uid
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type_create_uid
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_withholding_data_line_create_uid
 msgid "Created by"
 msgstr "Creato da"
 
@@ -278,6 +290,7 @@ msgstr "Creato da"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_summary_data_create_date
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_create_date
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type_create_date
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_withholding_data_line_create_date
 msgid "Created on"
 msgstr "Creato il"
 
@@ -368,6 +381,7 @@ msgstr "Dettagli sconto o maggiorazione"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_activity_progress_display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_summary_data_display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_display_name
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_withholding_data_line_display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
 
@@ -424,9 +438,24 @@ msgid "E-invoice Welfare Fund Data"
 msgstr "Dati cassa previdenziale e-fattura"
 
 #. module: l10n_it_fatturapa
+#: model:ir.model,name:l10n_it_fatturapa.model_withholding_data_line
+msgid "E-invoice Withholding Data"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_fatturapa_attachments
 msgid "E-invoice attachments"
 msgstr "Allegati e-fattura"
+
+#. module: l10n_it_fatturapa
+#: selection:withholding.data.line,name:0
+msgid "ENASARCO"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: selection:withholding.data.line,name:0
+msgid "ENPAM"
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner_eori_code
@@ -479,6 +508,11 @@ msgid "Electronic Invoice Summary Data"
 msgstr "Dati riepilogo fattura elettronica"
 
 #. module: l10n_it_fatturapa
+#: model:account.tax,name:l10n_it_fatturapa.tax_00_enas
+msgid "Escluso"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:account.tax,name:l10n_it_fatturapa.tax_00_e15
 msgid "Excluding ex Art. 15"
 msgstr "Escluse ex art. 15"
@@ -495,7 +529,7 @@ msgstr "Esente acq"
 
 #. module: l10n_it_fatturapa
 #: selection:res.company,fatturapa_preview_style:0
-msgid "FatturaOrdinaria v1.2.1"
+msgid "Fattura Ordinaria"
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -549,8 +583,14 @@ msgstr "IBAN"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_summary_data_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type_id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_withholding_data_line_id
 msgid "ID"
 msgstr "ID"
+
+#. module: l10n_it_fatturapa
+#: selection:withholding.data.line,name:0
+msgid "INPS"
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa.view_partner_form_fatturapa
@@ -660,6 +700,7 @@ msgstr "Num. Elem."
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_summary_data___last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line___last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type___last_update
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_withholding_data_line___last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
@@ -677,6 +718,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_summary_data_write_uid
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_write_uid
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type_write_uid
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_withholding_data_line_write_uid
 msgid "Last Updated by"
 msgstr "Ultimo aggiornamento di"
 
@@ -694,6 +736,7 @@ msgstr "Ultimo aggiornamento di"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_summary_data_write_date
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_write_date
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type_write_date
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_withholding_data_line_write_date
 msgid "Last Updated on"
 msgstr "Ultimo aggiornamento il"
 
@@ -703,7 +746,7 @@ msgid "Law reference"
 msgstr "Riferimento normativo"
 
 #. module: l10n_it_fatturapa
-#: selection:account.invoice,ftpa_withholding_type:0
+#: selection:withholding.data.line,name:0
 msgid "Legal Person"
 msgstr "Persona giuridica"
 
@@ -762,7 +805,7 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: l10n_it_fatturapa
-#: selection:account.invoice,ftpa_withholding_type:0
+#: selection:withholding.data.line,name:0
 msgid "Natural Person"
 msgstr "Persona fisica"
 
@@ -791,6 +834,11 @@ msgstr "Esenti"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_number_items
 msgid "Number of Items"
 msgstr "Numero di elementi"
+
+#. module: l10n_it_fatturapa
+#: selection:withholding.data.line,name:0
+msgid "OTHER"
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: selection:fatturapa.related_document_type,type:0
@@ -1087,6 +1135,7 @@ msgstr "Tipo documenti collegati"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_activity_progress_invoice_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_faturapa_summary_data_invoice_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line_invoice_id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_withholding_data_line_invoice_id
 msgid "Related Invoice"
 msgstr "Fattura collegata"
 
@@ -1346,9 +1395,19 @@ msgid "Welfare Taxable"
 msgstr "Imponibile cassa"
 
 #. module: l10n_it_fatturapa
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_ftpa_withholding_type
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_invoice_ftpa_withholding_ids
+msgid "Withholding"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_withholding_data_line_name
 msgid "Withholding Type"
 msgstr "Tipo ritenuta"
+
+#. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_withholding_data_line_amount
+msgid "Withholding amount"
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_fatturapa_attachments_type
@@ -1411,13 +1470,100 @@ msgstr "non soggette"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
+msgid "not subject ex Artt. from 7 to 7-septies of DPR 633/72"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: selection:faturapa.summary.data,non_taxable_nature:0
+msgid "not subject – other"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "not taxable"
 msgstr "non imponibili"
 
 #. module: l10n_it_fatturapa
 #: selection:faturapa.summary.data,non_taxable_nature:0
+msgid "not taxable – cession to San Marino"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: selection:faturapa.summary.data,non_taxable_nature:0
+msgid "not taxable – export"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: selection:faturapa.summary.data,non_taxable_nature:0
+msgid "not taxable – following declarations of intent"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: selection:faturapa.summary.data,non_taxable_nature:0
+msgid "not taxable – intercommunity cession"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: selection:faturapa.summary.data,non_taxable_nature:0
+msgid "not taxable – operation similar to export cession"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: selection:faturapa.summary.data,non_taxable_nature:0
+msgid ""
+"not taxable – other operations that do not contribute to the formation of "
+"the ceiling"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: selection:faturapa.summary.data,non_taxable_nature:0
 msgid "reverse charge"
 msgstr "inversione contabile"
+
+#. module: l10n_it_fatturapa
+#: selection:faturapa.summary.data,non_taxable_nature:0
+msgid "reverse charge – construction sector and related sectors"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: selection:faturapa.summary.data,non_taxable_nature:0
+msgid "reverse charge – disposal of scrap and other recycled materials"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: selection:faturapa.summary.data,non_taxable_nature:0
+msgid "reverse charge – energy sector operations"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: selection:faturapa.summary.data,non_taxable_nature:0
+msgid "reverse charge – other cases"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: selection:faturapa.summary.data,non_taxable_nature:0
+msgid "reverse charge – sale of buildings"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: selection:faturapa.summary.data,non_taxable_nature:0
+msgid "reverse charge – sale of electronic products"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: selection:faturapa.summary.data,non_taxable_nature:0
+msgid "reverse charge – subcontracting in the construction sector"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: selection:faturapa.summary.data,non_taxable_nature:0
+msgid "reverse charge – supply of gold and pure silver"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: selection:faturapa.summary.data,non_taxable_nature:0
+msgid "reverse charge – transfer of cell phones"
+msgstr ""
 
 #~ msgid "Sequence"
 #~ msgstr "Sequenza"
