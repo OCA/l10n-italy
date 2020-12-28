@@ -48,7 +48,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: l10n_it_account_tax_kind
-#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind_id_6668
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind_id_6674
 msgid "ID"
 msgstr "Identifiant"
 
