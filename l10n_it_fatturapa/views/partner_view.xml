@@ -8,9 +8,9 @@
             <field name="inherit_id" ref="account.view_partner_property_form"/>
             <field name="arch" type="xml">
                 <notebook position="inside">
-            <page name="fatturapa" string="Electronic Invoice" groups="account.group_account_invoice">
+                <page name="fatturapa" string="Electronic Invoice" groups="account.group_account_invoice">
                         <group name="fatturapa_group">
-                            <filed name="electronic_invoice_no_contact_update" attrs="{'invisible': [('supplier', '=', False)]}"/>
+                            <field name="electronic_invoice_no_contact_update" attrs="{'invisible': [('supplier', '=', False)]}"/>
                             <field name="electronic_invoice_subjected"/>
                             <group attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">
                                 <field name="ipa_code" placeholder="IPA123" attrs="{'invisible': [('is_pa','=', False)]}"/>
