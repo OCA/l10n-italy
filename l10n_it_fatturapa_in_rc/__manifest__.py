@@ -5,7 +5,7 @@
     'name': 'ITA - Fattura elettronica - Reverse charge',
     "summary": "Modulo di collegamento tra e-fattura in acquisto e reverse"
                " charge",
-    "version": "10.0.1.1.1",
+    "version": "10.0.2.0.0",
     "development_status": "Beta",
     "category": "Hidden",
     'website': 'https://github.com/OCA/l10n-italy/tree/10.0/'
