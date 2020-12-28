@@ -9,6 +9,13 @@
             <field name="type_tax_use">sale</field>
         </record>
 
+        <record id="tax_10" model="account.tax">
+            <field name="name">10% e-inv</field>
+            <field name="description">10</field>
+            <field name="amount">10</field>
+            <field name="type_tax_use">sale</field>
+        </record>
+
         <record id="tax_22_acq" model="account.tax">
             <field name="name">22% e-bill</field>
             <field name="description">22 pur</field>
@@ -72,6 +79,14 @@
             <field name="amount">0.00</field>
             <field name="kind_id" ref="l10n_it_account_tax_kind.n6"></field>
             <field name="law_reference">Reverse Charge</field>
+        </record>
+
+        <record id="tax_00_enas" model="account.tax">
+            <field name="name">Escluso</field>
+            <field name="description">00</field>
+            <field name="amount">0.00</field>
+            <field name="kind_id" ref="l10n_it_account_tax_kind.n2"/>
+            <field name="law_reference">Escluso Art. 13 5C DPR 633/72</field>
         </record>
 
         <record id="base.main_company" model="res.company">

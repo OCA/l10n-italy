@@ -9,7 +9,7 @@ class WizardImportFatturapa(models.TransientModel):
     def _prepare_generic_line_data(self, line):
         retLine = {}
         account_tax_model = self.env['account.tax']
-        if float(line.AliquotaIVA) == 0.0 and line.Natura == 'N6':
+        if float(line.AliquotaIVA) == 0.0 and line.Natura.startswith('N6'):
             # search reversed tax
             account_rc_type_tax = self.env['account.rc.type.tax'].search([
                 ('rc_type_id.e_invoice_suppliers', '=', True)
@@ -38,6 +38,8 @@ class WizardImportFatturapa(models.TransientModel):
     ):
         res = super(WizardImportFatturapa, self).set_invoice_line_ids(
             FatturaBody, credit_account_id, partner, wt_found, invoice_data)
+        if not invoice_data.get('invoice_line_ids'):
+            return
         # set RC fiscal position
         inv_line_ids = invoice_data['invoice_line_ids'][0][2]
         inv_lines = self.env['account.invoice.line'].browse(inv_line_ids)

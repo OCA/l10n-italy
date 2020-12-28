@@ -26,6 +26,7 @@
         'views/partner_view.xml',
         'views/company_view.xml',
         'security/ir.model.access.csv',
+        'data/l10n_it_fatturapa_out_data.xml',
         'security/rules.xml',
     ],
     'installable': True,

@@ -54,7 +54,7 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
                 <Data>2019-05-11</Data>
-                <Numero>852S1</Numero>
+                <Numero>852S2</Numero>
                 <ImportoTotaleDocumento>34.32</ImportoTotaleDocumento>
                 <Arrotondamento>-0.35</Arrotondamento>
                 <Causale>Rif ordine 908</Causale>

@@ -12,6 +12,8 @@ class TestWithholdingTax(TransactionCase):
 
     def setUp(self):
         super(TestWithholdingTax, self).setUp()
+        journal_misc = self.env['account.journal'].search(
+            [('type', '=', 'general')])[0]
         account_payable = self.env['account.account'].create({
             'name': 'Test WH tax',
             'code': 'whtaxpay',
@@ -27,6 +29,7 @@ class TestWithholdingTax(TransactionCase):
             'code': "Test WH tax",
             'account_receivable_id': account_receivable.id,
             'account_payable_id': account_payable.id,
+            'journal_id': journal_misc.id,
             'payment_term': self.ref('account.account_payment_term_advance')
         })
 
