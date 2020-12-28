@@ -23,10 +23,10 @@ addon | version | summary
 [l10n_it_account_stamp](l10n_it_account_stamp/) | 10.0.1.0.1 | Tax stamp automatic management
 [l10n_it_account_stamp_ddt](l10n_it_account_stamp_ddt/) | 10.0.1.0.0 | Modulo ponte tra imposta di bollo e DDT
 [l10n_it_account_stamp_sale](l10n_it_account_stamp_sale/) | 10.0.1.0.1 | Modulo ponte tra imposta di bollo e vendite
-[l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 10.0.1.0.0 | Italian Localisation - Natura delle aliquote IVA
+[l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 10.0.2.0.0 | Italian Localisation - Natura delle aliquote IVA
 [l10n_it_ateco](l10n_it_ateco/) | 10.0.1.0.0 | Ateco codes
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 10.0.1.0.0 | Import base_location entries (provinces) from Geonames
-[l10n_it_causali_pagamento](l10n_it_causali_pagamento/) | 10.0.1.1.0 | Aggiunge la tabella delle causali di pagamento da usare ad esempio nelle ritenute d'acconto
+[l10n_it_causali_pagamento](l10n_it_causali_pagamento/) | 10.0.2.0.0 | Aggiunge la tabella delle causali di pagamento da usare ad esempio nelle ritenute d'acconto
 [l10n_it_central_journal](l10n_it_central_journal/) | 10.0.1.0.2 | Italian Localization - Account central journal
 [l10n_it_codici_carica](l10n_it_codici_carica/) | 10.0.1.0.0 | Aggiunge la tabella dei codici carica da usare nei dichiarativi fiscali italiani
 [l10n_it_corrispettivi](l10n_it_corrispettivi/) | 10.0.1.2.4 | Italian Localization - Corrispettivi
@@ -34,19 +34,19 @@ addon | version | summary
 [l10n_it_ddt](l10n_it_ddt/) | 10.0.1.9.0 | Documento di Trasporto
 [l10n_it_dichiarazione_intento](l10n_it_dichiarazione_intento/) | 10.0.1.0.0 | Gestione dichiarazioni di intento
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 10.0.1.0.0 | Esigibilità IVA
-[l10n_it_fatturapa](l10n_it_fatturapa/) | 10.0.2.8.0 | Fatture elettroniche
+[l10n_it_fatturapa](l10n_it_fatturapa/) | 10.0.3.0.0 | Fatture elettroniche
 [l10n_it_fatturapa_export_zip](l10n_it_fatturapa_export_zip/) | 10.0.1.0.0 | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche
-[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 10.0.2.0.0 | Ricezione fatture elettroniche
+[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 10.0.3.0.0 | Ricezione fatture elettroniche
 [l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 10.0.1.0.0 | Modulo ponte tra ricezione fatture elettroniche e acquisti
-[l10n_it_fatturapa_in_rc](l10n_it_fatturapa_in_rc/) | 10.0.1.1.1 | Modulo di collegamento tra e-fattura in acquisto e reverse charge
-[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 10.0.1.6.0 | Emissione fatture elettroniche
-[l10n_it_fatturapa_out_ddt](l10n_it_fatturapa_out_ddt/) | 10.0.1.0.4 | Modulo ponte tra emissione fatture elettroniche e DDT
-[l10n_it_fatturapa_out_stamp](l10n_it_fatturapa_out_stamp/) | 10.0.1.0.2 | Modulo ponte tra emissione fatture elettroniche e imposta di bollo
-[l10n_it_fatturapa_out_triple_discount](l10n_it_fatturapa_out_triple_discount/) | 10.0.1.0.1 | Modulo ponte tra emissione fatture elettroniche e sconto triplo
-[l10n_it_fatturapa_out_wt](l10n_it_fatturapa_out_wt/) | 10.0.1.0.1 | Modulo ponte tra emissione fatture elettroniche e ritenute.
+[l10n_it_fatturapa_in_rc](l10n_it_fatturapa_in_rc/) | 10.0.2.0.0 | Modulo di collegamento tra e-fattura in acquisto e reverse charge
+[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 10.0.2.0.0 | Emissione fatture elettroniche
+[l10n_it_fatturapa_out_ddt](l10n_it_fatturapa_out_ddt/) | 10.0.2.0.0 | Modulo ponte tra emissione fatture elettroniche e DDT
+[l10n_it_fatturapa_out_stamp](l10n_it_fatturapa_out_stamp/) | 10.0.2.0.0 | Modulo ponte tra emissione fatture elettroniche e imposta di bollo
+[l10n_it_fatturapa_out_triple_discount](l10n_it_fatturapa_out_triple_discount/) | 10.0.2.0.0 | Modulo ponte tra emissione fatture elettroniche e sconto triplo
+[l10n_it_fatturapa_out_wt](l10n_it_fatturapa_out_wt/) | 10.0.2.0.0 | Modulo ponte tra emissione fatture elettroniche e ritenute.
 [l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 10.0.1.9.0 | Invio fatture elettroniche tramite PEC
-[l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 10.0.1.2.0 | Italian Localization - Tipi di documento fiscale per dichiarativi
-[l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 10.0.1.0.0 | Electronic invoices payment
+[l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 10.0.2.0.0 | Italian Localization - Tipi di documento fiscale per dichiarativi
+[l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 10.0.2.0.0 | Electronic invoices payment
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 10.0.1.3.0 | Italian Localisation - Fiscal Code
 [l10n_it_fiscalcode_invoice](l10n_it_fiscalcode_invoice/) | 10.0.1.0.0 | Italian Fiscal Code in invoice PDF
 [l10n_it_intrastat](l10n_it_intrastat/) | 10.0.1.0.2 | Riclassificazione merci e servizi per dichiarazioni Intrastat
@@ -72,9 +72,9 @@ addon | version | summary
 [l10n_it_website_sale_corrispettivi](l10n_it_website_sale_corrispettivi/) | 10.0.1.1.1 | Italian localization - Website Sale Corrispettivi
 [l10n_it_website_sale_fatturapa](l10n_it_website_sale_fatturapa/) | 10.0.1.0.0 | Aggiunge i campi necessari alla fatturazione elettronica nel form del checkout
 [l10n_it_website_sale_fiscalcode](l10n_it_website_sale_fiscalcode/) | 10.0.1.0.2 | Website Sale FiscalCode
-[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 10.0.1.3.0 | Italian Withholding Tax
+[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 10.0.2.0.0 | Italian Withholding Tax
 [l10n_it_withholding_tax_causali](l10n_it_withholding_tax_causali/) | 10.0.1.0.0 | Causali pagamento per ritenute d'acconto
-[l10n_it_withholding_tax_payment](l10n_it_withholding_tax_payment/) | 10.0.1.2.0 | Italian Withholding Tax Payment
+[l10n_it_withholding_tax_payment](l10n_it_withholding_tax_payment/) | 10.0.2.0.0 | Italian Withholding Tax Payment
 [l10n_it_withholding_tax_payment_order](l10n_it_withholding_tax_payment_order/) | 10.0.1.0.0 | Modulo ponte tra ritenuta d'acconto e ordine di pagamento
 
 
