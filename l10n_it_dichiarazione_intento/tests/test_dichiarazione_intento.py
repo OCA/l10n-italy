@@ -14,10 +14,10 @@ class TestDichiarazioneIntento(TransactionCase):
         return self.env['dichiarazione.intento'].sudo().create({
             'partner_id': partner.id,
             'partner_document_number': 'PartnerTest%s' % partner.id,
-            'partner_document_date': self.today_date,
-            'date': self.today_date,
-            'date_start': self.today_date,
-            'date_end': self.today_date,
+            'partner_document_date': self.today_date.strftime('%Y-%m-%d'),
+            'date': self.today_date.strftime('%Y-%m-%d'),
+            'date_start': self.today_date.strftime('%Y-%m-%d'),
+            'date_end': self.today_date.strftime('%Y-%m-%d'),
             'taxes_ids': [(6, 0, [self.tax1.id])],
             'limit_amount': 1000.00,
             'fiscal_position_id': self.fiscal_position.id,
@@ -25,13 +25,13 @@ class TestDichiarazioneIntento(TransactionCase):
             'telematic_protocol': '08060120341234567-000001',
             })
 
-    def _create_invoice(self, partner, tax=False, date=False):
-        invoice_date = date if date else self.today_date
+    def _create_invoice(self, partner, tax=False, date=False, in_type=False):
+        invoice_date = date if date else self.today_date.strftime('%Y-%m-%d')
         payment_term = self.env.ref('account.account_payment_term_advance')
         invoice_line_data = [(0, 0, {
             'product_id': self.env.ref('product.product_product_5').id,
             'quantity': 10.00,
-            'account_id': self.a_sale.id,
+            'account_id': self.a_cost.id if in_type else self.a_sale.id,
             'name': 'test line',
             'price_unit': 90.00,
             'invoice_line_tax_ids': [(6, 0, [tax.id])] if tax else False,
@@ -39,15 +39,15 @@ class TestDichiarazioneIntento(TransactionCase):
         return self.env['account.invoice'].sudo().create({
             'partner_id': partner.id,
             'date_invoice': invoice_date,
-            'type': 'out_invoice',
+            'type': 'in_invoice' if in_type else 'out_invoice',
             'name': 'Test Invoice for Dichiarazione',
             'payment_term_id': payment_term.id,
-            'account_id': self.account.id,
+            'account_id': self.pay_account.id if in_type else self.account.id,
             'invoice_line_ids': invoice_line_data,
             })
 
     def _create_refund(self, partner, tax=False, date=False, invoice=False):
-        invoice_date = date if date else self.today_date
+        invoice_date = date if date else self.today_date.strftime('%Y-%m-%d')
         payment_term = self.env.ref('account.account_payment_term_advance')
         invoice_line_data = [(0, 0, {
             'quantity': 1.00,
@@ -75,14 +75,23 @@ class TestDichiarazioneIntento(TransactionCase):
             ('user_type_id', '=', self.env.ref(
                 'account.data_account_type_receivable').id)
         ], limit=1)
+        self.pay_account = self.env['account.account'].search([
+            ('user_type_id', '=', self.env.ref(
+                'account.data_account_type_payable').id)
+        ], limit=1)
         self.a_sale = self.env['account.account'].search([
             ('user_type_id', '=', self.env.ref(
                 'account.data_account_type_revenue').id)
+        ], limit=1)
+        self.a_cost = self.env['account.account'].search([
+            ('user_type_id', '=', self.env.ref(
+                'account.data_account_type_direct_costs').id)
         ], limit=1)
         self.today_date = fields.Date.today()
         self.partner1 = self.env.ref('base.res_partner_2')
         self.partner2 = self.env.ref('base.res_partner_12')
         self.partner3 = self.env.ref('base.res_partner_10')
+        self.partner4 = self.env.ref('base.res_partner_4')
         self.tax22 = self.tax_model.create({
             'name': '22%',
             'amount': 22,
@@ -131,6 +140,12 @@ class TestDichiarazioneIntento(TransactionCase):
         self.dichiarazione1 = self._create_dichiarazione(self.partner1, 'out')
         self.dichiarazione2 = self._create_dichiarazione(self.partner2, 'out')
         self.dichiarazione3 = self._create_dichiarazione(self.partner2, 'out')
+        self.env['dichiarazione.intento.yearly.limit'].create({
+            'year': self.today_date.year,
+            'limit_amount': 50000.0,
+            'company_id': self.env.user.company_id.id,
+        })
+        self.dichiarazione4 = self._create_dichiarazione(self.partner4, 'in')
         self.invoice1 = self._create_invoice(self.partner1)
         self.invoice1.journal_id.update_posted = True
         self.invoice2 = self._create_invoice(self.partner1, tax=self.tax1)
@@ -146,6 +161,7 @@ class TestDichiarazioneIntento(TransactionCase):
                                            invoice=self.invoice2)
         self.invoice4 = self._create_invoice(self.partner3, tax=self.tax22)
         self.invoice4.fiscal_position_id = self.fiscal_position2.id
+        self.invoice5 = self._create_invoice(self.partner4, tax=self.tax1, in_type=True)
 
     def test_dichiarazione_data(self):
         self.assertTrue(self.dichiarazione1.number)
@@ -238,3 +254,10 @@ class TestDichiarazioneIntento(TransactionCase):
     def test_fiscal_position_no_dichiarazione(self):
         self.invoice4._onchange_date_invoice()
         self.assertEqual(self.invoice4.fiscal_position_id.id, self.fiscal_position2.id)
+
+    def test_invoice_vendor_with_no_effect_on_dichiarazione(self):
+        previous_used_amount = self.dichiarazione4.used_amount
+        self.assertAlmostEqual(previous_used_amount, 0.0, 2)
+        self.invoice5.action_invoice_open()
+        post_used_amount = self.dichiarazione4.used_amount
+        self.assertAlmostEqual(post_used_amount, 900.0, 2)
