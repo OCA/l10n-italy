@@ -17,11 +17,13 @@ ACCOUNT_TYPES_NEGATIVE_SIGN = [
 
 
 class AccountType(models.Model):
-    _inherit = 'account.account.type'
+    _name = 'account.account.type'
+    _inherit = ['account.account.type', 'l10n_multi_country.mixin']
 
     account_balance_sign = fields.Integer(
         default=1,
         string="Balance sign",
+        country='IT'
     )
 
     @api.model

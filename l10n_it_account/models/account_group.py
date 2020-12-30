@@ -5,7 +5,8 @@ from odoo.exceptions import ValidationError
 
 
 class AccountGroup(models.Model):
-    _inherit = 'account.group'
+    _name = 'account.group'
+    _inherit = ['account.group', 'l10n_multi_country.mixin']
 
     account_ids = fields.One2many(
         comodel_name='account.account',
@@ -15,6 +16,7 @@ class AccountGroup(models.Model):
     account_balance_sign = fields.Integer(
         compute="_compute_account_balance_sign",
         string="Balance sign",
+        country='IT'
     )
 
     @api.constrains('parent_id')

@@ -18,6 +18,7 @@
         'account_fiscal_year',
         'account_tax_balance',
         'web',
+        'l10n_multi_country'
     ],
     "data": [
         'views/account_setting.xml',

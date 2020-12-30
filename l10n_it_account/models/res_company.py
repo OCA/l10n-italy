@@ -8,5 +8,4 @@ class ResCompany(models.Model):
 
     def is_country_id_code_it(self):
         self.ensure_one()
-        country_it = self.env.ref("base.it")
-        return self.partner_id.country_id == country_it
+        return self.country_id == self.env.ref("base.it")
