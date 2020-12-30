@@ -2,7 +2,8 @@ from odoo import models, fields
 
 
 class ResPartner(models.Model):
-    _inherit = 'res.partner'
+    _name = 'res.partner'
+    _inherit = ['res.partner', 'l10n_it_account.mixin']
 
     out_fiscal_document_type = fields.Many2one(
         'fiscal.document.type', string="Out Fiscal Document Type",)

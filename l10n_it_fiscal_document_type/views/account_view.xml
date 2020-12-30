@@ -6,9 +6,12 @@
         <field name="inherit_id" ref="account.view_account_position_form"/>
         <field name="arch" type="xml">
             <field name="company_id" position="after" >
-                <field name="fiscal_document_type_id" />
+                <field name="is_company_it" invisible="1" />
+                <field
+                    name="fiscal_document_type_id"
+                    attrs="{'invisible': [('is_company_it', '=', False)]}"
+                />
             </field>
         </field>
     </record>
-
 </odoo>

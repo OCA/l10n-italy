@@ -6,7 +6,12 @@
         <field name="inherit_id" ref="account.invoice_supplier_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='move_id']" position="before">
-                    <field name="fiscal_document_type_id" class="oe_inline" />
+                <field name="is_company_it" invisible="1" />
+                <field
+                    name="fiscal_document_type_id"
+                    attrs="{'invisible': [('is_company_it', '=', False)]}"
+                    class="oe_inline"
+                />
             </xpath>
         </field>
     </record>
@@ -17,7 +22,12 @@
         <field name="inherit_id" ref="account.invoice_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='move_id']" position="before">
-                    <field name="fiscal_document_type_id" class="oe_inline" />
+                <field name="is_company_it" invisible="1" />
+                <field
+                    name="fiscal_document_type_id"
+                    attrs="{'invisible': [('is_company_it', '=', False)]}"
+                    class="oe_inline"
+                />
             </xpath>
         </field>
     </record>

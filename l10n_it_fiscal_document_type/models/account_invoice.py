@@ -2,7 +2,8 @@ from odoo import models, fields, api
 
 
 class AccountInvoice(models.Model):
-    _inherit = 'account.invoice'
+    _name = 'account.invoice'
+    _inherit = ['account.invoice', 'l10n_it_account.mixin']
 
     @api.multi
     @api.depends('partner_id', 'journal_id', 'type', 'fiscal_position_id')

@@ -7,10 +7,19 @@
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='property_payment_term_id']" position="before">
-                        <field name="out_fiscal_document_type" class="oe_inline" />
+                    <field name="is_company_it" invisible="1" />
+                    <field
+                        name="out_fiscal_document_type"
+                        attrs="{'invisible': [('is_company_it', '=', False)]}"
+                        class="oe_inline"
+                    />
                 </xpath>
                 <xpath expr="//field[@name='property_supplier_payment_term_id']" position="before">
-                        <field name="in_fiscal_document_type" class="oe_inline" />
+                    <field
+                        name="in_fiscal_document_type"
+                        attrs="{'invisible': [('is_company_it', '=', False)]}"
+                        class="oe_inline"
+                    />
                 </xpath>
             </field>
         </record>
