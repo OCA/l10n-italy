@@ -9,23 +9,27 @@ from odoo.exceptions import UserError
 
 
 class AccountFiscalPosition(models.Model):
-    _inherit = 'account.fiscal.position'
+    _name = 'account.fiscal.position'
+    _inherit = ['account.fiscal.position', 'l10n_it_esigibilita_iva.mixin']
 
     split_payment = fields.Boolean('Split Payment')
 
 
 class AccountInvoice(models.Model):
-    _inherit = 'account.invoice'
+    _name = 'account.invoice'
+    _inherit = ['account.invoice', 'l10n_it_esigibilita_iva.mixin']
 
     amount_sp = fields.Float(
         string='Split Payment',
         digits=dp.get_precision('Account'),
         store=True,
         readonly=True,
-        compute='_compute_amount')
+        compute='_compute_amount'
+    )
     split_payment = fields.Boolean(
         'Is Split Payment',
-        related='fiscal_position_id.split_payment')
+        related='fiscal_position_id.split_payment'
+    )
 
     @api.one
     @api.depends(

@@ -3,6 +3,7 @@
 # Copyright 2016  Alessio Gerace - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from . import l10n_it_split_payment_mixin
 from . import account
 from . import config
 from . import account_tax

@@ -3,3 +3,7 @@
 * Alessio Gerace <alessio.gerace@agilebg.com>
 * Giacomo Grasso <giacomo.grasso.82@gmail.com>
 * Ruben Tonetto <https://github.com/ruben-tonetto>
+
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Víctor Martínez

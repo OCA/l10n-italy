@@ -6,7 +6,8 @@ from odoo import models, fields, api
 class AccountTax(models.Model):
     _inherit = 'account.tax'
     is_split_payment = fields.Boolean(
-        "Is split payment", compute="_compute_is_split_payment")
+        "Is split payment", compute="_compute_is_split_payment"
+    )
 
     @api.multi
     def _compute_is_split_payment(self):

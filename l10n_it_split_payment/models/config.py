@@ -21,3 +21,6 @@ class AccountConfigSettings(models.TransientModel):
         related='company_id.sp_account_id',
         string='Split Payment Write-off account',
         help='Account used to write off the VAT amount', readonly=False)
+    company_country_id_code = fields.Char(
+        related="company_id.country_id.code"
+    )
