@@ -78,6 +78,11 @@
                 <xpath expr="//page/field[@name='invoice_line']" position="attributes">
                     <attribute name="context">{'fiscal_position_id': fiscal_position, 'type': type, 'journal_id': journal_id}</attribute>
                 </xpath>
+
+                <xpath expr="//page/field[@name='invoice_line']/tree/field[@name='invoice_line_tax_id']" position="after">
+                    <field name="invoice_line_tax_wt_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                </xpath>
+
                 <xpath expr="//field[@name='tax_line']" position="after">
                     <field name="withholding_tax_line"
                            attrs="{'invisible': [('withholding_tax', '=', False)]}">
@@ -116,6 +121,41 @@
             </field>
         </record>
 
+        <record id="invoice_supplier_tree" model="ir.ui.view">
+            <field name="name">view.withholding.invoice.supplier.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="arch" type="xml">
+                    <field name="residual" position="after">
+                        <field name="amount_net_pay" widget="monetary"
+                               invisible="context.get('type', 'in_invoice') not in ['in_invoice', 'in_refund']"
+                               options="{'currency_field': 'currency_id'}"
+                               sum="Net to pay"/>
+                    </field>
+            </field>
+        </record>
+
+        <!--
+        INVOICE LINE
+        -->
+        <record model="ir.ui.view" id="view_wt_invoice_line_form">
+            <field name="name">view.withholding.invoice.supplier.form</field>
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="account.view_invoice_line_form"/>
+            <field name="arch" type="xml">
+
+                <field name="invoice_line_tax_id" position="after">
+                    <field name="invoice_line_tax_wt_ids" widget="many2many_tags" options="{'no_create': True}"
+                        invisible="context.get('type', 'out_invoice') not in ['in_invoice', 'in_refund']"/>
+                </field>
+
+                <field name="discount" position="after">
+                    <field name="withholding_tax_exclude"/>
+                </field>
+
+            </field>
+        </record>
+
         <!--
         FISCAL POSITION
          -->
@@ -140,8 +180,8 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="view_withholding_tax_exclude_tree">
-            <field name="name">view.withholding.tax.exclude.tree</field>
+        <record model="ir.ui.view" id="view_withholding_tax_exclude_form">
+            <field name="name">view.withholding.tax.exclude.form</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
@@ -152,8 +192,8 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="view_withholding_tax_exclude_supplier_tree">
-            <field name="name">view.withholding.tax.exclude.supplier.tree</field>
+        <record model="ir.ui.view" id="view_withholding_tax_exclude_supplier_form">
+            <field name="name">view.withholding.tax.exclude.supplier.form</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
             <field name="arch" type="xml">
