@@ -440,7 +440,7 @@ class StockPickingPackagePreparation(models.Model):
         grouped_invoices = {}
         references = {}
         for td in self:
-            if not td.to_be_invoiced or td.invoice_id:
+            if not td.transportation_reason_id.to_be_invoiced or td.invoice_id:
                 continue
 
             group_key = td.get_td_group_key()
