@@ -116,6 +116,14 @@ def CreateFromDocument(xml_string):
                     problems.append(msg)
                     _logger.warn(msg)
 
+    # fix remove spaces in <PECDestinatario/>
+    for pec in root.xpath("//PECDestinatario"):
+        pec.text = pec.text.strip()
+
+    # fix remove spaces in <Email/>
+    for pec in root.xpath("//Email"):
+        pec.text = pec.text.strip()
+
     fatturapa = _CreateFromDocument(etree.tostring(root))
     setattr(fatturapa, '_xmldoctor', problems)
     return fatturapa
