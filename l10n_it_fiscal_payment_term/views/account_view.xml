@@ -7,25 +7,39 @@
             <field name="inherit_id" ref="account.view_payment_term_form"/>
             <field name="arch" type="xml">
                 <field name="line_ids" position="after">
+                    <field name="is_company_it" invisible="1" />
                     <group col="2" colspan="2">
-                        <field name="fatturapa_pt_id" options="{'no_create': True, 'no_edit': True}"/>
-                        <field name="fatturapa_pm_id" options="{'no_create': True, 'no_edit': True}"/>
+                        <field
+                            name="fatturapa_pt_id"
+                            attrs="{'invisible': [('is_company_it', '=', False)]}"
+                            options="{'no_create': True, 'no_edit': True}"
+                        />
+                        <field
+                            name="fatturapa_pm_id"
+                            attrs="{'invisible': [('is_company_it', '=', False)]}"
+                            options="{'no_create': True, 'no_edit': True}"
+                        />
                     </group>
                 </field>
             </field>
         </record>
-
         <record id="view_payment_term_tree_fatturapa" model="ir.ui.view">
             <field name="name">account.payment.term.fatturapa</field>
             <field name="model">account.payment.term</field>
             <field name="inherit_id" ref="account.view_payment_term_tree"></field>
             <field name="arch" type="xml">
                 <field name="name" position="after">
-                    <field name="fatturapa_pt_id"/>
-                    <field name="fatturapa_pm_id"/>
+                    <field name="is_company_it" invisible="1" />
+                    <field
+                        name="fatturapa_pt_id"
+                        attrs="{'invisible': [('is_company_it', '=', False)]}"
+                    />
+                    <field
+                        name="fatturapa_pm_id"
+                        attrs="{'invisible': [('is_company_it', '=', False)]}"
+                    />
                 </field>
             </field>
         </record>
-
     </data>
 </odoo>

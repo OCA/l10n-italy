@@ -25,9 +25,14 @@ class FatturapaPaymentMethod(models.Model):
 #  used in fatturaPa export
 class AccountPaymentTerm(models.Model):
     # _position = ['2.4.2.2']
-    _inherit = 'account.payment.term'
+    _name = 'account.payment.term'
+    _inherit = ['account.payment.term', 'l10n_it_fiscal_payment_term.mixin']
 
     fatturapa_pt_id = fields.Many2one(
-        'fatturapa.payment_term', string="Fiscal Payment Term")
+        comodel_name='fatturapa.payment_term',
+        string="Fiscal Payment Term"
+    )
     fatturapa_pm_id = fields.Many2one(
-        'fatturapa.payment_method', string="Fiscal Payment Method")
+        comodel_name='fatturapa.payment_method',
+        string="Fiscal Payment Method"
+    )
