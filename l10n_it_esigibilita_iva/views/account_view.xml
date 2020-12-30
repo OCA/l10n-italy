@@ -7,7 +7,11 @@
         <field name="inherit_id" ref="account.view_tax_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='tag_ids']" position="after">
-                <field name="payability" />
+                <field name="is_company_it" invisible="1" />
+                <field
+                    name="payability"
+                    attrs="{'invisible': [('is_company_it', '=', False)]}"
+                />
             </xpath>
         </field>
     </record>
