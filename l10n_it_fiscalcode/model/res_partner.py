@@ -4,7 +4,8 @@ from odoo import models, fields, api
 
 
 class ResPartner(models.Model):
-    _inherit = 'res.partner'
+    _name = 'res.partner'
+    _inherit = ['res.partner', 'l10n_it_fiscalcode.mixin']
 
     @api.multi
     def check_fiscalcode(self):

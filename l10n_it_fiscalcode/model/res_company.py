@@ -6,4 +6,8 @@ from odoo import models, fields
 class ResCompany(models.Model):
     _inherit = 'res.company'
     fiscalcode = fields.Char(
-        related='partner_id.fiscalcode', store=True, readonly=False)
+        related='partner_id.fiscalcode', store=True, readonly=False
+    )
+    country_id_code = fields.Char(
+        related="country_id.code"
+    )

@@ -6,7 +6,11 @@
         <field name="inherit_id" ref="base.view_company_form"/>
         <field name="arch" type="xml">
             <field name="vat" position="after">
-                <field name="fiscalcode" />
+                <field name="country_id_code" invisible="1" />
+                <field
+                    name="fiscalcode"
+                    attrs="{'invisible': [('country_id_code', '!=', 'IT')]}"
+                />
             </field>
         </field>
     </record>

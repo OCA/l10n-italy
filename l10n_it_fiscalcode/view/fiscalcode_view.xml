@@ -6,8 +6,9 @@
         <field name="inherit_id" ref="base_vat.view_partner_form"/>
         <field name="arch" type="xml">
             <field name="type" position="after">
-                <label for="fiscalcode" />
-                <div name="fiscalcode_info" class="o_row">
+                <field name="is_company_it" invisible="1" />
+                <label for="fiscalcode" attrs="{'invisible': [('is_company_it', '=', False)]}" />
+                <div name="fiscalcode_info" attrs="{'invisible': [('is_company_it', '=', False)]}" class="o_row">
                     <field name="fiscalcode" class="oe_inline" />
                 </div>
             </field>

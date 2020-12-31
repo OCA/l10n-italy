@@ -10,3 +10,7 @@
 * Andrea Cometa <info@andreacometa.it>
 * Andrea Gallina
 * Matteo Bilotta <mbilotta@linkgroup.it>
+
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Víctor Martínez
