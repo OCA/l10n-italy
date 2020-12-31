@@ -8,7 +8,8 @@
         <field name="arch" type="xml">
             <group name="accounting_entries" position="after">
                 <newline/>
-                <group string="REA Registration" name="rea_data">
+                <field name="is_company_it" invisible="1" />
+                <group string="REA Registration" attrs="{'invisible': [('is_company_it', '=', False)]}" name="rea_data">
                     <field name="rea_office" />
                     <field name="rea_code" />
                     <field name="rea_capital" />

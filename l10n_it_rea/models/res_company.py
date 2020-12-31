@@ -25,6 +25,9 @@ class Company(models.Model):
          ('LN', 'Not in liquidation')], 'Liquidation State',
         related='partner_id.rea_liquidation_state',
         store=True, readonly=False)
+    country_id_code = fields.Char(
+        related="country_id.code"
+    )
 
     @api.onchange(
         "rea_office", "rea_code", "rea_capital", "rea_member_type",

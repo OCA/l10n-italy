@@ -4,7 +4,8 @@ from odoo import fields, models
 
 
 class ResPartner(models.Model):
-    _inherit = 'res.partner'
+    _name = 'res.partner'
+    _inherit = ['res.partner', 'l10n_it_rea.mixin']
 
     rea_office = fields.Many2one(
         'res.country.state', string='Office Province')

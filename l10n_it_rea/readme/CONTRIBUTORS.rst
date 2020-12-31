@@ -3,3 +3,7 @@
 * Lorenzo Battistini <https://github.com/eLBati>
 * Andrea Gallina
 * Sergio Zanchetta <https://github.com/primes2h>
+
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Víctor Martínez
