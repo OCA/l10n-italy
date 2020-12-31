@@ -39,9 +39,9 @@ addon | version | summary
 [l10n_it_ddt](l10n_it_ddt/) | 8.0.1.0.2 | Documento di Trasporto
 [l10n_it_ddt_delivery](l10n_it_ddt_delivery/) | 8.0.1.0.0 | Copy carrier from picking and from sale order
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 8.0.2.0.0 | Esigibilità IVA
-[l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.3.0.1 | Electronic invoices
+[l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.3.0.2 | Electronic invoices
 [l10n_it_fatturapa_export_zip](l10n_it_fatturapa_export_zip/) | 8.0.1.0.0 | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche
-[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 8.0.2.0.1 | Electronic invoices reception
+[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 8.0.2.0.2 | Electronic invoices reception
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.4.0.0 | Electronic invoices emission
 [l10n_it_fatturapa_out_ddt](l10n_it_fatturapa_out_ddt/) | 8.0.2.0.0 | Modulo ponte tra emissione fatture elettroniche e DDT
 [l10n_it_fatturapa_out_sale](l10n_it_fatturapa_out_sale/) | 8.0.2.0.0 | Modulo ponte tra emissione fatture elettroniche e dati ordine di vendita
