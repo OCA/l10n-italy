@@ -23,7 +23,7 @@ Italian Localization - Fattura elettronica - Ricezione
     :target: https://runbot.odoo-community.org/runbot/122/8.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module allows to import XML files of electronic invoices, version 1.2
 
@@ -121,9 +121,12 @@ Contributors
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Roberto Onnis
 * Alessio Gerace
-* Gianmarco Conte
 * Marco Calcagni
 * Alex Comba <alex.comba@agilebg.com>
+* Sergio Zanchetta <https://github.com/primes2h>
+* Giovanni Serra <giovanni@gslab.it>
+* Gianmarco Conte <gconte@dinamicheaziendali.it>
+* Vincenzo Terzulli <v.terzulli@elvenstudio.it>
 
 Maintainers
 ~~~~~~~~~~~

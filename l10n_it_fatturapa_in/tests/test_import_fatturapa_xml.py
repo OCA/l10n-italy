@@ -598,6 +598,12 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertTrue(len(invoice.ftpa_withholding_ids), 1)
         self.assertTrue(len(invoice.invoice_line) == 3)
 
+    def test_44_xml_import(self):
+        res = self.run_wizard('test44', 'ITBNCMRA80A01D548T_20005.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertTrue(len(invoice.invoice_line) == 3)
+
     def test_01_xml_link(self):
         """
         E-invoice lines are created.
