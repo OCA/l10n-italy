@@ -5,9 +5,20 @@ from odoo import fields, api, models, exceptions, _
 
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
+
+    @api.depends(
+        'invoice_line_ids.price_subtotal', 'tax_line_ids.amount',
+        'tax_line_ids.amount_rounding', 'currency_id', 'company_id', 'date_invoice',
+        'type'
+    )
+    def _compute_tax_stamp(self):
+        for invoice in self:
+            if invoice.auto_compute_stamp:
+                invoice.tax_stamp = invoice.is_tax_stamp_applicable()
+
     tax_stamp = fields.Boolean(
-        "Tax Stamp", readonly=True, states={'draft': [('readonly', False)]},
-        compute="_compute_tax_stamp", store=True)
+        "Tax Stamp", readonly=True, states={'draft': [('readonly', False)]}, default=_compute_tax_stamp)
+
     auto_compute_stamp = fields.Boolean(
         related='company_id.tax_stamp_product_id.auto_compute')
 
@@ -30,15 +41,7 @@ class AccountInvoice(models.Model):
         else:
             return False
 
-    @api.depends(
-        'invoice_line_ids.price_subtotal', 'tax_line_ids.amount',
-        'tax_line_ids.amount_rounding', 'currency_id', 'company_id', 'date_invoice',
-        'type'
-    )
-    def _compute_tax_stamp(self):
-        for invoice in self:
-            if invoice.auto_compute_stamp:
-                invoice.tax_stamp = invoice.is_tax_stamp_applicable()
+
 
     @api.multi
     def add_tax_stamp_line(self):
