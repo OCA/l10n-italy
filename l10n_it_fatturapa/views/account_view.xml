@@ -10,13 +10,14 @@
             <field name="inherit_id" ref="account.view_invoice_line_form"></field>
             <field name="arch" type="xml">
                 <field name="name" position="after">
+                    <field name="is_company_it" invisible="1" />
                     <separator string="Electronic Invoice"></separator>
-                    <div id="admin_ref">
+                    <div id="admin_ref" attrs="{'invisible': [('is_company_it', '=', False)]}">
                         <group>
                             <field name="admin_ref"/>
                         </group>
                    </div>
-                    <group string="Related Documents">
+                    <group string="Related Documents" attrs="{'invisible': [('is_company_it', '=', False)]}">
                         <field name="related_documents" nolabel="1"/>
                     </group>
                 </field>

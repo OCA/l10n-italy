@@ -7,23 +7,29 @@
         <field name="inherit_id" ref="account.view_partner_property_form"/>
         <field name="arch" type="xml">
             <notebook position="inside">
-            <page name="fatturapa" string="Electronic Invoice" groups="account.group_account_invoice">
-                <group name="fatturapa_group">
-                    <label for="electronic_invoice_no_contact_update" attrs="{'invisible': [('supplier', '=', False)]}"/>
-                    <field name="electronic_invoice_no_contact_update" attrs="{'invisible': [('supplier', '=', False)]}"/>
-                    <group>
-                        <field name="electronic_invoice_subjected"/>
-                        <field name="electronic_invoice_obliged_subject" attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}"/>
+                <field name="is_company_it" invisible="1" />
+                <page
+                    name="fatturapa"
+                    string="Electronic Invoice"
+                    attrs="{'invisible': [('is_company_it', '=', False)]}"
+                    groups="account.group_account_invoice"
+                >
+                    <group name="fatturapa_group">
+                        <label for="electronic_invoice_no_contact_update" attrs="{'invisible': [('supplier', '=', False)]}"/>
+                        <field name="electronic_invoice_no_contact_update" attrs="{'invisible': [('supplier', '=', False)]}"/>
+                        <group>
+                            <field name="electronic_invoice_subjected"/>
+                            <field name="electronic_invoice_obliged_subject" attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}"/>
+                        </group>
+                        <group attrs="{'invisible': ['|',('electronic_invoice_subjected', '=', False), ('electronic_invoice_obliged_subject', '=', False)]}">
+                            <field name="ipa_code" placeholder="IPA123" attrs="{'invisible': [('is_pa','=', False)]}"/>
+                            <field name="codice_destinatario" attrs="{'invisible': [('is_pa', '=', True)]}"/>
+                            <field name="pec_destinatario"
+                                attrs="{'invisible': ['|',('is_pa', '=', True), ('codice_destinatario', '!=', '0000000')]}"/>
+                            <field name="eori_code"/>
+                        </group>
                     </group>
-                    <group attrs="{'invisible': ['|',('electronic_invoice_subjected', '=', False), ('electronic_invoice_obliged_subject', '=', False)]}">
-                        <field name="ipa_code" placeholder="IPA123" attrs="{'invisible': [('is_pa','=', False)]}"/>
-                        <field name="codice_destinatario" attrs="{'invisible': [('is_pa', '=', True)]}"/>
-                        <field name="pec_destinatario"
-                               attrs="{'invisible': ['|',('is_pa', '=', True), ('codice_destinatario', '!=', '0000000')]}"/>
-                        <field name="eori_code"/>
-                    </group>
-	        </group>
-            </page>
+                </page>
             </notebook>
         </field>
     </record>
@@ -43,10 +49,11 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//div[@name='div_address']/../../.." position="after">
+                <field name="is_company_it" invisible="1" />
                 <group string="E-invoicing" name="e_invoice_info" groups="account.group_account_invoice"
                         attrs="{'invisible': ['|', ('type', '=', 'contact'), '|', ('parent.electronic_invoice_subjected', '=', False), ('parent.electronic_invoice_obliged_subject', '=', False)]}">
                     <group>
-                        <field name="electronic_invoice_use_this_address"/>
+                        <field name="electronic_invoice_use_this_address" attrs="{'invisible': [('is_company_it', '=', False)]}"/>
                     </group>
                     <group attrs="{'invisible': [('electronic_invoice_use_this_address','=', False)]}">
                         <field name="ipa_code" placeholder="IPA123" attrs="{'invisible': [('parent.is_pa','=', False)]}"/>

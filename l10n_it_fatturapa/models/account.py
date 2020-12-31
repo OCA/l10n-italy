@@ -262,7 +262,8 @@ class FatturapaRelatedDdt(models.Model):
 
 class AccountInvoiceLine(models.Model):
     # _position = ['2.2.1']
-    _inherit = "account.invoice.line"
+    _name = 'account.invoice.line'
+    _inherit = ['account.invoice.line', 'l10n_it_account.mixin']
 
     related_documents = fields.One2many(
         'fatturapa.related_document_type', 'invoice_line_id',

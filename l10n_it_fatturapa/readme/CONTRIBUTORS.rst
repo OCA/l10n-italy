@@ -5,3 +5,7 @@
 * Sergio Zanchetta <https://github.com/primes2h>
 * Gianluigi Tiesi <https://github.com/sherpya>
 * Roberto Fichera <https://github.com/robyf70>
+
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Víctor Martínez

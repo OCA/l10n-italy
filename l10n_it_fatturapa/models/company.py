@@ -110,6 +110,9 @@ class AccountConfigSettings(models.TransientModel):
         default='fatturaordinaria_v1.2.1.xsl',
         readonly=False
         )
+    company_country_id_code = fields.Char(
+        related="company_id.country_id.code"
+    )
 
     @api.onchange('company_id')
     def onchange_company_id(self):

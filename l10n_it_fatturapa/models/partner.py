@@ -8,7 +8,8 @@ STANDARD_ADDRESSEE_CODE = '0000000'
 
 
 class ResPartner(models.Model):
-    _inherit = "res.partner"
+    _name = 'res.partner'
+    _inherit = ['res.partner', 'l10n_it_account.mixin']
 
     eori_code = fields.Char('EORI Code', size=20)
     license_number = fields.Char('License Code', size=20)
