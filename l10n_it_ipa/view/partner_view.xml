@@ -11,7 +11,8 @@
                     <field name="ipa_code" placeholder="IPA123" attrs="{'invisible': [('is_pa','=', False)]}"/>
                 </field>
                 <field name="company_type" position="after">
-                    <div attrs="{'invisible': [('is_company','=', False)]}" class="oe_edit_only">
+                    <field name="is_company_it" invisible="1" />
+                    <div attrs="{'invisible': [('is_company_it','=', False)]}" class="oe_edit_only">
                         <field name="is_pa"/><label for="is_pa"/>
                     </div>
                 </field>

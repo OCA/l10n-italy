@@ -9,7 +9,8 @@ from odoo import models, fields
 
 
 class ResPartner(models.Model):
-    _inherit = 'res.partner'
+    _name = 'res.partner'
+    _inherit = ['res.partner', 'l10n_it_ipa.mixin']
 
     ipa_code = fields.Char(string='IPA Code')
     is_pa = fields.Boolean("Public administration")
