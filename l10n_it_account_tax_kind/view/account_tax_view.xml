@@ -1,16 +1,21 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <record id="view_tax_form_account_tax_kind" model="ir.ui.view">
         <field name="name">account.tax.form.account.tax.kind</field>
         <field name="model">account.tax</field>
         <field name="inherit_id" ref="account.view_tax_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='tag_ids']" position="after">
-                <field name="kind_id" />
-                <field name="law_reference" attrs="{'required': [('kind_id', '!=', False),('type_tax_use', '!=', 'purchase')], 'invisible': ['|',('kind_id', '=', False),('type_tax_use', '=', 'purchase')]}"></field>
+                <field name="is_company_it" invisible="1" />
+                <field
+                    name="kind_id"
+                    attrs="{'invisible': [('is_company_it', '=', False)]}"
+                />
+                <field
+                    name="law_reference"
+                    attrs="{'required': [('kind_id', '!=', False),('type_tax_use', '!=', 'purchase')], 'invisible': ['|',('kind_id', '=', False),('type_tax_use', '=', 'purchase')]}"
+                />
             </xpath>
         </field>
     </record>
-
 </odoo>
