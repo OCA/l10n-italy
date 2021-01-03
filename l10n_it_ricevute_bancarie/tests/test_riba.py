@@ -48,6 +48,17 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         # ---- first due date for partner
         self.assertEqual(len(self.invoice2.invoice_line_ids), 1)
 
+    def test_not_add_due_cost_for_partner_exclude_expense(self):
+        # ---- Set Service in Company Config
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        # ---- Exclude expense for partner
+        self.invoice.partner_id.riba_exclude_expenses = True
+        # ---- Validate Invoice
+        self.invoice.action_invoice_open()
+        # ---- Test Invoice has 1 line, no collection fees added because
+        # ---- the partner is excluded from due costs
+        self.assertEqual(len(self.invoice2.invoice_line_ids), 1)
+
     def test_delete_due_cost_line(self):
         # ---- Set Service in Company Config
         self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
