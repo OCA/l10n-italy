@@ -13,6 +13,7 @@
             <group name="accounting_entries" position="after">
                 <group string="C/O" name="riba">
                     <field name="group_riba" />
+                    <field name="riba_exclude_expenses" />
                 </group>
             </group>
         </field>
