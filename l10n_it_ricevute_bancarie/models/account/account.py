@@ -158,7 +158,8 @@ class AccountInvoice(models.Model):
                 invoice.type != 'out_invoice' or not
                 invoice.payment_term_id or not
                 invoice.payment_term_id.riba or
-                invoice.payment_term_id.riba_payment_cost == 0.0
+                invoice.payment_term_id.riba_payment_cost == 0.0 or
+                invoice.partner_id.commercial_partner_id.riba_exclude_expenses
             ):
                 continue
             if not invoice.company_id.due_cost_service_id:
