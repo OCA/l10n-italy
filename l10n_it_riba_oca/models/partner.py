@@ -33,3 +33,6 @@ class ResPartner(models.Model):
         domain=_domain_property_riba_supplier_company_bank_id,
         help="Bank account used for the RiBa of this supplier.",
     )
+    riba_exclude_expenses = fields.Boolean(
+        string="Exclude expenses Ri.Ba.",
+    )
