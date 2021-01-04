@@ -16,7 +16,7 @@
                                         <field name="invoice_id"
                                                domain="[
                                                       ('type', 'in', ('in_invoice', 'in_refund')),
-                                                      ('state', 'in', ('draft', 'proforma', 'proforma2')),
+                                                      ('state', '!=', 'cancel'),
                                                       ('fatturapa_attachment_in_id', '=', False)]"
                                                context="{
                                                        'form_view_ref': 'account.invoice_supplier_form',
