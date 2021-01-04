@@ -91,10 +91,11 @@
             <field name="model">fatturapa.attachment.in</field>
             <field name="arch" type="xml">
                 <tree string="Xml Attachment">
-                    <field name="name"></field>
-                    <field name="create_date"></field>
+                    <field name="name"/>
+                    <field name="create_date"/>
                     <field name="xml_supplier_id"/>
                     <field name="invoices_number"/>
+                    <field name="invoices_total" sum="Bills Total"/>
                     <field name="registered"/>
                     <field name="in_invoice_ids"/>
                 </tree>
