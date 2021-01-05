@@ -34,26 +34,14 @@ class TestFiscalCode(TransactionCase):
         # Wrong FC
         with self.assertRaises(ValidationError):
             self.env["res.partner"].create(
-                {
-                    "name": "Person",
-                    "is_company": False,
-                    "fiscalcode": "123",
-                }
+                {"name": "Person", "is_company": False, "fiscalcode": "123"}
             )
         # Correct FC
         self.env["res.partner"].create(
-            {
-                "name": "Person",
-                "is_company": False,
-                "fiscalcode": "RSSMRA84H04H501X",
-            }
+            {"name": "Person", "is_company": False, "fiscalcode": "RSSMRA84H04H501X"}
         )
         # Empty FC
-        self.env["res.partner"].create(
-            {
-                "name": "Person",
-            }
-        )
+        self.env["res.partner"].create({"name": "Person"})
         # FC is VAT number
         self.env["res.partner"].create(
             {

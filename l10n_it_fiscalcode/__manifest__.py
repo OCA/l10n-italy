@@ -6,7 +6,7 @@
 
 {
     "name": "ITA - Codice fiscale",
-    "version": "14.0.1.0.1",
+    "version": "13.0.1.0.1",
     "development_status": "Production/Stable",
     "category": "Localization/Italy",
     "author": "Link IT s.r.l., "
@@ -16,9 +16,7 @@
     "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
     "depends": ["base_vat"],
-    "external_dependencies": {
-        "python": ["codicefiscale"],
-    },
+    "external_dependencies": {"python": ["codicefiscale"]},
     "data": [
         "security/ir.model.access.csv",
         "data/res.city.it.code.csv",
