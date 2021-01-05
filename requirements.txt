@@ -2,6 +2,7 @@
 asn1crypto
 codicefiscale
 elementpath
+num2words
 openupgradelib
 unidecode
 xmlschema
