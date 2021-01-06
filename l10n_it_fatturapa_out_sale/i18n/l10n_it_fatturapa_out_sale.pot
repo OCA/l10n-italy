@@ -14,14 +14,27 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_fatturapa_out_sale
+#: model:ir.model,name:l10n_it_fatturapa_out_sale.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_sale
 #: model:ir.model,name:l10n_it_fatturapa_out_sale.model_wizard_export_fatturapa
 msgid "Export E-invoice"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_sale
+#: field:account.config.settings,fatturapa_sale_order_data:0
 #: field:account.invoice,fatturapa_sale_order_data:0
+#: field:res.company,fatturapa_sale_order_data:0
 #: field:res.partner,fatturapa_sale_order_data:0
 msgid "Include sale order data in e-invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_sale
+#: field:account.config.settings,fatturapa_out_sale_internal_ref:0
+#: field:res.company,fatturapa_out_sale_internal_ref:0
+msgid "Internal sale order reference"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_sale
@@ -32,5 +45,11 @@ msgstr ""
 #. module: l10n_it_fatturapa_out_sale
 #: model:ir.model,name:l10n_it_fatturapa_out_sale.model_res_partner
 msgid "Partner"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_sale
+#: help:account.config.settings,fatturapa_out_sale_internal_ref:0
+#: help:res.company,fatturapa_out_sale_internal_ref:0
+msgid "Put in e-invoice reference to internal order, instead of reference of customer."
 msgstr ""
 
