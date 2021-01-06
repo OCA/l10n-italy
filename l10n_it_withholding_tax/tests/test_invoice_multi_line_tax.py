@@ -102,6 +102,9 @@ class TestWithholdingTax(TransactionCase):
                 'invoice_line_tax_id': [(6, 0, [self.tax22.id])],
                 'invoice_line_tax_wt_ids': [(6, 0, [self.wt1040.id, self.ena.id])],
                 })]
+        self.recent_date = self.env['account.invoice'].search(
+            [('date_invoice', '!=', False)], order='date_invoice desc',
+            limit=1).date_invoice
         self.invoice = self.env['account.invoice'].create({
             'name': "Test Customer Invoice WT",
             'journal_id': self.env['account.journal'].search(
@@ -115,6 +118,7 @@ class TestWithholdingTax(TransactionCase):
             'type': 'out_invoice',
             'fiscal_position': self.fp.id,
             'withholding_tax': True,
+            'date_invoice': self.recent_date,
         })
         self.invoice._onchange_invoice_line_wt_ids()
         self.invoice.signal_workflow('invoice_open')
