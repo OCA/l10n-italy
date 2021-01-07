@@ -929,7 +929,7 @@ Namespace.addCategoryObject('typeBinding', 'EmailType', EmailType)
 _module_typeBindings.EmailType = EmailType
 
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}PesoType
-class PesoType (pyxb.binding.datatypes.string):
+class PesoType (pyxb.binding.datatypes.decimal):
 
     """An atomic simple type."""
 
@@ -943,7 +943,7 @@ Namespace.addCategoryObject('typeBinding', 'PesoType', PesoType)
 _module_typeBindings.PesoType = PesoType
 
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}Amount8DecimalType
-class Amount8DecimalType (pyxb.binding.datatypes.string):
+class Amount8DecimalType (pyxb.binding.datatypes.decimal):
 
     """An atomic simple type."""
 
@@ -957,7 +957,7 @@ Namespace.addCategoryObject('typeBinding', 'Amount8DecimalType', Amount8DecimalT
 _module_typeBindings.Amount8DecimalType = Amount8DecimalType
 
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}Amount2DecimalType
-class Amount2DecimalType (pyxb.binding.datatypes.string):
+class Amount2DecimalType (pyxb.binding.datatypes.decimal):
 
     """An atomic simple type."""
 
@@ -971,7 +971,7 @@ Namespace.addCategoryObject('typeBinding', 'Amount2DecimalType', Amount2DecimalT
 _module_typeBindings.Amount2DecimalType = Amount2DecimalType
 
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RateType
-class RateType (pyxb.binding.datatypes.string):
+class RateType (pyxb.binding.datatypes.decimal):
 
     """An atomic simple type."""
 
@@ -1087,7 +1087,7 @@ Namespace.addCategoryObject('typeBinding', 'GiorniTerminePagamentoType', GiorniT
 _module_typeBindings.GiorniTerminePagamentoType = GiorniTerminePagamentoType
 
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}QuantitaType
-class QuantitaType (pyxb.binding.datatypes.string):
+class QuantitaType (pyxb.binding.datatypes.decimal):
 
     """An atomic simple type."""
 
