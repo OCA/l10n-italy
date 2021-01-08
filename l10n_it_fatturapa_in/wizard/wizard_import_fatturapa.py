@@ -374,7 +374,7 @@ class WizardImportFatturapa(orm.TransientModel):
                 cr, uid,
                 [
                     ('type_tax_use', 'in', ('purchase', 'all')),
-                    ('non_taxable_nature', '=', line.Natura),
+                    ('kind_id.code', '=', line.Natura),
                     ('amount', '=', 0.0),
                 ], context=context)
             if not account_tax_ids:
