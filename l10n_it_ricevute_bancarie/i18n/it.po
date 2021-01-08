@@ -564,6 +564,12 @@ msgid "Every account is mandatory."
 msgstr "I conti sono tutti obbligatori."
 
 #. module: l10n_it_ricevute_bancarie
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_partner__riba_exclude_expenses
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_users__riba_exclude_expenses
+msgid "Exclude expenses Ri.Ba."
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.wizard_riba_file_export
 msgid "Export"
 msgstr "Esporta"
@@ -691,7 +697,7 @@ msgid "Invoice Number"
 msgstr "Numero fattura"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:244
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:245
 #, python-format
 msgid "Invoice is linked to C/O slip No. {riba}"
 msgstr "La fattura è collegata alla distinta RiBa n. {riba}"
@@ -1071,7 +1077,7 @@ msgid "Search Journal Items"
 msgstr "Ricerca movimenti contabili"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:166
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:167
 #, python-format
 msgid "Set a Service for Collection Fees in Company Config."
 msgstr ""
@@ -1225,7 +1231,7 @@ msgid "of"
 msgstr "del"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:197
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:198
 #, python-format
 msgid "{line_name} for {month}-{year}"
 msgstr "{line_name} per {month}-{year}"
