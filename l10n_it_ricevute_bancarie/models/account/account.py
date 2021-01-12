@@ -177,7 +177,8 @@ class AccountInvoice(models.Model):
             previous_date_due = move_line.mapped('date_maturity')
             pterm = self.env['account.payment.term'].browse(
                 self.payment_term_id.id)
-            pterm_list = pterm.compute(value=1, date_ref=self.date_invoice)
+            pterm_list = pterm.compute(value=invoice.amount_total,
+                                       date_ref=self.date_invoice)
             for pay_date in pterm_list[0]:
                 if not self.month_check(pay_date[0], previous_date_due):
                     # ---- Get Line values for service product
