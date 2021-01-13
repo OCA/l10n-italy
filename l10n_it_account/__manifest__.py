@@ -19,6 +19,7 @@
         'account_tax_balance',
         'web',
     ],
+    'conflicts': ['report_qweb_element_page_visibility'],
     "data": [
         'views/account_setting.xml',
         'views/account_menuitem.xml',
