@@ -5,6 +5,8 @@ import datetime
 
 from odoo import api, fields, models
 
+from ..mixins.picking_checker import PICKING_TYPES
+
 
 class StockDeliveryNoteCreateWizard(models.TransientModel):
     _name = 'stock.delivery.note.create.wizard'
@@ -33,6 +35,24 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
     type_id = fields.Many2one('stock.delivery.note.type',
                               default=_default_type,
                               required=True)
+    picking_type = fields.Selection(PICKING_TYPES,
+                                    string="Picking type",
+                                    compute='_compute_picking_type')
+
+    @api.multi
+    @api.depends('selected_picking_ids')
+    def _compute_picking_type(self):
+        picking_types = set(self.selected_picking_ids.mapped('picking_type_code'))
+        picking_types = list(picking_types)
+
+        if len(picking_types) != 1:
+            raise ValueError(
+                "You have just called this method on an "
+                "heterogeneous set of pickings.\n"
+                "All pickings should have the same "
+                "'picking_type_code' field value.")
+
+        self.picking_type = picking_types[0]
 
     @api.model
     def check_compliance(self, pickings):

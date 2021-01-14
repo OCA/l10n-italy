@@ -17,4 +17,9 @@
         <field name="category_id" ref="l10n_it_delivery_note_base.module_category_inventory_checkboxes" />
     </record>
 
+    <record id="can_unlink_ddt" model="res.groups">
+        <field name="name">Allow to unlink delivery note</field>
+        <field name="category_id" ref="l10n_it_delivery_note_base.module_category_inventory_checkboxes" />
+    </record>
+
 </odoo>

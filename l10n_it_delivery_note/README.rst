@@ -1,5 +1,5 @@
 ============================
-ITA - Documento di trasporto
+ITA - Documento di Trasporto
 ============================
 
 .. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -10,51 +10,34 @@ ITA - Documento di trasporto
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
-    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
-    :alt: License: AGPL-3
-.. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_delivery_note
-    :alt: OCA/l10n-italy
-.. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-italy-12-0/l10n-italy-12-0-l10n_it_delivery_note
+.. |badge2| image:: https://img.shields.io/badge/github-OCA%2Fl10n_it_delivery_note-lightgray.png?logo=github
+    :target: https://github.com/OCA/l10n_it_delivery_note/tree/12.0/l10n_it_delivery_note
+    :alt: OCA/l10n_it_delivery_note
+.. |badge3| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
+    :target: https://translation.odoo-community.org/projects/l10n_it_delivery_note-12-0/l10n_it_delivery_note-12-0-l10n_it_delivery_note
     :alt: Translate me on Weblate
-.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/122/12.0
-    :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| 
 
 **English**
 
 This module manage the Italian DDT (Delivery note).
 
-From a picking is possible to generate a Delivery Note and group more picking in one delivery note. It's also possible to invoice from the delivery note form.
+From a Picking is possible to generate a Delivery note, group more picking in one delivery note. Is possible to invoice from the Delivery note form.
 
-This module is alternative to :code:`l10n_it_ddt`, it follows the Odoo way to process sale orders, pickings and invoices.
-
-You can't have both :code:`l10n_it_ddt` and :code:`l10n_it_delivery_note` installed together.
-
-There are two available settings:
-
-- Base (default): one picking, one DN.
-- Advanced: more picking in one DN.
+This module is alternative to DDT :code:`l10n_it_ddt` it follow the odoo way to process sale order, picking and invoice.
 
 
 **Italiano**
 
 Questo modulo consente di gestire i DDT.
 
-Da un prelievo è possibile generare un DDT e raggruppare più prelievi in un DDT. È anche possibile fatturare dalla scheda del DDT.
+Questo modulo è un alternativa al modulo DDT :code:`l10n_it_ddt` segue la modalità di odoo di gestire ordini di vendita, picking e fatture.
+Non è possibile avere installato contemporaneamente  :code:`l10n_it_ddt` e :code:`l10n_it_delivery_note`.
 
-Questo modulo è un alternativa al modulo :code:`l10n_it_ddt`, segue la modalità Odoo di gestire ordini di vendita, prelievi e fatture.
-
-Non è possibile avere installati contemporaneamente :code:`l10n_it_ddt` e :code:`l10n_it_delivery_note`.
-
-Ci sono due impostazioni possibili.
-
-- Base (predefinita): un prelievo, un DDT.
-- Avanzata: più prelievi in un DDT.
+Ci sono due impostazioni possibili:
+Base di default un picking un DDT.
+Avanzato più picking in un DDT.
 
 
 **Table of contents**
@@ -65,99 +48,83 @@ Ci sono due impostazioni possibili.
 Configuration
 =============
 
-To configure this module, go to:
+To configure this module, you need to:
+- Inventory -> Configuration -> Settings - Delivery note
 
-1. *Inventory → Configuration → Settings - Delivery Notes*
+Use the advanced delivery notes behaviour allow to menage more picking on one delivery note.
+- Inventory -> Configuration -> Warehouse Management -> Delivery note types
 
-   Checking 'Use Advanced DN Features' allows you to manage more picking on one delivery note.
+is possible to indicate in delivery note type if the product price have to be printed in the delivery note report/slip
+- Inventory -> Configuration -> Delivery notes -> Condition of trasport
+- Inventory -> Configuration -> Delivery notes -> Appearances of goods
+- Inventory -> Configuration -> Delivery notes -> Reasons of trasport
+- Inventory -> Configuration -> Delivery notes -> Methods of trasport
 
-2. *Inventory → Configuration → Warehouse Management → Delivery Note Types*
-
-   In delivery note type you can specify if the product price have to be printed in the delivery note report/slip.
-
-   - *Inventory → Configuration → Delivery Notes → Conditions of Transport*
-   - *Inventory → Configuration → Delivery Notes → Appearances of Goods*
-   - *Inventory → Configuration → Delivery Notes → Reasons of Transport*
-   - *Inventory → Configuration → Delivery Notes → Methods of Transport*
-
-3. *Settings → User & Companies → Users*
-
-   In the user profile settings, "Show product information in DN lines" allows showing prices in the form.
+- Settings -> User & Companies -> Users - "Show product information in the delivery note lines" allow to show the price in the form
 
 Usage
 =====
 
-Funzionalità base
-~~~~~~~~~~~~~~~~~
+Funzionalità base.
 
-Quando un prelievo viene validato compare una scheda DDT.
+Quando un picking è validato si visualizza un tab DdT.
+Dal tab "Crea nuovo" si apre un wizard dove scegliere il tipo di DDT e poi conferma. Immettere i dati richiesti poi "Valida" per numerare il DDT.
+Una volta Validato il DDT è possibile emettere fattura direttamente dal DDT, se il DDT è di tipo consegna a cliente (outgoing) e si hanno i permessi sull'utente.
+E' possibile annullare il DDT reimpostarlo in bozza e poi modificarlo. Se il DDT è fatturato il numero e data non sono modificabili.
+per i trasferimenti tra magazzini creare un picking di tipo interno, con le ubicazioni relative, validare il picking e il tab DDT viene visualizzato.
+è possibile anche avere i ddt in ingresso ovvero validato il picking si apre il tab DDT per indicare il numero DDT fornitore e data .
 
-Nella scheda fare clic su "Crea nuovo", si apre un procedura guidata dove scegliere il tipo di DDT, quindi confermare. Immettere i dati richiesti e poi fare clic su "Valida" per numerare il DDT.
+Funzionalità Avanzata.
 
-Una volta validato, è possibile emettere fattura direttamente dal DDT se il DDT stesso è di tipo consegna a cliente (In uscita) e si hanno i permessi sull'utente.
-
-È possibile annullare il DDT, reimpostarlo a bozza e poi modificarlo. Se il DDT è fatturato il numero e la data non sono modificabili.
-
-Per i trasferimenti tra magazzini creare un prelievo di tipo interno con le relative ubicazioni. Validare il prelievo visualizza la scheda DDT.
-
-È possibile anche avere DDT in ingresso, ovvero dopo la validazione del prelievo selezionare la scheda per indicare il numero del DDT fornitore e la data.
-
-Funzionalità avanzata
-~~~~~~~~~~~~~~~~~~~~~
-
-Vengono attivate varie funzionalità aggiuntive:
-
-- più prelievi per un DDT
-- selezione multipla di prelievi e generazione dei DDT
-- aggiunta righe nota e righe sezione descrittive.
+vengono attivate varie funzionalità aggiuntive:
+- più picking per un DDT
+- selezione multipla di picking e generazione di DDT
+- aggiunta righe note e righe sezione descrittive.
 - lista dei DDT.
 
-Il report DDT stampa in righe aggiuntive i lotti/seriali e le scadenze del prodotto.
+Il report DDT stampa in righe aggiuntive i lotti/ seriali scadenze del prodotto.
 
-Il prezzo può essere indicato anche nel report DDT se nel tipo DDT è indicata la stampa prezzi.
-La visibilità dei prezzi si trova nei permessi dell'utente.
+Il prezzo può essere indicato anche nel report DDT se il tiipo DDT è indicata la stampa prezzi.
+La visibilità dei prezzi è sui permessi dell'utente.
 
-Le fatture generate dai DDT contengono i riferimenti al DDT stesso nelle righe nota.
+Le fatture generate dai DDT hanno nelle righe note i riferimenti al DDT.
 
 
-Migrazione dei dati da *l10n_it_ddt*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Se è installato :code: “l10n_it_ddt” seguire i seguenti passi.
 
-Il modulo presenta una funzione di migrazione dei dati dal modulo OCA *l10n_it_ddt* da eseguire manualmente.
-Al momento, non è ancora presente un menù oppure una voce da interfaccia che permetta di eseguire questa operazione; bensì, è stato definito un comando da CLI da eseguire all’avvio di Odoo.
+Migrazione dei dati da “l10n_it_ddt”
+Il modulo presenta una funzione di migrazione dei dati dal modulo OCA “l10n_it_ddt” da eseguire manualmente.
+Al momento, non è ancora presente un menù oppure una voce in interfaccia che permetta di eseguire questa operazione; bensì, è stato definito un CLI da eseguire all’avvio di Odoo.
 Di seguito, una piccola lista di passi da seguire per portare a termine la migrazione:
 
-1. Eseguire un back-up del database.
+Eseguire un back-up del database.
+Questa procedura di migrazione dei dati è stata, sì, sviluppata e testata MA solamente per un numero limitato di casi.
+NON mi sento, assolutamente, confidente nel definirla una feature production-ready.
 
-   Questa procedura di migrazione dei dati è stata sì sviluppata e testata, MA solamente per un numero limitato di casi.
-   NON è consigliata in alcun modo come funzionalità production-ready.
 
-2. Installare il modulo *l10n_it_delivery_note* SENZA prima disinstallare il modulo OCA *l10n_it_ddt*.
+Installare il modulo “l10n_it_delivery_note” SENZA prima disinstallare il modulo OCA “l10n_it_ddt”.
 
-   N.B.: NON iniziare ad usare il modulo *l10n_it_delivery_note* senza aver prima migrato i dati.
-   Potrebbero verificarsi, in prima battuta, problemi legati alla numerazione dei documenti creati.
-   Inoltre, la procedura di migrazione stessa è progettata affinché verifichi che non siano presenti documenti di *l10n_it_delivery_note*; qualora ne rilevi alcuni, si interromperà non eseguendo alcuna migrazione.
+NON iniziare ad usare il modulo “l10n_it_delivery_note” senza aver prima migrato i dati.
+Potrebbero verificarsi, in prima battuta, problemi legati alla numerazione dei documenti creati.
+Inoltre, la procedura di migrazione stessa, è progettata affinché verifichi non siano presenti documenti di “l10n_it_delivery_note”; qualora ne rilevi alcuni, si interromperà non eseguendo alcuna migrazione.
 
-3. Terminata l’installazione del modulo, terminare in sicurezza il processo di Odoo.
 
-4. Lanciare Odoo, nella maniera in cui si è soliti fare, aggiungendo alcuni parametri al comando d’avvio:
+Terminata l’installazione del modulo, terminate in sicurezza il processo di Odoo.
+Lanciare, nella maniera in cui si è soliti fare, Odoo aggiungendo alcuni parametri al comando d’avvio:
 
-   `./odoo-bin migratel10nitddt --database <nome_database> [...]`
+./odoo-bin migrate_ddt_data --database <nome_database> [...]
 
-5. Una volta terminata l’esecuzione della procedura, verificare che tutti i documenti siano stati migrati con successo e nel modo atteso.
-
-6. Verificata l’esattezza dei dati migrati, disinstallare il modulo *l10n_it_ddt*.
-
-È possibile iniziare ad utilizzare *l10n_it_delivery_note*.
-
+Una volta terminata l’esecuzione della procedura, verificare che tutti i documenti siano stati migrati con successo e nella maniera in cui ci si aspetterebbe.
+Verificata l’esattezza dei dati migrati, disinstallare il modulo “l10n_it_ddt”.
+È possibile iniziare ad utilizzare “l10n_it_delivery_note”.
 
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
+Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n_it_delivery_note/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_delivery_note%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n_it_delivery_note/issues/new?body=module:%20l10n_it_delivery_note%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -196,17 +163,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-.. |maintainer-As400it| image:: https://github.com/As400it.png?size=40px
-    :target: https://github.com/As400it
-    :alt: As400it
-.. |maintainer-Byloth| image:: https://github.com/Byloth.png?size=40px
-    :target: https://github.com/Byloth
-    :alt: Byloth
-
-Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
-
-|maintainer-As400it| |maintainer-Byloth| 
-
-This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_delivery_note>`_ project on GitHub.
+This module is part of the `OCA/l10n_it_delivery_note <https://github.com/OCA/l10n_it_delivery_note/tree/12.0/l10n_it_delivery_note>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

@@ -9,12 +9,12 @@
 
         <record id="base.user_root" model="res.users">
             <field name="groups_id"
-                   eval="[(4, ref('can_change_number'))]" />
+                   eval="[(6,0, [ref('can_change_number'), ref('can_unlink_ddt')])]" />
         </record>
 
         <record id="base.user_admin" model="res.users">
             <field name="groups_id"
-                   eval="[(4, ref('can_change_number'))]" />
+                   eval="[(6,0, [ref('can_change_number'), ref('can_unlink_ddt')])]" />
         </record>
 
     </data>

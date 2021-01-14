@@ -10,129 +10,90 @@
     <template id="delivery_note_report_template">
         <t t-call="web.external_layout">
             <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)" />
+
+            <!--if is an outgoing move -->
+            <t id="partner_outgoing" t-if="doc.picking_type=='outgoing'">
+                <t t-set="address">
+                    <h4>
+                        <strong>Delivery address:</strong>
+                    </h4>
+                    <div t-field="doc.partner_shipping_id"
+                        t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                    <p t-if="doc.partner_shipping_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_shipping_id.vat"/></p>
+                </t>
+                <t t-set="information_block">
+                    <h4>
+                        <strong>Customer:</strong>
+                    </h4>
+                    <t t-if="doc.sale_ids">
+                        <div t-field="doc.sale_ids[0].partner_id"
+                            t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                        <p t-if="doc.sale_ids[0].partner_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.sale_ids[0].partner_id.vat"/></p>
+                    </t>
+                    <t t-else="">
+                        <div t-field="doc.partner_id"
+                            t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                        <p t-if="doc.partner_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_id.vat"/></p>
+                    </t>
+                </t>
+            </t>
+
+            <!--if is an internal move -->
+            <t id="partner_outgoing" t-if="doc.picking_type=='internal'">
+                <t t-set="address">
+                    <h4>
+                        <strong>Delivery address:</strong>
+                    </h4>
+                    <t t-if="doc.partner_id.id == doc.partner_sender_id.id">
+                        <div t-field="doc.partner_shipping_id"
+                            t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                        <p t-if="doc.partner_shipping_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_shipping_id.vat"/></p>
+                    </t>
+                    <t t-if="doc.partner_id.id != doc.partner_sender_id.id">
+                        <t t-if="doc.partner_sender_id.id != doc.partner_shipping_id.id">
+                            <small>
+                                <div t-field="doc.partner_sender_id"
+                                    t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                                <p t-if="doc.partner_sender_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_sender_id.vat"/></p>
+                            </small>
+                            <div t-field="doc.partner_shipping_id"
+                                t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                            <p t-if="doc.partner_shipping_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_shipping_id.vat"/></p>
+                        </t>
+                        <t t-else="">
+                            <div t-field="doc.partner_sender_id"
+                                t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                            <p t-if="doc.partner_sender_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_sender_id.vat"/></p>
+                        </t>
+                    </t>
+                </t>
+                <t t-if="location != doc.picking_ids[0].location_id.id">
+                    <t t-set="information_block">
+                        <h4>
+                            <strong>Warehouse:</strong>
+                        </h4>
+                        <p>
+                            <t t-esc="doc.get_location_address(doc.picking_ids[0].location_id.id)"/>
+                        </p>
+                    </t>
+                </t>
+            </t>
+
             <div class="page">
-
-                <!--if is an outgoing move -->
-                <div t-if="doc.picking_type=='outgoing'" style="display:table;width:100%;padding:1px;">
-                    <div style="display:table-row;width:100%;">
-                        <div class="well" style="display:table-cell;width:49%;padding:10px;vertical-align:top;">
-                            <h4>
-                                <strong>Customer:</strong>
-                            </h4>
-                            <strong>
-                                <span t-field="doc.partner_id.display_name" />
-                            </strong>
-                            <br/>
-                            <span t-field="doc.partner_id.street" />
-                            <span t-field="doc.partner_id.street2" />
-                            <br/>
-                            <span t-field="doc.partner_id.zip" />
-                            <span t-field="doc.partner_id.city" />
-                            (<span t-field="doc.partner_id.state_id.code" />)
-                            <span t-field="doc.partner_id.country_id" />
-                            <br/>
-                            <t t-if="doc.partner_id.phone">
-                                <span>Phone:</span>
-                                <span t-field="doc.partner_id.phone" />
-                            </t><br/>
-                            <t t-if="doc.partner_id.vat">
-                                <span>VAT:</span>
-                                <span t-field="doc.partner_shipping_id.vat" />
-                            </t>
-                        </div>
-
-                        <div style="display:table-cell;width:1%;">
-                        </div>
-
-                        <div class="well" style="display:table-cell;width:50%;padding:10px;vertical-align:top;">
-                            <h4>
-                                <strong>Delivery address:</strong>
-                            </h4>
-                            <strong>
-                                <span t-field="doc.partner_shipping_id.name" />
-                            </strong>
-                            <br/>
-                            <span t-field="doc.partner_shipping_id.street" />
-                            <span t-field="doc.partner_shipping_id.street2" />
-                            <br/>
-                            <span t-field="doc.partner_shipping_id.zip" />
-                            <span t-field="doc.partner_shipping_id.city" />
-                            (<span t-field="doc.partner_shipping_id.state_id.code" />)
-                            <span t-field="doc.partner_shipping_id.country_id" />
-                            <br/>
-                            <t t-if="doc.partner_shipping_id.phone">
-                                <span>Phone:</span>
-                                <span t-field="doc.partner_shipping_id.phone" />
-                            </t><br/>
-                            <t t-if="doc.partner_shipping_id.vat">
-                                <span>VAT:</span>
-                                <span t-field="doc.partner_shipping_id.vat" />
-                            </t>
-                        </div>
-                    </div>
-                </div>
-
-                <!--if is an internal move -->
-                <div t-if="doc.picking_type=='internal'" style="display:table;width:100%;padding:1px;">
-                    <div style="display:table-row;width:100%;">
-                        <div class="well" style="display:table-cell;width:49%;padding:10px;vertical-align:top;">
-                            <h4>
-                                <strong>Warehouse:</strong>
-                            </h4>
-                            <t t-foreach="doc.picking_ids" t-as="pick">
-                                <t t-if="location != pick.location_id.id">
-                                    <p>
-                                        <span t-esc="pick.location_id.display_name"/> - <t t-esc="doc.get_location_address(pick.location_id.id)"/>
-                                    </p>
-                                </t>
-                            </t>
-                        </div>
-
-                        <div style="display:table-cell;width:1%;">
-                        </div>
-
-                        <div class="well" style="display:table-cell;width:50%;padding:10px;vertical-align:top;">
-                            <h4>
-                                <strong>Delivery address:</strong>
-                            </h4>
-                            <strong>
-                                <span t-field="doc.partner_id.display_name" />
-                            </strong>
-                            <br/>
-                            <span t-field="doc.partner_id.street" />
-                            <span t-field="doc.partner_id.street2" />
-                            <br/>
-                            <span t-field="doc.partner_id.zip" />
-                            <span t-field="doc.partner_id.city" />
-                            (<span t-field="doc.partner_id.state_id.code" />)
-                            <span t-field="doc.partner_id.country_id" />
-                            <br/>
-                            <t t-if="doc.partner_id.phone">
-                                <span>Phone:</span>
-                                <span t-field="doc.partner_id.phone" />
-                            </t><br/>
-                            <t t-if="doc.partner_id.vat">
-                                <span>VAT:</span>
-                                <span t-field="doc.partner_shipping_id.vat" />
-                            </t>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
+                <div id="warehouse_outgoing">
                     <div t-if="doc.picking_type=='outgoing'">
                         <strong>Warehouse:</strong>
-                        <t t-foreach="doc.picking_ids" t-as="pick">
-                            <p>
-                                <t t-esc="doc.get_location_address(pick.location_id.id)"/><br/>
-                            </p>
-                        </t>
+                        <p>
+                            <t t-esc="doc.get_location_address(doc.picking_ids[0].location_id.id)"/>
+                        </p>
                     </div>
+                </div>
+                <div id="dn_terms">
                     <strong> Delivery Note: </strong>
                     Under the terms of Italian Presidential Decree 472-96 of 14.08.1996
                 </div>
 
-                <h2>
+                <h2 id="document_title">
                     <span t-if="doc.state in ['draft']">Draft document:</span>
                     <span t-if="doc.state not in ['draft']">Document:</span>
                     <small>
@@ -144,26 +105,24 @@
                     </small>
                 </h2>
 
-                <table style="padding-top:10px;" class="table table-condensed delivery_data">
-                    <tr>
-                        <td width="33%">
-                            <div name="transport" style="font-size:12px;">Reason of Transport</div>
-                            <div t-field="doc.transport_reason_id" />
-                        </td>
-                        <td width="33%">
-                            <div name="carriage" style="font-size:12px;">Carriage Condition</div>
-                            <div t-field="doc.transport_condition_id" />
-                        </td>
-                        <td width="33%">
-                            <div name="method_transport" style="font-size:12px;">Method of Transport / Carrier</div>
-                            <span t-field="doc.transport_method_id" name="transport_method_id" />
-                            <t t-if="doc.transport_method_id and doc.carrier_id"> / </t>
-                            <span t-field="doc.carrier_id" name="carrier_id" />
-                        </td>
-                    </tr>
-                </table>
+                <div id="delivery_data_information" class="row mt32 mb32">
+                    <div t-if="doc.transport_reason_id" class="col-3 bm-2">
+                        <strong>Reason of Transport:</strong>
+                        <p t-field="doc.transport_reason_id" class="m-0"/>
+                    </div>
+                    <div t-if="doc.transport_condition_id" class="col-3 bm-2">
+                        <strong>Carriage Condition:</strong>
+                        <p t-field="doc.transport_condition_id" class="m-0"/>
+                    </div>
+                    <div t-if="doc.transport_method_id" class="col-3 bm-2">
+                        <strong>Method of Transport / Carrier:</strong>
+                        <span t-field="doc.transport_method_id" class="m-0"/>
+                        <t t-if="doc.transport_method_id and doc.carrier_id"> / </t>
+                        <span t-field="doc.carrier_id" class="m-0" />
+                    </div>
+                </div>
 
-                <table class="mt32 mb32 o_main_table table table-sm">
+                <table id="product_data" class="mt32 mb32 o_main_table table table-sm">
                     <thead>
                         <tr>
                             <t t-set="colspan" t-value="5"/>
@@ -208,8 +167,8 @@
                                     <td class="text-right">
                                         <span t-field="line.product_qty" />
                                     </td>
-                                    <td class="text-right">
-                                        <span t-field="line.product_uom_id" groups="uom.group_uom" />
+                                    <td class="text-right" groups="uom.group_uom">
+                                        <span t-field="line.product_uom_id" />
                                     </td>
                                     <td t-if="doc.print_prices" class="text-right">
                                         <span t-field="line.price_unit" />
@@ -256,7 +215,7 @@
                     </tbody>
                 </table>
 
-                <table class="table table-condensed table-bordered delivery_data">
+                <table id="parcel_info" class="table table-condensed table-bordered delivery_data">
                     <tr>
                         <td>
                             <div name="good_description" style="font-size:10px;">Goods Description</div>
