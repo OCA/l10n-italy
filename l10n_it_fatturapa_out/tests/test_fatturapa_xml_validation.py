@@ -385,52 +385,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, 'IT06363391001_00008.xml')
 
-    def test_9_xml_export(self):
-        self.tax_22.price_include = True
-        self.set_sequences(18, '2018-01-07')
-        partner = self.res_partner_fatturapa_4
-        partner.onchange_country_id_e_inv()
-        partner.write(partner._convert_to_write(partner._cache))
-        self.assertEqual(partner.codice_destinatario, 'XXXXXXX')
-        invoice = self.invoice_model.create({
-            'date_invoice': '2018-01-07',
-            'partner_id': partner.id,
-            'journal_id': self.sales_journal.id,
-            'account_id': self.a_recv.id,
-            'payment_term_id': self.account_payment_term.id,
-            'user_id': self.user_demo.id,
-            'type': 'out_invoice',
-            'currency_id': self.AED.id,
-            'invoice_line_ids': [
-                (0, 0, {
-                    'account_id': self.a_sale.id,
-                    'product_id': self.product_product_10.id,
-                    'name': 'Mouse Optical',
-                    'quantity': 1,
-                    'uom_id': self.product_uom_unit.id,
-                    'price_unit': 10,
-                    'invoice_line_tax_ids': [(6, 0, {
-                        self.tax_22.id})]
-                }),
-                (0, 0, {
-                    'account_id': self.a_sale.id,
-                    'product_id': self.product_order_01.id,
-                    'name': 'Zed+ Antivirus',
-                    'quantity': 1,
-                    'uom_id': self.product_uom_unit.id,
-                    'price_unit': 4,
-                    'invoice_line_tax_ids': [(6, 0, {
-                        self.tax_22.id})]
-                })],
-        })
-        invoice.action_invoice_open()
-        res = self.run_wizard(invoice.id)
-        attachment = self.attach_model.browse(res['res_id'])
-        self.set_e_invoice_file_id(attachment, 'IT06363391001_00009.xml')
-
-        xml_content = base64.decodebytes(attachment.datas)
-        self.check_content(xml_content, 'IT06363391001_00009.xml')
-
     def test_10_xml_export(self):
         # invoice with descriptive line
         self.set_sequences(10, '2019-08-07')
@@ -598,6 +552,66 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
 
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, 'IT06363391001_00013.xml')
+
+    def test_15_xml_export(self):
+        """
+￼       create an invoice in USD
+
+￼       expect an XML with values in EUR
+￼       """
+
+        usd = self.env.ref("base.USD")
+        self.env["res.currency.rate"].create(
+            {
+                "name": "2021-12-16",
+                "rate": 1.17,
+                "currency_id": usd.id,
+                "company_id": self.env.user.company_id.id,
+            }
+        )
+        self.set_sequences(1, '2021-12-16')
+        self.tax_00_ns.kind_id = self.env.ref("l10n_it_account_tax_kind.n3_2")
+        invoice = self.invoice_model.create({
+            'type': 'out_invoice',
+            'currency_id': usd.id,
+            'date_invoice': '2021-12-16',
+            'partner_id': self.res_partner_fatturapa_0.id,
+            'payment_term_id': self.account_payment_term.id,
+            'journal_id': self.sales_journal.id,
+            'account_id': self.a_recv.id,
+            'user_id': self.user_demo.id,
+            'invoice_line_ids': [
+                (0, 0, {
+                    'product_id': self.product_product_10.id,
+                    'account_id': self.a_sale.id,
+                    'name': 'Cabinet with Doors',
+                    'quantity': 1,
+                    'price_unit': 14.00,
+                    'uom_id': self.product_uom_unit.id,
+                    'invoice_line_tax_ids': [(6, 0, {
+                        self.tax_00_ns.id})]
+                })],
+        })
+        invoice.action_invoice_open()
+        self.assertEqual(invoice.invoice_line_ids[0].price_unit, 14.00)
+
+        invoice.company_id.xml_divisa_value = "force_eur"
+        res = self.run_wizard(invoice.id)
+        attachment = self.attach_model.browse(res['res_id'])
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00015.xml')
+        xml_content = base64.decodebytes(attachment.datas)
+        with open("/tmp/IT06363391001_00015.xml", "wb") as o:
+            o.write(xml_content)
+        self.check_content(xml_content, 'IT06363391001_00015.xml')
+        attachment.unlink()
+
+        invoice.company_id.xml_divisa_value = "keep_orig"
+        res = self.run_wizard(invoice.id)
+        attachment = self.attach_model.browse(res['res_id'])
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00015a.xml')
+        xml_content = base64.decodebytes(attachment.datas)
+        self.check_content(xml_content, 'IT06363391001_00015a.xml')
+        attachment.unlink()
 
     def test_unlink(self):
         e_invoice = self._create_e_invoice()

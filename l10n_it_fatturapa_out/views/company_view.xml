@@ -10,7 +10,15 @@
                 <xpath expr="//field[@name='fatturapa_preview_style']/parent::div" position="after">
                     <div class="row">
                         <label for="max_invoice_in_xml" class="col-lg-3 o_light_label"/>
-                        <field name="max_invoice_in_xml"/>
+                        <field
+                            name="max_invoice_in_xml"
+                            options="{'no_create': True, 'no_open':True}"
+                        />
+                        <label for="xml_divisa_value" class="col-lg-3 o_light_label" />
+                        <field
+                            name="xml_divisa_value"
+                            options="{'no_create': True, 'no_open':True}"
+                        />
                     </div>
                 </xpath>
             </field>
