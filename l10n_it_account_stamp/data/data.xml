@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<openerp>
+<odoo>
     <data noupdate="1">
 
         <record id="l10n_it_account_stamp_2_euro" model="product.product">
@@ -10,7 +10,8 @@
             <field
                 name="description_sale"
             >Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree June
-17, 2014</field>
+                17, 2014
+            </field>
             <field name="is_stamp" eval="True" />
             <field name="auto_compute" eval="True" />
             <field name="stamp_apply_min_total_base" eval="77.47" />
@@ -26,4 +27,4 @@
         </record>
 
     </data>
-</openerp>
+</odoo>
