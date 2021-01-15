@@ -29,8 +29,7 @@
                             name="stamp_apply_tax_ids"
                             attrs="{'invisible': ['|',('auto_compute', '=', False), ('is_stamp', '=', False)]}"
                             widget="many2many_tags"
-                        >
-                        </field>
+                        />
                     </group>
                 </group>
 
