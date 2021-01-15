@@ -2,8 +2,6 @@
 
 from odoo import _, api, exceptions, fields, models
 
-import odoo.addons.decimal_precision as dp
-
 
 class ProductTemplate(models.Model):
     _inherit = "product.template"
@@ -25,7 +23,7 @@ class ProductTemplate(models.Model):
         string="Stamp taxes",
     )
     stamp_apply_min_total_base = fields.Float(
-        "Stamp applicability min total base", digits=dp.get_precision("Account")
+        "Stamp applicability min total base", digits="Account"
     )
     is_stamp = fields.Boolean("Is a stamp")
     auto_compute = fields.Boolean("Auto-compute")

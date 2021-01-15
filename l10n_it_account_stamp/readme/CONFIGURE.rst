@@ -10,7 +10,7 @@ Modalità manuale:
 
 - andare sul prodotto "Imposta di bollo 2 euro" e deselezionare la casella "Calcolo automatico".
 
-- per ciascuna fattura, abilitare manualmente la casella di selezione "Imposta di bollo".
+- per ciascuna fattura, abilitare manualmente la casella di selezione "Imposta di bollo". L'applicabilità dell'imposta di bollo verrà calcolata in base alla somma degli imponibili relativi alle imposte selezionate.
 
 Impostare i conti di ricavo/costo nella scheda "Contabilità", generalmente ricavo="Debiti per bolli" e costo="Valori bollati".
 
