@@ -6,24 +6,22 @@
 {
     "name": "ITA - Dichiarazione di intento",
     "summary": "Gestione dichiarazioni di intento",
-    "version": "12.0.0.1.6",
+    "version": "14.0.1.0.0",
     "license": "AGPL-3",
-    "author": "Francesco Apruzzese, Odoo Community Association (OCA), "
-    "Sergio Corato, Glauco Prina, Lara Baggio",
-    "website": "https://github.com/OCA/l10n-italy" "12.0/l10n_it_dichiarazione_intento",
+    "author": "Francesco Apruzzese, Sergio Corato, Glauco Prina, Lara Baggio, "
+    "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/l10n-italy",
     "depends": [
         "account",
-        "sale",
+        "sale_management",
     ],
     "data": [
+        "security/ir.model.access.csv",
+        "data/sequence.xml",
         "wizard/manually_declarations_view.xml",
         "views/account_view.xml",
         "views/dichiarazione_intento_view.xml",
         "views/company_view.xml",
         "views/account_invoice_view.xml",
-        "data/sequence.xml",
-        "security/ir.model.access.csv",
     ],
-    "installable": True,
-    "auto_install": False,
 }

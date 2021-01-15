@@ -12,7 +12,6 @@ class AccountFiscalPosition(models.Model):
     valid_for_dichiarazione_intento = fields.Boolean("Valid for declaration of intent")
 
     @api.constrains("valid_for_dichiarazione_intento", "tax_ids")
-    @api.multi
     def _check_taxes_for_dichiarazione_intento(self):
         for fiscal_position in self:
             if (
@@ -26,12 +25,3 @@ class AccountFiscalPosition(models.Model):
                     )
                     % fiscal_position.name
                 )
-
-
-class AccountMoveLine(models.Model):
-
-    _inherit = "account.move.line"
-
-    force_dichiarazione_intento_id = fields.Many2one(
-        "dichiarazione.intento", string="Force Declaration of Intent"
-    )

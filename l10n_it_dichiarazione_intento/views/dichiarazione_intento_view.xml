@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-<data>
-
     <record model="ir.ui.view" id="dichiarazione_intento_form">
         <field name="name">dichiarazione.intento.form</field>
         <field name="model">dichiarazione.intento</field>
@@ -9,43 +7,43 @@
             <form>
                 <header>
                     <button
-                            name="change_force_close"
-                            string="Force Close"
-                            type="object"
-                            attrs="{'invisible': [('state', '=', 'close')]}"
-                        />
+                        name="change_force_close"
+                        string="Force Close"
+                        type="object"
+                        attrs="{'invisible': [('state', '=', 'close')]}"
+                    />
                     <button
-                            name="change_force_close"
-                            string="Force Reopen"
-                            type="object"
-                            attrs="{'invisible': ['|', ('state', '!=', 'close'), ('force_close', '=', False)]}"
-                        />
+                        name="change_force_close"
+                        string="Force Reopen"
+                        type="object"
+                        attrs="{'invisible': ['|', ('state', '!=', 'close'), ('force_close', '=', False)]}"
+                    />
                     <field name="state" widget="statusbar" readonly="1" />
                 </header>
                 <sheet>
                     <h1 class="mt0">
                         <field
-                                name="number"
-                                readonly="1"
-                                attrs="{'invisible': [('number', '=', '')],
+                            name="number"
+                            readonly="1"
+                            attrs="{'invisible': [('number', '=', '')],
                                        'readonly':[('state','!=','valid')]}"
-                            />
+                        />
                     </h1>
                     <group>
                         <group name="main">
                             <field
-                                    name="type"
-                                    attrs="{'readonly':[('state','!=','valid')]}"
-                                />
+                                name="type"
+                                attrs="{'readonly':[('state','!=','valid')]}"
+                            />
                             <field
-                                    name="partner_id"
-                                    options="{'no_create': True}"
-                                    attrs="{'readonly':[('state','!=','valid')]}"
-                                />
+                                name="partner_id"
+                                options="{'no_create': True}"
+                                attrs="{'readonly':[('state','!=','valid')]}"
+                            />
                             <field
-                                    name="telematic_protocol"
-                                    attrs="{'readonly':[('state','!=','valid')]}"
-                                />
+                                name="telematic_protocol"
+                                attrs="{'readonly':[('state','!=','valid')]}"
+                            />
                             <field name="force_close" invisible="1" />
                         </group>
                         <group />
@@ -53,38 +51,38 @@
                     <group>
                         <group name="main_ref" string="Refs">
                             <field
-                                    name="date"
-                                    attrs="{'readonly':[('state','!=','valid')]}"
-                                />
+                                name="date"
+                                attrs="{'readonly':[('state','!=','valid')]}"
+                            />
                             <field
-                                    name="partner_document_number"
-                                    attrs="{'readonly':[('state','!=','valid')]}"
-                                />
+                                name="partner_document_number"
+                                attrs="{'readonly':[('state','!=','valid')]}"
+                            />
                             <field
-                                    name="partner_document_date"
-                                    attrs="{'readonly':[('state','!=','valid')]}"
-                                />
+                                name="partner_document_date"
+                                attrs="{'readonly':[('state','!=','valid')]}"
+                            />
                         </group>
                         <group name="valid_period" string="Valid Period">
                             <field
-                                    name="date_start"
-                                    attrs="{'readonly':[('state','!=','valid')]}"
-                                />
+                                name="date_start"
+                                attrs="{'readonly':[('state','!=','valid')]}"
+                            />
                             <field name="date_end" />
                         </group>
                     </group>
 
                     <group name="accounting" string="Accounting">
                         <field
-                                name="fiscal_position_id"
-                                widget="selection"
-                                attrs="{'readonly':[('state','!=','valid')]}"
-                            />
+                            name="fiscal_position_id"
+                            widget="selection"
+                            attrs="{'readonly':[('state','!=','valid')]}"
+                        />
                         <field
-                                name="taxes_ids"
-                                widget="many2many_tags"
-                                attrs="{'readonly':[('state','!=','valid')]}"
-                            />
+                            name="taxes_ids"
+                            widget="many2many_tags"
+                            attrs="{'readonly':[('state','!=','valid')]}"
+                        />
                     </group>
 
                     <div>
@@ -92,17 +90,17 @@
                         <field name="used_amount" class="oe_inline" nolabel="1" />
                         /
                         <field
-                                name="limit_amount"
-                                nolabel="1"
-                                class="oe_inline"
-                                attrs="{'readonly':[('state','!=','valid')]}"
-                            />
+                            name="limit_amount"
+                            nolabel="1"
+                            class="oe_inline"
+                            attrs="{'readonly':[('state','!=','valid')]}"
+                        />
                         <field
-                                name="currency_id"
-                                nolabel="1"
-                                class="oe_inline"
-                                attrs="{'readonly':[('state','!=','valid')]}"
-                            />
+                            name="currency_id"
+                            nolabel="1"
+                            class="oe_inline"
+                            attrs="{'readonly':[('state','!=','valid')]}"
+                        />
                     </div>
                     <notebook>
                         <page string="Details">
@@ -112,9 +110,9 @@
                                     <field name="date_invoice" />
                                     <field name="taxes_ids" widget="many2many_tags" />
                                     <field
-                                            name="base_amount"
-                                            string="Document Amount"
-                                        />
+                                        name="base_amount"
+                                        string="Document Amount"
+                                    />
                                     <field name="amount" />
                                 </tree>
                             </field>
@@ -139,25 +137,25 @@
                 <field name="date_start" />
                 <field name="date_end" />
                 <filter
-                        name="state_valid"
-                        string="Valid"
-                        domain="[('state','=','valid')]"
-                    />
+                    name="state_valid"
+                    string="Valid"
+                    domain="[('state','=','valid')]"
+                />
                 <filter
-                        name="state_close"
-                        string="Close"
-                        domain="[('state','=','close')]"
-                    />
+                    name="state_close"
+                    string="Close"
+                    domain="[('state','=','close')]"
+                />
                 <filter
-                        string="Partner"
-                        name="partner_group"
-                        context="{'group_by':'partner_id'}"
-                    />
+                    string="Partner"
+                    name="partner_group"
+                    context="{'group_by':'partner_id'}"
+                />
                 <filter
-                        string="State"
-                        name="state_group"
-                        context="{'group_by':'state'}"
-                    />
+                    string="State"
+                    name="state_group"
+                    context="{'group_by':'state'}"
+                />
             </search>
         </field>
     </record>
@@ -167,10 +165,10 @@
         <field name="model">dichiarazione.intento</field>
         <field name="arch" type="xml">
             <tree
-                    decoration-info="state == 'valid'"
-                    decoration-muted="state == 'close'"
-                    decoration-warning="state == 'expired'"
-                >
+                decoration-info="state == 'valid'"
+                decoration-muted="state == 'close'"
+                decoration-warning="state == 'expired'"
+            >
                 <field name="type" />
                 <field name="number" />
                 <field name="date" />
@@ -191,11 +189,9 @@
     </record>
 
     <menuitem
-            id="dichiarazione_intento_menu"
-            action="dichiarazione_intento_action"
-            parent="account.menu_finance_entries"
-            sequence="10"
-        />
-
-</data>
+        id="dichiarazione_intento_menu"
+        action="dichiarazione_intento_action"
+        parent="account.menu_finance_entries"
+        sequence="10"
+    />
 </odoo>

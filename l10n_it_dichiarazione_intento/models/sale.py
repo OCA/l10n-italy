@@ -8,7 +8,6 @@ class SaleOrder(models.Model):
 
     _inherit = "sale.order"
 
-    @api.multi
     def _set_fiscal_position(self):
         for sale in self:
             if sale.partner_id and sale.date_order:
