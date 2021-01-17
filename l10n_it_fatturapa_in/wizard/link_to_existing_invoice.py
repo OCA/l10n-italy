@@ -17,6 +17,10 @@ class WizardLinkToInvoiceLine(models.TransientModel):
     wizard_id = fields.Many2one(
         comodel_name='wizard.link.to.invoice',
     )
+    partner_id = fields.Many2one(
+        string='E-bill partner',
+        comodel_name='res.partner',
+    )
     e_invoice_nbr = fields.Integer(
         string="Bill number in XML",
         readonly=True,
@@ -99,6 +103,7 @@ class WizardLinkToInvoice(models.TransientModel):
                 FatturaBody.DatiGenerali.DatiGeneraliDocumento
             dati_riepilogo = FatturaBody.DatiBeniServizi.DatiRiepilogo
             line_vals.append({
+                'partner_id': attachment.xml_supplier_id.id,
                 'e_invoice_nbr': nbr,
                 'e_invoice_descr': descr_template.format(
                     bill_nbr=dati_generali_documento.Numero,

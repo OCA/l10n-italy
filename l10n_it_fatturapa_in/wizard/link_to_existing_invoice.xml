@@ -15,14 +15,16 @@
                                     <field name="e_invoice_descr"/>
                                         <field name="invoice_id"
                                                domain="[
+                                                      ('partner_id', '=', partner_id),
                                                       ('type', 'in', ('in_invoice', 'in_refund')),
-                                                      ('state', 'in', ('draft', 'proforma', 'proforma2')),
+                                                      ('state', 'in', ('cancel')),
                                                       ('fatturapa_attachment_in_id', '=', False)]"
                                                context="{
                                                        'form_view_ref': 'account.invoice_supplier_form',
                                                        'tree_view_ref': 'account.invoice_supplier_tree'}"
                                                options="{'no_create': True}"
                                     />
+                                    <field name="partner_id" invisible="1"/>
                                 </tree>
                             </field>
                         </group>
