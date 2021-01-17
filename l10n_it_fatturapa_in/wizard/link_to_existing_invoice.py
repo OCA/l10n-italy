@@ -133,7 +133,7 @@ class WizardLinkToInvoice(models.TransientModel):
         res.update({
             'attachment_id': attachment.id,
             'line_ids': [(0, 0, line_vals)
-                         for line_vals in lines_vals],
+                        for line_vals in lines_vals],
         })
         return res
 
