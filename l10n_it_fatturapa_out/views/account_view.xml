@@ -9,9 +9,10 @@
             <button name="preview_invoice" position="before">
                 <button name="%(action_wizard_export_fatturapa)d" type="action"
                         string="Export E-invoice" class="oe_highlight"
-                        attrs="{'invisible': ['|', '|', ('fatturapa_attachment_out_id', '!=', False), ('state' ,'not in', ['open', 'paid']), ('electronic_invoice_subjected', '=', False)]}"/>
+                        attrs="{'invisible': ['|', '|', '|', ('is_company_it', '=', False), ('fatturapa_attachment_out_id', '!=', False), ('state' ,'not in', ['open', 'paid']), ('electronic_invoice_subjected', '=', False)]}"/>
             </button>
             <field name="partner_id" position="after">
+                 <field name="is_company_it" invisible="1" />
                 <field name="electronic_invoice_subjected" invisible="1"/>
             </field>
             <field name="analytic_tag_ids" position="after">
@@ -19,7 +20,7 @@
             </field>
             <xpath expr="//notebook" position="inside">
                 <page string="Related Documents"
-                      attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">
+                      attrs="{'invisible': [('electronic_invoice_subjected', '=', False),('is_company_it', '=', False)]}">
                     <group string="Related Documents">
                         <field name="related_documents" nolabel="1">
                             <tree editable="bottom" string="Related Documents">
@@ -37,7 +38,8 @@
                 </page>
                 <page string="Electronic Invoice"
                     attrs="{'invisible': [('electronic_invoice_subjected', '=', False),
-                                          ('fatturapa_attachment_out_id', '=', False)]}">
+                                          ('fatturapa_attachment_out_id', '=', False),
+                                          ('is_company_it', '=', False)]}">
                     <group>
                         <group string="Results">
                             <field name="fatturapa_attachment_out_id"/>
@@ -48,7 +50,8 @@
                 </page>
                 <page string="Electronic Invoice Attachments"
                     attrs="{'invisible': [('electronic_invoice_subjected', '=', False),
-                                          ('fatturapa_attachment_out_id', '=', False)]}">
+                                          ('fatturapa_attachment_out_id', '=', False),
+                                          ('is_company_it', '=', False)]}">
                     <group string="Attachments">
                         <field name="fatturapa_doc_attachments" nolabel="1" >
                             <tree string="Attachments">

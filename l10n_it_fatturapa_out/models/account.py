@@ -8,7 +8,7 @@ from odoo.tools.translate import _
 
 
 class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+    _inherit = ['account.invoice', 'l10n_it_account.mixin']
 
     fatturapa_attachment_out_id = fields.Many2one(
         'fatturapa.attachment.out', 'E-invoice Export File',
