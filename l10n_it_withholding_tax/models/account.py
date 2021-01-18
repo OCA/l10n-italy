@@ -285,7 +285,7 @@ class AccountAbstractPayment(models.AbstractModel):
 
 
 class AccountMoveLine(models.Model):
-    _inherit = "account.move.line"
+    _inherit = ['account.move.line', 'l10n_it_account.mixin']
 
     withholding_tax_id = fields.Many2one(
         'withholding.tax', string='Withholding Tax')
@@ -356,7 +356,7 @@ class AccountReconciliation(models.AbstractModel):
 
 
 class AccountFiscalPosition(models.Model):
-    _inherit = "account.fiscal.position"
+    _inherit = ['account.fiscal.position', 'l10n_it_account.mixin']
 
     withholding_tax_ids = fields.Many2many(
         'withholding.tax', 'account_fiscal_position_withholding_tax_rel',
@@ -364,7 +364,7 @@ class AccountFiscalPosition(models.Model):
 
 
 class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+    _inherit = ['account.invoice', 'l10n_it_account.mixin']
 
     @api.multi
     @api.depends(
@@ -541,7 +541,7 @@ class AccountInvoice(models.Model):
 
 
 class AccountInvoiceLine(models.Model):
-    _inherit = "account.invoice.line"
+    _inherit = ['account.invoice.line', 'l10n_it_account.mixin']
 
     @api.model
     def _default_withholding_tax(self):
