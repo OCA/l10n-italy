@@ -164,9 +164,21 @@ class FatturapaCommon(SingleTransactionCase):
         arrotondamenti_attivi_account_id = self.env['account.account'].\
             search([('user_type_id', '=', self.env.ref(
                 'account.data_account_type_other_income').id)], limit=1).id
-        arrotondamenti_passivi_account_id = self.env['account.account'].\
-            search([('user_type_id', '=', self.env.ref(
-                'account.data_account_type_direct_costs').id)], limit=1).id
+        # Fix try to get account data if previous addons not account chart template init
+        domain = [
+            (
+                'user_type_id', '=', self.env.ref(
+                    'account.data_account_type_direct_costs'
+                ).id
+            )
+        ]
+        total = self.env['account.account'].search_count(domain)
+        if total > 0:
+            arrotondamenti_passivi_account_id = self.env[
+                'account.account'
+            ].search(domain, limit=1).id
+        else:
+            arrotondamenti_passivi_account_id = arrotondamenti_attivi_account_id
         arrotondamenti_tax_id = self.env['account.tax'].search(
             [('type_tax_use', '=', 'purchase'),
              ('amount', '=', 0.0)], order='sequence', limit=1)
