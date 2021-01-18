@@ -2,8 +2,6 @@
 import base64
 import tempfile
 from lxml import etree
-import shutil
-import os
 from odoo.modules.module import get_module_resource
 from odoo.addons.account.tests.account_test_users import AccountTestUsers
 
@@ -134,13 +132,9 @@ class FatturaPACommon(AccountTestUsers):
     def getAttachment(self, name, module_name=None):
         if module_name is None:
             module_name = 'l10n_it_fatturapa_out'
-        path = get_module_resource(
+        return self.getFilePath(get_module_resource(
             module_name, 'tests', 'data', 'attah_base.pdf'
-        )
-        currDir = os.path.dirname(path)
-        new_file = '%s/%s' % (currDir, name)
-        shutil.copyfile(path, new_file)
-        return self.getFilePath(new_file)
+        ))
 
     def getFile(self, filename, module_name=None):
         if module_name is None:
