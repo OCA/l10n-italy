@@ -6,7 +6,7 @@ import odoo.addons.decimal_precision as dp
 
 
 class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+    _inherit = ['account.invoice', 'l10n_it_account.mixin']
 
     fatturapa_attachment_in_id = fields.Many2one(
         'fatturapa.attachment.in', 'E-bill Import File',
