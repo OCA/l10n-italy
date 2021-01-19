@@ -85,10 +85,14 @@ class AccountInvoiceLine(models.Model):
         country_payment_id = self.env['res.country'].browse()
         if self.invoice_id.type in ('out_invoice', 'out_refund'):
             country_payment_id = \
-                self.invoice_id.partner_id.country_id
+                self.invoice_id.company_id.partner_id.country_id
+            if self.invoice_id.partner_bank_id:
+                country_id = self.invoice_id.partner_bank_id.bank_id.country
+                if country_id:
+                    country_payment_id = country_id
         elif self.invoice_id.type in ('in_invoice', 'in_refund'):
             country_payment_id = \
-                self.invoice_id.company_id.partner_id.country_id
+                self.invoice_id.partner_id.country_id
         res.update({
             'country_payment_id': country_payment_id.id})
 
