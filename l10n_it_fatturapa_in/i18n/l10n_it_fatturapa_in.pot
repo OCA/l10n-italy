@@ -112,6 +112,7 @@ msgid "Bills Number"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: view:fatturapa.attachment.in:l10n_it_fatturapa_in.view_fatturapa_in_attachment_tree
 #: field:fatturapa.attachment.in,invoices_total:0
 msgid "Bills Total"
 msgstr ""
