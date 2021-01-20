@@ -8,7 +8,7 @@
 
 {
     'name': 'Italian Localization - Fattura elettronica - Ricezione',
-    'version': '8.0.2.0.2',
+    'version': '8.0.2.0.3',
     'development_status': 'Beta',
     'category': 'Localization/Italy',
     'summary': 'Electronic invoices reception',
