@@ -73,8 +73,8 @@ class RibaIssue(models.TransientModel):
         countme = 1
 
         for move_line in move_lines:
-            if move_line.partner_id.bank_ids:
-                bank_id = move_line.partner_id.bank_ids[0]
+            if move_line.invoice_id.riba_partner_bank_id:
+                bank_id = move_line.invoice_id.riba_partner_bank_id
             else:
                 raise exceptions.Warning(
                     _('No bank has been specified for partner %s!') %
