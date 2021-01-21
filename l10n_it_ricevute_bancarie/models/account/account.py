@@ -58,7 +58,10 @@ class AccountMoveLine(models.Model):
         'account.invoice', 'invoice_unsolved_line_rel', 'line_id',
         'invoice_id', 'Past Due Invoices')
     iban = fields.Char(
-        related='partner_id.bank_ids.acc_number', string='IBAN', store=False)
+        related='invoice_id.riba_partner_bank_id.acc_number',
+        string='IBAN',
+        store=False,
+    )
 
     @api.model
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
@@ -112,6 +115,7 @@ class AccountMoveLine(models.Model):
 
 
 class AccountInvoice(models.Model):
+    _inherit = "account.invoice"
 
     @api.multi
     @api.depends(
@@ -130,13 +134,33 @@ class AccountInvoice(models.Model):
             if len(invoice.unsolved_move_line_ids) != reconciled_unsolved:
                 invoice.is_unsolved = True
 
-    _inherit = "account.invoice"
     unsolved_move_line_ids = fields.Many2many(
         'account.move.line', 'invoice_unsolved_line_rel', 'invoice_id',
         'line_id', 'Past Due Journal Items')
     is_unsolved = fields.Boolean(
         "Is a past due invoice", compute="_compute_is_unsolved", store=True
     )
+    is_riba_payment = fields.Boolean(
+        'Is C/O Payment', related='payment_term_id.riba', default=False
+    )
+    riba_partner_bank_id = fields.Many2one(
+        'res.partner.bank',
+        string='C/O Bank Account',
+        help='Bank Account Number to which the C/O will be debited. '
+        'If not set, first bank in partner will be used.',
+        readonly=True,
+        states={'draft': [('readonly', False)]},
+    )
+
+    @api.onchange('partner_id', 'payment_term_id', 'type')
+    def _onchange_riba_partner_bank_id(self):
+        bank_id = None
+        if (
+            self.partner_id and self.payment_term_id.riba
+            and self.type == 'out_invoice'
+        ):
+            bank_id = self.partner_id.mapped('bank_ids')
+        self.riba_partner_bank_id = bank_id[0] if bank_id else None
 
     def month_check(self, invoice_date_due, all_date_due):
         """
