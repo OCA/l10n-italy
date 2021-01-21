@@ -65,22 +65,31 @@ class WizardExportFatturapa(models.TransientModel):
             if not partner.street:
                 raise UserError(
                     _('Partner %s, Street is not set.') % partner.display_name)
-            if not partner.zip:
-                raise UserError(
-                    _('Partner %s, ZIP is not set.') % partner.display_name)
             if not partner.city:
                 raise UserError(
                     _('Partner %s, City is not set.') % partner.display_name)
             if not partner.country_id:
                 raise UserError(
                     _('Partner %s, Country is not set.') % partner.display_name)
-            CedentePrestatore.Sede = IndirizzoType(
-                Indirizzo=encode_for_export(partner.street, 60),
-                CAP=partner.zip,
-                Comune=encode_for_export(partner.city, 60),
-                Nazione=partner.country_id.code)
-            if partner.state_id:
-                CedentePrestatore.Sede.Provincia = partner.state_id.code
+            if partner.codice_destinatario == 'XXXXXXX':
+                CedentePrestatore.Sede = (
+                    IndirizzoType(
+                        Indirizzo=encode_for_export(partner.street, 60),
+                        CAP='00000',
+                        Comune=encode_for_export(partner.city, 60),
+                        Provincia='EE',
+                        Nazione=partner.country_id.code))
+            else:
+                if not partner.zip:
+                    raise UserError(
+                        _('Partner %s, ZIP is not set.') % partner.display_name)
+                CedentePrestatore.Sede = IndirizzoType(
+                    Indirizzo=encode_for_export(partner.street, 60),
+                    CAP=partner.zip,
+                    Comune=encode_for_export(partner.city, 60),
+                    Nazione=partner.country_id.code)
+                if partner.state_id:
+                    CedentePrestatore.Sede.Provincia = partner.state_id.code
         return res
 
     def _setStabileOrganizzazione(self, CedentePrestatore, company):
