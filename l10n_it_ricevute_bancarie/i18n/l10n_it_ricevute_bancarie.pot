@@ -117,6 +117,11 @@ msgid "Bank Account"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
+#: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_account_invoice__riba_partner_bank_id
+msgid "Bank Account Number to which the C/O will be debited. If not set, first bank in partner will be used."
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_res_partner_bank
 msgid "Bank Accounts"
 msgstr ""
@@ -197,6 +202,11 @@ msgstr ""
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved__riba_bank_amount
 msgid "C/O Amount"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_invoice__riba_partner_bank_id
+msgid "C/O Bank Account"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
@@ -679,9 +689,14 @@ msgid "Invoice Number"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:245
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:269
 #, python-format
 msgid "Invoice is linked to C/O slip No. {riba}"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_invoice__is_riba_payment
+msgid "Is C/O Payment"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
@@ -1060,7 +1075,7 @@ msgid "Search Journal Items"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:167
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:191
 #, python-format
 msgid "Set a Service for Collection Fees in Company Config."
 msgstr ""
@@ -1196,7 +1211,7 @@ msgid "of"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:198
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:222
 #, python-format
 msgid "{line_name} for {month}-{year}"
 msgstr ""
