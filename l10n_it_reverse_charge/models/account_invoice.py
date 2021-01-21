@@ -380,6 +380,8 @@ class AccountInvoice(models.Model):
             supplier_invoice.invoice_line_ids.unlink()
             supplier_invoice.write(supplier_invoice_vals[0])
 
+        supplier_invoice.partner_bank_id = None
+
         # because this field has copy=False
         supplier_invoice.date = self.date
         supplier_invoice.date_invoice = self.date
