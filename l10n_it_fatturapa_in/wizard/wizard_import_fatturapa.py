@@ -1319,7 +1319,8 @@ class WizardImportFatturapa(orm.TransientModel):
         if Stamps:
             invoice = self.pool['account.invoice'].browse(cr, uid, invoice)
             invoice.virtual_stamp = Stamps.BolloVirtuale
-            invoice.stamp_amount = float(Stamps.ImportoBollo)
+            if Stamps.ImportoBollo:
+                invoice.stamp_amount = float(Stamps.ImportoBollo)
             for wizardBrws in self.browse(cr, uid, ids):
                 if wizardBrws.e_invoice_detail_level == '2':
                     journal = self.get_purchase_journal(
