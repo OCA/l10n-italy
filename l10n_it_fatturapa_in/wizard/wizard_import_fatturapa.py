@@ -1259,7 +1259,6 @@ class WizardImportFatturapa(models.TransientModel):
                     .cassa_previdenziale_product_id
                 line_vals['product_id'] = cassa_previdenziale_product.id
                 line_vals['name'] = cassa_previdenziale_product.name
-                line_vals['withholding_tax_exclude'] = cassa_previdenziale_product.withholding_tax_exclude
                 self.adjust_accounting_data(
                     cassa_previdenziale_product, line_vals
                 )
@@ -1337,7 +1336,6 @@ class WizardImportFatturapa(models.TransientModel):
             product = self.get_line_product(line, partner)
             if product:
                 invoice_line_data['product_id'] = product.id
-                invoice_line_data['withholding_tax_exclude'] = product.withholding_tax_exclude or False
                 self.adjust_accounting_data(product, invoice_line_data)
             invoice_line_id = invoice_line_model.create(
                 invoice_line_data).id
