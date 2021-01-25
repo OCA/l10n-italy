@@ -63,7 +63,7 @@
             <Causale>Supplier: Intra EU supplier</Causale>
             <Causale>Reference: EU-SUPPLIER-REF</Causale>
             <Causale>Date: 2020-12-01</Causale>
-            <Causale>Internal reference: BILL/2020/0025</Causale>
+            <Causale>Internal reference: INV/2020/0001</Causale>
          </DatiGeneraliDocumento>
          <DatiFattureCollegate>
             <IdDocumento>EU-SUPPLIER-REF</IdDocumento>
@@ -75,7 +75,7 @@
             <NumeroLinea>1</NumeroLinea>
             <CodiceArticolo>
                <CodiceTipo>ODOO</CodiceTipo>
-               <CodiceValore>DESK0004</CodiceValore>
+               <CodiceValore>E-COM04</CodiceValore>
             </CodiceArticolo>
             <Descrizione>Invoice for sample product</Descrizione>
             <Quantita>1.000</Quantita>

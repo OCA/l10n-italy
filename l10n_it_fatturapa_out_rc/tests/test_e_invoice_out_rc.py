@@ -1,4 +1,3 @@
-import base64
 from odoo.addons.l10n_it_reverse_charge.tests.rc_common import ReverseChargeCommon
 from odoo.addons.l10n_it_fatturapa_out.tests.fatturapa_common import FatturaPACommon
 from odoo.exceptions import UserError
@@ -30,7 +29,7 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
 
     def set_bill_sequence(self, invoice_number, dt):
         seq_pool = self.env['ir.sequence']
-        inv_seq = seq_pool.search([('name', '=', 'BILL Sequence')])[0]
+        inv_seq = seq_pool.search([('name', '=', 'Vendor Bills')])[0]
         seq_date = self.env['ir.sequence.date_range'].search([
             ('sequence_id', '=', inv_seq.id),
             ('date_from', '<=', dt),
@@ -79,6 +78,6 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
         res = self.run_wizard(invoice.rc_self_invoice_id.id)
         attachment = self.attach_model.browse(res['res_id'])
         self.set_e_invoice_file_id(attachment, 'IT10538570960_00002.xml')
-        xml_content = base64.decodebytes(attachment.datas)
+        xml_content = attachment.datas.decode('base64')
         self.check_content(
             xml_content, 'IT10538570960_00002.xml', "l10n_it_fatturapa_out_rc")
