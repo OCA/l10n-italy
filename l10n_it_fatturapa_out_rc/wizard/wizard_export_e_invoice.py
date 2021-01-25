@@ -1,7 +1,7 @@
-from odoo import models, _
-from odoo.exceptions import UserError
-from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
-from odoo.addons.l10n_it_fatturapa.bindings.fatturapa import (
+from openerp import models, _
+from openerp.exceptions import Warning as UserError
+from openerp.addons.l10n_it_account.tools.account_tools import encode_for_export
+from openerp.addons.l10n_it_fatturapa.bindings.fatturapa import (
     IdFiscaleType,
     AnagraficaType,
     IndirizzoType

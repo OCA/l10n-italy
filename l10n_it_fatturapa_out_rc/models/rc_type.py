@@ -1,4 +1,4 @@
-from odoo import models, fields
+from openerp import models, fields
 
 
 class AccountRCType(models.Model):

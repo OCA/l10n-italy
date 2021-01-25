@@ -1,7 +1,7 @@
 import base64
-from odoo.addons.l10n_it_reverse_charge.tests.rc_common import ReverseChargeCommon
-from odoo.addons.l10n_it_fatturapa_out.tests.fatturapa_common import FatturaPACommon
-from odoo.exceptions import UserError
+from openerp.addons.l10n_it_reverse_charge.tests.rc_common import ReverseChargeCommon
+from openerp.addons.l10n_it_fatturapa_out.tests.fatturapa_common import FatturaPACommon
+from openerp.exceptions import Warning as UserError
 
 
 class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
@@ -19,26 +19,12 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
 
     def set_sequence_journal_selfinvoice(self, invoice_number, dt):
         inv_seq = self.journal_selfinvoice.sequence_id
-        seq_date = self.env['ir.sequence.date_range'].search([
-            ('sequence_id', '=', inv_seq.id),
-            ('date_from', '<=', dt),
-            ('date_to', '>=', dt),
-        ], limit=1)
-        if not seq_date:
-            seq_date = inv_seq._create_date_range_seq(dt)
-        seq_date.number_next_actual = invoice_number
+        inv_seq.number_next_actual = invoice_number
 
     def set_bill_sequence(self, invoice_number, dt):
         seq_pool = self.env['ir.sequence']
-        inv_seq = seq_pool.search([('name', '=', 'BILL Sequence')])[0]
-        seq_date = self.env['ir.sequence.date_range'].search([
-            ('sequence_id', '=', inv_seq.id),
-            ('date_from', '<=', dt),
-            ('date_to', '>=', dt),
-        ], limit=1)
-        if not seq_date:
-            seq_date = inv_seq._create_date_range_seq(dt)
-        seq_date.number_next_actual = invoice_number
+        inv_seq = seq_pool.search([('name', '=', 'Account Default Expenses Journal')])[0]
+        inv_seq.number_next_actual = invoice_number
 
     def test_intra_EU(self):
         self.set_sequence_journal_selfinvoice(15, '2020-12-01')
@@ -61,8 +47,8 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
             'invoice_line_tax_ids': [(4, self.tax_22ai.id, 0)]}
         invoice_line = self.invoice_line_model.create(invoice_line_vals)
         invoice_line.onchange_invoice_line_tax_id()
-        invoice.compute_taxes()
-        invoice.action_invoice_open()
+        self.env['account.invoice.tax'].compute(invoice)
+        invoice.invoice_validate()
         self.assertEqual(
             invoice.rc_self_invoice_id.fiscal_document_type_id.code, "TD17")
         with self.assertRaises(UserError):
