@@ -1,4 +1,4 @@
-from odoo.tests.common import TransactionCase
+from openerp.tests.common import TransactionCase
 
 
 class ReverseChargeCommon(TransactionCase):
@@ -21,50 +21,48 @@ class ReverseChargeCommon(TransactionCase):
             'name': 'Extra EU supplier',
             'customer': False,
             'supplier': True,
-            'property_account_position_id': self.fiscal_position_extra.id
+            'property_account_position': self.fiscal_position_extra.id
         })
         self.supplier_intraEU = self.partner_model.create({
             'name': 'Intra EU supplier',
             'customer': False,
             'supplier': True,
-            'property_account_position_id': self.fiscal_position_intra.id
+            'property_account_position': self.fiscal_position_intra.id
         })
         self.supplier_intraEU_exempt = self.partner_model.create({
             'name': 'Intra EU supplier exempt',
             'customer': False,
             'supplier': True,
-            'property_account_position_id': self.fiscal_position_exempt.id
+            'property_account_position': self.fiscal_position_exempt.id
         })
         self.invoice_account = self.env['account.account'].search(
-            [('user_type_id', '=', self.env.ref(
+            [('user_type', '=', self.env.ref(
                 'account.data_account_type_payable').id)], limit=1).id
         self.invoice_line_account = self.env['account.account'].search(
-            [('user_type_id', '=', self.env.ref(
-                'account.data_account_type_expenses').id)], limit=1).id
+            [('user_type', '=', self.env.ref(
+                'account.data_account_type_expense').id)], limit=1).id
         self.term_15_30 = self.env['account.payment.term'].create({
             'name': '15 30',
             'line_ids': [
                 (0, 0, {
-                    'value': 'percent',
-                    'value_amount': 50,
+                    'value': 'procent',
+                    'value_amount': 0.5,
                     'days': 15,
-                    'sequence': 1,
                 }),
                 (0, 0, {
                     'value': 'balance',
                     'days': 30,
-                    'sequence': 2,
                 })]})
         self.env['account.journal'].search(
-            [('name', '=', 'Customer Invoices')]).update_posted = True
+            [('name', '=', 'Sales Journal - (test)')]).update_posted = True
 
     def _create_account(self):
         account_model = self.env['account.account']
         self.account_selfinvoice = account_model.create({
             'code': '295000',
             'name': 'selfinvoice temporary',
-            'user_type_id': self.env.ref(
-                'account.data_account_type_current_liabilities').id
+            'user_type': self.env.ref(
+                'account.data_account_type_liability').id
         })
 
     def _create_taxes(self):
@@ -95,12 +93,12 @@ class ReverseChargeCommon(TransactionCase):
             'amount': 22
         })
         self.tax_0_pur = tax_model.create({
-            'name': "Tax 0%",
+            'name': "Tax 0% purch",
             'type_tax_use': 'purchase',
             'amount': 0
         })
         self.tax_0_sal = tax_model.create({
-            'name': "Tax 0%",
+            'name': "Tax 0% sale",
             'type_tax_use': 'sale',
             'amount': 0
         })

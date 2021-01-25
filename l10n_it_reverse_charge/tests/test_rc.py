@@ -2,7 +2,7 @@
 # Copyright 2019 Alex Comba - Agile Business Group
 
 import json
-from odoo.exceptions import UserError
+from openerp.exceptions import Warning as UserError
 from .rc_common import ReverseChargeCommon
 
 
@@ -28,7 +28,7 @@ class TestReverseCharge(ReverseChargeCommon):
         })
         invoice_line.onchange_invoice_line_tax_id()
         with self.assertRaises(UserError):
-            invoice.action_invoice_open()
+            invoice.invoice_validate()
 
     def test_intra_EU(self):
         self.supplier_intraEU.property_payment_term_id = self.term_15_30.id
@@ -44,12 +44,12 @@ class TestReverseCharge(ReverseChargeCommon):
             'invoice_id': invoice.id,
             'product_id': self.sample_product.id,
             'price_unit': 100,
-            'invoice_line_tax_ids': [(4, self.tax_22ai.id, 0)]}
+            'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
         invoice_line = self.invoice_line_model.create(invoice_line_vals)
         invoice_line.onchange_invoice_line_tax_id()
-        invoice.compute_taxes()
+        self.env['account.invoice.tax'].compute(invoice)
 
-        invoice.action_invoice_open()
+        invoice.invoice_validate()
         self.assertIsNot(bool(invoice.rc_self_invoice_id), False)
         self.assertIsNot(
             bool(invoice.rc_self_invoice_id.payment_term_id), True)
@@ -77,7 +77,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'product_id': self.sample_product.id,
             'price_unit': 100,
             'rc': True,
-            'invoice_line_tax_ids': [(4, self.tax_22ai.id, 0)]}
+            'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
         invoice_line = self.invoice_line_model.create(invoice_line_vals)
         invoice_line.onchange_invoice_line_tax_id()
         invoice_line_vals = {
@@ -86,14 +86,14 @@ class TestReverseCharge(ReverseChargeCommon):
             'invoice_id': invoice.id,
             'price_unit': 200,
             'rc': False,
-            'invoice_line_tax_ids': [(4, self.tax_22.id, 0)]}
+            'invoice_line_tax_id': [(4, self.tax_22.id, 0)]}
         invoice_line = self.invoice_line_model.create(invoice_line_vals)
         invoice_line.onchange_invoice_line_tax_id()
         invoice_line.rc = False
 
-        invoice.compute_taxes()
+        self.env['account.invoice.tax'].compute(invoice)
 
-        invoice.action_invoice_open()
+        invoice.invoice_validate()
         # Only the tax in the RC line (22) should result as paid
         self.assertEqual(invoice.amount_total, 366.0)
         self.assertEqual(invoice.residual, 344.0)
@@ -115,7 +115,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'price_unit': 2.89,
             'quantity': 15,
             'rc': True,
-            'invoice_line_tax_ids': [(4, self.tax_22ai.id, 0)]}
+            'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
         invoice_line = self.invoice_line_model.create(invoice_line_vals)
         invoice_line.onchange_invoice_line_tax_id()
         invoice_line_vals = {
@@ -125,7 +125,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'price_unit': 4.05,
             'quantity': 5,
             'rc': True,
-            'invoice_line_tax_ids': [(4, self.tax_22ai.id, 0)]}
+            'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
         invoice_line = self.invoice_line_model.create(invoice_line_vals)
         invoice_line.onchange_invoice_line_tax_id()
         invoice_line_vals = {
@@ -135,7 +135,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'price_unit': 4.12,
             'quantity': 5,
             'rc': True,
-            'invoice_line_tax_ids': [(4, self.tax_22ai.id, 0)]}
+            'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
         invoice_line = self.invoice_line_model.create(invoice_line_vals)
         invoice_line.onchange_invoice_line_tax_id()
         invoice_line_vals = {
@@ -145,7 +145,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'price_unit': 1.60,
             'quantity': 5,
             'rc': True,
-            'invoice_line_tax_ids': [(4, self.tax_22ai.id, 0)]}
+            'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
         invoice_line = self.invoice_line_model.create(invoice_line_vals)
         invoice_line.onchange_invoice_line_tax_id()
         invoice_line_vals = {
@@ -155,7 +155,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'price_unit': 5.65,
             'quantity': 5,
             'rc': True,
-            'invoice_line_tax_ids': [(4, self.tax_22ai.id, 0)]}
+            'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
         invoice_line = self.invoice_line_model.create(invoice_line_vals)
         invoice_line.onchange_invoice_line_tax_id()
         invoice_line_vals = {
@@ -165,7 +165,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'price_unit': 12,
             'quantity': 1,
             'rc': True,
-            'invoice_line_tax_ids': [(4, self.tax_22ai.id, 0)]}
+            'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
         invoice_line = self.invoice_line_model.create(invoice_line_vals)
         invoice_line.onchange_invoice_line_tax_id()
         invoice_line_vals = {
@@ -175,12 +175,12 @@ class TestReverseCharge(ReverseChargeCommon):
             'price_unit': 0.13,
             'quantity': 1,
             'rc': True,
-            'invoice_line_tax_ids': [(4, self.tax_22ai.id, 0)]}
+            'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
         invoice_line = self.invoice_line_model.create(invoice_line_vals)
         invoice_line.onchange_invoice_line_tax_id()
 
-        invoice.compute_taxes()
-        invoice.action_invoice_open()
+        self.env['account.invoice.tax'].compute(invoice)
+        invoice.invoice_validate()
 
         self.assertIsNot(bool(invoice.rc_self_invoice_id), False)
         self.assertIsNot(
@@ -207,12 +207,12 @@ class TestReverseCharge(ReverseChargeCommon):
             'invoice_id': invoice.id,
             'product_id': self.sample_product.id,
             'price_unit': 100,
-            'invoice_line_tax_ids': [(4, self.tax_22ai.id, 0)]}
+            'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
         invoice_line = self.invoice_line_model.create(invoice_line_vals)
         invoice_line.onchange_invoice_line_tax_id()
-        invoice.compute_taxes()
+        self.env['account.invoice.tax'].compute(invoice)
 
-        invoice.action_invoice_open()
+        invoice.invoice_validate()
         self.assertIsNot(bool(invoice.rc_self_purchase_invoice_id), False)
         self.assertEqual(invoice.rc_self_purchase_invoice_id.state, 'paid')
         self.assertEqual(
@@ -242,17 +242,17 @@ class TestReverseCharge(ReverseChargeCommon):
             'invoice_id': invoice.id,
             'product_id': self.sample_product.id,
             'price_unit': 100,
-            'invoice_line_tax_ids': [(4, self.tax_22ai.id, 0)]}
+            'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
         invoice_line = self.invoice_line_model.create(invoice_line_vals)
         invoice_line.onchange_invoice_line_tax_id()
-        invoice.compute_taxes()
+        self.env['account.invoice.tax'].compute(invoice)
 
-        invoice.action_invoice_open()
+        invoice.invoice_validate()
 
         invoice.journal_id.update_posted = True
         invoice.action_cancel()
         self.assertEqual(invoice.state, 'cancel')
-        invoice.action_invoice_draft()
+        invoice.action_cancel_draft()
         invoice.refresh()
         self.assertEqual(invoice.state, 'draft')
 
@@ -270,7 +270,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'invoice_id': invoice.id,
             'product_id': self.sample_product.id,
             'price_unit': 100,
-            'invoice_line_tax_ids': [(4, self.tax_22ai.id, 0)]}
+            'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
         invoice_line = self.invoice_line_model.create(invoice_line_vals)
         invoice_line.onchange_invoice_line_tax_id()
         invoice_line_vals = {
@@ -279,13 +279,13 @@ class TestReverseCharge(ReverseChargeCommon):
             'invoice_id': invoice.id,
             'product_id': self.sample_product.id,
             'price_unit': -100,
-            'invoice_line_tax_ids': [(4, self.tax_22ai.id, 0)]}
+            'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
         invoice_line = self.invoice_line_model.create(invoice_line_vals)
         invoice_line.onchange_invoice_line_tax_id()
 
-        invoice.compute_taxes()
+        self.env['account.invoice.tax'].compute(invoice)
 
-        invoice.action_invoice_open()
+        invoice.invoice_validate()
         self.assertEqual(invoice.amount_total, 0)
         self.assertEqual(invoice.rc_self_invoice_id.amount_total, 0)
         self.assertEqual(invoice.state, 'paid')
@@ -314,10 +314,10 @@ class TestReverseCharge(ReverseChargeCommon):
             'invoice_id': invoice.id,
             'product_id': self.sample_product.id,
             'price_unit': 100,
-            'invoice_line_tax_ids': [(4, self.tax_22ai.id, 0)]}
+            'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
         invoice_line = self.invoice_line_model.create(invoice_line_vals)
         invoice_line.onchange_invoice_line_tax_id()
-        self.assertTrue(all(line.rc for line in invoice.invoice_line_ids))
+        self.assertTrue(all(line.rc for line in invoice.invoice_line))
 
     def test_intra_EU_exempt(self):
         self.supplier_intraEU.property_payment_term_id = self.term_15_30.id
@@ -333,12 +333,12 @@ class TestReverseCharge(ReverseChargeCommon):
             'invoice_id': invoice.id,
             'product_id': self.sample_product.id,
             'price_unit': 100,
-            'invoice_line_tax_ids': [(4, self.tax_0_pur.id, 0)]}
+            'invoice_line_tax_id': [(4, self.tax_0_pur.id, 0)]}
         invoice_line = self.invoice_line_model.create(invoice_line_vals)
         invoice_line.onchange_invoice_line_tax_id()
-        invoice.compute_taxes()
+        self.env['account.invoice.tax'].compute(invoice)
 
-        invoice.action_invoice_open()
+        invoice.invoice_validate()
         self.assertEqual(invoice.amount_total, 100)
         self.assertEqual(invoice.residual, 100)
         self.assertEqual(invoice.rc_self_invoice_id.state, 'paid')
