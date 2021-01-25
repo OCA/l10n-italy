@@ -24,6 +24,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(
             invoice.partner_id.register_fiscalpos.code, 'RF02')
         self.assertEqual(invoice.reference, 'FT/2015/0006')
+        self.assertEqual(invoice.supplier_invoice_number, 'FT/2015/0006')
         self.assertEqual(invoice.amount_total, 57.00)
         self.assertEqual(invoice.gross_weight, 0.00)
         self.assertEqual(invoice.net_weight, 0.00)
