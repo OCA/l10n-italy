@@ -25,14 +25,15 @@ class TestEInvoiceSend(EInvoiceCommon):
     def test_sender_error(self):
         """Sending e-invoice without configuring email_from_for_fatturaPA
         fails to send the email"""
+        param = self.env.ref('l10n_it_sdi_channel.sdi_pec_first_address')
+        param.value = ''
         e_invoice = self._create_e_invoice()
 
         self._create_fetchmail_pec_server()
         self.env.user.company_id.sdi_channel_id. \
             pec_server_id.email_from_for_fatturaPA = False
-
-        e_invoice.send_via_pec()
-        self.assertEqual(e_invoice.state, 'sender_error')
+        with self.assertRaises(UserError):
+            e_invoice.send_via_pec()
 
     def test_send(self):
         """Sending e-invoice changes its state to 'sent'"""
