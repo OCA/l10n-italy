@@ -996,8 +996,8 @@ class WizardImportFatturapa(orm.TransientModel):
             DatiGeneraliDocumento.DatiBollo
         if Stamps:
             invoice_data['virtual_stamp'] = Stamps.BolloVirtuale
-        if Stamps.ImportoBollo:
-            invoice_data['stamp_amount'] = float(Stamps.ImportoBollo)
+            if Stamps.ImportoBollo:
+                invoice_data['stamp_amount'] = float(Stamps.ImportoBollo)
         invoice_id = invoice_model.create(
             cr, uid, invoice_data, context=context)
 
