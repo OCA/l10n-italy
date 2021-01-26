@@ -62,7 +62,8 @@ class ReverseChargeCommon(TransactionCase):
             'code': '295000',
             'name': 'selfinvoice temporary',
             'user_type': self.env.ref(
-                'account.data_account_type_liability').id
+                'account.data_account_type_liability').id,
+            'reconcile': True,
         })
 
     def _create_taxes(self):
@@ -70,27 +71,27 @@ class ReverseChargeCommon(TransactionCase):
         self.tax_22ae = tax_model.create({
             'name': "Tax 22% Purchase Extra-EU",
             'type_tax_use': 'purchase',
-            'amount': 22
+            'amount': 0.22
         })
         self.tax_22ai = tax_model.create({
             'name': "Tax 22% Purchases Intra-EU",
             'type_tax_use': 'purchase',
-            'amount': 22
+            'amount': 0.22
         })
         self.tax_22vi = tax_model.create({
             'name': "Tax 22% Sales Intra-EU",
             'type_tax_use': 'sale',
-            'amount': 22
+            'amount': 0.22
         })
         self.tax_22ve = tax_model.create({
             'name': "Tax 22% Sales Extra-EU",
             'type_tax_use': 'sale',
-            'amount': 22
+            'amount': 0.22
         })
         self.tax_22 = tax_model.create({
             'name': "Tax 22%",
             'type_tax_use': 'purchase',
-            'amount': 22
+            'amount': 0.22
         })
         self.tax_0_pur = tax_model.create({
             'name': "Tax 0% purch",

@@ -18,6 +18,8 @@ class TestReverseCharge(ReverseChargeCommon):
             'account_id': self.invoice_account,
             'type': 'in_invoice',
         })
+        res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
+        invoice.fiscal_position = res['value']['fiscal_position']
 
         invoice_line = self.invoice_line_model.create({
             'name': 'Invoice for sample product',
@@ -28,7 +30,7 @@ class TestReverseCharge(ReverseChargeCommon):
         })
         invoice_line.onchange_invoice_line_tax_id()
         with self.assertRaises(UserError):
-            invoice.invoice_validate()
+            invoice.signal_workflow('invoice_open')
 
     def test_intra_EU(self):
         self.supplier_intraEU.property_payment_term_id = self.term_15_30.id
@@ -37,6 +39,8 @@ class TestReverseCharge(ReverseChargeCommon):
             'account_id': self.invoice_account,
             'type': 'in_invoice',
         })
+        res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
+        invoice.fiscal_position = res['value']['fiscal_position']
 
         invoice_line_vals = {
             'name': 'Invoice for sample product',
@@ -49,13 +53,13 @@ class TestReverseCharge(ReverseChargeCommon):
         invoice_line.onchange_invoice_line_tax_id()
         self.env['account.invoice.tax'].compute(invoice)
 
-        invoice.invoice_validate()
+        invoice.signal_workflow('invoice_open')
         self.assertIsNot(bool(invoice.rc_self_invoice_id), False)
         self.assertIsNot(
-            bool(invoice.rc_self_invoice_id.payment_term_id), True)
+            bool(invoice.rc_self_invoice_id.payment_term), True)
         self.assertEqual(invoice.rc_self_invoice_id.state, 'paid')
         self.assertEqual(
-            invoice.rc_self_invoice_id.payment_move_line_ids.move_id.state,
+            invoice.rc_self_invoice_id.payment_ids.move_id.state,
             'posted')
         self.assertTrue(
             "Intra EU supplier" in invoice.rc_self_invoice_id.comment)
@@ -69,6 +73,8 @@ class TestReverseCharge(ReverseChargeCommon):
             'account_id': self.invoice_account,
             'type': 'in_invoice',
         })
+        res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
+        invoice.fiscal_position = res['value']['fiscal_position']
 
         invoice_line_vals = {
             'name': 'Invoice for sample product 1',
@@ -93,7 +99,7 @@ class TestReverseCharge(ReverseChargeCommon):
 
         self.env['account.invoice.tax'].compute(invoice)
 
-        invoice.invoice_validate()
+        invoice.signal_workflow('invoice_open')
         # Only the tax in the RC line (22) should result as paid
         self.assertEqual(invoice.amount_total, 366.0)
         self.assertEqual(invoice.residual, 344.0)
@@ -107,6 +113,8 @@ class TestReverseCharge(ReverseChargeCommon):
             'account_id': self.invoice_account,
             'type': 'in_invoice',
         })
+        res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
+        invoice.fiscal_position = res['value']['fiscal_position']
         invoice.company_id.tax_calculation_rounding_method = 'round_globally'
         invoice_line_vals = {
             'name': 'invoice line 1',
@@ -180,19 +188,17 @@ class TestReverseCharge(ReverseChargeCommon):
         invoice_line.onchange_invoice_line_tax_id()
 
         self.env['account.invoice.tax'].compute(invoice)
-        invoice.invoice_validate()
+        invoice.signal_workflow('invoice_open')
 
         self.assertIsNot(bool(invoice.rc_self_invoice_id), False)
         self.assertIsNot(
-            bool(invoice.rc_self_invoice_id.payment_term_id), True)
+            bool(invoice.rc_self_invoice_id.payment_term), True)
         self.assertEqual(invoice.rc_self_invoice_id.state, 'paid')
         self.assertEqual(
-            invoice.rc_self_invoice_id.payment_move_line_ids.move_id.state,
+            invoice.rc_self_invoice_id.payment_ids.move_id.state,
             'posted')
-        # compare amount_tax with amount show on paymenys_widget
-        invoice._get_payment_info_JSON()
-        info = json.loads(invoice.payments_widget)['content'][0]
-        self.assertEqual(info['amount'], invoice.amount_tax)
+        # compare amount_tax with amount in the payment
+        self.assertEqual(invoice.payment_ids.debit, invoice.amount_tax)
 
     def test_extra_EU(self):
         invoice = self.invoice_model.create({
@@ -200,6 +206,8 @@ class TestReverseCharge(ReverseChargeCommon):
             'account_id': self.invoice_account,
             'type': 'in_invoice',
         })
+        res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
+        invoice.fiscal_position = res['value']['fiscal_position']
 
         invoice_line_vals = {
             'name': 'Invoice for sample product',
@@ -212,19 +220,19 @@ class TestReverseCharge(ReverseChargeCommon):
         invoice_line.onchange_invoice_line_tax_id()
         self.env['account.invoice.tax'].compute(invoice)
 
-        invoice.invoice_validate()
+        invoice.signal_workflow('invoice_open')
         self.assertIsNot(bool(invoice.rc_self_purchase_invoice_id), False)
         self.assertEqual(invoice.rc_self_purchase_invoice_id.state, 'paid')
         self.assertEqual(
-            invoice.rc_self_purchase_invoice_id.payment_move_line_ids.
+            invoice.rc_self_purchase_invoice_id.payment_ids.
             move_id.state, 'posted')
 
         invoice.journal_id.update_posted = True
-        invoice.action_cancel()
+        invoice.signal_workflow('invoice_cancel')
         self.assertEqual(invoice.state, 'cancel')
-        invoice.action_invoice_draft()
+        invoice.action_cancel_draft()
         # see what done with "with invoice.env.do_in_draft()" in
-        # action_invoice_draft
+        # action_cancel_draft
         invoice.refresh()
         self.assertEqual(invoice.state, 'draft')
 
@@ -235,6 +243,8 @@ class TestReverseCharge(ReverseChargeCommon):
             'account_id': self.invoice_account,
             'type': 'in_invoice',
         })
+        res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
+        invoice.fiscal_position = res['value']['fiscal_position']
 
         invoice_line_vals = {
             'name': 'Invoice for sample product',
@@ -247,10 +257,10 @@ class TestReverseCharge(ReverseChargeCommon):
         invoice_line.onchange_invoice_line_tax_id()
         self.env['account.invoice.tax'].compute(invoice)
 
-        invoice.invoice_validate()
+        invoice.signal_workflow('invoice_open')
 
         invoice.journal_id.update_posted = True
-        invoice.action_cancel()
+        invoice.signal_workflow('invoice_cancel')
         self.assertEqual(invoice.state, 'cancel')
         invoice.action_cancel_draft()
         invoice.refresh()
@@ -263,6 +273,8 @@ class TestReverseCharge(ReverseChargeCommon):
             'account_id': self.invoice_account,
             'type': 'in_invoice',
         })
+        res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
+        invoice.fiscal_position = res['value']['fiscal_position']
 
         invoice_line_vals = {
             'name': 'Invoice for sample product',
@@ -285,17 +297,19 @@ class TestReverseCharge(ReverseChargeCommon):
 
         self.env['account.invoice.tax'].compute(invoice)
 
-        invoice.invoice_validate()
+        invoice.signal_workflow('invoice_open')
         self.assertEqual(invoice.amount_total, 0)
         self.assertEqual(invoice.rc_self_invoice_id.amount_total, 0)
-        self.assertEqual(invoice.state, 'paid')
-        self.assertEqual(invoice.rc_self_invoice_id.state, 'paid')
+        # Note that invoices with amount 0 are not automatically paid
+        self.assertEqual(invoice.state, 'open')
+        self.assertEqual(invoice.rc_self_invoice_id.state, 'open')
 
         invoice.journal_id.update_posted = True
-        invoice.action_cancel()
+        invoice.signal_workflow('invoice_cancel')
         self.assertEqual(invoice.state, 'cancel')
-        self.assertEqual(invoice.rc_self_invoice_id.state, 'cancel')
-        invoice.action_invoice_draft()
+        # self invoice is only canceled when there are payments
+        self.assertEqual(invoice.rc_self_invoice_id.state, 'open')
+        invoice.action_cancel_draft()
         invoice.refresh()
         self.assertEqual(invoice.state, 'draft')
         self.assertEqual(invoice.rc_self_invoice_id.state, 'draft')
@@ -308,6 +322,8 @@ class TestReverseCharge(ReverseChargeCommon):
             'account_id': self.invoice_account,
             'type': 'in_refund',
         })
+        res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
+        invoice.fiscal_position = res['value']['fiscal_position']
         invoice_line_vals = {
             'name': 'Invoice for sample product',
             'account_id': self.invoice_line_account,
@@ -320,12 +336,14 @@ class TestReverseCharge(ReverseChargeCommon):
         self.assertTrue(all(line.rc for line in invoice.invoice_line))
 
     def test_intra_EU_exempt(self):
-        self.supplier_intraEU.property_payment_term_id = self.term_15_30.id
+        self.supplier_intraEU.property_payment_term = self.term_15_30.id
         invoice = self.invoice_model.create({
             'partner_id': self.supplier_intraEU_exempt.id,
             'account_id': self.invoice_account,
             'type': 'in_invoice',
         })
+        res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
+        invoice.fiscal_position = res['value']['fiscal_position']
 
         invoice_line_vals = {
             'name': 'Invoice for sample product',
@@ -338,15 +356,18 @@ class TestReverseCharge(ReverseChargeCommon):
         invoice_line.onchange_invoice_line_tax_id()
         self.env['account.invoice.tax'].compute(invoice)
 
-        invoice.invoice_validate()
+        invoice.signal_workflow('invoice_open')
         self.assertEqual(invoice.amount_total, 100)
         self.assertEqual(invoice.residual, 100)
         self.assertEqual(invoice.rc_self_invoice_id.state, 'paid')
         self.assertEqual(invoice.rc_self_invoice_id.amount_total, 100)
         self.assertEqual(invoice.rc_self_invoice_id.residual, 0)
         invoice.journal_id.update_posted = True
-        invoice.action_cancel()
+        invoice.signal_workflow('invoice_cancel')
+        invoice.signal_workflow('invoice_cancel')
+
         self.assertEqual(invoice.state, 'cancel')
-        invoice.action_invoice_draft()
+        invoice.action_cancel_draft()
+
         invoice.refresh()
         self.assertEqual(invoice.state, 'draft')

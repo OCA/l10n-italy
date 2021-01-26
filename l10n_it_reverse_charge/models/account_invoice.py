@@ -48,7 +48,7 @@ class AccountInvoice(models.Model):
             "Reference: %s\n"
             "Date: %s\n"
             "Internal reference: %s") % (
-            self.partner_id.display_name, self.reference or '', self.date,
+            self.partner_id.display_name, self.reference or '', self.date_invoice,
             self.number
         )
         return {
@@ -84,24 +84,67 @@ class AccountInvoice(models.Model):
             'date': self.registration_date,
             }
 
+    def compute_rc_amount_tax(self):
+        rc_amount_tax = 0.0
+        round_curr = self.currency_id.round
+        rc_lines = self.invoice_line.filtered(lambda l: l.rc)
+        for rc_line in rc_lines:
+            price_unit = \
+                rc_line.price_unit * (1 - (rc_line.discount or 0.0) / 100.0)
+            taxes = rc_line.invoice_line_tax_id.compute_all(
+                price_unit,
+                rc_line.quantity,
+                product=rc_line.product_id,
+                partner=rc_line.partner_id)['taxes']
+            rc_amount_tax += sum([tax['amount'] for tax in taxes])
+
+        # convert the amount to main company currency, as
+        # compute_rc_amount_tax is used for debit/credit fields
+        invoice_currency = self.currency_id.with_context(
+            date=self.date_invoice)
+        main_currency = self.company_id.currency_id.with_context(
+            date=self.date_invoice)
+        if invoice_currency != main_currency:
+            round_curr = main_currency.round
+            rc_amount_tax = invoice_currency.compute(
+                rc_amount_tax, main_currency)
+
+        return round_curr(rc_amount_tax)
+
     def rc_credit_line_vals(self, journal, move):
+        credit = debit = 0.0
+        amount_rc_tax = self.compute_rc_amount_tax()
+
+        if self.type == 'in_invoice':
+            credit = amount_rc_tax
+        else:
+            debit = amount_rc_tax
+
         return {
             'name': self.number,
-            'credit': self.amount_tax,
-            'debit': 0.0,
+            'credit': credit,
+            'debit': debit,
             'account_id': journal.default_credit_account_id.id,
             'move_id': move.id,
             }
 
     def rc_debit_line_vals(self, move, amount=None):
-        if amount:
-            debit = amount
+        credit = debit = 0.0
+
+        if self.type == 'in_invoice':
+            if amount:
+                debit = amount
+            else:
+                debit = self.compute_rc_amount_tax()
         else:
-            debit = self.amount_tax
+            if amount:
+                credit = amount
+            else:
+                credit = self.compute_rc_amount_tax()
         return {
             'name': self.number,
             'debit': debit,
-            'credit': 0.0,
+            'credit': credit,
             'account_id': self.get_inv_line_to_reconcile().account_id.id,
             'move_id': move.id,
             'partner_id': self.partner_id.id,
@@ -149,6 +192,7 @@ class AccountInvoice(models.Model):
             rc_payment, self.amount_total)
         payment_debit_line = move_line_model.create(
             payment_debit_line_data)
+        rc_payment.post()
 
         lines_to_rec = move_line_model.browse([
             self.get_inv_line_to_reconcile().id,
@@ -196,6 +240,7 @@ class AccountInvoice(models.Model):
             rc_invoice, rc_type.payment_journal_id, rc_payment)
         move_line_model.create(
             rc_payment_debit_line_data)
+        rc_payment.post()
 
         rc_lines_to_rec = move_line_model.browse(
             [self.get_rc_inv_line_to_reconcile(rc_invoice).id,
