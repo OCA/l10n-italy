@@ -49,3 +49,17 @@ class TestDocType(TransactionCase):
 
         invoice.type = 'out_refund'
         self.assertEqual(invoice.fiscal_document_type_id, self.TD04)
+
+    def test_doc_type_refund(self):
+        self.TD01.journal_ids = [self.journalrec.id]
+        invoice = self.inv_model.create({
+            'partner_id': self.partner3.id
+        })
+        invoice._set_document_fiscal_type()
+        refund = invoice.refund(
+            invoice.date_invoice,
+            invoice.date,
+            'refund test',
+            invoice.journal_id.id
+        )
+        self.assertEqual(refund.fiscal_document_type_id.id, self.TD04.id)

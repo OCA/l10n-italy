@@ -11,6 +11,7 @@
                 <field name="in_invoice"/>
                 <field name="out_refund"/>
                 <field name="in_refund"/>
+                <field name="refund_fiscal_document_type_id"/>
             </tree>
         </field>
     </record>
@@ -28,6 +29,8 @@
                     <field name="out_refund"/>
                     <field name="in_refund"/>
                     <field name="journal_ids" widget="many2many_tags"/>
+                    <field name="refund_fiscal_document_type_id"
+                        attrs="{'invisible': [('out_invoice', '=', False), ('in_invoice', '=', False)]}"/>
                 </group>
             </form>
         </field>
