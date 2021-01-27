@@ -21,6 +21,11 @@ class FiscalDocumentType(models.Model):
         'Journals'
     )
 
+    refund_fiscal_document_type_id = fields.Many2one(
+        'fiscal.document.type',
+        string='Fiscal document for refund'
+    )
+
     _order = 'code, priority asc'
 
     @api.model
