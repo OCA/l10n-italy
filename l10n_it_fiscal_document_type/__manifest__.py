@@ -1,6 +1,7 @@
 # Copyright 2017 Alessandro Camilli
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2018 Lorenzo Battistini (https://github.com/eLBati)
+# Copyright 2021 Andrea Cometa (https://www.apuliasoftware.it)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
