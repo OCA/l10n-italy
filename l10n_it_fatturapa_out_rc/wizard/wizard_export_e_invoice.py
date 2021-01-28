@@ -124,13 +124,13 @@ class WizardExportFatturapa(models.TransientModel):
             invoice, body)
         if (
             invoice.rc_purchase_invoice_id and
-            invoice.rc_purchase_invoice_id.fiscal_position_id and
-            invoice.rc_purchase_invoice_id.fiscal_position_id.rc_type_id and
-            invoice.rc_purchase_invoice_id.fiscal_position_id.rc_type_id.
+            invoice.rc_purchase_invoice_id.fiscal_position and
+            invoice.rc_purchase_invoice_id.fiscal_position.rc_type_id and
+            invoice.rc_purchase_invoice_id.fiscal_position.rc_type_id.
                 fiscal_document_type_id
         ):
             body.DatiGenerali.DatiGeneraliDocumento.TipoDocumento = (
-                invoice.rc_purchase_invoice_id.fiscal_position_id.rc_type_id.
+                invoice.rc_purchase_invoice_id.fiscal_position.rc_type_id.
                 fiscal_document_type_id.code
             )
         return res
