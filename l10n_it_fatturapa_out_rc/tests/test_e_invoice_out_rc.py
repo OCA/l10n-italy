@@ -37,6 +37,8 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
             'date_invoice': '2020-12-01',
             'reference': 'EU-SUPPLIER-REF'
         })
+        res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
+        invoice.fiscal_position = res['value']['fiscal_position']
 
         invoice_line_vals = {
             'name': 'Invoice for sample product',
@@ -44,11 +46,12 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
             'invoice_id': invoice.id,
             'product_id': self.sample_product.id,
             'price_unit': 100,
-            'invoice_line_tax_ids': [(4, self.tax_22ai.id, 0)]}
+            'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
         invoice_line = self.invoice_line_model.create(invoice_line_vals)
         invoice_line.onchange_invoice_line_tax_id()
         self.env['account.invoice.tax'].compute(invoice)
-        invoice.invoice_validate()
+        invoice.signal_workflow('invoice_open')
+
         self.assertEqual(
             invoice.rc_self_invoice_id.fiscal_document_type_id.code, "TD17")
         with self.assertRaises(UserError):
