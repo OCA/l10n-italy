@@ -20,7 +20,6 @@ class WizardAccountInvoiceExport(models.TransientModel):
     data = fields.Binary("File", readonly=True)
     name = fields.Char("Filename", default=_default_name, required=True)
 
-    @api.multi
     def export_zip(self):
         self.ensure_one()
         attachments = self.env[self.env.context["active_model"]].browse(
@@ -32,7 +31,7 @@ class WizardAccountInvoiceExport(models.TransientModel):
                     _("Attachment %s already exported. Remove ZIP file first")
                     % att.display_name
                 )
-            if not att.datas or not att.datas_fname:
+            if not att.datas or not att.name:
                 raise UserError(
                     _("Attachment %s does not have XML file") % att.display_name
                 )
@@ -40,19 +39,17 @@ class WizardAccountInvoiceExport(models.TransientModel):
         fp = io.BytesIO()
         with zipfile.ZipFile(fp, mode="w") as zf:
             for att in attachments:
-                zf.writestr(att.datas_fname, base64.b64decode(att.datas))
+                zf.writestr(att.name, base64.b64decode(att.datas))
         fp.seek(0)
         data = fp.read()
         attach_vals = {
             "name": self.name + ".zip",
-            "datas_fname": self.name + ".zip",
             "datas": base64.encodestring(data),
         }
         zip_att = self.env["ir.attachment"].create(attach_vals)
         for att in attachments:
             att.exported_zip = zip_att
         return {
-            "view_type": "form",
             "name": _("Export E-Invoices"),
             "res_id": zip_att.id,
             "view_mode": "form",
