@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 # Copyright 2019 Sergio Corato (https://efatto.it)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Italian Localization - Fattura elettronica - Export ZIP",
     "summary": "Permette di esportare in uno ZIP diversi file XML di "
-               "fatture elettroniche",
+    "fatture elettroniche",
     "version": "12.0.1.0.1",
     "development_status": "Beta",
     "category": "other",

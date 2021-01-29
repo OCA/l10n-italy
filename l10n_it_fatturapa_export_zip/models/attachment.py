@@ -1,17 +1,13 @@
-# -*- coding: utf-8 -*-
-
-from odoo import models, fields
+from odoo import fields, models
 
 
 class FatturaAttachmentOut(models.Model):
-    _inherit = ['fatturapa.attachment.out']
+    _inherit = ["fatturapa.attachment.out"]
 
-    exported_zip = fields.Many2one(
-        'ir.attachment', 'Exported ZIP', readonly=True)
+    exported_zip = fields.Many2one("ir.attachment", "Exported ZIP", readonly=True)
 
 
 class FatturaAttachmentIn(models.Model):
-    _inherit = ['fatturapa.attachment.in']
+    _inherit = ["fatturapa.attachment.in"]
 
-    exported_zip = fields.Many2one(
-        'ir.attachment', 'Exported ZIP', readonly=True)
+    exported_zip = fields.Many2one("ir.attachment", "Exported ZIP", readonly=True)
