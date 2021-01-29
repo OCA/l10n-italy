@@ -90,3 +90,11 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_it_fatturapa_out_rc.field_account_rc_type__fiscal_document_type_id
 msgid "To be used when sending self invoices to the exchange system"
 msgstr "Da usare quando si inviano le autofatture al sistema di interscambio"
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/models/account_invoice.py:34
+#, python-format
+msgid ""
+"Vendor invoice that has generated this self invoice isn't validated. "
+"Validate vendor invoice before."
+msgstr ""
