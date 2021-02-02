@@ -294,7 +294,7 @@ msgid "Intrastat code"
 msgstr "Codice Intrastat"
 
 #. module: l10n_it_intrastat
-#: code:addons/l10n_it_intrastat/models/account.py:332
+#: code:addons/l10n_it_intrastat/models/account.py:336
 #, python-format
 msgid "Intrastat total must be equal to invoice untaxed total"
 msgstr ""
