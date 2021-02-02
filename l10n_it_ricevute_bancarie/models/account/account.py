@@ -154,13 +154,15 @@ class AccountInvoice(models.Model):
 
     @api.onchange('partner_id', 'payment_term_id', 'type')
     def _onchange_riba_partner_bank_id(self):
-        bank_id = None
-        if (
-            self.partner_id and self.payment_term_id.riba
-            and self.type == 'out_invoice'
-        ):
-            bank_id = self.partner_id.mapped('bank_ids')
-        self.riba_partner_bank_id = bank_id[0] if bank_id else None
+        if not self.riba_partner_bank_id or \
+                self.riba_partner_bank_id not in self.partner_id.bank_ids:
+            bank_id = None
+            if (
+                self.partner_id and self.payment_term_id.riba
+                and self.type == 'out_invoice'
+            ):
+                bank_id = self.partner_id.mapped('bank_ids')
+            self.riba_partner_bank_id = bank_id[0] if bank_id else None
 
     def month_check(self, invoice_date_due, all_date_due):
         """
