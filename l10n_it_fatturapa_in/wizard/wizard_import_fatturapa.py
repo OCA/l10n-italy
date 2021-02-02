@@ -960,12 +960,12 @@ class WizardImportFatturapa(models.TransientModel):
         self.set_welfares_fund(
             FatturaBody, credit_account_id, invoice, wt_founds)
 
+        self.set_vendor_bill_data(FatturaBody, invoice)
+
         invoice._onchange_invoice_line_wt_ids()
         invoice._onchange_payment_term_date_invoice()
         invoice.write(invoice._convert_to_write(invoice._cache))
         invoice_id = invoice.id
-
-        self.set_vendor_bill_data(FatturaBody, invoice)
 
         rel_docs_dict = {
             # 2.1.2
