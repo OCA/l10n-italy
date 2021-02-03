@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-08 09:34+0000\n"
-"PO-Revision-Date: 2020-10-05 11:16+0000\n"
-"Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
+"PO-Revision-Date: 2021-02-03 12:44+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_it_fatturapa
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa.view_account_config_settings
@@ -131,7 +131,7 @@ msgstr "Cessionario / Committente"
 #. module: l10n_it_fatturapa
 #: selection:res.company,fatturapa_preview_style:0
 msgid "AssoSoftware"
-msgstr ""
+msgstr "AssoSoftware"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_ir_attachment
@@ -427,7 +427,7 @@ msgstr "Dati cassa previdenziale e-fattura"
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_withholding_data_line
 msgid "E-invoice Withholding Data"
-msgstr ""
+msgstr "Dati ritenuta e-fattura"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_faturapa_activity_progress
@@ -457,12 +457,12 @@ msgstr "E-fatturazione"
 #. module: l10n_it_fatturapa
 #: selection:withholding.data.line,name:0
 msgid "ENASARCO"
-msgstr ""
+msgstr "ENASARCO"
 
 #. module: l10n_it_fatturapa
 #: selection:withholding.data.line,name:0
 msgid "ENPAM"
-msgstr ""
+msgstr "ENPAM"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__eori_code
@@ -603,7 +603,7 @@ msgstr "ID"
 #. module: l10n_it_fatturapa
 #: selection:withholding.data.line,name:0
 msgid "INPS"
-msgstr ""
+msgstr "INPS"
 
 #. module: l10n_it_fatturapa
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa.view_partner_form_e_inv
