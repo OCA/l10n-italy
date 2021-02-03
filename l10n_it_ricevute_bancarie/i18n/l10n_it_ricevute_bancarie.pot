@@ -874,7 +874,7 @@ msgstr ""
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_issue.py:80
 #, python-format
-msgid "No bank has been specified for partner %s!"
+msgid "No bank has been specified for invoice %s!"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
