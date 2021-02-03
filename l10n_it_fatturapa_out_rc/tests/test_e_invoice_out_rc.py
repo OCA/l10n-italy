@@ -27,14 +27,15 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
         inv_seq.number_next_actual = invoice_number
 
     def test_intra_EU(self):
-        self.set_sequence_journal_selfinvoice(15, '2020-12-01')
-        self.set_bill_sequence(25, '2020-12-01')
+        inv_date = '2019-01-15'
+        self.set_sequence_journal_selfinvoice(15, inv_date)
+        self.set_bill_sequence(25, inv_date)
         self.supplier_intraEU.property_payment_term_id = self.term_15_30.id
         invoice = self.invoice_model.create({
             'partner_id': self.supplier_intraEU.id,
             'account_id': self.invoice_account,
             'type': 'in_invoice',
-            'date_invoice': '2020-12-01',
+            'date_invoice': inv_date,
             'reference': 'EU-SUPPLIER-REF'
         })
         res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
