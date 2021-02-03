@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-07-20 06:19+0000\n"
-"Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
+"PO-Revision-Date: 2021-02-03 12:44+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_it_fatturapa_pec
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_config_settings_ftpa_pec
@@ -142,7 +142,7 @@ msgstr "Errore"
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model,name:l10n_it_fatturapa_pec.model_wizard_export_fatturapa
 msgid "Export E-invoice"
-msgstr ""
+msgstr "Esporta e-fattura"
 
 #. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:180
@@ -241,17 +241,17 @@ msgstr ""
 #. module: l10n_it_fatturapa_pec
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_export_fatturapa_form_view_regenerate
 msgid "Re-Export"
-msgstr ""
+msgstr "Riesporta"
 
 #. module: l10n_it_fatturapa_pec
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_invoice_fatturapa_out_pec_form
 msgid "Re-Export E-invoice"
-msgstr ""
+msgstr "Riesporta e-fattura"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.actions.act_window,name:l10n_it_fatturapa_pec.action_wizard_export_fatturapa_regenerate
 msgid "Re-Export Electronic Invoice"
-msgstr ""
+msgstr "Riesporta fattura elettronica"
 
 #. module: l10n_it_fatturapa_pec
 #: selection:account.invoice,fatturapa_state:0
@@ -331,12 +331,14 @@ msgid ""
 "The invoice cannot be regenerated because doesn't have a e-invoice "
 "attachment associated to it"
 msgstr ""
+"La fattura non può essere rigenerata, non possiede un allegato e-fattura "
+"associato"
 
 #. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/wizard/wizard_export_fatturapa.py:39
 #, python-format
 msgid "The method can be called with a valid active_id"
-msgstr ""
+msgstr "Il metodo può essere chiamato con un active_id valido"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_res_company__e_invoice_user_id
