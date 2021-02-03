@@ -895,8 +895,8 @@ msgstr "Nessun ID attivo trovato."
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_issue.py:80
 #, python-format
-msgid "No bank has been specified for partner %s!"
-msgstr "Nessuna banca specificata per il partner %s."
+msgid "No bank has been specified for invoice %s!"
+msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line__sequence
@@ -1252,6 +1252,9 @@ msgstr "del"
 #, python-format
 msgid "{line_name} for {month}-{year}"
 msgstr "{line_name} per {month}-{year}"
+
+#~ msgid "No bank has been specified for partner %s!"
+#~ msgstr "Nessuna banca specificata per il partner %s."
 
 #~ msgid "C/0 Slips"
 #~ msgstr "Distinte RiBa"
