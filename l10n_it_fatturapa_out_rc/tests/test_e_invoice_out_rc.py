@@ -68,6 +68,6 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
         res = self.run_wizard(invoice.rc_self_invoice_id.id)
         attachment = self.attach_model.browse(res['res_id'])
         self.set_e_invoice_file_id(attachment, 'IT10538570960_00002.xml')
-        xml_content = base64.decodebytes(attachment.datas)
+        xml_content = attachment.datas.decode('base64')
         self.check_content(
             xml_content, 'IT10538570960_00002.xml', "l10n_it_fatturapa_out_rc")

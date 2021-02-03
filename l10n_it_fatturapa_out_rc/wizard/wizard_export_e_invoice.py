@@ -1,4 +1,4 @@
-from openerp import models, _
+from openerp import api, models, _
 from openerp.exceptions import Warning as UserError
 from openerp.addons.l10n_it_account.tools.account_tools import encode_for_export
 from openerp.addons.l10n_it_fatturapa.bindings.fatturapa import (
@@ -11,11 +11,10 @@ from openerp.addons.l10n_it_fatturapa.bindings.fatturapa import (
 class WizardExportFatturapa(models.TransientModel):
     _inherit = "wizard.export.fatturapa"
 
-    def exportInvoiceXML(
-        self, company, partner, invoice_ids, attach=False, context=None
-    ):
-        if context is None:
-            context = {}
+    @api.model
+    def get_invoices_context(self, invoice_ids):
+        context = super(WizardExportFatturapa, self) \
+            .get_invoices_context(invoice_ids)
         invoices = self.env["account.invoice"].browse(invoice_ids)
         invoices_with_rc = False
         invoices_without_rc = False
@@ -35,8 +34,7 @@ class WizardExportFatturapa(models.TransientModel):
                 "select invoices with same supplier"))
         if rc_suppliers:
             context['rc_supplier'] = rc_suppliers[0]
-        return super(WizardExportFatturapa, self).exportInvoiceXML(
-            company, partner, invoice_ids, attach, context)
+        return context
 
     def _setDatiAnagraficiCedente(self, CedentePrestatore, company):
         res = super(WizardExportFatturapa, self)._setDatiAnagraficiCedente(
