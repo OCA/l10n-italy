@@ -56,30 +56,25 @@
          <DatiGeneraliDocumento>
             <TipoDocumento>TD17</TipoDocumento>
             <Divisa>EUR</Divisa>
-            <Data>2020-12-01</Data>
+            <Data>2019-01-15</Data>
             <Numero>SLF/2020/0015</Numero>
             <ImportoTotaleDocumento>122.00</ImportoTotaleDocumento>
             <Causale>Reverse charge self invoice.</Causale>
             <Causale>Supplier: Intra EU supplier</Causale>
             <Causale>Reference: EU-SUPPLIER-REF</Causale>
-            <Causale>Date: 2020-12-01</Causale>
+            <Causale>Date: 2019-01-15</Causale>
             <Causale>Internal reference: BILL/2020/0025</Causale>
          </DatiGeneraliDocumento>
          <DatiFattureCollegate>
             <IdDocumento>EU-SUPPLIER-REF</IdDocumento>
-            <Data>2020-12-01</Data>
+            <Data>2019-01-15</Data>
          </DatiFattureCollegate>
       </DatiGenerali>
       <DatiBeniServizi>
          <DettaglioLinee>
             <NumeroLinea>1</NumeroLinea>
-            <CodiceArticolo>
-               <CodiceTipo>ODOO</CodiceTipo>
-               <CodiceValore>DESK0004</CodiceValore>
-            </CodiceArticolo>
             <Descrizione>Invoice for sample product</Descrizione>
             <Quantita>1.000</Quantita>
-            <UnitaMisura>Unit(s)</UnitaMisura>
             <PrezzoUnitario>100.00000</PrezzoUnitario>
             <PrezzoTotale>100.00</PrezzoTotale>
             <AliquotaIVA>22.00</AliquotaIVA>

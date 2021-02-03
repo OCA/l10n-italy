@@ -17,24 +17,24 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
             "l10n_it_fiscal_document_type.15").id
         self.tax_22vi.kind_id = self.env.ref("l10n_it_account_tax_kind.n6").id
 
-    def set_sequence_journal_selfinvoice(self, invoice_number, dt):
+    def set_sequence_journal_selfinvoice(self, invoice_number):
         inv_seq = self.journal_selfinvoice.sequence_id
         inv_seq.number_next_actual = invoice_number
 
-    def set_bill_sequence(self, invoice_number, dt):
+    def set_bill_sequence(self, invoice_number):
         seq_pool = self.env['ir.sequence']
         inv_seq = seq_pool.search([('name', '=', 'Account Default Expenses Journal')])[0]
         inv_seq.number_next_actual = invoice_number
 
     def test_intra_EU(self):
-        self.set_sequence_journal_selfinvoice(15, '2020-12-01')
-        self.set_bill_sequence(25, '2020-12-01')
+        self.set_sequence_journal_selfinvoice(15)
+        self.set_bill_sequence(25)
         self.supplier_intraEU.property_payment_term_id = self.term_15_30.id
         invoice = self.invoice_model.create({
             'partner_id': self.supplier_intraEU.id,
             'account_id': self.invoice_account,
             'type': 'in_invoice',
-            'date_invoice': '2020-12-01',
+            'date_invoice': '2019-01-15',
             'reference': 'EU-SUPPLIER-REF'
         })
         res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
