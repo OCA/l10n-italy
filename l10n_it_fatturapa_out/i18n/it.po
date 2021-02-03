@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 10:03+0000\n"
-"PO-Revision-Date: 2020-03-25 11:13+0000\n"
-"Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
+"PO-Revision-Date: 2021-02-03 12:44+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__access_token
@@ -82,7 +82,7 @@ msgstr "Città non impostata per %s."
 #. module: l10n_it_fatturapa_out
 #: model:ir.model,name:l10n_it_fatturapa_out.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__company_id
@@ -134,12 +134,12 @@ msgstr "Azienda %s, CAP non impostato."
 #. module: l10n_it_fatturapa_out
 #: model:ir.model,name:l10n_it_fatturapa_out.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni di configurazione"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model,name:l10n_it_fatturapa_out.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contatto"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:299
@@ -190,6 +190,8 @@ msgid ""
 "Customer default for maximum number of invoices to group in a single XML "
 "file. 0=Unlimited"
 msgstr ""
+"Numero massimo predefinito di fatture cliente raggruppabili in un singolo "
+"file XML. 0 = Nessun limite"
 
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:480
@@ -239,7 +241,7 @@ msgstr "Allegati e-fattura"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:891
 #, python-format
 msgid "E-invoice export file still present for invoice %s."
-msgstr ""
+msgstr "Per la fattura %s è ancora presente il file e-fattura esportato."
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__att_name
@@ -473,13 +475,15 @@ msgstr "Allegato principale"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_res_partner__max_invoice_in_xml
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_res_users__max_invoice_in_xml
 msgid "Max Invoice # in XML"
-msgstr ""
+msgstr "N. max fatture nell'XML"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_res_partner__max_invoice_in_xml
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_res_users__max_invoice_in_xml
 msgid "Maximum number of invoices to group in a single XML file. 0=Unlimited"
 msgstr ""
+"Numero massimo di fatture raggruppabili in un singolo file XML. 0 = Nessun "
+"limite"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__message_has_error
@@ -670,6 +674,8 @@ msgstr ""
 msgid ""
 "The customer default for max number of invoices to group can't be negative"
 msgstr ""
+"Il numero massimo predefinito di fatture cliente raggruppabili non può "
+"essere negativo"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out__res_model
@@ -680,7 +686,7 @@ msgstr "L'oggetto del database a cui verrà assegnato questo allegato."
 #: code:addons/l10n_it_fatturapa_out/models/partner.py:22
 #, python-format
 msgid "The max number of invoice to group can't be negative"
-msgstr ""
+msgstr "Il numero massimo di fatture raggruppabili non può essere negativo"
 
 #. module: l10n_it_fatturapa_out
 #: sql_constraint:fatturapa.attachment.out:0
