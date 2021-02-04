@@ -57,13 +57,13 @@
             <TipoDocumento>TD17</TipoDocumento>
             <Divisa>EUR</Divisa>
             <Data>2019-01-15</Data>
-            <Numero>SLF/2020/0015</Numero>
+            <Numero>SLF/2019/0015</Numero>
             <ImportoTotaleDocumento>122.00</ImportoTotaleDocumento>
             <Causale>Reverse charge self invoice.</Causale>
             <Causale>Supplier: Intra EU supplier</Causale>
             <Causale>Reference: EU-SUPPLIER-REF</Causale>
             <Causale>Date: 2019-01-15</Causale>
-            <Causale>Internal reference: EXJ/2020/0025</Causale>
+            <Causale>Internal reference: EXJ/2019/025</Causale>
          </DatiGeneraliDocumento>
          <DatiFattureCollegate>
             <IdDocumento>EU-SUPPLIER-REF</IdDocumento>
