@@ -184,6 +184,21 @@
             <field name="email">info@mycompany.it</field>
         </record>
 
+        <record id="res_partner_fatturapa_5" model="res.partner">
+            <field name="name">B2B Customer Intra</field>
+            <field name="customer">1</field>
+            <field name="supplier">0</field>
+            <field name="is_company">1</field>
+            <field name="street">Frankfurt Strasse, 1</field>
+            <field name="is_pa">0</field>
+            <field name="city">Frankfurt</field>
+            <field name="zip">123234</field>
+            <field name="country_id" ref="base.lv"/>
+            <field name="email">info@mycompany.it</field>
+            <field name="vat">LV40003844254</field>
+            <field name="codice_destinatario">XXXXXXX</field>
+        </record>
+
         <record id="fiscal_position_sp" model="account.fiscal.position">
             <field name="name">Split payment</field>
             <field name="split_payment" eval="True"></field>
