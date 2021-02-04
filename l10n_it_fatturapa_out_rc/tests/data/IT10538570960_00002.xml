@@ -63,7 +63,7 @@
             <Causale>Supplier: Intra EU supplier</Causale>
             <Causale>Reference: EU-SUPPLIER-REF</Causale>
             <Causale>Date: 2019-01-15</Causale>
-            <Causale>Internal reference: BILL/2020/0025</Causale>
+            <Causale>Internal reference: EXJ/2020/0025</Causale>
          </DatiGeneraliDocumento>
          <DatiFattureCollegate>
             <IdDocumento>EU-SUPPLIER-REF</IdDocumento>

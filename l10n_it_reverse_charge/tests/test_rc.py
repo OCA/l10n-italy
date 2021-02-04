@@ -16,6 +16,7 @@ class TestReverseCharge(ReverseChargeCommon):
         invoice = self.invoice_model.create({
             'partner_id': self.supplier_intraEU.id,
             'account_id': self.invoice_account,
+            'journal_id': self.purchases_journal.id,
             'type': 'in_invoice',
         })
         res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
@@ -37,6 +38,7 @@ class TestReverseCharge(ReverseChargeCommon):
         invoice = self.invoice_model.create({
             'partner_id': self.supplier_intraEU.id,
             'account_id': self.invoice_account,
+            'journal_id': self.purchases_journal.id,
             'type': 'in_invoice',
         })
         res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
@@ -71,6 +73,7 @@ class TestReverseCharge(ReverseChargeCommon):
         invoice = self.invoice_model.create({
             'partner_id': self.supplier_intraEU.id,
             'account_id': self.invoice_account,
+            'journal_id': self.purchases_journal.id,
             'type': 'in_invoice',
         })
         res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
@@ -111,6 +114,7 @@ class TestReverseCharge(ReverseChargeCommon):
         invoice = self.invoice_model.create({
             'partner_id': self.supplier_intraEU.id,
             'account_id': self.invoice_account,
+            'journal_id': self.purchases_journal.id,
             'type': 'in_invoice',
         })
         res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
@@ -204,6 +208,7 @@ class TestReverseCharge(ReverseChargeCommon):
         invoice = self.invoice_model.create({
             'partner_id': self.supplier_extraEU.id,
             'account_id': self.invoice_account,
+            'journal_id': self.purchases_journal.id,
             'type': 'in_invoice',
         })
         res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
@@ -241,6 +246,7 @@ class TestReverseCharge(ReverseChargeCommon):
         invoice = self.invoice_model.create({
             'partner_id': self.supplier_intraEU.id,
             'account_id': self.invoice_account,
+            'journal_id': self.purchases_journal.id,
             'type': 'in_invoice',
         })
         res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
@@ -271,6 +277,7 @@ class TestReverseCharge(ReverseChargeCommon):
         invoice = self.invoice_model.create({
             'partner_id': self.supplier_intraEU.id,
             'account_id': self.invoice_account,
+            'journal_id': self.purchases_journal.id,
             'type': 'in_invoice',
         })
         res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
@@ -320,6 +327,7 @@ class TestReverseCharge(ReverseChargeCommon):
         invoice = self.invoice_model.create({
             'partner_id': self.supplier_extraEU.id,
             'account_id': self.invoice_account,
+            'journal_id': self.purchases_journal.id,
             'type': 'in_refund',
         })
         res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
@@ -340,6 +348,7 @@ class TestReverseCharge(ReverseChargeCommon):
         invoice = self.invoice_model.create({
             'partner_id': self.supplier_intraEU_exempt.id,
             'account_id': self.invoice_account,
+            'journal_id': self.purchases_journal.id,
             'type': 'in_invoice',
         })
         res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
