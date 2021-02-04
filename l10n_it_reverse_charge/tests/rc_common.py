@@ -105,6 +105,11 @@ class ReverseChargeCommon(TransactionCase):
         })
 
     def _create_journals(self):
+        # Set purchase journal before creating any other journal,
+        # otherwise default journal for purchase invoice might be overridden
+        self.purchases_journal = self.env['account.journal'].search(
+            [('type', '=', 'purchase')])[0]
+
         journal_model = self.env['account.journal']
         self.journal_selfinvoice = journal_model.create({
             'name': 'selfinvoice',

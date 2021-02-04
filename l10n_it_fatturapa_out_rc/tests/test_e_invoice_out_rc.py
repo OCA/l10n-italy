@@ -33,6 +33,7 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
         invoice = self.invoice_model.create({
             'partner_id': self.supplier_intraEU.id,
             'account_id': self.invoice_account,
+            'journal_id': self.purchases_journal.id,
             'type': 'in_invoice',
             'date_invoice': '2019-01-15',
             'reference': 'EU-SUPPLIER-REF'
