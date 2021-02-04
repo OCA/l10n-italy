@@ -47,7 +47,8 @@ from odoo.addons.l10n_it_fatturapa.bindings.fatturapa import (
     DettaglioPagamentoType,
     AllegatiType,
     ScontoMaggiorazioneType,
-    CodiceArticoloType
+    CodiceArticoloType,
+    AltriDatiGestionaliType
 )
 from odoo.addons.l10n_it_fatturapa.models.account import (
     RELATED_DOCUMENT_TYPES)
@@ -681,6 +682,17 @@ class WizardExportFatturapa(models.TransientModel):
             DettaglioLinea.Natura = line.invoice_line_tax_ids[
                 0
             ].kind_id.code
+            if line.invoice_line_tax_ids[0].kind_id.code == 'N2.1' and \
+                    line.invoice_id.partner_id.country_id.code in [
+                'AT', 'BE', 'BG', 'CY', 'HR', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'IE',
+                'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'CZ', 'RO', 'SK', 'SI',
+                'ES', 'SE', 'HU'
+            ]:
+                dati_gestionali = AltriDatiGestionaliType()
+                dati_gestionali.TipoDato = 'INVCONT'
+                DettaglioLinea.AltriDatiGestionali.append(
+                    dati_gestionali
+                )
         if line.admin_ref:
             DettaglioLinea.RiferimentoAmministrazione = line.admin_ref
         if line.product_id:
