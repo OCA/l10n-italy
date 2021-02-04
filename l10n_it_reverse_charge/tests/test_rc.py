@@ -1,7 +1,6 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # Copyright 2019 Alex Comba - Agile Business Group
 
-import json
 from openerp.exceptions import Warning as UserError
 from .rc_common import ReverseChargeCommon
 

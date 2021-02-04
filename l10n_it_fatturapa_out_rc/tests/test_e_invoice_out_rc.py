@@ -1,4 +1,3 @@
-import base64
 from openerp.addons.l10n_it_reverse_charge.tests.rc_common import ReverseChargeCommon
 from openerp.addons.l10n_it_fatturapa_out.tests.fatturapa_common import FatturaPACommon
 from openerp.exceptions import Warning as UserError
@@ -24,7 +23,9 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
 
     def set_bill_sequence(self, invoice_number, year):
         seq_pool = self.env['ir.sequence']
-        inv_seq = seq_pool.search([('name', '=', 'Account Default Expenses Journal')])[0]
+        inv_seq = seq_pool.search([
+            ('name', '=', 'Account Default Expenses Journal'),
+        ])[0]
         inv_seq.prefix = inv_seq.prefix % {'year': year}
         inv_seq.number_next_actual = invoice_number
 
