@@ -71,7 +71,7 @@
         <PrezzoUnitario>2.00</PrezzoUnitario>
         <PrezzoTotale>20.00</PrezzoTotale>
         <AliquotaIVA>0.00</AliquotaIVA>
-        <Natura>N6</Natura>
+        <Natura>N6.1</Natura>
       </DettaglioLinee>
       <DatiRiepilogo>
         <AliquotaIVA>22.00</AliquotaIVA>
@@ -81,7 +81,7 @@
       </DatiRiepilogo>
       <DatiRiepilogo>
         <AliquotaIVA>0.00</AliquotaIVA>
-        <Natura>N6</Natura>
+        <Natura>N6.1</Natura>
         <ImponibileImporto>20.00</ImponibileImporto>
         <Imposta>0.00</Imposta>
         <EsigibilitaIVA>I</EsigibilitaIVA>

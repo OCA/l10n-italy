@@ -31,14 +31,14 @@ class TestInvoiceRC(FatturapaCommon):
             'name': "Tax 22% Purchase RC ITA",
             'type_tax_use': 'purchase',
             'amount': 22,
-            'kind_id': self.env.ref('l10n_it_account_tax_kind.n6').id,
+            'kind_id': self.env.ref('l10n_it_account_tax_kind.n6_1').id,
             'sequence': 10,
         })
         self.tax_22vi = tax_model.create({
             'name': "Tax 22% Sales RC ITA",
             'type_tax_use': 'sale',
             'amount': 22,
-            'kind_id': self.env.ref('l10n_it_account_tax_kind.n6').id,
+            'kind_id': self.env.ref('l10n_it_account_tax_kind.n6_1').id,
             'law_reference': 'articoli 23 e 25 D.P.R. 633/1972',
             'sequence': 10,
         })
