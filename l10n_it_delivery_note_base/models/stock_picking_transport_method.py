@@ -15,7 +15,12 @@ class StockPickingTransportMethod(models.Model):
 
     active = fields.Boolean(default=True)
     sequence = fields.Integer(string="Sequence", index=True, default=10)
-    name = fields.Char(string="Method name", index=True, required=True, translate=True)
+    name = fields.Char(
+        string="Method name",
+        index=True,
+        required=True,
+        translate=True,
+    )
     note = fields.Html(string="Internal note")
 
     _sql_constraints = [

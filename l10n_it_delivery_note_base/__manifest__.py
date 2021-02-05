@@ -12,7 +12,7 @@
     "summary": "Crea e gestisce tabelle principali per gestire i DDT",
     "author": "Marco Calcagni, Gianmarco Conte, Link IT Europe Srl, "
     "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/l10n-italy" "l10n_it_delivery_note_base",
+    "website": "https://github.com/OCA/l10n-italy" "/l10n_it_delivery_note_base",
     "version": "14.0.1.0.0",
     "category": "Localization/Italy",
     "license": "AGPL-3",

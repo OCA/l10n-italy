@@ -19,7 +19,10 @@ class StockPickingTransportCondition(models.Model):
     active = fields.Boolean(default=True)
     sequence = fields.Integer(string="Sequence", index=True, default=10)
     name = fields.Char(
-        string="Condition name", index=True, required=True, translate=True
+        string="Condition name",
+        index=True,
+        required=True,
+        translate=True,
     )
     price_to_show = fields.Selection(
         PRICES_TO_SHOW,

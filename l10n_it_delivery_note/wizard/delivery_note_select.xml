@@ -87,19 +87,6 @@
         </field>
     </record>
 
-    <!--    <record-->
-    <!--        id="stock_delivery_note_select_action"-->
-    <!--        groups="l10n_it_delivery_note.use_advanced_delivery_notes"-->
-    <!--        key2="client_action_multi"-->
-    <!--        name="Select an existing delivery note"-->
-    <!--        res_model="stock.delivery.note.select.wizard"-->
-    <!--        src_model="stock.picking"-->
-    <!--        view_mode="form"-->
-    <!--        view_type="form"-->
-    <!--        target="new"-->
-    <!--        multi="True"-->
-    <!--    />-->
-
     <record id="stock_delivery_note_select_action" model="ir.actions.act_window">
         <field name="name">Select an existing delivery note</field>
         <field name="res_model">stock.delivery.note.select.wizard</field>
@@ -111,7 +98,7 @@
             eval="[(4, ref('l10n_it_delivery_note.use_advanced_delivery_notes'))]"
         />
         <field name="binding_model_id" ref="stock.model_stock_picking" />
-        <field name="binding_view_types">form</field>
+        <field name="binding_view_types">list</field>
     </record>
 
 </odoo>

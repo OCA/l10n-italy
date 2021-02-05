@@ -32,7 +32,7 @@ class AccountInvoice(models.Model):
     def goto_delivery_notes(self, **kwargs):
         delivery_notes = self.mapped("delivery_note_ids")
         action = self.env.ref(
-            "l10n_it_delivery_note." "stock_delivery_note_action"
+            "l10n_it_delivery_note.stock_delivery_note_action"
         ).read()[0]
         action.update(kwargs)
 
@@ -43,7 +43,7 @@ class AccountInvoice(models.Model):
             action["views"] = [
                 (
                     self.env.ref(
-                        "l10n_it_delivery_note." "stock_delivery_note_form_view"
+                        "l10n_it_delivery_note.stock_delivery_note_form_view"
                     ).id,
                     "form",
                 )
@@ -69,7 +69,6 @@ class AccountInvoice(models.Model):
             "res_model": "account.move",
             "res_id": self.id,
             "views": [(view_id, "form")],
-            "view_type": "form",
             "view_mode": "form",
             "target": "current",
             **kwargs,

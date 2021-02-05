@@ -23,7 +23,7 @@ ITA - Documento di trasporto - Base
     :target: https://runbot.odoo-community.org/runbot/122/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 **English**
 
@@ -40,7 +40,6 @@ Questo modulo è un livello base.
 All'interno ci sono le tabelle principali,
 in modo che chiunque possa usarlo con altri
 moduli.
-
 
 **Table of contents**
 
@@ -101,7 +100,7 @@ promote its widespread use.
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-As400it| |maintainer-Byloth|
+|maintainer-As400it| |maintainer-Byloth| 
 
 This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_delivery_note_base>`_ project on GitHub.
 

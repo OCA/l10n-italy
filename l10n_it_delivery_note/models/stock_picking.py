@@ -204,7 +204,6 @@ class StockPicking(models.Model):
             "name": _("Create a new delivery note"),
             "type": "ir.actions.act_window",
             "res_model": "stock.delivery.note.create.wizard",
-            "view_type": "form",
             "view_mode": "form",
             "target": "new",
             "context": {"active_ids": self.ids},
@@ -217,7 +216,6 @@ class StockPicking(models.Model):
             "name": _("Select an existing delivery note"),
             "type": "ir.actions.act_window",
             "res_model": "stock.delivery.note.select.wizard",
-            "view_type": "form",
             "view_mode": "form",
             "target": "new",
             "context": {"active_ids": self.ids},
@@ -253,8 +251,8 @@ class StockPicking(models.Model):
 
         return self.delivery_note_id.action_print()
 
-    def action_done(self):
-        res = super().action_done()
+    def button_validate(self):
+        res = super().button_validate()
         codes = self.mapped("picking_type_code")
 
         if all(
@@ -335,7 +333,6 @@ class StockPicking(models.Model):
             "res_model": self._name,
             "res_id": self.id,
             "views": [(False, "form")],
-            "view_type": "form",
             "view_mode": "form",
             "target": "current",
             **kwargs,

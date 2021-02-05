@@ -43,7 +43,6 @@ class SaleAdvancePaymentInv(models.TransientModel):
             "res_model": self._name,
             "res_id": self.id,
             "views": [(False, "form")],
-            "view_type": "form",
             "view_mode": "form",
             "target": "new",
             **kwargs,

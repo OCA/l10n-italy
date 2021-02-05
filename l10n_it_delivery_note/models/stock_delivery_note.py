@@ -104,6 +104,7 @@ class StockDeliveryNote(models.Model):
         readonly=True,
         required=True,
         tracking=True,
+        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
     )
 
     partner_id = fields.Many2one(
@@ -114,6 +115,7 @@ class StockDeliveryNote(models.Model):
         required=True,
         index=True,
         tracking=True,
+        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
     )
     partner_shipping_id = fields.Many2one(
         "res.partner",
@@ -121,6 +123,7 @@ class StockDeliveryNote(models.Model):
         states=DONE_READONLY_STATE,
         required=True,
         tracking=True,
+        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
     )
 
     carrier_id = fields.Many2one(
@@ -128,6 +131,7 @@ class StockDeliveryNote(models.Model):
         string="Carrier",
         states=DONE_READONLY_STATE,
         tracking=True,
+        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
     )
     delivery_method_id = fields.Many2one(
         "delivery.carrier",
@@ -496,7 +500,7 @@ class StockDeliveryNote(models.Model):
 
     def action_print(self):
         return self.env.ref(
-            "l10n_it_delivery_note." "delivery_note_report_action"
+            "l10n_it_delivery_note.delivery_note_report_action"
         ).report_action(self)
 
     def update_transport_datetime(self):
@@ -510,7 +514,6 @@ class StockDeliveryNote(models.Model):
             "res_model": self._name,
             "res_id": self.id,
             "views": [(False, "form")],
-            "view_type": "form",
             "view_mode": "form",
             "target": "current",
             **kwargs,
@@ -624,7 +627,13 @@ class StockDeliveryNoteLine(models.Model):
     delivery_note_id = fields.Many2one(
         "stock.delivery.note", string="Delivery Note", required=True, ondelete="cascade"
     )
-
+    company_id = fields.Many2one(
+        "res.company",
+        related="delivery_note_id.company_id",
+        store=True,
+        readonly=True,
+        index=True,
+    )
     sequence = fields.Integer(string="Sequence", required=True, default=10, index=True)
     name = fields.Text(string="Description", required=True)
     display_type = fields.Selection(
@@ -650,7 +659,11 @@ class StockDeliveryNoteLine(models.Model):
     tax_ids = fields.Many2many("account.tax", string="Taxes")
 
     move_id = fields.Many2one(
-        "stock.move", string="Warehouse movement", readonly=True, copy=False
+        "stock.move",
+        string="Warehouse movement",
+        readonly=True,
+        copy=False,
+        check_company=True,
     )
     sale_line_id = fields.Many2one(
         "sale.order.line", related="move_id.sale_line_id", store=True, copy=False

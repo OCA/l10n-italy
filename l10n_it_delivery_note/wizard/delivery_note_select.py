@@ -30,9 +30,13 @@ class StockDeliveryNoteSelectWizard(models.TransientModel):
 
         if self.delivery_note_id:
             self.picking_ids += self.delivery_note_id.picking_ids
+        else:
+            self.picking_ids = self.picking_ids
 
         if self.selected_picking_ids:
             self.picking_ids += self.selected_picking_ids
+        else:
+            self.picking_ids = self.picking_ids
 
     def check_compliance(self, pickings):
         super().check_compliance(pickings)
