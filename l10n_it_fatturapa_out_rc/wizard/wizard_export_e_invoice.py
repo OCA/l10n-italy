@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from openerp import api, models, _
 from openerp.exceptions import Warning as UserError
 from openerp.addons.l10n_it_account.tools.account_tools import encode_for_export
@@ -131,4 +132,34 @@ class WizardExportFatturapa(models.TransientModel):
                 invoice.rc_purchase_invoice_id.fiscal_position.rc_type_id.
                 fiscal_document_type_id.code
             )
+        if invoice.type in ['out_refund', 'in_refund'] \
+                and invoice.fiscal_document_type_id.code not in ['TD04', 'TD08']:
+            body.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento = \
+                - body.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento
+        return res
+
+    def setDettaglioLinea(self, line_no, line, body, price_precision, uom_precision):
+        DettaglioLinea = super(WizardExportFatturapa, self).setDettaglioLinea(
+            line_no, line, body, price_precision, uom_precision)
+        if line.invoice_id.type in ['out_refund', 'in_refund'] and \
+                line.invoice_id.fiscal_document_type_id.code not in ['TD04', 'TD08']:
+            DettaglioLinea.PrezzoUnitario = - DettaglioLinea.PrezzoUnitario
+            DettaglioLinea.PrezzoTotale = - DettaglioLinea.PrezzoTotale
+        return DettaglioLinea
+
+    def setDatiRiepilogo(self, invoice, body):
+        res = super(WizardExportFatturapa, self).setDatiRiepilogo(invoice, body)
+        for DatiRiepilogo in body.DatiBeniServizi.DatiRiepilogo:
+            if invoice.type in ['out_refund', 'in_refund'] \
+                    and invoice.fiscal_document_type_id.code not in ['TD04', 'TD08']:
+                DatiRiepilogo.ImponibileImporto = - DatiRiepilogo.ImponibileImporto
+                DatiRiepilogo.Imposta = - DatiRiepilogo.Imposta
+        return res
+
+    def setDatiPagamento(self, invoice, body):
+        res = super(WizardExportFatturapa, self).setDatiPagamento(invoice, body)
+        for DatiPagamento in body.DatiPagamento:
+            if invoice.type in ['out_refund', 'in_refund'] \
+                    and invoice.fiscal_document_type_id.code not in ['TD04', 'TD08']:
+                DatiPagamento.ImportoPagamento = - DatiPagamento.ImportoPagamento
         return res
