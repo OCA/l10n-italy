@@ -390,7 +390,7 @@ msgid "Invoice %s does not have a number."
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/account.py:29
+#: code:addons/l10n_it_fatturapa_out/models/account.py:32
 #, python-format
 msgid "Invoice %s has XML and can't be canceled. Delete the XML before."
 msgstr ""
