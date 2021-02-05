@@ -26,7 +26,7 @@ from openerp.osv import orm
 from openerp.tools.translate import _
 from openerp.osv import fields
 import logging
-
+import pyxb
 from openerp.addons.l10n_it_fatturapa.bindings import fatturapa
 from openerp.addons.base_iban import base_iban
 from openerp.osv.osv import except_osv
@@ -1604,4 +1604,7 @@ class WizardImportFatturapa(orm.TransientModel):
         for num in range(1, 24):
             to_replace = '+0%s:00' % (num)
             xml_string = xml_string.replace(to_replace, '')
-        return fatturapa.CreateFromDocument(xml_string)
+        pyxb.RequireValidWhenParsing(False)
+        ret = fatturapa.CreateFromDocument(xml_string)
+        pyxb.RequireValidWhenParsing(True)
+        return ret
