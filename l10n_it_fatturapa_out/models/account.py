@@ -25,7 +25,10 @@ class AccountInvoice(models.Model):
     @api.multi
     def action_invoice_cancel(self):
         for invoice in self:
-            if invoice.fatturapa_attachment_out_id:
+            if (
+                invoice.fatturapa_attachment_out_id and
+                not self.env.context.get("skip_e_invoice_cancel_check")
+            ):
                 raise UserError(_(
                     "Invoice %s has XML and can't be canceled. "
                     "Delete the XML before."
