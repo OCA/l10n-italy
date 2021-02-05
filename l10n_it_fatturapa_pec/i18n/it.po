@@ -325,7 +325,7 @@ msgid "State"
 msgstr "Stato"
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/wizard/wizard_export_fatturapa.py:49
+#: code:addons/l10n_it_fatturapa_pec/wizard/wizard_export_fatturapa.py:50
 #, python-format
 msgid ""
 "The invoice cannot be regenerated because doesn't have a e-invoice "
@@ -335,7 +335,7 @@ msgstr ""
 "associato"
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/wizard/wizard_export_fatturapa.py:39
+#: code:addons/l10n_it_fatturapa_pec/wizard/wizard_export_fatturapa.py:40
 #, python-format
 msgid "The method can be called with a valid active_id"
 msgstr "Il metodo può essere chiamato con un active_id valido"

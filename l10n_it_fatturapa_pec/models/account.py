@@ -36,3 +36,13 @@ class AccountInvoice(models.Model):
         for record in self:
             record.fatturapa_state = fatturapa_attachment_state_mapping.get(
                 record.fatturapa_attachment_out_id.state)
+
+    @api.multi
+    def action_invoice_cancel(self):
+        for invoice in self:
+            if invoice.fatturapa_state == "error":
+                res = super(AccountInvoice, invoice.with_context(
+                    skip_e_invoice_cancel_check=True)).action_invoice_cancel()
+            else:
+                res = super(AccountInvoice, invoice).action_invoice_cancel()
+        return res
