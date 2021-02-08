@@ -106,7 +106,7 @@
                 </xpath>
 
                 <xpath expr="//group[hasclass('oe_subtotal_footer', 'oe_right')]/field[@name='amount_total']" position="after">
-                    <field name="withholding_tax_amount" widget="monetary" options="{'currency_field': 'currency_id'}" 
+                    <field name="withholding_tax_amount" widget="monetary" options="{'currency_field': 'currency_id'}"
                         attrs="{'invisible': [('withholding_tax', '=', False)]}"/>
                     <field name="amount_net_pay" widget="monetary" options="{'currency_field': 'currency_id'}" class="oe_subtotal_footer_separator"
                         attrs="{'invisible': [('withholding_tax', '=', False)]}"/>
@@ -140,8 +140,7 @@
             <field name="arch" type="xml">
 
                 <xpath expr="//group/group/field[@name='invoice_line_tax_ids']" position="after">
-                    <field name="invoice_line_tax_wt_ids" widget="many2many_tags" options="{'no_create': True}"
-                        invisible="context.get('type', 'out_invoice') not in ['in_invoice', 'in_refund']"/>
+                    <field name="invoice_line_tax_wt_ids" widget="many2many_tags" options="{'no_create': True}" />
                 </xpath>
 
             </field>
