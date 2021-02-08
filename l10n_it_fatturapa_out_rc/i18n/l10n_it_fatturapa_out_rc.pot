@@ -80,3 +80,9 @@ msgstr ""
 msgid "To be used when sending self invoices to the exchange system"
 msgstr ""
 
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/models/account_invoice.py:34
+#, python-format
+msgid "Vendor invoice that has generated this self invoice isn't validated. Validate vendor invoice before."
+msgstr ""
+
