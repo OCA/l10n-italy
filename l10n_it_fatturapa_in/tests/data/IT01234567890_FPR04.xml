@@ -51,7 +51,7 @@
       <DatiGeneraliDocumento>
         <TipoDocumento>TD01</TipoDocumento>
         <Divisa>EUR</Divisa>
-        <Data>2019-02-15</Data>
+        <Data>2019-02-15 </Data>
         <Numero>123</Numero>
         <Causale>LA FATTURA FA RIFERIMENTO AD UNA OPERAZIONE AAAA BBBBBBBBBBBBBBBBBB CCC DDDDDDDDDDDDDDD E FFFFFFFFFFFFFFFFFFFF GGGGGGGGGG HHHHHHH II LLLLLLLLLLLLLLLLL MMM NNNNN OO PPPPPPPPPPP QQQQ RRRR SSSSSSSSSSSSSS</Causale>
         <Causale>SEGUE DESCRIZIONE CAUSALE NEL CASO IN CUI NON SIANO STATI SUFFICIENTI 200 CARATTERI AAAAAAAAAAA BBBBBBBBBBBBBBBBB</Causale>
@@ -78,24 +78,24 @@
         <PrezzoTotale>20.00</PrezzoTotale>
         <AliquotaIVA>22.00</AliquotaIVA>
       </DettaglioLinee>
-        <DettaglioLinee>
-          <NumeroLinea>3</NumeroLinea>
-          <CodiceArticolo>
-            <CodiceTipo>DATA</CodiceTipo>
-            <CodiceValore>2018-11-27 - 2018-11-30</CodiceValore>
-          </CodiceArticolo>
-          <Descrizione>Canone servizio base </Descrizione>
-          <Quantita>1.00</Quantita>
-          <UnitaMisura>Nr</UnitaMisura>
-          <PrezzoUnitario>0.00</PrezzoUnitario>
-          <ScontoMaggiorazione>
-            <Tipo>SC</Tipo>
-            <Percentuale>0.00</Percentuale>
-            <Importo>0.00</Importo>
-          </ScontoMaggiorazione>
-          <PrezzoTotale>0.00</PrezzoTotale>
-          <AliquotaIVA>22.00</AliquotaIVA>
-        </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>3</NumeroLinea>
+        <CodiceArticolo>
+          <CodiceTipo>DATA</CodiceTipo>
+          <CodiceValore>2018-11-27 - 2018-11-30</CodiceValore>
+        </CodiceArticolo>
+        <Descrizione>Canone servizio base </Descrizione>
+        <Quantita>1.00</Quantita>
+        <UnitaMisura>Nr</UnitaMisura>
+        <PrezzoUnitario>0.00</PrezzoUnitario>
+        <ScontoMaggiorazione>
+          <Tipo>SC</Tipo>
+          <Percentuale>0.00</Percentuale>
+          <Importo>0.00</Importo>
+        </ScontoMaggiorazione>
+        <PrezzoTotale>0.00</PrezzoTotale>
+        <AliquotaIVA>22.00</AliquotaIVA>
+      </DettaglioLinee>
       <DatiRiepilogo>
         <AliquotaIVA>22.00</AliquotaIVA>
         <ImponibileImporto>25.00</ImponibileImporto>

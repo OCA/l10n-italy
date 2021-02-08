@@ -7,7 +7,7 @@ class AccountTaxKind(models.Model):
 
     _name = 'account.tax.kind'
 
-    code = fields.Char(string='Code', size=3, required=True)
+    code = fields.Char(string='Code', size=4, required=True)
     name = fields.Char(string='Name', required=True)
 
     @api.multi

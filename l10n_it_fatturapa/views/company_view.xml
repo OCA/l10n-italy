@@ -16,11 +16,7 @@
                             <div class="content-group">
                                 <div class="row">
                                     <label for="fatturapa_fiscal_position_id" class="col-lg-3 o_light_label"/>
-                                    <field name="fatturapa_fiscal_position_id"/>
-                                </div>
-                                <div class="row">
-                                    <label for="fatturapa_sequence_id" class="col-lg-3 o_light_label"/>
-                                    <field name="fatturapa_sequence_id"/>
+                                    <field name="fatturapa_fiscal_position_id" options="{'no_create': True, 'no_open':True}"/>
                                 </div>
                                 <div class="row">
                                     <label for="fatturapa_tax_representative" class="col-lg-3 o_light_label"/>
@@ -49,6 +45,10 @@
                                 <div class="row">
                                     <label for="fatturapa_art73" class="col-lg-3 o_light_label"/>
                                     <field name="fatturapa_art73"/>
+                                </div>
+                                <div class="row">
+                                    <label for="fatturapa_pub_administration_ref" class="col-lg-3 o_light_label"/>
+                                    <field name="fatturapa_pub_administration_ref"/>
                                 </div>
                                 <div class="row">
                                     <label for="fatturapa_rea_office" class="col-lg-3 o_light_label"/>
@@ -87,9 +87,7 @@
                 <page string="E-invoice">
                     <group>
                         <group>
-                            <field name="fatturapa_fiscal_position_id" required="1"/>
-                            <field name="fatturapa_sequence_id" required="1"
-                                   domain="[('code', '=', 'account.invoice.fatturapa')]"/>
+                            <field name="fatturapa_fiscal_position_id" required="1" options="{'no_create': True, 'no_open':True}"/>
                         </group>
                     </group>
                 </page>

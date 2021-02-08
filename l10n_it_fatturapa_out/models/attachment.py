@@ -1,6 +1,5 @@
 # Copyright 2014 Davide Corio
 # Copyright 2016-2018 Lorenzo Battistini - Agile Business Group
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import fields, models, api, _
 from odoo.exceptions import UserError
@@ -15,6 +14,10 @@ class FatturaPAAttachment(models.Model):
 
     ir_attachment_id = fields.Many2one(
         'ir.attachment', 'Attachment', required=True, ondelete="cascade")
+    att_name = fields.Char(
+        string="E-invoice file name",
+        related='ir_attachment_id.name',
+        store=True)
     out_invoice_ids = fields.One2many(
         'account.invoice', 'fatturapa_attachment_out_id',
         string="Out Invoices", readonly=True)
@@ -25,6 +28,38 @@ class FatturaPAAttachment(models.Model):
     invoice_partner_id = fields.Many2one(
         'res.partner', string='Customer', store=True,
         compute='_compute_invoice_partner_id')
+
+    _sql_constraints = [(
+        'ftpa_attachment_out_name_uniq',
+        'unique(att_name)',
+        'The name of the e-invoice file must be unique!')]
+
+    @api.model
+    def get_file_vat(self):
+        company = self.env.user.company_id
+        if company.fatturapa_sender_partner:
+            if not company.fatturapa_sender_partner.vat:
+                raise UserError(
+                    _('Partner %s TIN not set.')
+                    % company.fatturapa_sender_partner.display_name
+                )
+            vat = company.fatturapa_sender_partner.vat
+        else:
+            if not company.vat:
+                raise UserError(
+                    _('Company %s TIN not set.') % company.display_name)
+            vat = company.vat
+        vat = vat.replace(' ', '').replace('.', '').replace('-', '')
+        return vat
+
+    def file_name_exists(self, file_id):
+        vat = self.get_file_vat()
+        partial_fname = r'%s\_%s.' % (vat, file_id)  # escaping _ SQL
+        # Not trying to perfect match file extension, because user could have
+        # downloaded, signed and uploaded again the file, thus having changed
+        # file extension
+        return bool(self.search(
+            [('datas_fname', '=like', '%s%%' % partial_fname)]))
 
     @api.multi
     @api.depends('out_invoice_ids')

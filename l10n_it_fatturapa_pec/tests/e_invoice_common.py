@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -29,6 +28,13 @@ class EInvoiceCommon(FatturaPACommon):
         self.partner = self.env.ref(
             'l10n_it_fatturapa.res_partner_fatturapa_2')
         self.product = self.env.ref('product.product_product_5')
+        self.env.user.company_id.sdi_channel_id = self.env.ref(
+            'l10n_it_sdi_channel.sdi_channel_pec')
+        self.env.user.company_id.sdi_channel_id.pec_server_id = \
+            self.env['ir.mail_server'].create({
+                'name': 'dummy',
+                'smtp_host': 'smtp_host',
+                'email_from_for_fatturaPA': 'dummy@fatturapa.it'})
 
     def _create_e_invoice(self):
         invoice_line_data = {
@@ -64,5 +70,7 @@ class EInvoiceCommon(FatturaPACommon):
             'port': 110,
             'user': 'dummy',
             'password': 'secret',
-            'state': 'done'
+            'state': 'done',
+            'e_inv_notify_partner_ids': [
+                (6, 0, [self.env.ref("base.user_root").partner_id.id])],
         })

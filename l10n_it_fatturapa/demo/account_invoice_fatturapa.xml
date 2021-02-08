@@ -9,6 +9,13 @@
             <field name="type_tax_use">sale</field>
         </record>
 
+        <record id="tax_10" model="account.tax">
+            <field name="name">10% e-inv</field>
+            <field name="description">10</field>
+            <field name="amount">10</field>
+            <field name="type_tax_use">sale</field>
+        </record>
+
         <record id="tax_22_acq" model="account.tax">
             <field name="name">22% e-bill</field>
             <field name="description">22 pur</field>
@@ -74,6 +81,14 @@
             <field name="law_reference">Reverse Charge</field>
         </record>
 
+        <record id="tax_00_enas" model="account.tax">
+            <field name="name">Escluso</field>
+            <field name="description">00</field>
+            <field name="amount">0.00</field>
+            <field name="kind_id" ref="l10n_it_account_tax_kind.n2"/>
+            <field name="law_reference">Escluso Art. 13 5C DPR 633/72</field>
+        </record>
+
         <record id="base.main_company" model="res.company">
             <field name="street">Via Milano, 1</field>
             <field name="zip">00100</field>
@@ -82,7 +97,6 @@
             <field name="state_id" ref="base.state_us_2"/>
             <field name="phone">06543534343</field>
             <field name="fatturapa_fiscal_position_id" ref="fatturapa_RF01"/>
-            <field name="fatturapa_sequence_id" ref="seq_fatturapa"/>
             <field name="fatturapa_art73">True</field>
             <field name="vat">IT06363391001</field>
         </record>
@@ -109,8 +123,8 @@
             <field name="email">info@mypa.it</field>
             <field name="phone">003901141622023</field>
             <field name="website">www.mypa.it</field>
-            <field name="fiscalcode">00146089990</field>
-            <field name="vat">IT00146089990</field>
+            <field name="fiscalcode">06363391001</field>
+            <field name="vat">IT06363391001</field>
             <field name="ipa_code">UFPQ1O</field>
         </record>
 
