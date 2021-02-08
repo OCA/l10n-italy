@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo11-addon-account_vat_period_end_statement',
         'odoo11-addon-l10n_it_abicab',
         'odoo11-addon-l10n_it_account',
+        'odoo11-addon-l10n_it_account_balance_report',
         'odoo11-addon-l10n_it_account_stamp',
         'odoo11-addon-l10n_it_account_tax_kind',
         'odoo11-addon-l10n_it_causali_pagamento',
