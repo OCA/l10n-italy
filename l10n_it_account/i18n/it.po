@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: l10n_it_account
-#: model_terms:ir.ui.view,arch_db:l10n_it_account.internal_layout
+#: model:ir.ui.view,arch_db:l10n_it_account.internal_layout
 msgid ""
 "<br/>\n"
 "                      <span class=\"text-right\">TIN: </span>"
@@ -38,35 +38,20 @@ msgid "Account"
 msgstr "Conto"
 
 #. module: l10n_it_account
-#: model:ir.model,name:l10n_it_account.model_account_group
-msgid "Account Group"
-msgstr "Gruppo contabile"
-
-#. module: l10n_it_account
 #: model:ir.model,name:l10n_it_account.model_account_account_type
 msgid "Account Type"
 msgstr "Tipo conto"
 
 #. module: l10n_it_account
-#: model_terms:ir.ui.view,arch_db:l10n_it_account.product_template_form_view
-#: model_terms:ir.ui.view,arch_db:l10n_it_account.res_config_settings_view_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_account.view_partner_property_form
+#: model:ir.ui.view,arch_db:l10n_it_account.product_template_form_view
+#: model:ir.ui.view,arch_db:l10n_it_account.res_config_settings_view_form
+#: model:ir.ui.view,arch_db:l10n_it_account.view_partner_property_form
 msgid "Accounting"
 msgstr "Contabilità"
 
 #. module: l10n_it_account
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_group__account_ids
-msgid "Accounts"
-msgstr "Conti"
-
-#. module: l10n_it_account
-#: model:ir.model.fields,help:l10n_it_account.field_account_group__account_ids
-msgid "Assigned accounts."
-msgstr "Conti assegnati."
-
-#. module: l10n_it_account
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_account_type__account_balance_sign
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_group__account_balance_sign
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_account_type_account_balance_sign
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_group_account_balance_sign
 msgid "Balance sign"
 msgstr "Segno del saldo"
 
@@ -87,7 +72,7 @@ msgstr ""
 "{}"
 
 #. module: l10n_it_account
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__cee_type
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax_cee_type
 msgid "Include in VAT register"
 msgstr "Includere nel registro IVA"
 
@@ -103,12 +88,12 @@ msgid "Italian Localization"
 msgstr "Fiscalità italiana"
 
 #. module: l10n_it_account
-#: model_terms:ir.ui.view,arch_db:l10n_it_account.internal_layout
+#: model:ir.ui.view,arch_db:l10n_it_account.internal_layout
 msgid "Page:"
 msgstr "Pagina:"
 
 #. module: l10n_it_account
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__parent_tax_ids
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax_parent_tax_ids
 msgid "Parent Taxes"
 msgstr "Imposte padre"
 
@@ -128,13 +113,27 @@ msgid "Tax"
 msgstr "Imposta"
 
 #. module: l10n_it_account
-#: model:ir.model.fields,help:l10n_it_account.field_account_tax__cee_type
+#: model:ir.model.fields,help:l10n_it_account.field_account_tax_cee_type
 msgid ""
 "Use in the case of tax with 'VAT integration'. This specifies the VAT "
 "register (sales / purchases) where the tax must be computed."
 msgstr ""
 "Utilizzare nel caso di imposta per \"integrazione IVA\". Specifica il "
 "registro IVA (vendite / acquisti) nel quale deve essere calcolata l'imposta."
+
+#. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_account_group
+msgid "account.group"
+msgstr ""
+
+#~ msgid "Account Group"
+#~ msgstr "Gruppo contabile"
+
+#~ msgid "Accounts"
+#~ msgstr "Conti"
+
+#~ msgid "Assigned accounts."
+#~ msgstr "Conti assegnati."
 
 #~ msgid "Cannot link accounts of different types to group '{}'."
 #~ msgstr "Impossibile collegare conti di tipo diverso al gruppo '{}'."
