@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_account
-#: model_terms:ir.ui.view,arch_db:l10n_it_account.internal_layout
+#: model:ir.ui.view,arch_db:l10n_it_account.internal_layout
 msgid "<br/>\n"
 "                      <span class=\"text-right\">TIN: </span>"
 msgstr ""
@@ -31,35 +31,20 @@ msgid "Account"
 msgstr ""
 
 #. module: l10n_it_account
-#: model:ir.model,name:l10n_it_account.model_account_group
-msgid "Account Group"
-msgstr ""
-
-#. module: l10n_it_account
 #: model:ir.model,name:l10n_it_account.model_account_account_type
 msgid "Account Type"
 msgstr ""
 
 #. module: l10n_it_account
-#: model_terms:ir.ui.view,arch_db:l10n_it_account.product_template_form_view
-#: model_terms:ir.ui.view,arch_db:l10n_it_account.res_config_settings_view_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_account.view_partner_property_form
+#: model:ir.ui.view,arch_db:l10n_it_account.product_template_form_view
+#: model:ir.ui.view,arch_db:l10n_it_account.res_config_settings_view_form
+#: model:ir.ui.view,arch_db:l10n_it_account.view_partner_property_form
 msgid "Accounting"
 msgstr ""
 
 #. module: l10n_it_account
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_group__account_ids
-msgid "Accounts"
-msgstr ""
-
-#. module: l10n_it_account
-#: model:ir.model.fields,help:l10n_it_account.field_account_group__account_ids
-msgid "Assigned accounts."
-msgstr ""
-
-#. module: l10n_it_account
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_account_type__account_balance_sign
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_group__account_balance_sign
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_account_type_account_balance_sign
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_group_account_balance_sign
 msgid "Balance sign"
 msgstr ""
 
@@ -77,7 +62,7 @@ msgid "Can't set '{}' as parent for group '{}'.\n"
 msgstr ""
 
 #. module: l10n_it_account
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__cee_type
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax_cee_type
 msgid "Include in VAT register"
 msgstr ""
 
@@ -93,12 +78,12 @@ msgid "Italian Localization"
 msgstr ""
 
 #. module: l10n_it_account
-#: model_terms:ir.ui.view,arch_db:l10n_it_account.internal_layout
+#: model:ir.ui.view,arch_db:l10n_it_account.internal_layout
 msgid "Page:"
 msgstr ""
 
 #. module: l10n_it_account
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__parent_tax_ids
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax_parent_tax_ids
 msgid "Parent Taxes"
 msgstr ""
 
@@ -118,7 +103,12 @@ msgid "Tax"
 msgstr ""
 
 #. module: l10n_it_account
-#: model:ir.model.fields,help:l10n_it_account.field_account_tax__cee_type
+#: model:ir.model.fields,help:l10n_it_account.field_account_tax_cee_type
 msgid "Use in the case of tax with 'VAT integration'. This specifies the VAT register (sales / purchases) where the tax must be computed."
+msgstr ""
+
+#. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_account_group
+msgid "account.group"
 msgstr ""
 
