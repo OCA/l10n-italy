@@ -1,6 +1,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, api, fields
+from odoo import models, api, fields, _
 import collections
 
 
@@ -18,7 +18,7 @@ class AccountInvoice(models.Model):
         for ddt in grouped_lines:
             new_line = self.env['account.invoice.line'].create({
                 'sequence': line_number,
-                'name': ddt,
+                'name': ddt or _('No TD'),
                 'display_type': 'line_section',
                 'invoice_id': self.id
             })
