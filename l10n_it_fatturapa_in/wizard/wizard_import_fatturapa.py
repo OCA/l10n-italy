@@ -1130,7 +1130,8 @@ class WizardImportFatturapa(models.TransientModel):
                     _('Round up and down tax is not set')
                 )
 
-            line_sequence = max(invoice.invoice_line_ids.mapped('sequence'))
+            # invoice may have no lines at all if imported with minimum detail level
+            line_sequence = max(invoice.invoice_line_ids.mapped('sequence') or [0])
             line_vals = []
             for summary in FatturaBody.DatiBeniServizi.DatiRiepilogo:
                 to_round = float(summary.Arrotondamento or 0.0)
