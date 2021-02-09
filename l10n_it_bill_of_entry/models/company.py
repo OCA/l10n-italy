@@ -1,17 +1,3 @@
-# -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2013-2017 Agile Business Group sagl (http://www.agilebg.com)
-#    @author Alex Comba <alex.comba@agilebg.com>
-#    @author Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-#    Copyright (C) 2017 CQ Creativi Quadrati (http://www.creativiquadrati.it)
-#    @author Diego Bruselli <d.bruselli@creativiquadrati.it>
-#    Copyright (C) 2013
-#
-#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-#
-##############################################################################
-
 from odoo import fields, models
 
 
@@ -20,15 +6,33 @@ class Company(models.Model):
 
     bill_of_entry_journal_id = fields.Many2one(
         'account.journal', 'Bill of entry Storno journal',
-        help="Journal used for reconciliation of customs supplier",
+        help="Journal used for reconciliation of bill of entries",
+    )
+    bill_of_entry_tax_id = fields.Many2one(
+        'account.tax', 'Bill of entry tax',
+        help="Tax used in bill of entries",
+    )
+    bill_of_entry_partner_id = fields.Many2one(
+        'res.partner', 'Bill of entry partner',
+        help="Supplier used in bill of entries",
     )
 
 
 class AccountConfigSettings(models.TransientModel):
-    _inherit = 'account.config.settings'
+    _inherit = 'res.config.settings'
 
     bill_of_entry_journal_id = fields.Many2one(
         'account.journal', related='company_id.bill_of_entry_journal_id',
-        string="Bill of entry Storno journal",
-        help="Journal used for reconciliation of customs supplier",
+        string="Bill of entry Storno journal", readonly=False,
+        help="Journal used for reconciliation of bill of entries",
+    )
+    bill_of_entry_tax_id = fields.Many2one(
+        'account.tax', related='company_id.bill_of_entry_tax_id',
+        string="Bill of entry tax", readonly=False,
+        help="Tax used in bill of entries, when product is not present",
+    )
+    bill_of_entry_partner_id = fields.Many2one(
+        'res.partner', related='company_id.bill_of_entry_partner_id',
+        string="Bill of entry partner", readonly=False,
+        help="Supplier used in bill of entries",
     )
