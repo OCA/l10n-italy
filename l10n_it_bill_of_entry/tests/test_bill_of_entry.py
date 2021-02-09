@@ -8,10 +8,10 @@
 #
 ##############################################################################
 
-from odoo.tests.common import SingleTransactionCase
+from odoo.tests.common import TransactionCase
 
 
-class TestBillOfEntry(SingleTransactionCase):
+class TestBillOfEntry(TransactionCase):
 
     def _get_invline_vals(self, product, quantity=1., price_unit=1.):
         vals = {
@@ -24,7 +24,7 @@ class TestBillOfEntry(SingleTransactionCase):
     def _create_invoice(self, partner, customs_doc_type, journal):
         vals = {
             'type': 'in_invoice',
-            'partner_id': partner.id
+            'partner_id': partner.id,
         }
         if customs_doc_type:
             vals['customs_doc_type'] = customs_doc_type
@@ -61,12 +61,6 @@ class TestBillOfEntry(SingleTransactionCase):
         self.fp_tax_model = self.env['account.fiscal.position.tax']
 
         # Default accounts for invoice line account_id
-        receivable_acctype_id = self.env.ref(
-            'account.data_account_type_receivable'
-        ).id
-        self.account_receivable = self.account_model.search(
-            [('user_type_id', '=', receivable_acctype_id)], limit=1
-        )
         revenue_acctype_id = self.env.ref(
             'account.data_account_type_revenue'
         ).id
@@ -85,10 +79,13 @@ class TestBillOfEntry(SingleTransactionCase):
         )
         # Bill of entry storno journal
         self.company = self.env.ref('base.main_company')
-        self.company.bill_of_entry_journal_id = self.journal_model.search(
-            [('type', '=', 'general')], limit=1
-        )
-        self.company.bill_of_entry_journal_id.update_posted = True
+        self.bill_of_entry_journal = self.journal_model.create({
+            'name': 'bill_of_entry_journal',
+            'type': 'general',
+            'code': 'BOE',
+            'update_posted': True
+        })
+        self.company.bill_of_entry_journal_id = self.bill_of_entry_journal.id
 
         # Extra EU fiscal position tax correspondence
         self.tax22 = self.tax_model.create({
@@ -108,38 +105,33 @@ class TestBillOfEntry(SingleTransactionCase):
 
         # Delivery Expense account
         self.account_delivery_expense = \
-            self.env.ref('l10n_it_bill_of_entry.'
-                         'account_account_delivery_expense')
+            self.env.ref('l10n_it_bill_of_entry.account_account_delivery_expense')
 
         # Extra EU purchase journal
         self.journal_extra = \
-            self.env.ref('l10n_it_bill_of_entry.'
-                         'account_journal_purchase_extraEU')
+            self.env.ref('l10n_it_bill_of_entry.account_journal_purchase_extraEU')
 
         # Products
-        self.product1 = self.env.ref('product.product_product_5b')
+        self.product1 = self.env.ref('product.product_delivery_01')
         self.product1.write({
             'supplier_taxes_id': [(6, 0, [self.tax22.id])],
         })
+        self.tax_22extraUE = self.env.ref('l10n_it_bill_of_entry.tax_22extraUE')
         self.product_extra = \
-            self.env.ref('l10n_it_bill_of_entry.'
-                         'product_product_extraEU_purchase')
+            self.env.ref('l10n_it_bill_of_entry.product_product_extraEU_purchase')
+        self.product_extra.supplier_taxes_id = [(6, 0, self.tax_22extraUE.ids)]
         self.adv_customs_expense = \
-            self.env.ref('l10n_it_bill_of_entry.'
-                         'product_product_adv_customs_expense')
+            self.env.ref('l10n_it_bill_of_entry.product_product_adv_customs_expense')
         self.customs_expense = \
-            self.env.ref('l10n_it_bill_of_entry.'
-                         'product_product_customs_expense')
+            self.env.ref('l10n_it_bill_of_entry.product_product_customs_expense')
         self.product_delivery = \
-            self.env.ref('l10n_it_bill_of_entry.'
-                         'product_product_delivery')
+            self.env.ref('l10n_it_bill_of_entry.product_product_delivery')
+        self.product_delivery.supplier_taxes_id = [(6, 0, [self.tax22.id])]
         self.product_stamp = \
-            self.env.ref('l10n_it_bill_of_entry.'
-                         'product_product_stamp_duties')
+            self.env.ref('l10n_it_bill_of_entry.product_product_stamp_duties')
 
         # Partners
-        self.customs = self.env.ref('l10n_it_bill_of_entry.'
-                                    'partner_customs')
+        self.customs = self.env.ref('l10n_it_bill_of_entry.partner_customs')
         self.supplier = self.env.ref('base.res_partner_1')
         self.supplier.property_account_position_id = \
             self.fiscpos_extra.id
@@ -149,7 +141,7 @@ class TestBillOfEntry(SingleTransactionCase):
         self.supplier_invoice = self._create_invoice(
             self.supplier, 'supplier_invoice', self.journal_extra
         )
-        line_vals = self._get_invline_vals(self.product1, 1., 2500.)
+        line_vals = self._get_invline_vals(self.product1, 1, 2500)
         self._create_invoice_line(self.supplier_invoice, line_vals)
         self.supplier_invoice.compute_taxes()
         # self.supplier_invoice.action_invoice_open()
@@ -158,7 +150,7 @@ class TestBillOfEntry(SingleTransactionCase):
         self.bill_of_entry = self._create_invoice(
             self.customs, 'bill_of_entry', self.journal
         )
-        line_vals = self._get_invline_vals(self.product_extra, 1., 2645.)
+        line_vals = self._get_invline_vals(self.product_extra, 1, 2500)
         self._create_invoice_line(self.bill_of_entry, line_vals)
         self.bill_of_entry.compute_taxes()
         self.bill_of_entry.write({
@@ -170,19 +162,16 @@ class TestBillOfEntry(SingleTransactionCase):
         self.forwarder_invoice = self._create_invoice(
             self.forwarder, 'forwarder_invoice', self.journal
         )
-        line_vals = self._get_invline_vals(self.product_delivery, 1., 300.)
+        line_vals = self._get_invline_vals(self.product_delivery, 1, 300)
         self._create_invoice_line(self.forwarder_invoice, line_vals)
         line_vals = self._get_invline_vals(
-            self.adv_customs_expense, 1., 581.9
+            self.adv_customs_expense, 1, 550
         )
         self.adv_customs_expense_line = self._create_invoice_line(
             self.forwarder_invoice, line_vals
         )
         self.adv_customs_expense_line.advance_customs_vat = True
-        line_vals = self._get_invline_vals(self.customs_expense, 1., 145.)
-        self._create_invoice_line(self.forwarder_invoice, line_vals)
-        line_vals = self._get_invline_vals(self.product_stamp, 1., 1.81)
-        self._create_invoice_line(self.forwarder_invoice, line_vals)
+        self.adv_customs_expense_line.invoice_line_tax_ids = [(6, 0, [])]
         self.forwarder_invoice.compute_taxes()
         self.forwarder_invoice.write({
             'forwarder_bill_of_entry_ids': [(4, self.bill_of_entry.id)],
@@ -240,10 +229,10 @@ class TestBillOfEntry(SingleTransactionCase):
         # Storno - BoE reconciliation (supplier debit account)
         storno_reconcile_ids = storno.line_ids.filtered(
             lambda l: l.full_reconcile_id
-        ).mapped('full_reconcile_id.id')
+        ).mapped('full_reconcile_id').ids
         boe_reconcile_ids = self.bill_of_entry.move_id.line_ids.filtered(
             lambda l: l.full_reconcile_id
-        ).mapped('full_reconcile_id.id')
+        ).mapped('full_reconcile_id').ids
         self.assertEqual(
             sorted(storno_reconcile_ids),
             sorted(boe_reconcile_ids)
