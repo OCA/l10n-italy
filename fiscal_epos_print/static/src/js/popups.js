@@ -77,7 +77,7 @@ odoo.define("fiscal_epos_print.popups", function (require) {
             this._super(options);
             this.update_lottery_info_button = options.update_lottery_info_button;
             this.renderElement();
-            this.$('lottery_code').focus();
+            this.$('#lottery_code').focus();
         },
         // TODO automatically close popup on barcode scanned
         click_confirm: function(){
