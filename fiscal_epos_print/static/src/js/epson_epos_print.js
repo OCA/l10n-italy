@@ -400,7 +400,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             });
             // footer can go only as promo code so within a fiscal receipt body
             xml += this.printFiscalReceiptFooter(receipt);
-            if (receipt.lottery_code != null) {
+            if (receipt.lottery_code) {
                 // TX
                 // 1 135   OP   ID CODE   NU
                 // Example: 113501ABCDEFGN        0000
