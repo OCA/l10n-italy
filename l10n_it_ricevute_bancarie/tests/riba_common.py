@@ -15,6 +15,7 @@ class TestRibaCommon(common.TransactionCase):
         self.account_asset_user_type = self.env.ref(
             'account.data_account_type_fixed_assets')
         self.partner = self.env.ref('base.res_partner_3')
+        self.partner.vat = 'IT01234567890'
         self.product1 = self.env.ref('product.product_product_5')
         self.sale_journal = self.env['account.journal'].search(
             [('type', '=', 'sale')])[0]
@@ -70,6 +71,7 @@ class TestRibaCommon(common.TransactionCase):
         self.riba_config = self.create_config()
         self.account_payment_term_riba = self.env.ref(
             'l10n_it_ricevute_bancarie.account_payment_term_riba')
+        self.company_bank.codice_sia = 'AA555'
 
     def _create_service_due_cost(self):
         return self.env['product.product'].create({
@@ -99,6 +101,7 @@ class TestRibaCommon(common.TransactionCase):
             'partner_id': self.partner.id,
             'payment_term_id': self.payment_term1.id,
             'account_id': self.account_rec1_id.id,
+            'riba_partner_bank_id': self.partner.bank_ids[0].id,
             'invoice_line_ids': [(
                 0, 0, {
                     'name': self.product1.name,

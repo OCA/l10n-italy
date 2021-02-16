@@ -8,3 +8,5 @@
 * Marco Calcagni <mcalcagni@dinamicheaziendali.it>
 * Sergio Zanchetta <https://github.com/primes2h>
 * Simone Vanin <simone.vanin@agilebg.com>
+* Sergio Corato <https://github.com/sergiocorato>
+* Giovanni Serra <giovanni@gslab.it>

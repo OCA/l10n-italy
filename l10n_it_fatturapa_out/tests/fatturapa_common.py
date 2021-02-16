@@ -2,8 +2,6 @@
 import base64
 import tempfile
 from lxml import etree
-import shutil
-import os
 from odoo.modules.module import get_module_resource
 from odoo.addons.account.tests.account_test_users import AccountTestUsers
 
@@ -48,11 +46,15 @@ class FatturaPACommon(AccountTestUsers):
         self.tax_22 = self.env.ref('l10n_it_fatturapa.tax_22')
         self.tax_10 = self.env.ref('l10n_it_fatturapa.tax_10')
         self.tax_22_SP = self.env.ref('l10n_it_fatturapa.tax_22_SP')
+        self.tax_00_ns = self.env.ref('l10n_it_fatturapa.tax_00_ns')
         self.res_partner_fatturapa_0 = self.env.ref(
             'l10n_it_fatturapa.res_partner_fatturapa_0')
         # B2B Customer
         self.res_partner_fatturapa_2 = self.env.ref(
             'l10n_it_fatturapa.res_partner_fatturapa_2')
+        # INTRA Customer
+        self.res_partner_fatturapa_5 = self.env.ref(
+            'l10n_it_fatturapa.res_partner_fatturapa_5')
         self.intermediario = self.env.ref(
             'l10n_it_fatturapa.res_partner_fatturapa_1')
         self.stabile_organizzazione = self.env.ref(
@@ -74,6 +76,8 @@ class FatturaPACommon(AccountTestUsers):
         self.cr.execute(
             "UPDATE res_company SET currency_id = %s WHERE id = %s",
             [self.EUR.id, self.company.id])
+        # Otherwise self.company in cache could keep the old wrong value USD
+        self.company.refresh()
 
     def AttachFileToInvoice(self, InvoiceId, filename):
         self.fatturapa_attach.create(
@@ -132,13 +136,9 @@ class FatturaPACommon(AccountTestUsers):
     def getAttachment(self, name, module_name=None):
         if module_name is None:
             module_name = 'l10n_it_fatturapa_out'
-        path = get_module_resource(
+        return self.getFilePath(get_module_resource(
             module_name, 'tests', 'data', 'attah_base.pdf'
-        )
-        currDir = os.path.dirname(path)
-        new_file = '%s/%s' % (currDir, name)
-        shutil.copyfile(path, new_file)
-        return self.getFilePath(new_file)
+        ))
 
     def getFile(self, filename, module_name=None):
         if module_name is None:

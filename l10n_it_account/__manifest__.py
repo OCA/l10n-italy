@@ -8,7 +8,7 @@
 {
     'name': 'ITA - Contabilità base',
     'summary': 'Modulo base usato come dipendenza di altri moduli contabili',
-    'version': '12.0.1.4.2',
+    'version': '12.0.1.4.4',
     'category': 'Hidden',
     'author': "Agile Business Group, Abstract, "
               "Odoo Community Association (OCA)",
@@ -19,6 +19,7 @@
         'account_tax_balance',
         'web',
     ],
+    'conflicts': ['report_qweb_element_page_visibility'],
     "data": [
         'views/account_setting.xml',
         'views/account_menuitem.xml',

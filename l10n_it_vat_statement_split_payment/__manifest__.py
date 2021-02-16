@@ -7,7 +7,7 @@
     'name': "ITA - Liquidazione IVA + Scissione dei pagamenti",
     'summary': "Migliora la liquidazione dell'IVA tenendo in"
                " considerazione la scissione dei pagamenti",
-    'version': '12.0.1.0.1',
+    'version': '12.0.1.0.2',
     'development_status': "Beta",
     'category': "Accounting & Finance",
     'website': 'https://github.com/OCA/l10n-italy',

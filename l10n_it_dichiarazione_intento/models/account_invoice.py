@@ -79,7 +79,7 @@ class AccountInvoice(models.Model):
                         'change fiscal position and verify applied tax'))
                 else:
                     continue
-            sign = 1 if invoice.type in ['out_invoice', 'in_refund'] else -1
+            sign = 1 if invoice.type in ['out_invoice', 'in_invoice'] else -1
             dichiarazioni_amounts = {}
             for tax_line in invoice.tax_line_ids:
                 amount = sign * tax_line.base

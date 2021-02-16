@@ -7,7 +7,7 @@
     'name': 'ITA - Comunicazione dati fatture',
     'summary': 'Comunicazione dati fatture (c.d. "nuovo spesometro" o '
                '"esterometro")',
-    'version': '12.0.1.2.3',
+    'version': '12.0.1.3.0',
     'category': 'Account',
     'author': "Openforce di Camilli Alessandro, "
               "Odoo Community Association (OCA)",
@@ -16,16 +16,17 @@
     'depends': [
         'account', 'l10n_it_fiscal_document_type', 'l10n_it_codici_carica',
         'l10n_it_fiscalcode', 'l10n_it_esigibilita_iva',
-        'l10n_it_account_tax_kind', 'l10n_it_account',
-        'intrastat_base'
+        'l10n_it_account_tax_kind', 'l10n_it_account'
     ],
     'data': [
         'security/ir.model.access.csv',
+        'data/res_country_data.xml',
         'wizard/compute_fiscal_document_type_view.xml',
         'wizard/split_big_communication_view.xml',
         'views/comunicazione.xml',
         'views/account.xml',
         'views/account_invoice_view.xml',
+        'views/res_country_view.xml',
         'wizard/export_file_view.xml',
         'security/security.xml',
     ],

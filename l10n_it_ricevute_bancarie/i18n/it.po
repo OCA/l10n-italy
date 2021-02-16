@@ -133,6 +133,13 @@ msgid "Bank Account"
 msgstr "Conto bancario"
 
 #. module: l10n_it_ricevute_bancarie
+#: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_account_invoice__riba_partner_bank_id
+msgid ""
+"Bank Account Number to which the C/O will be debited. If not set, first bank "
+"in partner will be used."
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_res_partner_bank
 msgid "Bank Accounts"
 msgstr "Conti bancari"
@@ -214,6 +221,11 @@ msgstr "Conto RiBa"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved__riba_bank_amount
 msgid "C/O Amount"
 msgstr "Importo RiBa"
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_invoice__riba_partner_bank_id
+msgid "C/O Bank Account"
+msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_payment_term__riba_payment_cost
@@ -305,6 +317,16 @@ msgstr "Dettaglio distinte RiBa"
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_distinta_line__config_id
 msgid "C/O configuration to be used."
 msgstr "Configurazione RiBa da utilizzare."
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line__cig
+msgid "CIG"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line__cup
+msgid "CUP"
+msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_accreditation
@@ -554,6 +576,12 @@ msgid "Every account is mandatory."
 msgstr "I conti sono tutti obbligatori."
 
 #. module: l10n_it_ricevute_bancarie
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_partner__riba_exclude_expenses
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_users__riba_exclude_expenses
+msgid "Exclude expenses Ri.Ba."
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.wizard_riba_file_export
 msgid "Export"
 msgstr "Esporta"
@@ -681,10 +709,15 @@ msgid "Invoice Number"
 msgstr "Numero fattura"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:244
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:271
 #, python-format
 msgid "Invoice is linked to C/O slip No. {riba}"
 msgstr "La fattura è collegata alla distinta RiBa n. {riba}"
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_invoice__is_riba_payment
+msgid "Is C/O Payment"
+msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_invoice__is_unsolved
@@ -826,26 +859,26 @@ msgid "Move Lines"
 msgstr "Righe movimento"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:246
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:249
 #, python-format
 msgid "No IBAN or ABI/CAB specified for "
 msgstr "Nessun IBAN o ABI/CAB specificato per "
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:193
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:196
 #, python-format
 msgid "No IBAN specified."
 msgstr "Nessun IBAN specificato."
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:201
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:204
 #, python-format
 msgid "No SIA Code specified for "
 msgstr "Nessun codice SIA specificato per "
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:213
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:260
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:216
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:263
 #, python-format
 msgid "No VAT or Fiscal Code specified for "
 msgstr "Nessuna partita IVA o codice fiscale specificato per "
@@ -860,10 +893,10 @@ msgid "No active ID found."
 msgstr "Nessun ID attivo trovato."
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_issue.py:75
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_issue.py:80
 #, python-format
-msgid "No bank has been specified for partner %s!"
-msgstr "Nessuna banca specificata per il partner %s."
+msgid "No bank has been specified for invoice %s!"
+msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line__sequence
@@ -999,7 +1032,7 @@ msgid "Payments"
 msgstr "Pagamenti"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:376
+#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:393
 #, python-format
 msgid "Please define a Settlement Journal."
 msgstr "Definire un registro pagamenti."
@@ -1061,7 +1094,7 @@ msgid "Search Journal Items"
 msgstr "Ricerca movimenti contabili"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:166
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:193
 #, python-format
 msgid "Set a Service for Collection Fees in Company Config."
 msgstr ""
@@ -1215,10 +1248,13 @@ msgid "of"
 msgstr "del"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:197
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:224
 #, python-format
 msgid "{line_name} for {month}-{year}"
 msgstr "{line_name} per {month}-{year}"
+
+#~ msgid "No bank has been specified for partner %s!"
+#~ msgstr "Nessuna banca specificata per il partner %s."
 
 #~ msgid "C/0 Slips"
 #~ msgstr "Distinte RiBa"

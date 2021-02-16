@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<q1:FatturaElettronica versione="FPR12" xmlns:q1="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2">
+  <FatturaElettronicaHeader>
+
+       <DatiTrasmissione>
+            <IdTrasmittente>
+                <IdPaese>IT</IdPaese>
+                <IdCodice>01484710387</IdCodice>
+            </IdTrasmittente>
+            <ProgressivoInvio>00005</ProgressivoInvio>
+            <FormatoTrasmissione>FPR12</FormatoTrasmissione>
+            <CodiceDestinatario>0000000</CodiceDestinatario>
+            <ContattiTrasmittente>
+                <Telefono>05543534343</Telefono>
+                <Email>info@yourcompany.example.com </Email>
+            </ContattiTrasmittente>
+            <PECDestinatario>ufficio@pec.bizz.it </PECDestinatario>
+        </DatiTrasmissione>
+
+     <CedentePrestatore>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>01484710387</IdCodice>
+                </IdFiscaleIVA>
+               <Anagrafica>
+				<Nome>Mario</Nome>
+				<Cognome>Bianchi</Cognome>
+				<Titolo>Avvocato</Titolo>
+			</Anagrafica>
+			<RegimeFiscale>RF01</RegimeFiscale>
+		</DatiAnagrafici>
+		<Sede>
+			<Indirizzo>Via Voltapaletto 12</Indirizzo>
+			<CAP>44121</CAP>
+			<Comune>Ferrara</Comune>
+			<Provincia>FE</Provincia>
+			<Nazione>IT</Nazione>
+		</Sede>
+	</CedentePrestatore>
+
+	<CessionarioCommittente>
+		<DatiAnagrafici>
+			<CodiceFiscale>04006460275</CodiceFiscale>
+			<Anagrafica>
+				<Denominazione>BIZZ SRL</Denominazione>
+			</Anagrafica>
+		</DatiAnagrafici>
+		<Sede>
+			<Indirizzo>VIA TORINO 135</Indirizzo>
+			<CAP>30100</CAP>
+			<Comune>Venezia</Comune>
+			<Provincia>VE</Provincia>
+			<Nazione>IT</Nazione>
+		</Sede>
+	</CessionarioCommittente>
+
+  </FatturaElettronicaHeader>
+
+
+<FatturaElettronicaBody>
+
+	       <DatiGenerali>
+		<DatiGeneraliDocumento>
+			<TipoDocumento>TD01</TipoDocumento>
+			<Divisa>EUR</Divisa>
+			<Data>2020-10-25</Data>
+			<Numero>001</Numero>
+
+			<DatiRitenuta>
+				<TipoRitenuta>RT01</TipoRitenuta>
+				<ImportoRitenuta>23.00</ImportoRitenuta>
+				<AliquotaRitenuta>20.00</AliquotaRitenuta>
+				<CausalePagamento>A</CausalePagamento>
+			</DatiRitenuta>
+
+			<DatiCassaPrevidenziale>
+				<TipoCassa>TC01</TipoCassa>
+				<AlCassa>4.00</AlCassa>
+				<ImportoContributoCassa>4.60</ImportoContributoCassa>
+				<ImponibileCassa>115.00</ImponibileCassa>
+				<AliquotaIVA>22.00</AliquotaIVA>
+			</DatiCassaPrevidenziale>
+
+			<ImportoTotaleDocumento>122.91</ImportoTotaleDocumento>
+
+		</DatiGeneraliDocumento>
+	</DatiGenerali>
+
+	<DatiBeniServizi>
+		<DettaglioLinee>
+			<NumeroLinea>1</NumeroLinea>
+			<Descrizione>Competenze</Descrizione>
+			<PrezzoUnitario>100.00</PrezzoUnitario>
+			<PrezzoTotale>100.00</PrezzoTotale>
+			<AliquotaIVA>22.00</AliquotaIVA>
+			<Ritenuta>SI</Ritenuta>
+		</DettaglioLinee>
+
+		<DettaglioLinee>
+			<NumeroLinea>2</NumeroLinea>
+			<Descrizione>Spese generali ( 15% )</Descrizione>
+			<PrezzoUnitario>15.00</PrezzoUnitario>
+			<PrezzoTotale>15.00</PrezzoTotale>
+			<AliquotaIVA>22.00</AliquotaIVA>
+			<Ritenuta>SI</Ritenuta>
+		</DettaglioLinee>
+
+		<DatiRiepilogo>
+			<AliquotaIVA>22.00</AliquotaIVA>
+			<ImponibileImporto>119.60</ImponibileImporto>
+			<Imposta>26.31</Imposta>
+			<EsigibilitaIVA>I</EsigibilitaIVA>
+		</DatiRiepilogo>
+	</DatiBeniServizi>
+
+
+    <DatiPagamento>
+      <CondizioniPagamento>TP02</CondizioniPagamento>
+      <DettaglioPagamento>
+        <ModalitaPagamento>MP05</ModalitaPagamento>
+        <DataScadenzaPagamento>2020-09-30</DataScadenzaPagamento>
+        <ImportoPagamento>122.91</ImportoPagamento>
+        <IstitutoFinanziario>FINECO BANK</IstitutoFinanziario>
+        <IBAN>IT37F0301503200000005796511</IBAN>
+        <BIC>UNCRITMMXXX</BIC>
+      </DettaglioPagamento>
+    </DatiPagamento>
+
+  </FatturaElettronicaBody>
+
+</q1:FatturaElettronica>

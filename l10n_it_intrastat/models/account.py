@@ -85,10 +85,14 @@ class AccountInvoiceLine(models.Model):
         country_payment_id = self.env['res.country'].browse()
         if self.invoice_id.type in ('out_invoice', 'out_refund'):
             country_payment_id = \
-                self.invoice_id.partner_id.country_id
+                self.invoice_id.company_id.partner_id.country_id
+            if self.invoice_id.partner_bank_id:
+                country_id = self.invoice_id.partner_bank_id.bank_id.country
+                if country_id:
+                    country_payment_id = country_id
         elif self.invoice_id.type in ('in_invoice', 'in_refund'):
             country_payment_id = \
-                self.invoice_id.company_id.partner_id.country_id
+                self.invoice_id.partner_id.country_id
         res.update({
             'country_payment_id': country_payment_id.id})
 
@@ -174,12 +178,12 @@ class AccountInvoiceLine(models.Model):
         if self.invoice_id.type in ('out_invoice', 'out_refund'):
             res.update({
                 'delivery_code_id':
-                    company_id.intrastat_sale_delivery_code_id
+                    company_id.intrastat_sale_delivery_code_id.id
             })
         elif self.invoice_id.type in ('in_invoice', 'in_refund'):
             res.update({
                 'delivery_code_id':
-                    company_id.intrastat_purchase_delivery_code_id
+                    company_id.intrastat_purchase_delivery_code_id.id
             })
 
     @api.multi
@@ -188,12 +192,12 @@ class AccountInvoiceLine(models.Model):
         if self.invoice_id.type in ('out_invoice', 'out_refund'):
             res.update({
                 'transaction_nature_id':
-                    company_id.intrastat_sale_transaction_nature_id
+                    company_id.intrastat_sale_transaction_nature_id.id
             })
         elif self.invoice_id.type in ('in_invoice', 'in_refund'):
             res.update({
                 'transaction_nature_id':
-                    company_id.intrastat_purchase_transaction_nature_id
+                    company_id.intrastat_purchase_transaction_nature_id.id
             })
 
     @api.multi
@@ -380,9 +384,8 @@ class AccountInvoice(models.Model):
                         intra_line['additional_units']
                 else:
                     intra_line['statement_section'] = \
-                        self.env['account.invoice.intrastat'].with_context(
-                            intrastat_code_type=i_code_type,
-                            invoice_type=inv.type)._get_statement_section()
+                        self.env['account.invoice.intrastat'] \
+                            .compute_statement_section(i_code_type, inv.type)
                     i_line_by_code[i_code_id] = intra_line
 
             # Split lines for intrastat with type "misc"

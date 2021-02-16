@@ -130,9 +130,10 @@ class RibaFileExport(models.TransientModel):
             descrizione_domiciliataria.ljust(50)[0:50] + "\r\n")
 
     def _Record50(
-        self, importo_debito, invoice_ref, data_invoice, partita_iva_creditore
+        self, importo_debito, invoice_ref, data_invoice, partita_iva_creditore,
+        cig, cup
     ):
-        self._descrizione = 'PER LA FATTURA N. ' + invoice_ref + \
+        self._descrizione = cig + cup + 'PER LA FATTURA N. ' + invoice_ref + \
             ' DEL ' + data_invoice + ' IMP ' + str(importo_debito)
         return (
             " 50" + str(self._progressivo).rjust(7, '0') +
@@ -176,7 +177,9 @@ class RibaFileExport(models.TransientModel):
                     value[5], value[6], value[7], value[8], value[11])
             accumulatore = accumulatore + \
                 self._Record50(
-                    value[2], value[13], value[14], intestazione[11])
+                    value[2], value[13], value[14], intestazione[11],
+                    value[15], value[16]
+                )
             accumulatore = accumulatore + self._Record51(value[0])
             accumulatore = accumulatore + self._Record70()
         accumulatore = accumulatore + self._RecordEF()
@@ -278,11 +281,14 @@ class RibaFileExport(models.TransientModel):
                 line.partner_id.ref and line.partner_id.ref[:16] or '',
                 line.invoice_number[:40],
                 line.invoice_date,
+                'CIG: %s ' % line.cig if line.cig else '',
+                'CUP: %s ' % line.cup if line.cup else '',
             ]
             arrayRiba.append(Riba)
 
-        out = base64.encodestring(
-            self._creaFile(array_testata, arrayRiba).encode("utf8"))
+        out = base64.encodebytes(
+            self._creaFile(array_testata, arrayRiba).encode(
+                'ascii', errors='replace'))
         self.write({
             'state': 'get',
             'riba_txt': out,

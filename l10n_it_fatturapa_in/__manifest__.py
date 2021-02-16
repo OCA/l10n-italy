@@ -6,7 +6,7 @@
 
 {
     'name': 'ITA - Fattura elettronica - Ricezione',
-    'version': '12.0.2.0.1',
+    'version': '12.0.2.2.3',
     "development_status": "Beta",
     'category': 'Localization/Italy',
     'summary': 'Ricezione fatture elettroniche',
@@ -16,6 +16,7 @@
                'l10n_it_fatturapa_in',
     'license': 'AGPL-3',
     "depends": [
+        'base_vat_sanitized',
         'l10n_it_fatturapa',
         'l10n_it_withholding_tax_causali',
         ],

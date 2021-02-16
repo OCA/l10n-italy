@@ -68,6 +68,11 @@ msgid "Fiscal Position"
 msgstr ""
 
 #. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__refund_fiscal_document_type_id
+msgid "Fiscal document for refund"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
 #: model:ir.model,name:l10n_it_fiscal_document_type.model_fiscal_document_type
 msgid "Fiscal document type"
 msgstr ""

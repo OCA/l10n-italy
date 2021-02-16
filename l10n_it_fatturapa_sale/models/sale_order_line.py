@@ -4,7 +4,7 @@
 from odoo import api, fields, models
 
 
-class SaleOrderLine (models.Model):
+class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     related_documents = fields.One2many(
@@ -12,11 +12,13 @@ class SaleOrderLine (models.Model):
         inverse_name='sale_order_line_id',
         string='Related Documents',
         copy=False,
+        groups="account.group_account_user",
     )
     admin_ref = fields.Char(
         string="Admin. ref.",
         size=20,
         copy=False,
+        groups="account.group_account_user",
     )
 
     @api.multi
