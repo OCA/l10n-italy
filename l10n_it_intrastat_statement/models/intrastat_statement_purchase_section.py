@@ -46,6 +46,12 @@ class IntrastatStatementPurchaseSection(models.AbstractModel):
     def get_section_type(self):
         return 'purchase'
 
+    @api.model
+    def _default_transaction_nature_id(self):
+        company_id = self.env.context.get(
+            'company_id', self.env.user.company_id)
+        return company_id.intrastat_purchase_transaction_nature_id
+
 
 class IntrastatStatementPurchaseSection1(models.Model):
     _inherit = 'account.intrastat.statement.purchase.section'
@@ -54,7 +60,9 @@ class IntrastatStatementPurchaseSection1(models.Model):
 
     transaction_nature_id = fields.Many2one(
         comodel_name='account.intrastat.transaction.nature',
-        string="Transaction Nature")
+        string="Transaction Nature",
+        default=lambda m: m._default_transaction_nature_id(),
+    )
     weight_kg = fields.Integer(
         string="Net Mass (kg)")
     additional_units = fields.Integer(
@@ -211,7 +219,9 @@ class IntrastatStatementPurchaseSection2(models.Model):
         string="Adjustment Sign")
     transaction_nature_id = fields.Many2one(
         comodel_name='account.intrastat.transaction.nature',
-        string="Transaction Nature")
+        string="Transaction Nature",
+        default=lambda m: m._default_transaction_nature_id(),
+    )
     statistic_amount_euro = fields.Integer(
         string='Statistic Value in Euro',
         digits=dp.get_precision('Account'))
