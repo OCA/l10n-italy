@@ -13,6 +13,8 @@
             <field name="property_payment_term_id" position="after">
                 <field name="group_riba"/>
                 <field name="riba_exclude_expenses"/>
+                <field name="riba_policy_expenses"
+                    attrs="{'invisible': [('riba_exclude_expenses', '=', True)]}"/>
             </field>
         </field>
     </record>
