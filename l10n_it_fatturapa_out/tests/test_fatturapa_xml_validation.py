@@ -668,3 +668,14 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
 
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, "IT06363391001_00012.xml")
+
+    def test_unlink(self):
+        e_invoice = self._create_e_invoice()
+        e_invoice.unlink()
+        self.assertFalse(e_invoice.exists())
+
+    def test_reset_to_ready(self):
+        e_invoice = self._create_e_invoice()
+        e_invoice.state = "sender_error"
+        e_invoice.reset_to_ready()
+        self.assertEqual(e_invoice.state, "ready")

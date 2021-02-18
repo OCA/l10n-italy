@@ -36,6 +36,22 @@ class FatturaPAAttachment(models.Model):
         store=True,
         compute="_compute_invoice_partner_id",
     )
+    state = fields.Selection(
+        selection=[
+            ("ready", "Ready to Send"),
+            ("sent", "Sent"),
+            ("sender_error", "Sender Error"),
+            ("recipient_error", "Not delivered"),
+            ("rejected", "Rejected (PA)"),
+            ("validated", "Delivered"),
+            ("accepted", "Accepted"),
+        ],
+        string="State",
+        default="ready",
+        tracking=True,
+    )
+    sending_date = fields.Datetime("Sent Date", readonly=True)
+    delivered_date = fields.Datetime("Delivered Date", readonly=True)
 
     _sql_constraints = [
         (
@@ -102,6 +118,12 @@ class FatturaPAAttachment(models.Model):
                 # one attachment having is_pdf_invoice_print = True
                 attachment_out.has_pdf_invoice_print = True
 
+    def reset_to_ready(self):
+        for attachment_out in self:
+            if attachment_out.state != "sender_error":
+                raise UserError(_("You can only reset files in 'Sender Error' state."))
+            attachment_out.state = "ready"
+
     def write(self, vals):
         res = super(FatturaPAAttachment, self).write(vals)
         if "datas" in vals and "message_ids" not in vals:
@@ -115,6 +137,10 @@ class FatturaPAAttachment(models.Model):
 
     def unlink(self):
         for attachment_out in self:
+            if attachment_out.state != "ready":
+                raise UserError(
+                    _("You can only delete files in 'Ready to Send' state.")
+                )
             for invoice in attachment_out.out_invoice_ids:
                 invoice.fatturapa_doc_attachments.filtered(
                     "is_pdf_invoice_print"
