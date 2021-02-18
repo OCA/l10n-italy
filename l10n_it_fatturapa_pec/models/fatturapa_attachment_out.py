@@ -21,32 +21,12 @@ RESPONSE_MAIL_REGEX = '[A-Z]{2}[a-zA-Z0-9]{11,16}_[a-zA-Z0-9]{,5}_[A-Z]{2}_' \
 class FatturaPAAttachmentOut(models.Model):
     _inherit = 'fatturapa.attachment.out'
 
-    state = fields.Selection([('ready', 'Ready to Send'),
-                              ('sent', 'Sent'),
-                              ('sender_error', 'Sender Error'),
-                              ('recipient_error', 'Not delivered'),
-                              ('rejected', 'Rejected (PA)'),
-                              ('validated', 'Delivered'),
-                              ('accepted', 'Accepted'),
-                              ],
-                             string='State',
-                             default='ready', track_visibility='onchange')
-
     last_sdi_response = fields.Text(
         string='Last Response from Exchange System', default='No response yet',
         readonly=True)
     sending_date = fields.Datetime("Sent Date", readonly=True)
     delivered_date = fields.Datetime("Delivered Date", readonly=True)
     sending_user = fields.Many2one("res.users", "Sending User", readonly=True)
-
-    @api.multi
-    def reset_to_ready(self):
-        for att in self:
-            if att.state != 'sender_error':
-                raise UserError(
-                    _("You can only reset files in 'Sender Error' state.")
-                )
-            att.state = 'ready'
 
     @api.model
     def _check_fetchmail(self):
@@ -240,12 +220,3 @@ class FatturaPAAttachmentOut(models.Model):
 
                 message_dict['res_id'] = fatturapa_attachment_out.id
         return message_dict
-
-    @api.multi
-    def unlink(self):
-        for att in self:
-            if att.state != 'ready':
-                raise UserError(_(
-                    "You can only delete files in 'Ready to Send' state."
-                ))
-        return super(FatturaPAAttachmentOut, self).unlink()
