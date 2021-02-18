@@ -353,7 +353,7 @@
                             <field name="invoice_date"/>
                             <field name="supply_method"/>
                             <field name="payment_method"/>
-                            <field name="country_payment_id" required="1"/>
+                            <field name="country_payment_id"/>
                         </group>
                     </group>
                 </form>
@@ -408,7 +408,7 @@
                             <field name="invoice_date"/>
                             <field name="supply_method"/>
                             <field name="payment_method"/>
-                            <field name="country_payment_id" required="1"/>
+                            <field name="country_payment_id"/>
                         </group>
                     </group>
                 </form>
@@ -631,7 +631,7 @@
                             <field name="invoice_date"/>
                             <field name="supply_method"/>
                             <field name="payment_method"/>
-                            <field name="country_payment_id" required="1"/>
+                            <field name="country_payment_id"/>
                         </group>
                     </group>
                 </form>
