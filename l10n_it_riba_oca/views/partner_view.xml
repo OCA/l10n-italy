@@ -16,6 +16,10 @@
                 <group string="RiBa" name="riba">
                     <field name="group_riba" />
                     <field name="riba_exclude_expenses" />
+                    <field
+                        name="riba_policy_expenses"
+                        invisible="riba_exclude_expenses"
+                    />
                 </group>
             </group>
             <field name="property_supplier_payment_term_id" position="after">
