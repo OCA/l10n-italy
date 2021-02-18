@@ -60,7 +60,7 @@ class TestIntrastatStatement (AccountingTestCase):
         company.partner_id.vat = 'IT03339130126'
         company.intrastat_custom_id = self.ref('l10n_it_intrastat.014100')
         company.intrastat_purchase_transaction_nature_id = \
-            self.ref('l10n_it_intrastat.code_9')
+            self.ref('l10n_it_intrastat.code_8')
         company.intrastat_sale_transaction_nature_id = \
             self.ref('l10n_it_intrastat.code_9')
 
@@ -290,3 +290,32 @@ class TestIntrastatStatement (AccountingTestCase):
         export_wizard.act_getfile()
         file_content = base64.decodebytes(export_wizard.data)
         self.assertIn(invoice.partner_id.vat[2:], str(file_content))
+
+    def test_purchase_default_transaction_nature(self):
+        """Check default value for purchase's transaction nature."""
+        bill = self._get_intrastat_computed_bill()
+
+        statement = self.statement_model.create({
+            'period_number': bill.date_invoice.month,
+        })
+        line = statement.purchase_section1_ids.create({})
+        company = self.env.user.company_id
+        self.assertEqual(
+            company.intrastat_purchase_transaction_nature_id,
+            line.transaction_nature_id
+        )
+
+    def test_sale_default_transaction_nature(self):
+        """Check default value for sale's transaction nature."""
+        invoice = self._get_intrastat_computed_invoice()
+
+        statement = self.statement_model.create({
+            'period_number': invoice.date_invoice.month,
+        })
+
+        line = statement.sale_section1_ids.create({})
+        company = self.env.user.company_id
+        self.assertEqual(
+            company.intrastat_sale_transaction_nature_id,
+            line.transaction_nature_id
+        )
