@@ -114,6 +114,7 @@ Contributors
 * Alex Comba
 * Sergio Zanchetta <https://github.com/primes2h>
 * Marco Colombo <https://github.com/TheMule71>
+* Giovanni Serra <giovanni@gslab.it>
 
 Maintainers
 ~~~~~~~~~~~

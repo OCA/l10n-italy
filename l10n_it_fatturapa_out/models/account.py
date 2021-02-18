@@ -1,10 +1,19 @@
 # Copyright 2014 Davide Corio
 # Copyright 2016 Lorenzo Battistini - Agile Business Group
 
-
-from odoo import fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.translate import _
+
+fatturapa_attachment_state_mapping = {
+    "ready": "ready",
+    "sent": "sent",
+    "validated": "delivered",
+    "sender_error": "error",
+    "recipient_error": "accepted",
+    "accepted": "accepted",
+    "rejected": "error",
+}
 
 
 class AccountInvoice(models.Model):
@@ -17,6 +26,26 @@ class AccountInvoice(models.Model):
     has_pdf_invoice_print = fields.Boolean(
         related="fatturapa_attachment_out_id.has_pdf_invoice_print", readonly=True
     )
+
+    fatturapa_state = fields.Selection(
+        [
+            ("ready", "Ready to Send"),
+            ("sent", "Sent"),
+            ("delivered", "Delivered"),
+            ("accepted", "Accepted"),
+            ("error", "Error"),
+        ],
+        string="E-invoice State",
+        compute="_compute_fatturapa_state",
+        store="true",
+    )
+
+    @api.depends("fatturapa_attachment_out_id.state")
+    def _compute_fatturapa_state(self):
+        for record in self:
+            record.fatturapa_state = fatturapa_attachment_state_mapping.get(
+                record.fatturapa_attachment_out_id.state
+            )
 
     def preventive_checks(self):
         for invoice in self:
@@ -49,7 +78,10 @@ class AccountInvoice(models.Model):
 
     def action_invoice_cancel(self):
         for invoice in self:
-            if invoice.fatturapa_attachment_out_id:
+            if (
+                invoice.fatturapa_state != "error"
+                and invoice.fatturapa_attachment_out_id
+            ):
                 raise UserError(
                     _(
                         "Invoice %s has XML and can't be canceled. "
