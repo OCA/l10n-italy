@@ -248,7 +248,7 @@
                         </group>
                         <group>
                             <field name="delivery_code_id"/>
-                            <field name="transport_code_id" required="1"/>
+                            <field name="transport_code_id"/>
                             <field name="country_destination_id" required="1"/>
                             <field name="province_origin_id" required="1"/>
                         </group>
@@ -470,7 +470,7 @@
                             <field name="country_good_origin_id" required="1"/>
                             <field name="province_destination_id"/>
                             <field name="delivery_code_id"/>
-                            <field name="transport_code_id" required="1"/>
+                            <field name="transport_code_id"/>
                         </group>
                     </group>
                 </form>
