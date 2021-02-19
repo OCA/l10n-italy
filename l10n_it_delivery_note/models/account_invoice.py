@@ -121,6 +121,7 @@ class AccountInvoice(models.Model):
                                         ),
                                     ),
                                     "delivery_note_id": note_line.delivery_note_id.id,
+                                    "quantity": 0,
                                 },
                             )
                         )

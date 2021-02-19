@@ -304,7 +304,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = final_invoice.invoice_line_ids[6]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, delivery_note)
 
         #
@@ -312,7 +312,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = final_invoice.invoice_line_ids[7]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, delivery_note)
 
         #
@@ -320,7 +320,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = final_invoice.invoice_line_ids[8]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, delivery_note)
 
         #
@@ -328,7 +328,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = final_invoice.invoice_line_ids[9]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, delivery_note)
 
     # ⇒ "Ordine singolo: fatturazione parziale"
@@ -533,7 +533,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = partial_invoice.invoice_line_ids[4]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, first_delivery_note)
 
         #
@@ -541,7 +541,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = partial_invoice.invoice_line_ids[5]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, first_delivery_note)
 
         #
@@ -549,7 +549,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = partial_invoice.invoice_line_ids[6]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, first_delivery_note)
 
         #
@@ -557,7 +557,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = partial_invoice.invoice_line_ids[7]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, first_delivery_note)
 
         #
@@ -680,7 +680,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = final_invoice.invoice_line_ids[5]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, second_delivery_note)
 
         #
@@ -688,7 +688,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = final_invoice.invoice_line_ids[6]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, second_delivery_note)
 
         #
@@ -696,7 +696,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = final_invoice.invoice_line_ids[7]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, second_delivery_note)
 
     # ⇒ "Ordini multipli: fatturazione completa"
@@ -968,7 +968,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = final_invoice.invoice_line_ids[8]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, delivery_note)
 
         #
@@ -976,7 +976,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = final_invoice.invoice_line_ids[9]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, delivery_note)
 
         #
@@ -984,7 +984,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = final_invoice.invoice_line_ids[10]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, delivery_note)
 
         #
@@ -992,7 +992,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = final_invoice.invoice_line_ids[11]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, delivery_note)
 
         #
@@ -1000,7 +1000,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = final_invoice.invoice_line_ids[12]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, delivery_note)
 
         #
@@ -1008,7 +1008,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = final_invoice.invoice_line_ids[13]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, delivery_note)
 
     # ⇒ "Ordini multipli: fatturazione parziale"
@@ -1259,7 +1259,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = first_partial_invoice.invoice_line_ids[3]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, first_delivery_note)
 
         #
@@ -1267,7 +1267,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = first_partial_invoice.invoice_line_ids[4]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, first_delivery_note)
 
         #
@@ -1275,7 +1275,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = first_partial_invoice.invoice_line_ids[5]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, first_delivery_note)
 
         #
@@ -1349,7 +1349,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = second_partial_invoice.invoice_line_ids[3]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, first_delivery_note)
 
         #
@@ -1357,7 +1357,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = second_partial_invoice.invoice_line_ids[4]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, first_delivery_note)
 
         #
@@ -1365,7 +1365,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = second_partial_invoice.invoice_line_ids[5]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, first_delivery_note)
 
         #
@@ -1491,7 +1491,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = final_invoice.invoice_line_ids[5]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, second_delivery_note)
 
         #
@@ -1499,7 +1499,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = final_invoice.invoice_line_ids[6]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, second_delivery_note)
 
         #
@@ -1507,5 +1507,5 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
         #
         invoice_line = final_invoice.invoice_line_ids[7]
         self.assertEqual(invoice_line.display_type, "line_note")
-        self.assertEqual(invoice_line.quantity, 1)
+        self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, second_delivery_note)
