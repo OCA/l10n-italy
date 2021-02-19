@@ -13,10 +13,7 @@ class SaleAdvancePaymentInv(models.TransientModel):
     def _default_step(self):
         states = self.sale_order_ids.mapped("delivery_note_ids.state")
 
-        if (
-            any(s == "draft" for s in states)
-            and self.env.company.draft_delivery_note_invoicing_notify
-        ):
+        if any(s == "draft" for s in states):
             return DOMAIN_WIZARD_STEPS[1]
 
         return DOMAIN_WIZARD_STEPS[0]

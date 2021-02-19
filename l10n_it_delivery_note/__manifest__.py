@@ -12,7 +12,7 @@
     "summary": "Crea, gestisce e fattura i DDT partendo dalle consegne",
     "author": "Marco Calcagni, Gianmarco Conte, Link IT Europe Srl, "
     "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/l10n-italy" "l10n_it_delivery_note",
+    "website": "https://github.com/OCA/l10n-italy",
     "version": "14.0.1.0.0",
     "category": "Localization/Italy",
     "license": "AGPL-3",
@@ -26,10 +26,10 @@
         "product",
     ],
     "data": [
+        "security/ir.model.access.csv",
         "security/ir_rule.xml",
         "security/res_groups.xml",
         "security/res_users.xml",
-        "security/ir.model.access.csv",
         "report/report_delivery_note.xml",
         "views/account_move.xml",
         "views/assets.xml",

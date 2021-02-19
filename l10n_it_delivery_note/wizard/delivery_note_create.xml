@@ -10,6 +10,7 @@
         <field name="model">stock.delivery.note.create.wizard</field>
         <field name="arch" type="xml">
             <form>
+                <field name="picking_type" invisible="True" />
                 <div attrs="{'invisible': [('error_message', '=', False)]}">
                     <field name="error_message" />
                 </div>

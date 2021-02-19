@@ -593,12 +593,12 @@
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="stock_delivery_note_search_view" />
         <!--<field name="help" type="html">-->
-        <!--<p class="oe_view_nocontent_create">-->
-        <!--TODO: Scrivere una piccola descrizione.-->
-        <!--</p>-->
-        <!--<p>-->
-        <!--Bla, bla, bla...-->
-        <!--</p>-->
+            <!--<p class="oe_view_nocontent_create">-->
+                <!--TODO: Scrivere una piccola descrizione.-->
+            <!--</p>-->
+            <!--<p>-->
+                <!--Bla, bla, bla...-->
+            <!--</p>-->
         <!--</field>-->
     </record>
 

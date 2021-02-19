@@ -228,7 +228,7 @@ class MigrateL10nItDdt(EasyCommand):
         DeliveryNoteType = self.env["stock.delivery.note.type"]
 
         old_type = self.env.ref("l10n_it_ddt.ddt_type_ddt")
-        new_type = self.env.ref("l10n_it_delivery_note.delivery_note_type_ddt")
+        new_type = self.env.ref("l10n_it_delivery_note_base.delivery_note_type_ddt")
         new_type.write({"sequence_id": old_type.sequence_id.id})
 
         self.env.cr.execute(
@@ -251,16 +251,24 @@ class MigrateL10nItDdt(EasyCommand):
                 "sequence_id": r.sequence_id.id,
                 "default_goods_appearance_id": self._goods_descriptions[
                     r.default_goods_description_id
-                ].id,
+                ].id
+                if r.default_goods_description_id
+                else None,
                 "default_transport_reason_id": self._transportation_reasons[
                     r.default_transportation_reason_id
-                ].id,
+                ].id
+                if r.default_transportation_reason_id
+                else None,
                 "default_transport_condition_id": self._carriage_conditions[
                     r.default_carriage_condition_id
-                ].id,
+                ].id
+                if r.default_carriage_condition_id
+                else None,
                 "default_transport_method_id": self._transportation_methods[
                     r.default_transportation_method_id
-                ].id,
+                ].id
+                if r.default_transportation_method_id
+                else None,
                 "note": r.note,
             },
         )
@@ -313,7 +321,28 @@ class MigrateL10nItDdt(EasyCommand):
 
         documents = Document.search([], order="id ASC")
         for document in documents:
-            DeliveryNote.create(vals_getter(document))
+            delivery_note = DeliveryNote.create(vals_getter(document))
+            extra_lines = document.line_ids.filtered(lambda l: not l.move_id)
+
+            if extra_lines:
+                lines_vals = []
+
+                for line in extra_lines:
+                    lines_vals.append(
+                        {
+                            "name": line.name,
+                            "product_id": line.product_id.id,
+                            "product_qty": line.product_uom_qty,
+                            "product_uom_id": line.product_uom_id.id,
+                            "price_unit": line.price_unit,
+                            "discount": line.discount,
+                            "tax_ids": [(4, t.id) for t in line.tax_ids],
+                        }
+                    )
+
+                delivery_note.write(
+                    {"line_ids": [(0, False, vals) for vals in lines_vals]}
+                )
 
         _logger.info("Documents data successfully migrated.")
 

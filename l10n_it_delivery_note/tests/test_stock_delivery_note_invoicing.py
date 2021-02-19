@@ -74,7 +74,7 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
                     (
                         4,
                         self.env.ref(
-                            "l10n_it_delivery_note." "use_advanced_delivery_notes"
+                            "l10n_it_delivery_note.use_advanced_delivery_notes"
                         ).id,
                     )
                 ]
@@ -86,22 +86,22 @@ class StockDeliveryNoteInvoicingTest(TransactionCase):
 
         try:
             self.desk_combination_line = self.prepare_sales_order_line(
-                self.env.ref("product." "product_product_3"), 1
+                self.env.ref("product.product_product_3"), 1
             )
             self.customizable_desk_line = self.prepare_sales_order_line(
-                self.env.ref("product." "product_product_4"), 3
+                self.env.ref("product.product_product_4"), 3
             )
             self.right_corner_desk_line = self.prepare_sales_order_line(
-                self.env.ref("product." "product_product_5"), 2
+                self.env.ref("product.product_product_5"), 2
             )
             self.large_cabinet_line = self.prepare_sales_order_line(
-                self.env.ref("product." "product_product_6"), 11
+                self.env.ref("product.product_product_6"), 11
             )
             self.storage_box_line = self.prepare_sales_order_line(
-                self.env.ref("product." "product_product_7"), 5
+                self.env.ref("product.product_product_7"), 5
             )
             self.large_desk_line = self.prepare_sales_order_line(
-                self.env.ref("product." "product_product_8"), 1
+                self.env.ref("product.product_product_8"), 1
             )
 
         except ValueError as exc:
