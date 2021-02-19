@@ -326,7 +326,8 @@ class AccountInvoice(models.Model):
                 line_tax_ids = line.invoice_line_tax_ids
                 if not line_tax_ids:
                     raise UserError(_(
-                        "Invoice line\n%s\nis RC but has not tax") % line.name)
+                        "Invoice %s, line\n%s\nis RC but has not tax"
+                    ) % ((self.reference or self.partner_id.display_name), line.name))
                 tax_ids = list()
                 for tax_mapping in rc_type.tax_ids:
                     for line_tax_id in line_tax_ids:
