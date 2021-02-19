@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-15 08:40+0000\n"
-"PO-Revision-Date: 2021-01-25 17:44+0000\n"
+"PO-Revision-Date: 2021-02-19 14:45+0000\n"
 "Last-Translator: Angeli Cecilia <cecilia@ooops404.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -34,7 +34,7 @@ msgstr "Prossimo numero attuale"
 #. module: l10n_it_delivery_note_base
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_goods_appearance__name
 msgid "Appearance name"
-msgstr ""
+msgstr "Aspetto del nome"
 
 #. module: l10n_it_delivery_note_base
 #: model:ir.model,name:l10n_it_delivery_note_base.model_stock_picking_goods_appearance
@@ -89,7 +89,7 @@ msgstr "Azienda"
 #. module: l10n_it_delivery_note_base
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_condition__name
 msgid "Condition name"
-msgstr ""
+msgstr "Condizione del nome"
 
 #. module: l10n_it_delivery_note_base
 #: model:ir.model,name:l10n_it_delivery_note_base.model_stock_picking_transport_condition
@@ -226,7 +226,7 @@ msgstr "Ultimo aggiornamento il"
 #. module: l10n_it_delivery_note_base
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_method__name
 msgid "Method name"
-msgstr ""
+msgstr "nome del Metodo"
 
 #. module: l10n_it_delivery_note_base
 #: model:ir.model,name:l10n_it_delivery_note_base.model_stock_picking_transport_method
