@@ -29,6 +29,9 @@
             <field name="model">fatturapa.attachment.out</field>
             <field name="arch" type="xml">
                 <form string="Export Electronic Invoice" create="false">
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                    </header>
                     <div>
                         <group>
                             <group>
