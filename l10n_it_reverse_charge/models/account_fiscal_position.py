@@ -7,6 +7,6 @@ from odoo import fields, models
 
 
 class AccountFiscalPosition(models.Model):
-    _inherit = 'account.fiscal.position'
+    _inherit = "account.fiscal.position"
 
-    rc_type_id = fields.Many2one('account.rc.type', 'RC Type')
+    rc_type_id = fields.Many2one("account.rc.type", "RC Type")
