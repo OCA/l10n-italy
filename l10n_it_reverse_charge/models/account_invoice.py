@@ -8,8 +8,8 @@ from odoo.exceptions import Warning as UserError
 from odoo.tools.translate import _
 
 
-class AccountInvoiceLine(models.Model):
-    _inherit = "account.invoice.line"
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
 
     @api.multi
     def _set_rc_flag(self, invoice):
@@ -25,28 +25,28 @@ class AccountInvoiceLine(models.Model):
     rc = fields.Boolean("RC")
 
     def _set_additional_fields(self, invoice):
-        res = super(AccountInvoiceLine, self)._set_additional_fields(invoice)
+        res = super(AccountMoveLine, self)._set_additional_fields(invoice)
         self._set_rc_flag(invoice)
         return res
 
 
-class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+class AccountMove(models.Model):
+    _inherit = "account.move"
 
     rc_self_invoice_id = fields.Many2one(
-        comodel_name="account.invoice",
+        comodel_name="account.move",
         string="RC Self Invoice",
         copy=False,
         readonly=True,
     )
     rc_purchase_invoice_id = fields.Many2one(
-        comodel_name="account.invoice",
+        comodel_name="account.move",
         string="RC Purchase Invoice",
         copy=False,
         readonly=True,
     )
     rc_self_purchase_invoice_id = fields.Many2one(
-        comodel_name="account.invoice",
+        comodel_name="account.move",
         string="RC Self Purchase Invoice",
         copy=False,
         readonly=True,
@@ -59,7 +59,7 @@ class AccountInvoice(models.Model):
 
     @api.onchange("partner_id", "company_id")
     def _onchange_partner_id(self):
-        res = super(AccountInvoice, self)._onchange_partner_id()
+        res = super(AccountMove, self)._onchange_partner_id()
         # In some cases (like creating the invoice from PO),
         # fiscal position's onchange is triggered
         # before than being changed by this method.
@@ -107,7 +107,7 @@ class AccountInvoice(models.Model):
         }
 
     def get_inv_line_to_reconcile(self):
-        for inv_line in self.move_id.line_ids:
+        for inv_line in self.line_ids:
             if (self.type == "in_invoice") and inv_line.credit:
                 return inv_line
             elif (self.type == "in_refund") and inv_line.debit:
@@ -115,7 +115,7 @@ class AccountInvoice(models.Model):
         return False
 
     def get_rc_inv_line_to_reconcile(self, invoice):
-        for inv_line in invoice.move_id.line_ids:
+        for inv_line in invoice.line_ids:
             if (invoice.type == "out_invoice") and inv_line.debit:
                 return inv_line
             elif (invoice.type == "out_refund") and inv_line.credit:
