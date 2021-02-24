@@ -163,6 +163,7 @@ class WizardExportFatturapa(models.TransientModel):
         super(WizardExportFatturapa, self).setDatiPagamento(invoice, body)
         for DatiPagamento in body.DatiPagamento:
             if invoice.type in ['out_refund', 'in_refund'] \
-                    and invoice.fiscal_document_type_id.code not in ['TD04', 'TD08']:
+                    and invoice.fiscal_document_type_id.code not in ['TD04', 'TD08']\
+                    and DatiPagamento.ImportoPagamento:
                 DatiPagamento.ImportoPagamento = - DatiPagamento.ImportoPagamento
         return True
