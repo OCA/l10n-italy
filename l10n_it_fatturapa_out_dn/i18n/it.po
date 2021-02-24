@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_fatturapa_out_dn
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-24 17:25+0000\n"
+"PO-Revision-Date: 2021-02-24 18:30+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.4.2\n"
+"Last-Translator: \n"
+"Language: it\n"
+
+#. module: l10n_it_fatturapa_out_dn
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_dn.field_wizard_export_fatturapa__include_dn_data
+msgid "DN Data"
+msgstr "Dati DDT"
+
+#. module: l10n_it_fatturapa_out_dn
+#: model:ir.model,name:l10n_it_fatturapa_out_dn.model_wizard_export_fatturapa
+msgid "Export E-invoice"
+msgstr "Esporta Fattura Elettronica"
+
+#. module: l10n_it_fatturapa_out_dn
+#: selection:wizard.export.fatturapa,include_dn_data:0
+msgid "Include DN Data"
+msgstr "Includi dati DDT"
+
+#. module: l10n_it_fatturapa_out_dn
+#: model:ir.model.fields,help:l10n_it_fatturapa_out_dn.field_wizard_export_fatturapa__include_dn_data
+msgid ""
+"Include DN data: The field must be entered when a transport document "
+"associated with a deferred invoice is present\n"
+msgstr ""
+"Includi dati DDT: includi i dati dei DDT associati alla fattura "
+"differita\n"
