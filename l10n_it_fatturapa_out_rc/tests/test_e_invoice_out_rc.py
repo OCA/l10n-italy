@@ -15,6 +15,9 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
         self.rc_type_ieu.partner_id = self.company.partner_id.id
         self.rc_type_ieu.fiscal_document_type_id = self.env.ref(
             "l10n_it_fiscal_document_type.15").id
+        self.rc_type_eeu.partner_id = self.company.partner_id.id
+        self.rc_type_eeu.fiscal_document_type_id = self.env.ref(
+            "l10n_it_fiscal_document_type.15").id
         self.tax_22vi.kind_id = self.env.ref("l10n_it_account_tax_kind.n6").id
         self.supplier_intraEU.customer = True
         self.customer_invoice_account = self.env['account.account'].search(
@@ -32,6 +35,11 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
 
     def set_sequence_journal_selfinvoice(self, invoice_number, year):
         inv_seq = self.journal_selfinvoice.sequence_id
+        inv_seq.prefix = inv_seq.prefix % {'year': year}
+        inv_seq.number_next_actual = invoice_number
+
+    def set_sequence_journal_selfinvoice_extra(self, invoice_number, year):
+        inv_seq = self.journal_selfinvoice_extra.sequence_id
         inv_seq.prefix = inv_seq.prefix % {'year': year}
         inv_seq.number_next_actual = invoice_number
 
@@ -196,3 +204,50 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
 
         self.check_content(
             xml_content, 'IT10538570960_00003.xml', "l10n_it_fatturapa_out_rc")
+
+    def test_extra_EU(self):
+        self.set_sequence_journal_selfinvoice_extra(1, '2020')
+        self.set_bill_sequence(27, '2020')
+        self.supplier_extraEU.property_payment_term_id = self.term_15_30.id
+        self.rc_type_eeu.with_supplier_self_invoice = False
+        invoice = self.invoice_model.create({
+            'partner_id': self.supplier_extraEU.id,
+            'account_id': self.invoice_account,
+            'journal_id': self.purchases_journal.id,
+            'type': 'in_invoice',
+            'date_invoice': '2020-12-01',
+            'reference': 'EXEU-SUPPLIER-REF'
+        })
+        res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
+        invoice.fiscal_position = res['value']['fiscal_position']
+
+        invoice_line_vals = {
+            'name': 'Invoice for sample product',
+            'account_id': self.invoice_line_account,
+            'invoice_id': invoice.id,
+            'product_id': self.sample_product.id,
+            'price_unit': 100,
+            'invoice_line_tax_id': [(4, self.tax_22ae.id, 0)]}
+        invoice_line = self.invoice_line_model.create(invoice_line_vals)
+        invoice_line.onchange_invoice_line_tax_id()
+        self.env['account.invoice.tax'].compute(invoice)
+        invoice.signal_workflow('invoice_open')
+        self.assertEqual(
+            invoice.rc_self_invoice_id.fiscal_document_type_id.code, "TD17")
+        with self.assertRaises(UserError):
+            # Impossible to set IdFiscaleIVA
+            self.run_wizard(invoice.rc_self_invoice_id.id)
+        self.supplier_extraEU.vat = "US484762844"
+        with self.assertRaises(UserError):
+            # Street is not set
+            self.run_wizard(invoice.rc_self_invoice_id.id)
+        self.supplier_extraEU.street = "Street"
+        self.supplier_extraEU.zip = "12345"
+        self.supplier_extraEU.city = "city"
+        self.supplier_extraEU.country_id = self.env.ref("base.us")
+        res = self.run_wizard(invoice.rc_self_invoice_id.id)
+        attachment = self.attach_model.browse(res['res_id'])
+        self.set_e_invoice_file_id(attachment, 'IT10538570960_00004.xml')
+        xml_content = attachment.datas.decode('base64')
+        self.check_content(
+            xml_content, 'IT10538570960_00004.xml', "l10n_it_fatturapa_out_rc")

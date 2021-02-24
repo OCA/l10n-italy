@@ -28,6 +28,18 @@ class WizardExportFatturapa(models.TransientModel):
             raise UserError(_(
                 "Selected invoices are both with and without reverse charge. You "
                 "should selected a smaller set of invoices"))
+        invoices_fiscal_document_type_codes = invoices.filtered(
+            lambda x: x.fiscal_document_type_id.code in ['TD17', 'TD18', 'TD19']
+        )
+        invoices_fiscal_document_type1_codes = invoices.filtered(
+            lambda x: x.fiscal_document_type_id.code not in ['TD17', 'TD18', 'TD19']
+        )
+        if invoices_fiscal_document_type_codes and invoices_fiscal_document_type1_codes:
+            raise UserError(_(
+                "Select invoices are of too many fiscal document types: "
+                "select invoices exclusively of type 'TD17', 'TD18', 'TD19' "
+                "or exclusively of other types."
+            ))
         rc_suppliers = invoices.mapped("rc_purchase_invoice_id.partner_id")
         if len(rc_suppliers) > 1:
             raise UserError(_(
@@ -35,6 +47,8 @@ class WizardExportFatturapa(models.TransientModel):
                 "select invoices with same supplier"))
         if rc_suppliers:
             context['rc_supplier'] = rc_suppliers[0]
+            context['invoices_fiscal_document_type_codes'] = invoices.mapped(
+                'fiscal_document_type_id.code')
         return context
 
     def _setDatiAnagraficiCedente(self, CedentePrestatore, company):
@@ -43,7 +57,23 @@ class WizardExportFatturapa(models.TransientModel):
         if self.env.context.get("rc_supplier"):
             partner = self.env.context["rc_supplier"]
             CedentePrestatore.DatiAnagrafici.CodiceFiscale = None
+            fiscal_document_type_codes = self.env.context.get(
+                'invoices_fiscal_document_type_codes')
+            # Se vale IT, il sistema verifica che il TipoDocumento sia diverso da
+            # TD17, TD18 e TD19; in caso contrario il file viene scartato
             if partner.vat:
+                if partner.vat[0:2] == 'IT' and any([x in ['TD17', 'TD18', 'TD19'] for
+                                                     x in fiscal_document_type_codes]):
+                    raise UserError(_(
+                        "A self-invoice cannot be issued with IT country code and "
+                        "fiscal document type in 'TD17', 'TD18', 'TD19'."
+                    ))
+                if partner.vat[0:2] not in self.env['res.country'].search([]).\
+                        mapped('code'):
+                    raise ValueError(_(
+                        "Country code does not exist or it is not mapped in countries: "
+                        "%s") % partner.vat[0:2]
+                    )
                 CedentePrestatore.DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
                     IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
             elif partner.country_id.code and partner.country_id.code != 'IT':
