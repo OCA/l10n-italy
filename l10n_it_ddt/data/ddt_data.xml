@@ -7,8 +7,9 @@
     <record id="seq_ddt" model="ir.sequence">
         <field name="name">DDT</field>
         <field name="code">stock.ddt</field>
-        <field name="prefix">DDT/</field>
+        <field name="prefix">DDT/%(range_year)s/</field>
         <field name="padding">4</field>
+        <field name="use_date_range" eval="True"/>
     </record>
 
     <!-- DdT Type -->
