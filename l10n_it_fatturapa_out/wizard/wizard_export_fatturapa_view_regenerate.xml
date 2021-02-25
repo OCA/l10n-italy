@@ -15,4 +15,7 @@
             </xpath>
         </field>
     </record>
+
+    <act_window id="action_wizard_export_fatturapa_regenerate" name="Re-Export Electronic Invoice" res_model="wizard.export.fatturapa" target="new" view_id="wizard_export_fatturapa_form_view_regenerate" view_mode="form"/>
+
 </odoo>

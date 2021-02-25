@@ -22,6 +22,7 @@
         ],
     'data': [
         'wizard/wizard_export_fatturapa_view.xml',
+        'wizard/wizard_export_fatturapa_view_regenerate.xml',
         'views/attachment_view.xml',
         'views/account_view.xml',
         'views/partner_view.xml',
