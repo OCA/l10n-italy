@@ -42,6 +42,9 @@ class FatturaPAAttachment(models.Model):
         default='ready',
         track_visibility='onchange'
     )
+    sending_date = fields.Datetime("Sent Date", readonly=True)
+    delivered_date = fields.Datetime("Delivered Date", readonly=True)
+
     _sql_constraints = [(
         'ftpa_attachment_out_name_uniq',
         'unique(att_name)',
