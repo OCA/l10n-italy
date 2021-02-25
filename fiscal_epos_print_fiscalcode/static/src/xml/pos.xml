@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="ClientDetails">
+        <t t-jquery=".client-details-right" t-operation="append">
+            <div class='client-detail'>
+                <span class='label'>Print F.C.</span>
+                <input type="checkbox" class='detail o_checkbox epos_print_fiscalcode_receipt'
+                       t-att-checked="partner.epos_print_fiscalcode_receipt ? 'checked' : null" disabled="disabled"
+                       t-att-value="partner.epos_print_fiscalcode_receipt"/><br/>
+            </div>
+        </t>
+    </t>
+    <t t-extend="ClientDetailsEdit">
+        <t t-jquery=".client-details-right" t-operation="append">
+            <div class='client-detail'>
+                <span class='label'>Print F.C.</span>
+                <input type='checkbox' class='detail o_checkbox checkbox epos_print_fiscalcode_receipt'
+                       name='epos_print_fiscalcode_receipt' t-att-checked="partner.epos_print_fiscalcode_receipt ? 'checked' : null"
+                       t-att-value="partner.epos_print_fiscalcode_receipt"/>
+            </div>
+        </t>
+    </t>
+</templates>

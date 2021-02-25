@@ -19,4 +19,7 @@
         'views/assets.xml',
         'views/res_partner_views.xml',
     ],
+    'qweb': [
+        'static/src/xml/pos.xml'
+    ],
 }
