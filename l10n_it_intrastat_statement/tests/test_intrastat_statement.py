@@ -70,7 +70,10 @@ class TestIntrastatStatement (AccountingTestCase):
         company.intrastat_sale_transaction_nature_id = \
             self.ref('l10n_it_intrastat.code_9')
 
-    def _get_intrastat_computed_bill(self, product, currency=None):
+    def _get_intrastat_computed_bill(
+            self, product=None, currency=None, price_unit=100.0):
+        if product is None:
+            product = self.product01
         invoice = self.invoice_model.create({
             'partner_id': self.partner01.id,
             'type': 'in_invoice',
@@ -82,7 +85,7 @@ class TestIntrastatStatement (AccountingTestCase):
                 'product_id': product.id,
                 'account_id': self.account_account_payable.id,
                 'quantity': 1,
-                'price_unit': 100,
+                'price_unit': price_unit,
                 'invoice_line_tax_ids': [(6, 0, {
                     self.tax22_purchase.id
                 })]
@@ -95,7 +98,7 @@ class TestIntrastatStatement (AccountingTestCase):
         invoice.compute_intrastat_lines()
         return invoice
 
-    def _get_intrastat_computed_invoice(self):
+    def _get_intrastat_computed_invoice(self, price_unit=100.0):
         invoice = self.invoice_model.create({
             'partner_id': self.partner01.id,
             'journal_id': self.sales_journal.id,
@@ -106,7 +109,7 @@ class TestIntrastatStatement (AccountingTestCase):
                 'product_id': self.product01.id,
                 'account_id': self.account_account_receivable.id,
                 'quantity': 1,
-                'price_unit': 100,
+                'price_unit': price_unit,
                 'invoice_line_tax_ids': [(6, 0, {
                     self.tax22_sale.id
                 })]
@@ -157,7 +160,7 @@ class TestIntrastatStatement (AccountingTestCase):
         self.assertEqual(len(file_content.splitlines()[-1]), 64)
 
     def test_statement_purchase(self):
-        bill = self._get_intrastat_computed_bill(self.product01)
+        bill = self._get_intrastat_computed_bill()
 
         statement = self.statement_model.create({
             'period_number': bill.date_invoice.month,
@@ -178,8 +181,7 @@ class TestIntrastatStatement (AccountingTestCase):
         self.assertEqual(len(file_content.splitlines()[-1]), 118)
 
     def test_statement_purchase_currency(self):
-        bill = self._get_intrastat_computed_bill(self.product01,
-                                                 currency=self.currency_gbp)
+        bill = self._get_intrastat_computed_bill(currency=self.currency_gbp)
 
         statement = self.statement_model.create({
             'period_number': bill.date_invoice.month,
@@ -192,7 +194,7 @@ class TestIntrastatStatement (AccountingTestCase):
                          line.amount_currency)
 
     def test_statement_purchase_refund(self):
-        bill = self._get_intrastat_computed_bill(self.product01)
+        bill = self._get_intrastat_computed_bill()
 
         bill_refund = bill.refund()
         # This refund will be subtracted from bill
@@ -228,7 +230,7 @@ class TestIntrastatStatement (AccountingTestCase):
                             {75, 130, 118})
 
     def test_statement_purchase_refund_no_subtract(self):
-        bill = self._get_intrastat_computed_bill(self.product01)
+        bill = self._get_intrastat_computed_bill()
 
         bill_refund = bill.refund()
         # Change the partner so that this refund is not subtracted from bill
@@ -315,7 +317,7 @@ class TestIntrastatStatement (AccountingTestCase):
                             {99, 118})
 
     def test_statement_purchase_quarter(self):
-        bill = self._get_intrastat_computed_bill(self.product01)
+        bill = self._get_intrastat_computed_bill()
         month = bill.date_invoice.month
         quarter = 1 + (month - 1) // 3
         statement = self.statement_model.create({
@@ -349,7 +351,7 @@ class TestIntrastatStatement (AccountingTestCase):
 
     def test_purchase_default_transaction_nature(self):
         """Check default value for purchase's transaction nature."""
-        bill = self._get_intrastat_computed_bill(self.product01)
+        bill = self._get_intrastat_computed_bill()
 
         statement = self.statement_model.create({
             'period_number': bill.date_invoice.month,
@@ -375,3 +377,91 @@ class TestIntrastatStatement (AccountingTestCase):
             company.intrastat_sale_transaction_nature_id,
             line.transaction_nature_id
         )
+
+    def test_statement_sale_round_up_amounts(self):
+        """
+        Check that amount_euro and statistic_amount_euro are rounded up.
+        """
+        invoice = self._get_intrastat_computed_invoice(price_unit=100.5)
+
+        statement = self.statement_model.create({
+            'period_number':
+                invoice.date_invoice.month,
+        })
+        statement.compute_statement()
+        statement_invoice_line = statement.sale_section1_ids \
+            .filtered(lambda l: l.invoice_id == invoice)
+        self.assertEqual(statement_invoice_line.amount_euro, 101)
+        self.assertEqual(statement_invoice_line.statistic_amount_euro, 101)
+
+    def test_statement_sale_round_down_amounts(self):
+        """
+        Check that amount_euro and statistic_amount_euro are rounded down.
+        """
+        invoice = self._get_intrastat_computed_invoice(price_unit=100.4)
+
+        statement = self.statement_model.create({
+            'period_number':
+                invoice.date_invoice.month,
+        })
+        statement.compute_statement()
+        statement_invoice_line = statement.sale_section1_ids \
+            .filtered(lambda l: l.invoice_id == invoice)
+        self.assertEqual(statement_invoice_line.amount_euro, 100)
+        self.assertEqual(statement_invoice_line.statistic_amount_euro, 100)
+
+    def test_statement_purchase_round_up_amounts(self):
+        """
+        Check that amount_euro and statistic_amount_euro are rounded up,
+        but amount_currency is truncated.
+        """
+        bill = self._get_intrastat_computed_bill(
+            currency=self.currency_gbp,
+            price_unit=100.5,
+        )
+
+        statement = self.statement_model.create({
+            'period_number':
+                bill.date_invoice.month,
+        })
+        statement.compute_statement()
+        statement_invoice_line = statement.purchase_section1_ids \
+            .filtered(lambda l: l.invoice_id == bill)
+
+        bill_amount_euro = bill.intrastat_line_ids.amount_euro
+        self.assertEqual(statement_invoice_line.amount_euro,
+                         int(round(bill_amount_euro)))
+        self.assertEqual(statement_invoice_line.statistic_amount_euro,
+                         int(round(bill_amount_euro)))
+
+        amount_currency = int(bill.intrastat_line_ids.amount_currency)
+        self.assertEqual(statement_invoice_line.amount_currency,
+                         amount_currency)
+
+    def test_statement_purchase_round_down_amounts(self):
+        """
+        Check that amount_euro and statistic_amount_euro are rounded down,
+        but amount_currency is truncated.
+        """
+        bill = self._get_intrastat_computed_bill(
+            currency=self.currency_gbp,
+            price_unit=100.4,
+        )
+
+        statement = self.statement_model.create({
+            'period_number':
+                bill.date_invoice.month,
+        })
+        statement.compute_statement()
+        statement_invoice_line = statement.purchase_section1_ids \
+            .filtered(lambda l: l.invoice_id == bill)
+
+        bill_amount_euro = bill.intrastat_line_ids.amount_euro
+        self.assertEqual(statement_invoice_line.amount_euro,
+                         int(round(bill_amount_euro)))
+        self.assertEqual(statement_invoice_line.statistic_amount_euro,
+                         int(round(bill_amount_euro)))
+
+        amount_currency = int(bill.intrastat_line_ids.amount_currency)
+        self.assertEqual(statement_invoice_line.amount_currency,
+                         amount_currency)

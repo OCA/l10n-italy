@@ -46,7 +46,21 @@ class AccountIntrastatStatement(models.Model):
     _rec_name = 'number'
 
     @api.multi
-    def round_min_amount(self, amount, company=None, prec_digits=None):
+    def round_min_amount(self, amount,
+                         company=None, prec_digits=None, truncate=False):
+        """
+        Return an integer representing `amount`,
+        ready for usage in the statement.
+
+        :param amount: Amount to be edited
+        :param company: Company to be used for fetching minimal value,
+                        if not present the statement's company is used
+        :param prec_digits: Digits to be used for rounding,
+                            if not present it is rounded to the unit
+        :param truncate: True if the float number
+                         has to be truncated, otherwise it is rounded
+        :return: An integer representing `amount`
+        """
         self.ensure_one()
         if company is None:
             company = self.company_id
@@ -54,7 +68,12 @@ class AccountIntrastatStatement(models.Model):
         if prec_digits:
             round_amount = float_round(amount, precision_digits=prec_digits)
         else:
-            round_amount = round(amount)
+            round_amount = float_round(amount, precision_digits=0)
+
+        if truncate:
+            round_amount = int(round_amount)
+        else:
+            round_amount = int(float_round(round_amount, precision_digits=0))
 
         return max(round_amount or 1, company.intrastat_min_amount)
 
@@ -183,7 +202,8 @@ class AccountIntrastatStatement(models.Model):
         help="Values accepted:\n"
              " - Month : From 1 to 12\n"
              " - Quarter: From 1 to 4",
-             required=True)
+        default=1,
+        required=True)
     date_start = fields.Date(
         string="Start Date",
         store=True,

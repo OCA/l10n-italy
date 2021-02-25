@@ -191,8 +191,6 @@
             <field name="help"></field>
             <field name="search_view_id" ref="view_search_account_intrastat_statement" />
         </record>
-        
-        
 
         <menuitem id="menu_account_intrastat_statement"
             action="account_intrastat_statement_action"
