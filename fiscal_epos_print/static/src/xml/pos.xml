@@ -147,4 +147,29 @@
         </div>
     </t>
 
+    <t t-extend="PaymentScreen-Paymentlines">
+        <t t-jquery="col[class='controls']" t-operation="before">
+            <t t-if="order.has_payments_with_tickets()">
+                <col class='tickets_number' />
+            </t>
+        </t>
+        <t t-jquery="tr[class='label'] th:nth-child(4)" t-operation="after">
+            <t t-if="order.has_payments_with_tickets()">
+                <th>Tickets N.</th>
+            </t>
+        </t>
+        <t t-jquery="td[class='col-name']" t-operation="after">
+            <t t-if="order.has_payments_with_tickets()">
+                <td >
+                    <div t-if="line.cashregister.journal.fiscalprinter_payment_type == '4'" >
+                        <i value="-" class="fa fa-minus tickets_number_minus" data-field="tickets_number" t-att-data-cid='line.cid'/>
+                        <span name="tickets_number"
+                              style="width:25px;padding-left:10px;padding-right:10px" ><t t-esc='line.tickets_number' /></span>
+                        <i value="+" class="fa fa-plus tickets_number_plus" data-field="tickets_number" t-att-data-cid='line.cid'/>
+                    </div>
+                </td>
+            </t>
+        </t>
+    </t>
+
 </templates>

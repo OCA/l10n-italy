@@ -1,6 +1,6 @@
 # Leonardo Donelli - Creativi Quadrati
 # © 2016 Alessio Gerace - Agile Business Group
-# © 2018-2020 Lorenzo Battistini
+# © 2018-2021 Lorenzo Battistini @ TAKOBI
 # © 2019-2020 Roberto Fichera - Level Prime Srl
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
