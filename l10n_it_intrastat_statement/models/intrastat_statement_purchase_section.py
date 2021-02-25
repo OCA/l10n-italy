@@ -35,7 +35,9 @@ class IntrastatStatementPurchaseSection(models.AbstractModel):
             amount_currency = statement_id.round_min_amount(
                 inv_intra_line.amount_currency,
                 statement_id.company_id or company_id,
-                dp_model.precision_get('Account'))
+                dp_model.precision_get('Account'),
+                truncate=True,
+            )
 
         res.update({
             'amount_currency': amount_currency,
