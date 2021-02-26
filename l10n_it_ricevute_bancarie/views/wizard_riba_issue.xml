@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-        
+
     <!-- ====================================================== -->
     <!--                     WIZARD EMISSIONE RIBA                -->
     <!-- ====================================================== -->
@@ -10,13 +9,22 @@
         <field name="model">riba.issue</field>
         <field name="arch" type="xml">
             <form string="C/O Issue">
-                <separator string="This wizard will generate the C/O slip" colspan="4"/>
+                <separator
+                    string="This wizard will generate the C/O slip"
+                    colspan="4"
+                />
                 <group>
-                    <field name="configuration_id"/>
+                    <field name="configuration_id" />
                 </group>
                 <footer>
-                    <button string="Create" name="create_list" type="object" default_focus="1" class="oe_highlight"/>
-                    <button string="Cancel" special="cancel" class="oe_link"/>
+                    <button
+                        string="Create"
+                        name="create_list"
+                        type="object"
+                        default_focus="1"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" special="cancel" class="oe_link" />
                 </footer>
             </form>
         </field>
@@ -30,11 +38,11 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">riba.issue</field>
         <field name="src_model">account.move.line</field>
-        <field name="binding_model_id" ref="account.model_account_move_line"/>
+        <field name="binding_model_id" ref="account.model_account_move_line" />
         <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
-        <field name="view_id" ref="riba_issue_view"/>
+        <field name="view_id" ref="riba_issue_view" />
     </record>
 
 </odoo>

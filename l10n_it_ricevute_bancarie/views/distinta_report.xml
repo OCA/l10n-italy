@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <template id="distinta_layout">
@@ -18,7 +18,9 @@
                     <div class="page">
                         <div class="row with_bord" style="padding: 2px;">
                             <p>
-                                Cash Order Slip No. <span t-esc="o.name or 'Draft'"/> of <span t-field="o.registration_date"/>
+                                Cash Order Slip No. <span
+                                    t-esc="o.name or 'Draft'"
+                                /> of <span t-field="o.registration_date" />
                             </p>
                         </div>
 
@@ -56,7 +58,9 @@
                                             <p><span t-field="line.sequence" /></p>
                                         </td>
                                         <td>
-                                            <p><span t-field="line.invoice_number" /></p>
+                                            <p><span
+                                                    t-field="line.invoice_number"
+                                                /></p>
                                         </td>
                                         <td>
                                             <p><span t-field="line.invoice_date" /></p>
@@ -73,7 +77,10 @@
                                         <td>
                                             <p><span t-field="line.due_date" /></p>
                                         </td>
-                                        <t t-set="tot_amount" t-value="tot_amount + line.amount" />
+                                        <t
+                                            t-set="tot_amount"
+                                            t-value="tot_amount + line.amount"
+                                        />
                                     </tr>
                                 </tbody>
                             </table>
@@ -85,7 +92,7 @@
                                     <tr class="border-black">
                                         <td><strong>Total</strong></td>
                                         <td class="text-right">
-                                            <span t-esc="tot_amount"/>
+                                            <span t-esc="tot_amount" />
                                         </td>
                                     </tr>
                                 </table>
