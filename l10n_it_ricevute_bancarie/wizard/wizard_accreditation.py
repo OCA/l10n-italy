@@ -149,7 +149,6 @@ class RibaAccreditation(models.TransientModel):
 
         return {
             "name": _("Credit Entry"),
-            "view_type": "form",
             "view_mode": "form",
             "res_model": "account.move",
             "type": "ir.actions.act_window",
