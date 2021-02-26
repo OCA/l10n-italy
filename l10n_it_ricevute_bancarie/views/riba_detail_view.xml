@@ -5,7 +5,7 @@
         <field name="name">riba.distinta.line.filtri</field>
         <field name="model">riba.distinta.line</field>
         <field name="arch" type="xml">
-		<search string="C/O Slips">
+            <search string="C/O Slips">
                 <filter
                     name="draft"
                     string="Draft"
@@ -40,7 +40,7 @@
                 <field name="partner_id" />
                 <field name="due_date" />
                 <field name="config_id" />
-           </search>
+            </search>
         </field>
     </record>
 
@@ -48,7 +48,7 @@
         <field name="name">riba.distinta.line.tree</field>
         <field name="model">riba.distinta.line</field>
         <field name="arch" type="xml">
-		<tree create="false" string="C/O Slips Detail">
+            <tree create="false" string="C/O Slips Detail">
                 <field name="config_id" />
                 <field name="sequence" />
                 <field name="invoice_number" />
@@ -73,11 +73,9 @@
     </record>
 
     <record id="detail_riba_action" model="ir.actions.act_window">
-	    <field name="name">C/O Slip Detail</field>
+        <field name="name">C/O Slip Detail</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">riba.distinta.line</field>
-        <field name="src_model">riba.distinta.line</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree</field>
         <field name="search_view_id" ref="view_detail_riba_filter" />
     </record>

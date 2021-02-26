@@ -6,7 +6,7 @@
 # Copyright (C) 2012-2017 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import _, exceptions, fields, models
 
 
 # -------------------------------------------------------
@@ -19,7 +19,6 @@ class RibaIssue(models.TransientModel):
         "riba.configuration", string="Configuration", required=True
     )
 
-    @api.multi
     def create_list(self):
         def create_rdl(
             countme, bank_id, rd_id, date_maturity, partner_id, acceptance_account_id
@@ -61,7 +60,7 @@ class RibaIssue(models.TransientModel):
             len(
                 {
                     "{}{}".format(x.cig, x.cup)
-                    for x in move_lines.mapped("invoice_id.related_documents")
+                    for x in move_lines.mapped("move_id.related_documents")
                 }
             )
             > 1
@@ -84,12 +83,12 @@ class RibaIssue(models.TransientModel):
         countme = 1
 
         for move_line in move_lines:
-            if move_line.invoice_id.riba_partner_bank_id:
-                bank_id = move_line.invoice_id.riba_partner_bank_id
+            if move_line.partner_id.bank_ids:
+                bank_id = move_line.partner_id.bank_ids[0]
             else:
                 raise exceptions.Warning(
-                    _("No bank has been specified for invoice %s!")
-                    % move_line.invoice_id.name
+                    _("No bank has been specified for partner %s!")
+                    % move_line.partner_id.name
                 )
             if move_line.partner_id.group_riba and do_group_riba:
                 for key in grouped_lines:
