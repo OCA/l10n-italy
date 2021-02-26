@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="utf-8" ?>
 <!--
     Copyright (c) 2019, Link IT Europe Srl
     @author: Matteo Bilotta <mbilotta@linkeurope.it>
   -->
-
 <odoo>
 
     <template id="stock_delivery_note_wizard_error_message_template">

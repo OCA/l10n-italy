@@ -60,4 +60,3 @@ Di seguito, una piccola lista di passi da seguire per portare a termine la migra
 6. Verificata l’esattezza dei dati migrati, disinstallare il modulo *l10n_it_ddt*.
 
 È possibile iniziare ad utilizzare *l10n_it_delivery_note*.
-
