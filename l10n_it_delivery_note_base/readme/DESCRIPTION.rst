@@ -13,4 +13,3 @@ Questo modulo è un livello base.
 All'interno ci sono le tabelle principali,
 in modo che chiunque possa usarlo con altri
 moduli.
-
