@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="print_invoice_inherit" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@t-if='o.partner_id.vat']" position="after">
+            <div t-if="o.partner_id.fiscalcode" class="mt16">
+                Fiscal code:
+                <span t-field="o.partner_id.fiscalcode" />
+            </div>
+        </xpath>
+    </template>
+</odoo>

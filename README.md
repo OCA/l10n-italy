@@ -15,7 +15,15 @@ TODO: add repo description.
 
 [//]: # (addons)
 
-This part will be replaced when running the oca-gen-addons-table script from OCA/maintainer-tools.
+Available addons
+----------------
+addon | version | summary
+--- | --- | ---
+[l10n_it_abicab](l10n_it_abicab/) | 14.0.1.0.0 | Base Bank ABI/CAB codes
+[l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 14.0.1.0.0 | Condizioni di pagamento delle fatture elettroniche
+[l10n_it_fiscalcode](l10n_it_fiscalcode/) | 14.0.1.0.1 | ITA - Codice fiscale
+[l10n_it_ipa](l10n_it_ipa/) | 14.0.1.0.2 | ITA - Codice IPA
+[l10n_it_rea](l10n_it_rea/) | 14.0.1.0.2 | Gestisce i campi del Repertorio Economico Amministrativo
 
 [//]: # (end addons)
 

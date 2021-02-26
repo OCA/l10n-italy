@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<odoo>
+
+        <record id="view_bank_filter_abicab" model="ir.ui.view">
+            <field name="name">res.bank.filter.abicab</field>
+            <field name="model">res.bank</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Bank">
+                    <field name="name" />
+                    <field name="abi" />
+                    <field name="cab" />
+                </search>
+            </field>
+        </record>
+
+       <record id="view_bank_tree_abicab" model="ir.ui.view">
+            <field name="name">res.bank.tree.abicab</field>
+            <field name="model">res.bank</field>
+            <field name="inherit_id" ref="base.view_res_bank_tree" />
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="abi" />
+                    <field name="cab" />
+                </field>
+            </field>
+        </record>
+
+       <record id="view_bank_form_abicab" model="ir.ui.view">
+           <field name="name">res.bank.form.abicab</field>
+           <field name="model">res.bank</field>
+           <field name="inherit_id" ref="base.view_res_bank_form" />
+           <field name="arch" type="xml">
+               <field name="bic" position="replace">
+                   <group string="Bank Details" colspan="6">
+                       <field name="abi" />
+                       <field name="cab" />
+                       <field name="bic" />
+                   </group>
+               </field>
+           </field>
+       </record>
+
+        <record id="view_partner_bank_form_abicab_form" model="ir.ui.view">
+            <field name="name">res.partner.bank.form</field>
+            <field name="model">res.partner.bank</field>
+            <field name="inherit_id" ref="base.view_partner_bank_form" />
+            <field name="arch" type="xml">
+                <field name="bank_id" position="after">
+                    <newline />
+                    <field name="bank_abi" />
+                    <field name="bank_cab" />
+                </field>
+            </field>
+        </record>
+
+</odoo>
