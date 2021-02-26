@@ -5,12 +5,13 @@
 
 import base64
 import os
-from . import riba_common
+
 from odoo.tools import config
+
+from . import riba_common
 
 
 class TestInvoiceDueCost(riba_common.TestRibaCommon):
-
     def setUp(self):
         super(TestInvoiceDueCost, self).setUp()
 
@@ -22,15 +23,21 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         # ---- Test Invoice has 2 line
         self.assertEqual(len(self.invoice.invoice_line_ids), 3)
         # ---- Test Invoice Line for service cost
-        self.assertEqual(self.invoice.invoice_line_ids[1].product_id.id,
-                         self.service_due_cost.id)
+        self.assertEqual(
+            self.invoice.invoice_line_ids[1].product_id.id, self.service_due_cost.id
+        )
         # ---- Test Invoice Line for service cost
-        self.assertEqual(self.invoice.invoice_line_ids[2].product_id.id,
-                         self.service_due_cost.id)
+        self.assertEqual(
+            self.invoice.invoice_line_ids[2].product_id.id, self.service_due_cost.id
+        )
         # ---- Test Cost line is equal to 10.00
         self.assertEqual(
-            (self.invoice.invoice_line_ids[1].price_unit +
-             self.invoice.invoice_line_ids[2].price_unit), 10.00)
+            (
+                self.invoice.invoice_line_ids[1].price_unit
+                + self.invoice.invoice_line_ids[2].price_unit
+            ),
+            10.00,
+        )
         new_inv = self.invoice.copy()
         self.assertEqual(len(new_inv.invoice_line_ids), 1)
 
@@ -74,85 +81,103 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         self.assertEqual(len(self.invoice.invoice_line_ids), 1)
 
     def test_riba_flow(self):
-        recent_date = self.env['account.invoice'].search(
-            [('date_invoice', '!=', False)], order='date_invoice desc',
-            limit=1).date_invoice
+        recent_date = (
+            self.env["account.invoice"]
+            .search([("date_invoice", "!=", False)], order="date_invoice desc", limit=1)
+            .date_invoice
+        )
 
-        invoice = self.env['account.invoice'].create({
-            'date_invoice': recent_date,
-            'journal_id': self.sale_journal.id,
-            'partner_id': self.partner.id,
-            'payment_term_id': self.account_payment_term_riba.id,
-            'account_id': self.account_rec1_id.id,
-            'invoice_line_ids': [(
-                0, 0, {
-                    'name': 'product1',
-                    'product_id': self.product1.id,
-                    'quantity': 1.0,
-                    'price_unit': 450.00,
-                    'account_id': self.sale_account.id
-                }
-            )]
-        })
+        invoice = self.env["account.invoice"].create(
+            {
+                "date_invoice": recent_date,
+                "journal_id": self.sale_journal.id,
+                "partner_id": self.partner.id,
+                "payment_term_id": self.account_payment_term_riba.id,
+                "account_id": self.account_rec1_id.id,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "product1",
+                            "product_id": self.product1.id,
+                            "quantity": 1.0,
+                            "price_unit": 450.00,
+                            "account_id": self.sale_account.id,
+                        },
+                    )
+                ],
+            }
+        )
         invoice._onchange_riba_partner_bank_id()
         invoice.action_invoice_open()
         riba_move_line_id = False
         for move_line in invoice.move_id.line_ids:
             if move_line.account_id.id == self.account_rec1_id.id:
                 riba_move_line_id = move_line.id
-                line_ids = self.move_line_model.search([
-                    '&',
-                    '|',
-                    ('riba', '=', 'True'),
-                    ('unsolved_invoice_ids', '!=', False),
-                    ('account_id.internal_type', '=', 'receivable'),
-                    ('reconciled', '=', False),
-                    ('distinta_line_ids', '=', False)
-                ])
+                line_ids = self.move_line_model.search(
+                    [
+                        "&",
+                        "|",
+                        ("riba", "=", "True"),
+                        ("unsolved_invoice_ids", "!=", False),
+                        ("account_id.internal_type", "=", "receivable"),
+                        ("reconciled", "=", False),
+                        ("distinta_line_ids", "=", False),
+                    ]
+                )
                 self.assertEqual(len(line_ids), 1)
                 self.assertEqual(line_ids[0].id, move_line.id)
         self.assertTrue(riba_move_line_id)
 
         # issue wizard
-        wizard_riba_issue = self.env['riba.issue'].create({
-            'configuration_id': self.riba_config.id
-        })
+        wizard_riba_issue = self.env["riba.issue"].create(
+            {"configuration_id": self.riba_config.id}
+        )
         action = wizard_riba_issue.with_context(
-            {'active_ids': [riba_move_line_id]}
+            {"active_ids": [riba_move_line_id]}
         ).create_list()
-        riba_list_id = action and action['res_id'] or False
+        riba_list_id = action and action["res_id"] or False
         riba_list = self.distinta_model.browse(riba_list_id)
         riba_list.confirm()
-        self.assertEqual(riba_list.state, 'accepted')
-        self.assertEqual(invoice.state, 'paid')
+        self.assertEqual(riba_list.state, "accepted")
+        self.assertEqual(invoice.state, "paid")
         self.assertEqual(len(riba_list.acceptance_move_ids), 1)
         self.assertEqual(len(riba_list.payment_ids), 0)
         riba_list.acceptance_move_ids[0].assert_balanced()
 
         # I print the C/O slip report
         docargs = {
-            'doc_ids': riba_list.ids,
-            'doc_model': 'riba.distinta',
-            'docs': self.env['riba.distinta'].browse(riba_list.ids),
+            "doc_ids": riba_list.ids,
+            "doc_model": "riba.distinta",
+            "docs": self.env["riba.distinta"].browse(riba_list.ids),
         }
-        data = self.env.ref('l10n_it_ricevute_bancarie.distinta_qweb')\
-            .render(docargs)
-        if config.get('test_report_directory'):
-            open(os.path.join(
-                config['test_report_directory'], 'riba-list.' + format
-            ), 'wb+').write(data)
+        data = self.env.ref("l10n_it_ricevute_bancarie.distinta_qweb").render(docargs)
+        if config.get("test_report_directory"):
+            open(
+                os.path.join(config["test_report_directory"], "riba-list." + format),
+                "wb+",
+            ).write(data)
 
         # credit wizard
-        wiz_accreditation = self.env['riba.accreditation'].with_context({
-            "active_model": "riba.distinta",
-            "active_ids": [riba_list_id],
-            "active_id": riba_list_id,
-        }).create({
-            'bank_amount': 445,
-            'expense_amount': 5,
-        })
+        wiz_accreditation = (
+            self.env["riba.accreditation"]
+            .with_context(
+                {
+                    "active_model": "riba.distinta",
+                    "active_ids": [riba_list_id],
+                    "active_id": riba_list_id,
+                }
+            )
+            .create(
+                {
+                    "bank_amount": 445,
+                    "expense_amount": 5,
+                }
+            )
+        )
         wiz_accreditation.create_move()
-        self.assertEqual(riba_list.state, 'accredited')
+        self.assertEqual(riba_list.state, "accredited")
         riba_list.accreditation_move_id.assert_balanced()
 
         bank_accreditation_line = False
@@ -179,28 +204,37 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         #     bank_accreditation_line.id in [l.id for l in move_lines_for_rec])
         #
         # bank notifies cash in
-        bank_move = self.move_model.create({
-            'journal_id': self.bank_journal.id,
-            'line_ids': [
-                (0, 0, {
-                    'partner_id': self.partner.id,
-                    'account_id': self.sbf_effects.id,
-                    'credit': 450,
-                    'debit': 0,
-                    'name': 'sbf effects',
-                }),
-                (0, 0, {
-                    'partner_id': self.partner.id,
-                    'account_id': self.riba_account.id,
-                    'credit': 0,
-                    'debit': 450,
-                    'name': 'Banca conto ricevute bancarie',
-                }),
-            ]
-        })
-        to_reconcile = self.env['account.move.line']
-        line_set = (
-            bank_move.line_ids | riba_list.acceptance_move_ids[0].line_ids)
+        bank_move = self.move_model.create(
+            {
+                "journal_id": self.bank_journal.id,
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "partner_id": self.partner.id,
+                            "account_id": self.sbf_effects.id,
+                            "credit": 450,
+                            "debit": 0,
+                            "name": "sbf effects",
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "partner_id": self.partner.id,
+                            "account_id": self.riba_account.id,
+                            "credit": 0,
+                            "debit": 450,
+                            "name": "Banca conto ricevute bancarie",
+                        },
+                    ),
+                ],
+            }
+        )
+        to_reconcile = self.env["account.move.line"]
+        line_set = bank_move.line_ids | riba_list.acceptance_move_ids[0].line_ids
         for line in line_set:
             if line.account_id.id == self.sbf_effects.id:
                 to_reconcile |= line
@@ -208,78 +242,102 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         to_reconcile.reconcile()
         # refresh otherwise riba_list.payment_ids is not recomputed
         riba_list.refresh()
-        self.assertEqual(riba_list.state, 'paid')
+        self.assertEqual(riba_list.state, "paid")
         self.assertEqual(len(riba_list.payment_ids), 1)
         self.assertEqual(len(riba_list.line_ids), 1)
-        self.assertEqual(riba_list.line_ids[0].state, 'paid')
+        self.assertEqual(riba_list.line_ids[0].state, "paid")
         to_reconcile.remove_move_reconcile()
-        self.assertEqual(riba_list.state, 'accredited')
-        self.assertEqual(riba_list.line_ids[0].state, 'accredited')
+        self.assertEqual(riba_list.state, "accredited")
+        self.assertEqual(riba_list.line_ids[0].state, "accredited")
 
     def test_unsolved_riba(self):
         # create another invoice to test past due C/O
-        recent_date = self.env['account.invoice'].search(
-            [('date_invoice', '!=', False)], order='date_invoice desc',
-            limit=1).date_invoice
-        invoice = self.env['account.invoice'].create({
-            'date_invoice': recent_date,
-            'journal_id': self.sale_journal.id,
-            'partner_id': self.partner.id,
-            'payment_term_id': self.account_payment_term_riba.id,
-            'account_id': self.account_rec1_id.id,
-            'invoice_line_ids': [(
-                0, 0, {
-                    'name': 'product1',
-                    'product_id': self.product1.id,
-                    'quantity': 1.0,
-                    'price_unit': 100.00,
-                    'account_id': self.sale_account.id
-                }
-            )]
-        })
+        recent_date = (
+            self.env["account.invoice"]
+            .search([("date_invoice", "!=", False)], order="date_invoice desc", limit=1)
+            .date_invoice
+        )
+        invoice = self.env["account.invoice"].create(
+            {
+                "date_invoice": recent_date,
+                "journal_id": self.sale_journal.id,
+                "partner_id": self.partner.id,
+                "payment_term_id": self.account_payment_term_riba.id,
+                "account_id": self.account_rec1_id.id,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "product1",
+                            "product_id": self.product1.id,
+                            "quantity": 1.0,
+                            "price_unit": 100.00,
+                            "account_id": self.sale_account.id,
+                        },
+                    )
+                ],
+            }
+        )
         invoice._onchange_riba_partner_bank_id()
         invoice.action_invoice_open()
         for move_line in invoice.move_id.line_ids:
             if move_line.account_id.id == self.account_rec1_id.id:
                 riba_move_line_id = move_line.id
         # issue wizard
-        wizard_riba_issue = self.env['riba.issue'].create({
-            'configuration_id': self.riba_config.id
-        })
+        wizard_riba_issue = self.env["riba.issue"].create(
+            {"configuration_id": self.riba_config.id}
+        )
         action = wizard_riba_issue.with_context(
-            {'active_ids': [riba_move_line_id]}
+            {"active_ids": [riba_move_line_id]}
         ).create_list()
-        riba_list_id = action and action['res_id'] or False
+        riba_list_id = action and action["res_id"] or False
         riba_list = self.distinta_model.browse(riba_list_id)
         riba_list.confirm()
-        self.assertEqual(riba_list.state, 'accepted')
-        self.assertEqual(invoice.state, 'paid')
+        self.assertEqual(riba_list.state, "accepted")
+        self.assertEqual(invoice.state, "paid")
         # credit wizard
-        wiz_accreditation = self.env['riba.accreditation'].with_context({
-            "active_model": "riba.distinta",
-            "active_ids": [riba_list_id],
-            "active_id": riba_list_id,
-        }).create({
-            'bank_amount': 95,
-            'expense_amount': 5,
-        })
+        wiz_accreditation = (
+            self.env["riba.accreditation"]
+            .with_context(
+                {
+                    "active_model": "riba.distinta",
+                    "active_ids": [riba_list_id],
+                    "active_id": riba_list_id,
+                }
+            )
+            .create(
+                {
+                    "bank_amount": 95,
+                    "expense_amount": 5,
+                }
+            )
+        )
         wiz_accreditation.create_move()
-        self.assertEqual(riba_list.state, 'accredited')
+        self.assertEqual(riba_list.state, "accredited")
         riba_list.accreditation_move_id.assert_balanced()
 
         # past due wizard
-        wiz_unsolved = self.env['riba.unsolved'].with_context({
-            "active_model": "riba.distinta.line",
-            "active_ids": [riba_list.line_ids[0].id],
-            "active_id": riba_list.line_ids[0].id,
-        }).create({
-            'bank_amount': 102,
-            'expense_amount': 2,
-        })
+        wiz_unsolved = (
+            self.env["riba.unsolved"]
+            .with_context(
+                {
+                    "active_model": "riba.distinta.line",
+                    "active_ids": [riba_list.line_ids[0].id],
+                    "active_id": riba_list.line_ids[0].id,
+                }
+            )
+            .create(
+                {
+                    "bank_amount": 102,
+                    "expense_amount": 2,
+                }
+            )
+        )
         wiz_unsolved.create_move()
-        self.assertEqual(riba_list.state, 'unsolved')
+        self.assertEqual(riba_list.state, "unsolved")
         self.assertEqual(len(riba_list.line_ids), 1)
-        self.assertEqual(riba_list.line_ids[0].state, 'unsolved')
+        self.assertEqual(riba_list.line_ids[0].state, "unsolved")
         self.assertTrue(invoice.unsolved_move_line_ids)
 
         self.assertEqual(len(riba_list.unsolved_move_ids), 1)
@@ -306,119 +364,149 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         #     bank_unsolved_line.id in [l.id for l in move_lines_for_rec])
 
         riba_list.line_ids[0].unsolved_move_id.line_ids.remove_move_reconcile()
-        self.assertEqual(riba_list.state, 'accredited')
+        self.assertEqual(riba_list.state, "accredited")
         self.assertEqual(len(riba_list.line_ids), 1)
-        self.assertEqual(riba_list.line_ids[0].state, 'accredited')
+        self.assertEqual(riba_list.line_ids[0].state, "accredited")
 
     def test_riba_fatturapa(self):
-        recent_date = self.env['account.invoice'].search(
-            [('date_invoice', '!=', False)], order='date_invoice desc',
-            limit=1).date_invoice
-        invoice = self.env['account.invoice'].create({
-            'date_invoice': recent_date,
-            'journal_id': self.sale_journal.id,
-            'partner_id': self.partner.id,
-            'payment_term_id': self.account_payment_term_riba.id,
-            'account_id': self.account_rec1_id.id,
-            'invoice_line_ids': [(
-                0, 0, {
-                    'name': 'product1',
-                    'product_id': self.product1.id,
-                    'quantity': 1.0,
-                    'price_unit': 450.00,
-                    'account_id': self.sale_account.id
-                }
-            )],
-            'related_documents': [(
-                0, 0, {
-                    'type': 'order',
-                    'name': 'SO1232',
-                    'cig': '7987210EG5',
-                    'cup': 'H71N17000690124',
-                }
-            )],
-        })
+        recent_date = (
+            self.env["account.invoice"]
+            .search([("date_invoice", "!=", False)], order="date_invoice desc", limit=1)
+            .date_invoice
+        )
+        invoice = self.env["account.invoice"].create(
+            {
+                "date_invoice": recent_date,
+                "journal_id": self.sale_journal.id,
+                "partner_id": self.partner.id,
+                "payment_term_id": self.account_payment_term_riba.id,
+                "account_id": self.account_rec1_id.id,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "product1",
+                            "product_id": self.product1.id,
+                            "quantity": 1.0,
+                            "price_unit": 450.00,
+                            "account_id": self.sale_account.id,
+                        },
+                    )
+                ],
+                "related_documents": [
+                    (
+                        0,
+                        0,
+                        {
+                            "type": "order",
+                            "name": "SO1232",
+                            "cig": "7987210EG5",
+                            "cup": "H71N17000690124",
+                        },
+                    )
+                ],
+            }
+        )
         invoice._onchange_riba_partner_bank_id()
         invoice.action_invoice_open()
         # issue wizard
         riba_move_line_id = invoice.move_id.line_ids.filtered(
             lambda x: x.account_id == self.account_rec1_id
         )
-        wizard_riba_issue = self.env['riba.issue'].create({
-            'configuration_id': self.riba_config.id
-        })
+        wizard_riba_issue = self.env["riba.issue"].create(
+            {"configuration_id": self.riba_config.id}
+        )
         action = wizard_riba_issue.with_context(
-            {'active_ids': [riba_move_line_id.id]}
+            {"active_ids": [riba_move_line_id.id]}
         ).create_list()
-        riba_list_id = action and action['res_id'] or False
+        riba_list_id = action and action["res_id"] or False
         riba_list = self.distinta_model.browse(riba_list_id)
         riba_list.confirm()
-        self.assertEqual(riba_list.line_ids[0].cig, '7987210EG5')
-        self.assertEqual(riba_list.line_ids[0].cup, 'H71N17000690124')
-        wizard_riba_export = self.env['riba.file.export'].create({})
-        wizard_riba_export.with_context(
-            {'active_ids': [riba_list.id]}
-        ).act_getfile()
+        self.assertEqual(riba_list.line_ids[0].cig, "7987210EG5")
+        self.assertEqual(riba_list.line_ids[0].cup, "H71N17000690124")
+        wizard_riba_export = self.env["riba.file.export"].create({})
+        wizard_riba_export.with_context({"active_ids": [riba_list.id]}).act_getfile()
         riba_txt = base64.decodebytes(wizard_riba_export.riba_txt)
-        self.assertTrue(
-            b'CIG: 7987210EG5 CUP: H71N17000690124' in riba_txt
-        )
+        self.assertTrue(b"CIG: 7987210EG5 CUP: H71N17000690124" in riba_txt)
 
     def test_riba_fatturapa_group(self):
         self.partner.group_riba = True
-        recent_date = self.env['account.invoice'].search(
-            [('date_invoice', '!=', False)], order='date_invoice desc',
-            limit=1).date_invoice
-        invoice = self.env['account.invoice'].create({
-            'date_invoice': recent_date,
-            'journal_id': self.sale_journal.id,
-            'partner_id': self.partner.id,
-            'payment_term_id': self.account_payment_term_riba.id,
-            'account_id': self.account_rec1_id.id,
-            'invoice_line_ids': [(
-                0, 0, {
-                    'name': 'product1',
-                    'product_id': self.product1.id,
-                    'quantity': 1.0,
-                    'price_unit': 450.00,
-                    'account_id': self.sale_account.id
-                }
-            )],
-            'related_documents': [(
-                0, 0, {
-                    'type': 'order',
-                    'name': 'SO1232',
-                    'cig': '7987210EG5',
-                    'cup': 'H71N17000690124',
-                }
-            )],
-        })
+        recent_date = (
+            self.env["account.invoice"]
+            .search([("date_invoice", "!=", False)], order="date_invoice desc", limit=1)
+            .date_invoice
+        )
+        invoice = self.env["account.invoice"].create(
+            {
+                "date_invoice": recent_date,
+                "journal_id": self.sale_journal.id,
+                "partner_id": self.partner.id,
+                "payment_term_id": self.account_payment_term_riba.id,
+                "account_id": self.account_rec1_id.id,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "product1",
+                            "product_id": self.product1.id,
+                            "quantity": 1.0,
+                            "price_unit": 450.00,
+                            "account_id": self.sale_account.id,
+                        },
+                    )
+                ],
+                "related_documents": [
+                    (
+                        0,
+                        0,
+                        {
+                            "type": "order",
+                            "name": "SO1232",
+                            "cig": "7987210EG5",
+                            "cup": "H71N17000690124",
+                        },
+                    )
+                ],
+            }
+        )
         invoice._onchange_riba_partner_bank_id()
         invoice.action_invoice_open()
-        invoice1 = self.env['account.invoice'].create({
-            'date_invoice': recent_date,
-            'journal_id': self.sale_journal.id,
-            'partner_id': self.partner.id,
-            'payment_term_id': self.account_payment_term_riba.id,
-            'account_id': self.account_rec1_id.id,
-            'invoice_line_ids': [(
-                0, 0, {
-                    'name': 'product1',
-                    'product_id': self.product1.id,
-                    'quantity': 1.0,
-                    'price_unit': 450.00,
-                    'account_id': self.sale_account.id
-                }
-            )],
-            'related_documents': [(
-                0, 0, {
-                    'type': 'order',
-                    'name': 'SO1232',
-                    'cig': '7987210EG5',
-                    'cup': 'H71N17000690125',
-                }
-            )],
-        })
+        invoice1 = self.env["account.invoice"].create(
+            {
+                "date_invoice": recent_date,
+                "journal_id": self.sale_journal.id,
+                "partner_id": self.partner.id,
+                "payment_term_id": self.account_payment_term_riba.id,
+                "account_id": self.account_rec1_id.id,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "product1",
+                            "product_id": self.product1.id,
+                            "quantity": 1.0,
+                            "price_unit": 450.00,
+                            "account_id": self.sale_account.id,
+                        },
+                    )
+                ],
+                "related_documents": [
+                    (
+                        0,
+                        0,
+                        {
+                            "type": "order",
+                            "name": "SO1232",
+                            "cig": "7987210EG5",
+                            "cup": "H71N17000690125",
+                        },
+                    )
+                ],
+            }
+        )
         invoice1._onchange_riba_partner_bank_id()
         invoice1.action_invoice_open()
         # issue wizard
@@ -428,24 +516,18 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         riba_move_line1_id = invoice1.move_id.line_ids.filtered(
             lambda x: x.account_id == self.account_rec1_id
         )
-        wizard_riba_issue = self.env['riba.issue'].create({
-            'configuration_id': self.riba_config.id
-        })
+        wizard_riba_issue = self.env["riba.issue"].create(
+            {"configuration_id": self.riba_config.id}
+        )
         action = wizard_riba_issue.with_context(
-            {'active_ids': [riba_move_line_id.id, riba_move_line1_id.id]}
+            {"active_ids": [riba_move_line_id.id, riba_move_line1_id.id]}
         ).create_list()
-        riba_list_id = action and action['res_id'] or False
+        riba_list_id = action and action["res_id"] or False
         riba_list = self.distinta_model.browse(riba_list_id)
         riba_list.confirm()
         self.assertTrue(len(riba_list.line_ids), 2)
-        wizard_riba_export = self.env['riba.file.export'].create({})
-        wizard_riba_export.with_context(
-            {'active_ids': [riba_list.id]}
-        ).act_getfile()
+        wizard_riba_export = self.env["riba.file.export"].create({})
+        wizard_riba_export.with_context({"active_ids": [riba_list.id]}).act_getfile()
         riba_txt = base64.decodebytes(wizard_riba_export.riba_txt)
-        self.assertTrue(
-            b'CIG: 7987210EG5 CUP: H71N17000690124' in riba_txt
-        )
-        self.assertTrue(
-            b'CIG: 7987210EG5 CUP: H71N17000690125' in riba_txt
-        )
+        self.assertTrue(b"CIG: 7987210EG5 CUP: H71N17000690124" in riba_txt)
+        self.assertTrue(b"CIG: 7987210EG5 CUP: H71N17000690125" in riba_txt)
