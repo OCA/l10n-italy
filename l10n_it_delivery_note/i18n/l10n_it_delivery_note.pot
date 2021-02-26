@@ -1,17 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_delivery_note
+# 	* l10n_it_delivery_note
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: l10n_it_delivery_note
+#: model:ir.actions.report,print_report_name:l10n_it_delivery_note.delivery_note_report_action
+msgid "'Delivery Note - %s' % object.display_name"
+msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_config_settings_form_view
@@ -24,27 +29,25 @@ msgid "<span class=\"fa fa-warning\"/> Warning!"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
-msgid "<span>Phone:</span>"
-msgstr ""
-
-#. module: l10n_it_delivery_note
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
-msgid "<span>VAT:</span>"
-msgstr ""
-
-#. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
-msgid "<strong>\n"
-"                                <span class=\"fa fa-exclamation-triangle\"/> Warning!\n"
+msgid ""
+"<strong>\n"
+"                                <span class=\"fa fa-exclamation-triangle\"/>\n"
+"                                Warning!\n"
 "                            </strong>\n"
 "                            Inconsistent DN info in sale orders!"
 msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
-msgid "<strong> Delivery Note: </strong>\n"
+msgid ""
+"<strong> Delivery Note: </strong>\n"
 "                    Under the terms of Italian Presidential Decree 472-96 of 14.08.1996"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+msgid "<strong>Carriage Condition:</strong>"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -58,9 +61,20 @@ msgid "<strong>Delivery address:</strong>"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+msgid "<strong>Method of Transport / Carrier:</strong>"
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.sale_advance_payment_inv_form_view
-msgid "<strong>N.B.:</strong> there will be no way, subsequently, to restore\n"
+msgid ""
+"<strong>N.B.:</strong> there will be no way, subsequently, to restore\n"
 "                        this binding between the delivery note lines with the related sales order."
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+msgid "<strong>Reason of Transport:</strong>"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -70,7 +84,10 @@ msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_delivery_note_line__product_description
-msgid "A description of the Product that you want to communicate to your customers. This description will be copied to every Sales Order, Delivery Order and Customer Invoice/Credit Note"
+msgid ""
+"A description of the Product that you want to communicate to your customers."
+" This description will be copied to every Sales Order, Delivery Order and "
+"Customer Invoice/Credit Note"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -89,8 +106,18 @@ msgid "Activities"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__activity_state
 msgid "Activity State"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__activity_type_icon
+msgid "Activity Type Icon"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -129,13 +156,15 @@ msgid "Archived"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:106
+#: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:0
 #, python-format
-msgid "At least one picking you've selected appears to be already related to another delivery note."
+msgid ""
+"At least one picking you've selected appears to be already related to "
+"another delivery note."
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:33
+#: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:0
 #, python-format
 msgid "At least one picking you've selected doesn't appear to be completed."
 msgstr ""
@@ -156,6 +185,14 @@ msgid "Can Change Number"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: code:addons/l10n_it_delivery_note/models/stock_location.py:0
+#, python-format
+msgid ""
+"Can't find a default virtual locations root.\n"
+"Ask your system administrator to set it from the Warehouse configurations page before continue."
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_create_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_select_form_view
@@ -164,15 +201,10 @@ msgid "Cancel"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__state__cancel
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_form_view
-#: selection:stock.delivery.note,state:0
 msgid "Cancelled"
-msgstr ""
-
-#. module: l10n_it_delivery_note
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
-msgid "Carriage Condition"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -192,12 +224,8 @@ msgid "Carriers"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: model:ir.model,name:l10n_it_delivery_note.model_res_company
-msgid "Companies"
-msgstr ""
-
-#. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__company_id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__company_id
 msgid "Company"
 msgstr ""
 
@@ -222,9 +250,9 @@ msgid "Config Settings"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__sale_advance_payment_inv__step__confirm
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_create_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_select_form_view
-#: selection:sale.advance.payment.inv,step:0
 msgid "Confirm"
 msgstr ""
 
@@ -234,7 +262,7 @@ msgid "Contact"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/models/stock_picking.py:184
+#: code:addons/l10n_it_delivery_note/models/stock_picking.py:0
 #: model:ir.actions.act_window,name:l10n_it_delivery_note.stock_delivery_note_create_action
 #, python-format
 msgid "Create a new delivery note"
@@ -328,7 +356,7 @@ msgstr ""
 #. module: l10n_it_delivery_note
 #: model:ir.actions.report,name:l10n_it_delivery_note.delivery_note_report_action
 #: model:ir.model,name:l10n_it_delivery_note.model_stock_delivery_note
-#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_invoice_line__delivery_note_id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move_line__delivery_note_id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_sale_order__delivery_note_ids
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__delivery_note_id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_select_wizard__delivery_note_id
@@ -338,7 +366,7 @@ msgid "Delivery Note"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/models/account_invoice.py:103
+#: code:addons/l10n_it_delivery_note/models/account_invoice.py:0
 #, python-format
 msgid "Delivery Note \"{}\" of {}"
 msgstr ""
@@ -349,7 +377,9 @@ msgid "Delivery Note Base"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_invoice__delivery_note_count
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_bank_statement_line__delivery_note_count
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move__delivery_note_count
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_payment__delivery_note_count
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_sale_order__delivery_note_count
 msgid "Delivery Note Count"
 msgstr ""
@@ -398,10 +428,12 @@ msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model:ir.actions.act_window,name:l10n_it_delivery_note.stock_delivery_note_action
-#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_invoice__delivery_note_ids
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_bank_statement_line__delivery_note_ids
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move__delivery_note_ids
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_payment__delivery_note_ids
 #: model:ir.ui.menu,name:l10n_it_delivery_note.stock_delivery_note_config_menu
 #: model:ir.ui.menu,name:l10n_it_delivery_note.stock_delivery_note_menu
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.account_invoice_form_view
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.account_view_move_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_config_settings_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_form_view
 msgid "Delivery Notes"
@@ -436,12 +468,21 @@ msgid "Discount"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_partner__display_name
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_sale_advance_payment_inv__display_name
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_sale_order__display_name
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_sale_order_line__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_shipping_information_updater_mixin__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_base_wizard__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_create_wizard__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_select_wizard__display_name
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_location__display_name
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking_checker_mixin__display_name
 msgid "Display Name"
 msgstr ""
@@ -457,16 +498,16 @@ msgid "Document:"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__state__done
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_form_view
-#: selection:stock.delivery.note,state:0
 msgid "Done"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__state__draft
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_form_view
-#: selection:stock.delivery.note,state:0
 msgid "Draft"
 msgstr ""
 
@@ -513,8 +554,13 @@ msgid "Followers (Partners)"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: selection:stock.delivery.note,invoice_status:0
-#: selection:stock.delivery.note.line,invoice_status:0
+#: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_delivery_note__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__invoice_status__invoiced
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_line__invoice_status__invoiced
 msgid "Fully invoiced"
 msgstr ""
 
@@ -552,28 +598,44 @@ msgid "Gross weight UoM"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move_line__id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings__id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_partner__id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_sale_advance_payment_inv__id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_sale_order__id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_sale_order_line__id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_shipping_information_updater_mixin__id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_base_wizard__id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_create_wizard__id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_select_wizard__id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_location__id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking_checker_mixin__id
 msgid "ID"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_delivery_note__message_unread
-msgid "If checked new messages require your attention."
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_delivery_note__activity_exception_icon
+msgid "Icon to indicate an exception activity."
 msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_delivery_note__message_needaction
+#: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_delivery_note__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_delivery_note__message_has_error
+#: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_delivery_note__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -583,19 +645,21 @@ msgid "If these problems persist, don't hesitate to contact the helpdesk."
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__picking_type__incoming
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_create_wizard__picking_type__incoming
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
-#: selection:stock.delivery.note,picking_type:0
 msgid "Incoming"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: selection:sale.advance.payment.inv,step:0
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__sale_advance_payment_inv__step__initial
 msgid "Initial"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__picking_type__internal
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_create_wizard__picking_type__internal
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
-#: selection:stock.delivery.note,picking_type:0
 msgid "Internal"
 msgstr ""
 
@@ -611,17 +675,12 @@ msgid "Internal notes"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: model:ir.model,name:l10n_it_delivery_note.model_account_invoice
-msgid "Invoice"
+#: model:ir.model,name:l10n_it_delivery_note.model_stock_location
+msgid "Inventory Locations"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: model:ir.model,name:l10n_it_delivery_note.model_account_invoice_line
-msgid "Invoice Line"
-msgstr ""
-
-#. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/wizard/sale_advance_payment_inv.py:44
+#: code:addons/l10n_it_delivery_note/wizard/sale_advance_payment_inv.py:0
 #, python-format
 msgid "Invoice Order"
 msgstr ""
@@ -638,9 +697,9 @@ msgid "Invoice statuses"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__state__invoiced
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_form_view
-#: selection:stock.delivery.note,state:0
 msgid "Invoiced"
 msgstr ""
 
@@ -657,36 +716,53 @@ msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_config_settings_form_view
-msgid "It allows to prompt a confirmation to the user\n"
-"                                    during the invoicing action if there's at\n"
-"                                    least one unconfirmed delivery note."
-msgstr ""
-
-#. module: l10n_it_delivery_note
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_config_settings_form_view
-msgid "It extends the standard behaviour of DNs\n"
+msgid ""
+"It extends the standard behaviour of DNs\n"
 "                                    management by introducing additional functions."
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/cli/migrate_l10n_it_ddt.py:98
+#: code:addons/l10n_it_delivery_note/cli/migrate_l10n_it_ddt.py:0
 #, python-format
-msgid "It seems that at least one delivery note has been already created. You can't migrate any data on an already used database."
+msgid ""
+"It seems that at least one delivery note has been already created. You can't"
+" migrate any data on an already used database."
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/cli/migrate_l10n_it_ddt.py:91
+#: code:addons/l10n_it_delivery_note/cli/migrate_l10n_it_ddt.py:0
 #, python-format
-msgid "It seems that there are no documents to migrate. You don't need to run this command."
+msgid ""
+"It seems that there are no documents to migrate. You don't need to run this "
+"command."
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model,name:l10n_it_delivery_note.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model,name:l10n_it_delivery_note.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move____last_update
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_partner____last_update
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_sale_advance_payment_inv____last_update
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_sale_order____last_update
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_sale_order_line____last_update
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_shipping_information_updater_mixin____last_update
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note____last_update
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_base_wizard____last_update
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_create_wizard____last_update
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line____last_update
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_select_wizard____last_update
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_location____last_update
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking____last_update
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking_checker_mixin____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -723,7 +799,8 @@ msgid "Main Attachment"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: selection:stock.delivery.note,picking_type:0
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__picking_type__mrp_operation
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_create_wizard__picking_type__mrp_operation
 msgid "Manufacturing Operation"
 msgstr ""
 
@@ -735,11 +812,6 @@ msgstr ""
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__message_ids
 msgid "Messages"
-msgstr ""
-
-#. module: l10n_it_delivery_note
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
-msgid "Method of Transport / Carrier"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -758,9 +830,11 @@ msgid "Methods of transport"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/cli/migrate_l10n_it_ddt.py:84
+#: code:addons/l10n_it_delivery_note/cli/migrate_l10n_it_ddt.py:0
 #, python-format
-msgid "Module `l10n_it_ddt` isn't installed on this database. You don't need to run this command."
+msgid ""
+"Module `l10n_it_ddt` isn't installed on this database. You don't need to run"
+" this command."
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -807,8 +881,8 @@ msgid "No DN"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_line__display_type__line_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
-#: selection:stock.delivery.note.line,display_type:0
 msgid "Note"
 msgstr ""
 
@@ -818,16 +892,10 @@ msgid "Notes"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__invoice_status__no
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_line__invoice_status__no
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
-#: selection:stock.delivery.note,invoice_status:0
-#: selection:stock.delivery.note.line,invoice_status:0
 msgid "Nothing to invoice"
-msgstr ""
-
-#. module: l10n_it_delivery_note
-#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_company__draft_delivery_note_invoicing_notify
-#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings__draft_delivery_note_invoicing_notify
-msgid "Notify if delivery note isn't validated"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -837,7 +905,7 @@ msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__message_has_error_counter
-msgid "Number of error"
+msgid "Number of errors"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -861,14 +929,10 @@ msgid "Open picking"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__picking_type__outgoing
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_create_wizard__picking_type__outgoing
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
-#: selection:stock.delivery.note,picking_type:0
 msgid "Outgoing"
-msgstr ""
-
-#. module: l10n_it_delivery_note
-#: selection:stock.delivery.note,activity_state:0
-msgid "Overdue"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -900,6 +964,7 @@ msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__picking_type
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_create_wizard__picking_type
 msgid "Picking type"
 msgstr ""
 
@@ -919,11 +984,6 @@ msgstr ""
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__pickings_picker
 msgid "Pickings Picker"
-msgstr ""
-
-#. module: l10n_it_delivery_note
-#: selection:stock.delivery.note,activity_state:0
-msgid "Planned"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -947,11 +1007,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__product_qty
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid "Quantity"
-msgstr ""
-
-#. module: l10n_it_delivery_note
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
-msgid "Reason of Transport"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -999,6 +1054,11 @@ msgid "Responsible User"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__sale_ids
 msgid "Sale"
 msgstr ""
@@ -1009,23 +1069,23 @@ msgid "Sale Count"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__product_description
-msgid "Sale Description"
-msgstr ""
-
-#. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__sale_line_id
 msgid "Sale Line"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: model:ir.model,name:l10n_it_delivery_note.model_sale_order
-msgid "Sale Order"
+#: model:ir.model,name:l10n_it_delivery_note.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: model:ir.model,name:l10n_it_delivery_note.model_sale_advance_payment_inv
-msgid "Sales Advance Payment Invoice"
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__product_description
+msgid "Sales Description"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model,name:l10n_it_delivery_note.model_sale_order
+msgid "Sales Order"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -1044,7 +1104,7 @@ msgid "Sales orders"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: selection:stock.delivery.note.line,display_type:0
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_line__display_type__line_section
 msgid "Section"
 msgstr ""
 
@@ -1054,7 +1114,7 @@ msgid "Section name (e.g. Products, Services)"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/models/stock_picking.py:197
+#: code:addons/l10n_it_delivery_note/models/stock_picking.py:0
 #: model:ir.actions.act_window,name:l10n_it_delivery_note.stock_delivery_note_select_action
 #, python-format
 msgid "Select an existing delivery note"
@@ -1063,6 +1123,15 @@ msgstr ""
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_form_view
 msgid "Select existing"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_config_settings_form_view
+msgid ""
+"Select the root of all your virtual locations.<br/>\n"
+"                                    Internal transfers between at least one virtual\n"
+"                                    locations won't generate automatically any DN\n"
+"                                    documents."
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -1139,7 +1208,8 @@ msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_delivery_note__activity_state
-msgid "Status based on activities\n"
+msgid ""
+"Status based on activities\n"
 "Overdue: Due date is already passed\n"
 "Today: Activity date is today\n"
 "Planned: Future activities."
@@ -1168,32 +1238,37 @@ msgid "Taxes"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:76
+#: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:0
 #, python-format
-msgid "The pickings you've selected don't seem to have any location of departure."
+msgid ""
+"The pickings you've selected don't seem to have any location of departure."
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:92
+#: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:0
 #, python-format
-msgid "The pickings you've selected don't seem to have any location of destination."
+msgid ""
+"The pickings you've selected don't seem to have any location of destination."
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:61
+#: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:0
 #, python-format
-msgid "The pickings you've selected don't seem to have any partner or the selected warehouse doesn't have a valid address."
+msgid ""
+"The pickings you've selected don't seem to have any partner or the selected "
+"warehouse doesn't have a valid address."
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:43
+#: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:0
 #, python-format
 msgid "The pickings you've selected don't seem to have any type."
 msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.sale_advance_payment_inv_form_view
-msgid "There appears to be one or more delivery notes in \"Draft\" state.<br/>\n"
+msgid ""
+"There appears to be one or more delivery notes in \"Draft\" state.<br/>\n"
 "                        If you proceed with the creation of an invoice (other than the downpayment one),\n"
 "                        the affected delivery note lines will be detached from the sales order and\n"
 "                        will not appear linked to the generated invoice."
@@ -1206,25 +1281,21 @@ msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.sale_advance_payment_inv_form_view
-msgid "This behaviour just described may not be wrong in some very specific cases.<br/>\n"
+msgid ""
+"This behaviour just described may not be wrong in some very specific cases.<br/>\n"
 "                        Proceed only if you are absolutely sure and aware of what you're doing."
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__invoice_status__to_invoice
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_line__invoice_status__to_invoice
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
-#: selection:stock.delivery.note,invoice_status:0
-#: selection:stock.delivery.note.line,invoice_status:0
 msgid "To invoice"
 msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
 msgid "To pay"
-msgstr ""
-
-#. module: l10n_it_delivery_note
-#: selection:stock.delivery.note,activity_state:0
-msgid "Today"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -1261,6 +1332,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__type_code
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__delivery_note_type_code
 msgid "Type of Operation"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_delivery_note__activity_exception_decoration
+msgid "Type of the exception activity on record."
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -1329,15 +1405,20 @@ msgid "Validate"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__state__confirm
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_form_view
-#: selection:stock.delivery.note,state:0
 msgid "Validated"
 msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_search_view
 msgid "Validated DN"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings__virtual_locations_root
+msgid "Virtual locations root"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -1358,11 +1439,11 @@ msgid "Warehouse movement"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:325
-#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:361
-#: code:addons/l10n_it_delivery_note/models/stock_picking.py:142
-#: code:addons/l10n_it_delivery_note/models/stock_picking.py:161
-#: code:addons/l10n_it_delivery_note/wizard/delivery_note_base.py:65
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
+#: code:addons/l10n_it_delivery_note/models/stock_picking.py:0
+#: code:addons/l10n_it_delivery_note/models/stock_picking.py:0
+#: code:addons/l10n_it_delivery_note/wizard/delivery_note_base.py:0
 #, python-format
 msgid "Warning!"
 msgstr ""
@@ -1378,57 +1459,105 @@ msgid "Website communication history"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: sql_constraint:stock.delivery.note.line:0
-msgid "You cannot assign the same warehouse movement to different delivery notes!"
+#: model:ir.model.constraint,message:l10n_it_delivery_note.constraint_stock_delivery_note_line_move_uniq
+msgid ""
+"You cannot assign the same warehouse movement to different delivery notes!"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:382
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
 #, python-format
-msgid "You cannot cancel this delivery note. There is at least one invoice related to this delivery note."
+msgid ""
+"You cannot cancel this delivery note. There is at least one invoice related "
+"to this delivery note."
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:699
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
 #, python-format
-msgid "You cannot change the type of a delivery note line. Instead you should delete the current line and create a new line of the proper type."
+msgid ""
+"You cannot change the type of a delivery note line. Instead you should "
+"delete the current line and create a new line of the proper type."
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:319
-#: code:addons/l10n_it_delivery_note/models/stock_picking.py:136
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
+#: code:addons/l10n_it_delivery_note/models/stock_picking.py:0
 #, python-format
-msgid "You cannot set this delivery note type due of a different numerator configuration."
+msgid ""
+"You cannot set this delivery note type due of a different numerator "
+"configuration."
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:82
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
+#, python-format
+msgid ""
+"You cannot set this delivery note type due of a different type with related "
+"pickings."
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: code:addons/l10n_it_delivery_note/models/stock_picking.py:0
+#, python-format
+msgid ""
+"You have just called this method on an heterogeneous set of pickings.\n"
+"All pickings should have the same 'location_dest_id' field value."
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: code:addons/l10n_it_delivery_note/models/stock_picking.py:0
+#, python-format
+msgid ""
+"You have just called this method on an heterogeneous set of pickings.\n"
+"All pickings should have the same 'location_id' field value."
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: code:addons/l10n_it_delivery_note/models/stock_picking.py:0
+#, python-format
+msgid ""
+"You have just called this method on an heterogeneous set of pickings.\n"
+"All pickings should have the same 'partner_id' field value."
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: code:addons/l10n_it_delivery_note/models/stock_picking.py:0
+#, python-format
+msgid ""
+"You have just called this method on an heterogeneous set of pickings.\n"
+"All pickings should have the same 'picking_type_code' field value."
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:0
 #, python-format
 msgid "You need to select pickings with all the same location of departure."
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:98
+#: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:0
 #, python-format
 msgid "You need to select pickings with all the same location of destination."
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:67
+#: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:0
 #, python-format
 msgid "You need to select pickings with all the same recipient."
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:48
+#: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:0
 #, python-format
 msgid "You need to select pickings with all the same type."
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:25
+#: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:0
 #, python-format
-msgid "You shouldn't be able to launch this wizard without selecting any pickings."
+msgid ""
+"You shouldn't be able to launch this wizard without selecting any pickings."
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -1450,4 +1579,3 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid "qty"
 msgstr ""
-

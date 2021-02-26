@@ -5,8 +5,8 @@
 import argparse
 import functools
 import logging
-import odoo
 
+import odoo
 from odoo import SUPERUSER_ID
 from odoo.cli import Command
 
@@ -15,8 +15,7 @@ _logger = logging.getLogger(__name__)
 
 def environment(funct=None, parser_args_method=None):
     if not funct:
-        return functools.partial(environment,
-                                 parser_args_method=parser_args_method)
+        return functools.partial(environment, parser_args_method=parser_args_method)
 
     @functools.wraps(funct)
     def env_enabler(self, args):
@@ -31,7 +30,7 @@ def environment(funct=None, parser_args_method=None):
         config = odoo.tools.config
 
         with odoo.api.Environment.manage():
-            cr = odoo.registry(config['db_name']).cursor()
+            cr = odoo.registry(config["db_name"]).cursor()
             env = odoo.api.Environment(cr, SUPERUSER_ID, {})
 
             funct(self, command_args, env)
@@ -70,7 +69,7 @@ class EasyCommand(Command):
     # noinspection PyMethodMayBeStatic
     def get_args_parser(self):
         args_parser = argparse.ArgumentParser()
-        args_parser.add_argument('--debug', action='store_true', default=False)
+        args_parser.add_argument("--debug", action="store_true", default=False)
 
         return args_parser
 
@@ -89,9 +88,10 @@ class EasyCommand(Command):
 
             self._commit()
 
-        except:
-            _logger.exception("Something went wrong during command execution. "
-                              "Rolling back...")
+        except BaseException:
+            _logger.exception(
+                "Something went wrong during command execution. " "Rolling back..."
+            )
 
             self._rollback()
 
