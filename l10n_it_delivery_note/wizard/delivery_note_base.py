@@ -6,30 +6,31 @@ from odoo.exceptions import ValidationError
 
 
 class StockDeliveryNoteBaseWizard(models.AbstractModel):
-    _name = 'stock.delivery.note.base.wizard'
-    _inherit = 'stock.picking.checker.mixin'
+    _name = "stock.delivery.note.base.wizard"
+    _inherit = "stock.picking.checker.mixin"
     _description = "Delivery Note Base"
 
     def _default_stock_pickings(self):
-        active_ids = self.env.context.get('active_ids', [])
+        active_ids = self.env.context.get("active_ids", [])
 
-        return self.env['stock.picking'].browse(active_ids)
+        return self.env["stock.picking"].browse(active_ids)
 
-    selected_picking_ids = fields.Many2many('stock.picking',
-                                            default=_default_stock_pickings,
-                                            readonly=True)
+    selected_picking_ids = fields.Many2many(
+        "stock.picking", default=_default_stock_pickings, readonly=True
+    )
 
-    partner_sender_id = fields.Many2one('res.partner', string="Sender",
-                                        compute='_compute_fields')
-    partner_id = fields.Many2one('res.partner', string="Recipient",
-                                 compute='_compute_fields')
-    partner_shipping_id = fields.Many2one('res.partner',
-                                          string="Shipping address")
+    partner_sender_id = fields.Many2one(
+        "res.partner", string="Sender", compute="_compute_fields"
+    )
+    partner_id = fields.Many2one(
+        "res.partner", string="Recipient", compute="_compute_fields"
+    )
+    partner_shipping_id = fields.Many2one("res.partner", string="Shipping address")
 
     date = fields.Date(string="Date")
-    type_id = fields.Many2one('stock.delivery.note.type', string="Type")
+    type_id = fields.Many2one("stock.delivery.note.type", string="Type")
 
-    error_message = fields.Html(compute='_compute_fields')
+    error_message = fields.Html(compute="_compute_fields")
 
     def _get_validation_errors(self, pickings):
         validators = [
@@ -39,7 +40,7 @@ class StockDeliveryNoteBaseWizard(models.AbstractModel):
             (self._check_pickings_partners, False),
             (self._check_pickings_src_locations, False),
             (self._check_pickings_dest_locations, False),
-            (self._check_delivery_notes, False)
+            (self._check_delivery_notes, False),
         ]
 
         errors = []
@@ -55,29 +56,32 @@ class StockDeliveryNoteBaseWizard(models.AbstractModel):
 
         return errors
 
-    @api.depends('selected_picking_ids')
+    @api.depends("selected_picking_ids")
     def _compute_fields(self):
         try:
+            self.error_message = False
+            self.partner_sender_id = False
+            self.partner_id = False
             self.check_compliance(self.selected_picking_ids)
 
         except ValidationError:
             values = {
-                'title': _("Warning!"),
-                'errors':
-                    self._get_validation_errors(self.selected_picking_ids)
+                "title": _("Warning!"),
+                "errors": self._get_validation_errors(self.selected_picking_ids),
             }
 
-            self.error_message = self.env['ir.ui.view'].render_template(
-                'l10n_it_delivery_note.'
-                'stock_delivery_note_wizard_error_message_template',
-                values)
+            self.error_message = self.env["ir.ui.view"]._render_template(
+                "l10n_it_delivery_note."
+                "stock_delivery_note_wizard_error_message_template",
+                values,
+            )
 
         else:
             partners = self.selected_picking_ids.get_partners()
-
             self.partner_sender_id = partners[0]
             self.partner_id = partners[1]
 
     def confirm(self):
-        raise NotImplementedError("This functionality isn't ready yet. "
-                                  "Please, come back later.")
+        raise NotImplementedError(
+            "This functionality isn't ready yet. " "Please, come back later."
+        )

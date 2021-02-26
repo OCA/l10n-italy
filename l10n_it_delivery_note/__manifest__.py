@@ -8,45 +8,39 @@
 
 # noinspection PyStatementEffect
 {
-    'name': "ITA - Documento di trasporto",
-    'summary': "Crea, gestisce e fattura i DDT partendo dalle consegne",
-
-    'author': "Marco Calcagni, Gianmarco Conte, Link IT Europe Srl, "
-              "Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
-               'l10n_it_delivery_note',
-    'version': '12.0.1.0.0',
-    'category': "Localization",
-    'license': 'AGPL-3',
-    'maintainers': ['As400it', 'Byloth'],
-
-    'depends': [
-        'delivery',
-        'l10n_it_delivery_note_base',
-        'mail',
-        'sale_stock',
-        'stock_account'
+    "name": "ITA - Documento di trasporto",
+    "summary": "Crea, gestisce e fattura i DDT partendo dalle consegne",
+    "author": "Marco Calcagni, Gianmarco Conte, Link IT Europe Srl, "
+    "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/l10n-italy",
+    "version": "14.0.1.0.0",
+    "category": "Localization/Italy",
+    "license": "AGPL-3",
+    "maintainers": ["As400it", "Byloth"],
+    "depends": [
+        "delivery",
+        "l10n_it_delivery_note_base",
+        "mail",
+        "sale_stock",
+        "stock_account",
+        "product",
     ],
-
-    'data': [
-        'security/ir.model.access.csv',
-        'security/ir_rule.xml',
-        'security/res_groups.xml',
-        'security/res_users.xml',
-
-        'report/report_delivery_note.xml',
-
-        'views/account_invoice.xml',
-        'views/assets.xml',
-        'views/res_config_settings.xml',
-        'views/res_partner.xml',
-        'views/sale_order.xml',
-        'views/stock_delivery_note.xml',
-        'views/stock_picking.xml',
-
-        'wizard/delivery_note_create.xml',
-        'wizard/delivery_note_select.xml',
-        'wizard/delivery_note_template.xml',
-        'wizard/sale_advance_payment_inv.xml'
-    ]
+    "data": [
+        "security/ir.model.access.csv",
+        "security/ir_rule.xml",
+        "security/res_groups.xml",
+        "security/res_users.xml",
+        "report/report_delivery_note.xml",
+        "views/account_move.xml",
+        "views/assets.xml",
+        "views/res_config_settings.xml",
+        "views/res_partner.xml",
+        "views/sale_order.xml",
+        "views/stock_delivery_note.xml",
+        "views/stock_picking.xml",
+        "wizard/delivery_note_create.xml",
+        "wizard/delivery_note_select.xml",
+        "wizard/delivery_note_template.xml",
+        "wizard/sale_advance_payment_inv.xml",
+    ],
 }

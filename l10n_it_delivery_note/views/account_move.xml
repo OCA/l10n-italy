@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright (c) 2019, Link IT Europe Srl
+    @author: Matteo Bilotta <mbilotta@linkeurope.it>
+  -->
+<odoo>
+
+    <record id="account_view_move_form_view" model="ir.ui.view">
+        <field name="name">account.view.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    type="object"
+                    class="oe_stat_button"
+                    name="goto_delivery_notes"
+                    icon="fa-pencil-square-o"
+                    attrs="{'invisible': [('delivery_note_count', '=', 0)]}"
+                    groups="l10n_it_delivery_note.use_advanced_delivery_notes"
+                >
+                    <field
+                        name="delivery_note_count"
+                        widget="statinfo"
+                        string="Delivery Notes"
+                    />
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
