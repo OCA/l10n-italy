@@ -110,7 +110,7 @@ class RibaUnsolved(models.TransientModel):
         if not active_id:
             raise UserError(_("No active ID found."))
         move_model = self.env["account.move"]
-        invoice_model = self.env["account.invoice"]
+        invoice_model = self.env["account.move"]
         move_line_model = self.env["account.move.line"]
         distinta_line = self.env["riba.distinta.line"].browse(active_id)
         wizard = self
@@ -189,15 +189,15 @@ class RibaUnsolved(models.TransientModel):
             )
 
         move = move_model.create(move_vals)
-        move.post()
+        move.action_post()
 
         to_be_reconciled = []
         for move_line in move.line_ids:
             if move_line.account_id.id == wizard.overdue_effects_account_id.id:
                 for riba_move_line in distinta_line.move_line_ids:
                     invoice_ids = []
-                    if riba_move_line.move_line_id.invoice_id:
-                        invoice_ids = [riba_move_line.move_line_id.invoice_id.id]
+                    if riba_move_line.move_line_id.move_id:
+                        invoice_ids = [riba_move_line.move_line_id.move_id.id]
                     elif riba_move_line.move_line_id.unsolved_invoice_ids:
                         invoice_ids = [
                             i.id
@@ -227,7 +227,6 @@ class RibaUnsolved(models.TransientModel):
         distinta_line.distinta_id.state = "unsolved"
         return {
             "name": _("Past Due Entry"),
-            "view_type": "form",
             "view_mode": "form",
             "res_model": "account.move",
             "type": "ir.actions.act_window",

@@ -23,10 +23,14 @@
     <record id="view_account_config_settings_riba" model="ir.ui.view">
         <field name="name">view_account_config_settings_riba</field>
         <field name="model">res.config.settings</field>
-        <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+        <field name="inherit_id" ref="account.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <div id="eu_service" position="after">
-                <div class="col-12 col-lg-6 o_setting_box" title="C/O Configuration">
+            <div id="taxcloud_settings" position="after">
+                <div
+                    class="col-12 col-lg-6 o_setting_box"
+                    id="default_taxes"
+                    title="C/O Configuration"
+                >
                     <div class="o_setting_left_pane" />
                     <div class="o_setting_right_pane">
                         <span class="o_form_label">C/O Collection Fees</span>
@@ -38,7 +42,7 @@
                             role="img"
                         />
                         <div class="text-muted">
-                           Product used as Service for C/O Collection Fees
+                            Product used as Service for C/O Collection Fees
                         </div>
                         <div class="content-group">
                             <div class="row mt16">

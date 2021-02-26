@@ -11,11 +11,8 @@ from datetime import date
 from odoo import _, api, fields, models
 from odoo.exceptions import Warning as UserError
 
-import odoo.addons.decimal_precision as dp
-
 
 class RibaList(models.Model):
-    @api.multi
     def _compute_acceptance_move_ids(self):
         for riba in self:
             move_ids = self.env["account.move"]
@@ -23,7 +20,6 @@ class RibaList(models.Model):
                 move_ids |= line.acceptance_move_id
             riba.acceptance_move_ids = move_ids
 
-    @api.multi
     def _compute_unsolved_move_ids(self):
         for riba in self:
             move_ids = self.env["account.move"]
@@ -31,7 +27,6 @@ class RibaList(models.Model):
                 move_ids |= line.unsolved_move_id
             riba.unsolved_move_ids = move_ids
 
-    @api.multi
     def _compute_payment_ids(self):
         for riba in self:
             move_lines = self.env["account.move.line"]
@@ -41,6 +36,7 @@ class RibaList(models.Model):
 
     _name = "riba.distinta"
     _description = "C/O Slip"
+    _inherit = ["mail.thread"]
     _order = "date_created desc"
 
     name = fields.Char(
@@ -102,9 +98,7 @@ class RibaList(models.Model):
         required=True,
         readonly=True,
         states={"draft": [("readonly", False)]},
-        default=lambda self: self.env["res.company"]._company_default_get(
-            "riba.distinta"
-        ),
+        default=lambda self: self.env.company,
     )
     acceptance_move_ids = fields.Many2many(
         "account.move",
@@ -133,7 +127,16 @@ class RibaList(models.Model):
         help="Keep empty to use the current date.",
     )
 
-    @api.multi
+    def action_riba_export(self):
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Issue C/O",
+            "res_model": "riba.file.export",
+            "view_mode": "form",
+            "target": "new",
+            "context": self.env.context,
+        }
+
     def unlink(self):
         for riba_list in self:
             if riba_list.state not in ("draft", "cancel"):
@@ -146,13 +149,11 @@ class RibaList(models.Model):
                 )
         super(RibaList, self).unlink()
 
-    @api.multi
     def confirm(self):
         for distinta in self:
             for line in distinta.line_ids:
                 line.confirm()
 
-    @api.multi
     def riba_cancel(self):
         for distinta in self:
             for line in distinta.line_ids:
@@ -165,7 +166,6 @@ class RibaList(models.Model):
                 distinta.accreditation_move_id.unlink()
             distinta.state = "cancel"
 
-    @api.multi
     def settle_all_line(self):
         for riba_list in self:
             for line in riba_list.line_ids:
@@ -180,12 +180,10 @@ class RibaList(models.Model):
                     _("Credit date must be greater or equal to" " acceptance date.")
                 )
 
-    @api.multi
     def riba_unsolved(self):
         self.state = "unsolved"
         self.date_unsolved = fields.Date.context_today(self)
 
-    @api.multi
     def test_state(self, state):
         for riba_list in self:
             for line in riba_list.line_ids:
@@ -193,19 +191,15 @@ class RibaList(models.Model):
                     return False
         return True
 
-    @api.multi
     def test_accepted(self):
         return self.test_state("confirmed")
 
-    @api.multi
     def test_unsolved(self):
         return self.test_state("unsolved")
 
-    @api.multi
     def test_paid(self):
         return self.test_state("paid")
 
-    @api.multi
     def action_cancel_draft(self):
         for riba_list in self:
             riba_list.state = "draft"
@@ -215,10 +209,10 @@ class RibaList(models.Model):
 
 class RibaListLine(models.Model):
     _name = "riba.distinta.line"
+    _inherit = "mail.thread"
     _description = "C/O Details"
     _rec_name = "sequence"
 
-    @api.multi
     def _compute_line_values(self):
         for line in self:
             line.amount = 0.0
@@ -229,7 +223,7 @@ class RibaListLine(models.Model):
                 if not line.invoice_date:
                     line.invoice_date = str(
                         fields.Date.from_string(
-                            move_line.move_line_id.invoice_id.date_invoice
+                            move_line.move_line_id.move_id.invoice_date
                         ).strftime("%d/%m/%Y")
                     )
                 else:
@@ -237,23 +231,23 @@ class RibaListLine(models.Model):
                         line.invoice_date,
                         str(
                             fields.Date.from_string(
-                                move_line.move_line_id.invoice_id.date_invoice
+                                move_line.move_line_id.move_id.invoice_date
                             ).strftime("%d/%m/%Y")
                         ),
                     )
                 if not line.invoice_number:
                     line.invoice_number = str(
-                        move_line.move_line_id.invoice_id.move_id.name
-                        if move_line.move_line_id.invoice_id.move_name == "/"
-                        else move_line.move_line_id.invoice_id.move_name
+                        move_line.move_line_id.move_id.move_id.name
+                        if move_line.move_line_id.move_id.display_name == "/"
+                        else move_line.move_line_id.move_id.display_name
                     )
                 else:
                     line.invoice_number = "{}, {}".format(
                         line.invoice_number,
                         str(
-                            move_line.move_line_id.invoice_id.move_id.name
-                            if move_line.move_line_id.invoice_id.move_name == "/"
-                            else move_line.move_line_id.invoice_id.move_name
+                            move_line.move_line_id.move_id.move_id.name
+                            if move_line.move_line_id.move_id.display_name == "/"
+                            else move_line.move_line_id.move_id.display_name
                         ),
                     )
 
@@ -264,24 +258,22 @@ class RibaListLine(models.Model):
     invoice_number = fields.Char(
         compute="_compute_line_values", string="Invoice Number", size=256
     )
-    cig = fields.Char(compute="_get_cig_cup_values", string="CIG", size=256)
-    cup = fields.Char(compute="_get_cig_cup_values", string="CUP", size=256)
+    cig = fields.Char(compute="_compute_cig_cup_values", string="CIG", size=256)
+    cup = fields.Char(compute="_compute_cig_cup_values", string="CUP", size=256)
 
-    @api.multi
-    def _get_cig_cup_values(self):
+    def _compute_cig_cup_values(self):
         for line in self:
             line.cig = ""
             line.cup = ""
             for move_line in line.move_line_ids:
                 for (
                     related_document
-                ) in move_line.move_line_id.invoice_id.related_documents:
+                ) in move_line.move_line_id.move_id.related_documents:
                     if related_document.cup:
                         line.cup = str(related_document.cup)
                     if related_document.cig:
                         line.cig = str(related_document.cig)
 
-    @api.multi
     def move_line_id_payment_get(self):
         # return the move line ids with the same account as the distinta line
         if not self.id:
@@ -294,7 +286,6 @@ class RibaListLine(models.Model):
         self._cr.execute(query, (self.id,))
         return [row[0] for row in self._cr.fetchall()]
 
-    @api.multi
     def test_reconciled(self):
         # check whether all corresponding account move lines are reconciled
         line_ids = self.move_line_id_payment_get()
@@ -304,7 +295,6 @@ class RibaListLine(models.Model):
         reconcilied = all(line.reconciled for line in move_lines)
         return reconcilied
 
-    @api.multi
     def _compute_lines(self):
         for riba_line in self:
             payment_lines = []
@@ -356,7 +346,7 @@ class RibaListLine(models.Model):
         ],
         "State",
         readonly=True,
-        track_visibility="onchange",
+        tracking=True,
     )
     payment_ids = fields.Many2many(
         "account.move.line", compute="_compute_lines", string="Payments"
@@ -368,7 +358,6 @@ class RibaListLine(models.Model):
         string="Configuration", related="distinta_id.config_id", readonly=True
     )
 
-    @api.multi
     def confirm(self):
         move_model = self.env["account.move"]
         move_line_model = self.env["account.move.line"]
@@ -389,14 +378,14 @@ class RibaListLine(models.Model):
             for riba_move_line in line.move_line_ids:
                 total_credit += riba_move_line.amount
                 if (
-                    riba_move_line.move_line_id.invoice_id.number
-                    and riba_move_line.move_line_id.invoice_id.number
+                    str(riba_move_line.move_line_id.move_id.sequence_number)
+                    and str(riba_move_line.move_line_id.move_id.sequence_number)
                     not in riba_move_line_name
                 ):
                     riba_move_line_name = " ".join(
                         [
                             riba_move_line_name,
-                            riba_move_line.move_line_id.invoice_id.number,
+                            str(riba_move_line.move_line_id.move_id.sequence_number),
                         ]
                     ).lstrip()
                 elif (
@@ -411,12 +400,12 @@ class RibaListLine(models.Model):
                 ).create(
                     {
                         "name": (
-                            riba_move_line.move_line_id.invoice_id
-                            and riba_move_line.move_line_id.invoice_id.number
+                            riba_move_line.move_line_id.move_id
+                            and riba_move_line.move_line_id.move_id.sequence_number
                             or riba_move_line.move_line_id.name
                         ),
                         "partner_id": line.partner_id.id,
-                        "account_id": (riba_move_line.move_line_id.account_id.id),
+                        "account_id": riba_move_line.move_line_id.account_id.id,
                         "credit": riba_move_line.amount,
                         "debit": 0.0,
                         "move_id": move.id,
@@ -446,7 +435,7 @@ class RibaListLine(models.Model):
                     "move_id": move.id,
                 }
             )
-            move.post()
+            move.action_post()
             to_be_reconciled.reconcile()
             line.write(
                 {
@@ -458,7 +447,6 @@ class RibaListLine(models.Model):
             if not line.distinta_id.date_accepted:
                 line.distinta_id.date_accepted = fields.Date.context_today(self)
 
-    @api.multi
     def riba_line_settlement(self):
         for riba_line in self:
             if not riba_line.distinta_id.config_id.settlement_journal_id:
@@ -484,7 +472,9 @@ class RibaListLine(models.Model):
             )
             settlement_move = move_model.create(
                 {
-                    "journal_id": riba_line.distinta_id.config_id.settlement_journal_id.id,
+                    "journal_id": (
+                        riba_line.distinta_id.config_id.settlement_journal_id.id
+                    ),
                     "date": date.today().strftime("%Y-%m-%d"),
                     "ref": move_ref,
                 }
@@ -514,21 +504,20 @@ class RibaListLine(models.Model):
                 }
             )
 
+            move_line_credit.move_id.action_post()
             to_be_settled = self.env["account.move.line"]
             to_be_settled |= move_line_credit
             to_be_settled |= settlement_move_line
 
             to_be_settled.reconcile()
-            settlement_move.post()
 
 
 class RibaListMoveLine(models.Model):
-
     _name = "riba.distinta.move.line"
     _description = "C/O Details"
     _rec_name = "amount"
 
-    amount = fields.Float("Amount", digits=dp.get_precision("Account"))
+    amount = fields.Float("Amount", digits="Account")
     move_line_id = fields.Many2one("account.move.line", string="Credit Move Line")
     riba_line_id = fields.Many2one(
         "riba.distinta.line", string="Slip Line", ondelete="cascade"

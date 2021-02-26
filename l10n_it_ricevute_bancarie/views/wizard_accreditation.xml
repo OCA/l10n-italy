@@ -46,9 +46,6 @@
         <field name="name">C/O Credit</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">riba.accreditation</field>
-        <field name="src_model">riba.distinta</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">form</field>
         <field name="target">new</field>
         <field name="view_id" ref="riba_accreditation" />
 

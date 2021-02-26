@@ -157,7 +157,7 @@
                         type='object'
                         string="Mark All as Settled"
                         class="oe_highlight"
-                        attrs="{'invisible':['|',('state','!=','accredited')]}"
+                        attrs="{'invisible':[('state','!=','accredited')]}"
                     />
                     <button
                         name="action_cancel_draft"
@@ -252,8 +252,6 @@
         <field name="name">C/O Slip</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">riba.distinta</field>
-        <field name="src_model">riba.distinta</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="view_distinta_riba_filtri" />
     </record>

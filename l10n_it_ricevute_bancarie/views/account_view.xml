@@ -2,7 +2,7 @@
 <odoo>
 
     <!-- ====================================================== -->
-    <!--                     CAMPI AGGIUNTIVI                    -->
+    <!--                     CAMPI AGGIUNTIVI                   -->
     <!-- ====================================================== -->
     <record id="view_riba_add_text_field" model="ir.ui.view">
         <field name="name">account.riba.add.text.field</field>
@@ -45,19 +45,16 @@
         <field name="name">C/O Issue</field>
         <field name="model">account.move.line</field>
         <field name="arch" type="xml">
-            <tree
-                string="C/O Issue"
-                create="false"
-                colors="grey:reconciled!=False;red:date_maturity&lt;current_date"
-            >
+        <!-- mabo colors="grey:reconciled!=False;red:date_maturity&lt;current_date"-->
+            <tree string="C/O Issue" create="false">
                 <field name="partner_id" readonly="1" />
-                <field name="invoice_id" readonly="1" />
+                <field name="move_id" readonly="1" />
                 <field name="iban" readonly="1" />
                 <!-- TODO: field name="partner_ref" readonly="1"/>
                 <field name="invoice_date" readonly="1"/>
                 <field name="stored_invoice_id" readonly="1"/>
                 <field name="invoice_origin" readonly="1"/>
-                <field name="payment_term_id" readonly="1"/-->
+                <field name="invoice_payment_term_id" readonly="1"/>-->
                 <field name="account_id" readonly="1" />
                 <field name="debit" readonly="1" sum="Debit Total" />
                 <field name="amount_residual" readonly="1" sum="Total Amount" />
@@ -87,7 +84,6 @@
                     string="Issued"
                     domain="[('distinta_line_ids', '!=', False)]"
                 />
-                <separator />
                 <filter
                     name="reconciled"
                     string="Reconciled"
@@ -98,7 +94,6 @@
                     string="To Reconcile"
                     domain="[('reconciled', '=', False)]"
                 />
-                <separator />
                 <filter
                     name="unsolved"
                     string="Past Due"
@@ -111,7 +106,7 @@
                 />
                 <field name="account_id" />
                 <field name="partner_id" />
-                <field name="invoice_id" />
+                <field name="move_id" />
                 <!-- TODO: field name="invoice_origin"/-->
                 <field name="date_maturity" />
                 <group expand="0" string="Group By...">
@@ -120,11 +115,7 @@
                         string="Group By Customer"
                         context="{'group_by':'partner_id'}"
                     />
-                    <filter
-                        name="filter_invoice"
-                        string="Group By Invoice"
-                        context="{'group_by':'stored_invoice_id'}"
-                    />
+                    <!-- <filter name="filter_invoice" string="Group By Invoice" context="{'group_by':'stored_invoice_id'}"/> Matteo Boscolo-->
                 </group>
             </search>
         </field>
@@ -143,7 +134,7 @@
         >['&amp;','|',('riba','=','True'),('unsolved_invoice_ids','!=',False),('account_id.internal_type','=','receivable')]</field>
         <field
             name="context"
-        >{'search_default_da_emettere':1, 'search_default_to_reconcile':1, 'search_default_sale_journal':1}</field>
+        >{'search_default_da_emettere':1, 'search_default_to_reconcile':1}</field>
     </record>
 
 
@@ -157,69 +148,59 @@
     <!-- Invoice -->
 
     <record id="invoice_form" model="ir.ui.view">
-        <field name="name">account.invoice.form</field>
-        <field name="model">account.invoice</field>
-        <field name="inherit_id" ref="account.invoice_form" />
+        <field name="name">account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='payment_term_id']" position="after">
-                <field name="is_riba_payment" invisible="1" />
-                <field
-                    name="riba_partner_bank_id"
-                    attrs="{'invisible': ['|',('is_riba_payment','=', False),('type','!=','out_invoice')], 'required': ['&amp;',('is_riba_payment','=', True),('type','=', 'out_invoice')]}"
-                    domain="[('partner_id','=', partner_id)]"
-                />
+            <xpath expr="//field[@name='invoice_payment_term_id']" position="after">
                 <field
                     name="is_unsolved"
                     string="Past Due"
                     attrs="{'invisible': [('is_unsolved', '=', False)]}"
                 />
             </xpath>
-            <field name="tax_line_ids" position="after">
-                <separator string="Past Due C/Os" colspan="4" />
-                <field name="unsolved_move_line_ids" colspan="4" nolabel="1" />
+            <!-- MABO
+            <field name="tax_ids" position="after">
+                <field name="unsolved_move_line_ids" colspan="4" nolabel="1"/>
             </field>
+            -->
         </field>
     </record>
 
     <record id="invoice_tree" model="ir.ui.view">
-        <field name="name">account.invoice.tree</field>
-        <field name="model">account.invoice</field>
-        <field name="inherit_id" ref="account.invoice_tree" />
+        <field name="name">account.move.tree</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree" />
         <field name="arch" type="xml">
-            <field name="origin" position="after">
+            <field name="move_type" position="after">
                 <field name="is_unsolved" string="Past Due" />
             </field>
         </field>
     </record>
-
+<!-- to be ported -->
+<!--
     <record id="view_account_invoice_filter_unsolved" model="ir.ui.view">
         <field name="name">account.invoice.select.unsolved</field>
-        <field name="model">account.invoice</field>
-        <field name="inherit_id" ref="account.view_account_invoice_filter" />
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
         <field name="arch" type="xml">
             <filter name="unpaid" position="after">
-               <filter
-                    name="unsolved"
-                    string="Past Due"
-                    domain="[('is_unsolved','=',True)]"
-                    help="Past Due Invoices"
-                />
+               <filter name="unsolved" string="Past Due" domain="[('is_unsolved','=',True)]" help="Past Due Invoices"/>
             </filter>
         </field>
     </record>
-
+ -->
     <record id="action_invoice_tree1" model="ir.actions.act_window">
         <field name="name">Past Due Invoices</field>
-        <field name="res_model">account.invoice</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form,calendar,graph</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,form,graph</field>
         <field eval="False" name="view_id" />
         <field
             name="domain"
-        >[('type','=','out_invoice'), ('unsolved_move_line_ids', '!=', False)]</field>
+        >[('move_type','=','out_invoice'), ('unsolved_move_line_ids', '!=', False)]</field>
         <field
             name="context"
-        >{'default_type':'out_invoice', 'type':'out_invoice', 'journal_type': 'sale', 'search_default_unsolved': True}</field>
+        >{'default_type':'out_invoice', 'move_type':'out_invoice', 'journal_type': 'sale', 'search_default_unsolved': True}</field>
         <field name="search_view_id" ref="account.view_account_invoice_filter" />
     </record>
 
@@ -233,7 +214,7 @@
     <record id="action_invoice_tree1_view2" model="ir.actions.act_window.view">
         <field eval="2" name="sequence" />
         <field name="view_mode">form</field>
-        <field name="view_id" ref="account.invoice_form" />
+        <field name="view_id" ref="account.view_move_form" />
         <field name="act_window_id" ref="action_invoice_tree1" />
     </record>
     <menuitem

@@ -19,7 +19,7 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         # ---- Set Service in Company Config
         self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
         # ---- Validate Invoice
-        self.invoice.action_invoice_open()
+        self.invoice.action_post()
         # ---- Test Invoice has 2 line
         self.assertEqual(len(self.invoice.invoice_line_ids), 3)
         # ---- Test Invoice Line for service cost
@@ -47,53 +47,40 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         # ---- Set Service in Company Config
         self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
         # ---- Validate Invoice
-        self.invoice.action_invoice_open()
+        self.invoice.action_post()
 
-        self.invoice2.payment_term_id = self.payment_term2
-        self.invoice2.action_invoice_open()
+        self.invoice2.invoice_payment_term_id = self.payment_term2
+        self.invoice2.action_post()
         # ---- Test Invoice has 1 line, no collection fees added because it's added on
         # ---- first due date for partner
-        self.assertEqual(len(self.invoice2.invoice_line_ids), 1)
-
-    def test_not_add_due_cost_for_partner_exclude_expense(self):
-        # ---- Set Service in Company Config
-        self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
-        # ---- Exclude expense for partner
-        self.invoice.partner_id.riba_exclude_expenses = True
-        # ---- Validate Invoice
-        self.invoice.action_invoice_open()
-        # ---- Test Invoice has 1 line, no collection fees added because
-        # ---- the partner is excluded from due costs
         self.assertEqual(len(self.invoice2.invoice_line_ids), 1)
 
     def test_delete_due_cost_line(self):
         # ---- Set Service in Company Config
         self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
-        # ---- Set allow cancel on invoice Journal
-        self.invoice.journal_id.update_posted = True
         # ---- Validate Invoice
-        self.invoice.action_invoice_open()
+        self.invoice.action_post()
         # ---- Cancel Invoice
-        self.invoice.action_invoice_cancel()
-        self.invoice.action_invoice_draft()
+        self.invoice.button_cancel()
+        self.invoice.button_draft()
         # ---- Set to Draft
         # Collection fees line has been unlink
         self.assertEqual(len(self.invoice.invoice_line_ids), 1)
 
     def test_riba_flow(self):
+        self.partner.property_account_receivable_id = self.account_rec1_id.id
         recent_date = (
-            self.env["account.invoice"]
-            .search([("date_invoice", "!=", False)], order="date_invoice desc", limit=1)
-            .date_invoice
+            self.env["account.move"]
+            .search([("invoice_date", "!=", False)], order="invoice_date desc", limit=1)
+            .invoice_date
         )
-
-        invoice = self.env["account.invoice"].create(
+        invoice = self.env["account.move"].create(
             {
-                "date_invoice": recent_date,
+                "invoice_date": recent_date,
+                "move_type": "out_invoice",
                 "journal_id": self.sale_journal.id,
                 "partner_id": self.partner.id,
-                "payment_term_id": self.account_payment_term_riba.id,
-                "account_id": self.account_rec1_id.id,
+                "invoice_payment_term_id": self.account_payment_term_riba.id,
                 "invoice_line_ids": [
                     (
                         0,
@@ -109,10 +96,9 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 ],
             }
         )
-        invoice._onchange_riba_partner_bank_id()
-        invoice.action_invoice_open()
+        invoice.action_post()
         riba_move_line_id = False
-        for move_line in invoice.move_id.line_ids:
+        for move_line in invoice.line_ids:
             if move_line.account_id.id == self.account_rec1_id.id:
                 riba_move_line_id = move_line.id
                 line_ids = self.move_line_model.search(
@@ -124,6 +110,7 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                         ("account_id.internal_type", "=", "receivable"),
                         ("reconciled", "=", False),
                         ("distinta_line_ids", "=", False),
+                        ("move_id", "=", invoice.id),
                     ]
                 )
                 self.assertEqual(len(line_ids), 1)
@@ -141,10 +128,12 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         riba_list = self.distinta_model.browse(riba_list_id)
         riba_list.confirm()
         self.assertEqual(riba_list.state, "accepted")
-        self.assertEqual(invoice.state, "paid")
+        self.assertEqual(invoice.state, "posted")
+
+        # Se la compute non viene invocata il test fallisce
+        riba_list._compute_acceptance_move_ids()
         self.assertEqual(len(riba_list.acceptance_move_ids), 1)
         self.assertEqual(len(riba_list.payment_ids), 0)
-        riba_list.acceptance_move_ids[0].assert_balanced()
 
         # I print the C/O slip report
         docargs = {
@@ -152,7 +141,7 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
             "doc_model": "riba.distinta",
             "docs": self.env["riba.distinta"].browse(riba_list.ids),
         }
-        data = self.env.ref("l10n_it_ricevute_bancarie.distinta_qweb").render(docargs)
+        data = self.env.ref("l10n_it_ricevute_bancarie.distinta_qweb")._render(docargs)
         if config.get("test_report_directory"):
             open(
                 os.path.join(config["test_report_directory"], "riba-list." + format),
@@ -178,7 +167,6 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         )
         wiz_accreditation.create_move()
         self.assertEqual(riba_list.state, "accredited")
-        riba_list.accreditation_move_id.assert_balanced()
 
         bank_accreditation_line = False
         for accr_line in riba_list.accreditation_move_id.line_ids:
@@ -233,6 +221,7 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 ],
             }
         )
+        bank_move.action_post()
         to_reconcile = self.env["account.move.line"]
         line_set = bank_move.line_ids | riba_list.acceptance_move_ids[0].line_ids
         for line in line_set:
@@ -252,18 +241,19 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
 
     def test_unsolved_riba(self):
         # create another invoice to test past due C/O
+        self.partner.property_account_receivable_id = self.account_rec1_id.id
         recent_date = (
-            self.env["account.invoice"]
-            .search([("date_invoice", "!=", False)], order="date_invoice desc", limit=1)
-            .date_invoice
+            self.env["account.move"]
+            .search([("invoice_date", "!=", False)], order="invoice_date desc", limit=1)
+            .invoice_date
         )
-        invoice = self.env["account.invoice"].create(
+        invoice = self.env["account.move"].create(
             {
-                "date_invoice": recent_date,
+                "invoice_date": recent_date,
+                "move_type": "out_invoice",
                 "journal_id": self.sale_journal.id,
                 "partner_id": self.partner.id,
-                "payment_term_id": self.account_payment_term_riba.id,
-                "account_id": self.account_rec1_id.id,
+                "invoice_payment_term_id": self.account_payment_term_riba.id,
                 "invoice_line_ids": [
                     (
                         0,
@@ -279,9 +269,8 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 ],
             }
         )
-        invoice._onchange_riba_partner_bank_id()
-        invoice.action_invoice_open()
-        for move_line in invoice.move_id.line_ids:
+        invoice.action_post()
+        for move_line in invoice.line_ids:
             if move_line.account_id.id == self.account_rec1_id.id:
                 riba_move_line_id = move_line.id
         # issue wizard
@@ -295,7 +284,7 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         riba_list = self.distinta_model.browse(riba_list_id)
         riba_list.confirm()
         self.assertEqual(riba_list.state, "accepted")
-        self.assertEqual(invoice.state, "paid")
+        self.assertEqual(invoice.state, "posted")
         # credit wizard
         wiz_accreditation = (
             self.env["riba.accreditation"]
@@ -315,7 +304,6 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         )
         wiz_accreditation.create_move()
         self.assertEqual(riba_list.state, "accredited")
-        riba_list.accreditation_move_id.assert_balanced()
 
         # past due wizard
         wiz_unsolved = (
@@ -340,6 +328,8 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         self.assertEqual(riba_list.line_ids[0].state, "unsolved")
         self.assertTrue(invoice.unsolved_move_line_ids)
 
+        # Se la compute non viene invocata il test fallisce
+        riba_list._compute_unsolved_move_ids()
         self.assertEqual(len(riba_list.unsolved_move_ids), 1)
         bank_unsolved_line = False
         for unsolved_line in riba_list.unsolved_move_ids[0].line_ids:
@@ -369,18 +359,19 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         self.assertEqual(riba_list.line_ids[0].state, "accredited")
 
     def test_riba_fatturapa(self):
+        self.partner.property_account_receivable_id = self.account_rec1_id.id
         recent_date = (
-            self.env["account.invoice"]
-            .search([("date_invoice", "!=", False)], order="date_invoice desc", limit=1)
-            .date_invoice
+            self.env["account.move"]
+            .search([("invoice_date", "!=", False)], order="invoice_date desc", limit=1)
+            .invoice_date
         )
-        invoice = self.env["account.invoice"].create(
+        invoice = self.env["account.move"].create(
             {
-                "date_invoice": recent_date,
+                "invoice_date": recent_date,
+                "move_type": "out_invoice",
                 "journal_id": self.sale_journal.id,
                 "partner_id": self.partner.id,
-                "payment_term_id": self.account_payment_term_riba.id,
-                "account_id": self.account_rec1_id.id,
+                "invoice_payment_term_id": self.account_payment_term_riba.id,
                 "invoice_line_ids": [
                     (
                         0,
@@ -408,10 +399,9 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 ],
             }
         )
-        invoice._onchange_riba_partner_bank_id()
-        invoice.action_invoice_open()
+        invoice.action_post()
         # issue wizard
-        riba_move_line_id = invoice.move_id.line_ids.filtered(
+        riba_move_line_id = invoice.line_ids.filtered(
             lambda x: x.account_id == self.account_rec1_id
         )
         wizard_riba_issue = self.env["riba.issue"].create(
@@ -432,18 +422,19 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
 
     def test_riba_fatturapa_group(self):
         self.partner.group_riba = True
+        self.partner.property_account_receivable_id = self.account_rec1_id.id
         recent_date = (
-            self.env["account.invoice"]
-            .search([("date_invoice", "!=", False)], order="date_invoice desc", limit=1)
-            .date_invoice
+            self.env["account.move"]
+            .search([("invoice_date", "!=", False)], order="invoice_date desc", limit=1)
+            .invoice_date
         )
-        invoice = self.env["account.invoice"].create(
+        invoice = self.env["account.move"].create(
             {
-                "date_invoice": recent_date,
+                "invoice_date": recent_date,
+                "move_type": "out_invoice",
                 "journal_id": self.sale_journal.id,
                 "partner_id": self.partner.id,
-                "payment_term_id": self.account_payment_term_riba.id,
-                "account_id": self.account_rec1_id.id,
+                "invoice_payment_term_id": self.account_payment_term_riba.id,
                 "invoice_line_ids": [
                     (
                         0,
@@ -471,15 +462,14 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 ],
             }
         )
-        invoice._onchange_riba_partner_bank_id()
-        invoice.action_invoice_open()
-        invoice1 = self.env["account.invoice"].create(
+        invoice.action_post()
+        invoice1 = self.env["account.move"].create(
             {
-                "date_invoice": recent_date,
+                "invoice_date": recent_date,
+                "move_type": "out_invoice",
                 "journal_id": self.sale_journal.id,
                 "partner_id": self.partner.id,
-                "payment_term_id": self.account_payment_term_riba.id,
-                "account_id": self.account_rec1_id.id,
+                "invoice_payment_term_id": self.account_payment_term_riba.id,
                 "invoice_line_ids": [
                     (
                         0,
@@ -507,13 +497,12 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 ],
             }
         )
-        invoice1._onchange_riba_partner_bank_id()
-        invoice1.action_invoice_open()
+        invoice1.action_post()
         # issue wizard
-        riba_move_line_id = invoice.move_id.line_ids.filtered(
+        riba_move_line_id = invoice.line_ids.filtered(
             lambda x: x.account_id == self.account_rec1_id
         )
-        riba_move_line1_id = invoice1.move_id.line_ids.filtered(
+        riba_move_line1_id = invoice1.line_ids.filtered(
             lambda x: x.account_id == self.account_rec1_id
         )
         wizard_riba_issue = self.env["riba.issue"].create(

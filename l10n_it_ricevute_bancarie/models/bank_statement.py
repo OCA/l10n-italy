@@ -11,7 +11,7 @@ class AccountBankStatementLine(models.Model):
     def get_move_lines_for_reconciliation(
         self,
         excluded_ids=None,
-        str=False,
+        string=False,
         offset=0,
         limit=None,
         additional_domain=None,
@@ -20,7 +20,7 @@ class AccountBankStatementLine(models.Model):
     ):
         res = super(AccountBankStatementLine, self).get_move_lines_for_reconciliation(
             excluded_ids=excluded_ids,
-            str=str,
+            string=string,
             offset=offset,
             limit=limit,
             additional_domain=additional_domain,

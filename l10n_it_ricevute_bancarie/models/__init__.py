@@ -6,8 +6,9 @@
 # Copyright (C) 2012-2017 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from . import riba_config
-from . import partner
-from . import riba
 from . import account
 from . import account_config
+from . import bank_statement
+from . import partner
+from . import riba
+from . import riba_config
