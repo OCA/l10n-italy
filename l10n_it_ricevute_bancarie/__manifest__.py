@@ -8,23 +8,23 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': "ITA - Ricevute bancarie",
-    'version': "12.0.1.6.2",
-    'author': "Odoo Community Association (OCA)",
-    'category': 'Localization/Italy',
-    'summary': 'Ricevute bancarie',
-    'website': 'https://github.com/OCA/l10n-italy/tree/'
-               '12.0/l10n_it_ricevute_bancarie',
-    'license': "AGPL-3",
-    'depends': [
-        'account',
-        'account_group_menu',
-        'l10n_it_fatturapa_out',
-        'l10n_it_fiscalcode',
-        'base_iban',
-        'l10n_it_abicab',
-        'account_due_list'],
-    'data': [
+    "name": "ITA - Ricevute bancarie",
+    "version": "12.0.1.6.2",
+    "author": "Odoo Community Association (OCA)",
+    "category": "Localization/Italy",
+    "summary": "Ricevute bancarie",
+    "website": "https://github.com/OCA/l10n-italy" "12.0/l10n_it_ricevute_bancarie",
+    "license": "AGPL-3",
+    "depends": [
+        "account",
+        "account_group_menu",
+        "l10n_it_fatturapa_out",
+        "l10n_it_fiscalcode",
+        "base_iban",
+        "l10n_it_abicab",
+        "account_due_list",
+    ],
+    "data": [
         "data/riba_sequence.xml",
         "report/report.xml",
         "security/ir.model.access.csv",
@@ -40,6 +40,6 @@
         "views/distinta_report.xml",
         "views/riba_detail_view.xml",
     ],
-    'demo': ["demo/riba_demo.xml"],
-    'installable': True,
+    "demo": ["demo/riba_demo.xml"],
+    "installable": True,
 }
