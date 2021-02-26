@@ -5,13 +5,21 @@ from odoo import fields, models
 
 
 class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _inherit = "res.config.settings"
+
+    def _default_virtual_locations_root(self):
+        return self.env.ref(
+            "stock.stock_location_locations_virtual", raise_if_not_found=False
+        )
 
     group_use_advanced_delivery_notes = fields.Boolean(
         string="Use Advanced DN Features",
-        implied_group='l10n_it_delivery_note.'
-                      'use_advanced_delivery_notes')
+        implied_group="l10n_it_delivery_note.use_advanced_delivery_notes",
+    )
 
-    draft_delivery_note_invoicing_notify = fields.Boolean(
-        related='company_id.draft_delivery_note_invoicing_notify',
-        readonly=False)
+    virtual_locations_root = fields.Many2one(
+        "stock.location",
+        string="Virtual locations root",
+        default=_default_virtual_locations_root,
+        config_parameter="stock.location.virtual_root",
+    )
