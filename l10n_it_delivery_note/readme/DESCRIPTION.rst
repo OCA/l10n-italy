@@ -28,4 +28,3 @@ Ci sono due impostazioni possibili.
 
 - Base (predefinita): un prelievo, un DDT.
 - Avanzata: più prelievi in un DDT.
-
