@@ -67,46 +67,58 @@ class SaleOrder(models.Model):
 
     @api.multi
     def _assign_delivery_notes_invoices(self, invoice_ids):
-        order_lines = self.mapped('order_line') \
-            .filtered(lambda l: l.is_invoiced and l.delivery_note_line_ids)
+        partner_sale_list = [(i.partner_id.id, i) for i in self]
+        partner_sale_dict = dict()
+        [partner_sale_dict[t[0]].append(t[1]) if t[0] in list(
+            partner_sale_dict.keys()) else partner_sale_dict.update(
+                {t[0]: [t[1]]}) for t in partner_sale_list]
+        for partner in partner_sale_dict.keys():
+            order_lines = self.mapped('order_line') \
+                .filtered(lambda l: l.is_invoiced and l.delivery_note_line_ids
+                    and l.order_id.id in [
+                        o.id for o in partner_sale_dict[partner]])
 
-        delivery_note_lines = order_lines.mapped('delivery_note_line_ids') \
-            .filtered(lambda l: l.is_invoiceable)
-        delivery_notes = delivery_note_lines.mapped('delivery_note_id')
+            delivery_note_lines = order_lines.mapped('delivery_note_line_ids') \
+                .filtered(lambda l: l.is_invoiceable)
+            delivery_notes = delivery_note_lines.mapped('delivery_note_id')
 
-        ready_delivery_notes = delivery_notes \
-            .filtered(lambda n: n.state != DOMAIN_DELIVERY_NOTE_STATES[0])
+            ready_delivery_notes = delivery_notes \
+                .filtered(lambda n: n.state != DOMAIN_DELIVERY_NOTE_STATES[0])
 
-        draft_delivery_notes = delivery_notes - ready_delivery_notes
-        draft_delivery_note_lines = \
-            draft_delivery_notes.mapped('line_ids') & delivery_note_lines
+            draft_delivery_notes = delivery_notes - ready_delivery_notes
+            draft_delivery_note_lines = \
+                draft_delivery_notes.mapped('line_ids') & delivery_note_lines
 
-        ready_delivery_note_lines = \
-            delivery_note_lines - draft_delivery_note_lines
+            ready_delivery_note_lines = \
+                delivery_note_lines - draft_delivery_note_lines
 
-        #
-        # TODO: È necessario gestire il caso di fatturazione splittata
-        #        di una stessa riga d'ordine associata ad una sola
-        #        picking (e di conseguenza, ad un solo DdT)?
-        #       Può essere, invece, un caso "borderline"
-        #        da lasciar gestire all'operatore?
-        #       Personalmente, non lo gestirei e delegherei
-        #        all'operatore questa responsabilità...
-        #
+            #
+            # TODO: È necessario gestire il caso di fatturazione splittata
+            #        di una stessa riga d'ordine associata ad una sola
+            #        picking (e di conseguenza, ad un solo DdT)?
+            #       Può essere, invece, un caso "borderline"
+            #        da lasciar gestire all'operatore?
+            #       Personalmente, non lo gestirei e delegherei
+            #        all'operatore questa responsabilità...
+            #
 
-        draft_delivery_note_lines.write({
-            'invoice_status': DOMAIN_INVOICE_STATUSES[0],
-            'sale_line_id': None
-        })
+            draft_delivery_note_lines.write({
+                'invoice_status': DOMAIN_INVOICE_STATUSES[0],
+                'sale_line_id': None
+            })
 
-        ready_delivery_note_lines.write({
-            'invoice_status': DOMAIN_INVOICE_STATUSES[2]
-        })
-        ready_delivery_notes.write({
-            'invoice_ids': [(4, invoice_id) for invoice_id in invoice_ids]
-        })
+            ready_delivery_note_lines.write({
+                'invoice_status': DOMAIN_INVOICE_STATUSES[2]
+            })
+            sale_invoice_ids = []
+            for order in partner_sale_dict[partner]:
+                sale_invoice_ids.append(order.mapped('invoice_ids'))
+            ready_delivery_notes.write({
+                'invoice_ids': [
+                    (4, invoice_id.id) for invoice_id in sale_invoice_ids]
+            })
 
-        ready_delivery_notes._compute_invoice_status()
+            ready_delivery_notes._compute_invoice_status()
 
     @api.multi
     def _generate_delivery_note_lines(self, invoice_ids):
