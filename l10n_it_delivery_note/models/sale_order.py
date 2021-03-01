@@ -66,7 +66,7 @@ class SaleOrder(models.Model):
             order.delivery_note_count = len(delivery_notes)
 
     @api.multi
-    def _assign_delivery_notes_invoices(self, invoice_ids):
+    def _assign_delivery_notes_invoices(self):
         partner_sale_list = [(i.partner_id.id, i) for i in self]
         partner_sale_dict = dict()
         [partner_sale_dict[t[0]].append(t[1]) if t[0] in list(
@@ -74,8 +74,8 @@ class SaleOrder(models.Model):
                 {t[0]: [t[1]]}) for t in partner_sale_list]
         for partner in partner_sale_dict.keys():
             order_lines = self.mapped('order_line') \
-                .filtered(lambda l: l.is_invoiced and l.delivery_note_line_ids
-                    and l.order_id.id in [
+                .filtered(lambda l: l.is_invoiced and \
+                    l.delivery_note_line_ids and l.order_id.id in [
                         o.id for o in partner_sale_dict[partner]])
 
             delivery_note_lines = order_lines.mapped('delivery_note_line_ids') \
@@ -130,7 +130,7 @@ class SaleOrder(models.Model):
         invoice_ids = super().action_invoice_create(grouped=grouped,
                                                     final=final)
 
-        self._assign_delivery_notes_invoices(invoice_ids)
+        self._assign_delivery_notes_invoices()
         self._generate_delivery_note_lines(invoice_ids)
 
         return invoice_ids
