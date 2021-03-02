@@ -40,12 +40,15 @@ class AccountInvoice(models.Model):
             dt = self.env['fiscal.document.type'].search([
                 (type, '=', True)]).ids
         # Refund Document type
-        if dt and 'refund' in type:
-            fdt = self.env['fiscal.document.type'].browse(dt[0])
+        if (dt or doc_id) and 'refund' in type:
+            fdt = self.env['fiscal.document.type'].browse(doc_id or dt[0])
             if fdt and not fdt.out_refund\
                     and not fdt.in_refund\
                     and fdt.refund_fiscal_document_type_id:
-                dt[0] = fdt.refund_fiscal_document_type_id.id
+                if dt:
+                    dt[0] = fdt.refund_fiscal_document_type_id.id
+                else:
+                    dt.append(fdt.refund_fiscal_document_type_id.id)
         if doc_id:
             dt.append(doc_id)
         return dt
