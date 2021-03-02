@@ -169,7 +169,7 @@ msgid "Code"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_company_id_6428
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_company_id_6438
 msgid "Company"
 msgstr ""
 
@@ -239,14 +239,14 @@ msgstr ""
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account_date_from
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_date_from_6438
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_date_from_6440
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner_date_from
 msgid "Date From"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account_date_to
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_date_to_6430
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_date_to_6426
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner_date_to
 msgid "Date To"
 msgstr ""
