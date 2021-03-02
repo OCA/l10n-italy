@@ -73,13 +73,12 @@ class SaleOrder(models.Model):
             partner_sale_dict.keys()) else partner_sale_dict.update(
                 {t[0]: [t[1]]}) for t in partner_sale_list]
         for partner in partner_sale_dict.keys():
-            order_lines = self.mapped('order_line') \
-                .filtered(lambda l: l.is_invoiced and \
-                    l.delivery_note_line_ids and l.order_id.id in [
-                        o.id for o in partner_sale_dict[partner]])
+            order_lines = self.mapped('order_line').filtered(
+                lambda l: l.is_invoiced and l.delivery_note_line_ids and
+                l.order_id.id in [o.id for o in partner_sale_dict[partner]])
 
-            delivery_note_lines = order_lines.mapped('delivery_note_line_ids') \
-                .filtered(lambda l: l.is_invoiceable)
+            delivery_note_lines = order_lines.mapped(
+                'delivery_note_line_ids').filtered(lambda l: l.is_invoiceable)
             delivery_notes = delivery_note_lines.mapped('delivery_note_id')
 
             ready_delivery_notes = delivery_notes \
