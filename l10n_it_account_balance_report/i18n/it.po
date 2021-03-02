@@ -262,14 +262,14 @@ msgstr "DISAVANZO"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account_date_from
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_date_from_6434
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_date_from_6429
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner_date_from
 msgid "Date From"
 msgstr "Dalla data"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account_date_to
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_date_to_6436
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_date_to_6427
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner_date_to
 msgid "Date To"
 msgstr "Alla data"
