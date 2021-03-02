@@ -175,7 +175,7 @@ msgid "Code"
 msgstr "Codice"
 
 #. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_company_id_6432
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_company_id_6427
 msgid "Company"
 msgstr "Azienda"
 
@@ -262,14 +262,14 @@ msgstr "DISAVANZO"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account_date_from
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_date_from_6440
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_date_from_6439
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner_date_from
 msgid "Date From"
 msgstr "Dalla data"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account_date_to
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_date_to_6441
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_date_to_6425
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner_date_to
 msgid "Date To"
 msgstr "Alla data"
