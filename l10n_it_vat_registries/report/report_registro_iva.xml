@@ -86,7 +86,7 @@
                                                 <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="format_date(line['invoice_date'],date_format)"/></td>
                                                 <t t-if="move.journal_id.type == 'purchase'">
                                                     <!-- Numero fattura (fornitore)-->
-                                                    <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="line['reference']"/></td>
+                                                    <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="line['reference'].split(',')[0]"/></td>
                                                 </t>
                                                 <t t-if="move.journal_id.type == 'sale'">
                                                     <!-- Numero fattura -->
