@@ -4,7 +4,7 @@ from odoo import _, api, exceptions, fields, models
 
 
 class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+    _inherit = "account.move"
     tax_stamp = fields.Boolean(
         "Tax Stamp",
         readonly=True,
@@ -17,17 +17,19 @@ class AccountInvoice(models.Model):
     )
 
     def is_tax_stamp_applicable(self):
-        stamp_product_id = self.env.user.with_context(
+        stamp_product_id = self.env.company.with_context(
             lang=self.partner_id.lang
-        ).company_id.tax_stamp_product_id
+        ).tax_stamp_product_id
         if not stamp_product_id:
             raise exceptions.Warning(
                 _("Missing tax stamp product in company settings!")
             )
         total_tax_base = 0.0
-        for inv_tax in self.tax_line_ids:
-            if inv_tax.tax_id.id in stamp_product_id.stamp_apply_tax_ids.ids:
-                total_tax_base += inv_tax.base
+        for tax_line in self.line_ids.filtered("tax_line_id"):
+            if tax_line.tax_ids.ids.intersection(
+                stamp_product_id.stamp_apply_tax_ids.ids
+            ):
+                total_tax_base += tax_line.tax_base_amount
         if total_tax_base >= stamp_product_id.stamp_apply_min_total_base:
             return True
         else:
@@ -35,35 +37,34 @@ class AccountInvoice(models.Model):
 
     @api.depends(
         "invoice_line_ids.price_subtotal",
-        "tax_line_ids.amount",
-        "tax_line_ids.amount_rounding",
+        "line_ids.balance",
         "currency_id",
         "company_id",
-        "date_invoice",
-        "type",
+        "invoice_date",
+        "move_type",
     )
     def _compute_tax_stamp(self):
         for invoice in self:
+            invoice.tax_stamp = False
             if invoice.auto_compute_stamp:
                 invoice.tax_stamp = invoice.is_tax_stamp_applicable()
 
-    @api.multi
     def add_tax_stamp_line(self):
         for inv in self:
             if not inv.tax_stamp:
                 raise exceptions.Warning(_("Tax stamp is not applicable"))
-            stamp_product_id = self.env.user.with_context(
-                lang=inv.partner_id.lang
-            ).company_id.tax_stamp_product_id
+            stamp_product_id = self.env.company.with_context(
+                lang=self.partner_id.lang
+            ).tax_stamp_product_id
             if not stamp_product_id:
                 raise exceptions.Warning(
                     _("Missing tax stamp product in company settings!")
                 )
-            for l in inv.invoice_line_ids:
-                if l.product_id and l.product_id.is_stamp:
+            for line in inv.invoice_line_ids:
+                if line.product_id and line.product_id.is_stamp:
                     raise exceptions.Warning(
                         _("Tax stamp line %s already present. Remove it first.")
-                        % l.name
+                        % line.name
                     )
             stamp_account = stamp_product_id.property_account_income_id
             if not stamp_account:
@@ -71,25 +72,25 @@ class AccountInvoice(models.Model):
                     _("Missing account income configuration for" " %s")
                     % stamp_product_id.name
                 )
-            self.env["account.invoice.line"].create(
+            self.env["account.move.line"].create(
                 {
-                    "invoice_id": inv.id,
+                    "move_id": inv.id,
                     "product_id": stamp_product_id.id,
                     "name": stamp_product_id.description_sale,
                     "sequence": 99999,
                     "account_id": stamp_account.id,
                     "price_unit": stamp_product_id.list_price,
                     "quantity": 1,
-                    "uom_id": stamp_product_id.uom_id.id,
-                    "invoice_line_tax_ids": [(6, 0, stamp_product_id.taxes_id.ids)],
+                    "product_uom_id": stamp_product_id.uom_id.id,
+                    "tax_ids": [(6, 0, stamp_product_id.taxes_id.ids)],
                     "account_analytic_id": None,
                 }
             )
             inv.compute_taxes()
 
     def is_tax_stamp_line_present(self):
-        for l in self.invoice_line_ids:
-            if l.product_id and l.product_id.is_stamp:
+        for line in self.invoice_line_ids:
+            if line.product_id and line.product_id.is_stamp:
                 return True
         return False
 
@@ -107,11 +108,11 @@ class AccountInvoice(models.Model):
             "partner_id": self.partner_id.id,
             "account_id": product.property_account_income_id.id,
             "journal_id": self.journal_id.id,
-            "date": self.date_invoice,
+            "date": self.invoice_date,
             "debit": 0,
             "credit": product.list_price,
         }
-        if self.type == "out_refund":
+        if self.move_type == "out_refund":
             income_vals["debit"] = product.list_price
             income_vals["credit"] = 0
 
@@ -120,17 +121,16 @@ class AccountInvoice(models.Model):
             "partner_id": self.partner_id.id,
             "account_id": product.property_account_expense_id.id,
             "journal_id": self.journal_id.id,
-            "date": self.date_invoice,
+            "date": self.invoice_date,
             "debit": product.list_price,
             "credit": 0,
         }
-        if self.type == "out_refund":
+        if self.move_type == "out_refund":
             income_vals["debit"] = 0
             income_vals["credit"] = product.list_price
 
         return income_vals, expense_vals
 
-    @api.multi
     def action_move_create(self):
         res = super(AccountInvoice, self).action_move_create()
         for inv in self:
@@ -139,9 +139,9 @@ class AccountInvoice(models.Model):
                     posted = True
                     inv.move_id.state = "draft"
                 line_model = self.env["account.move.line"]
-                stamp_product_id = self.env.user.with_context(
-                    lang=inv.partner_id.lang
-                ).company_id.tax_stamp_product_id
+                stamp_product_id = self.env.company.with_context(
+                    lang=self.partner_id.lang
+                ).tax_stamp_product_id
                 if not stamp_product_id:
                     raise exceptions.Warning(
                         _("Missing tax stamp product in company settings!")
@@ -159,6 +159,6 @@ class AccountInvoice(models.Model):
 
 
 class AccountInvoiceLine(models.Model):
-    _inherit = "account.invoice.line"
+    _inherit = "account.move.line"
 
     is_stamp_line = fields.Boolean(related="product_id.is_stamp", readonly=True)

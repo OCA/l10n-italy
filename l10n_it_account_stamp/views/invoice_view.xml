@@ -4,9 +4,9 @@
 
         <!-- Form: Invoice Customer -->
         <record id="invoice_form_stamp" model="ir.ui.view">
-            <field name="name">account.invoice.form.stamp</field>
-            <field name="model">account.invoice</field>
-            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="name">account.move.form.stamp</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form" />
             <field name="arch" type="xml">
 
                 <xpath
@@ -23,7 +23,7 @@
                     <attribute name="colors">CadetBlue:is_stamp_line==True;</attribute>
                 </xpath>
 
-                <field name="date_due" position="after">
+                <field name="invoice_date_due" position="after">
                     <field name="auto_compute_stamp" invisible="1" />
                     <field
                         name="tax_stamp"
@@ -51,9 +51,9 @@
         </record>
 
         <record id="view_invoice_line_form_stamp" model="ir.ui.view">
-            <field name="name">view_invoice_line_form_stamp</field>
-            <field name="model">account.invoice.line</field>
-            <field name="inherit_id" ref="account.view_invoice_line_form" />
+            <field name="name">view_move_line_form_stamp</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_move_line_form" />
             <field name="arch" type="xml">
                 <field name="product_id" position="after">
                     <field name="is_stamp_line" invisible="1" />

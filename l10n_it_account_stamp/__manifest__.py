@@ -3,11 +3,12 @@
 # Copyright 2018 Ermanno Gnan (ermannognan@gmail.com)
 # Copyright 2018 Lorenzo Battistini (https://github.com/eLBati)
 # Copyright 2018-2020 Sergio Zanchetta (https://github.com/primes2h)
+# Copyright 2021 Marco Colombo (https://github.com/TheMule71)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 {
-    "name": "Italian Localization - Imposta di bollo",
-    "version": "12.0.1.1.3",
+    "name": "ITA - Imposta di bollo",
+    "version": "14.0.1.0.0",
     "category": "Localization/Italy",
     "summary": "Gestione automatica dell'imposta di bollo",
     "author": "Ermanno Gnan, Sergio Corato, Enrico Ganzaroli, "
