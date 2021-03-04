@@ -337,7 +337,7 @@ msgid "Do not invoice services from DDT"
 msgstr "Non fatturare servizi da DDT"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:548
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:550
 #, python-format
 msgid "Document {d} has invoice linked"
 msgstr "Il documento {d} ha una fattura collegata"
@@ -576,7 +576,7 @@ msgid "Net Weight UoM"
 msgstr "UdM peso netto"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:221
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:222
 #, python-format
 msgid "Not every picking is in done status"
 msgstr "Non tutti i prelievi si trovano nello stato «Completato»"
@@ -662,13 +662,13 @@ msgid "Pickings"
 msgstr "Prelievi"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:340
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:342
 #, python-format
 msgid "Please define an accounting sale journal for this company."
 msgstr "Definire un registro contabile di vendita per questa azienda."
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:681
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:683
 #, python-format
 msgid ""
 "Please define income account for this product: \"%s\" (id:%d) - or for its "
@@ -717,7 +717,7 @@ msgid "Related TDs"
 msgstr "DDT collegati"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:305
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:307
 #, python-format
 msgid "Relevant period:"
 msgstr "Periodo di competenza:"
@@ -1028,7 +1028,7 @@ msgid "Taxes"
 msgstr "Imposte"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:418
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:420
 #, python-format
 msgid "There is no invoiceable line."
 msgstr "Non ci sono righe fatturabili."
