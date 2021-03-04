@@ -1,11 +1,10 @@
-from odoo import _, api, models
+from odoo import _, models
 from odoo.tools import float_compare
 
 
 class InvoiceLine(models.Model):
-    _inherit = "account.invoice.line"
+    _inherit = "account.move.line"
 
-    @api.multi
     def _set_rc_flag(self, invoice):
         self.ensure_one()
         if "fatturapa.attachment.in" in self.env.context.get("active_model", []):
@@ -16,7 +15,7 @@ class InvoiceLine(models.Model):
 
 
 class Invoice(models.Model):
-    _inherit = "account.invoice"
+    _inherit = "account.move"
 
     def e_inv_check_amount_tax(self):
         if any(self.invoice_line_ids.mapped("rc")) and self.e_invoice_amount_tax:
