@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <template
+        id="account_invoice_it_split_payment"
+        inherit_id="l10n_it_fatturapa_out.account_invoice_it_fattura_elettronica_body"
+    >
+        <xpath expr="//ImportoTotaleDocumento" position="replace">
+            <ImportoTotaleDocumento
+                t-if="record.split_payment"
+                t-esc="format_numbers_two(record.amount_total + record.amount_sp)"
+            />
+            <ImportoTotaleDocumento
+                t-if="not record.split_payment"
+                t-esc="format_numbers_two(record.amount_total)"
+            />
+        </xpath>
+        </template>
+</odoo>
