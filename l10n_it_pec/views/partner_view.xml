@@ -5,9 +5,6 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="mail.res_partner_view_form_inherit_mail" />
         <field name="arch" type="xml">
-            <!-- Use of xpath is mandatory due to a change in email field structure
-                added on commit 59b4836e8d14abdca49e43cdd72b2151e78230d4 where the
-                email element was inserted inside a div -->
             <xpath expr="//field[@name='email']/ancestor::div" position="after">
                 <field name="pec_mail" widget="email" />
             </xpath>
