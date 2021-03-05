@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Lara Baggio - Link IT srl
 # (<http://www.linkgroup.it/>)
 # Copyright 2014-2017 Lorenzo Battistini - Agile Business Group
@@ -77,11 +76,11 @@ class WizardRegistroIva(models.TransientModel):
           ) as moves
         ORDER BY date, protocollo
         """
+
         params = {'from_date': wizard.from_date,
                   'to_date': wizard.to_date,
                   'journals': tuple([j.id for j in wizard.journal_ids]),
                   'company_id': self.env.user.company_id.id}
-
         self.env.cr.execute(SQL_MOVES, params)
         res = self.env.cr.fetchall()
 
@@ -116,7 +115,6 @@ class WizardRegistroIva(models.TransientModel):
         datas_form['journal_ids'] = [j.id for j in wizard.journal_ids]
         datas_form['fiscal_page_base'] = wizard.fiscal_page_base
         datas_form['registry_type'] = wizard.layout_type
-        datas_form['year_footer'] = wizard.year_footer
         datas_form['cash_move_ids'] = cash_move_ids
 
         lang_code = self.env.user.company_id.partner_id.lang
@@ -124,16 +122,18 @@ class WizardRegistroIva(models.TransientModel):
         lang_id = lang._lang_get(lang_code)
         date_format = lang_id.date_format
         datas_form['date_format'] = date_format
+        datas_form['year_footer'] = wizard.year_footer
+        datas_form['daily_totals'] = wizard.daily_totals
 
         if wizard.tax_registry_id:
             datas_form['tax_registry_name'] = wizard.tax_registry_id.name
         else:
             datas_form['tax_registry_name'] = ''
         datas_form['only_totals'] = wizard.only_totals
-        report_name = 'l10n_it_vat_registries.report_registro_iva'
+        report_name = 'l10n_it_vat_registries.action_report_registro_iva'
         datas = {
             'ids': move_ids,
             'model': 'account.move',
             'form': datas_form
         }
-        return self.env['report'].get_action([], report_name, data=datas)
+        return self.env.ref(report_name).report_action(self, data=datas)

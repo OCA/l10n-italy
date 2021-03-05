@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -33,7 +32,7 @@ class TestRegistry(AccountingTestCase):
             'amount': 10.0,
             'amount_type': 'fixed',
             'account_id': ova.id,
-            'use_cash_basis': True
+            'tax_exigibility': 'on_payment',
         })
 
         invoice_account = self.env['account.account'].search([
@@ -85,11 +84,15 @@ class TestRegistry(AccountingTestCase):
             'fiscal_page_base': 0,
         })
         res = wizard.print_registro()
-        html = self.env['report'].get_html(
-            res['data']['ids'], 'l10n_it_vat_registries.report_registro_iva',
-            res['data'])
-        #
-        self.assertTrue('Tax 10.0' in html)
+
+        domain = [('report_type', 'like', 'qweb'),
+                  ('report_name',
+                   '=',
+                   'l10n_it_vat_registries.report_registro_iva')]
+        report = self.env['ir.actions.report'].search(domain)
+        html = report.render_qweb_html(res['data']['ids'], res['data'])
+
+        self.assertTrue(b'Tax 10.0' in html[0])
 
     def test_invoice_and_report_cash2(self):
         """
@@ -103,12 +106,12 @@ class TestRegistry(AccountingTestCase):
         journal_cash = self.env['account.journal'].search(
             [('type', '=', 'general')])[0]
 
-        settings = self.env['account.config.settings'].search([
+        settings = self.env['res.config.settings'].search([
             ('company_id', '=', 1)
             ])
 
         settings.write({
-            'module_account_tax_cash_basis': True,
+            'tax_exigibility': True,
             'tax_cash_basis_journal_id': journal_cash.id})
 
         company = self.env['res.company'].search([('id', '=', 1)])
@@ -135,8 +138,8 @@ class TestRegistry(AccountingTestCase):
             'amount': 10.0,
             'amount_type': 'fixed',
             'account_id': ova.id,
-            'use_cash_basis': True,
-            'cash_basis_account': ova_cash.id
+            'tax_exigibility': 'on_payment',
+            'cash_basis_account_id': ova_cash.id
         })
 
         invoice_account = self.env['account.account'].search([
@@ -200,7 +203,14 @@ class TestRegistry(AccountingTestCase):
             'journal_ids': [(6, 0, [journal.id])],
             'fiscal_page_base': 0,
         })
-
         res = wizard.print_registro()
+
+        domain = [('report_type', 'like', 'qweb'),
+                  ('report_name',
+                   '=',
+                   'l10n_it_vat_registries.report_registro_iva')]
+        report = self.env['ir.actions.report'].search(domain)
+        html = report.render_qweb_html(res['data']['ids'], res['data'])
+        self.assertTrue(b'Tax 10.0' in html[0])
 
         self.assertTrue(invoice.move_id.id in res['data']['ids'])

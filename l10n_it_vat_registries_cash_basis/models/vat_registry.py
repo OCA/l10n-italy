@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Lara Baggio - Link IT srl
 # (<http://www.linkgroup.it/>)
 # Copyright 2014-2017 Lorenzo Battistini - Agile Business Group
@@ -13,13 +12,16 @@ class ReportRegistroIva(models.AbstractModel):
 
     def _get_move_line(self, move, data):
         move_lines = []
-        cash_move_ids = data['cash_move_ids'].get(str(move.id))
+        if data.get('cash_move_ids', False):
+            cash_move_ids = data['cash_move_ids'].get(str(move.id))
 
-        if cash_move_ids:
-            # movimenti di cassa
-            for movec in self._get_move(cash_move_ids):
-                move_lines.extend([move_line for move_line in movec.line_ids])
+            if cash_move_ids:
+                # movimenti di cassa
+                for movec in self._get_move(cash_move_ids):
+                    move_lines.extend([
+                        move_line for move_line in movec.line_ids
+                    ])
 
-            return move_lines
+                return move_lines
 
         return super(ReportRegistroIva, self)._get_move_line(move, data)
