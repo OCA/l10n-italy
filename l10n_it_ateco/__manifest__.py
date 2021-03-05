@@ -12,14 +12,12 @@
     "development_status": "Beta",
     "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
-    "depends": [
-        "contacts"
-    ],
+    "depends": ["contacts"],
     "data": [
         "security/ir.model.access.csv",
         "view/ateco_view.xml",
         "view/partner_view.xml",
-        "data/ateco_data.xml"
+        "data/ateco_data.xml",
     ],
-    "installable": True
+    "installable": True,
 }
