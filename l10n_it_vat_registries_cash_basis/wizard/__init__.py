@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Lara Baggio - Link IT srl
 # (<http://www.linkgroup.it/>)
 # Copyright 2014-2017 Lorenzo Battistini - Agile Business Group
