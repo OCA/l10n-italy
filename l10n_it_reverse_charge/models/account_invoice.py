@@ -11,10 +11,9 @@ from odoo.tools.translate import _
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
-    @api.multi
     def _set_rc_flag(self, invoice):
         self.ensure_one()
-        if invoice.type in ["in_invoice", "in_refund"]:
+        if invoice.is_inbound("in_invoice", "in_refund"):
             fposition = invoice.fiscal_position_id
             self.rc = bool(fposition.rc_type_id)
 
@@ -77,10 +76,10 @@ class AccountMove(models.Model):
         }
 
     def rc_inv_vals(self, partner, account, rc_type, lines, currency):
-        if self.type == "in_invoice":
-            type = "out_invoice"
+        if self.move_type == "in_invoice":
+            move_type = "out_invoice"
         else:
-            type = "out_refund"
+            move_type = "out_refund"
 
         comment = _(
             "Reverse charge self invoice.\n"
@@ -91,7 +90,7 @@ class AccountMove(models.Model):
         ) % (self.partner_id.display_name, self.reference or "", self.date, self.number)
         return {
             "partner_id": partner.id,
-            "type": type,
+            "move_type": move_type,
             "account_id": account.id,
             "journal_id": rc_type.journal_id.id,
             "invoice_line_ids": lines,
@@ -108,17 +107,17 @@ class AccountMove(models.Model):
 
     def get_inv_line_to_reconcile(self):
         for inv_line in self.line_ids:
-            if (self.type == "in_invoice") and inv_line.credit:
+            if (self.move_type == "in_invoice") and inv_line.credit:
                 return inv_line
-            elif (self.type == "in_refund") and inv_line.debit:
+            elif (self.move_type == "in_refund") and inv_line.debit:
                 return inv_line
         return False
 
     def get_rc_inv_line_to_reconcile(self, invoice):
         for inv_line in invoice.line_ids:
-            if (invoice.type == "out_invoice") and inv_line.debit:
+            if (invoice.move_type == "out_invoice") and inv_line.debit:
                 return inv_line
-            elif (invoice.type == "out_refund") and inv_line.credit:
+            elif (invoice.move_type == "out_refund") and inv_line.credit:
                 return inv_line
         return False
 
@@ -158,7 +157,7 @@ class AccountMove(models.Model):
         credit = debit = 0.0
         amount_rc_tax = self.compute_rc_amount_tax()
 
-        if self.type == "in_invoice":
+        if self.move_type == "in_invoice":
             credit = amount_rc_tax
         else:
             debit = amount_rc_tax
@@ -173,7 +172,7 @@ class AccountMove(models.Model):
     def rc_debit_line_vals(self, amount=None):
         credit = debit = 0.0
 
-        if self.type == "in_invoice":
+        if self.move_type == "in_invoice":
             if amount:
                 debit = amount
             else:
@@ -200,7 +199,7 @@ class AccountMove(models.Model):
 
     def rc_payment_credit_line_vals(self, invoice):
         credit = debit = 0.0
-        if invoice.type == "out_invoice":
+        if invoice.move_type == "out_invoice":
             credit = self.get_rc_inv_line_to_reconcile(invoice).debit
         else:
             debit = self.get_rc_inv_line_to_reconcile(invoice).credit
@@ -214,7 +213,7 @@ class AccountMove(models.Model):
 
     def rc_payment_debit_line_vals(self, invoice, journal):
         credit = debit = 0.0
-        if invoice.type == "out_invoice":
+        if invoice.move_type == "out_invoice":
             debit = self.get_rc_inv_line_to_reconcile(invoice).debit
         else:
             credit = self.get_rc_inv_line_to_reconcile(invoice).credit
@@ -404,9 +403,8 @@ class AccountMove(models.Model):
         supplier_invoice.action_invoice_open()
         supplier_invoice.fiscal_position_id = self.fiscal_position_id.id
 
-    @api.multi
     def invoice_validate(self):
-        res = super(AccountInvoice, self).invoice_validate()
+        res = super(AccountMove, self).invoice_validate()
         for invoice in self:
             fp = invoice.fiscal_position_id
             rc_type = fp and fp.rc_type_id
@@ -477,7 +475,6 @@ class AccountMove(models.Model):
         self_invoice = self.browse(inv.rc_self_invoice_id.id)
         self_invoice.action_invoice_cancel()
 
-    @api.multi
     def action_cancel(self):
         for inv in self:
             rc_type = inv.fiscal_position_id.rc_type_id
@@ -490,12 +487,11 @@ class AccountMove(models.Model):
             ):
                 inv.rc_self_purchase_invoice_id.remove_rc_payment()
                 inv.rc_self_purchase_invoice_id.action_invoice_cancel()
-        return super(AccountInvoice, self).action_cancel()
+        return super(AccountMove, self).action_cancel()
 
-    @api.multi
     def action_invoice_draft(self):
         new_self = self.with_context(rc_set_to_draft=True)
-        super(AccountInvoice, new_self).action_invoice_draft()
+        super(AccountMove, new_self).action_invoice_draft()
         invoice_model = new_self.env["account.invoice"]
         for inv in new_self:
             if inv.rc_self_invoice_id:
