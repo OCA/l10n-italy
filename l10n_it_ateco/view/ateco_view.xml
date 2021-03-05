@@ -19,7 +19,6 @@
         </field>
     </record>
 
-
     <record id="view_ateco_category_tree" model="ir.ui.view">
         <field name="name">ateco.category.tree</field>
         <field name="model">ateco.category</field>
@@ -32,7 +31,6 @@
             </tree>
         </field>
     </record>
-
 
     <record id="ateco_category_search" model="ir.ui.view">
         <field name="name">ateco.category.search</field>
@@ -49,11 +47,10 @@
         <field name="name">Ateco categories</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">ateco.category</field>
-        <field name="view_type">form</field>
-        <field name="view_id" ref="ateco_category_search" />
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="ateco_category_search" />
         <field name="context">{}</field>
     </record>
-
 
     <menuitem
         action="action_ateco_category_search"
