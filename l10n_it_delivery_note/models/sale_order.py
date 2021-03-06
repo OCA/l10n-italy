@@ -112,10 +112,11 @@ class SaleOrder(models.Model):
             })
             sale_invoice_ids = []
             for order in partner_sale_dict[partner]:
-                sale_invoice_ids.append(order.mapped('invoice_ids'))
+                sale_invoice_ids.extend(
+                    [invoice.id for invoice in order.mapped('invoice_ids')])
             ready_delivery_notes.write({
                 'invoice_ids': [
-                    (4, invoice_id.id) for invoice_id in sale_invoice_ids]
+                    (4, invoice_id) for invoice_id in sale_invoice_ids]
             })
 
             ready_delivery_notes._compute_invoice_status()
