@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-19 13:26+0000\n"
-"PO-Revision-Date: 2018-02-19 14:29+0100\n"
-"Last-Translator: Alex Comba <alex.comba@agilebg.com>\n"
+"PO-Revision-Date: 2021-03-07 23:46+0000\n"
+"Last-Translator: Sergio Corato <sergiocorato@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 2.0.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_it_vat_registries
 #: model:ir.actions.act_window,help:l10n_it_vat_registries.action_account_tax_registry_form
@@ -317,12 +317,12 @@ msgstr "Registro IVA"
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,help:l10n_it_vat_registries.field_wizard_registro_iva_year_footer
 msgid "Value printed near number of page in the footer"
-msgstr ""
+msgstr "Valore stampato vicino al numero di pagine nel piè di pagina"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva_year_footer
 msgid "Year for Footer"
-msgstr ""
+msgstr "Anno per Piè di pagina"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,help:l10n_it_vat_registries.field_account_journal_tax_registry_id
