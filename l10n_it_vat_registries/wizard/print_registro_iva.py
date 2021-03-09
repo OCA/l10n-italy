@@ -119,7 +119,7 @@ class WizardRegistroIva(models.TransientModel):
         datas = {
             'ids': move_ids,
             'model': 'account.move',
-            'form': datas_form
+            'form': datas_form,
         }
         return self.pool['report'].get_action(
             cr, uid, [], report_name, data=datas, context=context)
