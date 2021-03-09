@@ -89,7 +89,7 @@ class AccountInvoice(models.Model):
             'account_id': account.id,
             'journal_id': rc_type.journal_id.id,
             'invoice_line_ids': lines,
-            'date_invoice': self.date,
+            'date_invoice': self.date_invoice,
             'date': self.date,
             'origin': self.number,
             'rc_purchase_invoice_id': self.id,
@@ -385,7 +385,7 @@ class AccountInvoice(models.Model):
 
         # because this field has copy=False
         supplier_invoice.date = self.date
-        supplier_invoice.date_invoice = self.date
+        supplier_invoice.date_invoice = self.date_invoice
         supplier_invoice.date_due = self.date
         supplier_invoice.partner_id = rc_type.partner_id.id
         supplier_invoice.journal_id = rc_type.supplier_journal_id.id
