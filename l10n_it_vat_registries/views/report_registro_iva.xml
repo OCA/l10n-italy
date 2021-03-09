@@ -15,11 +15,12 @@
         <t t-if="registry_type == 'corrispettivi'">
             <t t-set="title" t-value="'Registro Corrispettivi'"/>
         </t>
+        <t t-set="l10n_it_count_fiscal_year" t-value="year_footer"/>
         <t t-call="l10n_it_account.internal_layout">
             <div class="page">
                 <t t-set="print_details" t-value="1"/>
                 <t t-if="only_totals == True">
-                    <t t-set="print_details" t-value="0"/>               
+                    <t t-set="print_details" t-value="0"/>
                 </t>
                 <table style="width:100%; font-size: small;" cellspacing="0">
                     <thead>
@@ -29,9 +30,9 @@
                             </t>
                             <t t-if="registry_type != 'corrispettivi'">
                                 <td colspan="9" style="padding:10;" t-esc="tax_registry_name + ' Periodo di stampa dal ' + formatLang(start_date(), date=True) + ' al ' + formatLang(end_date(), date=True)"/>
-                            </t>    
+                            </t>
                         </tr>
-                       
+
                         <t t-if="print_details > 0 ">
                             <tr style="page-break-inside: avoid">
                                 <th class="left_without_line">DATA REG.</th>
@@ -59,9 +60,9 @@
                                 <th class="right_with_line_bottom">Imposta</th>
                                 <th class="right_with_line_bottom"></th>
                             </tr>
-                        </t>    
+                        </t>
                     </thead>
-                    
+
                     <t t-set="counter" t-value="0"/>
                     <tbody>
                         <t t-foreach="get_move(data['ids'])" t-as="move">
@@ -128,7 +129,7 @@
                     </tbody>
                 </table>
                 <br/>
-            
+
                 <t t-set="tot_base" t-value="0"/>
                 <t t-set="tot_tax" t-value="0"/>
                 <t t-set="tot_ded" t-value="0"/>
@@ -147,7 +148,7 @@
                                             <th class="right_without_line_bold">Detraibile</th>
                                             <th class="right_without_line_bold">Indetraibile</th>
                                         </tr>
-                                    </thead>    
+                                    </thead>
                                     <t t-foreach="tax_codes()" t-as="tax_code_tuple">
                                         <t t-set="tot_base" t-value="tot_base + tax_code_tuple[1]"/>
                                         <t t-set="tot_tax" t-value="tot_tax + tax_code_tuple[2]"/>

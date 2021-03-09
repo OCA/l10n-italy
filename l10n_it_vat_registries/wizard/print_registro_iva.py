@@ -23,6 +23,7 @@
 
 from openerp import models, fields, api, _
 from openerp.exceptions import Warning as UserError
+from datetime import datetime
 
 
 class WizardRegistroIva(models.TransientModel):
@@ -70,6 +71,9 @@ class WizardRegistroIva(models.TransientModel):
     only_totals = fields.Boolean(
         string='Prints only totals')
     fiscal_page_base = fields.Integer('Last printed page', required=True)
+    year_footer = fields.Char(
+        string='Year for Footer',
+        help="Value printed near number of page in the footer")
 
     @api.onchange('tax_registry_id')
     def on_change_vat_registry(self):
@@ -80,6 +84,13 @@ class WizardRegistroIva(models.TransientModel):
                 self.tax_sign = -1
             else:
                 self.tax_sign = 1
+
+    @api.onchange('period_ids')
+    def get_year_footer(self):
+        if self.period_ids:
+            from_date = self.period_ids[-1].date_start
+            self.year_footer = datetime.strptime(from_date,
+                                                 "%Y-%m-%d").year
 
     def print_registro(self, cr, uid, ids, context=None):
         wizard = self.browse(cr, uid, ids[0], context=context)
@@ -98,6 +109,7 @@ class WizardRegistroIva(models.TransientModel):
         datas_form['tax_sign'] = wizard.tax_sign
         datas_form['fiscal_page_base'] = wizard.fiscal_page_base
         datas_form['registry_type'] = wizard.type
+        datas_form['year_footer'] = wizard.year_footer
         if wizard.tax_registry_id:
             datas_form['tax_registry_name'] = wizard.tax_registry_id.name
         else:

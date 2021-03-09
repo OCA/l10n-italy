@@ -21,6 +21,7 @@
                         <field name="fiscal_page_base"/>
                         <newline/>
                         <field name="message" nolabel="1" colspan="4"/>
+                        <field name="year_footer"/>
                     </group>
                     <footer>
                         <button string="Print" name="print_registro" type="object" class="oe_highlight"/>
