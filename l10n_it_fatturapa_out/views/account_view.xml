@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <record id="view_invoice_fatturapa_out_tree" model="ir.ui.view">
+        <field name="name">view.invoice.fatturapa.out.tree</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="before">
+                <field name="fatturapa_state"/>
+            </xpath>
+        </field>
+    </record>
+
     <record id="view_invoice_form_fatturapa" model="ir.ui.view">
         <field name="name">account.invoice.fatturapa</field>
         <field name="model">account.invoice</field>
@@ -10,6 +21,9 @@
                 <button name="%(action_wizard_export_fatturapa)d" type="action"
                         string="Export E-invoice" class="oe_highlight"
                         attrs="{'invisible': ['|', '|', ('fatturapa_attachment_out_id', '!=', False), ('state' ,'not in', ['open', 'paid']), ('electronic_invoice_subjected', '=', False)]}"/>
+                <button name="%(action_wizard_export_fatturapa_regenerate)d" type="action"
+                        string="Re-Export E-invoice" class="oe_highlight"
+                        attrs="{'invisible': ['|', '|', ('fatturapa_attachment_out_id', '=', False), ('fatturapa_state', 'not in', ['error']), ('state', 'not in', ['open', 'paid'])]}"/>
             </button>
             <field name="partner_id" position="after">
                 <field name="electronic_invoice_subjected" invisible="1"/>
@@ -17,6 +31,10 @@
             <field name="analytic_tag_ids" position="after">
                 <field name="admin_ref"/>
             </field>
+            <xpath expr="//field[@name='date_invoice']" position="after">
+                <field name="fatturapa_state"/>
+            </xpath>
+
             <xpath expr="//notebook" position="inside">
                 <page string="Related Documents"
                       attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">
@@ -76,4 +94,25 @@
             </xpath>
         </field>
     </record>
+
+    <record id="view_account_invoice_fatturapa_out_filter" model="ir.ui.view">
+        <field name="name">view.account.invoice.fatturapa.out.filter</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='late']" position="after">
+                <separator/>
+                <filter name="fatturapa_ready" string="Electronic Invoice Ready to Send"
+                        domain="[('fatturapa_state','=','ready')]"/>
+                <filter name="fatturapa_errors" string="Electronic Invoice Error"
+                        domain="[('fatturapa_state','=','error')]"/>
+            </xpath>
+
+            <xpath expr="//group" position="inside">
+                <filter name="group_by_ftpa_state" string="Electronic Invoice State"
+                        context="{'group_by':'fatturapa_state'}"/>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

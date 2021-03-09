@@ -679,6 +679,15 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
                 ('vat', 'ilike', '05979361218')
             ])), 1)
 
+    def test_46_xml_import(self):
+        wiz_values = {'e_invoice_detail_level': '0'}
+        res = self.run_wizard('test46', 'IT05979361218_016.xml', wiz_values=wiz_values)
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertAlmostEqual(invoice.e_invoice_amount_untaxed, 34.32)
+        self.assertEqual(invoice.e_invoice_amount_tax, 0.0)
+        self.assertEqual(invoice.e_invoice_amount_total, 34.32)
+
     def test_01_xml_link(self):
         """
         E-invoice lines are created.

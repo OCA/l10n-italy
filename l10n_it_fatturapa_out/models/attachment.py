@@ -28,6 +28,22 @@ class FatturaPAAttachment(models.Model):
     invoice_partner_id = fields.Many2one(
         'res.partner', string='Customer', store=True,
         compute='_compute_invoice_partner_id')
+    state = fields.Selection(
+        selection=[
+            ('ready', 'Ready to Send'),
+            ('sent', 'Sent'),
+            ('sender_error', 'Sender Error'),
+            ('recipient_error', 'Not delivered'),
+            ('rejected', 'Rejected (PA)'),
+            ('validated', 'Delivered'),
+            ('accepted', 'Accepted'),
+        ],
+        string='State',
+        default='ready',
+        track_visibility='onchange'
+    )
+    sending_date = fields.Datetime("Sent Date", readonly=True)
+    delivered_date = fields.Datetime("Delivered Date", readonly=True)
 
     _sql_constraints = [(
         'ftpa_attachment_out_name_uniq',
@@ -102,6 +118,13 @@ class FatturaPAAttachment(models.Model):
                 attachment_out.has_pdf_invoice_print = True
 
     @api.multi
+    def reset_to_ready(self):
+        for attachment_out in self:
+            if attachment_out.state != 'sender_error':
+                raise UserError(_("You can only reset files in 'Sender Error' state."))
+            attachment_out.state = 'ready'
+
+    @api.multi
     def write(self, vals):
         res = super(FatturaPAAttachment, self).write(vals)
         if 'datas' in vals and 'message_ids' not in vals:
@@ -116,6 +139,10 @@ class FatturaPAAttachment(models.Model):
     @api.multi
     def unlink(self):
         for attachment_out in self:
+            if attachment_out.state != 'ready':
+                raise UserError(_(
+                    "You can only delete files in 'Ready to Send' state."
+                ))
             for invoice in attachment_out.out_invoice_ids:
                 invoice.fatturapa_doc_attachments.filtered(
                     'is_pdf_invoice_print').unlink()
