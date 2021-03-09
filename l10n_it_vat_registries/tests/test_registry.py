@@ -7,6 +7,7 @@ from odoo import fields
 class TestRegistry(AccountingTestCase):
 
     def test_invoice_and_report(self):
+        test_date = fields.Date.today()
         self.journal = self.env['account.journal'].search(
             [('type', '=', 'sale')])[0]
         self.ova = self.env['account.account'].search([
@@ -39,6 +40,7 @@ class TestRegistry(AccountingTestCase):
 
         invoice = self.env['account.invoice'].create({
             'partner_id': self.env.ref('base.res_partner_2').id,
+            'date_invoice': test_date,
             'account_id': invoice_account,
             'type': 'in_invoice',
             'journal_id': self.journal.id,
@@ -57,8 +59,8 @@ class TestRegistry(AccountingTestCase):
         invoice.action_invoice_open()
 
         wizard = self.env['wizard.registro.iva'].create({
-            'from_date': fields.Date.today(),
-            'to_date': fields.Date.today(),
+            'from_date': test_date,
+            'to_date': test_date,
             'tax_registry_id': tax_registry.id,
             'layout_type': 'supplier',
             'fiscal_page_base': 0,
