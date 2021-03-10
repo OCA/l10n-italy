@@ -19,7 +19,8 @@
 
                 <field name="date_due" position="after">
                     <field name="auto_compute_stamp" invisible="1"/>
-                    <field name="tax_stamp"  string="Tax stamp" attrs="{'invisible': [('auto_compute_stamp', '=', True)]}"/>
+                    <field name="tax_stamp" string="Tax stamp" invisible="1"/>
+                    <field name="manually_apply_tax_stamp"  attrs="{'invisible': [('auto_compute_stamp', '=', True)]}"/>
                 </field>
 
                 <field name="invoice_line_ids" position="after">
