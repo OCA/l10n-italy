@@ -6,10 +6,11 @@ from odoo import fields, api, models, exceptions, _
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
     tax_stamp = fields.Boolean(
-        "Tax Stamp", readonly=True, states={'draft': [('readonly', False)]},
+        "Tax Stamp", readonly=False,
         compute="_compute_tax_stamp", store=True)
     auto_compute_stamp = fields.Boolean(
         related='company_id.tax_stamp_product_id.auto_compute')
+    manually_apply_tax_stamp = fields.Boolean("Apply tax stamp")
 
     def is_tax_stamp_applicable(self):
         stamp_product_id = self.env.user.with_context(
@@ -33,12 +34,16 @@ class AccountInvoice(models.Model):
     @api.depends(
         'invoice_line_ids.price_subtotal', 'tax_line_ids.amount',
         'tax_line_ids.amount_rounding', 'currency_id', 'company_id', 'date_invoice',
-        'type'
+        'type', 'manually_apply_tax_stamp'
     )
     def _compute_tax_stamp(self):
         for invoice in self:
+            invoice.tax_stamp = False
             if invoice.auto_compute_stamp:
                 invoice.tax_stamp = invoice.is_tax_stamp_applicable()
+            else:
+                if invoice.manually_apply_tax_stamp:
+                    invoice.tax_stamp = True
 
     @api.multi
     def add_tax_stamp_line(self):
