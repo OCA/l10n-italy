@@ -122,6 +122,7 @@ Contributors
 * Lara Baggio <lbaggio@linkgroup.it>
 * Glauco Prina <gprina@linkgroup.it>
 * Sergio Zanchetta <https://github.com/primes2h>
+* Alfredo Zamora <alfredo.zamora@agilebg.com>
 
 Maintainers
 ~~~~~~~~~~~
