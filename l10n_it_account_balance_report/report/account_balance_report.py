@@ -14,7 +14,6 @@ def get_xmlid(id_str):
 
 class ReportAccountBalanceReport(models.TransientModel):
     _name = 'account_balance_report'
-    _inherit = 'account_financial_report_abstract'
     _inherits = {'report_trial_balance': 'trial_balance_id'}
 
     account_balance_report_type = fields.Selection(
@@ -244,7 +243,6 @@ class ReportAccountBalanceReport(models.TransientModel):
 class ReportAccountBalanceReportAccount(models.TransientModel):
     _name = 'account_balance_report_account'
     _order = 'code ASC, name'
-    _inherit = 'account_financial_report_abstract'
     _inherits = {'report_trial_balance_account': 'trial_balance_line_id'}
 
     date_from = fields.Date()
@@ -270,7 +268,6 @@ class ReportAccountBalanceReportAccount(models.TransientModel):
 
 class ReportAccountBalanceReportPartner(models.TransientModel):
     _name = 'account_balance_report_partner'
-    _inherit = 'account_financial_report_abstract'
     _inherits = {'report_trial_balance_partner': 'trial_balance_partner_id'}
 
     date_from = fields.Date()
