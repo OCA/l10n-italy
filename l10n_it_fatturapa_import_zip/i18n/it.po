@@ -1,0 +1,102 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_fatturapa_import_zip
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-04 21:45+0000\n"
+"PO-Revision-Date: 2021-02-04 22:50+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: it\n"
+"X-Generator: Poedit 2.2.1\n"
+
+#. module: l10n_it_fatturapa_import_zip
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_import_zip.act_wizard_fatturapa_import_view
+msgid "Cancel"
+msgstr "Cancella"
+
+#. module: l10n_it_fatturapa_import_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_import_fatturepa_zip__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: l10n_it_fatturapa_import_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_import_fatturepa_zip__create_date
+msgid "Created on"
+msgstr "Crearo "
+
+#. module: l10n_it_fatturapa_import_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_in__display_name
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_import_fatturepa_zip__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: l10n_it_fatturapa_import_zip
+#: model:ir.model,name:l10n_it_fatturapa_import_zip.model_fatturapa_attachment_in
+msgid "E-bill import file"
+msgstr "File importato e-fattura"
+
+#. module: l10n_it_fatturapa_import_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_import_fatturepa_zip__data
+msgid "File"
+msgstr "File"
+
+#. module: l10n_it_fatturapa_import_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_in__id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_import_fatturepa_zip__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_fatturapa_import_zip
+#: model:ir.actions.act_window,name:l10n_it_fatturapa_import_zip.act_wizard_fatturapa_in_in_import_view
+msgid "IMP. Purchase Invoices"
+msgstr "Importa Fatture Acquisto"
+
+#. module: l10n_it_fatturapa_import_zip
+#: model:ir.ui.menu,name:l10n_it_fatturapa_import_zip.fatturapa_attachment_in_in_menu
+msgid "Import Files (ZIP)"
+msgstr "Importa file (ZIP)"
+
+#. module: l10n_it_fatturapa_import_zip
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_import_zip.act_wizard_fatturapa_import_view
+msgid "Import Purchase Electronic Invoices"
+msgstr "Importa Fatture elettroniche di acquisto"
+
+#. module: l10n_it_fatturapa_import_zip
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_import_zip.act_wizard_fatturapa_import_view
+msgid "Import purchase invoices"
+msgstr "importa fatture acquisto"
+
+#. module: l10n_it_fatturapa_import_zip
+#: model_terms:ir.actions.act_window,help:l10n_it_fatturapa_import_zip.act_wizard_fatturapa_in_in_import_view
+msgid "Import purchase invoices from zip file"
+msgstr "Importa fatture acquisto da file zip"
+
+#. module: l10n_it_fatturapa_import_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_in____last_update
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_import_fatturepa_zip____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_fatturapa_import_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_import_fatturepa_zip__write_uid
+#, fuzzy
+msgid "Last Updated by"
+msgstr "Aggiornato da"
+
+#. module: l10n_it_fatturapa_import_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_import_fatturepa_zip__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_it_fatturapa_import_zip
+#: model:ir.model,name:l10n_it_fatturapa_import_zip.model_import_fatturepa_zip
+msgid "import.fatturepa_zip"
+msgstr ""

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="act_wizard_fatturapa_import_view">
+        <field name="name">Import Fatture Pa</field>
+        <field name="model">import.fatturepa_zip</field>
+        <field name="arch" type="xml">
+            <form string="Import Purchase Electronic Invoices">
+                <sheet>
+                    <group col="2" colspan="4">
+                        <field name="data" colspan="2" />
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        name="ImportIN"
+                        string="Import purchase invoices"
+                        colspan="1"
+                        type="object"
+                    />
+                    <button special="cancel" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="act_wizard_fatturapa_in_in_import_view" model="ir.actions.act_window">
+        <field name="name">IMP. Purchase Invoices</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">import.fatturepa_zip</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Import purchase invoices from zip file
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="fatturapa_attachment_in_in_menu"
+        action="act_wizard_fatturapa_in_in_import_view"
+        parent="l10n_it_fatturapa.menu_fattura_pa_payables"
+        name="Import Files (ZIP)"
+    />
+
+</odoo>
