@@ -23,8 +23,12 @@
         "report/report_intrastat_mod1.xml",
         "report/intrastat_mod1_bis.xml",
         "report/intrastat_mod1_ter.xml",
+        "report/report_intrastat_mod1_quater.xml",
+        "report/report_intrastat_mod1_quinquies.xml",
         "report/report_intrastat_mod2.xml",
         "report/report_intrastat_mod2_bis.xml",
+        "report/report_intrastat_mod2_quater.xml",
+        "report/report_intrastat_mod2_quinquies.xml",
         "report/reports.xml",
     ],
 }
