@@ -17,13 +17,13 @@ ITA - Contabilità base
     :target: https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_account
     :alt: OCA/l10n-italy
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-italy-14-0-mig-l10n_it_account/l10n-italy-14-0-mig-l10n_it_account-l10n_it_account
+    :target: https://translation.odoo-community.org/projects/l10n-italy-14-0/l10n-italy-14-0-l10n_it_account
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/122/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 **Italiano**
 
