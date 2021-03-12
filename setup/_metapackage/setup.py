@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo14-addon-l10n_it_abicab',
+        'odoo14-addon-l10n_it_account',
         'odoo14-addon-l10n_it_fiscal_payment_term',
         'odoo14-addon-l10n_it_fiscalcode',
         'odoo14-addon-l10n_it_ipa',
