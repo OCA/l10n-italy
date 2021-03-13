@@ -13,7 +13,7 @@ def get_xmlid(id_str):
 
 
 class ReportAccountBalanceReport(models.TransientModel):
-    _name = 'account_balance_report'
+    _name = 'l10nit_account_balance_report'
     _inherits = {'report_trial_balance': 'trial_balance_id'}
 
     account_balance_report_type = fields.Selection(
@@ -25,11 +25,11 @@ class ReportAccountBalanceReport(models.TransientModel):
     right_col_footer = fields.Char()
     right_col_name = fields.Char()
     section_credit_ids = fields.One2many(
-        'account_balance_report_account',
+        'l10nit_account_balance_report_account',
         'report_credit_id'
     )
     section_debit_ids = fields.One2many(
-        'account_balance_report_account',
+        'l10nit_account_balance_report_account',
         'report_debit_id'
     )
     title = fields.Char()
@@ -241,22 +241,22 @@ class ReportAccountBalanceReport(models.TransientModel):
 
 
 class ReportAccountBalanceReportAccount(models.TransientModel):
-    _name = 'account_balance_report_account'
+    _name = 'l10nit_account_balance_report_account'
     _order = 'code ASC, name'
     _inherits = {'report_trial_balance_account': 'trial_balance_line_id'}
 
     date_from = fields.Date()
     date_to = fields.Date()
     report_partner_ids = fields.One2many(
-        'account_balance_report_partner',
+        'l10nit_account_balance_report_partner',
         'report_section_id',
     )
     report_credit_id = fields.Many2one(
-        'account_balance_report',
+        'l10nit_account_balance_report',
         ondelete='cascade'
     )
     report_debit_id = fields.Many2one(
-        'account_balance_report',
+        'l10nit_account_balance_report',
         ondelete='cascade'
     )
     trial_balance_line_id = fields.Many2one(
@@ -267,7 +267,7 @@ class ReportAccountBalanceReportAccount(models.TransientModel):
 
 
 class ReportAccountBalanceReportPartner(models.TransientModel):
-    _name = 'account_balance_report_partner'
+    _name = 'l10nit_account_balance_report_partner'
     _inherits = {'report_trial_balance_partner': 'trial_balance_partner_id'}
 
     date_from = fields.Date()
@@ -276,10 +276,10 @@ class ReportAccountBalanceReportPartner(models.TransientModel):
         compute='_compute_hide_line'
     )
     report_id = fields.Many2one(
-        'account_balance_report',
+        'l10nit_account_balance_report',
     )
     report_section_id = fields.Many2one(
-        'account_balance_report_account',
+        'l10nit_account_balance_report_account',
         ondelete='cascade'
     )
     trial_balance_partner_id = fields.Many2one(

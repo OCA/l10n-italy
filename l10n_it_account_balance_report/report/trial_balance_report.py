@@ -18,7 +18,7 @@ class TrialBalanceReportAccount(models.TransientModel):
         """
         super()._compute_hide_line()
 
-        balance_line_obj = self.env['account_balance_report_account']
+        balance_line_obj = self.env['l10nit_account_balance_report_account']
         balance_line_domain = [('trial_balance_line_id', 'in', self.ids)]
         balance_lines = balance_line_obj.search(balance_line_domain)
         lines_to_recompute = balance_lines.mapped('trial_balance_line_id')

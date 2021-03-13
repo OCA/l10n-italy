@@ -406,9 +406,9 @@ class AccountBalanceReportXslx(models.AbstractModel):
 
         cols_dict = {}
         if l:
-            if l._name == 'account_balance_report_account':
+            if l._name == 'l10nit_account_balance_report_account':
                 cols_dict = self.left_columns
-            elif l._name == 'account_balance_report_partner':
+            elif l._name == 'l10nit_account_balance_report_partner':
                 cols_dict = self.left_partner_columns
             info.update({
                 (l, (c, row)): self.get_write_data(l, cols_dict[c])
@@ -417,9 +417,9 @@ class AccountBalanceReportXslx(models.AbstractModel):
             })
 
         if r:
-            if r._name == 'account_balance_report_account':
+            if r._name == 'l10nit_account_balance_report_account':
                 cols_dict = self.right_columns
-            elif r._name == 'account_balance_report_partner':
+            elif r._name == 'l10nit_account_balance_report_partner':
                 cols_dict = self.right_partner_columns
             info.update({
                 (r, (c, row)): self.get_write_data(r, cols_dict[c])
@@ -446,7 +446,7 @@ class AccountBalanceReportXslx(models.AbstractModel):
                 value = val_name
             elif val_display:
                 value = val_display
-            elif line._name == 'account_balance_report_partner':
+            elif line._name == 'l10nit_account_balance_report_partner':
                 value = _("No partner allocated")
         elif cell_type == 'string':
             if getattr(line, 'account_group_id', False):
