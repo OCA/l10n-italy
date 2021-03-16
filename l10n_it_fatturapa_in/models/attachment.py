@@ -83,6 +83,10 @@ class FatturaPAAttachmentIn(models.Model):
     def get_xml_string(self):
         return self.ir_attachment_id.get_xml_string()
 
+    def recompute_xml_fields(self):
+        self._compute_xml_data()
+        self._compute_registered()
+
     @api.depends("ir_attachment_id.datas")
     def _compute_xml_data(self):
         for att in self:
