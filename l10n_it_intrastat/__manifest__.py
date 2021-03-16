@@ -4,7 +4,7 @@
 
 {
     'name': "ITA - Intrastat",
-    'version': '12.0.1.1.4',
+    'version': '12.0.1.1.5',
     'category': 'Account',
     'summary': 'Riclassificazione merci e servizi per dichiarazioni Intrastat',
     'author': "Openforce, Link IT srl, Agile Business Group, "
