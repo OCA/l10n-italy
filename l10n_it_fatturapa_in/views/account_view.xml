@@ -31,6 +31,13 @@
                                     text="Show preview"
                                     attrs="{'invisible': [('id', '=', False)]}"
                                 />
+                                <button
+                                    type="object"
+                                    name="recompute_xml_fields"
+                                    string="Recompute XML fields"
+                                    icon="fa-refresh"
+                                    attrs="{'invisible': [('invoices_number', '!=', 0), ('xml_supplier_id', '!=', False), ('invoices_date', '!=', False)]}"
+                                />
                             </div>
                             <field name="name" invisible="1" />
                         </group>
