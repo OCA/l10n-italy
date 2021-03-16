@@ -601,152 +601,116 @@ msgid "Missing State for Partner %s"
 msgstr "Stato mancante per il partner %s"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:272
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:282
 #, python-format
 msgid "Missing adjustment sign on 'Purchases - Section 2'"
 msgstr "Segno di rettifica mancante in \"Acquisti - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:233
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:243
 #, python-format
 msgid "Missing adjustment sign on 'Sales - Section 2'"
 msgstr "Segno di rettifica mancante in \"Cessioni - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:485
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:495
 #, python-format
 msgid "Missing customs section on 'Purchases - Section 4'"
 msgstr "Sezione doganale mancante in \"Acquisti - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:433
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:443
 #, python-format
 msgid "Missing customs section on 'Sales - Section 4'"
 msgstr "Sezione doganale mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:494
-#, python-format
-msgid "Missing invoice data on 'Purchases - Section 4'"
-msgstr "Data fattura mancante in \"Acquisti - Sezione 4\""
-
-#. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:442
-#, python-format
-msgid "Missing invoice data on 'Sales - Section 4'"
-msgstr "Data fattura mancante in \"Cessioni - Sezione 4\""
-
-#. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:503
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:504
 #, python-format
 msgid "Missing payment country on 'Purchases - Section 4'"
 msgstr "Paese di pagamento mancante in \"Acquisti - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:451
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:452
 #, python-format
 msgid "Missing payment country on 'Sales - Section 4'"
 msgstr "Paese di pagamento mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:500
-#, python-format
-msgid "Missing payment method on 'Purchases - Section 4'"
-msgstr "Modalità di incasso mancante in \"Acquisti - Sezione 4\""
-
-#. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:448
-#, python-format
-msgid "Missing payment method on 'Sales - Section 4'"
-msgstr "Modalità di incasso mancante in \"Cessioni - Sezione 4\""
-
-#. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:491
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:501
 #, python-format
 msgid "Missing progressive to adjust on 'Purchases - Section 4'"
 msgstr "Progressivo da rettificare mancante in \"Acquisti - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:439
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:449
 #, python-format
 msgid "Missing progressive to adjust on 'Sales - Section 4'"
 msgstr "Progressivo da rettificare mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:488
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:498
 #, python-format
 msgid "Missing protocol number on 'Purchases - Section 4'"
 msgstr "Numero di protocollo mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:436
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:446
 #, python-format
 msgid "Missing protocol number on 'Sales - Section 4'"
 msgstr "Numero di protocollo mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:276
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:286
 #, python-format
 msgid "Missing reference month on 'Purchases - Section 2' adjustment"
 msgstr ""
 "Mese di riferimento mancante nella rettifica di \"Acquisti - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:237
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:247
 #, python-format
 msgid "Missing reference month on 'Sales - Section 2' adjustment"
 msgstr ""
 "Mese di riferimento mancante nella rettifica di \"Cessioni - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:281
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:291
 #, python-format
 msgid "Missing reference quarter on 'Purchases - Section 2' adjustment"
 msgstr ""
 "Trimestre di riferimento mancante nella rettifica di \"Acquisti - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:241
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:251
 #, python-format
 msgid "Missing reference quarter on 'Sales - Section 2' adjustment"
 msgstr ""
 "Trimestre di riferimento mancante nella rettifica di \"Cessioni - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:269
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:279
 #, python-format
 msgid "Missing reference year on 'Purchases - Section 2'"
 msgstr "Anno di riferimento mancante in \"Acquisti - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:482
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:492
 #, python-format
 msgid "Missing reference year on 'Purchases - Section 4'"
 msgstr "Anno di riferimento mancante in \"Acquisti - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:230
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:240
 #, python-format
 msgid "Missing reference year on 'Sales - Section 2'"
 msgstr "Anno di riferimento mancante in \"Cessioni - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:430
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:440
 #, python-format
 msgid "Missing reference year on 'Sales - Section 4'"
 msgstr "Anno di riferimento mancante in \"Cessioni - Sezione 4\""
-
-#. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:497
-#, python-format
-msgid "Missing supply method on 'Purchases - Section 4'"
-msgstr "Modalità di erogazione mancante in \"Acquisti - Sezione 4\""
-
-#. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:445
-#, python-format
-msgid "Missing supply method on 'Sales - Section 4'"
-msgstr "Modalità di erogazione mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_section.py:80
@@ -995,10 +959,10 @@ msgid "Provenance Country"
 msgstr "Paese di provenienza"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:157
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:286
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:379
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:507
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:165
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:296
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:389
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:508
 #, python-format
 msgid "Purchase"
 msgstr "Acquisto"
@@ -1077,10 +1041,10 @@ msgid "Repeated"
 msgstr "A più riprese"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:122
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:246
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:331
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:455
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:130
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:256
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:341
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:456
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__sale
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_form_view
 #, python-format
@@ -1323,6 +1287,24 @@ msgstr "Anno"
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
 msgid "or"
 msgstr "oppure"
+
+#~ msgid "Missing invoice data on 'Purchases - Section 4'"
+#~ msgstr "Data fattura mancante in \"Acquisti - Sezione 4\""
+
+#~ msgid "Missing invoice data on 'Sales - Section 4'"
+#~ msgstr "Data fattura mancante in \"Cessioni - Sezione 4\""
+
+#~ msgid "Missing payment method on 'Purchases - Section 4'"
+#~ msgstr "Modalità di incasso mancante in \"Acquisti - Sezione 4\""
+
+#~ msgid "Missing payment method on 'Sales - Section 4'"
+#~ msgstr "Modalità di incasso mancante in \"Cessioni - Sezione 4\""
+
+#~ msgid "Missing supply method on 'Purchases - Section 4'"
+#~ msgstr "Modalità di erogazione mancante in \"Acquisti - Sezione 4\""
+
+#~ msgid "Missing supply method on 'Sales - Section 4'"
+#~ msgstr "Modalità di erogazione mancante in \"Cessioni - Sezione 4\""
 
 #~ msgid "Date Start"
 #~ msgstr "Data inizio"
