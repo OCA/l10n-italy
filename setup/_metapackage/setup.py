@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo14-addon-l10n_it_fiscalcode',
         'odoo14-addon-l10n_it_ipa',
         'odoo14-addon-l10n_it_rea',
+        'odoo14-addon-l10n_it_vat_payability',
     ],
     classifiers=[
         'Programming Language :: Python',
