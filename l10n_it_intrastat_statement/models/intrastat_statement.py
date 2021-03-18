@@ -670,12 +670,12 @@ class AccountIntrastatStatement(models.Model):
             file_content += self._prepare_export_frontispiece(
                 'purchase', ref_number)
             # Section 1
-            purchase_lines = {
+            purchase_lines = [
                 self.purchase_section1_ids,
                 self.purchase_section2_ids,
                 self.purchase_section3_ids,
                 self.purchase_section4_ids,
-            }
+            ]
             for section_lines in purchase_lines:
                 for line in section_lines:
                     rcd = self._prepare_export_prefix(ref_number, line)
@@ -692,12 +692,12 @@ class AccountIntrastatStatement(models.Model):
             # frontispiece
             file_content += self._prepare_export_frontispiece(
                 'sale', ref_number)
-            sale_lines = {
+            sale_lines = [
                 self.sale_section1_ids,
                 self.sale_section2_ids,
                 self.sale_section3_ids,
                 self.sale_section4_ids,
-            }
+            ]
             for section_lines in sale_lines:
                 for line in section_lines:
                     rcd = self._prepare_export_prefix(ref_number, line)
