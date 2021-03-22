@@ -18,6 +18,12 @@ class IntrastatStatementSaleSection(models.AbstractModel):
     def get_section_type(self):
         return 'sale'
 
+    @api.model
+    def _default_transaction_nature_id(self):
+        company_id = self.env.context.get(
+            'company_id', self.env.user.company_id)
+        return company_id.intrastat_sale_transaction_nature_id
+
 
 class IntrastatStatementSaleSection1(models.Model):
     _inherit = 'account.intrastat.statement.sale.section'
@@ -26,7 +32,9 @@ class IntrastatStatementSaleSection1(models.Model):
 
     transaction_nature_id = fields.Many2one(
         comodel_name='account.intrastat.transaction.nature',
-        string="Transaction Nature")
+        string="Transaction Nature",
+        default=lambda m: m._default_transaction_nature_id(),
+    )
     weight_kg = fields.Integer(
         string="Net Mass (kg)")
     additional_units = fields.Integer(
@@ -173,7 +181,9 @@ class IntrastatStatementSaleSection2(models.Model):
         string="Adjustment Sign")
     transaction_nature_id = fields.Many2one(
         comodel_name='account.intrastat.transaction.nature',
-        string="Transaction Nature")
+        string="Transaction Nature",
+        default=lambda m: m._default_transaction_nature_id(),
+    )
     statistic_amount_euro = fields.Integer(
         string="Statistic Value in Euro",
         digits=dp.get_precision('Account'))
@@ -437,15 +447,6 @@ class IntrastatStatementSaleSection4(models.Model):
         if not self.progressive_to_modify:
             raise ValidationError(
                 _("Missing progressive to adjust on 'Sales - Section 4'"))
-        if (not self.invoice_number) or (not self.invoice_date):
-            raise ValidationError(
-                _("Missing invoice data on 'Sales - Section 4'"))
-        if not self.supply_method:
-            raise ValidationError(
-                _("Missing supply method on 'Sales - Section 4'"))
-        if not self.payment_method:
-            raise ValidationError(
-                _("Missing payment method on 'Sales - Section 4'"))
         if not self.country_payment_id:
             raise ValidationError(
                 _("Missing payment country on 'Sales - Section 4'"))

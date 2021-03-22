@@ -102,7 +102,7 @@ msgid "Attachment URL"
 msgstr "URL allegato"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/attachment.py:118
+#: code:addons/l10n_it_fatturapa_in/models/attachment.py:123
 #, python-format
 msgid "Attachment without name"
 msgstr "Allegato senza nome"
@@ -939,6 +939,11 @@ msgstr "Codice provincia dell'ufficio REA ( %s ) non presente nel sistema"
 #: selection:res.company,in_invoice_registration_date:0
 msgid "Received Date"
 msgstr "Data ricezione"
+
+#. module: l10n_it_fatturapa_in
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
+msgid "Recompute XML fields"
+msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:227
