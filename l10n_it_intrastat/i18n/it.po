@@ -60215,7 +60215,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: code:addons/l10n_it_intrastat/models/intrastat.py:57
+#: code:addons/l10n_it_intrastat/models/intrastat.py:79
 #, python-format
 msgid "State %s without ISO code"
 msgstr "Stato %s senza codice ISO"
