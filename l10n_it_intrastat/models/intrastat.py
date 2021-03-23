@@ -45,6 +45,28 @@ class ReportIntrastatCode(models.Model):
         string="Description",
         translate=True)
 
+    @api.multi
+    def name_get(self):
+        res = []
+        for code in self:
+            name = "%s - %s" % (code.name, code.description)
+            if len(name) > 50:
+                name = name[:50] + '...'
+            res.append((code.id, name))
+        return res
+
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        if not args:
+            args = []
+        if name:
+            records = self.search([
+                '|', ('name', operator, name), ('description', operator, name)
+                ] + args, limit=limit)
+        else:
+            records = self.search(args, limit=limit)
+        return records.name_get()
+
 
 class ResCountry(models.Model):
     _inherit = 'res.country'
