@@ -29,7 +29,7 @@
             <field name="arch" type="xml">
                 <xpath expr="/form/sheet/group" position="after">
                     <group>
-                        <group string="Intrastat" name="intrastat" col="4">
+                        <group string="Intrastat" name="intrastat">
                             <field name="intrastat_type"/>
                             <field name="intrastat_code_id"
                             attrs="{'invisible':[('intrastat_type','!=', 'good'),('intrastat_type','!=', 'service')],
