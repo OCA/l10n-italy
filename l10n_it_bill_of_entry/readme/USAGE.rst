@@ -1,5 +1,4 @@
-English
--------
+**English**
 
 From supplier invoice it is possible to generate the bill of entry.
 
@@ -9,8 +8,7 @@ advance customs vat.
 At the forwarder invoice confirmation, it will be linked to the closing
 transfer account move, which closes and reconciles the bill of entry.
 
-Italiano
---------
+**Italiano**
 
 Dalla fattura fornitore è possibile generare la bolla doganale.
 
