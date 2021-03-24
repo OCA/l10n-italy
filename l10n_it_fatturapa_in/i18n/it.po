@@ -120,7 +120,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1354
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1355
 #, python-format
 msgid "Bill total %s is different from document total amount %s"
 msgstr ""
@@ -180,7 +180,7 @@ msgid "Company Name field contains '%s'. Your System contains '%s'"
 msgstr "Il campo nome azienda contiene \"%s\", il sistema contiene \"%s\""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1369
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1370
 #, python-format
 msgid "Computed amount untaxed %s is different from summary data %s"
 msgstr "L'imponibile calcolato %s è diverso da quello dei dati di riepilogo %s"
@@ -427,7 +427,7 @@ msgid "File Size"
 msgstr "Dimensione file"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1392
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1393
 #, python-format
 msgid "File is linked to bills yet."
 msgstr "Il file è già collegato alle fatture."
@@ -692,7 +692,7 @@ msgstr ""
 "Imposta con aliquota %s e natura %s non trovata, configurare questa imposta."
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1200
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1201
 #, python-format
 msgid ""
 "No withholding tax found with document payment reason %s, rate %s and type "
@@ -728,13 +728,13 @@ msgid "Payment method %s is not defined in your system."
 msgstr "Modalità di pagamento %s non definita nel sistema."
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1161
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1162
 #, python-format
 msgid "Payment method code %s is incorrect."
 msgstr "Codice modalità di pagamento %s non corretto."
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1156
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1157
 #, python-format
 msgid "Payment method code not found in document."
 msgstr "Codice modalità di pagamento non trovato nel documento."
@@ -883,14 +883,14 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/models/account.py:79
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1112
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1113
 #, python-format
 msgid "Rounding down"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/models/account.py:86
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1112
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1113
 #, python-format
 msgid "Rounding up"
 msgstr ""
@@ -968,7 +968,7 @@ msgid "Text Reference"
 msgstr "Riferimento testo"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1185
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1186
 #, python-format
 msgid ""
 "The bill contains withholding tax with payment reason %s, but such a tax is "
@@ -1125,7 +1125,7 @@ msgid "Welfare Fund Details"
 msgstr "Dettagli cassa previdenziale"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1243
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1244
 #, python-format
 msgid ""
 "Welfare Fund data %s has withholding tax but no withholding tax was found in "
@@ -1141,7 +1141,7 @@ msgid "Welfare Fund is not defined."
 msgstr "Cassa previdenziale non definita."
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1235
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:1236
 #, python-format
 msgid "Welfare Fund: %s"
 msgstr "Cassa previdenziale: %s"
