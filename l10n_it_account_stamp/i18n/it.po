@@ -37,6 +37,11 @@ msgid "Add tax stamp line"
 msgstr "Aggiungi riga bollo"
 
 #. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_invoice__manually_apply_tax_stamp
+msgid "Apply tax stamp"
+msgstr ""
+
+#. module: l10n_it_account_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_invoice__auto_compute_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__auto_compute
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__auto_compute
@@ -61,17 +66,12 @@ msgstr "Configurazione imposta di bollo"
 #. module: l10n_it_account_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.product_template_form_view_account_stamp
 msgid ""
-"For each invoice, manually enable 'Tax Stamp' checkbox. The base amount for "
-"each selected tax will be added up and used to determine the application of "
-"the account stamp."
-msgstr ""
-
-#. module: l10n_it_account_stamp
-#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.product_template_form_view_account_stamp
-msgid ""
 "For each invoice, the base amount for each selected tax will be added up and "
-"used to automatically determine the application of the account stamp."
+"used to determine the application of the account stamp."
 msgstr ""
+"Per ciascuna fattura, l'applicabilità dell'imposta di bollo verrà calcolata "
+"in modo automatico in base alla somma degli imponibili relativi alle imposte "
+"selezionate."
 
 #. module: l10n_it_account_stamp
 #: model:ir.model,name:l10n_it_account_stamp.model_account_invoice
@@ -91,21 +91,21 @@ msgid "Is a stamp"
 msgstr "È un bollo"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:62
+#: code:addons/l10n_it_account_stamp/models/invoice.py:67
 #, python-format
 msgid "Missing account income configuration for %s"
 msgstr "Configurazione mancante del conto di ricavo per %s"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:19
-#: code:addons/l10n_it_account_stamp/models/invoice.py:52
-#: code:addons/l10n_it_account_stamp/models/invoice.py:135
+#: code:addons/l10n_it_account_stamp/models/invoice.py:20
+#: code:addons/l10n_it_account_stamp/models/invoice.py:57
+#: code:addons/l10n_it_account_stamp/models/invoice.py:140
 #, python-format
 msgid "Missing tax stamp product in company settings!"
 msgstr "Prodotto imposta di bollo mancante nelle impostazioni dell'azienda!"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:90
+#: code:addons/l10n_it_account_stamp/models/invoice.py:95
 #, python-format
 msgid "Product %s must have income and expense accounts"
 msgstr "È necessario impostare i conti di ricavo e di costo per il prodotto %s"
@@ -162,13 +162,13 @@ msgid "Tax Stamp 2 euro"
 msgstr "Imposta di bollo 2 euro"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:108
+#: code:addons/l10n_it_account_stamp/models/invoice.py:113
 #, python-format
 msgid "Tax Stamp Expense"
 msgstr "Costo imposta di bollo"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:95
+#: code:addons/l10n_it_account_stamp/models/invoice.py:100
 #, python-format
 msgid "Tax Stamp Income"
 msgstr "Ricavo imposta di bollo"
@@ -187,13 +187,13 @@ msgid "Tax stamp"
 msgstr "Imposta di bollo"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:47
+#: code:addons/l10n_it_account_stamp/models/invoice.py:52
 #, python-format
 msgid "Tax stamp is not applicable"
 msgstr "Imposta di bollo non applicabile"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:56
+#: code:addons/l10n_it_account_stamp/models/invoice.py:61
 #, python-format
 msgid "Tax stamp line %s already present. Remove it first."
 msgstr "Riga per l'imposta di bollo %s già presente, prima rimuoverla."
@@ -215,11 +215,3 @@ msgstr "Unità"
 #: model:product.template,weight_uom_name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
 msgid "kg"
 msgstr "kg"
-
-#~ msgid ""
-#~ "For each invoice, the base amount for each selected tax will be added up "
-#~ "and used to determine the application of the account stamp."
-#~ msgstr ""
-#~ "Per ciascuna fattura, l'applicabilità dell'imposta di bollo verrà "
-#~ "calcolata in modo automatico in base alla somma degli imponibili relativi "
-#~ "alle imposte selezionate."
