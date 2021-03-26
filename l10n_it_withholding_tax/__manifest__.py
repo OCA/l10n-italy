@@ -15,11 +15,11 @@
         "l10n_it_fatturapa",
     ],
     "data": [
-        "views/account.xml",
-        "views/withholding_tax.xml",
-        "views/report_invoice.xml",
-        "security/ir.model.access.csv",
-        "security/security.xml",
+        'views/account.xml',
+        'views/report_invoice.xml',
+        'views/withholding_tax.xml',
+        'security/ir.model.access.csv',
+        'security/security.xml',
     ],
     "qweb": [
         "static/src/xml/account_payment.xml",
