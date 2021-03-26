@@ -35,10 +35,7 @@
                             <span>Withholding Tax</span>
                         </td>
                         <td class="text-right">
-                            <span
-                                t-field="o.withholding_tax_amount"
-                                t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
-                            />
+                            <span t-field="o.withholding_tax_amount" />
                         </td>
                     </tr>
                     <tr class="border-black">
@@ -46,26 +43,26 @@
                             <strong>Net To Pay</strong>
                         </td>
                         <td class="text-right">
-                            <span
-                                t-field="o.amount_net_pay"
-                                t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
-                            />
+                            <span t-field="o.amount_net_pay" />
                         </td>
                     </tr>
                 </t>
             </xpath>
+        </field>
+    </record>
 
-            <xpath expr="//t[@t-if='print_with_payments']/t" position="inside">
+    <record id="report_invoice_document_with_payments" model="ir.ui.view">
+        <field name="name">print_withholding_tax_with_payments</field>
+        <field name="inherit_id" ref="account.report_invoice_with_payments" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='total']/div/table" position="inside">
                 <t t-if="o.withholding_tax_in_print and len(payments_vals) > 0">
                     <tr class="border-black">
                         <td>
                             <strong>Residual Net To Pay</strong>
                         </td>
                         <td class="text-right">
-                            <span
-                                t-field="o.amount_net_pay_residual"
-                                t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
-                            />
+                            <span t-field="o.amount_net_pay_residual" />
                         </td>
                     </tr>
                 </t>
