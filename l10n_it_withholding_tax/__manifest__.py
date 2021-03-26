@@ -17,6 +17,7 @@
     ],
     "data": [
         'views/account.xml',
+        'views/report_invoice.xml',
         'views/withholding_tax.xml',
         'security/ir.model.access.csv',
         'security/security.xml',
