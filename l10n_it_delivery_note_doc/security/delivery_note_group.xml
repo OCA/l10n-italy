@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="module_category_delivery_note_doc" model="ir.module.category">
+            <field name="name">Delivery Note Doc</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="group_delivery_note_doc_user" model="res.groups">
+            <field name="name">User</field>
+            <field
+                name="category_id"
+                ref="l10n_it_delivery_note_doc.module_category_delivery_note_doc"
+            />
+        </record>
+
+        <record id="group_delivery_note_doc_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field
+                name="category_id"
+                ref="l10n_it_delivery_note_doc.module_category_delivery_note_doc"
+            />
+            <field
+                name="implied_ids"
+                eval="[(4, ref('l10n_it_delivery_note_doc.group_delivery_note_doc_user'))]"
+            />
+            <field
+                name="users"
+                eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+            />
+        </record>
+
+    </data>
+</odoo>
