@@ -18,6 +18,14 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_it_account
+#: code:addons/l10n_it_account/models/account_group.py:61
+#, python-format
+msgid ""
+"\n"
+"Sign: %s, accounts: %s\n"
+msgstr ""
+
+#. module: l10n_it_account
 #: model_terms:ir.ui.view,arch_db:l10n_it_account.internal_layout
 msgid ""
 "<br/>\n"
@@ -27,7 +35,7 @@ msgstr ""
 "                      <span class=\"text-right\">IVA:</span>"
 
 #. module: l10n_it_account
-#: code:addons/l10n_it_account/models/account_group.py:98
+#: code:addons/l10n_it_account/models/account_group.py:104
 #, python-format
 msgid "A recursion in '{}' parents has been found."
 msgstr "Trovata una ricorsività in \"{}\" padre."
@@ -97,10 +105,12 @@ msgid "Include in VAT register"
 msgstr "Includere nel registro IVA"
 
 #. module: l10n_it_account
-#: code:addons/l10n_it_account/models/account_group.py:59
+#: code:addons/l10n_it_account/models/account_group.py:65
 #, python-format
-msgid "Incoherent balance signs for '{}' and its subgroups."
-msgstr "Segni del saldo incoerenti per \"{}\" e i sottogruppi."
+msgid ""
+"Incoherent balance signs for '{}' and its subgroups:\n"
+"{}"
+msgstr ""
 
 #. module: l10n_it_account
 #: model:ir.ui.menu,name:l10n_it_account.account_italian_localization
@@ -140,6 +150,9 @@ msgid ""
 msgstr ""
 "Utilizzare nel caso di imposta per \"integrazione IVA\". Specifica il "
 "registro IVA (vendite / acquisti) nel quale deve essere calcolata l'imposta."
+
+#~ msgid "Incoherent balance signs for '{}' and its subgroups."
+#~ msgstr "Segni del saldo incoerenti per \"{}\" e i sottogruppi."
 
 #~ msgid "Cannot link accounts of different types to group '{}'."
 #~ msgstr "Impossibile collegare conti di tipo diverso al gruppo '{}'."
