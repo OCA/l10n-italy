@@ -16,3 +16,12 @@ class Account(models.Model):
         # Avoid check upon empty recordset to make it faster
         if groups:
             groups.check_balance_sign_coherence()
+
+    def get_incoherent_sign_accounts(self):
+        accounts_by_sign = {}
+        for account in self:
+            if account.user_type_id.account_balance_sign not in accounts_by_sign:
+                accounts_by_sign[account.user_type_id.account_balance_sign] = account
+            else:
+                accounts_by_sign[account.user_type_id.account_balance_sign] |= account
+        return accounts_by_sign
