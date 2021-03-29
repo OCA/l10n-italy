@@ -109,5 +109,9 @@
             <field name="code">MP22</field>
             <field name="name">Trattenuta su somme già riscosse</field>
         </record>
+        <record id="fatturapa_mp23" model="fatturapa.payment_method">
+            <field name="code">MP23</field>
+            <field name="name">PagoPA</field>
+        </record>
     </data>
 </odoo>
