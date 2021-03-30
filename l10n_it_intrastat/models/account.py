@@ -310,7 +310,7 @@ class AccountInvoice(models.Model):
     @api.multi
     def action_move_create(self):
         for invoice in self:
-            if not invoice.intrastat_line_ids:
+            if not invoice.intrastat_line_ids and invoice.intrastat:
                 invoice.compute_intrastat_lines()
         super().action_move_create()
         precision_digits = self.env['decimal.precision'] \
