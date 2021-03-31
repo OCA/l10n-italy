@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
     <data noupdate="1">
         <report
@@ -12,8 +12,10 @@
         />
 
         <record id="action_report_registro_iva" model="ir.actions.report">
-            <field name="paperformat_id"
-            ref="l10n_it_account.l10n_it_account_a4_portrait"/>
+            <field
+                name="paperformat_id"
+                ref="l10n_it_account.l10n_it_account_a4_portrait"
+            />
        </record>
 
     </data>
