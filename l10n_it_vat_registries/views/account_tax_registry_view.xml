@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <openerp>
     <data>
         <record id="view_account_tax_registry_form" model="ir.ui.view">
@@ -7,11 +7,11 @@
             <field name="arch" type="xml">
                 <form>
                     <group>
-                        <field name="name"></field>
-                        <field name="layout_type"></field>
+                        <field name="name" />
+                        <field name="layout_type" />
                     </group>
-                    <separator string="Journals"></separator>
-                    <field name="journal_ids"></field>
+                    <separator string="Journals" />
+                    <field name="journal_ids" />
                 </form>
             </field>
         </record>
@@ -29,9 +29,10 @@
               </p>
             </field>
         </record>
-        <menuitem action="action_account_tax_registry_form"
-        id="menu_action_account_tax_registry_form"
-        parent="account.account_account_menu"
+        <menuitem
+            action="action_account_tax_registry_form"
+            id="menu_action_account_tax_registry_form"
+            parent="account.account_account_menu"
         />
     </data>
 </openerp>
