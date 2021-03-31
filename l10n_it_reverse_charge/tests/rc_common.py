@@ -1,11 +1,13 @@
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import Form, TransactionCase
 
 
 class ReverseChargeCommon(TransactionCase):
     def setUp(self):
         super(ReverseChargeCommon, self).setUp()
-        self.invoice_model = self.env["account.invoice"]
-        self.invoice_line_model = self.env["account.invoice.line"]
+        self.invoice_model = self.env["account.move"].with_context(
+            default_move_type="in_invoice"
+        )
+        self.invoice_line_model = self.env["account.move.line"]
         self.partner_model = self.env["res.partner"]
 
         self._create_account()
@@ -19,54 +21,43 @@ class ReverseChargeCommon(TransactionCase):
         self.supplier_extraEU = self.partner_model.create(
             {
                 "name": "Extra EU supplier",
-                "customer": False,
-                "supplier": True,
                 "property_account_position_id": self.fiscal_position_extra.id,
             }
         )
         self.supplier_intraEU = self.partner_model.create(
             {
                 "name": "Intra EU supplier",
-                "customer": False,
-                "supplier": True,
                 "property_account_position_id": self.fiscal_position_intra.id,
             }
         )
         self.supplier_intraEU_exempt = self.partner_model.create(
             {
                 "name": "Intra EU supplier exempt",
-                "customer": False,
-                "supplier": True,
                 "property_account_position_id": self.fiscal_position_exempt.id,
             }
         )
-        self.invoice_account = (
-            self.env["account.account"]
-            .search(
-                [
-                    (
-                        "user_type_id",
-                        "=",
-                        self.env.ref("account.data_account_type_payable").id,
-                    )
-                ],
-                limit=1,
-            )
-            .id
-        )
-        self.invoice_line_account = (
-            self.env["account.account"]
-            .search(
-                [
-                    (
-                        "user_type_id",
-                        "=",
-                        self.env.ref("account.data_account_type_expenses").id,
-                    )
-                ],
-                limit=1,
-            )
-            .id
+        # self.invoice_account = (
+        #     self.env["account.account"]
+        #     .search(
+        #         [
+        #             (
+        #                 "user_type_id",
+        #                 "=",
+        #                 self.env.ref("account.data_account_type_payable").id,
+        #             )
+        #         ],
+        #         limit=1,
+        #     )
+        # ).id
+        self.invoice_line_account = self.env["account.account"].search(
+            [
+                (
+                    "user_type_id",
+                    "=",
+                    self.env.ref("account.data_account_type_expenses").id,
+                )
+            ],
+            limit=1,
         )
         self.term_15_30 = self.env["account.payment.term"].create(
             {
@@ -94,9 +85,21 @@ class ReverseChargeCommon(TransactionCase):
                 ],
             }
         )
-        self.env["account.journal"].search(
-            [("name", "=", "Customer Invoices")]
-        ).update_posted = True
+        # self.env["account.journal"].search(
+        #     [("name", "=", "Customer Invoices")]
+        # ).update_posted = True
+
+    def create_invoice(self, partner, lines):
+        move_form = Form(self.invoice_model)
+        move_form.partner_id = partner
+        for line in lines:
+            with move_form.invoice_line_ids.new() as line_form:
+                line_form.name = line["name"]
+                line_form.product_id = line["product_id"]
+                line_form.price_unit = line["price_unit"]
+                line_form.account_id = line["account_id"]
+                # if line.get('tax_ids'):
+        return move_form.save()
 
     def _create_account(self):
         account_model = self.env["account.account"]
@@ -145,12 +148,7 @@ class ReverseChargeCommon(TransactionCase):
     def _create_journals(self):
         journal_model = self.env["account.journal"]
         self.journal_selfinvoice = journal_model.create(
-            {
-                "name": "selfinvoice",
-                "type": "sale",
-                "code": "SLF",
-                "update_posted": True,
-            }
+            {"name": "selfinvoice", "type": "sale", "code": "SLF"}
         )
 
         self.journal_reconciliation = journal_model.create(
@@ -158,28 +156,16 @@ class ReverseChargeCommon(TransactionCase):
                 "name": "RC reconciliation",
                 "type": "bank",
                 "code": "SLFRC",
-                "default_credit_account_id": self.account_selfinvoice.id,
-                "default_debit_account_id": self.account_selfinvoice.id,
-                "update_posted": True,
+                "default_account_id": self.account_selfinvoice.id,
             }
         )
 
         self.journal_selfinvoice_extra = journal_model.create(
-            {
-                "name": "Extra Selfinvoice",
-                "type": "sale",
-                "code": "SLFEX",
-                "update_posted": True,
-            }
+            {"name": "Extra Selfinvoice", "type": "sale", "code": "SLFEX"}
         )
 
         self.journal_cee_extra = journal_model.create(
-            {
-                "name": "Extra CEE",
-                "type": "purchase",
-                "code": "EXCEE",
-                "update_posted": True,
-            }
+            {"name": "Extra CEE", "type": "purchase", "code": "EXCEE"}
         )
 
     def _create_rc_types(self):

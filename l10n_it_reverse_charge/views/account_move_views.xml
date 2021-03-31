@@ -10,18 +10,9 @@
         <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
             <group name="accounting_info_group">
-                <field
-                    name="rc_self_invoice_id"
-                    readonly="True"
-                />
-                <field
-                    name="rc_self_purchase_invoice_id"
-                    readonly="True"
-                />
-                <field
-                    name="rc_purchase_invoice_id"
-                    readonly="True"
-                />
+                <field name="rc_self_invoice_id" readonly="True" />
+                <field name="rc_self_purchase_invoice_id" readonly="True" />
+                <field name="rc_purchase_invoice_id" readonly="True" />
             </group>
             <field name="price_subtotal" position="after">
                 <field name="rc" />
