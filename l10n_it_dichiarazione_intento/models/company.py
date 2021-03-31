@@ -6,8 +6,10 @@ from odoo import fields, models
 
 class ResCompany(models.Model):
 
-    _inherit = 'res.company'
+    _inherit = "res.company"
 
     dichiarazione_yearly_limit_ids = fields.One2many(
-        'dichiarazione.intento.yearly.limit', 'company_id',
-        string="Declaration yearly limit")
+        "dichiarazione.intento.yearly.limit",
+        "company_id",
+        string="Declaration yearly limit",
+    )
