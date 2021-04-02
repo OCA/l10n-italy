@@ -21,7 +21,7 @@ class TestTax(TransactionCase):
                 "name_prefix": "%s-" % datetime.now().year,
                 "type_id": self.range_type.id,
                 "duration_count": 1,
-                "unit_of_time": MONTHLY,
+                "unit_of_time": str(MONTHLY),
                 "count": 12,
             }
         )
@@ -32,7 +32,7 @@ class TestTax(TransactionCase):
                 "name_prefix": "%s-" % (datetime.now().year - 1),
                 "type_id": self.range_type.id,
                 "duration_count": 1,
-                "unit_of_time": MONTHLY,
+                "unit_of_time": str(MONTHLY),
                 "count": 12,
             }
         )
@@ -41,8 +41,8 @@ class TestTax(TransactionCase):
         self.account_model = self.env["account.account"]
         self.term_model = self.env["account.payment.term"]
         self.term_line_model = self.env["account.payment.term.line"]
-        self.invoice_model = self.env["account.invoice"]
-        self.invoice_line_model = self.env["account.invoice.line"]
+        self.invoice_model = self.env["account.move"]
+        self.invoice_line_model = self.env["account.move.line"]
         today = datetime.now().date()
         self.current_period = self.env["date.range"].search(
             [("date_start", "<=", today), ("date_end", ">=", today)]
@@ -88,9 +88,12 @@ class TestTax(TransactionCase):
 
         # ----- Set invoice date to recent date in the system
         # ----- This solves problems with account_invoice_sequential_dates
-        self.recent_date = self.invoice_model.search(
-            [("date_invoice", "!=", False)], order="date_invoice desc", limit=1
-        ).date_invoice
+        self.recent_date = (
+            self.invoice_model.search(
+                [("invoice_date", "!=", False)], order="invoice_date desc", limit=1
+            ).invoice_date
+            or today
+        )
         self.last_year_recent_date = date(
             self.recent_date.year - 1, self.recent_date.month, self.recent_date.day
         )
@@ -137,59 +140,17 @@ class TestTax(TransactionCase):
                 "payment_id": self.account_payment_term.id,
             }
         )
-        self.sale_journal = self.env["account.journal"].search([("type", "=", "sale")])[
-            0
-        ]
+        self.sale_journal = self.env["account.journal"].search(
+            [("type", "=", "sale")], limit=1
+        )
         self.purchase_journal = self.env["account.journal"].search(
-            [("type", "=", "purchase")]
-        )[0]
+            [("type", "=", "purchase")], limit=1
+        )
         self.general_journal = self.env["account.journal"].search(
-            [("type", "=", "general")]
-        )[0]
+            [("type", "=", "general")], limit=1
+        )
 
     def test_vat_statement(self):
-        out_invoice_account = (
-            self.env["account.account"]
-            .search(
-                [
-                    (
-                        "user_type_id",
-                        "=",
-                        self.env.ref("account.data_account_type_receivable").id,
-                    )
-                ],
-                limit=1,
-            )
-            .id
-        )
-        in_invoice_account = (
-            self.env["account.account"]
-            .search(
-                [
-                    (
-                        "user_type_id",
-                        "=",
-                        self.env.ref("account.data_account_type_payable").id,
-                    )
-                ],
-                limit=1,
-            )
-            .id
-        )
-        out_invoice_line_account = (
-            self.env["account.account"]
-            .search(
-                [
-                    (
-                        "user_type_id",
-                        "=",
-                        self.env.ref("account.data_account_type_expenses").id,
-                    )
-                ],
-                limit=1,
-            )
-            .id
-        )
         in_invoice_line_account = (
             self.env["account.account"]
             .search(
@@ -207,69 +168,73 @@ class TestTax(TransactionCase):
 
         out_invoice = self.invoice_model.create(
             {
-                "date_invoice": self.recent_date,
-                "account_id": out_invoice_account,
+                "invoice_date": self.recent_date,
                 "journal_id": self.sale_journal.id,
                 "partner_id": self.env.ref("base.res_partner_3").id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "service",
+                            "price_unit": 100,
+                            "quantity": 1,
+                            "tax_ids": [(6, 0, [self.account_tax_22.id])],
+                        },
+                    )
+                ],
             }
         )
-        self.invoice_line_model.create(
-            {
-                "invoice_id": out_invoice.id,
-                "account_id": out_invoice_line_account,
-                "name": "service",
-                "price_unit": 100,
-                "quantity": 1,
-                "invoice_line_tax_ids": [(6, 0, [self.account_tax_22.id])],
-            }
-        )
-        out_invoice.compute_taxes()
-        out_invoice.action_invoice_open()
+        out_invoice._recompute_tax_lines()
+        out_invoice.action_post()
 
         in_invoice = self.invoice_model.create(
             {
-                "date_invoice": self.recent_date,
-                "account_id": in_invoice_account,
+                "invoice_date": self.recent_date,
                 "journal_id": self.purchase_journal.id,
                 "partner_id": self.env.ref("base.res_partner_4").id,
-                "type": "in_invoice",
+                "move_type": "in_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "service",
+                            "account_id": in_invoice_line_account,
+                            "price_unit": 50,
+                            "quantity": 1,
+                            "tax_ids": [(6, 0, [self.account_tax_22_credit.id])],
+                        },
+                    )
+                ],
             }
         )
-        self.invoice_line_model.create(
-            {
-                "invoice_id": in_invoice.id,
-                "account_id": in_invoice_line_account,
-                "name": "service",
-                "price_unit": 50,
-                "quantity": 1,
-                "invoice_line_tax_ids": [(6, 0, [self.account_tax_22_credit.id])],
-            }
-        )
-        in_invoice.compute_taxes()
-        in_invoice.action_invoice_open()
+        in_invoice._recompute_tax_lines()
+        in_invoice.action_post()
 
         last_year_in_invoice = self.invoice_model.create(
             {
-                "date_invoice": self.last_year_recent_date,
-                "account_id": in_invoice_account,
+                "invoice_date": self.last_year_recent_date,
                 "journal_id": self.purchase_journal.id,
                 "partner_id": self.env.ref("base.res_partner_4").id,
-                "type": "in_invoice",
+                "move_type": "in_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "service",
+                            "price_unit": 50,
+                            "quantity": 1,
+                            "tax_ids": [(6, 0, [self.account_tax_22_credit.id])],
+                        },
+                    )
+                ],
             }
         )
-        self.invoice_line_model.create(
-            {
-                "invoice_id": last_year_in_invoice.id,
-                "account_id": in_invoice_line_account,
-                "name": "service",
-                "price_unit": 50,
-                "quantity": 1,
-                "invoice_line_tax_ids": [(6, 0, [self.account_tax_22_credit.id])],
-            }
-        )
-        last_year_in_invoice.compute_taxes()
-        last_year_in_invoice.action_invoice_open()
+        last_year_in_invoice._recompute_tax_lines()
+        last_year_in_invoice.action_post()
 
         self.last_year_vat_statement = self.vat_statement_model.create(
             {
@@ -290,7 +255,9 @@ class TestTax(TransactionCase):
             }
         )
         self.current_period.vat_statement_id = self.vat_statement
+        self.account_tax_22.refresh()
         self.vat_statement.compute_amounts()
+        self.vat_statement._compute_authority_vat_amount()
         self.vat_statement.previous_credit_vat_account_id = self.received_vat_account
 
         self.assertEqual(self.vat_statement.previous_credit_vat_amount, 11)
@@ -302,10 +269,15 @@ class TestTax(TransactionCase):
         self.assertEqual(len(self.vat_statement.credit_vat_account_line_ids), 1)
         self.vat_statement.advance_account_id = self.paid_vat_account
         self.vat_statement.advance_amount = 100
-        self.vat_statement.refresh()
+        self.vat_statement._compute_authority_vat_amount()
         self.assertEqual(self.vat_statement.authority_vat_amount, -100)
         self.vat_statement.create_move()
         self.assertEqual(self.vat_statement.state, "confirmed")
         self.assertTrue(self.vat_statement.move_id)
-        self.assertEqual(self.vat_statement.move_id.amount, 122)
+        vat_auth_found = False
+        for line in self.vat_statement.move_id.line_ids:
+            if line.account_id.id == self.vat_statement.authority_vat_account_id.id:
+                vat_auth_found = True
+                self.assertEqual(line.debit, 100)
+        self.assertTrue(vat_auth_found)
         # TODO payment
