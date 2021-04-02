@@ -1,31 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!--
   Copyright 2020 Simone Rubino - Agile Business Group
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
   -->
-
 <odoo>
     <record id="fatturapa_related_document_type_view_tree" model="ir.ui.view">
         <field name="name">Tree view for fatturapa.related_document_type</field>
         <field name="model">fatturapa.related_document_type</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="type"/>
-                <field name="name"/>
-                <field name="lineRef" readonly="1"/>
-                <field name="date"/>
-                <field name="numitem"/>
-                <field name="code"/>
-                <field name="cig"/>
-                <field name="cup"/>
+                <field name="type" />
+                <field name="name" />
+                <field name="lineRef" readonly="1" />
+                <field name="date" />
+                <field name="numitem" />
+                <field name="code" />
+                <field name="cig" />
+                <field name="cup" />
             </tree>
         </field>
     </record>
 
     <record id="fatturapa_related_document_type_inline_view_tree" model="ir.ui.view">
-        <field name="name">Inline editable tree view for fatturapa.related_document_type</field>
+        <field
+            name="name"
+        >Inline editable tree view for fatturapa.related_document_type</field>
         <field name="model">fatturapa.related_document_type</field>
-        <field name="inherit_id" ref="fatturapa_related_document_type_view_tree"/>
+        <field name="inherit_id" ref="fatturapa_related_document_type_view_tree" />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <tree position="attributes">
@@ -42,18 +43,18 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="type"/>
-                            <field name="name"/>
-                            <field name="lineRef" readonly="1"/>
-                            <field name="date"/>
-                            <field name="numitem"/>
-                            <field name="code"/>
-                            <field name="cig"/>
-                            <field name="cup"/>
+                            <field name="type" />
+                            <field name="name" />
+                            <field name="lineRef" readonly="1" />
+                            <field name="date" />
+                            <field name="numitem" />
+                            <field name="code" />
+                            <field name="cig" />
+                            <field name="cup" />
                         </group>
                         <group groups="base.group_no_one">
-                            <field name="invoice_id"/>
-                            <field name="invoice_line_id"/>
+                            <field name="invoice_id" />
+                            <field name="invoice_line_id" />
                         </group>
                     </group>
                 </sheet>
@@ -67,10 +68,12 @@
         res_model="fatturapa.related_document_type"
         view_mode="tree,form"
         view_id="fatturapa_related_document_type_view_tree"
-        context="{'create': False, 'edit': False, 'delete': False}"/>
+        context="{'create': False, 'edit': False, 'delete': False}"
+    />
 
     <menuitem
         id="fatturapa_related_document_type_menu"
         parent="fatturapa_common_menu"
-        action="fatturapa_related_document_type_action"/>
+        action="fatturapa_related_document_type_action"
+    />
 </odoo>

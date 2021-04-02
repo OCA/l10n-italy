@@ -10,4 +10,4 @@ else:
     try:
         from . import fatturapa  # noqa: F401
     except pyxb.PyXBVersionError as e:
-        _logger.warning('%s: %s' % (e.__class__.__name__, e))
+        _logger.warning("{}: {}".format(e.__class__.__name__, e))
