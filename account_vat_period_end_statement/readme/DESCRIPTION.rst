@@ -42,4 +42,3 @@
     reconciliation.
 
     It is also possible to print the 'VAT statement' clicking on print > Print VAT period end statement.
-

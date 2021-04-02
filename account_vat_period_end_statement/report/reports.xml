@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <!--
   Copyright 2019 Simone Rubino - Agile Business Group
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -13,8 +13,9 @@
         file="account_vat_period_end_statement.vat_statement"
     />
     <record id="report_vat_statement" model="ir.actions.report">
-        <field name="paperformat_id"
-        ref="l10n_it_account.l10n_it_account_a4_portrait"/>
+        <field
+            name="paperformat_id"
+            ref="l10n_it_account.l10n_it_account_a4_portrait"
+        />
    </record>
 </odoo>
-
