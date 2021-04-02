@@ -1,7 +1,7 @@
 #  Copyright 2020 Simone Rubino - Agile Business Group
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class SaleOrder(models.Model):
@@ -15,12 +15,12 @@ class SaleOrder(models.Model):
         groups="account.group_account_user",
     )
 
-    @api.multi
-    def _finalize_invoices(self, invoices, references):
-        res = super()._finalize_invoices(invoices, references)
+    def _create_invoices(self, grouped=False, final=False, date=None):
+        moves = super()._create_invoices(grouped=grouped, final=final, date=date)
+
         # To each invoice, link the documents of the related order
         # only if the order is in `self`
-        for invoice in invoices.values():
+        for invoice in moves:
             orders = invoice.invoice_line_ids.mapped("sale_line_ids.order_id")
             orders = orders.filtered(lambda o: o in self)
             sale_documents = orders.mapped("related_documents")
@@ -31,9 +31,8 @@ class SaleOrder(models.Model):
                     ],
                 }
             )
-        return res
+        return moves
 
-    @api.multi
     def unlink(self):
         related_documents = self.mapped("related_documents")
         res = super().unlink()

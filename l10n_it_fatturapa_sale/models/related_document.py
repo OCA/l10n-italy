@@ -1,7 +1,7 @@
 #  Copyright 2020 Simone Rubino - Agile Business Group
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class FatturapaRelatedDocumentType(models.Model):
@@ -26,7 +26,6 @@ class FatturapaRelatedDocumentType(models.Model):
         readonly=True,
     )
 
-    @api.multi
     def check_unlink(self):
         """
         Related documents only make sense if they are related (linked)
