@@ -5,22 +5,22 @@ from odoo import api, fields, models
 
 
 class FatturapaRelatedDocumentType(models.Model):
-    _inherit = 'fatturapa.related_document_type'
+    _inherit = "fatturapa.related_document_type"
 
     invoice_line_id = fields.Many2one(
-        ondelete='set null',
+        ondelete="set null",
     )
     invoice_id = fields.Many2one(
-        ondelete='set null',
+        ondelete="set null",
     )
     sale_order_id = fields.Many2one(
-        comodel_name='sale.order',
+        comodel_name="sale.order",
         string="Sale order",
         index=True,
         readonly=True,
     )
     sale_order_line_id = fields.Many2one(
-        comodel_name='sale.order.line',
+        comodel_name="sale.order.line",
         string="Sale order line",
         index=True,
         readonly=True,
@@ -36,10 +36,10 @@ class FatturapaRelatedDocumentType(models.Model):
         """
         to_delete = self.env[self._name].browse()
         check_fields = [
-            'invoice_line_id',
-            'invoice_id',
-            'sale_order_id',
-            'sale_order_line_id',
+            "invoice_line_id",
+            "invoice_id",
+            "sale_order_id",
+            "sale_order_line_id",
         ]
         for related_document in self:
             for check_field in check_fields:

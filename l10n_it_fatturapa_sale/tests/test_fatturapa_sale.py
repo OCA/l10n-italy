@@ -5,32 +5,49 @@ from odoo.tests.common import TransactionCase
 
 
 class TestFatturapaSale(TransactionCase):
-
     def setUp(self):
         super().setUp()
-        self.partner_id = self.env['res.partner'] \
-            .name_create("Test partner")[0]
-        self.product_id = self.env['product.product'] \
-            .name_create("Test product")[0]
+        self.partner_id = self.env["res.partner"].name_create("Test partner")[0]
+        self.product_id = self.env["product.product"].name_create("Test product")[0]
 
     def _create_order(self):
-        sale_order = self.env['sale.order'].create([{
-            'partner_id': self.partner_id,
-            'related_documents': [(0, 0, {
-                'type': 'order',
-                'name': 'order1',
-            })],
-        }])
-        order_line = self.env['sale.order.line'].create([{
-            'order_id': sale_order.id,
-            'product_id': self.product_id,
-            'product_uom_qty': 1,
-            'admin_ref': 'line admin ref',
-            'related_documents': [(0, 0, {
-                'type': 'order',
-                'name': 'line1',
-            })],
-        }])
+        sale_order = self.env["sale.order"].create(
+            [
+                {
+                    "partner_id": self.partner_id,
+                    "related_documents": [
+                        (
+                            0,
+                            0,
+                            {
+                                "type": "order",
+                                "name": "order1",
+                            },
+                        )
+                    ],
+                }
+            ]
+        )
+        order_line = self.env["sale.order.line"].create(
+            [
+                {
+                    "order_id": sale_order.id,
+                    "product_id": self.product_id,
+                    "product_uom_qty": 1,
+                    "admin_ref": "line admin ref",
+                    "related_documents": [
+                        (
+                            0,
+                            0,
+                            {
+                                "type": "order",
+                                "name": "line1",
+                            },
+                        )
+                    ],
+                }
+            ]
+        )
         sale_order.action_confirm()
         return order_line, sale_order
 
@@ -44,25 +61,20 @@ class TestFatturapaSale(TransactionCase):
 
         # Check the invoice
         invoice_ids = sale_order.action_invoice_create()
-        self.assertEqual(len(invoice_ids), 1,
-                         "Multiple invoices for sale order")
-        invoice = self.env['account.invoice'].browse(invoice_ids)
-        self.assertEqual(
-            invoice.related_documents,
-            sale_order.related_documents)
+        self.assertEqual(len(invoice_ids), 1, "Multiple invoices for sale order")
+        invoice = self.env["account.invoice"].browse(invoice_ids)
+        self.assertEqual(invoice.related_documents, sale_order.related_documents)
 
         # Check the invoice line
         invoice_line = invoice.invoice_line_ids.filtered(
-            lambda l: order_line in l.sale_line_ids)
-        self.assertEqual(len(invoice_line), 1,
-                         "Multiple invoice lines for sale order line")
+            lambda l: order_line in l.sale_line_ids
+        )
+        self.assertEqual(
+            len(invoice_line), 1, "Multiple invoice lines for sale order line"
+        )
 
-        self.assertEqual(
-            invoice_line.related_documents,
-            order_line.related_documents)
-        self.assertEqual(
-            invoice_line.admin_ref,
-            order_line.admin_ref)
+        self.assertEqual(invoice_line.related_documents, order_line.related_documents)
+        self.assertEqual(invoice_line.admin_ref, order_line.admin_ref)
 
     def test_create_invoice_multiple(self):
         """
@@ -78,17 +90,17 @@ class TestFatturapaSale(TransactionCase):
 
         # Check the invoice
         invoice_ids = sale_orders.action_invoice_create()
-        self.assertEqual(len(invoice_ids), 1,
-                         "Multiple invoices for sale order")
-        invoice = self.env['account.invoice'].browse(invoice_ids)
+        self.assertEqual(len(invoice_ids), 1, "Multiple invoices for sale order")
+        invoice = self.env["account.invoice"].browse(invoice_ids)
         self.assertEqual(
-            invoice.related_documents,
-            sale_orders.mapped('related_documents'))
+            invoice.related_documents, sale_orders.mapped("related_documents")
+        )
 
         # Check the invoice lines
         self.assertEqual(
-            invoice.invoice_line_ids.mapped('related_documents'),
-            sale_orders_lines.mapped('related_documents'))
+            invoice.invoice_line_ids.mapped("related_documents"),
+            sale_orders_lines.mapped("related_documents"),
+        )
 
     def test_keep_document(self):
         """
@@ -99,9 +111,8 @@ class TestFatturapaSale(TransactionCase):
         order_line, sale_order = self._create_order()
 
         invoice_ids = sale_order.action_invoice_create()
-        self.assertEqual(len(invoice_ids), 1,
-                         "Multiple invoices for sale order")
-        invoice = self.env['account.invoice'].browse(invoice_ids)
+        self.assertEqual(len(invoice_ids), 1, "Multiple invoices for sale order")
+        invoice = self.env["account.invoice"].browse(invoice_ids)
         related_documents = invoice.related_documents
 
         # Delete the invoice: the related document persists
