@@ -7,13 +7,11 @@
 {
     "name": "ITA - Liquidazione IVA",
     "version": "12.0.1.7.0",
-    'category': 'Localization/Italy',
-    'summary': "Allow to create the 'VAT Statement'.",
-    'license': 'AGPL-3',
-    "author": "Agile Business Group, Odoo Community Association (OCA)"
-              ", LinkIt Spa",
-    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
-               'account_vat_period_end_statement',
+    "category": "Localization/Italy",
+    "summary": "Allow to create the 'VAT Statement'.",
+    "license": "AGPL-3",
+    "author": "Agile Business Group, Odoo Community Association (OCA), LinkIt Spa",
+    "website": "https://github.com/OCA/l10n-italy",
     "depends": [
         "account",
         "account_tax_balance",
@@ -21,16 +19,16 @@
         "l10n_it_account",
         "l10n_it_fiscalcode",
         "web",
-        ],
-    'data': [
-        'wizard/add_period.xml',
-        'wizard/remove_period.xml',
-        'security/ir.model.access.csv',
-        'security/security.xml',
-        'report/reports.xml',
-        'views/report_vatperiodendstatement.xml',
-        'views/config.xml',
-        'views/account_view.xml',
     ],
-    'installable': True,
+    "data": [
+        "wizard/add_period.xml",
+        "wizard/remove_period.xml",
+        "security/ir.model.access.csv",
+        "security/security.xml",
+        "report/reports.xml",
+        "views/report_vatperiodendstatement.xml",
+        "views/config.xml",
+        "views/account_view.xml",
+    ],
+    "installable": True,
 }
