@@ -52,8 +52,8 @@
                     />
                     <field
                         name="authority_partner_id"
-                        domain="[('supplier', '=', True)]"
-                        contenxt="{'default_supplier': True}"
+                        domain="[('supplier_rank','>', 0)]"
+                        context="{'default_supplier': True}"
                         attrs="{'invisible': [('annual', '=', True)]}"
                     />
                     <field
