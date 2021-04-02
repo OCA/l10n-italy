@@ -1,7 +1,7 @@
 #  Copyright 2020 Simone Rubino - Agile Business Group
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class SaleOrderLine(models.Model):
@@ -16,12 +16,10 @@ class SaleOrderLine(models.Model):
     )
     admin_ref = fields.Char(
         string="Admin. ref.",
-        size=20,
         copy=False,
         groups="account.group_account_user",
     )
 
-    @api.multi
     def _prepare_invoice_line(self, qty):
         self.ensure_one()
         invoice_line_vals = super()._prepare_invoice_line(qty)
@@ -56,7 +54,6 @@ class SaleOrderLine(models.Model):
             )
         return invoice_line_vals
 
-    @api.multi
     def unlink(self):
         related_documents = self.mapped("related_documents")
         res = super().unlink()

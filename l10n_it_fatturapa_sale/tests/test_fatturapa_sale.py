@@ -62,7 +62,7 @@ class TestFatturapaSale(TransactionCase):
         # Check the invoice
         invoice_ids = sale_order.action_invoice_create()
         self.assertEqual(len(invoice_ids), 1, "Multiple invoices for sale order")
-        invoice = self.env["account.invoice"].browse(invoice_ids)
+        invoice = self.env["account.move"].browse(invoice_ids)
         self.assertEqual(invoice.related_documents, sale_order.related_documents)
 
         # Check the invoice line
@@ -91,7 +91,7 @@ class TestFatturapaSale(TransactionCase):
         # Check the invoice
         invoice_ids = sale_orders.action_invoice_create()
         self.assertEqual(len(invoice_ids), 1, "Multiple invoices for sale order")
-        invoice = self.env["account.invoice"].browse(invoice_ids)
+        invoice = self.env["account.move"].browse(invoice_ids)
         self.assertEqual(
             invoice.related_documents, sale_orders.mapped("related_documents")
         )
@@ -112,7 +112,7 @@ class TestFatturapaSale(TransactionCase):
 
         invoice_ids = sale_order.action_invoice_create()
         self.assertEqual(len(invoice_ids), 1, "Multiple invoices for sale order")
-        invoice = self.env["account.invoice"].browse(invoice_ids)
+        invoice = self.env["account.move"].browse(invoice_ids)
         related_documents = invoice.related_documents
 
         # Delete the invoice: the related document persists
