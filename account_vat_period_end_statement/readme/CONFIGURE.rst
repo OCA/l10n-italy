@@ -1,7 +1,7 @@
 **Italiano**
 
     Per generare i periodi della dichiarazione IVA,
-    aprire Impostazioni > Fatturazione > Configurazione > Intervalli data > Generazione intervalli data e selezionare:
+    aprire Fatturazione > Configurazione > Contabilità > Intervalli date > Generazione intervalli data (visibile solo in modalità debug):
 
     * prefisso nome intervallo: prefisso identificativo per i periodi da generare (tipicamente l'anno)
     * durata: 1 mese
@@ -21,7 +21,7 @@
 **English**
 
     In order to generate VAT statement's periods,
-    open Accounting > Configuration > Date ranges > Generate Date Ranges and select:
+    open Accounting > Configuration > Accounting > Date ranges > Generate Date Ranges (visible only in debug mode):
 
     * range name prefix: prefix identifying the periods to be generated (usually the year)
     * duration: 1 month
