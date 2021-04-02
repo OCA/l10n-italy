@@ -4,12 +4,12 @@
 from odoo import api, models
 
 
-class AccountInvoiceLine (models.Model):
-    _inherit = 'account.invoice.line'
+class AccountInvoiceLine(models.Model):
+    _inherit = "account.invoice.line"
 
     @api.multi
     def unlink(self):
-        related_documents = self.mapped('related_documents')
+        related_documents = self.mapped("related_documents")
         res = super().unlink()
         related_documents.check_unlink().unlink()
         return res
