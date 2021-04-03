@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <template
+        id="account_invoice_it_dati_ddt"
+        inherit_id="l10n_it_fatturapa_out.account_invoice_it_dati_ddt"
+    >
+            <xpath expr="t" position="replace">
+<!--
+    Al momento non c'è un riferimento diretto tra una dn e una riga fattura, solo
+    una relazione inversa. Il codice cicla su tutte le righe fattura e raccoglie
+    i riferimenti inversi.
+
+    Se più righe puntano alla stessa dn, viene indicata l'ultima.
+        <t t-set="dn_line_xref" t-value="dict((line.delivery_note_id.id, n) for n, line in enumerate(record.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True), start=1) if line.delivery_note_id)"/>
+               <RiferimentoNumeroLinea t-if="dn.id in dn_line_xref" t-esc="dn_line_xref[dn.id]" />
+
+    Oppure, come qui sotto, le elenchiamo tutte, anche se costa ciclare per ogni DDT.
+    Nota: dalle prove effettuate, le prestazioni sembrano essere più che accettbili (eufemismo, la generazione dell'XML
+    risulta essere significativamente più veloce della visualizzazione della stessa fattura).
+-->
+                <!--2.1.8-->
+                <DatiDDT
+                t-if="wizard.include_transport_data == 'dati_dn'"
+                t-foreach="record.delivery_note_ids"
+                t-as="dn"
+            >
+                    <NumeroDDT t-esc="dn.name[-20:]" />
+                    <DataDDT t-esc="format_date(dn.date)" />
+                    <RiferimentoNumeroLinea
+                    t-foreach="[n for n, line in enumerate(record.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True), start=1) if not line.display_type in ('line_section', 'line_note') and line.delivery_note_id and line.delivery_note_id == dn]"
+                    t-as="n"
+                    t-esc="n"
+                />
+                </DatiDDT>
+            </xpath>
+        </template>
+</odoo>
