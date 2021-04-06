@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (c) 2021 Marco Colombo (https://github.com/TheMule71)
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+<odoo>
+    <record id="view_tax_form_vat" model="ir.ui.view">
+        <field name="name">avsd.invoice.supplier.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group/group/field[@name='date_invoice']" position="after">
+                <field name="date_vat_settlement" options="{'datepicker': {'warn_future': true}}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

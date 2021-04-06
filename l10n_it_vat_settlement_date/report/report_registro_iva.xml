@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_registro_iva"
+        inherit_id="l10n_it_vat_registries.report_registro_iva">
+        <xpath expr="//tr[@name='vat_body_tax']/t/td[hasclass('left_without_line')][1]" position="replace"/>
+        <xpath expr="//tr[@name='vat_body_tax']/t/td[hasclass('left_without_line')][1]" position="replace"/>
+        <xpath expr="//tr[@name='vat_body_tax']/t/td[hasclass('left_without_line')]" position="before">
+            <td t-if="not move.date_vat_settlement or move.date == move.date_vat_settlement" class="left_without_line"></td>
+            <td t-if="move.date_vat_settlement and move.date != move.date_vat_settlement" class="left_without_line_bold">Settlement Date</td>
+            <td t-if="not move.date_vat_settlement or move.date == move.date_vat_settlement" class="left_without_line"></td>
+            <td t-if="move.date_vat_settlement and move.date != move.date_vat_settlement" class="left_without_line_bold" t-esc="format_date(move.date_vat_settlement,date_format)"></td>
+        </xpath>
+    </template>
+</odoo>
