@@ -152,6 +152,13 @@ class AccountInvoice(models.Model):
         states={'draft': [('readonly', False)]},
     )
 
+    @api.model
+    def create(self, vals):
+        invoice = super().create(vals)
+        if not invoice.riba_partner_bank_id:
+            invoice._onchange_riba_partner_bank_id()
+        return invoice
+
     @api.onchange('partner_id', 'payment_term_id', 'type')
     def _onchange_riba_partner_bank_id(self):
         if not self.riba_partner_bank_id or \
