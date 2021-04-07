@@ -3,7 +3,7 @@
 import time
 
 from odoo import api, models
-from odoo.exceptions import Warning as UserError
+from odoo.exceptions import UserError
 from odoo.tools.misc import formatLang
 from odoo.tools.translate import _
 
@@ -15,7 +15,6 @@ class ReportRegistroIva(models.AbstractModel):
     @api.model
     def _get_report_values(self, docids, data=None):
         # docids required by caller but not used
-        # see addons/account/report/account_balance.py
 
         date_format = data["form"]["date_format"]
 
@@ -55,9 +54,6 @@ class ReportRegistroIva(models.AbstractModel):
         else:
             formatted_date = my_date.strftime(date_format)
         return formatted_date or ""
-
-    def _get_invoice_from_move(self, move):
-        return self.env["account.invoice"].search([("move_id", "=", move.id)])
 
     def _get_move_line(self, move, data):
         return [move_line for move_line in move.line_ids]
@@ -107,8 +103,10 @@ class ReportRegistroIva(models.AbstractModel):
 
             if set_cee_absolute_value:
                 tax_amount = abs(tax_amount)
-
-            if "receivable" in move.move_type or "payable_refund" == move.move_type:
+            if (
+                "receivable" in move.financial_type
+                or "payable_refund" == move.financial_type
+            ):
                 # otherwise refund would be positive and invoices
                 # negative.
                 # We also check payable_refund as it normaly is < 0, but
@@ -143,7 +141,6 @@ class ReportRegistroIva(models.AbstractModel):
         # index è usato per non ripetere la stampa dei dati fattura quando ci
         # sono più codici IVA
         index = 0
-        invoice = self._get_invoice_from_move(move)
         if "refund" in move.move_type:
             invoice_type = "NC"
         else:
@@ -163,8 +160,8 @@ class ReportRegistroIva(models.AbstractModel):
                 "tax": amounts_by_tax_id[tax_id]["tax"],
                 "index": index,
                 "invoice_type": invoice_type,
-                "invoice_date": (invoice and invoice.date_invoice or move.date or ""),
-                "reference": (invoice and invoice.reference or ""),
+                "invoice_date": (move and move.invoice_date or move.date or ""),
+                "reference": (move and move.name or ""),
                 # These 4 items are added to make the dictionary more usable
                 # in further customizations, allowing inheriting modules to
                 # retrieve the records that have been used to create the
@@ -174,7 +171,7 @@ class ReportRegistroIva(models.AbstractModel):
                 "move_line_rec": self.env["account.move.line"].browse(
                     [move_line.id for move_line in move_lines]
                 ),
-                "invoice_rec": invoice,
+                "invoice_rec": move,
             }
             inv_taxes.append(tax_item)
             index += 1
