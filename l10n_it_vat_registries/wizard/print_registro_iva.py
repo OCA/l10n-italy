@@ -65,7 +65,6 @@ class WizardRegistroIva(models.TransientModel):
         )
         return moves.ids
 
-    @api.multi
     def print_registro(self):
         self.ensure_one()
         wizard = self
@@ -86,7 +85,7 @@ class WizardRegistroIva(models.TransientModel):
         datas_form["registry_type"] = wizard.layout_type
         datas_form["year_footer"] = wizard.year_footer
 
-        lang_code = self.env.user.company_id.partner_id.lang
+        lang_code = self.env.company.partner_id.lang
         lang = self.env["res.lang"]
         lang_id = lang._lang_get(lang_code)
         date_format = lang_id.date_format

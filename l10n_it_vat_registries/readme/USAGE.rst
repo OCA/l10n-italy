@@ -2,7 +2,7 @@
 
 Dal menu
 Contabilità -> Rendicontazione -> Imposte -> Registri IVA
-è possibile lanciare il procedura di stampa, nella quale è necessario impostare un intervallo di date. Qui è possibile utilizzare un periodo fiscale nel campo 'Intervallo Date'.
+è possibile lanciare la procedura di stampa, nella quale è necessario impostare un intervallo di date. Qui è possibile utilizzare un periodo fiscale nel campo 'Intervallo Date'.
 
 Nel campo 'Registro IVA' è possibile selezionare un registro preconfigurato, oppure è possibile andare direttamente a impostare i registri e la struttura nei campi sottostanti.
 
