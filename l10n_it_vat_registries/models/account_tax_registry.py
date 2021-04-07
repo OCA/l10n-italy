@@ -11,9 +11,7 @@ class AccountTaxRegistry(models.Model):
         "res.company",
         "Company",
         required=True,
-        default=lambda self: self.env["res.company"]._company_default_get(
-            "account.tax.registry"
-        ),
+        default=lambda self: self.env.company,
     )
     journal_ids = fields.One2many(
         "account.journal", "tax_registry_id", "Journals", readonly=True
