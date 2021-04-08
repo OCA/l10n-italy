@@ -5,7 +5,7 @@ from odoo import api, models
 
 
 class ReportVatRegistry(models.AbstractModel):
-    _inherit = 'report.l10n_it_vat_registries.report_registro_iva'
+    _inherit = "report.l10n_it_vat_registries.report_registro_iva"
 
     @api.model
     def _compute_totals_tax(self, tax, data):
