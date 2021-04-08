@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_vat_registries_split_payment
+# 	* l10n_it_vat_registries_split_payment
 #
 msgid ""
 msgstr ""
@@ -13,6 +13,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: l10n_it_vat_registries_split_payment
+#: model:ir.model.fields,field_description:l10n_it_vat_registries_split_payment.field_report_l10n_it_vat_registries_report_registro_iva__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_vat_registries_split_payment
+#: model:ir.model.fields,field_description:l10n_it_vat_registries_split_payment.field_report_l10n_it_vat_registries_report_registro_iva__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_vat_registries_split_payment
+#: model:ir.model.fields,field_description:l10n_it_vat_registries_split_payment.field_report_l10n_it_vat_registries_report_registro_iva____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: l10n_it_vat_registries_split_payment
 #: model:ir.model,name:l10n_it_vat_registries_split_payment.model_report_l10n_it_vat_registries_report_registro_iva
