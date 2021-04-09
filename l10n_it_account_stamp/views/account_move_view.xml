@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <!-- Form: Invoice Customer -->
+        <record id="account_move_form_stamp" model="ir.ui.view">
+            <field name="name">account.move.form.stamp</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form" />
+            <field name="arch" type="xml">
+                <xpath
+                    expr="//field[@name='invoice_line_ids']/tree/field[@name='sequence']"
+                    position="after"
+                >
+                    <field name="is_stamp_line" invisible="1" />
+                </xpath>
+                <xpath
+                    expr="//field[@name='invoice_line_ids']/tree"
+                    position="attributes"
+                >
+                    <attribute name="colors">CadetBlue:is_stamp_line==True;</attribute>
+                </xpath>
+                <xpath expr="//group[@id='header_right_group']" position="inside">
+                    <field name="auto_compute_stamp" invisible="1" />
+                    <field name="tax_stamp" string="Tax stamp" invisible="1" />
+                    <field
+                        name="manually_apply_tax_stamp"
+                        attrs="{'invisible': [('auto_compute_stamp', '=', True)]}"
+                    />
+                </xpath>
+                <field name="narration" position="before">
+                    <img
+                        src="/l10n_it_account_stamp/static/description/icon.png"
+                        alt="Tax stamp"
+                        attrs="{'invisible': [('tax_stamp', '=', False)]}"
+                    />
+                    <button
+                        class="oe_edit_only"
+                        type="object"
+                        string="Add tax stamp line"
+                        name="add_tax_stamp_line"
+                        attrs="{'invisible': ['|',('tax_stamp', '=', False),('state', 'not in', 'draft')]}"
+                    />
+                    <!--move narration down-->
+                    <div />
+                </field>
+                <xpath
+                    expr="//form/sheet/notebook/page[@id='invoice_tab']/field/form/sheet/group/field[@name='product_id']"
+                    position="after"
+                >
+                    <field name="is_stamp_line" invisible="1" />
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
