@@ -14,13 +14,13 @@ ITA - Imposta di bollo
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-italy/tree/14.0--add-14.0-mig-l10n_it_account_stamp/l10n_it_account_stamp
+    :target: https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_account_stamp
     :alt: OCA/l10n-italy
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-italy-14-0--add-14-0-mig-l10n_it_account_stamp/l10n-italy-14-0--add-14-0-mig-l10n_it_account_stamp-l10n_it_account_stamp
+    :target: https://translation.odoo-community.org/projects/l10n-italy-14-0/l10n-italy-14-0-l10n_it_account_stamp
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/122/14.0--add-14.0-mig-l10n_it_account_stamp
+    :target: https://runbot.odoo-community.org/runbot/122/14.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -63,13 +63,13 @@ Automatic mode:
 
 - Go to 'Tax Stamp 2 euro' product and configure 'Stamp taxes' (exemption taxes).
 
-- For each invoice, the base amount for each selected tax will be added up and used to automatically determine the application of the account stamp.
+- For each invoice, the base amount for each selected tax will be added up and used to determine the application of the account stamp.
 
 Manual mode:
 
 - Go to 'Tax Stamp 2 euro' product and deselect 'Auto-compute' checkbox.
 
-- For each invoice, manually enable 'Tax Stamp' checkbox. The base amount for each selected tax will be added up and used to determine the application of the account stamp.
+- For each invoice, manually enable 'Tax Stamp' checkbox.
 
 Also set income/expense accounts, typically income = 'Debiti per bolli' and expense = 'Valori bollati'.
 
@@ -94,7 +94,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_account_stamp%0Aversion:%2014.0--add-14.0-mig-l10n_it_account_stamp%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_account_stamp%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -132,6 +132,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/14.0--add-14.0-mig-l10n_it_account_stamp/l10n_it_account_stamp>`_ project on GitHub.
+This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_account_stamp>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
