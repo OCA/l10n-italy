@@ -1,17 +1,17 @@
 from odoo import api, fields, models
 
 
-class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+class AccountMove(models.Model):
+    _inherit = "account.move"
 
-    @api.multi
-    @api.depends("partner_id", "journal_id", "type", "fiscal_position_id")
+    @api.depends("partner_id", "journal_id", "move_type", "fiscal_position_id")
     def _compute_set_document_fiscal_type(self):
         for invoice in self:
-            if invoice.state != "draft":
+            if invoice.state != "draft" and invoice.fiscal_document_type_id:
                 continue
+            invoice.fiscal_document_type_id = False
             dt = invoice._get_document_fiscal_type(
-                invoice.type,
+                invoice.move_type,
                 invoice.partner_id,
                 invoice.fiscal_position_id,
                 invoice.journal_id,
@@ -20,18 +20,18 @@ class AccountInvoice(models.Model):
                 invoice.fiscal_document_type_id = dt[0]
 
     def _get_document_fiscal_type(
-        self, type=None, partner=None, fiscal_position=None, journal=None
+        self, move_type=None, partner=None, fiscal_position=None, journal=None
     ):
         dt = []
         doc_id = False
-        if not type:
-            type = "out_invoice"
+        if not move_type:
+            move_type = "out_invoice"
 
         # Partner
         if partner:
-            if type in ("out_invoice"):
+            if move_type in ("out_invoice"):
                 doc_id = partner.out_fiscal_document_type.id or False
-            elif type in ("in_invoice"):
+            elif move_type in ("in_invoice"):
                 doc_id = partner.in_fiscal_document_type.id or False
         # Fiscal Position
         if not doc_id and fiscal_position:
@@ -43,8 +43,12 @@ class AccountInvoice(models.Model):
                 .search([("journal_ids", "in", [journal.id])])
                 .ids
             )
-        if not doc_id and not dt:
-            dt = self.env["fiscal.document.type"].search([(type, "=", True)]).ids
+        if (
+            not doc_id
+            and not dt
+            and move_type in ["out_invoice", "out_refund", "in_invoice", "in_refund"]
+        ):
+            dt = self.env["fiscal.document.type"].search([(move_type, "=", True)]).ids
         if doc_id:
             dt.append(doc_id)
         return dt
