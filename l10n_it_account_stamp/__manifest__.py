@@ -6,23 +6,23 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Italian Localization - Imposta di bollo',
-    'version': '12.0.1.1.4',
-    'category': 'Localization/Italy',
-    'summary': "Gestione automatica dell'imposta di bollo",
-    'author': 'Ermanno Gnan, Sergio Corato, Enrico Ganzaroli, '
-              'Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/l10n-italy',
-    'license': 'LGPL-3',
-    'depends': [
-        'product',
-        'account',
+    "name": "Italian Localization - Imposta di bollo",
+    "version": "12.0.1.1.4",
+    "category": "Localization/Italy",
+    "summary": "Gestione automatica dell'imposta di bollo",
+    "author": "Ermanno Gnan, Sergio Corato, Enrico Ganzaroli, "
+    "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/l10n-italy",
+    "license": "LGPL-3",
+    "depends": [
+        "product",
+        "account",
     ],
-    'data': [
-        'data/data.xml',
-        'views/invoice_view.xml',
-        'views/product_view.xml',
-        'views/company_view.xml',
+    "data": [
+        "data/data.xml",
+        "views/invoice_view.xml",
+        "views/product_view.xml",
+        "views/company_view.xml",
     ],
-    'installable': True,
+    "installable": True,
 }
