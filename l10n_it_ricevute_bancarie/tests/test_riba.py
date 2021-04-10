@@ -94,7 +94,6 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 }
             )]
         })
-        invoice._onchange_riba_partner_bank_id()
         invoice.action_invoice_open()
         riba_move_line_id = False
         for move_line in invoice.move_id.line_ids:
@@ -237,7 +236,6 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 }
             )]
         })
-        invoice._onchange_riba_partner_bank_id()
         invoice.action_invoice_open()
         for move_line in invoice.move_id.line_ids:
             if move_line.account_id.id == self.account_rec1_id.id:
@@ -338,7 +336,6 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 }
             )],
         })
-        invoice._onchange_riba_partner_bank_id()
         invoice.action_invoice_open()
         # issue wizard
         riba_move_line_id = invoice.move_id.line_ids.filtered(
@@ -393,7 +390,6 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 }
             )],
         })
-        invoice._onchange_riba_partner_bank_id()
         invoice.action_invoice_open()
         invoice1 = self.env['account.invoice'].create({
             'date_invoice': recent_date,
@@ -419,7 +415,6 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 }
             )],
         })
-        invoice1._onchange_riba_partner_bank_id()
         invoice1.action_invoice_open()
         # issue wizard
         riba_move_line_id = invoice.move_id.line_ids.filtered(
