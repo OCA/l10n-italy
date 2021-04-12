@@ -14,6 +14,7 @@ Contributors
 
 * Gianmarco Conte <gconte@dinamicheaziendali.it>
 * Lara Baggio <lbaggio@linkgroup.it>
+* Roberto Fichera <roberto.fichera@levelprime.com>
 
 Maintainer
 ----------

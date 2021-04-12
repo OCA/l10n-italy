@@ -20,7 +20,16 @@
             <field name="inherit_id"
                    ref="date_range.view_date_range_form_view"/>
             <field name="arch" type="xml">
-                <xpath expr="/form/group" position="after">
+                <xpath expr="/form/group" position="replace">
+                    <group col="4">
+                        <field name="name"/>
+                        <field name="type_id"/>
+                        <field name="period"/>
+                        <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+                        <field name="active"/>
+                    </group>
                     <separator string="Central journal info"/>
                     <group>
                         <field name="date_last_print"/>
@@ -28,6 +37,7 @@
                         <field name="progressive_line_number"/>
                         <field name="progressive_credit"/>
                         <field name="progressive_debit"/>
+                        <field name="print_row"/>
                     </group>
                 </xpath>
             </field>

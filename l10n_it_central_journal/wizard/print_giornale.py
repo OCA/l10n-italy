@@ -52,6 +52,7 @@ class WizardGiornale(models.TransientModel):
                                    'Target Move', default='all')
     fiscal_page_base = fields.Integer('Last printed page', required=True)
     start_row = fields.Integer('Start row', required=True)
+    print_row = fields.Integer('Row for page', default=1)
     year_footer = fields.Char(
         string='Year for Footer',
         help="Value printed near number of page in the footer")
@@ -59,6 +60,8 @@ class WizardGiornale(models.TransientModel):
     @api.onchange('daterange')
     def on_change_daterange(self):
         if self.daterange:
+            self.print_row = self.daterange.print_row
+            self.fiscal_page_base = self.daterange.progressive_page_number
             date_start = datetime.strptime(
                 self.daterange.date_start, "%Y-%m-%d").date()
             date_end = datetime.strptime(
@@ -74,7 +77,7 @@ class WizardGiornale(models.TransientModel):
             self.date_move_line_from_view = date_start
             self.date_move_line_to = date_end
             if self.daterange.progressive_line_number != 0:
-                self.start_row = self.daterange.progressive_line_number + 1
+                self.start_row = self.daterange.progressive_line_number
             else:
                 self.start_row = self.daterange.progressive_line_number
             self.progressive_debit2 = self.daterange.progressive_debit
@@ -125,11 +128,13 @@ class WizardGiornale(models.TransientModel):
         datas_form['progressive_debit'] = wizard.progressive_debit2
         datas_form['progressive_credit'] = wizard.progressive_credit
         datas_form['start_row'] = wizard.start_row
+        datas_form['print_row'] = wizard.print_row
         datas_form['daterange'] = wizard.daterange.id
         datas_form['year_footer'] = wizard.year_footer
         return datas_form
 
     def print_giornale(self):
+
         move_line_ids = self.get_line_ids()
         if not move_line_ids:
             raise UserError(_('No documents found in the current selection'))
@@ -143,25 +148,24 @@ class WizardGiornale(models.TransientModel):
         return self.env['report'].get_action([], report_name, data=datas)
 
     def print_giornale_final(self):
-        wizard = self
         res_company_obj = self.env['res.company']
-        if wizard.date_move_line_from <= wizard.last_def_date_print:
-            raise UserError(_('Date already printed'))
-        else:
-            move_line_ids = self.get_line_ids()
-            if not move_line_ids:
-                raise UserError(
-                    _('No documents found in the current selection'))
-            datas_form = self._prepare_datas_form()
-            datas_form['print_state'] = 'def'
-            report_name = 'l10n_it_central_journal.report_giornale'
-            datas = {
-                'ids': move_line_ids,
-                'model': 'account.move',
-                'form': datas_form
-            }
-            company = res_company_obj.search([('id', '=', self.company_id.id)])
-            if not company.period_lock_date or company.period_lock_date \
-                    < self.date_move_line_to:
-                company.sudo().period_lock_date = self.date_move_line_to
-            return self.env['report'].get_action([], report_name, data=datas)
+        # if wizard.date_move_line_from <= wizard.last_def_date_print:
+        #     raise UserError(_('Date already printed'))
+        # else:
+        move_line_ids = self.get_line_ids()
+        if not move_line_ids:
+            raise UserError(
+                _('No documents found in the current selection'))
+        datas_form = self._prepare_datas_form()
+        datas_form['print_state'] = 'def'
+        report_name = 'l10n_it_central_journal.report_giornale'
+        datas = {
+            'ids': move_line_ids,
+            'model': 'account.move',
+            'form': datas_form
+        }
+        company = res_company_obj.search([('id', '=', self.company_id.id)])
+        if not company.period_lock_date or company.period_lock_date \
+                < self.date_move_line_to:
+            company.sudo().period_lock_date = self.date_move_line_to
+        return self.env['report'].get_action([], report_name, data=datas)
