@@ -467,5 +467,5 @@ class AccountInvoice(models.Model):
             'view_mode': 'form',
             'res_model': self._name,
             'res_id': self.id,
-            'taget': 'current'
+            'target': 'current'
         }

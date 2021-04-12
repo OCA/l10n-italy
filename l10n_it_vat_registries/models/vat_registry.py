@@ -174,6 +174,17 @@ class ReportRegistroIva(models.AbstractModel):
                     invoice and invoice.date_invoice or move.date or ''),
                 'reference': (
                     invoice and invoice.reference or ''),
+
+                # These 4 items are added to make the dictionary more usable
+                # in further customizations, allowing inheriting modules to
+                # retrieve the records that have been used to create the
+                # dictionary itself (instead of receiving a raw-data-only dict)
+                'tax_rec': tax,
+                'move_rec': move,
+                'move_line_rec': self.env['account.move.line'].browse(
+                    [l.id for l in move_lines]
+                ),
+                'invoice_rec': invoice,
             }
             inv_taxes.append(tax_item)
             index += 1

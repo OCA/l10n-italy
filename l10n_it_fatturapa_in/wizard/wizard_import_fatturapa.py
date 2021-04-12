@@ -409,7 +409,8 @@ class WizardImportFatturapa(models.TransientModel):
                 else:
                     templates = supplier_infos.mapped('product_tmpl_id')
                     if len(templates) == 1:
-                        product = templates.product_variant_ids[0]
+                        product = (templates.product_variant_ids
+                                   and templates.product_variant_ids[0])
         if not product and partner.e_invoice_default_product_id:
             product = partner.e_invoice_default_product_id
         return product
@@ -634,6 +635,10 @@ class WizardImportFatturapa(models.TransientModel):
                         discount += float(DiscRise.Importo)
             journal = self.get_purchase_journal(invoice.company_id)
             credit_account_id = journal.default_credit_account_id.id
+            if not credit_account_id:
+                credit_account_id = self.env['ir.property'].with_context(
+                    force_company=invoice.company_id.id
+                ).get('property_account_expense_categ_id', 'product.category').id
             line_vals = {
                 'invoice_id': invoice_id,
                 'name': _(
