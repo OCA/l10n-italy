@@ -183,6 +183,18 @@ class AccountVatPeriodEndStatement(models.Model):
             'paid': [('readonly', True)],
             'draft': [('readonly', False)]
         }, digits=dp.get_precision('Account'))
+    advance_computation_method = fields.Selection([
+        ('1', 'Storico'),
+        ('2', 'Previsionale'),
+        ('3', 'Analitico - effettivo'),
+        ('4', '"4" (soggetti particolari)'),
+    ],
+        string="Down payment computation method",
+        states={
+            'confirmed': [('readonly', True)],
+            'paid': [('readonly', True)],
+            'draft': [('readonly', False)]
+        })
     generic_vat_account_line_ids = fields.One2many(
         'statement.generic.account.line', 'statement_id',
         'Other VAT Credits / Debits or Tax Compensations',
