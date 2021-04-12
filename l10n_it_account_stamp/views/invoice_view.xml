@@ -23,6 +23,7 @@
 
                 <field name="invoice_line" position="after">
                     <button type="object" string="Add tax stamp line"
+                            states="draft"
                             name="add_tax_stamp_line" attrs="{'invisible': [('tax_stamp', '=', False)]}"/>
                 </field>
 
