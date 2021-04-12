@@ -5,7 +5,7 @@
     'name': 'ITA - Fattura elettronica - Integrazione sconto triplo',
     "summary": "Modulo ponte tra emissione "
                "fatture elettroniche e sconto triplo",
-    "version": "12.0.2.0.0",
+    "version": "12.0.2.0.1",
     "development_status": "Beta",
     "category": "Hidden",
     'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
