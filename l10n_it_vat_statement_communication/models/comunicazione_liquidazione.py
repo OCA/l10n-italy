@@ -523,10 +523,10 @@ class ComunicazioneLiquidazioneVp(models.Model):
         string='Due interests for quarterly statements')
     accounto_dovuto = fields.Float(string='Down payment due')
     metodo_calcolo_acconto = fields.Selection([
-        ('1', '1'),
-        ('2', '2'),
-        ('3', '3'),
-        ('4', '4'),
+        ('1', 'Storico'),
+        ('2', 'Previsionale'),
+        ('3', 'Analitico - effettivo'),
+        ('4', '"4" (soggetti particolari)'),
     ], string="Down payment computation method")
     iva_da_versare = fields.Float(
         string='VAT to pay',
@@ -554,6 +554,7 @@ class ComunicazioneLiquidazioneVp(models.Model):
             quadro.crediti_imposta = 0
             quadro.interessi_dovuti = 0
             quadro.accounto_dovuto = 0
+            quadro.metodo_calcolo_acconto = False
 
     def _get_tax_context(self, period):
         return {
@@ -621,6 +622,7 @@ class ComunicazioneLiquidazioneVp(models.Model):
                     quadro.credito_periodo_precedente =\
                         liq.previous_credit_vat_amount
                 quadro.accounto_dovuto = liq.advance_amount
+                quadro.metodo_calcolo_acconto = liq.advance_computation_method
                 if (
                     liq.interests_debit_vat_account_id and
                     quadro.period_type != 'quarter' and quadro.quarter != 5
