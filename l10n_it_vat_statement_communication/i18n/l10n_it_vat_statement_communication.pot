@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_vat_statement_communication
+#: selection:comunicazione.liquidazione.vp,metodo_calcolo_acconto:0
+msgid "\"4\" (soggetti particolari)"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
 msgid "<b>VP10</b> Auto UE payments"
 msgstr ""
@@ -91,6 +96,11 @@ msgstr ""
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_needaction
 msgid "Action Needed"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: selection:comunicazione.liquidazione.vp,metodo_calcolo_acconto:0
+msgid "Analitico - effettivo"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
@@ -511,6 +521,11 @@ msgid "Previous year credit"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#: selection:comunicazione.liquidazione.vp,metodo_calcolo_acconto:0
+msgid "Previsionale"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__imponibile_operazioni_attive
 msgid "Profitable operations total (without VAT)"
 msgstr ""
@@ -554,6 +569,11 @@ msgstr ""
 #. module: l10n_it_vat_statement_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_form
 msgid "Statement communication"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: selection:comunicazione.liquidazione.vp,metodo_calcolo_acconto:0
+msgid "Storico"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
