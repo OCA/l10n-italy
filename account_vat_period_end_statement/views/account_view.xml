@@ -92,9 +92,10 @@
                                 <separator colspan="3" string="Tax credits"/>
                                 <field name="tax_credit_account_id" attrs="{'required':[('tax_credit_amount','!=',0)]}"/>
                                 <field name="tax_credit_amount" nolabel="1"/>
-                                <separator colspan="3" string="Down payment due"/>
+                                <separator colspan="3" string="Down payment"/>
                                 <field name="advance_account_id" attrs="{'required':[('advance_amount','!=',0)]}"/>
                                 <field name="advance_amount" nolabel="1"/>
+                                <field name="advance_computation_method" string="Computation method"/>
                             </group>
                             <separator colspan="3" string="Other VAT Credits / Debits or Tax Compensations (Positive amounts for credits, negative for debits)"/>
                             <field name="generic_vat_account_line_ids" colspan="3" nolabel="1">
