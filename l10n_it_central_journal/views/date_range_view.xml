@@ -28,6 +28,7 @@
                         <field name="progressive_line_number"/>
                         <field name="progressive_credit"/>
                         <field name="progressive_debit"/>
+                        <field name="print_row"/>
                     </group>
                 </xpath>
             </field>

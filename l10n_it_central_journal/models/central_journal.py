@@ -29,6 +29,7 @@ class ReportGiornale(models.AbstractModel):
             'formatLang': formatLang,
             'l10n_it_count_fiscal_page_base': data['form']['fiscal_page_base'],
             'start_row': data['form']['start_row'],
+            'print_row': data['form']['print_row'],
             'date_move_line_to': data['form']['date_move_line_to'],
             'daterange': data['form']['daterange'],
             'print_state': data['form']['print_state'],
@@ -38,9 +39,14 @@ class ReportGiornale(models.AbstractModel):
             'date_format': date_format,
         }
 
-    def _get_move(self, move_ids):
-        move_list = self.env[
-            'account.move.line'].browse(move_ids)
+    def _get_move(self, move_ids, num_lines):
+        len_list = len(move_ids)
+        i = 0
+        move_list = []
+        move_obj = self.env['account.move.line'].browse(move_ids)
+        while i < len_list:
+            move_list.append(move_obj.browse(move_ids[i:i + num_lines]))
+            i += num_lines
         return move_list
 
     def _save_print_info(self, daterange_id, print_state, end_date_print,

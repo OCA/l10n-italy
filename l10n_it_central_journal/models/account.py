@@ -14,6 +14,7 @@ class DateRangeInherit(models.Model):
     _inherit = "date.range"
 
     date_last_print = fields.Date('Last printed date')
+    print_row = fields.Integer('Print row', required=True)
     progressive_page_number = fields.Integer('Progressive of the page',
                                              default=0)
     progressive_line_number = fields.Integer('Progressive line', default=0)
