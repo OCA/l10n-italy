@@ -14,9 +14,12 @@
                 <field name="rc_self_purchase_invoice_id" readonly="True" />
                 <field name="rc_purchase_invoice_id" readonly="True" />
             </group>
-            <field name="price_subtotal" position="after">
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='price_subtotal']" position="after">
                 <field name="rc" />
-            </field>
+            </xpath>
+             <xpath expr="//field[@name='line_ids']/tree/field[@name='price_subtotal']" position="after">
+                <field name="rc" invisible="1"/>
+            </xpath>
         </field>
     </record>
     <record id="view_invoice_line_form_rc" model="ir.ui.view">

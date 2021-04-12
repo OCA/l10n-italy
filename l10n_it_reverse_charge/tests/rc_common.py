@@ -85,9 +85,6 @@ class ReverseChargeCommon(TransactionCase):
                 ],
             }
         )
-        # self.env["account.journal"].search(
-        #     [("name", "=", "Customer Invoices")]
-        # ).update_posted = True
 
     def create_invoice(self, partner, lines):
         move_form = Form(self.invoice_model)

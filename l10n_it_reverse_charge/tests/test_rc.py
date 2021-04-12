@@ -52,8 +52,8 @@ class TestReverseCharge(ReverseChargeCommon):
 
     def test_intra_EU_2_mixed_lines(self):
         """Create an invoice with two lines: one is RC and the other is not.
-        By default, the onchange method `onchange_invoice_line_tax_id` assigns
-        the same RC flag to both lines, so we force one of them not to be RC"""
+        By default, method `create_invoice` assigns the same RC flag to both
+        lines, so we force one of them not to be RC"""
 
         invoice_line_vals = [
             {

@@ -17,16 +17,11 @@ class AccountMoveLine(models.Model):
             fposition = invoice.fiscal_position_id
             self.rc = bool(fposition.rc_type_id)
 
-    @api.onchange("tax_ids")
-    def onchange_invoice_line_tax_id(self):
-        self._set_rc_flag(self.move_id)
-        # self._onchange_mark_recompute_taxes()
-
     rc = fields.Boolean("RC")
 
-    # def write(self, vals):
-    #     self._set_rc_flag(self.move_id)
-    #     return super(AccountMoveLine, self).write(vals)
+    @api.onchange('tax_ids')
+    def onchange_rc_tax_ids(self):
+        self._set_rc_flag(self.move_id)
 
 
 class AccountMove(models.Model):
