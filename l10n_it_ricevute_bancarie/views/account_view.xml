@@ -117,7 +117,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='payment_term_id']" position="after">
                 <field name="is_riba_payment" invisible="1" />
-                <field name="riba_partner_bank_id" attrs="{'invisible': ['|',('is_riba_payment','=', False),('type','!=','out_invoice')], 'required': ['&amp;',('is_riba_payment','=', True),('type','=', 'out_invoice')]}" domain="[('partner_id','=', partner_id)]"/>
+                <field name="riba_partner_bank_id" attrs="{'invisible': ['|',('is_riba_payment','=', False),('type','not in',['out_invoice', 'out_refund'])], 'required': ['&amp;',('is_riba_payment','=', True),('type', 'in', ['out_invoice', 'out_refund'])]}" domain="[('partner_id','=', partner_id)]"/>
                 <field name="is_unsolved" string="Past Due"
                        attrs="{'invisible': [('is_unsolved', '=', False)]}"/>
             </xpath>
