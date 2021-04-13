@@ -19,5 +19,5 @@ class CodiceCarica(models.Model):
                     _("The element with code %s already exists") % codice.code
                 )
 
-    code = fields.Char(string="Code", size=2)
-    name = fields.Char(string="Name")
+    code = fields.Char()
+    name = fields.Char()
