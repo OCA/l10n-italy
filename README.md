@@ -23,6 +23,7 @@ addon | version | summary
 [l10n_it_account](l10n_it_account/) | 14.0.1.0.0 | Modulo base usato come dipendenza di altri moduli contabili
 [l10n_it_account_stamp](l10n_it_account_stamp/) | 14.0.1.0.0 | Gestione automatica dell'imposta di bollo
 [l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 14.0.1.0.0 | Gestione natura delle aliquote IVA
+[l10n_it_ateco](l10n_it_ateco/) | 14.0.1.0.0 | ITA - Codici Ateco
 [l10n_it_delivery_note_base](l10n_it_delivery_note_base/) | 14.0.1.0.0 | Crea e gestisce tabelle principali per gestire i DDT
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 14.0.1.0.0 | Condizioni di pagamento delle fatture elettroniche
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 14.0.1.0.1 | ITA - Codice fiscale
