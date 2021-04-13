@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record id="view_codice_carica_tree" model="ir.ui.view">
@@ -6,8 +6,8 @@
         <field name="model">codice.carica</field>
         <field name="arch" type="xml">
             <tree string="Role code">
-                <field name="code"/>
-                <field name="name"/>
+                <field name="code" />
+                <field name="name" />
             </tree>
         </field>
     </record>
@@ -18,8 +18,8 @@
         <field name="arch" type="xml">
             <form string="Role Code">
                 <group>
-                    <field name="code"/>
-                    <field name="name"/>
+                    <field name="code" />
+                    <field name="name" />
                 </group>
             </form>
         </field>
@@ -28,11 +28,16 @@
     <record id="action_codice_carica" model="ir.actions.act_window">
         <field name="name">Role Codes</field>
         <field name="res_model">codice.carica</field>
-        <field name="view_id" ref="view_codice_carica_tree"/>
+        <field name="view_id" ref="view_codice_carica_tree" />
     </record>
 
-    <menuitem id="menu_codice_carica" name="Role Codes"
-        action="action_codice_carica" parent="account.account_account_menu"
-        groups="account.group_account_manager" sequence="45"/>
+    <menuitem
+        id="menu_codice_carica"
+        name="Role Codes"
+        action="action_codice_carica"
+        parent="account.account_account_menu"
+        groups="account.group_account_manager"
+        sequence="45"
+    />
 
 </odoo>

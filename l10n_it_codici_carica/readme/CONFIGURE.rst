@@ -1,6 +1,6 @@
 **Italiano**
 
-La tabella viene aggiunta nell'area *Fatturazione/Contabilità*, ed è raggiungibile nella 
+La tabella viene aggiunta nell'area *Fatturazione/Contabilità*, ed è raggiungibile nella
 sezione *Configurazione*. Occorre avere i privilegi di *Responsabile fatturazione*.
 
 **English**
