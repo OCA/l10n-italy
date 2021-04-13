@@ -36,12 +36,12 @@ class AccountRCType(models.Model):
 
     name = fields.Char("Name", required=True)
     method = fields.Selection(
-        (("integration", "VAT Integration"), ("selfinvoice", "Self Invoice")),
+        selection=[("integration", "VAT Integration"), ("selfinvoice", "Self Invoice")],
         string="Method",
         required=True,
     )
     partner_type = fields.Selection(
-        (("supplier", "Supplier"), ("other", "Other")),
+        selection=[("supplier", "Supplier"), ("other", "Other")],
         string="Self Invoice Partner Type",
     )
     with_supplier_self_invoice = fields.Boolean(
