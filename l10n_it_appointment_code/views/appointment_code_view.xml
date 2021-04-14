@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_appointment_code_tree" model="ir.ui.view">
+        <field name="name">view.appointment.code.tree</field>
+        <field name="model">appointment.code</field>
+        <field name="arch" type="xml">
+            <tree string="Appointment Code">
+                <field name="code" />
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_appointment_code_form" model="ir.ui.view">
+        <field name="name">view.appointment.code.form</field>
+        <field name="model">appointment.code</field>
+        <field name="arch" type="xml">
+            <form string="Appointment Code">
+                <group>
+                    <field name="code" />
+                    <field name="name" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_appointment_code" model="ir.actions.act_window">
+        <field name="name">Appointment Codes</field>
+        <field name="res_model">appointment.code</field>
+        <field name="view_id" ref="view_appointment_code_tree" />
+    </record>
+
+    <menuitem
+        id="menu_appointment_code"
+        name="Appointment Codes"
+        action="action_appointment_code"
+        parent="account.account_account_menu"
+        groups="account.group_account_manager"
+        sequence="45"
+    />
+
+</odoo>
