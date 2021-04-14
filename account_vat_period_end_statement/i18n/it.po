@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-09 12:56+0000\n"
-"PO-Revision-Date: 2020-05-07 11:19+0000\n"
+"PO-Revision-Date: 2021-04-14 16:46+0000\n"
 "Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: account_vat_period_end_statement
 #: selection:account.vat.period.end.statement,advance_computation_method:0
@@ -165,7 +165,7 @@ msgstr "Azienda"
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 msgid "Computation method"
-msgstr ""
+msgstr "Metodo di calcolo"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__interest
@@ -295,7 +295,7 @@ msgstr "Importo acconto"
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__advance_computation_method
 msgid "Down payment computation method"
-msgstr ""
+msgstr "Metodo di calcolo acconto"
 
 #. module: account_vat_period_end_statement
 #: selection:account.vat.period.end.statement,state:0
