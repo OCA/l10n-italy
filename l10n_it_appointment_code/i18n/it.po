@@ -1,0 +1,83 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_appointment_code
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-14 08:52+0000\n"
+"PO-Revision-Date: 2021-04-14 10:55+0200\n"
+"Last-Translator: Alex Comba <alex.comba@agilebg.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: it\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: l10n_it_appointment_code
+#: model:ir.model,name:l10n_it_appointment_code.model_appointment_code
+#: model_terms:ir.ui.view,arch_db:l10n_it_appointment_code.view_appointment_code_tree
+#: model_terms:ir.ui.view,arch_db:l10n_it_appointment_code.view_codice_carica_form
+msgid "Appointment Code"
+msgstr "Codice carica"
+
+#. module: l10n_it_appointment_code
+#: model:ir.actions.act_window,name:l10n_it_appointment_code.action_appointment_code
+#: model:ir.ui.menu,name:l10n_it_appointment_code.menu_codice_carica
+msgid "Appointment Codes"
+msgstr "Codici carica"
+
+#. module: l10n_it_appointment_code
+#: model:ir.model.fields,field_description:l10n_it_appointment_code.field_appointment_code__code
+msgid "Code"
+msgstr "Codice"
+
+#. module: l10n_it_appointment_code
+#: model:ir.model.fields,field_description:l10n_it_appointment_code.field_appointment_code__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: l10n_it_appointment_code
+#: model:ir.model.fields,field_description:l10n_it_appointment_code.field_appointment_code__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: l10n_it_appointment_code
+#: model:ir.model.fields,field_description:l10n_it_appointment_code.field_appointment_code__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: l10n_it_appointment_code
+#: model:ir.model.fields,field_description:l10n_it_appointment_code.field_appointment_code__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_appointment_code
+#: model:ir.model.fields,field_description:l10n_it_appointment_code.field_appointment_code____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_appointment_code
+#: model:ir.model.fields,field_description:l10n_it_appointment_code.field_appointment_code__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: l10n_it_appointment_code
+#: model:ir.model.fields,field_description:l10n_it_appointment_code.field_appointment_code__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: l10n_it_appointment_code
+#: model:ir.model.fields,field_description:l10n_it_appointment_code.field_appointment_code__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: l10n_it_appointment_code
+#: code:addons/l10n-italy/l10n_it_appointment_code/models/appointment_code.py:0
+#: code:addons/l10n_it_appointment_code/models/appointment_code.py:0
+#, python-format
+msgid "The element with code %s already exists"
+msgstr "L'elemento con codice %s esiste già"
