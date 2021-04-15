@@ -119,7 +119,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
         </template>
 
         <template id="account_invoice_line_it_sconto_maggiorazione">
-            <t t-set="importo" t-value="get_importo(line)" />
+            <t t-set="importo" t-value="get_importo(line.price_unit, line.discount)" />
             <ScontoMaggiorazione t-if="line.discount != 0 or importo != 0">
                 <!-- [2.2.1.10] -->
                 <t t-if="importo">

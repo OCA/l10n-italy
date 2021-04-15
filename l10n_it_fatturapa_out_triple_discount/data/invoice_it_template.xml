@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <template
+            id="account_invoice_line_it_triple_discount"
+            inherit_id="l10n_it_fatturapa_out.account_invoice_line_it_sconto_maggiorazione"
+        >
+            <xpath expr="//ScontoMaggiorazione" position="after">
+                <t
+                    t-set="importo2"
+                    t-value="get_importo(line.price_unit, line.discount2)"
+                />
+                <t
+                    t-set="importo3"
+                    t-value="get_importo(line.price_unit, line.discount3)"
+                />
+                <ScontoMaggiorazione t-if="line.discount2 != 0 or importo2 != 0">
+                <!-- [2.2.1.10] -->
+                <t t-if="importo">
+                    <Tipo t-if="importo2 &gt; 0">SC</Tipo>
+                    <Tipo t-if="importo2 &lt;= 0">MG</Tipo>
+                    <Importo t-esc="format_numbers(abs(importo2))" />
+                </t>
+                <t t-else="">
+                    <Tipo t-if="line.discount2 &gt; 0">SC</Tipo>
+                    <Tipo t-if="line.discount2 &lt;= 0">MG</Tipo>
+                    <Percentuale t-esc="format_numbers_two(abs(line.discount2))" />
+                </t>
+            </ScontoMaggiorazione>
+                <ScontoMaggiorazione t-if="line.discount3 != 0 or importo3 != 0">
+                <!-- [2.2.1.10] -->
+                <t t-if="importo">
+                    <Tipo t-if="importo3 &gt; 0">SC</Tipo>
+                    <Tipo t-if="importo3 &lt;= 0">MG</Tipo>
+                    <Importo t-esc="format_numbers(abs(importo3))" />
+                </t>
+                <t t-else="">
+                    <Tipo t-if="line.discount3 &gt; 0">SC</Tipo>
+                    <Tipo t-if="line.discount3 &lt;= 0">MG</Tipo>
+                    <Percentuale t-esc="format_numbers_two(abs(line.discount3))" />
+                </t>
+            </ScontoMaggiorazione>
+            </xpath>
+        </template>
+    </data>
+</odoo>

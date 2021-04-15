@@ -257,12 +257,12 @@ class EFatturaOut:
             out.update(out_computed)
             return out
 
-        def get_importo(line):
-            str_number = str(line.discount)
+        def get_importo(price_unit, discount):
+            str_number = str(discount)
             number = str_number[::-1].find(".")
             if number <= 2:
                 return False
-            return line.price_unit * line.discount / 100
+            return price_unit * discount / 100
 
         def get_importo_totale(invoice):
             # wrapper to a method in wizard (for better overriding)
