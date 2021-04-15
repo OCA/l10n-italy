@@ -74,7 +74,7 @@ msgid "Created on"
 msgstr "Ustvarjeno"
 
 #. module: l10n_it_withholding_tax_payment
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:119
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:129
 #, python-format
 msgid ""
 "Datas required for account move creation:                         Date "
@@ -115,9 +115,9 @@ msgid "Draft"
 msgstr "Osnutek"
 
 #. module: l10n_it_withholding_tax_payment
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:79
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:85
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:118
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:89
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:95
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:128
 #, python-format
 msgid "Error!"
 msgstr "Napaka!"
@@ -170,6 +170,11 @@ msgstr "Plačilni premik"
 #: field:withholding.tax.move.payment,name:0
 msgid "Name"
 msgstr "Naziv"
+
+#. module: l10n_it_withholding_tax_payment
+#: view:withholding.tax.move.payment:l10n_it_withholding_tax_payment.view_withholding_move_payment_form
+msgid "New payment"
+msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
 #: view:withholding.tax.move.payment:l10n_it_withholding_tax_payment.view_withholding_move_payment_form
@@ -229,14 +234,14 @@ msgid "Withholding Tax Move Payment"
 msgstr "Plačilni premik davčnih odtegljajev"
 
 #. module: l10n_it_withholding_tax_payment
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:127
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:163
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:137
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:173
 #, python-format
 msgid "Withholding Tax Payment"
 msgstr "Plačilo davčnih odtegljajev"
 
 #. module: l10n_it_withholding_tax_payment
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:143
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:153
 #, python-format
 msgid "Withholding Tax Payment %s"
 msgstr "Plačilo davčnih odtegljajev %s"
@@ -252,7 +257,7 @@ msgid "Wt Moves"
 msgstr "Premiki davčnih odtegljajev"
 
 #. module: l10n_it_withholding_tax_payment
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:86
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:96
 #, python-format
 msgid ""
 "Wt move already in a move payment!                         Move paym. %s -"
@@ -262,7 +267,21 @@ msgstr ""
 "WT: %s - %s - %s"
 
 #. module: l10n_it_withholding_tax_payment
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:80
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:90
 #, python-format
 msgid "Wt move already paid! - %s - %s - %s"
 msgstr "Premik davčnih odtegljajev že plačan! - %s - %s - %s"
+
+#. module: l10n_it_withholding_tax_payment
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:224
+#, python-format
+msgid "You can only delete draft payments"
+msgstr ""
+
+#. module: l10n_it_withholding_tax_payment
+#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:226
+#, python-format
+msgid ""
+"You cannot delete payments %s because an account moves is linked to it.\n"
+"Try to cancel and delete it first, then retry."
+msgstr ""
