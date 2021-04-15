@@ -3,4 +3,4 @@
 
 # tests disabled because unstable
 # TODO https://github.com/OCA/l10n-italy/issues/1588
-#from . import test_fatturapa_triple_discount
+# from . import test_fatturapa_triple_discount
