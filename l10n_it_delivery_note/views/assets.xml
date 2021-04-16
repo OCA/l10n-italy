@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright (c) 2019, Link IT Europe Srl
+    @author: Matteo Bilotta <mbilotta@linkeurope.it>
+  -->
+<odoo>
+
+    <template id="assets_backend" name="assets" inherit_id="web.assets_backend">
+        <xpath expr="link[last()]" position="after">
+            <link
+                rel="stylesheet"
+                type="text/css"
+                href="/l10n_it_delivery_note/static/src/scss/stock_delivery_note.scss"
+            />
+        </xpath>
+    </template>
+
+</odoo>

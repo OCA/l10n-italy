@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright (c) 2020, Link IT Europe srl, Italy. All rights reserved.
+  -->
+<odoo>
+    <data noupdate="True">
+
+        <record id="base.user_root" model="res.users">
+            <field name="groups_id" eval="[(4, ref('can_change_number'))]" />
+        </record>
+
+        <record id="base.user_admin" model="res.users">
+            <field name="groups_id" eval="[(4, ref('can_change_number'))]" />
+        </record>
+
+    </data>
+</odoo>

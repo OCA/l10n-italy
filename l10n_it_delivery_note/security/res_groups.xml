@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright (c) 2019, Link IT Europe Srl
+    @author: Matteo Bilotta <mbilotta@linkeurope.it>
+  -->
+<odoo>
+
+    <record id="use_advanced_delivery_notes" model="res.groups">
+        <field name="name">Use Advanced DN Features</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+
+    <record id="can_change_number" model="res.groups">
+        <field name="name">Allow to change delivery note number</field>
+        <field
+            name="category_id"
+            ref="l10n_it_delivery_note_base.module_category_inventory_checkboxes"
+        />
+    </record>
+
+</odoo>
