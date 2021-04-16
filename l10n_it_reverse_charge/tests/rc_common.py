@@ -88,8 +88,10 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
         )
 
     @classmethod
-    def create_invoice(cls, partner, amounts):
-        invoice = cls.init_invoice('in_invoice', partner=partner, amounts=amounts)
+    def create_invoice(cls, partner, amounts=[], taxes=None, post=True):
+        invoice = cls.init_invoice('in_invoice', partner=partner, post=post, amounts=amounts, taxes=taxes)
+        for line in invoice.invoice_line_ids:
+            line.account_id = cls.invoice_line_account.id
         return invoice
 
     @classmethod

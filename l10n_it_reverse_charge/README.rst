@@ -93,6 +93,10 @@ Il 'Registro pagamento autofattura' deve essere configurato con il conto 'Transi
   :alt: Registro pagamento autofattura
   :width: 600 px
 
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/registro_riconciliazione_2.png
+  :alt: Registro pagamento autofattura (tab Configurazione)
+  :width: 600 px
+
 Modificare il tipo inversione contabile **Intra-UE (autofattura)**:
 
 .. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/rc_selfinvoice.png
@@ -103,7 +107,7 @@ Il registro autofattura deve essere di tipo 'Vendita'.
 
 Modificare il tipo inversione contabile **Extra-UE (autofattura)**:
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/rc_selfinvoice_extra.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/home/simonev/Immagini/rc_selfinvoice_extra.png.png
   :alt: inversione contabile con Autofattura
   :width: 600 px
 
@@ -117,6 +121,12 @@ Nella posizione fiscale, impostare il tipo inversione contabile:
   :width: 600 px
 
 .. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/fiscal_pos_extra.png
+  :alt: Impostazione posizioni fiscali Extra CEE
+  :width: 600 px
+
+La posizione fiscale deve essere salvata sui contatti dei fornitori nel campo 'Posizione fiscale'
+
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/partner_fiscal_pos.png
   :alt: Impostazione posizioni fiscali Extra CEE
   :width: 600 px
 
@@ -158,6 +168,10 @@ The 'Self Invoice Payment' Journal has to be configured with the just created 'S
   :alt: Registro pagamento autofattura
   :width: 600 px
 
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/registro_riconciliazione_2.png
+  :alt: Registro pagamento autofattura (tab Configurazione)
+  :width: 600 px
+
 Edit the reverse charge type **Intra-EU (self-invoice)**:
 
 .. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/rc_selfinvoice.png
@@ -181,6 +195,12 @@ In the fiscal position, set the reverse charge type:
   :width: 600 px
 
 .. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/fiscal_pos_extra.png
+  :alt: Impostazione posizioni fiscali Extra CEE
+  :width: 600 px
+
+Fiscal position has to be saved on suppliers' contact inside 'Fiscal position' field
+
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/partner_fiscal_pos.png
   :alt: Impostazione posizioni fiscali Extra CEE
   :width: 600 px
 
