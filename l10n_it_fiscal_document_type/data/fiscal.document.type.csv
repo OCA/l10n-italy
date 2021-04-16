@@ -1,0 +1,25 @@
+id,code,name,out_invoice,in_invoice,out_refund,in_refund,priority
+1,TD01,fattura,True,True,False,False,1
+9,TD02,acconto-anticipo su fattura,True,True,False,False,3
+10,TD03,acconto-anticipo su parcella,True,True,False,False,3
+2,TD04,nota di credito,False,False,True,True,1
+3,TD05,nota di debito,False,False,False,False,3
+11,TD06,parcella,True,True,False,False,3
+4,TD07,fattura semplificata,True,False,False,False,3
+5,TD08,nota di credito semplificata,False,False,True,False,3
+12,TD09,nota di debito semplificata,False,False,False,False,3
+6,TD10,fattura di acquisto intracomunitario beni,False,True,False,False,3
+7,TD11,fattura di acquisto intracomunitario servizi,False,True,False,False,3
+8,TD12,documento riepilogativo,False,True,False,False,3
+14,TD16,integrazione fattura reverse charge interno,True,False,False,False,3
+15,TD17,integrazione/autofattura per acquisto servizi dall'estero,True,False,False,False,3
+16,TD18,integrazione per acquisto di beni intracomunitari,True,False,False,False,3
+17,TD19,integrazione/autofattura per acquisto di beni ex art.17 c.2 DPR 633/72,True,False,False,False,3
+13,TD20,"autofattura per regolarizzazione e integrazione delle fatture (ex art.6 c.8 d.lgs. 471/97  o  art.46 c.5 D.L. 331/93)",True,False,False,False,3
+18,TD21,autofattura per splafonamento,True,False,False,False,3
+19,TD22,estrazione beni da Deposito IVA,True,False,False,False,3
+20,TD23,"estrazione beni da Deposito IVA con versamento dell'IVA",True,False,False,False,3
+21,TD24,"fattura differita di cui all'art. 21, comma 4, lett. a)",True,False,False,False,3
+22,TD25,"fattura differita di cui all'art. 21, comma 4, terzo periodo lett. b)",True,False,False,False,3
+23,TD26,"cessione di beni ammortizzabili e per passaggi interni (ex art.36 DPR 633/72)",True,False,False,False,3
+24,TD27,fattura per autoconsumo o per cessioni gratuite senza rivalsa,True,False,False,False,3
