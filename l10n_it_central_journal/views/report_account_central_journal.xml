@@ -8,161 +8,202 @@
             <t t-call="l10n_it_account.internal_layout">
                 <div class="article">
                     <t t-set="print_details" t-value="1"/>
-                    <table style="width:100%; font-size: small;"
-                           cellspacing="0">
-                        <style>
-                            table {border: 0px;}
-                            thead {background: #F5F5F5;}
-                            .left_without_line {
-                            text-align:left; vertical-align:text-top;
-                            padding:5px;
-                            }
-                            .right_without_line {
-                            text-align:right; vertical-align:text-top;
-                            padding:5px;
-                            }
-                            .new_move {
-                            border-top: 1px dotted grey;
-                            }
-                        </style>
-                        <thead>
-                            <tr style="page-break-inside: avoid">
-                                <th class="left_without_line">Row</th>
-                                <th class="left_without_line">Date</th>
-                                <th class="left_without_line">Ref.</th>
-                                <th class="left_without_line">Account move</th>
-                                <th class="left_without_line">Account code</th>
-                                <th class="left_without_line">Account name</th>
-                                <th class="left_without_line">Name</th>
-                                <th class="right_without_line">Debit</th>
-                                <th class="right_without_line">Credit</th>
-                            </tr>
-                        </thead>
-
-                        <t t-set="counter" t-value="start_row"/>
-                        <t t-set="save_move_id" t-value="0"/>
-                        <t t-set="tot_credit" t-value="progressive_credit"/>
-                        <t t-set="tot_debit" t-value="progressive_debit"/>
-                        <t t-set="class_new_move" t-value="''"/>
-
-                        <tbody>
-                            <tr style="page-break-inside: avoid;">
-                                <td class="left_without_line"></td>
-                                <td class="left_without_line"></td>
-                                <td class="left_without_line"></td>
-                                <td class="left_without_line"></td>
-                                <td class="left_without_line"></td>
-                                <td class="left_without_line"></td>
-                                <td class="left_without_line">Initial Balance
-                                </td>
-                                <!-- Debit -->
-                                <td class="right_without_line">
-                                    <div style="page-break-inside: avoid"
-                                         t-esc="formatLang(env, tot_debit)"/>
-                                </td>
-                                <!-- Credit -->
-                                <td class="right_without_line">
-                                    <div style="page-break-inside: avoid"
-                                         t-esc="formatLang(env, tot_credit)"/>
-                                </td>
-                            </tr>
-
-                            <t t-foreach="get_move(data['ids'])" t-as="line">
-                                <t t-set="counter" t-value="counter + 1"/>
-                                <t t-set="tot_credit"
-                                   t-value="tot_credit + line.credit"/>
-                                <t t-set="tot_debit"
-                                   t-value="tot_debit + line.debit"/>
-
-                                <t t-if="line.move_id.id != save_move_id">
-                                    <t t-set="class_new_move"
-                                       t-value="'new_move'"/>
-                                </t>
-                                <t t-if="line.move_id.id == save_move_id">
-                                    <t t-set="class_new_move" t-value="''"/>
-                                </t>
-
-                                <tr style="page-break-inside: avoid;"
-                                    t-att-class="class_new_move">
-                                    <!-- Row -->
-                                    <td class="left_without_line">
-                                        <div style="page-break-inside: avoid"
-                                             t-esc="counter"/>
+                    <t t-set="counter" t-value="start_row"/>
+                    <t t-set="save_move_id" t-value="0"/>
+                    <t t-set="tot_credit" t-value="progressive_credit"/>
+                    <t t-set="tot_debit" t-value="progressive_debit"/>
+                    <t t-set="class_new_move" t-value="''"/>
+                    <t t-set="first_page" t-value="True"/>
+                    <t t-set="num_rows" t-value="len(get_move(data['ids']))"/>
+                    <t t-set="print_row" t-value="data['print_row']"/>
+                    <t t-set="date_from" t-value="data['date_move_line_from']"/>
+                    <t t-set="date_to" t-value="data['date_move_line_to']"/>
+                    <t t-set="result_rows" t-value="get_move(data['ids'])"/>
+                    <t t-set="last_page" t-value="num_rows/print_row"/>
+                    <t t-foreach="int(num_rows/print_row)+1" t-as="num_block">
+                        <table style="width:100%; font-size: small;"
+                               cellspacing="0">
+                            <style>
+                                table {border: 0px;}
+                                thead {background: #F5F5F5;}
+                                .left_without_line {
+                                    font-size: 8px; font-family: "Monospace";
+                                    text-align:left; vertical-align:text-top;
+                                    padding:1px 3px;
+                                    height:22px; min-height:22px; max-height:22px;
+                                }
+                                .right_without_line {
+                                    font-size: 8px; font-family: "Monospace";
+                                    text-align:right; vertical-align:text-top;
+                                    padding:1px 3px;
+                                    height:22px; min-height:22px; max-height:22px;
+                                }
+                                .new_move {
+                                    border-top: 1px solid #A1A1A1;
+                                }
+                                .width_40 {
+                                    width:40px; min-width:40px; max-width:40px;
+                                }
+                                .width_55 {
+                                    width:55px; min-width:55px; max-width:55px;
+                                }
+                                .width_60 {
+                                    width:60px; min-width:60px; max-width:60px;
+                                }
+                                .width_70 {
+                                    width:70px; min-width:70px; max-width:70px;
+                                }
+                                .width_80 {
+                                    width:80px; min-width:80px; max-width:80px;
+                                }
+                                .width_175 {
+                                    width:175px; min-width:175px; max-width:175px;
+                                }
+                                .width_215 {
+                                    width:215px; min-width:215px; max-width:215px;
+                                    max-height:20px;
+                                }
+                            </style>
+                            <thead>
+                                <tr class="first_th_row">
+                                    <td colspan="9" style="padding:10px; font-weight: bold; font-size: 10px;"
+                                        t-esc="'CENTRAL JOURNAL REPORT - From ' + time.strftime(date_format, time.strptime(str(date_from),'%Y-%m-%d')) + ' to ' + time.strftime(date_format, time.strptime(str(date_to),'%Y-%m-%d'))"/>
+                                </tr>
+                                <tr style="page-break-inside: avoid; border:1px solid #A1A1A1; ">
+                                    <th class="left_without_line width_40">Row</th>
+                                    <th class="left_without_line width_60">Date</th>
+                                    <th class="left_without_line width_80">Ref</th>
+                                    <th class="left_without_line width_80">Account move</th>
+                                    <th class="left_without_line width_55">Account code</th>
+                                    <th class="left_without_line width_175">Account name</th>
+                                    <th class="left_without_line width_215">Name</th>
+                                    <th class="right_without_line width_70">Debit</th>
+                                    <th class="right_without_line width_70">Credit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="page-break-inside: avoid;" >
+                                    <td class="left_without_line width_40"></td>
+                                    <td class="left_without_line width_60"></td>
+                                    <td class="left_without_line width_80"></td>
+                                    <td class="left_without_line width_80"></td>
+                                    <td class="left_without_line width_55"></td>
+                                    <td class="left_without_line width_175"></td>
+                                    <td class="left_without_line width_215">
+                                        <span t-if="first_page == True">Initial Balance</span>
+                                        <span t-if="first_page == False">Progressive ==></span>
                                     </td>
-                                    <!-- Date -->
-                                    <td class="left_without_line">
+                                    <td class="right_without_line width_70">
                                         <div style="page-break-inside: avoid"
-                                             t-esc="time.strftime(date_format, time.strptime(str(line['date']),'%Y-%m-%d'))"/>
+                                             t-esc="formatLang(env, tot_debit)" />
                                     </td>
-                                    <!-- ref -->
-                                    <td class="left_without_line">
+                                    <td class="right_without_line width_70">
                                         <div style="page-break-inside: avoid"
-                                             t-esc="line.ref"/>
-                                    </td>
-                                    <!-- Account move -->
-                                    <td class="left_without_line">
-                                        <div style="page-break-inside: avoid"
-                                             t-esc="line.move_id.name"/>
-                                    </td>
-                                    <!-- Account code -->
-                                    <td class="left_without_line">
-                                        <div style="page-break-inside: avoid"
-                                             t-esc="line.account_id.code"/>
-                                    </td>
-                                    <!-- Account name -->
-                                    <td class="left_without_line">
-                                        <div style="page-break-inside: avoid"
-                                             t-esc="line.account_id.name"/>
-                                    </td>
-                                    <!-- Name -->
-                                    <td class="left_without_line">
-                                        <t t-if="line.account_id.user_type_id.type in ['receivable', 'payable']">
-                                            <div style="page-break-inside: avoid"
-                                            t-esc="line.partner_id.name" />
-                                        </t>
-                                        <t t-else="">
-                                            <div style="page-break-inside: avoid"
-                                            t-esc="line.name" />
-                                        </t>
-                                    </td>
-                                    <!-- Debit -->
-                                    <td class="right_without_line">
-                                        <div style="page-break-inside: avoid"
-                                             t-esc="formatLang(env, line.debit)"/>
-                                    </td>
-                                    <!-- Credit -->
-                                    <td class="right_without_line">
-                                        <div style="page-break-inside: avoid"
-                                             t-esc="formatLang(env, line.credit)"/>
+                                             t-esc="formatLang(env, tot_credit)" />
                                     </td>
                                 </tr>
 
-                                <t t-set="save_move_id"
-                                   t-value="line.move_id.id"/>
-                            </t>
-                            <t t-set="class_new_move" t-value="'new_move'"/>
-                            <tr style="page-break-inside: avoid;"
-                                t-att-class="class_new_move">
-                                <td class="left_without_line"></td>
-                                <td class="left_without_line"></td>
-                                <td class="left_without_line"></td>
-                                <td class="left_without_line"></td>
-                                <td class="left_without_line"></td>
-                                <td class="left_without_line"></td>
-                                <td class="left_without_line">Final Balance</td>
-                                <!-- Debit -->
-                                <td class="right_without_line">
-                                    <div style="page-break-inside: avoid"
-                                         t-esc="formatLang(env, tot_debit)"/>
-                                </td>
-                                <!-- Credit -->
-                                <td class="right_without_line">
-                                    <div style="page-break-inside: avoid"
-                                         t-esc="formatLang(env, tot_credit)"/>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                <t t-foreach="result_rows[num_block*print_row:(num_block+1)*print_row]" t-as="line">
+                                    <t t-set="counter" t-value="counter + 1"/>
+                                    <t t-set="tot_credit"
+                                       t-value="tot_credit + line.credit"/>
+                                    <t t-set="tot_debit"
+                                       t-value="tot_debit + line.debit"/>
+                                    <t t-if="line.move_id.id != save_move_id">
+                                       <t t-set="class_new_move"
+                                          t-value="'new_move'"/>
+                                    </t>
+                                    <t t-if="line.move_id.id == save_move_id">
+                                       <t t-set="class_new_move" t-value="''"/>
+                                    </t>
+
+                                    <tr style="page-break-inside: avoid;"
+                                        t-att-class="class_new_move">
+                                        <!-- Row -->
+                                        <td class="left_without_line width_40">
+                                            <div style="page-break-inside: avoid"
+                                            t-esc="counter"/>
+                                        </td>
+                                        <!-- Date -->
+                                        <td class="left_without_line width_60">
+                                            <div style="page-break-inside: avoid"
+                                            t-esc="time.strftime(date_format, time.strptime(str(line['date']),'%Y-%m-%d'))"/>
+                                        </td>
+                                        <!-- ref -->
+                                        <td class="left_without_line width_80">
+                                            <div style="page-break-inside: avoid"
+                                            t-esc="line.ref"/>
+                                        </td>
+                                        <!-- Account move -->
+                                        <td class="left_without_line width_80">
+                                            <div style="page-break-inside: avoid"
+                                            t-esc="line.move_id.name"/>
+                                        </td>
+                                        <!-- Account code -->
+                                        <td class="left_without_line width_55">
+                                            <div style="page-break-inside: avoid"
+                                            t-esc="line.account_id.code"/>
+                                        </td>
+                                        <!-- Account name -->
+                                        <td class="left_without_line width_175">
+                                            <div style="page-break-inside: avoid"
+                                            t-esc="line.account_id.name"/>
+                                        </td>
+                                        <!-- Name -->
+                                        <td class="left_without_line width_215">
+                                            <t t-if="line.account_id.user_type_id.type in ['receivable', 'payable']">
+                                                <div style="page-break-inside: avoid"
+                                                t-esc="line.partner_id.name" />
+                                            </t>
+                                            <t t-else="">
+                                                <div style="page-break-inside: avoid"
+                                                t-esc="line.name" />
+                                            </t>
+                                        </td>
+                                        <!-- Debit -->
+                                        <td class="right_without_line width_70">
+                                            <div style="page-break-inside: avoid"
+                                                 t-esc="formatLang(env, line.debit)"/>
+                                        </td>
+                                        <!-- Credit -->
+                                        <td class="right_without_line width_70">
+                                            <div style="page-break-inside: avoid"
+                                                 t-esc="formatLang(env, line.credit)"/>
+                                        </td>
+                                    </tr>
+                                <t t-set="save_move_id" t-value="line.move_id.id"/>
+                                </t>
+                                <t t-set="class_new_move" t-value="'new_move'"/>
+                                <tr style="page-break-inside: avoid;"
+                                    t-att-class="class_new_move">
+                                    <td class="left_without_line width_40"></td>
+                                    <td class="left_without_line width_60"></td>
+                                    <td class="left_without_line width_80"></td>
+                                    <td class="left_without_line width_80"></td>
+                                    <td class="left_without_line width_55"></td>
+                                    <td class="left_without_line width_175"></td>
+                                    <td class="left_without_line width_215">
+                                        <span t-if="last_page != num_block">Progressive ==></span>
+                                        <span t-if="last_page == num_block">Final Balance</span>
+                                    </td>
+                                    <!-- Debit -->
+                                    <td class="right_without_line width_70">
+                                        <div style="page-break-inside: avoid"
+                                             t-esc="formatLang(env, tot_debit)"/>
+                                    </td>
+                                    <!-- Credit -->
+                                    <td class="right_without_line width_70">
+                                        <div style="page-break-inside: avoid"
+                                        t-esc="formatLang(env, tot_credit)"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <t t-set="first_page" t-value="False"/>
+                        <span t-if="last_page != num_block">
+                            <div style="page-break-after: always"></div>
+                        </span>
+                    </t>
                     <br/>
                 </div>
                 <t t-set="save_move_id"

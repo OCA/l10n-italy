@@ -49,6 +49,7 @@ class WizardGiornale(models.TransientModel):
                                    'Target Move', default='all')
     fiscal_page_base = fields.Integer('Last printed page', required=True)
     start_row = fields.Integer('Start row', required=True)
+    print_row = fields.Integer('Row for page', required=True)
     year_footer = fields.Char(string='Year for Footer',
                               help="Value printed near number "
                                    "of page in the footer")
@@ -122,6 +123,7 @@ class WizardGiornale(models.TransientModel):
         datas_form['progressive_debit'] = wizard.progressive_debit2
         datas_form['progressive_credit'] = wizard.progressive_credit
         datas_form['start_row'] = wizard.start_row
+        datas_form['print_row'] = wizard.print_row
         datas_form['daterange'] = wizard.daterange.id
         return datas_form
 
