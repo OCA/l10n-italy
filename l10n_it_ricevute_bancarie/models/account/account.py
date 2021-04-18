@@ -166,7 +166,7 @@ class AccountInvoice(models.Model):
             bank_id = None
             if (
                 self.partner_id and self.payment_term_id.riba
-                and self.type == 'out_invoice'
+                and self.type in ['out_invoice', 'out_refund']
             ):
                 bank_id = self.partner_id.mapped('bank_ids')
             self.riba_partner_bank_id = bank_id[0] if bank_id else None
