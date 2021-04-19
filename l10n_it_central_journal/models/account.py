@@ -2,8 +2,6 @@
 
 from odoo import fields, models
 
-import odoo.addons.decimal_precision as dp
-
 
 class AccountJournalInherit(models.Model):
     _inherit = "account.journal"
@@ -15,15 +13,13 @@ class DateRangeInherit(models.Model):
     _inherit = "date.range"
 
     date_last_print = fields.Date("Last printed date")
-    progressive_page_number = fields.Integer("Progressive of the page", default=0)
-    progressive_line_number = fields.Integer("Progressive line", default=0)
+    progressive_page_number = fields.Integer("Progressive of the page")
+    progressive_line_number = fields.Integer("Progressive line")
     progressive_credit = fields.Float(
         "Progressive Credit",
-        digits=dp.get_precision("Account"),
-        default=lambda *a: float(),
+        digits="Account",
     )
     progressive_debit = fields.Float(
         "Progressive Debit",
-        digits=dp.get_precision("Account"),
-        default=lambda *a: float(),
+        digits="Account",
     )

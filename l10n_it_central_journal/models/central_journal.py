@@ -14,9 +14,7 @@ class ReportGiornale(models.AbstractModel):
 
     @api.model
     def _get_report_values(self, docids, data=None):
-        lang_code = self._context.get(
-            "company_id", self.env.user.company_id.partner_id.lang
-        )
+        lang_code = self._context.get("company_id", self.env.company.partner_id.lang)
         lang = self.env["res.lang"]
         lang_id = lang._lang_get(lang_code)
         date_format = lang_id.date_format

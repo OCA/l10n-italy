@@ -3,12 +3,12 @@
 
 {
     "name": "ITA - Libro giornale",
-    "version": "12.0.1.1.4",
+    "version": "14.0.1.0.0",
     "development_status": "Beta",
     "category": "Localization/Italy",
     "author": "Gianmarco Conte - Dinamiche Aziendali srl, "
     "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/l10n-italy" "l10n_it_central_journal",
+    "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
     "depends": ["account", "l10n_it_account", "date_range"],
     "data": [
