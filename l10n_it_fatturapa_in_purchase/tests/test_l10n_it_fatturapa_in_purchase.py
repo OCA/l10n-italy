@@ -38,21 +38,9 @@ class Testl10nItFatturapaInPurchase(FatturapaCommon):
             }
         )
 
-    def test_to_invoice(self):
-        """Check that `to_invoice` is computed correctly."""
-        res = self.run_wizard("test_to_invoice", "IT05979361218_008.xml")
-        invoice_id = res.get("domain")[0][2][0]
-        invoice = self.invoice_model.browse(invoice_id)
-
-        inv_line = first(invoice.invoice_line_ids)
-        order_line = first(self.order.order_line)
-        inv_line.purchase_line_id = order_line
-
-        self.assertFalse(order_line.to_invoice)
-
-    def test_name_get(self):
-        """Check that `name_get` works properly."""
-        res = self.run_wizard("test_name_get", "IT05979361218_008.xml")
+    def test_fatturapa_in_purchase(self):
+        """Check that `name_get` works properly. verify to_invoice field"""
+        res = self.run_wizard("test_fatturapa_in_purchase", "IT05979361218_008.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
 
@@ -61,3 +49,7 @@ class Testl10nItFatturapaInPurchase(FatturapaCommon):
         inv_line.purchase_line_id = order_line
 
         self.assertEqual(order_line.display_name, "test_po: Large Desk")
+        self.assertFalse(order_line.to_invoice)
+        order_line.product_id.write({"purchase_method": "purchase"})
+        self.order.button_approve()
+        self.assertTrue(order_line.to_invoice)
