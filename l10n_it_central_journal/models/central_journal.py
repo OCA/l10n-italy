@@ -30,6 +30,7 @@ class ReportGiornale(models.AbstractModel):
             'l10n_it_count_fiscal_page_base': data['form']['fiscal_page_base'],
             'start_row': data['form']['start_row'],
             'print_row': data['form']['print_row'],
+            'date_move_line_from': data['form']['date_move_line_from'],
             'date_move_line_to': data['form']['date_move_line_to'],
             'daterange': data['form']['daterange'],
             'print_state': data['form']['print_state'],
