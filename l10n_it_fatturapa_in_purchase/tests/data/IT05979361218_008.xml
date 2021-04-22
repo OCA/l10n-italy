@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<p:FatturaElettronica versione="FPA12" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
-xmlns:p="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2 http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<p:FatturaElettronica
+    versione="FPA12"
+    xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+    xmlns:p="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2 http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd"
+>
     <FatturaElettronicaHeader>
         <DatiTrasmissione>
             <IdTrasmittente>
@@ -64,7 +67,8 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                 <Divisa>EUR</Divisa>
                 <Data>2015-06-22</Data>
                 <Numero>FT/2015/0012</Numero>
-                <Causale>Rif ordine MAPA: --- Nr. Identificativo Ordine 1234567</Causale>
+                <Causale
+                >Rif ordine MAPA: --- Nr. Identificativo Ordine 1234567</Causale>
             </DatiGeneraliDocumento>
         </DatiGenerali>
         <DatiBeniServizi>
@@ -86,7 +90,8 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                 <Natura>N4</Natura>
                 <ImponibileImporto>9.00</ImponibileImporto>
                 <Imposta>0.00</Imposta>
-                <RiferimentoNormativo>Operazioni senza addebito imposta regime contribuenti minimi art.27 c.1-2 DL.98/11</RiferimentoNormativo>
+                <RiferimentoNormativo
+                >Operazioni senza addebito imposta regime contribuenti minimi art.27 c.1-2 DL.98/11</RiferimentoNormativo>
             </DatiRiepilogo>
         </DatiBeniServizi>
     </FatturaElettronicaBody>

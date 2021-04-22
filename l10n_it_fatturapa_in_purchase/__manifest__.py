@@ -5,22 +5,20 @@
 
 
 {
-    'name': 'ITA - Fattura elettronica - Integrazione acquisti',
+    "name": "ITA - Fattura elettronica - Integrazione acquisti",
     "summary": "Modulo ponte tra ricezione fatture elettroniche e acquisti",
-    'version': '12.0.1.0.2',
-    'category': 'Hidden',
-    'author': 'Agile Business Group, '
-              'Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
-               'l10n_it_fatturapa_in_purchase',
-    'license': 'AGPL-3',
+    "version": "12.0.1.0.2",
+    "category": "Hidden",
+    "author": "Agile Business Group, " "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/l10n-italy" "l10n_it_fatturapa_in_purchase",
+    "license": "AGPL-3",
     "depends": [
-        'l10n_it_fatturapa_in',
-        'purchase',
+        "l10n_it_fatturapa_in",
+        "purchase",
     ],
     "data": [
         "views/invoice_view.xml",
     ],
     "installable": True,
-    'auto_install': True,
+    "auto_install": True,
 }
