@@ -1,76 +1,63 @@
 # Copyright 2019 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.addons.account.tests.account_test_classes import AccountingTestCase
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
-class TestIntrastat(AccountingTestCase):
-    def setUp(self):
-        super().setUp()
-        self.invoice_model = self.env["account.invoice"]
-        self.partner01 = self.env.ref("base.res_partner_1")
-        self.product01 = self.env.ref("product.product_product_10")
-        self.account_account_model = self.env["account.account"]
+class TestIntrastat(AccountTestInvoicingCommon):
+    @classmethod
+    def setUpClass(cls, chart_template_ref=None):
+        super().setUpClass(chart_template_ref=chart_template_ref)
+        cls.partner01 = cls.env.ref("base.res_partner_1")
+        cls.product01 = cls.env.ref("product.product_product_10")
+        cls.account_account_model = cls.env["account.account"]
 
-        self.account_account_receivable = self.account_account_model.create(
+        cls.account_account_receivable = cls.account_account_model.create(
             {
                 "code": "1",
                 "name": "Debtors - (test)",
                 "reconcile": True,
-                "user_type_id": self.env.ref("account.data_account_type_receivable").id,
+                "user_type_id": cls.env.ref("account.data_account_type_receivable").id,
             }
         )
 
-        self.account_account_payable = self.account_account_model.create(
+        cls.account_account_payable = cls.account_account_model.create(
             {
                 "code": "2",
                 "name": "Creditors - (test)",
                 "reconcile": True,
-                "user_type_id": self.env.ref("account.data_account_type_payable").id,
+                "user_type_id": cls.env.ref("account.data_account_type_payable").id,
             }
         )
 
-        self.partner01.property_account_receivable_id = self.account_account_receivable
-        self.partner01.property_account_payable_id = self.account_account_payable
+        cls.partner01.property_account_receivable_id = cls.account_account_receivable
+        cls.partner01.property_account_payable_id = cls.account_account_payable
 
-        self.sales_journal = self.env["account.journal"].search(
-            [("type", "=", "sale")]
-        )[0]
-
-        self.tax22 = self.env.ref("l10n_it_intrastat.tax_22")
+        # Demo tax is in another company than current user's company.
+        # We can't change this tax's company because
+        # it is the default sale tax for the company
+        # and it has already been used in other invoices.
+        cls.tax22 = (
+            cls.env.ref("l10n_it_intrastat.tax_22")
+            .sudo()
+            .copy(default={"company_id": cls.env.company.id})
+        )
 
     def test_invoice_totals(self):
-        invoice = self.invoice_model.create(
-            {
-                "partner_id": self.partner01.id,
-                "journal_id": self.sales_journal.id,
-                "account_id": self.account_account_receivable.id,
-                "intrastat": True,
-                "invoice_line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": "service",
-                            "product_id": self.product01.id,
-                            "account_id": self.account_account_receivable.id,
-                            "quantity": 1,
-                            "price_unit": 100,
-                            "invoice_line_tax_ids": [(6, 0, {self.tax22.id})],
-                        },
-                    )
-                ],
-            }
+        invoice = self.init_invoice(
+            "out_invoice",
+            partner=self.partner01,
+            products=self.product01,
+            taxes=self.tax22,
         )
-
-        invoice.compute_taxes()
-        invoice.action_invoice_open()
+        invoice.intrastat = True
+        invoice.action_post()
 
         # Compute intrastat lines
         invoice.compute_intrastat_lines()
         self.assertEqual(invoice.intrastat, True)
         # Amount Control
         total_intrastat_amount = sum(
-            l.amount_currency for l in invoice.intrastat_line_ids
+            line.amount_currency for line in invoice.intrastat_line_ids
         )
         self.assertEqual(total_intrastat_amount, invoice.amount_untaxed)
