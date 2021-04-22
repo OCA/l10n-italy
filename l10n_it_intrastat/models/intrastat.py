@@ -34,7 +34,6 @@ class ReportIntrastatCode(models.Model):
     type = fields.Selection(selection=[("good", "Goods"), ("service", "Service")])
     description = fields.Char(string="Description", translate=True)
 
-    @api.multi
     def name_get(self):
         res = []
         for code in self:
@@ -61,7 +60,6 @@ class ReportIntrastatCode(models.Model):
 class ResCountry(models.Model):
     _inherit = "res.country"
 
-    @api.multi
     def intrastat_validate(self):
         self.ensure_one()
         if not self.code:
