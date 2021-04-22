@@ -12,7 +12,7 @@
     <!-- Intrastat on product -->
     <record id="product.product_product_10_product_template" model="product.template">
         <field name="intrastat_type">good</field>
-        <field name="intrastat_code_id" ref="intrastat_intrastat_01012100"/>
+        <field name="intrastat_code_id" ref="intrastat_intrastat_01012100" />
     </record>
 
     <record id="tax_22" model="account.tax">
