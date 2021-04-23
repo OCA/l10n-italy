@@ -27,7 +27,7 @@ addon | version | summary
 [account_vat_period_end_statement](account_vat_period_end_statement/) | 8.0.3.0.1 | Period End VAT Statement
 [l10n_it_abicab](l10n_it_abicab/) | 8.0.1.1.0 | Base Bank ABI/CAB codes
 [l10n_it_account](l10n_it_account/) | 8.0.1.1.0 | Italian Localization - Account
-[l10n_it_account_stamp](l10n_it_account_stamp/) | 8.0.1.0.0 | Tax stamp automatic management
+[l10n_it_account_stamp](l10n_it_account_stamp/) | 8.0.1.0.1 | Tax stamp automatic management
 [l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 8.0.2.0.0 | Italian Localisation - Natura delle aliquote IVA
 [l10n_it_ateco](l10n_it_ateco/) | 8.0.1.0.1 | Ateco codes
 [l10n_it_base](l10n_it_base/) | 8.0.0.1.0 | Italian Localisation - Base
@@ -41,7 +41,7 @@ addon | version | summary
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 8.0.2.0.0 | Esigibilità IVA
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.3.0.3 | Electronic invoices
 [l10n_it_fatturapa_export_zip](l10n_it_fatturapa_export_zip/) | 8.0.1.0.0 | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche
-[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 8.0.2.0.3 | Electronic invoices reception
+[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 8.0.2.0.5 | Electronic invoices reception
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.4.0.0 | Electronic invoices emission
 [l10n_it_fatturapa_out_ddt](l10n_it_fatturapa_out_ddt/) | 8.0.2.0.0 | Modulo ponte tra emissione fatture elettroniche e DDT
 [l10n_it_fatturapa_out_sale](l10n_it_fatturapa_out_sale/) | 8.0.2.0.1 | Modulo ponte tra emissione fatture elettroniche e dati ordine di vendita
@@ -66,7 +66,7 @@ addon | version | summary
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 8.0.3.0.0 | Italian Localization - VAT Registries
 [l10n_it_withholding_tax](l10n_it_withholding_tax/) | 8.0.4.0.1 | Italian Withholding Tax
 [l10n_it_withholding_tax_causali](l10n_it_withholding_tax_causali/) | 8.0.2.0.0 | Causali pagamento per ritenute d'acconto
-[l10n_it_withholding_tax_payment](l10n_it_withholding_tax_payment/) | 8.0.2.0.1 | Italian Withholding Tax Payment
+[l10n_it_withholding_tax_payment](l10n_it_withholding_tax_payment/) | 8.0.2.1.0 | Italian Withholding Tax Payment
 
 
 Unported addons

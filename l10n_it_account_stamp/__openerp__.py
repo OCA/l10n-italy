@@ -8,7 +8,7 @@
 
 {
     'name': 'Italian Localization - Tax Stamp',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.0.1',
     'category': 'Localization/Italy',
     'summary': 'Tax stamp automatic management',
     'license': 'LGPL-3',

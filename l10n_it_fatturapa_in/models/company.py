@@ -18,12 +18,10 @@ class ResCompany(models.Model):
 
     arrotondamenti_attivi_account_id = fields.Many2one(
         'account.account', 'Round Up Account',
-        domain=[('deprecated', '=', False)],
         help="Account used to round up bills amount."
     )
     arrotondamenti_passivi_account_id = fields.Many2one(
         'account.account', 'Round Down Account',
-        domain=[('deprecated', '=', False)],
         help="Account used to round down bills amount."
     )
     arrotondamenti_tax_id = fields.Many2one(

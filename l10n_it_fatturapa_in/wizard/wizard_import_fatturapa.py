@@ -1012,6 +1012,11 @@ class WizardImportFatturapa(models.TransientModel):
                 'reference':
                     FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
             })
+        if not invoice.supplier_invoice_number:
+            invoice.update({
+                'supplier_invoice_number':
+                    FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero,
+            })
 
     def set_parent_invoice_data(self, FatturaBody, invoice):
         ParentInvoice = FatturaBody.DatiGenerali.FatturaPrincipale
