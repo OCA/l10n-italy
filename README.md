@@ -26,6 +26,7 @@ addon | version | summary
 [l10n_it_ateco](l10n_it_ateco/) | 14.0.1.0.0 | ITA - Codici Ateco
 [l10n_it_delivery_note](l10n_it_delivery_note/) | 14.0.1.0.0 | Crea, gestisce e fattura i DDT partendo dalle consegne
 [l10n_it_delivery_note_base](l10n_it_delivery_note_base/) | 14.0.1.0.0 | Crea e gestisce tabelle principali per gestire i DDT
+[l10n_it_delivery_note_batch](l10n_it_delivery_note_batch/) | 14.0.1.0.0 | Crea i DDT partendo da gruppi di prelievi
 [l10n_it_delivery_note_order_link](l10n_it_delivery_note_order_link/) | 14.0.1.0.0 | Crea collegamento tra i DDT e ordine di vendita/acquisto
 [l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 14.0.1.0.0 | ITA - Tipi di documento fiscale per dichiarativi
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 14.0.1.0.0 | Condizioni di pagamento delle fatture elettroniche
