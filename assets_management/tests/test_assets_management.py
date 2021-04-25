@@ -1,6 +1,8 @@
 # Copyright 2021 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from odoo import fields
 from odoo.tests.common import TransactionCase
+from dateutil.relativedelta import relativedelta
 
 
 class TestAssets(TransactionCase):
@@ -41,6 +43,14 @@ class TestAssets(TransactionCase):
                   self.env.ref('account.data_account_type_expenses').id)
                  ], limit=1).id,
         })
+        self.env['asset.category.depreciation.type'].create({
+            'base_coeff': 25.0,
+            'category_id': self.asset_category_1.id,
+            'depreciation_type_id': self.env.ref(
+                'assets_management.ad_type_civilistico').id,
+            'mode_id': self.env.ref(
+                'assets_management.ad_mode_materiale').id,
+        })
 
     def _create_asset(self):
         asset = self.env['asset.asset'].create({
@@ -49,6 +59,7 @@ class TestAssets(TransactionCase):
             'company_id': self.env.ref('base.main_company').id,
             'currency_id': self.env.ref('base.main_company').currency_id.id,
             'purchase_amount': 1000.0,
+            'purchase_date': fields.Date.today() + relativedelta(days=-366),
         })
         return asset
 
@@ -63,4 +74,4 @@ class TestAssets(TransactionCase):
         wiz = self.env['wizard.asset.generate.depreciation'].with_context(
             wiz_vals['context']
         ).create({})
-        # wiz.do_generate()
+        wiz.do_generate()
