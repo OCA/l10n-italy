@@ -51,16 +51,19 @@ class ReportGiornale(models.AbstractModel):
         return move_list
 
     def _save_print_info(self, daterange_id, print_state, end_date_print,
-                         end_row, end_debit, end_credit):
+                         end_row, end_debit, end_credit, page):
         res = False
         if print_state == 'def':
             datarange_obj = self.env['date.range']
             daterange_ids = datarange_obj.search([('id', '=', daterange_id)])
+            if daterange_ids.progressive_page_number == 0:
+                page += 1
             print_info = {
                 'date_last_print': end_date_print,
                 'progressive_line_number': end_row,
                 'progressive_debit': end_debit,
                 'progressive_credit': end_credit,
+                'progressive_page_number': page
             }
             res = daterange_ids.write(print_info)
         return res
