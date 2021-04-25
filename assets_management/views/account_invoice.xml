@@ -83,8 +83,8 @@
                        readonly="1"
                        invisible="not context.get('show_invoice')"/>
             </xpath>
-            <xpath expr="//label[@for='name']"
-                   position="before">
+            <xpath expr="//field[@name='name']"
+                   position="after">
                 <group name="assets_info"
                        string="Assets"
                        groups="assets_management.group_asset_user">
