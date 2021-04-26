@@ -25,7 +25,6 @@ class WithholdingTaxMove(models.Model):
 
         return super().unlink()
 
-    @api.multi
     def check_unlink(self):
         wt_moves_not_eresable = []
         for move in self:
@@ -68,9 +67,7 @@ class WithholdingTaxMovePayment(models.Model):
         "res.company",
         string="Company",
         required=True,
-        default=lambda self: self.env["res.company"]._company_default_get(
-            "account.account"
-        ),
+        default=lambda self: self.env.company,
     )
     name = fields.Char("Name")
     date = fields.Date(string="Date")
@@ -143,7 +140,7 @@ class WithholdingTaxMovePayment(models.Model):
                     }
                 ]
             )
-            move.post()
+            move.action_post()
             # Ref on payement
             mp.move_id = move.id
 
@@ -178,7 +175,7 @@ class WithholdingTaxMovePayment(models.Model):
         wt_payment = False
         if wt_moves:
             val = {
-                "name": sequence_obj.get("withholding.tax.move.payment"),
+                "name": sequence_obj.next_by_code("withholding.tax.move.payment"),
                 "date": fields.Date.today(),
                 "line_ids": [(6, 0, wt_moves.ids)],
             }
@@ -204,7 +201,6 @@ class WithholdingTaxMovePayment(models.Model):
                 for wt_move in move.line_ids:
                     wt_move.action_set_to_draft()
 
-    @api.multi
     def unlink(self):
         for payment in self:
             if payment.state != "draft":
