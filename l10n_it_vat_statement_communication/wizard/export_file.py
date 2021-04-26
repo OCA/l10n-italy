@@ -22,8 +22,8 @@ class ComunicazioneLiquidazioneExportFile(models.TransientModel):
             for comunicazione in self.env["comunicazione.liquidazione"].browse(
                 comunicazione_ids
             ):
-                out = base64.encodestring(comunicazione.get_export_xml())
-                wizard.file_export = out
+                out = base64.encodebytes(comunicazione.get_export_xml())
+                wizard.sudo().file_export = out
                 wizard.name = "{}_LI_{}.xml".format(
                     comunicazione.declarant_fiscalcode,
                     str(comunicazione.identificativo).rjust(5, "0"),
