@@ -32,15 +32,12 @@
         </field>
     </record>
 
-    <act_window
-        id="wizard_wt_move_payment_create_action"
-        name="Create Payment Move"
-        src_model="withholding.tax.move"
-        res_model="wizard.wt.move.payment.create"
-        view_id="wizard_wt_move_payment_create_view"
-        view_mode="form"
-        target="new"
-        key2="client_action_multi"
-    />
+    <record id="wizard_wt_move_payment_create_action" model="ir.actions.act_window">
+        <field name="name">Create Payment Move</field>
+        <field name="binding_model_id" ref="model_withholding_tax_move" />
+        <field name="res_model">wizard.wt.move.payment.create</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>
