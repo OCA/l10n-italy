@@ -27,9 +27,9 @@ class ComunicazioneDatiIvaExportFile(models.TransientModel):
         for wizard in self:
             for comunicazione in self.env['comunicazione.dati.iva'].\
                     browse(comunicazione_ids):
-                out = base64.encodestring(comunicazione.get_export_xml())
+                out = base64.encodebytes(comunicazione.get_export_xml())
                 filename = comunicazione.get_export_xml_filename()
-                wizard.file_export = out
+                wizard.sudo().file_export = out
                 wizard.filename = filename
             model_data_obj = self.env['ir.model.data']
             view_rec = model_data_obj.get_object_reference(
