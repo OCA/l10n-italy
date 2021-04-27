@@ -7,7 +7,7 @@ from odoo import api, models
 
 
 class AccountMoveLine(models.Model):
-    _inherit = 'account.move.line'
+    _inherit = "account.move.line"
 
     @api.multi
     def group_by_account_and_tax(self):
