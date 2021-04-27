@@ -7,8 +7,6 @@ from odoo import fields, models
 
 
 class ResCompany(models.Model):
-    _inherit = 'res.company'
+    _inherit = "res.company"
 
-    sp_description = fields.Char(
-        string="Description for period end statements"
-    )
+    sp_description = fields.Char(string="Description for period end statements")
