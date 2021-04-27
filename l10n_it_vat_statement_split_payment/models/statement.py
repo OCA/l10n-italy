@@ -3,13 +3,12 @@
 # Copyright (c) 2019 Matteo Bilotta
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 
 
 class AccountVatPeriodEndStatement(models.Model):
     _inherit = "account.vat.period.end.statement"
 
-    @api.multi
     def compute_amounts(self):
 
         AccountMoveLine = self.env["account.move.line"]
@@ -17,8 +16,8 @@ class AccountVatPeriodEndStatement(models.Model):
 
         res = super().compute_amounts()
 
-        if self.env.user.company_id and self.env.user.company_id.sp_description:
-            basename = self.env.user.company_id.sp_description
+        if self.env.company and self.env.company.sp_description:
+            basename = self.env.company.sp_description
 
         else:
             basename = _("Write-off tax amount on tax")
@@ -33,7 +32,8 @@ class AccountVatPeriodEndStatement(models.Model):
             for date_range in statement.date_range_ids:
                 acc_move_lines = AccountMoveLine.search(
                     [
-                        ("invoice_id.amount_sp", "!=", 0.0),
+                        ("move_id.amount_sp", "!=", 0.0),
+                        ("move_id.state", "=", "posted"),
                         ("tax_line_id", "!=", False),
                         ("date", ">=", date_range.date_start),
                         ("date", "<=", date_range.date_end),

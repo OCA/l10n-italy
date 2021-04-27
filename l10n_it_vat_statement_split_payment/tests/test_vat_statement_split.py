@@ -1,23 +1,23 @@
 #  Copyright 2015 Agile Business Group <http://www.agilebg.com>
+#  Copyright 2021 Lorenzo Battistini @ TAKOBI
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from datetime import datetime
 
 from dateutil.rrule import MONTHLY
 
-from odoo.addons.account.tests.account_test_users import AccountTestUsers
+from odoo.tests.common import SavepointCase
 
 
-class TestTaxSP(AccountTestUsers):
+class TestTaxSP(SavepointCase):
     def setUp(self):
         super().setUp()
         self.tax_model = self.env["account.tax"]
-        self.invoice_model = self.env["account.invoice"]
+        self.move_model = self.env["account.move"]
         self.term_model = self.env["account.payment.term"]
         self.fp_model = self.env["account.fiscal.position"]
         self.account_model = self.env["account.account"]
         self.term_line_model = self.env["account.payment.term.line"]
-        self.invoice_line_model = self.env["account.invoice.line"]
         self.vat_statement_model = self.env["account.vat.period.end.statement"]
         account_user_type = self.env.ref("account.data_account_type_receivable")
         today = datetime.now().date()
@@ -32,7 +32,7 @@ class TestTaxSP(AccountTestUsers):
                 "name_prefix": "%s-" % datetime.now().year,
                 "type_id": self.range_type.id,
                 "duration_count": 1,
-                "unit_of_time": MONTHLY,
+                "unit_of_time": str(MONTHLY),
                 "count": 12,
             }
         )
@@ -74,9 +74,9 @@ class TestTaxSP(AccountTestUsers):
 
         # ----- Set invoice date to recent date in the system
         # ----- This solves problems with account_invoice_sequential_dates
-        self.recent_date = self.invoice_model.search(
-            [("date_invoice", "!=", False)], order="date_invoice desc", limit=1
-        ).date_invoice
+        self.recent_date = self.move_model.search(
+            [("invoice_date", "!=", False)], order="invoice_date desc", limit=1
+        ).invoice_date
 
         self.account_tax_22sp = self.tax_model.create(
             {
@@ -134,7 +134,7 @@ class TestTaxSP(AccountTestUsers):
             ],
             limit=1,
         )
-        self.a_recv = self.account_model.sudo(self.account_manager.id).create(
+        self.a_recv = self.account_model.create(
             dict(
                 code="cust_acc",
                 name="customer account",
@@ -203,28 +203,23 @@ class TestTaxSP(AccountTestUsers):
         )
         # Set invoice date to recent date in the system
         # This solves problems with account_invoice_sequential_dates
-        self.recent_date = self.invoice_model.search(
-            [("date_invoice", "!=", False)], order="date_invoice desc", limit=1
-        ).date_invoice
+        self.recent_date = self.move_model.search(
+            [("invoice_date", "!=", False)], order="invoice_date desc", limit=1
+        ).invoice_date
 
         self.sales_journal = self.env["account.journal"].search(
             [("type", "=", "sale")]
-        )[0]
-        self.sales_journal.update_posted = True
-        self.purchase_journal = self.env["account.journal"].search(
-            [("type", "=", "purchase")]
         )[0]
         self.general_journal = self.env["account.journal"].search(
             [("type", "=", "general")]
         )[0]
 
     def test_invoice(self):
-        invoice = self.invoice_model.create(
+        invoice = self.move_model.with_context(default_move_type="out_invoice").create(
             {
-                "date_invoice": self.recent_date,
+                "invoice_date": self.recent_date,
                 "partner_id": self.env.ref("base.res_partner_3").id,
                 "journal_id": self.sales_journal.id,
-                "account_id": self.a_recv.id,
                 "fiscal_position_id": self.sp_fp.id,
                 "invoice_line_ids": [
                     (
@@ -235,16 +230,13 @@ class TestTaxSP(AccountTestUsers):
                             "account_id": self.a_sale.id,
                             "quantity": 1,
                             "price_unit": 100,
-                            "invoice_line_tax_ids": [
-                                (6, 0, {self.account_tax_22sp.id})
-                            ],
+                            "tax_ids": [(6, 0, {self.account_tax_22sp.id})],
                         },
                     )
                 ],
             }
         )
-        invoice.compute_taxes()
-        invoice.action_invoice_open()
+        invoice.action_post()
 
         self.vat_statement = self.vat_statement_model.create(
             {
@@ -263,7 +255,7 @@ class TestTaxSP(AccountTestUsers):
 
     def test_account_sp_company(self):
         account_user_type = self.env.ref("account.data_account_type_receivable")
-        account_sp = self.account_model.sudo(self.account_manager.id).create(
+        account_sp = self.account_model.create(
             dict(
                 code="split_payment_acc",
                 name="Split payment account",
@@ -273,12 +265,11 @@ class TestTaxSP(AccountTestUsers):
         )
         self.company.sp_account_id = account_sp.id
 
-        invoice = self.invoice_model.create(
+        invoice = self.move_model.with_context(default_move_type="out_invoice").create(
             {
-                "date_invoice": self.recent_date,
+                "invoice_date": self.recent_date,
                 "partner_id": self.env.ref("base.res_partner_3").id,
                 "journal_id": self.sales_journal.id,
-                "account_id": self.a_recv.id,
                 "fiscal_position_id": self.sp_fp.id,
                 "invoice_line_ids": [
                     (
@@ -289,16 +280,13 @@ class TestTaxSP(AccountTestUsers):
                             "account_id": self.a_sale.id,
                             "quantity": 1,
                             "price_unit": 100,
-                            "invoice_line_tax_ids": [
-                                (6, 0, {self.account_tax_22sp.id})
-                            ],
+                            "tax_ids": [(6, 0, {self.account_tax_22sp.id})],
                         },
                     )
                 ],
             }
         )
-        invoice.compute_taxes()
-        invoice.action_invoice_open()
+        invoice.action_post()
 
         self.vat_statement = self.vat_statement_model.create(
             {
