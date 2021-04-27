@@ -3,13 +3,12 @@
 # Copyright (c) 2019 Matteo Bilotta
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import api, models
+from odoo import models
 
 
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
-    @api.multi
     def group_by_account_and_tax(self):
         grouped_lines = {}
 
