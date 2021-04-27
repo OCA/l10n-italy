@@ -7,36 +7,38 @@ from odoo import _, api, fields, models
 
 
 class AccountVatPeriodEndStatement(models.Model):
-    _inherit = 'account.vat.period.end.statement'
+    _inherit = "account.vat.period.end.statement"
 
     @api.multi
     def compute_amounts(self):
 
-        AccountMoveLine = self.env['account.move.line']
-        StatementGenericAccountLine = \
-            self.env['statement.generic.account.line']
+        AccountMoveLine = self.env["account.move.line"]
+        StatementGenericAccountLine = self.env["statement.generic.account.line"]
 
         res = super().compute_amounts()
 
-        if self.env.user.company_id and \
-           self.env.user.company_id.sp_description:
+        if self.env.user.company_id and self.env.user.company_id.sp_description:
             basename = self.env.user.company_id.sp_description
 
         else:
             basename = _("Write-off tax amount on tax")
 
         for statement in self:
-            statement.generic_vat_account_line_ids = \
-                statement.generic_vat_account_line_ids \
-                         .filtered(lambda x: not x.is_split_payment)
+            statement.generic_vat_account_line_ids = (
+                statement.generic_vat_account_line_ids.filtered(
+                    lambda x: not x.is_split_payment
+                )
+            )
 
             for date_range in statement.date_range_ids:
-                acc_move_lines = AccountMoveLine.search([
-                    ('invoice_id.amount_sp', '!=', 0.0),
-                    ('tax_line_id', '!=', False),
-                    ('date', '>=', date_range.date_start),
-                    ('date', '<=', date_range.date_end)
-                ])
+                acc_move_lines = AccountMoveLine.search(
+                    [
+                        ("invoice_id.amount_sp", "!=", 0.0),
+                        ("tax_line_id", "!=", False),
+                        ("date", ">=", date_range.date_start),
+                        ("date", "<=", date_range.date_end),
+                    ]
+                )
 
                 if not acc_move_lines:
                     continue
@@ -45,8 +47,7 @@ class AccountVatPeriodEndStatement(models.Model):
                 date_start_str = date_range.date_start
                 date_end_str = date_range.date_end
 
-                date_string = _("from {} to {}") \
-                    .format(date_start_str, date_end_str)
+                date_string = _("from {} to {}").format(date_start_str, date_end_str)
 
                 for group_key in grouped_lines:
                     amount = 0.0
@@ -55,23 +56,25 @@ class AccountVatPeriodEndStatement(models.Model):
                         amount += line.credit - line.debit
 
                     name = "{} {} - {}".format(
-                        basename, group_key[1].description, date_string)
+                        basename, group_key[1].description, date_string
+                    )
 
-                    account = statement.company_id.sp_account_id\
-                        or group_key[0]
+                    account = statement.company_id.sp_account_id or group_key[0]
 
-                    StatementGenericAccountLine.create({
-                        'name': name,
-                        'amount': amount,
-                        'account_id': account.id,
-                        'statement_id': statement.id,
-                        'is_split_payment': True
-                    })
+                    StatementGenericAccountLine.create(
+                        {
+                            "name": name,
+                            "amount": amount,
+                            "account_id": account.id,
+                            "statement_id": statement.id,
+                            "is_split_payment": True,
+                        }
+                    )
 
         return res
 
 
 class StatementGenericAccountLine(models.Model):
-    _inherit = 'statement.generic.account.line'
+    _inherit = "statement.generic.account.line"
 
     is_split_payment = fields.Boolean()

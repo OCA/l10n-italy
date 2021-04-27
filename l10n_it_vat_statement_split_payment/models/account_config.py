@@ -7,10 +7,10 @@ from odoo import fields, models
 
 
 class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _inherit = "res.config.settings"
 
     sp_description = fields.Char(
-        related='company_id.sp_description',
+        related="company_id.sp_description",
         string="Description for period end statements",
-        readonly=False
+        readonly=False,
     )
