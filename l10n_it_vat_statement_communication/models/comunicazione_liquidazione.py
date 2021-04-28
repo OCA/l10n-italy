@@ -20,7 +20,7 @@ class ComunicazioneLiquidazione(models.Model):
 
     @api.model
     def _default_company(self):
-        company_id = self._context.get("company_id", self.env.user.company_id.id)
+        company_id = self._context.get("company_id", self.env.company.id)
         return company_id
 
     @api.constrains("identificativo")
@@ -34,7 +34,6 @@ class ComunicazioneLiquidazione(models.Model):
                 )
             )
 
-    @api.multi
     def _compute_name(self):
         for dich in self:
             name = ""
@@ -64,7 +63,7 @@ class ComunicazioneLiquidazione(models.Model):
     )
     identificativo = fields.Integer(string="Identifier", default=_get_identificativo)
     name = fields.Char(string="Name", compute="_compute_name")
-    year = fields.Integer(string="Year", required=True, size=4)
+    year = fields.Integer(string="Year", required=True)
     last_month = fields.Integer(string="Last month")
     liquidazione_del_gruppo = fields.Boolean(string="Group's statement")
     taxpayer_vat = fields.Char(string="Vat", required=True)
@@ -75,7 +74,7 @@ class ComunicazioneLiquidazione(models.Model):
     )
     declarant_fiscalcode = fields.Char(string="Declarant Fiscalcode")
     declarant_fiscalcode_company = fields.Char(string="Fiscalcode company")
-    codice_carica_id = fields.Many2one("codice.carica", string="Role code")
+    codice_carica_id = fields.Many2one("appointment.code", string="Role code")
     declarant_sign = fields.Boolean(string="Declarant sign", default=True)
 
     delegate_fiscalcode = fields.Char(string="Delegate Fiscalcode")
@@ -100,7 +99,6 @@ class ComunicazioneLiquidazione(models.Model):
         comunicazione._validate()
         return comunicazione
 
-    @api.multi
     def write(self, vals):
         super(ComunicazioneLiquidazione, self).write(vals)
         for comunicazione in self:
@@ -468,7 +466,6 @@ class ComunicazioneLiquidazioneVp(models.Model):
     _name = "comunicazione.liquidazione.vp"
     _description = "VAT statement communication - VP table"
 
-    @api.multi
     @api.depends("iva_esigibile", "iva_detratta")
     def _compute_VP6_iva_dovuta_credito(self):
         for quadro in self:
@@ -479,7 +476,6 @@ class ComunicazioneLiquidazioneVp(models.Model):
             else:
                 quadro.iva_dovuta_credito = quadro.iva_detratta - quadro.iva_esigibile
 
-    @api.multi
     @api.depends(
         "iva_dovuta_debito",
         "iva_dovuta_credito",
@@ -631,7 +627,6 @@ class ComunicazioneLiquidazioneVp(models.Model):
             )
             self.imponibile_operazioni_passive -= tax.base_balance
 
-    @api.multi
     @api.onchange("liquidazioni_ids")
     def compute_from_liquidazioni(self):
 

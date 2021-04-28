@@ -1,6 +1,6 @@
 import base64
 
-from odoo import _, api, exceptions, fields, models
+from odoo import _, exceptions, fields, models
 
 
 class ComunicazioneLiquidazioneExportFile(models.TransientModel):
@@ -10,7 +10,6 @@ class ComunicazioneLiquidazioneExportFile(models.TransientModel):
     file_export = fields.Binary("File", readonly=True)
     name = fields.Char("File Name", readonly=True, default="liquidazione.xml")
 
-    @api.multi
     def export(self):
 
         comunicazione_ids = self._context.get("active_ids")
@@ -37,7 +36,6 @@ class ComunicazioneLiquidazioneExportFile(models.TransientModel):
             view_id = view_rec and view_rec[1] or False
 
             return {
-                "view_type": "form",
                 "view_id": [view_id],
                 "view_mode": "form",
                 "res_model": "comunicazione.liquidazione.export.file",
