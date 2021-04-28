@@ -17,4 +17,5 @@
         "views/account_view.xml",
     ],
     "installable": True,
+    "pre_init_hook": "rename_old_italian_module",
 }
