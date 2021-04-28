@@ -4,7 +4,7 @@
 
 {
     "name": "ITA - Esigibilità IVA",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "development_status": "Beta",
     "category": "Localization/Italy",
     "author": "Openforce di Camilli Alessandro, Odoo Community Association (OCA)",
@@ -17,4 +17,5 @@
         "views/account_view.xml",
     ],
     "installable": True,
+    "pre_init_hook": "rename_old_italian_module",
 }
