@@ -9,17 +9,21 @@ _logger = logging.getLogger(__name__)
 
 def migrate(cr, version):
     if not version:
-        _logger.warning("""
+        _logger.warning(
+            """
             There is no previous version of the module.
             Skip the migration.
-            """)
+            """
+        )
 
         return
 
     _logger.info("Set the default value on the new company field.")
-    cr.execute("""
+    cr.execute(
+        """
         UPDATE res_company
         SET vsc_supply_code = 'IVP18';
-    """)
+    """
+    )
 
     _logger.info("Migration terminated.")
