@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_invoice_form_fatturapa_import_zip" model="ir.ui.view">
+        <field name="name">view_invoice_form_fatturapa_import_zip</field>
+        <field name="model">account.move</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_fatturapa_out.view_invoice_form_fatturapa"
+        />
+        <field name="arch" type="xml">
+            <field name="has_pdf_invoice_print" position="after">
+                <field
+                    name="attachment_out_import_zip_id"
+                    attrs="{'invisible': [('attachment_out_import_zip_id', '=', False)]}"
+                />
+                <field
+                    name="attachment_in_import_zip_id"
+                    attrs="{'invisible': [('attachment_in_import_zip_id', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
