@@ -31,3 +31,8 @@ class ResPartner(models.Model):
         (check_fiscalcode,
          "The fiscal code doesn't seem to be correct.", ["fiscalcode"])
     ]
+
+    @api.onchange('fiscalcode')
+    def _fiscalcode_changed(self):
+        if self.fiscalcode:
+            self.fiscalcode = self.fiscalcode.upper()
