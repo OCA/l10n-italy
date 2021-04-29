@@ -3,7 +3,7 @@
 
 import base64
 
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 
 
 class AccountIntrastatExportFile(models.TransientModel):
@@ -18,7 +18,6 @@ class AccountIntrastatExportFile(models.TransientModel):
         default="choose",
     )
 
-    @api.multi
     def act_getfile(self):
         self.ensure_one()
         statement_id = self.env.context.get("active_id")
@@ -40,7 +39,6 @@ class AccountIntrastatExportFile(models.TransientModel):
             "type": "ir.actions.act_window",
             "res_model": "account.intrastat.export.file",
             "view_mode": "form",
-            "view_type": "form",
             "name": _("Export Intrastat File"),
             "res_id": self.id,
             "nodestroy": True,

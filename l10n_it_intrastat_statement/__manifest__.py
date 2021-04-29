@@ -3,12 +3,12 @@
 
 {
     "name": "ITA - Dichiarazione Intrastat",
-    "version": "12.0.1.2.2",
+    "version": "14.0.1.0.0",
     "category": "Account",
     "summary": "Dichiarazione Intrastat per l'Agenzia delle Dogane",
     "author": "Openforce, Link IT srl, Agile Business Group, "
     "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/l10n-italy" "12.0/l10n_it_intrastat_statement",
+    "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
     "depends": [
         "l10n_it_intrastat",
