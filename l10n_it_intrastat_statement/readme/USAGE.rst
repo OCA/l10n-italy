@@ -41,7 +41,7 @@ I dati presi dalle fatture e dalle note di credito indicate come soggette ad Int
 
 N.B.: i record presenti nelle schede "Rettifica beni - Sezione 2" e "Rettifica servizi - Sezione 4", sia per gli acquisti che per le vendite, vanno modificati per inserire i dati obbligatori mancanti.
 
-Inseriti i dati e salvata la dichiarazione, è possibile procedere all’elaborazione dei file da inviare all’Agenzia delle Dogane tramite l’apposito pulsante «Esporta file». 
+Inseriti i dati e salvata la dichiarazione, è possibile procedere all’elaborazione dei file da inviare all’Agenzia delle Dogane tramite l’apposito pulsante «Esporta file».
 
 Il pulsante fa partire una procedura guidata, che permette di scegliere quale tipo di file estrarre:
 
