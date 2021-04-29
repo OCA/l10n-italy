@@ -1,0 +1,253 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_fatturapa_out_AltriDatiGestionali
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-28 20:42+0000\n"
+"PO-Revision-Date: 2021-03-28 20:42+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: view:view_fields:l10n_it_fatturapa_out_AltriDatiGestionali.wizard_view_field_form
+msgid "Add the field in Reference Field"
+msgstr "Aggiungi un campo in Campo di riferimento"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: help:out_custom_fields,sequence:0
+msgid "Assigns the priority to the list of fields."
+msgstr "Assegna la priorità all'elenco dei campi."
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: view:view_fields:l10n_it_fatturapa_out_AltriDatiGestionali.wizard_view_field_form
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: view:view_fields:l10n_it_fatturapa_out_AltriDatiGestionali.wizard_view_field_form
+msgid "Create"
+msgstr "Salva"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: field:ir.model.abstract,create_uid:0
+#: field:out_custom_fields,create_uid:0
+#: field:view_fields,create_uid:0
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: field:ir.model.abstract,create_date:0
+#: field:out_custom_fields,create_date:0
+#: field:view_fields,create_date:0
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: model:ir.model,name:l10n_it_fatturapa_out_AltriDatiGestionali.model_out_custom_fields
+msgid "Custom field for out e-bill"
+msgstr "Campo personalizzato per la e-fattura"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: view:out_custom_fields:l10n_it_fatturapa_out_AltriDatiGestionali.out_custom_field_form
+msgid "Description lines"
+msgstr "Descrizione Linee"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: field:ir.model.abstract,display_name:0
+#: field:out_custom_fields,display_name:0
+#: field:view_fields,display_name:0
+msgid "Display Name"
+msgstr "Visualizza nome"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: model:ir.ui.menu,name:l10n_it_fatturapa_out_AltriDatiGestionali.out_custom_field
+msgid "E-Bill line AltriDatiGestionali"
+msgstr "E-Fattrua linee AltriDatiGestionali"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: model:ir.actions.act_window,name:l10n_it_fatturapa_out_AltriDatiGestionali.action_view_field
+#: view:view_fields:l10n_it_fatturapa_out_AltriDatiGestionali.wizard_view_field_form
+msgid "Edit fields"
+msgstr "Modifica campi"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: code:addons/l10n_it_fatturapa_out_AltriDatiGestionali/wizard/wizard_view_fields.py:29
+#, python-format
+msgid "Error! The '%s' field is not valid."
+msgstr "Errore! Il campo '%s' non è valido."
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: code:addons/l10n_it_fatturapa_out_AltriDatiGestionali/wizard/wizard_export_fatturapa.py:29
+#, python-format
+msgid "Error! The '%s' field on 'AltriDatiGestionali' must contain a valid value."
+msgstr "Errore! Il campo '%s' su 'AltriDatiGestionali' deve contenere un valore valido."
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: code:addons/l10n_it_fatturapa_out_AltriDatiGestionali/wizard/wizard_view_fields.py:53
+#, python-format
+msgid "Error! The last '%s' field must have a value other than Many2one."
+msgstr "Errore!L'ultimo campo '%s' deve avere un valore diverso da Many2one."
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: model:ir.model,name:l10n_it_fatturapa_out_AltriDatiGestionali.model_wizard_export_fatturapa
+msgid "Export E-invoice"
+msgstr "Esporta e-fattura"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: field:ir.model.abstract,field_description:0
+msgid "Field Label"
+msgstr "Etichetta Campo"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: view:view_fields:l10n_it_fatturapa_out_AltriDatiGestionali.wizard_view_field_form
+msgid "Field Module"
+msgstr "Modulo campo"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: field:ir.model.abstract,ttype:0
+msgid "Field Type"
+msgstr "Tipo Campo"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: view:view_fields:l10n_it_fatturapa_out_AltriDatiGestionali.wizard_view_field_form
+#: field:view_fields,name:0
+msgid "Field name"
+msgstr "Nome Campo"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: model:ir.model,name:l10n_it_fatturapa_out_AltriDatiGestionali.model_ir_model_fields
+msgid "Fields"
+msgstr "Campi"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: view:view_fields:l10n_it_fatturapa_out_AltriDatiGestionali.wizard_view_field_form
+msgid "Fields Description"
+msgstr "Descrizione dei campi"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: help:ir.model.abstract,model:0
+msgid "For relationship fields, the technical name of the target model"
+msgstr "Per i campi di relazione, il nome tecnico del modello di destinazione"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: field:out_custom_fields,force_text:0
+msgid "Force export in 'RiferimentoTesto'"
+msgstr "Forza l'esportazione in 'RiferimentoTesto'"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: field:ir.model.abstract,id:0
+#: field:out_custom_fields,id:0
+#: field:view_fields,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: field:ir.model.abstract,__last_update:0
+#: field:out_custom_fields,__last_update:0
+#: field:view_fields,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: field:ir.model.abstract,write_uid:0
+#: field:out_custom_fields,write_uid:0
+#: field:view_fields,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultima modifica di"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: field:ir.model.abstract,write_date:0
+#: field:out_custom_fields,write_date:0
+#: field:view_fields,write_date:0
+msgid "Last Updated on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: code:addons/l10n_it_fatturapa_out_AltriDatiGestionali/models/out_custom_field.py:45
+#, python-format
+msgid "List fields"
+msgstr "Lista campi"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: field:view_fields,list_fields:0
+msgid "List model fields"
+msgstr "Elenco campi modello."
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: field:view_fields,model_w_id:0
+msgid "Model"
+msgstr "Modello"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: field:ir.model.abstract,name:0
+#: field:out_custom_fields,name:0
+msgid "Name"
+msgstr "Nome"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: field:ir.model.abstract,model:0
+msgid "Object Relation"
+msgstr "Relazione Oggetto"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: model:ir.actions.act_window,name:l10n_it_fatturapa_out_AltriDatiGestionali.action_custom_field
+msgid "Out AltriDatiGestionali on e-bill line"
+msgstr "Mostra AltriDatiGestionali sulla riga e-fattura"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: field:out_custom_fields,field_ref:0
+msgid "Reference Field"
+msgstr "Campo di riferimento"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: field:ir.model.abstract,view_related_id:0
+msgid "Relationship view_fields"
+msgstr "Relazione view_fields"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: field:out_custom_fields,sequence:0
+msgid "Sequence"
+msgstr "Sequeza"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: view:out_custom_fields:l10n_it_fatturapa_out_AltriDatiGestionali.out_custom_field_form
+msgid "Set"
+msgstr "Imposta"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: view:out_custom_fields:l10n_it_fatturapa_out_AltriDatiGestionali.out_custom_field_tree
+msgid "Set field type for e-bill line"
+msgstr "Imposta il tipo campo per le righe della e-fattura"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: view:out_custom_fields:l10n_it_fatturapa_out_AltriDatiGestionali.out_custom_field_form
+msgid "Set reference field."
+msgstr "Imposta il campo di riferimento"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: model:ir.model,name:l10n_it_fatturapa_out_AltriDatiGestionali.model_view_fields
+msgid "View Fields"
+msgstr "Visualizza campi"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: field:out_custom_fields,active:0
+msgid "Active"
+msgstr "Attivo"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: view:view_fields:l10n_it_fatturapa_out_AltriDatiGestionali.wizard_view_field_form
+msgid "or"
+msgstr "o"
+
+#. module: l10n_it_fatturapa_out_AltriDatiGestionali
+#: field:view_fields,out_custom_field_id:0
+msgid "out_custom_field_id"
+msgstr "out_custom_field_id"
+

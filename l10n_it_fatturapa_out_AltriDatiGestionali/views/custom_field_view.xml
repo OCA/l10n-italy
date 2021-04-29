@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="out_custom_field_tree" model="ir.ui.view">
+            <field name="name">out.custom.field.tree</field>
+            <field name="model">out_custom_fields</field>
+            <field name="arch" type="xml">
+                <tree string="Set field type for e-bill line">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="field_ref"/>
+                    <field name="force_text" />
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="out_custom_field_form" model="ir.ui.view">
+            <field name="name">out.custom.field.form</field>
+            <field name="model">out_custom_fields</field>
+            <field name="arch" type="xml">
+                <form string="Description lines">
+                    <group>
+                        <field name="name"/>
+                        <label for="field_ref"></label>
+                        <div name="Reference field">
+                            <field name="field_ref" class="oe_inline"/>
+                            <button name="set_fields" string="Set" type="object" help="Set reference field." class="oe_edit_only oe_inline" icon="STOCK_EXECUTE"/>
+                        </div>
+                        <field name="sequence"/>
+                        <field name="force_text" />
+                        <field name="active"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_custom_field">
+            <field name="name">Out AltriDatiGestionali on e-bill line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">out_custom_fields</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="out_custom_field_tree"/>
+        </record>
+
+        <menuitem id="out_custom_field"
+            parent="account.menu_configuration_misc"
+            name="E-Bill line AltriDatiGestionali"
+            action="action_custom_field"
+            groups="account.group_account_manager"
+            sequence="11"/>
+
+    </data>
+</openerp>
