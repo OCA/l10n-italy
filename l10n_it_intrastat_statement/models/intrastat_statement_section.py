@@ -4,8 +4,6 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
-import odoo.addons.decimal_precision as dp
-
 
 class IntrastatStatementSection(models.AbstractModel):
     _name = "account.intrastat.statement.section"
@@ -23,15 +21,12 @@ class IntrastatStatementSection(models.AbstractModel):
         comodel_name="res.country", string="Partner State"
     )
     vat_code = fields.Char()
-    amount_euro = fields.Integer(
-        string="Amount in Euro", digits=dp.get_precision("Account")
-    )
+    amount_euro = fields.Integer(string="Amount in Euro")
     invoice_id = fields.Many2one(
-        comodel_name="account.invoice", string="Invoice", readonly=True
+        comodel_name="account.move", string="Invoice", readonly=True
     )
     intrastat_code_id = fields.Many2one(comodel_name="report.intrastat.code")
 
-    @api.multi
     def apply_partner_data(self, partner_data):
         self.ensure_one()
         if "country_partner_id" in partner_data:
@@ -49,7 +44,7 @@ class IntrastatStatementSection(models.AbstractModel):
 
     @api.model
     def _prepare_statement_line(self, inv_intra_line, statement_id=None):
-        company_id = self.env.context.get("company_id", self.env.user.company_id)
+        company_id = self.env.context.get("company_id", self.env.company)
         invoice_id = inv_intra_line.invoice_id
         partner_id = invoice_id.partner_id
 
@@ -70,7 +65,6 @@ class IntrastatStatementSection(models.AbstractModel):
             "intrastat_code_id": inv_intra_line.intrastat_code_id.id,
         }
 
-    @api.multi
     def _export_line_checks(self, section_label, section_number):
         self.ensure_one()
         if not self.vat_code:
@@ -86,14 +80,13 @@ class IntrastatStatementSection(models.AbstractModel):
                 _("Missing State for Partner %s") % self.partner_id.display_name
             )
 
-    @api.multi
     def get_amount_euro(self):
         return sum(section.amount_euro for section in self)
 
     @api.model
     def get_section_number(self):
-        raise UserError("Section number must be overridden by every section")
+        raise UserError(_("Section number must be overridden by every section"))
 
     @api.model
     def get_section_type(self):
-        raise UserError("Section type must be overridden by every section")
+        raise UserError(_("Section type must be overridden by every section"))

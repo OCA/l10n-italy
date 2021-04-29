@@ -3,15 +3,14 @@
 
 import base64
 
+from odoo import fields
 from odoo.exceptions import ValidationError
+from odoo.tests.common import Form, TransactionCase
 
-from odoo.addons.account.tests.account_test_classes import AccountingTestCase
 
-
-class TestIntrastatStatement(AccountingTestCase):
+class TestIntrastatStatement(TransactionCase):
     def setUp(self):
-        super(TestIntrastatStatement, self).setUp()
-        self.invoice_model = self.env["account.invoice"]
+        super().setUp()
         self.statement_model = self.env["account.intrastat.statement"]
 
         self.account_account_model = self.env["account.account"]
@@ -31,13 +30,6 @@ class TestIntrastatStatement(AccountingTestCase):
                 "user_type_id": self.env.ref("account.data_account_type_payable").id,
             }
         )
-
-        self.sales_journal = self.env["account.journal"].search(
-            [("type", "=", "sale")]
-        )[0]
-        self.purchase_journal = self.env["account.journal"].search(
-            [("type", "=", "purchase")]
-        )[0]
 
         self.tax22_purchase = self.env["account.tax"].create(
             {
@@ -74,16 +66,24 @@ class TestIntrastatStatement(AccountingTestCase):
                 ),
             }
         )
-        self.tax22_sale = self.env.ref("l10n_it_intrastat.tax_22")
+        # Demo tax is in another company than current user's company.
+        # We can't change this tax's company because
+        # it is the default sale tax for the company
+        # and it has already been used in other invoices.
+        self.tax22_sale = (
+            self.env.ref("l10n_it_intrastat.tax_22")
+            .sudo()
+            .copy(default={"company_id": self.env.company.id})
+        )
         self.currency_gbp = self.env.ref("base.GBP")
 
-        company = self.env.user.company_id
+        company = self.env.company
         company.partner_id.vat = "IT03339130126"
-        company.intrastat_custom_id = self.ref("l10n_it_intrastat.014100")
-        company.intrastat_purchase_transaction_nature_id = self.ref(
+        company.intrastat_custom_id = self.env.ref("l10n_it_intrastat.014100")
+        company.intrastat_purchase_transaction_nature_id = self.env.ref(
             "l10n_it_intrastat.code_8"
         )
-        company.intrastat_sale_transaction_nature_id = self.ref(
+        company.intrastat_sale_transaction_nature_id = self.env.ref(
             "l10n_it_intrastat.code_9"
         )
 
@@ -92,62 +92,27 @@ class TestIntrastatStatement(AccountingTestCase):
     ):
         if product is None:
             product = self.product01
-        invoice = self.invoice_model.create(
-            {
-                "partner_id": self.partner01.id,
-                "type": "in_invoice",
-                "journal_id": self.purchase_journal.id,
-                "account_id": self.account_account_payable.id,
-                "intrastat": True,
-                "invoice_line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": "test intrastat bill",
-                            "product_id": product.id,
-                            "account_id": self.account_account_payable.id,
-                            "quantity": 1,
-                            "price_unit": price_unit,
-                            "invoice_line_tax_ids": [(6, 0, {self.tax22_purchase.id})],
-                        },
-                    )
-                ],
-            }
+        invoice = self._create_move(
+            "in_invoice",
+            partner=self.partner01,
+            product=product,
+            taxes=self.tax22_purchase,
+            amount=price_unit,
         )
         if currency:
             invoice.currency_id = currency
-        invoice.compute_taxes()
-        invoice.action_invoice_open()
-        invoice.compute_intrastat_lines()
+        invoice.action_post()
         return invoice
 
     def _get_intrastat_computed_invoice(self, price_unit=100.0):
-        invoice = self.invoice_model.create(
-            {
-                "partner_id": self.partner01.id,
-                "journal_id": self.sales_journal.id,
-                "account_id": self.account_account_receivable.id,
-                "intrastat": True,
-                "invoice_line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": "service",
-                            "product_id": self.product01.id,
-                            "account_id": self.account_account_receivable.id,
-                            "quantity": 1,
-                            "price_unit": price_unit,
-                            "invoice_line_tax_ids": [(6, 0, {self.tax22_sale.id})],
-                        },
-                    )
-                ],
-            }
+        invoice = self._create_move(
+            "out_invoice",
+            partner=self.partner01,
+            product=self.product01,
+            taxes=self.tax22_sale,
+            amount=price_unit,
+            post=True,
         )
-        invoice.compute_taxes()
-        invoice.action_invoice_open()
-        invoice.compute_intrastat_lines()
         return invoice
 
     def test_statement_sale(self):
@@ -155,7 +120,8 @@ class TestIntrastatStatement(AccountingTestCase):
 
         statement = self.statement_model.create(
             {
-                "period_number": invoice.date_invoice.month,
+                "period_number": invoice.invoice_date.month,
+                "fiscalyear": invoice.invoice_date.year,
             }
         )
 
@@ -173,12 +139,13 @@ class TestIntrastatStatement(AccountingTestCase):
 
     def test_statement_sale_quarter(self):
         invoice = self._get_intrastat_computed_invoice()
-        month = invoice.date_invoice.month
+        month = invoice.invoice_date.month
         quarter = 1 + (month - 1) // 3
         statement = self.statement_model.create(
             {
                 "period_number": quarter,
                 "period_type": "T",
+                "fiscalyear": invoice.invoice_date.year,
             }
         )
 
@@ -194,7 +161,8 @@ class TestIntrastatStatement(AccountingTestCase):
 
         statement = self.statement_model.create(
             {
-                "period_number": bill.date_invoice.month,
+                "period_number": bill.invoice_date.month,
+                "fiscalyear": bill.invoice_date.year,
             }
         )
 
@@ -215,7 +183,8 @@ class TestIntrastatStatement(AccountingTestCase):
 
         statement = self.statement_model.create(
             {
-                "period_number": bill.date_invoice.month,
+                "period_number": bill.invoice_date.month,
+                "fiscalyear": bill.invoice_date.year,
             }
         )
 
@@ -226,20 +195,20 @@ class TestIntrastatStatement(AccountingTestCase):
     def test_statement_purchase_refund(self):
         bill = self._get_intrastat_computed_bill()
 
-        bill_refund = bill.refund()
+        bill_refund = self._create_move_refund(bill)
         # This refund will be subtracted from bill
         bill_refund.update(
             {
                 "intrastat": True,
             }
         )
-        bill_refund.compute_taxes()
-        bill_refund.action_invoice_open()
+        bill_refund.action_post()
         bill_refund.compute_intrastat_lines()
 
         statement = self.statement_model.create(
             {
-                "period_number": bill_refund.date_invoice.month,
+                "period_number": bill_refund.invoice_date.month,
+                "fiscalyear": bill_refund.invoice_date.year,
             }
         )
 
@@ -263,7 +232,8 @@ class TestIntrastatStatement(AccountingTestCase):
     def test_statement_purchase_refund_no_subtract(self):
         bill = self._get_intrastat_computed_bill()
 
-        bill_refund = bill.refund()
+        bill_refund = self._create_move_refund(bill)
+
         # Change the partner so that this refund is not subtracted from bill
         bill_refund.update(
             {
@@ -271,13 +241,13 @@ class TestIntrastatStatement(AccountingTestCase):
                 "intrastat": True,
             }
         )
-        bill_refund.compute_taxes()
-        bill_refund.action_invoice_open()
+        bill_refund.action_post()
         bill_refund.compute_intrastat_lines()
 
         statement = self.statement_model.create(
             {
-                "period_number": bill_refund.date_invoice.month,
+                "period_number": bill_refund.invoice_date.month,
+                "fiscalyear": bill_refund.invoice_date.year,
             }
         )
 
@@ -302,7 +272,7 @@ class TestIntrastatStatement(AccountingTestCase):
     def test_statement_purchase_service_refund_no_subtract(self):
         bill = self._get_intrastat_computed_bill(self.service01)
 
-        bill_refund = bill.refund()
+        bill_refund = self._create_move_refund(bill)
         # Change the partner so that this refund is not subtracted from bill
         bill_refund.update(
             {
@@ -310,13 +280,13 @@ class TestIntrastatStatement(AccountingTestCase):
                 "intrastat": True,
             }
         )
-        bill_refund.compute_taxes()
-        bill_refund.action_invoice_open()
+        bill_refund.action_post()
         bill_refund.compute_intrastat_lines()
 
         statement = self.statement_model.create(
             {
-                "period_number": bill_refund.date_invoice.month,
+                "period_number": bill_refund.invoice_date.month,
+                "fiscalyear": bill_refund.invoice_date.year,
             }
         )
 
@@ -353,12 +323,13 @@ class TestIntrastatStatement(AccountingTestCase):
 
     def test_statement_purchase_quarter(self):
         bill = self._get_intrastat_computed_bill()
-        month = bill.date_invoice.month
+        month = bill.invoice_date.month
         quarter = 1 + (month - 1) // 3
         statement = self.statement_model.create(
             {
                 "period_number": quarter,
                 "period_type": "T",
+                "fiscalyear": bill.invoice_date.year,
             }
         )
 
@@ -374,7 +345,8 @@ class TestIntrastatStatement(AccountingTestCase):
 
         statement = self.statement_model.create(
             {
-                "period_number": invoice.date_invoice.month,
+                "period_number": invoice.invoice_date.month,
+                "fiscalyear": invoice.invoice_date.year,
             }
         )
         statement.compute_statement()
@@ -394,11 +366,12 @@ class TestIntrastatStatement(AccountingTestCase):
 
         statement = self.statement_model.create(
             {
-                "period_number": bill.date_invoice.month,
+                "period_number": bill.invoice_date.month,
+                "fiscalyear": bill.invoice_date.year,
             }
         )
         line = statement.purchase_section1_ids.create({})
-        company = self.env.user.company_id
+        company = self.env.company
         self.assertEqual(
             company.intrastat_purchase_transaction_nature_id, line.transaction_nature_id
         )
@@ -409,12 +382,13 @@ class TestIntrastatStatement(AccountingTestCase):
 
         statement = self.statement_model.create(
             {
-                "period_number": invoice.date_invoice.month,
+                "period_number": invoice.invoice_date.month,
+                "fiscalyear": invoice.invoice_date.year,
             }
         )
 
         line = statement.sale_section1_ids.create({})
-        company = self.env.user.company_id
+        company = self.env.company
         self.assertEqual(
             company.intrastat_sale_transaction_nature_id, line.transaction_nature_id
         )
@@ -427,7 +401,8 @@ class TestIntrastatStatement(AccountingTestCase):
 
         statement = self.statement_model.create(
             {
-                "period_number": invoice.date_invoice.month,
+                "period_number": invoice.invoice_date.month,
+                "fiscalyear": invoice.invoice_date.year,
             }
         )
         statement.compute_statement()
@@ -445,7 +420,8 @@ class TestIntrastatStatement(AccountingTestCase):
 
         statement = self.statement_model.create(
             {
-                "period_number": invoice.date_invoice.month,
+                "period_number": invoice.invoice_date.month,
+                "fiscalyear": invoice.invoice_date.year,
             }
         )
         statement.compute_statement()
@@ -462,12 +438,13 @@ class TestIntrastatStatement(AccountingTestCase):
         """
         bill = self._get_intrastat_computed_bill(
             currency=self.currency_gbp,
-            price_unit=100.5,
+            price_unit=100.4,
         )
 
         statement = self.statement_model.create(
             {
-                "period_number": bill.date_invoice.month,
+                "period_number": bill.invoice_date.month,
+                "fiscalyear": bill.invoice_date.year,
             }
         )
         statement.compute_statement()
@@ -498,7 +475,8 @@ class TestIntrastatStatement(AccountingTestCase):
 
         statement = self.statement_model.create(
             {
-                "period_number": bill.date_invoice.month,
+                "period_number": bill.invoice_date.month,
+                "fiscalyear": bill.invoice_date.year,
             }
         )
         statement.compute_statement()
@@ -516,3 +494,50 @@ class TestIntrastatStatement(AccountingTestCase):
 
         amount_currency = int(bill.intrastat_line_ids.amount_currency)
         self.assertEqual(statement_invoice_line.amount_currency, amount_currency)
+
+    def _create_move(
+        self,
+        move_type,
+        partner=None,
+        invoice_date=None,
+        post=False,
+        product=None,
+        amount=None,
+        taxes=None,
+    ):
+        move_form = Form(
+            self.env["account.move"].with_context(default_move_type=move_type)
+        )
+        move_form.invoice_date = invoice_date or fields.Date.from_string("2019-01-01")
+        move_form.partner_id = partner or self.partner_a
+        move_form.intrastat = True
+
+        with move_form.invoice_line_ids.new() as line_form:
+            line_form.product_id = product
+            line_form.price_unit = amount
+            if taxes:
+                line_form.tax_ids.clear()
+                line_form.tax_ids.add(taxes)
+
+        rslt = move_form.save()
+
+        if post:
+            rslt.action_post()
+
+        return rslt
+
+    def _create_move_refund(self, move):
+        move_reversal = (
+            self.env["account.move.reversal"]
+            .with_context(active_model="account.move", active_ids=move.ids)
+            .create(
+                {
+                    "date": fields.Date.from_string("2019-01-01"),
+                    "reason": "no reason",
+                    "refund_method": "refund",
+                }
+            )
+        )
+        reversal = move_reversal.reverse_moves()
+        move_refund = self.env["account.move"].browse(reversal["res_id"])
+        return move_refund

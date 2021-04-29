@@ -4,8 +4,6 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
-import odoo.addons.decimal_precision as dp
-
 from .intrastat_statement import format_9, format_x
 
 
@@ -14,16 +12,14 @@ class IntrastatStatementPurchaseSection(models.AbstractModel):
     _name = "account.intrastat.statement.purchase.section"
     _description = "Fields and methods " "common to all Intrastat purchase sections"
 
-    amount_currency = fields.Integer(
-        string="Amount in Currency", digits=dp.get_precision("Account")
-    )
+    amount_currency = fields.Integer(string="Amount in Currency")
 
     @api.model
     def _prepare_statement_line(self, inv_intra_line, statement_id=None):
         res = super(IntrastatStatementPurchaseSection, self)._prepare_statement_line(
             inv_intra_line, statement_id
         )
-        company_id = self.env.context.get("company_id", self.env.user.company_id)
+        company_id = self.env.context.get("company_id", self.env.company)
         invoice_id = inv_intra_line.invoice_id
 
         # Amounts
@@ -54,7 +50,7 @@ class IntrastatStatementPurchaseSection(models.AbstractModel):
 
     @api.model
     def _default_transaction_nature_id(self):
-        company_id = self.env.context.get("company_id", self.env.user.company_id)
+        company_id = self.env.context.get("company_id", self.env.company)
         return company_id.intrastat_purchase_transaction_nature_id
 
 
@@ -80,9 +76,7 @@ class IntrastatStatementPurchaseSection1(models.Model):
         readonly=True,
         related="intrastat_code_id.additional_unit_uom_id.name",
     )
-    statistic_amount_euro = fields.Integer(
-        string="Statistic Value in Euro", digits=dp.get_precision("Account")
-    )
+    statistic_amount_euro = fields.Integer(string="Statistic Value in Euro")
     delivery_code_id = fields.Many2one(
         comodel_name="account.incoterms", string="Delivery Terms"
     )
@@ -108,7 +102,6 @@ class IntrastatStatementPurchaseSection1(models.Model):
         if self.statement_id.company_id.intrastat_additional_unit_from == "weight":
             self.additional_units = self.weight_kg
 
-    @api.multi
     def apply_partner_data(self, partner_data):
         res = super(IntrastatStatementPurchaseSection1, self).apply_partner_data(
             partner_data
@@ -124,7 +117,7 @@ class IntrastatStatementPurchaseSection1(models.Model):
         res = super(IntrastatStatementPurchaseSection1, self)._prepare_statement_line(
             inv_intra_line, statement_id
         )
-        company_id = self.env.context.get("company_id", self.env.user.company_id)
+        company_id = self.env.context.get("company_id", self.env.company)
 
         # Company defaults
         delivery_code_id = (
@@ -171,7 +164,6 @@ class IntrastatStatementPurchaseSection1(models.Model):
         )
         return res
 
-    @api.multi
     def _prepare_export_line(self):
         self.ensure_one()
         self._export_line_checks(_("Purchase"), self.get_section_number())
@@ -229,9 +221,7 @@ class IntrastatStatementPurchaseSection2(models.Model):
         string="Transaction Nature",
         default=lambda m: m._default_transaction_nature_id(),
     )
-    statistic_amount_euro = fields.Integer(
-        string="Statistic Value in Euro", digits=dp.get_precision("Account")
-    )
+    statistic_amount_euro = fields.Integer(string="Statistic Value in Euro")
 
     @api.model
     def get_section_number(self):
@@ -242,7 +232,7 @@ class IntrastatStatementPurchaseSection2(models.Model):
         res = super(IntrastatStatementPurchaseSection2, self)._prepare_statement_line(
             inv_intra_line, statement_id
         )
-        company_id = self._context.get("company_id", self.env.user.company_id)
+        company_id = self._context.get("company_id", self.env.company)
 
         # Company defaults
         statistic_amount = (
@@ -267,7 +257,7 @@ class IntrastatStatementPurchaseSection2(models.Model):
 
         # Sign variation
         sign_variation = False
-        if inv_intra_line.invoice_id.type == "in_refund":
+        if inv_intra_line.invoice_id.move_type == "in_refund":
             sign_variation = "-"
 
         res.update(
@@ -282,7 +272,6 @@ class IntrastatStatementPurchaseSection2(models.Model):
         )
         return res
 
-    @api.multi
     def _export_line_checks(self, section_label, section_number):
         super(IntrastatStatementPurchaseSection2, self)._export_line_checks(
             section_label, section_number
@@ -312,7 +301,6 @@ class IntrastatStatementPurchaseSection2(models.Model):
                     )
                 )
 
-    @api.multi
     def _prepare_export_line(self):
         self._export_line_checks(_("Purchase"), self.get_section_number())
 
@@ -352,7 +340,6 @@ class IntrastatStatementPurchaseSection2(models.Model):
         rcd += "\r\n"
         return rcd
 
-    @api.multi
     def get_amount_euro(self):
         amount = 0
         for section in self:
@@ -401,7 +388,6 @@ class IntrastatStatementPurchaseSection3(models.Model):
         )
         return res
 
-    @api.multi
     def _prepare_export_line(self):
         self._export_line_checks(_("Purchase"), self.get_section_number())
 
@@ -446,7 +432,7 @@ class IntrastatStatementPurchaseSection4(models.Model):
     month = fields.Integer(string="Ref. Month")
     quarterly = fields.Integer(string="Ref. Quarter")
     year_id = fields.Integer(string="Ref. Year")
-    protocol = fields.Integer(string="Protocol Number", size=6)
+    protocol = fields.Integer(string="Protocol Number")
     progressive_to_modify_id = fields.Many2one(
         comodel_name="account.intrastat.statement.purchase.section1",
         string="Progressive to Adjust ID",
@@ -492,7 +478,6 @@ class IntrastatStatementPurchaseSection4(models.Model):
         )
         return res
 
-    @api.multi
     def _export_line_checks(self, section_label, section_number):
         super(IntrastatStatementPurchaseSection4, self)._export_line_checks(
             section_label, section_number
@@ -518,7 +503,6 @@ class IntrastatStatementPurchaseSection4(models.Model):
                 _("Missing payment country on 'Purchases - Section 4'")
             )
 
-    @api.multi
     def _prepare_export_line(self):
         self._export_line_checks(_("Purchase"), 4)
 

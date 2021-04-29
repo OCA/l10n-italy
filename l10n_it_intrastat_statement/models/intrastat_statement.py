@@ -45,7 +45,6 @@ class AccountIntrastatStatement(models.Model):
     _description = "Intrastat Statement"
     _rec_name = "number"
 
-    @api.multi
     def round_min_amount(self, amount, company=None, prec_digits=None, truncate=False):
         """
         Return an integer representing `amount`,
@@ -76,7 +75,6 @@ class AccountIntrastatStatement(models.Model):
 
         return max(round_amount or 1, company.intrastat_min_amount)
 
-    @api.multi
     def _compute_amount_section(self, section_type, section_number):
         """
         Compute operation_number and amount for specified section.
@@ -149,7 +147,6 @@ class AccountIntrastatStatement(models.Model):
         st = self.search([], order="number desc", limit=1)
         return (st.number or 0) + 1
 
-    @api.multi
     def recompute_sequence_lines(self):
         for statement in self:
             for section_type in ["purchase", "sale"]:
@@ -174,23 +171,23 @@ class AccountIntrastatStatement(models.Model):
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
-        default=lambda self: self.env.user.company_id.id,
+        default=lambda self: self.env.company.id,
         required=True,
     )
     vat_taxpayer = fields.Char(
         string="Taxpayer VAT Number",
         required=True,
-        default=lambda self: self.env.user.company_id.partner_id.vat
-        and self.env.user.company_id.partner_id.vat[2:]
+        default=lambda self: self.env.company.partner_id.vat
+        and self.env.company.partner_id.vat[2:]
         or False,
     )
     intrastat_vat_delegate = fields.Char(
         string="Delegate VAT Number",
-        default=lambda self: self.env.user.company_id.intrastat_delegated_vat,
+        default=lambda self: self.env.company.intrastat_delegated_vat,
     )
     intrastat_name_delegate = fields.Char(
         string="Delegate Name",
-        default=lambda self: self.env.user.company_id.intrastat_delegated_name,
+        default=lambda self: self.env.company.intrastat_delegated_name,
     )
     fiscalyear = fields.Integer(
         string="Year", required=True, default=fields.Date.today().year
@@ -244,7 +241,7 @@ class AccountIntrastatStatement(models.Model):
         comodel_name="account.intrastat.custom",
         string="Customs Section",
         required=True,
-        default=lambda self: self.env.user.company_id.intrastat_custom_id,
+        default=lambda self: self.env.company.intrastat_custom_id,
     )
     sale = fields.Boolean(string="Sales", default=True)
     purchase = fields.Boolean(string="Purchases", default=True)
@@ -415,14 +412,12 @@ class AccountIntrastatStatement(models.Model):
         statement._normalize_statement()
         return statement
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         self._normalize_statement()
         self.recompute_sequence_lines()
         return res
 
-    @api.multi
     @api.depends("fiscalyear", "period_type", "period_number")
     def _compute_dates(self):
         for statement in self:
@@ -440,7 +435,6 @@ class AccountIntrastatStatement(models.Model):
             statement.date_start = fields.Date.to_date(period_date_start)
             statement.date_stop = fields.Date.to_date(period_date_stop)
 
-    @api.multi
     def get_dates_start_stop(self):
         self.ensure_one()
         year = self.fiscalyear
@@ -462,7 +456,6 @@ class AccountIntrastatStatement(models.Model):
             )
         return period_date_start, period_date_stop
 
-    @api.multi
     def _get_period_ref(self):
         self.ensure_one()
         res = {"year_id": self.fiscalyear}
@@ -474,7 +467,6 @@ class AccountIntrastatStatement(models.Model):
             res.update({"month": self.period_number})
         return res
 
-    @api.multi
     def _normalize_statement(self):
         # Unlink lines sale/purchase sections
         self.ensure_one()
@@ -484,7 +476,6 @@ class AccountIntrastatStatement(models.Model):
             self._unlink_sections(section_type="purchase")
         return True
 
-    @api.multi
     def _unlink_sections(self, section_type="all"):
         """
         Unlink lines sale/purchase sections.
@@ -506,7 +497,6 @@ class AccountIntrastatStatement(models.Model):
             self.purchase_section4_ids.unlink()
         return True
 
-    @api.multi
     def _get_progressive_interchange(self):
         self.ensure_one()
         prg = 0
@@ -536,7 +526,6 @@ class AccountIntrastatStatement(models.Model):
                 "{:2s}".format(str(prg).zfill(2)),
             )
 
-    @api.multi
     def _prepare_export_head(self):
         self.ensure_one()
 
@@ -596,7 +585,6 @@ class AccountIntrastatStatement(models.Model):
         rcd += "\r\n"
         return rcd
 
-    @api.multi
     def _prepare_export_prefix(self, ref_number, line=None):
         """
         Fixed part for every line of the exported file
@@ -651,7 +639,6 @@ class AccountIntrastatStatement(models.Model):
         number[len(number) - 1] = interchange[int(last_char)]
         return "".join(number)
 
-    @api.multi
     def _prepare_export_frontispiece(self, kind, ref_number):
         self.ensure_one()
         rcd = self._prepare_export_prefix(ref_number)
@@ -695,7 +682,6 @@ class AccountIntrastatStatement(models.Model):
         rcd += "\r\n"
         return rcd
 
-    @api.multi
     def generate_file_export(self):
         self.ensure_one()
         file_content = ""
@@ -765,7 +751,6 @@ class AccountIntrastatStatement(models.Model):
 
         return file_content
 
-    @api.multi
     def compute_statement(self):
         self.ensure_one()
         # Unlink existing lines
@@ -776,8 +761,8 @@ class AccountIntrastatStatement(models.Model):
 
         # Search intrastat lines
         domain = [
-            ("move_id.date", ">=", period_date_start),
-            ("move_id.date", "<=", period_date_stop),
+            ("invoice_date", ">=", period_date_start),
+            ("invoice_date", "<=", period_date_stop),
             ("intrastat", "=", True),
         ]
         inv_type = []
@@ -785,10 +770,10 @@ class AccountIntrastatStatement(models.Model):
             inv_type += ["out_invoice", "out_refund"]
         if self.purchase:
             inv_type += ["in_invoice", "in_refund"]
-        domain.append(("type", "in", inv_type))
+        domain.append(("move_type", "in", inv_type))
 
         statement_data = dict()
-        invoices = self.env["account.invoice"].search(domain)
+        invoices = self.env["account.move"].search(domain)
         for inv_intra_line in invoices.mapped("intrastat_line_ids"):
             for section_type in ["purchase", "sale"]:
                 for section_number in range(1, 5):
@@ -844,7 +829,6 @@ class AccountIntrastatStatement(models.Model):
     def get_section_field_name(section_type, section_number):
         return "{}_section{}_ids".format(section_type, section_number)
 
-    @api.multi
     def refund_line(self, line, to_ref_obj):
         """Refund line into sale if period ref is the same of the statement"""
         self.ensure_one()

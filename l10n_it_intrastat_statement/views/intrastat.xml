@@ -256,35 +256,13 @@
             </field>
         </record>
 
-        <record id="view_search_account_intrastat_statement" model="ir.ui.view">
-            <field name="name">view.search.account.intrastat.statement</field>
-            <field name="model">account.intrastat.statement</field>
-            <field name="arch" type="xml">
-                <search string="Intrastat Statements">
-                    <!--filter icon="terp-sale" string="Sales" domain="[('sale','=',True)]"/>
-                    <filter icon="terp-purchase" string="Purchases" domain="[('purchase','=',True)]"/>
-                    <field name="company_id" groups="base.group_multi_company"></field-->
-                    <!--group expand="0" string="Group By">
-                        <filter string="Year" icon="terp-folder-orange" domain="" context="{'group_by':'fiscalyear'}"/>
-                        <filter string="Sale" icon="terp-stock_symbol-selection" domain="" context="{'group_by':'sale'}"/>
-                        <filter string="Purchase" icon="terp-stock_symbol-selection" domain="" context="{'group_by':'purchase'}"/>
-                    </group-->
-                </search>
-            </field>
-        </record>
-
         <record id="account_intrastat_statement_action" model="ir.actions.act_window">
             <field name="name">Intrastat Statements</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">account.intrastat.statement</field>
-            <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="account_intrastat_statement_tree_view" />
             <field name="help" />
-            <field
-            name="search_view_id"
-            ref="view_search_account_intrastat_statement"
-        />
         </record>
 
         <menuitem
@@ -534,7 +512,7 @@
                         <group>
                             <field name="intrastat_custom_id" required="1" />
                             <field name="year_id" required="1" />
-                            <field name="protocol" required="1" />
+                            <field name="protocol" required="1" options="{'size': 6}" />
                             <field name="progressive_to_modify" required="1" />
                         </group>
                     </group>
@@ -793,7 +771,7 @@
                         <group>
                             <field name="intrastat_custom_id" required="1" />
                             <field name="year_id" required="1" />
-                            <field name="protocol" required="1" />
+                            <field name="protocol" required="1" options="{'size': 6}" />
                             <field name="progressive_to_modify" required="1" />
                         </group>
                     </group>
