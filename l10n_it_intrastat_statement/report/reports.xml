@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
     <record id="no_header_format_a4_vertical" model="report.paperformat">
         <field name="name">No Header A4 Vertical</field>
@@ -24,10 +24,13 @@
         report_type="qweb-pdf"
         name="l10n_it_intrastat_statement.report_intrastat_mod1"
         file="l10n_it_intrastat_statement.report_intrastat_mod1"
-        />
+    />
 
     <record id="print_intrastat_mod1" model="ir.actions.report">
-        <field name="paperformat_id" ref="l10n_it_intrastat_statement.no_header_format_a4_vertical"/>
+        <field
+            name="paperformat_id"
+            ref="l10n_it_intrastat_statement.no_header_format_a4_vertical"
+        />
     </record>
 
     <!-- Mod. Intra-2 -->
@@ -38,10 +41,13 @@
         report_type="qweb-pdf"
         name="l10n_it_intrastat_statement.report_intrastat_mod2"
         file="l10n_it_intrastat_statement.report_intrastat_mod2"
-        />
+    />
 
     <record id="print_intrastat_mod2" model="ir.actions.report">
-        <field name="paperformat_id" ref="l10n_it_intrastat_statement.no_header_format_a4_vertical"/>
+        <field
+            name="paperformat_id"
+            ref="l10n_it_intrastat_statement.no_header_format_a4_vertical"
+        />
     </record>
 
     <!-- Mod. Intra-1 bis -->
@@ -52,10 +58,13 @@
         report_type="qweb-pdf"
         name="l10n_it_intrastat_statement.report_intrastat_mod1_bis"
         file="l10n_it_intrastat_statement.report_intrastat_mod1_bis"
-        />
+    />
 
     <record id="print_intrastat_mod1_bis" model="ir.actions.report">
-        <field name="paperformat_id" ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"/>
+        <field
+            name="paperformat_id"
+            ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"
+        />
     </record>
 
     <!-- Mod. Intra-1 Ter -->
@@ -66,10 +75,13 @@
         report_type="qweb-pdf"
         name="l10n_it_intrastat_statement.report_intrastat_mod1_ter"
         file="l10n_it_intrastat_statement.report_intrastat_mod1_ter"
-        />
+    />
 
     <record id="print_intrastat_mod1_ter" model="ir.actions.report">
-        <field name="paperformat_id" ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"/>
+        <field
+            name="paperformat_id"
+            ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"
+        />
     </record>
 
     <!-- Mod. Intra-2 bis -->
@@ -80,9 +92,12 @@
         report_type="qweb-pdf"
         name="l10n_it_intrastat_statement.report_intrastat_mod2_bis"
         file="l10n_it_intrastat_statement.report_intrastat_mod2_bis"
-        />
+    />
 
     <record id="print_intrastat_mod2_bis" model="ir.actions.report">
-        <field name="paperformat_id" ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"/>
+        <field
+            name="paperformat_id"
+            ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"
+        />
     </record>
 </odoo>
