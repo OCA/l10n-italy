@@ -24,6 +24,7 @@ addon | version | summary
 [l10n_it_account_stamp](l10n_it_account_stamp/) | 14.0.1.0.0 | Gestione automatica dell'imposta di bollo
 [l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 14.0.1.0.0 | Gestione natura delle aliquote IVA
 [l10n_it_ateco](l10n_it_ateco/) | 14.0.1.0.0 | ITA - Codici Ateco
+[l10n_it_central_journal](l10n_it_central_journal/) | 14.0.1.0.0 | ITA - Libro giornale
 [l10n_it_delivery_note](l10n_it_delivery_note/) | 14.0.1.0.0 | Crea, gestisce e fattura i DDT partendo dalle consegne
 [l10n_it_delivery_note_base](l10n_it_delivery_note_base/) | 14.0.1.0.0 | Crea e gestisce tabelle principali per gestire i DDT
 [l10n_it_delivery_note_batch](l10n_it_delivery_note_batch/) | 14.0.1.0.0 | Crea i DDT partendo da gruppi di prelievi
