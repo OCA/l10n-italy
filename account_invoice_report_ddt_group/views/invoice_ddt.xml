@@ -4,9 +4,11 @@
               inherit_id="account.report_invoice_document" >
         <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[1]" position="after">
             <t t-set="has_serial_number" t-value="o.has_serial_number()" groups="stock.group_production_lot"/>
-            <th name="lot_serial" t-if="has_serial_number">
-                <strong>Lots/Serial Numbers</strong>
-            </th>
+            <t t-if="has_serial_number">
+                <th name="lot_serial">
+                    <strong>Lots/Serial Numbers</strong>
+                </th>
+            </t>
         </xpath>
         <xpath expr="//td[@name='account_invoice_line_name']" position="after">
             <t t-if="has_serial_number">
