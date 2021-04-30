@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_date_range_group_account_manager,group_account_manager model_date_range,model_date_range,account.group_account_manager,1,1,0,0
+access_wizard_giornale_manager,access_wizard_giornale manager,l10n_it_central_journal.model_wizard_giornale,,1,1,1,1

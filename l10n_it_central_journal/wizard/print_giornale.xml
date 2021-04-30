@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="wizard_giornale" model="ir.ui.view">
+        <field name="name">General Journal</field>
+        <field name="model">wizard.giornale</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="General Journal">
+                <separator string="Dates movements" />
+                <group>
+                    <field name="daterange_id" />
+                    <field name="company_id" />
+                    <field name="last_def_date_print" readonly="1" />
+                    <field name="date_move_line_from" invisible="1" />
+                    <field name="date_move_line_from_view" readonly="1" />
+                    <field name="date_move_line_to" />
+                </group>
+                <separator string="Year for Footer" />
+                <!--<group>-->
+                <field name="year_footer" />
+                <!--</group>-->
+                <separator string="Journals" />
+                <group>
+                    <field
+                        name="journal_ids"
+                        colspan="4"
+                        nolabel="1"
+                        height="250"
+                        domain="[('central_journal_exclude', '=', False)]"
+                    />
+                </group>
+                <separator string="Layout" />
+                <group>
+                    <field name="target_move" />
+                    <field name="fiscal_page_base" />
+                    <field name="start_row" />
+                    <field name="progressive_credit" invisible="1" />
+                    <field name="progressive_debit2" invisible="1" />
+                </group>
+                <footer>
+                    <button
+                        name="print_giornale"
+                        string="Print"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="print_giornale_final"
+                        string="Final print"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_giornale" model="ir.actions.act_window">
+        <field name="name">General Journal</field>
+        <field name="res_model">wizard.giornale</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_giornale" />
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        name="General Journal"
+        parent="account.menu_finance_reports"
+        action="action_giornale"
+        id="menu_giornale"
+    />
+</odoo>

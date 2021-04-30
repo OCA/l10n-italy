@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <data noupdate="0">
+        <record id="action_report_giornale" model="ir.actions.report">
+            <field name="name">Account General Journal</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">l10n_it_central_journal.report_giornale</field>
+            <field name="report_file">l10n_it_central_journal.report_giornale</field>
+            <field
+                name="paperformat_id"
+                ref="l10n_it_account.l10n_it_account_a4_portrait"
+            />
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>
