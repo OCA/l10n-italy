@@ -26,6 +26,7 @@ setuptools.setup(
         'odoo14-addon-l10n_it_rea',
         'odoo14-addon-l10n_it_split_payment',
         'odoo14-addon-l10n_it_vat_payability',
+        'odoo14-addon-l10n_it_vat_registries',
     ],
     classifiers=[
         'Programming Language :: Python',
