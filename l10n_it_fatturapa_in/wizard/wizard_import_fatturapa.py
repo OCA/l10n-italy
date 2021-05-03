@@ -164,9 +164,14 @@ class WizardImportFatturapa(models.TransientModel):
                     re.sub(r'\W+', '', DatiAnagrafici.IdFiscaleIVA.IdCodice).upper()
                 )
         partners = partner_model
+        res_partner_rule = self.env['ir.model.data'].sudo().xmlid_to_object(
+            "base.res_partner_rule", raise_if_not_found=False)
         if vat:
             domain = [('sanitized_vat', '=', vat)]
-            if self.env.context.get('from_attachment'):
+            if (
+                self.env.context.get('from_attachment') and
+                res_partner_rule and res_partner_rule.active
+            ):
                 att = self.env.context.get('from_attachment')
                 domain.extend([
                     '|',
@@ -176,7 +181,10 @@ class WizardImportFatturapa(models.TransientModel):
             partners = partner_model.search(domain)
         if not partners and cf:
             domain = [('fiscalcode', '=', cf)]
-            if self.env.context.get('from_attachment'):
+            if (
+                self.env.context.get('from_attachment') and
+                res_partner_rule and res_partner_rule.active
+            ):
                 att = self.env.context.get('from_attachment')
                 domain.extend([
                     '|',
