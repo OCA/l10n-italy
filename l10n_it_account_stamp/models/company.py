@@ -17,8 +17,5 @@ class AccountConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
     tax_stamp_product_id = fields.Many2one(
-        related="company_id.tax_stamp_product_id",
-        string="Tax Stamp Product",
-        help="Product used as Tax Stamp in customer invoices.",
-        readonly=False,
+        related="company_id.tax_stamp_product_id", readonly=False
     )
