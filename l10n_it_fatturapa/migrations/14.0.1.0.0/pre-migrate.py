@@ -20,17 +20,3 @@ def migrate(env, version):
             ("faturapa_summary_data", "fatturapa_summary_data"),
         ],
     )
-    openupgrade.rename_xmlids(
-        env.cr,
-        [
-            (
-                "l10n_it_fatturapa.account.account_payment_term",
-                "l10n_it_fatturapa.account.account_payment_term_immediate",
-            ),
-            ("l10n_it_fatturapa.invoice_form", "l10n_it_fatturapa.view_move_form"),
-            (
-                "l10n_it_fatturapa.view_invoice_line_form_fatturapa",
-                "l10n_it_fatturapa.view_invoice_form_fatturapa",
-            ),
-        ],
-    )
