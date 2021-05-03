@@ -129,6 +129,7 @@ class AccountInvoice(models.Model):
         res = super(AccountInvoice, self).action_move_create()
         for inv in self:
             if inv.tax_stamp and not inv.is_tax_stamp_line_present():
+                posted = False
                 if inv.move_id.state == 'posted':
                     posted = True
                     inv.move_id.state = 'draft'
