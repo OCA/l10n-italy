@@ -372,30 +372,155 @@ ul.auto-toc {
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#configuration" id="id1">Configuration</a></li>
-<li><a class="reference internal" href="#usage" id="id2">Usage</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="id3">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="id4">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="id5">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="id6">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="id7">Maintainers</a></li>
+<li><a class="reference internal" href="#installation" id="id1">Installation</a></li>
+<li><a class="reference internal" href="#configuration" id="id2">Configuration</a></li>
+<li><a class="reference internal" href="#usage" id="id3">Usage</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="id4">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="id5">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="id6">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="id7">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="id8">Maintainers</a></li>
 </ul>
 </li>
 </ul>
 </div>
+<div class="section" id="installation">
+<h1><a class="toc-backref" href="#id1">Installation</a></h1>
+<p><strong>Italiano</strong></p>
+<p>Qualora questo modulo venisse installato in un DB dove <tt class="docutils literal">l10n_it_causali_pagamento</tt> è già installato, è necessario eseguire la seguente procedura.</p>
+<ol class="arabic">
+<li><p class="first">Installare <tt class="docutils literal">openupgradelib</tt>:</p>
+<pre class="code literal-block">
+pip3 install git+https://github.com/OCA/openupgradelib.git&#64;master
+</pre>
+</li>
+<li><p class="first">Lanciare Odoo con il paramentro <tt class="docutils literal">shell</tt></p>
+</li>
+<li><p class="first">Eseguire i seguenti comandi:</p>
+<pre class="code python literal-block">
+ <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">openupgradelib</span> <span class="kn">import</span> <span class="n">openupgrade</span>
+ <span class="o">&gt;&gt;&gt;</span> <span class="n">openupgrade</span><span class="o">.</span><span class="n">rename_xmlids</span><span class="p">(</span>
+       <span class="n">env</span><span class="o">.</span><span class="n">cr</span><span class="p">,</span>
+       <span class="p">[</span>
+           <span class="p">(</span>
+               <span class="s2">&quot;l10n_it_causali_pagamento.view_causale_pagamento_tree&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;l10n_it_payment_reason.view_payment_reason_tree&quot;</span><span class="p">,</span>
+           <span class="p">),</span>
+           <span class="p">(</span>
+               <span class="s2">&quot;l10n_it_causali_pagamento.view_causale_pagamento_form&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;l10n_it_payment_reason.view_payment_reason_form&quot;</span><span class="p">,</span>
+           <span class="p">),</span>
+           <span class="p">(</span>
+               <span class="s2">&quot;l10n_it_causali_pagamento.action_causale_pagamento&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;l10n_it_payment_reason.action_payment_reason&quot;</span><span class="p">,</span>
+           <span class="p">),</span>
+           <span class="p">(</span>
+               <span class="s2">&quot;l10n_it_causali_pagamento.menu_causale_pagamento&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;l10n_it_payment_reason.menu_payment_reason&quot;</span><span class="p">,</span>
+           <span class="p">),</span>
+       <span class="p">],</span>
+<span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">openupgrade</span><span class="o">.</span><span class="n">update_module_names</span><span class="p">(</span>
+       <span class="n">env</span><span class="o">.</span><span class="n">cr</span><span class="p">,</span>
+       <span class="p">[</span>
+           <span class="p">(</span><span class="s2">&quot;l10n_it_causali_pagamento&quot;</span><span class="p">,</span> <span class="s2">&quot;l10n_it_payment_reason&quot;</span><span class="p">),</span>
+       <span class="p">],</span>
+<span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">openupgrade</span><span class="o">.</span><span class="n">rename_models</span><span class="p">(</span>
+       <span class="n">env</span><span class="o">.</span><span class="n">cr</span><span class="p">,</span>
+       <span class="p">[</span>
+           <span class="p">(</span><span class="s2">&quot;causale.pagamento&quot;</span><span class="p">,</span> <span class="s2">&quot;payment.reason&quot;</span><span class="p">),</span>
+       <span class="p">],</span>
+<span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">openupgrade</span><span class="o">.</span><span class="n">rename_tables</span><span class="p">(</span>
+     <span class="n">env</span><span class="o">.</span><span class="n">cr</span><span class="p">,</span>
+     <span class="p">[</span>
+         <span class="p">(</span><span class="s2">&quot;causale_pagamento&quot;</span><span class="p">,</span> <span class="s2">&quot;payment_reason&quot;</span><span class="p">),</span>
+     <span class="p">],</span>
+<span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">env</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</pre>
+</li>
+<li><p class="first">Riavviare Odoo</p>
+</li>
+<li><p class="first">Aggiornare <tt class="docutils literal">l10n_it_payment_reason</tt></p>
+</li>
+</ol>
+<p><strong>English</strong></p>
+<p>When <tt class="docutils literal">l10n_it_causali_pagamento</tt> is installed in the database you need to follow the following steps.</p>
+<ol class="arabic">
+<li><p class="first">Install <tt class="docutils literal">openupgradelib</tt>:</p>
+<pre class="code literal-block">
+pip3 install git+https://github.com/OCA/openupgradelib.git&#64;master
+</pre>
+</li>
+<li><p class="first">Run Odoo with the <tt class="docutils literal">shell</tt> command</p>
+</li>
+<li><p class="first">Execute the following commands:</p>
+<pre class="code python literal-block">
+ <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">openupgradelib</span> <span class="kn">import</span> <span class="n">openupgrade</span>
+ <span class="o">&gt;&gt;&gt;</span> <span class="n">openupgrade</span><span class="o">.</span><span class="n">rename_xmlids</span><span class="p">(</span>
+ <span class="o">&gt;&gt;&gt;</span> <span class="n">openupgrade</span><span class="o">.</span><span class="n">rename_xmlids</span><span class="p">(</span>
+       <span class="n">env</span><span class="o">.</span><span class="n">cr</span><span class="p">,</span>
+       <span class="p">[</span>
+           <span class="p">(</span>
+               <span class="s2">&quot;l10n_it_causali_pagamento.view_causale_pagamento_tree&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;l10n_it_payment_reason.view_payment_reason_tree&quot;</span><span class="p">,</span>
+           <span class="p">),</span>
+           <span class="p">(</span>
+               <span class="s2">&quot;l10n_it_causali_pagamento.view_causale_pagamento_form&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;l10n_it_payment_reason.view_payment_reason_form&quot;</span><span class="p">,</span>
+           <span class="p">),</span>
+           <span class="p">(</span>
+               <span class="s2">&quot;l10n_it_causali_pagamento.action_causale_pagamento&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;l10n_it_payment_reason.action_payment_reason&quot;</span><span class="p">,</span>
+           <span class="p">),</span>
+           <span class="p">(</span>
+               <span class="s2">&quot;l10n_it_causali_pagamento.menu_causale_pagamento&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;l10n_it_payment_reason.menu_payment_reason&quot;</span><span class="p">,</span>
+           <span class="p">),</span>
+       <span class="p">],</span>
+<span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">openupgrade</span><span class="o">.</span><span class="n">update_module_names</span><span class="p">(</span>
+       <span class="n">env</span><span class="o">.</span><span class="n">cr</span><span class="p">,</span>
+       <span class="p">[</span>
+           <span class="p">(</span><span class="s2">&quot;l10n_it_causali_pagamento&quot;</span><span class="p">,</span> <span class="s2">&quot;l10n_it_payment_reason&quot;</span><span class="p">),</span>
+       <span class="p">],</span>
+<span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">openupgrade</span><span class="o">.</span><span class="n">rename_models</span><span class="p">(</span>
+       <span class="n">env</span><span class="o">.</span><span class="n">cr</span><span class="p">,</span>
+       <span class="p">[</span>
+           <span class="p">(</span><span class="s2">&quot;causale.pagamento&quot;</span><span class="p">,</span> <span class="s2">&quot;payment.reason&quot;</span><span class="p">),</span>
+       <span class="p">],</span>
+<span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">openupgrade</span><span class="o">.</span><span class="n">rename_tables</span><span class="p">(</span>
+     <span class="n">env</span><span class="o">.</span><span class="n">cr</span><span class="p">,</span>
+     <span class="p">[</span>
+         <span class="p">(</span><span class="s2">&quot;causale_pagamento&quot;</span><span class="p">,</span> <span class="s2">&quot;payment_reason&quot;</span><span class="p">),</span>
+     <span class="p">],</span>
+<span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">env</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</pre>
+</li>
+<li><p class="first">Restart Odoo</p>
+</li>
+<li><p class="first">Update <tt class="docutils literal">l10n_it_payment_reason</tt> module</p>
+</li>
+</ol>
+</div>
 <div class="section" id="configuration">
-<h1><a class="toc-backref" href="#id1">Configuration</a></h1>
+<h1><a class="toc-backref" href="#id2">Configuration</a></h1>
 <p>La tabella viene aggiunta nell’area contabilità, ed è raggiungibile nella
 sezione configurazione. Occorre avere i privilegi di account manager.</p>
 </div>
 <div class="section" id="usage">
-<h1><a class="toc-backref" href="#id2">Usage</a></h1>
+<h1><a class="toc-backref" href="#id3">Usage</a></h1>
 <p>Installando il modulo vengono precaricati i codici disponibili.
 È possibile aggiungere nuovi codici o modificare quelli esistenti.
 Non è possibile avere più di un elemento con lo stesso codice.</p>
 </div>
 <div class="section" id="bug-tracker">
-<h1><a class="toc-backref" href="#id3">Bug Tracker</a></h1>
+<h1><a class="toc-backref" href="#id4">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-italy/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
@@ -403,15 +528,15 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h1><a class="toc-backref" href="#id4">Credits</a></h1>
+<h1><a class="toc-backref" href="#id5">Credits</a></h1>
 <div class="section" id="authors">
-<h2><a class="toc-backref" href="#id5">Authors</a></h2>
+<h2><a class="toc-backref" href="#id6">Authors</a></h2>
 <ul class="simple">
 <li>Agile Business Group</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h2><a class="toc-backref" href="#id6">Contributors</a></h2>
+<h2><a class="toc-backref" href="#id7">Contributors</a></h2>
 <ul class="simple">
 <li>Lorenzo Battistini &lt;<a class="reference external" href="mailto:lorenzo.battistini&#64;agilebg.com">lorenzo.battistini&#64;agilebg.com</a>&gt;</li>
 <li>Alex Comba &lt;<a class="reference external" href="mailto:alex.comba&#64;agilebg.com">alex.comba&#64;agilebg.com</a>&gt;</li>
@@ -419,7 +544,7 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#id7">Maintainers</a></h2>
+<h2><a class="toc-backref" href="#id8">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
