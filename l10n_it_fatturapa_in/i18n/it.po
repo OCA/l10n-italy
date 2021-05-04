@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-27 08:07+0000\n"
-"PO-Revision-Date: 2021-03-24 12:46+0000\n"
+"PO-Revision-Date: 2021-05-04 11:47+0000\n"
 "Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -286,6 +286,7 @@ msgstr "Riferimento data"
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_wizard_import_fatturapa__discount_decimal_digits
 msgid "Decimal digits used for discount field. See \"Prices decimal digits\"."
 msgstr ""
+"Cifre decimali usate per il campo sconto. Vedi \"Cifre decimali prezzi\"."
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_partner__e_invoice_discount_decimal_digits
@@ -294,11 +295,14 @@ msgid ""
 "Decimal digits used for discount field. See \"prices decimal digits\". -1 to "
 "use the default precision"
 msgstr ""
+"Cifre decimali usate per il campo sconto. Vedi \"cifre decimali prezzi\". -1 "
+"per usare la precisione predefinita"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_wizard_import_fatturapa__quantity_decimal_digits
 msgid "Decimal digits used for quantity field. See \"Prices decimal digits\"."
 msgstr ""
+"Cifre decimali usate per il campo quantità. Vedi \"Cifre decimali prezzi\"."
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_partner__e_invoice_quantity_decimal_digits
@@ -307,6 +311,8 @@ msgid ""
 "Decimal digits used for quantity field. See \"prices decimal digits\". -1 to "
 "use the default precision"
 msgstr ""
+"Cifre decimali usate per il campo quantità. Vedi \"cifre decimali prezzi\". -"
+"1 per usare le precisione predefinita"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_wizard_import_fatturapa__price_decimal_digits
@@ -316,6 +322,10 @@ msgid ""
 "decimal digits of all your prices. Otherwise, increase \"Product Price\" "
 "precision."
 msgstr ""
+"Cifre decimali usate nel calcolo dei prezzi. Questo è necessario per "
+"importare correttamente le e-fatture con tante cifre decimali, senza essere "
+"forzati ad aumentare la cifre decimali di tutti i prezzi. Altrimenti, "
+"incrementare la precisione \"Product Price\"."
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_partner__e_invoice_price_decimal_digits
@@ -326,6 +336,11 @@ msgid ""
 "decimal digits of all your prices. Otherwise, increase \"Product Price\" "
 "precision. -1 to use the default precision"
 msgstr ""
+"Cifre decimali usate nel calcolo dei prezzi. Questo è necessario per "
+"importare correttamente le e-fatture con tante cifre decimali, senza essere "
+"forzati ad aumentare la cifre decimali di tutti i prezzi. Altrimenti, "
+"incrementare la precisione \"Product Price\". -1 per usare la precisione "
+"predefinita"
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
@@ -368,7 +383,7 @@ msgstr "Dettagli sconto e maggiorazione"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_import_fatturapa__discount_decimal_digits
 msgid "Discounts decimal digits"
-msgstr ""
+msgstr "Cifre decimali sconti"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line__display_name
@@ -454,12 +469,14 @@ msgid ""
 "E-bill contains DatiRitenuta but no lines subjected to Ritenuta was found. "
 "Please manually check Withholding tax Amount\n"
 msgstr ""
+"La e-fattura contiene DatiRitenuta ma nessuna riga soggetta a Ritenuta è "
+"stata trovata. Prego controllare manualmente l'importo della ritenuta\n"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/models/account.py:177
 #, python-format
 msgid "E-bill contains ImportoRitenuta %s but created invoice has got %s\n"
-msgstr ""
+msgstr "La e-fattura contiene ImportoRitenuta %s ma la fattura creata ha %s\n"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice_line__e_invoice_descr
@@ -487,19 +504,19 @@ msgstr "Livello di dettaglio e-fatture"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_partner__e_invoice_discount_decimal_digits
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_users__e_invoice_discount_decimal_digits
 msgid "E-bills discounts decimal digits"
-msgstr ""
+msgstr "Cifre decimali per gli sconti e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_partner__e_invoice_price_decimal_digits
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_users__e_invoice_price_decimal_digits
 msgid "E-bills prices decimal digits"
-msgstr ""
+msgstr "Cifre decimali per i prezzi e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_partner__e_invoice_quantity_decimal_digits
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_users__e_invoice_quantity_decimal_digits
 msgid "E-bills quantities decimal digits"
-msgstr ""
+msgstr "Cifre decimali per le quantità e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model,name:l10n_it_fatturapa_in.model_discount_rise_price
@@ -836,6 +853,12 @@ msgid ""
 "Maximum level: every line contained in the electronic bill will create a "
 "line in the bill."
 msgstr ""
+"Livello minimo: la fattura è creata senza righe; l'utente dovrà crearle, "
+"secondo quanto specificato nella fattura elettronica.\n"
+"Livello aliquota: una riga fattura è creata per ogni aliquota presente nella "
+"fattura elettronica.\n"
+"Livello massimo: ogni riga contenuta nella fattura elettronica creerà una "
+"riga nella fattura."
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__name
@@ -968,7 +991,7 @@ msgstr "Collegamento di anteprima"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_import_fatturapa__price_decimal_digits
 msgid "Prices decimal digits"
-msgstr ""
+msgstr "Cifre decimali prezzi"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_company__cassa_previdenziale_product_id
@@ -1000,7 +1023,7 @@ msgstr "Provincia ( %s ) non presente nel sistema"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_import_fatturapa__quantity_decimal_digits
 msgid "Quantities decimal digits"
-msgstr ""
+msgstr "Cifre decimali quantità"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line__qty
@@ -1180,7 +1203,7 @@ msgstr "Il campo cognome contiene \"%s\", il sistema contiene \"%s\""
 #. module: l10n_it_fatturapa_in
 #: selection:res.partner,e_invoice_detail_level:0
 msgid "Tax Rate"
-msgstr ""
+msgstr "Aliquota"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:287
@@ -1202,7 +1225,7 @@ msgstr "Tipo imposta %s non trovato"
 #. module: l10n_it_fatturapa_in
 #: selection:wizard.import.fatturapa,e_invoice_detail_level:0
 msgid "Tax rate"
-msgstr ""
+msgstr "Aliquota"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_company__arrotondamenti_tax_id
