@@ -1,5 +1,5 @@
 from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 from odoo.tools import float_compare
 
 
@@ -62,7 +62,7 @@ class AccountInvoice(models.Model):
                 sign = inv.move_type in ["in_refund", "out_refund"] and -1 or 1
                 inv.amount_total_signed = inv.amount_total * sign
 
-    def invoice_validate(self):
+    def action_post(self):
         for invoice in self:
             if (
                 invoice.e_invoice_validation_error
@@ -72,7 +72,42 @@ class AccountInvoice(models.Model):
                     _("The invoice '%s' doesn't match the related e-invoice")
                     % invoice.display_name
                 )
-        return super(AccountInvoice, self).invoice_validate()
+            if invoice.efatt_rounding != 0:
+                if invoice.efatt_rounding > 0:
+                    arrotondamenti_account_id = (
+                        self.env.user.company_id.arrotondamenti_passivi_account_id
+                    )
+                    if not arrotondamenti_account_id:
+                        raise UserError(
+                            _("Round down account is not set " "in Accounting Settings")
+                        )
+                    name = _("Rounding down")
+                else:
+                    arrotondamenti_account_id = (
+                        self.env.user.company_id.arrotondamenti_attivi_account_id
+                    )
+                    if not arrotondamenti_account_id:
+                        raise UserError(
+                            _("Round up account is not set " "in Accounting Settings")
+                        )
+                    name = _("Rounding up")
+                upd_vals = {
+                    "move_id": invoice.id,
+                    "name": name,
+                    "account_id": arrotondamenti_account_id.id,
+                    "price_unit": invoice.efatt_rounding,
+                    "quantity": 1,
+                    "exclude_from_invoice_tab": False,
+                }
+                invoice.with_context(check_move_validity=False).update(
+                    {
+                        "invoice_line_ids": [(0, 0, upd_vals)],
+                        "invoice_date": invoice.invoice_date,
+                    }
+                )
+                # update with invoice_date to avoid False value returned from
+                # account._move_autocomplete_invoice_lines_write
+        return super().action_post()
 
     def e_inv_check_amount_untaxed(self):
         error_message = ""
@@ -311,8 +346,12 @@ class AccountInvoice(models.Model):
                 return
         # if every line is negative, change them all
         for line in self.invoice_line_ids:
-            line.price_unit = -line.price_unit
-        self._recompute_dynamic_lines(recompute_all_taxes=True)
+            line.with_context(check_move_validity=False).update(
+                {"price_unit": -line.price_unit}
+            )
+        self.with_context(check_move_validity=False)._recompute_dynamic_lines(
+            recompute_all_taxes=True
+        )
 
 
 class FatturapaArticleCode(models.Model):

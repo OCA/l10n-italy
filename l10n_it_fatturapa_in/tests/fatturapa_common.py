@@ -2,6 +2,7 @@ import base64
 import tempfile
 
 from odoo.modules import get_module_resource
+from odoo.tests import Form
 from odoo.tests.common import SingleTransactionCase
 
 
@@ -27,7 +28,7 @@ class FatturapaCommon(SingleTransactionCase):
                     "account.account_payment_term_immediate"
                 ).id,
                 "rate_ids": [(0, 0, {"tax": 20.0})],
-                "causali_pagamento_id": self.env.ref("l10n_it_payment_reason.a").id,
+                "payment_reason_id": self.env.ref("l10n_it_payment_reason.a").id,
             }
         )
 
@@ -140,21 +141,27 @@ class FatturapaCommon(SingleTransactionCase):
     ):
         if module_name is None:
             module_name = "l10n_it_fatturapa_in"
-        attach_id = self.attach_model.create(
-            {
-                "name": name,
-                "datas": self.getFile(file_name, module_name=module_name)[1],
-            }
-        ).id
+        attach_form = Form(self.attach_model)
+        attach_form.name = name
+        attach_form.datas = self.getFile(file_name, module_name=module_name)[1]
+        attach_id = attach_form.save().id
         if mode == "import":
-            wizard = self.wizard_model.with_context(
-                active_ids=[attach_id], active_model="fatturapa.attachment.in"
-            ).create(wiz_values or {})
+            wizard_form = Form(
+                self.wizard_model.with_context(
+                    active_ids=[attach_id], active_model="fatturapa.attachment.in"
+                )
+            )
+            wizard = wizard_form.save()
             return wizard.importFatturaPA()
         if mode == "link":
-            wizard = self.wizard_link_model.with_context(
-                active_ids=[attach_id], active_model="fatturapa.attachment.in"
-            ).create(wiz_values or {})
+            wizard_form = Form(
+                self.wizard_link_model.with_context(
+                    active_ids=[attach_id], active_model="fatturapa.attachment.in"
+                )
+            )
+            wizard = wizard_form.save()
+            if wiz_values:
+                wiz_values.wizard_id = wizard
             return wizard.link()
 
     def run_wizard_multi(self, file_name_list, module_name=None):

@@ -58,15 +58,15 @@ class WizardLinkToInvoiceLine(models.TransientModel):
 
         import_wiz.set_e_invoice_lines(FatturaBody, self.invoice_id)
 
-        import_wiz.set_summary_data(FatturaBody, self.invoice_id.id)
+        import_wiz.set_summary_data(FatturaBody, self.invoice_id)
 
         import_wiz.set_delivery_data(FatturaBody, self.invoice_id)
 
         import_wiz.set_payments_data(
-            FatturaBody, self.invoice_id.id, self.invoice_id.partner_id.id
+            FatturaBody, self.invoice_id, self.invoice_id.partner_id.id
         )
 
-        import_wiz.set_activity_progress(FatturaBody, self.invoice_id.id)
+        import_wiz.set_activity_progress(FatturaBody, self.invoice_id)
 
         import_wiz.set_StabileOrganizzazione(cedentePrestatore, self.invoice_id)
 
@@ -74,7 +74,7 @@ class WizardLinkToInvoiceLine(models.TransientModel):
 
         import_wiz.set_art73(FatturaBody, self.invoice_id)
 
-        import_wiz.set_attachments_data(FatturaBody, self.invoice_id.id)
+        import_wiz.set_attachments_data(FatturaBody, self.invoice_id)
 
         return True
 
