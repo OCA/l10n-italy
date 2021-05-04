@@ -78,14 +78,9 @@ class WizardImportFatturapa(models.TransientModel):
         if inconsistencies:
             inconsistencies += "\n"
         inconsistencies += message
-        # we can't set
-        # self = self.with_context(inconsistencies=inconsistencies)
-        # because self is a locale variable.
-        # We use __dict__ to modify attributes of self
-        # self.__dict__.update(
-        #    self.with_context(inconsistencies=inconsistencies).__dict__
-        # )
-        # XXX - da controllare
+        # convert to dict in order to be able to modify context
+        self.env.context = dict(self.env.context)
+        self.env.context.update(inconsistencies=inconsistencies)
 
     def check_partner_base_data(self, partner_id, DatiAnagrafici):
         partner = self.env["res.partner"].browse(partner_id)
@@ -496,6 +491,7 @@ class WizardImportFatturapa(models.TransientModel):
                 "sequence": int(line.NumeroLinea),
                 "account_id": credit_account_id,
                 "price_unit": float(line.PrezzoUnitario),
+                "exclude_from_invoice_tab": False,
             }
         )
         if line.Quantita is None:
@@ -1140,7 +1136,7 @@ class WizardImportFatturapa(models.TransientModel):
                     )
                     arrotondamenti_account_id = (
                         arrotondamenti_passivi_account_id.id
-                        if to_round < 0.0
+                        if to_round > 0.0
                         else arrotondamenti_attivi_account_id.id
                     )
                     invoice_line_tax_id = (
@@ -1155,8 +1151,8 @@ class WizardImportFatturapa(models.TransientModel):
                         "move_id": invoice.id,
                         "name": name,
                         "account_id": arrotondamenti_account_id,
-                        "price_unit": abs(to_round),
-                        "exclude_from_invoice_tab": True,
+                        "price_unit": to_round,
+                        "exclude_from_invoice_tab": False,
                         "tax_ids": [(6, 0, [invoice_line_tax_id])],
                     }
                     # Valutare se in caso di importazione senza rounding sia meglio
@@ -1304,6 +1300,7 @@ class WizardImportFatturapa(models.TransientModel):
                     "price_unit": float(welfareLine.ImportoContributoCassa),
                     "move_id": invoice.id,
                     "account_id": credit_account_id,
+                    "quantity": 1,
                 }
             )
             if welfareLine.Ritenuta:
@@ -1325,9 +1322,9 @@ class WizardImportFatturapa(models.TransientModel):
                 line_vals["product_id"] = cassa_previdenziale_product.id
                 line_vals["name"] = cassa_previdenziale_product.name
                 self.adjust_accounting_data(cassa_previdenziale_product, line_vals)
-            self.env["account.move.line"].with_context(
-                check_move_validity=False
-            ).create(line_vals)
+            invoice.with_context(check_move_validity=False).update(
+                {"invoice_line_ids": [(0, 0, line_vals)]}
+            )
 
     def _convert_datetime(self, dtstring):
         ret = False
@@ -1488,9 +1485,10 @@ class WizardImportFatturapa(models.TransientModel):
         fatturapa_attachment_obj = self.env["fatturapa.attachment.in"]
         fatturapa_attachment_ids = self.env.context.get("active_ids", False)
         new_invoices = []
+        # convert to dict in order to be able to modify context
+        self.env.context = dict(self.env.context)
         for fatturapa_attachment_id in fatturapa_attachment_ids:
-            # XXX - da controllare
-            # self.__dict__.update(self.with_context(inconsistencies="").__dict__)
+            self.env.context.update(inconsistencies="")
             fatturapa_attachment = fatturapa_attachment_obj.browse(
                 fatturapa_attachment_id
             )
@@ -1520,7 +1518,7 @@ class WizardImportFatturapa(models.TransientModel):
             for fattura in fatt.FatturaElettronicaBody:
 
                 # reset inconsistencies
-                # self.__dict__.update(self.with_context(inconsistencies="").__dict__)
+                self.env.context.update(inconsistencies="")
 
                 invoice = self.invoiceCreate(
                     fatt, fatturapa_attachment, fattura, partner_id
