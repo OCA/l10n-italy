@@ -475,15 +475,9 @@ class WizardImportFatturapa(models.TransientModel):
         return product
 
     def adjust_accounting_data(self, product, line_vals):
-        if product.product_tmpl_id.property_account_expense_id:
-            line_vals[
-                "account_id"
-            ] = product.product_tmpl_id.property_account_expense_id.id
-        elif product.product_tmpl_id.categ_id.property_account_expense_categ_id:
-            line_vals[
-                "account_id"
-            ] = product.product_tmpl_id.categ_id.property_account_expense_categ_id.id
-        account = self.env["account.account"].browse(line_vals["account_id"])
+        account = self.get_credit_account(product)
+        line_vals["account_id"] = account.id
+
         new_tax = None
         if len(product.product_tmpl_id.supplier_taxes_id) == 1:
             new_tax = product.product_tmpl_id.supplier_taxes_id[0]
@@ -696,22 +690,22 @@ class WizardImportFatturapa(models.TransientModel):
                         discount -= float(DiscRise.Importo)
                     elif DiscRise.Tipo == "MG":
                         discount += float(DiscRise.Importo)
-            journal = self.get_purchase_journal(invoice.company_id)
-            credit_account_id = journal.default_account_id.id
+            company = invoice.company_id
+            global_discount_product = company.sconto_maggiorazione_product_id
+            credit_account = self.get_credit_account(
+                product=global_discount_product,
+            )
             line_vals = {
                 "move_id": invoice_id,
                 "name": _("Global bill discount from document general data"),
-                "account_id": credit_account_id,
+                "account_id": credit_account.id,
                 "price_unit": discount,
                 "quantity": 1,
             }
-            if self.env.company.sconto_maggiorazione_product_id:
-                sconto_maggiorazione_product = (
-                    self.env.company.sconto_maggiorazione_product_id
-                )
-                line_vals["product_id"] = sconto_maggiorazione_product.id
-                line_vals["name"] = sconto_maggiorazione_product.name
-                self.adjust_accounting_data(sconto_maggiorazione_product, line_vals)
+            if global_discount_product:
+                line_vals["product_id"] = global_discount_product.id
+                line_vals["name"] = global_discount_product.name
+                self.adjust_accounting_data(global_discount_product, line_vals)
             self.env["account.move.line"].with_context(
                 check_move_validity=False
             ).create(line_vals)
@@ -912,6 +906,54 @@ class WizardImportFatturapa(models.TransientModel):
                 )
         return einvoiceline
 
+    def get_credit_account(self, product=None):
+        """
+        Try to get default credit account for invoice line looking in
+
+        1) product (if provided)
+        2) purchase journal
+        3) company default.
+
+        :param product: Product whose expense account will be used
+        :return: The account found
+        """
+        credit_account = self.env["account.account"].browse()
+
+        # If there is a product, get its default expense account
+        if product:
+            template = product.product_tmpl_id
+            accounts_dict = template.get_product_accounts()
+            credit_account = accounts_dict["expense"]
+
+        company = self.env.user.company_id
+        # Search in purchase journal
+        journal = self.get_purchase_journal(company)
+        if not credit_account:
+            credit_account = journal.default_account_id
+
+        # Search in company defaults
+        if not credit_account:
+            credit_account = (
+                self.env["ir.property"]
+                .with_company(company)
+                ._get("property_account_expense_categ_id", "product.category")
+            )
+
+        if not credit_account:
+            raise UserError(
+                _(
+                    "Please configure Default Credit Account "
+                    "in Journal '{journal}' "
+                    "or check default expense account "
+                    "for company '{company}'."
+                ).format(
+                    journal=journal.display_name,
+                    company=company.display_name,
+                )
+            )
+
+        return credit_account
+
     def invoiceCreate(self, fatt, fatturapa_attachment, FatturaBody, partner_id):
         partner_model = self.env["res.partner"]
         invoice_model = self.env["account.move"]
@@ -934,7 +976,7 @@ class WizardImportFatturapa(models.TransientModel):
                 )
             )
         purchase_journal = self.get_purchase_journal(company)
-        credit_account_id = purchase_journal.default_account_id.id
+        credit_account = self.get_credit_account()
         comment = ""
         # 2.1.1
         docType_id = False
@@ -998,13 +1040,13 @@ class WizardImportFatturapa(models.TransientModel):
         # 2.2.1
         invoice_lines.extend(
             self.set_invoice_line_ids(
-                FatturaBody, credit_account_id, partner, wt_founds, invoice
+                FatturaBody, credit_account.id, partner, wt_founds, invoice
             )
         )
 
         # 2.1.1.7
         invoice_lines.extend(
-            self.set_welfares_fund(FatturaBody, credit_account_id, invoice, wt_founds)
+            self.set_welfares_fund(FatturaBody, credit_account.id, invoice, wt_founds)
         )
 
         # 2.1.1.10

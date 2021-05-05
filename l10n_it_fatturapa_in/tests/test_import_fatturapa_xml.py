@@ -190,6 +190,56 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertAlmostEqual(invoice.amount_total, 1288.61)
         self.assertFalse(invoice.inconsistencies)
 
+    def test_08_xml_import_no_account(self):
+        """Check that a useful error message is raised when
+        the credit account is missing in purchase journal."""
+        company = self.env.user.company_id
+        journal = self.wizard_model.get_purchase_journal(company)
+        journal_account = journal.default_account_id
+        journal.default_account_id = False
+
+        expense_default_property = self.env["ir.property"]._get_property(
+            "property_account_expense_categ_id",
+            "product.category",
+            res_id=False,
+        )
+        # Setting res_id disables the property from acting as default value
+        expense_default_property.res_id = 1
+        with self.assertRaises(UserError) as ue:
+            self.run_wizard("test8_no_account", "IT05979361218_005.xml")
+        self.assertIn(journal.display_name, ue.exception.args[0])
+        self.assertIn(company.display_name, ue.exception.args[0])
+
+        discount_amount = -143.18
+        # Restore the property and import the invoice
+        expense_default_property.res_id = False
+        res = self.run_wizard("test8_with_property", "IT05979361218_005.xml")
+        invoice_id = res.get("domain")[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        invoice_lines = invoice.invoice_line_ids
+        discount_line = invoice_lines.filtered(
+            lambda line: line.price_unit == discount_amount
+        )
+        self.assertEqual(
+            discount_line.account_id,
+            expense_default_property.get_by_record(),
+        )
+
+        # Restore the property and import the invoice
+        journal.default_account_id = journal_account
+        res = self.run_wizard("test8_with_journal", "IT05979361218_005.xml")
+        invoice_id = res.get("domain")[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        invoice_lines = invoice.invoice_line_ids
+        discount_line = invoice_lines.filtered(
+            lambda line: line.price_unit == discount_amount
+        )
+        self.assertEqual(
+            discount_line.account_id,
+            journal_account,
+        )
+        self.assertTrue(invoice)
+
     def test_09_xml_import(self):
         # using DatiGeneraliDocumento.ScontoMaggiorazione without
         # ImportoTotaleDocumento
