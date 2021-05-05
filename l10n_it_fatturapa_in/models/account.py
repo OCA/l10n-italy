@@ -1,5 +1,5 @@
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import ValidationError
 from odoo.tools import float_compare
 
 
@@ -72,41 +72,6 @@ class AccountInvoice(models.Model):
                     _("The invoice '%s' doesn't match the related e-invoice")
                     % invoice.display_name
                 )
-            if invoice.efatt_rounding != 0:
-                if invoice.efatt_rounding > 0:
-                    arrotondamenti_account_id = (
-                        self.env.user.company_id.arrotondamenti_passivi_account_id
-                    )
-                    if not arrotondamenti_account_id:
-                        raise UserError(
-                            _("Round down account is not set " "in Accounting Settings")
-                        )
-                    name = _("Rounding down")
-                else:
-                    arrotondamenti_account_id = (
-                        self.env.user.company_id.arrotondamenti_attivi_account_id
-                    )
-                    if not arrotondamenti_account_id:
-                        raise UserError(
-                            _("Round up account is not set " "in Accounting Settings")
-                        )
-                    name = _("Rounding up")
-                upd_vals = {
-                    "move_id": invoice.id,
-                    "name": name,
-                    "account_id": arrotondamenti_account_id.id,
-                    "price_unit": invoice.efatt_rounding,
-                    "quantity": 1,
-                    "exclude_from_invoice_tab": False,
-                }
-                invoice.with_context(check_move_validity=False).update(
-                    {
-                        "invoice_line_ids": [(0, 0, upd_vals)],
-                        "invoice_date": invoice.invoice_date,
-                    }
-                )
-                # update with invoice_date to avoid False value returned from
-                # account._move_autocomplete_invoice_lines_write
         return super().action_post()
 
     def e_inv_check_amount_untaxed(self):
@@ -114,7 +79,7 @@ class AccountInvoice(models.Model):
         if (
             self.e_invoice_amount_untaxed
             and float_compare(
-                self.amount_untaxed,
+                self.amount_untaxed - self.efatt_rounding,
                 # Using abs because odoo invoice total can't be negative,
                 # while XML total can.
                 # See process_negative_lines method
@@ -159,7 +124,7 @@ class AccountInvoice(models.Model):
         if (
             self.e_invoice_amount_total
             and float_compare(
-                self.amount_total,
+                self.amount_total - self.efatt_rounding,
                 abs(self.e_invoice_amount_total),
                 precision_rounding=self.currency_id.rounding,
             )
