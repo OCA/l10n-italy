@@ -24,6 +24,7 @@ setuptools.setup(
         'odoo14-addon-l10n_it_fiscal_payment_term',
         'odoo14-addon-l10n_it_fiscalcode',
         'odoo14-addon-l10n_it_ipa',
+        'odoo14-addon-l10n_it_payment_reason',
         'odoo14-addon-l10n_it_pec',
         'odoo14-addon-l10n_it_rea',
         'odoo14-addon-l10n_it_split_payment',
