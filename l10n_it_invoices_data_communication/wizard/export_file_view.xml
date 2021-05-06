@@ -43,7 +43,6 @@
         <record id="action_wizard_dati_iva_export_file" model="ir.actions.act_window">
             <field name="name">Export invoices data file</field>
             <field name="res_model">comunicazione.dati.iva.export.file</field>
-            <field name="view_type">form</field>
             <field name="view_mode">form</field>
             <field name="view_id" ref="wizard_dati_iva_export_file" />
             <field name="target">new</field>

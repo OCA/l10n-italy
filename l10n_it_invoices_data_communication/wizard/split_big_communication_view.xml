@@ -30,7 +30,6 @@
         <field name="name">Split big communication</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">wizard.split.big.invoices.communication</field>
-        <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="wizard_split_big_communication" />
         <field name="target">new</field>

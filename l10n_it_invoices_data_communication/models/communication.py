@@ -27,7 +27,7 @@ def clear_xml_element(element):
 
 def clear_xml(xml_root):
     xml_root = etree.iterwalk(xml_root)
-    for dummy, xml_element in xml_root:
+    for _dummy, xml_element in xml_root:
         parent = xml_element.getparent()
         if clear_xml_element(xml_element):
             parent.remove(xml_element)
@@ -50,7 +50,7 @@ class ComunicazioneDatiIva(models.Model):
 
     @api.model
     def _default_company(self):
-        company_id = self._context.get("company_id", self.env.user.company_id.id)
+        company_id = self._context.get("company_id", self.env.company.id)
         return company_id
 
     @api.constrains("identificativo")
@@ -85,7 +85,7 @@ class ComunicazioneDatiIva(models.Model):
         string="Declarant fiscal code",
         help="Fiscal code of the person communicating the invoices data",
     )
-    codice_carica_id = fields.Many2one("codice.carica", string="Role code")
+    codice_carica_id = fields.Many2one("appointment.code", string="Role code")
     date_start = fields.Date(string="Date start", required=True)
     date_end = fields.Date(string="Date end", required=True)
     fatture_emesse_ids = fields.One2many(
@@ -204,15 +204,6 @@ class ComunicazioneDatiIva(models.Model):
     errors = fields.Text(copy=False)
     esterometro = fields.Boolean(default=True, string="Esterometro")
 
-    @api.onchange("company_id")
-    def onchange_company_id(self):
-        if self.company_id:
-            if self.company_id.partner_id.vat:
-                self.taxpayer_vat = self.company_id.partner_id.vat[2:]
-            else:
-                self.taxpayer_vat = ""
-            self.taxpayer_fiscalcode = self.company_id.partner_id.fiscalcode
-
     @api.onchange("partner_cedente_id")
     def onchange_partner_cedente_id(self):
         for comunicazione in self:
@@ -283,7 +274,6 @@ class ComunicazioneDatiIva(models.Model):
             vals["cedente_IdFiscaleIVA_IdCodice"] = vals_norm["IdFiscaleIVA_IdCodice"]
         return vals
 
-    @api.multi
     @api.onchange("partner_cessionario_id")
     def onchange_partner_cessionario_id(self):
         for comunicazione in self:
@@ -402,11 +392,10 @@ class ComunicazioneDatiIva(models.Model):
     def _parse_fattura_numero(self, fattura_numero):
         try:
             fattura_numero = fattura_numero[-20:]
-        except:
+        except BaseException:
             pass
         return fattura_numero
 
-    @api.multi
     def compute_values(self):
         # Unlink existing lines
         self._unlink_sections()
@@ -433,8 +422,8 @@ class ComunicazioneDatiIva(models.Model):
                     "posizione": posizione,
                     "invoice_id": fattura.id,
                     "dati_fattura_TipoDocumento": fattura.fiscal_document_type_id.id,
-                    "dati_fattura_Data": fattura.date_invoice,
-                    "dati_fattura_Numero": self._parse_fattura_numero(fattura.number),
+                    "dati_fattura_Data": fattura.invoice_date,
+                    "dati_fattura_Numero": self._parse_fattura_numero(fattura.name),
                     "dati_fattura_iva_ids": fattura._get_tax_comunicazione_dati_iva(),
                 }
                 val = self._prepare_fattura_emessa(val, fattura)
@@ -468,13 +457,13 @@ class ComunicazioneDatiIva(models.Model):
         domain = [("comunicazione_dati_iva_escludi", "=", True)]
         no_journal_ids = self.env["account.journal"].search(domain).ids
         domain = [
-            ("type", "in", ["out_invoice", "out_refund"]),
+            ("move_type", "in", ["out_invoice", "out_refund"]),
             ("comunicazione_dati_iva_escludi", "=", False),
-            ("move_id", "!=", False),
-            ("move_id.journal_id", "not in", no_journal_ids),
+            ("state", "=", "posted"),
+            ("journal_id", "not in", no_journal_ids),
             ("company_id", "=", self.company_id.id),
-            ("date_invoice", ">=", self.date_start),
-            ("date_invoice", "<=", self.date_end),
+            ("invoice_date", ">=", self.date_start),
+            ("invoice_date", "<=", self.date_end),
             "|",
             ("fiscal_document_type_id.out_invoice", "=", True),
             ("fiscal_document_type_id.out_refund", "=", True),
@@ -486,7 +475,7 @@ class ComunicazioneDatiIva(models.Model):
     def _get_fatture_emesse(self):
         self.ensure_one()
         domain = self._get_fatture_emesse_domain()
-        return self.env["account.invoice"].search(domain)
+        return self.env["account.move"].search(domain)
 
     def _prepare_cedenti_dati_fatture(self, fatture_ricevute, cedenti):
         dati_fatture = []
@@ -503,9 +492,9 @@ class ComunicazioneDatiIva(models.Model):
                     "posizione": posizione,
                     "invoice_id": fattura.id,
                     "dati_fattura_TipoDocumento": fattura.fiscal_document_type_id.id,
-                    "dati_fattura_Data": fattura.date_invoice,
+                    "dati_fattura_Data": fattura.invoice_date,
                     "dati_fattura_DataRegistrazione": fattura.date,
-                    "dati_fattura_Numero": self._parse_fattura_numero(fattura.reference)
+                    "dati_fattura_Numero": self._parse_fattura_numero(fattura.ref)
                     or "",
                     "dati_fattura_iva_ids": fattura._get_tax_comunicazione_dati_iva(),
                 }
@@ -536,13 +525,13 @@ class ComunicazioneDatiIva(models.Model):
         domain = [("comunicazione_dati_iva_escludi", "=", True)]
         no_journal_ids = self.env["account.journal"].search(domain).ids
         domain = [
-            ("type", "in", ["in_invoice", "in_refund"]),
+            ("move_type", "in", ["in_invoice", "in_refund"]),
             ("comunicazione_dati_iva_escludi", "=", False),
-            ("move_id", "!=", False),
-            ("move_id.journal_id", "not in", no_journal_ids),
+            ("state", "=", "posted"),
+            ("journal_id", "not in", no_journal_ids),
             ("company_id", "=", self.company_id.id),
-            ("date", ">=", self.date_start),
-            ("date", "<=", self.date_end),
+            ("invoice_date", ">=", self.date_start),
+            ("invoice_date", "<=", self.date_end),
             "|",
             ("fiscal_document_type_id.in_invoice", "=", True),
             ("fiscal_document_type_id.in_refund", "=", True),
@@ -554,7 +543,7 @@ class ComunicazioneDatiIva(models.Model):
     def _get_fatture_ricevute(self):
         self.ensure_one()
         domain = self._get_fatture_ricevute_domain()
-        return self.env["account.invoice"].search(domain)
+        return self.env["account.move"].search(domain)
 
     def _unlink_sections(self):
         for comunicazione in self:
@@ -600,7 +589,7 @@ class ComunicazioneDatiIva(models.Model):
                     "fatture_emesse_ids.fatture_emesse_body_ids.invoice_id"
                 )
                 cessionari = fatture_emesse.mapped("partner_id")
-                new_set = self.env["account.invoice"]
+                new_set = self.env["account.move"]
                 old_set = fatture_emesse
                 for cessionario in cessionari:
                     fatture = fatture_emesse.filtered(
@@ -608,9 +597,7 @@ class ComunicazioneDatiIva(models.Model):
                     )
                     if len(fatture) > 1000:
                         new_set_ids = fatture.ids[: len(fatture) / 2]
-                        new_partial_set = self.env["account.invoice"].browse(
-                            new_set_ids
-                        )
+                        new_partial_set = self.env["account.move"].browse(new_set_ids)
                         new_set |= new_partial_set
                         old_set -= new_partial_set
                 self._unlink_sections()
@@ -621,7 +608,7 @@ class ComunicazioneDatiIva(models.Model):
                 self.fatture_emesse_ids = dati_fatture_1
                 self.splitting_note = _(
                     "Splitted considering invoices\n%s"
-                    % "\n".join(old_set.mapped("number"))
+                    % "\n".join(old_set.mapped("name"))
                 )
                 comm_2 = self.copy()
                 comm_2._unlink_sections()
@@ -632,14 +619,14 @@ class ComunicazioneDatiIva(models.Model):
                 comm_2.fatture_emesse_ids = dati_fatture_2
                 comm_2.splitting_note = _(
                     "Splitted considering invoices\n%s"
-                    % "\n".join(new_set.mapped("number"))
+                    % "\n".join(new_set.mapped("name"))
                 )
                 return self | comm_2
 
         elif self.dati_trasmissione == "DTR":
             if not self.check_fatture_ricevute_partners():
                 fatture_ricevute = self.mapped(
-                    "fatture_ricevute_ids.fatture_ricevute_body_ids." "invoice_id"
+                    "fatture_ricevute_ids.fatture_ricevute_body_ids.invoice_id"
                 )
                 cedenti = fatture_ricevute.mapped("partner_id")
                 first_set_ids = cedenti.ids[: len(cedenti) / 2]
@@ -668,10 +655,10 @@ class ComunicazioneDatiIva(models.Model):
                 return self | comm_2
             elif not self.check_fatture_ricevute_body():
                 fatture_ricevute = self.mapped(
-                    "fatture_ricevute_ids.fatture_ricevute_body_ids." "invoice_id"
+                    "fatture_ricevute_ids.fatture_ricevute_body_ids.invoice_id"
                 )
                 cedenti = fatture_ricevute.mapped("partner_id")
-                new_set = self.env["account.invoice"]
+                new_set = self.env["account.move"]
                 old_set = fatture_ricevute
                 for cedente in cedenti:
                     fatture = fatture_ricevute.filtered(
@@ -679,9 +666,7 @@ class ComunicazioneDatiIva(models.Model):
                     )
                     if len(fatture) > 1000:
                         new_set_ids = fatture.ids[: len(fatture) / 2]
-                        new_partial_set = self.env["account.invoice"].browse(
-                            new_set_ids
-                        )
+                        new_partial_set = self.env["account.move"].browse(new_set_ids)
                         new_set |= new_partial_set
                         old_set -= new_partial_set
                 self._unlink_sections()
@@ -690,7 +675,7 @@ class ComunicazioneDatiIva(models.Model):
                 self.fatture_ricevute_ids = dati_fatture_1
                 self.splitting_note = _(
                     "Splitted considering invoices\n%s"
-                    % "\n".join(old_set.mapped("number"))
+                    % "\n".join(old_set.mapped("name"))
                 )
                 comm_2 = self.copy()
                 comm_2._unlink_sections()
@@ -699,7 +684,7 @@ class ComunicazioneDatiIva(models.Model):
                 comm_2.fatture_ricevute_ids = dati_fatture_2
                 comm_2.splitting_note = _(
                     "Splitted considering invoices\n%s"
-                    % "\n".join(new_set.mapped("number"))
+                    % "\n".join(new_set.mapped("name"))
                 )
                 return self | comm_2
 
@@ -748,8 +733,7 @@ class ComunicazioneDatiIva(models.Model):
             return False
         return True
 
-    @api.multi
-    def _check_errors_dte(self):
+    def _check_errors_dte(self):  # noqa
         self.ensure_one()
         comunicazione = self
         errors = []
@@ -984,12 +968,11 @@ class ComunicazioneDatiIva(models.Model):
                 if not invoice.dati_fattura_iva_ids:
                     errors.append(
                         _(u"No VAT data defined for invoice %s of partner %s")
-                        % (invoice.invoice_id.number, partner.partner_id.display_name)
+                        % (invoice.invoice_id.name, partner.partner_id.display_name)
                     )
         return errors
 
-    @api.multi
-    def _check_errors_dtr(self):
+    def _check_errors_dtr(self):  # noqa
         self.ensure_one()
         comunicazione = self
         errors = []
@@ -1221,21 +1204,20 @@ class ComunicazioneDatiIva(models.Model):
                 if not invoice.dati_fattura_iva_ids:
                     errors.append(
                         _(u"No VAT data defined for invoice %s of partner %s")
-                        % (invoice.invoice_id.number, partner.partner_id.display_name)
+                        % (invoice.invoice_id.name, partner.partner_id.display_name)
                     )
                 if not invoice.dati_fattura_Numero:
                     errors.append(
                         _(u"No invoice number for supplier bill %s")
-                        % (invoice.invoice_id.number)
+                        % (invoice.invoice_id.name)
                     )
                 if not invoice.dati_fattura_DataRegistrazione:
                     errors.append(
                         _(u"No registration date for supplier bill %s")
-                        % (invoice.invoice_id.number)
+                        % (invoice.invoice_id.name)
                     )
         return errors
 
-    @api.multi
     def check_errors(self):
         for comunicazione in self:
             errors = []
@@ -2152,7 +2134,6 @@ class ComunicazioneDatiIva(models.Model):
         #     etree.QName("Posizione"))
         return x_4_ann
 
-    @api.multi
     def get_export_xml_filename(self):
         self.ensure_one()
         filename = "{id}_{type}_{ann}{number}.{ext}".format(
@@ -2164,7 +2145,6 @@ class ComunicazioneDatiIva(models.Model):
         )
         return filename
 
-    @api.multi
     def get_export_xml(self):
         self.ensure_one()
         self._validate()
@@ -2284,7 +2264,6 @@ class ComunicazioneDatiIvaFattureEmesse(models.Model):
             line.totale_imponibile = totale_imponibile
             line.totale_iva = totale_iva
 
-    @api.multi
     @api.onchange("partner_id")
     def onchange_partner_id(self):
         for fattura in self:
@@ -2333,7 +2312,7 @@ class ComunicazioneDatiIvaFattureEmesseBody(models.Model):
     posizione = fields.Integer(
         "Position", help="Invoice position within transmitted file", required=True
     )
-    invoice_id = fields.Many2one("account.invoice", string="Invoice")
+    invoice_id = fields.Many2one("account.move", string="Invoice")
     dati_fattura_TipoDocumento = fields.Many2one(
         "fiscal.document.type", string="Document type", required=True
     )
@@ -2358,8 +2337,8 @@ class ComunicazioneDatiIvaFattureEmesseBody(models.Model):
                     and fattura.invoice_id.fiscal_document_type_id.id
                     or False
                 )
-                fattura.dati_fattura_Numero = fattura.invoice_id.number
-                fattura.dati_fattura_Data = fattura.invoice_id.date_invoice
+                fattura.dati_fattura_Numero = fattura.invoice_id.name
+                fattura.dati_fattura_Data = fattura.invoice_id.invoice_date
                 fattura.dati_fattura_iva_ids = (
                     fattura.invoice_id._get_tax_comunicazione_dati_iva()
                 )
@@ -2550,7 +2529,7 @@ class ComunicazioneDatiIvaFattureRicevuteBody(models.Model):
     posizione = fields.Integer(
         "Position", help="Invoice position within transmitted file", required=True
     )
-    invoice_id = fields.Many2one("account.invoice", string="Invoice")
+    invoice_id = fields.Many2one("account.move", string="Invoice")
     dati_fattura_TipoDocumento = fields.Many2one(
         "fiscal.document.type", string="Document type", required=True
     )
@@ -2578,8 +2557,8 @@ class ComunicazioneDatiIvaFattureRicevuteBody(models.Model):
                     and fattura.invoice_id.fiscal_document_type_id.id
                     or False
                 )
-                fattura.dati_fattura_Numero = fattura.invoice_id.number
-                fattura.dati_fattura_Data = fattura.invoice_id.date_invoice
+                fattura.dati_fattura_Numero = fattura.invoice_id.name
+                fattura.dati_fattura_Data = fattura.invoice_id.invoice_date
                 fattura.dati_fattura_DataRegistrazione = fattura.invoice_id.date
                 # tax
                 tax_lines = []
