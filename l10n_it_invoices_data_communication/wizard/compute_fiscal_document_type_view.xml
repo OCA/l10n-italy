@@ -1,22 +1,28 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
     <data>
 
         <record id="wizard_compute_fiscal_document_type" model="ir.ui.view">
             <field name="name">Assign fiscal document type</field>
-            <field name="model">comunicazione.dati.iva.ricalcolo.tipo.document.fiscale</field>
+            <field
+                name="model"
+            >comunicazione.dati.iva.ricalcolo.tipo.document.fiscale</field>
             <field name="arch" type="xml">
                 <form string="Assign doc type">
                     <div>
                         <p>
-                        Click on <strong>Compute</strong> to assign the fiscal document type to the invoices of communication's <strong>period</strong>.
+                        Click on <strong
+                            >Compute</strong> to assign the fiscal document type to the invoices of communication's <strong
+                            >period</strong>.
                         </p>
                     </div>
                     <footer>
-                        <button name="compute"
-                                string="Compute"
-                                type="object"
-                                class="oe_highlight"  />
+                        <button
+                            name="compute"
+                            string="Compute"
+                            type="object"
+                            class="oe_highlight"
+                        />
                         or
                         <button string="Cancel" class="oe_link" special="cancel" />
                     </footer>
@@ -28,10 +34,12 @@
         <record id="action_compute_fiscal_document_type" model="ir.actions.act_window">
             <field name="name">Assign fiscal document type</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">comunicazione.dati.iva.ricalcolo.tipo.document.fiscale</field>
+            <field
+                name="res_model"
+            >comunicazione.dati.iva.ricalcolo.tipo.document.fiscale</field>
             <field name="view_type">form</field>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="wizard_compute_fiscal_document_type"/>
+            <field name="view_id" ref="wizard_compute_fiscal_document_type" />
             <field name="target">new</field>
         </record>
 

@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
 
     <record id="wizard_split_big_communication" model="ir.ui.view">
@@ -12,10 +12,12 @@
                     </p>
                 </div>
                 <footer>
-                    <button name="split"
-                            string="Split"
-                            type="object"
-                            class="oe_highlight"  />
+                    <button
+                        name="split"
+                        string="Split"
+                        type="object"
+                        class="oe_highlight"
+                    />
                     or
                     <button string="Cancel" class="oe_link" special="cancel" />
                 </footer>
@@ -30,7 +32,7 @@
         <field name="res_model">wizard.split.big.invoices.communication</field>
         <field name="view_type">form</field>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="wizard_split_big_communication"/>
+        <field name="view_id" ref="wizard_split_big_communication" />
         <field name="target">new</field>
     </record>
 
