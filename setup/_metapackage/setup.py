@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo14-addon-l10n_it_account',
         'odoo14-addon-l10n_it_account_stamp',
         'odoo14-addon-l10n_it_account_tax_kind',
+        'odoo14-addon-l10n_it_appointment_code',
         'odoo14-addon-l10n_it_ateco',
         'odoo14-addon-l10n_it_central_journal',
         'odoo14-addon-l10n_it_delivery_note',
