@@ -13,7 +13,7 @@ class AccountInvoice(models.Model):
     manually_apply_tax_stamp = fields.Boolean("Apply tax stamp")
 
     def is_tax_stamp_applicable(self):
-        stamp_product_id = self.env.user.with_context(
+        stamp_product_id = self.with_context(
             lang=self.partner_id.lang).company_id.tax_stamp_product_id
         if not stamp_product_id:
             raise exceptions.Warning(
@@ -50,7 +50,7 @@ class AccountInvoice(models.Model):
         for inv in self:
             if not inv.tax_stamp:
                 raise exceptions.Warning(_("Tax stamp is not applicable"))
-            stamp_product_id = self.env.user.with_context(
+            stamp_product_id = inv.with_context(
                 lang=inv.partner_id.lang).company_id.tax_stamp_product_id
             if not stamp_product_id:
                 raise exceptions.Warning(
@@ -129,11 +129,12 @@ class AccountInvoice(models.Model):
         res = super(AccountInvoice, self).action_move_create()
         for inv in self:
             if inv.tax_stamp and not inv.is_tax_stamp_line_present():
+                posted = False
                 if inv.move_id.state == 'posted':
                     posted = True
                     inv.move_id.state = 'draft'
                 line_model = self.env['account.move.line']
-                stamp_product_id = self.env.user.with_context(
+                stamp_product_id = inv.with_context(
                     lang=inv.partner_id.lang).company_id.tax_stamp_product_id
                 if not stamp_product_id:
                     raise exceptions.Warning(
