@@ -197,7 +197,8 @@ class AccountInvoice(models.Model):
             # ---- Get Date of first due date
             move_line = self.env['account.move.line'].search([
                 ('partner_id', '=', invoice.partner_id.id),
-                ('invoice_id.payment_term_id.riba', '=', True)
+                ('invoice_id.payment_term_id.riba', '=', True),
+                ('date_maturity', '>=', fields.Date.context_today(invoice))
                 ])
             # ---- Filtered recordset with date_maturity
             move_line = move_line.filtered(
