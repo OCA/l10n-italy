@@ -23,7 +23,7 @@ class ResPartner(models.Model):
     riba_policy_expenses = fields.Selection(
         [
             ('one_a_month', 'More invoices, one expense per Month'),
-            ('unlimited', 'One expense per maturity')
+            ('unlimited', 'One expense per issued maturity')
         ],
         default="one_a_month",
         string="Ri.Ba. Policy expenses"
