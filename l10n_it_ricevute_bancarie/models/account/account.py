@@ -171,7 +171,7 @@ class AccountInvoice(models.Model):
         :return: True if month of invoice_date_due is in a list of all_date_due
         """
         self.ensure_one()
-        if self.partner_id.riba_policy_expenses in ('one_a_month', '', False):
+        if self.partner_id.riba_policy_expenses != 'unlimited':
             for d in all_date_due:
                 if invoice_date_due[:7] == str(d.strftime('%Y-%m')):
                     return True
