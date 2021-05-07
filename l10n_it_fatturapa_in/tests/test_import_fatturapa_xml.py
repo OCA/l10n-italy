@@ -699,6 +699,21 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         # Due to multiple SQL transactions, we cannot test the correct importation.
         # IT01234567890_FPR14.xml should be tested manually
 
+    def test_48_xml_import(self):
+        # my company bank account is the same as the one in XML:
+        # invoice creation must not be blocked
+        self.env["res.partner.bank"].create({
+            "acc_number": "IT59R0100003228000000000622",
+            "company_id": self.env.user.company_id.id,
+            "partner_id": self.env.user.company_id.partner_id.id,
+        })
+        res = self.run_wizard('test48', 'IT01234567890_FPR15.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertTrue(
+            "Bank account IT59R0100003228000000000622 already exists" in
+            invoice.inconsistencies)
+
     def test_01_xml_link(self):
         """
         E-invoice lines are created.
