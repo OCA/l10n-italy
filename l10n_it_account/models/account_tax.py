@@ -21,6 +21,103 @@ class AccountTax(models.Model):
         string="Parent Taxes",
     )
 
+    deductible_balance = fields.Float(
+        string="Deductible Balance", compute="_compute_deductible_balance"
+    )
+    undeductible_balance = fields.Float(
+        string="Undeductible Balance", compute="_compute_undeductible_balance"
+    )
+
+    def _compute_deductible_balance(self):
+        for tax in self:
+            account_ids = (
+                self.mapped("invoice_repartition_line_ids.account_id")
+                | self.mapped("refund_repartition_line_ids.account_id")
+            ).ids
+            balance_regular = tax.compute_balance(
+                tax_or_base="tax", financial_type="regular", account_ids=account_ids
+            )
+            balance_refund = tax.compute_balance(
+                tax_or_base="tax", financial_type="refund", account_ids=account_ids
+            )
+            tax.deductible_balance = balance_regular + balance_refund
+
+    def _compute_undeductible_balance(self):
+        for tax in self:
+            account_ids = (
+                self.mapped("invoice_repartition_line_ids.account_id")
+                | self.mapped("refund_repartition_line_ids.account_id")
+            ).ids
+            balance_regular = tax.compute_balance(
+                tax_or_base="tax",
+                financial_type="regular",
+                exclude_account_ids=account_ids,
+            )
+            balance_refund = tax.compute_balance(
+                tax_or_base="tax",
+                financial_type="refund",
+                exclude_account_ids=account_ids,
+            )
+            tax.undeductible_balance = balance_regular + balance_refund
+
+    def compute_balance(
+        self,
+        tax_or_base="tax",
+        financial_type=None,
+        account_ids=None,
+        exclude_account_ids=None,
+    ):
+        balance = super(AccountTax, self).compute_balance(tax_or_base, financial_type)
+        if account_ids:
+            domain = self.get_move_lines_domain(
+                tax_or_base=tax_or_base,
+                financial_type=financial_type,
+                account_ids=account_ids,
+            )
+            balance = self.env["account.move.line"].read_group(domain, ["balance"], [])[
+                0
+            ]["balance"]
+            balance = balance and -balance or 0
+        elif exclude_account_ids:
+            domain = self.get_move_lines_domain(
+                tax_or_base=tax_or_base,
+                financial_type=financial_type,
+                exclude_account_ids=exclude_account_ids,
+            )
+            balance = self.env["account.move.line"].read_group(domain, ["balance"], [])[
+                0
+            ]["balance"]
+            balance = balance and -balance or 0
+        return balance
+
+    def get_move_lines_domain(
+        self,
+        tax_or_base="tax",
+        financial_type=None,
+        account_ids=None,
+        exclude_account_ids=None,
+    ):
+        domain = super(AccountTax, self).get_move_lines_domain(
+            tax_or_base, financial_type
+        )
+        if account_ids:
+            domain.append(
+                (
+                    "account_id",
+                    "in",
+                    account_ids,
+                )
+            )
+        elif exclude_account_ids:
+            domain.append(
+                (
+                    "account_id",
+                    "not in",
+                    exclude_account_ids,
+                )
+            )
+        return domain
+
     def _get_tax_amount(self):
         self.ensure_one()
         res = 0.0
@@ -60,11 +157,22 @@ class AccountTax(models.Model):
         if not tax.children_tax_ids:
             base_balance = tax.base_balance
             balance = tax.balance
+            deductible_balance = tax.deductible_balance
+            undeductible_balance = tax.undeductible_balance
             if registry_type == "supplier":
                 base_balance = -base_balance
                 balance = -balance
-            return (tax_name, base_balance, balance, balance, 0)
+                deductible_balance = -deductible_balance
+                undeductible_balance = -undeductible_balance
+            return (
+                tax_name,
+                base_balance,
+                balance,
+                deductible_balance,
+                undeductible_balance,
+            )
         else:
+            # TODO remove?
             base_balance = tax.base_balance
 
             tax_balance = 0
