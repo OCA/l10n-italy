@@ -89,6 +89,11 @@ msgid "Date ranges"
 msgstr ""
 
 #. module: l10n_it_account
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__deductible_balance
+msgid "Deductible Balance"
+msgstr ""
+
+#. module: l10n_it_account
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_account__display_name
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_account_type__display_name
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_group__display_name
@@ -157,6 +162,11 @@ msgstr ""
 #: model:ir.model,name:l10n_it_account.model_account_tax
 msgid "Tax"
 msgstr "Impuesto"
+
+#. module: l10n_it_account
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__undeductible_balance
+msgid "Undeductible Balance"
+msgstr ""
 
 #. module: l10n_it_account
 #: model:ir.model.fields,help:l10n_it_account.field_account_tax__cee_type
