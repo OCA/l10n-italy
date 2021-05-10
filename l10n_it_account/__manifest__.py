@@ -9,7 +9,7 @@
 {
     "name": "ITA - Contabilità base",
     "summary": "Modulo base usato come dipendenza di altri moduli contabili",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.1.0",
     "category": "Hidden",
     "author": "Agile Business Group, Abstract, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
