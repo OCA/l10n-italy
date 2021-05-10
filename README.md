@@ -31,7 +31,7 @@ addon | version | summary
 [l10n_it_delivery_note_base](l10n_it_delivery_note_base/) | 14.0.1.0.0 | Crea e gestisce tabelle principali per gestire i DDT
 [l10n_it_delivery_note_batch](l10n_it_delivery_note_batch/) | 14.0.1.0.0 | Crea i DDT partendo da gruppi di prelievi
 [l10n_it_delivery_note_order_link](l10n_it_delivery_note_order_link/) | 14.0.1.0.0 | Crea collegamento tra i DDT e ordine di vendita/acquisto
-[l10n_it_fatturapa](l10n_it_fatturapa/) | 14.0.1.0.1 | Fatture elettroniche
+[l10n_it_fatturapa](l10n_it_fatturapa/) | 14.0.1.0.2 | Fatture elettroniche
 [l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 14.0.1.0.0 | ITA - Tipi di documento fiscale per dichiarativi
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 14.0.1.0.0 | Condizioni di pagamento delle fatture elettroniche
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 14.0.1.0.1 | ITA - Codice fiscale
