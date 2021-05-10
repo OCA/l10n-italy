@@ -96,7 +96,9 @@ class MigrateL10nItDdt(EasyCommand):
                 )
             )
 
-        new_sequence = self.env.ref("l10n_it_delivery_note.delivery_note_sequence_ddt")
+        new_sequence = self.env.ref(
+            "l10n_it_delivery_note_base.delivery_note_sequence_ddt"
+        )
         if new_sequence.number_next_actual > 1:
             raise ValidationError(
                 _(
