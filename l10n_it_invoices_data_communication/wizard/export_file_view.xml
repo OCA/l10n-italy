@@ -33,6 +33,9 @@
                         <field name="file_export" readonly="1" filename="filename"/>
                         <field name="filename" invisible="1"/>
                     </group>
+                    <footer>
+                        <button string="Close" class="oe_link" special="cancel" />
+                    </footer>
                 </form>
             </field>
         </record>
