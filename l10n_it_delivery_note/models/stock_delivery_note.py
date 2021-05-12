@@ -287,7 +287,9 @@ class StockDeliveryNote(models.Model):
         for note in self:
             lines = note.line_ids.filtered(lambda l: l.sale_line_id)
 
-            if all(line.invoice_status == DOMAIN_INVOICE_STATUSES[2] for line in lines):
+            if lines and all(
+                line.invoice_status == DOMAIN_INVOICE_STATUSES[2] for line in lines
+            ):
                 note.state = DOMAIN_DELIVERY_NOTE_STATES[2]
                 note.invoice_status = DOMAIN_INVOICE_STATUSES[2]
 
