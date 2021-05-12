@@ -867,6 +867,11 @@ msgstr ""
 "necessita di eseguire questo comando."
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__name
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_tree_view
 msgid "Name"
