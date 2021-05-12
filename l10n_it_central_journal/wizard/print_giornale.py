@@ -103,12 +103,14 @@ class WizardGiornale(models.TransientModel):
             aml.date >= %(date_from)s
             AND aml.date <= %(date_to)s
             AND am.state in %(target_type)s
+            AND aml.journal_id in %(journal_ids)s
             ORDER BY am.date, am.name
         """
         params = {
             'date_from': wizard.date_move_line_from,
             'date_to': wizard.date_move_line_to,
-            'target_type': tuple(target_type)
+            'target_type': tuple(target_type),
+            'journal_ids': tuple(self.journal_ids.ids)
             }
         self.env.cr.execute(sql, params)
         res = self.env.cr.fetchall()
