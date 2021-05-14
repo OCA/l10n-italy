@@ -9,6 +9,9 @@
                 <form string="Electronic Bill Import">
                     <group>
                         <field name="e_invoice_detail_level" />
+                        <field name="price_decimal_digits" />
+                        <field name="quantity_decimal_digits" />
+                        <field name="discount_decimal_digits" />
                         <footer>
                             <button special="cancel" string="Cancel" />
                             <button
