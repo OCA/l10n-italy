@@ -1,7 +1,7 @@
 import logging
 from datetime import datetime
 
-from odoo import api, fields, models
+from odoo import api, fields, models, registry
 from odoo.exceptions import UserError
 from odoo.tools import float_is_zero
 from odoo.tools.translate import _
@@ -42,10 +42,37 @@ class WizardImportFatturapa(models.TransientModel):
         "will create a line in the bill.",
         required=True,
     )
+    price_decimal_digits = fields.Integer(
+        "Prices decimal digits",
+        required=True,
+        help="Decimal digits used in prices computation. This is needed to correctly "
+        "import e-invoices with many decimal digits, not being forced to "
+        "increase decimal digits of all your prices. "
+        'Otherwise, increase "Product Price" precision.',
+    )
+    quantity_decimal_digits = fields.Integer(
+        "Quantities decimal digits",
+        required=True,
+        help='Decimal digits used for quantity field. See "Prices decimal digits".',
+    )
+    discount_decimal_digits = fields.Integer(
+        "Discounts decimal digits",
+        required=True,
+        help='Decimal digits used for discount field. See "Prices decimal digits".',
+    )
 
     @api.model
     def default_get(self, fields):
         res = super(WizardImportFatturapa, self).default_get(fields)
+        res["price_decimal_digits"] = self.env["decimal.precision"].precision_get(
+            "Product Price"
+        )
+        res["quantity_decimal_digits"] = self.env["decimal.precision"].precision_get(
+            "Product Unit of Measure"
+        )
+        res["discount_decimal_digits"] = self.env["decimal.precision"].precision_get(
+            "Discount"
+        )
         res["e_invoice_detail_level"] = "2"
         fatturapa_attachment_ids = self.env.context.get("active_ids", False)
         fatturapa_attachment_obj = self.env["fatturapa.attachment.in"]
@@ -61,6 +88,18 @@ class WizardImportFatturapa(models.TransientModel):
             partners |= fatturapa_attachment.xml_supplier_id
             if len(partners) == 1:
                 res["e_invoice_detail_level"] = partners[0].e_invoice_detail_level
+                if partners[0].e_invoice_price_decimal_digits >= 0:
+                    res["price_decimal_digits"] = partners[
+                        0
+                    ].e_invoice_price_decimal_digits
+                if partners[0].e_invoice_quantity_decimal_digits >= 0:
+                    res["quantity_decimal_digits"] = partners[
+                        0
+                    ].e_invoice_quantity_decimal_digits
+                if partners[0].e_invoice_discount_decimal_digits >= 0:
+                    res["discount_decimal_digits"] = partners[
+                        0
+                    ].e_invoice_discount_decimal_digits
         return res
 
     def CountryByCode(self, CountryCode):
@@ -1536,10 +1575,58 @@ class WizardImportFatturapa(models.TransientModel):
         )
         invoice_line_ids.append(invoice_line_id)
 
+    def _set_decimal_precision(self, precision_name, field_name):
+        precision = self.env["decimal.precision"].search(
+            [("name", "=", precision_name)], limit=1
+        )
+        different_precisions = original_precision = None
+        if precision:
+            precision_id = precision.id
+            original_precision = precision.digits
+            different_precisions = self[field_name] != original_precision
+            if different_precisions:
+                with registry(self.env.cr.dbname).cursor() as new_cr:
+                    # We need a new env (and cursor) because 'digits' property of Float
+                    # fields is retrieved with a new LazyCursor,
+                    # see class Float at odoo.fields,
+                    # so we need to write (commit) to DB in order to make the new
+                    # precision available
+                    new_env = api.Environment(new_cr, self.env.uid, self.env.context)
+                    new_precision = new_env["decimal.precision"].browse(precision_id)
+                    new_precision.sudo().write({"digits": self[field_name]})
+                    new_cr.commit()
+        return precision, different_precisions, original_precision
+
+    def _restore_original_precision(self, precision, original_precision):
+        with registry(self.env.cr.dbname).cursor() as new_cr:
+            new_env = api.Environment(new_cr, self.env.uid, self.env.context)
+            new_price_precision = new_env["decimal.precision"].browse(precision.id)
+            new_price_precision.sudo().write({"digits": original_precision})
+            new_cr.commit()
+
     def importFatturaPA(self):
         self.ensure_one()
         fatturapa_attachment_obj = self.env["fatturapa.attachment.in"]
         fatturapa_attachment_ids = self.env.context.get("active_ids", False)
+
+        (
+            price_precision,
+            different_price_precisions,
+            original_price_precision,
+        ) = self._set_decimal_precision("Product Price", "price_decimal_digits")
+        (
+            qty_precision,
+            different_qty_precisions,
+            original_qty_precision,
+        ) = self._set_decimal_precision(
+            "Product Unit of Measure", "quantity_decimal_digits"
+        )
+        (
+            discount_precision,
+            different_discount_precisions,
+            original_discount_precision,
+        ) = self._set_decimal_precision("Discount", "discount_decimal_digits")
+
         new_invoices = []
         # convert to dict in order to be able to modify context
         self.env.context = dict(self.env.context)
@@ -1601,6 +1688,15 @@ class WizardImportFatturapa(models.TransientModel):
                 invoice.inconsistencies = (
                     generic_inconsistencies + invoice_inconsistencies
                 )
+
+        if price_precision and different_price_precisions:
+            self._restore_original_precision(price_precision, original_price_precision)
+        if qty_precision and different_qty_precisions:
+            self._restore_original_precision(qty_precision, original_qty_precision)
+        if discount_precision and different_discount_precisions:
+            self._restore_original_precision(
+                discount_precision, original_discount_precision
+            )
 
         return {
             "view_type": "form",

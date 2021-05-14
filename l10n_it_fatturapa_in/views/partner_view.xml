@@ -17,6 +17,9 @@
                     >
                         <field name="e_invoice_detail_level" />
                         <field name="e_invoice_default_product_id" />
+                        <field name="e_invoice_price_decimal_digits" />
+                        <field name="e_invoice_quantity_decimal_digits" />
+                        <field name="e_invoice_discount_decimal_digits" />
                         <field name="register" readonly="1" />
                         <field name="register_code" readonly="1" />
                         <field name="register_fiscalpos" readonly="1" />

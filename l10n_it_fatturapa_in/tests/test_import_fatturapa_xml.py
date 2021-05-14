@@ -687,8 +687,20 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice = self.invoice_model.browse(invoice_id)
         self.assertTrue(
             "Bank account IT59R0100003228000000000622 already exists"
-            in invoice.e_invoice_validation_message
+            in invoice.inconsistencies
         )
+
+    def test_47_xml_import(self):
+        res = self.run_wizard("test47", "IT01234567890_FPR14.xml")
+        invoice_id = res.get("domain")[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertTrue(invoice.e_invoice_validation_error)
+        self.assertTrue(
+            "Untaxed amount (44480.0) does not match with e-bill untaxed amount "
+            "(44519.26)" in invoice.e_invoice_validation_message
+        )
+        # Due to multiple SQL transactions, we cannot test the correct importation.
+        # IT01234567890_FPR14.xml should be tested manually
 
     def test_01_xml_link(self):
         """
