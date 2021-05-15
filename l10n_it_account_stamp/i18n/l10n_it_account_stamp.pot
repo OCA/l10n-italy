@@ -1,0 +1,231 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_account_stamp
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings_stamp
+msgid ""
+"<span class=\"o_form_label\">Configuration for Tax stamp</span>\n"
+"                            <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.account_move_form_stamp
+msgid "Add tax stamp line"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_bank_statement_line__manually_apply_tax_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move__manually_apply_tax_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_payment__manually_apply_tax_stamp
+msgid "Apply tax stamp"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_bank_statement_line__auto_compute_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move__auto_compute_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_payment__auto_compute_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__auto_compute
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__auto_compute
+msgid "Auto-compute"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model,name:l10n_it_account_stamp.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model,name:l10n_it_account_stamp.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings_stamp
+msgid "Configuration for Tax stamp"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__display_name
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_company__display_name
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.product_template_form_view_account_stamp
+msgid ""
+"For each invoice, the base amount for each selected tax will be added up and"
+" used to determine the application of the account stamp."
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move_line__id
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__id
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_company__id
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_config_settings__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move_line__is_stamp_line
+msgid "Is Stamp Line"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__is_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__is_stamp
+msgid "Is a stamp"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model,name:l10n_it_account_stamp.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model,name:l10n_it_account_stamp.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move____last_update
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template____last_update
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_company____last_update
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_config_settings____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: code:addons/l10n_it_account_stamp/models/account_move.py:0
+#, python-format
+msgid "Missing account income configuration for %s"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: code:addons/l10n_it_account_stamp/models/account_move.py:0
+#: code:addons/l10n_it_account_stamp/models/account_move.py:0
+#: code:addons/l10n_it_account_stamp/models/account_move.py:0
+#, python-format
+msgid "Missing tax stamp product in company settings!"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: code:addons/l10n_it_account_stamp/models/account_move.py:0
+#, python-format
+msgid "Product %s must have income and expense accounts"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model,name:l10n_it_account_stamp.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings_stamp
+msgid "Product used as Tax Stamp in customer invoices"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,help:l10n_it_account_stamp.field_res_company__tax_stamp_product_id
+#: model:ir.model.fields,help:l10n_it_account_stamp.field_res_config_settings__tax_stamp_product_id
+msgid "Product used as Tax Stamp in customer invoices."
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__stamp_apply_min_total_base
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__stamp_apply_min_total_base
+msgid "Stamp applicability min total base"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:product.product,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro
+#: model:product.template,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
+msgid ""
+"Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree June\n"
+"                17, 2014\n"
+"            "
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__stamp_apply_tax_ids
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__stamp_apply_tax_ids
+msgid "Stamp taxes"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_bank_statement_line__tax_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move__tax_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_payment__tax_stamp
+msgid "Tax Stamp"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:product.product,name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro
+#: model:product.template,name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
+msgid "Tax Stamp 2 euro"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: code:addons/l10n_it_account_stamp/models/account_move.py:0
+#, python-format
+msgid "Tax Stamp Expense"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: code:addons/l10n_it_account_stamp/models/account_move.py:0
+#, python-format
+msgid "Tax Stamp Income"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_company__tax_stamp_product_id
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_config_settings__tax_stamp_product_id
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings_stamp
+msgid "Tax Stamp Product"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.account_move_form_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.product_template_form_view_account_stamp
+msgid "Tax stamp"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: code:addons/l10n_it_account_stamp/models/account_move.py:0
+#, python-format
+msgid "Tax stamp is not applicable"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: code:addons/l10n_it_account_stamp/models/account_move.py:0
+#, python-format
+msgid "Tax stamp line %s already present. Remove it first."
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: code:addons/l10n_it_account_stamp/models/product.py:0
+#, python-format
+msgid "The product %s must be a stamp to apply set taxes!"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:product.product,uom_name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro
+#: model:product.template,uom_name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
+msgid "Units"
+msgstr ""

@@ -1,0 +1,116 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_split_payment
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-12 02:40+0000\n"
+"PO-Revision-Date: 2017-05-12 02:40+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
+"Language: gl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_it_split_payment
+#: model_terms:ir.ui.view,arch_db:l10n_it_split_payment.view_account_config_settings
+msgid ""
+"<span class=\"o_form_label\">Configuration for Split Payment module</span>\n"
+"                        <span class=\"fa fa-lg fa-building-o\" title="
+"\"Values set here are company-specific.\" aria-label=\"Values set here are "
+"company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+
+#. module: l10n_it_split_payment
+#: model:ir.model.fields,help:l10n_it_split_payment.field_res_company__sp_account_id
+#: model:ir.model.fields,help:l10n_it_split_payment.field_res_config_settings__sp_account_id
+msgid "Account used to write off the VAT amount"
+msgstr ""
+
+#. module: l10n_it_split_payment
+#: code:addons/l10n_it_split_payment/models/account.py:107
+#, python-format
+msgid "Can't handle supplier invoices with split payment"
+msgstr ""
+
+#. module: l10n_it_split_payment
+#: model:ir.model,name:l10n_it_split_payment.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_it_split_payment
+#: model:ir.model,name:l10n_it_split_payment.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: l10n_it_split_payment
+#: model_terms:ir.ui.view,arch_db:l10n_it_split_payment.view_account_config_settings
+msgid "Configuration for Split Payment module"
+msgstr ""
+
+#. module: l10n_it_split_payment
+#: model:ir.model,name:l10n_it_split_payment.model_account_fiscal_position
+msgid "Fiscal Position"
+msgstr ""
+
+#. module: l10n_it_split_payment
+#: model:ir.model,name:l10n_it_split_payment.model_account_invoice
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: l10n_it_split_payment
+#: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_invoice__split_payment
+msgid "Is Split Payment"
+msgstr ""
+
+#. module: l10n_it_split_payment
+#: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_tax__is_split_payment
+msgid "Is split payment"
+msgstr ""
+
+#. module: l10n_it_split_payment
+#: code:addons/l10n_it_split_payment/models/account.py:47
+#, python-format
+msgid ""
+"Please set 'Split Payment Write-off Account' field in accounting "
+"configuration"
+msgstr ""
+
+#. module: l10n_it_split_payment
+#: model_terms:ir.ui.view,arch_db:l10n_it_split_payment.view_account_config_settings
+msgid "SP account"
+msgstr ""
+
+#. module: l10n_it_split_payment
+#: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_fiscal_position__split_payment
+#: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_invoice__amount_sp
+msgid "Split Payment"
+msgstr ""
+
+#. module: l10n_it_split_payment
+#: code:addons/l10n_it_split_payment/models/account.py:50
+#, python-format
+msgid "Split Payment Write Off"
+msgstr ""
+
+#. module: l10n_it_split_payment
+#: model:ir.model.fields,field_description:l10n_it_split_payment.field_res_company__sp_account_id
+msgid "Split Payment Write-off Account"
+msgstr ""
+
+#. module: l10n_it_split_payment
+#: model:ir.model.fields,field_description:l10n_it_split_payment.field_res_config_settings__sp_account_id
+#: model_terms:ir.ui.view,arch_db:l10n_it_split_payment.view_account_config_settings
+msgid "Split Payment Write-off account"
+msgstr ""
+
+#. module: l10n_it_split_payment
+#: model:ir.model,name:l10n_it_split_payment.model_account_tax
+msgid "Tax"
+msgstr ""

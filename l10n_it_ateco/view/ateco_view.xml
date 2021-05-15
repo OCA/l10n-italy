@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="view_ateco_category_form" model="ir.ui.view">
+        <field name="name">ateco.category.form</field>
+        <field name="model">ateco.category</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Ateco Category">
+                <group>
+                    <field name="code" />
+                    <field name="name" />
+                    <field name="parent_id" />
+                </group>
+                <group name="Partner" colspan="4">
+                    <field name="partner_ids" nolabel="1" colspan="4" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ateco_category_tree" model="ir.ui.view">
+        <field name="name">ateco.category.tree</field>
+        <field name="model">ateco.category</field>
+        <field name="type">tree</field>
+        <field name="field_parent">child_ids</field>
+        <field name="arch" type="xml">
+            <tree string="Ateco categories">
+                <field name="code" />
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="ateco_category_search" model="ir.ui.view">
+        <field name="name">ateco.category.search</field>
+        <field name="model">ateco.category</field>
+        <field name="arch" type="xml">
+            <search string="Search Ateco categories">
+                <field name="name" />
+                <field name="code" />
+           </search>
+        </field>
+    </record>
+
+    <record id="action_ateco_category_search" model="ir.actions.act_window">
+        <field name="name">Ateco categories</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ateco.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="ateco_category_search" />
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem
+        action="action_ateco_category_search"
+        id="menu_ateco_category_form"
+        parent="contacts.res_partner_menu_config"
+    />
+
+</odoo>
