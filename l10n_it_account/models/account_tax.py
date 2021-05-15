@@ -56,42 +56,37 @@ class AccountTax(models.Model):
             context["vat_registry_journal_ids"] = data["journal_ids"]
 
         tax = self.env["account.tax"].with_context(context).browse(self.id)
+        account_move_line_obj = self.env['account.move.line']
         tax_name = tax._get_tax_name()
-        if not tax.children_tax_ids:
-            base_balance = tax.base_balance
-            balance = tax.balance
-            if registry_type == "supplier":
-                base_balance = -base_balance
-                balance = -balance
-            return (tax_name, base_balance, balance, balance, 0)
+        move_line_tax = account_move_line_obj.search([('date','>=', context.get('from_date')),
+                                                               ('date','<=', context.get('to_date')),
+                                                               ('tax_ids','in', tax.ids)])  
+        move_line_tax_generated = account_move_line_obj.search([('date','>=', context.get('from_date')),
+                                                                   ('date','<=', context.get('to_date')),
+                                                                   ('tax_line_id','=', tax.id)])
+        if registry_type == "supplier":
+            debit_imponibile = -sum(move_line_tax.mapped('debit'))
+            tax_amount = -sum(move_line_tax_generated.mapped('debit'))
         else:
-            base_balance = tax.base_balance
-
-            tax_balance = 0
-            deductible = 0
-            undeductible = 0
-            for child in tax.children_tax_ids:
-                child_balance = child.balance
-                if (
-                    data["registry_type"] == "customer" and child.cee_type == "sale"
-                ) or (
-                    data["registry_type"] == "supplier" and child.cee_type == "purchase"
-                ):
-                    # Prendo la parte di competenza di ogni registro e lo
-                    # sommo sempre
-                    child_balance = child_balance
-
-                elif child.cee_type:
-                    continue
-
-                tax_balance += child_balance
-                if child.account_id:
-                    deductible += child_balance
-                else:
-                    undeductible += child_balance
+            debit_imponibile = sum(move_line_tax.mapped('credit'))
+            tax_amount = sum(move_line_tax_generated.mapped('credit'))                
+        deductible = tax_amount
+        undeductible = 0.0
+        for child in tax.children_tax_ids:
+            move_line_tax_generated = self.env['account.move.line'].search([('date','>=', context.get('from_date')),
+                                                               ('date','<=', context.get('to_date')),
+                                                               ('tax_line_id','=', child.id)])
+            if child.cee_type:
+                continue
             if registry_type == "supplier":
-                base_balance = -base_balance
-                tax_balance = -tax_balance
-                deductible = -deductible
-                undeductible = -undeductible
-            return (tax_name, base_balance, tax_balance, deductible, undeductible)
+                tmp_amount = -sum(move_line_tax_generated.mapped('debit'))
+            else:
+                tmp_amount = sum(move_line_tax_generated.mapped('credit'))  
+            #child.refund_repartition_line_ids.mapped("account_id")
+            if any(child.invoice_repartition_line_ids.mapped('account_id')):
+                deductible += tmp_amount
+            else:
+                undeductible += tmp_amount
+        if not tax_amount:
+            tax_amount = deductible + undeductible
+        return (tax_name, debit_imponibile, tax_amount, deductible, undeductible)
