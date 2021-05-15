@@ -141,12 +141,14 @@ class ReportRegistroIva(models.AbstractModel):
         # index è usato per non ripetere la stampa dei dati fattura quando ci
         # sono più codici IVA
         index = 0
-        if "refund" in move.move_type:
-            invoice_type = "NC"
+        if 'in' in move.move_type:
             reference = (move and move.payment_reference or "")
         else:
-            invoice_type = "FA"
             reference = (move and move.name or "")
+        if "refund" in move.move_type:
+            invoice_type = "NC"
+        else:
+            invoice_type = "FA"
 
         move_lines = self._get_move_line(move, data)
 
