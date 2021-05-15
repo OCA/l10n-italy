@@ -143,8 +143,10 @@ class ReportRegistroIva(models.AbstractModel):
         index = 0
         if "refund" in move.move_type:
             invoice_type = "NC"
+            reference = (move and move.payment_reference or "")
         else:
             invoice_type = "FA"
+            reference = (move and move.name or "")
 
         move_lines = self._get_move_line(move, data)
 
@@ -161,7 +163,7 @@ class ReportRegistroIva(models.AbstractModel):
                 "index": index,
                 "invoice_type": invoice_type,
                 "invoice_date": (move and move.invoice_date or move.date or ""),
-                "reference": (move and move.name or ""),
+                "reference": reference,
                 # These 4 items are added to make the dictionary more usable
                 # in further customizations, allowing inheriting modules to
                 # retrieve the records that have been used to create the
@@ -193,7 +195,7 @@ class ReportRegistroIva(models.AbstractModel):
         if receivable_payable_found:
             total = abs(total)
         else:
-            total = abs(move.amount)
+            total = abs(move.amount_total)
         if "refund" in move.move_type:
             total = -total
         return total

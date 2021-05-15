@@ -35,6 +35,7 @@
                         <field name="layout_type" />
                         <field name="only_totals" />
                         <field name="fiscal_page_base" />
+                        <field name="report_order_by"/>
                     </group>
                     <field name="message" nolabel="1" colspan="2" />
                 </group>

@@ -37,6 +37,16 @@ class WizardRegistroIva(models.TransientModel):
         string="Year for Footer", help="Value printed near number of page in the footer"
     )
 
+    report_order_by = fields.Selection([('date_name','Date Name'),
+                                        ('type_date','Invoice Type Date'),
+                                        ('type_date_name','Invoice Type Date Name')],'Print Layout')
+    def getMatchOrderBy(self):
+        if self.report_order_by == 'type_date':
+            return "move_type, date"
+        if self.report_order_by == 'type_date_name':
+            return "move_type, date, name"
+        return "date, name"
+        
     @api.onchange("tax_registry_id")
     def on_change_tax_registry_id(self):
         self.journal_ids = self.tax_registry_id.journal_ids
@@ -61,7 +71,7 @@ class WizardRegistroIva(models.TransientModel):
                 ("journal_id", "in", [j.id for j in self.journal_ids]),
                 ("state", "=", "posted"),
             ],
-            order="date, name",
+            order=self.getMatchOrderBy(),
         )
         return moves.ids
 
