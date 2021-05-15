@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<!--
+  Copyright 2019 Simone Rubino - Agile Business Group
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+<odoo>
+    <record id="report_vat_statement" model="ir.actions.report">
+        <field name="name">Print Vat Period End Statement</field>
+        <field name="model">account.vat.period.end.statement</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">account_vat_period_end_statement.vat_statement</field>
+        <field name="report_file">account_vat_period_end_statement.vat_statement</field>
+        <field
+            name="paperformat_id"
+            ref="l10n_it_account.l10n_it_account_a4_portrait"
+        />
+        <field name="binding_model_id" ref="model_account_vat_period_end_statement" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
