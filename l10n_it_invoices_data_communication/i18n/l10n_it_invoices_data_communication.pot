@@ -386,6 +386,11 @@ msgid "Click on <strong>Export</strong> to generate invoices data communication 
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_dati_iva_export_file_exit
+msgid "Close"
+msgstr ""
+
+#. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__comunicazione_id
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__comunicazione_id
 msgid "Communication"
