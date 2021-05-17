@@ -177,9 +177,11 @@ class AccountInvoice(models.Model):
         :param all_date_due: list of due dates for partner
         :return: True if month of invoice_date_due is in a list of all_date_due
         """
-        for d in all_date_due:
-            if invoice_date_due[:7] == str(d.strftime('%Y-%m')):
-                return True
+        self.ensure_one()
+        if self.partner_id.riba_policy_expenses != 'unlimited':
+            for d in all_date_due:
+                if invoice_date_due[:7] == str(d.strftime('%Y-%m')):
+                    return True
         return False
 
     @api.multi
@@ -201,7 +203,10 @@ class AccountInvoice(models.Model):
             # ---- Apply Collection Fees on invoice only on first due date of the month
             # ---- Get Date of first due date
             move_line = self.env['account.move.line'].search([
-                ('partner_id', '=', invoice.partner_id.id)])
+                ('partner_id', '=', invoice.partner_id.id),
+                ('invoice_id.payment_term_id.riba', '=', True),
+                ('date_maturity', '>=', fields.Date.context_today(invoice))
+                ])
             # ---- Filtered recordset with date_maturity
             move_line = move_line.filtered(
                 lambda l: l.date_maturity is not False)
@@ -209,11 +214,11 @@ class AccountInvoice(models.Model):
             move_line = move_line.sorted(key=lambda r: r.date_maturity)
             # ---- Get date
             previous_date_due = move_line.mapped('date_maturity')
-            pterm = self.env['account.payment.term'].browse(
-                self.payment_term_id.id)
-            pterm_list = pterm.compute(value=1, date_ref=self.date_invoice)
+            pterm_list = invoice.payment_term_id.compute(
+                value=1, date_ref=self.date_invoice
+            )
             for pay_date in pterm_list[0]:
-                if not self.month_check(pay_date[0], previous_date_due):
+                if not invoice.month_check(pay_date[0], previous_date_due):
                     # ---- Get Line values for service product
                     service_prod = invoice.company_id.due_cost_service_id
                     line_obj = self.env['account.invoice.line']
