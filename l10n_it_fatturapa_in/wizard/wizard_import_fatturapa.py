@@ -154,10 +154,13 @@ class WizardImportFatturapa(models.TransientModel):
             # Format Italian VAT ID to always have 11 char
             # to avoid validation error when creating the given partner
             if DatiAnagrafici.IdFiscaleIVA.IdPaese.upper() == 'IT':
-                vat = "%s%s" % (
-                    DatiAnagrafici.IdFiscaleIVA.IdPaese.upper(),
-                    DatiAnagrafici.IdFiscaleIVA.IdCodice.rjust(11, '0')[:11]
-                )
+                if DatiAnagrafici.IdFiscaleIVA.IdCodice.startswith("IT"):
+                    vat = DatiAnagrafici.IdFiscaleIVA.IdCodice.rjust(13, '0')[:13]
+                else:
+                    vat = "%s%s" % (
+                        DatiAnagrafici.IdFiscaleIVA.IdPaese.upper(),
+                        DatiAnagrafici.IdFiscaleIVA.IdCodice.rjust(11, '0')[:11]
+                    )
             else:
                 vat = "%s%s" % (
                     DatiAnagrafici.IdFiscaleIVA.IdPaese.upper(),

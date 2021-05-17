@@ -714,6 +714,12 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             "Bank account IT59R0100003228000000000622 already exists" in
             invoice.inconsistencies)
 
+    def test_49_xml_import(self):
+        res = self.run_wizard('test49', 'IT01234567890_FPR16.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.carrier_id.vat, "IT04102770965")
+
     def test_01_xml_link(self):
         """
         E-invoice lines are created.
