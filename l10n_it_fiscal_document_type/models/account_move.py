@@ -1,57 +1,53 @@
 from odoo import api, fields, models
 
+from odoo.exceptions import UserError
 
 class AccountMove(models.Model):
     _inherit = "account.move"
 
+    is_inadvaced_invoice = fields.Boolean("Is a in advanced invoice ?", default=False)
+    
     @api.depends("partner_id", "journal_id", "move_type", "fiscal_position_id")
-    def _compute_set_document_fiscal_type(self):
-        for invoice in self:
-            if invoice.state != "draft" and invoice.fiscal_document_type_id:
-                continue
-            invoice.fiscal_document_type_id = False
-            dt = invoice._get_document_fiscal_type(
-                invoice.move_type,
-                invoice.partner_id,
-                invoice.fiscal_position_id,
-                invoice.journal_id,
-            )
+    def _compute_set_document_fiscal_type(self, force_update=False):
+        for self_id in self:
+            if not force_update:
+                if self_id.state != "draft" and self_id.fiscal_document_type_id:
+                    continue
+            self_id.fiscal_document_type_id = False
+            dt = self_id._get_document_fiscal_type()
             if dt:
-                invoice.fiscal_document_type_id = dt[0]
+                self_id.fiscal_document_type_id = dt.id
+    
+    def _get_document_fiscal_type(self):
+        if self.move_type in 'out_invoice':
+            domain = [('out_invoice','=', True)]
+            if self.is_inadvaced_invoice:
+                domain.append(("is_inadvaced", "=", True)) 
+        elif self.move_type in'out_refund':
+            domain = [('out_refund','=', True)]
+        elif self.move_type in'in_invoice':
+            domain = [('in_invoice','=', True)]
+        elif self.move_type in'in_refund':
+            domain = [('in_refund','=', True)]
 
-    def _get_document_fiscal_type(
-        self, move_type=None, partner=None, fiscal_position=None, journal=None
-    ):
-        dt = []
+        if self.journal_id:
+            jornalDomain = domain + [("journal_ids", "in", [self.journal_id.id])]
         doc_id = False
-        if not move_type:
-            move_type = "out_invoice"
-
-        # Partner
-        if partner:
-            if move_type in ("out_invoice"):
-                doc_id = partner.out_fiscal_document_type.id or False
-            elif move_type in ("in_invoice"):
-                doc_id = partner.in_fiscal_document_type.id or False
-        # Fiscal Position
-        if not doc_id and fiscal_position:
-            doc_id = fiscal_position.fiscal_document_type_id.id or False
-        # Journal
-        if not doc_id and journal:
-            dt = (
-                self.env["fiscal.document.type"]
-                .search([("journal_ids", "in", [journal.id])])
-                .ids
-            )
-        if (
-            not doc_id
-            and not dt
-            and move_type in ["out_invoice", "out_refund", "in_invoice", "in_refund"]
-        ):
-            dt = self.env["fiscal.document.type"].search([(move_type, "=", True)]).ids
-        if doc_id:
-            dt.append(doc_id)
-        return dt
+        if self.partner_id:
+            if self.move_type in ("out_invoice"):
+                doc_id = self.partner_id.out_fiscal_document_type.id or False
+            elif self.move_type in ("in_invoice"):
+                doc_id = self.partner_id.in_fiscal_document_type.id or False
+        suitable_documentType = self.env["fiscal.document.type"].search(jornalDomain)
+        if not suitable_documentType:
+            suitable_documentType = self.env["fiscal.document.type"].search(domain)
+        if doc_id and suitable_documentType:
+            if doc_id.id in suitable_documentType.ids:
+                return doc_id
+            else:
+                raise UserError("Unable to found document type for move_type %s jornal_ids %s" % (self.move_type, self.journal_id.id))
+        for fiscal_document_type in suitable_documentType:
+            return fiscal_document_type
 
     fiscal_document_type_id = fields.Many2one(
         "fiscal.document.type",

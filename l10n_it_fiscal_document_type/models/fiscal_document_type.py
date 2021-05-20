@@ -11,8 +11,15 @@ class FiscalDocumentType(models.Model):
     in_invoice = fields.Boolean(string="Vendor Bill")
     out_refund = fields.Boolean(string="Customer Credit Note")
     in_refund = fields.Boolean(string="Vendor Credit Note")
+    is_inadvaced = fields.Boolean(string="In Advanced invoice")
     priority = fields.Integer(string="Priority", default="3")
 
+    def name_get(self):
+        res = []
+        for fiscal_document_type in self:
+            res.append((fiscal_document_type.id, "{} [{}]".format(fiscal_document_type.name, fiscal_document_type.code)))
+        return res
+    
     journal_ids = fields.Many2many(
         "account.journal",
         "account_journal_fiscal_doc_type_rel",
