@@ -665,8 +665,8 @@ class AccountIntrastatStatement(models.Model):
                 '%s_section%s_operation_amount' % (kind, section_number)
             amount = self[section_op_amount_field]
             if section_number == 2:
-                self._format_negative_number_frontispiece(amount)
-            rcd += format_9(self[section_op_amount_field], 13)
+                amount = self._format_negative_number_frontispiece(amount)
+            rcd += format_9(amount, 13)
 
         rcd += "\r\n"
         return rcd
