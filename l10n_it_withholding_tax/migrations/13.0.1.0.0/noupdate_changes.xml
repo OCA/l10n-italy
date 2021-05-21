@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <record id="withholding_tax_comp_rule" model="ir.rule">
+        <field name="name">Withholding tax</field>
+        <field
+            name="domain_force"
+        >['|',('company_id','=',False),('company_id','in',company_ids)]</field>
+    </record>
+
+    <record id="withholding_tax_statement_comp_rule" model="ir.rule">
+        <field name="name">Withholding tax statement</field>
+        <field
+            name="domain_force"
+        >['|',('company_id','=',False),('company_id','in',company_ids)]</field>
+    </record>
+
+    <record id="withholding_tax_move_comp_rule" model="ir.rule">
+        <field name="name">Withholding tax move</field>
+        <field
+            name="domain_force"
+        >['|',('company_id','=',False),('company_id','in',company_ids)]</field>
+    </record>
+</odoo>

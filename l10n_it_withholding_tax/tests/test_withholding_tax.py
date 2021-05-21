@@ -34,8 +34,8 @@ class TestWithholdingTax(TransactionCase):
 
         # Journals
         self.journal_misc = self.env["account.journal"].search(
-            [("type", "=", "general")]
-        )[0]
+            [("type", "=", "general")], limit=1
+        )
         self.journal_bank = self.env["account.journal"].create(
             {"name": "Bank", "type": "bank", "code": "BNK67"}
         )
@@ -91,35 +91,24 @@ class TestWithholdingTax(TransactionCase):
                     "name": "Advice",
                     "price_unit": 1000.00,
                     "invoice_line_tax_wt_ids": [(6, 0, [self.wt1040.id])],
+                    "tax_ids": False,
                 },
             )
         ]
-        self.invoice = self.env["account.invoice"].create(
+        self.invoice = self.env["account.move"].create(
             {
+                "invoice_date": time.strftime("%Y") + "-07-15",
                 "name": "Test Supplier Invoice WT",
                 "journal_id": self.env["account.journal"]
                 .search([("type", "=", "purchase")])[0]
                 .id,
                 "partner_id": self.env.ref("base.res_partner_12").id,
-                "account_id": self.env["account.account"]
-                .search(
-                    [
-                        (
-                            "user_type_id",
-                            "=",
-                            self.env.ref("account.data_account_type_receivable").id,
-                        )
-                    ],
-                    limit=1,
-                    order="id",
-                )
-                .id,
                 "invoice_line_ids": invoice_line_vals,
-                "type": "in_invoice",
+                "move_type": "in_invoice",
             }
         )
         self.invoice._onchange_invoice_line_wt_ids()
-        self.invoice.action_invoice_open()
+        self.invoice.action_post()
 
     def test_withholding_tax(self):
         domain = [("name", "=", "Code 1040")]
@@ -147,11 +136,11 @@ class TestWithholdingTax(TransactionCase):
         self.assertEqual(self.invoice.amount_net_pay_residual, 800)
 
         ctx = {
-            "active_model": "account.invoice",
+            "active_model": "account.move",
             "active_ids": [self.invoice.id],
         }
         register_payments = (
-            self.env["account.register.payments"]
+            self.env["account.payment.register"]
             .with_context(ctx)
             .create(
                 {
@@ -164,26 +153,24 @@ class TestWithholdingTax(TransactionCase):
                 }
             )
         )
-        register_payments.create_payments()
+        register_payments.action_create_payments()
+
+        partials = self.invoice._get_reconciled_invoices_partials()
 
         # WT payment generation
-        self.assertEqual(
-            len(self.invoice.payment_move_line_ids), 2, msg="Missing WT payment"
-        )
+        self.assertEqual(len(partials), 2, msg="Missing WT payment")
 
         # WT amount in payment move lines
-        self.assertTrue(
-            set(self.invoice.payment_move_line_ids.mapped("debit")) == {800, 200}
-        )
+        self.assertTrue({p[1] for p in partials} == {800, 200})
 
-        # WT aomunt applied in statement
+        # WT amount applied in statement
         domain = [
             ("invoice_id", "=", self.invoice.id),
             ("withholding_tax_id", "=", self.wt1040.id),
         ]
         wt_statement = self.env["withholding.tax.statement"].search(domain)
         self.assertEqual(wt_statement.amount, 200)
-        self.assertEqual(self.invoice.state, "paid")
+        self.assertEqual(self.invoice.state, "posted")
         self.assertEqual(self.invoice.amount_net_pay, 800)
         self.assertEqual(self.invoice.amount_net_pay_residual, 0)
 
@@ -191,13 +178,13 @@ class TestWithholdingTax(TransactionCase):
         self.assertEqual(self.invoice.amount_net_pay, 800)
         self.assertEqual(self.invoice.amount_net_pay_residual, 800)
         ctx = {
-            "active_model": "account.invoice",
+            "active_model": "account.move",
             "active_ids": [self.invoice.id],
             "active_id": self.invoice.id,
-            "default_invoice_ids": [(4, self.invoice.id, None)],
+            "default_reconciled_invoice_ids": [(4, self.invoice.id, None)],
         }
         register_payments = (
-            self.env["account.payment"]
+            self.env["account.payment.register"]
             .with_context(ctx)
             .create(
                 {
@@ -210,14 +197,17 @@ class TestWithholdingTax(TransactionCase):
                 }
             )
         )
-        register_payments.action_validate_invoice_payment()
+        register_payments.action_create_payments()
+
+        partials = self.invoice._get_reconciled_invoices_partials()
+
+        # WT payment generation
+        self.assertEqual(len(partials), 2, msg="Missing WT payment")
 
         # WT amount in payment move lines
-        self.assertTrue(
-            set(self.invoice.payment_move_line_ids.mapped("debit")) == {600, 150}
-        )
+        self.assertTrue({p[1] for p in partials} == {600, 150})
 
-        # WT aomunt applied in statement
+        # WT amount applied in statement
         domain = [
             ("invoice_id", "=", self.invoice.id),
             ("withholding_tax_id", "=", self.wt1040.id),
@@ -226,8 +216,8 @@ class TestWithholdingTax(TransactionCase):
         self.assertEqual(wt_statement.amount, 150)
         self.assertEqual(self.invoice.amount_net_pay, 800)
         self.assertEqual(self.invoice.amount_net_pay_residual, 200)
-        self.assertEqual(self.invoice.residual, 250)
-        self.assertEqual(self.invoice.state, "open")
+        self.assertEqual(self.invoice.amount_residual, 250)
+        self.assertEqual(self.invoice.state, "posted")
 
     def test_overlapping_rates(self):
         """Check that overlapping rates cannot be created"""
