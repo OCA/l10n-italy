@@ -286,16 +286,6 @@ class IntrastatStatementPurchaseSection2(models.Model):
         if not self.sign_variation:
             raise ValidationError(
                 _("Missing adjustment sign on 'Purchases - Section 2'"))
-        if self.statement_id.period_type == 'M':
-            if not self.month:
-                raise ValidationError(
-                    _("Missing reference month "
-                        "on 'Purchases - Section 2' adjustment"))
-        elif self.statement_id.period_type == 'T':
-            if not self.quarterly:
-                raise ValidationError(
-                    _("Missing reference quarter "
-                        "on 'Purchases - Section 2' adjustment"))
 
     @api.multi
     def _prepare_export_line(self):

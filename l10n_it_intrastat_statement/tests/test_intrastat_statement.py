@@ -163,6 +163,30 @@ class TestIntrastatStatement (AccountingTestCase):
         # Last line is section line, for quarter report it should be 64 chars
         self.assertEqual(len(file_content.splitlines()[-1]), 64)
 
+    def test_statement_sale_quarter_adjustment_period(self):
+        """Check that sale adjustments can be in a different period type"""
+        invoice = self._get_intrastat_computed_invoice()
+        month = fields.Date.from_string(invoice.date_invoice).month
+        quarter = 1 + (month - 1) // 3
+        statement = self.statement_model.create({
+            'period_number': quarter,
+            'period_type': 'T',
+        })
+        statement.compute_statement()
+
+        adjustment_vat_code = 'adjust_vat'
+        statement.sale_section2_ids = [(0, 0, {
+            'partner_id': invoice.partner_id.id,
+            'vat_code': adjustment_vat_code,
+            'sign_variation': '+',
+            'year_id': fields.Date.from_string(invoice.date_invoice).year - 1,
+            'month': 1,
+        })]
+        file_content = statement \
+            .with_context(sale=True) \
+            .generate_file_export()
+        self.assertIn(adjustment_vat_code, file_content)
+
     def test_statement_purchase(self):
         bill = self._get_intrastat_computed_bill()
 
@@ -341,6 +365,31 @@ class TestIntrastatStatement (AccountingTestCase):
 
         # Last line is section line, for quarter report it should be 77 chars
         self.assertEqual(len(file_content.splitlines()[-1]), 77)
+
+    def test_statement_purchase_quarter_adjustment_period(self):
+        """Check that purchase adjustments can be in a different period type"""
+        bill = self._get_intrastat_computed_bill()
+        month = fields.Date.from_string(bill.date_invoice).month
+        quarter = 1 + (month - 1) // 3
+        statement = self.statement_model.create({
+            'period_number': quarter,
+            'period_type': 'T',
+        })
+        statement.compute_statement()
+
+        adjustment_vat_code = 'adjust_vat'
+        statement.purchase_section2_ids = [(0, 0, {
+            'partner_id': bill.partner_id.id,
+            'vat_code': adjustment_vat_code,
+            'sign_variation': '+',
+            'year_id': fields.Date.from_string(bill.date_invoice).year - 1,
+            'month': 1,
+        })]
+
+        file_content = statement \
+            .with_context(purchase=True) \
+            .generate_file_export()
+        self.assertIn(adjustment_vat_code, file_content)
 
     def test_statement_export_file(self):
         invoice = self._get_intrastat_computed_invoice()
