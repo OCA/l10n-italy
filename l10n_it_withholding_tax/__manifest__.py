@@ -5,7 +5,7 @@
 
 {
     'name': 'Italian Withholding Tax',
-    'version': '12.0.2.0.1',
+    'version': '12.0.2.1.0',
     'category': 'Account',
     'author': 'Openforce, Odoo Italia Network, '
               'Odoo Community Association (OCA)',
