@@ -641,7 +641,7 @@ class AccountIntrastatStatement(models.Model):
             summary_type = "C"
         rcd += format_x(summary_type, 1)
         # Anno
-        rcd += format_9(str(self.fiscalyear)[2:], 2)
+        rcd += format_9(str(self.fiscalyear)[-2:], 2)
         # Periodicità
         rcd += format_x(self.period_type, 1)
         # Periodo

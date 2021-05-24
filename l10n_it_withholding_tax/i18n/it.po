@@ -24,6 +24,21 @@ msgid " (Residual Net to pay: %s)"
 msgstr " (Netto a pagare residuo: %s)"
 
 #. module: l10n_it_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.print_withholding_tax
+msgid "<span>Withholding Tax</span>"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.print_withholding_tax
+msgid "<strong>Net To Pay</strong>"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.report_invoice_document_with_payments
+msgid "<strong>Residual Net To Pay</strong>"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__move_line_id
 msgid "Account Move line"
 msgstr "Riga movimento contabile"
@@ -445,6 +460,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice__withholding_tax_in_print
+msgid "Show Withholding Tax In Print"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__statement_id
 msgid "Statement"
 msgstr "Dichiarazione"
@@ -600,6 +620,7 @@ msgstr "Attenzione, movimento contabile RdA già esistente: %s"
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_rate__withholding_tax_id
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__withholding_tax_id
 #: model:ir.ui.menu,name:l10n_it_withholding_tax.menu_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.print_withholding_tax
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_fiscal_position_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_form
