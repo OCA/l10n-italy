@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -28,38 +28,9 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_account
-#: model:ir.model,name:l10n_it_account.model_account_account
-msgid "Account"
-msgstr ""
-
-#. module: l10n_it_account
-#: model:ir.model,name:l10n_it_account.model_account_group
-msgid "Account Group"
-msgstr ""
-
-#. module: l10n_it_account
-#: model_terms:ir.ui.view,arch_db:l10n_it_account.product_template_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_account.res_config_settings_view_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_account.view_partner_property_form
 msgid "Accounting"
-msgstr ""
-
-#. module: l10n_it_account
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_group__account_ids
-msgid "Accounts"
-msgstr ""
-
-#. module: l10n_it_account
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_account__account_balance_sign
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_group__account_balance_sign
-msgid "Balance sign"
-msgstr ""
-
-#. module: l10n_it_account
-#. odoo-python
-#: code:addons/l10n_it_account/models/account_account.py:0
-#, python-format
-msgid "Balance sign's value can only be 1 or -1."
 msgstr ""
 
 #. module: l10n_it_account
@@ -80,18 +51,6 @@ msgstr ""
 #. module: l10n_it_account
 #: model:ir.ui.menu,name:l10n_it_account.menu_date_range_generator_action
 msgid "Generate Date Ranges"
-msgstr ""
-
-#. module: l10n_it_account
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__cee_type
-msgid "Include in VAT register"
-msgstr ""
-
-#. module: l10n_it_account
-#. odoo-python
-#: code:addons/l10n_it_account/models/account_group.py:0
-#, python-format
-msgid "Incoherent balance signs for '{}' and its subgroups."
 msgstr ""
 
 #. module: l10n_it_account
@@ -120,16 +79,6 @@ msgid "Parent Taxes"
 msgstr ""
 
 #. module: l10n_it_account
-#: model:ir.model.fields.selection,name:l10n_it_account.selection__account_tax__cee_type__purchase
-msgid "Purchase"
-msgstr ""
-
-#. module: l10n_it_account
-#: model:ir.model.fields.selection,name:l10n_it_account.selection__account_tax__cee_type__sale
-msgid "Sale"
-msgstr ""
-
-#. module: l10n_it_account
 #: model:ir.model,name:l10n_it_account.model_account_tax
 msgid "Tax"
 msgstr ""
@@ -137,11 +86,4 @@ msgstr ""
 #. module: l10n_it_account
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__undeductible_balance
 msgid "Undeductible Balance"
-msgstr ""
-
-#. module: l10n_it_account
-#: model:ir.model.fields,help:l10n_it_account.field_account_tax__cee_type
-msgid ""
-"Use in the case of tax with 'VAT integration'. This specifies the VAT "
-"register (sales / purchases) where the tax must be computed."
 msgstr ""
