@@ -13,16 +13,99 @@ class TestSP(AccountTestInvoicingCommon):
         cls.invoice_model = cls.env["account.move"]
         cls.inv_line_model = cls.env["account.move.line"]
         cls.fp_model = cls.env["account.fiscal.position"]
+        cls.tax_received = cls.account_model.search(
+            [("name", "=", "Tax Received"), ("company_id", "=", cls.env.company.id)]
+        )
         cls.tax22sp = cls.tax_model.create(
             {
                 "name": "22% SP",
                 "amount": 22,
+                "invoice_repartition_line_ids": [
+                    (5, 0, 0),
+                    (
+                        0,
+                        0,
+                        {
+                            "factor_percent": 100,
+                            "repartition_type": "base",
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "factor_percent": 100,
+                            "repartition_type": "tax",
+                            "account_id": cls.tax_received.id,
+                        },
+                    ),
+                ],
+                "refund_repartition_line_ids": [
+                    (5, 0, 0),
+                    (
+                        0,
+                        0,
+                        {
+                            "factor_percent": 100,
+                            "repartition_type": "base",
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "factor_percent": 100,
+                            "repartition_type": "tax",
+                            "account_id": cls.tax_received.id,
+                        },
+                    ),
+                ],
             }
         )
         cls.tax22 = cls.tax_model.create(
             {
                 "name": "22%",
                 "amount": 22,
+                "invoice_repartition_line_ids": [
+                    (5, 0, 0),
+                    (
+                        0,
+                        0,
+                        {
+                            "factor_percent": 100,
+                            "repartition_type": "base",
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "factor_percent": 100,
+                            "repartition_type": "tax",
+                            "account_id": cls.tax_received.id,
+                        },
+                    ),
+                ],
+                "refund_repartition_line_ids": [
+                    (5, 0, 0),
+                    (
+                        0,
+                        0,
+                        {
+                            "factor_percent": 100,
+                            "repartition_type": "base",
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "factor_percent": 100,
+                            "repartition_type": "tax",
+                            "account_id": cls.tax_received.id,
+                        },
+                    ),
+                ],
             }
         )
         cls.sp_fp = cls.fp_model.create(

@@ -5,7 +5,7 @@
 {
     "name": "ITA - Registro IVA + Scissione dei pagamenti",
     "summary": "Modulo di congiunzione tra registri" " IVA e scissione dei pagamenti",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.1.0",
     "development_status": "Beta",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-italy",
