@@ -21,6 +21,7 @@
         'l10n_it_split_payment',
         ],
     'data': [
+        'data/invoice_it_template.xml',
         'wizard/wizard_export_fatturapa_view.xml',
         'views/attachment_view.xml',
         'views/account_view.xml',

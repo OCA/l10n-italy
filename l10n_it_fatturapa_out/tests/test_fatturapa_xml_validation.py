@@ -534,7 +534,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
             'state_id': self.env.ref("base.state_us_2").id,
             'street': 'Via Roma, 1',
             'codice_destinatario': '0000000',
-            'pec_destinatario': 'test-invoice@pec.it',
+            'pec_destinatario': 'test_invoice@pec.it',
             'electronic_invoice_use_this_address': True,
         })
         self.set_sequences(12, '2020-01-07')
