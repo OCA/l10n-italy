@@ -1,23 +1,71 @@
 # Copyright 2020 Giuseppe Borruso
 # Copyright 2020 Marco Colombo
-import base64
+import logging
 import os
 from datetime import datetime
 
+import xmlschema
+from lxml import etree
 from unidecode import unidecode
 
+from odoo.exceptions import UserError
+from odoo.modules.module import get_module_resource
 from odoo.tools import float_repr
 
 from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
 
+_logger = logging.getLogger(__name__)
+
+# XXX da vedere se spostare in fatturapa e fare una import del validator, es.
+# from from odoo.addons.l10n_it_fatturapa import FPAValidator
+
+
+# fix <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
+#      schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd" /> # noqa: B950
+class FPAValidator:
+
+    _XSD_SCHEMA = "Schema_del_file_xml_FatturaPA_versione_1.2.1.xsd"
+    _xml_schema_1_2_1 = get_module_resource(
+        "l10n_it_fatturapa", "data", "xsd", _XSD_SCHEMA
+    )
+    _old_xsd_specs = get_module_resource(
+        "l10n_it_fatturapa", "data", "xsd", "xmldsig-core-schema.xsd"
+    )
+
+    def __init__(self):
+        self.error_log = []
+        locations = {"http://www.w3.org/2000/09/xmldsig#": self._old_xsd_specs}
+        self._validator = xmlschema.XMLSchema(
+            self._xml_schema_1_2_1,
+            locations=locations,
+            validation="lax",
+            allow="local",
+            loglevel=20,
+        )
+
+    def __call__(self, *args, **kwargs):
+        self.error_log = list(self._validator.iter_errors(*args, **kwargs))
+        return not self.error_log
+
+
 DEFAULT_INVOICE_ITALIAN_DATE_FORMAT = "%Y-%m-%d"
 
 
-class EfatturaOut:
+class EFatturaOut:
+
+    _validator = FPAValidator()
+
+    def validate(self, tree):
+        ret = self._validator(tree)
+        errors = self._validator.error_log
+        return (ret, errors)
+
     def to_xml(self, env):  # noqa: C901
         """Create the xml file content.
         :return: The XML content as str.
         """
+
+        self.env = env
 
         def format_date(dt):
             # Format the date in the italian standard.
@@ -54,15 +102,18 @@ class EfatturaOut:
 
         def format_price(line):
             res = line.price_unit
-            if line.invoice_line_tax_ids and line.invoice_line_tax_ids[0].price_include:
-                res = line.price_unit / (
-                    1 + (line.invoice_line_tax_ids[0].amount / 100)
-                )
+            if line.tax_ids and line.tax_ids[0].price_include:
+                res = line.price_unit / (1 + (line.tax_ids[0].amount / 100))
             price_precision = env["decimal.precision"].precision_get(
                 "Product Price for XML e-invoices"
             )
             if price_precision < 2:
                 price_precision = 2
+
+            # lo SdI non accetta quantità negative, quindi invertiamo price_unit
+            # e quantity (vd. format_quantity)
+            if line.quantity < 0:
+                res = -res
 
             # XXX arrotondamento?
             res = "{prezzo:.{precision}f}".format(prezzo=res, precision=price_precision)
@@ -75,7 +126,16 @@ class EfatturaOut:
             if uom_precision < 2:
                 uom_precision = 2
 
-            quantity = line.quantity + 0
+            if not line.quantity or line.display_type in ("line_section", "line_note"):
+                quantity = 0
+            else:
+                quantity = line.quantity
+
+            # lo SdI non accetta quantità negative, quindi invertiamo price_unit
+            # e quantity (vd. format_price)
+            if line.quantity < 0:
+                quantity = -quantity
+
             # XXX arrotondamento?
             res = ("{qta:.{precision}f}".format(qta=quantity, precision=uom_precision),)
             return res[0]
@@ -89,9 +149,9 @@ class EfatturaOut:
 
         def get_causale(invoice):
             res = []
-            if invoice.comment:
+            if invoice.narration:
                 # max length of Causale is 200
-                caus_list = invoice.comment.split("\n")
+                caus_list = invoice.narration.split("\n")
                 for causale in caus_list:
                     if not causale:
                         continue
@@ -108,11 +168,19 @@ class EfatturaOut:
         def get_nome_attachment(doc_id):
             file_name, file_extension = os.path.splitext(doc_id.name)
             attachment_name = (
-                doc_id.datas_fname
-                if len(doc_id.datas_fname) <= 60
+                doc_id.name
+                if len(doc_id.name) <= 60
                 else "".join([file_name[: (60 - len(file_extension))], file_extension])
             )
             return encode_for_export(attachment_name, 60)
+
+        def get_type_attachment(doc_id):
+            mini_map = {
+                "application/pdf": "PDF",
+                "image/png": "PNG",
+            }
+            attachment_type = mini_map.get(doc_id.mimetype, False)
+            return encode_for_export(attachment_type, 10) if attachment_type else False
 
         def in_eu(partner):
             europe = env.ref("base.europe", raise_if_not_found=False)
@@ -120,6 +188,76 @@ class EfatturaOut:
             if not europe or not country or country in europe.country_ids:
                 return True
             return False
+
+        def get_all_taxes(record):
+            out = {}
+            out_computed = {}
+            there_is_a_note = False
+            tax_ids = record.line_ids.filtered(lambda line: line.tax_line_id)
+            for tax_id in tax_ids:
+                tax_line_id = tax_id.tax_line_id
+                aliquota = format_numbers(tax_line_id.amount)
+                key = "{}_{}".format(aliquota, tax_line_id.kind_id.code)
+                out_computed[key] = {
+                    "AliquotaIVA": aliquota,
+                    "Natura": tax_line_id.kind_id.code,
+                    # 'Arrotondamento':'',
+                    "ImponibileImporto": tax_id.tax_base_amount,
+                    "Imposta": tax_id.price_total,
+                    "EsigibilitaIVA": tax_line_id.payability,
+                }
+                if tax_line_id.law_reference:
+                    out_computed[key]["RiferimentoNormativo"] = encode_for_export(
+                        tax_line_id.law_reference, 100
+                    )
+            for line in record.invoice_line_ids:
+                if (
+                    line.display_type in ("line_section", "line_note")
+                    and not there_is_a_note
+                ):
+                    there_is_a_note = True
+                for tax_id in line.tax_ids:
+                    aliquota = format_numbers(tax_id.amount)
+                    key = "{}_{}".format(aliquota, tax_id.kind_id.code)
+                    if key in out_computed:
+                        continue
+                    if key not in out:
+                        out[key] = {
+                            "AliquotaIVA": aliquota,
+                            "Natura": tax_id.kind_id.code,
+                            # 'Arrotondamento':'',
+                            "ImponibileImporto": line.price_subtotal,
+                            "Imposta": 0.0,
+                            "EsigibilitaIVA": tax_id.payability,
+                        }
+                        if tax_id.law_reference:
+                            out[key]["RiferimentoNormativo"] = encode_for_export(
+                                tax_id.law_reference, 100
+                            )
+                    else:
+                        out[key]["ImponibileImporto"] += line.price_subtotal
+                        out[key]["Imposta"] += 0.0
+            out.update(out_computed)
+            if there_is_a_note:
+                new_key = "22.00_False"
+                if new_key not in out:
+                    out[new_key] = {
+                        "AliquotaIVA": "22.00",
+                        "ImponibileImporto": 0.00,
+                        "Imposta": 0.00,
+                    }
+            return list(out.values())
+
+        def get_importo(line):
+            str_number = str(line.discount)
+            number = str_number[::-1].find(".")
+            if number <= 2:
+                return False
+            return line.price_unit * line.discount / 100
+
+        def get_default_note_tax(record):
+            all_taxes = get_all_taxes(record)
+            return all_taxes[0]["AliquotaIVA"] if all_taxes else "0.00"
 
         if self.partner_id.commercial_partner_id.is_pa:
             # check value code
@@ -146,19 +284,35 @@ class EfatturaOut:
             "get_vat_country": get_vat_country,
             "get_causale": get_causale,
             "get_nome_attachment": get_nome_attachment,
+            "get_type_attachment": get_type_attachment,
             "codice_destinatario": code.upper(),
             "in_eu": in_eu,
-            "abs": abs,
             "unidecode": unidecode,
-            "base64": base64,
+            "wizard": self.wizard,
+            "get_importo": get_importo,
+            "get_all_taxes": get_all_taxes,
+            "get_default_note_tax": get_default_note_tax,
+            # "base64": base64,
         }
         content = env.ref(
             "l10n_it_fatturapa_out.account_invoice_it_FatturaPA_export"
-        ).render(template_values)
+        )._render(template_values)
+        # 14.0 - occorre rimuovere gli spazi tra i tag
+        root = etree.fromstring(content, parser=etree.XMLParser(remove_blank_text=True))
+        # già che ci siamo, validiamo con l'XMLSchema dello SdI
+        ok, errors = self.validate(root)
+        if not ok:
+            # XXX - da migliorare?
+            # i controlli precedenti dovrebbero escludere errori di sintassi XML
+            # with open("/tmp/fatturaout.xml", "wb") as o:
+            #    o.write(etree.tostring(root, xml_declaration=True, encoding="utf-8"))
+            raise UserError("\n".join(str(e) for e in errors))
+        content = etree.tostring(root, xml_declaration=True, encoding="utf-8")
         return content
 
-    def __init__(self, company_id, partner_id, invoices, progressivo_invio):
-        self.company_id = company_id
+    def __init__(self, wizard, partner_id, invoices, progressivo_invio):
+        self.wizard = wizard
+        self.company_id = wizard.env.company
         self.partner_id = partner_id
         self.invoices = invoices
         self.progressivo_invio = progressivo_invio
