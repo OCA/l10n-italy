@@ -3,8 +3,8 @@
 
     <record id="view_invoice_form_fatturapa" model="ir.ui.view">
         <field name="name">account.invoice.fatturapa</field>
-        <field name="model">account.invoice</field>
-        <field name="inherit_id" ref="account.invoice_form" />
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
             <button name="preview_invoice" position="before">
                 <button
@@ -12,14 +12,11 @@
                     type="action"
                     string="Export E-invoice"
                     class="oe_highlight"
-                    attrs="{'invisible': ['|', '|', ('fatturapa_attachment_out_id', '!=', False), ('state' ,'not in', ['open', 'paid']), ('electronic_invoice_subjected', '=', False)]}"
+                    attrs="{'invisible': ['|', '|', ('fatturapa_attachment_out_id', '!=', False), ('state' ,'!=', 'posted'), ('electronic_invoice_subjected', '=', False)]}"
                 />
             </button>
             <field name="partner_id" position="after">
                 <field name="electronic_invoice_subjected" invisible="1" />
-            </field>
-            <field name="analytic_tag_ids" position="after">
-                <field name="admin_ref" />
             </field>
             <xpath expr="//notebook" position="inside">
                 <page
@@ -37,6 +34,7 @@
                                 <field name="code" />
                                 <field name="cig" />
                                 <field name="cup" />
+                                <field name="invoice_id" invisible="1" />
                             </tree>
                         </field>
                     </group>
@@ -65,20 +63,19 @@
                         <field name="fatturapa_doc_attachments" nolabel="1">
                             <tree string="Attachments">
                                 <field name="ir_attachment_id" />
-                                <field name="datas_fname" />
+                                <field name="name" />
                                 <field name="description" />
                                 <field name="is_pdf_invoice_print" />
                             </tree>
                             <form string="Attachments">
                                 <group>
                                     <group>
-                                        <field name="name" />
                                         <field name="description" />
                                         <field name="is_pdf_invoice_print" />
                                     </group>
                                     <group>
-                                        <field name="datas" filename="datas_fname" />
-                                        <field name="datas_fname" />
+                                        <field name="datas" filename="name" />
+                                        <field name="name" />
                                     </group>
                                 </group>
                             </form>
