@@ -6,8 +6,8 @@
 
 {
     "name": "ITA - Fattura elettronica - Ricezione",
-    "version": "12.0.2.1.3",
-    "development_status": "Beta",
+    "version": "14.0.1.0.0",
+    "development_status": "Alpha",
     "category": "Localization/Italy",
     "summary": "Ricezione fatture elettroniche",
     "author": "Agile Business Group, Innoviu, " "Odoo Community Association (OCA)",
@@ -15,7 +15,8 @@
     "license": "AGPL-3",
     "depends": [
         "l10n_it_fatturapa",
-        "l10n_it_withholding_tax_causali",
+        "l10n_it_fiscal_document_type",
+        "l10n_it_withholding_tax_reason",
     ],
     "data": [
         "views/account_view.xml",

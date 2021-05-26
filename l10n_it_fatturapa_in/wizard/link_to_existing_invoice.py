@@ -26,10 +26,9 @@ class WizardLinkToInvoiceLine(models.TransientModel):
         readonly=True,
     )
     invoice_id = fields.Many2one(
-        comodel_name="account.invoice",
+        comodel_name="account.move",
     )
 
-    @api.multi
     def link(self):
         self.ensure_one()
         if not self.invoice_id:
@@ -95,7 +94,7 @@ class WizardLinkToInvoice(models.TransientModel):
     @api.model
     def _get_default_lines_vals(self, attachment):
         fatt = get_invoice_obj(attachment)
-        invoice_model = self.env["account.invoice"]
+        invoice_model = self.env["account.move"]
         line_vals = list()
         descr_template = _(
             "Bill number {bill_nbr} of {bill_date}.\n"
@@ -142,7 +141,6 @@ class WizardLinkToInvoice(models.TransientModel):
         )
         return res
 
-    @api.multi
     def link(self):
         self.ensure_one()
         for line in self.line_ids:

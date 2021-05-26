@@ -1,5 +1,6 @@
 import logging
 import re
+from collections.abc import MutableMapping
 from datetime import datetime
 
 import xmlschema
@@ -10,10 +11,56 @@ from odoo.modules.module import get_module_resource
 _logger = logging.getLogger(__name__)
 _logger.setLevel(logging.DEBUG)
 
-XSD_SCHEMA = "Schema_del_file_xml_FatturaPA_versione_1.2.1.xsd"
+# XMLSchema del SdI
+# Contiene un riferimento ad un'antica spec di xmldsig-core-schema.xsd, non presente
+# nei vari XML Catalog recenti, es. sulla mia Fedora 33
+# $ fgrep xmldsig-core-schema.xsd /etc/xml/catalog
+#   <system systemId="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd" uri="file:///usr/share/xml/xmldsig-core-schema.xsd"/> # noqa: B950
+#   <uri name="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd" uri="file:///usr/share/xml/xmldsig-core-schema.xsd"/> # noqa: B950
+# L'assenza dell'entry nel Catalog fa sì che il documento venga scaricato
+# ogni volta, e - a giudicare dalla lentezza nella risposta - qualcuno
+# al w3.org ha notato la cosa (la lentezza è relativa a quel solo URL).
+#
+# Noi interpretiamo lo Schema due volte, per lxml, per le correzioni
+# pre-verifica, e successivamente per xmlschema. Entrambe le librerie hanno
+# modalità di modificare il comportamento di download delle import esterne.
+# Il file xmldsig-core-schema.xsd locale è ottenuto dall'URL indicato dal SdI.
+# Per lxml.etree, va creata al classe Resover. Per xmlschema, si indicano
+# le locations aggiuntive.
 
-_xsd_schema = get_module_resource("l10n_it_fatturapa", "bindings", "xsd", XSD_SCHEMA)
-_root = etree.parse(_xsd_schema)
+_XSD_SCHEMA = "Schema_del_file_xml_FatturaPA_versione_1.2.1.xsd"
+_xml_schema_1_2_1 = get_module_resource("l10n_it_fatturapa", "data", "xsd", _XSD_SCHEMA)
+_old_xsd_specs = get_module_resource(
+    "l10n_it_fatturapa", "data", "xsd", "xmldsig-core-schema.xsd"
+)
+
+_logger = logging.getLogger(__name__)
+
+
+def _schema_parse():
+    # fix <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
+    #      schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd" /> # noqa: B950
+    class VeryOldXSDSpecResolverTYVMSdI(etree.Resolver):
+        def resolve(self, system_url, public_id, context):
+            if (
+                system_url
+                == "http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd"  # noqa: B950
+            ):
+                _logger.info(
+                    "mapping URL for %r to local file %r",
+                    system_url,
+                    _old_xsd_specs,
+                )
+                return self.resolve_filename(self._old_xsd_specs, context)
+            else:
+                return super().resolve(system_url, public_id, context)
+
+    parser = etree.XMLParser()
+    parser.resolvers.add(VeryOldXSDSpecResolverTYVMSdI())
+    return etree.parse(_xml_schema_1_2_1, parser)
+
+
+_root = _schema_parse()
 
 date_types = {}
 datetime_types = {}
@@ -110,14 +157,12 @@ def _fix_xmlstring(xml_string):
         "xmlns:ds='http://www.w3.org/2000/09/xmldsig#'",
         xml_string,
     )
-    # HACK#2 - in attesa di fix su xmlschema
-    xml_string = re.sub(r">\s*0.0000000+\s*<", ">0.00<", xml_string)
     return xml_string.encode()
 
 
-def CreateFromDocument(xml_string):
+def CreateFromDocument(xml_string):  # noqa: C901
     # il codice seguente rimpiazza fatturapa.CreateFromDocument(xml_string)
-    class ObjectDict(object):
+    class ObjectDict(MutableMapping):
         def __getattr__(self, attr):
             try:
                 return getattr(self.__dict__, attr)
@@ -130,8 +175,20 @@ def CreateFromDocument(xml_string):
         def __setitem__(self, *attr, **kwattr):
             return self.__dict__.__setitem__(*attr, **kwattr)
 
+        def __delitem__(self, *attr, **kwattr):
+            return self.__dict__.__delitem__(*attr, **kwattr)
+
+        def __iter__(self, *attr, **kwattr):
+            return self.__dict__.__iter__(*attr, **kwattr)
+
+        def __len__(self, *attr, **kwattr):
+            return self.__dict__.__len__(*attr, **kwattr)
+
     # TODO: crearlo una tantum?
-    validator = xmlschema.XMLSchema(_xsd_schema)
+    validator = xmlschema.XMLSchema(
+        _xml_schema_1_2_1,
+        locations={"http://www.w3.org/2000/09/xmldsig#": _old_xsd_specs},
+    )
 
     xml_string = _fix_xmlstring(xml_string)
     root = etree.fromstring(xml_string)
@@ -174,7 +231,7 @@ def CreateFromDocument(xml_string):
                         e,
                     )
                     problems.append(msg)
-                    _logger.warn(msg)
+                    _logger.warning(msg)
 
     # fix trailing spaces in <PECDestinatario/>
     for pec in root.xpath("//PECDestinatario"):
