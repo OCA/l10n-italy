@@ -1,72 +1,84 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record id="view_invoice_form_fatturapa" model="ir.ui.view">
         <field name="name">account.invoice.fatturapa</field>
         <field name="model">account.invoice</field>
-        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="inherit_id" ref="account.invoice_form" />
         <field name="arch" type="xml">
             <button name="preview_invoice" position="before">
-                <button name="%(action_wizard_export_fatturapa)d" type="action"
-                        string="Export E-invoice" class="oe_highlight"
-                        attrs="{'invisible': ['|', '|', ('fatturapa_attachment_out_id', '!=', False), ('state' ,'not in', ['open', 'paid']), ('electronic_invoice_subjected', '=', False)]}"/>
+                <button
+                    name="%(action_wizard_export_fatturapa)d"
+                    type="action"
+                    string="Export E-invoice"
+                    class="oe_highlight"
+                    attrs="{'invisible': ['|', '|', ('fatturapa_attachment_out_id', '!=', False), ('state' ,'not in', ['open', 'paid']), ('electronic_invoice_subjected', '=', False)]}"
+                />
             </button>
             <field name="partner_id" position="after">
-                <field name="electronic_invoice_subjected" invisible="1"/>
+                <field name="electronic_invoice_subjected" invisible="1" />
             </field>
             <field name="analytic_tag_ids" position="after">
-                <field name="admin_ref"/>
+                <field name="admin_ref" />
             </field>
             <xpath expr="//notebook" position="inside">
-                <page string="Related Documents"
-                      attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">
+                <page
+                    string="Related Documents"
+                    attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}"
+                >
                     <group string="Related Documents">
                         <field name="related_documents" nolabel="1">
                             <tree editable="bottom" string="Related Documents">
-                                <field name="type"/>
-                                <field name="name"/>
-                                <field name="lineRef" readonly="1"/>
-                                <field name="date"/>
-                                <field name="numitem"/>
-                                <field name="code"/>
-                                <field name="cig"/>
-                                <field name="cup"/>
+                                <field name="type" />
+                                <field name="name" />
+                                <field name="lineRef" readonly="1" />
+                                <field name="date" />
+                                <field name="numitem" />
+                                <field name="code" />
+                                <field name="cig" />
+                                <field name="cup" />
                             </tree>
                         </field>
                     </group>
                 </page>
-                <page string="Electronic Invoice"
+                <page
+                    string="Electronic Invoice"
                     attrs="{'invisible': [('electronic_invoice_subjected', '=', False),
-                                          ('fatturapa_attachment_out_id', '=', False)]}">
+                                          ('fatturapa_attachment_out_id', '=', False)]}"
+                >
                     <group>
                         <group string="Results">
-                            <field name="fatturapa_attachment_out_id"/>
-                            <field name="has_pdf_invoice_print"
-                                   attrs="{'invisible': [('fatturapa_attachment_out_id', '=', False)]}"/>
+                            <field name="fatturapa_attachment_out_id" />
+                            <field
+                                name="has_pdf_invoice_print"
+                                attrs="{'invisible': [('fatturapa_attachment_out_id', '=', False)]}"
+                            />
                         </group>
                     </group>
                 </page>
-                <page string="Electronic Invoice Attachments"
+                <page
+                    string="Electronic Invoice Attachments"
                     attrs="{'invisible': [('electronic_invoice_subjected', '=', False),
-                                          ('fatturapa_attachment_out_id', '=', False)]}">
+                                          ('fatturapa_attachment_out_id', '=', False)]}"
+                >
                     <group string="Attachments">
-                        <field name="fatturapa_doc_attachments" nolabel="1" >
+                        <field name="fatturapa_doc_attachments" nolabel="1">
                             <tree string="Attachments">
-                                <field name="ir_attachment_id"/>
-                                <field name="datas_fname"/>
-                                <field name="description"/>
-                                <field name="is_pdf_invoice_print"/>
+                                <field name="ir_attachment_id" />
+                                <field name="datas_fname" />
+                                <field name="description" />
+                                <field name="is_pdf_invoice_print" />
                             </tree>
                             <form string="Attachments">
                                 <group>
                                     <group>
-                                        <field name="name"/>
-                                        <field name="description"/>
-                                        <field name="is_pdf_invoice_print"/>
+                                        <field name="name" />
+                                        <field name="description" />
+                                        <field name="is_pdf_invoice_print" />
                                     </group>
                                     <group>
-                                        <field name="datas" filename="datas_fname"/>
-                                        <field name="datas_fname"/>
+                                        <field name="datas" filename="datas_fname" />
+                                        <field name="datas_fname" />
                                     </group>
                                 </group>
                             </form>
