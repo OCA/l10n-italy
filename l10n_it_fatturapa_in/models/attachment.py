@@ -18,7 +18,7 @@ class FatturaPAAttachmentIn(models.Model):
         string="E-bill file name", related="ir_attachment_id.name", store=True
     )
     in_invoice_ids = fields.One2many(
-        "account.invoice",
+        "account.move",
         "fatturapa_attachment_in_id",
         string="In Bills",
         readonly=True,
@@ -62,6 +62,8 @@ class FatturaPAAttachmentIn(models.Model):
     @api.depends("in_invoice_ids.e_invoice_validation_error")
     def _compute_e_invoice_validation_error(self):
         for att in self:
+            att.e_invoice_validation_error = False
+            att.e_invoice_validation_message = False
             bills_with_error = att.in_invoice_ids.filtered(
                 lambda b: b.e_invoice_validation_error
             )
@@ -78,17 +80,16 @@ class FatturaPAAttachmentIn(models.Model):
                 )
             att.e_invoice_validation_message = "\n\n".join(error_messages)
 
-    @api.onchange("datas_fname")
-    def onchagne_datas_fname(self):
-        self.name = self.datas_fname
-
     def get_xml_string(self):
         return self.ir_attachment_id.get_xml_string()
 
-    @api.multi
     @api.depends("ir_attachment_id.datas")
     def _compute_xml_data(self):
         for att in self:
+            att.xml_supplier_id = False
+            att.invoices_number = False
+            att.invoices_total = False
+            att.invoices_date = False
             wiz_obj = self.env["wizard.import.fatturapa"].with_context(
                 from_attachment=att
             )
@@ -104,15 +105,12 @@ class FatturaPAAttachmentIn(models.Model):
                 att.invoices_total += float(dgd.ImportoTotaleDocumento or 0)
                 invoice_date = format_date(
                     att.with_context(lang=att.env.user.lang).env,
-                    fields.Date.from_string(
-                        dgd.DatiGenerali.DatiGeneraliDocumento.Data
-                    ),
+                    fields.Date.from_string(dgd.Data),
                 )
                 if invoice_date not in invoices_date:
                     invoices_date.append(invoice_date)
             att.invoices_date = " ".join(invoices_date)
 
-    @api.multi
     @api.depends("in_invoice_ids")
     def _compute_registered(self):
         for att in self:
@@ -132,7 +130,6 @@ class FatturaPAAttachmentIn(models.Model):
             _attach_dict = {
                 "name": name,
                 "datas": base64.b64encode(content),
-                "datas_fname": name,
                 "description": attach.DescrizioneAttachment or "",
                 "compression": attach.AlgoritmoCompressione or "",
                 "format": attach.FormatoAttachment or "",

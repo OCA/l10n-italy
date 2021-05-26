@@ -12,7 +12,7 @@
                 <group name="fatturapa_group" position="inside">
                     <newline />
                     <group
-                        attrs="{'invisible': ['|', ('electronic_invoice_subjected', '=', False), ('supplier', '=', False)]}"
+                        attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}"
                         string="Supplier data"
                     >
                         <field name="e_invoice_detail_level" />
