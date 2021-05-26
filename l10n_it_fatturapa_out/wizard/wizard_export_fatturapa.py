@@ -7,21 +7,20 @@
 
 import base64
 import logging
-import string
 import random
+import string
 
 from odoo import api, fields, models
-from odoo.tools.translate import _
 from odoo.exceptions import UserError
+from odoo.tools.translate import _
 
-from .efattura import efattura_out
+from .efattura import EfatturaOut
 
 _logger = logging.getLogger(__name__)
 
 
 def id_generator(
-    size=5, chars=string.ascii_uppercase + string.digits +
-    string.ascii_lowercase
+    size=5, chars=string.ascii_uppercase + string.digits + string.ascii_lowercase
 ):
     return "".join(random.choice(chars) for dummy in range(size))
 
@@ -32,31 +31,34 @@ class WizardExportFatturapa(models.TransientModel):
 
     @api.model
     def _domain_ir_values(self):
-        model_name = self.env.context.get('active_model', False)
+        model_name = self.env.context.get("active_model", False)
         # Get all print actions for current model
-        return [('binding_model_id', '=', model_name),
-                ('type', '=', 'ir.actions.report')]
+        return [
+            ("binding_model_id", "=", model_name),
+            ("type", "=", "ir.actions.report"),
+        ]
 
     report_print_menu = fields.Many2one(
-        comodel_name='ir.actions.actions',
+        comodel_name="ir.actions.actions",
         domain=_domain_ir_values,
-        help='This report will be automatically included in the created XML')
+        help="This report will be automatically included in the created XML",
+    )
 
     def saveAttachment(self, fatturapa, number):
-        attach_obj = self.env['fatturapa.attachment.out']
+        attach_obj = self.env["fatturapa.attachment.out"]
         vat = attach_obj.get_file_vat()
 
         attach_str = fatturapa.to_xml(self.env)
         attach_vals = {
-            'name': '%s_%s.xml' % (vat, number),
-            'datas_fname': '%s_%s.xml' % (vat, number),
-            'datas': base64.encodestring(attach_str),
+            "name": "{}_{}.xml".format(vat, number),
+            "datas_fname": "{}_{}.xml".format(vat, number),
+            "datas": base64.encodestring(attach_str),
         }
         return attach_obj.create(attach_vals)
 
     def getPartnerId(self, invoice_ids):
 
-        invoice_model = self.env['account.invoice']
+        invoice_model = self.env["account.invoice"]
         partner = False
 
         invoices = invoice_model.browse(invoice_ids)
@@ -66,15 +68,16 @@ class WizardExportFatturapa(models.TransientModel):
                 partner = invoice.partner_id
             if invoice.partner_id != partner:
                 raise UserError(
-                    _('Invoices %s must belong to the same partner.') %
-                    invoices.mapped('number'))
+                    _("Invoices %s must belong to the same partner.")
+                    % invoices.mapped("number")
+                )
 
         return partner
 
     def group_invoices_by_partner(self):
-        invoice_ids = self.env.context.get('active_ids', False)
+        invoice_ids = self.env.context.get("active_ids", False)
         res = {}
-        for invoice in self.env['account.invoice'].browse(invoice_ids):
+        for invoice in self.env["account.invoice"].browse(invoice_ids):
             if invoice.partner_id.id not in res:
                 res[invoice.partner_id.id] = []
             res[invoice.partner_id.id].append(invoice.id)
@@ -82,7 +85,7 @@ class WizardExportFatturapa(models.TransientModel):
 
     def exportFatturaPA(self):
         invoices_by_partner = self.group_invoices_by_partner()
-        attachments = self.env['fatturapa.attachment.out']
+        attachments = self.env["fatturapa.attachment.out"]
         for partner_id in invoices_by_partner:
             invoice_ids = invoices_by_partner[partner_id]
             partner = self.getPartnerId(invoice_ids)
@@ -91,21 +94,20 @@ class WizardExportFatturapa(models.TransientModel):
             context_partner.update({"lang": partner.lang})
 
             progressivo_invio = id_generator()
-            while self.env["fatturapa.attachment.out"]\
-                    .file_name_exists(progressivo_invio):
+            while self.env["fatturapa.attachment.out"].file_name_exists(
+                progressivo_invio
+            ):
                 progressivo_invio = id_generator()
 
-            invoice_ids = self.env["account.invoice"]\
-                .with_context(context_partner).browse(invoice_ids)
+            invoice_ids = (
+                self.env["account.invoice"]
+                .with_context(context_partner)
+                .browse(invoice_ids)
+            )
             for invoice in invoice_ids:
                 invoice.set_taxes_for_descriptive_lines()
 
-            fatturapa = efattura_out(
-                company,
-                partner,
-                invoice_ids,
-                progressivo_invio
-            )
+            fatturapa = EfatturaOut(company, partner, invoice_ids, progressivo_invio)
 
             attach = self.saveAttachment(fatturapa, progressivo_invio)
             attachments |= attach
@@ -113,43 +115,55 @@ class WizardExportFatturapa(models.TransientModel):
             invoice_ids.write({"fatturapa_attachment_out_id": attach.id})
 
         action = {
-            'view_type': 'form',
-            'name': "Export Electronic Invoice",
-            'res_model': 'fatturapa.attachment.out',
-            'type': 'ir.actions.act_window',
-            }
+            "view_type": "form",
+            "name": "Export Electronic Invoice",
+            "res_model": "fatturapa.attachment.out",
+            "type": "ir.actions.act_window",
+        }
         if len(attachments) == 1:
-            action['view_mode'] = 'form'
-            action['res_id'] = attachments[0].id
+            action["view_mode"] = "form"
+            action["res_id"] = attachments[0].id
         else:
-            action['view_mode'] = 'tree,form'
-            action['domain'] = [('id', 'in', attachments.ids)]
+            action["view_mode"] = "tree,form"
+            action["domain"] = [("id", "in", attachments.ids)]
         return action
 
     def generate_attach_report(self, inv):
         binding_model_id = self.with_context(
-            lang=None).report_print_menu.binding_model_id.id
-        name = self.report_print_menu.name
-        report_model = self.env['ir.actions.report'].with_context(
             lang=None
-        ).search(
-            [('binding_model_id', '=', binding_model_id),
-             ('name', '=', name)]
-            )
+        ).report_print_menu.binding_model_id.id
+        name = self.report_print_menu.name
+        report_model = (
+            self.env["ir.actions.report"]
+            .with_context(lang=None)
+            .search([("binding_model_id", "=", binding_model_id), ("name", "=", name)])
+        )
         attachment, attachment_type = report_model.render_qweb_pdf(inv.ids)
-        att_id = self.env['ir.attachment'].create({
-            'name': inv.number,
-            'type': 'binary',
-            'datas': base64.encodebytes(attachment),
-            'datas_fname': '{}.pdf'.format(inv.number),
-            'res_model': 'account.invoice',
-            'res_id': inv.id,
-            'mimetype': 'application/x-pdf'
-            })
-        inv.write({
-            'fatturapa_doc_attachments': [(0, 0, {
-                'is_pdf_invoice_print': True,
-                'ir_attachment_id': att_id.id,
-                'description': _("Attachment generated by "
-                                 "electronic invoice export")})]
-        })
+        att_id = self.env["ir.attachment"].create(
+            {
+                "name": inv.number,
+                "type": "binary",
+                "datas": base64.encodebytes(attachment),
+                "datas_fname": "{}.pdf".format(inv.number),
+                "res_model": "account.invoice",
+                "res_id": inv.id,
+                "mimetype": "application/x-pdf",
+            }
+        )
+        inv.write(
+            {
+                "fatturapa_doc_attachments": [
+                    (
+                        0,
+                        0,
+                        {
+                            "is_pdf_invoice_print": True,
+                            "ir_attachment_id": att_id.id,
+                            "description": _(
+                                "Attachment generated by " "electronic invoice export"
+                            ),
+                        },
+                    )
+                ]
+            }
+        )
