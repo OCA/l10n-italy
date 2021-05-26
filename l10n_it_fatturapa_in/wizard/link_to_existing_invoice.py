@@ -2,12 +2,12 @@
 from odoo import models, api, fields
 from odoo.tools.translate import _
 from odoo.exceptions import UserError
-from odoo.addons.l10n_it_fatturapa.bindings import fatturapa
+from . import efattura
 
 
 def get_invoice_obj(fatturapa_attachment):
     xml_string = fatturapa_attachment.get_xml_string()
-    return fatturapa.CreateFromDocument(xml_string)
+    return efattura.CreateFromDocument(xml_string)
 
 
 class WizardLinkToInvoiceLine(models.TransientModel):
