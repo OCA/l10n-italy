@@ -85,8 +85,13 @@
                 <Quantita>0.000</Quantita>
                 <PrezzoUnitario>0.00000</PrezzoUnitario>
                 <PrezzoTotale>0.00</PrezzoTotale>
-                <AliquotaIVA>10.00</AliquotaIVA>
+                <AliquotaIVA>22.00</AliquotaIVA>
             </DettaglioLinee>
+            <DatiRiepilogo>
+                <AliquotaIVA>22.00</AliquotaIVA>
+                <ImponibileImporto>0.00</ImponibileImporto>
+                <Imposta>0.00</Imposta>
+            </DatiRiepilogo>
             <DatiRiepilogo>
                 <AliquotaIVA>10.00</AliquotaIVA>
                 <ImponibileImporto>10.00</ImponibileImporto>
