@@ -665,7 +665,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertTrue(len(invoice.invoice_line_ids) == 3)
 
     def test_45_xml_many_zeros(self):
-        res = self.run_wizard('test42', 'IT05979361218_016.xml')
+        res = self.run_wizard('test45', 'IT05979361218_016.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.amount_total, 18.07)

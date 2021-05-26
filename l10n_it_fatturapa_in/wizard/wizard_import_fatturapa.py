@@ -1,10 +1,11 @@
 import logging
+from datetime import datetime
 from odoo import models, api, fields
 from odoo.tools import float_is_zero
 from odoo.tools.translate import _
 from odoo.exceptions import UserError
 
-from odoo.addons.l10n_it_fatturapa.bindings import fatturapa
+from . import efattura
 from odoo.addons.base_iban.models.res_partner_bank import pretty_iban
 
 _logger = logging.getLogger(__name__)
@@ -395,7 +396,7 @@ class WizardImportFatturapa(models.TransientModel):
     def get_line_product(self, line, partner):
         product = None
         supplier_info = self.env['product.supplierinfo']
-        if len(line.CodiceArticolo) == 1:
+        if len(line.CodiceArticolo or []) == 1:
             supplier_code = line.CodiceArticolo[0].CodiceValore
             supplier_infos = supplier_info.search([
                 ('product_code', '=', supplier_code),
@@ -916,7 +917,9 @@ class WizardImportFatturapa(models.TransientModel):
                 e_invoice_received_date.date()
         else:
             e_invoice_received_date = fatturapa_attachment.create_date.date()
-        e_invoice_date = FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data.date()
+
+        e_invoice_date = datetime.strptime(
+            FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data, '%Y-%m-%d').date()
 
         invoice_data = {
             'e_invoice_received_date': e_invoice_received_date,
@@ -1027,8 +1030,9 @@ class WizardImportFatturapa(models.TransientModel):
     def set_vendor_bill_data(self, FatturaBody, invoice):
         if not invoice.date_invoice:
             invoice.update({
-                'date_invoice':
-                    FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data.date(),
+                'date_invoice': datetime.strptime(
+                    FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data,
+                    '%Y-%m-%d').date(),
             })
         if not invoice.reference:
             invoice.update({
@@ -1176,7 +1180,7 @@ class WizardImportFatturapa(models.TransientModel):
 
     def _get_last_due_date(self, DatiPagamento):
         dates = []
-        for PaymentLine in DatiPagamento:
+        for PaymentLine in DatiPagamento or []:
             details = PaymentLine.DettaglioPagamento
             if details:
                 for dline in details:
@@ -1438,7 +1442,7 @@ class WizardImportFatturapa(models.TransientModel):
 
     def get_invoice_obj(self, fatturapa_attachment):
         xml_string = fatturapa_attachment.get_xml_string()
-        return fatturapa.CreateFromDocument(xml_string)
+        return efattura.CreateFromDocument(xml_string)
 
     @api.multi
     def importFatturaPA(self):

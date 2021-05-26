@@ -118,7 +118,7 @@ class FatturaPAAttachmentIn(models.Model):
                 name = _("Attachment without name")
             else:
                 name = attach.NomeAttachment
-            content = attach.Attachment
+            content = attach.Attachment.encode()
             _attach_dict = {
                 'name': name,
                 'datas': base64.b64encode(content),
