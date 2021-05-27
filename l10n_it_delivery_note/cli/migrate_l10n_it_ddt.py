@@ -93,7 +93,8 @@ class MigrateL10nItDdt(EasyCommand):
                 "You don't need to run this command."
             ))
 
-        new_sequence = self.env.ref('l10n_it_delivery_note.delivery_note_sequence_ddt')
+        new_sequence = self.env.ref(
+            'l10n_it_delivery_note_base.delivery_note_sequence_ddt')
         if new_sequence.number_next_actual > 1:
             raise ValidationError(_(
                 "It seems that at least one delivery note has been "
