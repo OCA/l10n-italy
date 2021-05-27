@@ -89,16 +89,13 @@ class MigrateL10nItDdt(EasyCommand):
 
         old_sequence = self.env.ref("l10n_it_ddt.seq_ddt")
         if old_sequence.number_next_actual == 1:
-            raise UserError(
-                _(
-                    "It seems that there are no documents to migrate. "
-                    "You don't need to run this command."
-                )
-            )
+            raise UserError(_(
+                "It seems that there are no documents to migrate. "
+                "You don't need to run this command."
+            ))
 
         new_sequence = self.env.ref(
-            "l10n_it_delivery_note_base.delivery_note_sequence_ddt"
-        )
+            'l10n_it_delivery_note_base.delivery_note_sequence_ddt')
         if new_sequence.number_next_actual > 1:
             raise ValidationError(
                 _(
