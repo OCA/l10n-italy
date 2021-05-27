@@ -897,6 +897,9 @@ class WizardExportFatturapa(models.TransientModel):
                 setFatturaElettronicaHeader(company, partner, fatturapa)
             for invoice_id in invoice_ids:
                 inv = invoice_obj.with_context(context).browse(invoice_id)
+                if inv.type not in ["out_invoice", "out_refund"]:
+                    raise UserError(
+                        _("Impossible to generate XML: not a customer invoice"))
                 inv.set_taxes_for_descriptive_lines()
                 if not attach and inv.fatturapa_attachment_out_id:
                     raise UserError(
