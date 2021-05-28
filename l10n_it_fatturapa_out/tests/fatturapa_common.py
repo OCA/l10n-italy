@@ -1,6 +1,4 @@
 import base64
-import os
-import shutil
 import tempfile
 
 from lxml import etree
@@ -209,11 +207,9 @@ class FatturaPACommon(AccountTestInvoicingCommon):
     def getAttachment(self, name, module_name=None):
         if module_name is None:
             module_name = "l10n_it_fatturapa_out"
-        path = get_module_resource(module_name, "tests", "data", "attah_base.pdf")
-        currDir = os.path.dirname(path)
-        new_file = "{}/{}".format(currDir, name)
-        shutil.copyfile(path, new_file)
-        return self.getFilePath(new_file)
+        return self.getFilePath(
+            get_module_resource(module_name, "tests", "data", "attah_base.pdf")
+        )
 
     def getFile(self, filename, module_name=None):
         if module_name is None:
