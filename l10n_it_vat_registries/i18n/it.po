@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-19 13:26+0000\n"
-"PO-Revision-Date: 2021-03-07 23:46+0000\n"
+"PO-Revision-Date: 2021-05-31 19:48+0000\n"
 "Last-Translator: Sergio Corato <sergiocorato@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -228,9 +228,8 @@ msgstr "Resoconto registro IVA"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model,name:l10n_it_vat_registries.model_wizard_registro_iva
-#, fuzzy
 msgid "Run VAT registry"
-msgstr "Registro IVA"
+msgstr "Stampa Registro IVA"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,help:l10n_it_vat_registries.field_wizard_registro_iva__journal_ids
