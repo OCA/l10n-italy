@@ -32,4 +32,9 @@
         "report/report_registro_iva.xml",
     ],
     "installable": True,
+    "external_dependencies": {
+        "python": [
+            "openupgradelib",
+        ],
+    },
 }

@@ -2,5 +2,6 @@
 asn1crypto
 codicefiscale
 elementpath
+https://github.com/OCA/openupgradelib.git
 unidecode
 xmlschema
