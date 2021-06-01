@@ -46,6 +46,12 @@ msgid "Invoice"
 msgstr "Счет"
 
 #. module: account_invoice_report_ddt_group
+#: code:addons/account_invoice_report_ddt_group/models/account_invoice.py:21
+#, python-format
+msgid "No TD"
+msgstr ""
+
+#. module: account_invoice_report_ddt_group
 #: model:ir.model.fields,help:account_invoice_report_ddt_group.field_res_partner__ddt_invoice_print_shipping_address
 #: model:ir.model.fields,help:account_invoice_report_ddt_group.field_res_users__ddt_invoice_print_shipping_address
 msgid "Show shipping address of TD in invoice report"
