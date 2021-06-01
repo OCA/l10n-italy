@@ -223,7 +223,7 @@
                                         </tr>
                                     </thead>
                                     <t
-                                            t-foreach="total_used_taxes"
+                                            t-foreach="total_used_taxes.sorted()"
                                             t-as="total_used_tax"
                                         >
                                         <t
