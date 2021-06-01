@@ -13,6 +13,11 @@
     "depends": [
         "account",
     ],
+    "external_dependencies": {
+        "python": [
+            "openupgradelib",
+        ],
+    },
     "data": [
         "views/account_view.xml",
     ],
