@@ -33,6 +33,7 @@ addon | version | summary
 [l10n_it_delivery_note_order_link](l10n_it_delivery_note_order_link/) | 14.0.1.0.0 | Crea collegamento tra i DDT e ordine di vendita/acquisto
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 14.0.1.0.2 | Fatture elettroniche
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 14.0.2.0.0 | Emissione fatture elettroniche
+[l10n_it_fatturapa_out_stamp](l10n_it_fatturapa_out_stamp/) | 14.0.1.0.0 | Modulo ponte tra emissione fatture elettroniche e imposta di bollo
 [l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 14.0.1.0.0 | ITA - Tipi di documento fiscale per dichiarativi
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 14.0.1.0.0 | Condizioni di pagamento delle fatture elettroniche
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 14.0.1.0.1 | ITA - Codice fiscale
