@@ -21,12 +21,3 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_website_portal_fiscalcode.fiscalcode_details
 msgid "Fiscal Code"
 msgstr "Codice fiscale"
-
-#. module: l10n_it_website_portal_fiscalcode
-#: code:addons/l10n_it_website_portal_fiscalcode/controllers/main.py:36
-#, python-format
-msgid "Fiscal Code not valid"
-msgstr "Codice fiscale non valido"
-
-#~ msgid "<span>Individual?</span>"
-#~ msgstr "<span>Persona fisica?</span>"
