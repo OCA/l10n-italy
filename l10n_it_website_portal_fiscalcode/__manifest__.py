@@ -7,15 +7,10 @@
     "version": "12.0.1.0.2",
     "author": "Odoo Community Association (OCA)",
     "category": "Localization/Italy",
-    "website": "https://github.com/OCA/l10n-italy/tree/"
-               "12.0/l10n_it_website_portal_fiscalcode",
+    "website": "https://github.com/OCA/l10n-italy"
+    "12.0/l10n_it_website_portal_fiscalcode",
     "license": "AGPL-3",
-    "depends": [
-        "l10n_it_fiscalcode",
-        "portal"
-    ],
-    "data": [
-        "views/l10n_it_website_portal_fiscalcode_templates.xml"
-    ],
+    "depends": ["l10n_it_fiscalcode", "portal"],
+    "data": ["views/l10n_it_website_portal_fiscalcode_templates.xml"],
     "auto_install": True,
 }
