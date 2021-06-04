@@ -128,3 +128,11 @@ class TestAccount(TransactionCase):
         self.assertEqual(tax.balance, -22)
         self.assertEqual(tax.deductible_balance, -11)
         self.assertEqual(tax.undeductible_balance, -11)
+
+    def test_format_vat_it(self):
+        partner_id = self.env.ref("base.res_partner_12")
+        partner_form = Form(partner_id)
+        partner_form.country_id = self.env.ref("base.it")
+        partner_form.vat = "it 02 780790107"
+        partner_id = partner_form.save()
+        self.assertEqual(partner_id.vat, "IT02780790107")
