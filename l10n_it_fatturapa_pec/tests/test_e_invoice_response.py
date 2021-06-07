@@ -14,6 +14,8 @@ class TestEInvoiceResponse(EInvoiceCommon):
     def setUp(self):
         super(TestEInvoiceResponse, self).setUp()
         self.PEC_server = self._create_fetchmail_pec_server()
+        self.imap_PEC_server = self._create_fetchmail_pec_server(
+            server_type='imap')
         self.env.user.company_id.vat = 'IT03339130126'
         self.set_sequences(15, '2018-01-07')
         self.attach_in_model = self.env['fatturapa.attachment.in']
@@ -129,6 +131,31 @@ class TestEInvoiceResponse(EInvoiceCommon):
             instance.retr.return_value = ('', [incoming_mail], '')
 
             self.PEC_server.fetch_mail()
+
+        error_mails_nbr = outbound_mail_model.search_count(error_mail_domain)
+        self.assertEqual(error_mails_nbr, 1)
+
+    def test_read_unprocessed_email_XML(self):
+        """When an email not related to e-invoices is read but not processed,
+         check that it has been read."""
+        incoming_mail = self._get_file('Normal email.txt')
+        outbound_mail_model = self.env['mail.mail']
+        error_mail_domain = [
+            ('body_html', 'like', 'read but not processed'),
+            ('recipient_ids', 'in',
+             self.imap_PEC_server.e_inv_notify_partner_ids.ids)]
+        error_mails_nbr = outbound_mail_model.search_count(error_mail_domain)
+        self.assertFalse(error_mails_nbr)
+
+        num = '1'
+        with mock.patch('odoo.addons.fetchmail.models.fetchmail.IMAP4') \
+                as mock_imap:
+            instance = mock_imap.return_value
+            instance.search.return_value = (None, [num])
+            instance.fetch.return_value = (None, [(num, incoming_mail)])
+
+            self.imap_PEC_server.fetch_mail()
+            instance.store.assert_called_with(num, '+FLAGS', '\\Seen')
 
         error_mails_nbr = outbound_mail_model.search_count(error_mail_domain)
         self.assertEqual(error_mails_nbr, 1)
