@@ -24,3 +24,11 @@ class ProductTemplate(models.Model):
         digits=dp.get_precision('Account'))
     is_stamp = fields.Boolean('Is a stamp')
     auto_compute = fields.Boolean('Auto-compute')
+    omit_move_from_missing_payback = fields.Boolean(
+        string="Omit Move From Missing Payback"
+    )
+
+    @api.onchange('is_stamp')
+    def onchange_is_stamp(self):
+        if not self.is_stamp:
+            self.omit_move_from_missing_payback = False

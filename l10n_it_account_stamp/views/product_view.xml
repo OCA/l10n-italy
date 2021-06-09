@@ -16,8 +16,8 @@
                             For each invoice, the base amount for each selected tax will be added up and used to determine the application of the account stamp.
                         </p>
                         <field name="stamp_apply_min_total_base" attrs="{'invisible': ['|',('auto_compute', '=', False), ('is_stamp', '=', False)], 'required': [('auto_compute', '=', True)]}"/>
-                        <field name="stamp_apply_tax_ids" attrs="{'invisible': ['|',('auto_compute', '=', False), ('is_stamp', '=', False)]}" widget="many2many_tags">
-                        </field>
+                        <field name="stamp_apply_tax_ids" attrs="{'invisible': ['|',('auto_compute', '=', False), ('is_stamp', '=', False)]}" widget="many2many_tags" />
+                        <field name="omit_move_from_missing_payback" attrs="{'invisible': [('is_stamp', '=', False)]}"/>
                     </group>
                 </group>
 

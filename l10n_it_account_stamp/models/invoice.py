@@ -130,9 +130,6 @@ class AccountInvoice(models.Model):
         for inv in self:
             if inv.tax_stamp and not inv.is_tax_stamp_line_present():
                 posted = False
-                if inv.move_id.state == 'posted':
-                    posted = True
-                    inv.move_id.state = 'draft'
                 line_model = self.env['account.move.line']
                 stamp_product_id = inv.with_context(
                     lang=inv.partner_id.lang).company_id.tax_stamp_product_id
@@ -140,18 +137,24 @@ class AccountInvoice(models.Model):
                     raise exceptions.Warning(
                         _('Missing tax stamp product in company settings!')
                     )
-                income_vals, expense_vals = self._build_tax_stamp_lines(
-                    stamp_product_id)
-                income_vals['move_id'] = inv.move_id.id
-                expense_vals['move_id'] = inv.move_id.id
-                line_model.with_context(
-                    check_move_validity=False
-                ).create(income_vals)
-                line_model.with_context(
-                    check_move_validity=False
-                ).create(expense_vals)
-                if posted:
-                    inv.move_id.state = 'posted'
+                if not stamp_product_id.omit_move_from_missing_payback:
+                    posted = False
+                    if inv.move_id.state == 'posted':
+                        posted = True
+                        inv.move_id.state = 'draft'
+                    line_model = self.env['account.move.line']
+                    income_vals, expense_vals = self._build_tax_stamp_lines(
+                        stamp_product_id)
+                    income_vals['move_id'] = inv.move_id.id
+                    expense_vals['move_id'] = inv.move_id.id
+                    line_model.with_context(
+                        check_move_validity=False
+                    ).create(income_vals)
+                    line_model.with_context(
+                        check_move_validity=False
+                    ).create(expense_vals)
+                    if posted:
+                        inv.move_id.state = 'posted'
         return res
 
 
