@@ -49,3 +49,10 @@ class Partner(models.Model):
         "-1 to use the default precision",
         default=-1,
     )
+
+    # https://github.com/odoo/odoo/pull/71920
+    # this is temporary fix, we depend on the issue do the solved for our test
+    # to be all green
+    def _split_vat(self, vat):
+        vat = vat.replace(" ", "")
+        return super()._split_vat(vat)
