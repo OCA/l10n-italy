@@ -20,3 +20,11 @@ class ResPartner(models.Model):
     riba_exclude_expenses = fields.Boolean(
         string="Exclude expenses Ri.Ba."
     )
+    riba_policy_expenses = fields.Selection(
+        [
+            ('one_a_month', 'More invoices, one expense per Month'),
+            ('unlimited', 'One expense per issued maturity')
+        ],
+        default="one_a_month",
+        string="Ri.Ba. Policy expenses"
+    )

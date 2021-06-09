@@ -57,6 +57,12 @@
                         attrs="{'invisible': ['|', ('state', '=', 'draft'), ('withholding_tax', '=', False)]}" class="oe_subtotal_footer_separator"/>
                 </xpath>
 
+                <xpath expr="//page[@name='other_info']/group[1]/group[last()]" position="after">
+                    <group name="withholding_tax_info">
+                        <field name="withholding_tax_in_print"/>
+                    </group>
+                </xpath>
+
             </field>
         </record>
 
@@ -114,6 +120,12 @@
                 <xpath expr="//group[hasclass('oe_subtotal_footer', 'oe_right')]/field[@name='residual']" position="after">
                     <field name="amount_net_pay_residual" widget="monetary" options="{'currency_field': 'currency_id'}"
                         attrs="{'invisible': ['|', ('state', '=', 'draft'), ('withholding_tax', '=', False)]}" class="oe_subtotal_footer_separator"/>
+                </xpath>
+
+                <xpath expr="//page[@name='other_info']/group[1]/group[last()]" position="after">
+                    <group name="withholding_tax_info">
+                        <field name="withholding_tax_in_print"/>
+                    </group>
                 </xpath>
 
             </field>

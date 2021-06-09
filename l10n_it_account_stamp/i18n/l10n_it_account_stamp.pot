@@ -82,7 +82,7 @@ msgstr ""
 #. module: l10n_it_account_stamp
 #: code:addons/l10n_it_account_stamp/models/invoice.py:20
 #: code:addons/l10n_it_account_stamp/models/invoice.py:57
-#: code:addons/l10n_it_account_stamp/models/invoice.py:140
+#: code:addons/l10n_it_account_stamp/models/invoice.py:141
 #, python-format
 msgid "Missing tax stamp product in company settings!"
 msgstr ""
