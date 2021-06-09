@@ -15,8 +15,7 @@
     'depends': [
         'sale_management',
         'product',
-        'stock',
-        'stock_account',
+        'account',
         'uom',
     ],
     'data': [
