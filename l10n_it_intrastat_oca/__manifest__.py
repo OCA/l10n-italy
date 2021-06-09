@@ -19,8 +19,7 @@
     },
     "depends": [
         "product",
-        "stock",
-        "stock_account",
+        "account",
         "uom",
     ],
     "data": [
