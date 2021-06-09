@@ -663,10 +663,22 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
 
     def test_45_xml_import_no_duplicate_partner(self):
         partner_id = self.env["res.partner"].search([("vat", "ilike", "05979361218")])
-        partner_id.vat = " %s  " % partner_id.vat
-        res = self.run_wizard("test45", "IT05979361218_001.xml")
+        if not partner_id:
+            # load bill (when this test is run by itself)
+            res = self.run_wizard("test45a", "IT05979361218_001.xml")
+            partner_id = self.env["res.partner"].search(
+                [("vat", "ilike", "05979361218")]
+            )
+
+        # try and alter the vat of the existing partner
+        partner_id.write({"vat": " %s  " % partner_id.vat})
+
+        # load bill (2nd time)
+        res = self.run_wizard("test45b", "IT05979361218_001.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
+
+        # check for duplicates
         self.assertEqual(invoice.partner_id.id, partner_id.id)
         self.assertEqual(
             len(self.env["res.partner"].search([("vat", "ilike", "05979361218")])), 1
