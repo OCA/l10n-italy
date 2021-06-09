@@ -69,10 +69,9 @@ msgid ""
 "(aminoiminomethyl)urea (in the ratio 50:50)"
 msgstr ""
 "(5-etil-2-metil-2-ossido-1,3,2-diossafosfinan-5-il) metil metil "
-"metilfosfonato; bis "
-"[(5-etil-2-metil-2-ossido-1,3,2 - diossafosfinan 5-il) metil] "
-"metilfosfonato, 2,4,6-tripropil-1,3, 5,2,4,6-triossatrifosfinan "
-"2,4,6-triossido; dimetil propilfosfonato , dietil etilfosfonato; sodio 3 - "
+"metilfosfonato; bis [(5-etil-2-metil-2-ossido-1,3,2 - diossafosfinan 5-il) "
+"metil] metilfosfonato, 2,4,6-tripropil-1,3, 5,2,4,6-triossatrifosfinan 2,4,6-"
+"triossido; dimetil propilfosfonato , dietil etilfosfonato; sodio 3 - "
 "(triidrossisilil) propil metilfosfonato; miscele consistenti principalmente "
 "di acido metilfosfonico ed (amminoimminometil)urea (in rapporto "
 "50:50)inometil)urea (in rapporto 50:50)"
@@ -268,6 +267,11 @@ msgid "2-Methylpropan-2-ol \"tert-butyl alcohol\""
 msgstr "Alcole terz-butilico"
 
 #. module: l10n_it_intrastat
+#: model:account.tax,name:l10n_it_intrastat.tax_22
+msgid "22% intr"
+msgstr "22% intr"
+
+#. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29251920
 msgid ""
 "3,3',4,4',5,5',6,6'-Octabromo-N,N'-ethylenediphthalimide; N,N'-"
@@ -339,6 +343,11 @@ msgstr "5-metilesan-2-one"
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29337100
 msgid "6-Hexanelactam \"epsilon-caprolactam\""
 msgstr "6-esanolattame (epsilon-caprolattame)"
+
+#. module: l10n_it_intrastat
+#: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__a
+msgid "A"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_39029010
@@ -866,8 +875,8 @@ msgid ""
 msgstr ""
 "Monoammine acicliche e loro derivati; sali di tali prodotti (escl. mono-, "
 "di- o trimetilammina e loro sali, 1,1,3,3-Tetrametilbutilammina, "
-"Dietilammina e suoi sali e 2-(N,N-Dietilammino)etil cloruro cloridrato, 2-(N,"
-"N-diisopropilammino)etil cloruro cloridrato, e 2-(N,N-dimetilammino)etil "
+"Dietilammina e suoi sali e 2-(N,N-Dietilammino)etil cloruro cloridrato, 2-"
+"(N,N-diisopropilammino)etil cloruro cloridrato, e 2-(N,N-dimetilammino)etil "
 "cloruro cloridrato)"
 
 #. module: l10n_it_intrastat
@@ -2461,8 +2470,8 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90105000
 msgid ""
-"Apparatus and equipment for photographic or cinematographic laboratories, n."
-"e.s.; negatoscopes"
+"Apparatus and equipment for photographic or cinematographic laboratories, "
+"n.e.s.; negatoscopes"
 msgstr ""
 "Altri apparecchi e materiale per laboratori fotografici o cinematografici; "
 "negatoscopi"
@@ -3843,8 +3852,8 @@ msgstr "Lavori di tungsteno, n.n.a."
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_40169957
 msgid ""
 "Articles of vulcanised rubber (excl. hard rubber), of a type intended "
-"exclusively or mainly for use in motor vehicles of heading 8701 to 8705, n.e."
-"s. (excl. those of cellular rubber, and rubber-to-metal bonded parts)"
+"exclusively or mainly for use in motor vehicles of heading 8701 to 8705, "
+"n.e.s. (excl. those of cellular rubber, and rubber-to-metal bonded parts)"
 msgstr ""
 "Articoli di gomma vulcanizzata non indurita, del tipo inteso esclusivamente "
 "e principalmente per autoveicoli delle voci da 8701 a 8705, n.n.a. (escl. "
@@ -4490,6 +4499,11 @@ msgid ""
 msgstr ""
 "Azoturi; siliciuri, di costituzione chimica definita o no (diversi dai "
 "composti che costituiscono ugualmente carburi della voce 2849)"
+
+#. module: l10n_it_intrastat
+#: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__b
+msgid "B"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_62092000
@@ -7515,8 +7529,8 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_69010000
 msgid ""
-"Bricks, blocks, tiles and other ceramic goods of siliceous fossil meals, e."
-"g. kieselguhr, tripolite or diatomite, or of similar siliceous earths"
+"Bricks, blocks, tiles and other ceramic goods of siliceous fossil meals, "
+"e.g. kieselguhr, tripolite or diatomite, or of similar siliceous earths"
 msgstr ""
 "Mattoni, lastre, piastrelle ed altri pezzi ceramici di farine silicee "
 "fossili, p.es. kieselgur, tripolite, diatomite, o di terre silicee simili"
@@ -8378,6 +8392,11 @@ msgstr ""
 "calcinate, piclate o altrimenti conservate; cuoi e pelli gregge intere, di "
 "peso unitario > 8 kg ma < 16 kg se sono secche, > 10 kg ma < 16 kg se sono "
 "salate secche (escl. conciate o pergamenate o altrimenti preparate)"
+
+#. module: l10n_it_intrastat
+#: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__c
+msgid "C"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85299041
@@ -9445,8 +9464,8 @@ msgid ""
 "punched\", and woven or of felt but non-flocked)"
 msgstr ""
 "Tappeti e altri rivestimenti tessili del suolo, di lana o di peli fini o di "
-"altre materie tessili, anche confezionati (esclusi annodati,\" "
-"tufted\" (agugliati) e tessuti o di feltro, ma non floccati)"
+"altre materie tessili, anche confezionati (esclusi annodati,\" tufted\" "
+"(agugliati) e tessuti o di feltro, ma non floccati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_57011090
@@ -9750,9 +9769,9 @@ msgid ""
 "manufactured from foil of a thickness <= 0,2 mm)"
 msgstr ""
 "Fusti, bidoni, contenitori, scatole e recipienti simili <= 300 litri, di "
-"alluminio, per qualsiasi materia (esclusi i gas compressi o liquefatti), n.n."
-"a. (diversi dai contenitori tubolari pieghevoli, contenitori per aerosol e "
-"contenitori fabbricati con lamina di spessore <= 0,2 mm)"
+"alluminio, per qualsiasi materia (esclusi i gas compressi o liquefatti), "
+"n.n.a. (diversi dai contenitori tubolari pieghevoli, contenitori per aerosol "
+"e contenitori fabbricati con lamina di spessore <= 0,2 mm)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_76129030
@@ -12776,8 +12795,8 @@ msgstr "Servizi di stesura di rendiconti finanziari"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_91101190
 msgid ""
-"Complete watch movements, unassembled or partly assembled \"movement "
-"sets\" (excl. with balance wheel and hairspring)"
+"Complete watch movements, unassembled or partly assembled \"movement sets\" "
+"(excl. with balance wheel and hairspring)"
 msgstr ""
 "Movimenti di orologi tascabili, completi (non montati) o parzialmente "
 "montati \"chablons\" (escl. quelli a bilanciere con spirale)"
@@ -13794,8 +13813,8 @@ msgid ""
 "Construction sets and constructional toys, of plastics (excl. scale model "
 "assembly kits)"
 msgstr ""
-"altri assortimenti e giocattoli da costruzione di materia plastica (escl."
-"modelli ridotti da montare)"
+"altri assortimenti e giocattoli da costruzione di materia plastica "
+"(escl.modelli ridotti da montare)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.421320
@@ -16060,6 +16079,11 @@ msgid "Cysteine and cystine"
 msgstr "Cisteina e cistina"
 
 #. module: l10n_it_intrastat
+#: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__d
+msgid "D"
+msgstr ""
+
+#. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29362400
 msgid ""
 "D-Pantothenic or DL-pantothenic acid \"Vitamin B3 or B5\" and their "
@@ -17717,8 +17741,8 @@ msgid ""
 "prophylactic uses, n.e.s."
 msgstr ""
 "Ghiandole ed altri organi per usi opoterapici, anche polverizzati , e altre "
-"sostanze di origine umana preparate per scopi terapeutici o profilattici , n."
-"n.a."
+"sostanze di origine umana preparate per scopi terapeutici o profilattici , "
+"n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_08062090
@@ -18559,6 +18583,11 @@ msgstr ""
 "di costituzione chimica definita"
 
 #. module: l10n_it_intrastat
+#: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__e
+msgid "E"
+msgstr ""
+
+#. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28212000
 msgid ""
 "Earth colours containing >= 70% by weight of combined iron evaluated as Fe2O3"
@@ -18568,8 +18597,8 @@ msgstr "Terre coloranti, contenenti 70% o piùdi ferro combinato"
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84306900
 msgid "Earth moving machinery, not self-propelled, n.e.s."
 msgstr ""
-"Macchine, apparecchi e strumenti per movimenti di terra (non semoventi) , n."
-"n.a."
+"Macchine, apparecchi e strumenti per movimenti di terra (non semoventi) , "
+"n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_25152000
@@ -19092,8 +19121,8 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94054095
 msgid ""
-"Electric lamps and lighting fittings, used with tubular fluorescent lamps, n."
-"e.s. (excl. of plastics)"
+"Electric lamps and lighting fittings, used with tubular fluorescent lamps, "
+"n.e.s. (excl. of plastics)"
 msgstr ""
 "Apparecchi elettrici per l'illuminazione, dei tipi utilizzati per tubi "
 "fluorescenti, n.n.a. (di materie diverse dalle materie plastiche)"
@@ -19291,8 +19320,8 @@ msgstr ""
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85444991
 msgid ""
 "Electric wire and cables, for a voltage <= 1.000 V, insulated, not fitted "
-"with connectors, with individual conductor wires of a diameter > 0,51 mm, n."
-"e.s."
+"with connectors, with individual conductor wires of a diameter > 0,51 mm, "
+"n.e.s."
 msgstr ""
 "Fili e cavi elettrici, isolati, non adatti a connettori con diametro dei "
 "singoli fili > 0,51 mm, n.n.a."
@@ -19899,8 +19928,8 @@ msgstr ""
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85229041
 msgid "Electronic assemblies of telephone answering machines, n.e.s."
 msgstr ""
-"Assiemaggi a circuiti stampati per prodotti della sottovoce 8519á50 00, n.n."
-"a."
+"Assiemaggi a circuiti stampati per prodotti della sottovoce 8519á50 00, "
+"n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84731019
@@ -20082,8 +20111,8 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90318038
 msgid ""
-"Electronic instruments, apparatus and machines for measuring or checking, n."
-"e.s. in chapter 90"
+"Electronic instruments, apparatus and machines for measuring or checking, "
+"n.e.s. in chapter 90"
 msgstr ""
 "Strumenti, apparecchi e macchine di misura o di controllo elettronici, n.n.a "
 "nel capitolo 90"
@@ -20316,8 +20345,8 @@ msgid ""
 "Electronic oscilloscopes and oscillographs, without recording device (excl. "
 "cathode ray oscilloscopes and oscillographs)"
 msgstr ""
-"Oscilloscopi e oscillografi elettronici senza dispositivo registratore (escl."
-"oscilloscopi e oscillografi catodici)"
+"Oscilloscopi e oscillografi elettronici senza dispositivo registratore "
+"(escl.oscilloscopi e oscillografi catodici)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90278011
@@ -20347,8 +20376,8 @@ msgstr "Spartiti elettronici"
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85365005
 msgid ""
 "Electronic switches, incl. temperature protected electronic switches, "
-"consisting of a transistor and a logic chip \"chip-on-chip "
-"technology\" (excl. relays and automatic circuit breakers)"
+"consisting of a transistor and a logic chip \"chip-on-chip technology\" "
+"(excl. relays and automatic circuit breakers)"
 msgstr ""
 "Interruttori elettronici, compresi gli interruttori elettronici protetti "
 "dalla temperatura, costituiti da un transistor e da un chip logico "
@@ -21187,6 +21216,11 @@ msgstr "Estrusori per la lavorazione della gomma o delle materie plastiche"
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_33042000
 msgid "Eye make-up preparations"
 msgstr "Prodotti per il trucco degli occhi"
+
+#. module: l10n_it_intrastat
+#: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__f
+msgid "F"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_68129910
@@ -26446,9 +26480,9 @@ msgid ""
 "Fresh or chilled cuts of goat, with bone in (excl. carcases and half-"
 "carcases, short forequarters, chines and/or best ends, and legs)"
 msgstr ""
-"Carni di caprini (non disossate) fresche o refrigerate (escl. carcasse ,"
-"mezzene, busto, mezzo busto, costata e/o sella, mezza costata e/o mezza "
-"sella, coscia, mezza coscia)"
+"Carni di caprini (non disossate) fresche o refrigerate (escl. "
+"carcasse ,mezzene, busto, mezzo busto, costata e/o sella, mezza costata e/o "
+"mezza sella, coscia, mezza coscia)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02072680
@@ -29824,8 +29858,8 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03049530
 msgid ""
-"Frozen meat, whether or not minced, of haddock \"Melanogrammus "
-"aeglefinus\" (excl. fillets and surimi)"
+"Frozen meat, whether or not minced, of haddock \"Melanogrammus aeglefinus\" "
+"(excl. fillets and surimi)"
 msgstr ""
 "Carne di eglefini congelata, anche tritata (Melanogrammus aeglefinus) (escl. "
 "filetti e surimi)"
@@ -29868,8 +29902,8 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03049200
 msgid ""
-"Frozen meat, whether or not minced, of toothfish \"Dissostichus spp."
-"\" (excl. fillets)"
+"Frozen meat, whether or not minced, of toothfish \"Dissostichus spp.\" "
+"(excl. fillets)"
 msgstr ""
 "Carne di austromerluzzo Dissostichus spp. anche tritata, congelata (esclusi "
 "filetti)"
@@ -30147,8 +30181,8 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03034390
 msgid ""
-"Frozen skipjack or stripe-bellied bonito \"Euthynnus -Katsuwonus- "
-"pelamis\" (excl. for industrial processing or preservation)"
+"Frozen skipjack or stripe-bellied bonito \"Euthynnus -Katsuwonus- pelamis\" "
+"(excl. for industrial processing or preservation)"
 msgstr ""
 "Tonnetti striati, congelati, per usi diversi dalla fabbricazione di "
 "preparazioni e conserve di pesce"
@@ -30678,10 +30712,11 @@ msgid ""
 "dioxide gas, in brine, in sulphur water or in other preservative solutions, "
 "but unsuitable in that state for immediate consumption (excl. sweet pepper)"
 msgstr ""
-"Pimenti del genere \"Capsicum\" e \"Pimenta\" temporaneamente conservati, p."
-"es. mediante anidride solforosa o in acqua salata solforata o addizionata di "
-"altre sostanze atte ad assicurarne temporaneamentela conservazione, ma non "
-"atti per l'alimentazione nello stato in cui sono presentati (escl. peperoni)"
+"Pimenti del genere \"Capsicum\" e \"Pimenta\" temporaneamente conservati, "
+"p.es. mediante anidride solforosa o in acqua salata solforata o addizionata "
+"di altre sostanze atte ad assicurarne temporaneamentela conservazione, ma "
+"non atti per l'alimentazione nello stato in cui sono presentati (escl. "
+"peperoni)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07108059
@@ -31296,6 +31331,11 @@ msgstr ""
 msgid "Fuses for a voltage > 1.000 V"
 msgstr ""
 "Fusibili e interruttori di sicurezza a fusibili, per una tensione > 1 000 V"
+
+#. module: l10n_it_intrastat
+#: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__g
+msgid "G"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.920012
@@ -34097,6 +34137,11 @@ msgid "Gypsum; anhydrite"
 msgstr "Pietra di gesso; anidrite"
 
 #. module: l10n_it_intrastat
+#: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__h
+msgid "H"
+msgstr ""
+
+#. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72163390
 msgid ""
 "H sections of iron or non-alloy steel, simply hot-rolled, hot-drawn or "
@@ -35967,8 +36012,8 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_82055100
 msgid ""
-"Household hand tools, non-mechanical, with working parts of base metal, n.e."
-"s."
+"Household hand tools, non-mechanical, with working parts of base metal, "
+"n.e.s."
 msgstr ""
 "Utensili per uso domestico (non meccanici), con parte operante di metalli "
 "comuni, n.n.a."
@@ -36746,9 +36791,9 @@ msgstr "Servizi di pianificazione fiscale per i privati"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29339920
 msgid ""
-"Indole, 3-methylindole \"skatole\", 6-allyl-6,7-dihydro-5H-dibenz\"c,"
-"e\"azepine \"azapetine\", phenindamine \"INN\" and their salts; imipramine "
-"hydrochloride \"INNM\""
+"Indole, 3-methylindole \"skatole\", 6-allyl-6,7-dihydro-5H-"
+"dibenz\"c,e\"azepine \"azapetine\", phenindamine \"INN\" and their salts; "
+"imipramine hydrochloride \"INNM\""
 msgstr ""
 "Indolo, 3-metilindolo (scatolo), 6-allil-6,7-diidro-5 h-dibenzo \"c, e\" "
 "azepina (azapetina), fenindamina (DCI) e loro sali; cloridrato di imipramina "
@@ -37555,8 +37600,8 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90230080
 msgid ""
-"Instruments, apparatus and models designed for demonstrational purposes, e."
-"g. in education or exhibitions, unsuitable for other uses (excl. ground "
+"Instruments, apparatus and models designed for demonstrational purposes, "
+"e.g. in education or exhibitions, unsuitable for other uses (excl. ground "
 "flying trainers of heading 8805, collectors' pieces of heading 9705, "
 "antiques of an age > 100 years of heading 9706 and of the type used for "
 "teaching physics, chemistry and technical subjects)"
@@ -37968,7 +38013,6 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_bank_statement_line__intrastat_line_ids
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_move__intrastat_line_ids
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_payment__intrastat_line_ids
 #: model:ir.ui.menu,name:l10n_it_intrastat.menu_account_intrastat_configuration
 #: model:ir.ui.menu,name:l10n_it_intrastat.menu_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.account_intrastat_invoice_form
@@ -38017,7 +38061,6 @@ msgstr "Codice Intrastat"
 #. module: l10n_it_intrastat
 #. odoo-python
 #: code:addons/l10n_it_intrastat/models/account.py:0
-#, python-format
 msgid "Intrastat total must be equal to invoice untaxed total"
 msgstr ""
 "Il totale Intrastat deve corrispondere al totale imponibile della fattura"
@@ -39895,16 +39938,6 @@ msgstr ""
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90132000
 msgid "Lasers (excl. laser diodes)"
 msgstr "Laser (escl. diodi laser)"
-
-#. module: l10n_it_intrastat
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_custom____last_update
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature____last_update
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature_b____last_update
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transport____last_update
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat____last_update
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_custom__write_uid
@@ -42483,8 +42516,8 @@ msgstr ""
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84791000
 msgid "Machinery for public works, building or the like, n.e.s."
 msgstr ""
-"Macchine ed apparecchi per lavori pubblici, l'edilizia o lavori analoghi, n."
-"n.a."
+"Macchine ed apparecchi per lavori pubblici, l'edilizia o lavori analoghi, "
+"n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84383000
@@ -42564,8 +42597,8 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84388099
 msgid ""
-"Machinery for the industrial preparation or manufacture of food or drink, n."
-"e.s."
+"Machinery for the industrial preparation or manufacture of food or drink, "
+"n.e.s."
 msgstr ""
 "Macchine per la preparazione industriale o la fabbricazione di alimenti o "
 "bevande, n.n.a."
@@ -42647,8 +42680,8 @@ msgstr ""
 msgid ""
 "Machinery parts of chapter 84, not intended for a specific purpose, n.e.s."
 msgstr ""
-"Parti di macchine del capitolo 84, non destinate ad un uso determinato, n.n."
-"a."
+"Parti di macchine del capitolo 84, non destinate ad un uso determinato, "
+"n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84378000
@@ -43459,9 +43492,10 @@ msgid ""
 "binary form, and capable of being manipulated or providing interactivity to "
 "a user, by means of an automatic data-processing machine"
 msgstr ""
-"Nastri e dischi magnetici registrati per la riproduzione di istruzioni, dati,"
-"suoni e immagini registrate su macchine a lettura binaria, interattivi o in "
-"grado di essere manipolati dall'utente attraverso macchine elaborazione dati"
+"Nastri e dischi magnetici registrati per la riproduzione di istruzioni, "
+"dati,suoni e immagini registrate su macchine a lettura binaria, interattivi "
+"o in grado di essere manipolati dall'utente attraverso macchine elaborazione "
+"dati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85232939
@@ -44253,8 +44287,8 @@ msgstr ""
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_22060039
 msgid ""
 "Mead and other fermented beverages and mixtures of fermented beverages and "
-"mixtures of fermented beverages with non-alcoholic beverages, sparkling, n.e."
-"s."
+"mixtures of fermented beverages with non-alcoholic beverages, sparkling, "
+"n.e.s."
 msgstr ""
 "Idromele ed altre bevande fermentate e miscele di bevande fermentate e "
 "miscele di bevande fermentate con bevande analcoliche, frizzanti, n.n.a."
@@ -50672,8 +50706,8 @@ msgid ""
 "Narrow woven fabrics of man-made fibres, with real selvedges, with a width "
 "of <= 30 cm, n.e.s."
 msgstr ""
-"Nastri, di fibre sintetiche o artificiali, tessuti, muniti di vere cimose, n."
-"n.a."
+"Nastri, di fibre sintetiche o artificiali, tessuti, muniti di vere cimose, "
+"n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_58063290
@@ -53435,8 +53469,8 @@ msgstr "Altri servizi di concessione di credito da parte di istituti monetari"
 msgid ""
 "Other credit granting services, other than by monetary institutions, n.e.c."
 msgstr ""
-"Altri servizi di credito, diversi da quelli offerti da istituti monetari, n."
-"c.a."
+"Altri servizi di credito, diversi da quelli offerti da istituti monetari, "
+"n.c.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.855219
@@ -53886,8 +53920,8 @@ msgstr ""
 msgid ""
 "Other retail trade services of parts and accessories of motor vehicles n.e.c."
 msgstr ""
-"Altri servizi di vendita al dettaglio di parti e accessori di autoveicoli n."
-"c.a."
+"Altri servizi di vendita al dettaglio di parti e accessori di autoveicoli "
+"n.c.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.494119
@@ -54753,8 +54787,8 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_48239040
 msgid ""
-"Paper and paperboard used for writing, printing or other graphic purposes, n."
-"e.s."
+"Paper and paperboard used for writing, printing or other graphic purposes, "
+"n.e.s."
 msgstr ""
 "Carta e cartone dei tipi utilizzati per la scrittura, per la stampa o per "
 "altri scopi grafici, n.n.a."
@@ -54933,8 +54967,8 @@ msgid ""
 msgstr ""
 "Carta e cartone non patinati nè spalmati, in rotoli di larghezza > 36 cm o "
 "in fogli di forma quadrata o rettangolare con almeno un lato > 36 cm e con "
-"l'altro lato > 15 cm a foglio spiegato, di peso >150 g/m² ma < 225 g/m², n.n."
-"a."
+"l'altro lato > 15 cm a foglio spiegato, di peso >150 g/m² ma < 225 g/m², "
+"n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_48059380
@@ -55204,8 +55238,8 @@ msgstr "Stato del partner"
 msgid ""
 "Parts and accessories equally suitable for use with two or more typewriters, "
 "word-processing machines, calculating machines, automatic data-processing "
-"machines or other machines, equipment or devices of heading 8469 to 8472, n."
-"e.s. (excl. electronic assemblies)"
+"machines or other machines, equipment or devices of heading 8469 to 8472, "
+"n.e.s. (excl. electronic assemblies)"
 msgstr ""
 "Parti e accessori che possono essere utilizzati indifferentemente con le "
 "macchine o apparecchi di più voci da 8470 a 8472 (escl. assiemaggi "
@@ -55241,8 +55275,8 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90160090
 msgid ""
-"Parts and accessories for balances of a sensitivity of 50 mg or better, n.e."
-"s."
+"Parts and accessories for balances of a sensitivity of 50 mg or better, "
+"n.e.s."
 msgstr "Parti ed accessori di bilance sensibili ad un peso <= 5 cg, n.n.a."
 
 #. module: l10n_it_intrastat
@@ -55401,8 +55435,8 @@ msgstr ""
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90269000
 msgid ""
 "Parts and accessories for instruments and apparatus for measuring or "
-"checking the flow, level, pressure or other variables of liquids or gases, n."
-"e.s."
+"checking the flow, level, pressure or other variables of liquids or gases, "
+"n.e.s."
 msgstr ""
 "Parti ed accessori per strumenti e apparecchi per misurare o controllare il "
 "flusso, la pressione o altre variabili di liquidi e gas , n.n.a."
@@ -55506,8 +55540,8 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84869070
 msgid ""
-"Parts and accessories for machine-tools operated by ultrasonic processes, n."
-"e.s."
+"Parts and accessories for machine-tools operated by ultrasonic processes, "
+"n.e.s."
 msgstr ""
 "Parti ed accessori di macchine utensili operanti con ultrasuoni, n.n.a."
 
@@ -55543,8 +55577,8 @@ msgid ""
 "Parts and accessories for machines and appliances for testing the mechanical "
 "properties of materials, n.e.s."
 msgstr ""
-"Parti ed accessori di macchine ed apparecchi delle precedenti voci 9024, n.n."
-"a."
+"Parti ed accessori di macchine ed apparecchi delle precedenti voci 9024, "
+"n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90330000
@@ -55647,9 +55681,9 @@ msgstr "Parti ed accessori di rivoltelle e pistole, n.n.a."
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_92099200
 msgid ""
-"Parts and accessories for string musical instruments without keyboards, n.e."
-"s. (excl. strings and those for musical instruments, the sound of which is "
-"produced, or must be amplified, electrically)"
+"Parts and accessories for string musical instruments without keyboards, "
+"n.e.s. (excl. strings and those for musical instruments, the sound of which "
+"is produced, or must be amplified, electrically)"
 msgstr ""
 "Parti e accessori di strumenti musicali a corde (senza tastiera) della voce "
 "9202"
@@ -55730,8 +55764,8 @@ msgstr "Parti e accessori per tagliatrici a idrogetto, n.n.a."
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_93059900
 msgid ""
-"Parts and accessories for weapons and the like of heading 9303 or 9304, n.e."
-"s. (excl. of shotguns or rifles of heading 9303)"
+"Parts and accessories for weapons and the like of heading 9303 or 9304, "
+"n.e.s. (excl. of shotguns or rifles of heading 9303)"
 msgstr ""
 "Parti ed accessori degli oggetti delle voci 9303 o 9304, n.n.a. (escl. "
 "fucili e carabine della voce 9303)"
@@ -55750,8 +55784,8 @@ msgid ""
 "Parts and accessories of closed-die forged steel, for tractors, motor "
 "vehicles for the transport of ten or more persons, motor cars and other "
 "motor vehicles principally designed for the transport of persons, motor "
-"vehicles for the transport of goods and special purpose motor vehicles, n.e."
-"s."
+"vehicles for the transport of goods and special purpose motor vehicles, "
+"n.e.s."
 msgstr ""
 "Parti e accessori di acciaio stampato, per trattori, veicoli a motore per il "
 "trasporto di dieci o più persone, macchine e altri veicoli a motore "
@@ -55791,8 +55825,8 @@ msgid ""
 "analysis, e.g. polarimeters, refractometers, spectrometers, of instruments "
 "and apparatus for measuring or checking viscosity, porosity, expansion, "
 "surface tension or the like and of instruments and apparatus for measuring "
-"or checking quantities of heat, sound or light, incl. exposure meters, n.e."
-"s. (excl. of gas or smoke analysis apparatus)"
+"or checking quantities of heat, sound or light, incl. exposure meters, "
+"n.e.s. (excl. of gas or smoke analysis apparatus)"
 msgstr ""
 "Parti ed accessori di strumenti ed apparecchi per analisi fisiche o chimiche "
 "(per es. polarimetri, rifrattometri, spettrometri), per prove di viscosità, "
@@ -55816,8 +55850,8 @@ msgid ""
 "Parts and accessories of machines for preparing textile fibres, n.e.s. "
 "(other than card clothing)"
 msgstr ""
-"Parti ed accessori di macchine per la preparazione delle materie tessili, n."
-"n.a. (escl. guarniture per carde)"
+"Parti ed accessori di macchine per la preparazione delle materie tessili, "
+"n.n.a. (escl. guarniture per carde)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84483900
@@ -55832,8 +55866,8 @@ msgstr "Parti ed accessori per macchine della voce 8447, n.n.a."
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90279080
 msgid ""
-"Parts and accessories of microtomes or of gas or smoke analysis apparatus, n."
-"e.s."
+"Parts and accessories of microtomes or of gas or smoke analysis apparatus, "
+"n.e.s."
 msgstr ""
 "Parti ed accessori di microtomi o di apparecchi per l'analisi dei gas o dei "
 "fumi, n.n.a."
@@ -55880,9 +55914,9 @@ msgid ""
 "printing by means of plates, cylinders and other printing components of "
 "heading 8442)"
 msgstr ""
-"Parti ed accessori di stampanti, copiatrici e telecopiatrici (telefax), n.n."
-"a. (escl. assiemaggi elettronici e macchine e apparecchi per stampare con "
-"lastre, cilindri o altri organi per la stampa della voce 8442)"
+"Parti ed accessori di stampanti, copiatrici e telecopiatrici (telefax), "
+"n.n.a. (escl. assiemaggi elettronici e macchine e apparecchi per stampare "
+"con lastre, cilindri o altri organi per la stampa della voce 8442)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84439110
@@ -55963,8 +55997,8 @@ msgid ""
 msgstr ""
 "Parti ed accessori riconoscibili come destinati esclusivamente o "
 "principalmente agli apparecchi per la registrazione e la riproduzione del "
-"suono e agli apparecchi per la videoregistrazione o la videoriproduzione, n."
-"n.a."
+"suono e agli apparecchi per la videoregistrazione o la videoriproduzione, "
+"n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90059000
@@ -55980,8 +56014,8 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84314300
 msgid ""
-"Parts for boring or sinking machinery of subheading 8430.41 or 8430.49, n.e."
-"s."
+"Parts for boring or sinking machinery of subheading 8430.41 or 8430.49, "
+"n.e.s."
 msgstr ""
 "Parti di macchine di sondaggio o di perforazione delle voci 8430 41 o 8430 "
 "49, n.n.a."
@@ -56068,8 +56102,8 @@ msgid ""
 "Parts for gear boxes of closed-die forged steel, for tractors, motor "
 "vehicles for the transport of ten or more persons, motor cars and other "
 "motor vehicles principally designed for the transport of persons, motor "
-"vehicles for the transport of goods and special purpose motor vehicles, n.e."
-"s (excl. those for the industrial assembly of certain motor vehicles of "
+"vehicles for the transport of goods and special purpose motor vehicles, "
+"n.e.s (excl. those for the industrial assembly of certain motor vehicles of "
 "subheading 8708.40.20)"
 msgstr ""
 "Parti di cambi di velocità di acciaio stampato per veicoli a motore per il "
@@ -56119,8 +56153,8 @@ msgid ""
 "Parts for radiators, of closed-die forged steel, for tractors, motor "
 "vehicles for the transport of ten or more persons, motor cars and other "
 "motor vehicles principally designed for the transport of persons, motor "
-"vehicles for the transport of goods and special purpose motor vehicles, n.e."
-"s. (excl. those for the industrial assembly of certain motor vehicles of "
+"vehicles for the transport of goods and special purpose motor vehicles, "
+"n.e.s. (excl. those for the industrial assembly of certain motor vehicles of "
 "subheading 8708.91.20)"
 msgstr ""
 "Parti di radiatori, in acciaio stampato, dei trattori, veicoli a motore per "
@@ -56137,15 +56171,15 @@ msgid ""
 "Parts for silencers \"mufflers\" and exhaust pipes, for tractors, motor "
 "vehicles for the transport of ten or more persons, motor cars and other "
 "motor vehicles principally designed for the transport of persons, motor "
-"vehicles for the transport of goods and special purpose motor vehicles, n.e."
-"s. (excl. those for the industrial assembly of certain motor vehicles of "
+"vehicles for the transport of goods and special purpose motor vehicles, "
+"n.e.s. (excl. those for the industrial assembly of certain motor vehicles of "
 "subheading 8708.92.20 and of closed-die forged steel)"
 msgstr ""
 "Parti di silenziatori \"marmitte\" e tubi di scarico, per trattori, "
 "autoveicoli per il trasporto di dieci o più persone, autoveicoli e altri "
 "autoveicoli progettati principalmente per il trasporto di persone, "
-"autoveicoli per il trasporto di merci e autoveicoli per usi speciali , n.n."
-"s. (escl. quelli destinati all'assemblaggio industriale di alcuni "
+"autoveicoli per il trasporto di merci e autoveicoli per usi speciali , "
+"n.n.s. (escl. quelli destinati all'assemblaggio industriale di alcuni "
 "autoveicoli della sottovoce 8708.92.20 e di acciaio fucinato a stampo chiuso)"
 
 #. module: l10n_it_intrastat
@@ -56236,8 +56270,8 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84369900
 msgid ""
-"Parts of agricultural, horticultural, forestry or bee-keeping machinery, n.e."
-"s."
+"Parts of agricultural, horticultural, forestry or bee-keeping machinery, "
+"n.e.s."
 msgstr ""
 "Parti di macchine, apparecchi e strumenti per l'agricoltura, l'orticoltura, "
 "la silvicoltura, l'avicoltura o l'apicoltura, n.n.a."
@@ -56279,8 +56313,8 @@ msgstr "Parti di catene a maglie articolate, di ghisa, ferro o acciaio"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84769000
 msgid ""
-"Parts of automatic goods-vending machines, incl. money changing machines, n."
-"e.s."
+"Parts of automatic goods-vending machines, incl. money changing machines, "
+"n.e.s."
 msgstr "Parti di distributori automatici di merci, incl. cambiavalute, n.n.a."
 
 #. module: l10n_it_intrastat
@@ -56339,8 +56373,8 @@ msgstr "Parti di macchine ed apparecchi per legare o rilegare, n.n.a."
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_87149490
 msgid ""
-"Parts of brakes, incl. coaster braking hubs and hub-brakes, for cycles, n.e."
-"s. (excl. for motorcycles)"
+"Parts of brakes, incl. coaster braking hubs and hub-brakes, for cycles, "
+"n.e.s. (excl. for motorcycles)"
 msgstr ""
 "Parti di freni, incl. mozzi con freni a contropedale e freni a mozzo, per "
 "cicli, n.n.a. (escl. per motocicli)"
@@ -56413,8 +56447,8 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84419010
 msgid ""
-"Parts of cutting machines for making up paper pulp, paper or paperboard, n.e."
-"s."
+"Parts of cutting machines for making up paper pulp, paper or paperboard, "
+"n.e.s."
 msgstr ""
 "Parti di tagliatrici per la lavorazione della pasta per carta, della carta e "
 "del cartone, n.n.a."
@@ -56465,8 +56499,8 @@ msgid ""
 "ultraviolet or infra-red lamps and arc lamps, n.e.s. (excl. lamp bases)"
 msgstr ""
 "Parti di lampade elettriche ad incandescenza o a scarica, oggetti luminosi "
-"sigillati, lampade a raggi ultravioletti o infrarossi e lampade ad arco, n.n."
-"a. (escl. basi per lampade)"
+"sigillati, lampade a raggi ultravioletti o infrarossi e lampade ad arco, "
+"n.n.a. (escl. basi per lampade)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85149000
@@ -56519,8 +56553,8 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85329000
 msgid ""
-"Parts of electrical \"pre-set\" capacitors, fixed, variable or adjustable, n."
-"e.s."
+"Parts of electrical \"pre-set\" capacitors, fixed, variable or adjustable, "
+"n.e.s."
 msgstr "Parti di condensatori elettrici, fissi, variabili o regolabili, n.n.a."
 
 #. module: l10n_it_intrastat
@@ -56552,8 +56586,8 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85439000
 msgid ""
-"Parts of electrical machines and apparatus, having individual functions, n.e."
-"s. in chapter 85"
+"Parts of electrical machines and apparatus, having individual functions, "
+"n.e.s. in chapter 85"
 msgstr ""
 "Parti di macchine e apparecchi elettrici, aventi funzioni specifiche, n.n.a. "
 "nel capitolo 85"
@@ -56872,9 +56906,9 @@ msgstr ""
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84779010
 msgid ""
 "Parts of machinery for working rubber or plastics or for the manufacture of "
-"products from these materials of subheading 8477.10.00 to 8477.80.99, n.e."
-"s., of cast iron or cast steel (excl. parts of machines for the manufacture "
-"of semiconductor devices or of electronic integrated circuits)"
+"products from these materials of subheading 8477.10.00 to 8477.80.99, "
+"n.e.s., of cast iron or cast steel (excl. parts of machines for the "
+"manufacture of semiconductor devices or of electronic integrated circuits)"
 msgstr ""
 "Parti di macchine per la lavorazione della gomma o delle materie plastiche o "
 "per la fabbricazione di prodotti a partire da queste materie delle sottovoci "
@@ -56917,8 +56951,8 @@ msgid ""
 "open-die forged or closed-die forged iron or steel, n.e.s."
 msgstr ""
 "Parti di macchine del capitolo 84, non destinate ad un uso determinato, di "
-"ferro o di acciaio fucinato a stampo aperto o fucinato a stampo chiuso, n.n."
-"a."
+"ferro o di acciaio fucinato a stampo aperto o fucinato a stampo chiuso, "
+"n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84314920
@@ -57004,8 +57038,8 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84799080
 msgid ""
-"Parts of machines and mechanical appliances having individual functions, n.e."
-"s. (excl. of cast iron or cast steel)"
+"Parts of machines and mechanical appliances having individual functions, "
+"n.e.s. (excl. of cast iron or cast steel)"
 msgstr ""
 "Parti di macchine e apparecchi meccanici con funzioni specifiche, n.n.a. "
 "(escl. ghisa o acciaio fuso)"
@@ -57064,8 +57098,8 @@ msgid ""
 "audio-frequency electric amplifiers or electric sound amplifier sets, n.e.s."
 msgstr ""
 "Parti di microfoni, altoparlanti, cuffie, auricolari, amplificatori "
-"elettrici ad alta frequenza o set di amplificazione elettrica del souno, n.n."
-"a."
+"elettrici ad alta frequenza o set di amplificazione elettrica del souno, "
+"n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84349000
@@ -57649,8 +57683,8 @@ msgid ""
 "with actual alcoholic strength of <= 11,85% mas, in immediate packings of a "
 "net content > 1 kg (excl. sugar content of > 13%)"
 msgstr ""
-"Pesche, preparate o conservate, con alcole e zuccheri, in peso, fino a 13%,"
-"con titolo alcolometrico massico fino a 11,85% mas, in imballaggi di "
+"Pesche, preparate o conservate, con alcole e zuccheri, in peso, fino a "
+"13%,con titolo alcolometrico massico fino a 11,85% mas, in imballaggi di "
 "contenuto > 1 kg"
 
 #. module: l10n_it_intrastat
@@ -60534,10 +60568,10 @@ msgid ""
 "floor, wall and ceiling coverings of heading 3918 and sterile surgical or "
 "dental adhesion barriers of subheading 3006.10.30)"
 msgstr ""
-"Lastre, piastre, fogli, pellicole, nastri e strisce di materie plastiche, n."
-"n.a. (non alveolari, non rinforzati nè stratificati, nè parimenti associati "
-"ad altre materie), senza supporto, (non lavorati) o lavorati solo in "
-"superficie o tagliati in forma quadrata o rettangolare (escl. prodotti "
+"Lastre, piastre, fogli, pellicole, nastri e strisce di materie plastiche, "
+"n.n.a. (non alveolari, non rinforzati nè stratificati, nè parimenti "
+"associati ad altre materie), senza supporto, (non lavorati) o lavorati solo "
+"in superficie o tagliati in forma quadrata o rettangolare (escl. prodotti "
 "autoadesivi, rivestimenti per pavimenti, pareti e soffitti della sottovoce "
 "3918 e barriere antiaderenziali sterili per la chirurgia o l'odontoiatria, "
 "della sottovoce 3006 10 30)"
@@ -60839,8 +60873,8 @@ msgstr ""
 "Lastre, fogli, pellicole, strisce e nastri di cellulosa rigenerata non "
 "alveolare, non rinforzati, stratificati, supportati o similmente combinati "
 "con altre materie, senza supporto, grezzi o semplicemente lavorati in "
-"superficie o semplicemente tagliati in quadrati o rettangoli (escl. -"
-"prodotti adesivi e rivestimenti per pavimenti, pareti e soffitti della voce "
+"superficie o semplicemente tagliati in quadrati o rettangoli (escl. "
+"-prodotti adesivi e rivestimenti per pavimenti, pareti e soffitti della voce "
 "3918)"
 
 #. module: l10n_it_intrastat
@@ -65860,9 +65894,10 @@ msgstr "Propulsori a reazione diversi dai turboreattori"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_38159090
 msgid ""
-"Reaction initiators, reaction accelerators and catalytic preparations, n.e."
-"s. (excl. rubber accelerators, supported catalysts and catalysts consisting "
-"of ethyltriphenylphosphonium acetate in the form of a solution in methanol)"
+"Reaction initiators, reaction accelerators and catalytic preparations, "
+"n.e.s. (excl. rubber accelerators, supported catalysts and catalysts "
+"consisting of ethyltriphenylphosphonium acetate in the form of a solution in "
+"methanol)"
 msgstr ""
 "Iniziatori di reazione, acceleranti di reazione e preparazioni catalitiche, "
 "n.n.a. (escl. acceleranti di vulcanizzazione, catalizzatori su supporti "
@@ -66599,8 +66634,8 @@ msgstr ""
 msgid ""
 "Rental and leasing services of other personal and household goods n.e.c."
 msgstr ""
-"Servizi di locazione e leasing di altri beni per uso personale e domestico n."
-"c.a."
+"Servizi di locazione e leasing di altri beni per uso personale e domestico "
+"n.c.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.773911
@@ -67440,8 +67475,8 @@ msgstr ""
 msgid ""
 "Residual products of the chemical or allied industries, n.e.s. (excl. waste)"
 msgstr ""
-"Prodotti residuali delle industrie chimiche o delle industrie connesse, n.n."
-"a. (escl. rifiuti)"
+"Prodotti residuali delle industrie chimiche o delle industrie connesse, "
+"n.n.a. (escl. rifiuti)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_23099020
@@ -68304,9 +68339,9 @@ msgstr ""
 "Ruote, loro parti ed accessori, di trattori, di autoveicoli per il trasporto "
 "di 10 persone o più, incl. il conducente, di autoveicoli da turismo ed altri "
 "autoveicoli costruiti principalmente per il trasporto di persone, di "
-"autoveicoli per il trasporto di merci e di autoveicoli per usi speciali, n.n."
-"a. (escl. quelli destinati all'industria del montaggio di autoveicoli della "
-"sottovoce 8708 70 10)"
+"autoveicoli per il trasporto di merci e di autoveicoli per usi speciali, "
+"n.n.a. (escl. quelli destinati all'industria del montaggio di autoveicoli "
+"della sottovoce 8708 70 10)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_87141030
@@ -69221,8 +69256,8 @@ msgid ""
 "Safety airbags with inflator system and parts thereof, for tractors, motor "
 "vehicles for the transport of ten or more persons, motor cars and other "
 "motor vehicles principally designed for the transport of persons, motor "
-"vehicles for the transport of goods and special purpose motor vehicles, n.e."
-"s. (excl. those for the industrial assembly of certain motor vehicles of "
+"vehicles for the transport of goods and special purpose motor vehicles, "
+"n.e.s. (excl. those for the industrial assembly of certain motor vehicles of "
 "subheading 8708.95.10 and of closed-die forged steel)"
 msgstr ""
 "Airbag di sicurezza con sistema di gonfiaggio e loro parti per trattori, "
@@ -71526,11 +71561,11 @@ msgstr ""
 "Composti organo-inorganici chimicamente definiti separatamente (escl. "
 "composti organo-zolfo, composti di tributilstagno, piombo tetrametile, "
 "piombo tetraetile, metilfosfonato di dimetile, difluoruro di metilfosfonoile "
-"\"difluoruro metilfosfonico\", dicloruro di metilfosfonoile "
-"\"dicloruro metilfosfonico\" e quelli di mercurio e metil metilfosfonato di "
-"(5-etil-2-metil-2-ossido-1,3,2-diossafosfinan-5-il)metil; metilfosfonato di "
-"bis[(5-etil-2-metil-2-ossido-1,3,2-diossafosfinan-5-il)metil]; "
-"2,4,6-tripropil-1,3,5,2,4,6-trioxatrifosfinano 2,4,6-triossido; dimetil "
+"\"difluoruro metilfosfonico\", dicloruro di metilfosfonoile \"dicloruro "
+"metilfosfonico\" e quelli di mercurio e metil metilfosfonato di (5-etil-2-"
+"metil-2-ossido-1,3,2-diossafosfinan-5-il)metil; metilfosfonato di bis[(5-"
+"etil-2-metil-2-ossido-1,3,2-diossafosfinan-5-il)metil]; 2,4,6-"
+"tripropil-1,3,5,2,4,6-trioxatrifosfinano 2,4,6-triossido; dimetil "
 "propilfosfonato; etilfosfonato di dietile; sodio 3-(triidrossisilil)propil "
 "metilfosfonato; miscele costituite principalmente da acido metilfosfonico e "
 "(amminoimminometil)urea (nel rapporto 50:50))"
@@ -71963,8 +71998,8 @@ msgid ""
 "Sewing thread of synthetic filaments (excl. core yarn, textured yarn and "
 "yarn put up for retail sale)"
 msgstr ""
-"Filati per cucire di filamenti sintetici (escl. filati ad anima cosiddetti -"
-"core yarn-, filati testurizzati, nonchè condizionati per la vendita al "
+"Filati per cucire di filamenti sintetici (escl. filati ad anima cosiddetti "
+"-core yarn-, filati testurizzati, nonchè condizionati per la vendita al "
 "minuto)"
 
 #. module: l10n_it_intrastat
@@ -73195,8 +73230,8 @@ msgstr ""
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_52062100
 msgid ""
 "Single cotton yarn containing predominantly, but < 85% cotton by weight, of "
-"combed fibres and with a linear density of >= 714,29 decitex \"<= MN "
-"14\" (excl. sewing thread and yarn put up for retail sale)"
+"combed fibres and with a linear density of >= 714,29 decitex \"<= MN 14\" "
+"(excl. sewing thread and yarn put up for retail sale)"
 msgstr ""
 "Filati semplici di fibre pettinate di cotone, diversi dai filati per cucire, "
 "con meno di 85%, in peso, di cotone, non condizionati per la vendita al "
@@ -73241,8 +73276,8 @@ msgstr ""
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_52061500
 msgid ""
 "Single cotton yarn containing predominantly, but < 85% cotton by weight, of "
-"uncombed fibres and with a linear density of < 125 decitex \"> MN "
-"80\" (excl. sewing thread and yarn put up for retail sale)"
+"uncombed fibres and with a linear density of < 125 decitex \"> MN 80\" "
+"(excl. sewing thread and yarn put up for retail sale)"
 msgstr ""
 "Filati di cotone, semplici, di fibre non pettinate, contenenti, in peso, < "
 "85% di cotone e aventi un titolo < 125 decitex (> 80 Nm) (escl. filati per "
@@ -73252,8 +73287,8 @@ msgstr ""
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_52061100
 msgid ""
 "Single cotton yarn containing predominantly, but < 85% cotton by weight, of "
-"uncombed fibres and with a linear density of >= 714,29 decitex \"<= MN "
-"14\" (excl. sewing thread and yarn put up for retail sale)"
+"uncombed fibres and with a linear density of >= 714,29 decitex \"<= MN 14\" "
+"(excl. sewing thread and yarn put up for retail sale)"
 msgstr ""
 "Filati semplici di fibre non pettinate di cotone, diversi dai filati per "
 "cucire, con meno di 85%, in peso, di cotone, non condizionati per la vendita "
@@ -73421,8 +73456,8 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_53061050
 msgid ""
-"Single flax yarn, with a linear density of < 277,8 decitex \"> MN "
-"36\" (excl. that put up for retail sale)"
+"Single flax yarn, with a linear density of < 277,8 decitex \"> MN 36\" "
+"(excl. that put up for retail sale)"
 msgstr ""
 "Filati di lino, semplici, aventi un titolo < 277,8 decitex (> 36 Nm) (escl. "
 "condizionati per la vendita al minuto)"
@@ -74450,12 +74485,12 @@ msgstr ""
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_15159091
 msgid ""
 "Solid fixed vegetable fats and oils and their fractions, whether or not "
-"refined, but not chemically modified, in immediate packings of <= 1 kg, n.e."
-"s. (excl. for technical or industrial uses and crude fats and oils)"
+"refined, but not chemically modified, in immediate packings of <= 1 kg, "
+"n.e.s. (excl. for technical or industrial uses and crude fats and oils)"
 msgstr ""
 "Grassi e oli vegetali solidi fissi e loro frazioni, anche raffinati, ma non "
-"modificati chimicamente, in imballaggi primari di contenuto netto <= 1 kg, n."
-"n.a. (escl. per usi tecnici o industriali e grassi e oli grezzi)"
+"modificati chimicamente, in imballaggi primari di contenuto netto <= 1 kg, "
+"n.n.a. (escl. per usi tecnici o industriali e grassi e oli grezzi)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_15159099
@@ -76009,7 +76044,6 @@ msgstr ""
 #. module: l10n_it_intrastat
 #. odoo-python
 #: code:addons/l10n_it_intrastat/models/intrastat.py:0
-#, python-format
 msgid "State %s without ISO code"
 msgstr "Stato %s senza codice ISO"
 
@@ -76072,8 +76106,8 @@ msgstr "Statuette ed altri oggetti d'ornamento, di terracotta comune, n.n.a."
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_69139093
 msgid ""
-"Statuettes and other ornamental articles of earthenware or fine pottery, n.e."
-"s."
+"Statuettes and other ornamental articles of earthenware or fine pottery, "
+"n.e.s."
 msgstr ""
 "Statuette ed altri oggetti ornamentali di maiolica o di ceramica fine, n.n.a."
 
@@ -76273,10 +76307,9 @@ msgstr ""
 "Volanti, colonne dello sterzo e scatole dello sterzo, e loro parti, "
 "destinati al montaggio industriale di: autoveicoli e veicoli principalmente "
 "progettati per il trasporto di persone, veicoli per il trasporto di merci "
-"con motore a pistoni con accensione per compressione "
-"\"motore diesel o semi-diesel\" <= 2500 cm³ o con motore a pistoni con "
-"accensione a scintilla <= 2800 cm³, autoveicoli per usi speciali della voce "
-"8705, n.c.a."
+"con motore a pistoni con accensione per compressione \"motore diesel o semi-"
+"diesel\" <= 2500 cm³ o con motore a pistoni con accensione a scintilla <= "
+"2800 cm³, autoveicoli per usi speciali della voce 8705, n.c.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90111090
@@ -77842,8 +77875,8 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.108999
 msgid ""
-"Sub-contracted operations as part of manufacturing of other food products n."
-"e.c."
+"Sub-contracted operations as part of manufacturing of other food products "
+"n.e.c."
 msgstr ""
 "Attività in subfornitura nell'ambito della produzione di altri prodotti "
 "alimentari n.c.a."
@@ -77894,8 +77927,8 @@ msgid ""
 "Sub-contracted operations as part of manufacturing of other manufactured "
 "goods n.e.c."
 msgstr ""
-"Attività in subfornitura nell'ambito della produzione di altri prodotti n.c."
-"a."
+"Attività in subfornitura nell'ambito della produzione di altri prodotti "
+"n.c.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.110499
@@ -78555,9 +78588,8 @@ msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_bank_statement_line__intrastat
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_fiscal_position__intrastat
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_fiscal_position__l10n_it_oca_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_move__intrastat
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_payment__intrastat
 msgid "Subject to Intrastat"
 msgstr "Soggetta a Intrastat"
 
@@ -78994,8 +79026,8 @@ msgstr "Servizi di supporto per l'estrazione di carbon fossile"
 #: model:report.intrastat.code,description:l10n_it_intrastat.099019
 msgid "Support services to other mining and quarrying n.e.c."
 msgstr ""
-"Servizi di supporto per l'estrazione di altri minerali e prodotti di cava, n."
-"c.a."
+"Servizi di supporto per l'estrazione di altri minerali e prodotti di cava, "
+"n.c.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_38151100
@@ -79582,10 +79614,10 @@ msgstr ""
 "Gomma sintetica e fatturato \"factis\", in forme primarie o in lastre, fogli "
 "o nastri (escl. lattice, gomma butadiene-stirene (SBR), butadiene-stirene "
 "carbossilato (XSBR), butadiene (BR), isobutene-isoprene (butile) (IIR), "
-"isobutene-isoprene alogenato (CIIR o BIIR), cloroprene o "
-"\"clorobutadiene\" (CR), acrilonitrile-butadiene (NBR), isoprene (IR) e "
-"etilene-propilene-diene (non coniugato) (EPDM), prodotti modificati con "
-"l'incorporamento di materie plastiche)"
+"isobutene-isoprene alogenato (CIIR o BIIR), cloroprene o \"clorobutadiene\" "
+"(CR), acrilonitrile-butadiene (NBR), isoprene (IR) e etilene-propilene-diene "
+"(non coniugato) (EPDM), prodotti modificati con l'incorporamento di materie "
+"plastiche)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_55069000
@@ -80607,10 +80639,9 @@ msgid ""
 "fruit, geranium, jasmine, lavender or of lavandin, mint, vetiver, clove, "
 "niaouli and ylang-ylang)"
 msgstr ""
-"Oli, essenziali, deterpenati, incl. quelli detti \"concreti\" o "
-"\"assoluti\" (escl. quelli di agrumi, nonchè oli di geranio, di gelsomino, "
-"di lavanda, di lavandina, di menta, di vetiver, di garofano, di niaouli e di "
-"ylang-ylang)"
+"Oli, essenziali, deterpenati, incl. quelli detti \"concreti\" o \"assoluti\" "
+"(escl. quelli di agrumi, nonchè oli di geranio, di gelsomino, di lavanda, di "
+"lavandina, di menta, di vetiver, di garofano, di niaouli e di ylang-ylang)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_33012931
@@ -80850,8 +80881,8 @@ msgstr ""
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_59113219
 msgid ""
 "Textile fabrics and felts, of silk or man-made fibres, endless or fitted "
-"with linking devices, of a kind used in papermaking or similar machines, e."
-"g. for paper pulp or asbestos-cement, weighing >= 650 g/m² (excl. woven "
+"with linking devices, of a kind used in papermaking or similar machines, "
+"e.g. for paper pulp or asbestos-cement, weighing >= 650 g/m² (excl. woven "
 "fabrics having a batt layer needled on them, press felts)"
 msgstr ""
 "Tessuti e feltri, di seta o di fibre sintetiche o artificiali senza fine o "
@@ -80897,10 +80928,10 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_59031090
 msgid ""
-"Textile fabrics coated, covered or laminated with poly\"vinyl "
-"chloride\" (excl. wallcoverings of textile materials covered with "
-"poly\"vinyl chloride\"; floor coverings consisting of a textile backing and "
-"a top layer or covering of poly\"vinyl chloride\")"
+"Textile fabrics coated, covered or laminated with poly\"vinyl chloride\" "
+"(excl. wallcoverings of textile materials covered with poly\"vinyl "
+"chloride\"; floor coverings consisting of a textile backing and a top layer "
+"or covering of poly\"vinyl chloride\")"
 msgstr "Tessuti spalmati, ricoperti o stratificati con policloruro di vinile"
 
 #. module: l10n_it_intrastat
@@ -81286,8 +81317,8 @@ msgstr ""
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73181900
 msgid "Threaded articles, of iron or steel, n.e.s."
 msgstr ""
-"Articoli di bulloneria e viteria, filettati, di ghisa, ferro o acciaio, n.n."
-"a."
+"Articoli di bulloneria e viteria, filettati, di ghisa, ferro o acciaio, "
+"n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73043958
@@ -84021,8 +84052,8 @@ msgstr "Giradischi"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_04100000
 msgid ""
-"Turtles' eggs, birds' nests and other edible products of animal origin, n.e."
-"s."
+"Turtles' eggs, birds' nests and other edible products of animal origin, "
+"n.e.s."
 msgstr ""
 "Uova di tartaruga, nidi di uccelli ed altri prodotti commestibili di origine "
 "animale, n.n.a."
@@ -84093,8 +84124,8 @@ msgstr ""
 msgid ""
 "Twine, cordage, ropes and cables, of polyethylene or polypropylene, plaited "
 "or braided and whether or not impregnated, coated, covered or sheathed with "
-"rubber or plastics, with a linear density of > 50.000 decitex \"5 g/"
-"m\" (excl. binder or baler twine)"
+"rubber or plastics, with a linear density of > 50.000 decitex \"5 g/m\" "
+"(excl. binder or baler twine)"
 msgstr ""
 "Spago, escluso quello per legare, corde e funi di polietilene o di "
 "polipropilene, con titolo > 50 000 decitex, intrecciati"
@@ -84813,9 +84844,9 @@ msgid ""
 "Uncoated paper and paperboard, of a kind used for writing, printing or other "
 "graphic purposes, and non-perforated punchcards and punch-tape paper, in "
 "rolls of any size, of which > 10% by weight of the total fibre content "
-"consists of fibres obtained by a mechanical or chemi-mechanical process, n.e."
-"s. (excl. products weighing < 72 g/m² and of which > 50% by weight of the "
-"total fibre content consists of fibres obtained by a mechanical process)"
+"consists of fibres obtained by a mechanical or chemi-mechanical process, "
+"n.e.s. (excl. products weighing < 72 g/m² and of which > 50% by weight of "
+"the total fibre content consists of fibres obtained by a mechanical process)"
 msgstr ""
 "Carta e cartone, non patinati né spalmati, dei tipi utilizzati per la "
 "scrittura, la stampa o altri scopi grafici, e carta e cartone per schede o "
@@ -84831,8 +84862,8 @@ msgid ""
 "Uncoated paper and paperboard, of a kind used for writing, printing or other "
 "graphic purposes, and non-perforated punchcards and punch-tape paper, in "
 "rolls of any size, weighing < 72 g/m² and of which > 50% by weight of the "
-"total fibre content consists of fibres obtained by a mechanical process, n.e."
-"s."
+"total fibre content consists of fibres obtained by a mechanical process, "
+"n.e.s."
 msgstr ""
 "Carta e cartone, non patinati né spalmati, dei tipi utilizzati per la "
 "scrittura, la stampa o altri scopi grafici, e carta e cartone per schede o "
@@ -84855,8 +84886,8 @@ msgstr ""
 "nastri da perforare, non perforati, in rotoli o in fogli di forma quadrata o "
 "rettangolare, di qualunque formato, senza fibre ottenute con procedimento "
 "meccanico o chimico-meccanico oppure in cui al massimo 10 % in peso della "
-"massa fibrosa totale è costituito da tali fibre di peso < 40 g per m² , n.n."
-"a."
+"massa fibrosa totale è costituito da tali fibre di peso < 40 g per m² , "
+"n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_48025890
@@ -96080,6 +96111,9 @@ msgstr "p-xilene"
 msgid "repairs or maintenance"
 msgstr "riparazioni o manutenzione"
 
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
 #~ msgid "Codes"
 #~ msgstr "Codici"
 
@@ -96100,9 +96134,6 @@ msgstr "riparazioni o manutenzione"
 
 #~ msgid "22"
 #~ msgstr "22"
-
-#~ msgid "22% intr"
-#~ msgstr "22% intr"
 
 #~ msgid "Missing State"
 #~ msgstr "Stato mancante"

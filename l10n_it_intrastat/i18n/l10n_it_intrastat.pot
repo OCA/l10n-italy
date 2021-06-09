@@ -243,11 +243,6 @@ msgid "2-Methylpropan-2-ol \"tert-butyl alcohol\""
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: model_terms:account.tax,description:l10n_it_intrastat.tax_22
-msgid "22"
-msgstr ""
-
-#. module: l10n_it_intrastat
 #: model:account.tax,name:l10n_it_intrastat.tax_22
 msgid "22% intr"
 msgstr ""
@@ -317,6 +312,11 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29337100
 msgid "6-Hexanelactam \"epsilon-caprolactam\""
+msgstr ""
+
+#. module: l10n_it_intrastat
+#: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__a
+msgid "A"
 msgstr ""
 
 #. module: l10n_it_intrastat
@@ -3641,6 +3641,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_intrastat
+#: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__b
+msgid "B"
+msgstr ""
+
+#. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_62092000
 msgid ""
 "Babies' garments and clothing accessories of cotton (excl. knitted or "
@@ -6665,6 +6670,11 @@ msgid ""
 "dried, limed, pickled or otherwise preserved, and whole raw hides and skins "
 "of a weight per skin > 8 kg but < 16 kg when simply dried and > 10 kg but < "
 "16 kg when dry-salted (excl. tanned, parchment-dressed or further prepared)"
+msgstr ""
+
+#. module: l10n_it_intrastat
+#: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__c
+msgid "C"
 msgstr ""
 
 #. module: l10n_it_intrastat
@@ -12776,6 +12786,11 @@ msgid "Cysteine and cystine"
 msgstr ""
 
 #. module: l10n_it_intrastat
+#: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__d
+msgid "D"
+msgstr ""
+
+#. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29362400
 msgid ""
 "D-Pantothenic or DL-pantothenic acid \"Vitamin B3 or B5\" and their "
@@ -14811,6 +14826,11 @@ msgid ""
 "defined; preparations based on dyes of vegetable origin of a kind used to "
 "dye fabrics or produce colorant preparations (excl. preparations of heading "
 "3207, 3208, 3209, 3210, 3213 and 3215)"
+msgstr ""
+
+#. module: l10n_it_intrastat
+#: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__e
+msgid "E"
 msgstr ""
 
 #. module: l10n_it_intrastat
@@ -16908,6 +16928,11 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_33042000
 msgid "Eye make-up preparations"
+msgstr ""
+
+#. module: l10n_it_intrastat
+#: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__f
+msgid "F"
 msgstr ""
 
 #. module: l10n_it_intrastat
@@ -24940,6 +24965,11 @@ msgid "Fuses for a voltage > 1.000 V"
 msgstr ""
 
 #. module: l10n_it_intrastat
+#: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__g
+msgid "G"
+msgstr ""
+
+#. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.920012
 msgid "Gambling machine services"
 msgstr ""
@@ -27098,6 +27128,11 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_25201000
 msgid "Gypsum; anhydrite"
+msgstr ""
+
+#. module: l10n_it_intrastat
+#: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__h
+msgid "H"
 msgstr ""
 
 #. module: l10n_it_intrastat
