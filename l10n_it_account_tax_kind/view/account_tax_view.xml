@@ -13,4 +13,19 @@
         </field>
     </record>
 
+    <record id="view_account_tax_search_tax_kind" model="ir.ui.view">
+        <field name="name">view_account_tax_search_tax_kind</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_account_tax_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='inactive']" position="after">
+                <separator/>
+                <field name="kind_id" />
+            </xpath>
+            <xpath expr="//filter[@name='taxapp']" position="after">
+                <filter string="Exemption Kind" name="ex_kind" domain="[]" context="{'group_by': 'kind_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>
