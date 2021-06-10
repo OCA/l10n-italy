@@ -16,9 +16,9 @@ class ResCompany(models.Model):
         default="weight",
     )
     intrastat_exclude_free_line = fields.Boolean(string="Exclude Free lines")
-    intrastat_ua_code = fields.Char(string="User ID (UA Code)", size=4)
-    intrastat_delegated_vat = fields.Char(string="Delegate VAT number", size=16)
-    intrastat_delegated_name = fields.Char(string="Delegate", size=255)
+    intrastat_ua_code = fields.Char(string="User ID (UA Code)")
+    intrastat_delegated_vat = fields.Char(string="Delegate VAT number")
+    intrastat_delegated_name = fields.Char(string="Delegate")
     intrastat_export_file_name = fields.Char(string="File name for export")
 
     # default values sale section
