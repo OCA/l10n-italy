@@ -17,6 +17,7 @@
         "stock",
         "stock_account",
         "uom",
+        "web_widget_char_size",
     ],
     "data": [
         "security/ir.model.access.csv",
