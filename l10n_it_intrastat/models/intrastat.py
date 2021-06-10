@@ -9,7 +9,7 @@ class AccountIntrastatCustom(models.Model):
     _name = "account.intrastat.custom"
     _description = "Customs Sections"
 
-    code = fields.Char(size=6)
+    code = fields.Char()
     name = fields.Char()
     date_start = fields.Date(string="Start Date")
     date_stop = fields.Date(string="Stop Date")
@@ -71,7 +71,7 @@ class AccountIntrastatTransport(models.Model):
     _name = "account.intrastat.transport"
     _description = "Transport Mode"
 
-    code = fields.Char(string="Code", size=1, required=True)
+    code = fields.Char(string="Code", required=True)
     name = fields.Char(string="Name")
 
 
@@ -79,5 +79,5 @@ class AccountIntrastatTransationNature(models.Model):
     _name = "account.intrastat.transaction.nature"
     _description = "Transaction Nature"
 
-    code = fields.Char(string="Code", size=1, required=True)
+    code = fields.Char(string="Code", required=True)
     name = fields.Char(string="Name")

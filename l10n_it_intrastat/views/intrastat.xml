@@ -32,7 +32,7 @@
                 <form string="Customs Section">
                     <group>
                         <group>
-                            <field name="code" />
+                            <field name="code" options="{'size': 6}" />
                             <field name="name" />
                         </group>
                         <group>
@@ -132,7 +132,7 @@
             <field name="arch" type="xml">
                 <form string="Transport Mode">
                     <group>
-                        <field name="code" />
+                        <field name="code" options="{'size': 4}" />
                         <field name="name" />
                     </group>
                 </form>
@@ -175,7 +175,7 @@
             <field name="arch" type="xml">
                 <form string="Transaction Nature">
                     <group>
-                        <field name="code" />
+                        <field name="code" options="{'size': 1}" />
                         <field name="name" />
                     </group>
                 </form>
