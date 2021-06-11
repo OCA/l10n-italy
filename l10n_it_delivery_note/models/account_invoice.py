@@ -8,7 +8,7 @@
 
 from odoo import _, api, fields, models
 
-from .stock_delivery_note import DATE_FORMAT
+from .stock_delivery_note import DATE_FORMAT, DOMAIN_INVOICE_STATUSES
 
 
 class AccountInvoice(models.Model):
@@ -70,6 +70,19 @@ class AccountInvoice(models.Model):
             **kwargs
         }
 
+    def _prepare_note_dn_value(self, sequence, delivery_note_id):
+        return {
+            "sequence": sequence,
+            "display_type": "line_note",
+            "name": _("""Delivery Note "{}" of {}""").format(
+                delivery_note_id.name,
+                delivery_note_id.date.strftime(DATE_FORMAT),
+            ),
+            "note_dn": True,
+            "delivery_note_id": delivery_note_id.id,
+            "quantity": 0,
+        }
+
     @api.multi
     def update_delivery_note_lines(self):
         context = {}
@@ -77,7 +90,7 @@ class AccountInvoice(models.Model):
         for invoice in self.filtered(lambda i: i.delivery_note_ids):
             new_lines = []
             old_lines = \
-                invoice.invoice_line_ids.filtered(lambda l: l.delivery_note_id)
+                invoice.invoice_line_ids.filtered(lambda l: l.note_dn)
             old_lines.unlink()
 
             #
@@ -96,16 +109,67 @@ class AccountInvoice(models.Model):
             #
             context['lang'] = invoice.partner_id.lang
 
-            for note in invoice.delivery_note_ids:
-                new_lines.append((0, False, {
-                    'sequence': 99, 'display_type': 'line_note',
-                    'name':
-                        _("""Delivery Note "{}" of {}""").
-                        format(note.name, note.date.strftime(DATE_FORMAT)),
-                    'delivery_note_id': note.id
-                }))
+            if len(invoice.delivery_note_ids) == 1:
+                sequence = invoice.invoice_line_ids[0].sequence - 1
+                new_lines.append(
+                    (
+                        0,
+                        False,
+                        self._prepare_note_dn_value(
+                            sequence, invoice.delivery_note_ids[0]
+                        ),
+                    )
+                )
+            else:
+                sequence = 1
+                done_invoice_lines = self.env['account.invoice.line']
+                for dn in invoice.mapped(
+                        'invoice_line_ids.sale_line_ids.delivery_note_line_ids.'
+                        'delivery_note_id').sorted(key='name'):
+                    dn_invoice_lines = invoice.invoice_line_ids.filtered(
+                        lambda x: x not in done_invoice_lines and dn in x.mapped(
+                            'sale_line_ids.delivery_note_line_ids.delivery_note_id'
+                        )
+                        # fixme test invoice from 2 sale lines
+                    )
+                    done_invoice_lines |= dn_invoice_lines
+                    for note_line in dn.line_ids.filtered(
+                        lambda l: l.invoice_status == DOMAIN_INVOICE_STATUSES[2]
+                    ):
+                        for invoice_line in dn_invoice_lines:
+                            if note_line in invoice_line.sale_line_ids.\
+                                    delivery_note_line_ids:
+                                invoice_line.delivery_note_id = note_line.\
+                                    delivery_note_id.id
+                    new_lines.append(
+                        (
+                            0,
+                            False,
+                            self._prepare_note_dn_value(
+                                sequence, dn
+                            ),
+                        )
+                    )
+                    for invoice_line in dn_invoice_lines:
+                        sequence += 1
+                        invoice_line.sequence = sequence
 
             invoice.write({'invoice_line_ids': new_lines})
+
+    @api.multi
+    def unlink(self):
+        # Ripristino il valore delle delivery note
+        # per poterle rifatturare
+        inv_lines = self.mapped('invoice_line_ids')
+        all_dnls = inv_lines.mapped('sale_line_ids').mapped('delivery_note_line_ids')
+        inv_dnls = self.mapped('delivery_note_ids').mapped('line_ids')
+        dnls_to_unlink = all_dnls & inv_dnls
+        res = super().unlink()
+        dnls_to_unlink.sync_invoice_status()
+        dnls_to_unlink.mapped('delivery_note_id')._compute_invoice_status()
+        for dn in dnls_to_unlink.mapped('delivery_note_id'):
+            dn.state = 'confirm'
+        return res
 
 
 class AccountInvoiceLine(models.Model):
@@ -114,3 +178,4 @@ class AccountInvoiceLine(models.Model):
     delivery_note_id = fields.Many2one('stock.delivery.note',
                                        string="Delivery Note",
                                        readonly=True, copy=False)
+    note_dn = fields.Boolean(string="Note DN")
