@@ -38,6 +38,7 @@
         "views/stock_delivery_note.xml",
         "views/stock_picking.xml",
         "wizard/delivery_note_create.xml",
+        "wizard/delivery_note_invoice.xml",
         "wizard/delivery_note_select.xml",
         "wizard/delivery_note_template.xml",
         "wizard/sale_advance_payment_inv.xml",
