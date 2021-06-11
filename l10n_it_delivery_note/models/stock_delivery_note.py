@@ -286,20 +286,18 @@ class StockDeliveryNote(models.Model):
     def _compute_invoice_status(self):
         for note in self:
             lines = note.line_ids.filtered(lambda l: l.sale_line_id)
-
-            if lines and all(
-                line.invoice_status == DOMAIN_INVOICE_STATUSES[2] for line in lines
-            ):
-                note.state = DOMAIN_DELIVERY_NOTE_STATES[2]
-                note.invoice_status = DOMAIN_INVOICE_STATUSES[2]
-
-            elif any(
-                line.invoice_status == DOMAIN_INVOICE_STATUSES[1] for line in lines
-            ):
-                note.invoice_status = DOMAIN_INVOICE_STATUSES[1]
-
-            else:
-                note.invoice_status = DOMAIN_INVOICE_STATUSES[0]
+            invoice_status = DOMAIN_INVOICE_STATUSES[0]
+            if lines:
+                if all(
+                    line.invoice_status == DOMAIN_INVOICE_STATUSES[2] for line in lines
+                ):
+                    note.state = DOMAIN_DELIVERY_NOTE_STATES[2]
+                    invoice_status = DOMAIN_INVOICE_STATUSES[2]
+                elif any(
+                    line.invoice_status == DOMAIN_INVOICE_STATUSES[1] for line in lines
+                ):
+                    invoice_status = DOMAIN_INVOICE_STATUSES[1]
+            note.invoice_status = invoice_status
 
     def _compute_get_pickings(self):
         for note in self:
