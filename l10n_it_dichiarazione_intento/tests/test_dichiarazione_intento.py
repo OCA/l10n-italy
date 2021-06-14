@@ -13,8 +13,6 @@ class TestDichiarazioneIntento(TransactionCase):
     def _create_dichiarazione(self, partner, type_d):
         return self.env['dichiarazione.intento'].sudo().create({
             'partner_id': partner.id,
-            'partner_document_number': 'PartnerTest%s' % partner.id,
-            'partner_document_date': self.today_date.strftime('%Y-%m-%d'),
             'date': self.today_date.strftime('%Y-%m-%d'),
             'date_start': self.today_date.strftime('%Y-%m-%d'),
             'date_end': self.today_date.strftime('%Y-%m-%d'),

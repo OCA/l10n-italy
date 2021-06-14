@@ -171,14 +171,10 @@ class AccountInvoice(models.Model):
                             if not invoice.comment:
                                 invoice.comment = ''
                             invoice.comment += (
-                                "\n\nVostra dichiarazione d'intento nr %s del %s, "
-                                "nostro protocollo nr %s del %s, "
+                                "\n\nVostra dichiarazione d'intento del %s, "
                                 "protocollo telematico nr %s."
                                 % (
-                                    dichiarazione.partner_document_number,
                                     format_date(
-                                        self.env, dichiarazione.partner_document_date),
-                                    dichiarazione.number, format_date(
                                         self.env, dichiarazione.date),
                                     dichiarazione.telematic_protocol
                                 )
