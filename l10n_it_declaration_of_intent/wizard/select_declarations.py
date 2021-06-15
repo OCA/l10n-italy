@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 from odoo import fields, models
+from odoo.osv import expression
 
 
 class SelectManuallyDeclarations(models.TransientModel):
@@ -10,20 +11,26 @@ class SelectManuallyDeclarations(models.TransientModel):
     _description = "Set declaration of intent manually on invoice"
 
     def _default_declaration(self):
+        declaration_model = self.env["l10n_it_declaration_of_intent.declaration"]
+
         invoice_id = self._context.get("active_id", False)
         if not invoice_id:
-            return []
+            return declaration_model.browse()
         invoice = self.env["account.move"].browse(invoice_id)
         type_short = invoice.get_type_short()
         if not type_short:
-            return []
+            return declaration_model.browse()
         domain = [
             ("partner_id", "=", invoice.partner_id.commercial_partner_id.id),
             ("type", "=", type_short),
-            ("date_start", "<=", invoice.invoice_date),
-            ("date_end", ">=", invoice.invoice_date),
         ]
-        return self.env["l10n_it_declaration_of_intent.declaration"].search(domain)
+        if invoice.invoice_date:
+            date_domain = [
+                ("date_start", "<=", invoice.invoice_date),
+                ("date_end", ">=", invoice.invoice_date),
+            ]
+            domain = expression.AND([domain, date_domain])
+        return declaration_model.search(domain)
 
     declaration_ids = fields.Many2many(
         comodel_name="l10n_it_declaration_of_intent.declaration",
