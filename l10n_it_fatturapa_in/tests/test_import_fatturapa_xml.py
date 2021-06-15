@@ -32,6 +32,19 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.wt4q = self.create_wt_26_40q()
         self.wt2q = self.create_wt_26_20q()
         self.invoice_model = self.env['account.invoice']
+        self.env.user.company_id.arrotondamenti_passivi_account_id.tax_ids = [
+            (6, 0, [self.env['account.tax'].search(
+                [('type_tax_use', '=', 'purchase'),
+                 ('amount', '=', 0.0)], order='sequence', limit=1).id])]
+        self.env.user.company_id.sconto_maggiorazione_product_id = self.env[
+            'product.product'
+        ].create({
+            'name': 'Sconto maggiorazione product',
+            'supplier_taxes_id': [
+                (6, 0, [self.env['account.tax'].search(
+                    [('type_tax_use', '=', 'purchase'),
+                     ('amount', '=', 22.0)], order='sequence', limit=1).id])]
+        })
 
     def test_00_xml_import(self):
         self.env.user.company_id.cassa_previdenziale_product_id = (
