@@ -17,7 +17,7 @@ class AccountMove(models.Model):
 
     def _set_fiscal_position(self):
         for invoice in self:
-            if invoice.partner_id and invoice.move_type:
+            if invoice.partner_id:
                 invoice_type_short = invoice.get_type_short()
                 if not invoice_type_short:
                     continue
@@ -56,7 +56,7 @@ class AccountMove(models.Model):
         """
         self.ensure_one()
         invoice_type_short = ""
-        if "_" in self.move_type:
+        if self.move_type and "_" in self.move_type:
             invoice_type_short = self.move_type.split("_")[0]
         return invoice_type_short
 
@@ -121,14 +121,13 @@ class AccountMove(models.Model):
         Also add a comment in this invoice stating which declaration is into.
         """
         self.ensure_one()
-        sign = -1 if self.move_type.endswith("_refund") else 1
+        is_sale_document = self.is_sale_document()
         for force_declaration in grouped_lines.keys():
             for tax, lines in grouped_lines[force_declaration].items():
                 # Create a detail in declaration for every tax group
-                if self.move_type in ("out_invoice", "in_refund"):
-                    amount = sum(sign * (line.credit - line.debit) for line in lines)
-                else:
-                    amount = sum(sign * (line.debit - line.credit) for line in lines)
+                amount = sum(line.balance for line in lines)
+                if is_sale_document:
+                    amount *= -1
                 # Select right declaration(s)
                 if force_declaration:
                     declarations = [force_declaration]
@@ -143,7 +142,7 @@ class AccountMove(models.Model):
                     ]
                     # Link declaration to invoice
                     self.declaration_of_intent_ids = [(4, declaration.id)]
-                    if self.move_type in ("out_invoice", "out_refund"):
+                    if is_sale_document:
                         if not self.narration:
                             self.narration = ""
                         self.narration += _(
@@ -286,16 +285,17 @@ class AccountMoveLine(models.Model):
     )
 
     def _compute_tax_id(self):
+        is_sale_document = self.is_sale_document(include_receipts=True)
+        is_purchase_document = self.is_purchase_document(include_receipts=True)
         for line in self:
-            invoice_type = line.invoice_id.move_type
             fpos = (
                 line.move_id.fiscal_position_id
                 or line.move_id.partner_id.property_account_position_id
             )
             # If company_id is set, always filter taxes by the company
-            if invoice_type.startswith("out_"):
+            if is_sale_document:
                 product_taxes = line.product_id.taxes_id
-            elif invoice_type.startswith("in_"):
+            elif is_purchase_document:
                 product_taxes = line.product_id.supplier_taxes_id
             else:
                 return
