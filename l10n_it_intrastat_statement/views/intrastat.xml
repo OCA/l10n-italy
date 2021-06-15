@@ -191,8 +191,6 @@
             <field name="help"></field>
             <field name="search_view_id" ref="view_search_account_intrastat_statement" />
         </record>
-        
-        
 
         <menuitem id="menu_account_intrastat_statement"
             action="account_intrastat_statement_action"
@@ -248,7 +246,7 @@
                         </group>
                         <group>
                             <field name="delivery_code_id"/>
-                            <field name="transport_code_id" required="1"/>
+                            <field name="transport_code_id"/>
                             <field name="country_destination_id" required="1"/>
                             <field name="province_origin_id" required="1"/>
                         </group>
@@ -349,11 +347,11 @@
                             <field name="amount_euro"/>
                         </group>
                         <group>
-                            <field name="invoice_number" required="1"/>
-                            <field name="invoice_date" required="1"/>
-                            <field name="supply_method" required="1"/>
-                            <field name="payment_method" required="1"/>
-                            <field name="country_payment_id" required="1"/>
+                            <field name="invoice_number"/>
+                            <field name="invoice_date"/>
+                            <field name="supply_method"/>
+                            <field name="payment_method"/>
+                            <field name="country_payment_id" required="True"/>
                         </group>
                     </group>
                 </form>
@@ -404,11 +402,11 @@
                             <field name="amount_euro"/>
                         </group>
                         <group>
-                            <field name="invoice_number" required="1"/>
-                            <field name="invoice_date" required="1"/>
-                            <field name="supply_method" required="1"/>
-                            <field name="payment_method" required="1"/>
-                            <field name="country_payment_id" required="1"/>
+                            <field name="invoice_number"/>
+                            <field name="invoice_date"/>
+                            <field name="supply_method"/>
+                            <field name="payment_method"/>
+                            <field name="country_payment_id"/>
                         </group>
                     </group>
                 </form>
@@ -470,7 +468,7 @@
                             <field name="country_good_origin_id" required="1"/>
                             <field name="province_destination_id"/>
                             <field name="delivery_code_id"/>
-                            <field name="transport_code_id" required="1"/>
+                            <field name="transport_code_id"/>
                         </group>
                     </group>
                 </form>
@@ -575,7 +573,7 @@
                             <field name="invoice_date"/>
                             <field name="supply_method"/>
                             <field name="payment_method"/>
-                            <field name="country_payment_id"/>
+                            <field name="country_payment_id" required="True"/>
                         </group>
                     </group>
                 </form>
@@ -627,11 +625,11 @@
                             <field name="amount_currency"/>
                         </group>
                         <group>
-                            <field name="invoice_number" required="1"/>
-                            <field name="invoice_date" required="1"/>
-                            <field name="supply_method" required="1"/>
-                            <field name="payment_method" required="1"/>
-                            <field name="country_payment_id" required="1"/>
+                            <field name="invoice_number"/>
+                            <field name="invoice_date"/>
+                            <field name="supply_method"/>
+                            <field name="payment_method"/>
+                            <field name="country_payment_id"/>
                         </group>
                     </group>
                 </form>

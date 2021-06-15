@@ -5,7 +5,7 @@
 
 {
     'name': 'Italian Withholding Tax',
-    'version': '12.0.2.0.0',
+    'version': '12.0.2.1.0',
     'category': 'Account',
     'author': 'Openforce, Odoo Italia Network, '
               'Odoo Community Association (OCA)',
@@ -17,6 +17,7 @@
     ],
     "data": [
         'views/account.xml',
+        'views/report_invoice.xml',
         'views/withholding_tax.xml',
         'security/ir.model.access.csv',
         'security/security.xml',

@@ -566,3 +566,46 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
 
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, 'IT06363391001_00012.xml')
+
+    def test_13_xml_export(self):
+        self.set_sequences(12, '2020-01-07')
+        self.tax_00_ns.kind_id = self.env.ref("l10n_it_account_tax_kind.n2_1")
+        invoice = self.invoice_model.create({
+            'date_invoice': '2020-01-07',
+            'partner_id': self.res_partner_fatturapa_5.id,
+            'journal_id': self.sales_journal.id,
+            'account_id': self.a_recv.id,
+            'payment_term_id': self.account_payment_term.id,
+            'user_id': self.user_demo.id,
+            'type': 'out_invoice',
+            'currency_id': self.EUR.id,
+            'invoice_line_ids': [
+                (0, 0, {
+                    'account_id': self.a_sale.id,
+                    'product_id': self.product_product_10.id,
+                    'name': 'Mouse Optical',
+                    'quantity': 1,
+                    'uom_id': self.product_uom_unit.id,
+                    'price_unit': 10,
+                    'invoice_line_tax_ids': [(6, 0, {
+                        self.tax_00_ns.id})]
+                })],
+        })
+        invoice.action_invoice_open()
+        res = self.run_wizard(invoice.id)
+        attachment = self.attach_model.browse(res['res_id'])
+        self.set_e_invoice_file_id(attachment, 'IT06363391001_00013.xml')
+
+        xml_content = base64.decodebytes(attachment.datas)
+        self.check_content(xml_content, 'IT06363391001_00013.xml')
+
+    def test_unlink(self):
+        e_invoice = self._create_e_invoice()
+        e_invoice.unlink()
+        self.assertFalse(e_invoice.exists())
+
+    def test_reset_to_ready(self):
+        e_invoice = self._create_e_invoice()
+        e_invoice.state = 'sender_error'
+        e_invoice.reset_to_ready()
+        self.assertEqual(e_invoice.state, 'ready')

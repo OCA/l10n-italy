@@ -18,9 +18,13 @@ class PosOrder(models.Model):
     fiscal_printer_serial = fields.Char(string='Fiscal Printer Serial')
     fiscal_printer_debug_info = fields.Text("Debug info", readonly=True)
 
+    # TODO allow to save code on customer and load customer, if present
+    lottery_code = fields.Char(string='Lottery Code')
+
     @api.model
     def _order_fields(self, ui_order):
         res = super(PosOrder, self)._order_fields(ui_order)
+        res['lottery_code'] = ui_order.get('lottery_code')
         res['refund_date'] = ui_order['refund_date'] or False
         res['refund_report'] = ui_order['refund_report'] or False
         res['refund_doc_num'] = ui_order['refund_doc_num'] or False
@@ -43,6 +47,7 @@ class PosOrder(models.Model):
     @api.multi
     def _prepare_done_order_for_pos(self):
         res = super(PosOrder, self)._prepare_done_order_for_pos()
+        res['lottery_code'] = self.lottery_code
         res['refund_date'] = self.refund_date
         res['refund_report'] = self.refund_report
         res['refund_doc_num'] = self.refund_doc_num

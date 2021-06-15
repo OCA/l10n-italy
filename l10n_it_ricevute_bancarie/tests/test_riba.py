@@ -48,6 +48,20 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         # ---- first due date for partner
         self.assertEqual(len(self.invoice2.invoice_line_ids), 1)
 
+    def test_add_due_cost_same_month(self):
+        # create 2 invoice for partner in same month on the second one no
+        # collection fees line expected
+        self.invoice.partner_id.riba_policy_expenses = 'unlimited'
+        # ---- Set Service in Company Config
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        # ---- Validate Invoice with payment 30/60
+        self.invoice.action_invoice_open()
+        # ---- Validate Invoice with payment 30
+        self.invoice2.payment_term_id = self.payment_term2
+        self.invoice2.action_invoice_open()
+        # ---- Test Invoice 2 has 2 lines (1 for due cost)
+        self.assertEqual(len(self.invoice2.invoice_line_ids), 2)
+
     def test_not_add_due_cost_for_partner_exclude_expense(self):
         # ---- Set Service in Company Config
         self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
@@ -94,7 +108,6 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 }
             )]
         })
-        invoice._onchange_riba_partner_bank_id()
         invoice.action_invoice_open()
         riba_move_line_id = False
         for move_line in invoice.move_id.line_ids:
@@ -237,7 +250,6 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 }
             )]
         })
-        invoice._onchange_riba_partner_bank_id()
         invoice.action_invoice_open()
         for move_line in invoice.move_id.line_ids:
             if move_line.account_id.id == self.account_rec1_id.id:
@@ -338,7 +350,6 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 }
             )],
         })
-        invoice._onchange_riba_partner_bank_id()
         invoice.action_invoice_open()
         # issue wizard
         riba_move_line_id = invoice.move_id.line_ids.filtered(
@@ -393,7 +404,6 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 }
             )],
         })
-        invoice._onchange_riba_partner_bank_id()
         invoice.action_invoice_open()
         invoice1 = self.env['account.invoice'].create({
             'date_invoice': recent_date,
@@ -419,7 +429,6 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 }
             )],
         })
-        invoice1._onchange_riba_partner_bank_id()
         invoice1.action_invoice_open()
         # issue wizard
         riba_move_line_id = invoice.move_id.line_ids.filtered(

@@ -709,7 +709,7 @@ msgid "Invoice Number"
 msgstr "Numero fattura"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:269
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:283
 #, python-format
 msgid "Invoice is linked to C/O slip No. {riba}"
 msgstr "La fattura è collegata alla distinta RiBa n. {riba}"
@@ -849,6 +849,11 @@ msgid "Mark as Settled"
 msgstr "Segna come pagata"
 
 #. module: l10n_it_ricevute_bancarie
+#: selection:res.partner,riba_policy_expenses:0
+msgid "More invoices, one expense per Month"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_line_form
 msgid "Move Line"
 msgstr "Riga movimento"
@@ -895,14 +900,19 @@ msgstr "Nessun ID attivo trovato."
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_issue.py:80
 #, python-format
-msgid "No bank has been specified for partner %s!"
-msgstr "Nessuna banca specificata per il partner %s."
+msgid "No bank has been specified for invoice %s!"
+msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line__sequence
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.distinta_qweb
 msgid "Number"
 msgstr "Numero"
+
+#. module: l10n_it_ricevute_bancarie
+#: selection:res.partner,riba_policy_expenses:0
+msgid "One expense per issued maturity"
+msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
@@ -1078,6 +1088,12 @@ msgid "Reset to Draft"
 msgstr "Reimposta a bozza"
 
 #. module: l10n_it_ricevute_bancarie
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_partner__riba_policy_expenses
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_users__riba_policy_expenses
+msgid "Ri.Ba. Policy expenses"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_setup_bank_manual_config__codice_sia
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_partner_bank__codice_sia
 msgid "SIA Code"
@@ -1094,7 +1110,7 @@ msgid "Search Journal Items"
 msgstr "Ricerca movimenti contabili"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:191
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:202
 #, python-format
 msgid "Set a Service for Collection Fees in Company Config."
 msgstr ""
@@ -1248,10 +1264,13 @@ msgid "of"
 msgstr "del"
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:222
+#: code:addons/l10n_it_ricevute_bancarie/models/account/account.py:236
 #, python-format
 msgid "{line_name} for {month}-{year}"
 msgstr "{line_name} per {month}-{year}"
+
+#~ msgid "No bank has been specified for partner %s!"
+#~ msgstr "Nessuna banca specificata per il partner %s."
 
 #~ msgid "C/0 Slips"
 #~ msgstr "Distinte RiBa"

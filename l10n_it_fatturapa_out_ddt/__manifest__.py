@@ -6,7 +6,7 @@
 {
     'name': 'ITA - Fattura elettronica - Integrazione DDT',
     "summary": "Modulo ponte tra emissione fatture elettroniche e DDT",
-    "version": "12.0.1.1.4",
+    "version": "12.0.1.3.0",
     "development_status": "Beta",
     "category": "Hidden",
     'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'

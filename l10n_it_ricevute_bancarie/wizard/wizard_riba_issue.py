@@ -77,8 +77,9 @@ class RibaIssue(models.TransientModel):
                 bank_id = move_line.invoice_id.riba_partner_bank_id
             else:
                 raise exceptions.Warning(
-                    _('No bank has been specified for partner %s!') %
-                    move_line.partner_id.name)
+                    _('No bank has been specified for invoice %s!') %
+                    move_line.invoice_id.name
+                )
             if move_line.partner_id.group_riba and do_group_riba:
                 for key in grouped_lines:
                     if (key[0] == move_line.partner_id.id and

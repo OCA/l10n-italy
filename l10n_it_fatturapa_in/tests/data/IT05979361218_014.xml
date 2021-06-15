@@ -65,7 +65,7 @@
           <ImportoContributoCassa>38.78</ImportoContributoCassa>
           <ImponibileCassa>2470.00</ImponibileCassa>
           <AliquotaIVA>0.00</AliquotaIVA>
-          <Natura>N2</Natura>
+          <Natura>N2.2</Natura>
         </DatiCassaPrevidenziale>
         <ImportoTotaleDocumento>3013.40</ImportoTotaleDocumento>
       </DatiGeneraliDocumento>
@@ -87,7 +87,7 @@
       </DatiRiepilogo>
       <DatiRiepilogo>
         <AliquotaIVA>0.00</AliquotaIVA>
-        <Natura>N2</Natura>
+        <Natura>N2.2</Natura>
         <ImponibileImporto>38.78</ImponibileImporto>
         <Imposta>0.00</Imposta>
         <RiferimentoNormativo>Escluso Art. 13 5C DPR 633/72</RiferimentoNormativo>

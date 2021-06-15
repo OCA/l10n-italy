@@ -92,11 +92,25 @@ class TestEInvoiceSend(EInvoiceCommon):
         # Set the e_invoice to error
         e_invoice.state = 'sender_error'
 
-        # We can reset e-invoice whose state is 'sender_error'
-        e_invoice.reset_to_ready()
+        wizard.with_context(active_id=invoice.id).\
+            exportFatturaPARegenerate()
+        self.assertEqual(e_invoice.state, "ready")
+
+        with self.assertRaises(UserError):
+            invoice.action_invoice_cancel()
+
+        e_invoice.state = 'sender_error'
+        invoice.journal_id.update_posted = True
+        invoice.action_invoice_cancel()
+        invoice.refresh()
+        invoice.action_invoice_draft()
+        invoice.refresh()
+        invoice.action_invoice_open()
+        invoice.refresh()
 
         action = wizard.with_context(active_id=invoice.id).\
             exportFatturaPARegenerate()
+
         e_invoice = self.env[action['res_model']].browse(action['res_id'])
 
         # set SDI address after first sending

@@ -30237,7 +30237,7 @@ msgid "Intrastat code"
 msgstr "Codice Intrastat"
 
 #. module: l10n_it_intrastat
-#: code:addons/l10n_it_intrastat/models/account.py:333
+#: code:addons/l10n_it_intrastat/models/account.py:337
 #, python-format
 msgid "Intrastat total must be equal to invoice untaxed total"
 msgstr ""
@@ -60215,7 +60215,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: code:addons/l10n_it_intrastat/models/intrastat.py:57
+#: code:addons/l10n_it_intrastat/models/intrastat.py:79
 #, python-format
 msgid "State %s without ISO code"
 msgstr "Stato %s senza codice ISO"

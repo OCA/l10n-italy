@@ -86,7 +86,7 @@
                                                 <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="format_date(line['invoice_date'],date_format)"/></td>
                                                 <t t-if="move.journal_id.type == 'purchase'">
                                                     <!-- Numero fattura (fornitore)-->
-                                                    <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="line['reference']"/></td>
+                                                    <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="line['reference'].split(',')[0]"/></td>
                                                 </t>
                                                 <t t-if="move.journal_id.type == 'sale'">
                                                     <!-- Numero fattura -->
@@ -144,7 +144,7 @@
                                             <th class="right_without_line_bold">Non-Deductible</th>
                                         </tr>
                                     </thead>
-                                    <t t-foreach="total_used_taxes" t-as="total_used_tax">
+                                    <t t-foreach="total_used_taxes.sorted(key='sequence')" t-as="total_used_tax">
                                         <t t-set="tax_code_tuple" t-value="compute_totals_tax(total_used_tax, data)"/>
                                         <t t-set="tot_base" t-value="tot_base + tax_code_tuple[1]"/>
                                         <t t-set="tot_tax" t-value="tot_tax + tax_code_tuple[2]"/>

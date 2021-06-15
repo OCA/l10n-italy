@@ -6,9 +6,9 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="l10n_it_fatturapa.view_partner_form_fatturapa"/>
         <field name="arch" type="xml">
-            <field name="ipa_code" position="before">
+            <xpath expr="//group[@name='fatturapa_group']//field[@name='ipa_code']" position="before">
                 <field name="max_invoice_in_xml"/>
-            </field>
+            </xpath>
         </field>
     </record>
 

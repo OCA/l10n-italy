@@ -61,7 +61,7 @@
    <FatturaElettronicaBody>
       <DatiGenerali>
          <DatiGeneraliDocumento>
-            <TipoDocumento>TD01</TipoDocumento>
+            <TipoDocumento>TD24</TipoDocumento>
             <Divisa>USD</Divisa>
             <Data>2018-01-07</Data>
             <Numero>INV/2018/0014</Numero>

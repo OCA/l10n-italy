@@ -20,6 +20,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_account
+#: code:addons/l10n_it_account/models/account_group.py:61
+#, python-format
+msgid ""
+"\n"
+"Sign: %s, accounts: %s\n"
+msgstr ""
+
+#. module: l10n_it_account
 #: model_terms:ir.ui.view,arch_db:l10n_it_account.internal_layout
 msgid ""
 "<br/>\n"
@@ -27,7 +35,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_account
-#: code:addons/l10n_it_account/models/account_group.py:98
+#: code:addons/l10n_it_account/models/account_group.py:104
 #, python-format
 msgid "A recursion in '{}' parents has been found."
 msgstr ""
@@ -95,9 +103,11 @@ msgid "Include in VAT register"
 msgstr ""
 
 #. module: l10n_it_account
-#: code:addons/l10n_it_account/models/account_group.py:59
+#: code:addons/l10n_it_account/models/account_group.py:65
 #, python-format
-msgid "Incoherent balance signs for '{}' and its subgroups."
+msgid ""
+"Incoherent balance signs for '{}' and its subgroups:\n"
+"{}"
 msgstr ""
 
 #. module: l10n_it_account

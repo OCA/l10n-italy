@@ -326,7 +326,8 @@ class AccountInvoice(models.Model):
                 line_tax_ids = line.invoice_line_tax_ids
                 if not line_tax_ids:
                     raise UserError(_(
-                        "Invoice line\n%s\nis RC but has not tax") % line.name)
+                        "Invoice %s, line\n%s\nis RC but has not tax"
+                    ) % ((self.reference or self.partner_id.display_name), line.name))
                 tax_ids = list()
                 for tax_mapping in rc_type.tax_ids:
                     for line_tax_id in line_tax_ids:
@@ -379,6 +380,8 @@ class AccountInvoice(models.Model):
             supplier_invoice = self.rc_self_purchase_invoice_id
             supplier_invoice.invoice_line_ids.unlink()
             supplier_invoice.write(supplier_invoice_vals[0])
+
+        supplier_invoice.partner_bank_id = None
 
         # because this field has copy=False
         supplier_invoice.date = self.date
@@ -484,9 +487,10 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def action_invoice_draft(self):
-        super(AccountInvoice, self).action_invoice_draft()
-        invoice_model = self.env['account.invoice']
-        for inv in self:
+        new_self = self.with_context(rc_set_to_draft=True)
+        super(AccountInvoice, new_self).action_invoice_draft()
+        invoice_model = new_self.env['account.invoice']
+        for inv in new_self:
             if inv.rc_self_invoice_id:
                 self_invoice = invoice_model.browse(
                     inv.rc_self_invoice_id.id)

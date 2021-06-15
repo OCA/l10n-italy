@@ -10,6 +10,8 @@ setuptools.setup(
     install_requires=[
         'odoo12-addon-account_invoice_report_ddt_group',
         'odoo12-addon-account_vat_period_end_statement',
+        'odoo12-addon-assets_management',
+        'odoo12-addon-currency_rate_update_boi',
         'odoo12-addon-fiscal_epos_print',
         'odoo12-addon-fiscal_epos_print_fiscalcode',
         'odoo12-addon-l10n_it_abicab',

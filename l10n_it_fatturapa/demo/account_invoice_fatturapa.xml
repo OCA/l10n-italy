@@ -61,7 +61,7 @@
             <field name="name">Not Subject</field>
             <field name="description">00</field>
             <field name="amount">0.00</field>
-            <field name="kind_id" ref="l10n_it_account_tax_kind.n2"></field>
+            <field name="kind_id" ref="l10n_it_account_tax_kind.n2_1"></field>
             <field name="law_reference">Not subject to VAT law</field>
         </record>
 
@@ -69,7 +69,7 @@
             <field name="name">Not Taxable</field>
             <field name="description">00</field>
             <field name="amount">0.00</field>
-            <field name="kind_id" ref="l10n_it_account_tax_kind.n3"></field>
+            <field name="kind_id" ref="l10n_it_account_tax_kind.n3_1"></field>
             <field name="law_reference">Not subject to VAT law</field>
         </record>
 
@@ -77,7 +77,7 @@
             <field name="name">Reverse Charge</field>
             <field name="description">00</field>
             <field name="amount">0.00</field>
-            <field name="kind_id" ref="l10n_it_account_tax_kind.n6"></field>
+            <field name="kind_id" ref="l10n_it_account_tax_kind.n6_1"></field>
             <field name="law_reference">Reverse Charge</field>
         </record>
 
@@ -85,7 +85,7 @@
             <field name="name">Escluso</field>
             <field name="description">00</field>
             <field name="amount">0.00</field>
-            <field name="kind_id" ref="l10n_it_account_tax_kind.n2"/>
+            <field name="kind_id" ref="l10n_it_account_tax_kind.n2_2"/>
             <field name="law_reference">Escluso Art. 13 5C DPR 633/72</field>
         </record>
 
@@ -182,6 +182,21 @@
             <field name="zip">123234</field>
             <field name="country_id" ref="base.ae"/>
             <field name="email">info@mycompany.it</field>
+        </record>
+
+        <record id="res_partner_fatturapa_5" model="res.partner">
+            <field name="name">B2B Customer Intra</field>
+            <field name="customer">1</field>
+            <field name="supplier">0</field>
+            <field name="is_company">1</field>
+            <field name="street">Frankfurt Strasse, 1</field>
+            <field name="is_pa">0</field>
+            <field name="city">Frankfurt</field>
+            <field name="zip">123234</field>
+            <field name="country_id" ref="base.lv"/>
+            <field name="email">info@mycompany.it</field>
+            <field name="vat">LV40003844254</field>
+            <field name="codice_destinatario">XXXXXXX</field>
         </record>
 
         <record id="fiscal_position_sp" model="account.fiscal.position">

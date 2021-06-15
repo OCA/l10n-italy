@@ -32,6 +32,14 @@ msgid "Fiscal code in receipts"
 msgstr ""
 
 #. module: fiscal_epos_print_fiscalcode
+#. openerp-web
+#: code:addons/fiscal_epos_print_fiscalcode/static/src/xml/pos.xml:7
+#: code:addons/fiscal_epos_print_fiscalcode/static/src/xml/pos.xml:17
+#, python-format
+msgid "Print F.C."
+msgstr ""
+
+#. module: fiscal_epos_print_fiscalcode
 #: model:ir.model.fields,help:fiscal_epos_print_fiscalcode.field_res_partner__epos_print_fiscalcode_receipt
 #: model:ir.model.fields,help:fiscal_epos_print_fiscalcode.field_res_users__epos_print_fiscalcode_receipt
 msgid "Print fiscal code in receipts for this partner."

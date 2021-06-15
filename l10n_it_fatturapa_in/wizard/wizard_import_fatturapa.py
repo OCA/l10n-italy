@@ -1,5 +1,6 @@
 import logging
 import re
+import odoo
 from odoo import models, api, fields
 from odoo.tools import float_is_zero
 from odoo.tools.translate import _
@@ -38,10 +39,31 @@ class WizardImportFatturapa(models.TransientModel):
              "will create a line in the bill.",
         required=True
     )
+    price_decimal_digits = fields.Integer(
+        "Prices decimal digits", required=True,
+        help="Decimal digits used in prices computation. This is needed to correctly "
+             "import e-invoices with many decimal digits, not being forced to "
+             "increase decimal digits of all your prices. "
+             "Otherwise, increase \"Product Price\" precision."
+    )
+    quantity_decimal_digits = fields.Integer(
+        "Quantities decimal digits", required=True,
+        help="Decimal digits used for quantity field. See \"Prices decimal digits\"."
+    )
+    discount_decimal_digits = fields.Integer(
+        "Discounts decimal digits", required=True,
+        help="Decimal digits used for discount field. See \"Prices decimal digits\"."
+    )
 
     @api.model
     def default_get(self, fields):
         res = super(WizardImportFatturapa, self).default_get(fields)
+        res["price_decimal_digits"] = self.env["decimal.precision"].precision_get(
+            "Product Price")
+        res["quantity_decimal_digits"] = self.env["decimal.precision"].precision_get(
+            "Product Unit of Measure")
+        res["discount_decimal_digits"] = self.env["decimal.precision"].precision_get(
+            "Discount")
         res['e_invoice_detail_level'] = '2'
         fatturapa_attachment_ids = self.env.context.get('active_ids', False)
         fatturapa_attachment_obj = self.env['fatturapa.attachment.in']
@@ -57,6 +79,15 @@ class WizardImportFatturapa(models.TransientModel):
             if len(partners) == 1:
                 res['e_invoice_detail_level'] = (
                     partners[0].e_invoice_detail_level)
+                if partners[0].e_invoice_price_decimal_digits >= 0:
+                    res["price_decimal_digits"] = (
+                        partners[0].e_invoice_price_decimal_digits)
+                if partners[0].e_invoice_quantity_decimal_digits >= 0:
+                    res["quantity_decimal_digits"] = (
+                        partners[0].e_invoice_quantity_decimal_digits)
+                if partners[0].e_invoice_discount_decimal_digits >= 0:
+                    res["discount_decimal_digits"] = (
+                        partners[0].e_invoice_discount_decimal_digits)
         return res
 
     def CountryByCode(self, CountryCode):
@@ -123,19 +154,27 @@ class WizardImportFatturapa(models.TransientModel):
             # Format Italian VAT ID to always have 11 char
             # to avoid validation error when creating the given partner
             if DatiAnagrafici.IdFiscaleIVA.IdPaese.upper() == 'IT':
-                vat = "%s%s" % (
-                    DatiAnagrafici.IdFiscaleIVA.IdPaese.upper(),
-                    DatiAnagrafici.IdFiscaleIVA.IdCodice.rjust(11, '0')[:11]
-                )
+                if DatiAnagrafici.IdFiscaleIVA.IdCodice.startswith("IT"):
+                    vat = DatiAnagrafici.IdFiscaleIVA.IdCodice.rjust(13, '0')[:13]
+                else:
+                    vat = "%s%s" % (
+                        DatiAnagrafici.IdFiscaleIVA.IdPaese.upper(),
+                        DatiAnagrafici.IdFiscaleIVA.IdCodice.rjust(11, '0')[:11]
+                    )
             else:
                 vat = "%s%s" % (
                     DatiAnagrafici.IdFiscaleIVA.IdPaese.upper(),
                     re.sub(r'\W+', '', DatiAnagrafici.IdFiscaleIVA.IdCodice).upper()
                 )
         partners = partner_model
+        res_partner_rule = self.env['ir.model.data'].sudo().xmlid_to_object(
+            "base.res_partner_rule", raise_if_not_found=False)
         if vat:
             domain = [('sanitized_vat', '=', vat)]
-            if self.env.context.get('from_attachment'):
+            if (
+                self.env.context.get('from_attachment') and
+                res_partner_rule and res_partner_rule.active
+            ):
                 att = self.env.context.get('from_attachment')
                 domain.extend([
                     '|',
@@ -145,7 +184,10 @@ class WizardImportFatturapa(models.TransientModel):
             partners = partner_model.search(domain)
         if not partners and cf:
             domain = [('fiscalcode', '=', cf)]
-            if self.env.context.get('from_attachment'):
+            if (
+                self.env.context.get('from_attachment') and
+                res_partner_rule and res_partner_rule.active
+            ):
                 att = self.env.context.get('from_attachment')
                 domain.extend([
                     '|',
@@ -409,7 +451,8 @@ class WizardImportFatturapa(models.TransientModel):
                 else:
                     templates = supplier_infos.mapped('product_tmpl_id')
                     if len(templates) == 1:
-                        product = templates.product_variant_ids[0]
+                        product = (templates.product_variant_ids
+                                   and templates.product_variant_ids[0])
         if not product and partner.e_invoice_default_product_id:
             product = partner.e_invoice_default_product_id
         return product
@@ -634,6 +677,10 @@ class WizardImportFatturapa(models.TransientModel):
                         discount += float(DiscRise.Importo)
             journal = self.get_purchase_journal(invoice.company_id)
             credit_account_id = journal.default_credit_account_id.id
+            if not credit_account_id:
+                credit_account_id = self.env['ir.property'].with_context(
+                    force_company=invoice.company_id.id
+                ).get('property_account_expense_categ_id', 'product.category').id
             line_vals = {
                 'invoice_id': invoice_id,
                 'name': _(
@@ -653,7 +700,8 @@ class WizardImportFatturapa(models.TransientModel):
             self.env['account.invoice.line'].create(line_vals)
         return True
 
-    def _createPaymentsLine(self, payment_id, line, partner_id):
+    def _createPaymentsLine(self, payment_id, line, partner_id, invoice_id):
+        invoice = self.env["account.invoice"].browse(invoice_id)
         details = line.DettaglioPagamento or False
         if details:
             PaymentModel = self.env['fatturapa.payment.detail']
@@ -737,10 +785,11 @@ class WizardImportFatturapa(models.TransientModel):
                     else:
                         bank = banks[0]
                 if dline.IBAN:
+                    iban = dline.IBAN.strip()
                     SearchDom = [
                         (
                             'acc_number', '=',
-                            pretty_iban(dline.IBAN.strip())
+                            pretty_iban(iban)
                         ),
                         ('partner_id', '=', partner_id),
                     ]
@@ -755,20 +804,28 @@ class WizardImportFatturapa(models.TransientModel):
                                 'Bank Name: %s\n'
                             )
                             % (
-                                dline.IBAN.strip() or '',
+                                iban or '',
                                 dline.IstitutoFinanziario or ''
                             )
                         )
                     elif not payment_banks and bank:
-                        payment_bank_id = PartnerBankModel.create(
-                            {
-                                'acc_number': dline.IBAN.strip(),
-                                'partner_id': partner_id,
-                                'bank_id': bank.id,
-                                'bank_name': dline.IstitutoFinanziario or bank.name,
-                                'bank_bic': dline.BIC or bank.bic
-                            }
-                        ).id
+                        existing_account = PartnerBankModel.search([
+                            ("acc_number", "=", iban),
+                            ("company_id", "=", invoice.company_id.id)
+                        ])
+                        if existing_account:
+                            self.log_inconsistency(
+                                _("Bank account %s already exists") % iban)
+                        else:
+                            payment_bank_id = PartnerBankModel.create(
+                                {
+                                    'acc_number': iban,
+                                    'partner_id': partner_id,
+                                    'bank_id': bank.id,
+                                    'bank_name': dline.IstitutoFinanziario or bank.name,
+                                    'bank_bic': dline.BIC or bank.bic
+                                }
+                            ).id
                     if payment_banks:
                         payment_bank_id = payment_banks[0].id
 
@@ -960,12 +1017,12 @@ class WizardImportFatturapa(models.TransientModel):
         self.set_welfares_fund(
             FatturaBody, credit_account_id, invoice, wt_founds)
 
+        self.set_vendor_bill_data(FatturaBody, invoice)
+
         invoice._onchange_invoice_line_wt_ids()
         invoice._onchange_payment_term_date_invoice()
         invoice.write(invoice._convert_to_write(invoice._cache))
         invoice_id = invoice.id
-
-        self.set_vendor_bill_data(FatturaBody, invoice)
 
         rel_docs_dict = {
             # 2.1.2
@@ -1130,7 +1187,8 @@ class WizardImportFatturapa(models.TransientModel):
                     _('Round up and down tax is not set')
                 )
 
-            line_sequence = max(invoice.invoice_line_ids.mapped('sequence'))
+            # invoice may have no lines at all if imported with minimum detail level
+            line_sequence = max(invoice.invoice_line_ids.mapped('sequence') or [0])
             line_vals = []
             for summary in FatturaBody.DatiBeniServizi.DatiRiepilogo:
                 to_round = float(summary.Arrotondamento or 0.0)
@@ -1215,7 +1273,8 @@ class WizardImportFatturapa(models.TransientModel):
                         'invoice_id': invoice_id
                     }
                 ).id
-                self._createPaymentsLine(PayDataId, PaymentLine, partner_id)
+                self._createPaymentsLine(
+                    PayDataId, PaymentLine, partner_id, invoice_id)
 
     def set_withholding_tax(self, FatturaBody, invoice_data):
         Withholdings = FatturaBody.DatiGenerali. \
@@ -1441,11 +1500,52 @@ class WizardImportFatturapa(models.TransientModel):
         xml_string = fatturapa_attachment.get_xml_string()
         return fatturapa.CreateFromDocument(xml_string)
 
+    def _set_decimal_precision(self, precision_name, field_name):
+        precision = self.env["decimal.precision"].search([
+            ("name", "=", precision_name)], limit=1)
+        different_precisions = original_precision = None
+        if precision:
+            precision_id = precision.id
+            original_precision = precision.digits
+            different_precisions = (
+                self[field_name] != original_precision)
+            if different_precisions:
+                with odoo.registry(self.env.cr.dbname).cursor() as new_cr:
+                    # We need a new env (and cursor) because 'digits' property of Float
+                    # fields is retrieved with a new LazyCursor,
+                    # see class Float at odoo.fields,
+                    # so we need to write (commit) to DB in order to make the new
+                    # precision available
+                    new_env = api.Environment(new_cr, self.env.uid, self.env.context)
+                    new_precision = new_env["decimal.precision"].browse(precision_id)
+                    new_precision.sudo().write({"digits": self[field_name]})
+                    new_cr.commit()
+        return precision, different_precisions, original_precision
+
+    def _restore_original_precision(self, precision, original_precision):
+        with odoo.registry(self.env.cr.dbname).cursor() as new_cr:
+            new_env = api.Environment(new_cr, self.env.uid, self.env.context)
+            new_price_precision = new_env["decimal.precision"].browse(precision.id)
+            new_price_precision.sudo().write({"digits": original_precision})
+            new_cr.commit()
+
     @api.multi
     def importFatturaPA(self):
+        self.ensure_one()
         fatturapa_attachment_obj = self.env['fatturapa.attachment.in']
         fatturapa_attachment_ids = self.env.context.get('active_ids', False)
         invoice_model = self.env['account.invoice']
+
+        price_precision, different_price_precisions, original_price_precision =\
+            self._set_decimal_precision(
+                "Product Price", "price_decimal_digits")
+        qty_precision, different_qty_precisions, original_qty_precision =\
+            self._set_decimal_precision(
+                "Product Unit of Measure", "quantity_decimal_digits")
+        discount_precision, different_discount_precisions,\
+            original_discount_precision = self._set_decimal_precision(
+                "Discount", "discount_decimal_digits")
+
         new_invoices = []
         for fatturapa_attachment_id in fatturapa_attachment_ids:
             self.__dict__.update(
@@ -1516,6 +1616,16 @@ class WizardImportFatturapa(models.TransientModel):
                     invoice_inconsistencies = ''
                 invoice.inconsistencies = (
                     generic_inconsistencies + invoice_inconsistencies)
+
+        if price_precision and different_price_precisions:
+            self._restore_original_precision(
+                price_precision, original_price_precision)
+        if qty_precision and different_qty_precisions:
+            self._restore_original_precision(
+                qty_precision, original_qty_precision)
+        if discount_precision and different_discount_precisions:
+            self._restore_original_precision(
+                discount_precision, original_discount_precision)
 
         return {
             'view_type': 'form',
