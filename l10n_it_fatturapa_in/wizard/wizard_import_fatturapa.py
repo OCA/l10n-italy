@@ -479,8 +479,8 @@ class WizardImportFatturapa(models.TransientModel):
                 line_vals.get('invoice_line_tax_ids') and
                 line_vals['invoice_line_tax_ids'][0][2][0]
             )
-            line_tax = self.env['account.tax'].browse(line_tax_id)
-            if new_tax.id != line_tax_id:
+            if line_tax_id and new_tax.id != line_tax_id:
+                line_tax = self.env['account.tax'].browse(line_tax_id)
                 if new_tax._get_tax_amount() != line_tax._get_tax_amount():
                     self.log_inconsistency(_(
                         "XML contains tax %s. Product %s has tax %s. Using "
