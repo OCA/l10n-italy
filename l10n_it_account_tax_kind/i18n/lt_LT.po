@@ -43,6 +43,7 @@ msgstr ""
 
 #. module: l10n_it_account_tax_kind
 #: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax__kind_id
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_tax_kind.view_account_tax_search_tax_kind
 msgid "Exemption Kind"
 msgstr ""
 
