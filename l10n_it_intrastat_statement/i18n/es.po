@@ -611,76 +611,52 @@ msgid "Missing adjustment sign on 'Sales - Section 2'"
 msgstr "Falta el signo de ajuste en 'Ventas - Sección 2'"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:502
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:492
 #, python-format
 msgid "Missing customs section on 'Purchases - Section 4'"
 msgstr "Falta la sección de aduanas sobre 'Compras - Sección 4'"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:448
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:440
 #, python-format
 msgid "Missing customs section on 'Sales - Section 4'"
 msgstr "Falta la sección de aduanas en 'Ventas - Sección 4'"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:511
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:501
 #, python-format
 msgid "Missing payment country on 'Purchases - Section 4'"
 msgstr "Falta el país de pago en 'Compras - Sección 4'"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:457
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:449
 #, python-format
 msgid "Missing payment country on 'Sales - Section 4'"
 msgstr "Falta el país de pago en 'Ventas - Sección 4'"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:508
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:498
 #, python-format
 msgid "Missing progressive to adjust on 'Purchases - Section 4'"
 msgstr "Falta progresivo para ajustar en 'Compras - Sección 4'"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:454
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:446
 #, python-format
 msgid "Missing progressive to adjust on 'Sales - Section 4'"
 msgstr "Falta progresivo para ajustar en 'Ventas - Sección 4'"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:505
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:495
 #, python-format
 msgid "Missing protocol number on 'Purchases - Section 4'"
 msgstr "Número de protocolo faltante en 'Compras - Sección 4'"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:451
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:443
 #, python-format
 msgid "Missing protocol number on 'Sales - Section 4'"
 msgstr "Falta el número de protocolo en 'Ventas - Sección 4'"
-
-#. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:292
-#, python-format
-msgid "Missing reference month on 'Purchases - Section 2' adjustment"
-msgstr "Falta el mes de referencia en el ajuste 'Compras - Sección 2'"
-
-#. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:251
-#, python-format
-msgid "Missing reference month on 'Sales - Section 2' adjustment"
-msgstr "Falta el mes de referencia en el ajuste 'Ventas - Sección 2'"
-
-#. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:297
-#, python-format
-msgid "Missing reference quarter on 'Purchases - Section 2' adjustment"
-msgstr "Falta el trimestre de referencia en el ajuste 'Compras - Sección 2'"
-
-#. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:255
-#, python-format
-msgid "Missing reference quarter on 'Sales - Section 2' adjustment"
-msgstr "Falta el trimestre de referencia en el ajuste 'Ventas - Sección 2'"
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:285
@@ -689,7 +665,7 @@ msgid "Missing reference year on 'Purchases - Section 2'"
 msgstr "Falta el año de referencia en 'Compras - Sección 2'"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:499
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:489
 #, python-format
 msgid "Missing reference year on 'Purchases - Section 4'"
 msgstr "Falta el año de referencia en 'Compras - Sección 4'"
@@ -701,7 +677,7 @@ msgid "Missing reference year on 'Sales - Section 2'"
 msgstr "Falta el año de referencia en 'Ventas - Sección 2'"
 
 #. module: l10n_it_intrastat_statement
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:445
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:437
 #, python-format
 msgid "Missing reference year on 'Sales - Section 4'"
 msgstr "Falta el año de referencia en 'Ventas - Sección 4'"
@@ -955,9 +931,9 @@ msgstr "País de procedencia"
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:171
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:302
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:395
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:515
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:292
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:385
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section.py:505
 #, python-format
 msgid "Purchase"
 msgstr "Compra"
@@ -1037,9 +1013,9 @@ msgstr "Repetido"
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:134
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:260
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:345
-#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:461
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:252
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:337
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section.py:453
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale
 #: model:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_form_view
 #, python-format
@@ -1283,6 +1259,18 @@ msgstr "Año"
 #: model:ir.ui.view,arch_db:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
 msgid "or"
 msgstr "ó"
+
+#~ msgid "Missing reference month on 'Purchases - Section 2' adjustment"
+#~ msgstr "Falta el mes de referencia en el ajuste 'Compras - Sección 2'"
+
+#~ msgid "Missing reference month on 'Sales - Section 2' adjustment"
+#~ msgstr "Falta el mes de referencia en el ajuste 'Ventas - Sección 2'"
+
+#~ msgid "Missing reference quarter on 'Purchases - Section 2' adjustment"
+#~ msgstr "Falta el trimestre de referencia en el ajuste 'Compras - Sección 2'"
+
+#~ msgid "Missing reference quarter on 'Sales - Section 2' adjustment"
+#~ msgstr "Falta el trimestre de referencia en el ajuste 'Ventas - Sección 2'"
 
 #~ msgid "Missing invoice data on 'Purchases - Section 4'"
 #~ msgstr "Datos de factura que faltan en 'Compras - Sección 4'"
