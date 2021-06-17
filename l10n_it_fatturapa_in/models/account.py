@@ -202,6 +202,17 @@ class AccountInvoice(models.Model):
             if error_message:
                 error_messages.append(error_message)
 
+            if bill.e_invoice_reference and bill.ref != bill.e_invoice_reference:
+                error_messages.append(
+                    _(
+                        "Vendor reference ({bill_vendor_ref}) "
+                        "does not match with "
+                        "e-bill vendor reference ({e_bill_vendor_ref})"
+                    ).format(
+                        bill_vendor_ref=bill.ref or "",
+                        e_bill_vendor_ref=bill.e_invoice_reference,
+                    )
+                )
             if (
                 bill.e_invoice_reference
                 and bill.payment_reference != bill.e_invoice_reference

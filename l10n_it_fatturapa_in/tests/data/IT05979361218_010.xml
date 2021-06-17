@@ -55,7 +55,7 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
         <TipoDocumento>TD01</TipoDocumento>
         <Divisa>EUR</Divisa>
         <Data>2014-12-18</Data>
-        <Numero>129</Numero>
+        <Numero>14171</Numero>
         <DatiRitenuta>
             <TipoRitenuta>RT01</TipoRitenuta>
             <ImportoRitenuta>1.00</ImportoRitenuta>

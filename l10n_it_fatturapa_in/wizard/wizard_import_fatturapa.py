@@ -1135,7 +1135,7 @@ class WizardImportFatturapa(models.TransientModel):
                     ).date(),
                 }
             )
-        if not invoice.payment_reference:
+        if not invoice.ref:
             today = fields.Date.context_today(self)
             x = invoice.line_ids.filtered(
                 lambda line: line.account_id.user_type_id.type
@@ -1143,9 +1143,9 @@ class WizardImportFatturapa(models.TransientModel):
             ).sorted(lambda line: line.date_maturity or today)
             if x:
                 x[-1].name = FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero
-            invoice.payment_reference = (
-                FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero
-            )
+            invoice.ref = FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero
+            if not invoice.payment_reference:
+                invoice.payment_reference = invoice.ref
 
     def set_parent_invoice_data(self, FatturaBody, invoice):
         ParentInvoice = FatturaBody.DatiGenerali.FatturaPrincipale

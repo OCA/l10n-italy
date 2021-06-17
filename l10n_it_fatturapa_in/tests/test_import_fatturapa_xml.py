@@ -41,6 +41,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.partner_id.register_code, "TO1258B")
         self.assertEqual(invoice.partner_id.register_fiscalpos.code, "RF02")
+        self.assertEqual(invoice.ref, "FT/2015/0006")
         self.assertEqual(invoice.payment_reference, "FT/2015/0006")
         self.assertEqual(invoice.amount_total, 57.00)
         self.assertEqual(invoice.gross_weight, 0.00)
@@ -67,11 +68,14 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(
             invoice.e_invoice_line_ids[0].other_data_ids[0].text_ref, "Riferimento"
         )
+        # allow following tests to reuse the same XML file
+        invoice.ref = invoice.payment_reference = "14001"
 
     def test_01_xml_import(self):
         res = self.run_wizard("test1", "IT02780790107_11004.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.ref, "123")
         self.assertEqual(invoice.payment_reference, "123")
         self.assertEqual(invoice.amount_untaxed, 34.00)
         self.assertEqual(invoice.amount_tax, 7.48)
@@ -99,6 +103,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.ftpa_incoterms, "DAP")
         self.assertEqual(invoice.fiscal_document_type_id.code, "TD01")
         self.assertTrue(invoice.art73)
+        # allow following tests to reuse the same XML file
+        invoice.ref = invoice.payment_reference = "14011"
 
     def test_02_xml_import(self):
         res = self.run_wizard("test02", "IT05979361218_011.xml")
@@ -110,6 +116,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         res = self.run_wizard("test4", "IT02780790107_11005.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.ref, "124")
         self.assertEqual(invoice.payment_reference, "124")
         self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
         self.assertEqual(invoice.invoice_line_ids[0].tax_ids[0].name, "22% e-bill")
@@ -128,11 +135,14 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             u"Company Name field contains 'Societa' "
             u"Alpha SRL'. Your System contains 'SOCIETA' ALPHA SRL'\n\n",
         )
+        # allow following test to reuse the same XML file
+        invoice.ref = invoice.payment_reference = "14041"
 
     def test_05_xml_import(self):
         res = self.run_wizard("test5", "IT05979361218_003.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.ref, "FT/2015/0008")
         self.assertEqual(invoice.payment_reference, "FT/2015/0008")
         self.assertEqual(invoice.sender, "TZ")
         self.assertEqual(invoice.intermediary.name, "MARIO ROSSI")
@@ -164,6 +174,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         res = self.run_wizard("test7", "IT05979361218_004.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.ref, "FT/2015/0009")
         self.assertEqual(invoice.payment_reference, "FT/2015/0009")
         self.assertAlmostEqual(invoice.amount_untaxed, 1173.60)
         self.assertEqual(invoice.amount_tax, 258.19)
@@ -186,9 +197,12 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         res = self.run_wizard("test8", "IT05979361218_005.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.ref, "FT/2015/0010")
         self.assertEqual(invoice.payment_reference, "FT/2015/0010")
         self.assertAlmostEqual(invoice.amount_total, 1288.61)
         self.assertFalse(invoice.inconsistencies)
+        # allow following test to reuse the same XML file
+        invoice.ref = invoice.payment_reference = "14081"
 
     def test_08_xml_import_no_account(self):
         """Check that a useful error message is raised when
@@ -206,11 +220,16 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         # Setting res_id disables the property from acting as default value
         expense_default_property.res_id = 1
         with self.assertRaises(UserError) as ue:
-            self.run_wizard("test8_no_account", "IT05979361218_005.xml")
+            res = self.run_wizard("test8_no_account", "IT05979361218_005.xml")
+            # allow following code to reuse the same XML file
+            invoice_id = res.get("domain")[0][2][0]
+            invoice = self.invoice_model.browse(invoice_id)
+            invoice.ref = invoice.payment_reference = "14082"
         self.assertIn(journal.display_name, ue.exception.args[0])
         self.assertIn(company.display_name, ue.exception.args[0])
 
         discount_amount = -143.18
+
         # Restore the property and import the invoice
         expense_default_property.res_id = False
         res = self.run_wizard("test8_with_property", "IT05979361218_005.xml")
@@ -224,6 +243,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             discount_line.account_id,
             expense_default_property.get_by_record(),
         )
+        # allow following code to reuse the same XML file
+        invoice.ref = invoice.payment_reference = "14083"
 
         # Restore the property and import the invoice
         journal.default_account_id = journal_account
@@ -239,6 +260,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             journal_account,
         )
         self.assertTrue(invoice)
+        # allow following tests to reuse the same XML file
+        invoice.ref = invoice.payment_reference = "14084"
 
     def test_09_xml_import(self):
         # using DatiGeneraliDocumento.ScontoMaggiorazione without
@@ -247,6 +270,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         res = self.run_wizard("test9", "IT05979361218_006.XML")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.ref, "FT/2015/0011")
         self.assertEqual(invoice.payment_reference, "FT/2015/0011")
         self.assertAlmostEqual(invoice.amount_total, 1288.61)
         self.assertEqual(
@@ -259,6 +283,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         res = self.run_wizard("test6", "IT05979361218_007.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.ref, "FT/2015/0009")
         self.assertEqual(invoice.payment_reference, "FT/2015/0009")
         self.assertEqual(invoice.invoice_date, date(2015, 3, 16))
         self.assertEqual(
@@ -280,6 +305,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.invoice_line_ids[0].sequence, 1)
         self.assertEqual(invoice.related_documents[0].type, "order")
         self.assertEqual(invoice.related_documents[0].lineRef, 60)
+        # allow following tests to reuse the same XML file
+        invoice.ref = invoice.payment_reference = "14111"
 
     def test_12_xml_import(self):
         res = self.run_wizard("test12", "IT05979361218_008.xml")
@@ -320,6 +347,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         res = self.run_wizard("test14", "IT02780790107_11007.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.ref, "136")
         self.assertEqual(invoice.payment_reference, "136")
         self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
         self.assertEqual(invoice.amount_untaxed, 25.00)
@@ -353,17 +381,21 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         for invoice in invoices:
             self.assertEqual(invoice.inconsistencies, "")
             self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
+            self.assertTrue(invoice.ref in ("456", "123"))
             self.assertTrue(invoice.payment_reference in ("456", "123"))
-            if invoice.payment_reference == "123":
+            if invoice.ref == "123":
                 self.assertTrue(len(invoice.invoice_line_ids) == 2)
                 for line in invoice.invoice_line_ids:
                     self.assertFalse(line.product_id)
                 self.assertEqual(invoice.invoice_date_due, date(2015, 1, 30))
-            if invoice.payment_reference == "456":
+            if invoice.ref == "456":
                 self.assertTrue(len(invoice.invoice_line_ids) == 1)
                 for line in invoice.invoice_line_ids:
                     self.assertFalse(line.product_id)
                 self.assertEqual(invoice.invoice_date_due, date(2015, 1, 28))
+        # allow following code to reuse the same XML file
+        invoices[0].ref = invoices[0].payment_reference = "14161"
+        invoices[1].ref = invoices[1].payment_reference = "14162"
 
         partner = invoice.partner_id
         partner.e_invoice_default_product_id = self.imac.product_variant_ids[0].id
@@ -379,8 +411,9 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice_ids = res.get("domain")[0][2]
         invoices = self.invoice_model.browse(invoice_ids)
         for invoice in invoices:
+            self.assertTrue(invoice.ref in ("456", "123"))
             self.assertTrue(invoice.payment_reference in ("456", "123"))
-            if invoice.payment_reference == "123":
+            if invoice.ref == "123":
                 self.assertEqual(
                     invoice.invoice_line_ids[0].product_id.id,
                     self.headphones.product_variant_ids[0].id,
@@ -390,6 +423,9 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
                     self.assertEqual(
                         line.product_id.id, self.imac.product_variant_ids[0].id
                     )
+        # allow following code to reuse the same XML file
+        invoices[0].ref = invoices[0].payment_reference = "14163"
+        invoices[1].ref = invoices[1].payment_reference = "14164"
 
         # change Livello di dettaglio Fatture elettroniche to Minimo
         partner.e_invoice_detail_level = "0"
@@ -399,6 +435,9 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertTrue(len(invoices) == 2)
         for invoice in invoices:
             self.assertTrue(len(invoice.invoice_line_ids) == 0)
+        # allow following tests to reuse the same XML file
+        invoices[0].ref = invoices[0].payment_reference = "14165"
+        invoices[1].ref = invoices[1].payment_reference = "14166"
 
     def test_03_xml_import(self):
         # Testing CAdES signature
@@ -409,11 +448,15 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         for invoice in invoices:
             self.assertEqual(invoice.inconsistencies, "")
             self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
+            self.assertTrue(invoice.ref in ("456", "123"))
             self.assertTrue(invoice.payment_reference in ("456", "123"))
-            if invoice.payment_reference == "123":
+            if invoice.ref == "123":
                 self.assertTrue(len(invoice.invoice_line_ids) == 2)
-            if invoice.payment_reference == "456":
+            if invoice.ref == "456":
                 self.assertTrue(len(invoice.invoice_line_ids) == 1)
+        # allow following tests to reuse the same XML file
+        invoices[0].ref = invoices[0].payment_reference = "14031"
+        invoices[1].ref = invoices[1].payment_reference = "14032"
 
     def test_17_xml_import(self):
         res = self.run_wizard("test17", "IT05979361218_010.xml")
@@ -433,19 +476,23 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         for invoice in invoices:
             self.assertEqual(invoice.partner_id.name, "SOCIETA' ALPHA SRL")
             self.assertEqual(invoice.partner_id.e_invoice_detail_level, "0")
+            self.assertTrue(invoice.ref in ("456", "123"))
             self.assertTrue(invoice.payment_reference in ("456", "123"))
-            if invoice.payment_reference == "123":
+            if invoice.ref == "123":
                 self.assertEqual(
                     invoice.inconsistencies,
                     "Computed amount untaxed 0.0 is different from summary "
                     "data 25.0",
                 )
-            if invoice.payment_reference == "456":
+            if invoice.ref == "456":
                 self.assertEqual(
                     invoice.inconsistencies,
                     "Computed amount untaxed 0.0 is different from summary "
                     "data 2000.0",
                 )
+        # allow following tests to reuse the same XML file
+        invoices[0].ref = invoices[0].payment_reference = "14191"
+        invoices[1].ref = invoices[1].payment_reference = "14192"
 
     def test_20_xml_import(self):
         # Testing xml without xml declaration (sent by Amazon)
@@ -502,6 +549,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(
             payment_data[0].payment_methods[0].penalty_date, date(2015, 5, 1)
         )
+        # allow following tests to reuse the same XML file
+        invoice.ref = invoice.payment_reference = "14221"
 
     def test_23_xml_import(self):
         # Testing CAdES signature, base64 encoded with newlines
@@ -512,6 +561,9 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice_ids = res.get("domain")[0][2]
         invoices = self.invoice_model.browse(invoice_ids)
         self.assertEqual(len(invoices), 2)
+        # allow following tests to reuse the same XML file
+        invoices[0].ref = invoices[0].payment_reference = "14231"
+        invoices[1].ref = invoices[1].payment_reference = "14232"
 
     def test_24_xml_import(self):
         res = self.run_wizard("test24", "IT05979361218_012.xml")
@@ -560,11 +612,16 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
                 "electronic_invoice_no_contact_update": True,
             }
         )
+        # allow following tests to reuse the same XML file
+        invoice.ref = invoice.payment_reference = "14301"
+
         res = self.run_wizard("test30a", "IT05979361218_002.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.partner_id.id, partner_id.id)
         self.assertEqual(invoice.partner_id.street, "Viale Repubblica, 34")
+        # allow following tests to reuse the same XML file
+        invoice.ref = invoice.payment_reference = "14302"
 
     def test_31_xml_import(self):
         res = self.run_wizard("test31", "IT01234567890_FPR05.xml")
@@ -650,6 +707,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.fatturapa_attachment_in_id.invoices_date, "18/12/2014")
+        # allow following tests to reuse the same XML file
+        invoice.ref = invoice.payment_reference = "14371"
 
     def test_38_xml_import_dates(self):
         # file B2B downloaded from
@@ -663,6 +722,9 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             invoices[0].fatturapa_attachment_in_id.invoices_date,
             "18/12/2014 20/12/2014",
         )
+        # allow following tests to reuse the same XML file
+        invoices[0].ref = invoices[0].payment_reference = "14381"
+        invoices[1].ref = invoices[1].payment_reference = "14382"
 
     def test_40_xml_import_withholding(self):
         res = self.run_wizard("test40", "IT01234567890_FPR11.xml")
@@ -719,6 +781,10 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             partner_id = self.env["res.partner"].search(
                 [("vat", "ilike", "05979361218")]
             )
+            # allow following code to reuse the same XML file
+            invoice_id = res.get("domain")[0][2][0]
+            invoice = self.invoice_model.browse(invoice_id)
+            invoice.ref = invoice.payment_reference = "14451"
 
         # try and alter the vat of the existing partner
         partner_id.write({"vat": " %s  " % partner_id.vat})
@@ -789,6 +855,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             self.invoice_model.with_context(default_move_type="in_invoice")
         )
         invoice_form.partner_id = supplier
+        invoice_form.ref = "original_ref"
         invoice_form.payment_reference = "original_ref"
         invoice_form.invoice_date = date(2020, 1, 1)
         orig_invoice = invoice_form.save()
@@ -804,6 +871,10 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertTrue(orig_invoice.e_invoice_line_ids)
         self.assertFalse(orig_invoice.invoice_line_ids)
         self.assertTrue(orig_invoice.e_invoice_validation_error)
+        self.assertEqual(
+            invoice_form.ref,
+            orig_invoice.ref,
+        )
         self.assertEqual(
             invoice_form.payment_reference,
             orig_invoice.payment_reference,
@@ -835,8 +906,11 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertTrue(orig_invoice.e_invoice_line_ids)
         self.assertFalse(orig_invoice.invoice_line_ids)
         self.assertTrue(orig_invoice.e_invoice_validation_error)
+        self.assertTrue(orig_invoice.ref)
         self.assertTrue(orig_invoice.payment_reference)
         self.assertTrue(orig_invoice.invoice_date)
+        # allow following tests to reuse the same XML file
+        orig_invoice.ref = orig_invoice.payment_reference = "14021"
 
     def test_01_xml_zero_quantity_line(self):
         res = self.run_wizard("test_zeroq_01", "IT05979361218_q0.xml")
