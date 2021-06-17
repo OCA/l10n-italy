@@ -9,7 +9,11 @@ class AccountInvoiceLine (models.Model):
 
     @api.multi
     def unlink(self):
-        related_documents = self.mapped('related_documents')
+        # Use sudo because current user might not be able to
+        # read the related documents
+        # but they should be unlinked just the same
+        self_sudo = self.sudo()
+        related_documents = self_sudo.mapped('related_documents')
         res = super().unlink()
         related_documents.check_unlink().unlink()
         return res

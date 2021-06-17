@@ -25,7 +25,11 @@ class SaleOrderLine(models.Model):
     def _prepare_invoice_line(self, qty):
         self.ensure_one()
         invoice_line_vals = super()._prepare_invoice_line(qty)
-        sale_line_documents = self.related_documents
+        # Use sudo because current user might not be able to
+        # read the related documents/admin_ref
+        # but they should propagate to the invoice just the same
+        self_sudo = self.sudo()
+        sale_line_documents = self_sudo.related_documents
         if sale_line_documents:
             invoice_line_documents = invoice_line_vals.get(
                 'related_documents', list())
@@ -36,7 +40,7 @@ class SaleOrderLine(models.Model):
                 'related_documents': invoice_line_documents,
             })
 
-        sale_line_admin_ref = self.admin_ref
+        sale_line_admin_ref = self_sudo.admin_ref
         if sale_line_admin_ref:
             invoice_line_admin_ref = invoice_line_vals.get('admin_ref')
             invoice_line_admin_ref = ', '.join(filter(None, [
@@ -50,7 +54,11 @@ class SaleOrderLine(models.Model):
 
     @api.multi
     def unlink(self):
-        related_documents = self.mapped('related_documents')
+        # Use sudo because current user might not be able to
+        # read the related documents
+        # but they should be unlinked just the same
+        self_sudo = self.sudo()
+        related_documents = self_sudo.mapped('related_documents')
         res = super().unlink()
         related_documents.check_unlink().unlink()
         return res
