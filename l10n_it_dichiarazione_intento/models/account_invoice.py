@@ -59,55 +59,6 @@ class AccountInvoice(models.Model):
     def action_move_create(self):
         res = super(AccountInvoice, self).action_move_create()
         dichiarazione_model = self.env['dichiarazione.intento']
-        # ------ Check if there is enough available amount on dichiarazioni
-        for invoice in self:
-            if invoice.dichiarazione_intento_ids:
-                dichiarazioni = invoice.dichiarazione_intento_ids
-            else:
-                dichiarazioni = dichiarazione_model.with_context(
-                    ignore_state=True if invoice.type.endswith('_refund')
-                    else False).get_valid(type_d=invoice.type.split('_')[0],
-                                          partner_id=invoice.partner_id.id,
-                                          date=invoice.date_invoice)
-            # ----- If partner hasn't dichiarazioni, do nothing
-            if not dichiarazioni:
-                # ----  check se posizione fiscale dichiarazione di intento
-                # ---- e non ho dichiarazioni, segnalo errore
-                if self.fiscal_position_id.valid_for_dichiarazione_intento:
-                    raise UserError(_(
-                        'Declaration of intent not found. Add new declaration or '
-                        'change fiscal position and verify applied tax'))
-                else:
-                    continue
-            sign = 1 if invoice.type in ['out_invoice', 'in_invoice'] else -1
-            dichiarazioni_amounts = {}
-            for tax_line in invoice.tax_line_ids:
-                amount = sign * tax_line.base
-                for dichiarazione in dichiarazioni:
-                    if dichiarazione.id not in dichiarazioni_amounts:
-                        dichiarazioni_amounts[dichiarazione.id] = \
-                            dichiarazione.available_amount
-                    if tax_line.tax_id.id in [t.id for t
-                                              in dichiarazione.taxes_ids]:
-                        dichiarazioni_amounts[dichiarazione.id] -= amount
-            dichiarazioni_residual = sum([
-                dichiarazioni_amounts[da] for da in dichiarazioni_amounts])
-            if dichiarazioni_residual < 0:
-                raise UserError(_(
-                    'Available plafond insufficent.\n'
-                    'Excess value: %s') % (abs(dichiarazioni_residual)))
-            # Check se con nota credito ho superato il plafond
-            for dich in dichiarazioni_amounts:
-                dichiarazione = dichiarazione_model.browse(dich)
-                # dichiarazioni_amounts contains residual, so, if > limit_amount,
-                # used_amount went < 0
-                if dichiarazioni_amounts[dich] > dichiarazione.limit_amount:
-                    raise UserError(_(
-                        'Available plafond insufficent.\n'
-                        'Excess value: %s') % (
-                            abs(dichiarazioni_amounts[dich] -
-                                dichiarazione.limit_amount)
-                    ))
         # ----- Assign account move lines to dichiarazione for invoices
         for invoice in self:
             if invoice.dichiarazione_intento_ids:
@@ -118,12 +69,17 @@ class AccountInvoice(models.Model):
                     else False).get_valid(type_d=invoice.type.split('_')[0],
                                           partner_id=invoice.partner_id.id,
                                           date=invoice.date_invoice)
-            # ----- If partner hasn't dichiarazioni, do nothing
             if not dichiarazioni:
-                continue
+                # ----  check se posizione fiscale dichiarazione di intento
+                # ---- e non ho dichiarazioni, segnalo errore
+                if self.fiscal_position_id.valid_for_dichiarazione_intento:
+                    raise UserError(_(
+                        'Declaration of intent not found. Add new declaration'
+                        ' or change fiscal position and verify applied tax'))
+                else:
+                    continue
             # ----- Get only lines with taxes
-            lines = invoice.move_id.line_ids.filtered(
-                lambda l: l.tax_ids)
+            lines = invoice.move_id.line_ids.filtered(lambda l: l.tax_ids)
             if not lines:
                 continue
             # ----- Group lines for tax

@@ -133,17 +133,36 @@ class DichiarazioneIntento(models.Model):
                             'All taxes in declaration of intent must be used '
                             'in fiscal position taxes'))
 
-    @api.constrains('limit_amount', 'used_amount', 'line_ids')
     @api.multi
+    @api.constrains('available_amount', 'limit_amount')
     def _check_available_amount(self):
-        for dichiarazione in self:
-            if dichiarazione.available_amount < 0:
-                raise UserError(_(
-                    'Limit passed for declaration %s.\n'
-                    'Excess value: %s%s' % (
-                        dichiarazione.number,
-                        abs(dichiarazione.available_amount),
-                        dichiarazione.currency_id.symbol, )))
+        for decl in self:
+            # Dichiarazione collegata a fatture per importi maggiori alla
+            # dichiarazione stessa
+            # (es: dichiarazione da 1000€ collegata a due fatture da 900€ e
+            # 600€ => importo disponibile pari a -500€)
+            if decl.available_amount < 0:
+                raise ValidationError(
+                    _('Declaration %s: related amounts exceed the current'
+                      ' limit by %s%s') % (
+                        decl.number,
+                        abs(decl.available_amount),
+                        decl.currency_id.symbol
+                    )
+                )
+            # Dichiarazione collegata a note credito per importi maggiori alla
+            # dichiarazione stessa
+            # (es: dichiarazione da 1000€ collegata a fattura da 500€ e nota
+            # credito da 800€ => importo disponibile pari a 1300€)
+            if decl.available_amount > decl.limit_amount:
+                raise ValidationError(
+                    _('Declaration %s: related refunds exceed the current'
+                      ' limit by %s%s') % (
+                        decl.number,
+                        decl.available_amount - decl.limit_amount,
+                        decl.currency_id.symbol
+                    )
+                )
 
     @api.multi
     def name_get(self):
@@ -161,11 +180,10 @@ class DichiarazioneIntento(models.Model):
     def _compute_amounts(self):
         for record in self:
             amount = sum(line.amount for line in record.line_ids)
-            # ----- Force value to 0
-            if amount < 0.0:
-                amount = 0.0
-            record.used_amount = amount
-            record.available_amount = record.limit_amount - record.used_amount
+            record.update(
+                {'available_amount': record.limit_amount - amount,
+                 'used_amount': amount}
+            )
 
     @api.multi
     @api.depends('used_amount', 'limit_amount', 'date_end', 'force_close')
