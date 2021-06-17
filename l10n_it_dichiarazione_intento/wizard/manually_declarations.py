@@ -30,13 +30,10 @@ class SelectManuallyDeclarations(models.TransientModel):
     @api.multi
     def confirm(self):
         self.ensure_one()
-        res = True
-        # ----- Link dichiarazione to invoice
-        invoice_id = self.env.context.get('active_id', False)
+        dec_ids = self.declaration_ids.ids
+        vals = {'dichiarazione_intento_ids': [(6, 0, dec_ids)]}
+        invoice_id = self.env.context.get('active_id')
         if not invoice_id:
-            return res
+            return False
         invoice = self.env['account.invoice'].browse(invoice_id)
-        for declaration in self.declaration_ids:
-            invoice.dichiarazione_intento_ids = [
-                (4, declaration.id)]
-        return True
+        return invoice.exists() and invoice.write(vals)
