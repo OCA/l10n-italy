@@ -81,7 +81,7 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
                 <Data>2014-12-18+01:00</Data>
-                <Numero>123</Numero>
+                <Numero>14221</Numero>
                 <DatiCassaPrevidenziale>
                     <TipoCassa>TC01</TipoCassa>
                     <AlCassa>4.00</AlCassa>
