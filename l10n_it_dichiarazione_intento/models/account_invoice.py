@@ -168,17 +168,18 @@ class AccountInvoice(models.Model):
                         invoice.dichiarazione_intento_ids = [
                             (4, dichiarazione.id)]
                         if invoice.type in ("out_invoice", "out_refund"):
-                            if not invoice.comment:
-                                invoice.comment = ''
-                            invoice.comment += (
-                                "\n\nVostra dichiarazione d'intento del %s, "
-                                "protocollo telematico nr %s."
-                                % (
-                                    format_date(
-                                        self.env, dichiarazione.date),
-                                    dichiarazione.telematic_protocol
-                                )
-                            )
+                            cmt = invoice.comment or ""
+                            msg = "Vostra dichiarazione d'intento del %s,"\
+                                  " protocollo telematico nr %s."\
+                                  % (format_date(self.env, dichiarazione.date),
+                                     dichiarazione.telematic_protocol)
+                            # Avoid duplication
+                            if msg not in cmt:
+                                if cmt.strip():
+                                    cmt += "\n\n" + msg
+                                else:
+                                    cmt = msg
+                            invoice.comment = cmt
 
         return res
 
