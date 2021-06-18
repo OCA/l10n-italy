@@ -21,6 +21,7 @@ setuptools.setup(
         'odoo14-addon-l10n_it_delivery_note_batch',
         'odoo14-addon-l10n_it_delivery_note_order_link',
         'odoo14-addon-l10n_it_fatturapa',
+        'odoo14-addon-l10n_it_fatturapa_in',
         'odoo14-addon-l10n_it_fatturapa_out',
         'odoo14-addon-l10n_it_fatturapa_out_stamp',
         'odoo14-addon-l10n_it_fiscal_document_type',
