@@ -842,6 +842,33 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             in invoice.inconsistencies
         )
 
+    def test_49_xml_import(self):
+        # used in 12.0
+        pass
+
+    def test_50_xml_import(self):
+        # test #2338: improve search of product in supplier_info
+        # if search for product with product_code fails, we search for
+        # matching description
+        product_form = Form(self.env["product.template"])
+        product_form.name = "FORNITURE VARIE PER UFFICIO"
+        product_form.description = "FORNITURE VARIE PER UFFICIO"
+        product = product_form.save()
+
+        res = self.run_wizard("test50", "IT01234567890_FPR03.xml")
+        invoice_ids = res.get("domain")[0][2]
+        invoices = self.invoice_model.browse(invoice_ids).filtered(
+            lambda x: x.ref == "123"
+        )
+        self.assertEqual(len(invoices), 1)
+        invoice_line_ids = invoices.invoice_line_ids.filtered(
+            lambda l: l.product_id == product.id
+        )
+        self.assertEqual(len(invoice_line_ids), 1)
+
+        # allow following tests to reuse the same XML file
+        invoices[0].ref = invoices[0].payment_reference = "14501"
+
     def test_01_xml_link(self):
         """
         E-invoice lines are created.
