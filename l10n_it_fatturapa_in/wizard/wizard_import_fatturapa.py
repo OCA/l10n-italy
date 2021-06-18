@@ -469,6 +469,11 @@ class WizardImportFatturapa(models.TransientModel):
             supplier_infos = supplier_info.search(
                 [("product_code", "=", supplier_code), ("name", "=", partner.id)]
             )
+            if not supplier_infos:
+                supplier_name = line.Descrizione
+                supplier_infos = supplier_info.search(
+                    [("product_name", "=", supplier_name), ("name", "=", partner.id)]
+                )
             if supplier_infos:
                 products = supplier_infos.mapped("product_id")
                 if len(products) == 1:
