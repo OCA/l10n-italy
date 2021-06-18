@@ -190,9 +190,13 @@ class EFatturaOut:
             return False
 
         def get_all_taxes(record):
-            out = {}
+            """Generate summary data for taxes.
+            Odoo does that for us, but only for nonzero taxes.
+            SdI expects a summary for every tax mentionend in the invoice,
+            even those with price_total == 0.
+            """
             out_computed = {}
-            there_is_a_note = False
+            # existing tax lines
             tax_ids = record.line_ids.filtered(lambda line: line.tax_line_id)
             for tax_id in tax_ids:
                 tax_line_id = tax_id.tax_line_id
@@ -210,12 +214,18 @@ class EFatturaOut:
                     out_computed[key]["RiferimentoNormativo"] = encode_for_export(
                         tax_line_id.law_reference, 100
                     )
+
+            out = {}
+            # check for missing tax lines
+            # those are usually 0 valued, but we need to generate an element
+            # for all taxes referenced by lines, even if 0 valued
             for line in record.invoice_line_ids:
-                if (
-                    line.display_type in ("line_section", "line_note")
-                    and not there_is_a_note
-                ):
-                    there_is_a_note = True
+                if line.display_type in ("line_section", "line_note"):
+                    # notes and sections
+                    # we ignore line.tax_ids altogether,
+                    # (it is popolated with a default tax usually)
+                    # and use another tax in the template
+                    continue
                 for tax_id in line.tax_ids:
                     aliquota = format_numbers(tax_id.amount)
                     key = "{}_{}".format(aliquota, tax_id.kind_id.code)
@@ -238,14 +248,6 @@ class EFatturaOut:
                         out[key]["ImponibileImporto"] += line.price_subtotal
                         out[key]["Imposta"] += 0.0
             out.update(out_computed)
-            if there_is_a_note:
-                new_key = "22.00_False"
-                if new_key not in out:
-                    out[new_key] = {
-                        "AliquotaIVA": "22.00",
-                        "ImponibileImporto": 0.00,
-                        "Imposta": 0.00,
-                    }
             return list(out.values())
 
         def get_importo(line):
@@ -255,9 +257,27 @@ class EFatturaOut:
                 return False
             return line.price_unit * line.discount / 100
 
-        def get_default_note_tax(record):
-            all_taxes = get_all_taxes(record)
-            return all_taxes[0]["AliquotaIVA"] if all_taxes else "0.00"
+        def get_tax_ids(line):
+            """Get the tax for an invoice line.
+
+            Note: SdI expects only one tax per line. Also, it expects to find a tax line
+            for each line mentioned in the invoice lines, but Odoo generate no tax line
+            if the amount is 0. This is handled in get_all_taxes().
+
+            Common best practice for note/section lines is to reference an existing tax
+            line, instead of creating a new zero tax summary in the XML. The price for
+            note/section lines is zero anyway.  Therefore the original tax is ignored as
+            it defaults to the company default tax which may or may not be non zero in
+            the invoice."""
+
+            if line.display_type in ("line_section", "line_note"):
+                # find a non-zero tax, if possible
+                tax_lines = line.move_id.line_ids.filtered(
+                    lambda line: line.tax_line_id and line.price_total
+                )
+                if tax_lines:
+                    return tax_lines[0].tax_line_id
+            return line.tax_ids[0]
 
         if self.partner_id.commercial_partner_id.is_pa:
             # check value code
@@ -291,7 +311,7 @@ class EFatturaOut:
             "wizard": self.wizard,
             "get_importo": get_importo,
             "get_all_taxes": get_all_taxes,
-            "get_default_note_tax": get_default_note_tax,
+            "get_tax_ids": get_tax_ids,
             # "base64": base64,
         }
         content = env.ref(
