@@ -3,7 +3,7 @@
 
 from odoo.tests.common import TransactionCase
 from odoo import fields
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import ValidationError
 from datetime import datetime, timedelta
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 
@@ -216,7 +216,7 @@ class TestDichiarazioneIntento(TransactionCase):
 
     def test_invoice_validation_over_dichiarazione_limit(self):
         self.invoice2.action_invoice_open()
-        with self.assertRaises(UserError):
+        with self.assertRaises(ValidationError):
             self.invoice3.action_invoice_open()
 
     def test_invoice_reopen_with_effect_on_dichiarazione(self):
@@ -246,7 +246,7 @@ class TestDichiarazioneIntento(TransactionCase):
         self.assertEqual(self.dichiarazione1.available_amount, 100)
         self.assertEqual(self.refund1.amount_untaxed, 1000)
         self.assertEqual(self.dichiarazione1.limit_amount, 1000)
-        with self.assertRaises(UserError):
+        with self.assertRaises(ValidationError):
             self.refund1.action_invoice_open()
 
     def test_fiscal_position_no_dichiarazione(self):
