@@ -88,7 +88,9 @@ class AccountMove(models.Model):
                 else:
                     receivable_line_amount = 0
                 line_client.with_context(check_move_validity=False).update(
-                    {"debit": receivable_line_amount}
+                    {
+                        "price_unit": -receivable_line_amount,
+                    }
                 )
         elif self.move_type == "out_refund":
             for line_client in line_client_ids:
@@ -100,7 +102,9 @@ class AccountMove(models.Model):
                 else:
                     receivable_line_amount = 0
                 line_client.with_context(check_move_validity=False).update(
-                    {"credit": receivable_line_amount}
+                    {
+                        "price_unit": -receivable_line_amount,
+                    }
                 )
 
     def _compute_split_payments(self):
