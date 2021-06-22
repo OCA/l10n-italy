@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_vat_statement_communication
+# 	* l10n_it_vat_statement_communication
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_vat_statement_communication
-#: selection:comunicazione.liquidazione.vp,metodo_calcolo_acconto:0
+#: model:ir.model.fields.selection,name:l10n_it_vat_statement_communication.selection__comunicazione_liquidazione_vp__metodo_calcolo_acconto__4
 msgid "\"4\" (soggetti particolari)"
 msgstr ""
 
@@ -99,7 +99,7 @@ msgid "Action Needed"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: selection:comunicazione.liquidazione.vp,metodo_calcolo_acconto:0
+#: model:ir.model.fields.selection,name:l10n_it_vat_statement_communication.selection__comunicazione_liquidazione_vp__metodo_calcolo_acconto__3
 msgid "Analitico - effettivo"
 msgstr ""
 
@@ -120,7 +120,9 @@ msgstr ""
 
 #. module: l10n_it_vat_statement_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.wizard_liquidazione_export_file
-msgid "Click on <strong>Export</strong> to generate VAT statement communication file."
+msgid ""
+"Click on <strong>Export</strong> to generate VAT statement communication "
+"file."
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
@@ -129,12 +131,12 @@ msgid "Close"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: selection:comunicazione.liquidazione.vp,exceptional_events:0
+#: model:ir.model.fields.selection,name:l10n_it_vat_statement_communication.selection__comunicazione_liquidazione_vp__exceptional_events__1
 msgid "Code 1"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: selection:comunicazione.liquidazione.vp,exceptional_events:0
+#: model:ir.model.fields.selection,name:l10n_it_vat_statement_communication.selection__comunicazione_liquidazione_vp__exceptional_events__9
 msgid "Code 9"
 msgstr ""
 
@@ -149,17 +151,17 @@ msgid "Communication"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: selection:comunicazione.liquidazione,delegate_commitment:0
+#: model:ir.model.fields.selection,name:l10n_it_vat_statement_communication.selection__comunicazione_liquidazione__delegate_commitment__2
 msgid "Communication prepared by sender"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: selection:comunicazione.liquidazione,delegate_commitment:0
+#: model:ir.model.fields.selection,name:l10n_it_vat_statement_communication.selection__comunicazione_liquidazione__delegate_commitment__1
 msgid "Communication prepared by taxpayer"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:34
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid "Communication with identifier {} already exists"
 msgstr ""
@@ -225,9 +227,11 @@ msgid "Declarant Fiscalcode"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:171
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
-msgid "Declarant Fiscalcode is required. You can enable the                 section with different declarant option"
+msgid ""
+"Declarant Fiscalcode is required. You can enable the                 section"
+" with different declarant option"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
@@ -256,9 +260,11 @@ msgid "Delegate sign"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_account_tax__display_name
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__display_name
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_export_file__display_name
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__display_name
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_res_company__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -349,7 +355,7 @@ msgid "Followers (Partners)"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:181
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid "For group's statement, controller's TIN must be empty"
 msgstr ""
@@ -370,15 +376,17 @@ msgid "Group's statement"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:184
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid "Group's statement not valid, as fiscal code is 16 characters"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_account_tax__id
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__id
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_export_file__id
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__id
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_res_company__id
 msgid "ID"
 msgstr ""
 
@@ -394,17 +402,14 @@ msgid "Identifier"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_unread
-msgid "If checked new messages require your attention."
-msgstr ""
-
-#. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_needaction
+#: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_has_error
+#: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -414,9 +419,11 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_account_tax____last_update
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione____last_update
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_export_file____last_update
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp____last_update
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_res_company____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -460,7 +467,7 @@ msgid "Month"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: selection:comunicazione.liquidazione.vp,period_type:0
+#: model:ir.model.fields.selection,name:l10n_it_vat_statement_communication.selection__comunicazione_liquidazione_vp__period_type__month
 msgid "Monthly"
 msgstr ""
 
@@ -470,7 +477,7 @@ msgid "Name"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:18
+#: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:0
 #, python-format
 msgid "No communication selected"
 msgstr ""
@@ -482,7 +489,7 @@ msgstr ""
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_has_error_counter
-msgid "Number of error"
+msgid "Number of errors"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
@@ -521,7 +528,7 @@ msgid "Previous year credit"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: selection:comunicazione.liquidazione.vp,metodo_calcolo_acconto:0
+#: model:ir.model.fields.selection,name:l10n_it_vat_statement_communication.selection__comunicazione_liquidazione_vp__metodo_calcolo_acconto__2
 msgid "Previsionale"
 msgstr ""
 
@@ -536,7 +543,7 @@ msgid "Quarter"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: selection:comunicazione.liquidazione.vp,period_type:0
+#: model:ir.model.fields.selection,name:l10n_it_vat_statement_communication.selection__comunicazione_liquidazione_vp__period_type__quarter
 msgid "Quarterly"
 msgstr ""
 
@@ -556,12 +563,17 @@ msgid "Role code"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_form
 msgid "Signature"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:190
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid "Specify role code of declarant"
 msgstr ""
@@ -572,7 +584,7 @@ msgid "Statement communication"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: selection:comunicazione.liquidazione.vp,metodo_calcolo_acconto:0
+#: model:ir.model.fields.selection,name:l10n_it_vat_statement_communication.selection__comunicazione_liquidazione_vp__metodo_calcolo_acconto__1
 msgid "Storico"
 msgstr ""
 
@@ -607,9 +619,11 @@ msgid "Taxpayer Fiscalcode"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:163
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
-msgid "Taxpayer Fiscalcode is required. It's accepted codes                     with lenght 11 or 16 chars"
+msgid ""
+"Taxpayer Fiscalcode is required. It's accepted codes                     "
+"with lenght 11 or 16 chars"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
@@ -697,27 +711,28 @@ msgid "Website communication history"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:211
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid "With delegate in commitment section, you need to check 'delegate sign'"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:202
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid "With intermediary fiscal code, you need to specify commitment code"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:206
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid "With intermediary fiscal code, you need to specify commitment date"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:196
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
-msgid "With this role code, you need to specify fiscal code of declarant company"
+msgid ""
+"With this role code, you need to specify fiscal code of declarant company"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
@@ -726,19 +741,19 @@ msgid "Year"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:157
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid "Year required"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:22
+#: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:0
 #, python-format
 msgid "You can export only 1 communication at a time"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:45
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid "month"
 msgstr ""
@@ -749,8 +764,7 @@ msgid "or"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:47
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid "quarter"
 msgstr ""
-
