@@ -261,7 +261,7 @@ class IntrastatStatementSaleSection2(models.Model):
         #  Trimestre di riferimento del riepilogo da rettificare
         rcd += format_9(self.quarterly, 1)
         # Anno periodo di ref da modificare
-        year = (self.year_id or 0) // 100
+        year = (self.year_id or 0) % 100
         rcd += format_9(year, 2)
         # Codice dello Stato membro dell’acquirente
         country_id = self.country_partner_id or self.partner_id.country_id
@@ -444,7 +444,7 @@ class IntrastatStatementSaleSection4(models.Model):
         # dichiarazione da rettificare
         rcd += format_9(self.intrastat_custom_id.code, 6)
         # Anno di registrazione della dichiarazione da rettificare
-        year = (self.year_id or 0) // 100
+        year = (self.year_id or 0) % 100
         rcd += format_9(year, 2)
         # Protocollo della dichiarazione da rettificare
         rcd += format_9(self.protocol, 6)
