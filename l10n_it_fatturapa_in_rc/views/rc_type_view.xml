@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="view_rc_type_form_e_inv" model="ir.ui.view">
+        <field name="name">view_rc_type_form_e_inv</field>
+        <field name="model">account.rc.type</field>
+        <field name="inherit_id" ref="l10n_it_reverse_charge.view_rc_type_form" />
+        <field name="arch" type="xml">
+            <field name="method" position="after">
+                <field
+                    name="e_invoice_suppliers"
+                    attrs="{'invisible': [('method', '!=', 'selfinvoice')]}"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>
