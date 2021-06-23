@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="view_email_server_form_e_invoice" model="ir.ui.view">
+        <field name="name">view_email_server_form_e_invoice</field>
+        <field name="model">fetchmail.server</field>
+        <field name="inherit_id" ref="fetchmail.view_email_server_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page
+                    string="Last error message"
+                    attrs="{'invisible': [('last_pec_error_message', '=', False)]}"
+                >
+                    <field name="last_pec_error_message" />
+                    <group>
+                        <field name="pec_error_count" />
+                    </group>
+                </page>
+            </notebook>
+            <xpath expr="//notebook/page[1]/group[1]/group[3]" position="attributes">
+                <!-- Hiding, because it would not be considered. See 'fetch_mail' override -->
+                <attribute
+                    name="attrs"
+                >{'invisible': [('is_fatturapa_pec', '=', True)]}</attribute>
+            </xpath>
+            <field name="active" position="after">
+                <field
+                    name="e_inv_notify_partner_ids"
+                    widget="many2many_tags"
+                    attrs="{'invisible': [('is_fatturapa_pec', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
