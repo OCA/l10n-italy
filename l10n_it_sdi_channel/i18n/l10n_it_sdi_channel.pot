@@ -1,0 +1,228 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_sdi_channel
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_sdi_channel
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_account_config_settings
+msgid "<span class=\"o_form_label\">ES Channel</span>\n"
+"                            <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model,name:l10n_it_sdi_channel.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__company_id
+msgid "Company"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model,name:l10n_it_sdi_channel.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_fetchmail_server__is_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_ir_mail_server__is_fatturapa_pec
+msgid "E-invoice PEC server"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.actions.act_window,name:l10n_it_sdi_channel.action_sdi_channel
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_sdi_channel_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_sdi_channel_tree
+msgid "ES Channel"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.ui.menu,name:l10n_it_sdi_channel.menu_sdi_channel
+msgid "ES Channels"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model,name:l10n_it_sdi_channel.model_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company__sdi_channel_id
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_config_settings__sdi_channel_id
+msgid "ES channel"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company__sdi_channel_type
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_config_settings__sdi_channel_type
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__channel_type
+msgid "ES channel type"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: code:addons/l10n_it_sdi_channel/models/sdi.py:81
+#, python-format
+msgid "Email %s is not valid"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company__email_exchange_system
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_config_settings__email_exchange_system
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__email_exchange_system
+msgid "Exchange System Email Address"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__first_invoice_sent
+msgid "First e-invoice sent"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model,name:l10n_it_sdi_channel.model_fetchmail_server
+msgid "Incoming Mail Server"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__fetch_pec_server_id
+msgid "Incoming PEC server"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model,name:l10n_it_sdi_channel.model_ir_mail_server
+msgid "Mail Server"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__name
+msgid "Name"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__pec_server_id
+msgid "Outgoing PEC server"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: code:addons/l10n_it_sdi_channel/models/sdi.py:18
+#: selection:sdi.channel,channel_type:0
+#, python-format
+msgid "PEC"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.ir_mail_server_fatturapa_out_pec_form
+msgid "PEC and Electronic Invoice"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_res_company__sdi_channel_type
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_res_config_settings__sdi_channel_type
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_sdi_channel__channel_type
+msgid "PEC is the only implemented channel in this module. Other channels (Web, Sftp) could be provided by external modules."
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: code:addons/l10n_it_sdi_channel/models/sdi.py:95
+#, python-format
+msgid "SDI PEC address not set. Please update it with the address indicated by SDI after the first sending"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_ir_mail_server__email_from_for_fatturaPA
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company__email_from_for_fatturaPA
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_config_settings__email_from_for_fatturaPA
+msgid "Sender Email Address"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_sdi_channel_form
+msgid "The ES email address must be changed ather the first invoice sent. After that, you have to set here the address indicated by the ES"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: code:addons/l10n_it_sdi_channel/models/sdi.py:61
+#: code:addons/l10n_it_sdi_channel/models/sdi.py:71
+#, python-format
+msgid "The channel %s with pec server %s already exists"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_res_company__email_exchange_system
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_res_config_settings__email_exchange_system
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_sdi_channel__email_exchange_system
+msgid "The first time you send a PEC to SDI, you must use the address sdi01@pec.fatturapa.it . The system, with the first response or notification, communicates the PEC address to be used for future messages"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: code:addons/l10n_it_sdi_channel/models/sdi.py:89
+#, python-format
+msgid "This is a first sending but SDI address is different from %s"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_sdi_channel__first_invoice_sent
+msgid "This is set after having sent the first e-invoice to SDI"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__web_server_address
+msgid "Web server address"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__web_server_login
+msgid "Web server login"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__web_server_password
+msgid "Web server password"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__web_server_token
+msgid "Web server token"
+msgstr ""
+
