@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright (c) 2020, Link IT Europe Srl
+    @author: Matteo Bilotta <mbilotta@linkeurope.it>
+  -->
+<odoo>
+
+    <record id="sale_advance_payment_inv_form_view" model="ir.ui.view">
+        <field name="name">sale.advance.payment.inv.form</field>
+        <field name="model">sale.advance.payment.inv</field>
+        <field name="inherit_id" ref="sale.view_sale_advance_payment_inv" />
+        <field name="arch" type="xml">
+            <xpath expr="//p" position="before">
+                <field name="step" invisible="True" />
+            </xpath>
+            <xpath expr="//p" position="attributes">
+                <attribute name="name">initial_message</attribute>
+                <attribute
+                    name="attrs"
+                >{'invisible': [('step', '!=', 'initial')]}</attribute>
+            </xpath>
+            <xpath expr="//p" position="after">
+                <div
+                    name="confirm_message"
+                    attrs="{'invisible': [('step', '!=', 'confirm')]}"
+                >
+                    <div class="o_horizontal_separator">
+                        <span class="fa fa-warning" /> Warning!
+                    </div>
+                    <div class="o_horizontal_separator" />
+                    <p>
+                        There appears to be one or more delivery notes in "Draft" state.<br
+                        />
+                        If you proceed with the creation of an invoice (other than the downpayment one),
+                        the affected delivery note lines will be detached from the sales order and
+                        will not appear linked to the generated invoice.
+                    </p>
+                    <p>
+                        This behaviour just described may not be wrong in some very specific cases.<br
+                        />
+                        Proceed only if you are absolutely sure and aware of what you're doing.
+                    </p>
+                    <div class="o_horizontal_separator" />
+                    <p>
+                        <strong
+                        >N.B.:</strong> there will be no way, subsequently, to restore
+                        this binding between the delivery note lines with the related sales order.
+                    </p>
+                </div>
+            </xpath>
+            <xpath expr="//group" position="attributes">
+                <attribute name="name">initial_fields</attribute>
+                <attribute
+                    name="attrs"
+                >{'invisible': [('step', '!=', 'initial')]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='create_invoices'][1]" position="attributes">
+                <attribute name="id">initial_create_view_invoice_btn</attribute>
+                <attribute
+                    name="attrs"
+                >{'invisible': [('step', '!=', 'initial')]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='create_invoices'][2]" position="attributes">
+                <attribute name="id">initial_create_invoice_btn</attribute>
+                <attribute
+                    name="attrs"
+                >{'invisible': [('step', '!=', 'initial')]}</attribute>
+            </xpath>
+            <xpath expr="//button[hasclass('btn-secondary')]" position="after">
+                <button
+                    name="action_step_confirm"
+                    type="object"
+                    class="btn-primary pull-right"
+                    attrs="{'invisible': [('step', '!=', 'confirm')]}"
+                    string="Understood, continue anyway"
+                />
+            </xpath>
+            <xpath expr="//button[hasclass('btn-secondary')]" position="attributes">
+                <attribute name="id">cancel_btn</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
