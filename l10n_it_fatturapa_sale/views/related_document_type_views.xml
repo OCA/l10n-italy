@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2020 Simone Rubino - Agile Business Group
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+<odoo>
+    <record id="fatturapa_related_document_type_view_form" model="ir.ui.view">
+        <field
+            name="name"
+        >Add sale fields to fatturapa.related_document_type form view</field>
+        <field name="model">fatturapa.related_document_type</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_fatturapa.fatturapa_related_document_type_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group/group[2]" position="inside">
+                <field name="sale_order_id" />
+                <field name="sale_order_line_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
