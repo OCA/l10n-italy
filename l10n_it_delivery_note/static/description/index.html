@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.15.1: http://docutils.sourceforge.net/" />
+<title>ITA - Documento di trasporto</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7952 2016-07-26 18:15:59Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="ita-documento-di-trasporto">
+<h1 class="title">ITA - Documento di trasporto</h1>
+
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! This file is generated by oca-gen-addon-readme !!
+!! changes will be overwritten.                   !!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<p><a class="reference external" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external" href="https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_delivery_note"><img alt="OCA/l10n-italy" src="https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github" /></a> <a class="reference external" href="https://translation.odoo-community.org/projects/l10n-italy-14-0/l10n-italy-14-0-l10n_it_delivery_note"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external" href="https://runbot.odoo-community.org/runbot/122/14.0"><img alt="Try me on Runbot" src="https://img.shields.io/badge/runbot-Try%20me-875A7B.png" /></a></p>
+<p><strong>English</strong></p>
+<p>This module manage the Italian DDT (Delivery note).</p>
+<p>From a picking is possible to generate a Delivery Note and group more picking in one delivery note. It’s also possible to invoice from the delivery note form.</p>
+<p>This module is alternative to <code>l10n_it_ddt</code>, it follows the Odoo way to process sale orders, pickings and invoices.</p>
+<p>You can’t have both <code>l10n_it_ddt</code> and <code>l10n_it_delivery_note</code> installed together.</p>
+<p>There are two available settings:</p>
+<ul class="simple">
+<li>Base (default): one picking, one DN.</li>
+<li>Advanced: more picking in one DN.</li>
+</ul>
+<p><strong>Italiano</strong></p>
+<p>Questo modulo consente di gestire i DDT.</p>
+<p>Da un prelievo è possibile generare un DDT e raggruppare più prelievi in un DDT. È anche possibile fatturare dalla scheda del DDT.</p>
+<p>Questo modulo è un alternativa al modulo <code>l10n_it_ddt</code>, segue la modalità Odoo di gestire ordini di vendita, prelievi e fatture.</p>
+<p>Non è possibile avere installati contemporaneamente <code>l10n_it_ddt</code> e <code>l10n_it_delivery_note</code>.</p>
+<p>Ci sono due impostazioni possibili.</p>
+<ul class="simple">
+<li>Base (predefinita): un prelievo, un DDT.</li>
+<li>Avanzata: più prelievi in un DDT.</li>
+</ul>
+<p><strong>Table of contents</strong></p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#configuration" id="id1">Configuration</a></li>
+<li><a class="reference internal" href="#usage" id="id2">Usage</a><ul>
+<li><a class="reference internal" href="#funzionalita-base" id="id3">Funzionalità base</a></li>
+<li><a class="reference internal" href="#funzionalita-avanzata" id="id4">Funzionalità avanzata</a></li>
+<li><a class="reference internal" href="#migrazione-dei-dati-da-l10n-it-ddt" id="id5">Migrazione dei dati da <em>l10n_it_ddt</em></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bug-tracker" id="id6">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="id7">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="id8">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="id9">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="id10">Maintainers</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="configuration">
+<h1><a class="toc-backref" href="#id1">Configuration</a></h1>
+<p>To configure this module, go to:</p>
+<ol class="arabic">
+<li><p class="first"><em>Inventory → Configuration → Settings - Delivery Notes</em></p>
+<p>Checking ‘Use Advanced DN Features’ allows you to manage more picking on one delivery note.</p>
+</li>
+<li><p class="first"><em>Inventory → Configuration → Warehouse Management → Delivery Note Types</em></p>
+<p>In delivery note type you can specify if the product price have to be printed in the delivery note report/slip.</p>
+<ul class="simple">
+<li><em>Inventory → Configuration → Delivery Notes → Conditions of Transport</em></li>
+<li><em>Inventory → Configuration → Delivery Notes → Appearances of Goods</em></li>
+<li><em>Inventory → Configuration → Delivery Notes → Reasons of Transport</em></li>
+<li><em>Inventory → Configuration → Delivery Notes → Methods of Transport</em></li>
+</ul>
+</li>
+<li><p class="first"><em>Settings → User &amp; Companies → Users</em></p>
+<p>In the user profile settings, “Show product information in DN lines” allows showing prices in the form.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="usage">
+<h1><a class="toc-backref" href="#id2">Usage</a></h1>
+<div class="section" id="funzionalita-base">
+<h2><a class="toc-backref" href="#id3">Funzionalità base</a></h2>
+<p>Quando un prelievo viene validato compare una scheda DDT.</p>
+<p>Nella scheda fare clic su “Crea nuovo”, si apre un procedura guidata dove scegliere il tipo di DDT, quindi confermare. Immettere i dati richiesti e poi fare clic su “Valida” per numerare il DDT.</p>
+<p>Una volta validato, è possibile emettere fattura direttamente dal DDT se il DDT stesso è di tipo consegna a cliente (In uscita) e si hanno i permessi sull’utente.</p>
+<p>È possibile annullare il DDT, reimpostarlo a bozza e poi modificarlo. Se il DDT è fatturato il numero e la data non sono modificabili.</p>
+<p>Per i trasferimenti tra magazzini creare un prelievo di tipo interno con le relative ubicazioni. Validare il prelievo visualizza la scheda DDT.</p>
+<p>È possibile anche avere DDT in ingresso, ovvero dopo la validazione del prelievo selezionare la scheda per indicare il numero del DDT fornitore e la data.</p>
+</div>
+<div class="section" id="funzionalita-avanzata">
+<h2><a class="toc-backref" href="#id4">Funzionalità avanzata</a></h2>
+<p>Vengono attivate varie funzionalità aggiuntive:</p>
+<ul class="simple">
+<li>più prelievi per un DDT</li>
+<li>selezione multipla di prelievi e generazione dei DDT</li>
+<li>aggiunta righe nota e righe sezione descrittive.</li>
+<li>lista dei DDT.</li>
+</ul>
+<p>Il report DDT stampa in righe aggiuntive i lotti/seriali e le scadenze del prodotto.</p>
+<p>Il prezzo può essere indicato anche nel report DDT se nel tipo DDT è indicata la stampa prezzi.
+La visibilità dei prezzi si trova nei permessi dell’utente.</p>
+<p>Le fatture generate dai DDT contengono i riferimenti al DDT stesso nelle righe nota.</p>
+</div>
+<div class="section" id="migrazione-dei-dati-da-l10n-it-ddt">
+<h2><a class="toc-backref" href="#id5">Migrazione dei dati da <em>l10n_it_ddt</em></a></h2>
+<p>Il modulo presenta una funzione di migrazione dei dati dal modulo OCA <em>l10n_it_ddt</em> da eseguire manualmente.
+Al momento, non è ancora presente un menù oppure una voce da interfaccia che permetta di eseguire questa operazione; bensì, è stato definito un comando da CLI da eseguire all’avvio di Odoo.
+Di seguito, una piccola lista di passi da seguire per portare a termine la migrazione:</p>
+<ol class="arabic">
+<li><p class="first">Eseguire un back-up del database.</p>
+<p>Questa procedura di migrazione dei dati è stata sì sviluppata e testata, MA solamente per un numero limitato di casi.
+NON è consigliata in alcun modo come funzionalità production-ready.</p>
+</li>
+<li><p class="first">Installare il modulo <em>l10n_it_delivery_note</em> SENZA prima disinstallare il modulo OCA <em>l10n_it_ddt</em>.</p>
+<p>N.B.: NON iniziare ad usare il modulo <em>l10n_it_delivery_note</em> senza aver prima migrato i dati.
+Potrebbero verificarsi, in prima battuta, problemi legati alla numerazione dei documenti creati.
+Inoltre, la procedura di migrazione stessa è progettata affinché verifichi che non siano presenti documenti di <em>l10n_it_delivery_note</em>; qualora ne rilevi alcuni, si interromperà non eseguendo alcuna migrazione.</p>
+</li>
+<li><p class="first">Terminata l’installazione del modulo, terminare in sicurezza il processo di Odoo.</p>
+</li>
+<li><p class="first">Lanciare Odoo, nella maniera in cui si è soliti fare, aggiungendo alcuni parametri al comando d’avvio:</p>
+<p><cite>./odoo-bin migrate_ddt_data –database &lt;nome_database&gt; […]</cite></p>
+</li>
+<li><p class="first">Una volta terminata l’esecuzione della procedura, verificare che tutti i documenti siano stati migrati con successo e nel modo atteso.</p>
+</li>
+<li><p class="first">Verificata l’esattezza dei dati migrati, disinstallare il modulo <em>l10n_it_ddt</em>.</p>
+</li>
+</ol>
+<p>È possibile iniziare ad utilizzare <em>l10n_it_delivery_note</em>.</p>
+</div>
+</div>
+<div class="section" id="bug-tracker">
+<h1><a class="toc-backref" href="#id6">Bug Tracker</a></h1>
+<p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-italy/issues">GitHub Issues</a>.
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us smashing it by providing a detailed and welcomed
+<a class="reference external" href="https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_delivery_note%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<p>Do not contact contributors directly about support or help with technical issues.</p>
+</div>
+<div class="section" id="credits">
+<h1><a class="toc-backref" href="#id7">Credits</a></h1>
+<div class="section" id="authors">
+<h2><a class="toc-backref" href="#id8">Authors</a></h2>
+<ul class="simple">
+<li>Marco Calcagni</li>
+<li>Gianmarco Conte</li>
+<li>Link IT Europe Srl</li>
+</ul>
+</div>
+<div class="section" id="contributors">
+<h2><a class="toc-backref" href="#id9">Contributors</a></h2>
+<ul class="simple">
+<li>Riccardo Bellanova &lt;<a class="reference external" href="mailto:r.bellanova&#64;apuliasoftware.it">r.bellanova&#64;apuliasoftware.it</a>&gt;</li>
+<li>Matteo Bilotta &lt;<a class="reference external" href="mailto:mbilotta&#64;linkeurope.it">mbilotta&#64;linkeurope.it</a>&gt;</li>
+<li>Giuseppe Borruso &lt;<a class="reference external" href="mailto:gconte&#64;dinamicheaziendali.it">gconte&#64;dinamicheaziendali.it</a>&gt;</li>
+<li>Marco Calcagni &lt;<a class="reference external" href="mailto:mcalcagni&#64;dinamicheaziendali.it">mcalcagni&#64;dinamicheaziendali.it</a>&gt;</li>
+<li>Marco Colombo &lt;<a class="reference external" href="mailto:marco.colombo&#64;gmail.com">marco.colombo&#64;gmail.com</a>&gt;</li>
+<li>Gianmarco Conte &lt;<a class="reference external" href="mailto:gconte&#64;dinamicheaziendali.it">gconte&#64;dinamicheaziendali.it</a>&gt;</li>
+<li>Letizia Freda &lt;<a class="reference external" href="mailto:letizia.freda&#64;netfarm.it">letizia.freda&#64;netfarm.it</a>&gt;</li>
+<li>Andrea Piovesana &lt;<a class="reference external" href="mailto:andrea.m.piovesana&#64;gmail.com">andrea.m.piovesana&#64;gmail.com</a>&gt;</li>
+</ul>
+</div>
+<div class="section" id="maintainers">
+<h2><a class="toc-backref" href="#id10">Maintainers</a></h2>
+<p>This module is maintained by the OCA.</p>
+<a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
+<p>OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.</p>
+<p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainers</a>:</p>
+<p><a class="reference external" href="https://github.com/As400it"><img alt="As400it" src="https://github.com/As400it.png?size=40px" /></a> <a class="reference external" href="https://github.com/Byloth"><img alt="Byloth" src="https://github.com/Byloth.png?size=40px" /></a></p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_delivery_note">OCA/l10n-italy</a> project on GitHub.</p>
+<p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="wizard_export_fatturapa_form_view_dn" model="ir.ui.view">
+        <field name="name">wizard_export_fatturapa_form_view_dn</field>
+        <field name="model">wizard.export.fatturapa</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_fatturapa_out.wizard_export_fatturapa_form_view"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group" position="inside">
+                <field name="include_transport_data" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

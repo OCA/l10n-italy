@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+     <menuitem
+        name="C/O"
+        parent="account_accountant.menu_accounting"
+        id="l10n_it_ricevute_bancarie.menu_riba"
+    />
+
+</odoo>

@@ -1,0 +1,83 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="view_intrastat_company_form" model="ir.ui.view">
+        <field name="name">view_form_intrastat_company</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Intrastat">
+                    <group colspan="4">
+                        <group>
+                            <field name="intrastat_ua_code" options="{'size': 4}" />
+                            <field name="intrastat_uom_kg_id" />
+                            <field name="intrastat_additional_unit_from" />
+                            <field name="intrastat_exclude_free_line" />
+                            <field
+                                name="intrastat_delegated_name"
+                                options="{'size': 255}"
+                            />
+                            <field
+                                name="intrastat_delegated_vat"
+                                options="{'size': 16}"
+                            />
+                            <field name="intrastat_export_file_name" />
+                            <field name="intrastat_min_amount" />
+                        </group>
+                    </group>
+                    <group colspan="4">
+                        <group string="Sales Default Values">
+                            <field
+                                name="intrastat_sale_statistic_amount"
+                                string="Force Statistic Value in Euro"
+                            />
+                            <field
+                                name="intrastat_sale_transaction_nature_id"
+                                string="Transaction Nature"
+                            />
+                            <field
+                                name="intrastat_sale_delivery_code_id"
+                                string="Delivery Terms"
+                            />
+                            <field
+                                name="intrastat_sale_transport_code_id"
+                                string="Transport Mode"
+                            />
+                            <field
+                                name="intrastat_sale_province_origin_id"
+                                string="Origin Province"
+                            />
+                        </group>
+                        <group string="Purchases Default Values">
+                            <field
+                                name="intrastat_purchase_statistic_amount"
+                                string="Force Statistic Value in Euro"
+                            />
+                            <field
+                                name="intrastat_purchase_transaction_nature_id"
+                                string="Transaction Nature"
+                            />
+                            <field
+                                name="intrastat_purchase_delivery_code_id"
+                                string="Delivery Terms"
+                            />
+                            <field
+                                name="intrastat_purchase_transport_code_id"
+                                string="Transport Mode"
+                            />
+                            <field
+                                name="intrastat_purchase_province_destination_id"
+                                string="Destination Province"
+                            />
+                        </group>
+                    </group>
+                </page>
+
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
