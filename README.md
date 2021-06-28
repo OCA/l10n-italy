@@ -38,6 +38,7 @@ addon | version | summary
 [l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 14.0.1.0.0 | ITA - Tipi di documento fiscale per dichiarativi
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 14.0.1.0.0 | Condizioni di pagamento delle fatture elettroniche
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 14.0.1.0.1 | ITA - Codice fiscale
+[l10n_it_invoices_data_communication](l10n_it_invoices_data_communication/) | 14.0.1.0.0 | Comunicazione dati fatture (c.d. "nuovo spesometro" o "esterometro")
 [l10n_it_ipa](l10n_it_ipa/) | 14.0.1.0.2 | ITA - Codice IPA
 [l10n_it_payment_reason](l10n_it_payment_reason/) | 14.0.1.0.2 | Aggiunge la tabella delle causali di pagamento da usare ad esempio nelle ritenute d'acconto
 [l10n_it_pec](l10n_it_pec/) | 14.0.1.0.0 | Aggiunge il campo email PEC al partner
