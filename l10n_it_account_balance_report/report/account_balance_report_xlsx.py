@@ -3,7 +3,7 @@
 import logging
 
 from odoo import _, models
-from odoo.tools.float_utils import float_compare, float_is_zero
+from odoo.tools.float_utils import float_compare, float_is_zero, float_round
 
 _logger = logging.getLogger(__name__)
 
@@ -304,7 +304,7 @@ class AccountBalanceReportXslx(models.AbstractModel):
             for (l, cell), (val, style, allow) in self.get_line_info().items():
                 col, row = cell
                 if allow:
-                    self.sheet.write_string(row, col, str(val), style)
+                    self.sheet.write(row, col, val, style)
 
         self.row_pos += 2
 
@@ -449,9 +449,7 @@ class AccountBalanceReportXslx(models.AbstractModel):
             else:
                 style = None
         elif cell_type == 'amount':
-            value = self.format_value_by_lang(
-                round(float(value), decimals), decimals
-            )
+            value = float_round(float(value), decimals)
             if getattr(line, 'account_group_id', False):
                 style = self.format_amount_bold_right
             else:
@@ -462,9 +460,7 @@ class AccountBalanceReportXslx(models.AbstractModel):
                 or getattr(line, 'company_currency_id', False) \
                 or self.currency
             decimals = currency.decimal_places
-            value = self.format_value_by_lang(
-                line.currency_id.round(float(value)), decimals
-            )
+            value = float_round(float(value), decimals)
             if getattr(line, 'account_group_id', False):
                 style = self.format_amount_bold_right
             else:
@@ -472,9 +468,11 @@ class AccountBalanceReportXslx(models.AbstractModel):
             allow = True
 
         if value:
-            if isinstance(value, (int, float)):
+            if isinstance(value, (int, float)) \
+                    and cell_type not in ('amount', 'amount_currency'):
                 value = format(value, '.{}f'.format(decimals))
-            if not isinstance(value, str):
+            if not isinstance(value, str) \
+                    and cell_type not in ('amount', 'amount_currency'):
                 value = str(value)
             indent_field, indent_unit = self.get_indent_data(line, col_dict)
             if self.report.hierarchy_on != 'none' \
