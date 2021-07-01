@@ -257,7 +257,7 @@ msgid "Currency"
 msgstr "Valuta"
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:543
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:541
 #, python-format
 msgid "DEFICIT"
 msgstr "DISAVANZO"
@@ -537,7 +537,8 @@ msgstr "Nessun rendiconto definito per la tipologia \"{}\"."
 #: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:71
 #, python-format
 msgid "No report type has been declared for current print."
-msgstr "Non è stato dichiarato alcun tipo di rendiconto per la stampa corrente."
+msgstr ""
+"Non è stato dichiarato alcun tipo di rendiconto per la stampa corrente."
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__only_posted_moves
@@ -627,7 +628,7 @@ msgid "Right Col Name"
 msgstr "Nome col. destra"
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:543
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:541
 #, python-format
 msgid "SURPLUS"
 msgstr "ECCEDENZA"
