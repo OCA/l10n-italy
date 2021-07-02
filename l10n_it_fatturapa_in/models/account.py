@@ -174,9 +174,7 @@ class AccountInvoice(models.Model):
         "invoice_date",
     )
     def _compute_e_invoice_validation_error(self):
-        self.ensure_one()
-        self.e_invoice_validation_error = False
-        self.e_invoice_validation_message = False
+        other_account_moves = self
 
         bills_to_check = self.filtered(
             lambda inv: inv.is_purchase_document()
@@ -247,6 +245,12 @@ class AccountInvoice(models.Model):
                 continue
             bill.e_invoice_validation_error = True
             bill.e_invoice_validation_message = ",\n".join(error_messages) + "."
+            other_account_moves -= bill
+
+        other_account_moves.write({
+            'e_invoice_validation_error': False,
+            'e_invoice_validation_message': False,
+        })
 
     def name_get(self):
         result = super(AccountInvoice, self).name_get()
