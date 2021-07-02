@@ -36,7 +36,9 @@ class WithholdingTax(models.Model):
                 wt.base = rate[1]
 
     def _default_wt_journal(self):
-        misc_journal = self.env["account.journal"].search([("code", "=", _("MISC"))])
+        misc_journal = self.env["account.journal"].search(
+            [("code", "=", _("MISC")), ("company_id", "=", self.env.company.id)]
+        )
         if misc_journal:
             return misc_journal[0].id
         return False
@@ -105,7 +107,7 @@ class WithholdingTax(models.Model):
         if self.env.context.get("currency_id"):
             currency = self.env["res.currency"].browse(self.env.context["currency_id"])
         else:
-            currency = self.env.user.company_id.currency_id
+            currency = self.env.company.currency_id
         prec = currency.decimal_places
         base = round(amount * self.base, prec)
         tax = round(base * ((self.tax or 0.0) / 100.0), prec)
