@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo12-addon-currency_rate_update_boi',
         'odoo12-addon-fiscal_epos_print',
         'odoo12-addon-fiscal_epos_print_fiscalcode',
+        'odoo12-addon-fiscal_epos_print_meal_voucher',
         'odoo12-addon-l10n_it_abicab',
         'odoo12-addon-l10n_it_account',
         'odoo12-addon-l10n_it_account_balance_report',
