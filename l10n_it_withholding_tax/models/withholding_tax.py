@@ -36,7 +36,9 @@ class WithholdingTax(models.Model):
                 wt.base = rate[1]
 
     def _default_wt_journal(self):
-        misc_journal = self.env["account.journal"].search([("code", "=", _("MISC"))])
+        misc_journal = self.env["account.journal"].search(
+            [("code", "=", _("MISC")), ("company_id", "=", self.company_id.id)]
+        )
         if misc_journal:
             return misc_journal[0].id
         return False
