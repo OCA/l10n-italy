@@ -927,7 +927,7 @@ class WizardImportFatturapa(models.TransientModel):
             accounts_dict = template.get_product_accounts()
             credit_account = accounts_dict["expense"]
 
-        company = self.env.user.company_id
+        company = self.env.company
         # Search in purchase journal
         journal = self.get_purchase_journal(company)
         if not credit_account:
@@ -1296,7 +1296,7 @@ class WizardImportFatturapa(models.TransientModel):
             if invoice.efatt_rounding != 0:
                 if invoice.efatt_rounding > 0:
                     arrotondamenti_account_id = (
-                        self.env.user.company_id.arrotondamenti_passivi_account_id
+                        self.env.company.arrotondamenti_passivi_account_id
                     )
                     if not arrotondamenti_account_id:
                         raise UserError(
@@ -1305,7 +1305,7 @@ class WizardImportFatturapa(models.TransientModel):
                     name = _("Rounding down")
                 else:
                     arrotondamenti_account_id = (
-                        self.env.user.company_id.arrotondamenti_attivi_account_id
+                        self.env.company.arrotondamenti_attivi_account_id
                     )
                     if not arrotondamenti_account_id:
                         raise UserError(
