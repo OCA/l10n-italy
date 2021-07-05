@@ -15,8 +15,18 @@ class DichiarazioneIntentoYearlyLimit(models.Model):
 
     company_id = fields.Many2one('res.company', string='Company')
     year = fields.Char(required=True)
-    limit_amount = fields.Float()
-    used_amount = fields.Float(compute='_compute_used_amount')
+    limit_amount = fields.Float(
+        string='Plafond'
+    )
+    # TODO align terms: used_amount > issued_declarations
+    used_amount = fields.Float(
+        string='Issued Declarations',
+        compute='_compute_used_amount'
+    )
+    actual_used_amount = fields.Float(
+        string='Actual Used Amount',
+        compute='_compute_used_amount'
+    )
 
     @api.multi
     def _compute_used_amount(self):
@@ -30,6 +40,7 @@ class DichiarazioneIntentoYearlyLimit(models.Model):
                 ('date_end', '<=', date_end),
                 ('type', '=', 'in'), ])
             record.used_amount = sum([d.limit_amount for d in dichiarazioni])
+            record.actual_used_amount = sum([d.used_amount for d in dichiarazioni])
 
 
 class DichiarazioneIntento(models.Model):
@@ -103,8 +114,9 @@ class DichiarazioneIntento(models.Model):
             actual_limit_total = sum([d.limit_amount for d in dichiarazioni]) \
                 + values['limit_amount']
             if actual_limit_total > plafond.limit_amount:
-                raise UserError(
-                    _('Total of documents exceed yearly limit'))
+                if plafond.limit_amount < plafond.actual_used_amount:
+                    raise UserError(
+                        _('Total of documents exceed yearly limit'))
         # ----- Assign a number to dichiarazione
         if values and not values.get('number', ''):
             values['number'] = self.env['ir.sequence'].next_by_code(
