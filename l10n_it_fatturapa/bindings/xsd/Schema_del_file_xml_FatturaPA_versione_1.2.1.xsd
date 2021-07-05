@@ -1363,7 +1363,7 @@
   <xs:simpleType name="EmailType">
     <xs:restriction base="xs:normalizedString">
       <xs:maxLength value="256" />
-      <xs:pattern value="([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|&quot;(\[\]!#-[^-~ \t]|(\\[\t -~]))+&quot;)@([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*\])" />
+      <xs:pattern value=".+@.+[.]+.+" />
     </xs:restriction>
   </xs:simpleType>
   <!--________________ NUMBERS ____________________-->

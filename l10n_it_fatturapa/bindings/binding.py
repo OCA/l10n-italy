@@ -921,7 +921,7 @@ class EmailType (pyxb.binding.datatypes.normalizedString):
     _Documentation = None
 EmailType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(256))
 EmailType._CF_pattern = pyxb.binding.facets.CF_pattern()
-EmailType._CF_pattern.addPattern(pattern='([!#-\'*+/-9=?A-Z^-~-]+(\\.[!#-\'*+/-9=?A-Z^-~-]+)*|"(\\[\\]!#-[^-~ \\t]|(\\\\[\\t -~]))+")@([!#-\'*+/-9=?A-Z^-~-]+(\\.[!#-\'*+/-9=?A-Z^-~-]+)*|\\[[\\t -Z^-~]*\\])')
+EmailType._CF_pattern.addPattern(pattern='.+@.+[.]+.+')
 EmailType._InitializeFacetMap(EmailType._CF_maxLength,
    EmailType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'EmailType', EmailType)
