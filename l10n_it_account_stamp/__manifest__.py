@@ -4,7 +4,7 @@
 # Copyright 2018 Lorenzo Battistini (https://github.com/eLBati)
 # Copyright 2018-2020 Sergio Zanchetta (https://github.com/primes2h)
 # Copyright 2021 Gianmarco Conte <gconte@dinamicheaziendali.it>
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 {
     "name": "ITA - Imposta di bollo",
@@ -14,7 +14,7 @@
     "author": "Ermanno Gnan, Sergio Corato, Enrico Ganzaroli, "
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
-    "license": "LGPL-3",
+    "license": "AGPL-3",
     "depends": [
         "product",
         "account",

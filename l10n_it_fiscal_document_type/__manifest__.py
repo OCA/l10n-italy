@@ -1,7 +1,7 @@
 # Copyright 2017 Alessandro Camilli
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2018 Lorenzo Battistini (https://github.com/eLBati)
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 {
     "name": "ITA - Tipi di documento fiscale per dichiarativi",

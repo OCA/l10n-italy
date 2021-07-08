@@ -1,7 +1,7 @@
 # © 2017 Alessandro Camilli - Openforce
 # Copyright 2019 Stefano Consolaro (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2021 Alex Comba - Agile Business Group
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 {
     "name": "ITA - Codici carica",
@@ -11,7 +11,7 @@
     " fiscali italiane",
     "author": "Openforce di Camilli Alessandro, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
-    "license": "LGPL-3",
+    "license": "AGPL-3",
     "depends": ["account"],
     "data": [
         "security/ir.model.access.csv",
