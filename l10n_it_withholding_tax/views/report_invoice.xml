@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="print_withholding_tax" model="ir.ui.view">
+        <field name="name">print_withholding_tax</field>
+        <field name="inherit_id" ref="account.report_invoice_document" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//table[@name='invoice_line_table']/thead/tr/th[6]"
+                position="after"
+            >
+                <t t-if="o.withholding_tax_in_print and o.withholding_tax">
+                    <th class="text-right">
+                        Withholding Tax
+                    </th>
+                </t>
+            </xpath>
+
+            <xpath
+                expr="//table[@name='invoice_line_table']/tbody[hasclass('invoice_tbody')]//td[6]"
+                position="after"
+            >
+                <t t-if="o.withholding_tax_in_print and o.withholding_tax">
+                    <td class="text-right">
+                        <span
+                            t-esc="', '.join(map(lambda x: (x.name), line.invoice_line_tax_wt_ids))"
+                        />
+                    </td>
+                </t>
+            </xpath>
+
+            <xpath expr="//div[@id='total']//tr[hasclass('o_total')]" position="after">
+                <t t-if="o.withholding_tax_in_print and o.withholding_tax">
+                    <tr>
+                        <td>
+                            <span>Withholding Tax</span>
+                        </td>
+                        <td class="text-right">
+                            <span
+                                t-field="o.withholding_tax_amount"
+                                t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
+                            />
+                        </td>
+                    </tr>
+                    <tr class="border-black">
+                        <td>
+                            <strong>Net To Pay</strong>
+                        </td>
+                        <td class="text-right">
+                            <span
+                                t-field="o.amount_net_pay"
+                                t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
+                            />
+                        </td>
+                    </tr>
+                </t>
+            </xpath>
+
+            <xpath expr="//t[@t-if='print_with_payments']/t" position="inside">
+                <t t-if="o.withholding_tax_in_print and len(payments_vals) > 0">
+                    <tr class="border-black">
+                        <td>
+                            <strong>Residual Net To Pay</strong>
+                        </td>
+                        <td class="text-right">
+                            <span
+                                t-field="o.amount_net_pay_residual"
+                                t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
+                            />
+                        </td>
+                    </tr>
+                </t>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -5,7 +5,7 @@
 
 {
     "name": "ITA - Ritenute d'acconto",
-    "version": "14.0.1.0.5",
+    "version": "14.0.1.1.0",
     "category": "Account",
     "author": "Openforce, Odoo Italia Network, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
@@ -17,6 +17,7 @@
     "data": [
         "views/account.xml",
         "views/withholding_tax.xml",
+        "views/report_invoice.xml",
         "security/ir.model.access.csv",
         "security/security.xml",
     ],
