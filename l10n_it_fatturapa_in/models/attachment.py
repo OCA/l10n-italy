@@ -94,6 +94,8 @@ class FatturaPAAttachmentIn(models.Model):
             att.invoices_number = False
             att.invoices_total = False
             att.invoices_date = False
+            if not att.ir_attachment_id.datas:
+                continue
             wiz_obj = self.env["wizard.import.fatturapa"].with_context(
                 from_attachment=att
             )
