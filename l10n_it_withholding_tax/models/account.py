@@ -344,6 +344,9 @@ class AccountMove(models.Model):
             )
 
     withholding_tax = fields.Boolean("Withholding Tax")
+    withholding_tax_in_print = fields.Boolean(
+        "Show Withholding Tax In Print", default=True
+    )
     withholding_tax_line_ids = fields.One2many(
         "account.invoice.withholding.tax",
         "invoice_id",
