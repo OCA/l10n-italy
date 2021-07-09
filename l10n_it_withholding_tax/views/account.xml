@@ -113,6 +113,13 @@
                 </xpath>
 
                 <xpath
+                    expr="//page[@name='other_info']/group[1]/group[last()]"
+                    position="after"
+                ><group name="withholding_tax_info"><field
+                            name="withholding_tax_in_print"
+                        /></group></xpath>
+
+                <xpath
                     expr="//group/group/field[@name='payment_reference']"
                     position="after"
                 >
