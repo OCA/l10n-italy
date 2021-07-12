@@ -9,6 +9,7 @@
             <field name="type_tax_use">sale</field>
             <field
                 name="invoice_repartition_line_ids"
+                model="account.tax.repartition.line"
                 eval="[(5, 0, 0),
                 (0,0, {
                     'factor_percent': 100,
@@ -17,12 +18,13 @@
                 (0,0, {
                     'factor_percent': 100,
                     'repartition_type': 'tax',
-                    'account_id': ref('l10n_it.2601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_payable', raise_if_not_found=False) or ref('account.account').search([('user_type_id', '=', 'account.data_account_type_current_liabilities')], limit=1),
+                    'account_id': ref('l10n_it.2601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_payable', raise_if_not_found=False) or obj().env['account.account'].search([('user_type_id', '=', ref('account.data_account_type_current_liabilities'))], limit=1).id,
                 }),
             ]"
             />
             <field
                 name="refund_repartition_line_ids"
+                model="account.tax.repartition.line"
                 eval="[(5, 0, 0),
                 (0,0, {
                     'factor_percent': 100,
@@ -31,7 +33,7 @@
                 (0,0, {
                     'factor_percent': 100,
                     'repartition_type': 'tax',
-                    'account_id': ref('l10n_it.2601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_payable', raise_if_not_found=False) or ref('account.account').search([('user_type_id', '=', 'account.data_account_type_current_liabilities')], limit=1),
+                    'account_id': ref('l10n_it.2601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_payable', raise_if_not_found=False) or obj().env['account.account'].search([('user_type_id', '=', ref('account.data_account_type_current_liabilities'))], limit=1).id,
                 }),
             ]"
             />
@@ -44,6 +46,7 @@
             <field name="type_tax_use">sale</field>
             <field
                 name="invoice_repartition_line_ids"
+                model="account.tax.repartition.line"
                 eval="[(5, 0, 0),
                 (0,0, {
                     'factor_percent': 100,
@@ -52,12 +55,13 @@
                 (0,0, {
                     'factor_percent': 100,
                     'repartition_type': 'tax',
-                    'account_id': ref('l10n_it.2601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_payable', raise_if_not_found=False) or ref('account.account').search([('user_type_id', '=', 'account.data_account_type_current_liabilities')], limit=1),
+                    'account_id': ref('l10n_it.2601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_payable', raise_if_not_found=False) or obj().env['account.account'].search([('user_type_id', '=', ref('account.data_account_type_current_liabilities'))], limit=1).id,
                 }),
             ]"
             />
             <field
                 name="refund_repartition_line_ids"
+                model="account.tax.repartition.line"
                 eval="[(5, 0, 0),
                 (0,0, {
                     'factor_percent': 100,
@@ -66,7 +70,7 @@
                 (0,0, {
                     'factor_percent': 100,
                     'repartition_type': 'tax',
-                    'account_id': ref('l10n_it.2601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_payable', raise_if_not_found=False) or ref('account.account').search([('user_type_id', '=', 'account.data_account_type_current_liabilities')], limit=1),
+                    'account_id': ref('l10n_it.2601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_payable', raise_if_not_found=False) or obj().env['account.account'].search([('user_type_id', '=', ref('account.data_account_type_current_liabilities'))], limit=1).id,
                 }),
             ]"
             />
@@ -79,6 +83,7 @@
             <field name="type_tax_use">purchase</field>
             <field
                 name="invoice_repartition_line_ids"
+                model="account.tax.repartition.line"
                 eval="[(5, 0, 0),
                 (0,0, {
                     'factor_percent': 100,
@@ -87,12 +92,13 @@
                 (0,0, {
                     'factor_percent': 100,
                     'repartition_type': 'tax',
-                    'account_id': ref('l10n_it.1601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_receivable', raise_if_not_found=False) or ref('account.account').search([('user_type_id', '=', 'account.data_account_type_current_assets')], limit=1),
+                    'account_id': ref('l10n_it.1601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_receivable', raise_if_not_found=False) or obj().env['account.account'].search([('user_type_id', '=', ref('account.data_account_type_current_assets'))], limit=1).id,
                 }),
             ]"
             />
             <field
                 name="refund_repartition_line_ids"
+                model="account.tax.repartition.line"
                 eval="[(5, 0, 0),
                 (0,0, {
                     'factor_percent': 100,
@@ -101,7 +107,7 @@
                 (0,0, {
                     'factor_percent': 100,
                     'repartition_type': 'tax',
-                    'account_id': ref('l10n_it.1601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_receivable', raise_if_not_found=False) or ref('account.account').search([('user_type_id', '=', 'account.data_account_type_current_assets')], limit=1),
+                    'account_id': ref('l10n_it.1601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_receivable', raise_if_not_found=False) or obj().env['account.account'].search([('user_type_id', '=', ref('account.data_account_type_current_assets'))], limit=1).id,
                 }),
             ]"
             />
@@ -115,6 +121,7 @@
             <field name="type_tax_use">sale</field>
             <field
                 name="invoice_repartition_line_ids"
+                model="account.tax.repartition.line"
                 eval="[(5, 0, 0),
                 (0,0, {
                     'factor_percent': 100,
@@ -123,12 +130,13 @@
                 (0,0, {
                     'factor_percent': 100,
                     'repartition_type': 'tax',
-                    'account_id': ref('l10n_it.2601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_payable', raise_if_not_found=False) or ref('account.account').search([('user_type_id', '=', 'account.data_account_type_current_liabilities')], limit=1),
+                    'account_id': ref('l10n_it.2601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_payable', raise_if_not_found=False) or obj().env['account.account'].search([('user_type_id', '=', ref('account.data_account_type_current_liabilities'))], limit=1).id,
                 }),
             ]"
             />
             <field
                 name="refund_repartition_line_ids"
+                model="account.tax.repartition.line"
                 eval="[(5, 0, 0),
                 (0,0, {
                     'factor_percent': 100,
@@ -137,7 +145,7 @@
                 (0,0, {
                     'factor_percent': 100,
                     'repartition_type': 'tax',
-                    'account_id': ref('l10n_it.2601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_payable', raise_if_not_found=False) or ref('account.account').search([('user_type_id', '=', 'account.data_account_type_current_liabilities')], limit=1),
+                    'account_id': ref('l10n_it.2601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_payable', raise_if_not_found=False) or obj().env['account.account'].search([('user_type_id', '=', ref('account.data_account_type_current_liabilities'))], limit=1).id,
                 }),
             ]"
             />
