@@ -40165,6 +40165,11 @@ msgid "Salad beet seed or beetroot seed \"Beta vulgaris var. conditiva\", for so
 msgstr ""
 
 #. module: l10n_it_intrastat
+#: model:ir.model,name:l10n_it_intrastat.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.731213
 msgid "Sale of Internet advertising space or time on a fee or contract basis"
 msgstr ""
