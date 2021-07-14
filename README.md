@@ -45,7 +45,7 @@ addon | version | summary
 [l10n_it_pec](l10n_it_pec/) | 14.0.1.0.0 | Aggiunge il campo email PEC al partner
 [l10n_it_rea](l10n_it_rea/) | 14.0.1.0.2 | Gestisce i campi del Repertorio Economico Amministrativo
 [l10n_it_split_payment](l10n_it_split_payment/) | 14.0.1.0.1 | Scissione pagamenti
-[l10n_it_vat_payability](l10n_it_vat_payability/) | 14.0.1.0.1 | ITA - Esigibilità IVA
+[l10n_it_vat_payability](l10n_it_vat_payability/) | 14.0.1.0.2 | ITA - Esigibilità IVA
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 14.0.1.0.0 | ITA - Registri IVA
 [l10n_it_vat_registries_split_payment](l10n_it_vat_registries_split_payment/) | 14.0.1.1.0 | Modulo di congiunzione tra registri IVA e scissione dei pagamenti
 [l10n_it_vat_statement_communication](l10n_it_vat_statement_communication/) | 14.0.1.0.0 | Comunicazione liquidazione IVA ed esportazione file xmlconforme alle specifiche dell'Agenzia delle Entrate
