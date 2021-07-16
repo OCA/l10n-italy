@@ -935,6 +935,12 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.invoice_line_ids[1].price_unit, 3.52)
         self.assertEqual(invoice.invoice_line_ids[1].quantity, 1.0)
 
+    def test_e_invoice_field_compute(self):
+        """Check successful creation of multiple invoices.
+        See https://github.com/OCA/l10n-italy/issues/2349"""
+        invoices = self.invoice_model.create([{}, {}])
+        self.assertEqual(invoices.mapped("e_invoice_validation_error"), [False, False])
+
 
 class TestFatturaPAEnasarco(FatturapaCommon):
     def setUp(self):
