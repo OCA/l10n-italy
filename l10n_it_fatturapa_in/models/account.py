@@ -174,7 +174,6 @@ class AccountInvoice(models.Model):
         "invoice_date",
     )
     def _compute_e_invoice_validation_error(self):
-        self.ensure_one()
         self.e_invoice_validation_error = False
         self.e_invoice_validation_message = False
 
