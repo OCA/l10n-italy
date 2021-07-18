@@ -11,7 +11,7 @@
             <CodiceDestinatario>0000000</CodiceDestinatario>
             <ContattiTrasmittente>
                 <Telefono>06543534343</Telefono>
-                <Email>info@yourcompany.example.com</Email>
+                <Email>www.example.com / info@yourcompany.example.com</Email>
             </ContattiTrasmittente>
             <PECDestinatario>test@pec.it</PECDestinatario>
         </DatiTrasmissione>
