@@ -51,8 +51,8 @@ msgstr "Berechne"
 
 #. module: l10n_it_fiscalcode
 #: model_terms:ir.ui.view,arch_db:l10n_it_fiscalcode.view_partner_form_fiscalcode_button
-msgid "Compute F.C."
-msgstr "Berechne Steuernummer"
+msgid "Compute FC"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.actions.act_window,name:l10n_it_fiscalcode.action_compute_fc
@@ -90,12 +90,14 @@ msgstr "Geburtsdatum"
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__display_name
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct__display_name
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_company__display_name
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner__display_name
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc__display_name
 msgid "Display Name"
 msgstr "Anzeigename"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:192
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:0
 #, python-format
 msgid ""
 "Existing fiscal code %(partner_fiscalcode)s is different from the computed "
@@ -107,7 +109,7 @@ msgstr ""
 "entfernen die den existierenden onepartner_fiscalcode"
 
 #. module: l10n_it_fiscalcode
-#: selection:wizard.compute.fc,sex:0
+#: model:ir.model.fields.selection,name:l10n_it_fiscalcode.selection__wizard_compute_fc__sex__f
 msgid "Female"
 msgstr "Weiblich"
 
@@ -133,6 +135,8 @@ msgstr "Steuernummer"
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__id
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct__id
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_company__id
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner__id
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc__id
 msgid "ID"
 msgstr "ID"
@@ -152,6 +156,8 @@ msgstr "Italienische Steuernummer"
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code____last_update
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct____last_update
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_company____last_update
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner____last_update
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc____last_update
 msgid "Last Modified on"
 msgstr "Zuletzt modifiziert am"
@@ -169,7 +175,7 @@ msgid "Last Updated on"
 msgstr "Zuletzt erneuert am"
 
 #. module: l10n_it_fiscalcode
-#: selection:wizard.compute.fc,sex:0
+#: model:ir.model.fields.selection,name:l10n_it_fiscalcode.selection__wizard_compute_fc__sex__m
 msgid "Male"
 msgstr "Männlich"
 
@@ -201,7 +207,7 @@ msgid "National code"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:188
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:0
 #, python-format
 msgid "National code is missing"
 msgstr ""
@@ -217,7 +223,7 @@ msgid "Notes"
 msgstr "Notizen"
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:184
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:0
 #, python-format
 msgid "One or more fields are missing"
 msgstr "Eines oder mehrere Felder fehlen"
@@ -244,7 +250,8 @@ msgid "Surname"
 msgstr "Nachname"
 
 #. module: l10n_it_fiscalcode
-#: constraint:res.partner:0
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:0
+#, python-format
 msgid "The fiscal code doesn't seem to be correct."
 msgstr ""
 
@@ -252,6 +259,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__var_date
 msgid "Variation date"
 msgstr ""
+
+#~ msgid "Compute F.C."
+#~ msgstr "Berechne Steuernummer"
 
 #~ msgid "Individual"
 #~ msgstr "Person"
