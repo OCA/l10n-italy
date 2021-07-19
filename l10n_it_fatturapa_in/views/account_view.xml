@@ -425,6 +425,7 @@
                         <field name="fatturapa_payments" nolabel="1" readonly="1">
                             <tree string="Payments">
                                 <field name="payment_terms" />
+                                <field name="payment_methods" />
                             </tree>
                             <form string="Payments" version="7.0">
                                 <sheet>
@@ -436,7 +437,59 @@
                                         name="payment_methods"
                                         nolabel="1"
                                         readonly="1"
-                                    />
+                                    >
+                                           <tree>
+                                               <field name="payment_due_date" />
+                                               <field name="payment_amount" />
+                                               <field name="payment_bank" />
+                                           </tree>
+                                           <form>
+                                               <group>
+                                                   <group>
+                                                       <field name="recipient" />
+                                                       <field name="fatturapa_pm_id" />
+                                                       <field
+                                                        name="payment_term_start"
+                                                    />
+                                                       <field name="payment_days" />
+                                                       <field name="payment_due_date" />
+                                                       <field name="payment_amount" />
+                                                   </group>
+                                                   <group>
+                                                       <field name="post_office_code" />
+                                                       <field name="recepit_surname" />
+                                                       <field name="recepit_cf" />
+                                                       <field name="recepit_title" />
+                                                   </group>
+                                               </group>
+                                               <group>
+                                                   <group>
+                                                       <field
+                                                        name="payment_bank_name"
+                                                    />
+                                                       <field
+                                                        name="payment_bank_iban"
+                                                    />
+                                                       <field name="payment_bank_abi" />
+                                                       <field name="payment_bank_cab" />
+                                                       <field name="payment_bank_bic" />
+                                                       <field name="payment_bank" />
+                                                   </group>
+                                                   <group>
+                                                       <field
+                                                        name="prepayment_discount"
+                                                    />
+                                                       <field name="max_payment_date" />
+                                                       <field name="penalty_amount" />
+                                                       <field name="penalty_date" />
+                                                       <field name="payment_code" />
+                                                       <field
+                                                        name="account_move_line_id"
+                                                    />
+                                                   </group>
+                                               </group>
+                                           </form>
+                                        </field>
                                     </group>
                                 </sheet>
                             </form>
