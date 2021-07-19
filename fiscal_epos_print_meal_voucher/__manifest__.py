@@ -20,6 +20,7 @@
     "data": [
         "views/assets.xml",
         "views/account_views.xml",
+        "views/pos_config_views.xml",
     ],
     "qweb": [
         "static/src/xml/pos.xml",
