@@ -27,3 +27,8 @@ class ResPartner(models.Model):
         return True
 
     fiscalcode = fields.Char("Fiscal Code", size=16, help="Italian Fiscal Code")
+
+    @api.onchange("fiscalcode")
+    def _fiscalcode_changed(self):
+        if self.fiscalcode:
+            self.fiscalcode = self.fiscalcode.upper()
