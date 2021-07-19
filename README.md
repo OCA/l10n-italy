@@ -37,7 +37,7 @@ addon | version | summary
 [l10n_it_fatturapa_out_stamp](l10n_it_fatturapa_out_stamp/) | 14.0.1.0.0 | Modulo ponte tra emissione fatture elettroniche e imposta di bollo
 [l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 14.0.1.0.0 | ITA - Tipi di documento fiscale per dichiarativi
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 14.0.1.0.0 | Condizioni di pagamento delle fatture elettroniche
-[l10n_it_fiscalcode](l10n_it_fiscalcode/) | 14.0.1.0.1 | ITA - Codice fiscale
+[l10n_it_fiscalcode](l10n_it_fiscalcode/) | 14.0.1.0.2 | ITA - Codice fiscale
 [l10n_it_invoices_data_communication](l10n_it_invoices_data_communication/) | 14.0.1.0.0 | Comunicazione dati fatture (c.d. "nuovo spesometro" o "esterometro")
 [l10n_it_invoices_data_communication_fatturapa](l10n_it_invoices_data_communication_fatturapa/) | 14.0.1.0.0 | Integrazione fatturazione elettronica e comunicazione dati fatture (c.d. "nuovo spesometro")
 [l10n_it_ipa](l10n_it_ipa/) | 14.0.1.0.2 | ITA - Codice IPA
