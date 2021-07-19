@@ -49,6 +49,21 @@ class AccountMove(models.Model):
             and move_type in ["out_invoice", "out_refund", "in_invoice", "in_refund"]
         ):
             dt = self.env["fiscal.document.type"].search([(move_type, "=", True)]).ids
+
+        # Refund Document type
+        if (dt or doc_id) and "refund" in move_type:
+            fdt = self.env["fiscal.document.type"].browse(doc_id or dt[0])
+            if (
+                fdt
+                and not fdt.out_refund
+                and not fdt.in_refund
+                and fdt.refund_fiscal_document_type_id
+            ):
+                if dt:
+                    dt[0] = fdt.refund_fiscal_document_type_id.id
+                else:
+                    dt.append(fdt.refund_fiscal_document_type_id.id)
+
         if doc_id:
             dt.append(doc_id)
         return dt
@@ -60,3 +75,10 @@ class AccountMove(models.Model):
         store=True,
         readonly=False,
     )
+
+    def _reverse_move_vals(self, default_values, cancel=True):
+        vals = super()._reverse_move_vals(default_values, cancel)
+        # when reversing a move, fiscal_document_type_id should be recomputed, not copied
+        if "fiscal_document_type_id" in vals:
+            del vals["fiscal_document_type_id"]
+        return vals
