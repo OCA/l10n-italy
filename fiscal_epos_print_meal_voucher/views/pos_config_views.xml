@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_pos_config_form" model="ir.ui.view">
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="pos_meal_voucher.view_pos_config_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='meal_voucher_display_product_screen']/../.." position="after">
+                <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_right_pane">
+                        <span class="o_form_label">Ticket credit product</span>
+                        <div class="text-muted">
+                            Product used when issuing credit instead of giving change after receiving meal vouchers
+                        </div>
+                        <div class="content-group mt16">
+                            <field name="ticket_credit_product_id" colspan="4" nolabel="1" options="{'no_create': True}"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
