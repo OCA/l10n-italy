@@ -12,6 +12,8 @@ class TestIntrastat(AccountingTestCase):
         self.partner01 = self.env.ref('base.res_partner_1')
         self.product01 = self.env.ref('product.product_product_10')
         self.account_account_model = self.env['account.account']
+        self.so_model = self.env['sale.order']
+        self.fp_model = self.env['account.fiscal.position']
 
         self.account_account_receivable = self.account_account_model.create({
             'code': '1',
@@ -32,6 +34,20 @@ class TestIntrastat(AccountingTestCase):
             [('type', '=', 'sale')])[0]
 
         self.tax22 = self.env.ref('l10n_it_intrastat.tax_22')
+
+    def _create_invoice_from_sale(self, sale):
+        payment = self.env['sale.advance.payment.inv'].create({
+            'advance_payment_method': 'delivered'
+        })
+        sale_context = {
+            'active_id': sale.id,
+            'active_ids': sale.ids,
+            'active_model': 'sale.order',
+            'open_invoices': True,
+        }
+        res = payment.with_context(sale_context).create_invoices()
+        invoice = self.env['account.invoice'].browse(res['res_id'])
+        return invoice
 
     def test_invoice_totals(self):
         invoice = self.invoice_model.create({
@@ -61,3 +77,24 @@ class TestIntrastat(AccountingTestCase):
         total_intrastat_amount = sum(
             l.amount_currency for l in invoice.intrastat_line_ids)
         self.assertEqual(total_intrastat_amount, invoice.amount_untaxed)
+
+    def test_invoice_from_sale(self):
+        self.product01.invoice_policy = 'order'
+        self.partner01.property_account_position_id = self.fp_model.create({
+            'name': 'F.P subjected to intrastat',
+            'intrastat': True,
+        })
+        so = self.so_model.create({
+            'partner_id': self.partner01.id,
+            'partner_invoice_id': self.partner01.id,
+            'order_line': [
+                (0, 0, {
+                    'product_id': self.product01.id,
+                    'product_uom_qty': 1,
+                    'product_uom': self.product01.uom_id.id,
+                }),
+            ]
+        })
+        so.action_confirm()
+        invoice = self._create_invoice_from_sale(so)
+        self.assertTrue(invoice.intrastat)

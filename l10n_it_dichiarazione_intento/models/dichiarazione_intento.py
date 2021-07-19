@@ -53,10 +53,10 @@ class DichiarazioneIntento(models.Model):
                                  required=True)
     telematic_protocol = fields.Char(required=True)
     partner_document_number = fields.Char(
-        required=True, string='Document Number',
+        string='Document Number',
         help='Number of partner\'s document')
     partner_document_date = fields.Date(
-        required=True, string='Document Date',
+        string='Document Date',
         help='Date of partner\'s document')
     taxes_ids = fields.Many2many('account.tax', string='Taxes',
                                  required=True)
