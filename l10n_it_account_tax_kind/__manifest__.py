@@ -7,7 +7,7 @@
 
 {
     "name": "ITA - Natura delle aliquote IVA",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "development_status": "Production/Stable",
     "category": "Localization/Italy",
     "summary": "Gestione natura delle aliquote IVA",

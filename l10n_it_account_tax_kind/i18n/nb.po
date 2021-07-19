@@ -35,21 +35,25 @@ msgid "Created on"
 msgstr "Opprettet den"
 
 #. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax__display_name
 #: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: l10n_it_account_tax_kind
 #: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax__kind_id
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_tax_kind.view_account_tax_search_tax_kind
 msgid "Exemption Kind"
 msgstr ""
 
 #. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax__id
 #: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__id
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax____last_update
 #: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind____last_update
 msgid "Last Modified on"
 msgstr "Sist oppdatert "
