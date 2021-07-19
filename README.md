@@ -23,7 +23,7 @@ addon | version | summary
 [l10n_it_abicab](l10n_it_abicab/) | 14.0.1.0.0 | Base Bank ABI/CAB codes
 [l10n_it_account](l10n_it_account/) | 14.0.1.1.0 | Modulo base usato come dipendenza di altri moduli contabili
 [l10n_it_account_stamp](l10n_it_account_stamp/) | 14.0.1.0.0 | Gestione automatica dell'imposta di bollo
-[l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 14.0.1.0.0 | Gestione natura delle aliquote IVA
+[l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 14.0.1.0.1 | Gestione natura delle aliquote IVA
 [l10n_it_appointment_code](l10n_it_appointment_code/) | 14.0.1.0.0 | Aggiunge la tabella dei codici carica da usare nelle dichiarazioni fiscali italiane
 [l10n_it_ateco](l10n_it_ateco/) | 14.0.1.0.0 | ITA - Codici Ateco
 [l10n_it_central_journal](l10n_it_central_journal/) | 14.0.1.0.0 | ITA - Libro giornale
