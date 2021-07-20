@@ -20,7 +20,7 @@ msgstr ""
 "2:1));\n"
 
 #. module: l10n_it_rea
-#: code:addons/l10n_it_rea/models/res_company.py:54
+#: code:addons/l10n_it_rea/models/res_company.py:0
 #, python-format
 msgid "%s - %s / Share Cap. %s € / %s / %s"
 msgstr ""
@@ -36,8 +36,26 @@ msgid "Contact"
 msgstr ""
 
 #. module: l10n_it_rea
-#: selection:res.partner,rea_liquidation_state:0
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__display_name
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_rea
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__id
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_rea
+#: model:ir.model.fields.selection,name:l10n_it_rea.selection__res_partner__rea_liquidation_state__ls
 msgid "In liquidation"
+msgstr ""
+
+#. module: l10n_it_rea
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_company____last_update
+#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner____last_update
+msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_it_rea
@@ -55,12 +73,12 @@ msgid "Member Type"
 msgstr ""
 
 #. module: l10n_it_rea
-#: selection:res.partner,rea_member_type:0
+#: model:ir.model.fields.selection,name:l10n_it_rea.selection__res_partner__rea_member_type__sm
 msgid "Multiple Members"
 msgstr ""
 
 #. module: l10n_it_rea
-#: selection:res.partner,rea_liquidation_state:0
+#: model:ir.model.fields.selection,name:l10n_it_rea.selection__res_partner__rea_liquidation_state__ln
 msgid "Not in liquidation"
 msgstr ""
 
@@ -96,12 +114,15 @@ msgid "Share Capital"
 msgstr ""
 
 #. module: l10n_it_rea
-#: sql_constraint:res.partner:0
-msgid "The rea code code must be unique per company !"
+#: code:addons/l10n_it_rea/models/res_partner.py:0
+#, python-format
+msgid ""
+"The REA Code and Office Province must be unique per company.\n"
+"Please edit '{this_partner}' or '{other_partners}' and try again."
 msgstr ""
 
 #. module: l10n_it_rea
-#: selection:res.partner,rea_member_type:0
+#: model:ir.model.fields.selection,name:l10n_it_rea.selection__res_partner__rea_member_type__su
 msgid "Unique Member"
 msgstr ""
 
