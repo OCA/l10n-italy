@@ -90,8 +90,10 @@ msgid "Share Capital"
 msgstr ""
 
 #. module: l10n_it_rea
-#: sql_constraint:res.partner:0
-msgid "The rea code code must be unique per company !"
+#: code:addons/l10n_it_rea/models/res_partner.py:35
+#, python-format
+msgid "The REA Code and Office Province must be unique per company.\n"
+"Please edit '{this_partner}' or '{other_partners}' and try again."
 msgstr ""
 
 #. module: l10n_it_rea
