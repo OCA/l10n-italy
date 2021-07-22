@@ -45,6 +45,9 @@
                         <t t-set="tot_debit" t-value="progressive_debit"/>
                         <t t-set="class_new_move" t-value="''"/>
 
+                        <t t-if="counter==0">
+                            <t t-set="counter" t-value="counter + 1"/>
+                        </t>
                         <tbody>
                             <tr style="page-break-inside: avoid;">
                                 <td class="left_without_line"></td>
@@ -68,7 +71,7 @@
                             </tr>
 
                             <t t-foreach="get_move(data['ids'])" t-as="line">
-                                <t t-set="counter" t-value="counter + 1"/>
+
                                 <t t-set="tot_credit"
                                    t-value="tot_credit + line.credit"/>
                                 <t t-set="tot_debit"
@@ -139,6 +142,7 @@
 
                                 <t t-set="save_move_id"
                                    t-value="line.move_id.id"/>
+                                <t t-set="counter" t-value="counter + 1"/>
                             </t>
                             <t t-set="class_new_move" t-value="'new_move'"/>
                             <tr style="page-break-inside: avoid;"
@@ -165,9 +169,12 @@
                     </table>
                     <br/>
                 </div>
+
                 <t t-set="save_move_id"
                    t-value="save_print_info(daterange,print_state,date_move_line_to,counter,tot_debit,tot_credit)"/>
+
             </t>
+
         </t>
     </template>
 

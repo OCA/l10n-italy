@@ -18,6 +18,7 @@ class ReportGiornale(models.AbstractModel):
         lang = self.env['res.lang']
         lang_id = lang._lang_get(lang_code)
         date_format = lang_id.date_format
+
         return {
             'doc_ids': data['ids'],
             'doc_model': self.env['account.move.line'],
