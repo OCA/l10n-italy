@@ -142,7 +142,7 @@ Di seguito, una piccola lista di passi da seguire per portare a termine la migra
 
 4. Lanciare Odoo, nella maniera in cui si è soliti fare, aggiungendo alcuni parametri al comando d’avvio:
 
-   `./odoo-bin migrate_ddt_data --database <nome_database> [...]`
+   `./odoo-bin migratel10nitddt --database <nome_database> [...]`
 
 5. Una volta terminata l’esecuzione della procedura, verificare che tutti i documenti siano stati migrati con successo e nel modo atteso.
 
