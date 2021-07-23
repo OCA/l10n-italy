@@ -27,7 +27,7 @@ addon | version | summary
 [l10n_it_appointment_code](l10n_it_appointment_code/) | 14.0.1.0.0 | Aggiunge la tabella dei codici carica da usare nelle dichiarazioni fiscali italiane
 [l10n_it_ateco](l10n_it_ateco/) | 14.0.1.0.0 | ITA - Codici Ateco
 [l10n_it_central_journal](l10n_it_central_journal/) | 14.0.1.0.0 | ITA - Libro giornale
-[l10n_it_delivery_note](l10n_it_delivery_note/) | 14.0.1.0.2 | Crea, gestisce e fattura i DDT partendo dalle consegne
+[l10n_it_delivery_note](l10n_it_delivery_note/) | 14.0.1.0.3 | Crea, gestisce e fattura i DDT partendo dalle consegne
 [l10n_it_delivery_note_base](l10n_it_delivery_note_base/) | 14.0.1.0.0 | Crea e gestisce tabelle principali per gestire i DDT
 [l10n_it_delivery_note_batch](l10n_it_delivery_note_batch/) | 14.0.1.0.0 | Crea i DDT partendo da gruppi di prelievi
 [l10n_it_delivery_note_order_link](l10n_it_delivery_note_order_link/) | 14.0.1.0.0 | Crea collegamento tra i DDT e ordine di vendita/acquisto
