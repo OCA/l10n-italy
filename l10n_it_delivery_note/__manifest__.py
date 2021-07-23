@@ -13,7 +13,7 @@
     "author": "Marco Calcagni, Gianmarco Conte, Link IT Europe Srl, "
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
-    "version": "14.0.1.0.2",
+    "version": "14.0.1.0.3",
     "category": "Localization/Italy",
     "license": "AGPL-3",
     "maintainers": ["As400it", "Byloth"],
