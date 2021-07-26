@@ -26,4 +26,13 @@
         </t>
     </t>
 
+    <t t-extend="PaymentScreen-Paymentmethods">
+        <t t-jquery="table.meal-voucher-summary" t-operation="after">
+            <div id="meal-voucher-issue-credit"
+                 style="border-top-width: 1px; border-top-left-radius: 3px; border-top-right-radius: 3px; line-height: 74px;
+                 font-size: 16px; border: solid 1px rgb(202, 202, 202); text-align: center; margin: 16px; background: #e2e2e2; cursor: pointer;"
+                 class="js_issue_ticket_credit">Issue ticket credit</div>
+        </t>
+    </t>
+
 </templates>
