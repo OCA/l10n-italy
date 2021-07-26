@@ -60,3 +60,25 @@ class AccountMove(models.Model):
         store=True,
         readonly=False,
     )
+class AccountMoveReversal(models.TransientModel):
+
+    _inherit = 'account.move.reversal'
+
+    # FIX THE REFUND INVOICES : THE INOVICE DOCUMENT TYPE OF A REFUND INVOICE WILL HAVE AS DEFAULT THE DOCUMENT AS "CREDIT NOTE"
+    def reverse_moves(self):
+        res = super(AccountMoveReversal, self).reverse_moves()
+        if isinstance(res, dict):
+            if self.refund_method == 'modify':
+                invoice_ids_domain = ('id', 'in', [res['res_id']])
+            else:
+                invoice_ids_domain = res['domain'][-1] if 'domain' in res else ('id', 'in', [res['res_id']])
+            invoices = self.env['account.move'].search([invoice_ids_domain])
+            for invoice in invoices:
+                if invoice.move_type == 'out_refund':
+                    document_type = invoice._get_document_fiscal_type(invoice.move_type,
+                                                                    invoice.partner_id,
+                                                                    invoice.fiscal_position_id,
+                                                                    invoice.journal_id,)
+                    if document_type:
+                        invoice.fiscal_document_type_id = document_type[0]
+        return res
