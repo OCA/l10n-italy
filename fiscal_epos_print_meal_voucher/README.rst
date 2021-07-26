@@ -27,10 +27,18 @@ ITA - Buoni pasto e registratore telematico
 
 Questo modulo Consente di controllare e comunicare al registratore telematico le informazioni relative ai buoni pasto.
 
+È anche possibile, in caso di pagamento in ticket superiore all'importo dovuto, emettere "credito da ticket".
+
 **Table of contents**
 
 .. contents::
    :local:
+
+Configuration
+=============
+
+Nella configurazione del punto vendita, sotto Buoni pasto, impostare il prodotto per il "credito da ticket".
+Tale prodotto deve essere un servizio disponibile nel POS e di tipo "Buoni pasto".
 
 Bug Tracker
 ===========
