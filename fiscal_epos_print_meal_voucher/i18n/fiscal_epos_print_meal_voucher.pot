@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: fiscal_epos_print_meal_voucher
+#: model_terms:ir.ui.view,arch_db:fiscal_epos_print_meal_voucher.view_pos_config_form
+msgid "<span class=\"o_form_label\">Ticket credit product</span>"
+msgstr ""
+
+#. module: fiscal_epos_print_meal_voucher
 #: model:ir.model,name:fiscal_epos_print_meal_voucher.model_account_bank_statement_line
 msgid "Bank Statement Line"
 msgstr ""
@@ -26,8 +31,22 @@ msgid "Impossible to pay with tickets more then the amount due"
 msgstr ""
 
 #. module: fiscal_epos_print_meal_voucher
+#. openerp-web
+#: code:addons/fiscal_epos_print_meal_voucher/static/src/xml/pos.xml:34
+#, python-format
+msgid "Issue ticket credit"
+msgstr ""
+
+#. module: fiscal_epos_print_meal_voucher
 #: model:ir.model,name:fiscal_epos_print_meal_voucher.model_account_journal
 msgid "Journal"
+msgstr ""
+
+#. module: fiscal_epos_print_meal_voucher
+#. openerp-web
+#: code:addons/fiscal_epos_print_meal_voucher/static/src/js/screens.js:72
+#, python-format
+msgid "Missing ticket credit product"
 msgstr ""
 
 #. module: fiscal_epos_print_meal_voucher
@@ -36,8 +55,31 @@ msgid "POS tickets number"
 msgstr ""
 
 #. module: fiscal_epos_print_meal_voucher
+#. openerp-web
+#: code:addons/fiscal_epos_print_meal_voucher/static/src/js/screens.js:73
+#, python-format
+msgid "Please configure Ticket credit product in Point of sale configuration"
+msgstr ""
+
+#. module: fiscal_epos_print_meal_voucher
+#: model:ir.model,name:fiscal_epos_print_meal_voucher.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr ""
+
+#. module: fiscal_epos_print_meal_voucher
 #: model:ir.model,name:fiscal_epos_print_meal_voucher.model_pos_order
 msgid "Point of Sale Orders"
+msgstr ""
+
+#. module: fiscal_epos_print_meal_voucher
+#: model:ir.model.fields,help:fiscal_epos_print_meal_voucher.field_pos_config__ticket_credit_product_id
+#: model_terms:ir.ui.view,arch_db:fiscal_epos_print_meal_voucher.view_pos_config_form
+msgid "Product used when issuing credit instead of giving change after receiving meal vouchers"
+msgstr ""
+
+#. module: fiscal_epos_print_meal_voucher
+#: model:ir.model.fields,field_description:fiscal_epos_print_meal_voucher.field_pos_config__ticket_credit_product_id
+msgid "Ticket credit product"
 msgstr ""
 
 #. module: fiscal_epos_print_meal_voucher
