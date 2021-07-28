@@ -12,6 +12,7 @@
         <field name="model">stock.delivery.note.create.wizard</field>
         <field name="arch" type="xml">
             <form>
+                <field name="picking_type" invisible="True" />
                 <div attrs="{'invisible': [('error_message', '=', False)]}">
                     <field name="error_message" />
                 </div>
@@ -22,7 +23,9 @@
                         <field name="partner_shipping_id" />
                     </group>
                     <group>
-                        <field name="type_id" options="{'no_open': True, 'no_create': True}" />
+                        <field name="type_id"
+                               domain="[('code', '=', picking_type)]"
+                               widget="selection" />
                         <field name="date" />
                     </group>
                 </group>

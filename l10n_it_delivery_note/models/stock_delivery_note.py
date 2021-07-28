@@ -7,7 +7,8 @@ from odoo import _, api, fields, models
 from odoo.addons import decimal_precision as dp
 from odoo.exceptions import UserError
 
-from ..mixins.picking_checker import DONE_PICKING_STATE, PICKING_TYPES
+from ..mixins.picking_checker import \
+    DONE_PICKING_STATE, PICKING_TYPES, DOMAIN_PICKING_TYPES
 
 DATE_FORMAT = '%d/%m/%Y'
 DATETIME_FORMAT = '%d/%m/%Y %H:%M:%S'
@@ -53,7 +54,8 @@ class StockDeliveryNote(models.Model):
         return self.env.user.company_id
 
     def _default_type(self):
-        return self.env['stock.delivery.note.type'].search([], limit=1)
+        return self.env['stock.delivery.note.type'] \
+                   .search([('code', '=', DOMAIN_PICKING_TYPES[1])], limit=1)
 
     def _default_volume_uom(self):
         return self.env.ref('uom.product_uom_litre', raise_if_not_found=False)
@@ -219,22 +221,10 @@ class StockDeliveryNote(models.Model):
                                  default=_default_company)
 
     @api.multi
-    @api.depends('name', 'partner_id',
-                 'partner_ref', 'partner_id.display_name')
+    @api.depends('name', 'partner_ref',
+                 'partner_id', 'partner_id.display_name')
     def _compute_display_name(self):
-        for note in self:
-            if not note.name:
-                partner_name = note.partner_id.display_name
-                create_date = note.create_date.strftime(DATETIME_FORMAT)
-                name = "{} - {}".format(partner_name, create_date)
-
-            else:
-                name = note.name
-
-                if note.partner_ref and note.type_code == 'incoming':
-                    name = "{} ({})".format(name, note.partner_ref)
-
-            note.display_name = name
+        return super()._compute_display_name()
 
     @api.multi
     @api.depends('state', 'line_ids', 'line_ids.invoice_status')
@@ -242,9 +232,8 @@ class StockDeliveryNote(models.Model):
         for note in self:
             lines = note.line_ids.filtered(lambda l: l.sale_line_id)
 
-            if lines and all(
-                line.invoice_status == DOMAIN_INVOICE_STATUSES[2]
-                    for line in lines):
+            if all(line.invoice_status == DOMAIN_INVOICE_STATUSES[2]
+                   for line in lines):
                 note.state = DOMAIN_DELIVERY_NOTE_STATES[2]
                 note.invoice_status = DOMAIN_INVOICE_STATUSES[2]
 
@@ -313,12 +302,26 @@ class StockDeliveryNote(models.Model):
                 (note.state == 'draft' and can_change_number)
             note.show_product_information = show_product_information
 
+    @api.onchange('picking_type')
+    def _onchange_picking_type(self):
+        if self.picking_type:
+            type_domain = [('code', '=', self.picking_type)]
+
+        else:
+            type_domain = []
+
+        return {'domain': {'type_id': type_domain}}
+
     @api.onchange('type_id')
     def _onchange_type(self):
         if self.type_id:
             if self.name and self.type_id.sequence_id != self.sequence_id:
                 raise UserError(_("You cannot set this delivery note type due"
                                   " of a different numerator configuration."))
+
+            if self.picking_type and self.type_id.code != self.picking_type:
+                raise UserError(_("You cannot set this delivery note type due"
+                                  " of a different type with related pickings."))
 
             if self._update_generic_shipping_information(self.type_id):
                 return {
@@ -372,6 +375,25 @@ class StockDeliveryNote(models.Model):
         else:
             self.delivery_method_id = False
 
+    @api.multi
+    def name_get(self):
+        result = []
+
+        for note in self:
+            name = note.name
+
+            if not note.name:
+                partner_name = note.partner_id.display_name
+                create_date = note.create_date.strftime(DATETIME_FORMAT)
+                name = "{} - {}".format(partner_name, create_date)
+
+            elif note.partner_ref and note.type_code == 'incoming':
+                name = "{} ({})".format(name, note.partner_ref)
+
+            result.append((note.id, name))
+
+        return result
+
     def check_compliance(self, pickings):
         super().check_compliance(pickings)
 
@@ -402,27 +424,51 @@ class StockDeliveryNote(models.Model):
                 note.name = sequence.next_by_id()
                 note.sequence_id = sequence
 
-    def _fix_quantities_to_invoice(self, lines):
+    def _check_delivery_notes_before_invoicing(self):
+        for delivery_note_id in self:
+            if not delivery_note_id.sale_ids:
+                raise UserError(
+                    _("%s hasn't sale order!") % delivery_note_id.display_name
+                )
+            if delivery_note_id.invoice_status == "invoiced":
+                raise UserError(
+                    _("%s is already invoiced!") % delivery_note_id.display_name
+                )
+            if delivery_note_id.state == "draft":
+                raise UserError(_("%s is in draft!") % delivery_note_id.display_name)
+            for line in delivery_note_id.line_ids:
+                if line.product_id.invoice_policy == "order":
+                    raise UserError(
+                        _("In %s there is %s with invoicing policy 'order'")
+                        % (delivery_note_id.display_name, line.product_id.name)
+                    )
+
+    def _fix_quantities_to_invoice(self, lines, invoice_method):
         cache = {}
 
         pickings_lines = lines.retrieve_pickings_lines(self.picking_ids)
         other_lines = lines - pickings_lines
 
-        for line in other_lines:
-            cache[line] = line.fix_qty_to_invoice()
+        if not invoice_method or invoice_method == "dn":
+            for line in other_lines:
+                cache[line] = line.fix_qty_to_invoice()
+        elif invoice_method == "service":
+            for line in other_lines:
+                if line.product_id.type != "service":
+                    cache[line] = line.fix_qty_to_invoice()
 
         pickings_move_ids = self.mapped('picking_ids.move_lines')
         for line in pickings_lines.filtered(lambda l: len(l.move_ids) > 1):
             move_ids = line.move_ids & pickings_move_ids
             qty_to_invoice = sum(move_ids.mapped('quantity_done'))
 
-            if qty_to_invoice < (line.product_uom_qty - line.qty_to_invoice):
+            if qty_to_invoice < line.qty_to_invoice:
                 cache[line] = line.fix_qty_to_invoice(qty_to_invoice)
 
         return cache
 
-    def action_invoice(self):
-        self.ensure_one()
+    def action_invoice(self, invoice_method=False):
+        self._check_delivery_notes_before_invoicing()
 
         orders_lines = self.mapped('sale_ids.order_line') \
                            .filtered(lambda l: l.product_id)
@@ -430,8 +476,9 @@ class StockDeliveryNote(models.Model):
         downpayment_lines = orders_lines.filtered(lambda l: l.is_downpayment)
         invoiceable_lines = orders_lines.filtered(lambda l: l.is_invoiceable)
 
-        cache = \
-            self._fix_quantities_to_invoice(invoiceable_lines - downpayment_lines)
+        cache = self._fix_quantities_to_invoice(
+            invoiceable_lines - downpayment_lines, invoice_method
+        )
 
         for downpayment in downpayment_lines:
             order = downpayment.order_id
@@ -441,14 +488,36 @@ class StockDeliveryNote(models.Model):
             if order_lines.filtered(lambda l: l.need_to_be_invoiced):
                 cache[downpayment] = downpayment.fix_qty_to_invoice()
 
-        self.sale_ids \
+        invoice_ids = self.sale_ids \
             .filtered(lambda o: o.invoice_status == DOMAIN_INVOICE_STATUSES[1]) \
             .action_invoice_create(final=True)
+        invoices = self.env['account.invoice'].browse(invoice_ids)
 
         for line, vals in cache.items():
             line.write(vals)
 
         orders_lines._get_to_invoice_qty()
+
+        for line in self.line_ids:
+            line.write({
+                'invoice_status': 'invoiced'
+            })
+        if all(line.invoice_status == 'invoiced' for line in self.line_ids):
+            for delivery_note in self:
+                ready_invoice_ids = [
+                    invoice_id
+                    for invoice_id in delivery_note.sale_ids.mapped("invoice_ids").ids
+                    if invoice_id in invoices.ids
+                ]
+                delivery_note.write(
+                    {
+                        "invoice_ids": [
+                            (4, invoice_id) for invoice_id in ready_invoice_ids
+                        ]
+                    }
+                )
+            self._compute_invoice_status()
+            invoices.update_delivery_note_lines()
 
     @api.multi
     def action_done(self):
@@ -642,23 +711,34 @@ class StockDeliveryNoteLine(models.Model):
     @api.onchange('product_id')
     def _onchange_product_id(self):
         if self.product_id:
-            domain = [
-                ('category_id', '=', self.product_id.uom_id.category_id.id)]
-            self.name = \
-                self.product_id.get_product_multiline_description_sale()
+
+            name = self.product_id.name
+            if self.product_id.description_sale:
+                name += '\n' + self.product_id.description_sale
+
+            self.name = name
+
+            product_uom_domain = [
+                ('category_id', '=', self.product_id.uom_id.category_id.id)
+            ]
 
         else:
-            domain = []
+            product_uom_domain = []
 
-        return {'domain': {'product_uom_id': domain}}
+        return {'domain': {'product_uom_id': product_uom_domain}}
 
     @api.model
     def _prepare_detail_lines(self, moves):
         lines = []
         for move in moves:
+
+            name = move.product_id.name
+            if move.product_id.description_sale:
+                name += '\n' + move.product_id.description_sale
+
             line = {
                 'move_id': move.id,
-                'name': move.name,
+                'name': name,
                 'product_id': move.product_id.id,
                 'product_qty': move.product_uom_qty,
                 'product_uom_id': move.product_uom.id
