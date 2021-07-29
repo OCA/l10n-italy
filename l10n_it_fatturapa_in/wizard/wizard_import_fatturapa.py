@@ -268,7 +268,14 @@ class WizardImportFatturapa(models.TransientModel):
         if partner_id and not no_contact_update:
             partner_company_id = partner_model.browse(partner_id).company_id.id
             vals = {
-                "street": cedPrest.Sede.Indirizzo,
+                "street": " ".join(
+                    map(
+                        str,
+                        filter(
+                            None, (cedPrest.Sede.Indirizzo, cedPrest.Sede.NumeroCivico)
+                        ),
+                    )
+                ),
                 "zip": cedPrest.Sede.CAP,
                 "city": cedPrest.Sede.Comune,
                 "register": cedPrest.DatiAnagrafici.AlboProfessionale or "",
