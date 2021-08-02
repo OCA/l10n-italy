@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="view_account_move_fiscal_document_type" model="ir.ui.view">
+        <field name="name">account.move.fiscal.document.type.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='fiscal_position_id']" position="after">
+                <field name="fiscal_document_type_id" class="oe_inline" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
