@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_communication_form_exclude_e_inv" model="ir.ui.view">
+        <field name="name">view_communication_form_exclude_e_inv</field>
+        <field name="model">comunicazione.dati.iva</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form"
+        />
+        <field name="arch" type="xml">
+            <field name="id_comunicazione" position="after">
+                <field name="exclude_e_invoices" />
+            </field>
+        </field>
+    </record>
+</odoo>
