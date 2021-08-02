@@ -13,7 +13,7 @@
 
     #. aprire l'imposta da Fatturazione > Configurazione > Contabilità > Imposte,
     #. nella scheda 'Opzioni avanzate' selezionare il conto corretto (ad esempio IVA debito)
-       per il campo 'Conto utilizzato per la liquidazione IVA'.
+       per il campo 'Conto utilizzato per la liquidazione IVA'. Se si è soggetti a liquidazione OSS indicare un conto dedicato (ad esempio IVA debito OSS Francia)
 
     Per calcolare gli interessi, è possibile aggiungere le informazioni da utilizzare (conto e percentuale)
     nei dati aziendali, nella scheda 'Liquidazione IVA'.
@@ -34,7 +34,8 @@
 
     #. open a tax in Accounting > Configuration > Accounting > Taxes,
     #. in the tab 'Advanced Options' select the correct account (for instance the account debit VAT)
-       for the field 'Account used for VAT statement'.
+       for the field 'Account used for VAT statement'. If you are subject to OSS settlement indicate a dedicated account (for example OSS debit VAT France)
 
     If you need to calculate interest, you can add default information in your
     company data (percentage and account), in the 'VAT statement' tab.
+
