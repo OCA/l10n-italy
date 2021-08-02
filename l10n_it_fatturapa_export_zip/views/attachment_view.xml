@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_fatturapa_out_attachment_tree">
+        <field name="name">fatturapa.attachment.out.tree.exported</field>
+        <field name="model">fatturapa.attachment.out</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_fatturapa_out.view_fatturapa_out_attachment_tree"
+        />
+        <field name="arch" type="xml">
+            <field name="out_invoice_ids" position="after">
+                <field name="exported_zip" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_fatturapa_out_attachment_search">
+        <field name="name">fatturapa.attachment.out.search.exported</field>
+        <field name="model">fatturapa.attachment.out</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_fatturapa_out.view_fatturapa_out_attachment_search"
+        />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <separator />
+                <filter
+                    name="zip_not_exported"
+                    string="ZIP Not Exported"
+                    domain="[('exported_zip','=', False)]"
+                />
+                <filter
+                    name="zip_exported"
+                    string="ZIP Exported"
+                    domain="[('exported_zip','!=', False)]"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_fatturapa_out_attachment_form">
+        <field name="name">fatturapa.attachment.out.form.exported</field>
+        <field name="model">fatturapa.attachment.out</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_fatturapa_out.view_fatturapa_out_attachment_form"
+        />
+        <field name="arch" type="xml">
+            <field name="invoice_partner_id" position="after">
+                <field name="exported_zip" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_fatturapa_in_attachment_tree">
+        <field name="name">fatturapa.attachment.in.tree.exported</field>
+        <field name="model">fatturapa.attachment.in</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_fatturapa_in.view_fatturapa_in_attachment_tree"
+        />
+        <field name="arch" type="xml">
+            <field name="in_invoice_ids" position="after">
+                <field name="exported_zip" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_fatturapa_in_attachment_search">
+        <field name="name">fatturapa.attachment.in.search.exported</field>
+        <field name="model">fatturapa.attachment.in</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_fatturapa_in.view_fatturapa_in_attachment_search"
+        />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <separator />
+                <filter
+                    name="zip_not_exported"
+                    string="ZIP Not Exported"
+                    domain="[('exported_zip','=', False)]"
+                />
+                <filter
+                    name="zip_exported"
+                    string="ZIP Exported"
+                    domain="[('exported_zip','!=', False)]"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_fatturapa_in_attachment_form">
+        <field name="name">fatturapa.attachment.in.form.exported</field>
+        <field name="model">fatturapa.attachment.in</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_fatturapa_in.view_fatturapa_in_attachment_form"
+        />
+        <field name="arch" type="xml">
+            <field name="invoices_total" position="after">
+                <field name="exported_zip" />
+            </field>
+        </field>
+    </record>
+
+</odoo>
