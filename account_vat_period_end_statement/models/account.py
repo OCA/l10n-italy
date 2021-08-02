@@ -1,6 +1,7 @@
 # Copyright 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
 # Copyright 2012-15 Agile Business Group sagl (<http://www.agilebg.com>)
 # Copyright 2015 Associazione Odoo Italia (<http://www.odoo-italia.org>)
+#  Copyright 2021 Gianmarco Conte - Dinamiche Aziendali Srl (<www.dinamicheaziendali.it>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import math
@@ -341,6 +342,17 @@ class AccountVatPeriodEndStatement(models.Model):
         default=lambda self: self.env.company,
     )
     annual = fields.Boolean("Annual prospect")
+    account_ids = fields.Many2many(
+        "account.account",
+        string="Accounts filter",
+        domain=lambda self: self._get_domain_account(),
+    )
+
+    def _get_domain_account(self):
+        domain = [("vat_statement_account_id", "!=", False)]
+        tax_ids = self.env["account.tax"].search(domain)
+        account_ids = tax_ids.mapped("vat_statement_account_id")
+        return [("id", "in", account_ids.ids)]
 
     def unlink(self):
         for statement in self:
@@ -735,23 +747,27 @@ class AccountVatPeriodEndStatement(models.Model):
             ]
         )
         for tax in taxes:
-            # se ho una tassa padre con figli cee_type, condidero le figlie
-            if any(
-                tax_ch
-                for tax_ch in tax.children_tax_ids
-                if tax_ch.cee_type in ("sale", "purchase")
+            if (
+                tax.vat_statement_account_id.id in statement.account_ids.ids
+                or not statement.account_ids
             ):
+                # se ho una tassa padre con figli cee_type, condidero le figlie
+                if any(
+                    tax_ch
+                    for tax_ch in tax.children_tax_ids
+                    if tax_ch.cee_type in ("sale", "purchase")
+                ):
 
-                for tax_ch in tax.children_tax_ids:
-                    if tax_ch.cee_type == "sale":
-                        self._set_debit_lines(tax_ch, debit_line_ids, statement)
-                    elif tax_ch.cee_type == "purchase":
-                        self._set_credit_lines(tax_ch, credit_line_ids, statement)
+                    for tax_ch in tax.children_tax_ids:
+                        if tax_ch.cee_type == "sale":
+                            self._set_debit_lines(tax_ch, debit_line_ids, statement)
+                        elif tax_ch.cee_type == "purchase":
+                            self._set_credit_lines(tax_ch, credit_line_ids, statement)
 
-            elif tax.type_tax_use == "sale":
-                self._set_debit_lines(tax, debit_line_ids, statement)
-            elif tax.type_tax_use == "purchase":
-                self._set_credit_lines(tax, credit_line_ids, statement)
+                elif tax.type_tax_use == "sale":
+                    self._set_debit_lines(tax, debit_line_ids, statement)
+                elif tax.type_tax_use == "purchase":
+                    self._set_credit_lines(tax, credit_line_ids, statement)
 
         return credit_line_ids, debit_line_ids
 
