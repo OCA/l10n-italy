@@ -1,5 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_account_rc_type_user,account.rc.type.user,model_account_rc_type,account.group_account_invoice,1,0,0,0
-access_account_rc_type_manager,account.rc.type.manager,model_account_rc_type,account.group_account_manager,1,1,1,1
-access_account_rc_type_tax_user,account.rc.type.tax.user,model_account_rc_type_tax,account.group_account_invoice,1,0,0,0
-access_account_rc_type_tax_manager,account.rc.type.tax.manager,model_account_rc_type_tax,account.group_account_manager,1,1,1,1
