@@ -1,2 +1,0 @@
-* Lorenzo Battistini
-* Glauco Prina
