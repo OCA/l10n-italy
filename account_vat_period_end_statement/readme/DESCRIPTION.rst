@@ -9,6 +9,12 @@
     (vedere Configurazione per generare correttamente i periodi).
     I debiti e crediti precedenti vengono caricati dalle liquidazioni IVA precedenti, in base allo stato del loro pagamento.
 
+    A seguito dell’introduzione della normativa OSS, per chi fa vendite online su diversi paesi, deve necessariamente escludere dalla liquidazione iva ciò che farà parte della liquidazione OSS.
+    E’ stato introdotto un nuovo campo per filtrare le imposte da elaborare, quindi va indicato il conto configurato nelle imposte  “Conto utilizzato per la liquidazione IVA”.
+    Quindi selezionare il conto IVA debito per elaborare liquidazione iva su tutte le imposte che hanno in configurazione il conto IVA debito.  Per la liquidazione OSS invece selezionare conto  dedicato ad esempio IVA debito OSS Francia.
+    E’ necessario creare un periodo di dichiarazione IVA dedicato all’OSS .
+    Per caricare invece tutte le imposte che hanno un conto per la liquidazione IVA, è sufficiente lasciare vuoto il filtro per conti.
+
     Per creare la registrazione contabile, fare clic sul pulsante 'Crea movimento', dentro la scheda 'Conti'.
     Se i termini di pagamento sono impostati viene scritta anche la scadenza (o le scadenze).
 
@@ -31,6 +37,12 @@
     from taxes of the selected periods (see Configuration to correctly generate the periods).
     Previous debit or credit is loaded from previous VAT statement, according
     to its payments status.
+
+    Following the introduction of the OSS legislation, for those who make online sales in different countries, it must necessarily exclude from the VAT settlement what will be part of the OSS settlement.
+    A new field has been introduced to filter the taxes to be processed, so the account configured in the taxes "Account used for VAT settlement" must be indicated.
+    Then select the VAT debit account to process VAT settlement on all taxes that have the VAT debit account in setup.
+    For OSS settlement, on the other hand, select a dedicated account, for example, OSS debit VAT France. It is necessary to create a VAT return period dedicated to the OSS.
+    To load all taxes that have a VAT settlement account instead, just leave the filter by accounts blank.
 
     In order to generate the journal entry, click on 'Create move' button, inside the 'Accounts' tab.
     If you select a payment term, the due date(s) will be set.
