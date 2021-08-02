@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Payment Terms -->
+        <record id="fatturapa_TP01" model="fatturapa.payment_term">
+            <field name="code">TP01</field>
+            <field name="name">(pagamento a rate)</field>
+        </record>
+        <record id="fatturapa_tp02" model="fatturapa.payment_term">
+            <field name="code">TP02</field>
+            <field name="name">(pagamento completo)</field>
+        </record>
+        <record id="fatturapa_tp03" model="fatturapa.payment_term">
+            <field name="code">TP03</field>
+            <field name="name">(anticipo)</field>
+        </record>
+        <record id="fatturapa_tp04" model="fatturapa.payment_term">
+            <field name="code" />
+            <field name="name">(!!! codice non previsto !!!)</field>
+        </record>
+
+        <!-- Payment Methods -->
+        <record id="fatturapa_mp01" model="fatturapa.payment_method">
+            <field name="code">MP01</field>
+            <field name="name">contanti</field>
+        </record>
+        <record id="fatturapa_mp02" model="fatturapa.payment_method">
+            <field name="code">MP02</field>
+            <field name="name">assegno</field>
+        </record>
+        <record id="fatturapa_mp03" model="fatturapa.payment_method">
+            <field name="code">MP03</field>
+            <field name="name">assegno circolare</field>
+        </record>
+        <record id="fatturapa_mp04" model="fatturapa.payment_method">
+            <field name="code">MP04</field>
+            <field name="name">contanti presso Tesoreria</field>
+        </record>
+        <record id="fatturapa_mp05" model="fatturapa.payment_method">
+            <field name="code">MP05</field>
+            <field name="name">bonifico</field>
+        </record>
+        <record id="fatturapa_mp06" model="fatturapa.payment_method">
+            <field name="code">MP06</field>
+            <field name="name">vaglia cambiario</field>
+        </record>
+        <record id="fatturapa_mp07" model="fatturapa.payment_method">
+            <field name="code">MP07</field>
+            <field name="name">bollettino bancario</field>
+        </record>
+        <record id="fatturapa_mp08" model="fatturapa.payment_method">
+            <field name="code">MP08</field>
+            <field name="name">carta di pagamento</field>
+        </record>
+        <record id="fatturapa_mp09" model="fatturapa.payment_method">
+            <field name="code">MP09</field>
+            <field name="name">RID</field>
+        </record>
+        <record id="fatturapa_mp10" model="fatturapa.payment_method">
+            <field name="code">MP10</field>
+            <field name="name">RID utenze</field>
+        </record>
+        <record id="fatturapa_mp11" model="fatturapa.payment_method">
+            <field name="code">MP11</field>
+            <field name="name">RID veloce</field>
+        </record>
+        <record id="fatturapa_mp12" model="fatturapa.payment_method">
+            <field name="code">MP12</field>
+            <field name="name">RIBA</field>
+        </record>
+        <record id="fatturapa_mp13" model="fatturapa.payment_method">
+            <field name="code">MP13</field>
+            <field name="name">MAV</field>
+        </record>
+        <record id="fatturapa_mp14" model="fatturapa.payment_method">
+            <field name="code">MP14</field>
+            <field name="name">quietanza erario</field>
+        </record>
+        <record id="fatturapa_mp15" model="fatturapa.payment_method">
+            <field name="code">MP15</field>
+            <field name="name">giroconto su conti di contabilità speciale</field>
+        </record>
+        <record id="fatturapa_mp16" model="fatturapa.payment_method">
+            <field name="code">MP16</field>
+            <field name="name">domiciliazione bancaria</field>
+        </record>
+        <record id="fatturapa_mp17" model="fatturapa.payment_method">
+            <field name="code">MP17</field>
+            <field name="name">domiciliazione postale</field>
+        </record>
+        <record id="fatturapa_mp18" model="fatturapa.payment_method">
+            <field name="code">MP18</field>
+            <field name="name">bollettino di c/c postale</field>
+        </record>
+        <record id="fatturapa_mp19" model="fatturapa.payment_method">
+            <field name="code">MP19</field>
+            <field name="name">SEPA Direct Debit</field>
+        </record>
+        <record id="fatturapa_mp20" model="fatturapa.payment_method">
+            <field name="code">MP20</field>
+            <field name="name">SEPA Direct Debit CORE</field>
+        </record>
+        <record id="fatturapa_mp21" model="fatturapa.payment_method">
+            <field name="code">MP21</field>
+            <field name="name">SEPA Direct Debit B2B</field>
+        </record>
+        <record id="fatturapa_mp22" model="fatturapa.payment_method">
+            <field name="code">MP22</field>
+            <field name="name">Trattenuta su somme già riscosse</field>
+        </record>
+        <record id="fatturapa_mp23" model="fatturapa.payment_method">
+            <field name="code">MP23</field>
+            <field name="name">PagoPA</field>
+        </record>
+    </data>
+</odoo>
