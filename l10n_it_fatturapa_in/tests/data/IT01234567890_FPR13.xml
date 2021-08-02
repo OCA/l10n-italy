@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<q1:FatturaElettronica versione="FPR12" xmlns:q1="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2">
+  <FatturaElettronicaHeader>
+        <DatiTrasmissione>
+            <IdTrasmittente>
+                <IdPaese>IT</IdPaese>
+                <IdCodice>02780790107</IdCodice>
+            </IdTrasmittente>
+            <ProgressivoInvio>FPR13</ProgressivoInvio>
+            <FormatoTrasmissione>FPR12</FormatoTrasmissione>
+            <CodiceDestinatario>0000000</CodiceDestinatario>
+            <ContattiTrasmittente>
+                <Telefono>06543534343</Telefono>
+                <Email>www.example.com / info@yourcompany.example.com</Email>
+            </ContattiTrasmittente>
+            <PECDestinatario>test@pec.it</PECDestinatario>
+        </DatiTrasmissione>
+        <CedentePrestatore>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>02780790107</IdCodice>
+                </IdFiscaleIVA>
+                <Anagrafica>
+                    <Denominazione>YourCompany</Denominazione>
+                </Anagrafica>
+                <RegimeFiscale>RF01</RegimeFiscale>
+            </DatiAnagrafici>
+            <Sede>
+                <Indirizzo>Via Milano, 1</Indirizzo>
+                <CAP>00100</CAP>
+                <Comune>Roma</Comune>
+                <Provincia>AK</Provincia>
+                <Nazione>IT</Nazione>
+            </Sede>
+            <Contatti>
+                <Telefono>06543534343</Telefono>
+                <Email>info@yourcompany.example.com</Email>
+            </Contatti>
+        </CedentePrestatore>
+        <CessionarioCommittente>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>07973780013</IdCodice>
+                </IdFiscaleIVA>
+                <CodiceFiscale>07973780013</CodiceFiscale>
+                <Anagrafica>
+                    <Denominazione>B2B Customer</Denominazione>
+                </Anagrafica>
+            </DatiAnagrafici>
+            <Sede>
+                <Indirizzo>Via Roma, 1</Indirizzo>
+                <CAP>16100</CAP>
+                <Comune>Genova</Comune>
+                <Provincia>AK</Provincia>
+                <Nazione>IT</Nazione>
+            </Sede>
+        </CessionarioCommittente>
+  </FatturaElettronicaHeader>
+  <FatturaElettronicaBody>
+    <DatiGenerali>
+      <DatiGeneraliDocumento>
+        <TipoDocumento>TD01</TipoDocumento>
+        <Divisa>EUR</Divisa>
+        <Data>2020-09-30</Data>
+        <Numero>FPR 16/20</Numero>
+        <DatiRitenuta>
+          <TipoRitenuta>RT01</TipoRitenuta>
+          <ImportoRitenuta>3120.00</ImportoRitenuta>
+          <AliquotaRitenuta>20.00</AliquotaRitenuta>
+          <CausalePagamento>A</CausalePagamento>
+        </DatiRitenuta>
+        <DatiCassaPrevidenziale>
+          <TipoCassa>TC22</TipoCassa>
+          <AlCassa>4.00</AlCassa>
+          <ImportoContributoCassa>600.00</ImportoContributoCassa>
+          <ImponibileCassa>15000.00</ImponibileCassa>
+          <AliquotaIVA>22.00</AliquotaIVA>
+          <Ritenuta>SI</Ritenuta>
+        </DatiCassaPrevidenziale>
+        <ImportoTotaleDocumento>19032.00</ImportoTotaleDocumento>
+      </DatiGeneraliDocumento>
+    </DatiGenerali>
+    <DatiBeniServizi>
+      <DettaglioLinee>
+        <NumeroLinea>1</NumeroLinea>
+        <Descrizione>Consulenza attività commerciale e gestione progetti svolta nel periodo 08/2019-08/2020</Descrizione>
+        <Quantita>1.00</Quantita>
+        <PrezzoUnitario>15000.00</PrezzoUnitario>
+        <PrezzoTotale>15000.00</PrezzoTotale>
+        <AliquotaIVA>22.00</AliquotaIVA>
+        <Ritenuta>SI</Ritenuta>
+      </DettaglioLinee>
+      <DatiRiepilogo>
+        <AliquotaIVA>22.00</AliquotaIVA>
+        <ImponibileImporto>15600.00</ImponibileImporto>
+        <Imposta>3432.00</Imposta>
+      </DatiRiepilogo>
+    </DatiBeniServizi>
+    <DatiPagamento>
+      <CondizioniPagamento>TP02</CondizioniPagamento>
+      <DettaglioPagamento>
+        <ModalitaPagamento>MP05</ModalitaPagamento>
+        <DataScadenzaPagamento>2020-09-30</DataScadenzaPagamento>
+        <ImportoPagamento>15912.00</ImportoPagamento>
+        <IstitutoFinanziario>FINECO BANK</IstitutoFinanziario>
+        <IBAN>IT37F0301503200000005796587</IBAN>
+        <BIC>UNCRITMMXXX</BIC>
+      </DettaglioPagamento>
+    </DatiPagamento>
+  </FatturaElettronicaBody>
+</q1:FatturaElettronica>
