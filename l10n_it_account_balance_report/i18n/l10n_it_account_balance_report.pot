@@ -234,7 +234,7 @@ msgid "Currency"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:543
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:541
 #, python-format
 msgid "DEFICIT"
 msgstr ""
@@ -604,7 +604,7 @@ msgid "Right Col Name"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:543
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:541
 #, python-format
 msgid "SURPLUS"
 msgstr ""
