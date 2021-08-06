@@ -32,7 +32,8 @@ class TestInvoiceWT(FatturaPACommon):
             "name": "",
             "line_ids": [(0, 0, {"value": "balance", "days": 15})],
         }
-        self.payment_term_15 = self.env["account.payment.term"].create(vals_payment)
+        self.payment_term_15 = self.env["account.payment.term"].create(
+            vals_payment)
         wt_vals = {
             "name": "Code 1040",
             "code": "1040",
@@ -41,7 +42,8 @@ class TestInvoiceWT(FatturaPACommon):
             "account_payable_id": self.wt_account_payable.id,
             "journal_id": self.journal_misc.id,
             "payment_term": self.payment_term_15.id,
-            "causale_pagamento_id": self.env.ref("l10n_it_causali_pagamento.a").id,
+            "causale_pagamento_id": self.env.ref(
+                "l10n_it_causali_pagamento.a").id,
             "rate_ids": [
                 (
                     0,
@@ -62,7 +64,8 @@ class TestInvoiceWT(FatturaPACommon):
             "journal_id": self.journal_misc.id,
             "wt_types": "enasarco",
             "payment_term": self.payment_term_15.id,
-            "causale_pagamento_id": self.env.ref("l10n_it_causali_pagamento.a").id,
+            "causale_pagamento_id": self.env.ref(
+                "l10n_it_causali_pagamento.a").id,
             "rate_ids": [
                 (
                     0,
@@ -83,7 +86,8 @@ class TestInvoiceWT(FatturaPACommon):
             "journal_id": self.journal_misc.id,
             "wt_types": "enasarco",
             "payment_term": self.payment_term_15.id,
-            "causale_pagamento_id": self.env.ref("l10n_it_causali_pagamento.a").id,
+            "causale_pagamento_id": self.env.ref(
+                "l10n_it_causali_pagamento.a").id,
             "rate_ids": [
                 (
                     0,
@@ -120,7 +124,9 @@ class TestInvoiceWT(FatturaPACommon):
                             "uom_id": self.product_uom_unit.id,
                             "price_unit": 10,
                             "invoice_line_tax_ids": [(6, 0, [self.tax_22.id])],
-                            "invoice_line_tax_wt_ids": [(6, 0, [self.wt1040.id])],
+                            "invoice_line_tax_wt_ids": [
+                                (6, 0, [self.wt1040.id])
+                            ],
                         },
                     ),
                 ],
@@ -360,7 +366,8 @@ def test_e_invoice_wt_inps_0(self):
     # XML doc to be validated
     xml_content = base64.decodebytes(attachment.datas)
     self.check_content(
-        xml_content, "IT06363391001_00017.xml", module_name="l10n_it_fatturapa_out_wt"
+        xml_content, "IT06363391001_00017.xml", 
+        module_name="l10n_it_fatturapa_out_wt"
     )
 
 
@@ -417,7 +424,8 @@ def test_e_invoice_wt_inps_1(self):
     # XML doc to be validated
     xml_content = base64.decodebytes(attachment.datas)
     self.check_content(
-        xml_content, "IT06363391001_00018.xml", module_name="l10n_it_fatturapa_out_wt"
+        xml_content, "IT06363391001_00018.xml", 
+        module_name="l10n_it_fatturapa_out_wt"
     )
 
 
@@ -475,5 +483,6 @@ def test_e_invoice_wt_inps_2(self):
     # XML doc to be validated
     xml_content = base64.decodebytes(attachment.datas)
     self.check_content(
-        xml_content, "IT06363391001_00019.xml", module_name="l10n_it_fatturapa_out_wt"
+        xml_content, "IT06363391001_00019.xml", 
+        module_name="l10n_it_fatturapa_out_wt"
     )
