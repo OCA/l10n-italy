@@ -4,22 +4,21 @@
 # Copyright 2018-2019 Lorenzo Battistini <https://github.com/eLBati>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
-    'name': 'ITA - Fattura elettronica - Integrazione '
-            'ritenuta',
-    'summary': 'Modulo ponte tra emissione fatture elettroniche e ritenute.',
-    'version': '12.0.2.0.0',
-    'development_status': 'Beta',
-    'category': 'Hidden',
-    'website': 'https://github.com/OCA/l10n-italy',
-    'author': 'Sergio Corato, Odoo Community Association (OCA)',
-    'license': 'AGPL-3',
-    'depends': [
-        'l10n_it_fatturapa',
-        'l10n_it_fatturapa_out',
-        'l10n_it_withholding_tax',
-        'l10n_it_withholding_tax_causali',
+    "name": "ITA - Fattura elettronica - Integrazione " "ritenuta",
+    "summary": "Modulo ponte tra emissione fatture elettroniche e ritenute.",
+    "version": "12.0.2.0.0",
+    "development_status": "Beta",
+    "category": "Hidden",
+    "website": "https://github.com/OCA/l10n-italy",
+    "author": "Sergio Corato, Odoo Community Association (OCA)",
+    "license": "AGPL-3",
+    "depends": [
+        "l10n_it_fatturapa",
+        "l10n_it_fatturapa_out",
+        "l10n_it_withholding_tax",
+        "l10n_it_withholding_tax_causali",
     ],
-    'data': [],
-    'installable': True,
-    'auto_install': True,
+    "data": [],
+    "installable": True,
+    "auto_install": True,
 }
