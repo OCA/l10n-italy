@@ -1,1 +1,1 @@
-from . import wizard_export_fatturapa
+from . import efattura
