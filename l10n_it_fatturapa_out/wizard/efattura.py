@@ -60,12 +60,10 @@ class EFatturaOut:
         errors = self._validator.error_log
         return (ret, errors)
 
-    def to_xml(self, env):  # noqa: C901
-        """Create the xml file content.
-        :return: The XML content as str.
-        """
+    def get_template_values(self):  # noqa: C901
+        """Prepare values and helper functions for the template"""
 
-        self.env = env
+        env = self.env
 
         def format_date(dt):
             # Format the date in the italian standard.
@@ -246,7 +244,7 @@ class EFatturaOut:
                         out[key]["ImponibileImporto"] += line.price_subtotal
                         out[key]["Imposta"] += 0.0
             out.update(out_computed)
-            return list(out.values())
+            return out
 
         def get_importo(line):
             str_number = str(line.discount)
@@ -290,6 +288,16 @@ class EFatturaOut:
                 invoice.id: get_all_taxes(invoice) for invoice in self.invoices
             },
         }
+        return template_values
+
+    def to_xml(self, env):
+        """Create the xml file content.
+        :return: The XML content as str.
+        """
+
+        self.env = env
+
+        template_values = self.get_template_values()
         content = env.ref(
             "l10n_it_fatturapa_out.account_invoice_it_FatturaPA_export"
         )._render(template_values)
