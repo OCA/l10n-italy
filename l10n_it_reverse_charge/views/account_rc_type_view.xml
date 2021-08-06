@@ -3,7 +3,6 @@
      Copyright 2017 Alex Comba - Agile Business Group
      Copyright 2017 Lorenzo Battistini - Agile Business Group
      Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl -->
-
 <odoo>
 
     <record id="view_rc_type_form" model="ir.ui.view">
@@ -14,30 +13,43 @@
             <form string="Reverse Charge Type">
                 <group>
                     <group string="Main Informations">
-                        <field name="name"/>
-                        <field name="method"/>
-                        <field name="description"/>
-                        <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                        <field name="name" />
+                        <field name="method" />
+                        <field name="description" />
+                        <field
+                            name="company_id"
+                            options="{'no_create': True}"
+                            groups="base.group_multi_company"
+                        />
                     </group>
                     <group string="Self Invoicing">
-                        <field name="partner_type"
-                               attrs="{
+                        <field
+                            name="partner_type"
+                            attrs="{
                                     'readonly': [('method', '!=', 'selfinvoice')],
-                                    'required': [('method', '=', 'selfinvoice')]}"/>
-                        <field name="with_supplier_self_invoice"
-                               attrs="{'invisible': [
+                                    'required': [('method', '=', 'selfinvoice')]}"
+                        />
+                        <field
+                            name="with_supplier_self_invoice"
+                            attrs="{'invisible': [
                                 '|',('partner_type', '!=', 'other'),
-                                ('method', '!=', 'selfinvoice')]}"/>
-                        <field name="partner_id"
-                               attrs="{'readonly': [('method', '!=', 'selfinvoice')],
+                                ('method', '!=', 'selfinvoice')]}"
+                        />
+                        <field
+                            name="partner_id"
+                            attrs="{'readonly': [('method', '!=', 'selfinvoice')],
                                     'invisible': [('partner_type', '!=', 'other')],
-                                    'required': [('partner_type', '=', 'other')]}"/>
-                        <field name="journal_id"
-                               attrs="{
+                                    'required': [('partner_type', '=', 'other')]}"
+                        />
+                        <field
+                            name="journal_id"
+                            attrs="{
                                     'readonly': [('method', '!=', 'selfinvoice')],
-                                    'required': [('method', '=', 'selfinvoice')]}"/>
-                        <field name="supplier_journal_id"
-                               attrs="{
+                                    'required': [('method', '=', 'selfinvoice')]}"
+                        />
+                        <field
+                            name="supplier_journal_id"
+                            attrs="{
                                     'invisible': [
                                     '|',('method', '!=', 'selfinvoice'),
                                     '|',('partner_type', '!=', 'other'),
@@ -46,19 +58,27 @@
                                     'required': [
                                     ('method', '=', 'selfinvoice'),
                                     ('partner_type', '=', 'other'),
-                                    ('with_supplier_self_invoice', '=', True)]}"/>
-                        <field name="payment_journal_id"
-                               attrs="{
+                                    ('with_supplier_self_invoice', '=', True)]}"
+                        />
+                        <field
+                            name="payment_journal_id"
+                            attrs="{
                                     'readonly': [('method', '!=', 'selfinvoice')],
-                                    'required': [('method', '=', 'selfinvoice')]}"/>
-                        <field name="transitory_account_id"
-                               attrs="{
+                                    'required': [('method', '=', 'selfinvoice')]}"
+                        />
+                        <field
+                            name="transitory_account_id"
+                            attrs="{
                                     'readonly': [('method', '!=', 'selfinvoice')],
-                                    'required': [('method', '=', 'selfinvoice')]}"/>
-                        <field name="tax_ids" widget="one2many_list"
-                               attrs="{
+                                    'required': [('method', '=', 'selfinvoice')]}"
+                        />
+                        <field
+                            name="tax_ids"
+                            widget="one2many_list"
+                            attrs="{
                                     'readonly': [('method', '!=', 'selfinvoice')],
-                                    'required': [('method', '=', 'selfinvoice')]}">
+                                    'required': [('method', '=', 'selfinvoice')]}"
+                        >
                             <tree string="Tax Mapping" editable="bottom">
                                 <field name="purchase_tax_id" />
                                 <field name="sale_tax_id" />
@@ -66,8 +86,10 @@
                         </field>
                     </group>
                     <group string="Text on Self Invoice">
-                        <field name="self_invoice_text"
-                               attrs="{'readonly': [('method', '!=', 'selfinvoice')]}"/>
+                        <field
+                            name="self_invoice_text"
+                            attrs="{'readonly': [('method', '!=', 'selfinvoice')]}"
+                        />
                     </group>
                 </group>
             </form>
@@ -80,11 +102,11 @@
         <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree string="Reverse Charge Types">
-                <field name="name"/>
-                <field name="method"/>
-                <field name="partner_type"/>
-                <field name="journal_id"/>
-                <field name="payment_journal_id"/>
+                <field name="name" />
+                <field name="method" />
+                <field name="partner_type" />
+                <field name="journal_id" />
+                <field name="payment_journal_id" />
             </tree>
         </field>
     </record>
@@ -97,8 +119,11 @@
     </record>
 
     <menuitem
-            action="action_rc_type" id="menu_action_rc_type" sequence="20"
-            parent="account.account_account_menu"
-            groups="account.group_account_manager"/>
+        action="action_rc_type"
+        id="menu_action_rc_type"
+        sequence="20"
+        parent="account.account_account_menu"
+        groups="account.group_account_manager"
+    />
 
 </odoo>
