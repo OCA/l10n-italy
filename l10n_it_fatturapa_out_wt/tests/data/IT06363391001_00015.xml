@@ -1,6 +1,7 @@
 <ns1:FatturaElettronica
-        xmlns:ns1="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2"
-        versione="FPR12">
+    xmlns:ns1="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2"
+    versione="FPR12"
+>
     <FatturaElettronicaHeader>
         <DatiTrasmissione>
             <IdTrasmittente>
@@ -110,7 +111,8 @@
                 <Natura>N2.2</Natura>
                 <ImponibileImporto>0.83</ImponibileImporto>
                 <Imposta>0.00</Imposta>
-                <RiferimentoNormativo>Escluso Art. 13 5C DPR 633/72</RiferimentoNormativo>
+                <RiferimentoNormativo
+                >Escluso Art. 13 5C DPR 633/72</RiferimentoNormativo>
             </DatiRiepilogo>
         </DatiBeniServizi>
         <DatiPagamento>
