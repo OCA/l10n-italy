@@ -19,7 +19,9 @@
         "l10n_it_withholding_tax",
         "l10n_it_withholding_tax_reason",
     ],
-    "data": [],
+    "data": [
+        'views/account_invoice_it_dati_ritenuta.xml'
+    ],
     "installable": True,
     "auto_install": True,
 }
