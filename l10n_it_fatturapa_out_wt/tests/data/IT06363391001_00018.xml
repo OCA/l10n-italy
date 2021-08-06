@@ -8,7 +8,7 @@
                 <IdPaese>IT</IdPaese>
                 <IdCodice>06363391001</IdCodice>
             </IdTrasmittente>
-            <ProgressivoInvio>00015</ProgressivoInvio>
+            <ProgressivoInvio>00018</ProgressivoInvio>
             <FormatoTrasmissione>FPR12</FormatoTrasmissione>
             <CodiceDestinatario>0000000</CodiceDestinatario>
             <ContattiTrasmittente>
@@ -109,7 +109,7 @@
             <DatiRiepilogo>
                 <AliquotaIVA>0.00</AliquotaIVA>
                 <Natura>N2.2</Natura>
-                <ImponibileImporto>0.83</ImponibileImporto>
+                <ImponibileImporto>0.53</ImponibileImporto>
                 <Imposta>0.00</Imposta>
                 <RiferimentoNormativo
                 >Escluso Art. 13 5C DPR 633/72</RiferimentoNormativo>

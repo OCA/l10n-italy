@@ -1,127 +1,79 @@
-from odoo import models
-from odoo.exceptions import Warning as UserError
+from odoo import api, models
 from odoo.tools.float_utils import float_round
-from odoo.tools.translate import _
 
-from odoo.addons.l10n_it_fatturapa.bindings.fatturapa import (
-    DatiCassaPrevidenzialeType,
-    DatiRiepilogoType,
-    DatiRitenutaType,
+from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
+from odoo.addons.l10n_it_fatturapa_out.wizard.wizard_export_fatturapa import (
+    format_numbers,
 )
-
-WT_TAX_CODE = {"inps": "RT03", "enasarco": "RT04", "enpam": "RT05", "other": "RT06"}
-
-TC_CODE = {
-    "inps": "TC22",
-    "enasarco": "TC07",
-    "enpam": "TC09",
-}
 
 
 class WizardExportFatturapa(models.TransientModel):
+
+    WT_TAX_CODE = {"inps": "RT03", "enasarco": "RT04", "enpam": "RT05", "other": "RT06"}
+
     _inherit = "wizard.export.fatturapa"
 
-    def getTipoRitenuta(self, wt_types, partner):
-        if wt_types == "ritenuta":
-            if partner.is_company:
-                tipoRitenuta = "RT02"
-            else:
-                tipoRitenuta = "RT01"
-        else:
-            tipoRitenuta = WT_TAX_CODE[wt_types]
-        return tipoRitenuta
+    @api.model
+    def getAllTaxes(self, invoice):
+        def _key(tax_id):
+            return tax_id.id
 
-    def setDatiGeneraliDocumento(self, invoice, body):
-        res = super(WizardExportFatturapa, self).setDatiGeneraliDocumento(invoice, body)
-        # Get consistent ordering for file generation for compare with test XML
-        ritenuta_lines = invoice.withholding_tax_line_ids.sorted(
-            key=lambda l: l.withholding_tax_id.code
-        )
-        for wt_line in ritenuta_lines:
-            if not wt_line.withholding_tax_id.causale_pagamento_id.code:
-                raise UserError(
-                    _("Missing payment reason for " "withholding tax %s!")
-                    % wt_line.withholding_tax_id.name
-                )
-            tipoRitenuta = self.getTipoRitenuta(
-                wt_line.withholding_tax_id.wt_types, invoice.partner_id
-            )
-            body.DatiGenerali.DatiGeneraliDocumento.DatiRitenuta.append(
-                DatiRitenutaType(
-                    TipoRitenuta=tipoRitenuta,
-                    ImportoRitenuta="%.2f" % float_round(wt_line.tax, 2),
-                    AliquotaRitenuta="%.2f"
-                    % float_round(wt_line.withholding_tax_id.tax, 2),
-                    CausalePagamento=wt_line.withholding_tax_id.causale_pagamento_id.code,
-                )
-            )
-            if wt_line.withholding_tax_id.use_daticassaprev:
-                tax_id = wt_line.withholding_tax_id.daticassprev_tax_id
-                tax_kind = tax_id.kind_id.code
-                body.DatiGenerali.DatiGeneraliDocumento.DatiCassaPrevidenziale.append(
-                    DatiCassaPrevidenzialeType(
-                        TipoCassa=TC_CODE[wt_line.withholding_tax_id.wt_types],
-                        AlCassa="%.2f" % float_round(wt_line.withholding_tax_id.tax, 2),
-                        ImportoContributoCassa="%.2f" % float_round(wt_line.tax, 2),
-                        AliquotaIVA="0.00",
-                        Natura=tax_kind,
-                    )
-                )
-        return res
-
-    def get_tax_riepilogo(self, body, tax_id):
-        for riepilogo in body.DatiBeniServizi.DatiRiepilogo:
-            if (
-                float(riepilogo.AliquotaIVA) == 0.0
-                and riepilogo.Natura == tax_id.kind_id.code
-            ):
-                return riepilogo
-
-    def setDatiRiepilogo(self, invoice, body):
-        res = super(WizardExportFatturapa, self).setDatiRiepilogo(invoice, body)
+        res = super(WizardExportFatturapa, self).getAllTaxes(invoice)
         wt_lines_to_write = invoice.withholding_tax_line_ids.filtered(
             lambda x: x.withholding_tax_id.wt_types not in ("ritenuta", "other")
             and x.withholding_tax_id.use_daticassaprev
         )
         for wt_line in wt_lines_to_write:
             tax_id = wt_line.withholding_tax_id.daticassprev_tax_id
-            tax_riepilogo = self.get_tax_riepilogo(body, tax_id)
-            if tax_riepilogo:
-                base_amount = float(tax_riepilogo.ImponibileImporto)
-                base_amount += wt_line.tax
-                tax_riepilogo.ImponibileImporto = "%.2f" % float_round(base_amount, 2)
+            key = _key(tax_id)
+            if key in res:
+                base_amount = float(res[key]["ImponibileImporto"]) + wt_line.tax
+                res[key]["ImponibileImporto"] = float_round(base_amount, 2)
             else:
-                riepilogo = DatiRiepilogoType(
-                    AliquotaIVA="0.00",
-                    ImponibileImporto="%.2f" % float_round(wt_line.tax, 2),
-                    Imposta="0.00",
-                    Natura=tax_id.kind_id.code,
-                    RiferimentoNormativo=tax_id.law_reference,
-                )
-                body.DatiBeniServizi.DatiRiepilogo.append(riepilogo)
+                res[key] = {
+                    "AliquotaIVA": format_numbers(0.0),
+                    "Natura": tax_id.kind_id.code,
+                    # possibile tag (non gestito)
+                    # 'Arrotondamento':'',
+                    "ImponibileImporto": float_round(wt_line.tax, 2),
+                    "Imposta": 0.0,
+                    "EsigibilitaIVA": tax_id.payability,
+                }
+                if tax_id.law_reference:
+                    res[key]["RiferimentoNormativo"] = encode_for_export(
+                        tax_id.law_reference, 100
+                    )
         return res
 
-    def setDettaglioLinea(self, line_no, line, body, price_precision, uom_precision):
-        DettaglioLinea = super(WizardExportFatturapa, self).setDettaglioLinea(
-            line_no, line, body, price_precision, uom_precision
+    @api.model
+    def getPayments(self, invoice):
+        payments = super().getPayments(invoice)
+        wt_hack_rate = (
+            invoice.amount_net_pay / invoice.amount_total
+            if invoice.withholding_tax_line_ids
+            else 1.0
         )
-        if any([wt for wt in line.invoice_line_tax_wt_ids]):
-            DettaglioLinea.Ritenuta = "SI"
-        return DettaglioLinea
+        for payment in payments:
+            payment.amount_currency *= wt_hack_rate
+            payment.debit *= wt_hack_rate
+        return payments
 
-    def setDatiPagamento(self, invoice, body):
-        res = super(WizardExportFatturapa, self).setDatiPagamento(invoice, body)
-        if invoice.withholding_tax_line_ids and invoice.payment_term_id:
-            payment_line_ids = invoice.get_receivable_line_ids()
-            index = 0
-            rate = invoice.amount_net_pay / invoice.amount_total
-            move_line_pool = self.env["account.move.line"]
-            for move_line_id in payment_line_ids:
-                move_line = move_line_pool.browse(move_line_id)
-                body.DatiPagamento[0].DettaglioPagamento[
-                    index
-                ].ImportoPagamento = "%.2f" % float_round(
-                    (move_line.amount_currency or move_line.debit) * rate, 2
-                )
-                index += 1
-        return res
+    @api.model
+    def getWithholdingType(self, wt_types, partner):
+        if wt_types == "ritenuta":
+            if partner.is_company:
+                withholding_type = "RT02"
+            else:
+                withholding_type = "RT01"
+        else:
+            withholding_type = self.WT_TAX_CODE[wt_types]
+        return withholding_type
+
+    @api.model
+    def getTemplateValues(self, template_values):
+        def get_withholding_type(wt_types, partner):
+            return self.getWithholdingType(wt_types, partner)
+
+        template_values = super().getTemplateValues(template_values)
+        template_values.update({"get_withholding_type": get_withholding_type})
+        return template_values
