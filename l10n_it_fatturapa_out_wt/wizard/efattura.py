@@ -6,7 +6,11 @@
 from odoo.addons.l10n_it_fatturapa_out.wizard.efattura import EFatturaOut
 
 
-WT_TAX_CODE = {"inps": "RT03", "enasarco": "RT04", "enpam": "RT05", "other": "RT06"}
+WT_TAX_CODE = {
+    "inps": "RT03", 
+    "enasarco": "RT04", 
+    "enpam": "RT05", 
+    "other": "RT06"}
 
 
 class EFatturaOut(EFatturaOut):
