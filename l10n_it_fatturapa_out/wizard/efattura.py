@@ -217,8 +217,6 @@ class EFatturaOut:
 
             out = {}
             # check for missing tax lines
-            # those are usually 0 valued, but we need to generate an element
-            # for all taxes referenced by lines, even if 0 valued
             for line in record.invoice_line_ids:
                 if line.display_type in ("line_section", "line_note"):
                     # notes and sections
@@ -271,12 +269,12 @@ class EFatturaOut:
             the invoice."""
 
             if line.display_type in ("line_section", "line_note"):
-                # find a non-zero tax, if possible
+                # find a product line, with taxes, if possible
                 tax_lines = line.move_id.line_ids.filtered(
-                    lambda line: line.tax_line_id and line.price_total
+                    lambda line: line.tax_ids and line.product_id
                 )
                 if tax_lines:
-                    return tax_lines[0].tax_line_id
+                    return tax_lines[0].tax_ids[0]
             return line.tax_ids[0]
 
         if self.partner_id.commercial_partner_id.is_pa:
