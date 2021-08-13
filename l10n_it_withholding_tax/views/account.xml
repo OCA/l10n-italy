@@ -31,6 +31,17 @@
                         options="{'no_create': True}"
                     />
                 </xpath>
+                <xpath
+                    expr="//field[@name='line_ids']/tree/field[@name='tax_ids']"
+                    position="after"
+                >
+                    <field
+                        name="invoice_line_tax_wt_ids"
+                        widget="many2many_tags"
+                        options="{'no_create': True}"
+                        invisible="True"
+                    />
+                </xpath>
 
                 <xpath
                     expr="//field[@name='invoice_line_ids']/form//field[@name='tax_ids']"
