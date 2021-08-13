@@ -5,7 +5,7 @@ from datetime import date, timedelta
 
 from odoo import fields
 from odoo.exceptions import ValidationError
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import Form, TransactionCase
 
 
 class TestWithholdingTax(TransactionCase):
@@ -233,3 +233,48 @@ class TestWithholdingTax(TransactionCase):
                     },
                 )
             ]
+
+    def test_keep_selected_wt(self):
+        """Check that selected Withholding tax is kept in lines."""
+        invoice_line_vals = [
+            (
+                0,
+                0,
+                {
+                    "quantity": 1.0,
+                    "account_id": self.env["account.account"]
+                    .search(
+                        [
+                            (
+                                "user_type_id",
+                                "=",
+                                self.env.ref("account.data_account_type_expenses").id,
+                            )
+                        ],
+                        limit=1,
+                    )
+                    .id,
+                    "name": "Advice",
+                    "price_unit": 1000.00,
+                    "tax_ids": False,
+                },
+            )
+        ]
+        invoice = self.env["account.move"].create(
+            {
+                "invoice_date": time.strftime("%Y") + "-07-15",
+                "name": "Test Supplier Invoice WT",
+                "journal_id": self.env["account.journal"]
+                .search([("type", "=", "purchase")])[0]
+                .id,
+                "partner_id": self.env.ref("base.res_partner_12").id,
+                "invoice_line_ids": invoice_line_vals,
+                "move_type": "in_invoice",
+            }
+        )
+        invoice_form = Form(invoice)
+        with invoice_form.invoice_line_ids.edit(0) as line_form:
+            line_form.invoice_line_tax_wt_ids.clear()
+            line_form.invoice_line_tax_wt_ids.add(self.wt1040)
+        invoice = invoice_form.save()
+        self.assertTrue(invoice.invoice_line_ids.invoice_line_tax_wt_ids)
