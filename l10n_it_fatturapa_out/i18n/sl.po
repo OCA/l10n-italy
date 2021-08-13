@@ -397,6 +397,12 @@ msgid "Invoices"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
+#: code:addons/l10n_it_fatturapa_out/wizard/efattura.py:0
+#, python-format
+msgid "Invoices %s must belong to the same company."
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:0
 #, python-format
 msgid "Invoices %s must belong to the same partner."
