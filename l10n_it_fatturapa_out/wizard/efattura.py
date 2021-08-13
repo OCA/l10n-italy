@@ -11,6 +11,7 @@ from unidecode import unidecode
 from odoo.exceptions import UserError
 from odoo.modules.module import get_module_resource
 from odoo.tools import float_repr
+from odoo.tools.translate import _
 
 from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
 
@@ -314,9 +315,20 @@ class EFatturaOut:
         content = etree.tostring(root, xml_declaration=True, encoding="utf-8")
         return content
 
+    def _get_company_from_invoices(self, invoices):
+        company = invoices.mapped("company_id")
+        if len(company) > 1:
+            raise UserError(
+                _("Invoices %s must belong to the same company.")
+                % ", ".join(invoices.mapped("name"))
+            )
+        return company
+
     def __init__(self, wizard, partner_id, invoices, progressivo_invio):
         self.wizard = wizard
-        self.company_id = wizard.env.company
+        self.company_id = (
+            self._get_company_from_invoices(invoices) or wizard.env.company
+        )
         self.partner_id = partner_id
         self.invoices = invoices
         self.progressivo_invio = progressivo_invio
