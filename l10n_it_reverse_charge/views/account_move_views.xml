@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Davide Corio
+     Copyright 2017 Alex Comba - Agile Business Group
+     Copyright 2017 Lorenzo Battistini - Agile Business Group
+     Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl -->
+<odoo>
+    <record id="view_invoice_supplier_form_rc" model="ir.ui.view">
+        <field name="name">account.invoice.supplier.form.rc</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <group name="accounting_info_group">
+                <field name="rc_self_invoice_id" readonly="True" />
+                <field name="rc_self_purchase_invoice_id" readonly="True" />
+                <field name="rc_purchase_invoice_id" readonly="True" />
+            </group>
+            <xpath
+                expr="//field[@name='invoice_line_ids']/tree/field[@name='price_subtotal']"
+                position="after"
+            >
+                <field name="rc" />
+            </xpath>
+             <xpath
+                expr="//field[@name='line_ids']/tree/field[@name='price_subtotal']"
+                position="after"
+            >
+                <field name="rc" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_invoice_line_form_rc" model="ir.ui.view">
+        <field name="name">view_invoice_line_form_rc</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='information']/group/group[4]" position="inside">
+                <field name="rc" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
