@@ -14,13 +14,13 @@ ITA - Inversione contabile
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_reverse_charge
+    :target: https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_reverse_charge
     :alt: OCA/l10n-italy
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-italy-12-0/l10n-italy-12-0-l10n_it_reverse_charge
+    :target: https://translation.odoo-community.org/projects/l10n-italy-14-0/l10n-italy-14-0-l10n_it_reverse_charge
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/122/12.0
+    :target: https://runbot.odoo-community.org/runbot/122/14.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -59,43 +59,47 @@ Configuration
 
 Creare l'imposta **22% intra UE** - Vendite:
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/tax_22_v_i_ue.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/tax_22_v_i_ue.png
    :alt: 22% intra UE - Vendite
    :width: 600 px
 
 Creare l'imposta **22% intra UE** - Acquisti:
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/tax_22_a_i_ue.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/tax_22_a_i_ue.png
   :alt: 22% intra UE - Acquisti
   :width: 600 px
 
 Creare l'imposta **22% extra UE** - Vendite:
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/tax_22_v_e_ue.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/tax_22_v_e_ue.png
    :alt: 22% extra UE - Vendite
    :width: 600 px
 
 Creare l'imposta **22% extra UE** - Acquisti:
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/tax_22_a_e_ue.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/tax_22_a_e_ue.png
   :alt: 22% extra UE - Acquisti
   :width: 600 px
 
 Creare il conto 'Transitorio autofatturazione':
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/temp_account_auto_inv.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/temp_account_auto_inv.png
   :alt: conto transitorio Autofattura
   :width: 600 px
 
 Il 'Registro pagamento autofattura' deve essere configurato con il conto 'Transitorio autofatturazione' appena creato:
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/registro_riconciliazione.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/registro_riconciliazione.png
   :alt: Registro pagamento autofattura
+  :width: 600 px
+
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/registro_riconciliazione_2.png
+  :alt: Registro pagamento autofattura (tab Configurazione)
   :width: 600 px
 
 Modificare il tipo inversione contabile **Intra-UE (autofattura)**:
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/rc_selfinvoice.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/rc_selfinvoice.png
   :alt: inversione contabile con Autofattura
   :width: 600 px
 
@@ -103,7 +107,7 @@ Il registro autofattura deve essere di tipo 'Vendita'.
 
 Modificare il tipo inversione contabile **Extra-UE (autofattura)**:
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/rc_selfinvoice_extra.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/rc_selfinvoice_extra.png
   :alt: inversione contabile con Autofattura
   :width: 600 px
 
@@ -112,11 +116,17 @@ Il 'Registro autofattura passiva' deve essere di tipo 'Acquisto'.
 
 Nella posizione fiscale, impostare il tipo inversione contabile:
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/fiscal_pos_intra.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/fiscal_pos_intra.png
   :alt: Impostazione posizioni fiscali Intra CEE
   :width: 600 px
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/fiscal_pos_extra.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/fiscal_pos_extra.png
+  :alt: Impostazione posizioni fiscali Extra CEE
+  :width: 600 px
+
+La posizione fiscale deve essere salvata sui contatti dei fornitori nel campo 'Posizione fiscale'
+
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/partner_fiscal_pos.png
   :alt: Impostazione posizioni fiscali Extra CEE
   :width: 600 px
 
@@ -124,43 +134,47 @@ Nella posizione fiscale, impostare il tipo inversione contabile:
 
 Create the tax **22% intra EU** - Sale:
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/tax_22_v_i_ue.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/tax_22_v_i_ue.png
    :alt: 22% intra UE - Sale
    :width: 600 px
 
 Create the tax **22% intra EU** - Purchase:
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/tax_22_a_i_ue.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/tax_22_a_i_ue.png
   :alt: 22% intra UE - Purchase
   :width: 600 px
 
 Create the tax **22% extra EU** - Sale:
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/tax_22_v_e_ue.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/tax_22_v_e_ue.png
    :alt: 22% extra UE - Sale
    :width: 600 px
 
 Create the tax **22% extra EU** - Purchase:
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/tax_22_a_e_ue.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/tax_22_a_e_ue.png
   :alt: 22% extra UE - Purchase
   :width: 600 px
 
 Create the account 'Self Invoice Transitory' as follows:
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/temp_account_auto_inv.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/temp_account_auto_inv.png
   :alt: Self Invoice Transitory Account
   :width: 600 px
 
 The 'Self Invoice Payment' Journal has to be configured with the just created 'Self Invoice Transitory' account:
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/registro_riconciliazione.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/registro_riconciliazione.png
   :alt: Registro pagamento autofattura
+  :width: 600 px
+
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/registro_riconciliazione_2.png
+  :alt: Registro pagamento autofattura (tab Configurazione)
   :width: 600 px
 
 Edit the reverse charge type **Intra-EU (self-invoice)**:
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/rc_selfinvoice.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/rc_selfinvoice.png
   :alt: reverse charge with Self Invoice
   :width: 600 px
 
@@ -168,7 +182,7 @@ The Self Invoice journal has to be of type 'Sale'.
 
 Edit the reverse charge type **Extra-EU (self-invoice)** :
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/rc_selfinvoice_extra.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/rc_selfinvoice_extra.png
   :alt: reverse charge with Self Invoice
   :width: 600 px
 
@@ -176,11 +190,17 @@ The 'Supplier Self Invoice Journal' has to be of type 'Purchase'.
 
 In the fiscal position, set the reverse charge type:
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/fiscal_pos_intra.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/fiscal_pos_intra.png
   :alt: Impostazione posizioni fiscali Intra CEE
   :width: 600 px
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/fiscal_pos_extra.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/fiscal_pos_extra.png
+  :alt: Impostazione posizioni fiscali Extra CEE
+  :width: 600 px
+
+Fiscal position has to be saved on suppliers' contact inside 'Fiscal position' field
+
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/partner_fiscal_pos.png
   :alt: Impostazione posizioni fiscali Extra CEE
   :width: 600 px
 
@@ -195,7 +215,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_reverse_charge%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_reverse_charge%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -227,6 +247,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_reverse_charge>`_ project on GitHub.
+This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_reverse_charge>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
