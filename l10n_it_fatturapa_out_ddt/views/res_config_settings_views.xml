@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_config_settings" model="ir.ui.view">
+            <field name="name">view_account_config_settings</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="l10n_it_fatturapa.view_account_config_settings"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='fatturapa_fiscal_position_id']/../../../.." position="after">
+                    <div class="col-12 col-lg-6 o_setting_box" id="auto_set_deferred_invoice_type">
+                        <div class="o_setting_left_pane">
+                            <field name="auto_set_deferred_invoice_type"/>
+                        </div>
+                        <div class="o_setting_right_pane" name="auto_set_deferred_invoice_type_right_pane">
+                            <label for="auto_set_deferred_invoice_type"/>
+                            <div class="text-muted">
+                                TD24 document type code will be applied to invoices created from transport document
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+
+</odoo>
