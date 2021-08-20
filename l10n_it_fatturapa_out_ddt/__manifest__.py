@@ -22,6 +22,7 @@
         "l10n_it_ddt",
     ],
     "data": [
-        "wizard/wizard_export_fatturapa_view.xml"
+        "wizard/wizard_export_fatturapa_view.xml",
+        "views/res_config_settings_views.xml",
     ],
 }
