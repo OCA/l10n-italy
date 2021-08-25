@@ -36,6 +36,7 @@ odoo.define("fiscal_epos_print_meal_voucher.screens", function (require) {
         render_paymentlines: function() {
             var self  = this;
             var res = this._super();
+            var order = this.pos.get_order();
             var paymentlines = this.$('.paymentlines');
             paymentlines.on('click','.tickets_number_minus',function(){
                 self.click_tickets_number_minus($(this).data('cid'));
@@ -43,7 +44,51 @@ odoo.define("fiscal_epos_print_meal_voucher.screens", function (require) {
             paymentlines.on('click','.tickets_number_plus',function(){
                 self.click_tickets_number_plus($(this).data('cid'));
             });
+
+            var total_eligible = order.get_total_meal_voucher_eligible();
+            var total_received = order.get_total_meal_voucher_received();
+            var change = order.get_change();
+            if (total_received > total_eligible && change) {
+                this.$("#meal-voucher-issue-credit").removeClass("oe_hidden");
+            } else {
+                this.$("#meal-voucher-issue-credit").addClass("oe_hidden");
+            }
             return res;
+        },
+
+        renderElement: function() {
+            var self = this;
+            var res = this._super();
+            this.$('.js_issue_ticket_credit').click(function(){
+                self.issue_ticket_credit();
+            });
+            return res;
+        },
+
+        issue_ticket_credit: function() {
+            var order = this.pos.get_order();
+            if (! this.pos.config.ticket_credit_product_id) {
+                this.gui.show_popup('error',{
+                        'title': _t('Missing ticket credit product'),
+                        'body':  _t("Please configure Ticket credit product in Point of sale configuration"),
+                    });
+                return false;
+            }
+            var product = this.pos.db.get_product_by_id(this.pos.config.ticket_credit_product_id[0]);
+            var change = order.get_change();
+            var existing_credit_line;
+            for (var i = 0; i < (order.orderlines.length); i++) {
+                if(order.orderlines.at(i).get_product().id == product.id){
+                    existing_credit_line = order.orderlines.at(i);
+                    break
+                }
+            }
+            if (existing_credit_line) {
+                change = existing_credit_line.price + change;
+                existing_credit_line.set_quantity('remove');
+            }
+            order.add_product(product, {price: change});
+            this.render_paymentlines();
         },
 
         click_tickets_number_minus: function(cid) {

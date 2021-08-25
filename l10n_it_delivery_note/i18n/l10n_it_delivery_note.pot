@@ -669,7 +669,7 @@ msgid "It extends the standard behaviour of DNs\n"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/cli/migrate_l10n_it_ddt.py:98
+#: code:addons/l10n_it_delivery_note/cli/migrate_l10n_it_ddt.py:99
 #, python-format
 msgid "It seems that at least one delivery note has been already created. You can't migrate any data on an already used database."
 msgstr ""
@@ -1358,8 +1358,8 @@ msgid "Warehouse movement"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:325
-#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:361
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:326
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:362
 #: code:addons/l10n_it_delivery_note/models/stock_picking.py:142
 #: code:addons/l10n_it_delivery_note/models/stock_picking.py:161
 #: code:addons/l10n_it_delivery_note/wizard/delivery_note_base.py:65
@@ -1383,19 +1383,19 @@ msgid "You cannot assign the same warehouse movement to different delivery notes
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:382
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:383
 #, python-format
 msgid "You cannot cancel this delivery note. There is at least one invoice related to this delivery note."
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:699
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:700
 #, python-format
 msgid "You cannot change the type of a delivery note line. Instead you should delete the current line and create a new line of the proper type."
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:319
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:320
 #: code:addons/l10n_it_delivery_note/models/stock_picking.py:136
 #, python-format
 msgid "You cannot set this delivery note type due of a different numerator configuration."

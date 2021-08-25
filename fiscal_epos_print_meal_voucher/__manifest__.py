@@ -3,7 +3,7 @@
 
 {
     "name": "ITA - Buoni pasto e registratore telematico",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.1.0",
     "category": "Point of Sale",
     "summary": "Consente di controllare e comunicare al registratore telematico le "
                "informazioni relative ai ticket",
@@ -20,6 +20,7 @@
     "data": [
         "views/assets.xml",
         "views/account_views.xml",
+        "views/pos_config_views.xml",
     ],
     "qweb": [
         "static/src/xml/pos.xml",
