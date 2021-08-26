@@ -11,10 +11,12 @@
     i riferimenti inversi.
 
     Se più righe puntano alla stessa dn, viene indicata l'ultima.
-        <t t-set="dn_line_xref" t-value="dict((line.delivery_note_id.id, n) for n, line in enumerate(record.invoice_line_ids, start=1) if line.delivery_note_id)"/>
+        <t t-set="dn_line_xref" t-value="dict((line.delivery_note_id.id, n) for n, line in enumerate(record.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True), start=1) if line.delivery_note_id)"/>
                <RiferimentoNumeroLinea t-if="dn.id in dn_line_xref" t-esc="dn_line_xref[dn.id]" />
 
-   Oppure, come qui sotto, le elenchiamo tutte, anche se costa ciclare per ogni DDT.
+    Oppure, come qui sotto, le elenchiamo tutte, anche se costa ciclare per ogni DDT.
+    Nota: dalle prove effettuate, le prestazioni sembrano essere più che accettbili (eufemismo, la generazione dell'XML
+    risulta essere significativamente più veloce della visualizzazione della stessa fattura).
 -->
                 <!--2.1.8-->
                 <DatiDDT
@@ -25,7 +27,7 @@
                     <NumeroDDT t-esc="dn.name[-20:]" />
                     <DataDDT t-esc="format_date(dn.date)" />
                     <RiferimentoNumeroLinea
-                    t-foreach="[n for n, line in enumerate(record.invoice_line_ids, start=1) if not line.display_type in ('line_section', 'line_note') and line.delivery_note_id and line.delivery_note_id == dn]"
+                    t-foreach="[n for n, line in enumerate(record.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True), start=1) if not line.display_type in ('line_section', 'line_note') and line.delivery_note_id and line.delivery_note_id == dn]"
                     t-as="n"
                     t-esc="n"
                 />

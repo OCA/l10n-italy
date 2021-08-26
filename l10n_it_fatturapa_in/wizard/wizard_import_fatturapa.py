@@ -268,7 +268,14 @@ class WizardImportFatturapa(models.TransientModel):
         if partner_id and not no_contact_update:
             partner_company_id = partner_model.browse(partner_id).company_id.id
             vals = {
-                "street": cedPrest.Sede.Indirizzo,
+                "street": " ".join(
+                    map(
+                        str,
+                        filter(
+                            None, (cedPrest.Sede.Indirizzo, cedPrest.Sede.NumeroCivico)
+                        ),
+                    )
+                ),
                 "zip": cedPrest.Sede.CAP,
                 "city": cedPrest.Sede.Comune,
                 "register": cedPrest.DatiAnagrafici.AlboProfessionale or "",
@@ -474,7 +481,10 @@ class WizardImportFatturapa(models.TransientModel):
                 else:
                     templates = supplier_infos.mapped("product_tmpl_id")
                     if len(templates) == 1:
-                        product = templates.product_variant_ids[0]
+                        product = (
+                            templates.product_variant_ids
+                            and templates.product_variant_ids[0]
+                        )
         if not product and partner.e_invoice_default_product_id:
             product = partner.e_invoice_default_product_id
         return product
@@ -488,10 +498,7 @@ class WizardImportFatturapa(models.TransientModel):
             new_tax = product.product_tmpl_id.supplier_taxes_id[0]
         elif len(account.tax_ids) == 1:
             new_tax = account.tax_ids[0]
-        line_tax_id = (
-            line_vals.get("invoice_line_tax_ids")
-            and line_vals["invoice_line_tax_ids"][0][2][0]
-        )
+        line_tax_id = line_vals.get("tax_ids") and line_vals["tax_ids"][0][2][0]
         line_tax = self.env["account.tax"].browse(line_tax_id)
         if new_tax and line_tax and new_tax != line_tax:
             if new_tax._get_tax_amount() != line_tax._get_tax_amount():
@@ -505,7 +512,7 @@ class WizardImportFatturapa(models.TransientModel):
             else:
                 # If product has the same amount of the one in XML,
                 # I use it. Typical case: 22% det 50%
-                line_vals["invoice_line_tax_ids"] = [(6, 0, [new_tax.id])]
+                line_vals["tax_ids"] = [(6, 0, [new_tax.id])]
 
     # move_line.tax_ids
     # move_line.name
@@ -932,7 +939,7 @@ class WizardImportFatturapa(models.TransientModel):
             accounts_dict = template.get_product_accounts()
             credit_account = accounts_dict["expense"]
 
-        company = self.env.user.company_id
+        company = self.env.company
         # Search in purchase journal
         journal = self.get_purchase_journal(company)
         if not credit_account:
@@ -1301,7 +1308,7 @@ class WizardImportFatturapa(models.TransientModel):
             if invoice.efatt_rounding != 0:
                 if invoice.efatt_rounding > 0:
                     arrotondamenti_account_id = (
-                        self.env.user.company_id.arrotondamenti_passivi_account_id
+                        self.env.company.arrotondamenti_passivi_account_id
                     )
                     if not arrotondamenti_account_id:
                         raise UserError(
@@ -1310,7 +1317,7 @@ class WizardImportFatturapa(models.TransientModel):
                     name = _("Rounding down")
                 else:
                     arrotondamenti_account_id = (
-                        self.env.user.company_id.arrotondamenti_attivi_account_id
+                        self.env.company.arrotondamenti_attivi_account_id
                     )
                     if not arrotondamenti_account_id:
                         raise UserError(

@@ -24,8 +24,6 @@
         "security/groups.xml",
         "views/fatturapa_attachment_out.xml",
         "wizard/send_pec_view.xml",
-        "wizard/wizard_export_fatturapa_view.xml",
-        "views/account.xml",
         "views/fetchmail_view.xml",
         "security/ir.model.access.csv",
         "data/fetchmail_data.xml",

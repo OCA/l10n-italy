@@ -90,7 +90,7 @@ class AccountRCType(models.Model):
         "res.company",
         string="Company",
         required=True,
-        default=lambda self: self.env.user.company_id,
+        default=lambda self: self.env.company,
     )
 
     @api.constrains("with_supplier_self_invoice", "tax_ids")

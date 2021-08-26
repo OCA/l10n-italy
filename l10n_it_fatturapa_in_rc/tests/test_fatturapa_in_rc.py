@@ -55,7 +55,6 @@ class TestInvoiceRC(FatturapaCommon):
                 "name": "selfinvoice",
                 "type": "sale",
                 "code": "SLF",
-                "update_posted": True,
             }
         )
         self.journal_reconciliation = journal_model.create(
@@ -63,9 +62,7 @@ class TestInvoiceRC(FatturapaCommon):
                 "name": "RC reconciliation",
                 "type": "bank",
                 "code": "SLFRC",
-                "default_credit_account_id": self.account_selfinvoice.id,
-                "default_debit_account_id": self.account_selfinvoice.id,
-                "update_posted": True,
+                "default_account_id": self.account_selfinvoice.id,
             }
         )
         self.journal_selfinvoice_extra = journal_model.create(
@@ -73,7 +70,6 @@ class TestInvoiceRC(FatturapaCommon):
                 "name": "Extra Selfinvoice",
                 "type": "sale",
                 "code": "SLFEX",
-                "update_posted": True,
             }
         )
 
@@ -118,23 +114,21 @@ class TestInvoiceRC(FatturapaCommon):
         self.assertEqual(invoice.invoice_line_ids[1].name, "BANCALI")
         self.assertFalse(invoice.invoice_line_ids[0].rc)
         self.assertTrue(invoice.invoice_line_ids[1].rc)
+        self.assertEqual(invoice.invoice_line_ids[0].tax_ids.name, "22% e-bill")
         self.assertEqual(
-            invoice.invoice_line_ids[0].invoice_line_tax_ids.name, "22% e-bill"
-        )
-        self.assertEqual(
-            invoice.invoice_line_ids[1].invoice_line_tax_ids.name,
+            invoice.invoice_line_ids[1].tax_ids.name,
             "Tax 22% Purchase RC ITA",
         )
         self.assertEqual(invoice.amount_total, 30.5)
         self.assertEqual(invoice.get_tax_amount_added_for_rc(), 4.4)
         self.assertEqual(invoice.amount_tax, 5.5)
         self.assertEqual(invoice.e_invoice_amount_tax, 1.1)
-        invoice.action_invoice_open()
+        invoice._post()
         self.assertAlmostEqual(invoice.rc_self_invoice_id.amount_total, 24.4)
         self.assertEqual(invoice.rc_self_invoice_id.amount_tax, 4.4)
         self.assertEqual(invoice.rc_self_invoice_id.amount_untaxed, 20)
         self.assertEqual(
-            invoice.rc_self_invoice_id.invoice_line_ids.invoice_line_tax_ids.name,
+            invoice.rc_self_invoice_id.invoice_line_ids.tax_ids.name,
             "Tax 22% Sales RC ITA",
         )
 

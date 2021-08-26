@@ -79,7 +79,7 @@ class AccountInvoice(models.Model):
 
         for invoice in self.filtered(lambda i: i.delivery_note_ids):
             new_lines = []
-            old_lines = invoice.invoice_line_ids.filtered(lambda l: l.delivery_note_id)
+            old_lines = invoice.invoice_line_ids.filtered(lambda l: l.note_dn)
             old_lines.unlink()
 
             #
@@ -107,6 +107,7 @@ class AccountInvoice(models.Model):
                     for note_line in delivery_note_line.filtered(
                         lambda l: l.invoice_status == DOMAIN_INVOICE_STATUSES[2]
                     ):
+                        line.delivery_note_id = note_line.delivery_note_id.id
                         new_lines.append(
                             (
                                 0,
@@ -120,6 +121,7 @@ class AccountInvoice(models.Model):
                                             DATE_FORMAT
                                         ),
                                     ),
+                                    "note_dn": True,
                                     "delivery_note_id": note_line.delivery_note_id.id,
                                     "quantity": 0,
                                 },
@@ -127,6 +129,127 @@ class AccountInvoice(models.Model):
                         )
 
             invoice.write({"invoice_line_ids": new_lines})
+
+    def group_lines_by_ddt(self):
+        for invoice in self.filtered(lambda i: i.delivery_note_ids):
+            invoice.invoice_line_ids.filtered(lambda r: r.display_type).unlink()
+            dn_list_grouped, residual_list = invoice.grouped_lines_by_ddt()
+            invoice.line_ids.unlink()
+            line_number = 0
+            for dn in dn_list_grouped:
+                # prepare nota dn
+                delivery_note_id = self.env["stock.delivery.note"].browse(dn)
+                nota_dn_vals = {
+                    "sequence": line_number,
+                    "name": _("""Delivery Note "{}" of {}""").format(
+                        delivery_note_id.name,
+                        delivery_note_id.date.strftime(DATE_FORMAT),
+                    ),
+                    "display_type": "line_section",
+                    "note_dn": True,
+                    "move_id": invoice.id,
+                }
+                invoice.write({"invoice_line_ids": [(0, 0, nota_dn_vals)]})
+                line_number += 1
+                for line in dn_list_grouped[dn]:
+                    invoice_line_vals = {
+                        "sequence": line_number,
+                        "delivery_note_id": line["delivery_note_id"],
+                        "sale_line_ids": line["sale_line_ids"],
+                        "product_id": line["product_id"],
+                        "name": line["name"],
+                        "quantity": line["quantity"],
+                        "product_uom_id": line["product_uom_id"],
+                        "discount": line["discount"],
+                        "price_unit": line["price_unit"],
+                        "account_id": line["account_id"],
+                        "tax_ids": line["tax_ids"],
+                        "analytic_account_id": line["analytic_account_id"],
+                        "analytic_tag_ids": line["analytic_tag_ids"],
+                        "move_id": invoice.id,
+                    }
+                    invoice.write({"invoice_line_ids": [(0, 0, invoice_line_vals)]})
+                    line_number += 1
+            for line in residual_list:
+                invoice_line_vals = {
+                    "sequence": line_number,
+                    "delivery_note_id": line["delivery_note_id"],
+                    "sale_line_ids": line["sale_line_ids"],
+                    "product_id": line["product_id"],
+                    "name": line["name"],
+                    "quantity": line["quantity"],
+                    "product_uom_id": line["product_uom_id"],
+                    "discount": line["discount"],
+                    "price_unit": line["price_unit"],
+                    "account_id": line["account_id"],
+                    "tax_ids": line["tax_ids"],
+                    "analytic_account_id": line["analytic_account_id"],
+                    "analytic_tag_ids": line["analytic_tag_ids"],
+                    "move_id": invoice.id,
+                }
+                invoice.write({"invoice_line_ids": [(0, 0, invoice_line_vals)]})
+                line_number += 1
+
+    def grouped_lines_by_ddt(self):
+        """
+        Returns invoice lines from a specified invoice grouped by ddt
+        """
+        dn_list = []
+        residual_list = []
+
+        # do not consider Sections and Notes: they will be overwritten
+        for invoice_line in self.invoice_line_ids.filtered(
+            lambda l: not l.display_type
+        ):
+            note_line_qty = 0
+            for sale_line in invoice_line.sale_line_ids:
+                delivery_note_line_ids = (
+                    self.delivery_note_ids.mapped("line_ids")
+                    & sale_line.delivery_note_line_ids
+                )
+                for note_line in delivery_note_line_ids:
+                    note_line_qty += note_line.product_qty
+                    dn_list.append(
+                        {
+                            "delivery_note_id": note_line.delivery_note_id.id,
+                            "sale_line_ids": [(6, 0, [sale_line.id])],
+                            "product_id": invoice_line.product_id.id,
+                            "name": invoice_line.name,
+                            "quantity": note_line.product_qty,
+                            "product_uom_id": note_line.product_uom_id.id,
+                            "discount": invoice_line.discount,
+                            "price_unit": invoice_line.price_unit,
+                            "account_id": invoice_line.account_id.id,
+                            "tax_ids": [(6, 0, invoice_line.tax_ids.ids)],
+                            "analytic_account_id": invoice_line.analytic_account_id.id,
+                            "analytic_tag_ids": [
+                                (6, 0, invoice_line.analytic_tag_ids.ids)
+                            ],
+                        }
+                    )
+            if invoice_line.quantity != note_line_qty:
+                residual_list.append(
+                    {
+                        "delivery_note_id": False,
+                        "sale_line_ids": [(6, 0, invoice_line.sale_line_ids.ids)],
+                        "product_id": invoice_line.product_id.id,
+                        "name": invoice_line.name,
+                        "quantity": invoice_line.quantity - note_line_qty,
+                        "product_uom_id": invoice_line.product_uom_id.id,
+                        "discount": invoice_line.discount,
+                        "price_unit": invoice_line.price_unit,
+                        "account_id": invoice_line.account_id.id,
+                        "tax_ids": invoice_line.tax_ids.ids,
+                        "analytic_account_id": invoice_line.analytic_account_id.id,
+                        "analytic_tag_ids": [(6, 0, invoice_line.analytic_tag_ids.ids)],
+                    }
+                )
+        # group by dn
+        dn_list.sort(key=lambda x: x.get("delivery_note_id"))
+        dn_list_grouped = {}
+        for item in dn_list:
+            dn_list_grouped.setdefault(item["delivery_note_id"], []).append(item)
+        return dn_list_grouped, residual_list
 
     def unlink(self):
         # Ripristino il valore delle delivery note
@@ -149,3 +272,4 @@ class AccountInvoiceLine(models.Model):
     delivery_note_id = fields.Many2one(
         "stock.delivery.note", string="Delivery Note", readonly=True, copy=False
     )
+    note_dn = fields.Boolean(string="Note DN")

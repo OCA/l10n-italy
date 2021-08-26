@@ -15,7 +15,6 @@
         "l10n_it_fiscal_document_type",
         "l10n_it_fatturapa_out",
         "l10n_it_fatturapa_in",
-        "l10n_it_fatturapa_pec",
         "l10n_it_withholding_tax_reason",
     ],
     "data": [

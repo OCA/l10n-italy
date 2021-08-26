@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="view_payment_term_form_fatturapa" model="ir.ui.view">
+            <field name="name">account.payment.term.fatturapa</field>
+            <field name="model">account.payment.term</field>
+            <field name="inherit_id" ref="account.view_payment_term_form" />
+            <field name="arch" type="xml">
+                <field name="line_ids" position="after">
+                    <group col="2" colspan="2">
+                        <field
+                            name="fatturapa_pt_id"
+                            options="{'no_create': True, 'no_edit': True}"
+                        />
+                        <field
+                            name="fatturapa_pm_id"
+                            options="{'no_create': True, 'no_edit': True}"
+                        />
+                    </group>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_payment_term_tree_fatturapa" model="ir.ui.view">
+            <field name="name">account.payment.term.fatturapa</field>
+            <field name="model">account.payment.term</field>
+            <field name="inherit_id" ref="account.view_payment_term_tree" />
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="fatturapa_pt_id" />
+                    <field name="fatturapa_pm_id" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

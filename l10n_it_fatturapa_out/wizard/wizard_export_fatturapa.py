@@ -69,7 +69,7 @@ class WizardExportFatturapa(models.TransientModel):
             if invoice.partner_id != partner:
                 raise UserError(
                     _("Invoices %s must belong to the same partner.")
-                    % invoices.mapped("number")
+                    % invoices.mapped("name")
                 )
 
         return partner
@@ -124,7 +124,7 @@ class WizardExportFatturapa(models.TransientModel):
             if not attach and inv.fatturapa_attachment_out_id:
                 raise UserError(
                     _("E-invoice export file still present for invoice %s.")
-                    % (inv.number)
+                    % (inv.name or "")
                 )
             if not inv.fatturapa_doc_attachments and self.report_print_menu:
                 self.generate_attach_report(inv)

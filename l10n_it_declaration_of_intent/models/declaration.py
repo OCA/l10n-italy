@@ -41,7 +41,7 @@ class DeclarationOfIntent(models.Model):
 
     @api.model
     def _default_currency(self):
-        return self.env.user.company_id.currency_id
+        return self.env.company.currency_id
 
     number = fields.Char(copy=False)
     date = fields.Date(required=True)
@@ -94,7 +94,7 @@ class DeclarationOfIntent(models.Model):
         # Declaration issued by company are "IN"
         if values.get("type", False) == "in":
             year = fields.Date.to_date(values["date_start"]).strftime("%Y")
-            plafond = self.env.user.company_id.declaration_yearly_limit_ids.filtered(
+            plafond = self.env.company.declaration_yearly_limit_ids.filtered(
                 lambda r: r.year == year
             )
             if not plafond:

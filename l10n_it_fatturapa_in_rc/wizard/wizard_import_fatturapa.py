@@ -24,26 +24,25 @@ class WizardImportFatturapa(models.TransientModel):
             )
             retLine["rc"] = True
             if account_taxes:
-                retLine["invoice_line_tax_ids"] = [(6, 0, [account_taxes[0].id])]
+                retLine["tax_ids"] = [(6, 0, [account_taxes[0].id])]
             return retLine
         else:
             return super(WizardImportFatturapa, self)._prepare_generic_line_data(line)
 
     def set_invoice_line_ids(
-        self, FatturaBody, credit_account_id, partner, wt_found, invoice_data
+        self, FatturaBody, credit_account_id, partner, wt_found, invoice
     ):
         res = super(WizardImportFatturapa, self).set_invoice_line_ids(
-            FatturaBody, credit_account_id, partner, wt_found, invoice_data
+            FatturaBody, credit_account_id, partner, wt_found, invoice
         )
-        if not invoice_data.get("invoice_line_ids"):
+        if not invoice.invoice_line_ids:
             return
         # set RC fiscal position
-        inv_line_ids = invoice_data["invoice_line_ids"][0][2]
-        inv_lines = self.env["account.invoice.line"].browse(inv_line_ids)
+        inv_lines = invoice.invoice_line_ids
         if any(inv_lines.mapped("rc")):
             rc_ita_fp = self.env["account.fiscal.position"].search(
                 [("rc_type_id.e_invoice_suppliers", "=", True)]
             )
             if rc_ita_fp:
-                invoice_data["fiscal_position_id"] = rc_ita_fp.id
+                invoice.fiscal_position_id = rc_ita_fp
         return res

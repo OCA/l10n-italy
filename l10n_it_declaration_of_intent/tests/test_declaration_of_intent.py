@@ -187,7 +187,7 @@ class TestDeclarationOfIntent(SavepointCase):
             {
                 "year": self.today_date.year,
                 "limit_amount": 50000.0,
-                "company_id": self.env.user.company_id.id,
+                "company_id": self.env.company.id,
             }
         )
         self.declaration4 = self._create_declaration(self.partner4, "in")

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_rea_partner_form">
+        <field name="name">view_rea_partner_form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <group name="accounting_entries" position="after">
+                <newline />
+                <group string="REA Registration" name="rea_data">
+                    <field name="rea_office" />
+                    <field name="rea_code" />
+                    <field name="rea_capital" />
+                    <field name="rea_member_type" />
+                    <field name="rea_liquidation_state" />
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>
