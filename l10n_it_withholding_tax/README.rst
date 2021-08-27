@@ -64,6 +64,18 @@ In calce ai totali, verrà totalizzato l’ammontare della ritenuta e il netto a
    :alt: Supplier invoice
    :width: 600 px
 
+Per registrare il pagamento di una fattura con ritenuta, indicare come importo il "Netto a pagare" e lasciare aperta la fattura:
+
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_withholding_tax/static/img/pagamento-fattura-fornitore.png
+   :alt: Pagamento fattura fornitore
+
+Il sistema provvederà alla creazione di un ulteriore pagamento che coprirà l'ammontare della ritenuta e la fattura risulterà completamente pagata:
+
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_withholding_tax/static/img/pagamento-ritenuta.png
+   :alt: Pagamento ritenuta
+
+Per il pagamento della ritenuta d'acconto fare riferimento al modulo `l10n_it_withholding_tax_payment`.
+
 Successivamente andando nella sezione situazione ritenute d’acconto il sistema vi mostrerà una situazione riepilogativa delle varie ritenute divisa per documento di origine.
 
 I campi principalmente da tenere in considerazione in questa tabella sono: ritenuta dovuta, ritenuta applicata e ritenuta versata.
