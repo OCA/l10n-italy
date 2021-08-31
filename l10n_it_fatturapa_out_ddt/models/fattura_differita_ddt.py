@@ -21,7 +21,10 @@ class StockPickingPackagePreparation(models.Model):
 
         if doc_type_obj:
             for inv in invs_obj:
-                if inv.fiscal_document_type_id.code not in FATTURA_DIFFERITA_CODES:
+                if (
+                    inv.fiscal_document_type_id.code not in FATTURA_DIFFERITA_CODES and
+                    inv.company_id.auto_set_deferred_invoice_type
+                ):
                     # Use the default one
                     inv.fiscal_document_type_id = doc_type_obj
 
