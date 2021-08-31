@@ -23,7 +23,12 @@ msgid "Accounting"
 msgstr "Contabilità"
 
 #. module: l10n_it_dichiarazione_intento
-#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:133
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_yearly_limit__actual_used_amount
+msgid "Actual Used Amount"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:145
 #, python-format
 msgid ""
 "All taxes in declaration of intent must be used in fiscal position taxes"
@@ -42,8 +47,8 @@ msgid "Available Amount"
 msgstr "Importo disponibile"
 
 #. module: l10n_it_dichiarazione_intento
-#: code:addons/l10n_it_dichiarazione_intento/models/account_invoice.py:96
-#: code:addons/l10n_it_dichiarazione_intento/models/account_invoice.py:105
+#: code:addons/l10n_it_dichiarazione_intento/models/account_invoice.py:104
+#: code:addons/l10n_it_dichiarazione_intento/models/account_invoice.py:113
 #, python-format
 msgid ""
 "Available plafond insufficent.\n"
@@ -165,12 +170,11 @@ msgstr "Dichiarazioni d'intento"
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_account_invoice__dichiarazione_intento_ids
 #: model:ir.ui.menu,name:l10n_it_dichiarazione_intento.dichiarazione_intento_menu
 #: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_search
-#: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_view_company_form
 msgid "Declarations of intent"
 msgstr "Dichiarazioni d'intento"
 
 #. module: l10n_it_dichiarazione_intento
-#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:90
+#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:101
 #, python-format
 msgid "Define a yearly plafond for in documents in your company settings"
 msgstr ""
@@ -224,6 +228,11 @@ msgid "Expired"
 msgstr "Scaduta"
 
 #. module: l10n_it_dichiarazione_intento
+#: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_view_company_form
+msgid "Exporter Plafond"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
 #: model:ir.model,name:l10n_it_dichiarazione_intento.model_account_fiscal_position
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__fiscal_position_id
 msgid "Fiscal Position"
@@ -255,7 +264,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_dichiarazione_intento
-#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:119
+#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:131
 #, python-format
 msgid "Impossible to delete a document with linked invoices"
 msgstr "Impossibile eliminare un documento con fatture collegate"
@@ -270,6 +279,11 @@ msgstr "Fattura"
 #: model:ir.model,name:l10n_it_dichiarazione_intento.model_account_invoice_line
 msgid "Invoice Line"
 msgstr "Riga fattura"
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_yearly_limit__used_amount
+msgid "Issued Declarations"
+msgstr ""
 
 #. module: l10n_it_dichiarazione_intento
 #: selection:dichiarazione.intento,type:0
@@ -312,12 +326,11 @@ msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__limit_amount
-#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_yearly_limit__limit_amount
 msgid "Limit Amount"
 msgstr "Importo limite"
 
 #. module: l10n_it_dichiarazione_intento
-#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:146
+#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:158
 #, python-format
 msgid ""
 "Limit passed for declaration %s.\n"
@@ -351,6 +364,11 @@ msgstr "Numero documento del partner"
 #: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_search
 msgid "Partner"
 msgstr "Partner"
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_yearly_limit__limit_amount
+msgid "Plafond"
+msgstr ""
 
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model,name:l10n_it_dichiarazione_intento.model_product_product
@@ -407,7 +425,7 @@ msgid "Telematic Protocol"
 msgstr "Protocollo telematico"
 
 #. module: l10n_it_dichiarazione_intento
-#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:107
+#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:119
 #, python-format
 msgid "Total of documents exceed yearly limit"
 msgstr "Il totale dei documenti supera il limite annuale"
@@ -419,7 +437,6 @@ msgstr "Tipologia"
 
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__used_amount
-#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_yearly_limit__used_amount
 msgid "Used Amount"
 msgstr "Importo usato"
 
