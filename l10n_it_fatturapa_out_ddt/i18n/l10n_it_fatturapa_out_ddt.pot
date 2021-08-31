@@ -14,8 +14,30 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_fatturapa_out_ddt
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_ddt.field_res_company__auto_set_deferred_invoice_type
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_ddt.field_res_config_settings__auto_set_deferred_invoice_type
+msgid "Automatically set document type for deferred invoices"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_ddt
 #: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_wizard_export_fatturapa
 msgid "Export E-invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model:ir.model.fields,help:l10n_it_fatturapa_out_ddt.field_res_company__auto_set_deferred_invoice_type
+#: model:ir.model.fields,help:l10n_it_fatturapa_out_ddt.field_res_config_settings__auto_set_deferred_invoice_type
+msgid "If set, TD24 document type code will be applied to invoices created from transport document"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_ddt
@@ -42,6 +64,11 @@ msgstr ""
 #. module: l10n_it_fatturapa_out_ddt
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out_ddt.field_wizard_export_fatturapa__include_ddt_data
 msgid "TD Data"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_ddt
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_ddt.view_account_config_settings
+msgid "TD24 document type code will be applied to invoices created from transport document"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_ddt
