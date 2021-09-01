@@ -1400,12 +1400,15 @@ class WizardImportFatturapa(models.TransientModel):
                 line_vals['invoice_line_tax_wt_ids'] = [
                     (6, 0, [wt.id for wt in wt_founds])]
             if self.env.user.company_id.cassa_previdenziale_product_id:
-                cassa_previdenziale_product = self.env.user.company_id \
-                    .cassa_previdenziale_product_id
-                line_vals['product_id'] = cassa_previdenziale_product.id
-                line_vals['name'] = cassa_previdenziale_product.name
+                # This is needed to avoid issue
+                # https://github.com/OCA/l10n-italy/issues/1828
+                cp_product = self.env['product.product'].browse(
+                    self.env.user.company_id.cassa_previdenziale_product_id.id
+                )
+                line_vals['product_id'] = cp_product.id
+                line_vals['name'] = cp_product.name
                 self.adjust_accounting_data(
-                    cassa_previdenziale_product, line_vals
+                    cp_product, line_vals
                 )
             self.env['account.invoice.line'].create(line_vals)
 
