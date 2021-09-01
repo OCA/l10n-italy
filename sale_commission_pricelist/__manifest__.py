@@ -3,7 +3,7 @@
 
 {
     "name": "Sales commissions by pricelist",
-    "version": "14.0.1.0.0+OCA_commission_307",
+    "version": "14.0.1.0.0+PR307",
     "author": "Tecnativa, " "Odoo Community Association (OCA), " "ArcheTI",
     "category": "Sales Management",
     "website": "https://github.com/OCA/commission",
