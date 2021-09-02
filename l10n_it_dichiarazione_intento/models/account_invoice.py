@@ -79,14 +79,22 @@ class AccountInvoice(models.Model):
                         'change fiscal position and verify applied tax'))
                 else:
                     continue
+            plafond = self.env.user.company_id.\
+                dichiarazione_yearly_limit_ids.filtered(
+                    lambda r: r.year == str(fields.first(dichiarazioni).date_start.year)
+                )
+            available_plafond = plafond.limit_amount - plafond.actual_used_amount
             sign = 1 if invoice.type in ['out_invoice', 'in_invoice'] else -1
             dichiarazioni_amounts = {}
             for tax_line in invoice.tax_line_ids:
                 amount = sign * tax_line.base
                 for dichiarazione in dichiarazioni:
                     if dichiarazione.id not in dichiarazioni_amounts:
-                        dichiarazioni_amounts[dichiarazione.id] = \
-                            dichiarazione.available_amount
+                        if dichiarazione.available_amount > available_plafond:
+                            dichiarazioni_amounts[dichiarazione.id] = available_plafond
+                        else:
+                            dichiarazioni_amounts[dichiarazione.id] = \
+                                dichiarazione.available_amount
                     if tax_line.tax_id.id in [t.id for t
                                               in dichiarazione.taxes_ids]:
                         dichiarazioni_amounts[dichiarazione.id] -= amount
