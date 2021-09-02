@@ -92,6 +92,10 @@
                     </group>
                 </page>
             </notebook>
+
+            <xpath expr="//page/group/group/field[@name='phone']" position="after">
+                <field name="phone_electronic_invoice"/>
+            </xpath>
         </field>
     </record>
 
