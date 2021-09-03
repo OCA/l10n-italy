@@ -69,7 +69,7 @@ class WizardExportFatturapa(models.TransientModel):
             if invoice.partner_id != partner:
                 raise UserError(
                     _("Invoices %s must belong to the same partner.")
-                    % invoices.mapped("number")
+                    % ", ".join(invoices.mapped("number"))
                 )
 
         return partner
