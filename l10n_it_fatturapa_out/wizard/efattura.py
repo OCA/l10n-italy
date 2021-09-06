@@ -11,6 +11,7 @@ from unidecode import unidecode
 from odoo.exceptions import UserError
 from odoo.modules.module import get_module_resource
 from odoo.tools import float_repr
+from odoo.tools.float_utils import float_is_zero
 
 from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
 
@@ -273,10 +274,12 @@ class EFatturaOut:
             if line.display_type in ("line_section", "line_note"):
                 # find a non-zero tax, if possible
                 tax_lines = line.move_id.line_ids.filtered(
-                    lambda line: line.tax_line_id and line.price_total
+                    lambda line: line.tax_ids
+                                 and not (
+                        float_is_zero(line.price_total, precision_digits=2))
                 )
                 if tax_lines:
-                    return tax_lines[0].tax_line_id
+                    return tax_lines[0].tax_ids[0]
             return line.tax_ids[0]
 
         if self.partner_id.commercial_partner_id.is_pa:
