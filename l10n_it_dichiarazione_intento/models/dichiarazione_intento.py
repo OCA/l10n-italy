@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime
+import datetime as dt
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError
 
@@ -102,7 +103,7 @@ class DichiarazioneIntento(models.Model):
                 ])
             actual_limit_total = sum([d.limit_amount for d in dichiarazioni]) \
                 + values['limit_amount']
-            if actual_limit_total > plafond.limit_amount:
+            if actual_limit_total > plafond.limit_amount < plafond.actual_used_amount:
                 raise UserError(
                     _('Total of documents exceed yearly limit'))
         # ----- Assign a number to dichiarazione
