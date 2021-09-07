@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime
+import datetime as dt
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError
 
@@ -92,8 +93,11 @@ class DichiarazioneIntento(models.Model):
         #       to create an in declaration
         # Declaration issued by company are "IN"
         if values.get('type', False) == 'in':
-            year = datetime.strptime(
-                values['date_start'], '%Y-%m-%d').strftime('%Y')
+            if isinstance(values['date_start'], dt.date):
+                year = str(values['date_start'].year)
+            else:
+                year = datetime.strptime(
+                    values['date_start'], '%Y-%m-%d').strftime('%Y')
             plafond = self.env.user.company_id.\
                 dichiarazione_yearly_limit_ids.filtered(
                     lambda r: r.year == year)

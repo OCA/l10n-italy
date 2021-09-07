@@ -259,3 +259,7 @@ class TestDichiarazioneIntento(TransactionCase):
         self.invoice5.action_invoice_open()
         post_used_amount = self.dichiarazione4.used_amount
         self.assertAlmostEqual(post_used_amount, 900.0, 2)
+
+    def test_copy_dichiarazione_in(self):
+        dichiarazione_copy = self.dichiarazione4.copy()
+        self.assertTrue(dichiarazione_copy)
