@@ -1387,6 +1387,32 @@ class WizardImportFatturapa(models.TransientModel):
         Withholdings = FatturaBody.DatiGenerali.DatiGeneraliDocumento.DatiRitenuta
         if not Withholdings:
             return None
+        withholdings_module_name = "l10n_it_withholding_tax_reason"
+        withholdings_module = self.env["ir.module.module"].search(
+            [
+                ("name", "=", withholdings_module_name),
+                ("state", "in", ("installed", "to upgrade")),
+            ]
+        )
+        if not withholdings_module:
+            fatturapa_attachment = self.env["fatturapa.attachment.in"].browse(
+                invoice_data.get("fatturapa_attachment_in_id")
+            )
+            invoice_ref = FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero
+            raise UserError(
+                _(
+                    "The bill having reference {invoice_ref} "
+                    "included in e-invoice {e_invoice_name} "
+                    "contains withholding taxes but "
+                    "{withholdings_module_name} is not installed.\n"
+                    "In order to import the e-invoice {e_invoice_name}, "
+                    "install {withholdings_module_name} module and try again."
+                ).format(
+                    withholdings_module_name=withholdings_module_name,
+                    invoice_ref=invoice_ref,
+                    e_invoice_name=fatturapa_attachment.name,
+                )
+            )
         invoice_data["ftpa_withholding_ids"] = []
         wt_founds = []
         for Withholding in Withholdings:

@@ -17,7 +17,6 @@
         "base_vat",
         "l10n_it_fatturapa",
         "l10n_it_fiscal_document_type",
-        "l10n_it_withholding_tax_reason",
     ],
     "data": [
         "views/account_view.xml",
