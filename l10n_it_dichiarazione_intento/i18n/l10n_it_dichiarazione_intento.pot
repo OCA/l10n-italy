@@ -24,7 +24,7 @@ msgid "Actual Used Amount"
 msgstr ""
 
 #. module: l10n_it_dichiarazione_intento
-#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:145
+#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:149
 #, python-format
 msgid "All taxes in declaration of intent must be used in fiscal position taxes"
 msgstr ""
@@ -160,7 +160,7 @@ msgid "Declarations of intent"
 msgstr ""
 
 #. module: l10n_it_dichiarazione_intento
-#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:101
+#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:105
 #, python-format
 msgid "Define a yearly plafond for in documents in your company settings"
 msgstr ""
@@ -246,7 +246,7 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_it_dichiarazione_intento
-#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:131
+#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:135
 #, python-format
 msgid "Impossible to delete a document with linked invoices"
 msgstr ""
@@ -312,7 +312,7 @@ msgid "Limit Amount"
 msgstr ""
 
 #. module: l10n_it_dichiarazione_intento
-#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:158
+#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:162
 #, python-format
 msgid "Limit passed for declaration %s.\n"
 "Excess value: %s%s"
@@ -404,7 +404,7 @@ msgid "Telematic Protocol"
 msgstr ""
 
 #. module: l10n_it_dichiarazione_intento
-#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:119
+#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:123
 #, python-format
 msgid "Total of documents exceed yearly limit"
 msgstr ""
