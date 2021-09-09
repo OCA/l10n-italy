@@ -5,6 +5,7 @@
 from odoo import models, fields, api, _
 import odoo.addons.decimal_precision as dp
 from odoo.exceptions import ValidationError
+from odoo.tools import float_compare
 
 
 class AccountFullReconcile(models.Model):
@@ -62,7 +63,12 @@ class AccountPartialReconcile(models.Model):
             # Note that this is always executed, for every reconciliation.
             # Thus, we must not change amount when not in withholding tax case
             amount = vals.get('amount_currency') or vals.get('amount')
-            if amount > invoice.amount_net_pay:
+            digits_rounding_precision = invoice.company_id.currency_id.rounding
+            if float_compare(
+                amount,
+                invoice.amount_net_pay,
+                precision_rounding=digits_rounding_precision
+            ) == 1:
                 vals.update({'amount': invoice.amount_net_pay})
 
         # Create reconciliation
