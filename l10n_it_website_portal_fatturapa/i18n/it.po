@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_website_portal_fatturapa
+# 	* l10n_it_website_portal_fatturapa
 #
 msgid ""
 msgstr ""
@@ -22,7 +22,7 @@ msgid "Addressee code"
 msgstr "Codice destinatario"
 
 #. module: l10n_it_website_portal_fatturapa
-#: code:addons/l10n_it_website_portal_fatturapa/controllers/main.py:70
+#: code:addons/l10n_it_website_portal_fatturapa/controllers/main.py:72
 #, python-format
 msgid "At least one of first name and last name is required"
 msgstr "Almeno uno fra nome e cognome è richiesto"
