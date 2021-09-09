@@ -7,31 +7,31 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-24 16:24+0000\n"
-"PO-Revision-Date: 2018-12-04 17:52+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2021-09-09 08:33+0000\n"
+"Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_it_fatturapa_out_ddt
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out_ddt.field_res_company__auto_set_deferred_invoice_type
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out_ddt.field_res_config_settings__auto_set_deferred_invoice_type
 msgid "Automatically set document type for deferred invoices"
-msgstr ""
+msgstr "Impostare automaticamente il tipo documento per le fatture differite"
 
 #. module: l10n_it_fatturapa_out_ddt
 #: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: l10n_it_fatturapa_out_ddt
 #: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni di configurazione"
 
 #. module: l10n_it_fatturapa_out_ddt
 #: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_wizard_export_fatturapa
@@ -45,11 +45,13 @@ msgid ""
 "If set, TD24 document type code will be applied to invoices created from "
 "transport document"
 msgstr ""
+"Se impostato, il codice tipo documento TD24 verrà applicato alle fatture "
+"create dal documento di trasporto"
 
 #. module: l10n_it_fatturapa_out_ddt
 #: selection:wizard.export.fatturapa,include_ddt_data:0
 msgid "Include TD Data"
-msgstr ""
+msgstr "Includere dati DDT"
 
 #. module: l10n_it_fatturapa_out_ddt
 #: model:ir.model.fields,help:l10n_it_fatturapa_out_ddt.field_wizard_export_fatturapa__include_ddt_data
@@ -59,6 +61,10 @@ msgid ""
 "Include transport data: The field must be entered when a accompanying "
 "invoice to be filled with transport data is present"
 msgstr ""
+"Includere dati DDT: il campo deve essere inserito quando è presente un "
+"documento di trasporto associato a una fattura differita\n"
+"Includere dati trasporto: il campo deve essere inserito quando è presente "
+"una fattura accompagnatoria da riempire con i dati del trasporto"
 
 #. module: l10n_it_fatturapa_out_ddt
 #: selection:wizard.export.fatturapa,include_ddt_data:0
@@ -73,7 +79,7 @@ msgstr ""
 #. module: l10n_it_fatturapa_out_ddt
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out_ddt.field_wizard_export_fatturapa__include_ddt_data
 msgid "TD Data"
-msgstr ""
+msgstr "Dati DDT"
 
 #. module: l10n_it_fatturapa_out_ddt
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_ddt.view_account_config_settings
@@ -81,6 +87,8 @@ msgid ""
 "TD24 document type code will be applied to invoices created from transport "
 "document"
 msgstr ""
+"Il codice tipo documento TD24 verrà applicato alle fatture create dal "
+"documento di trasporto"
 
 #. module: l10n_it_fatturapa_out_ddt
 #: code:addons/l10n_it_fatturapa_out_ddt/wizard/wizard_export_fatturapa.py:79
