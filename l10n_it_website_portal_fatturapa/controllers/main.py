@@ -11,7 +11,7 @@ FATTURAPA_PORTAL_FIELDS = \
     ['codice_destinatario', 'firstname', 'lastname',
      'pec_destinatario', 'country_id', 'fiscalcode', 'zipcode', 'vat',
      'electronic_invoice_subjected', 'street', 'city',
-     'is_pa', 'ipa_code', 'eori_code']
+     'is_pa', 'ipa_code', 'eori_code', 'electronic_invoice_obliged_subject']
 WebsitePortalFiscalCode.OPTIONAL_BILLING_FIELDS.extend(FATTURAPA_PORTAL_FIELDS)
 
 
@@ -22,6 +22,8 @@ class WebsitePortalFatturapa(WebsitePortalFiscalCode):
         # it is not posted
         data['electronic_invoice_subjected'] = data.get(
             'electronic_invoice_subjected', False)
+        if data["electronic_invoice_subjected"]:
+            data["electronic_invoice_obliged_subject"] = True
         error, error_message = \
             super(WebsitePortalFatturapa, self).details_form_validate(data)
         partner_sudo = request.env.user.partner_id.sudo()
