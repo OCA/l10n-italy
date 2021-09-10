@@ -381,6 +381,9 @@ class StockPickingPackagePreparation(models.Model):
             'weight': self.weight,
             'gross_weight': self.gross_weight,
             'volume': self.volume,
+            'weight_manual_uom_id': self.weight_manual_uom_id.id,
+            'gross_weight_uom_id': self.gross_weight_uom_id.id,
+            'volume_uom_id': self.volume_uom_id.id,
         })
         return res
 
