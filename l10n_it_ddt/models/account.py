@@ -32,6 +32,18 @@ class AccountInvoice(models.Model):
     weight = fields.Float(string="Weight")
     gross_weight = fields.Float(string="Gross Weight")
     volume = fields.Float('Volume')
+    weight_manual_uom_id = fields.Many2one(
+        'uom.uom', 'Net Weight UoM',
+        default=lambda self: self.env.ref(
+            'uom.product_uom_kgm', raise_if_not_found=False))
+    gross_weight_uom_id = fields.Many2one(
+        'uom.uom', 'Gross Weight UoM',
+        default=lambda self: self.env.ref(
+            'uom.product_uom_kgm', raise_if_not_found=False))
+    volume_uom_id = fields.Many2one(
+        'uom.uom', 'Volume UoM',
+        default=lambda self: self.env.ref(
+            'uom.product_uom_litre', raise_if_not_found=False))
     ddt_ids = fields.One2many(
         'stock.picking.package.preparation', 'invoice_id', string='TD')
 
