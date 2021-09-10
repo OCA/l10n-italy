@@ -213,7 +213,7 @@ class MigrateL10nItDdt(EasyCommand):
         DeliveryNoteType = self.env['stock.delivery.note.type']
 
         old_type = self.env.ref('l10n_it_ddt.ddt_type_ddt')
-        new_type = self.env.ref('l10n_it_delivery_note.delivery_note_type_ddt')
+        new_type = self.env.ref('l10n_it_delivery_note_base.delivery_note_type_ddt')
         new_type.write({'sequence_id': old_type.sequence_id.id})
 
         self.env.cr.execute("""
