@@ -19,7 +19,7 @@ msgid "Addressee code"
 msgstr ""
 
 #. module: l10n_it_website_portal_fatturapa
-#: code:addons/l10n_it_website_portal_fatturapa/controllers/main.py:70
+#: code:addons/l10n_it_website_portal_fatturapa/controllers/main.py:72
 #, python-format
 msgid "At least one of first name and last name is required"
 msgstr ""
