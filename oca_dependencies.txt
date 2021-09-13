@@ -4,3 +4,4 @@ server-ux
 stock-logistics-workflow
 partner-contact
 account-financial-reporting
+pos
