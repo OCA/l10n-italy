@@ -12,7 +12,7 @@
                     <group name="fiscalprinter">
                         <field name="fiscalprinter_payment_type"/>
                         <field name="fiscalprinter_payment_index"
-                               attrs="{'required': [('fiscalprinter_payment_type', 'in', ('2', '3'))], 'invisible': [('fiscalprinter_payment_type', 'not in', ('2', '3'))]}"/>
+                               attrs="{'required': [('fiscalprinter_payment_type', 'in', ('2', '3', '6'))], 'invisible': [('fiscalprinter_payment_type', 'not in', ('2', '3', '6'))]}"/>
                     </group>
                 </group>
             </field>
