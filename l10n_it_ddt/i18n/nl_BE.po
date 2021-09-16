@@ -319,7 +319,7 @@ msgid "Do not invoice services from DDT"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:550
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:553
 #, python-format
 msgid "Document {d} has invoice linked"
 msgstr ""
@@ -377,6 +377,8 @@ msgid "Gross Weight"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice__gross_weight_uom_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order__gross_weight_uom_id
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__gross_weight_uom_id
 msgid "Gross Weight UoM"
 msgstr ""
@@ -548,6 +550,8 @@ msgid "Net Weight"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice__weight_manual_uom_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order__weight_manual_uom_id
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__weight_manual_uom_id
 msgid "Net Weight UoM"
 msgstr ""
@@ -646,7 +650,7 @@ msgid "Please define an accounting sale journal for this company."
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:683
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:686
 #, python-format
 msgid ""
 "Please define income account for this product: \"%s\" (id:%d) - or for its "
@@ -1008,7 +1012,7 @@ msgid "Taxes"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:420
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:423
 #, python-format
 msgid "There is no invoiceable line."
 msgstr ""
@@ -1089,6 +1093,8 @@ msgid "Volume"
 msgstr ""
 
 #. module: l10n_it_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice__volume_uom_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order__volume_uom_id
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__volume_uom_id
 msgid "Volume UoM"
 msgstr ""
