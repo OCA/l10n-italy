@@ -48,7 +48,7 @@
         <field name="inherit_id" ref="account.report_invoice_document_with_payments"/>
         <field name="arch" type="xml">
             <xpath expr="//div[@id='total']/div/table" position="inside">
-                <t t-if="o.withholding_tax_in_print and len(payments_vals) > 0">
+                <t t-if="o.withholding_tax_in_print and len(payments_vals) > 0 and o.withholding_tax">
                     <tr class="border-black">
                         <td>
                             <strong>Residual Net To Pay</strong>
