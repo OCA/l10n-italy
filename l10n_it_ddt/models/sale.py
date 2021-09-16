@@ -58,6 +58,19 @@ class SaleOrder(models.Model):
              "invoiced from DDT. This parameter can be set on partners and "
              "automatically applied to Sale Orders.")
 
+    weight_manual_uom_id = fields.Many2one(
+        'uom.uom', 'Net Weight UoM',
+        default=lambda self: self.env.ref(
+            'uom.product_uom_kgm', raise_if_not_found=False))
+    gross_weight_uom_id = fields.Many2one(
+        'uom.uom', 'Gross Weight UoM',
+        default=lambda self: self.env.ref(
+            'uom.product_uom_kgm', raise_if_not_found=False))
+    volume_uom_id = fields.Many2one(
+        'uom.uom', 'Volume UoM',
+        default=lambda self: self.env.ref(
+            'uom.product_uom_litre', raise_if_not_found=False))
+
     @api.multi
     @api.onchange('partner_id')
     def onchange_partner_id(self):
@@ -90,6 +103,9 @@ class SaleOrder(models.Model):
             'weight': self.weight,
             'gross_weight': self.gross_weight,
             'volume': self.volume,
+            'weight_manual_uom_id': self.weight_manual_uom_id.id,
+            'gross_weight_uom_id': self.gross_weight_uom_id.id,
+            'volume_uom_id': self.volume_uom_id.id,
         })
         return vals
 

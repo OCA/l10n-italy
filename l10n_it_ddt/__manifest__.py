@@ -21,6 +21,7 @@
         'stock_account',
         'stock_picking_package_preparation_line',
         'product_expiry',
+        'uom',
     ],
     'data': [
         'security/ir.model.access.csv',
