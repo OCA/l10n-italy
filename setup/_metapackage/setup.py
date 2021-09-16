@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo12-addon-fiscal_epos_print_fiscalcode',
         'odoo12-addon-fiscal_epos_print_meal_voucher',
         'odoo12-addon-l10n_it_abicab',
+        'odoo12-addon-l10n_it_accompanying_invoice',
         'odoo12-addon-l10n_it_account',
         'odoo12-addon-l10n_it_account_balance_report',
         'odoo12-addon-l10n_it_account_stamp',
