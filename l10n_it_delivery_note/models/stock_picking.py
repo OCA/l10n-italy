@@ -99,6 +99,8 @@ class StockPicking(models.Model):
     delivery_note_readonly = fields.Boolean(compute="_compute_boolean_flags")
     delivery_note_visible = fields.Boolean(compute="_compute_boolean_flags")
     can_be_invoiced = fields.Boolean(compute="_compute_boolean_flags")
+    dn_supplier_number = fields.Char(string="Supplier DN Number", copy=False)
+    dn_supplier_date = fields.Date(string="Supplier DN Date", copy=False)
 
     @property
     def _delivery_note_fields(self):
