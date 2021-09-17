@@ -488,6 +488,20 @@ class AccountMove(models.Model):
                 payment_val["wt_move_line"] = False
         return payment_vals
 
+    def action_register_payment(self):
+        """
+        Set net to pay how default amount to pay
+        """
+        res = super().action_register_payment()
+        if self.withholding_tax_amount and self.amount_net_pay_residual:
+            ctx = res.get('context', {})
+            if ctx:
+                ctx.update({
+                    'default_amount': self.amount_net_pay_residual
+                })
+            res.update(ctx)
+        return res
+
 
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
