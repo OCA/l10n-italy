@@ -193,7 +193,7 @@ class ReportRegistroIva(models.AbstractModel):
         if receivable_payable_found:
             total = abs(total)
         else:
-            total = abs(move.amount)
+            total = abs(move.amount_total)
         if "refund" in move.move_type:
             total = -total
         return total
