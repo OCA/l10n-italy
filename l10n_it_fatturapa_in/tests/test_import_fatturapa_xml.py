@@ -207,7 +207,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
     def test_08_xml_import_no_account(self):
         """Check that a useful error message is raised when
         the credit account is missing in purchase journal."""
-        company = self.env.user.company_id
+        company = self.env.company
         journal = self.wizard_model.get_purchase_journal(company)
         journal_account = journal.default_account_id
         journal.default_account_id = False
@@ -830,8 +830,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.env["res.partner.bank"].create(
             {
                 "acc_number": "IT59R0100003228000000000622",
-                "company_id": self.env.user.company_id.id,
-                "partner_id": self.env.user.company_id.partner_id.id,
+                "company_id": self.env.company.id,
+                "partner_id": self.env.company.partner_id.id,
             }
         )
         res = self.run_wizard("test48", "IT01234567890_FPR15.xml")
