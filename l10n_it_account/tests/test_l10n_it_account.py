@@ -1,24 +1,27 @@
 from odoo import fields
 from odoo.exceptions import ValidationError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import Form
+
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
-class TestAccount(TransactionCase):
-    def setUp(self):
-        super(TestAccount, self).setUp()
-        self.data_account_type_current_assets = self.env.ref(
+class TestAccount(AccountTestInvoicingCommon):
+    @classmethod
+    def setUpClass(cls, chart_template_ref=None):
+        super().setUpClass(chart_template_ref=chart_template_ref)
+        cls.data_account_type_current_assets = cls.env.ref(
             "account.data_account_type_current_assets"
         )
-        self.data_account_type_current_liabilities = self.env.ref(
+        cls.data_account_type_current_liabilities = cls.env.ref(
             "account.data_account_type_current_liabilities"
         )
-        self.group_1 = self.env["account.group"].create(
+        cls.group_1 = cls.env["account.group"].create(
             {
                 "name": "1",
                 "code_prefix_start": "it_account_",
             }
         )
-        self.iva_22I5 = self.env["account.tax"].create(
+        cls.iva_22I5 = cls.env["account.tax"].create(
             {
                 "name": "IVA al 22% detraibile al 50%",
                 "description": "22I5",
@@ -42,9 +45,7 @@ class TestAccount(TransactionCase):
                         {
                             "factor_percent": 50,
                             "repartition_type": "tax",
-                            "account_id": self.env.ref(
-                                "l10n_generic_coa.1_tax_paid"
-                            ).id,
+                            "account_id": cls.company_data["default_account_assets"].id,
                         },
                     ),
                     (
@@ -80,9 +81,53 @@ class TestAccount(TransactionCase):
                         {
                             "factor_percent": 50,
                             "repartition_type": "tax",
-                            "account_id": self.env.ref(
-                                "l10n_generic_coa.1_tax_paid"
-                            ).id,
+                            "account_id": cls.company_data["default_account_assets"].id,
+                        },
+                    ),
+                ],
+            }
+        )
+        cls.vat_not_deductible = cls.env["account.tax"].create(
+            {
+                "name": "VAT 22% not deductible",
+                "description": "NOTDED",
+                "amount": 22,
+                "amount_type": "percent",
+                "type_tax_use": "purchase",
+                "price_include": False,
+                "invoice_repartition_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "factor_percent": 100,
+                            "repartition_type": "base",
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "factor_percent": 100,
+                            "repartition_type": "tax",
+                        },
+                    ),
+                ],
+                "refund_repartition_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "factor_percent": 100,
+                            "repartition_type": "base",
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "factor_percent": 100,
+                            "repartition_type": "tax",
                         },
                     ),
                 ],
@@ -128,3 +173,25 @@ class TestAccount(TransactionCase):
         self.assertEqual(tax.balance, -22)
         self.assertEqual(tax.deductible_balance, -11)
         self.assertEqual(tax.undeductible_balance, -11)
+
+    def test_vat_22_not_deductible(self):
+        today = fields.Date.today()
+        self.init_invoice(
+            "in_invoice",
+            invoice_date=today,
+            amounts=[100],
+            taxes=self.vat_not_deductible,
+            post=True,
+        )
+        context = {
+            "from_date": today,
+            "to_date": today,
+        }
+        tax = (
+            self.env["account.tax"]
+            .with_context(context)
+            .browse(self.vat_not_deductible.id)
+        )
+        self.assertEqual(tax.balance, -22)
+        self.assertEqual(tax.deductible_balance, 0)
+        self.assertEqual(tax.undeductible_balance, -22)
