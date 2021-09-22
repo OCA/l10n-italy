@@ -6,49 +6,50 @@ from datetime import datetime
 
 from dateutil.rrule import MONTHLY
 
-from odoo.tests.common import SavepointCase
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
-class TestTaxSP(SavepointCase):
-    def setUp(self):
-        super().setUp()
-        self.tax_model = self.env["account.tax"]
-        self.move_model = self.env["account.move"]
-        self.term_model = self.env["account.payment.term"]
-        self.fp_model = self.env["account.fiscal.position"]
-        self.account_model = self.env["account.account"]
-        self.term_line_model = self.env["account.payment.term.line"]
-        self.vat_statement_model = self.env["account.vat.period.end.statement"]
-        account_user_type = self.env.ref("account.data_account_type_receivable")
+class TestTaxSP(AccountTestInvoicingCommon):
+    @classmethod
+    def setUpClass(cls, chart_template_ref=None):
+        super().setUpClass(chart_template_ref=chart_template_ref)
+        cls.tax_model = cls.env["account.tax"]
+        cls.move_model = cls.env["account.move"]
+        cls.term_model = cls.env["account.payment.term"]
+        cls.fp_model = cls.env["account.fiscal.position"]
+        cls.account_model = cls.env["account.account"]
+        cls.term_line_model = cls.env["account.payment.term.line"]
+        cls.vat_statement_model = cls.env["account.vat.period.end.statement"]
+        account_user_type = cls.env.ref("account.data_account_type_receivable")
         today = datetime.now().date()
 
-        self.range_type = self.env["date.range.type"].create(
+        cls.range_type = cls.env["date.range.type"].create(
             {"name": "Month", "company_id": False, "allow_overlap": False}
         )
-        generator = self.env["date.range.generator"]
+        generator = cls.env["date.range.generator"]
         generator = generator.create(
             {
                 "date_start": "%s-01-01" % datetime.now().year,
                 "name_prefix": "%s-" % datetime.now().year,
-                "type_id": self.range_type.id,
+                "type_id": cls.range_type.id,
                 "duration_count": 1,
                 "unit_of_time": str(MONTHLY),
                 "count": 12,
             }
         )
         generator.action_apply()
-        self.current_period = self.env["date.range"].search(
+        cls.current_period = cls.env["date.range"].search(
             [("date_start", "<=", today), ("date_end", ">=", today)]
         )
 
         paid_vat_account = (
-            self.env["account.account"]
+            cls.env["account.account"]
             .search(
                 [
                     (
                         "user_type_id",
                         "=",
-                        self.env.ref("account.data_account_type_current_assets").id,
+                        cls.env.ref("account.data_account_type_current_assets").id,
                     )
                 ],
                 limit=1,
@@ -56,15 +57,13 @@ class TestTaxSP(SavepointCase):
             .id
         )
         received_vat_account = (
-            self.env["account.account"]
+            cls.env["account.account"]
             .search(
                 [
                     (
                         "user_type_id",
                         "=",
-                        self.env.ref(
-                            "account.data_account_type_current_liabilities"
-                        ).id,
+                        cls.env.ref("account.data_account_type_current_liabilities").id,
                     )
                 ],
                 limit=1,
@@ -74,11 +73,11 @@ class TestTaxSP(SavepointCase):
 
         # ----- Set invoice date to recent date in the system
         # ----- This solves problems with account_invoice_sequential_dates
-        self.recent_date = self.move_model.search(
+        cls.recent_date = cls.move_model.search(
             [("invoice_date", "!=", False)], order="invoice_date desc", limit=1
         ).invoice_date
 
-        self.account_tax_22sp = self.tax_model.create(
+        cls.account_tax_22sp = cls.company_data["default_tax_sale"].copy(
             {
                 "name": "22% SP",
                 "amount": 22,
@@ -88,7 +87,7 @@ class TestTaxSP(SavepointCase):
             }
         )
 
-        self.account_tax_22 = self.tax_model.create(
+        cls.account_tax_22 = cls.company_data["default_tax_sale"].copy(
             {
                 "name": "22%",
                 "amount": 22,
@@ -97,7 +96,7 @@ class TestTaxSP(SavepointCase):
                 "type_tax_use": "sale",
             }
         )
-        self.account_tax_22_credit = self.tax_model.create(
+        cls.account_tax_22_credit = cls.company_data["default_tax_purchase"].copy(
             {
                 "name": "22% credit",
                 "amount": 22,
@@ -107,7 +106,7 @@ class TestTaxSP(SavepointCase):
             }
         )
 
-        self.sp_fp = self.fp_model.create(
+        cls.sp_fp = cls.fp_model.create(
             {
                 "name": "Split payment",
                 "split_payment": True,
@@ -116,25 +115,25 @@ class TestTaxSP(SavepointCase):
                         0,
                         0,
                         {
-                            "tax_src_id": self.account_tax_22.id,
-                            "tax_dest_id": self.account_tax_22sp.id,
+                            "tax_src_id": cls.account_tax_22.id,
+                            "tax_dest_id": cls.account_tax_22sp.id,
                         },
                     )
                 ],
             }
         )
-        self.company = self.env.ref("base.main_company")
-        self.company.sp_account_id = self.env["account.account"].search(
+        cls.company = cls.company_data["company"]
+        cls.company.sp_account_id = cls.env["account.account"].search(
             [
                 (
                     "user_type_id",
                     "=",
-                    self.env.ref("account.data_account_type_current_assets").id,
+                    cls.env.ref("account.data_account_type_current_assets").id,
                 )
             ],
             limit=1,
         )
-        self.a_recv = self.account_model.create(
+        cls.a_recv = cls.account_model.create(
             dict(
                 code="cust_acc",
                 name="customer account",
@@ -142,40 +141,40 @@ class TestTaxSP(SavepointCase):
                 reconcile=True,
             )
         )
-        self.a_sale = self.env["account.account"].search(
+        cls.a_sale = cls.env["account.account"].search(
             [
                 (
                     "user_type_id",
                     "=",
-                    self.env.ref("account.data_account_type_revenue").id,
+                    cls.env.ref("account.data_account_type_revenue").id,
                 )
             ],
             limit=1,
         )
-        self.vat_authority = self.account_model.create(
+        cls.vat_authority = cls.account_model.create(
             {
                 "code": "VAT AUTH",
                 "name": "VAT Authority",
                 "reconcile": True,
-                "user_type_id": self.env.ref("account.data_account_type_payable").id,
+                "user_type_id": cls.env.ref("account.data_account_type_payable").id,
             }
         )
 
-        self.account_payment_term = self.term_model.create(
+        cls.account_payment_term = cls.term_model.create(
             {
                 "name": "16 Days End of Month",
                 "note": "16 Days End of Month",
             }
         )
-        self.term_line_model.create(
+        cls.term_line_model.create(
             {
                 "value": "balance",
                 "days": 16,
                 "option": "after_invoice_month",
-                "payment_id": self.account_payment_term.id,
+                "payment_id": cls.account_payment_term.id,
             }
         )
-        self.term_15_30 = self.term_model.create(
+        cls.term_15_30 = cls.term_model.create(
             {
                 "name": "15 30",
                 "line_ids": [
@@ -203,16 +202,12 @@ class TestTaxSP(SavepointCase):
         )
         # Set invoice date to recent date in the system
         # This solves problems with account_invoice_sequential_dates
-        self.recent_date = self.move_model.search(
+        cls.recent_date = cls.move_model.search(
             [("invoice_date", "!=", False)], order="invoice_date desc", limit=1
         ).invoice_date
 
-        self.sales_journal = self.env["account.journal"].search(
-            [("type", "=", "sale")]
-        )[0]
-        self.general_journal = self.env["account.journal"].search(
-            [("type", "=", "general")]
-        )[0]
+        cls.sales_journal = cls.company_data["default_journal_sale"]
+        cls.general_journal = cls.company_data["default_journal_misc"]
 
     def test_invoice(self):
         invoice = self.move_model.with_context(default_move_type="out_invoice").create(
