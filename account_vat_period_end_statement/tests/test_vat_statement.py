@@ -5,21 +5,23 @@ from datetime import date, datetime
 
 from dateutil.rrule import MONTHLY
 
-from odoo.tests.common import TransactionCase
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
-class TestTax(TransactionCase):
-    def setUp(self):
-        super(TestTax, self).setUp()
-        self.range_type = self.env["date.range.type"].create(
+class TestTax(AccountTestInvoicingCommon):
+    @classmethod
+    def setUpClass(cls, chart_template_ref=None):
+        super().setUpClass(chart_template_ref=chart_template_ref)
+
+        cls.range_type = cls.env["date.range.type"].create(
             {"name": "Fiscal year", "company_id": False, "allow_overlap": False}
         )
-        generator = self.env["date.range.generator"]
+        generator = cls.env["date.range.generator"]
         generator = generator.create(
             {
                 "date_start": "%s-01-01" % datetime.now().year,
                 "name_prefix": "%s-" % datetime.now().year,
-                "type_id": self.range_type.id,
+                "type_id": cls.range_type.id,
                 "duration_count": 1,
                 "unit_of_time": str(MONTHLY),
                 "count": 12,
@@ -30,55 +32,53 @@ class TestTax(TransactionCase):
             {
                 "date_start": "%s-01-01" % (datetime.now().year - 1),
                 "name_prefix": "%s-" % (datetime.now().year - 1),
-                "type_id": self.range_type.id,
+                "type_id": cls.range_type.id,
                 "duration_count": 1,
                 "unit_of_time": str(MONTHLY),
                 "count": 12,
             }
         )
         prev_year_generator.action_apply()
-        self.tax_model = self.env["account.tax"]
-        self.account_model = self.env["account.account"]
-        self.term_model = self.env["account.payment.term"]
-        self.term_line_model = self.env["account.payment.term.line"]
-        self.invoice_model = self.env["account.move"]
-        self.invoice_line_model = self.env["account.move.line"]
+        cls.tax_model = cls.env["account.tax"]
+        cls.account_model = cls.env["account.account"]
+        cls.term_model = cls.env["account.payment.term"]
+        cls.term_line_model = cls.env["account.payment.term.line"]
+        cls.invoice_model = cls.env["account.move"]
+        cls.invoice_line_model = cls.env["account.move.line"]
         today = datetime.now().date()
-        self.current_period = self.env["date.range"].search(
+        cls.current_period = cls.env["date.range"].search(
             [("date_start", "<=", today), ("date_end", ">=", today)]
         )
-        self.last_year_date = date(today.year - 1, today.month, today.day)
-        self.last_year_period = self.env["date.range"].search(
+        cls.last_year_date = date(today.year - 1, today.month, today.day)
+        cls.last_year_period = cls.env["date.range"].search(
             [
-                ("date_start", "<=", self.last_year_date),
-                ("date_end", ">=", self.last_year_date),
+                ("date_start", "<=", cls.last_year_date),
+                ("date_end", ">=", cls.last_year_date),
             ]
         )
-        self.vat_statement_model = self.env["account.vat.period.end.statement"]
-        self.paid_vat_account = (
-            self.env["account.account"]
+        cls.vat_statement_model = cls.env["account.vat.period.end.statement"]
+        cls.paid_vat_account = (
+            cls.env["account.account"]
             .search(
                 [
                     (
                         "user_type_id",
                         "=",
-                        self.env.ref("account.data_account_type_current_assets").id,
+                        cls.env.ref("account.data_account_type_current_assets").id,
                     )
                 ],
                 limit=1,
             )
             .id
         )
-        self.received_vat_account = (
-            self.env["account.account"]
+        cls.received_vat_account = (
+            cls.env["account.account"]
             .search(
                 [
                     (
                         "user_type_id",
                         "=",
-                        self.env.ref(
-                            "account.data_account_type_current_liabilities"
-                        ).id,
+                        cls.env.ref("account.data_account_type_current_liabilities").id,
                     )
                 ],
                 limit=1,
@@ -88,67 +88,60 @@ class TestTax(TransactionCase):
 
         # ----- Set invoice date to recent date in the system
         # ----- This solves problems with account_invoice_sequential_dates
-        self.recent_date = (
-            self.invoice_model.search(
+        cls.recent_date = (
+            cls.invoice_model.search(
                 [("invoice_date", "!=", False)], order="invoice_date desc", limit=1
             ).invoice_date
             or today
         )
-        self.last_year_recent_date = date(
-            self.recent_date.year - 1, self.recent_date.month, self.recent_date.day
+        cls.last_year_recent_date = date(
+            cls.recent_date.year - 1, cls.recent_date.month, cls.recent_date.day
         )
-
-        self.account_tax_22 = self.tax_model.create(
+        cls.account_tax_22 = cls.company_data["default_tax_sale"].copy(
             {
                 "name": "22%",
                 "amount": 22,
                 "amount_type": "percent",
-                "vat_statement_account_id": self.received_vat_account,
+                "vat_statement_account_id": cls.received_vat_account,
                 "type_tax_use": "sale",
             }
         )
-        self.account_tax_22_credit = self.tax_model.create(
+        cls.account_tax_22_credit = cls.company_data["default_tax_purchase"].copy(
             {
                 "name": "22% credit",
                 "amount": 22,
                 "amount_type": "percent",
-                "vat_statement_account_id": self.paid_vat_account,
+                "vat_statement_account_id": cls.paid_vat_account,
                 "type_tax_use": "purchase",
             }
         )
 
-        self.vat_authority = self.account_model.create(
+        cls.vat_authority = cls.account_model.create(
             {
                 "code": "VAT AUTH",
                 "name": "VAT Authority",
                 "reconcile": True,
-                "user_type_id": self.env.ref("account.data_account_type_payable").id,
+                "user_type_id": cls.env.ref("account.data_account_type_payable").id,
             }
         )
 
-        self.account_payment_term = self.term_model.create(
+        cls.account_payment_term = cls.term_model.create(
             {
                 "name": "16 Days End of Month",
                 "note": "16 Days End of Month",
             }
         )
-        self.term_line_model.create(
+        cls.term_line_model.create(
             {
                 "value": "balance",
                 "days": 16,
                 "option": "after_invoice_month",
-                "payment_id": self.account_payment_term.id,
+                "payment_id": cls.account_payment_term.id,
             }
         )
-        self.sale_journal = self.env["account.journal"].search(
-            [("type", "=", "sale")], limit=1
-        )
-        self.purchase_journal = self.env["account.journal"].search(
-            [("type", "=", "purchase")], limit=1
-        )
-        self.general_journal = self.env["account.journal"].search(
-            [("type", "=", "general")], limit=1
-        )
+        cls.sale_journal = cls.company_data["default_journal_sale"]
+        cls.purchase_journal = cls.company_data["default_journal_purchase"]
+        cls.general_journal = cls.company_data["default_journal_misc"]
 
     def test_vat_statement(self):
         in_invoice_line_account = (
