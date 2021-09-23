@@ -52,6 +52,7 @@ class FatturapaPaymentDetail(models.Model):
     # _position = ['2.4.2']
     _name = "fatturapa.payment.detail"
     _description = "E-invoice payment details"
+    _rec_name = "payment_due_date"
     recipient = fields.Char('Recipient', size=200)
     fatturapa_pm_id = fields.Many2one(
         'fatturapa.payment_method', string="Electronic Invoice Payment Method"
