@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/account.py:352
+#: code:addons/l10n_it_withholding_tax/models/account.py:358
 #, python-format
 msgid " (Residual Net to pay: %s)"
 msgstr " (Netto a pagare residuo: %s)"
@@ -594,7 +594,7 @@ msgid "WT reconciliation"
 msgstr "Riconciliazione RdA"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/account.py:160
+#: code:addons/l10n_it_withholding_tax/models/account.py:166
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:433
 #, python-format
 msgid ""
