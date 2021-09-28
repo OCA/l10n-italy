@@ -507,7 +507,11 @@ class AccountInvoice(models.Model):
                 tax_group = tax_grouped[key]
                 wt_tax = self.env['withholding.tax'].browse(
                     tax_group.get('withholding_tax_id'))
-                res = wt_tax.compute_tax(tax_group.get('base'))
+                # rebuild base in case of coeff <>1
+                base = tax_group.get('base')
+                if wt_tax.base:
+                    base = base / wt_tax.base
+                res = wt_tax.compute_tax(base)
                 tax_group.update({
                     'tax': res.get('tax', 0)
                 })
