@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/account.py:335
+#: code:addons/l10n_it_withholding_tax/models/account.py:341
 #, python-format
 msgid " (Net to pay: %s)"
 msgstr ""
@@ -524,7 +524,7 @@ msgid "WT reconciliation"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/account.py:131
+#: code:addons/l10n_it_withholding_tax/models/account.py:137
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:439
 #, python-format
 msgid "Warning! Only Withholding Tax moves in Due status                     can be deleted"
