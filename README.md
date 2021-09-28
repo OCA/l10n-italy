@@ -72,7 +72,7 @@ addon | version | maintainers | summary
 [l10n_it_website_sale_corrispettivi](l10n_it_website_sale_corrispettivi/) | 10.0.1.1.1 |  | Italian localization - Website Sale Corrispettivi
 [l10n_it_website_sale_fatturapa](l10n_it_website_sale_fatturapa/) | 10.0.1.0.0 |  | Aggiunge i campi necessari alla fatturazione elettronica nel form del checkout
 [l10n_it_website_sale_fiscalcode](l10n_it_website_sale_fiscalcode/) | 10.0.1.0.2 |  | Website Sale FiscalCode
-[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 10.0.2.0.0 |  | Italian Withholding Tax
+[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 10.0.2.0.1 |  | Italian Withholding Tax
 [l10n_it_withholding_tax_causali](l10n_it_withholding_tax_causali/) | 10.0.1.0.0 |  | Causali pagamento per ritenute d'acconto
 [l10n_it_withholding_tax_payment](l10n_it_withholding_tax_payment/) | 10.0.2.0.0 |  | Italian Withholding Tax Payment
 [l10n_it_withholding_tax_payment_order](l10n_it_withholding_tax_payment_order/) | 10.0.1.0.0 | [![tafaRU](https://github.com/tafaRU.png?size=30px)](https://github.com/tafaRU) | Modulo ponte tra ritenuta d'acconto e ordine di pagamento
