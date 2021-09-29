@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="location_opening" model="stock.location">
+        <field name="name">opening</field>
+        <field name="usage">inventory</field>
+    </record>
+    <record id="product_icecream_b" model="product.product">
+        <field name="name">Ice Cream B</field>
+        <field name="property_stock_inventory" ref="location_opening" />
+        <field name="categ_id" ref="product.product_category_1" />
+        <field name="standard_price">70.0</field>
+        <field name="list_price">100.0</field>
+        <field name="type">product</field>
+        <field name="cost_method">average</field>
+        <field name="valuation">real_time</field>
+        <field
+            name="description"
+        >Ice cream can be mass-produced and thus is widely available in developed parts of the world. Ice cream can be purchased in large cartons (vats and squrounds) from supermarkets and grocery stores, in smaller quantities from ice cream shops, convenience stores, and milk bars, and in individual servings from small carts or vans at public events.</field>
+        <field name="default_code">001</field>
+    </record>
+    <record id="lot_icecream_0" model="stock.production.lot">
+        <field name="name">Lot0 for Ice cream</field>
+        <field name="product_id" ref="product_icecream_b" />
+        <field name="company_id" ref="base.main_company" />
+    </record>
+    <record id="lot_icecream_1" model="stock.production.lot">
+        <field name="name">Lot1 for Ice cream</field>
+        <field name="product_id" ref="product_icecream_b" />
+        <field name="company_id" ref="base.main_company" />
+    </record>
+    <record id="sale_order_0" model="sale.order">
+        <field name="partner_id" ref="base.res_partner_2" />
+        <field name="partner_invoice_id" ref="base.res_partner_2" />
+        <field name="partner_shipping_id" ref="base.res_partner_2" />
+        <field name="user_id" ref="base.user_admin" />
+        <field
+            name="date_order"
+            eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"
+        />
+    </record>
+    <record id="sale_order_line_0" model="sale.order.line">
+        <field name="order_id" ref="sale_order_0" />
+        <field name="name">Ice Cream B</field>
+        <field name="product_id" ref="product_icecream_b" />
+        <field name="product_uom_qty">1.0</field>
+        <field name="product_uom" ref="uom.product_uom_unit" />
+        <field name="price_unit">100.00</field>
+    </record>
+    <record id="sale_order_1" model="sale.order">
+        <field name="partner_id" ref="base.res_partner_4" />
+        <field name="partner_invoice_id" ref="base.res_partner_address_13" />
+        <field name="partner_shipping_id" ref="base.res_partner_address_13" />
+        <field name="user_id" ref="base.user_admin" />
+        <field
+            name="date_order"
+            eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"
+        />
+    </record>
+    <record id="sale_order_line_1" model="sale.order.line">
+        <field name="order_id" ref="sale_order_1" />
+        <field name="name">Ice Cream B</field>
+        <field name="product_id" ref="product_icecream_b" />
+        <field name="product_uom_qty">2.0</field>
+        <field name="product_uom" ref="uom.product_uom_unit" />
+        <field name="price_unit">100.00</field>
+    </record>
+    <record id="sale_order_2" model="sale.order">
+        <field name="partner_id" ref="base.res_partner_4" />
+        <field name="partner_invoice_id" ref="base.res_partner_4" />
+        <field name="partner_shipping_id" ref="base.res_partner_4" />
+        <field name="user_id" ref="base.user_admin" />
+        <field
+            name="date_order"
+            eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"
+        />
+    </record>
+    <record id="sale_order_line_2" model="sale.order.line">
+        <field name="order_id" ref="sale_order_2" />
+        <field name="name">Ice Cream B</field>
+        <field name="product_id" ref="product_icecream_b" />
+        <field name="product_uom_qty">1.0</field>
+        <field name="product_uom" ref="uom.product_uom_unit" />
+        <field name="price_unit">100.00</field>
+    </record>
+</odoo>

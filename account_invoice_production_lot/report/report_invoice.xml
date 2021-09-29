@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="account_invoice_production_lot_report"
+        inherit_id="account.report_invoice_document"
+    >
+        <xpath expr="//span[@t-field='line.name']" position="after">
+            <t groups="stock.group_production_lot">
+                <t t-set="lots" t-value="line.lots_grouped_by_quantity().items()" />
+                <t t-if="lots and line.product_id.tracking == 'serial'">
+                     S/N: <span t-esc="', '.join([x[0] for x in lots])" />
+                </t>
+            </t>
+        </xpath>
+        <xpath expr="//t[@name='account_invoice_line_accountable']/.." position="after">
+            <t
+                t-if="not line.display_type and lots and line.product_id.tracking == 'lot'"
+                name="account_invoice_line_lot"
+                groups="stock.group_production_lot"
+            >
+                <tr>
+                    <td colspan="99">
+                        <div class="row ml-1">
+                            <div class="col">
+                                <b class="font-italic">Serial numbers</b>
+                            </div>
+                        </div>
+                        <t t-foreach="lots" t-as="lot">
+                            <div class="row ml-1 mt-1">
+                                <div class="col">
+                                    <span t-esc="lot[0]" /> (<span t-esc="lot[1]" />)
+                                </div>
+                            </div>
+                        </t>
+                    </td>
+                </tr>
+            </t>
+        </xpath>
+    </template>
+</odoo>

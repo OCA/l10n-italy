@@ -1,0 +1,70 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * account_invoice_production_lot
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-10 14:32+0000\n"
+"PO-Revision-Date: 2018-05-10 14:32+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"Language-Team: Portuguese (Portugal) (https://www.transifex.com/oca/"
+"teams/23907/pt_PT/)\n"
+"Language: pt_PT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: account_invoice_production_lot
+#: model_terms:ir.ui.view,arch_db:account_invoice_production_lot.account_invoice_production_lot_report
+msgid "<b class=\"font-italic\">Serial numbers</b>"
+msgstr ""
+
+#. module: account_invoice_production_lot
+#: model:product.product,name:account_invoice_production_lot.product_icecream_b
+#: model:product.template,name:account_invoice_production_lot.product_icecream_b_product_template
+msgid "Ice Cream B"
+msgstr ""
+
+#. module: account_invoice_production_lot
+#: model:product.product,description:account_invoice_production_lot.product_icecream_b
+#: model:product.template,description:account_invoice_production_lot.product_icecream_b_product_template
+msgid ""
+"Ice cream can be mass-produced and thus is widely available in developed "
+"parts of the world. Ice cream can be purchased in large cartons (vats and "
+"squrounds) from supermarkets and grocery stores, in smaller quantities from "
+"ice cream shops, convenience stores, and milk bars, and in individual "
+"servings from small carts or vans at public events."
+msgstr ""
+
+#. module: account_invoice_production_lot
+#: model:ir.model,name:account_invoice_production_lot.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Linha da Fatura"
+
+#. module: account_invoice_production_lot
+#: model:ir.model.fields,field_description:account_invoice_production_lot.field_account_invoice_line__prod_lot_ids
+#: model_terms:ir.ui.view,arch_db:account_invoice_production_lot.view_invoice_line_form_prod_lots
+msgid "Production Lots"
+msgstr ""
+
+#. module: account_invoice_production_lot
+#: model_terms:ir.ui.view,arch_db:account_invoice_production_lot.account_invoice_production_lot_report
+msgid "S/N:"
+msgstr ""
+
+#. module: account_invoice_production_lot
+#: model:product.product,uom_name:account_invoice_production_lot.product_icecream_b
+#: model:product.template,uom_name:account_invoice_production_lot.product_icecream_b_product_template
+msgid "Unit(s)"
+msgstr ""
+
+#. module: account_invoice_production_lot
+#: model:product.product,weight_uom_name:account_invoice_production_lot.product_icecream_b
+#: model:product.template,weight_uom_name:account_invoice_production_lot.product_icecream_b_product_template
+msgid "kg"
+msgstr ""
