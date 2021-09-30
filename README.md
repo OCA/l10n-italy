@@ -37,7 +37,7 @@ addon | version | maintainers | summary
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 14.0.2.0.3 |  | Emissione fatture elettroniche
 [l10n_it_fatturapa_out_sp](l10n_it_fatturapa_out_sp/) | 14.0.1.0.0 |  | Scissione pagamenti in fatturapa
 [l10n_it_fatturapa_out_stamp](l10n_it_fatturapa_out_stamp/) | 14.0.1.0.0 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Modulo ponte tra emissione fatture elettroniche e imposta di bollo
-[l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 14.0.1.0.1 |  | ITA - Tipi di documento fiscale per dichiarativi
+[l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 14.0.1.0.2 |  | ITA - Tipi di documento fiscale per dichiarativi
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 14.0.1.0.0 |  | Condizioni di pagamento delle fatture elettroniche
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 14.0.1.0.2 |  | ITA - Codice fiscale
 [l10n_it_invoices_data_communication](l10n_it_invoices_data_communication/) | 14.0.1.0.0 |  | Comunicazione dati fatture (c.d. "nuovo spesometro" o "esterometro")
