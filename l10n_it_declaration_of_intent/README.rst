@@ -14,13 +14,13 @@ ITA - Dichiarazione di intento
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_dichiarazione_intento
+    :target: https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_declaration_of_intent
     :alt: OCA/l10n-italy
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-italy-12-0/l10n-italy-12-0-l10n_it_dichiarazione_intento
+    :target: https://translation.odoo-community.org/projects/l10n-italy-14-0/l10n-italy-14-0-l10n_it_declaration_of_intent
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/122/12.0
+    :target: https://runbot.odoo-community.org/runbot/122/14.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -41,15 +41,32 @@ This module allows you to manage declarations of intent.
 Configuration
 =============
 
-Creare una posizione fiscale per le dichiarazioni d'intento, con relativa imposta (ad esempio "Non imponibile art.8c Lettera intento").
-Impostare la mappatura ad esempio tra "IVA al 22% (debito)" e "Non imponibile art.8c Lettera intento".
+Creare:
+
+1. | un'imposta di tipo vendite con importo 0.
+   | Ad esempio "Non imponibile art.8c Lettera intento"
+
+2. una posizione fiscale per le dichiarazioni d'intento, avente:
+
+   - il flag `Valida per dichiarazione d'intento` attivato,
+   - | una mappatura delle imposte opportuna.
+     | Ad esempio tra "IVA al 22% (debito) (Vendita)" e "Non imponibile art.8c Lettera intento".
+
+In Impostazioni > Utenti e aziende, selezionare un'azienda e, nella scheda Dichiarazioni d'intento, definire un plafond annuale.
 
 Usage
 =====
 
 Per ogni cliente o fornitore soggetto a dichiarazione d'intento, creare una dichiarazione d'intento inserendo tutti i dati e selezionando la posizione fiscale dedicata.
 
+Nota che il menu Fatturazione > Contabilità > Dichiarazioni d'intento è visibile solo per gli utenti nel gruppo `Mostrare funzionalità contabili complete`.
+
 In fase di fatturazione, utilizzare la posizione fiscale apposita.
+
+Known issues / Roadmap
+======================
+
+Improve management of currency (see https://github.com/OCA/l10n-italy/issues/2428).
 
 Bug Tracker
 ===========
@@ -57,7 +74,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_dichiarazione_intento%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_declaration_of_intent%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -80,6 +97,7 @@ Contributors
 * Glauco Prina <gprina@linkeurope.it>
 * Lorenzo Battistini <lb@takobi.online>
 * Lara Baggio <lbaggio@linkeurope.it>
+* Simone Rubino <simone.rubino@agilebg.com>
 
 Maintainers
 ~~~~~~~~~~~
@@ -94,6 +112,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_dichiarazione_intento>`_ project on GitHub.
+This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_declaration_of_intent>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
