@@ -4,6 +4,7 @@ from datetime import datetime
 
 from odoo import api, fields, models, registry
 from odoo.exceptions import UserError
+from odoo.fields import first
 from odoo.tools import float_is_zero
 from odoo.tools.translate import _
 
@@ -462,29 +463,42 @@ class WizardImportFatturapa(models.TransientModel):
         return account_taxes
 
     def get_line_product(self, line, partner):
-        product = False
+        product = self.env["product.product"].browse()
+
+        # Search the product using supplier infos
         supplier_info = self.env["product.supplierinfo"]
+        partner_supplier_info = supplier_info.search(
+            [
+                ("name", "=", partner.id),
+            ]
+        )
+        found_supplier_infos = supplier_info.browse()
         if len(line.CodiceArticolo or []) == 1:
             supplier_code = line.CodiceArticolo[0].CodiceValore
-            supplier_infos = supplier_info.search(
-                [("product_code", "=", supplier_code), ("name", "=", partner.id)]
+            found_supplier_infos = supplier_info.search(
+                [
+                    ("id", "in", partner_supplier_info.ids),
+                    ("product_code", "=", supplier_code),
+                ]
             )
-            if not supplier_infos:
-                supplier_name = line.Descrizione
-                supplier_infos = supplier_info.search(
-                    [("product_name", "=", supplier_name), ("name", "=", partner.id)]
-                )
-            if supplier_infos:
-                products = supplier_infos.mapped("product_id")
-                if len(products) == 1:
-                    product = products[0]
-                else:
-                    templates = supplier_infos.mapped("product_tmpl_id")
-                    if len(templates) == 1:
-                        product = (
-                            templates.product_variant_ids
-                            and templates.product_variant_ids[0]
-                        )
+        if not found_supplier_infos:
+            supplier_name = line.Descrizione
+            found_supplier_infos = supplier_info.search(
+                [
+                    ("id", "in", partner_supplier_info.ids),
+                    ("product_name", "=", supplier_name),
+                ]
+            )
+
+        if found_supplier_infos:
+            products = found_supplier_infos.mapped("product_id")
+            if len(products) == 1:
+                product = first(products)
+            else:
+                templates = found_supplier_infos.mapped("product_tmpl_id")
+                if len(templates) == 1:
+                    product = templates.product_variant_id
+
         if not product and partner.e_invoice_default_product_id:
             product = partner.e_invoice_default_product_id
         return product
