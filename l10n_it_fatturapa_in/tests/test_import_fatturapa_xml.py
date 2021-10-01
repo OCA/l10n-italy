@@ -3,6 +3,7 @@ from datetime import date
 from psycopg2 import IntegrityError
 
 from odoo.exceptions import UserError
+from odoo.modules import get_module_resource
 from odoo.tests import Form
 from odoo.tools import mute_logger
 
@@ -103,6 +104,17 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.ftpa_incoterms, "DAP")
         self.assertEqual(invoice.fiscal_document_type_id.code, "TD01")
         self.assertTrue(invoice.art73)
+
+        # verify if attached documents are correctly imported
+        attachments = invoice.fatturapa_doc_attachments
+        self.assertEqual(len(attachments), 1)
+        orig_attachment_path = get_module_resource(
+            "l10n_it_fatturapa_in", "tests", "data", "test.png"
+        )
+        with open(orig_attachment_path, "rb") as orig_attachment:
+            orig_attachment_data = orig_attachment.read()
+            self.assertEqual(attachments[0].raw, orig_attachment_data)
+
         # allow following tests to reuse the same XML file
         invoice.ref = invoice.payment_reference = "14011"
 
