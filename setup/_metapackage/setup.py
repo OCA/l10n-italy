@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo14-addon-l10n_it_appointment_code',
         'odoo14-addon-l10n_it_ateco',
         'odoo14-addon-l10n_it_central_journal',
+        'odoo14-addon-l10n_it_declaration_of_intent',
         'odoo14-addon-l10n_it_delivery_note',
         'odoo14-addon-l10n_it_delivery_note_base',
         'odoo14-addon-l10n_it_delivery_note_batch',
