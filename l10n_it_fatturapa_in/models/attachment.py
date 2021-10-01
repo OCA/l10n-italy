@@ -1,5 +1,3 @@
-import base64
-
 from odoo import _, api, fields, models
 from odoo.tools import format_date
 
@@ -135,7 +133,7 @@ class FatturaPAAttachmentIn(models.Model):
             content = attach.Attachment.encode()
             _attach_dict = {
                 "name": name,
-                "datas": base64.b64encode(content),
+                "datas": content,
                 "description": attach.DescrizioneAttachment or "",
                 "compression": attach.AlgoritmoCompressione or "",
                 "format": attach.FormatoAttachment or "",
