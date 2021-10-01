@@ -192,7 +192,7 @@ class EFatturaOut:
         def get_all_taxes(record):
             """Generate summary data for taxes.
             Odoo does that for us, but only for nonzero taxes.
-            SdI expects a summary for every tax mentionend in the invoice,
+            SdI expects a summary for every tax mentioned in the invoice,
             even those with price_total == 0.
             """
             out_computed = {}
@@ -255,28 +255,6 @@ class EFatturaOut:
                 return False
             return line.price_unit * line.discount / 100
 
-        def get_tax_ids(line):
-            """Get the tax for an invoice line.
-
-            Note: SdI expects only one tax per line. Also, it expects to find a tax line
-            for each line mentioned in the invoice lines, but Odoo generate no tax line
-            if the amount is 0. This is handled in get_all_taxes().
-
-            Common best practice for note/section lines is to reference an existing tax
-            line, instead of creating a new zero tax summary in the XML. The price for
-            note/section lines is zero anyway.  Therefore the original tax is ignored as
-            it defaults to the company default tax which may or may not be non zero in
-            the invoice."""
-
-            if line.display_type in ("line_section", "line_note"):
-                # find a product line, with taxes, if possible
-                tax_lines = line.move_id.line_ids.filtered(
-                    lambda line: line.tax_ids and line.product_id
-                )
-                if tax_lines:
-                    return tax_lines[0].tax_ids[0]
-            return line.tax_ids[0]
-
         if self.partner_id.commercial_partner_id.is_pa:
             # check value code
             code = self.partner_id.ipa_code
@@ -308,9 +286,9 @@ class EFatturaOut:
             "unidecode": unidecode,
             "wizard": self.wizard,
             "get_importo": get_importo,
-            "get_all_taxes": get_all_taxes,
-            "get_tax_ids": get_tax_ids,
-            # "base64": base64,
+            "all_taxes": {
+                invoice.id: get_all_taxes(invoice) for invoice in self.invoices
+            },
         }
         content = env.ref(
             "l10n_it_fatturapa_out.account_invoice_it_FatturaPA_export"
