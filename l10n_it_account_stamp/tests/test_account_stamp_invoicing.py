@@ -101,3 +101,28 @@ class InvoicingTest(TestAccountInvoiceReport):
         total = invoice.amount_total
         invoice.action_post()
         self.assertEqual(total, invoice.amount_total)
+
+    def test_tax_stamp_line_button(self):
+        """Stamp fields show when stamp is added with the button to the invoice."""
+        # Arrange: Create an invoice eligible for tax stamp but without it
+        stamp_tax = self.tax_id
+        invoice = self.init_invoice(
+            "out_invoice",
+            taxes=stamp_tax,
+            amounts=[
+                100,
+            ],
+        )
+        # pre-condition
+        self.assertTrue(invoice.tax_stamp)
+        self.assertFalse(invoice.tax_stamp_line_present)
+
+        # Act
+        invoice.add_tax_stamp_line()
+
+        # Assert
+        self.assertTrue(invoice.tax_stamp_line_present)
+
+        # Resetting to draft removes the stamp
+        invoice.button_draft()
+        self.assertFalse(invoice.tax_stamp_line_present)
