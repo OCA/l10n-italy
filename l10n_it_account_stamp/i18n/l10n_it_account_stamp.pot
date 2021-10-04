@@ -14,6 +14,22 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.account_move_form_stamp
+msgid ""
+"<span attrs=\"{'invisible': [('state', '=', 'draft')]}\">\n"
+"                            Stamp can only be charged to customer when invoice is in draft state\n"
+"                        </span>"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.account_move_form_stamp
+msgid ""
+"<span attrs=\"{'invisible': [('tax_stamp_line_present', '=', False)]}\">\n"
+"                        Stamp charged to customer\n"
+"                    </span>"
+msgstr ""
+
+#. module: l10n_it_account_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings_stamp
 msgid ""
 "<span class=\"o_form_label\">Configuration for Tax stamp\n"
@@ -26,11 +42,6 @@ msgstr ""
 msgid ""
 "<span>Imposta di bollo assolta in modo virtuale ai sensi dell'articolo 15 "
 "del DPR 642/1972 e del DM 17/06/2014</span>"
-msgstr ""
-
-#. module: l10n_it_account_stamp
-#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.account_move_form_stamp
-msgid "Add tax stamp line"
 msgstr ""
 
 #. module: l10n_it_account_stamp
@@ -47,6 +58,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__auto_compute
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__auto_compute
 msgid "Auto-compute"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.account_move_form_stamp
+msgid "Charge stamp to customer"
 msgstr ""
 
 #. module: l10n_it_account_stamp
@@ -146,6 +162,13 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_bank_statement_line__tax_stamp_line_present
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move__tax_stamp_line_present
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_payment__tax_stamp_line_present
+msgid "Stamp line is present in invoice"
+msgstr ""
+
+#. module: l10n_it_account_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__stamp_apply_tax_ids
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__stamp_apply_tax_ids
 msgid "Stamp taxes"
@@ -188,6 +211,13 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.account_move_form_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.product_template_form_view_account_stamp
 msgid "Tax stamp"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,help:l10n_it_account_stamp.field_account_bank_statement_line__tax_stamp
+#: model:ir.model.fields,help:l10n_it_account_stamp.field_account_move__tax_stamp
+#: model:ir.model.fields,help:l10n_it_account_stamp.field_account_payment__tax_stamp
+msgid "Tax stamp is applied to this invoice."
 msgstr ""
 
 #. module: l10n_it_account_stamp
