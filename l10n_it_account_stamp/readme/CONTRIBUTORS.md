@@ -6,3 +6,5 @@
 - Marco Colombo \<<https://github.com/TheMule71>\>
 - Gianmarco Conte \<<gconte@dinamicheaziendali.it>\>
 - Giovanni Serra \<<giovanni@gslab.it>\>
+- [Aion Tech](https://aiontech.company/):
+  - Simone Rubino \<<simone.rubino@aion-tech.it>\>
