@@ -159,7 +159,7 @@ class AccountInvoice(models.Model):
                     raise exceptions.Warning(
                         _('Missing tax stamp product in company settings!')
                     )
-                income_vals, expense_vals = self._build_tax_stamp_lines(
+                income_vals, expense_vals = inv._build_tax_stamp_lines(
                     stamp_product_id)
                 income_vals['move_id'] = inv.move_id.id
                 expense_vals['move_id'] = inv.move_id.id
