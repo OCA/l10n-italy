@@ -136,12 +136,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
         </template>
 
         <template id="account_invoice_line_it_FatturaPA">
-            <t t-set="tax_ids" t-value="line.tax_ids" />
-            <t t-set="taxes" t-value="tax_ids.compute_all(line.price_unit)" />
-            <t
-                t-set="is_note"
-                t-value="line.display_type in ('line_section', 'line_note')"
-            />
+            <t t-set="tax_ids" t-value="line.tax_ids[0]" />
             <DettaglioLinee>
                 <NumeroLinea t-esc="line_counter" />
                 <!--                <TipoCessionePrestazione t-esc=""/>-->
@@ -172,13 +167,27 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     t-call="l10n_it_fatturapa_out.account_invoice_line_it_sconto_maggiorazione"
                 />
                 <PrezzoTotale t-esc="format_monetary(line.price_subtotal, currency)" />
-                <AliquotaIVA t-if="is_note" t-esc="get_default_note_tax(record)" />
                 <AliquotaIVA
-                    t-if="not is_note"
+                    t-if="not line.display_type in ('line_section', 'line_note')"
                     t-esc="format_numbers(tax_ids.amount)"
                 />
+                <!-- Common best practice for note/section lines is to reference an existing tax line.
+                The price for note/section lines is zero anyway. The original tax is ignored as
+                it defaults to the company default tax which may or may not be present in
+                the invoice.-->
+                <AliquotaIVA
+                    t-if="line.display_type in ('line_section', 'line_note')"
+                    t-esc="all_taxes[line.move_id.id][0]['AliquotaIVA']"
+                />
                 <t t-call="l10n_it_fatturapa_out.account_invoice_line_ritenuta" />
-                <Natura t-if="tax_ids.kind_id.code" t-esc="tax_ids.kind_id.code" />
+                <Natura
+                    t-if="not line.display_type in ('line_section', 'line_note') and tax_ids.kind_id.code"
+                    t-esc="tax_ids.kind_id.code"
+                />
+                <Natura
+                    t-if="line.display_type in ('line_section', 'line_note') and all_taxes[line.move_id.id][0].get('Natura')"
+                    t-esc="all_taxes[line.move_id][0]['Natura']"
+                />
                 <RiferimentoAmministrazione
                     t-if="line.admin_ref"
                     t-esc="line.admin_ref"
@@ -573,7 +582,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                             t-call="l10n_it_fatturapa_out.account_invoice_line_it_FatturaPA"
                         />
                     </t>
-                    <t t-foreach="get_all_taxes(record)" t-as="tax_data">
+                    <t t-foreach="all_taxes[record.id]" t-as="tax_data">
                        <DatiRiepilogo>
                               <!--2.2.2-->
                               <AliquotaIVA t-esc="tax_data['AliquotaIVA']" />
