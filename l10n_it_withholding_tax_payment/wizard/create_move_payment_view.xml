@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2010-2013 Akretion (http://www.akretion.com)
+    @author: Alexis de Lattre <alexis.delattre@akretion.com>
+    The licence is in the file __manifest__.py
+
+    Copyright 2010-2013 Alessandro Camilli (http://www.openforce.it)
+    Copyright 2019 Matteo Bilotta
+  -->
+<odoo>
+
+    <record id="wizard_wt_move_payment_create_view" model="ir.ui.view">
+        <field name="name">wizard.wt.move.payment.create.view</field>
+        <field name="model">wizard.wt.move.payment.create</field>
+        <field name="arch" type="xml">
+            <form string="Create Payment Move">
+                <notebook>
+                    <page name="wt_moves" string="WT Moves">
+                        <field name="wt_move_ids" />
+                    </page>
+                </notebook>
+                <footer>
+                    <button
+                        string="Generate"
+                        name="generate"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" special="cancel" class="oe_link" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="wizard_wt_move_payment_create_action" model="ir.actions.act_window">
+        <field name="name">Create Payment Move</field>
+        <field name="binding_model_id" ref="model_withholding_tax_move" />
+        <field name="res_model">wizard.wt.move.payment.create</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
