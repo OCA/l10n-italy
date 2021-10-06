@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_intrastat_mod1_bis">
+        <t t-call="web.html_container">
+            <t t-translation="off">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.internal_layout">
+                        <div class="page">
+                            <div class="row col-12">
+                                <div class="col-3">
+                                    <p class="text-right"><img
+                                            src="/l10n_it_intrastat_statement/static/img/agenzia_dogane.jpg"
+                                            height="80px"
+                                        /></p>
+                                </div>
+                                <div class="col-7 col-offset-3">
+                                    <table class="table text-center table-bordered">
+                                        <td>
+                                            <b>RIEPILOGO DELLE CESSIONI INTRACOMUNITARIE
+                                            <br />DI BENI E DEI SERVIZI RESI</b>
+                                        </td>
+                                        <td>Mod.INTRA-1 Bis</td>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <span class="text-center col-7 col-offset-3">
+                                    <strong
+                                    >SEZIONE 1. CESSIONI DI BENI REGISTRATE NEL PERIODO</strong>
+                                    <p />
+                                </span>
+                            </div>
+                            <div class="row text-center col-12">
+                                <span>PERIODO: </span>
+
+                                <span class="col-offset-1">MESE: </span>
+                                <strong>
+                                    <t t-if="o.period_type == 'M'">
+                                        <span t-esc="o.period_number" />
+                                    </t>
+                                </strong>
+
+                                <span class="col-offset-1">TRIMESTRE: </span>
+                                <strong>
+                                    <t t-if="o.period_type == 'T'">
+                                        <span t-esc="o.period_number" />
+                                    </t>
+                                </strong>
+                                <span class="col-offset-1">ANNO: </span>
+                                <strong><span t-esc="o.fiscalyear" /></strong>
+
+                                <span class="col-offset-2">PARTITA IVA</span>
+                                <strong><span t-esc="o.company_id.vat" /></strong>
+                            </div>
+
+                            <div class="row col-12">
+                                <p />
+                                <table class="table table-bordered">
+                                    <thead class="fondo">
+                                        <tr>
+                                            <th />
+                                            <th
+                                                colspan="2"
+                                                class="text-center"
+                                            >ACQUIRENTE</th>
+                                            <th />
+                                            <th />
+                                            <th />
+                                            <th />
+                                            <th />
+                                            <th />
+                                            <th />
+                                            <th />
+                                            <th />
+                                            <th />
+                                        </tr>
+                                        <tr>
+                                            <th class="text-center">PROGR.</th>
+                                            <th class="text-center">STATO</th>
+                                            <th class="text-center">CODICE IVA</th>
+                                            <th
+                                                class="text-center"
+                                            >AMMONTARE DELLE OPERAZIONI IN EURO</th>
+                                            <th class="text-center">NATURA TRANS.</th>
+                                            <th
+                                                class="text-center"
+                                            >NOMENCLATURA COMBINATA</th>
+                                            <th class="text-center">MASSA NETTA</th>
+                                            <th
+                                                class="text-center"
+                                            >UNITA' SUPPLEMENTARE</th>
+                                            <th
+                                                class="text-center"
+                                            >VALORE STATISTICO IN EURO</th>
+                                            <th class="text-center">COND. CONS.</th>
+                                            <th class="text-center">MODO TRASP.</th>
+                                            <th class="text-center">PAESE DEST.</th>
+                                            <th class="text-center">PROV. ORIG.</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="small text-center">
+                                            <td>1</td>
+                                            <td>2</td>
+                                            <td>3</td>
+                                            <td>4</td>
+                                            <td>5</td>
+                                            <td>6</td>
+                                            <td>7</td>
+                                            <td>8</td>
+                                            <td>9</td>
+                                            <td>10</td>
+                                            <td>11</td>
+                                            <td>12</td>
+                                            <td>13</td>
+                                        </tr>
+                                        <t t-set="total" t-value="0" />
+                                        <tr t-foreach="o.sale_section1_ids" t-as="l">
+                                            <td><span t-field="l.sequence" /></td>
+                                            <td><span
+                                                    t-field="l.country_partner_id.code"
+                                                /></td>
+                                            <td><span t-field="l.vat_code" /></td>
+                                            <td><span t-field="l.amount_euro" /></td>
+                                            <td><span
+                                                    t-field="l.transaction_nature_id.code"
+                                                /></td>
+                                            <td><span
+                                                    t-field="l.intrastat_code_id.name"
+                                                /></td>
+                                            <td><span t-field="l.weight_kg" /></td>
+                                            <td><span
+                                                    t-field="l.additional_units"
+                                                /></td>
+                                            <td><span
+                                                    t-field="l.statistic_amount_euro"
+                                                /></td>
+                                            <td><span
+                                                    t-field="l.delivery_code_id.code"
+                                                /></td>
+                                            <td><span
+                                                    t-field="l.transport_code_id.code"
+                                                /></td>
+                                            <td><span
+                                                    t-field="l.country_destination_id.code"
+                                                /></td>
+                                            <td><span
+                                                    t-field="l.province_origin_id.code"
+                                                /></td>
+                                            <t
+                                                t-set="total"
+                                                t-value="total + l.amount_euro"
+                                            />
+                                        </tr>
+                                        <tr>
+                                            <td
+                                                colspan="3"
+                                                class="text-right"
+                                            >TOTALE</td>
+                                            <td><t t-esc="total" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
