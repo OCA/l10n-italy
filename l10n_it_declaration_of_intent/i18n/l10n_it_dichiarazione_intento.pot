@@ -1,0 +1,453 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_dichiarazione_intento
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-15 14:09+0000\n"
+"PO-Revision-Date: 2021-01-15 14:09+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_dichiarazione_intento
+#: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_form
+msgid "Accounting"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:0
+#, python-format
+msgid ""
+"All taxes in declaration of intent must be used in fiscal position taxes"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_line__amount
+msgid "Amount"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__available_amount
+msgid "Available Amount"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: code:addons/l10n_it_dichiarazione_intento/models/account_invoice.py:0
+#: code:addons/l10n_it_dichiarazione_intento/models/account_invoice.py:0
+#, python-format
+msgid ""
+"Available plafond insufficent.\n"
+"Excess value: %s"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_line__base_amount
+msgid "Base Amount"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.select_manually_declarations_wizard
+msgid "Cancel"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields.selection,name:l10n_it_dichiarazione_intento.selection__dichiarazione_intento__state__close
+#: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_search
+msgid "Close"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model,name:l10n_it_dichiarazione_intento.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_yearly_limit__company_id
+msgid "Company"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.select_manually_declarations_wizard
+msgid "Confirm"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__create_uid
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_line__create_uid
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_yearly_limit__create_uid
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_select_manually_declarations__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__create_date
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_line__create_date
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_yearly_limit__create_date
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_select_manually_declarations__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__currency_id
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_line__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__date
+msgid "Date"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__date_end
+msgid "Date End"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_line__date_invoice
+msgid "Date Invoice"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__date_start
+msgid "Date Start"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,help:l10n_it_dichiarazione_intento.field_dichiarazione_intento__partner_document_date
+msgid "Date of partner's document"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_line__dichiarazione_id
+msgid "Declaration"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model,name:l10n_it_dichiarazione_intento.model_dichiarazione_intento
+msgid "Declaration of intent"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: code:addons/l10n_it_dichiarazione_intento/models/account_invoice.py:0
+#, python-format
+msgid ""
+"Declaration of intent not found. Add new declaration or change fiscal "
+"position and verify applied tax"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_res_company__dichiarazione_yearly_limit_ids
+msgid "Declaration yearly limit"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_select_manually_declarations__declaration_ids
+msgid "Declarations of Intent"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.actions.act_window,name:l10n_it_dichiarazione_intento.dichiarazione_intento_action
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_account_bank_statement_line__dichiarazione_intento_ids
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_account_move__dichiarazione_intento_ids
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_account_payment__dichiarazione_intento_ids
+#: model:ir.ui.menu,name:l10n_it_dichiarazione_intento.dichiarazione_intento_menu
+#: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_search
+#: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_view_company_form
+msgid "Declarations of intent"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:0
+#, python-format
+msgid "Define a yearly plafond for in documents in your company settings"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: code:addons/l10n_it_dichiarazione_intento/models/account.py:0
+#, python-format
+msgid "Define taxes for fiscal position %s valid for declaration of intent"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_form
+msgid "Details"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model,name:l10n_it_dichiarazione_intento.model_dichiarazione_intento_line
+msgid "Details of declaration of intent"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_account_fiscal_position__display_name
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__display_name
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_line__display_name
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_yearly_limit__display_name
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_product_product__display_name
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_res_company__display_name
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_sale_order__display_name
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_select_manually_declarations__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_form
+msgid "Document Amount"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__partner_document_date
+msgid "Document Date"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__partner_document_number
+msgid "Document Number"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields.selection,name:l10n_it_dichiarazione_intento.selection__dichiarazione_intento__state__expired
+msgid "Expired"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model,name:l10n_it_dichiarazione_intento.model_account_fiscal_position
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__fiscal_position_id
+msgid "Fiscal Position"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__force_close
+#: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_form
+msgid "Force Close"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_account_move_line__force_dichiarazione_intento_id
+msgid "Force Declaration of Intent"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_form
+msgid "Force Reopen"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_account_fiscal_position__id
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_account_move_line__id
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__id
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_line__id
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_yearly_limit__id
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_product_product__id
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_res_company__id
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_sale_order__id
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_select_manually_declarations__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:0
+#, python-format
+msgid "Impossible to delete a document with linked invoices"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_line__invoice_id
+msgid "Invoice"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields.selection,name:l10n_it_dichiarazione_intento.selection__dichiarazione_intento__type__in
+msgid "Issued from company"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model,name:l10n_it_dichiarazione_intento.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model,name:l10n_it_dichiarazione_intento.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_account_fiscal_position____last_update
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_account_move____last_update
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento____last_update
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_line____last_update
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_yearly_limit____last_update
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_product_product____last_update
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_res_company____last_update
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_sale_order____last_update
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_select_manually_declarations____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__write_uid
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_line__write_uid
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_yearly_limit__write_uid
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_select_manually_declarations__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__write_date
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_line__write_date
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_yearly_limit__write_date
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_select_manually_declarations__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__limit_amount
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_yearly_limit__limit_amount
+msgid "Limit Amount"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:0
+#, python-format
+msgid ""
+"Limit passed for declaration %s.\n"
+"Excess value: %s%s"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__line_ids
+msgid "Lines"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_line__move_line_ids
+msgid "Move Lines"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__number
+msgid "Number"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,help:l10n_it_dichiarazione_intento.field_dichiarazione_intento__partner_document_number
+msgid "Number of partner's document"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__partner_id
+#: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_search
+msgid "Partner"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model,name:l10n_it_dichiarazione_intento.model_product_product
+msgid "Product"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields.selection,name:l10n_it_dichiarazione_intento.selection__dichiarazione_intento__type__out
+msgid "Received from customers"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_form
+msgid "Refs"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model,name:l10n_it_dichiarazione_intento.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_invoice_form
+msgid "Select Manually"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.actions.act_window,name:l10n_it_dichiarazione_intento.select_manually_declarations_action
+#: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.select_manually_declarations_wizard
+msgid "Select Manually Declarations"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model,name:l10n_it_dichiarazione_intento.model_select_manually_declarations
+msgid "Set declaration of intent manually on invoice"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__state
+#: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_search
+msgid "State"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__taxes_ids
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_line__taxes_ids
+msgid "Taxes"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__telematic_protocol
+msgid "Telematic Protocol"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:0
+#, python-format
+msgid "Total of documents exceed yearly limit"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__type
+msgid "Type"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__used_amount
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_yearly_limit__used_amount
+msgid "Used Amount"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields.selection,name:l10n_it_dichiarazione_intento.selection__dichiarazione_intento__state__valid
+#: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_search
+msgid "Valid"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_form
+msgid "Valid Period"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_account_fiscal_position__valid_for_dichiarazione_intento
+msgid "Valid for declaration of intent"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_yearly_limit__year
+msgid "Year"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model:ir.model,name:l10n_it_dichiarazione_intento.model_dichiarazione_intento_yearly_limit
+msgid "Yearly limit for declarations"
+msgstr ""
+
+#. module: l10n_it_dichiarazione_intento
+#: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.select_manually_declarations_wizard
+msgid "or"
+msgstr ""
