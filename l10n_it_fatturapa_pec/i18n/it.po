@@ -1,0 +1,323 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_fatturapa_pec
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2021-02-03 12:44+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_config_settings_ftpa_pec
+msgid ""
+"<span class=\"o_form_label\">Supplier Bills</span>\n"
+"                            <span class=\"fa fa-lg fa-building-o\" title="
+"\"Values set here are company-specific.\" aria-label=\"Values set here are "
+"company-specific.\"/>"
+msgstr ""
+"<span class=\"o_form_label\">Fatture fornitore</span>\n"
+"                            <span class=\"fa fa-lg fa-building-o\" title=\"I "
+"valori impostati qui sono specifici per azienda.\" aria-label=\"Values set "
+"here are company-specific.\"/>"
+
+#. module: l10n_it_fatturapa_pec
+#: model:res.groups,name:l10n_it_fatturapa_pec.group_force_e_inv_export_state
+msgid "Allow to force e-invoice export state"
+msgstr "Consentire forzatura dello stato di esportazione e-fattura"
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_res_config_settings
+msgid "Config Settings"
+msgstr "Impostazioni di configurazione"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server__e_inv_notify_partner_ids
+msgid "Contacts to notify"
+msgstr "Contatti da notificare"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_fetchmail_server__e_inv_notify_partner_ids
+msgid "Contacts to notify when PEC message can't be processed"
+msgstr "Contatti da notificare quando non è possibile elaborare i messaggi PEC"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_config_settings_ftpa_pec
+msgid "Default user used in electronic supplier bills"
+msgstr "Utente predefinito usato nelle fatture elettroniche fornitore"
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
+msgid "Delivered"
+msgstr "Consegnato"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_company__e_invoice_user_id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_config_settings__e_invoice_user_id
+msgid "E-bill creator"
+msgstr "Creatore e-fattura"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_fatturapa_attachment_out
+msgid "E-invoice Export File"
+msgstr "File e-fattura esportato"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_mail_thread
+msgid "Email Thread"
+msgstr "Discussione e-mail"
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:180
+#, python-format
+msgid "Fetchmail PEC server [%s] error"
+msgstr "Errore fetchmail server PEC [%s]"
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:50
+#, python-format
+msgid "File content and file name are mandatory"
+msgstr "Il contenuto e il nome del file sono obbligatori"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_fetchmail_server
+msgid "Incoming Mail Server"
+msgstr "Server di posta in arrivo"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server__last_pec_error_message
+msgid "Last PEC Error Message"
+msgstr "Ultimo messaggio di errore PEC"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out__last_sdi_response
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
+msgid "Last Response from Exchange System"
+msgstr "Ultima risposta dal sistema di interscambio"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_email_server_form_e_invoice
+msgid "Last error message"
+msgstr "Ultimo messaggio di errore"
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:36
+#, python-format
+msgid "No incoming PEC server found. Please configure it."
+msgstr "Nessun server PEC in ingresso trovato, configurarne uno."
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server__pec_error_count
+msgid "PEC error count"
+msgstr "Numero errori PEC"
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:68
+#, python-format
+msgid ""
+"PEC message \"%s\" has been read but not processed, as not related to an e-"
+"invoice.\n"
+"Please check PEC mailbox %s, at server %s, with user %s."
+msgstr ""
+"Il messaggio PEC \"%s\" è stato letto ma non processato, in quanto non "
+"relativo a una fattura elettronica.\n"
+"Prego controllare la casella PEC %s, sul server %s, con utente %s."
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:161
+#, python-format
+msgid "PEC server %s has been reset.Last error message is '%s'"
+msgstr ""
+"Il server PEC %s è stato reimpostato. L'ultimo messaggio di errore è '%s'"
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
+msgid "Reset to ready"
+msgstr "Reimposta a pronto"
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
+msgid "Selected files will be sent to the Exchange System"
+msgstr "I file selezionati verranno inviati al sistema di interscambio"
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
+msgid "Send"
+msgstr "Invia"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.actions.act_window,name:l10n_it_fatturapa_pec.action_wizard_fatturapa_send_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
+msgid "Send Electronic Invoice"
+msgstr "Invia fattura elettronica"
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
+msgid "Send Via PEC"
+msgstr "Invia con PEC"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out__sending_user
+msgid "Sending User"
+msgstr "Utente trasmittente"
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
+msgid "Sent by"
+msgstr "Inviato da"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_res_company__e_invoice_user_id
+#: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_res_config_settings__e_invoice_user_id
+msgid "This user will be used at supplier e-bill creation."
+msgstr ""
+"Questo utente viene utilizzato per la creazione delle e-fatture fornitore."
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_wizard_fatturapa_send_pec
+msgid "Wizard to send multiple e-invoice PEC"
+msgstr "Procedura per inviare PEC e-fattura multiple"
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:46
+#, python-format
+msgid "You can only send files in 'Ready to Send' state."
+msgstr "È possibile inviare solo file con stato «Pronto per l'invio»."
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
+msgid "on"
+msgstr "il"
+
+#~ msgid "Accepted"
+#~ msgstr "Accettato"
+
+#~ msgid "Delivered Date"
+#~ msgstr "Data consegna"
+
+#~ msgid "E-invoice State"
+#~ msgstr "Stato e-fattura"
+
+#~ msgid "Electronic Invoice Error"
+#~ msgstr "Errore fattura elettronica"
+
+#~ msgid "Electronic Invoice Ready to Send"
+#~ msgstr "Fattura elettronica pronta per l'invio"
+
+#~ msgid "Electronic Invoice State"
+#~ msgstr "Stato fattura elettronica"
+
+#~ msgid "Error"
+#~ msgstr "Errore"
+
+#~ msgid "Export E-invoice"
+#~ msgstr "Esporta e-fattura"
+
+#~ msgid "Invoice"
+#~ msgstr "Fattura"
+
+#~ msgid "Not delivered"
+#~ msgstr "Non consegnato"
+
+#~ msgid "Re-Export"
+#~ msgstr "Riesporta"
+
+#~ msgid "Re-Export E-invoice"
+#~ msgstr "Riesporta e-fattura"
+
+#~ msgid "Re-Export Electronic Invoice"
+#~ msgstr "Riesporta fattura elettronica"
+
+#~ msgid "Ready to Send"
+#~ msgstr "Pronto per l'invio"
+
+#~ msgid "Rejected (PA)"
+#~ msgstr "Rifiutato (PA)"
+
+#~ msgid "Sender Error"
+#~ msgstr "Errore trasmittente"
+
+#~ msgid "Sent"
+#~ msgstr "Inviato"
+
+#~ msgid "Sent Date"
+#~ msgstr "Data invio"
+
+#~ msgid ""
+#~ "The invoice cannot be regenerated because doesn't have a e-invoice "
+#~ "attachment associated to it"
+#~ msgstr ""
+#~ "La fattura non può essere rigenerata, non possiede un allegato e-fattura "
+#~ "associato"
+
+#~ msgid "The method can be called with a valid active_id"
+#~ msgstr "Il metodo può essere chiamato con un active_id valido"
+
+#~ msgid "State"
+#~ msgstr "Stato"
+
+#~ msgid "You can only delete files in 'Ready to Send' state."
+#~ msgstr "È possibile eliminare solo file con stato «Pronto per l'invio»."
+
+#~ msgid "You can only reset files in 'Sender Error' state."
+#~ msgstr "È possibile reimpostare solo file con stato «Errore trasmittente»."
+
+#~ msgid "PEC message [%s] not processed"
+#~ msgstr "Messaggio PEC [%s] non elaborato"
+
+#~ msgid "Recipient Error"
+#~ msgstr "Errore destinatario"
