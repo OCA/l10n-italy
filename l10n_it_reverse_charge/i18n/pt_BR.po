@@ -1,0 +1,351 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_reverse_charge
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-08 03:45+0000\n"
+"PO-Revision-Date: 2017-12-08 03:45+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: l10n_it_reverse_charge
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:373
+#, python-format
+msgid "Can't find 1 tax mapping for %s"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__company_id
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax__company_id
+msgid "Company"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__create_uid
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax__create_uid
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__create_date
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax__create_date
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__description
+msgid "Description"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__display_name
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax__display_name
+msgid "Display Name"
+msgstr "Mostrar Nome"
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,help:l10n_it_reverse_charge.field_account_rc_type__tax_ids
+msgid "Example: 22_A_I_UE, 22_V_I_UE"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model,name:l10n_it_reverse_charge.model_account_fiscal_position
+msgid "Fiscal Position"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,help:l10n_it_reverse_charge.field_account_rc_type__with_supplier_self_invoice
+msgid ""
+"Flag this to enable the creation of an additional supplier self invoice. "
+"This is tipically used for extraUE suppliers, in order to show, in supplier "
+"register, an invoice to the specified partner (tipically, my company), "
+"instead of the extraUE partner"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__id
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax__id
+msgid "ID"
+msgstr "Identificação"
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model,name:l10n_it_reverse_charge.model_account_invoice
+msgid "Invoice"
+msgstr "Fatura"
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model,name:l10n_it_reverse_charge.model_account_invoice_line
+msgid "Invoice Line"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:328
+#, python-format
+msgid ""
+"Invoice line\n"
+"%s\n"
+"is RC but has not tax"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,help:l10n_it_reverse_charge.field_account_rc_type__journal_id
+msgid "Journal used on RC self invoices."
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,help:l10n_it_reverse_charge.field_account_rc_type__supplier_journal_id
+msgid "Journal used on RC supplier self invoices."
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,help:l10n_it_reverse_charge.field_account_rc_type__payment_journal_id
+msgid "Journal used to pay RC self invoices."
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type____last_update
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax____last_update
+msgid "Last Modified on"
+msgstr "Última Modificação em"
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__write_uid
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax__write_uid
+msgid "Last Updated by"
+msgstr "Útima atualização por"
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__write_date
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax__write_date
+msgid "Last Updated on"
+msgstr "Útima atualização em"
+
+#. module: l10n_it_reverse_charge
+#: model_terms:ir.ui.view,arch_db:l10n_it_reverse_charge.view_rc_type_form
+msgid "Main Informations"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__method
+msgid "Method"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: l10n_it_reverse_charge
+#: selection:account.rc.type,partner_type:0
+msgid "Other"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,help:l10n_it_reverse_charge.field_account_rc_type__partner_id
+msgid "Partner used on RC self invoices."
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax__purchase_tax_id
+msgid "Purchase Tax"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_invoice_line__rc
+msgid "RC"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_invoice__rc_purchase_invoice_id
+msgid "RC Purchase Invoice"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_invoice__rc_self_invoice_id
+msgid "RC Self Invoice"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_invoice__rc_self_purchase_invoice_id
+msgid "RC Self Purchase Invoice"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_fiscal_position__rc_type_id
+msgid "RC Type"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax__rc_type_id
+msgid "RC type"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model,name:l10n_it_reverse_charge.model_account_rc_type
+#: model_terms:ir.ui.view,arch_db:l10n_it_reverse_charge.view_rc_type_form
+msgid "Reverse Charge Type"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.actions.act_window,name:l10n_it_reverse_charge.action_rc_type
+#: model:ir.ui.menu,name:l10n_it_reverse_charge.menu_action_rc_type
+#: model_terms:ir.ui.view,arch_db:l10n_it_reverse_charge.view_rc_type_tree
+msgid "Reverse Charge Types"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:77
+#, python-format
+msgid ""
+"Reverse charge self invoice.\n"
+"Supplier: %s\n"
+"Reference: %s\n"
+"Date: %s\n"
+"Internal reference: %s"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax__sale_tax_id
+msgid "Sale Tax"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: selection:account.rc.type,method:0
+msgid "Self Invoice"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__journal_id
+msgid "Self Invoice Journal"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__partner_id
+msgid "Self Invoice Partner"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__partner_type
+msgid "Self Invoice Partner Type"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__payment_journal_id
+msgid "Self Invoice Payment Journal"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__tax_ids
+msgid "Self Invoice Tax Mapping"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__transitory_account_id
+msgid "Self Invoice Transitory Account"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model_terms:ir.ui.view,arch_db:l10n_it_reverse_charge.view_rc_type_form
+msgid "Self Invoicing"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: selection:account.rc.type,partner_type:0
+msgid "Supplier"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__supplier_journal_id
+msgid "Supplier Self Invoice Journal"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model_terms:ir.ui.view,arch_db:l10n_it_reverse_charge.view_rc_type_form
+msgid "Tax Mapping"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model,name:l10n_it_reverse_charge.model_account_rc_type_tax
+msgid "Tax Mapping for self invoices"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:336
+#, python-format
+msgid ""
+"Tax code used is not a RC tax.\n"
+"Can't find tax mapping"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: sql_constraint:account.rc.type.tax:0
+msgid "Tax mappings can be defined only once per rc type."
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__self_invoice_text
+msgid "Text in Self Invoice"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model_terms:ir.ui.view,arch_db:l10n_it_reverse_charge.view_rc_type_form
+msgid "Text on Self Invoice"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:429
+#, python-format
+msgid ""
+"There are more than one payment line.\n"
+"In that case account entries cannot be canceledautomatically. Please proceed "
+"manually"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:313
+#, python-format
+msgid ""
+"There is no default credit account defined \n"
+"on journal \"%s\"."
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,help:l10n_it_reverse_charge.field_account_rc_type__transitory_account_id
+msgid "Transitory account used on self invoices."
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: selection:account.rc.type,method:0
+msgid "VAT Integration"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:419
+#, python-format
+msgid ""
+"VAT integration RC type, defined in fiscal position {fp}, is not managed yet"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: code:addons/l10n_it_reverse_charge/models/account_rc_type.py:94
+#, python-format
+msgid ""
+"When \"With additional supplier self invoice\" you must set only one tax "
+"mapping line: only 1 tax per invoice is supported"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__with_supplier_self_invoice
+msgid "With additional supplier self invoice"
+msgstr ""
