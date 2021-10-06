@@ -3,6 +3,7 @@ from datetime import date
 from psycopg2 import IntegrityError
 
 from odoo.exceptions import UserError
+from odoo.modules import get_module_resource
 from odoo.tests import Form
 from odoo.tools import mute_logger
 
@@ -103,6 +104,17 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.ftpa_incoterms, "DAP")
         self.assertEqual(invoice.fiscal_document_type_id.code, "TD01")
         self.assertTrue(invoice.art73)
+
+        # verify if attached documents are correctly imported
+        attachments = invoice.fatturapa_doc_attachments
+        self.assertEqual(len(attachments), 1)
+        orig_attachment_path = get_module_resource(
+            "l10n_it_fatturapa_in", "tests", "data", "test.png"
+        )
+        with open(orig_attachment_path, "rb") as orig_attachment:
+            orig_attachment_data = orig_attachment.read()
+            self.assertEqual(attachments[0].raw, orig_attachment_data)
+
         # allow following tests to reuse the same XML file
         invoice.ref = invoice.payment_reference = "14011"
 
@@ -207,7 +219,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
     def test_08_xml_import_no_account(self):
         """Check that a useful error message is raised when
         the credit account is missing in purchase journal."""
-        company = self.env.user.company_id
+        company = self.env.company
         journal = self.wizard_model.get_purchase_journal(company)
         journal_account = journal.default_account_id
         journal.default_account_id = False
@@ -830,8 +842,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.env["res.partner.bank"].create(
             {
                 "acc_number": "IT59R0100003228000000000622",
-                "company_id": self.env.user.company_id.id,
-                "partner_id": self.env.user.company_id.partner_id.id,
+                "company_id": self.env.company.id,
+                "partner_id": self.env.company.partner_id.id,
             }
         )
         res = self.run_wizard("test48", "IT01234567890_FPR15.xml")
@@ -841,6 +853,33 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             "Bank account IT59R0100003228000000000622 already exists"
             in invoice.inconsistencies
         )
+
+    def test_49_xml_import(self):
+        # used in 12.0
+        pass
+
+    def test_50_xml_import(self):
+        # test #2338: improve search of product in supplier_info
+        # if search for product with product_code fails, we search for
+        # matching description
+        product_form = Form(self.env["product.template"])
+        product_form.name = "FORNITURE VARIE PER UFFICIO"
+        product_form.description = "FORNITURE VARIE PER UFFICIO"
+        product = product_form.save()
+
+        res = self.run_wizard("test50", "IT01234567890_FPR03.xml")
+        invoice_ids = res.get("domain")[0][2]
+        invoices = self.invoice_model.browse(invoice_ids).filtered(
+            lambda x: x.ref == "123"
+        )
+        self.assertEqual(len(invoices), 1)
+        invoice_line_ids = invoices.invoice_line_ids.filtered(
+            lambda l: l.product_id == product.id
+        )
+        self.assertEqual(len(invoice_line_ids), 1)
+
+        # allow following tests to reuse the same XML file
+        invoices[0].ref = invoices[0].payment_reference = "14501"
 
     def test_01_xml_link(self):
         """

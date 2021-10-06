@@ -48,27 +48,19 @@
                     </tr>
                 </t>
             </xpath>
-        </field>
-    </record>
 
-    <!--
-    <record id="report_invoice_document_with_payments" model="ir.ui.view">
-        <field name="name">print_withholding_tax_with_payments</field>
-        <field name="inherit_id" ref="account.report_invoice_document_with_payments"/>
-        <field name="arch" type="xml">
-            <xpath expr="//div[@id='total']/div/table" position="inside">
+            <xpath expr="//t[@t-if='print_with_payments']/t" position="inside">
                 <t t-if="o.withholding_tax_in_print and len(payments_vals) > 0">
                     <tr class="border-black">
                         <td>
                             <strong>Residual Net To Pay</strong>
                         </td>
                         <td class="text-right">
-                            <span t-field="o.amount_net_pay_residual"/>
+                            <span t-field="o.amount_net_pay_residual" />
                         </td>
                     </tr>
                 </t>
             </xpath>
         </field>
     </record>
-    -->
 </odoo>

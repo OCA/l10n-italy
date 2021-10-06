@@ -36,7 +36,7 @@ class WizardImportFatturapa(models.TransientModel):
             FatturaBody, credit_account_id, partner, wt_found, invoice
         )
         if not invoice.invoice_line_ids:
-            return
+            return res
         # set RC fiscal position
         inv_lines = invoice.invoice_line_ids
         if any(inv_lines.mapped("rc")):

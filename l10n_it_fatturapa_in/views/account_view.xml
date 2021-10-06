@@ -425,7 +425,7 @@
                         <field name="fatturapa_payments" nolabel="1" readonly="1">
                             <tree string="Payments">
                                 <field name="payment_terms" />
-                                <field name="payment_methods" />
+                                <field name="payment_methods" widget="many2many_tags" />
                             </tree>
                             <form string="Payments" version="7.0">
                                 <sheet>

@@ -8,7 +8,9 @@ class TestFatturapaSale(TransactionCase):
     def setUp(self):
         super().setUp()
         self.partner = self.env["res.partner"].create({"name": "Test partner"})
-        self.product = self.env["product.product"].create({"name": "Test product"})
+        self.product = self.env["product.product"].create(
+            {"name": "Test product", "invoice_policy": "order"}
+        )
 
     def _create_order(self):
         sale_order = (

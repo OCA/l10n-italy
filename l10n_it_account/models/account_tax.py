@@ -31,8 +31,8 @@ class AccountTax(models.Model):
     def _compute_deductible_balance(self):
         for tax in self:
             account_ids = (
-                self.mapped("invoice_repartition_line_ids.account_id")
-                | self.mapped("refund_repartition_line_ids.account_id")
+                tax.mapped("invoice_repartition_line_ids.account_id")
+                | tax.mapped("refund_repartition_line_ids.account_id")
             ).ids
             balance_regular = tax.compute_balance(
                 tax_or_base="tax", financial_type="regular", account_ids=account_ids
@@ -45,8 +45,8 @@ class AccountTax(models.Model):
     def _compute_undeductible_balance(self):
         for tax in self:
             account_ids = (
-                self.mapped("invoice_repartition_line_ids.account_id")
-                | self.mapped("refund_repartition_line_ids.account_id")
+                tax.mapped("invoice_repartition_line_ids.account_id")
+                | tax.mapped("refund_repartition_line_ids.account_id")
             ).ids
             balance_regular = tax.compute_balance(
                 tax_or_base="tax",
@@ -68,7 +68,7 @@ class AccountTax(models.Model):
         exclude_account_ids=None,
     ):
         balance = super(AccountTax, self).compute_balance(tax_or_base, financial_type)
-        if account_ids:
+        if account_ids is not None:
             domain = self.get_move_lines_domain(
                 tax_or_base=tax_or_base,
                 financial_type=financial_type,
@@ -78,7 +78,7 @@ class AccountTax(models.Model):
                 0
             ]["balance"]
             balance = balance and -balance or 0
-        elif exclude_account_ids:
+        elif exclude_account_ids is not None:
             domain = self.get_move_lines_domain(
                 tax_or_base=tax_or_base,
                 financial_type=financial_type,
@@ -100,7 +100,7 @@ class AccountTax(models.Model):
         domain = super(AccountTax, self).get_move_lines_domain(
             tax_or_base, financial_type
         )
-        if account_ids:
+        if account_ids is not None:
             domain.append(
                 (
                     "account_id",
@@ -108,7 +108,7 @@ class AccountTax(models.Model):
                     account_ids,
                 )
             )
-        elif exclude_account_ids:
+        elif exclude_account_ids is not None:
             domain.append(
                 (
                     "account_id",

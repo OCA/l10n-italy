@@ -650,7 +650,7 @@ class AccountIntrastatStatement(models.Model):
             summary_type = "C"
         rcd += format_x(summary_type, 1)
         # Anno
-        rcd += format_9(str(self.fiscalyear)[2:], 2)
+        rcd += format_9(str(self.fiscalyear)[-2:], 2)
         # Periodicità
         rcd += format_x(self.period_type, 1)
         # Periodo
@@ -676,8 +676,8 @@ class AccountIntrastatStatement(models.Model):
             )
             amount = self[section_op_amount_field]
             if section_number == 2:
-                self._format_negative_number_frontispiece(amount)
-            rcd += format_9(self[section_op_amount_field], 13)
+                amount = self._format_negative_number_frontispiece(amount)
+            rcd += format_9(amount, 13)
 
         rcd += "\r\n"
         return rcd

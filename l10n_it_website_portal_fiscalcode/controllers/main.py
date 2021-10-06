@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _
+from odoo.exceptions import ValidationError
 from odoo.http import request
 
 from odoo.addons.portal.controllers.portal import CustomerPortal
@@ -34,7 +35,9 @@ class WebsitePortalFiscalCode(CustomerPortal):
                 "company_type": company_type,
             }
         )
-        if not dummy_partner.check_fiscalcode():
+        try:
+            dummy_partner.check_fiscalcode()
+        except ValidationError:
             error["fiscalcode"] = "error"
             error_message.append(_("Fiscal Code not valid"))
         return error, error_message

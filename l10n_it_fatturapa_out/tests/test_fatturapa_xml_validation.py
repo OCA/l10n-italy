@@ -7,6 +7,7 @@ import re
 
 from psycopg2 import IntegrityError
 
+from odoo.exceptions import UserError
 from odoo.tools import mute_logger
 
 from .fatturapa_common import FatturaPACommon
@@ -679,3 +680,32 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         e_invoice.state = "sender_error"
         e_invoice.reset_to_ready()
         self.assertEqual(e_invoice.state, "ready")
+
+    def test_no_export_bill(self):
+        invoice = self.invoice_model.create(
+            {
+                "partner_id": self.res_partner_fatturapa_0.id,
+                "invoice_date": "2020-01-07",
+                "user_id": self.user_demo.id,
+                "move_type": "in_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "account_id": self.a_sale.id,
+                            "product_id": self.product_product_10.id,
+                            "name": "Mouse Optical",
+                            "quantity": 1,
+                            "product_uom_id": self.product_uom_unit.id,
+                            "price_unit": 10,
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
+                        },
+                    )
+                ],
+            }
+        )
+        invoice._post()
+        with self.assertRaises(UserError) as ue:
+            self.run_wizard(invoice.id)
+        self.assertIn(invoice.name, ue.exception.args[0])

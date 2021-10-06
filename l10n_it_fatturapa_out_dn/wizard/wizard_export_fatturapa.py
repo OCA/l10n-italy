@@ -12,11 +12,9 @@ class WizardExportFatturapa(models.TransientModel):
         res = super(WizardExportFatturapa, self).default_get(fields)
         invoice_ids = self.env.context.get("active_ids", False)
         invoices = self.env["account.move"].browse(invoice_ids)
-        for invoice in invoices:
-            for line in invoice.invoice_line_ids:
-                if line.delivery_note_id:
-                    res["include_transport_data"] = "dati_dn"
-                    return res
+        # enable option by default if any invoice is connected to a dn
+        if any(invoices.invoices_line_ids.mapped("delivery_note_id")):
+            res["include_transport_data"] = "dati_dn"
         return res
 
     include_transport_data = fields.Selection(

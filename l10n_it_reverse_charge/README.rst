@@ -107,7 +107,7 @@ Il registro autofattura deve essere di tipo 'Vendita'.
 
 Modificare il tipo inversione contabile **Extra-UE (autofattura)**:
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/home/simonev/Immagini/rc_selfinvoice_extra.png.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/rc_selfinvoice_extra.png
   :alt: inversione contabile con Autofattura
   :width: 600 px
 

@@ -250,6 +250,9 @@ class TestImportZIP(TransactionCase):
             }
         )
 
+        AED = self.env.ref("base.AED")
+        AED.active = True
+
     def cleanPartners(self):
         # VAT number used in tests, assigned to other partners by demo data, probably
         main_company = self.env.ref("base.main_company")
@@ -276,18 +279,15 @@ class TestImportZIP(TransactionCase):
         )
         attachment.action_import()
         self.assertEqual(len(attachment.invoice_out_ids), 6)
-        self.assertEqual(len(attachment.invoice_in_ids), 39)
+        self.assertEqual(len(attachment.invoice_in_ids), 37)
         checked = False
         for att in attachment.attachment_out_ids:
             if att.name == "IT06363391001_00012.xml":
                 checked = True
                 self.assertEqual(
-                    att.out_invoice_ids.date_invoice, datetime(2020, 1, 7).date()
+                    att.out_invoice_ids.invoice_date, datetime(2020, 1, 7).date()
                 )
                 self.assertEqual(
-                    att.out_invoice_ids.date_due, datetime(2020, 2, 29).date()
+                    att.out_invoice_ids.invoice_date_due, datetime(2020, 2, 29).date()
                 )
-                self.assertEqual(att.out_invoice_ids.move_name, "INV/2020/0012"),
-                self.assertEqual(att.out_invoice_ids.partner_id.zip, "18038")
-                self.assertEqual(att.out_invoice_ids.partner_id.city, "Sanremo")
         self.assertTrue(checked)

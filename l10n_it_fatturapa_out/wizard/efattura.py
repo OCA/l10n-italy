@@ -11,7 +11,7 @@ from unidecode import unidecode
 from odoo.exceptions import UserError
 from odoo.modules.module import get_module_resource
 from odoo.tools import float_repr
-from odoo.tools.float_utils import float_is_zero
+from odoo.tools.translate import _
 
 from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
 
@@ -61,12 +61,10 @@ class EFatturaOut:
         errors = self._validator.error_log
         return (ret, errors)
 
-    def to_xml(self, env):  # noqa: C901
-        """Create the xml file content.
-        :return: The XML content as str.
-        """
+    def get_template_values(self):  # noqa: C901
+        """Prepare values and helper functions for the template"""
 
-        self.env = env
+        env = self.env
 
         def format_date(dt):
             # Format the date in the italian standard.
@@ -218,8 +216,6 @@ class EFatturaOut:
 
             out = {}
             # check for missing tax lines
-            # those are usually 0 valued, but we need to generate an element
-            # for all taxes referenced by lines, even if 0 valued
             for line in record.invoice_line_ids:
                 if line.display_type in ("line_section", "line_note"):
                     # notes and sections
@@ -249,7 +245,7 @@ class EFatturaOut:
                         out[key]["ImponibileImporto"] += line.price_subtotal
                         out[key]["Imposta"] += 0.0
             out.update(out_computed)
-            return list(out.values())
+            return out
 
         def get_importo(line):
             str_number = str(line.discount)
@@ -257,30 +253,6 @@ class EFatturaOut:
             if number <= 2:
                 return False
             return line.price_unit * line.discount / 100
-
-        def get_tax_ids(line):
-            """Get the tax for an invoice line.
-
-            Note: SdI expects only one tax per line. Also, it expects to find a tax line
-            for each line mentioned in the invoice lines, but Odoo generate no tax line
-            if the amount is 0. This is handled in get_all_taxes().
-
-            Common best practice for note/section lines is to reference an existing tax
-            line, instead of creating a new zero tax summary in the XML. The price for
-            note/section lines is zero anyway.  Therefore the original tax is ignored as
-            it defaults to the company default tax which may or may not be non zero in
-            the invoice."""
-
-            if line.display_type in ("line_section", "line_note"):
-                # find a non-zero tax, if possible
-                tax_lines = line.move_id.line_ids.filtered(
-                    lambda line: line.tax_ids
-                                 and not (
-                        float_is_zero(line.price_total, precision_digits=2))
-                )
-                if tax_lines:
-                    return tax_lines[0].tax_ids[0]
-            return line.tax_ids[0]
 
         if self.partner_id.commercial_partner_id.is_pa:
             # check value code
@@ -313,10 +285,20 @@ class EFatturaOut:
             "unidecode": unidecode,
             "wizard": self.wizard,
             "get_importo": get_importo,
-            "get_all_taxes": get_all_taxes,
-            "get_tax_ids": get_tax_ids,
-            # "base64": base64,
+            "all_taxes": {
+                invoice.id: get_all_taxes(invoice) for invoice in self.invoices
+            },
         }
+        return template_values
+
+    def to_xml(self, env):
+        """Create the xml file content.
+        :return: The XML content as str.
+        """
+
+        self.env = env
+
+        template_values = self.get_template_values()
         content = env.ref(
             "l10n_it_fatturapa_out.account_invoice_it_FatturaPA_export"
         )._render(template_values)
@@ -333,9 +315,20 @@ class EFatturaOut:
         content = etree.tostring(root, xml_declaration=True, encoding="utf-8")
         return content
 
+    def _get_company_from_invoices(self, invoices):
+        company_id = invoices.mapped("company_id")
+        if len(company_id) > 1:
+            raise UserError(
+                _("Invoices %s must belong to the same company.")
+                % invoices.mapped("number")
+            )
+        return company_id
+
     def __init__(self, wizard, partner_id, invoices, progressivo_invio):
         self.wizard = wizard
-        self.company_id = wizard.env.company
+        self.company_id = (
+            self._get_company_from_invoices(invoices) or wizard.env.company
+        )
         self.partner_id = partner_id
         self.invoices = invoices
         self.progressivo_invio = progressivo_invio

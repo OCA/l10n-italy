@@ -38,28 +38,6 @@ Technical module for integrating l10n_it_split_payment and l10n_it_fatturapa_out
 .. contents::
    :local:
 
-Configuration
-=============
-
-**Italiano**
-
-TDB
-
-**English**
-
-TDB
-
-Usage
-=====
-
-**Italiano**
-
-TDB
-
-**English**
-
-TDB
-
 Bug Tracker
 ===========
 

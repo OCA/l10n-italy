@@ -4,7 +4,7 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
-from odoo.tools.float_utils import float_round
+from odoo.tools.float_utils import float_compare, float_round
 
 
 class AccountFullReconcile(models.Model):
@@ -65,7 +65,15 @@ class AccountPartialReconcile(models.Model):
             # Note that this is always executed, for every reconciliation.
             # Thus, we must not change amount when not in withholding tax case
             amount = vals.get("amount_currency") or vals.get("amount")
-            if amount > invoice.amount_net_pay:
+            digits_rounding_precision = invoice.company_id.currency_id.rounding
+            if (
+                float_compare(
+                    amount,
+                    invoice.amount_net_pay,
+                    precision_rounding=digits_rounding_precision,
+                )
+                == 1
+            ):
                 vals.update({"amount": invoice.amount_net_pay})
 
         # Create reconciliation
@@ -490,6 +498,20 @@ class AccountMove(models.Model):
             else:
                 payment_val["wt_move_line"] = False
         return payment_vals
+
+    def action_register_payment(self):
+        """
+        Set net to pay how default amount to pay
+        """
+        res = super().action_register_payment()
+        if self.withholding_tax_amount and self.amount_net_pay_residual:
+            ctx = res.get('context', {})
+            if ctx:
+                ctx.update({
+                    'default_amount': self.amount_net_pay_residual
+                })
+            res.update(ctx)
+        return res
 
 
 class AccountMoveLine(models.Model):

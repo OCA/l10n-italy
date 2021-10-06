@@ -20,7 +20,7 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:374
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:373
 #, python-format
 msgid "Can't find 1 tax mapping for %s"
 msgstr "Ne najdem 1 davčnega mapiranja za %s"
@@ -89,18 +89,21 @@ msgid "Invoice"
 msgstr "Račun"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:328
-#, python-format
-msgid ""
-"Invoice %s, line\n"
-"%s\n"
-"is RC but has not tax"
-msgstr ""
-
-#. module: l10n_it_reverse_charge
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_invoice_line
 msgid "Invoice Line"
 msgstr "Postavka računa"
+
+#. module: l10n_it_reverse_charge
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:328
+#, python-format
+msgid ""
+"Invoice line\n"
+"%s\n"
+"is RC but has not tax"
+msgstr ""
+"Postavka računa\n"
+"%s\n"
+"je obrnjena davčna obveznost, a nima davka"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,help:l10n_it_reverse_charge.field_account_rc_type__journal_id
@@ -287,7 +290,7 @@ msgid "Tax Mapping for self invoices"
 msgstr "Mapiranje davkov za samo-obdavčitve"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:337
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:336
 #, python-format
 msgid ""
 "Tax code used is not a RC tax.\n"
@@ -310,7 +313,7 @@ msgid "Text on Self Invoice"
 msgstr "Besedilo v računu za samo-obdavčitev"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:432
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:429
 #, python-format
 msgid ""
 "There are more than one payment line.\n"
@@ -342,7 +345,7 @@ msgid "VAT Integration"
 msgstr "Integracija DDV"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:422
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:419
 #, python-format
 msgid ""
 "VAT integration RC type, defined in fiscal position {fp}, is not managed yet"
@@ -362,12 +365,3 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__with_supplier_self_invoice
 msgid "With additional supplier self invoice"
 msgstr "Z dodatnim prejetim računom za samo-obdavčitev"
-
-#~ msgid ""
-#~ "Invoice line\n"
-#~ "%s\n"
-#~ "is RC but has not tax"
-#~ msgstr ""
-#~ "Postavka računa\n"
-#~ "%s\n"
-#~ "je obrnjena davčna obveznost, a nima davka"

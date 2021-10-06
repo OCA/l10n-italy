@@ -26,4 +26,14 @@
         <field name="binding_view_types">list,form</field>
     </record>
 
+    <record id="action_fatturapa_in_export" model="ir.actions.act_window">
+        <field name="name">Download ZIP e-invoice XML</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">wizard.fatturapa.export</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_fatturapa_attachment_in" />
+        <field name="binding_view_types">list,form</field>
+    </record>
+
 </odoo>

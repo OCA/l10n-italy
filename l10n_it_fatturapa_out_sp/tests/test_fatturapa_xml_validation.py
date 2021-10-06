@@ -10,7 +10,12 @@ from .fatturapa_common import FatturaPACommon
 class TestFatturaPAXMLValidation(FatturaPACommon):
     def setUp(self):
         super(TestFatturaPAXMLValidation, self).setUp()
-        self.company = self.env.company = self.sales_journal.company_id
+
+        # XXX - a company named "YourCompany" alread exists
+        # we move it out of the way but we should do better here
+        self.env.company.sudo().search([("name", "=", "YourCompany")]).write(
+            {"name": "YourCompany_"}
+        )
 
         self.env.company.name = "YourCompany"
         self.env.company.vat = "IT06363391001"
@@ -30,8 +35,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
             [("name", "=", "Product Unit of Measure")]
         ).digits = 3
         self.env["uom.uom"].search([("name", "=", "Units")]).name = "Unit(s)"
-        # self.env.user.company_ids = self.env.user.company_ids[1]
-        # self.env.user.company_id = self.env.company
 
     def test_4_xml_export(self):
         self.set_sequences(16, "2016-06-15")
@@ -41,7 +44,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                 "invoice_date": "2016-06-15",
                 "partner_id": self.res_partner_fatturapa_0.id,
                 "journal_id": self.sales_journal.id,
-                # "account_id": self.a_recv.id,
                 "invoice_payment_term_id": self.account_payment_term.id,
                 "user_id": self.user_demo.id,
                 "move_type": "out_invoice",

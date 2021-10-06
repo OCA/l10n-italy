@@ -69,7 +69,7 @@ class WizardExportFatturapa(models.TransientModel):
             if invoice.partner_id != partner:
                 raise UserError(
                     _("Invoices %s must belong to the same partner.")
-                    % invoices.mapped("name")
+                    % ", ".join(invoices.mapped("name"))
                 )
 
         return partner
@@ -114,7 +114,12 @@ class WizardExportFatturapa(models.TransientModel):
                 file_id = id_generator()
         return file_id
 
+    def _get_efattura_class(self):
+        return EFatturaOut
+
     def exportInvoiceXML(self, partner, invoice_ids, attach=False, context=None):
+        EFatturaOut = self._get_efattura_class()
+
         progressivo_invio = self.setProgressivoInvio(attach)
         invoice_ids = self.env["account.move"].with_context(context).browse(invoice_ids)
         invoice_ids.preventive_checks()
