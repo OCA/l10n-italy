@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-extend="ShowPaymentInfo">
+        <t t-jquery=".o_field_widget" t-operation="replace">
+            <t t-if="line.wt_move_line">
+                <i class="o_field_widget text-right o_payment_label">W.T. Reg. on <t
+                        t-esc="line.date"
+                    /></i>
+            </t>
+            <t t-if="!line.wt_move_line">
+                <i class="o_field_widget text-right o_payment_label">Paid on <t
+                        t-esc="line.date"
+                    /></i>
+            </t>
+        </t>
+    </t>
+</templates>
