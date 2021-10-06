@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="wizard_link_supplier_invoice" model="ir.ui.view">
+        <field name="name">wizard_link_supplier_invoice</field>
+        <field name="model">wizard.link.to.invoice</field>
+        <field name="arch" type="xml">
+            <form string="Link to existing supplier bills">
+                <sheet>
+                    <group>
+                        <field name="line_ids" nolabel="1">
+                            <tree editable="top" create="false">
+                                <field name="wizard_id" invisible="True" />
+                                <field name="e_invoice_descr" />
+                                <field
+                                    name="invoice_id"
+                                    domain="[
+                                              ('move_type', 'in', ('in_invoice', 'in_refund')),
+                                              ('state', 'in', ('draft', 'proforma', 'proforma2')),
+                                              ('fatturapa_attachment_in_id', '=', False)]"
+                                    context="{
+                                               'form_view_ref': 'account.view_move_form',
+                                               'tree_view_ref': 'account.view_move_tree'}"
+                                    options="{'no_create': True}"
+                                />
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+                <footer>
+                    <button special="cancel" string="Cancel" />
+                    <button name="link" string="Link" type="object" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_link_supplier_invoice" model="ir.actions.act_window">
+        <field name="name">Link to existing supplier bills</field>
+        <field name="res_model">wizard.link.to.invoice</field>
+        <!-- src_model="fatturapa.attachment.in" -->
+        <field name="binding_model_id" ref="model_fatturapa_attachment_in" />
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="wizard_link_supplier_invoice" />
+    </record>
+
+</odoo>
