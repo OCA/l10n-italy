@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="wizard_fatturapa_export">
+    <field name="name">Export fatturapa xml</field>
+    <field name="model">wizard.fatturapa.export</field>
+    <field name="arch" type="xml">
+        <form string="Download ZIP E-Invoices XML">
+            <group>
+                <field name="name" />
+            </group>
+            <footer>
+                <button string="Export zip" name="export_zip" type="object" />
+                <button string="Cancel" special="cancel" />
+            </footer>
+        </form>
+    </field>
+    </record>
+
+    <record id="action_fatturapa_out_export" model="ir.actions.act_window">
+        <field name="name">Download ZIP e-invoice XML</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">wizard.fatturapa.export</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_fatturapa_attachment_out" />
+        <field name="binding_view_types">list,form</field>
+    </record>
+
+    <record id="action_fatturapa_in_export" model="ir.actions.act_window">
+        <field name="name">Download ZIP e-invoice XML</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">wizard.fatturapa.export</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_fatturapa_attachment_in" />
+        <field name="binding_view_types">list,form</field>
+    </record>
+
+</odoo>
