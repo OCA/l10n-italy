@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template
+        id="wt_account_invoice_it_dati_ritenuta"
+        inherit_id="l10n_it_fatturapa_out.account_invoice_it_dati_ritenuta"
+    >
+
+        <xpath expr="t" position="replace">
+            <t
+                t-set="ritenuta_lines"
+                t-value="record.withholding_tax_line_ids.sorted(key=lambda l: l.withholding_tax_id.code)"
+            />
+            <!--2.1.1.5-->
+            <DatiRitenuta t-foreach="ritenuta_lines" t-as="wt_line">
+                <t
+                    t-set="tipo_ritenuta"
+                    t-value="get_withholding_type(wt_line.withholding_tax_id.wt_types, record.partner_id)"
+                />
+                <TipoRitenuta t-esc="tipo_ritenuta" />
+                <ImportoRitenuta t-esc="format_numbers_two(wt_line.tax)" />
+                <AliquotaRitenuta
+                    t-esc="format_numbers_two(wt_line.withholding_tax_id.tax)"
+                />
+                <CausalePagamento
+                    t-esc="wt_line.withholding_tax_id.payment_reason_id.code"
+                />
+            </DatiRitenuta>
+        </xpath>
+    </template>
+
+    <template
+        id="wt_account_invoice_it_dati_cassa_previdenziale"
+        inherit_id="l10n_it_fatturapa_out.account_invoice_it_dati_cassa_previdenziale"
+    >
+
+        <xpath expr="t" position="replace">
+            <t
+                t-set="TC_CODE"
+                t-value="{'inps': 'TC22', 'enasarco': 'TC07', 'enpam': 'TC09',}"
+            />
+            <t
+                t-set="ritenuta_lines"
+                t-value="record.withholding_tax_line_ids.sorted(key=lambda l: l.withholding_tax_id.code)"
+            />
+            <!--2.1.1.7-->
+            <DatiCassaPrevidenziale
+                t-foreach="ritenuta_lines.filtered(lambda wtl: wtl.withholding_tax_id.use_daticassaprev)"
+                t-as="wt_line"
+            >
+                  <TipoCassa t-esc="TC_CODE[wt_line.withholding_tax_id.wt_types]" />
+                  <AlCassa t-esc="format_numbers_two(wt_line.withholding_tax_id.tax)" />
+                  <ImportoContributoCassa t-esc="format_numbers_two(wt_line.tax)" />
+                  <AliquotaIVA>0.00</AliquotaIVA>
+                  <Natura
+                    t-esc="wt_line.withholding_tax_id.daticassprev_tax_id.kind_id.code"
+                />
+            </DatiCassaPrevidenziale>
+        </xpath>
+
+    </template>
+
+    <template
+        id="wt_account_invoice_line_ritenuta"
+        inherit_id="l10n_it_fatturapa_out.account_invoice_line_ritenuta"
+    >
+
+        <xpath expr="t" position="replace">
+            <t t-if="line.invoice_line_tax_wt_ids">
+                <!-- 2.2.1.13 -->
+                <Ritenuta>SI</Ritenuta>
+            </t>
+        </xpath>
+    </template>
+
+    <template
+        id="wt_account_invoice_it_fattura_elettronica_body"
+        inherit_id="l10n_it_fatturapa_out.account_invoice_it_fattura_elettronica_body"
+    >
+
+        <xpath expr="t" position="after">
+            <t
+                t-set="wt_hack_rate"
+                t-value="record.amount_net_pay / record.amount_total if record.withholding_tax_line_ids else 1.0"
+            />
+        </xpath>
+
+        <xpath expr="//DettaglioPagamento//ImportoPagamento" position="replace">
+            <ImportoPagamento
+                t-esc="format_numbers_two(wt_hack_rate * (move_line.amount_currency or move_line.debit or 0.0))"
+            />
+        </xpath>
+
+        <!--
+        <xpath expr="//DatiBeniServizi" position="inside">
+            <t t-set="wt_lines_to_write" t-value="record.withholding_tax_line_ids.filtered(lambda x: x.withholding_tax_id.wt_types not in ('ritenuta', 'other') and x.withholding_tax_id.use_daticassaprev)"/>
+            <t t-if="wt_lines_to_write">
+                <t t-foreach="wt_lines_to_write" t-as="wt_line">
+                    <DatiRiepilogo>
+
+                    </DatiRiepilogo>
+                </t>
+            </t>
+        </xpath>
+        -->
+    </template>
+</odoo>
