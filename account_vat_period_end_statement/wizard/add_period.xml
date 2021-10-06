@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2019 Simone Rubino - Agile Business Group
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+<odoo>
+    <record id="add_period" model="ir.ui.view">
+        <field name="name">add_period</field>
+        <field name="model">add.period.to.vat.statement</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Add period">
+                <group>
+                    <group>
+                        <field name="period_id" />
+                    </group>
+                </group>
+                <footer>
+                    <button special="cancel" string="Cancel" />
+                    <button
+                        name="add_period"
+                        string="Add"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_add_period" model="ir.actions.act_window">
+        <field name="name">Add period</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">add.period.to.vat.statement</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
