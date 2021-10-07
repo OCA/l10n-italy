@@ -41,11 +41,13 @@
         'views/asset_depreciation_mode.xml',
         'views/asset_depreciation_type.xml',
         'views/asset_tag.xml',
+        'views/res_config.xml',
         'wizard/account_invoice_manage_asset_view.xml',
         'wizard/account_move_manage_asset_view.xml',
         'wizard/asset_generate_depreciation_view.xml',
         'wizard/asset_journal_report_view.xml',
         'wizard/asset_previsional_report_view.xml',
+
     ],
     'development_status': 'Beta',
     'installable': True,

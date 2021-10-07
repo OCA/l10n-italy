@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+ Copyright 2020-2016 Powerp Enterprise Network
+ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+-->
+
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.assets</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='analytic']" position="after">
+                <h2>Configurazione tipi di ammortamento</h2>
+                <div class="row mt16 o_settings_container" id="assets_type">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." aria-label="Values set here are company-specific." groups="base.group_multi_company" role="img"/>
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label string="Civilistico" for="civilistico" class="col-lg-3 o_light_label"/>
+                                    <field name="civilistico" />
+                                </div>
+                                <div class="row mt16">
+                                    <label string="Fiscale" for="fiscale" class="col-lg-3 o_light_label"/>
+                                    <field name="fiscale" />
+                                </div>
+                                <div class="row mt16">
+                                    <label string="Gestionale" for="gestionale" class="col-lg-3 o_light_label"/>
+                                    <field name="gestionale" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
+

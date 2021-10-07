@@ -12,6 +12,11 @@
         <field name="requires_account_move">0</field>
         <field name="print_by_default">1</field>
     </record>
+    <record id="ad_type_gestionale" model="asset.depreciation.type">
+        <field name="name">Gestionale</field>
+        <field name="requires_account_move">0</field>
+        <field name="print_by_default">1</field>
+    </record>
 
     <!-- Tipo operazione -->
     <record id="adpl_type_riv" model="asset.depreciation.line.type">
