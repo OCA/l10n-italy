@@ -16,6 +16,12 @@ class TestDocType(TransactionCase):
         self.TD04 = self.doc_type_model.search([("code", "=", "TD04")], limit=1)
         self.inv_model = self.env["account.move"]
         self.partner3 = self.env.ref("base.res_partner_3")
+        self.fp = self.env["account.fiscal.position"].create(
+            {
+                "name": "FP",
+                "fiscal_document_type_id": self.TD01.id,
+            }
+        )
 
     def test_doc_type(self):
         invoice = self.inv_model.create({"partner_id": self.partner3.id})
@@ -70,3 +76,39 @@ class TestDocType(TransactionCase):
             }
         )
         self.assertEqual(invoice.fiscal_document_type_id, self.TD04)
+
+        invoice = self.inv_model.create(
+            {
+                "move_type": "out_invoice",
+                "partner_id": self.partner3.id,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.env.ref("product.product_product_5").id,
+                            "quantity": 10.0,
+                            "account_id": revenue_account.id,
+                            "name": "product test 5",
+                            "price_unit": 100.00,
+                        },
+                    )
+                ],
+            }
+        )
+        invoice.action_post()
+
+        move_reversal = (
+            self.env["account.move.reversal"]
+            .with_context(active_model="account.move", active_ids=invoice.ids)
+            .create(
+                {
+                    "reason": "no reason",
+                    "refund_method": "cancel",
+                }
+            )
+        )
+        reversal = move_reversal.reverse_moves()
+        reverse_move = self.env["account.move"].browse(reversal["res_id"])
+        self.assertEqual(reverse_move.move_type, "out_refund")
+        self.assertEqual(reverse_move.fiscal_document_type_id.id, self.TD04.id)
