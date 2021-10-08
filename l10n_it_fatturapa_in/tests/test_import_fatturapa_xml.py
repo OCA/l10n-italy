@@ -842,6 +842,43 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             in invoice.inconsistencies
         )
 
+    def test_49_xml_import(self):
+        # this method name is used in 12.0
+        # reserving to make forward-porting easier
+        pass
+
+    def test_50_xml_import(self):
+        """
+        Check that products can be found using "Vendor Product Name".
+        """
+        partner_id = self.env["res.partner"].name_search("SOCIETA' ALPHA SRL")[0][0]
+        product_id = self.env["product.product"].name_create(
+            "Test supplier description"
+        )[0]
+        self.env["product.supplierinfo"].create(
+            {
+                "name": partner_id,
+                "product_name": "FORNITURE VARIE PER UFFICIO",
+                "product_id": product_id,
+                "min_qty": 1,
+                "price": 100,
+            }
+        )
+
+        res = self.run_wizard("test50", "IT01234567890_FPR03.xml")
+        invoice_ids = res.get("domain")[0][2]
+        invoice = self.invoice_model.browse(invoice_ids).filtered(
+            lambda x: x.ref == "123"
+        )
+        self.assertEqual(len(invoice), 1)
+        invoice_line = invoice.invoice_line_ids.filtered(
+            lambda l: l.product_id.id == product_id
+        )
+        self.assertEqual(len(invoice_line), 1)
+
+        # allow following tests to reuse the same XML file
+        invoice.ref = invoice.payment_reference = "14501"
+
     def test_01_xml_link(self):
         """
         E-invoice lines are created.
