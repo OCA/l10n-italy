@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2020 Simone Rubino - Agile Business Group
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">Add e-invoice fields in sale.order form view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/form/field[@name='name']"
+                position="after"
+            >
+                <group
+                    name="e_invoice"
+                    string="Electronic Invoice"
+                    groups="account.group_account_user"
+                >
+                    <field name="admin_ref" />
+                    <field name="related_documents" />
+                </group>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']"
+                position="before"
+            >
+                <field name="admin_ref" />
+            </xpath>
+            <notebook position="inside">
+                <page
+                    name="e_invoice"
+                    string="Electronic Invoice"
+                    groups="account.group_account_user"
+                >
+                    <group name="related_documents">
+                        <field name="related_documents" />
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
