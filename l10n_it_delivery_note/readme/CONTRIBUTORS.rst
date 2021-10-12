@@ -7,3 +7,4 @@
 * Letizia Freda <letizia.freda@netfarm.it>
 * Andrea Piovesana <andrea.m.piovesana@gmail.com>
 * Giovanni Serra <giovanni@gslab.it>
+* Alex Comba <alex.comba@agilebg.com>
