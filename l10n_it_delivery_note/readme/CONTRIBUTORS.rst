@@ -6,3 +6,4 @@
 * Gianmarco Conte <gconte@dinamicheaziendali.it>
 * Letizia Freda <letizia.freda@netfarm.it>
 * Andrea Piovesana <andrea.m.piovesana@gmail.com>
+* Alex Comba <alex.comba@agilebg.com>
