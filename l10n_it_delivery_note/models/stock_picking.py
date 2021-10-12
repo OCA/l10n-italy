@@ -435,3 +435,10 @@ class StockPicking(models.Model):
                 self.mapped("delivery_note_id").update_detail_lines()
 
         return res
+
+    def _create_backorder(self):
+        """When we make a backorder of a picking the delivery note lines needed
+        to be updated otherwise stock_delivery_note_line_move_uniq constraint is raised"""
+        backorders = super()._create_backorder()
+        for backorder in backorders:
+            backorder.backorder_id.delivery_note_id.update_detail_lines()
