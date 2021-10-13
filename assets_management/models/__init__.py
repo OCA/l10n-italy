@@ -20,5 +20,3 @@ from . import asset_depreciation_mode
 from . import asset_depreciation_mode_line
 from . import asset_depreciation_type
 from . import asset_tag
-from . import res_config_settings
-

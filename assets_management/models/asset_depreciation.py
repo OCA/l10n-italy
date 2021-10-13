@@ -642,6 +642,7 @@ class AssetDepreciation(models.Model):
 
     def calculate_depreciation_summary(self, dep_date):
         self.ensure_one()
+        # p_amount = asset.purchase_amount
         _logger.info('initial {}'.format(self.amount_depreciable))
         balance = 0.0
         for line in self.line_ids:
