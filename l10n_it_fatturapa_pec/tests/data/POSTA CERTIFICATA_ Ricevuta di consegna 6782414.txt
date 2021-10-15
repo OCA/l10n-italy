@@ -121,7 +121,7 @@ From: sdi03@pec.fatturapa.it
 To: l.battistini@pec.it
 Subject: Ricevuta di consegna 6782414 (SIMULAZIONE)
 MIME-Version: 1.0
-Content-Type: multipart/mixed; 
+Content-Type: multipart/mixed;
 	boundary="----=_Part_44011_-1748053925.1542124052747"
 X-TipoRicevuta: breve
 Date: Tue, 13 Nov 2018 16:47:32 +0100 (CET)
@@ -375,4 +375,3 @@ rHAZ3dCY+RXK30qFxh3KM+HHJgzr7/hPMtNcexGm9pi571dh+NPwpXLHFlPrq8Rr
 XrcOi/+Gel8NW4kGO4Q4AmbvlpNMWfoSjVBMxm1hSyFH5Lx6E+X4dRTjo38=
 
 ------379AA1C2FE8D8CAF0753EB7F38543868--
-

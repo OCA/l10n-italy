@@ -1,14 +1,13 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.exceptions import UserError
-from .e_invoice_common import EInvoiceCommon
 from odoo.tools import mute_logger
+
+from .e_invoice_common import EInvoiceCommon
 
 
 class TestEInvoiceSend(EInvoiceCommon):
-
     def setUp(self):
         super(TestEInvoiceSend, self).setUp()
 
@@ -28,11 +27,12 @@ class TestEInvoiceSend(EInvoiceCommon):
         e_invoice = self._create_e_invoice()
 
         self._create_fetchmail_pec_server()
-        self.env.user.company_id.sdi_channel_id. \
-            pec_server_id.email_from_for_fatturaPA = False
+        self.env.user.company_id.sdi_channel_id.pec_server_id.email_from_for_fatturaPA = (
+            False
+        )
 
         e_invoice.send_via_pec()
-        self.assertEqual(e_invoice.state, 'sender_error')
+        self.assertEqual(e_invoice.state, "sender_error")
 
     def test_send(self):
         """Sending e-invoice changes its state to 'sent'"""
@@ -40,7 +40,7 @@ class TestEInvoiceSend(EInvoiceCommon):
 
         self._create_fetchmail_pec_server()
         e_invoice.send_via_pec()
-        self.assertEqual(e_invoice.state, 'sent')
+        self.assertEqual(e_invoice.state, "sent")
 
     def test_send_empty_file(self):
         """Sending e-invoice without file content must be blocked"""
@@ -56,9 +56,9 @@ class TestEInvoiceSend(EInvoiceCommon):
         e_invoice = self._create_e_invoice()
 
         self._create_fetchmail_pec_server()
-        wiz = self.env['wizard.fatturapa.send.pec'].create({})
+        wiz = self.env["wizard.fatturapa.send.pec"].create({})
         wiz.with_context(active_ids=e_invoice.ids).send_pec()
-        self.assertEqual(e_invoice.state, 'sent')
+        self.assertEqual(e_invoice.state, "sent")
 
     def test_resend_reset(self):
         """Re-sending e-invoice raises UserError"""
@@ -66,7 +66,7 @@ class TestEInvoiceSend(EInvoiceCommon):
 
         self._create_fetchmail_pec_server()
         e_invoice.send_via_pec()
-        self.assertEqual(e_invoice.state, 'sent')
+        self.assertEqual(e_invoice.state, "sent")
 
         # Cannot re-send e-invoice whose state is 'sent'
         with self.assertRaises(UserError):
@@ -83,23 +83,22 @@ class TestEInvoiceSend(EInvoiceCommon):
 
         wizard = self._get_export_wizard(invoice)
         action = wizard.exportFatturaPA()
-        e_invoice = self.env[action['res_model']].browse(action['res_id'])
+        e_invoice = self.env[action["res_model"]].browse(action["res_id"])
 
         self._create_fetchmail_pec_server()
         e_invoice.send_via_pec()
-        self.assertEqual(e_invoice.state, 'sent')
+        self.assertEqual(e_invoice.state, "sent")
 
         # Set the e_invoice to error
-        e_invoice.state = 'sender_error'
+        e_invoice.state = "sender_error"
 
-        wizard.with_context(active_id=invoice.id).\
-            exportFatturaPARegenerate()
+        wizard.with_context(active_id=invoice.id).exportFatturaPARegenerate()
         self.assertEqual(e_invoice.state, "ready")
 
         with self.assertRaises(UserError):
             invoice.action_invoice_cancel()
 
-        e_invoice.state = 'sender_error'
+        e_invoice.state = "sender_error"
         invoice.journal_id.update_posted = True
         invoice.action_invoice_cancel()
         invoice.refresh()
@@ -108,14 +107,14 @@ class TestEInvoiceSend(EInvoiceCommon):
         invoice.action_invoice_open()
         invoice.refresh()
 
-        action = wizard.with_context(active_id=invoice.id).\
-            exportFatturaPARegenerate()
+        action = wizard.with_context(active_id=invoice.id).exportFatturaPARegenerate()
 
-        e_invoice = self.env[action['res_model']].browse(action['res_id'])
+        e_invoice = self.env[action["res_model"]].browse(action["res_id"])
 
         # set SDI address after first sending
         self.env.user.company_id.sdi_channel_id.email_exchange_system = (
-            'sdi01@pec.fatturapa.it')
+            "sdi01@pec.fatturapa.it"
+        )
         # Send it again
         e_invoice.send_via_pec()
-        self.assertEqual(e_invoice.state, 'sent')
+        self.assertEqual(e_invoice.state, "sent")

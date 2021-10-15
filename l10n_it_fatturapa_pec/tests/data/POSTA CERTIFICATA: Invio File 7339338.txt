@@ -122,7 +122,7 @@ From: sdi03@pec.fatturapa.it
 To: l.battistini@pec.it
 Subject: Invio File 7339338 (SIMULAZIONE)
 MIME-Version: 1.0
-Content-Type: multipart/mixed; 
+Content-Type: multipart/mixed;
 	boundary="----=_Part_115220_-1210040643.1544268377979"
 X-TipoRicevuta: breve
 Date: Sat,  8 Dec 2018 12:26:18 +0100 (CET)
@@ -1163,4 +1163,3 @@ SUAWbgCuK/fks8I6warTl3rrVxJRbrtqp7guw2gRhwO4Y+QlDmrxhYBhWcLa9uPi
 pOq2U8OoV+tinIH40pjlpQXz+hEvXOiitzKN4FJSKqNGWo+J6vtQ2ss/RwU=
 
 ------F0ECFFC577E2EBDF94A331C8DE270B55--
-
