@@ -5,7 +5,7 @@
         <field name="model">fetchmail.server</field>
         <field name="inherit_id" ref="fetchmail.view_email_server_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='type']" position="after">
+            <xpath expr="//field[@name='server_type']" position="after">
                 <field name="is_fatturapa_pec" />
             </xpath>
 

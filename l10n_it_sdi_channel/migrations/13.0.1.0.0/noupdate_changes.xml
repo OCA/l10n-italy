@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<odoo noupdate="1">
+<odoo>
 
     <record model="ir.rule" id="l10n_it_sdi_channel_rule">
         <field name="name">ES channel multi-company</field>

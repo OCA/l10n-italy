@@ -4,13 +4,13 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
-    "name": "Italian Localization - Fattura elettronica - Canale SdI",
+    "name": "ITA - Fattura elettronica - Canale SdI",
     "summary": "Aggiunge il canale di invio/ricezione dei file XML "
     "attraverso lo SdI",
-    "version": "12.0.1.3.3",
+    "version": "14.0.1.0.0",
     "development_status": "Beta",
     "category": "Hidden",
-    "website": "https://github.com/OCA/l10n-italy" "l10n_it_sdi_channel",
+    "website": "https://github.com/OCA/l10n-italy",
     "author": "Efatto.it di Sergio Corato, Odoo Community Association (OCA)",
     "maintainers": ["sergiocorato"],
     "license": "AGPL-3",
