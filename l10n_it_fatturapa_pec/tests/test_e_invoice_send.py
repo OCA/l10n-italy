@@ -27,9 +27,7 @@ class TestEInvoiceSend(EInvoiceCommon):
         e_invoice = self._create_e_invoice()
 
         self._create_fetchmail_pec_server()
-        self.env.user.company_id.sdi_channel_id.pec_server_id.email_from_for_fatturaPA = (
-            False
-        )
+        self.env.company.sdi_channel_id.pec_server_id.email_from_for_fatturaPA = False
 
         e_invoice.send_via_pec()
         self.assertEqual(e_invoice.state, "sender_error")
@@ -79,7 +77,7 @@ class TestEInvoiceSend(EInvoiceCommon):
     def test_resend_after_regenerate(self):
         """Re-sending e-invoice raises UserError"""
         invoice = self._create_invoice()
-        invoice.action_invoice_open()
+        invoice.action_post()
 
         wizard = self._get_export_wizard(invoice)
         action = wizard.exportFatturaPA()
@@ -95,26 +93,16 @@ class TestEInvoiceSend(EInvoiceCommon):
         wizard.with_context(active_id=invoice.id).exportFatturaPARegenerate()
         self.assertEqual(e_invoice.state, "ready")
 
-        with self.assertRaises(UserError):
-            invoice.action_invoice_cancel()
-
         e_invoice.state = "sender_error"
-        invoice.journal_id.update_posted = True
-        invoice.action_invoice_cancel()
-        invoice.refresh()
-        invoice.action_invoice_draft()
-        invoice.refresh()
-        invoice.action_invoice_open()
-        invoice.refresh()
+        invoice.button_draft()
+        invoice.action_post()
 
         action = wizard.with_context(active_id=invoice.id).exportFatturaPARegenerate()
 
         e_invoice = self.env[action["res_model"]].browse(action["res_id"])
 
         # set SDI address after first sending
-        self.env.user.company_id.sdi_channel_id.email_exchange_system = (
-            "sdi01@pec.fatturapa.it"
-        )
+        self.env.company.sdi_channel_id.email_exchange_system = "sdi01@pec.fatturapa.it"
         # Send it again
         e_invoice.send_via_pec()
         self.assertEqual(e_invoice.state, "sent")

@@ -26,14 +26,17 @@
         </field>
     </record>
 
-    <act_window
-        id="action_wizard_fatturapa_send_pec"
-        key2="client_action_multi"
-        name="Send Electronic Invoice"
-        res_model="wizard.fatturapa.send.pec"
-        src_model="fatturapa.attachment.out"
-        target="new"
-        view_id="wizard_fatturapa_send_pec_view"
-        view_mode="form"
-    />
+    <record id="action_wizard_fatturapa_send_pec" model="ir.actions.act_window">
+        <field name="name">Send Electronic Invoice</field>
+        <field name="res_model">wizard.fatturapa.send.pec</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_fatturapa_send_pec_view" />
+        <field name="target">new</field>
+        <field name="type">ir.actions.act_window</field>
+        <field
+            name="binding_model_id"
+            ref="l10n_it_fatturapa_out.model_fatturapa_attachment_out"
+        />
+        <field name="binding_view_types">list,form</field>
+    </record>
 </odoo>
