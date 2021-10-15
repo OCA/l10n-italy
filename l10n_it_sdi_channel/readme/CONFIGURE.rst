@@ -9,7 +9,7 @@ Creare un nuovo canale di tipo PEC (unico supportato per ora) e indicare:
 
 Dopo il primo invio, lo SdI risponderà segnalando l'indirizzo da utilizzare per gli invii successivi, da inserire nella configurazione del server PEC dedicato.
 
-Nella configurazione del server, sezione "PEC e fattura elettronica", selezionare la casella "Server PEC e-fattura". 
+Nella configurazione del server, sezione "PEC e fattura elettronica", selezionare la casella "Server PEC e-fattura".
 
 Indicare quindi la email da usare per l'invio e la ricezione, solitamente è uguale al nome utente di connessione (può essere diversa in casi particolari).
 
@@ -28,7 +28,7 @@ Create a new PEC channel type (the only one supported right now) and indicate:
 
 After sending the first email, ES will reply indicating the address to use for all the others, to be entered in dedicated PEC server configuration.
 
-In server configuration, select 'E-invoice PEC server' in 'PEC and Electronic Invoice' section. 
+In server configuration, select 'E-invoice PEC server' in 'PEC and Electronic Invoice' section.
 
 Then specify the email to use for sending and receiving, it is usually equal to connection username (can be different in special cases).
 

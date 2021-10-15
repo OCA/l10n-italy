@@ -6,12 +6,11 @@
 {
     "name": "Italian Localization - Fattura elettronica - Canale SdI",
     "summary": "Aggiunge il canale di invio/ricezione dei file XML "
-               "attraverso lo SdI",
+    "attraverso lo SdI",
     "version": "12.0.1.3.3",
     "development_status": "Beta",
     "category": "Hidden",
-    'website': 'https://github.com/OCA/l10n-italy/tree/10.0/'
-               'l10n_it_sdi_channel',
+    "website": "https://github.com/OCA/l10n-italy" "l10n_it_sdi_channel",
     "author": "Efatto.it di Sergio Corato, Odoo Community Association (OCA)",
     "maintainers": ["sergiocorato"],
     "license": "AGPL-3",
@@ -27,9 +26,9 @@
         "security/security.xml",
         "views/sdi_view.xml",
         "views/company_view.xml",
-        'views/fetchmail_server.xml',
-        'views/ir_mail_server.xml',
+        "views/fetchmail_server.xml",
+        "views/ir_mail_server.xml",
         "data/config_parameter.xml",
-        "demo/sdi_channel_demo.xml"
+        "demo/sdi_channel_demo.xml",
     ],
 }
