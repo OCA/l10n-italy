@@ -97,7 +97,7 @@ From: sdi48@pec.fatturapa.it
 To: miapec@pec.it
 Subject: Notifica di mancata consegna 141107829
 MIME-Version: 1.0
-Content-Type: multipart/mixed; 
+Content-Type: multipart/mixed;
 	boundary="----=_Part_94529_-1473711358.1546634040975"
 X-TipoRicevuta: breve
 Date: Fri,  4 Jan 2019 21:34:01 +0100 (CET)
@@ -372,4 +372,3 @@ iOcKzgNDyYmzRRpzVE6AqlXS3ARQTEtoSiFTEItOEPvffKLkxmW+/77VOUef1m4p
 ub/DcunNa/QTfhf7GFhi8yhUaIJKUbLGqvxdn3q+K4cNK0hSzkLSqhjwrvQ=
 
 ------F01FFE17D720521FDC577C170C3EFEB3--
-
