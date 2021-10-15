@@ -40,6 +40,13 @@ class MailThread(models.AbstractModel):
         del message_dict["cc"]
         del message_dict["from"]
         del message_dict["to"]
+        del message_dict["recipients"]
+        del message_dict["references"]
+        del message_dict["in_reply_to"]
+        del message_dict["bounced_email"]
+        del message_dict["bounced_partner"]
+        del message_dict["bounced_msg_id"]
+        del message_dict["bounced_message"]
 
     @api.model
     def message_route(
@@ -121,7 +128,7 @@ class MailThread(models.AbstractModel):
         message_dict["record_name"] = message_dict["subject"]
         attachment_ids = self._message_post_process_attachments(
             message_dict["attachments"], [], message_dict
-        )
+        ).get("attachment_ids")
         message_dict["attachment_ids"] = attachment_ids
         self.clean_message_dict(message_dict)
         # message_create_from_mail_mail to avoid to notify message
@@ -145,7 +152,7 @@ class MailThread(models.AbstractModel):
         message_dict["res_id"] = 0
         attachment_ids = self._message_post_process_attachments(
             message_dict["attachments"], [], message_dict
-        )
+        ).get("attachment_ids")
         for attachment in self.env["ir.attachment"].browse(
             [att_id for m, att_id in attachment_ids]
         ):
@@ -174,7 +181,7 @@ class MailThread(models.AbstractModel):
         if "CONSEGNA: " in subject:
             att_name = subject.replace("CONSEGNA: ", "")
             fatturapa_attachment_out = attachment_out_model.search(
-                [("datas_fname", "=", att_name)]
+                [("name", "=", att_name)]
             )
             if not fatturapa_attachment_out:
                 fatturapa_attachment_out = attachment_out_model.search(
@@ -185,7 +192,7 @@ class MailThread(models.AbstractModel):
         if "ACCETTAZIONE: " in subject:
             att_name = subject.replace("ACCETTAZIONE: ", "")
             fatturapa_attachment_out = attachment_out_model.search(
-                [("datas_fname", "=", att_name)]
+                [("name", "=", att_name)]
             )
             if not fatturapa_attachment_out:
                 fatturapa_attachment_out = attachment_out_model.search(
@@ -219,7 +226,9 @@ class MailThread(models.AbstractModel):
                 company_id = sdi_chan.company_id.id
                 e_invoice_user_id = sdi_chan.company_id.e_invoice_user_id.id
         if e_invoice_user_id:
-            fatturapa_attachment_in = fatturapa_attachment_in.sudo(e_invoice_user_id)
+            fatturapa_attachment_in = fatturapa_attachment_in.with_user(
+                e_invoice_user_id
+            )
         if attachment.mimetype == "application/zip":
             with zipfile.ZipFile(io.BytesIO(decoded)) as zf:
                 for file_name in zf.namelist():
@@ -239,8 +248,7 @@ class MailThread(models.AbstractModel):
                             fatturapa_attachment_in.create(
                                 {
                                     "name": file_name,
-                                    "datas_fname": file_name,
-                                    "datas": base64.encodestring(inv_file.read()),
+                                    "datas": base64.encodebytes(inv_file.read()),
                                     "company_id": company_id,
                                     "e_invoice_received_date": received_date,
                                 }

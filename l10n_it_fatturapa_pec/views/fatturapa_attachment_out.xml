@@ -10,14 +10,14 @@
         />
         <field name="arch" type="xml">
             <xpath expr="//header" position="inside">
-                    <button
+                <button
                     name="send_via_pec"
                     states="ready"
                     string="Send Via PEC"
                     type="object"
                     class="oe_highlight"
                 />
-                    <button
+                <button
                     name="reset_to_ready"
                     states="sender_error"
                     string="Reset to ready"
