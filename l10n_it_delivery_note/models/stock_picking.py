@@ -242,16 +242,18 @@ class StockPicking(models.Model):
                 not self.user_has_groups('l10n_it_delivery_note.'
                                          'use_advanced_delivery_notes'):
 
-            partners = self.get_partners()
-            delivery_note = self.env['stock.delivery.note'].create({
-                'partner_sender_id': partners[0].id,
-                'partner_id': partners[1].id,
-                'partner_shipping_id': partners[1].id
-            })
-
+            delivery_note = self._create_delivery_note()
             self.write({'delivery_note_id': delivery_note.id})
 
         return res
+
+    def _create_delivery_note(self):
+        partners = self.get_partners()
+        return self.env['stock.delivery.note'].create({
+            'partner_sender_id': partners[0].id,
+            'partner_id': partners[1].id,
+            'partner_shipping_id': partners[1].id
+        })
 
     def delivery_note_update_transport_datetime(self):
         self.delivery_note_id.update_transport_datetime()
