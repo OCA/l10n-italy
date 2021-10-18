@@ -640,16 +640,17 @@ class AssetDepreciation(models.Model):
 
         return dep.prepare_depreciation_line_vals(dep_date)
 
-    def calculate_depreciation_summary(self, dep_date):
+    def calculate_residual_summary(self, dep_date):
         self.ensure_one()
-        # p_amount = asset.purchase_amount
-        _logger.info('initial {}'.format(self.amount_depreciable))
-        balance = 0.0
+        amount = 0.0
         for line in self.line_ids:
+            if line.move_type != 'depreciated':
+                continue
+
             if line.date <= dep_date:
-                balance += line.balance
+                amount += line.amount
             # end if
         # edn for
-        _logger.info('balance {}'.format(balance))
-        return self.amount_depreciable + balance
+        _logger.info('residual {}'.format(amount))
+        return amount
 
