@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    "name": "ITA - Withholding Tax",
+    "name": "ITA - Ritenute d'acconto",
     "version": "14.0.1.0.4",
     "category": "Account",
     "author": "Openforce, Odoo Italia Network, " "Odoo Community Association (OCA)",
