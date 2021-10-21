@@ -307,6 +307,14 @@ class RibaListLine(models.Model):
     config_id = fields.Many2one(
         string="Configuration", related='distinta_id.config_id',
         readonly=True)
+    company_id = fields.Many2one(
+        'res.company',
+        string='Company',
+        related='distinta_id.company_id',
+        store=True,
+        readonly=True,
+        related_sudo=False
+    )
 
     @api.multi
     def confirm(self):
