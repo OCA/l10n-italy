@@ -91,17 +91,5 @@
             />
         </xpath>
 
-        <!--
-        <xpath expr="//DatiBeniServizi" position="inside">
-            <t t-set="wt_lines_to_write" t-value="record.withholding_tax_line_ids.filtered(lambda x: x.withholding_tax_id.wt_types not in ('ritenuta', 'other') and x.withholding_tax_id.use_daticassaprev)"/>
-            <t t-if="wt_lines_to_write">
-                <t t-foreach="wt_lines_to_write" t-as="wt_line">
-                    <DatiRiepilogo>
-
-                    </DatiRiepilogo>
-                </t>
-            </t>
-        </xpath>
-        -->
     </template>
 </odoo>
