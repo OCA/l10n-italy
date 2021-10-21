@@ -1,1 +1,2 @@
-from . import test_e_invoice_out_rc
+from . import fatturapa_common
+from . import test_fatturapa_xml_validation
