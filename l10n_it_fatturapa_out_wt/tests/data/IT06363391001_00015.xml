@@ -102,17 +102,17 @@
                 <Ritenuta>SI</Ritenuta>
             </DettaglioLinee>
             <DatiRiepilogo>
-                <AliquotaIVA>22.00</AliquotaIVA>
-                <ImponibileImporto>10.00</ImponibileImporto>
-                <Imposta>2.20</Imposta>
-            </DatiRiepilogo>
-            <DatiRiepilogo>
                 <AliquotaIVA>0.00</AliquotaIVA>
                 <Natura>N2.2</Natura>
                 <ImponibileImporto>0.83</ImponibileImporto>
                 <Imposta>0.00</Imposta>
                 <RiferimentoNormativo
                 >Escluso Art. 13 5C DPR 633/72</RiferimentoNormativo>
+            </DatiRiepilogo>
+            <DatiRiepilogo>
+                <AliquotaIVA>22.00</AliquotaIVA>
+                <ImponibileImporto>10.00</ImponibileImporto>
+                <Imposta>2.20</Imposta>
             </DatiRiepilogo>
         </DatiBeniServizi>
         <DatiPagamento>
