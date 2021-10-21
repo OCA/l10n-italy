@@ -1,5 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ns1:FatturaElettronica xmlns:ns1="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2" versione="FPR12">
+<?xml version="1.0" encoding="UTF-8" ?>
+<ns1:FatturaElettronica
+    xmlns:ns1="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2"
+    versione="FPR12"
+>
    <FatturaElettronicaHeader>
       <DatiTrasmissione>
          <IdTrasmittente>
@@ -57,13 +60,13 @@
             <TipoDocumento>TD17</TipoDocumento>
             <Divisa>EUR</Divisa>
             <Data>2020-12-01</Data>
-            <Numero>SLF/2020/0016</Numero>
+            <Numero>RSLF/2020/12/0001</Numero>
             <ImportoTotaleDocumento>-122.00</ImportoTotaleDocumento>
             <Causale>Reverse charge self invoice.</Causale>
             <Causale>Supplier: Intra EU supplier</Causale>
             <Causale>Reference: EU-SUPPLIER-REF</Causale>
             <Causale>Date: 2020-12-01</Causale>
-            <Causale>Internal reference: BILL/2020/0026</Causale>
+            <Causale>Internal reference: RBILL/2020/12/0001</Causale>
          </DatiGeneraliDocumento>
          <DatiFattureCollegate>
             <IdDocumento>EU-SUPPLIER-REF</IdDocumento>
