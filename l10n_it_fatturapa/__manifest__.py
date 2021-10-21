@@ -40,5 +40,5 @@
     "external_dependencies": {
         "python": ["asn1crypto"],
     },
-    "development_status": "Alpha",
+    "development_status": "Beta",
 }

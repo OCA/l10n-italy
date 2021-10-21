@@ -7,7 +7,7 @@
 {
     "name": "ITA - Fattura elettronica - Ricezione",
     "version": "14.0.1.0.9",
-    "development_status": "Alpha",
+    "development_status": "Beta",
     "category": "Localization/Italy",
     "summary": "Ricezione fatture elettroniche",
     "author": "Agile Business Group, Innoviu, " "Odoo Community Association (OCA)",

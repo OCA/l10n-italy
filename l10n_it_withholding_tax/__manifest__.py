@@ -24,5 +24,5 @@
         "static/src/xml/account_payment.xml",
     ],
     "installable": True,
-    "development_status": "Alpha",
+    "development_status": "Beta",
 }
