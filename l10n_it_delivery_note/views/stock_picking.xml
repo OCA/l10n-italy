@@ -231,6 +231,12 @@
                                                attrs="{'readonly': [('delivery_note_readonly', '=', True)]}" />
                                     </group>
                                 </group>
+                                <group attrs="{'invisible': [('picking_type_code', 'not in', ('incoming'))]}">
+                                    <group>
+                                        <field name="dn_supplier_number" />
+                                        <field name="dn_supplier_date" />
+                                    </group>
+                                </group>
                                 <group string="Delivery Notes"
                                        attrs="{'invisible': [('delivery_note_exists', '=', False)]}">
                                     <field name="delivery_note_note"
@@ -276,6 +282,7 @@
                 <filter string="No DN" name="no_delivery_note" domain="[('delivery_note_id', '=', False)]"/>
                 <filter string="Draft DN" name="draft_delivery_note" domain="[('delivery_note_state', '=', 'draft')]"/>
                 <filter string="Validated DN" name="validated_delivery_note" domain="[('delivery_note_state', '=', 'confirm')]"/>
+                <field name="dn_supplier_number" />
             </xpath>
         </field>
     </record>
