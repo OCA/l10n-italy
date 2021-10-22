@@ -8,6 +8,7 @@ import re
 from psycopg2 import IntegrityError
 
 from odoo.exceptions import UserError
+from odoo.tests import Form
 from odoo.tools import mute_logger
 
 from .fatturapa_common import FatturaPACommon
@@ -669,6 +670,65 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
 
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, "IT06363391001_00012.xml")
+
+    def test_multicompany_fail(self):
+        """
+        - create two invoices in two different companies
+        - try and export both invoices in one single XML file
+
+        expect to fail with a proper message
+        """
+
+        invoice1_form = Form(
+            self.env["account.move"].with_context({"default_move_type": "out_invoice"})
+        )
+        invoice1_form.partner_id = self.res_partner_fatturapa_0
+        invoice1_form.name = "INV/2021/10/0001"
+        with invoice1_form.line_ids.new() as line_form:
+            line_form.product_id = self.product_product_10
+            line_form.account_id = self.a_sale
+            line_form.tax_ids.add(self.tax_22)
+        invoice1 = invoice1_form.save()
+
+        company_form = Form(self.env["res.company"].sudo(True))
+        company_form.name = "YourCompany 2"
+        company_form.vat = "IT07973780013"
+        company_form.fatturapa_fiscal_position_id = (
+            self.env.company.fatturapa_fiscal_position_id
+        )
+        company2 = company_form.save()
+
+        self.env.user.company_ids |= company2
+
+        journal2 = invoice1.journal_id.copy()
+        journal2.write(
+            {
+                "company_id": company2.id,
+            }
+        )
+        invoice2 = invoice1.copy()
+        invoice2.write(
+            {
+                "name": invoice1.name,
+                "company_id": company2.id,
+                "journal_id": journal2.id,
+            }
+        )
+
+        self.assertTrue(company2 != self.env.company)
+        self.assertEqual(invoice1.company_id, self.env.company)
+        self.assertEqual(invoice2.company_id, company2)
+        invoice1.action_post()
+        invoice2.action_post()
+        wizard = self.wizard_model.create({})
+        with self.assertRaises(UserError) as ue:
+            wizard.with_context(
+                {"active_ids": [invoice1.id, invoice2.id]}
+            ).exportFatturaPA()
+        error_message = "Invoices {}, {} must belong to the same company.".format(
+            invoice1.name, invoice2.name
+        )
+        self.assertEqual(ue.exception.args[0], error_message)
 
     def test_unlink(self):
         e_invoice = self._create_e_invoice()
