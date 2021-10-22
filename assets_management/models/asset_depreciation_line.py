@@ -413,13 +413,23 @@ class AssetDepreciationLine(models.Model):
 
         # Asset depreciation
         if not self.partial_dismissal:
-            credit_account_id = self.asset_id.category_id.fund_account_id.id
+
+            if self.depreciation_id.mode_id.indirect_depreciation:
+                credit_account_id = self.asset_id.category_id.fund_account_id.id
+            else:
+                credit_account_id = \
+                    self.asset_id.category_id.asset_account_id.id
+
             debit_account_id = self.asset_id.category_id \
                 .depreciation_account_id.id
 
         # Asset partial dismissal
         else:
-            debit_account_id = self.asset_id.category_id.fund_account_id.id
+            if self.depreciation_id.mode_id.indirect_depreciation:
+                debit_account_id = self.asset_id.category_id.fund_account_id.id
+            else:
+                debit_account_id = self.asset_id.category_id.asset_account_id.id
+
             credit_account_id = self.asset_id.category_id\
                 .asset_account_id.id
 

@@ -1,3 +1,8 @@
+12.0.1.0.3 (2021-10-22)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Gestito flag 'ammortamento indiretto' nella registrazione contabile
+
 12.0.1.0.2 (2021-10-22)
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
