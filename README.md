@@ -19,9 +19,9 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[account_vat_period_end_statement](account_vat_period_end_statement/) | 14.0.1.0.0 |  | Allow to create the 'VAT Statement'.
+[account_vat_period_end_statement](account_vat_period_end_statement/) | 14.0.1.0.1 |  | Allow to create the 'VAT Statement'.
 [l10n_it_abicab](l10n_it_abicab/) | 14.0.1.0.0 | [![Borruso](https://github.com/Borruso.png?size=30px)](https://github.com/Borruso) | Base Bank ABI/CAB codes
-[l10n_it_account](l10n_it_account/) | 14.0.1.1.0 |  | Modulo base usato come dipendenza di altri moduli contabili
+[l10n_it_account](l10n_it_account/) | 14.0.1.1.1 |  | Modulo base usato come dipendenza di altri moduli contabili
 [l10n_it_account_stamp](l10n_it_account_stamp/) | 14.0.1.0.0 |  | Gestione automatica dell'imposta di bollo
 [l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 14.0.1.0.1 |  | Gestione natura delle aliquote IVA
 [l10n_it_appointment_code](l10n_it_appointment_code/) | 14.0.1.0.0 |  | Aggiunge la tabella dei codici carica da usare nelle dichiarazioni fiscali italiane
@@ -54,7 +54,7 @@ addon | version | maintainers | summary
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 14.0.1.0.2 |  | ITA - Registri IVA
 [l10n_it_vat_registries_split_payment](l10n_it_vat_registries_split_payment/) | 14.0.1.1.0 |  | Modulo di congiunzione tra registri IVA e scissione dei pagamenti
 [l10n_it_vat_statement_communication](l10n_it_vat_statement_communication/) | 14.0.1.0.0 |  | Comunicazione liquidazione IVA ed esportazione file xmlconforme alle specifiche dell'Agenzia delle Entrate
-[l10n_it_vat_statement_split_payment](l10n_it_vat_statement_split_payment/) | 14.0.1.0.0 |  | Migliora la liquidazione dell'IVA tenendo in considerazione la scissione dei pagamenti
+[l10n_it_vat_statement_split_payment](l10n_it_vat_statement_split_payment/) | 14.0.1.0.1 |  | Migliora la liquidazione dell'IVA tenendo in considerazione la scissione dei pagamenti
 [l10n_it_withholding_tax](l10n_it_withholding_tax/) | 14.0.1.1.0 |  | ITA - Ritenute d'acconto
 [l10n_it_withholding_tax_payment](l10n_it_withholding_tax_payment/) | 14.0.1.0.1 |  | Gestisce le ritenute sulle fatture e sui pagamenti
 [l10n_it_withholding_tax_reason](l10n_it_withholding_tax_reason/) | 14.0.1.0.1 |  | ITA - Causali pagamento per ritenute d'acconto
