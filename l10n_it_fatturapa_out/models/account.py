@@ -92,7 +92,7 @@ class AccountInvoice(models.Model):
                         "Invoice %s has XML and can't be canceled. "
                         "Delete the XML before."
                     )
-                    % invoice.number
+                    % invoice.name
                 )
         res = super(AccountInvoice, self).action_invoice_cancel()
         return res
