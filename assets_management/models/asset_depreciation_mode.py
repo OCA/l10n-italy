@@ -37,6 +37,7 @@ class AssetDepreciationMode(models.Model):
 
     indirect_depreciation = fields.Boolean(
         string="Indirect depreciation",
+        default=True,
     )
 
     @api.multi
