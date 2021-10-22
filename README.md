@@ -6,8 +6,8 @@
 <!-- /!\ do not modify above this line -->
 
 # l10n-italy
-
-TODO: add repo description.
+The Association aims to promote the dissemination of the community version of Odoo in Italy  and to give
+a structured form and support to the Italian community .
 
 <!-- /!\ do not modify below this line -->
 
