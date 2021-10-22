@@ -3207,3 +3207,7 @@ msgstr ""
 msgid "{} - Depreciation"
 msgstr ""
 
+#. module: assets_management
+#: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_mode__indirect_depreciation
+msgid "Indirect depreciation"
+msgstr ""

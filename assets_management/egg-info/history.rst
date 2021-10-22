@@ -1,3 +1,8 @@
+12.0.1.0.2 (2021-10-22)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Introdotto flag 'ammortamento indiretto' nei metodi di ammortamento
+
 12.0.1.0.1 (2021-10-18)
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 

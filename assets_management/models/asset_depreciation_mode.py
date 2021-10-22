@@ -16,19 +16,13 @@ class AssetDepreciationMode(models.Model):
         return self.env.user.company_id
 
     company_id = fields.Many2one(
-        'res.company',
-        default=get_default_company_id,
-        string="Company"
+        'res.company', default=get_default_company_id, string="Company"
     )
 
-    default = fields.Boolean(
-        string="Default Mode"
-    )
+    default = fields.Boolean(string="Default Mode")
 
     line_ids = fields.One2many(
-        'asset.depreciation.mode.line',
-        'mode_id',
-        string="Lines"
+        'asset.depreciation.mode.line', 'mode_id', string="Lines"
     )
 
     name = fields.Char(
@@ -41,47 +35,57 @@ class AssetDepreciationMode(models.Model):
         string="Used Asset Coeff.",
     )
 
+    indirect_depreciation = fields.Boolean(
+        string="Indirect depreciation",
+    )
+
     @api.multi
     def copy(self, default=None):
         default = dict(default or [])
-        default.update({
-            'default': False,
-            'line_ids': [
-                (0, 0, l.copy_data({'mode_id': False})[0])
-                for l in self.line_ids
-            ]
-        })
+        default.update(
+            {
+                'default': False,
+                'line_ids': [
+                    (0, 0, l.copy_data({'mode_id': False})[0])
+                    for l in self.line_ids
+                ],
+            }
+        )
         return super().copy(default)
 
     @api.multi
     def unlink(self):
-        if self.env['asset.category.depreciation.type'].sudo().search([
-            ('mode_id', 'in', self.ids)
-        ]):
+        if (
+            self.env['asset.category.depreciation.type']
+            .sudo()
+            .search([('mode_id', 'in', self.ids)])
+        ):
             raise UserError(
-                _("Cannot delete depreciation modes while they're still linked"
-                  " to categories.")
+                _(
+                    "Cannot delete depreciation modes while they're still "
+                    "linked to categories."
+                )
             )
         if self.env['asset.depreciation'].sudo().search([
-            ('mode_id', 'in', self.ids)
-        ]):
+            ('mode_id', 'in', self.ids)]):
             raise UserError(
-                _("Cannot delete depreciation modes while they're still linked"
-                  " to depreciations.")
+                _(
+                    "Cannot delete depreciation modes while they're still "
+                    "linked to depreciations."
+                )
             )
         return super().unlink()
 
     @api.constrains('company_id', 'default')
     def check_default_modes(self):
         for company in self.mapped('company_id'):
-            domain = [
-                ('company_id', '=', company.id),
-                ('default', '=', True)
-            ]
+            domain = [('company_id', '=', company.id), ('default', '=', True)]
             if self.search_count(domain) > 1:
                 raise ValidationError(
-                    _("There can be no more than 1 default depreciation mode"
-                      " for each company.")
+                    _(
+                        "There can be no more than 1 default depreciation mode"
+                        " for each company."
+                    )
                 )
 
     def get_depreciation_amount_multiplier(self):

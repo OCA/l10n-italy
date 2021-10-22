@@ -1,6 +1,6 @@
 
 ========================================
-|icon| ITA - Gestione Cespiti 12.0.1.0.1
+|icon| ITA - Gestione Cespiti 12.0.1.0.2
 ========================================
 
 
@@ -192,6 +192,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+12.0.1.0.2 (2021-10-22)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Introdotto flag 'ammortamento indiretto' nei metodi di ammortamento
+
 12.0.1.0.1 (2021-10-18)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -269,7 +274,7 @@ I soci fondatori sono:
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2021-10-18
+Last Update / Ultimo aggiornamento: 2021-10-22
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

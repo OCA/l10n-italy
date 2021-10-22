@@ -23,6 +23,7 @@
                         <field name="id" invisible="1"/>
                         <field name="name"/>
                         <field name="default"/>
+                        <field name="indirect_depreciation"/>
                         <field name="used_asset_coeff"/>
                     </group>
                     <group>
