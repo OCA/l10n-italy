@@ -13,12 +13,11 @@ WT_TAX_CODE = {"inps": "RT03", "enasarco": "RT04", "enpam": "RT05", "other": "RT
 
 
 class EFatturaOut(_EFatturaOut):
-
     def get_template_values(self):
         """Add/override some functions used in the template"""
 
         template_values = super().get_template_values()
-        format_numbers = template_values['format_numbers']
+        format_numbers = template_values["format_numbers"]
 
         def get_withholding_type(wt_types, partner):
             if wt_types == "ritenuta":
@@ -93,11 +92,9 @@ class EFatturaOut(_EFatturaOut):
             )
             for wt_line in wt_lines_to_write:
                 tax_id = wt_line.withholding_tax_id.daticassprev_tax_id
-                key = "{}_{}".format("0.00", tax_id.kind_id.code)   
+                key = "{}_{}".format("0.00", tax_id.kind_id.code)
                 if key in out:
-                    base_amount = (
-                        float(out[key]["ImponibileImporto"]) + wt_line.tax
-                    )
+                    base_amount = float(out[key]["ImponibileImporto"]) + wt_line.tax
                     out[key]["ImponibileImporto"] = float_round(base_amount, 2)
                 else:
                     out[key] = {
@@ -119,8 +116,9 @@ class EFatturaOut(_EFatturaOut):
             {
                 "get_withholding_type": get_withholding_type,
                 "all_taxes": {
-                    invoice.id: get_all_taxes_extend(
-                        invoice) for invoice in self.invoices},
+                    invoice.id: get_all_taxes_extend(invoice)
+                    for invoice in self.invoices
+                },
             }
         )
 
