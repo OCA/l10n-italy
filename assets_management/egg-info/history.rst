@@ -1,3 +1,8 @@
+12.0.1.0.4 (2021-10-25)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Fix bug calcolo residuo per il metodo simulazione nel bilancio
+
 12.0.1.0.3 (2021-10-22)
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 

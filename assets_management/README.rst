@@ -1,6 +1,6 @@
 
 ========================================
-|icon| ITA - Gestione Cespiti 12.0.1.0.3
+|icon| ITA - Gestione Cespiti 12.0.1.0.4
 ========================================
 
 
@@ -192,6 +192,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+12.0.1.0.4 (2021-10-25)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Fix bug calcolo residuo per il metodo simulazione nel bilancio
+
 12.0.1.0.3 (2021-10-22)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -279,7 +284,7 @@ I soci fondatori sono:
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2021-10-22
+Last Update / Ultimo aggiornamento: 2021-10-25
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

@@ -647,7 +647,7 @@ class AssetDepreciation(models.Model):
             if line.move_type != 'depreciated':
                 continue
 
-            if line.date <= dep_date:
+            if line.date < dep_date:
                 amount += line.amount
             # end if
         # edn for
