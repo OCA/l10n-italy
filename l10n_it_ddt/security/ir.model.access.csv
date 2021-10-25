@@ -10,3 +10,4 @@ access_stock_picking_transportation_method_user,stock.picking.transportation_met
 access_stock_ddt_type_user,access_stock_ddt_type user,model_stock_ddt_type,stock.group_stock_user,1,0,0,0
 access_stock_ddt_type_manager,access_stock_ddt_type manager,model_stock_ddt_type,stock.group_stock_manager,1,1,1,1
 access_account_invoice_group_ddt,account.invoice group ddt,model_stock_picking_package_preparation,account.group_account_invoice,1,0,0,0
+access_group_sale_salesman_ddt,group_sale_salesman group ddt,model_stock_picking_package_preparation,sales_team.group_sale_salesman,1,0,0,0
