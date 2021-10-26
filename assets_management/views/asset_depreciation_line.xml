@@ -42,6 +42,7 @@
                 <field name="name"/>
                 <field name="date"/>
                 <field name="move_type"/>
+                <field name="final"/>
                 <field name="depreciation_line_type_id" string="In/Out Amount Type"/>
                 <field name="force_dep_nr" invisible="1"/>
                 <field name="depreciation_nr"/>
@@ -84,6 +85,7 @@
                             <field name="name"/>
                             <field name="date"/>
                             <field name="move_type"/>
+                            <field name="final"/>
                             <field name="depreciation_line_type_id"
                                    attrs="{'invisible':[('move_type', 'not in', ('in', 'out'))]}"
                                    string="In/Out Amount Type"/>

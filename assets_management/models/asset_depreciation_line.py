@@ -128,6 +128,10 @@ class AssetDepreciationLine(models.Model):
         string="Requires Dep Num"
     )
 
+    final = fields.Boolean(
+        string="Final"
+    )
+
     # Non-default parameter: set which `move_types` require numeration
     _numbered_move_types = ('depreciated', 'historical')
     # Non-default parameter: set which `move_types` do not concur to

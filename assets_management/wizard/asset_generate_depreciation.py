@@ -59,6 +59,11 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
         string="Depreciation Types"
     )
 
+    final = fields.Boolean(
+        string='Final',
+        default=False,
+    )
+
     @api.multi
     def do_generate(self):
         """
@@ -66,10 +71,16 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
         assets.
         Reloads the current window if necessary.
         """
+
         self.ensure_one()
 
+        year = self.date_dep.year
+        start_year = datetime.date(year, 1, 1)
+        end_year = datetime.date(year, 12, 31)
+
         # Add depreciation date in context just in case
-        deps = self.get_depreciations().with_context(dep_date=self.date_dep)
+        deps = self.get_depreciations().with_context(dep_date=self.date_dep,
+                                                     final=self.final)
         for dep in deps:
             # no depreciation
             if dep.state == 'non_depreciated':
@@ -83,16 +94,30 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
                 )
             # existenz of lines beyond
             lines = dep.line_ids
+
+            # existenz of lines beyond
+            lines = dep.line_ids
+            finals = False
+            for line in lines:
+                if line.final:
+                    finals = True
+                # end if
+            # end for
             newer_lines = lines.filtered(
                 lambda l: l.move_type == 'depreciated' and not
                 l.partial_dismissal and l.date >= self.date_dep
             )
             if newer_lines:
-                raise UserError(
-                    'Non si può effettuare l\'ammortamento del bene '
-                    'poichè per {} esistono ammortamenti con data superione o '
-                    'uguale a quella indicata'.format(dep.display_name)
-                )
+                if finals:
+                    raise UserError(
+                        'Non si può effettuare l\'ammortamento del bene '
+                        'poichè per {} esistono ammortamenti con data superione o '
+                        'uguale a quella indicata'.format(dep.display_name)
+                    )
+                else:
+                    newer_lines.button_remove_account_move()
+                    newer_lines.unlink()
+            # end if
 
         dep_lines = deps.generate_depreciation_lines(self.date_dep)
         deps.post_generate_depreciation_lines(dep_lines)

@@ -338,11 +338,11 @@ class AssetDepreciation(models.Model):
 
     def generate_depreciation_lines_single(self, dep_date):
         self.ensure_one()
-
+        final = self._context.get('final')
         dep_nr = self.get_max_depreciation_nr() + 1
         dep = self.with_context(dep_nr=dep_nr, used_asset=self.asset_id.used)
         dep_amount = dep.get_depreciation_amount(dep_date)
-        dep = dep.with_context(dep_amount=dep_amount)
+        dep = dep.with_context(dep_amount=dep_amount, final=final,)
 
         vals = dep.prepare_depreciation_line_vals(dep_date)
         return self.env['asset.depreciation.line'].create(vals)
@@ -621,13 +621,15 @@ class AssetDepreciation(models.Model):
                 _("Cannot create a depreciation line without a date")
             )
         dep_amount = self._context.get('dep_amount') or 0.0
+        final = self._context.get('final') or False
         dep_year = fields.Date.from_string(dep_date).year
         return {
             'amount': dep_amount,
             'date': dep_date,
             'depreciation_id': self.id,
             'move_type': 'depreciated',
-            'name': _("{} - Depreciation").format(dep_year)
+            'name': _("{} - Depreciation").format(dep_year),
+            'final': final,
         }
 
     def generate_depreciation_lines_single_vals(self, dep_date):
