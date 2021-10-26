@@ -357,6 +357,7 @@ msgstr ""
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration__company_id
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta__company_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line__company_id
 msgid "Company"
 msgstr ""
 
@@ -1023,7 +1024,7 @@ msgid "Payments"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
-#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:393
+#: code:addons/l10n_it_ricevute_bancarie/models/riba.py:401
 #, python-format
 msgid "Please define a Settlement Journal."
 msgstr ""
