@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "ITA - Causali pagamento per ritenute d'acconto",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.0.2",
     "development_status": "Beta",
     "category": "Localization/Italy",
     "website": "https://github.com/OCA/l10n-italy",
