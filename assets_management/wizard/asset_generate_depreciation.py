@@ -2,7 +2,9 @@
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import datetime
 from odoo import api, fields, models
+from odoo.exceptions import UserError
 
 
 class WizardAssetsGenerateDepreciations(models.TransientModel):
@@ -65,8 +67,33 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
         Reloads the current window if necessary.
         """
         self.ensure_one()
+
         # Add depreciation date in context just in case
         deps = self.get_depreciations().with_context(dep_date=self.date_dep)
+        for dep in deps:
+            # no depreciation
+            if dep.state == 'non_depreciated':
+                continue
+
+            # already closed
+            if dep.state == 'totally_depreciated':
+                raise UserError(
+                    'Non si può effettuare l\'ammortamento {} poichè il bene '
+                    'risulta già ammortizzato '.format(dep.display_name)
+                )
+            # existenz of lines beyond
+            lines = dep.line_ids
+            newer_lines = lines.filtered(
+                lambda l: l.move_type == 'depreciated' and not
+                l.partial_dismissal and l.date >= self.date_dep
+            )
+            if newer_lines:
+                raise UserError(
+                    'Non si può effettuare l\'ammortamento del bene '
+                    'poichè per {} esistono ammortamenti con data superione o '
+                    'uguale a quella indicata'.format(dep.display_name)
+                )
+
         dep_lines = deps.generate_depreciation_lines(self.date_dep)
         deps.post_generate_depreciation_lines(dep_lines)
         if self._context.get('reload_window'):
