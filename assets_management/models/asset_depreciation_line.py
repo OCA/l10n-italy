@@ -383,6 +383,9 @@ class AssetDepreciationLine(models.Model):
 
         self.move_id = am_obj.create(vals)
 
+        if self.final:
+            self.move_id.post()
+
     def get_account_move_vals(self):
         self.ensure_one()
         return {

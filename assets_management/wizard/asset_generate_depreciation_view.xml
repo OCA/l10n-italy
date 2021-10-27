@@ -34,13 +34,13 @@
                     </field>
                 </group>
                 <footer>
-                    <button name="do_generate"
+                    <button name="do_warning"
                             string="Generate"
                             invisible="not context.get('allow_reload_window', False)"
                             context="{'reload_window': True}"
                             class="btn-primary"
                             type="object"/>
-                    <button name="do_generate"
+                    <button name="do_warning"
                             string="Generate"
                             invisible="context.get('allow_reload_window', False)"
                             class="btn-primary"

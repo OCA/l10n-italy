@@ -298,6 +298,7 @@ class AssetDepreciation(models.Model):
             lambda l: l.move_type == 'depreciated'
             and not l.partial_dismissal
             and l.date > dep_date
+            and l.final is True
         )
         if newer_lines:
             asset_names = ', '.join([

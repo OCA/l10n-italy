@@ -3248,4 +3248,4 @@ msgstr "Ammortamento indiretto"
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line__final
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_generate_depreciation__final
 msgid "Final"
-msgstr "Definitivo"
+msgstr "Consolidato"

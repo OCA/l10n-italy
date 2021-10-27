@@ -65,17 +65,17 @@
                     <button name="button_generate_account_move"
                             string="Generate Move"
                             type="object"
-                            attrs="{'invisible': ['|', '|', '|', ('amount', '=', 0), ('move_id', '!=', False), ('move_type', 'in', ('in', 'out')), ('requires_account_move', '=', False)]}"
+                            attrs="{'invisible': ['|', '|', '|', '|', ('amount', '=', 0), ('move_id', '!=', False), ('move_type', 'in', ('in', 'out')), ('requires_account_move', '=', False), ('final', '=', True)]}"
                             class="oe_highlight"/>
                     <button name="button_regenerate_account_move"
                             string="Regenerate Move"
                             type="object"
-                            attrs="{'invisible': ['|', '|', '|', ('amount', '=', 0), ('move_id', '=', False), ('move_type', 'in', ('in', 'out')), ('requires_account_move', '=', False)]}"
+                            attrs="{'invisible': ['|', '|', '|', '|', ('amount', '=', 0), ('move_id', '=', False), ('move_type', 'in', ('in', 'out')), ('requires_account_move', '=', False), ('final', '=', True)]}"
                             class="oe_highlight"/>
                     <button name="button_remove_account_move"
                             type="object"
                             string="Remove Move"
-                            attrs="{'invisible': ['|', '|', '|', ('amount', '=', 0), ('move_id', '=', False), ('move_type', 'in', ('in', 'out')), ('requires_account_move', '=', False)]}"
+                            attrs="{'invisible': ['|', '|', '|', '|', ('amount', '=', 0), ('move_id', '=', False), ('move_type', 'in', ('in', 'out')), ('requires_account_move', '=', False), ('final', '=', True)]}"
                             class="oe_highlight"/>
                 </header>
                 <sheet>
@@ -85,7 +85,9 @@
                             <field name="name"/>
                             <field name="date"/>
                             <field name="move_type"/>
-                            <field name="final"/>
+                            <field name="final"
+                                   attrs="{'readonly':[('move_id', '!=', False)]}"
+                            />
                             <field name="depreciation_line_type_id"
                                    attrs="{'invisible':[('move_type', 'not in', ('in', 'out'))]}"
                                    string="In/Out Amount Type"/>

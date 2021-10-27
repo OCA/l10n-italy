@@ -7,3 +7,4 @@ from . import account_move_manage_asset
 from . import asset_generate_depreciation
 from . import asset_journal_report
 from . import asset_previsional_report
+from . import asset_generate_warning
