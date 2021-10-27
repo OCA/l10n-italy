@@ -162,12 +162,14 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
             if self.date_dep < end_year:
                 lines.append((0, 0, {
                     'reason': 'Attenzione: la data inserita per l\'ammortamento'
-                              ' è inferiore a quella dell\'anno in corso.'}))
+                              ' è fuori esercizio (inferiore a quella '
+                              'dell\'anno in corso).'}))
 
             if self.date_dep > end_year:
                 lines.append((0, 0, {
                     'reason': 'Attenzione: la data inserita per l\'ammortamento'
-                              ' è superiore a quella dell\'anno in corso.'}))
+                              ' è fuori esercizio (superiore a quella '
+                              'dell\'anno in corso).'}))
 
             wz_id = self.env['asset.generate.warning'].create({
                 'wizard_id': wizard.id,

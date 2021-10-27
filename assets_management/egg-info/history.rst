@@ -2,6 +2,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Controllo su data ammortamento e flag consolidato
+* [FIX] Messaggi da wizard
 
 12.0.1.0.0_5 (2021-10-26)
 ~~~~~~~~~~~~~~~~~~~~~~~~~
