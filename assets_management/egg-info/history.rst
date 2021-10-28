@@ -1,3 +1,8 @@
+12.0.1.0.0_7 (2021-10-28)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Esposto flag consolidato nelle righe e gestione pulsanti in relazione allo stato del flag
+
 12.0.1.0.0_6 (2021-10-27)
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 

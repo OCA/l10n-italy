@@ -53,6 +53,7 @@
                                 <field name="name"/>
                                 <field name="date"/>
                                 <field name="move_type"/>
+                                <field name="final"/>
                                 <field name="depreciation_line_type_id"
                                        options="{'no_create_edit': 1}"
                                        string="In/Out Amount Type"
@@ -84,12 +85,12 @@
                                         type="object"
                                         string="Regenerate Move"
                                         icon="fa-refresh"
-                                        attrs="{'invisible': ['|', '|', '|', ('amount', '=', 0), ('move_id', '=', False), ('move_type', 'in', ('in', 'out')), ('requires_account_move', '=', False)]}"/>
+                                        attrs="{'invisible': ['|', '|', '|', '|', ('amount', '=', 0), ('move_id', '=', False), ('move_type', 'in', ('in', 'out')), ('requires_account_move', '=', False), ('final', '=', True),]}"/>
                                 <button name="button_remove_account_move"
                                         type="object"
                                         string="Remove Move"
                                         icon="fa-times-circle"
-                                        attrs="{'invisible': ['|', '|', '|', ('amount', '=', 0), ('move_id', '=', False), ('move_type', 'in', ('in', 'out')), ('requires_account_move', '=', False)]}"/>
+                                        attrs="{'invisible': ['|', '|', '|', '|', ('amount', '=', 0), ('move_id', '=', False), ('move_type', 'in', ('in', 'out')), ('requires_account_move', '=', False), ('final', '=', True),]}"/>
                             </tree>
                         </field>
                         <group>
