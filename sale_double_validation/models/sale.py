@@ -16,7 +16,7 @@ class SaleOrder(models.Model):
             if state == "to_approve":
                 exists = True
         if not exists:
-            selection.insert(0, ("to_approve", _("To Approve")))
+            selection.insert(0, ("to_approve", "To Approve"))
 
     def is_amount_to_approve(self):
         self.ensure_one()
