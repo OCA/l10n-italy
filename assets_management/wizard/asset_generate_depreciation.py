@@ -197,9 +197,7 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
     @api.onchange('date_dep')
     def onchange_date_dep(self):
         query = "SELECT MAX(date) FROM asset_depreciation_line WHERE " \
-                "final='true' " \
-                "AND asset_id = {}".format(self.asset_ids.id)
-
+                "final='true' "
         self._cr.execute(query)
         date = self._cr.fetchone()
         if date[0]:
@@ -212,10 +210,11 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
                 miss_raise=False
             )
             if fiscal_year:
-                return fiscal_year.date_to
-            return fields.Date.today()
+                self.date_dep = fiscal_year.date_to
+            else:
+                self.date_dep = fields.Date.today()
         else:
-            return self.get_default_date_dep()
+            self.date_dep = self.get_default_date_dep()
         # end if
     # end onchange_date_dep
 
