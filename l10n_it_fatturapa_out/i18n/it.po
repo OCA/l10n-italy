@@ -374,6 +374,12 @@ msgstr "Contenuto indicizzato"
 #. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/models/account.py:0
 #, python-format
+msgid "Invoice %s contains product lines w/o taxes"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
+#: code:addons/l10n_it_fatturapa_out/models/account.py:0
+#, python-format
 msgid ""
 "Invoice %s fiscal payment method must be set for the selected payment term %s"
 msgstr ""

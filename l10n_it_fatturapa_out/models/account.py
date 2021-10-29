@@ -54,6 +54,7 @@ class AccountInvoice(models.Model):
                     _("Impossible to generate XML: not a customer invoice: %s")
                     % invoice.name
                 )
+
             if (
                 invoice.invoice_payment_term_id
                 and invoice.invoice_payment_term_id.fatturapa_pt_id.code is False
@@ -78,6 +79,11 @@ class AccountInvoice(models.Model):
                         invoice.name,
                         invoice.invoice_payment_term_id.name,
                     )
+                )
+
+            if not all(aml.tax_ids for aml in invoice.invoice_line_ids):
+                raise UserError(
+                    _("Invoice %s contains product lines w/o taxes") % invoice.name
                 )
         return
 
