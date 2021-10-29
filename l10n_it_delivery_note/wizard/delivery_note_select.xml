@@ -13,7 +13,12 @@
                 <div attrs="{'invisible': [('error_message', '=', False)]}">
                     <field name="error_message" />
                 </div>
-                <field name="selected_picking_ids" invisible="True" />
+                <field name="selected_picking_ids" invisible="True">
+                    <!-- force cache usage avoiding to call stock.picking._compute_state method -->
+                    <tree>
+                        <field name="state" />
+                    </tree>
+                </field>
                 <div
                     class="oe_title"
                     attrs="{'invisible': [('error_message', '!=', False)]}"
@@ -56,7 +61,7 @@
                                 <field name="scheduled_date" />
                                 <field name="origin" />
                                 <field name="backorder_id" />
-                                <field name="state" />
+                                <field name="state" invisible="True" />
                             </tree>
                         </field>
                     </page>
