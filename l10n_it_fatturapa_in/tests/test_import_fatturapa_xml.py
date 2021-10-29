@@ -749,12 +749,22 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         # IT01234567890_FPR14.xml should be tested manually
 
     def test_48_xml_import(self):
-        # my company bank account is the same as the one in XML:
+        # bank account already exists for another partner
         # invoice creation must not be blocked
+        to_unlink = []
+        bank = self.env["res.bank"].create({
+            "bic": "BCITITMM",
+            "name": "Other Bank",
+        })
+        to_unlink.append(bank)
+        partner = self.env["res.partner"].create({
+            "name": "Some Other Company",
+        })
+        to_unlink.append(partner)
         self.env["res.partner.bank"].create({
             "acc_number": "IT59R0100003228000000000622",
             "company_id": self.env.user.company_id.id,
-            "partner_id": self.env.user.company_id.partner_id.id,
+            "partner_id": partner.id,
         })
         res = self.run_wizard('test48', 'IT01234567890_FPR15.xml')
         invoice_id = res.get('domain')[0][2][0]
@@ -762,12 +772,19 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertTrue(
             "Bank account IT59R0100003228000000000622 already exists" in
             invoice.inconsistencies)
+        for model in to_unlink:
+            model.unlink()
 
     def test_49_xml_import(self):
         res = self.run_wizard('test49', 'IT01234567890_FPR16.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.carrier_id.vat, "IT04102770965")
+
+    def test_50_xml_import(self):
+        # this method name is used in 14.0
+        # reserving to make porting easier
+        pass
 
     def test_51_xml_import(self):
         res = self.run_wizard("test51", "IT02780790107_11008.xml")
@@ -892,6 +909,33 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         # Update the reference so that importing the same file
         # (in other tests) does not raise "Duplicated vendor reference..."
         invoice.reference = 'xml_import_inv_date'
+
+    def test_54_xml_import(self):
+        # Payments may refer to our own bank account (SEPA)
+        to_unlink = []
+        bank = self.env["res.bank"].create({
+            "bic": "BCITITMM",
+            "name": "Other Bank",
+        })
+        to_unlink.append(bank)
+        bank_account = self.env["res.partner.bank"].create({
+            "acc_number": "IT59R0100003228000000000622",
+            "company_id": self.env.user.company_id.id,
+            "partner_id": self.env.user.company_id.partner_id.id,
+        })
+        to_unlink.append(bank_account)
+        res = self.run_wizard('test54', 'IT01234567890_FPR15.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertIn(
+            invoice.fatturapa_payments[0].payment_methods[0].payment_bank_iban,
+            invoice.company_id.partner_id.bank_ids.mapped("acc_number")
+        )
+        self.assertFalse(
+            "Bank account IT59R0100003228000000000622 already exists" in
+            invoice.inconsistencies)
+        for model in to_unlink:
+            model.unlink()
 
     def test_01_xml_link(self):
         """
