@@ -128,8 +128,15 @@ class AssetDepreciationLine(models.Model):
         string="Requires Dep Num"
     )
 
+    # state = fields.Selection(
+    #     string='Move state',
+    #     related='move_id.state',
+    # )
+
     final = fields.Boolean(
-        string="Final"
+        string="Final",
+        # readonly=True,
+        # states={'draft': [('readonly', False)]},
     )
 
     # Non-default parameter: set which `move_types` require numeration

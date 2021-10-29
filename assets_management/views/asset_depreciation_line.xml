@@ -85,9 +85,7 @@
                             <field name="name"/>
                             <field name="date"/>
                             <field name="move_type"/>
-                            <field name="final"
-                                   attrs="{'readonly':[('move_id', '!=', False)]}"
-                            />
+                            <field name="final"/>
                             <field name="depreciation_line_type_id"
                                    attrs="{'invisible':[('move_type', 'not in', ('in', 'out'))]}"
                                    string="In/Out Amount Type"/>
