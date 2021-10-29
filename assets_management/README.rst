@@ -31,7 +31,7 @@ Overview / Panoramica
 Usage / Utilizzo
 ----------------
 
-**English**
+|en|
 
 You can create and manage assets from accounting section of Odoo.
 
@@ -44,7 +44,7 @@ Assets Management -> Generate Depreciations, or by triggering the same wizard fr
 form view.
 
 
-**Italiano**
+|it|
 
 È possibile creare e gestire cespiti dalla sezione contabilità di Odoo.
 
@@ -252,6 +252,12 @@ Authors / Autori
 * `powERP <https://www.powerp.it>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
 * `Didotech srl <https://www.didotech.com>`__
+* `Open Force <https://www.openforce.it/>`__
+* `Takobi <https://www.takobi.online/>`__
+* `Takobi <https://takobi.online/>`__
+* `SHS-AV srl <https://www.zeroincombenze.it>`__
+* `Open Force <https://www.openforce.it>`__
+* `Takobi <https://takobi.online>`__
 
 
 Contributors / Collaboratori
@@ -260,6 +266,10 @@ Contributors / Collaboratori
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 * Marco Tosato <marco.tosato@didotech.com>
 * Fabio Giovannelli <fabio.giovannelli@didotech.com>
+* Alessandro Camilli <alessandrocamilli@openforce.it>
+* Silvio Gregorini <silviogregorini@openforce.it>
+* Stefano Pezzini <stefanopezzini@openforce.it>
+* Lorenzo Battistini <lb@takobi.online>
 
 
 Maintainer / Manutenzione
@@ -300,7 +310,7 @@ I soci fondatori sono:
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2021-10-28
+Last Update / Ultimo aggiornamento: 2021-10-29
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
