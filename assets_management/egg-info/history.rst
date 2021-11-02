@@ -2,7 +2,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Impostata data ultimo ammortamento nell'elenco dei cespiti
-* [FIX] Spostato configurazione natura dei cespiti nella company 
+* [FIX] Spostato configurazione natura dei cespiti nella company
 
 12.0.1.0.0_8 (2021-11-02)
 ~~~~~~~~~~~~~~~~~~~~~~~~~
