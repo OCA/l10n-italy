@@ -16,6 +16,19 @@ class Asset(models.Model):
     def get_default_company_id(self):
         return self.env.user.company_id
 
+    @api.depends('depreciation_ids')
+    def compute_last_depreciation_date(self):
+        for r in self:
+            conf = self.env['res.company'].browse(r.company_id.id)
+            cicilistico_max = self.env['asset.depreciation'].search([
+                ('asset_id', '=', r.id), ('type_id', '=', conf.civilistico.id),
+            ], order='last_depreciation_date', limit=1,)
+
+            r.last_depreciation_date = \
+                cicilistico_max and cicilistico_max.last_depreciation_date \
+                or False
+        # end for
+
     asset_accounting_info_ids = fields.One2many(
         'asset.accounting.info',
         'asset_id',
@@ -128,6 +141,11 @@ class Asset(models.Model):
 
     used = fields.Boolean(
         string="Used",
+    )
+
+    last_depreciation_date = fields.Date(
+        string='Last depreciation date',
+        compute='compute_last_depreciation_date',
     )
 
     @api.model

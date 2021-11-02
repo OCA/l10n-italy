@@ -1,4 +1,10 @@
-12.0.1.0.0_8 (2021-11-08)
+12.0.1.0.0_9 (2021-11-02)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Impostata data ultimo ammortamento nell'elenco dei cespiti
+* [FIX] Spostato configurazione natura dei cespiti nella company 
+
+12.0.1.0.0_8 (2021-11-02)
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Nascosto flag consolidato nel wizard se per singolo cespite

@@ -32,6 +32,7 @@
                 <field name="name"/>
                 <field name="code"/>
                 <field name="category_id"/>
+                <field name="last_depreciation_date"/>
                 <field name="purchase_date"/>
                 <field name="purchase_amount" widget="monetary"/>
                 <field name="currency_id"

@@ -3249,3 +3249,8 @@ msgstr "Ammortamento indiretto"
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_generate_depreciation__final
 msgid "Final"
 msgstr "Consolidato"
+
+#. module: assets_management
+#: model:ir.model.fields,field_description:assets_management.field_asset_asset__last_depreciation_date
+msgid "Last depreciation date"
+msgstr "Ultimo ammortamento il"
