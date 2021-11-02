@@ -191,7 +191,7 @@ class EFatturaOut:
         def get_all_taxes(record):
             """Generate summary data for taxes.
             Odoo does that for us, but only for nonzero taxes.
-            SdI expects a summary for every tax mentionend in the invoice,
+            SdI expects a summary for every tax mentioned in the invoice,
             even those with price_total == 0.
             """
             out_computed = {}
@@ -316,13 +316,13 @@ class EFatturaOut:
         return content
 
     def _get_company_from_invoices(self, invoices):
-        company_id = invoices.mapped("company_id")
-        if len(company_id) > 1:
+        company = invoices.mapped("company_id")
+        if len(company) > 1:
             raise UserError(
                 _("Invoices %s must belong to the same company.")
-                % invoices.mapped("number")
+                % ", ".join(invoices.mapped("name"))
             )
-        return company_id
+        return company
 
     def __init__(self, wizard, partner_id, invoices, progressivo_invio):
         self.wizard = wizard

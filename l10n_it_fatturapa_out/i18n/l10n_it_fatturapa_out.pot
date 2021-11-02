@@ -355,6 +355,12 @@ msgid "Image Width"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
+#: code:addons/l10n_it_fatturapa_out/models/account.py:0
+#, python-format
+msgid "Impossible to generate XML: not a customer invoice: %s"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__index_content
 msgid "Indexed Content"
 msgstr ""
@@ -383,6 +389,12 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 msgid "Invoices"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
+#: code:addons/l10n_it_fatturapa_out/wizard/efattura.py:0
+#, python-format
+msgid "Invoices %s must belong to the same company."
 msgstr ""
 
 #. module: l10n_it_fatturapa_out

@@ -51,10 +51,8 @@ class AccountInvoice(models.Model):
         for invoice in self:
             if not invoice.is_sale_document():
                 raise UserError(
-                    _(
-                        "Impossible to generate XML: not a customer invoice: %s"
-                        % invoice.name
-                    )
+                    _("Impossible to generate XML: not a customer invoice: %s")
+                    % invoice.name
                 )
             if (
                 invoice.invoice_payment_term_id
@@ -94,7 +92,7 @@ class AccountInvoice(models.Model):
                         "Invoice %s has XML and can't be canceled. "
                         "Delete the XML before."
                     )
-                    % invoice.number
+                    % invoice.name
                 )
         res = super(AccountInvoice, self).action_invoice_cancel()
         return res
