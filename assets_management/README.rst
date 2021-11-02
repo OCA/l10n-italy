@@ -1,7 +1,7 @@
 
-==========================================
-|icon| ITA - Gestione Cespiti 12.0.1.0.0_9
-==========================================
+===========================================
+|icon| ITA - Gestione Cespiti 12.0.1.0.0_10
+===========================================
 
 
 **Gestione Cespiti**
@@ -192,11 +192,16 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+12.0.1.0.0_10 (2021-11-02)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Impostato e gestito registro di default
+
 12.0.1.0.0_9 (2021-11-02)
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Impostata data ultimo ammortamento nell'elenco dei cespiti
-* [FIX] Spostato configurazione natura dei cespiti nella company 
+* [FIX] Spostato configurazione natura dei cespiti nella company
 
 12.0.1.0.0_8 (2021-11-02)
 ~~~~~~~~~~~~~~~~~~~~~~~~~

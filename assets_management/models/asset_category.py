@@ -16,6 +16,16 @@ class AssetCategory(models.Model):
         return self.env.user.company_id
 
     @api.model
+    def get_default_journal(self):
+        journal = self.env['account.journal'].search([('code', '=', 'ADPCD')])
+        if journal:
+            return journal.id
+        else:
+            return False
+        # end if
+    # end get_defaul_journal
+
+    @api.model
     def get_default_type_ids(self):
         mode_obj = self.env['asset.depreciation.mode']
         dom = [('company_id', '=', self.get_default_company_id().id)]
@@ -79,7 +89,8 @@ class AssetCategory(models.Model):
     journal_id = fields.Many2one(
         'account.journal',
         required=True,
-        string="Journal"
+        string="Journal",
+        default=get_default_journal,
     )
 
     loss_account_id = fields.Many2one(
