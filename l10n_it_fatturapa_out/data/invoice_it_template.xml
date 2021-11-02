@@ -136,7 +136,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
         </template>
 
         <template id="account_invoice_line_it_FatturaPA">
-            <t t-set="tax_ids" t-value="line.tax_ids[0]" />
+            <t t-set="tax_ids" t-value="line.tax_ids and line.tax_ids[0]" />
             <DettaglioLinee>
                 <NumeroLinea t-esc="line_counter" />
                 <!--                <TipoCessionePrestazione t-esc=""/>-->

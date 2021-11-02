@@ -49,6 +49,12 @@ class AccountInvoice(models.Model):
 
     def preventive_checks(self):
         for invoice in self:
+            for aml in invoice.line_ids:
+                if aml.product_id and not aml.tax_ids:
+                    raise UserError(
+                        _("Invoice %s contains product lines w/o taxes") % invoice.name
+                    )
+
             if not invoice.is_sale_document():
                 raise UserError(
                     _("Impossible to generate XML: not a customer invoice: %s")
