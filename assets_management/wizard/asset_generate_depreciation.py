@@ -18,7 +18,7 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
     @api.model
     def get_default_date_dep(self):
         query = "SELECT MAX(date) FROM asset_depreciation_line WHERE " \
-                "final='true' "
+                "final='true' and move_type = 'depreciated'"
         self._cr.execute(query)
         date = self._cr.fetchone()
         # has depreciation
@@ -46,6 +46,12 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
     @api.model
     def get_default_type_ids(self):
         return [(6, 0, self.env['asset.depreciation.type'].search([]).ids)]
+
+    @api.depends('asset_ids')
+    def _compute_asset_ids(self):
+        for r in self:
+            r.has_asset_ids = len(r.asset_ids) > 0
+        # end for
 
     asset_ids = fields.Many2many(
         'asset.asset',
@@ -79,6 +85,11 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
     final = fields.Boolean(
         string='Final',
         default=False,
+    )
+
+    has_asset_ids = fields.Boolean(
+        string='Has asset ids',
+        compute='_compute_asset_ids'
     )
 
     @api.multi
@@ -121,18 +132,11 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
                 and start_year <= l.date <= self.date_dep
                 and l.final is True
             )
-            # confirmed_lines = lines.filtered(
-            #     lambda l:
-            #     l.move_type == 'depreciated'
-            #     and not l.partial_dismissal
-            #     and l.date >= self.date_dep
-            #     and l.final is True
-            # )
 
             if confirmed_lines:
                 raise UserError(
                     'Non si può effettuare l\'ammortamento del bene '
-                    'poichè per {} esistono ammortamenti consolidati alla '
+                    'poichè per {} esistono ammortamenti consolidati entro la '
                     'data impostata '
                     .format(dep.display_name)
                 )
@@ -142,14 +146,8 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
                     l.move_type == 'depreciated'
                     and not l.partial_dismissal
                     and start_year <= l.date
-                    # <= self.date_dep
+                    and l.final is False
                 )
-                # newer_lines = lines.filtered(
-                #     lambda l:
-                #     l.move_type == 'depreciated'
-                #     and not l.partial_dismissal
-                #     and l.date >= self.date_dep
-                # )
 
                 if newer_lines:
                     newer_lines.button_remove_account_move()

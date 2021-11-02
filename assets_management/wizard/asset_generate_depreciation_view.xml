@@ -6,13 +6,14 @@
         <field name="model">wizard.asset.generate.depreciation</field>
         <field name="arch" type="xml">
             <form>
+                <field name="has_asset_ids" invisible="1"/>
                 <group name="depreciation_data" string="Depreciation Data">
                     <field name="date_dep"/>
                     <field name="type_ids"
                            options="{'no_create': True}"
                            widget="many2many_tags"/>
                 </group>
-                <group name="status" string="State">
+                <group name="status" string="State" attrs="{'invisible': [('has_asset_ids', '=', True)]}">
                     <field name="final" />
                 </group>
                 <group name="filters" string="Filters">

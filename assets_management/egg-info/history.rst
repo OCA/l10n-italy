@@ -1,3 +1,8 @@
+12.0.1.0.0_8 (2021-11-08)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Nascosto flag consolidato nel wizard se per singolo cespite
+
 12.0.1.0.0_7 (2021-10-28)
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
