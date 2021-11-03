@@ -36,7 +36,7 @@
         <field name="name">asset.dep.line.tree.view</field>
         <field name="model">asset.depreciation.line</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree >
                 <field name="asset_id"/>
                 <field name="depreciation_id"/>
                 <field name="name"/>
@@ -81,7 +81,9 @@
                 <sheet>
                     <group name="info" string="General Info">
                         <group>
-                            <field name="asset_id" readonly="1"/>
+<!--                            <field name="asset_id" readonly="1"/>-->
+                            <field name="asset_id" />
+                            <field name="depreciation_id" />
                             <field name="name"/>
                             <field name="date"/>
                             <field name="move_type"/>

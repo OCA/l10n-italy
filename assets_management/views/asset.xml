@@ -112,7 +112,7 @@
                                 <field name="depreciation_ids"
                                        context="{'default_asset_id':id}"
                                        nolabel="1">
-                                    <tree>
+                                    <tree create="false" edit="false" delete="false">
                                         <field name="asset_id" invisible="1"/>
                                         <field name="type_id"/>
                                         <field name="mode_id"/>

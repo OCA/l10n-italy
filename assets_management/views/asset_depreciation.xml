@@ -45,7 +45,7 @@
                         <field name="line_ids"
                                context="{'default_depreciation_id':id}"
                                nolabel="1">
-                            <tree editable="bottom">
+                            <tree editable="bottom" create="false" edit="false" delete="false">
                                 <field name="id"
                                        invisible="1"/>
                                 <field name="depreciation_id"

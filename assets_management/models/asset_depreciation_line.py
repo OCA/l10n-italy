@@ -23,9 +23,10 @@ class AssetDepreciationLine(models.Model):
 
     asset_id = fields.Many2one(
         'asset.asset',
-        readonly=True,
-        related='depreciation_id.asset_id',
-        store=True,
+        required=True,
+        # readonly=True,
+        # related='depreciation_id.asset_id',
+        # store=True,
         string="Asset"
     )
 
@@ -59,7 +60,7 @@ class AssetDepreciationLine(models.Model):
     depreciation_id = fields.Many2one(
         'asset.depreciation',
         ondelete='cascade',
-        readonly=True,
+        # readonly=True,
         required=True,
         string="Asset depreciation",
     )
@@ -241,6 +242,19 @@ class AssetDepreciationLine(models.Model):
     def onchange_move_type(self):
         if self.move_type not in ('in', 'out'):
             self.depreciation_line_type_id = False
+
+    @api.onchange('asset_id')
+    def onchange_asset_id(self):
+        res = dict()
+        ids = list()
+        for dep in self.asset_id.depreciation_ids:
+            ids.append(dep.id)
+        # end for
+        if ids:
+            res['domain'] = {
+                'depreciation_id': [('id', '=', ids)], }
+        # end if
+        return res
 
     def get_linked_aa_info_records(self):
         self.ensure_one()
