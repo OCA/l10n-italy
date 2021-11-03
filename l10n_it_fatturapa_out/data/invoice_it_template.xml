@@ -136,7 +136,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
         </template>
 
         <template id="account_invoice_line_it_FatturaPA">
-            <t t-set="tax_ids" t-value="line.tax_ids[0]" />
+            <t t-set="tax_ids" t-value="line.tax_ids and line.tax_ids[0]" />
             <DettaglioLinee>
                 <NumeroLinea t-esc="line_counter" />
                 <!--                <TipoCessionePrestazione t-esc=""/>-->
@@ -177,7 +177,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                 the invoice.-->
                 <AliquotaIVA
                     t-if="line.display_type in ('line_section', 'line_note')"
-                    t-esc="all_taxes[line.move_id.id][0]['AliquotaIVA']"
+                    t-esc="list(all_taxes[line.move_id.id].values())[0]['AliquotaIVA']"
                 />
                 <t t-call="l10n_it_fatturapa_out.account_invoice_line_ritenuta" />
                 <Natura
@@ -185,8 +185,8 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     t-esc="tax_ids.kind_id.code"
                 />
                 <Natura
-                    t-if="line.display_type in ('line_section', 'line_note') and all_taxes[line.move_id.id][0].get('Natura')"
-                    t-esc="all_taxes[line.move_id][0]['Natura']"
+                    t-if="line.display_type in ('line_section', 'line_note') and list(all_taxes[line.move_id.id].values())[0].get('Natura')"
+                    t-esc="list(all_taxes[line.move_id].values())[0]['Natura']"
                 />
                 <RiferimentoAmministrazione
                     t-if="line.admin_ref"
@@ -582,7 +582,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                             t-call="l10n_it_fatturapa_out.account_invoice_line_it_FatturaPA"
                         />
                     </t>
-                    <t t-foreach="all_taxes[record.id]" t-as="tax_data">
+                    <t t-foreach="list(all_taxes[record.id].values())" t-as="tax_data">
                        <DatiRiepilogo>
                               <!--2.2.2-->
                               <AliquotaIVA t-esc="tax_data['AliquotaIVA']" />

@@ -153,7 +153,7 @@ class TestFatturaOutNoteLine(FatturaPACommon):
         - one product 22%, price 10
         - one note
         save & edit
-        - produce price to 0
+        - product price to 0
         save & export
 
         expected result:
