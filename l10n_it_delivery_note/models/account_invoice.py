@@ -126,7 +126,7 @@ class AccountInvoice(models.Model):
                             )
                         )
 
-            invoice.write({"invoice_line_ids": new_lines})
+            invoice.write({"line_ids": new_lines})
 
     def unlink(self):
         # Ripristino il valore delle delivery note
