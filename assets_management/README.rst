@@ -1,6 +1,6 @@
 
 ===========================================
-|icon| ITA - Gestione Cespiti 12.0.1.0.0_10
+|icon| ITA - Gestione Cespiti 12.0.1.0.0_11
 ===========================================
 
 
@@ -192,6 +192,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+12.0.1.0.0_11 (2021-11-04)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Impostato registrazione svalutazione e rivalutazione
+
 12.0.1.0.0_10 (2021-11-02)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -326,7 +331,7 @@ I soci fondatori sono:
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2021-11-02
+Last Update / Ultimo aggiornamento: 2021-11-04
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

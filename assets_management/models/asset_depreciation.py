@@ -333,7 +333,8 @@ class AssetDepreciation(models.Model):
 
         new_lines = self.env['asset.depreciation.line']
         for dep in self:
-            new_lines |= dep.generate_depreciation_lines_single(dep_date)
+            new_obj = dep.generate_depreciation_lines_single(dep_date)
+            new_lines += new_obj
 
         return new_lines
 
@@ -625,6 +626,7 @@ class AssetDepreciation(models.Model):
         final = self._context.get('final') or False
         dep_year = fields.Date.from_string(dep_date).year
         return {
+            'asset_id': self.asset_id.id,
             'amount': dep_amount,
             'date': dep_date,
             'depreciation_id': self.id,

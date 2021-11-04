@@ -154,6 +154,12 @@ class AssetDepreciationLine(models.Model):
         line = super().create(vals)
         if line.need_normalize_depreciation_nr():
             line.normalize_depreciation_nr(force=True)
+        # end if
+        if line.move_type in line.get_update_move_types():
+            if line.requires_account_move:
+                line.button_generate_account_move()
+                return line
+        # end if
         return line
 
     @api.multi
@@ -250,9 +256,9 @@ class AssetDepreciationLine(models.Model):
         for dep in self.asset_id.depreciation_ids:
             ids.append(dep.id)
         # end for
-        if ids:
-            res['domain'] = {
-                'depreciation_id': [('id', '=', ids)], }
+    # if ids:
+        res['domain'] = {
+            'depreciation_id': [('id', '=', ids)], }
         # end if
         return res
 
@@ -503,9 +509,25 @@ class AssetDepreciationLine(models.Model):
         )
 
     def get_in_account_move_line_vals(self):
-        raise NotImplementedError(
-            _("Cannot create account move lines for lines of type `In`")
-        )
+        self.ensure_one()
+        credit_line_vals = {
+            'account_id': self.asset_id.category_id.gain_account_id.id,
+            'credit': 0.0,
+            'debit': self.amount,
+            'currency_id': self.currency_id.id,
+            'name': " - ".join((self.asset_id.make_name(), self.name)),
+        }
+        debit_line_vals = {
+            'account_id': self.asset_id.category_id.asset_account_id.id,
+            'credit': self.amount,
+            'debit': 0.0,
+            'currency_id': self.currency_id.id,
+            'name': " - ".join((self.asset_id.make_name(), self.name)),
+        }
+        return [credit_line_vals, debit_line_vals]
+        # raise NotImplementedError(
+        #     _("Cannot create account move lines for lines of type `In`")
+        # )
 
     def get_loss_account_move_line_vals(self):
         self.ensure_one()
@@ -526,9 +548,25 @@ class AssetDepreciationLine(models.Model):
         return [credit_line_vals, debit_line_vals]
 
     def get_out_account_move_line_vals(self):
-        raise NotImplementedError(
-            _("Cannot create account move lines for lines of type `Out`")
-        )
+        self.ensure_one()
+        credit_line_vals = {
+            'account_id': self.asset_id.category_id.asset_account_id.id,
+            'credit': self.amount,
+            'debit': 0.0,
+            'currency_id': self.currency_id.id,
+            'name': " - ".join((self.asset_id.make_name(), self.name)),
+        }
+        debit_line_vals = {
+            'account_id': self.asset_id.category_id.loss_account_id.id,
+            'credit': 0.0,
+            'debit': self.amount,
+            'currency_id': self.currency_id.id,
+            'name': " - ".join((self.asset_id.make_name(), self.name)),
+        }
+        return [credit_line_vals, debit_line_vals]
+        # raise NotImplementedError(
+        #     _("Cannot create account move lines for lines of type `Out`")
+        # )
 
     def needs_account_move(self):
         self.ensure_one()
