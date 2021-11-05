@@ -219,7 +219,7 @@ odoo.define("fiscal_epos_print.screens", function (require) {
         lottery_get_button_color: function() {
             var order = this.pos.get_order();
             var color = '#e2e2e2';
-            if (order.lottery_code) {
+            if (order && order.lottery_code) {
                 color = 'lightgreen';
             }
             return color;
