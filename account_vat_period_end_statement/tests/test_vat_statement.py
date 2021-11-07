@@ -196,7 +196,8 @@ class TestTax(TransactionCase):
             'payment_term_id': self.account_payment_term.id,
             'date': self.last_year_date,
             })
-        self.last_year_period.vat_statement_id = self.last_year_vat_statement
+        self.last_year_period.vat_statement_ids = [
+            (6, 0, self.last_year_vat_statement.ids)]
         self.last_year_vat_statement.compute_amounts()
 
         self.vat_statement = self.vat_statement_model.create({
@@ -204,7 +205,7 @@ class TestTax(TransactionCase):
             'authority_vat_account_id': self.vat_authority.id,
             'payment_term_id': self.account_payment_term.id,
             })
-        self.current_period.vat_statement_id = self.vat_statement
+        self.current_period.vat_statement_ids = [(6, 0, self.vat_statement.ids)]
         self.vat_statement.compute_amounts()
         self.vat_statement.previous_credit_vat_account_id = (
             self.received_vat_account)

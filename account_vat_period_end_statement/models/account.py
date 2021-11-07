@@ -261,8 +261,9 @@ class AccountVatPeriodEndStatement(models.Model):
     payment_ids = fields.Many2many(
         'account.move.line', string='Payments', compute="_compute_lines",
         store=True)
-    date_range_ids = fields.One2many(
-        'date.range', 'vat_statement_id', 'Periods')
+    date_range_ids = fields.Many2many(
+        "date.range", string="Periods", relation="date_range_vat_statement_rel",
+        column2="date_range_id", column1="vat_st_id")
     interest = fields.Boolean(
         'Compute Interest', default=_get_default_interest)
     interest_percent = fields.Float(
@@ -748,6 +749,7 @@ class AccountTax(models.Model):
 
 class DateRange(models.Model):
     _inherit = "date.range"
-    vat_statement_id = fields.Many2one(
-        'account.vat.period.end.statement', "VAT statement"
+    vat_statement_ids = fields.Many2many(
+        "account.vat.period.end.statement", relation="date_range_vat_statement_rel",
+        column1="date_range_id", column2="vat_st_id", string="VAT statement"
     )
