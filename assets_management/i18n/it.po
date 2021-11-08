@@ -413,6 +413,7 @@ msgstr "Applica su"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_asset__asset_id
 #: model:ir.model.fields,field_description:assets_management.field_wizard_account_move_manage_asset__asset_id
 #: model:ir.model.fields,field_description:assets_management.field_wizard_invoice_manage_asset__asset_id
+#: model:ir.model.fields,field_description:assets_management.field_wizard_asset_generate_open__asset_id
 #: model_terms:ir.ui.view,arch_db:assets_management.asset_accounting_info_search_view
 #: model_terms:ir.ui.view,arch_db:assets_management.asset_dep_line_search_view
 #, python-format
@@ -1066,6 +1067,7 @@ msgstr "Commento"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional__company_id
 #: model:ir.model.fields,field_description:assets_management.field_wizard_account_move_manage_asset__company_id
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_generate_depreciation__company_id
+#: model:ir.model.fields,field_description:assets_management.field_wizard_asset_generate_open__company_id
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_journal_report__company_id
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_previsional_report__company_id
 #: model:ir.model.fields,field_description:assets_management.field_wizard_invoice_manage_asset__company_id
@@ -1153,12 +1155,14 @@ msgstr "Crea Nuovo"
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__create_uid
 #: model:ir.model.fields,field_description:assets_management.field_asset_category__create_uid
 #: model:ir.model.fields,field_description:assets_management.field_asset_category_depreciation_type__create_uid
+#: model:ir.model.fields,field_description:assets_management.field_asset_confirm_reason_line__create_uid
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__create_uid
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line__create_uid
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line_type__create_uid
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_mode__create_uid
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_mode_line__create_uid
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_type__create_uid
+#: model:ir.model.fields,field_description:assets_management.field_asset_generate_warning__create_uid
 #: model:ir.model.fields,field_description:assets_management.field_asset_tag__create_uid
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal__create_uid
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_accounting_doc__create_uid
@@ -1176,6 +1180,7 @@ msgstr "Crea Nuovo"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_totals__create_uid
 #: model:ir.model.fields,field_description:assets_management.field_wizard_account_move_manage_asset__create_uid
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_generate_depreciation__create_uid
+#: model:ir.model.fields,field_description:assets_management.field_wizard_asset_generate_open__create_uid
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_journal_report__create_uid
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_previsional_report__create_uid
 #: model:ir.model.fields,field_description:assets_management.field_wizard_invoice_manage_asset__create_uid
@@ -1187,12 +1192,14 @@ msgstr "Creato da"
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__create_date
 #: model:ir.model.fields,field_description:assets_management.field_asset_category__create_date
 #: model:ir.model.fields,field_description:assets_management.field_asset_category_depreciation_type__create_date
+#: model:ir.model.fields,field_description:assets_management.field_asset_confirm_reason_line__create_date
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__create_date
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line__create_date
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line_type__create_date
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_mode__create_date
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_mode_line__create_date
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_type__create_date
+#: model:ir.model.fields,field_description:assets_management.field_asset_generate_warning__create_date
 #: model:ir.model.fields,field_description:assets_management.field_asset_tag__create_date
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal__create_date
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_accounting_doc__create_date
@@ -1210,6 +1217,7 @@ msgstr "Creato da"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_totals__create_date
 #: model:ir.model.fields,field_description:assets_management.field_wizard_account_move_manage_asset__create_date
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_generate_depreciation__create_date
+#: model:ir.model.fields,field_description:assets_management.field_wizard_asset_generate_open__create_date
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_journal_report__create_date
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_previsional_report__create_date
 #: model:ir.model.fields,field_description:assets_management.field_wizard_invoice_manage_asset__create_date
@@ -1230,6 +1238,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__currency_id
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line__currency_id
 #: model:ir.model.fields,field_description:assets_management.field_wizard_account_move_manage_asset__currency_id
+#: model:ir.model.fields,field_description:assets_management.field_wizard_asset_generate_open__currency_id
 #: model:ir.model.fields,field_description:assets_management.field_wizard_invoice_manage_asset__currency_id
 msgid "Currency"
 msgstr "Valuta"
@@ -1521,12 +1530,14 @@ msgstr "Registrazione contabile dismissione"
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__display_name
 #: model:ir.model.fields,field_description:assets_management.field_asset_category__display_name
 #: model:ir.model.fields,field_description:assets_management.field_asset_category_depreciation_type__display_name
+#: model:ir.model.fields,field_description:assets_management.field_asset_confirm_reason_line__display_name
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__display_name
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line__display_name
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line_type__display_name
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_mode__display_name
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_mode_line__display_name
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_type__display_name
+#: model:ir.model.fields,field_description:assets_management.field_asset_generate_warning__display_name
 #: model:ir.model.fields,field_description:assets_management.field_asset_tag__display_name
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal__display_name
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_accounting_doc__display_name
@@ -1546,6 +1557,7 @@ msgstr "Registrazione contabile dismissione"
 #: model:ir.model.fields,field_description:assets_management.field_report_assets_management_report_asset_previsional_xlsx__display_name
 #: model:ir.model.fields,field_description:assets_management.field_wizard_account_move_manage_asset__display_name
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_generate_depreciation__display_name
+#: model:ir.model.fields,field_description:assets_management.field_wizard_asset_generate_open__display_name
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_journal_report__display_name
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_previsional_report__display_name
 #: model:ir.model.fields,field_description:assets_management.field_wizard_invoice_manage_asset__display_name
@@ -1620,6 +1632,7 @@ msgid "First Dep. Num"
 msgstr "Primo Amm.to Nr"
 
 #. module: assets_management
+#: model:ir.model,name:assets_management.model_account_fiscal_year
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation_line_year__fiscal_year_id
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_depreciation_line_year__fiscal_year_id
 msgid "Fiscal Year"
@@ -1799,12 +1812,14 @@ msgstr "Valore storico"
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__id
 #: model:ir.model.fields,field_description:assets_management.field_asset_category__id
 #: model:ir.model.fields,field_description:assets_management.field_asset_category_depreciation_type__id
+#: model:ir.model.fields,field_description:assets_management.field_asset_confirm_reason_line__id
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__id
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line__id
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line_type__id
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_mode__id
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_mode_line__id
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_type__id
+#: model:ir.model.fields,field_description:assets_management.field_asset_generate_warning__id
 #: model:ir.model.fields,field_description:assets_management.field_asset_tag__id
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal__id
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_accounting_doc__id
@@ -1824,6 +1839,7 @@ msgstr "Valore storico"
 #: model:ir.model.fields,field_description:assets_management.field_report_assets_management_report_asset_previsional_xlsx__id
 #: model:ir.model.fields,field_description:assets_management.field_wizard_account_move_manage_asset__id
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_generate_depreciation__id
+#: model:ir.model.fields,field_description:assets_management.field_wizard_asset_generate_open__id
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_journal_report__id
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_previsional_report__id
 #: model:ir.model.fields,field_description:assets_management.field_wizard_invoice_manage_asset__id
@@ -1978,12 +1994,14 @@ msgstr "Ultimo amm.to"
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset____last_update
 #: model:ir.model.fields,field_description:assets_management.field_asset_category____last_update
 #: model:ir.model.fields,field_description:assets_management.field_asset_category_depreciation_type____last_update
+#: model:ir.model.fields,field_description:assets_management.field_asset_confirm_reason_line____last_update
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation____last_update
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line____last_update
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line_type____last_update
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_mode____last_update
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_mode_line____last_update
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_type____last_update
+#: model:ir.model.fields,field_description:assets_management.field_asset_generate_warning____last_update
 #: model:ir.model.fields,field_description:assets_management.field_asset_tag____last_update
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal____last_update
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_accounting_doc____last_update
@@ -2003,6 +2021,7 @@ msgstr "Ultimo amm.to"
 #: model:ir.model.fields,field_description:assets_management.field_report_assets_management_report_asset_previsional_xlsx____last_update
 #: model:ir.model.fields,field_description:assets_management.field_wizard_account_move_manage_asset____last_update
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_generate_depreciation____last_update
+#: model:ir.model.fields,field_description:assets_management.field_wizard_asset_generate_open____last_update
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_journal_report____last_update
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_previsional_report____last_update
 #: model:ir.model.fields,field_description:assets_management.field_wizard_invoice_manage_asset____last_update
@@ -2014,6 +2033,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__write_uid
 #: model:ir.model.fields,field_description:assets_management.field_asset_category__write_uid
 #: model:ir.model.fields,field_description:assets_management.field_asset_category_depreciation_type__write_uid
+#: model:ir.model.fields,field_description:assets_management.field_asset_confirm_reason_line__write_uid
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__write_uid
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line__write_uid
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line_type__write_uid
@@ -2037,6 +2057,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_totals__write_uid
 #: model:ir.model.fields,field_description:assets_management.field_wizard_account_move_manage_asset__write_uid
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_generate_depreciation__write_uid
+#: model:ir.model.fields,field_description:assets_management.field_wizard_asset_generate_open__write_uid
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_journal_report__write_uid
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_previsional_report__write_uid
 #: model:ir.model.fields,field_description:assets_management.field_wizard_invoice_manage_asset__write_uid
@@ -2048,12 +2069,14 @@ msgstr "Ultimo aggiornamento di"
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__write_date
 #: model:ir.model.fields,field_description:assets_management.field_asset_category__write_date
 #: model:ir.model.fields,field_description:assets_management.field_asset_category_depreciation_type__write_date
+#: model:ir.model.fields,field_description:assets_management.field_asset_confirm_reason_line__write_date
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__write_date
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line__write_date
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line_type__write_date
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_mode__write_date
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_mode_line__write_date
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_type__write_date
+#: model:ir.model.fields,field_description:assets_management.field_asset_generate_warning__write_date
 #: model:ir.model.fields,field_description:assets_management.field_asset_tag__write_date
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal__write_date
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_accounting_doc__write_date
@@ -2071,6 +2094,7 @@ msgstr "Ultimo aggiornamento di"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_totals__write_date
 #: model:ir.model.fields,field_description:assets_management.field_wizard_account_move_manage_asset__write_date
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_generate_depreciation__write_date
+#: model:ir.model.fields,field_description:assets_management.field_wizard_asset_generate_open__write_date
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_journal_report__write_date
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_previsional_report__write_date
 #: model:ir.model.fields,field_description:assets_management.field_wizard_invoice_manage_asset__write_date
@@ -2512,6 +2536,7 @@ msgstr "Registrazione acquisto"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__purchase_amount
+#: model:ir.model.fields,field_description:assets_management.field_wizard_asset_generate_open__amount
 msgid "Purchase Value"
 msgstr "Valore acquisto"
 
@@ -2763,6 +2788,7 @@ msgstr "Data inzio amm.to"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__state
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__state
+#: model_terms:ir.ui.view,arch_db:assets_management.wizard_asset_generate_depreciation_form_view
 msgid "State"
 msgstr "Stato"
 
@@ -3116,6 +3142,7 @@ msgstr ""
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_asset_generate_depreciation_form_view
+#: model_terms:ir.ui.view,arch_db:assets_management.wizard_asset_generate_open_form_view
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_asset_journal_report_form_view
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_asset_previsional_report_form_view
 msgid "or"
@@ -3254,3 +3281,4 @@ msgstr "Consolidato"
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__last_depreciation_date
 msgid "Last depreciation date"
 msgstr "Ultimo ammortamento il"
+

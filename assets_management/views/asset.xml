@@ -50,10 +50,10 @@
             <form>
                 <header>
                     <button name="launch_wizard_generate_open"
-                            string="Open asset"
+                            string="Apertura cespite"
                             type="object"
                             attrs="{'invisible': [('state', 'in', [
-                            'partial_depreciated', 'totally_depreciated'])]}"
+                            'partially_depreciated', 'totally_depreciated'])]}"
                     />
                     <button name="launch_wizard_generate_depreciations"
                             string="Generate depreciations"
