@@ -288,6 +288,7 @@ class EFatturaOut:
             "all_taxes": {
                 invoice.id: get_all_taxes(invoice) for invoice in self.invoices
             },
+
         }
         return template_values
 
