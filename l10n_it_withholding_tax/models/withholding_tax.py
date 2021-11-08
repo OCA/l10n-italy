@@ -96,6 +96,13 @@ class WithholdingTax(models.Model):
     )
     daticassprev_tax_id = fields.Many2one("account.tax")
 
+    def copy(self, default=None):
+        self.ensure_one()
+        default = dict(default or {})
+        if "code" not in default:
+            default["code"] = _("%s (copy)") % self.code
+        return super(WithholdingTax, self).copy(default=default)
+
     @api.constrains("rate_ids")
     def _check_rate_ids(self):
         self.ensure_one()

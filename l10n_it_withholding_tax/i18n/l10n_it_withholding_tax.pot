@@ -14,6 +14,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
+#, python-format
+msgid "%s (copy)"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.print_withholding_tax
 msgid "<span>Withholding Tax</span>"
 msgstr ""
