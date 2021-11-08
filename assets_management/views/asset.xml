@@ -49,6 +49,12 @@
         <field name="arch" type="xml">
             <form>
                 <header>
+                    <button name="launch_wizard_generate_open"
+                            string="Open asset"
+                            type="object"
+                            attrs="{'invisible': [('state', 'in', [
+                            'partial_depreciated', 'totally_depreciated'])]}"
+                    />
                     <button name="launch_wizard_generate_depreciations"
                             string="Generate depreciations"
                             context="{'allow_reload_window': True}"

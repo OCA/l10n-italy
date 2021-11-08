@@ -268,6 +268,19 @@ class Asset(models.Model):
         act['context'] = ctx
         return act
 
+    @api.multi
+    def launch_wizard_generate_open(self):
+        self.ensure_one()
+        xmlid = 'assets_management.action_wizard_asset_open'
+        [act] = self.env.ref(xmlid).read()
+        ctx = dict(self._context)
+        ctx.update({
+            'default_asset_ids': [(6, 0, self.ids)],
+            'default_company_id': self.company_id.id,
+        })
+        act['context'] = ctx
+        return act
+
     def get_asset_state(self):
         self.ensure_one()
         if not self.depreciation_ids:
