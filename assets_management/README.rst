@@ -1,6 +1,6 @@
 
 ===========================================
-|icon| ITA - Gestione Cespiti 12.0.1.0.0_11
+|icon| ITA - Gestione Cespiti 12.0.1.0.0_12
 ===========================================
 
 
@@ -192,6 +192,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+12.0.1.0.0_12 (2021-11-08)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Gestito generazione ammortamenti solo da wizard
+
 12.0.1.0.0_11 (2021-11-04)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -331,7 +336,7 @@ I soci fondatori sono:
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2021-11-04
+Last Update / Ultimo aggiornamento: 2021-11-08
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

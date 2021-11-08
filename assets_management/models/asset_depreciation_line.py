@@ -129,11 +129,6 @@ class AssetDepreciationLine(models.Model):
         string="Requires Dep Num"
     )
 
-    # state = fields.Selection(
-    #     string='Move state',
-    #     related='move_id.state',
-    # )
-
     final = fields.Boolean(
         string="Final",
         # readonly=True,
@@ -151,6 +146,11 @@ class AssetDepreciationLine(models.Model):
 
     @api.model
     def create(self, vals):
+        if self._context.get('depreciated_by_line') \
+            and vals['move_type'] == 'depreciated':
+            raise ValidationError(_("L'ammortamento non è consentito "
+                                    "da questa interfaccia.\n"))
+
         line = super().create(vals)
         if line.need_normalize_depreciation_nr():
             line.normalize_depreciation_nr(force=True)
@@ -525,9 +525,6 @@ class AssetDepreciationLine(models.Model):
             'name': " - ".join((self.asset_id.make_name(), self.name)),
         }
         return [credit_line_vals, debit_line_vals]
-        # raise NotImplementedError(
-        #     _("Cannot create account move lines for lines of type `In`")
-        # )
 
     def get_loss_account_move_line_vals(self):
         self.ensure_one()
@@ -564,9 +561,6 @@ class AssetDepreciationLine(models.Model):
             'name': " - ".join((self.asset_id.make_name(), self.name)),
         }
         return [credit_line_vals, debit_line_vals]
-        # raise NotImplementedError(
-        #     _("Cannot create account move lines for lines of type `Out`")
-        # )
 
     def needs_account_move(self):
         self.ensure_one()

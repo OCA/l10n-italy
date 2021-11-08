@@ -231,5 +231,8 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
                 'context': {'active_id': wizard},
             }
 
-        self.do_generate()
+        if self._context.get('depreciated'):
+            self.do_generate().with_context(depreciated=True)
+        else:
+            self.do_generate()
 

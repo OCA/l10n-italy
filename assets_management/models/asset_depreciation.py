@@ -341,12 +341,14 @@ class AssetDepreciation(models.Model):
     def generate_depreciation_lines_single(self, dep_date):
         self.ensure_one()
         final = self._context.get('final')
+
         dep_nr = self.get_max_depreciation_nr() + 1
         dep = self.with_context(dep_nr=dep_nr, used_asset=self.asset_id.used)
         dep_amount = dep.get_depreciation_amount(dep_date)
         dep = dep.with_context(dep_amount=dep_amount, final=final,)
 
         vals = dep.prepare_depreciation_line_vals(dep_date)
+
         return self.env['asset.depreciation.line'].create(vals)
 
     def generate_dismiss_account_move(self):

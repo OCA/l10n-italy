@@ -81,7 +81,6 @@
                 <sheet>
                     <group name="info" string="General Info">
                         <group>
-<!--                            <field name="asset_id" readonly="1"/>-->
                             <field name="asset_id" />
                             <field name="depreciation_id" />
                             <field name="name"/>
@@ -136,7 +135,9 @@
         <field name="res_model">asset.depreciation.line</field>
         <field name="view_id" ref="asset_dep_line_tree_view"/>
         <field name="search_view_id" ref="asset_dep_line_search_view"/>
-        <field name="context">{'search_default_group_by_asset_id': 1, 'search_default_group_by_depreciation_id': 1}</field>
+        <field name="context">{'search_default_group_by_asset_id': 1,
+                               'search_default_group_by_depreciation_id': 1,
+                               'depreciated_by_line': True}</field>
     </record>
 
     <menuitem id="menu_asset_dep_line"
