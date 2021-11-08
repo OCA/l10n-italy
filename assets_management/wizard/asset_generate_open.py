@@ -2,7 +2,7 @@
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 
 
 class WizardAssetsGenerateOpen(models.TransientModel):
@@ -70,7 +70,34 @@ class WizardAssetsGenerateOpen(models.TransientModel):
 
     @api.multi
     def do_generate(self):
-        active_id = self.env.context.get('active_id')
-
         self.ensure_one()
+        asset = self.get_asset()
+        am_obj = self.env['account.move']
+        vals = {
+            'company_id': self.company_id.id,
+            'date': asset.purchase_date,
+            'journal_id': asset.asset_id.category_id.journal_id.id,
+            'line_ids': [],
+            'ref': _("Asset: ") + asset.asset_id.make_name(),
+        }
+
+        credit_line_vals = {
+            'account_id': self.account_id.id,
+            'credit': self.amount,
+            'debit': 0.0,
+            'currency_id': self.currency_id.id,
+            'name': " - ".join((asset.make_name(), asset.name)),
+        }
+        debit_line_vals = {
+            'account_id': asset.category_id.asset_account_id.id,
+            'credit': 0.0,
+            'debit': self.amount,
+            'currency_id': self.currency_id.id,
+            'name': " - ".join((asset.make_name(), asset.name)),
+        }
+
+        for v in [credit_line_vals, debit_line_vals]:
+            vals['line_ids'].append((0, 0, v))
+
+        asset.move_id = am_obj.create(vals)
 
