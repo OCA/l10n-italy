@@ -187,3 +187,8 @@ class TestWithholdingTax(TransactionCase):
                 'date_start': fields.Date.to_string(
                     date.today() - timedelta(days=1))
             })]
+
+    def test_duplicating_wt(self):
+        new_tax = self.wt1040.copy()
+        self.assertEqual(new_tax.code, "1040 (copy)")
+        self.assertEqual(new_tax.name, "Code 1040")
