@@ -181,7 +181,7 @@ class TestTaxSP(AccountTestUsers):
             'authority_vat_account_id': self.vat_authority.id,
             'payment_term_id': self.account_payment_term.id,
             })
-        self.current_period.vat_statement_id = self.vat_statement
+        self.current_period.vat_statement_ids = [(6, 0, self.vat_statement.ids)]
         self.vat_statement.compute_amounts()
 
         self.assertEqual(self.vat_statement.authority_vat_amount, 0)
@@ -227,7 +227,7 @@ class TestTaxSP(AccountTestUsers):
             'authority_vat_account_id': self.vat_authority.id,
             'payment_term_id': self.account_payment_term.id,
             })
-        self.current_period.vat_statement_id = self.vat_statement
+        self.current_period.vat_statement_ids = [(6, 0, self.vat_statement.ids)]
         self.vat_statement.compute_amounts()
         self.assertEqual(
             self.vat_statement.generic_vat_account_line_ids.account_id.id,
