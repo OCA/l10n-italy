@@ -683,7 +683,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
             self.env["account.move"].with_context({"default_move_type": "out_invoice"})
         )
         invoice1_form.partner_id = self.res_partner_fatturapa_0
-        invoice1_form.name = "INV/2021/10/0001"
         with invoice1_form.line_ids.new() as line_form:
             line_form.product_id = self.product_product_10
             line_form.account_id = self.a_sale
