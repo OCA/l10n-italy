@@ -20,6 +20,12 @@ msgid " (Residual Net to pay: %s)"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:84
+#, python-format
+msgid "%s (copy)"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.print_withholding_tax
 msgid "<span>Withholding Tax</span>"
 msgstr ""
@@ -208,13 +214,13 @@ msgid "Enpam Tax"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:84
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:92
 #, python-format
 msgid "Error! Rates are required"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:153
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:161
 #, python-format
 msgid "Error! You cannot have 2 rates that overlap!"
 msgstr ""
@@ -331,7 +337,7 @@ msgid "MISC"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:417
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:425
 #, python-format
 msgid "Move %s is reconciled (%s). You must unreconcile it first"
 msgstr ""
@@ -533,13 +539,13 @@ msgid "W.T. Reg. on"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:321
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:329
 #, python-format
 msgid "WT %s - %s"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:331
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:339
 #, python-format
 msgid "WT %s - %s - %s"
 msgstr ""
@@ -581,13 +587,13 @@ msgstr ""
 
 #. module: l10n_it_withholding_tax
 #: code:addons/l10n_it_withholding_tax/models/account.py:166
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:433
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:441
 #, python-format
 msgid "Warning! Only Withholding Tax moves in Due status                     can be deleted"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:317
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:325
 #, python-format
 msgid "Warning! Wt account move already exists: %s"
 msgstr ""
