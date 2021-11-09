@@ -34,7 +34,7 @@
     </record>
 
     <record id="action_wizard_asset_open" model="ir.actions.act_window">
-        <field name="name">Apertura cespite</field>
+        <field name="name">Apertura bene</field>
         <field name="res_model">wizard.asset.generate.open</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="wizard_asset_generate_open_form_view"/>

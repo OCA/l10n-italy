@@ -148,6 +148,11 @@ class Asset(models.Model):
         compute='compute_last_depreciation_date',
     )
 
+    is_open = fields.Boolean(
+        string="Opened",
+        default=False,
+    )
+
     @api.model
     def create(self, vals):
         # Add depreciation if it's missing while category is set

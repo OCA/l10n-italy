@@ -76,9 +76,9 @@ class WizardAssetsGenerateOpen(models.TransientModel):
         vals = {
             'company_id': self.company_id.id,
             'date': asset.purchase_date,
-            'journal_id': asset.asset_id.category_id.journal_id.id,
+            'journal_id': asset.category_id.journal_id.id,
             'line_ids': [],
-            'ref': _("Asset: ") + asset.asset_id.make_name(),
+            'ref': _("Apertura Bene: ") + asset.make_name(),
         }
 
         credit_line_vals = {
@@ -100,4 +100,11 @@ class WizardAssetsGenerateOpen(models.TransientModel):
             vals['line_ids'].append((0, 0, v))
 
         asset.move_id = am_obj.create(vals)
+
+        asset.is_open = True
+
+        return {
+                'type': 'ir.actions.client',
+                'tag': 'reload'
+            }
 

@@ -1,6 +1,6 @@
 
 ===========================================
-|icon| ITA - Gestione Cespiti 12.0.1.0.0_12
+|icon| ITA - Gestione Cespiti 12.0.1.0.0_13
 ===========================================
 
 
@@ -192,6 +192,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+12.0.1.0.0_13 (2021-11-09)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Gestito apertura cespite (solo registrazione contabile)
+
 12.0.1.0.0_12 (2021-11-08)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -248,12 +253,6 @@ ChangeLog History / Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Introdotto flag 'ammortamento indiretto' nei metodi di ammortamento
-
-12.0.1.0.0_1 (2021-10-18)
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Individuato le funzionalità di generazione dell'importo della quota di ammortamento
-
 
 
 
@@ -336,7 +335,7 @@ I soci fondatori sono:
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2021-11-08
+Last Update / Ultimo aggiornamento: 2021-11-09
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
