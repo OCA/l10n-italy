@@ -1,4 +1,4 @@
-from odoo.tests import tagged
+from odoo.tests import Form, tagged
 
 from odoo.addons.account.tests.test_account_invoice_report import (
     TestAccountInvoiceReport,
@@ -65,3 +65,22 @@ class InvoicingTest(TestAccountInvoiceReport):
         self.assertEqual(
             len(final_invoice.line_ids.filtered(lambda line: line.is_stamp_line)), 2
         )
+
+    def test_keep_lines_description(self):
+        """Check that description is kept in other lines when adding stamp."""
+        # Get an invoice and make it eligible for applying stamp
+        invoice = self.invoices.filtered(lambda inv: inv.move_type == "out_invoice")
+        self.assertEqual(len(invoice), 1)
+        invoice.invoice_line_ids[0].write({"tax_ids": [(6, 0, [self.tax_id.id])]})
+
+        # Edit the description of first line
+        invoice_form = Form(invoice)
+        edited_descr = "Test edited description"
+        with invoice_form.invoice_line_ids.edit(0) as line:
+            line.name = edited_descr
+        invoice = invoice_form.save()
+        invoice.action_post()
+
+        # Add stamp and check that edited description is kept
+        invoice.add_tax_stamp_line()
+        self.assertEqual(invoice.invoice_line_ids[0].name, edited_descr)

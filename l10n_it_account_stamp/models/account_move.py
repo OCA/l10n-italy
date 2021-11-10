@@ -87,6 +87,12 @@ class AccountMove(models.Model):
             }
             inv.write({"invoice_line_ids": [(0, 0, invoice_line_vals)]})
 
+    def _move_autocomplete_invoice_lines_values(self):
+        # Load line names in cache,
+        # otherwise they are reset to the default value
+        self.line_ids.mapped("name")
+        return super()._move_autocomplete_invoice_lines_values()
+
     def is_tax_stamp_line_present(self):
         for line in self.line_ids:
             if line.is_stamp_line:
