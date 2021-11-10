@@ -295,7 +295,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(first_delivery_note.state, "confirm")
         self.assertEqual(first_delivery_note.invoice_status, "to invoice")
 
-        sales_order._create_invoices(final=False)
+        sales_order._create_invoices()
 
         self.assertEqual(len(sales_order.order_line), 5)
         self.assertEqual(sales_order.invoice_status, "no")
@@ -1016,11 +1016,11 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         # TODO: questo test fallisce perche non viene per qualche motivo settato il
         #  first_delivery_note in una delle fatture... da capire il perchè.
 
-        first_sales_order._create_invoices(final=False)
+        first_sales_order._create_invoices()
         self.assertEqual(len(first_sales_order.order_line), 4)
         self.assertEqual(first_sales_order.invoice_status, "no")
 
-        second_sales_order._create_invoices(final=False)
+        second_sales_order._create_invoices()
         self.assertEqual(len(second_sales_order.order_line), 3)
         self.assertEqual(second_sales_order.invoice_status, "no")
 
@@ -1406,3 +1406,31 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(invoice_line.display_type, "line_note")
         self.assertEqual(invoice_line.quantity, 0)
         self.assertEqual(invoice_line.delivery_note_id, second_delivery_note)
+
+    def test_delivery_note_to_draft_from_create(self):
+        """
+        Create delivery_note from picking with already invoiced sale order then validate
+        and reset the status to draft.
+        """
+        sales_order = self.create_sales_order(
+            [
+                self.desk_combination_line,
+            ]
+        )
+        sales_order.action_confirm()
+        picking = sales_order.picking_ids
+        picking.move_lines[0].quantity_done = 1
+        picking.button_validate()
+        sales_order._create_invoices()
+        wizard = Form(
+            self.env["stock.delivery.note.create.wizard"].with_context(
+                active_ids=picking.ids, active_model="stock.picking"
+            )
+        ).save()
+        result = wizard.confirm()
+        delivery_note = self.env["stock.delivery.note"].browse(result["res_id"])
+        delivery_note.action_confirm()
+        delivery_note.action_cancel()
+        delivery_note.action_draft()
+        self.assertEqual(delivery_note.invoice_status, "no")
+        self.assertEqual(delivery_note.state, "draft")
