@@ -1,6 +1,8 @@
 # Copyright 2017 Lorenzo Battistini
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
+from odoo.tests import Form
+
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
@@ -110,3 +112,32 @@ class TestDocType(AccountTestInvoicingCommon):
         reverse_move = self.env["account.move"].browse(reversal["res_id"])
         self.assertEqual(reverse_move.move_type, "out_refund")
         self.assertEqual(reverse_move.fiscal_document_type_id.id, self.TD04.id)
+
+    def _set_recompute_document_type(self, invoice, doc_type):
+        """Set a document type and recompute the field."""
+        # Set document type
+        invoice_form = Form(invoice)
+        invoice_form.fiscal_document_type_id = doc_type
+        invoice = invoice_form.save()
+        self.assertEqual(invoice.fiscal_document_type_id, doc_type)
+
+        # Recompute document type for the invoice
+        self.env.add_to_compute(invoice._fields["fiscal_document_type_id"], invoice)
+        self.inv_model.flush()
+        return invoice
+
+    def test_keep_edited_invoice(self):
+        """Check that the changes performed by the user
+        are kept through a recomputation if acceptable."""
+        invoice = self.init_invoice("out_invoice", products=self.product_a)
+        self.assertTrue(invoice.fiscal_document_type_id)
+
+        # Change document type to a not accepted TD04 and check it gets changed
+        td04 = self.TD04
+        invoice = self._set_recompute_document_type(invoice, td04)
+        self.assertNotEqual(invoice.fiscal_document_type_id, td04)
+
+        # Change document type to an accepted TD02 and check it is kept
+        td02 = self.doc_type_model.search([("code", "=", "TD02")], limit=1)
+        invoice = self._set_recompute_document_type(invoice, td02)
+        self.assertEqual(invoice.fiscal_document_type_id, td02)
