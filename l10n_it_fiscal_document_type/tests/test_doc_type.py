@@ -1,25 +1,25 @@
 # Copyright 2017 Lorenzo Battistini
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-from odoo.tests.common import TransactionCase
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
-class TestDocType(TransactionCase):
-    def setUp(self):
-        super(TestDocType, self).setUp()
-        self.journalrec = self.env["account.journal"].search(
-            [("type", "=", "general")], limit=1
-        )
-        self.doc_type_model = self.env["fiscal.document.type"]
-        self.TD01 = self.doc_type_model.search([("code", "=", "TD01")], limit=1)
-        self.TD01.journal_ids = self.journalrec
-        self.TD04 = self.doc_type_model.search([("code", "=", "TD04")], limit=1)
-        self.inv_model = self.env["account.move"]
-        self.partner3 = self.env.ref("base.res_partner_3")
-        self.fp = self.env["account.fiscal.position"].create(
+class TestDocType(AccountTestInvoicingCommon):
+    @classmethod
+    def setUpClass(cls, chart_template_ref=None):
+        super().setUpClass(chart_template_ref=chart_template_ref)
+        cls.journalrec = cls.company_data["default_journal_misc"]
+
+        cls.doc_type_model = cls.env["fiscal.document.type"]
+        cls.TD01 = cls.doc_type_model.search([("code", "=", "TD01")], limit=1)
+        cls.TD01.journal_ids = cls.journalrec
+        cls.TD04 = cls.doc_type_model.search([("code", "=", "TD04")], limit=1)
+        cls.inv_model = cls.env["account.move"]
+        cls.partner3 = cls.env.ref("base.res_partner_3")
+        cls.fp = cls.env["account.fiscal.position"].create(
             {
                 "name": "FP",
-                "fiscal_document_type_id": self.TD01.id,
+                "fiscal_document_type_id": cls.TD01.id,
             }
         )
 
@@ -32,10 +32,8 @@ class TestDocType(TransactionCase):
 
     def test_doc_type_on_invoice_create(self):
         """Check document type on invoice create based invoice type."""
-        revenue_account_type = self.env.ref("account.data_account_type_revenue")
-        revenue_account = self.env["account.account"].search(
-            [("user_type_id", "=", revenue_account_type.id)], limit=1
-        )
+        revenue_account = self.company_data["default_account_revenue"]
+        product = self.env.ref("product.product_product_5")
         invoice = self.inv_model.create(
             {
                 "partner_id": self.partner3.id,
@@ -44,7 +42,7 @@ class TestDocType(TransactionCase):
                         0,
                         0,
                         {
-                            "product_id": self.env.ref("product.product_product_5").id,
+                            "product_id": product.id,
                             "quantity": 10.0,
                             "account_id": revenue_account.id,
                             "name": "product test 5",
@@ -65,7 +63,7 @@ class TestDocType(TransactionCase):
                         0,
                         0,
                         {
-                            "product_id": self.env.ref("product.product_product_5").id,
+                            "product_id": product.id,
                             "quantity": 10.0,
                             "account_id": revenue_account.id,
                             "name": "product test 5",
@@ -86,7 +84,7 @@ class TestDocType(TransactionCase):
                         0,
                         0,
                         {
-                            "product_id": self.env.ref("product.product_product_5").id,
+                            "product_id": product.id,
                             "quantity": 10.0,
                             "account_id": revenue_account.id,
                             "name": "product test 5",
