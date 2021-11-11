@@ -3,7 +3,7 @@
 {
     "name": "ITA - Emissione e-fattura con reverse charge",
     "summary": "Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge",
-    "version": "12.0.1.0.4",
+    "version": "10.0.1.0.0",
     "development_status": "Beta",
     "category": "Hidden",
     "website": "https://github.com/OCA/l10n-italy",

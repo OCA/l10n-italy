@@ -27,7 +27,7 @@ class Invoice(models.Model):
 
     @api.multi
     def action_invoice_draft(self):
-        super().action_invoice_draft()
+        super(Invoice, self).action_invoice_draft()
         for inv in self:
             if not inv.env.context.get("rc_set_to_draft") and \
                     inv.rc_purchase_invoice_id.state in ['draft', 'cancel']:

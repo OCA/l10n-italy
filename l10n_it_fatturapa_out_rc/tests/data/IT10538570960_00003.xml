@@ -75,7 +75,7 @@
             <NumeroLinea>1</NumeroLinea>
             <CodiceArticolo>
                <CodiceTipo>ODOO</CodiceTipo>
-               <CodiceValore>DESK0004</CodiceValore>
+               <CodiceValore>E-COM04</CodiceValore>
             </CodiceArticolo>
             <Descrizione>Invoice for sample product</Descrizione>
             <Quantita>1.000</Quantita>

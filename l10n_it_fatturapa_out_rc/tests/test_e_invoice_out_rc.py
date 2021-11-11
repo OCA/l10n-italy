@@ -32,6 +32,8 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
         self.purchase_invoice_line_account = self.env['account.account'].search(
             [('user_type_id', '=', self.env.ref(
                 'account.data_account_type_direct_costs').id)], limit=1).id
+        self.purchase_journal_id = self.env['account.journal'].search(
+            [('type', '=', 'purchase')], limit=1).id
 
     def set_sequence_journal_selfinvoice(self, invoice_number, dt):
         inv_seq = self.journal_selfinvoice.sequence_id
@@ -46,7 +48,7 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
 
     def set_bill_sequence(self, invoice_number, dt):
         seq_pool = self.env['ir.sequence']
-        inv_seq = seq_pool.search([('name', '=', 'BILL Sequence')])[0]
+        inv_seq = seq_pool.search([('name', '=', 'Vendor Bills')], limit=1)
         seq_date = self.env['ir.sequence.date_range'].search([
             ('sequence_id', '=', inv_seq.id),
             ('date_from', '<=', dt),
@@ -65,7 +67,8 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
             'account_id': self.invoice_account,
             'type': 'in_invoice',
             'date_invoice': '2020-12-01',
-            'reference': 'EU-SUPPLIER-REF'
+            'reference': 'EU-SUPPLIER-REF',
+            'journal_id': self.purchase_journal_id,
         })
 
         invoice_line_vals = {
@@ -95,7 +98,7 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
         res = self.run_wizard(invoice.rc_self_invoice_id.id)
         attachment = self.attach_model.browse(res['res_id'])
         self.set_e_invoice_file_id(attachment, 'IT10538570960_00002.xml')
-        xml_content = base64.decodebytes(attachment.datas)
+        xml_content = base64.b64decode(attachment.datas)
         self.check_content(
             xml_content, 'IT10538570960_00002.xml', "l10n_it_fatturapa_out_rc")
 
@@ -133,7 +136,8 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
             'account_id': self.invoice_account,
             'type': 'in_invoice',
             'date_invoice': '2020-12-01',
-            'reference': 'EU-SUPPLIER-REF'
+            'reference': 'EU-SUPPLIER-REF',
+            'journal_id': self.purchase_journal_id,
         })
 
         invoice_line_vals = {
@@ -164,6 +168,7 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
             'type': 'in_refund',
             'date_invoice': '2020-12-01',
             'reference': 'EU-SUPPLIER-REF',
+            'journal_id': self.purchase_journal_id,
         })
         self.assertEqual(
             invoice.fiscal_document_type_id.code, "TD04")
@@ -194,7 +199,7 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
         res = self.run_wizard(invoice.rc_self_invoice_id.id)
         attachment = self.attach_model.browse(res['res_id'])
         self.set_e_invoice_file_id(attachment, 'IT10538570960_00003.xml')
-        xml_content = base64.decodebytes(attachment.datas)
+        xml_content = base64.b64decode(attachment.datas)
         self.check_content(
             xml_content, 'IT10538570960_00003.xml', "l10n_it_fatturapa_out_rc")
 
@@ -207,7 +212,8 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
             'account_id': self.invoice_account,
             'type': 'in_invoice',
             'date_invoice': '2020-12-01',
-            'reference': 'EXEU-SUPPLIER-REF'
+            'reference': 'EXEU-SUPPLIER-REF',
+            'journal_id': self.purchase_journal_id,
         })
 
         invoice_line_vals = {
@@ -237,6 +243,6 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
         res = self.run_wizard(invoice.rc_self_invoice_id.id)
         attachment = self.attach_model.browse(res['res_id'])
         self.set_e_invoice_file_id(attachment, 'IT10538570960_00004.xml')
-        xml_content = base64.decodebytes(attachment.datas)
+        xml_content = base64.b64decode(attachment.datas)
         self.check_content(
             xml_content, 'IT10538570960_00004.xml', "l10n_it_fatturapa_out_rc")
