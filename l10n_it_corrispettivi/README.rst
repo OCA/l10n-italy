@@ -98,6 +98,7 @@ Authors
 
 * Odoo Italian Community
 * Agile Business Group
+* AIR s.r.l.
 
 Contributors
 ~~~~~~~~~~~~
@@ -106,6 +107,7 @@ Contributors
 * Simone Rubino <simone.rubino@agilebg.com>
 * Sergio Zanchetta <https://github.com/primes2h>
 * Giovanni Serra <giovanni@gslab.it>
+* Kevin Poli <kevin.poli@air-srl.com>
 
 Maintainers
 ~~~~~~~~~~~
@@ -120,6 +122,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_corrispettivi>`_ project on GitHub.
+This module is part of the `AIR/l10n-italy <https://github.com/airsrl/l10n-italy/tree/14.0/l10n_it_corrispettivi>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
