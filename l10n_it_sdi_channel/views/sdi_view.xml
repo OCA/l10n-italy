@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_sdi_channel_tree" model="ir.ui.view">
+        <field name="model">sdi.channel</field>
+        <field name="name">view_sdi_channel_tree</field>
+        <field name="arch" type="xml">
+            <tree string="ES Channel">
+                <field name="name" />
+                <field name="channel_type" />
+                <field name="pec_server_id" />
+                <field name="fetch_pec_server_id" />
+                <field name="email_exchange_system" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sdi_channel_form" model="ir.ui.view">
+        <field name="model">sdi.channel</field>
+        <field name="name">view_sdi_channel_form</field>
+        <field name="arch" type="xml">
+            <form string="ES Channel">
+                <header>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="channel_type" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                        <newline />
+                        <group attrs="{'invisible': [('channel_type', '!=', 'pec')]}">
+                            <field name="first_invoice_sent" />
+                            <field
+                                name="pec_server_id"
+                                context="{'default_is_fatturapa_pec': True}"
+                                attrs="{'required': [('channel_type', '=', 'pec')]}"
+                            />
+                            <field
+                                name="email_exchange_system"
+                                attrs="{'required': [('channel_type', '=', 'pec')]}"
+                            />
+                            <div
+                                colspan="2"
+                                attrs="{'invisible': [('first_invoice_sent', '=', True)]}"
+                            >The ES email address must be changed ather the first invoice sent. After that, you have to set here the address indicated by the ES</div>
+                            <field
+                                name="fetch_pec_server_id"
+                                context="{'default_is_fatturapa_pec': True}"
+                                attrs="{'required': [('channel_type', '=', 'pec')]}"
+                            />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sdi_channel" model="ir.actions.act_window">
+        <field name="name">ES Channel</field>
+        <field name="res_model">sdi.channel</field>
+        <field name="view_id" ref="view_sdi_channel_tree" />
+    </record>
+
+    <menuitem
+        id="menu_sdi_channel"
+        name="ES Channels"
+        action="action_sdi_channel"
+        parent="account.account_account_menu"
+        groups="account.group_account_manager"
+        sequence="50"
+    />
+</odoo>
