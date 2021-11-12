@@ -460,32 +460,17 @@ class AccountInvoiceIntrastat(models.Model):
 
     @api.model
     def compute_statement_section(self, intrastat_code_type, invoice_type):
-        section = False
-        # Purchase
-        if invoice_type in ("in_invoice", "in_refund"):
-            if intrastat_code_type == "good":
-                if invoice_type == "in_invoice":
-                    section = "purchase_s1"
-                else:
-                    section = "purchase_s2"
-            else:
-                if invoice_type == "in_invoice":
-                    section = "purchase_s3"
-                else:
-                    section = "purchase_s4"
-        # Sale
-        elif invoice_type in ("out_invoice", "out_refund"):
-            if intrastat_code_type == "good":
-                if invoice_type == "out_invoice":
-                    section = "sale_s1"
-                else:
-                    section = "sale_s2"
-            else:
-                if invoice_type == "out_invoice":
-                    section = "sale_s3"
-                else:
-                    section = "sale_s4"
-        return section
+        section_spec = {
+            ("in_invoice", "good"): "purchase_s1",
+            ("in_refund", "good"): "purchase_s2",
+            ("in_invoice", "service"): "purchase_s3",
+            ("in_refund", "service"): "purchase_s4",
+            ("out_invoice", "good"): "sale_s1",
+            ("out_refund", "good"): "sale_s2",
+            ("out_invoice", "service"): "sale_s3",
+            ("out_refund", "service"): "sale_s4",
+        }
+        return section_spec.get((invoice_type, intrastat_code_type))
 
     @api.model
     def _get_partner_data(self, partner):
