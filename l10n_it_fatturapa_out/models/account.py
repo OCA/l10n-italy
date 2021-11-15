@@ -81,7 +81,9 @@ class AccountInvoice(models.Model):
                     )
                 )
 
-            if not all(aml.tax_ids for aml in invoice.invoice_line_ids):
+            if not all(
+                aml.tax_ids for aml in invoice.invoice_line_ids if aml.product_id
+            ):
                 raise UserError(
                     _("Invoice %s contains product lines w/o taxes") % invoice.name
                 )
