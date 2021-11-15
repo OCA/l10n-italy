@@ -16,6 +16,7 @@
         "l10n_it_fatturapa",
         "sale_management",
     ],
+    "excludes": ["sale_order_action_invoice_create_hook"],
     "data": [
         "views/related_document_type_views.xml",
         "views/sale_order_line_views.xml",
