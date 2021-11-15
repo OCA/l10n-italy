@@ -671,6 +671,35 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, "IT06363391001_00012.xml")
 
+    def test_no_tax_fail(self):
+        """
+        - create an invoice with a product line without taxes
+
+        expect to fail with a proper message
+        """
+        invoice_form = Form(
+            self.env["account.move"].with_context({"default_move_type": "out_invoice"})
+        )
+        invoice_form.partner_id = self.res_partner_fatturapa_0
+        with invoice_form.line_ids.new() as line_form:
+            line_form.product_id = self.product_product_10
+            line_form.account_id = self.a_sale
+            line_form.tax_ids.clear()
+        with invoice_form.line_ids.new() as line_form:
+            line_form.display_type = "line_note"
+            line_form.name = "just a note"
+            line_form.account_id = self.env["account.account"]
+        invoice = invoice_form.save()
+        invoice.action_post()
+
+        wizard = self.wizard_model.create({})
+        with self.assertRaises(UserError) as ue:
+            wizard.with_context({"active_ids": [invoice.id]}).exportFatturaPA()
+        error_message = "Invoice {} contains product lines w/o taxes".format(
+            invoice.name
+        )
+        self.assertEqual(ue.exception.args[0], error_message)
+
     def test_multicompany_fail(self):
         """
         - create two invoices in two different companies
