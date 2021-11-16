@@ -4,6 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests import tagged
+from odoo.tests.common import Form
 
 from odoo.addons.account.tests.test_account_account import TestAccountAccount
 
@@ -233,3 +234,44 @@ class TestSP(TestAccountAccount):
                 self.assertEqual(line.credit, 100)
         self.assertTrue(vat_line)
         self.assertTrue(credit_line)
+
+    def test_balanced_lines(self):
+        self.assertTrue(self.tax22sp.is_split_payment)
+
+        invoice_form = Form(
+            self.move_model.with_context(default_move_type="out_invoice")
+        )
+        invoice_form.invoice_date = self.recent_date
+        invoice_form.partner_id = self.env.ref("base.res_partner_3")
+        invoice_form.journal_id = self.sales_journal
+        invoice_form.fiscal_position_id = self.sp_fp
+
+        with invoice_form.invoice_line_ids.new() as line_form:
+            line_form.name = "service"
+            line_form.account_id = self.a_sale
+            line_form.quantity = 1
+            line_form.price_unit = 100
+            line_form.tax_ids.clear()
+            line_form.tax_ids.add(self.tax22sp)
+
+        invoice = invoice_form.save()
+        self.assertTrue(invoice.split_payment)
+        self.assertEqual(invoice.amount_sp, 22)
+        self.assertEqual(invoice.amount_total, 100)
+        self.assertEqual(invoice.amount_residual, 100)
+        self.assertEqual(invoice.amount_tax, 0)
+
+        with invoice_form.invoice_line_ids.new() as line_form:
+            line_form.name = "service"
+            line_form.account_id = self.a_sale
+            line_form.quantity = 1
+            line_form.price_unit = 100
+            line_form.tax_ids.clear()
+            line_form.tax_ids.add(self.tax22sp)
+
+        invoice = invoice_form.save()
+        self.assertTrue(invoice.split_payment)
+        self.assertEqual(invoice.amount_sp, 44)
+        self.assertEqual(invoice.amount_total, 200)
+        self.assertEqual(invoice.amount_residual, 200)
+        self.assertEqual(invoice.amount_tax, 0)
