@@ -42,7 +42,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">
+                    <td>
                         <h6>Carrier</h6>
                         <div class="signature" t-field="ddt.carrier_id.name"></div>
                     </td>
@@ -61,6 +61,10 @@
                     <td>
                         <h6>Size</h6>
                         <div class="signature"><span t-field="ddt.volume"/> <span t-field="ddt.volume_uom_id"/></div>
+                    </td>
+                    <td>
+                        <h6>Dimension</h6>
+                        <div class="signature" t-field="ddt.dimension"></div>
                     </td>
                 </tr>
             </table>
