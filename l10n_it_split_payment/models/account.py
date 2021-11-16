@@ -31,19 +31,17 @@ class AccountMove(models.Model):
     def _compute_amount(self):
         super()._compute_amount()
         for move in self:
-            move.amount_sp = 0
-            if move.fiscal_position_id.split_payment:
-                move.amount_sp = move.amount_tax
-                move.amount_tax = 0
-            move.amount_total = move.amount_untaxed + move.amount_tax
-
-            if move.fiscal_position_id.split_payment:
+            if move.split_payment:
                 if move.is_purchase_document():
                     raise UserError(
                         _("Can't handle supplier invoices with split payment")
                     )
-                else:
-                    move._compute_split_payments()
+                move.amount_sp = move.amount_tax
+                move.amount_tax = 0.0
+                move.amount_total = move.amount_untaxed
+                move._compute_split_payments()
+            else:
+                move.amount_sp = 0.0
 
     def _build_debit_line(self):
         if not self.company_id.sp_account_id:
@@ -59,13 +57,16 @@ class AccountMove(models.Model):
             "account_id": self.company_id.sp_account_id.id,
             "journal_id": self.journal_id.id,
             "date": self.invoice_date,
+            "price_unit": -self.amount_sp,
+            "amount_currency": self.amount_sp,
             "debit": self.amount_sp,
-            "credit": 0,
+            "credit": 0.0,
             "exclude_from_invoice_tab": True,
             "is_split_payment": True,
         }
         if self.move_type == "out_refund":
-            vals["debit"] = 0
+            vals["amount_currency"] = -self.amount_sp
+            vals["debit"] = 0.0
             vals["credit"] = self.amount_sp
         return vals
 
@@ -86,10 +87,13 @@ class AccountMove(models.Model):
                         self.amount_total * line_client.debit
                     ) / inv_total
                 else:
-                    receivable_line_amount = 0
+                    receivable_line_amount = 0.0
                 line_client.with_context(check_move_validity=False).update(
                     {
                         "price_unit": -receivable_line_amount,
+                        "amount_currency": receivable_line_amount,
+                        "debit": receivable_line_amount,
+                        "credit": 0.0,
                     }
                 )
         elif self.move_type == "out_refund":
@@ -100,10 +104,13 @@ class AccountMove(models.Model):
                         self.amount_total * line_client.credit
                     ) / inv_total
                 else:
-                    receivable_line_amount = 0
+                    receivable_line_amount = 0.0
                 line_client.with_context(check_move_validity=False).update(
                     {
                         "price_unit": -receivable_line_amount,
+                        "amount_currency": -receivable_line_amount,
+                        "debit": 0.0,
+                        "credit": receivable_line_amount,
                     }
                 )
 
@@ -111,26 +118,48 @@ class AccountMove(models.Model):
         write_off_line_vals = self._build_debit_line()
         line_sp = self.line_ids.filtered(lambda l: l.is_split_payment)
         if line_sp:
-            if self.move_type == "out_invoice" and float_compare(
-                line_sp[0].debit,
-                write_off_line_vals["debit"],
-                precision_rounding=self.currency_id.rounding,
+            if (
+                self.move_type == "out_invoice"
+                and float_compare(
+                    line_sp.price_unit,
+                    write_off_line_vals["price_unit"],
+                    precision_rounding=self.currency_id.rounding,
+                )
+                != 0
             ):
-                line_sp[0].with_context(check_move_validity=False).update({"debit": 0})
+                line_sp.with_context(check_move_validity=False).update(
+                    {
+                        "price_unit": 0.0,
+                        "amount_currency": 0.0,
+                        "debit": 0.0,
+                        "credit": 0.0,
+                    }
+                )
                 self.set_receivable_line_ids()
-                line_sp[0].debit = write_off_line_vals["debit"]
-            elif self.move_type == "out_refund" and float_compare(
-                line_sp[0].credit,
-                write_off_line_vals["credit"],
-                precision_rounding=self.currency_id.rounding,
+                line_sp.write(write_off_line_vals)
+            elif (
+                self.move_type == "out_refund"
+                and float_compare(
+                    line_sp.price_unit,
+                    write_off_line_vals["price_unit"],
+                    precision_rounding=self.currency_id.rounding,
+                )
+                != 0
             ):
-                line_sp[0].with_context(check_move_validity=False).update({"credit": 0})
+                line_sp.with_context(check_move_validity=False).update(
+                    {
+                        "price_unit": 0.0,
+                        "amount_currency": 0.0,
+                        "debit": 0.0,
+                        "credit": 0.0,
+                    }
+                )
                 self.set_receivable_line_ids()
-                line_sp[0].credit = write_off_line_vals["credit"]
+                line_sp.write(write_off_line_vals)
         else:
             self.set_receivable_line_ids()
             if self.amount_sp:
-                self.line_ids = [(0, 0, write_off_line_vals)]
+                self.invoice_line_ids = [(0, 0, write_off_line_vals)]
 
 
 class AccountMoveLine(models.Model):
