@@ -194,13 +194,17 @@ class EFatturaOut:
             SdI expects a summary for every tax mentioned in the invoice,
             even those with price_total == 0.
             """
+
+            def _key(tax_id):
+                return tax_id.id
+
             out_computed = {}
             # existing tax lines
             tax_ids = record.line_ids.filtered(lambda line: line.tax_line_id)
             for tax_id in tax_ids:
                 tax_line_id = tax_id.tax_line_id
                 aliquota = format_numbers(tax_line_id.amount)
-                key = "{}_{}".format(aliquota, tax_line_id.kind_id.code)
+                key = _key(tax_line_id)
                 out_computed[key] = {
                     "AliquotaIVA": aliquota,
                     "Natura": tax_line_id.kind_id.code,
@@ -225,7 +229,7 @@ class EFatturaOut:
                     continue
                 for tax_id in line.tax_ids:
                     aliquota = format_numbers(tax_id.amount)
-                    key = "{}_{}".format(aliquota, tax_id.kind_id.code)
+                    key = _key(tax_id)
                     if key in out_computed:
                         continue
                     if key not in out:

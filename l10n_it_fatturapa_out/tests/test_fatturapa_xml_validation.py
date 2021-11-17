@@ -7,6 +7,7 @@ import re
 
 from psycopg2 import IntegrityError
 
+from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests import Form
 from odoo.tools import mute_logger
@@ -671,6 +672,43 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, "IT06363391001_00012.xml")
 
+    def test_14_xml_export(self):
+        """
+        - create two product lines with different taxes, but same tax amount
+
+        expect two <DatiRiepilogo> entries
+        """
+
+        product_product_9 = self.env.ref("product.product_product_9")
+        tax_22b = self.tax_22.copy({"name": self.tax_22.name + "b"})
+
+        invoice_form = Form(
+            self.env["account.move"].with_context({"default_move_type": "out_invoice"})
+        )
+        invoice_form.partner_id = self.res_partner_fatturapa_0
+        invoice_form.name = "INV/2021/10/0001"
+        invoice_form.date = fields.Date.from_string("2021-10-29")
+        invoice_form.invoice_date = fields.Date.from_string("2021-10-29")
+        with invoice_form.line_ids.new() as line_form:
+            line_form.product_id = self.product_product_10
+            line_form.account_id = self.a_sale
+            line_form.tax_ids.clear()
+            line_form.tax_ids.add(self.tax_22)
+        with invoice_form.line_ids.new() as line_form:
+            line_form.product_id = product_product_9
+            line_form.account_id = self.a_sale
+            line_form.tax_ids.clear()
+            line_form.tax_ids.add(tax_22b)
+        invoice = invoice_form.save()
+        invoice.action_post()
+
+        res = self.run_wizard(invoice.id)
+        attachment = self.attach_model.browse(res["res_id"])
+        self.set_e_invoice_file_id(attachment, "IT06363391001_00014.xml")
+
+        xml_content = base64.decodebytes(attachment.datas)
+        self.check_content(xml_content, "IT06363391001_00014.xml")
+
     def test_no_tax_fail(self):
         """
         - create an invoice with a product line without taxes
@@ -715,6 +753,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         with invoice1_form.line_ids.new() as line_form:
             line_form.product_id = self.product_product_10
             line_form.account_id = self.a_sale
+            line_form.tax_ids.clear()
             line_form.tax_ids.add(self.tax_22)
         invoice1 = invoice1_form.save()
 
