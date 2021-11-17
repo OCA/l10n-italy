@@ -6,7 +6,7 @@
 
 {
     "name": "ITA - Fattura elettronica - Emissione",
-    "version": "14.0.2.0.9",
+    "version": "14.0.2.0.10",
     "development_status": "Beta",
     "category": "Localization/Italy",
     "summary": "Emissione fatture elettroniche",
