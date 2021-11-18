@@ -295,6 +295,7 @@ msgstr "Opisi blaga"
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice__dimension
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__dimension
+#: model_terms:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Dimension"
 msgstr ""
 
