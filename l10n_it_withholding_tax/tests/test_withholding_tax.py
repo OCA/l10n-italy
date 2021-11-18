@@ -278,3 +278,8 @@ class TestWithholdingTax(TransactionCase):
             line_form.invoice_line_tax_wt_ids.add(self.wt1040)
         invoice = invoice_form.save()
         self.assertTrue(invoice.invoice_line_ids.invoice_line_tax_wt_ids)
+
+    def test_duplicating_wt(self):
+        new_tax = self.wt1040.copy()
+        self.assertEqual(new_tax.code, "1040 (copy)")
+        self.assertEqual(new_tax.name, "Code 1040")
