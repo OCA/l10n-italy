@@ -38,6 +38,7 @@ setuptools.setup(
         'odoo14-addon-l10n_it_payment_reason',
         'odoo14-addon-l10n_it_pec',
         'odoo14-addon-l10n_it_rea',
+        'odoo14-addon-l10n_it_reverse_charge',
         'odoo14-addon-l10n_it_sdi_channel',
         'odoo14-addon-l10n_it_split_payment',
         'odoo14-addon-l10n_it_vat_payability',
