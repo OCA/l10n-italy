@@ -1,6 +1,6 @@
 
 ===========================================
-|icon| ITA - Gestione Cespiti 12.0.1.0.0_13
+|icon| ITA - Gestione Cespiti 12.0.1.0.0_14
 ===========================================
 
 
@@ -192,6 +192,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+12.0.1.0.0_14 (2021-11-19)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Impostato codice registro ammortamenti
+
 12.0.1.0.0_13 (2021-11-09)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -248,11 +253,6 @@ ChangeLog History / Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Gestito flag 'ammortamento indiretto' nella registrazione contabile
-
-12.0.1.0.0_2 (2021-10-22)
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Introdotto flag 'ammortamento indiretto' nei metodi di ammortamento
 
 
 
@@ -335,7 +335,7 @@ I soci fondatori sono:
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2021-11-09
+Last Update / Ultimo aggiornamento: 2021-11-19
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
@@ -394,5 +394,5 @@ Last Update / Ultimo aggiornamento: 2021-11-09
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://t.me/axitec_helpdesk
+   :target: https://t.me/Assitenza_clienti_powERP
 
