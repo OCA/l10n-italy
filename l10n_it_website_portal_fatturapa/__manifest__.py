@@ -2,13 +2,12 @@
 # Copyright 2019 Lorenzo Battistini
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
-    "name": "Italian Localization - Fattura elettronica - Portale",
+    "name": "ITA - Fattura elettronica - Portale",
     "summary": "Add fatturapa fields and checks in frontend user's details",
-    "version": "12.0.1.3.0",
+    "version": "14.0.1.0.0",
     "author": "Odoo Community Association (OCA)",
     "category": "Localization/Italy",
-    "website": "https://github.com/OCA/l10n-italy"
-    "12.0/l10n_it_website_portal_fatturapa",
+    "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
     "depends": [
         "l10n_it_fatturapa",
