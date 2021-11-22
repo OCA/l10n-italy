@@ -6,8 +6,16 @@ from odoo import fields, api, models, exceptions, _
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
     tax_stamp = fields.Boolean(
-        "Tax Stamp", readonly=False,
-        compute="_compute_tax_stamp", store=True)
+        string="Tax Stamp",
+        help="Tax stamp is applied to this invoice.",
+        readonly=False,
+        compute="_compute_tax_stamp",
+        store=True,
+    )
+    tax_stamp_line_present = fields.Boolean(
+        string="Stamp line is present in invoice",
+        compute='_compute_tax_stamp_line_present',
+    )
     auto_compute_stamp = fields.Boolean(
         related='company_id.tax_stamp_product_id.auto_compute')
     manually_apply_tax_stamp = fields.Boolean("Apply tax stamp")
@@ -82,10 +90,21 @@ class AccountInvoice(models.Model):
             inv.compute_taxes()
 
     def is_tax_stamp_line_present(self):
+        self.ensure_one()
         for l in self.invoice_line_ids:
             if l.product_id and l.product_id.is_stamp:
                 return True
         return False
+
+    @api.multi
+    @api.depends(
+        'invoice_line_ids',
+        'invoice_line_ids.product_id',
+        'invoice_line_ids.product_id.is_stamp',
+    )
+    def _compute_tax_stamp_line_present(self):
+        for invoice in self:
+            invoice.tax_stamp_line_present = invoice.is_tax_stamp_line_present()
 
     def _build_tax_stamp_lines(self, product):
         if (
@@ -140,7 +159,7 @@ class AccountInvoice(models.Model):
                     raise exceptions.Warning(
                         _('Missing tax stamp product in company settings!')
                     )
-                income_vals, expense_vals = self._build_tax_stamp_lines(
+                income_vals, expense_vals = inv._build_tax_stamp_lines(
                     stamp_product_id)
                 income_vals['move_id'] = inv.move_id.id
                 expense_vals['move_id'] = inv.move_id.id
