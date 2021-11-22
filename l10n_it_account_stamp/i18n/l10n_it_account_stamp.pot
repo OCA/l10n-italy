@@ -14,14 +14,23 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_account_stamp
-#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings_stamp
-msgid "<span class=\"o_form_label\">Configuration for Tax stamp</span>\n"
-"                            <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.invoice_form_stamp
+msgid "<span attrs=\"{'invisible': [('state', '=', 'draft')]}\">\n"
+"                                Stamp can only be charged to customer when invoice is in draft state\n"
+"                            </span>"
 msgstr ""
 
 #. module: l10n_it_account_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.invoice_form_stamp
-msgid "Add tax stamp line"
+msgid "<span attrs=\"{'invisible': [('tax_stamp_line_present', '=', False)]}\">\n"
+"                            Stamp charged to customer\n"
+"                        </span>"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings_stamp
+msgid "<span class=\"o_form_label\">Configuration for Tax stamp</span>\n"
+"                            <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
 
 #. module: l10n_it_account_stamp
@@ -34,6 +43,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__auto_compute
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__auto_compute
 msgid "Auto-compute"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.invoice_form_stamp
+msgid "Charge stamp to customer"
 msgstr ""
 
 #. module: l10n_it_account_stamp
@@ -74,21 +88,21 @@ msgid "Is a stamp"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:67
+#: code:addons/l10n_it_account_stamp/models/invoice.py:75
 #, python-format
 msgid "Missing account income configuration for %s"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:20
-#: code:addons/l10n_it_account_stamp/models/invoice.py:57
-#: code:addons/l10n_it_account_stamp/models/invoice.py:141
+#: code:addons/l10n_it_account_stamp/models/invoice.py:28
+#: code:addons/l10n_it_account_stamp/models/invoice.py:65
+#: code:addons/l10n_it_account_stamp/models/invoice.py:160
 #, python-format
 msgid "Missing tax stamp product in company settings!"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:95
+#: code:addons/l10n_it_account_stamp/models/invoice.py:114
 #, python-format
 msgid "Product %s must have income and expense accounts"
 msgstr ""
@@ -123,6 +137,11 @@ msgid "Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree 
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_invoice__tax_stamp_line_present
+msgid "Stamp line is present in invoice"
+msgstr ""
+
+#. module: l10n_it_account_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__stamp_apply_tax_ids
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__stamp_apply_tax_ids
 msgid "Stamp taxes"
@@ -140,13 +159,13 @@ msgid "Tax Stamp 2 euro"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:113
+#: code:addons/l10n_it_account_stamp/models/invoice.py:132
 #, python-format
 msgid "Tax Stamp Expense"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:100
+#: code:addons/l10n_it_account_stamp/models/invoice.py:119
 #, python-format
 msgid "Tax Stamp Income"
 msgstr ""
@@ -165,13 +184,18 @@ msgid "Tax stamp"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:52
+#: model:ir.model.fields,help:l10n_it_account_stamp.field_account_invoice__tax_stamp
+msgid "Tax stamp is applied to this invoice."
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: code:addons/l10n_it_account_stamp/models/invoice.py:60
 #, python-format
 msgid "Tax stamp is not applicable"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:61
+#: code:addons/l10n_it_account_stamp/models/invoice.py:69
 #, python-format
 msgid "Tax stamp line %s already present. Remove it first."
 msgstr ""
