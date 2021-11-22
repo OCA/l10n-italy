@@ -18,6 +18,23 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.invoice_form_stamp
+msgid ""
+"<span attrs=\"{'invisible': [('state', '=', 'draft')]}\">\n"
+"                                Stamp can only be charged to customer when "
+"invoice is in draft state\n"
+"                            </span>"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.invoice_form_stamp
+msgid ""
+"<span attrs=\"{'invisible': [('tax_stamp_line_present', '=', False)]}\">\n"
+"                            Stamp charged to customer\n"
+"                        </span>"
+msgstr ""
+
+#. module: l10n_it_account_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings_stamp
 msgid ""
 "<span class=\"o_form_label\">Configuration for Tax stamp</span>\n"
@@ -32,11 +49,6 @@ msgstr ""
 "\" role=\"img\"/>"
 
 #. module: l10n_it_account_stamp
-#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.invoice_form_stamp
-msgid "Add tax stamp line"
-msgstr "Aggiungi riga bollo"
-
-#. module: l10n_it_account_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_invoice__manually_apply_tax_stamp
 msgid "Apply tax stamp"
 msgstr ""
@@ -47,6 +59,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__auto_compute
 msgid "Auto-compute"
 msgstr "Calcolo automatico"
+
+#. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.invoice_form_stamp
+msgid "Charge stamp to customer"
+msgstr ""
 
 #. module: l10n_it_account_stamp
 #: model:ir.model,name:l10n_it_account_stamp.model_res_company
@@ -91,21 +108,21 @@ msgid "Is a stamp"
 msgstr "È un bollo"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:67
+#: code:addons/l10n_it_account_stamp/models/invoice.py:75
 #, python-format
 msgid "Missing account income configuration for %s"
 msgstr "Configurazione mancante del conto di ricavo per %s"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:20
-#: code:addons/l10n_it_account_stamp/models/invoice.py:57
-#: code:addons/l10n_it_account_stamp/models/invoice.py:141
+#: code:addons/l10n_it_account_stamp/models/invoice.py:28
+#: code:addons/l10n_it_account_stamp/models/invoice.py:65
+#: code:addons/l10n_it_account_stamp/models/invoice.py:160
 #, python-format
 msgid "Missing tax stamp product in company settings!"
 msgstr "Prodotto imposta di bollo mancante nelle impostazioni dell'azienda!"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:95
+#: code:addons/l10n_it_account_stamp/models/invoice.py:114
 #, python-format
 msgid "Product %s must have income and expense accounts"
 msgstr "È necessario impostare i conti di ricavo e di costo per il prodotto %s"
@@ -145,6 +162,11 @@ msgstr ""
 "17 giugno 2014"
 
 #. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_invoice__tax_stamp_line_present
+msgid "Stamp line is present in invoice"
+msgstr ""
+
+#. module: l10n_it_account_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__stamp_apply_tax_ids
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__stamp_apply_tax_ids
 msgid "Stamp taxes"
@@ -162,13 +184,13 @@ msgid "Tax Stamp 2 euro"
 msgstr "Imposta di bollo 2 euro"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:113
+#: code:addons/l10n_it_account_stamp/models/invoice.py:132
 #, python-format
 msgid "Tax Stamp Expense"
 msgstr "Costo imposta di bollo"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:100
+#: code:addons/l10n_it_account_stamp/models/invoice.py:119
 #, python-format
 msgid "Tax Stamp Income"
 msgstr "Ricavo imposta di bollo"
@@ -187,13 +209,18 @@ msgid "Tax stamp"
 msgstr "Imposta di bollo"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:52
+#: model:ir.model.fields,help:l10n_it_account_stamp.field_account_invoice__tax_stamp
+msgid "Tax stamp is applied to this invoice."
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: code:addons/l10n_it_account_stamp/models/invoice.py:60
 #, python-format
 msgid "Tax stamp is not applicable"
 msgstr "Imposta di bollo non applicabile"
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/invoice.py:61
+#: code:addons/l10n_it_account_stamp/models/invoice.py:69
 #, python-format
 msgid "Tax stamp line %s already present. Remove it first."
 msgstr "Riga per l'imposta di bollo %s già presente, prima rimuoverla."
@@ -215,3 +242,6 @@ msgstr "Unità"
 #: model:product.template,weight_uom_name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
 msgid "kg"
 msgstr "kg"
+
+#~ msgid "Add tax stamp line"
+#~ msgstr "Aggiungi riga bollo"
