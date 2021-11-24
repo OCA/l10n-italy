@@ -23,6 +23,7 @@
         'views/invoice_view.xml',
         'views/product_view.xml',
         'views/company_view.xml',
+        "views/account_invoice_report.xml",
     ],
     'installable': True,
 }
