@@ -49,6 +49,13 @@ msgstr ""
 "\" role=\"img\"/>"
 
 #. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.report_invoice_document_custom_fields_ext
+msgid ""
+"<span>Imposta di bollo assolta in modo virtuale ai sensi dell'articolo 15 "
+"del DPR 642/1972 e del DM 17/06/2014</span>"
+msgstr ""
+
+#. module: l10n_it_account_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_invoice__manually_apply_tax_stamp
 msgid "Apply tax stamp"
 msgstr ""
