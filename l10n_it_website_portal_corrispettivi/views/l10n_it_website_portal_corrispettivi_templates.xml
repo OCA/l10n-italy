@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="corrispettivi_details" name="Add use_invoices" inherit_id="portal.portal_my_details">
+        <xpath expr="//div[hasclass('o_portal_details')]/div[1]/div[1]" position="after">
+            <!-- after state_id -->
+            <div class="row">
+                <div class="col-xl-6 form-group div_use_invoices">
+                    <input type="checkbox" name="use_invoices"
+                           style="width: auto; margin:0px"
+                           t-att-checked="use_invoices or not partner.use_corrispettivi"/>
+                    <label for="use_invoices" style="margin-left:5px">
+                        Request invoices
+                    </label>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
