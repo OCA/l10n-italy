@@ -266,7 +266,7 @@ class AssetDepreciation(models.Model):
             dep.update(vals)
 
     @api.multi
-    @api.depends('line_ids', 'line_ids.date', 'line_ids.move_type')
+    @api.depends('line_ids', 'line_ids', 'line_ids.date', 'line_ids.move_type')
     def _compute_last_depreciation_date(self):
         """
         Update date upon deps with at least one depreciation line (excluding

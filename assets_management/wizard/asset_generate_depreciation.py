@@ -101,11 +101,17 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
         """
         self.ensure_one()
 
+        # assets
+        # assets = list()
         # Add depreciation date in context just in case
         deps = self.get_depreciations().with_context(dep_date=self.date_dep,
                                                      final=self.final)
         for dep in deps:
             # no depreciation
+            # if dep.asset_id not in assets:
+            #     assets.append(dep.asset_id)
+            # # end if
+
             if dep.state == 'non_depreciated':
                 continue
 
@@ -156,11 +162,16 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
 
         dep_lines = deps.generate_depreciation_lines(self.date_dep)
         deps.post_generate_depreciation_lines(dep_lines)
-        if self._context.get('reload_window'):
-            return {
-                'type': 'ir.actions.client',
-                'tag': 'reload'
-            }
+
+        # for asset in assets:
+        #     asset.compute_last_depreciation_date()
+        # # end if
+
+        # if self._context.get('reload_window'):
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload'
+        }
 
     def get_depreciations(self):
         self.ensure_one()
@@ -232,7 +243,7 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
             }
 
         if self._context.get('depreciated'):
-            self.do_generate().with_context(depreciated=True)
+            return self.do_generate().with_context(depreciated=True)
         else:
-            self.do_generate()
+            return self.do_generate()
 

@@ -16,7 +16,7 @@ class Asset(models.Model):
     def get_default_company_id(self):
         return self.env.user.company_id
 
-    @api.depends('depreciation_ids')
+    @api.depends('depreciation_ids', 'depreciation_ids.line_ids')
     def compute_last_depreciation_date(self):
         for r in self:
             conf = self.env['res.company'].browse(r.company_id.id)
