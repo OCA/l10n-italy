@@ -90,6 +90,11 @@ msgid "Accounts"
 msgstr "Cuentas"
 
 #. module: account_vat_period_end_statement
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__account_ids
+msgid "Accounts filter"
+msgstr ""
+
+#. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.add_period
 msgid "Add"
 msgstr "Añadir"
@@ -212,7 +217,7 @@ msgid "Credit Account Lines"
 msgstr "Líneas de cuenta de crédito"
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:367
+#: code:addons/account_vat_period_end_statement/models/account.py:375
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__credit_vat_account_line_ids
 #, python-format
 msgid "Credit VAT"
@@ -246,7 +251,7 @@ msgid "Debit Account Lines"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:348
+#: code:addons/account_vat_period_end_statement/models/account.py:356
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__debit_vat_account_line_ids
 #, python-format
 msgid "Debit VAT"
@@ -307,7 +312,7 @@ msgid "Draft"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:462
+#: code:addons/account_vat_period_end_statement/models/account.py:470
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__interests_debit_vat_account_id
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
@@ -410,7 +415,7 @@ msgid "Last printed page"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:481
+#: code:addons/account_vat_period_end_statement/models/account.py:489
 #, python-format
 msgid "Other VAT Credits / Debits"
 msgstr ""
@@ -477,7 +482,7 @@ msgid "Periods"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:386
+#: code:addons/account_vat_period_end_statement/models/account.py:394
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__previous_credit_vat_account_id
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 #, python-format
@@ -490,7 +495,7 @@ msgid "Previous Credits VAT Amount"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:443
+#: code:addons/account_vat_period_end_statement/models/account.py:451
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__previous_debit_vat_account_id
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 #, python-format
@@ -611,7 +616,7 @@ msgid "Tax Authority Partner"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:497
+#: code:addons/account_vat_period_end_statement/models/account.py:505
 #, python-format
 msgid "Tax Authority VAT"
 msgstr ""
@@ -622,8 +627,8 @@ msgid "Tax Authority VAT Account"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:405
-#: code:addons/account_vat_period_end_statement/models/account.py:424
+#: code:addons/account_vat_period_end_statement/models/account.py:413
+#: code:addons/account_vat_period_end_statement/models/account.py:432
 #, python-format
 msgid "Tax Credits"
 msgstr ""
@@ -641,7 +646,7 @@ msgid "Tax credits Amount"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:681
+#: code:addons/account_vat_period_end_statement/models/account.py:691
 #, python-format
 msgid "The account for vat interest must be configurated"
 msgstr ""
@@ -710,7 +715,7 @@ msgid "VAT period end statement"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:336
+#: code:addons/account_vat_period_end_statement/models/account.py:344
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_date_range__vat_statement_id
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line__statement_id
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line__statement_id
@@ -743,7 +748,7 @@ msgid "Vat statement"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: code:addons/account_vat_period_end_statement/models/account.py:285
+#: code:addons/account_vat_period_end_statement/models/account.py:293
 #, python-format
 msgid "You cannot delete a confirmed or paid statement"
 msgstr ""
