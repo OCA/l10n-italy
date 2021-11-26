@@ -109,7 +109,6 @@
                 </field>
                 <field name="partner_id" position="after">
                     <field name="partner_shipping_id"
-                           domain="['|', ('id',  '=', partner_id), ('parent_id', '=', partner_id)]"
                            attrs="{'invisible':[('ddt_type_id', '=', False)], 'required':[('ddt_type_id', '!=', False)]}"/>
                 </field>
                 <field name="picking_ids" position="replace">
