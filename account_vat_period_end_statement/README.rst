@@ -23,7 +23,7 @@ ITA - Liquidazione IVA
     :target: https://runbot.odoo-community.org/runbot/122/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 **Italiano**
 
@@ -40,6 +40,7 @@ ITA - Liquidazione IVA
     E’ stato introdotto un nuovo campo per filtrare le imposte da elaborare, quindi va indicato il conto configurato nelle imposte  “Conto utilizzato per la liquidazione IVA”.
     Quindi selezionare il conto IVA debito per elaborare liquidazione iva su tutte le imposte che hanno in configurazione il conto IVA debito.  Per la liquidazione OSS invece selezionare conto  dedicato ad esempio IVA debito OSS Francia.
     E’ necessario creare un periodo di dichiarazione IVA dedicato all’OSS .
+    Per caricare invece tutte le imposte che hanno un conto per la liquidazione IVA, è sufficiente lasciare vuoto il filtro per conti.
 
     Per creare la registrazione contabile, fare clic sul pulsante 'Crea movimento', dentro la scheda 'Conti'.
     Se i termini di pagamento sono impostati viene scritta anche la scadenza (o le scadenze).
@@ -68,6 +69,7 @@ ITA - Liquidazione IVA
     A new field has been introduced to filter the taxes to be processed, so the account configured in the taxes "Account used for VAT settlement" must be indicated.
     Then select the VAT debit account to process VAT settlement on all taxes that have the VAT debit account in setup.
     For OSS settlement, on the other hand, select a dedicated account, for example, OSS debit VAT France. It is necessary to create a VAT return period dedicated to the OSS.
+    To load all taxes that have a VAT settlement account instead, just leave the filter by accounts blank.
 
     In order to generate the journal entry, click on 'Create move' button, inside the 'Accounts' tab.
     If you select a payment term, the due date(s) will be set.
@@ -104,7 +106,7 @@ Configuration
 
     #. aprire l'imposta da Fatturazione > Configurazione > Contabilità > Imposte,
     #. nella scheda 'Opzioni avanzate' selezionare il conto corretto (ad esempio IVA debito)
-       per il campo 'Conto utilizzato per la liquidazione IVA'. Se si è soggetti a liquidazione OSS indicare un con conto dedicato (ad esempio IVA debito OSS Francia)
+       per il campo 'Conto utilizzato per la liquidazione IVA'. Se si è soggetti a liquidazione OSS indicare un conto dedicato (ad esempio IVA debito OSS Francia)
 
     Per calcolare gli interessi, è possibile aggiungere le informazioni da utilizzare (conto e percentuale)
     nei dati aziendali, nella scheda 'Liquidazione IVA'.
@@ -129,6 +131,7 @@ Configuration
 
     If you need to calculate interest, you can add default information in your
     company data (percentage and account), in the 'VAT statement' tab.
+
 
 Bug Tracker
 ===========
