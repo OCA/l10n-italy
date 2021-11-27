@@ -132,6 +132,10 @@ class FatturaPACommon(AccountTestInvoicingCommon):
         self.res_partner_fatturapa_2 = self.env.ref(
             "l10n_it_fatturapa.res_partner_fatturapa_2"
         )
+        # INTRA Customer
+        self.res_partner_fatturapa_5 = self.env.ref(
+            "l10n_it_fatturapa.res_partner_fatturapa_5"
+        )
         self.intermediario = self.env.ref("l10n_it_fatturapa.res_partner_fatturapa_1")
         self.stabile_organizzazione = self.env.ref(
             "l10n_it_fatturapa.res_partner_fatturapa_3"
