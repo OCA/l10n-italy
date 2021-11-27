@@ -200,12 +200,11 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     t-if="line.admin_ref"
                     t-esc="line.admin_ref"
                 />
-                <!--                <AltriDatiGestionali>-->
-                <!--                    <TipoDato t-esc=""/>-->
-                <!--                    <RiferimentoTesto t-esc=""/>-->
-                <!--                    <RiferimentoNumero t-esc=""/>-->
-                <!--                    <RiferimentoData t-esc=""/>-->
-                <!--                </AltriDatiGestionali>-->
+                <AltriDatiGestionali
+                    t-if="tax_ids.kind_id.code == 'N2.1' and in_eu(line.move_id.partner_id)"
+                >
+                    <TipoDato>INVCONT</TipoDato>
+                </AltriDatiGestionali>
             </DettaglioLinee>
         </template>
 
