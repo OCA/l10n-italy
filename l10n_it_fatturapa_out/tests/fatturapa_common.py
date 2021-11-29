@@ -123,6 +123,7 @@ class FatturaPACommon(AccountTestInvoicingCommon):
         self.tax_22 = tax_model.create(_tax_vals("l10n_it_fatturapa.tax_22"))
         self.tax_10 = tax_model.create(_tax_vals("l10n_it_fatturapa.tax_10"))
         self.tax_22_SP = tax_model.create(_tax_vals("l10n_it_fatturapa.tax_22_SP"))
+        self.tax_00_ns = tax_model.create(_tax_vals("l10n_it_fatturapa.tax_00_ns"))
 
         self.res_partner_fatturapa_0 = self.env.ref(
             "l10n_it_fatturapa.res_partner_fatturapa_0"
