@@ -289,27 +289,27 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
             <CedentePrestatore>
                 <DatiAnagrafici>
                     <IdFiscaleIVA>
-                        <IdPaese t-esc="get_vat_country(company_id.vat)" />
-                        <IdCodice t-esc="get_vat_number(company_id.vat)" />
+                        <IdPaese t-esc="get_vat_country(partner_id.vat)" />
+                        <IdCodice t-esc="get_vat_number(partner_id.vat)" />
                     </IdFiscaleIVA>
                     <CodiceFiscale
-                        t-if="company_id.partner_id.fiscalcode"
-                        t-esc="company_id.partner_id.fiscalcode"
+                        t-if="partner_id.fiscalcode"
+                        t-esc="partner_id.fiscalcode"
                     />
                     <Anagrafica>
-                        <Denominazione t-esc="company_id.partner_id.display_name" />
+                        <Denominazione t-esc="partner_id.display_name" />
                         <Nome
-                            t-if="not company_id.partner_id.is_company"
-                            t-esc="company_id.partner_id.firstname"
+                            t-if="not partner_id.is_company"
+                            t-esc="partner_id.firstname"
                         />
                         <Cognome
-                            t-if="not company_id.partner_id.is_company"
-                            t-esc="company_id.partner_id.lastname"
+                            t-if="not partner_id.is_company"
+                            t-esc="partner_id.lastname"
                         />
                         <!--                        <Titolo t-esc=""/>-->
                         <CodEORI
-                            t-if="company_id.partner_id.eori_code"
-                            t-esc="company_id.partner_id.eori_code"
+                            t-if="partner_id.eori_code"
+                            t-esc="partner_id.eori_code"
                         />
                     </Anagrafica>
                     <!--                    <AlboProfessionale t-esc=""/>-->
@@ -321,12 +321,12 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     />
                 </DatiAnagrafici>
                 <Sede>
-                    <t t-call="l10n_it_fatturapa_out.account_invoice_it_FatturaPA_sede">
-                        <t t-set="partner_id" t-value="company_id.partner_id" />
-                    </t>
+                    <t
+                        t-call="l10n_it_fatturapa_out.account_invoice_it_FatturaPA_sede"
+                    />
                 </Sede>
                 <StabileOrganizzazione
-                    t-if="company_id.fatturapa_stabile_organizzazione"
+                    t-if="company_id and company_id.fatturapa_stabile_organizzazione"
                 >
                     <t t-call="l10n_it_fatturapa_out.account_invoice_it_FatturaPA_sede">
                         <t
@@ -336,7 +336,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     </t>
                 </StabileOrganizzazione>
                 <IscrizioneREA
-                    t-if="company_id.rea_office and company_id.rea_code and company_id.rea_liquidation_state"
+                    t-if="company_id and company_id.rea_office and company_id.rea_code and company_id.rea_liquidation_state"
                 >
                     <!--1.2.4-->
                     <Ufficio
@@ -354,7 +354,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     />
                     <StatoLiquidazione t-esc="company_id.rea_liquidation_state" />
                 </IscrizioneREA>
-                <Contatti>
+                <Contatti t-if="company_id">
                     <Telefono
                         t-if="format_phone(company_id.partner_id.phone)"
                         t-esc="format_phone(company_id.partner_id.phone)"
@@ -366,7 +366,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     <Email t-if="company_id.email" t-esc="company_id.email" />
                 </Contatti>
                 <RiferimentoAmministrazione
-                    t-if="company_id.fatturapa_pub_administration_ref"
+                    t-if="company_id and company_id.fatturapa_pub_administration_ref"
                     t-esc="company_id.fatturapa_pub_administration_ref"
                 />
             </CedentePrestatore>
@@ -694,7 +694,9 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     />
                     <t
                         t-call="l10n_it_fatturapa_out.account_invoice_it_cedente_prestatore"
-                    />
+                    >
+                        <t t-set="partner_id" t-value="company_id.partner_id" />
+                    </t>
                     <t
                         t-call="l10n_it_fatturapa_out.account_invoice_it_rappresentante_fiscale"
                     />
