@@ -186,7 +186,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                 />
                 <Natura
                     t-if="line.display_type in ('line_section', 'line_note') and list(all_taxes[line.move_id.id].values())[0].get('Natura')"
-                    t-esc="list(all_taxes[line.move_id].values())[0]['Natura']"
+                    t-esc="list(all_taxes[line.move_id.id].values())[0]['Natura']"
                 />
                 <RiferimentoAmministrazione
                     t-if="line.admin_ref"
