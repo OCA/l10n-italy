@@ -109,14 +109,15 @@ class FatturaPACommon(AccountTestInvoicingCommon):
                 )
                 for rpl in tax.refund_repartition_line_ids
             ]
-            return {
-                "name": tax.name,
-                "description": tax.description,
-                "amount": tax.amount,
-                "type_tax_use": tax.type_tax_use,
-                "invoice_repartition_line_ids": invoice_rpls,
-                "refund_repartition_line_ids": refund_rpls,
-            }
+            tax_values = tax.copy_data()[0]
+            tax_values.update(
+                {
+                    "company_id": self.env.company.id,
+                    "invoice_repartition_line_ids": invoice_rpls,
+                    "refund_repartition_line_ids": refund_rpls,
+                }
+            )
+            return tax_values
 
         tax_model = self.env["account.tax"]
         self.tax_22 = tax_model.create(_tax_vals("l10n_it_fatturapa.tax_22"))
