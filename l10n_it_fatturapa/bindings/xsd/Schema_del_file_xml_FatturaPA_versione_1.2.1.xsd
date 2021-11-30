@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
 	xmlns:ds="http://www.w3.org/2000/09/xmldsig#" 
 	xmlns="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2" 
@@ -89,7 +89,7 @@
   <xs:complexType name="ContattiTrasmittenteType">
     <xs:sequence>
       <xs:element name="Telefono" type="TelFaxType" minOccurs="0" />
-      <xs:element name="Email"    type="EmailType"  minOccurs="0" />      
+      <xs:element name="Email"    type="EmailContattiType"  minOccurs="0" />      
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="DatiGeneraliType">
@@ -185,6 +185,8 @@
       <xs:enumeration value="W" />
       <xs:enumeration value="X" />
       <xs:enumeration value="Y" />
+<!-- IL CODICE SEGUENTE (Z) NON SARA' PIU' VALIDO PER LE FATTURE EMESSE A PARTIRE DAL PRIMO GENNAIO 2021-->
+      <xs:enumeration value="Z" />
       <xs:enumeration value="L1" />
       <xs:enumeration value="M1" />
       <xs:enumeration value="M2" />
@@ -388,7 +390,7 @@
       </xs:enumeration>
       <xs:enumeration value="TD20">
         <xs:annotation>
-          <xs:documentation>Autofattura per regolarizzazione e integrazione delle fatture (ex art.6 c.8 d.lgs.471/97 o art.46 c.5 D.L. 331/93</xs:documentation>
+          <xs:documentation>Autofattura per regolarizzazione e integrazione delle fatture (ex art.6 c.8 e 9-bis d.lgs.471/97 o art.46 c.5 D.L. 331/93</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TD21">
@@ -408,12 +410,12 @@
       </xs:enumeration>
       <xs:enumeration value="TD24">
         <xs:annotation>
-          <xs:documentation>Fattura differita di cui all'art.21, comma 4, lett. a)</xs:documentation>
+          <xs:documentation>Fattura differita di cui all'art.21, comma 4, terzo periodo lett. a) DPR 633/72</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TD25">
         <xs:annotation>
-          <xs:documentation>Fattura differita di cui all'art.21, comma 4, terzo periodo lett. b)</xs:documentation>
+          <xs:documentation>Fattura differita di cui all'art.21, comma 4, terzo periodo lett. b) DPR 633/72</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="TD26">
@@ -699,7 +701,7 @@
     <xs:sequence>
       <xs:element name="Telefono" type="TelFaxType" minOccurs="0" />
       <xs:element name="Fax"      type="TelFaxType" minOccurs="0" />
-      <xs:element name="Email"    type="EmailType"  minOccurs="0" />
+      <xs:element name="Email"    type="EmailContattiType"  minOccurs="0" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="RappresentanteFiscaleType">
@@ -1061,10 +1063,10 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="N1">
         <xs:annotation>
-          <xs:documentation>Escluse ex. art. 15</xs:documentation>
+          <xs:documentation>Escluse ex. art. 15 del D.P.R. 633/1972</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
-<!-- IL CODICE SEGUENTE (N2) NON SARA' PIU' VALIDO A PARTIRE DAL PRIMO GENNAIO 2021-->
+<!-- IL CODICE SEGUENTE (N2) NON SARA' PIU' VALIDO PER LE FATTURE EMESSE A PARTIRE DAL PRIMO GENNAIO 2021-->
       <xs:enumeration value="N2">
         <xs:annotation>
           <xs:documentation>Non soggette</xs:documentation>
@@ -1080,7 +1082,7 @@
           <xs:documentation>Non soggette - altri casi</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
-<!-- IL CODICE SEGUENTE (N3) NON SARA' PIU' VALIDO A PARTIRE DAL PRIMO GENNAIO 2021-->
+<!-- IL CODICE SEGUENTE (N3) NON SARA' PIU' VALIDO PER LE FATTURE EMESSE A PARTIRE DAL PRIMO GENNAIO 2021-->
       <xs:enumeration value="N3">
         <xs:annotation>
           <xs:documentation>Non imponibili</xs:documentation>
@@ -1126,7 +1128,7 @@
           <xs:documentation>Regime del margine/IVA non esposta in fattura</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
-<!-- IL CODICE SEGUENTE (N6) NON SARA' PIU' VALIDO A PARTIRE DAL PRIMO GENNAIO 2021-->
+<!-- IL CODICE SEGUENTE (N6) NON SARA' PIU' VALIDO PER LE FATTURE EMESSE A PARTIRE DAL PRIMO GENNAIO 2021-->
       <xs:enumeration value="N6">
         <xs:annotation>
           <xs:documentation>Inversione contabile (per le operazioni in reverse charge ovvero nei casi di autofatturazione per acquisti extra UE di servizi ovvero per importazioni di beni nei soli casi previsti)</xs:documentation>
@@ -1139,7 +1141,7 @@
       </xs:enumeration>
       <xs:enumeration value="N6.2">
         <xs:annotation>
-          <xs:documentation>Inversione contabile - cessione di oro e argento puro</xs:documentation>
+          <xs:documentation>Inversione contabile - cessione di oro e argento ai sensi della legge 7/2000 nonché di oreficeria usata ad OPO</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="N6.3">
@@ -1179,7 +1181,7 @@
       </xs:enumeration>
       <xs:enumeration value="N7">
         <xs:annotation>
-          <xs:documentation>IVA assolta in altro stato UE (vendite a distanza ex art. 40 commi 3 e 4 e art. 41 comma 1 lett. b, DL 331/93; prestazione di servizi di telecomunicazioni, tele-radiodiffusione ed elettronici ex art. 7-sexies lett. f, g, DPR 633/72 e art. 74-sexies, DPR 633/72)</xs:documentation>
+          <xs:documentation>IVA assolta in altro stato UE (prestazione di servizi di telecomunicazioni, tele-radiodiffusione ed elettronici ex art. 7-sexies lett. f, g, art. 74-sexies DPR 633/72)</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
     </xs:restriction>
@@ -1361,7 +1363,14 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="EmailType">
-    <xs:restriction base="xs:normalizedString">
+    <xs:restriction base="xs:token">
+      <xs:maxLength value="256" />
+      <xs:pattern value="([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|&quot;(\[\]!#-[^-~ \t]|(\\[\t -~]))+&quot;)@([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*\])" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="EmailContattiType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="7" />
       <xs:maxLength value="256" />
       <xs:pattern value=".+@.+[.]+.+" />
     </xs:restriction>
