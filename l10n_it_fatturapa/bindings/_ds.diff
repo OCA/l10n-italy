@@ -31,7 +31,7 @@ index ea52682e..d6e5a7ca 100644
 +    _logger.debug(err)
 +
  # Unique identifier for bindings created at the same time
- _GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:f33a6cc4-abea-11ea-89e6-e09467884037')
+ _GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:7b7e2a22-51cf-11ec-b0cc-ec5c6864f137')
 
 @@ -25,9 +34,6 @@ if pyxb.__version__ != _PyXBVersion:
  # inside class definitions where property names may conflict.
