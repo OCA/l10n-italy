@@ -136,6 +136,10 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
         </template>
 
         <template id="account_invoice_line_it_FatturaPA">
+            <t
+                t-set="line_is_section_note"
+                t-value="line.display_type in ('line_section', 'line_note')"
+            />
             <t t-set="tax_ids" t-value="line.tax_ids and line.tax_ids[0]" />
             <DettaglioLinee>
                 <NumeroLinea t-esc="line_counter" />
@@ -168,25 +172,29 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                 />
                 <PrezzoTotale t-esc="format_monetary(line.price_subtotal, currency)" />
                 <AliquotaIVA
-                    t-if="not line.display_type in ('line_section', 'line_note')"
+                    t-if="not line_is_section_note"
                     t-esc="format_numbers(tax_ids.amount)"
                 />
                 <!-- Common best practice for note/section lines is to reference an existing tax line.
                 The price for note/section lines is zero anyway. The original tax is ignored as
                 it defaults to the company default tax which may or may not be present in
                 the invoice.-->
+                <t
+                    t-set="existing_tax_line"
+                    t-value="list(all_taxes[line.move_id.id].values())[0]"
+                />
                 <AliquotaIVA
-                    t-if="line.display_type in ('line_section', 'line_note')"
-                    t-esc="list(all_taxes[line.move_id.id].values())[0]['AliquotaIVA']"
+                    t-if="line_is_section_note"
+                    t-esc="existing_tax_line['AliquotaIVA']"
                 />
                 <t t-call="l10n_it_fatturapa_out.account_invoice_line_ritenuta" />
                 <Natura
-                    t-if="not line.display_type in ('line_section', 'line_note') and tax_ids.kind_id.code"
+                    t-if="not line_is_section_note and tax_ids.kind_id.code"
                     t-esc="tax_ids.kind_id.code"
                 />
                 <Natura
-                    t-if="line.display_type in ('line_section', 'line_note') and list(all_taxes[line.move_id.id].values())[0].get('Natura')"
-                    t-esc="list(all_taxes[line.move_id].values())[0]['Natura']"
+                    t-if="line_is_section_note and existing_tax_line.get('Natura')"
+                    t-esc="existing_tax_line['Natura']"
                 />
                 <RiferimentoAmministrazione
                     t-if="line.admin_ref"
