@@ -27,6 +27,7 @@
         "data/riba_sequence.xml",
         "report/report.xml",
         "security/ir.model.access.csv",
+        "security/ir_rule.xml",
         "views/wizard_accreditation.xml",
         "views/wizard_unsolved.xml",
         "views/riba_view.xml",
