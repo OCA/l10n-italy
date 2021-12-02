@@ -20,6 +20,7 @@
                         name="company_id"
                         widget="selection"
                         groups="base.group_multi_company"
+                        readonly="1"
                     />
                 </group>
                 <group
