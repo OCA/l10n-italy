@@ -4,7 +4,7 @@
 {
     "name": "ITA - POS - Codice fiscale",
     "summary": "Gestione codice fiscale del cliente all'interno "
-               "dell'interfaccia del POS",
+    "dell'interfaccia del POS",
     "version": "12.0.1.0.1",
     "development_status": "Beta",
     "category": "Point Of Sale",
@@ -18,10 +18,8 @@
         "point_of_sale",
         "l10n_it_fiscalcode",
     ],
-    'qweb': [
-        'static/src/xml/pos.xml'
-    ],
-    'data': [
-        'views/assets.xml',
+    "qweb": ["static/src/xml/pos.xml"],
+    "data": [
+        "views/assets.xml",
     ],
 }
