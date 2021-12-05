@@ -1,31 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
 
-    <t t-extend="ClientDetails">
-        <t t-jquery=".client-details-right" t-operation="append">
+    <t t-name="ClientDetailsEditAddFc" t-inherit="point_of_sale.ClientDetailsEdit" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('client-details-right')]/div[hasclass('client-detail')][5]" position="after">
             <div class='client-detail'>
                 <span class='label'>F.C.</span>
-                <t t-if='partner.fiscalcode'>
-                    <span class='detail fiscalcode'><t
-                            t-esc='partner.fiscalcode'
-                        /></span>
-                </t>
-                <t t-if='!partner.fiscalcode'>
-                    <span class='detail fiscalcode empty'>N/A</span>
-                </t>
+                <input class='detail fiscalcode' name='fiscalcode'
+                        t-on-change="captureChange" t-att-value='props.partner.fiscalcode || ""'/>
             </div>
-        </t>
-    </t>
-    <t t-extend="ClientDetailsEdit">
-        <t t-jquery=".client-details-right" t-operation="append">
-            <div class='client-detail'>
-                <span class='label'>F.C.</span>
-                <input
-                    class='detail fiscalcode'
-                    name='fiscalcode'
-                    t-att-value='partner.fiscalcode || ""'
-                />
-            </div>
-        </t>
+        </xpath>
     </t>
 </templates>

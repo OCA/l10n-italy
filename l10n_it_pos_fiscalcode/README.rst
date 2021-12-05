@@ -23,7 +23,7 @@ ITA - POS - Codice fiscale
     :target: https://runbot.odoo-community.org/runbot/122/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 **Italiano**
 
@@ -57,6 +57,7 @@ Contributors
 ~~~~~~~~~~~~
 
 * Lorenzo Battistini <https://github.com/eLBati>
+* Andrea Ilari <https://github.com/ilsoft71>
 
 Maintainers
 ~~~~~~~~~~~
@@ -77,8 +78,8 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-eLBati| 
+|maintainer-eLBati|
 
-This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_pos_fiscalcode>`_ project on GitHub.
+This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_pos_fiscalcode>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
