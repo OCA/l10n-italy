@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2019-12-21 15:02+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2021-12-06 12:36+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_33074100
@@ -37278,7 +37278,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_min_amount
 msgid "Min amount"
-msgstr "Ammontare min."
+msgstr "Importo min."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.711233
@@ -43758,7 +43758,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__partner_id
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_invoice_intrastat_search
 msgid "Partner"
-msgstr "Partner"
+msgstr "Contatto"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__country_partner_id
