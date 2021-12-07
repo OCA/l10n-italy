@@ -428,3 +428,106 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
 
         xml_content = attachment.datas.decode('base64')
         self.check_content(xml_content, 'IT06363391001_00009.xml')
+
+
+class TestFatturaPAXMLMaxNumber(FatturaPACommon):
+
+    def setUp(self):
+        super(TestFatturaPAXMLMaxNumber, self).setUp()
+
+    def _create_invoice(self, partner):
+        invoice = self.invoice_model.create({
+            'date_invoice': '2021-01-01',
+            'partner_id': partner.id,
+            'journal_id': self.sales_journal.id,
+            'account_id': self.a_recv.id,
+            'payment_term_id': self.account_payment_term.id,
+            'user_id': self.user_demo.id,
+            'type': 'out_invoice',
+            'currency_id': self.EUR.id,
+            'invoice_line_ids': [
+                (0, 0, {
+                    'account_id': self.a_sale.id,
+                    'product_id': self.product_product_10.id,
+                    'name': 'Mouse\nOptical',
+                    'quantity': 1,
+                    'uom_id': self.product_uom_unit.id,
+                    'price_unit': 10,
+                    'invoice_line_tax_ids': [(6, 0, {
+                        self.tax_22.id})]
+                }),
+                (0, 0, {
+                    'account_id': self.a_sale.id,
+                    'product_id': self.product_order_01.id,
+                    'name': 'Zed+ Antivirus',
+                    'quantity': 1,
+                    'uom_id': self.product_uom_unit.id,
+                    'price_unit': 4,
+                    'invoice_line_tax_ids': [(6, 0, {
+                        self.tax_22.id})]
+                })],
+        })
+        return invoice
+
+    def test_unlimited(self):
+        """Check that when both partner and company do not have any max value,
+        only one attachment is created."""
+
+        # pre-condition: partner and company do not have any max value
+        company = self.company
+        self.assertEqual(company.max_invoice_in_xml, 0)
+        partner = self.res_partner_fatturapa_0
+        self.assertEqual(partner.max_invoice_in_xml, 0)
+
+        # Create two invoices
+        invoices = self.invoice_model.browse()
+        for _ in range(2):
+            invoices |= self._create_invoice(partner)
+        invoices.action_invoice_open()
+        self.run_wizard(invoices.ids)
+
+        # Check that only one attachment is created
+        attachments_nbr = len(invoices.mapped('fatturapa_attachment_out_id'))
+        self.assertEqual(attachments_nbr, 1)
+
+    def test_partner(self):
+        """Check that when partner has a max value, company value is ignored and
+        many attachments are created."""
+
+        # pre-condition: partner has a value
+        company = self.company
+        self.assertEqual(company.max_invoice_in_xml, 0)
+        partner = self.res_partner_fatturapa_0
+        partner.max_invoice_in_xml = 1
+
+        # Create two invoices
+        invoices = self.invoice_model.browse()
+        for _ in range(2):
+            invoices |= self._create_invoice(partner)
+        invoices.action_invoice_open()
+        self.run_wizard(invoices.ids)
+
+        # Check that two attachments are created
+        attachments_nbr = len(invoices.mapped('fatturapa_attachment_out_id'))
+        self.assertEqual(attachments_nbr, 2)
+
+    def test_company(self):
+        """Check that when company has a max value and partner does not,
+        many attachments are created."""
+
+        # pre-condition: only company has a value
+        company = self.company
+        company.max_invoice_in_xml = 1
+        partner = self.res_partner_fatturapa_0
+        self.assertEqual(partner.max_invoice_in_xml, 0)
+
+        # Create two invoices
+        invoices = self.invoice_model.browse()
+        for _ in range(2):
+            invoices |= self._create_invoice(partner)
+        invoices.action_invoice_open()
+        self.run_wizard(invoices.ids)
+
+        # Check that two attachments are created
+        attachments_nbr = len(invoices.mapped('fatturapa_attachment_out_id'))
+        self.assertEqual(attachments_nbr, 2)

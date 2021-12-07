@@ -866,10 +866,12 @@ class WizardExportFatturapa(models.TransientModel):
                 res[invoice.partner_id] = []
             res[invoice.partner_id].append(invoice.id)
 
+        company = self.env.user.company_id
+        company_max_invoice = company.max_invoice_in_xml
         for partner_id in res.keys():
-            if partner_id.max_invoice_in_xml:
-                res[partner_id] = list(
-                    split_list(res[partner_id], partner_id.max_invoice_in_xml))
+            max_invoice = partner_id.max_invoice_in_xml or company_max_invoice
+            if max_invoice:
+                res[partner_id] = list(split_list(res[partner_id], max_invoice))
             else:
                 res[partner_id] = [res[partner_id]]
 

@@ -13,7 +13,9 @@ class ResPartner(models.Model):
         string='Max Invoice # in XML',
         default=lambda self: self.env.user.company_id.max_invoice_in_xml,
         help="Maximum number of invoices to group in a single "
-             "XML file. 0=Unlimited")
+             "XML file.\n"
+             "If this is 0, then the number configured "
+             "in the account settings is considered.")
 
     @api.constrains('max_invoice_in_xml')
     def _validate_max_invoice_in_xml(self):
