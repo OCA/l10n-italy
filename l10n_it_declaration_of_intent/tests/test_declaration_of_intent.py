@@ -1,4 +1,5 @@
 # Copyright 2017 Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+# Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime, timedelta
@@ -340,6 +341,15 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
     def test_fiscal_position_no_declaration(self):
         self.invoice4._onchange_date_invoice()
         self.assertEqual(self.invoice4.fiscal_position_id.id, self.fiscal_position2.id)
+
+    def test_multiple_invoices(self):
+        """Check that validating multiple invoices
+        when there is no valid declaration raises an error."""
+        self.declaration1.unlink()
+        invoices = self.invoice1 | self.invoice2
+        with self.assertRaises(UserError) as ue:
+            invoices.action_post()
+        self.assertIn("Declaration of intent not found", ue.exception.args[0])
 
     def test_invoice_vendor_with_no_effect_on_declaration(self):
         previous_used_amount = self.declaration4.used_amount

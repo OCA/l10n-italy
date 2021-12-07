@@ -112,6 +112,9 @@ Contributors
 -  Arcadio Pinto <pinto.a@stesi.eu>
 -  Alex Comba <alex.comba@agilebg.com>
 -  Michele Rusticucci <michele.rusticucci@agilebg.com>
+-  `Aion Tech <https://aiontech.company/>`__:
+
+   -  Simone Rubino <simone.rubino@aion-tech.it>
 
 Maintainers
 -----------
