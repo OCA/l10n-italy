@@ -240,3 +240,12 @@ class TestDichiarazioneIntento(TransactionCase):
 
     def test_invoice_creation_without_date_invoice(self):
         self._create_invoice(self.partner1, with_date_invoice=False)
+
+    def test_multiple_invoices(self):
+        """Check that validating multiple invoices
+        when there is no valid declaration raises an error."""
+        self.dichiarazione1.unlink()
+        invoices = self.invoice1 | self.invoice2
+        with self.assertRaises(UserError) as ue:
+            invoices.action_invoice_open()
+        self.assertIn('Declaration of intent not found', ue.exception.name)
