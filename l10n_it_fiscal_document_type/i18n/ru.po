@@ -52,13 +52,19 @@ msgid "Customer Invoice"
 msgstr "Счет"
 
 #. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_fiscal_position__display_name
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_journal__display_name
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_move__display_name
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__display_name
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_bank_statement_line__fiscal_document_type_id
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_fiscal_position__fiscal_document_type_id
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_invoice__fiscal_document_type_id
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_move__fiscal_document_type_id
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_payment__fiscal_document_type_id
 msgid "Fiscal Document Type"
 msgstr ""
 
@@ -76,12 +82,21 @@ msgid "Fiscal Position"
 msgstr ""
 
 #. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__refund_fiscal_document_type_id
+msgid "Fiscal document for refund"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
 #: model:ir.model,name:l10n_it_fiscal_document_type.model_fiscal_document_type
 msgid "Fiscal document type"
 msgstr ""
 
 #. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_fiscal_position__id
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_journal__id
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_move__id
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__id
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner__id
 msgid "ID"
 msgstr "ID"
 
@@ -92,19 +107,19 @@ msgid "In Fiscal Document Type"
 msgstr ""
 
 #. module: l10n_it_fiscal_document_type
-#: model:ir.model,name:l10n_it_fiscal_document_type.model_account_invoice
-msgid "Invoice"
-msgstr "Счет"
-
-#. module: l10n_it_fiscal_document_type
 #: model:ir.model,name:l10n_it_fiscal_document_type.model_account_journal
 msgid "Journal"
 msgstr ""
 
 #. module: l10n_it_fiscal_document_type
-#: code:addons/l10n_it_fiscal_document_type/models/journal.py:17
+#: code:addons/l10n_it_fiscal_document_type/models/journal.py:0
 #, python-format
 msgid "Journal %s can be linked to only 1 fiscal document type (found in %s)"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model,name:l10n_it_fiscal_document_type.model_account_move
+msgid "Journal Entry"
 msgstr ""
 
 #. module: l10n_it_fiscal_document_type
@@ -113,7 +128,11 @@ msgid "Journals"
 msgstr ""
 
 #. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_fiscal_position____last_update
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_journal____last_update
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_move____last_update
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type____last_update
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -152,6 +171,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__in_refund
 msgid "Vendor Credit Note"
 msgstr ""
+
+#~ msgid "Invoice"
+#~ msgstr "Счет"
 
 #~ msgid "Partner"
 #~ msgstr "Контрагент"
