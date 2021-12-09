@@ -1,3 +1,5 @@
+import datetime
+
 from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.tests.common import Form
@@ -195,3 +197,40 @@ class TestAccount(AccountTestInvoicingCommon):
         self.assertEqual(tax.balance, -22)
         self.assertEqual(tax.deductible_balance, 0)
         self.assertEqual(tax.undeductible_balance, -22)
+
+    def test_partially_deductible_balance_recomputation(self):
+        """Check that deductible and not deductible balances
+        are computed correctly for different dates."""
+        today = fields.Date.today()
+        self.init_invoice(
+            "in_invoice",
+            partner=self.env.ref("base.res_partner_12"),
+            invoice_date=today,
+            post=True,
+            amounts=[100],
+            taxes=self.iva_22I5,
+        )
+        tomorrow = today + datetime.timedelta(days=1)
+        self.init_invoice(
+            "in_invoice",
+            partner=self.env.ref("base.res_partner_12"),
+            invoice_date=tomorrow,
+            post=True,
+            amounts=[200],
+            taxes=self.iva_22I5,
+        )
+
+        # Check today's balance
+        self.check_date_balance(self.iva_22I5, today, -11, -11)
+
+        # Check tomorrow's balance
+        self.check_date_balance(self.iva_22I5, tomorrow, -22, -22)
+
+    def check_date_balance(self, tax, date, deductible, not_deductible):
+        """Compare expected balances with tax's balance in specified date."""
+        tax = tax.with_context(
+            from_date=date,
+            to_date=date,
+        )
+        self.assertEqual(tax.deductible_balance, deductible)
+        self.assertEqual(tax.undeductible_balance, not_deductible)
