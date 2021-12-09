@@ -1,6 +1,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class AccountTax(models.Model):
@@ -28,6 +28,12 @@ class AccountTax(models.Model):
         string="Undeductible Balance", compute="_compute_undeductible_balance"
     )
 
+    @api.depends_context(
+        "from_date",
+        "to_date",
+        "company_ids",
+        "target_move",
+    )
     def _compute_deductible_balance(self):
         for tax in self:
             account_ids = (
@@ -42,6 +48,12 @@ class AccountTax(models.Model):
             )
             tax.deductible_balance = balance_regular + balance_refund
 
+    @api.depends_context(
+        "from_date",
+        "to_date",
+        "company_ids",
+        "target_move",
+    )
     def _compute_undeductible_balance(self):
         for tax in self:
             account_ids = (
