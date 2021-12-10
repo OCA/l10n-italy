@@ -128,7 +128,7 @@
                 <filter
                     name="to_register"
                     string="To Register"
-                    domain="[('registered','=',False)]"
+                    domain="[('registered','=',False), ('is_self_invoice','=',False)]"
                 />
             </search>
         </field>
