@@ -108,7 +108,7 @@
                 <search>
                     <field name="name"/>
                     <field name="xml_supplier_id"/>
-                    <filter name="to_register" string="To Register" domain="[('registered','=',False)]"/>
+                    <filter name="to_register" string="To Register" domain="[('registered','=',False), ('is_self_invoice','=',False)]"/>
                     <filter name="registered" string="Registered" domain="[('registered','=',True)]"/>
 
                     <group expand="0" string="Group By" name="group_by">
