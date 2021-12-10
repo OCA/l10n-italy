@@ -1,6 +1,8 @@
 from odoo import _, api, fields, models
 from odoo.tools import format_date
 
+SELF_INVOICE_TYPES = ("TD16", "TD17", "TD18", "TD19", "TD20", "TD21")
+
 
 class FatturaPAAttachmentIn(models.Model):
     _name = "fatturapa.attachment.in"
@@ -49,6 +51,10 @@ class FatturaPAAttachmentIn(models.Model):
         compute="_compute_e_invoice_validation_error"
     )
 
+    is_self_invoice = fields.Boolean(
+        "Contains self invoices", compute="_compute_xml_data", store=True
+    )
+
     _sql_constraints = [
         (
             "ftpa_attachment_in_name_uniq",
@@ -92,6 +98,7 @@ class FatturaPAAttachmentIn(models.Model):
             att.invoices_number = False
             att.invoices_total = False
             att.invoices_date = False
+            att.is_self_invoice = False
             if not att.ir_attachment_id.datas:
                 continue
             wiz_obj = self.env["wizard.import.fatturapa"].with_context(
@@ -113,6 +120,8 @@ class FatturaPAAttachmentIn(models.Model):
                 )
                 if invoice_date not in invoices_date:
                     invoices_date.append(invoice_date)
+                if dgd.TipoDocumento in SELF_INVOICE_TYPES:
+                    att.is_self_invoice = True
             att.invoices_date = " ".join(invoices_date)
 
     @api.depends("in_invoice_ids")
