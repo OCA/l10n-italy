@@ -514,7 +514,7 @@ class AccountMove(models.Model):
                 ctx.update({
                     'default_amount': amount_net_pay_residual
                 })
-            res.update(ctx)
+            res.update({'context': ctx})
         return res
 
 
