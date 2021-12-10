@@ -48,6 +48,7 @@ setuptools.setup(
         'odoo14-addon-l10n_it_vat_registries_split_payment',
         'odoo14-addon-l10n_it_vat_statement_communication',
         'odoo14-addon-l10n_it_vat_statement_split_payment',
+        'odoo14-addon-l10n_it_website_portal_ipa',
         'odoo14-addon-l10n_it_withholding_tax',
         'odoo14-addon-l10n_it_withholding_tax_payment',
         'odoo14-addon-l10n_it_withholding_tax_reason',
