@@ -3,6 +3,8 @@
 import base64
 from odoo import fields, models, api, _
 
+SELF_INVOICE_TYPES = ("TD16", "TD17", "TD18", "TD19", "TD20", "TD21")
+
 
 class FatturaPAAttachmentIn(models.Model):
     _name = "fatturapa.attachment.in"
@@ -37,6 +39,9 @@ class FatturaPAAttachmentIn(models.Model):
 
     e_invoice_validation_message = fields.Text(
         compute='_compute_e_invoice_validation_error')
+    is_self_invoice = fields.Boolean(
+        "Contains self invoices", compute="_compute_xml_data", store=True
+    )
 
     linked_invoice_id_xml = fields.Char(
         compute="_compute_linked_invoice_id_xml", store=True)
@@ -96,11 +101,15 @@ class FatturaPAAttachmentIn(models.Model):
             att.xml_supplier_id = partner_id
             att.invoices_number = len(fatt.FatturaElettronicaBody)
             att.invoices_total = 0
+            att.is_self_invoice = False
             for invoice_body in fatt.FatturaElettronicaBody:
                 att.invoices_total += float(
                     invoice_body.DatiGenerali.DatiGeneraliDocumento.
                     ImportoTotaleDocumento or 0
                 )
+                if invoice_body.DatiGenerali.DatiGeneraliDocumento.TipoDocumento \
+                    in SELF_INVOICE_TYPES:
+                    att.is_self_invoice = True
 
     @api.multi
     @api.depends('in_invoice_ids')
