@@ -94,7 +94,7 @@ msgid "Date Range"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:149
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:151
 #, python-format
 msgid "Date already printed"
 msgstr ""
@@ -205,8 +205,8 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: l10n_it_central_journal
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:135
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:154
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:137
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:156
 #, python-format
 msgid "No documents found in the current selection"
 msgstr "No se han encontrado documentos en la selección actual"
