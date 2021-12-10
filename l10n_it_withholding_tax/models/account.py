@@ -504,11 +504,15 @@ class AccountMove(models.Model):
         Set net to pay how default amount to pay
         """
         res = super().action_register_payment()
-        if self.withholding_tax_amount and self.amount_net_pay_residual:
+        amount_net_pay_residual = 0
+        for am in self:
+            if am.withholding_tax_amount:
+                amount_net_pay_residual += am.amount_net_pay_residual
+        if amount_net_pay_residual:
             ctx = res.get('context', {})
             if ctx:
                 ctx.update({
-                    'default_amount': self.amount_net_pay_residual
+                    'default_amount': amount_net_pay_residual
                 })
             res.update(ctx)
         return res
