@@ -506,7 +506,7 @@ class AccountMove(models.Model):
         res = super().action_register_payment()
         amount_net_pay_residual = 0
         for am in self:
-            if am.withholding_tax_amount and am.amount_net_pay_residual:
+            if am.withholding_tax_amount:
                 amount_net_pay_residual += am.amount_net_pay_residual
         if amount_net_pay_residual:
             ctx = res.get('context', {})
