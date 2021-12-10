@@ -768,6 +768,12 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.carrier_id.vat, "IT04102770965")
 
+    def test_51_xml_import(self):
+        res = self.run_wizard("test51", "IT02780790107_11008.xml")
+        invoice_ids = res.get("domain")[0][2]
+        invoice = self.invoice_model.browse(invoice_ids)
+        self.assertTrue(invoice.fatturapa_attachment_in_id.is_self_invoice)
+
     def test_01_xml_link(self):
         """
         E-invoice lines are created.
