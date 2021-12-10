@@ -27,7 +27,7 @@ addon | version | maintainers | summary
 [l10n_it_ateco](l10n_it_ateco/) | 10.0.1.0.0 |  | Ateco codes
 [l10n_it_base_location_geonames_import](l10n_it_base_location_geonames_import/) | 10.0.1.0.0 |  | Import base_location entries (provinces) from Geonames
 [l10n_it_causali_pagamento](l10n_it_causali_pagamento/) | 10.0.2.0.0 |  | Aggiunge la tabella delle causali di pagamento da usare ad esempio nelle ritenute d'acconto
-[l10n_it_central_journal](l10n_it_central_journal/) | 10.0.1.0.2 |  | Italian Localization - Account central journal
+[l10n_it_central_journal](l10n_it_central_journal/) | 10.0.1.0.3 |  | Italian Localization - Account central journal
 [l10n_it_codici_carica](l10n_it_codici_carica/) | 10.0.1.0.0 |  | Aggiunge la tabella dei codici carica da usare nei dichiarativi fiscali italiani
 [l10n_it_corrispettivi](l10n_it_corrispettivi/) | 10.0.1.2.4 |  | Italian Localization - Corrispettivi
 [l10n_it_corrispettivi_sale](l10n_it_corrispettivi_sale/) | 10.0.1.0.3 |  | Modulo per integrare i corrispettivi in odoo con gli ordini di vendita.
