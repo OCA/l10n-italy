@@ -87,6 +87,12 @@ class AccountInvoice(models.Model):
                 raise UserError(
                     _("Invoice %s contains product lines w/o taxes") % invoice.name
                 )
+            company_id = invoice.company_id
+            if company_id.vat != company_id.partner_id.vat:
+                raise UserError(
+                    _("Invoice %s: company and company partner must have same vat")
+                    % invoice.name
+                )
         return
 
     def action_invoice_cancel(self):
