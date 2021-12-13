@@ -86,7 +86,7 @@ class AccountMove(models.Model):
             self.partner_id.display_name,
             self.ref or "",
             self.date,
-            self.sequence_number,
+            self.name,
         )
         return {
             "partner_id": partner.id,
