@@ -99,7 +99,7 @@ class EFatturaOut:
                 return number
             return False
 
-        def format_price(line):
+        def format_price(line, sign=1):
             res = line.price_unit
             if line.tax_ids and line.tax_ids[0].price_include:
                 res = line.price_unit / (1 + (line.tax_ids[0].amount / 100))
@@ -115,7 +115,9 @@ class EFatturaOut:
                 res = -res
 
             # XXX arrotondamento?
-            res = "{prezzo:.{precision}f}".format(prezzo=res, precision=price_precision)
+            res = "{prezzo:.{precision}f}".format(
+                prezzo=sign * res, precision=price_precision
+            )
             return res
 
         def format_quantity(line):
