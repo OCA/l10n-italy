@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-20 11:38+0000\n"
-"PO-Revision-Date: 2020-01-07 11:13+0000\n"
+"PO-Revision-Date: 2021-12-14 09:37+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_needaction
@@ -399,8 +399,8 @@ msgid ""
 "Click on <strong>Compute</strong> to assign the fiscal document type to the "
 "invoices of communication's <strong>period</strong>."
 msgstr ""
-"Fare click su <strong>Calcola</strong> per assegnare il tipo di documento "
-"fiscale delle fatture del  <strong>periodo</strong> della comunicazione."
+"Fare clic su <strong>Calcola</strong> per assegnare il tipo di documento "
+"fiscale delle fatture del <strong>periodo</strong> della comunicazione."
 
 #. module: l10n_it_invoices_data_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_dati_iva_export_file
