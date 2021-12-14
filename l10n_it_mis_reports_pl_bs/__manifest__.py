@@ -2,11 +2,12 @@
 {
     "name": "ITA - MIS builder - Bilancio civilistico",
     "summary": 'Modelli "MIS Builder" per il conto economico e lo stato patrimoniale',
-    "author": "Dinamiche Aziendali srl," "Odoo Community Association (OCA)",
+    "author": "Dinamiche Aziendali srl, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
-    "category": "Reporting",
-    "version": "12.0.1.0.1",
+    "category": "Localization/Italy",
+    "version": "14.0.1.0.0",
     "license": "AGPL-3",
+    "maintainers": ["As400it"],
     "depends": [
         "mis_builder",
     ],

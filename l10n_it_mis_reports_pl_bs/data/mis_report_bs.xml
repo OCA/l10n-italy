@@ -891,7 +891,7 @@
       <field name="description">1) deposit accounts</field>
       <field
                 name="expression"
-            >(bals[182001] if bals[182001] > 0 else 0) + (bals[183001] if bals[183001] > 0 else 0)</field>
+            >pbals[182001]+ pbals[182002] + pbals[182003]+ pbals[182004]+ pbals[183001]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
@@ -1386,7 +1386,7 @@
       <field name="description">4) bank financing</field>
       <field
                 name="expression"
-            >(bals[24%])+ (-bals[182001] if -bals[182001] > 0 else 0) + (-bals[183001] if -bals[183001] > 0 else 0)</field>
+            >(bals[24%])+ (-nbals[182001])+ (-nbals[182002])+ (-nbals[182003])+ (-nbals[182004]) + (-nbals[183001])</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
