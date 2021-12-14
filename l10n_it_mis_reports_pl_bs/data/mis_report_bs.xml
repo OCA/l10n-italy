@@ -1,234 +1,281 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2015-2020 Dinamiche Aziendali srl
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
   <data noupdate="0">
     <record model="mis.report" id="mis_report_bs">
       <field name="name">EEC Financial Statements - Balance Sheet</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_base"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_base" />
     </record>
 
       <record model="mis.report.kpi" id="mis_report_bsa">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">balancesheet</field>
       <field name="description">BALANCE SHEET ASSETS</field>
-      <field name="expression"></field>
+      <field name="expression" />
       <field name="type">str</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_1"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_1" />
       <field name="sequence">1</field>
     </record>
 
     <record model="mis.report.kpi" id="mis_report_bsa_a">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_a</field>
-      <field name="description">A) RECEIVABLES FROM SHAREHOLDERS FOR SHARE CAPITAL</field>
+      <field
+                name="description"
+            >A) RECEIVABLES FROM SHAREHOLDERS FOR SHARE CAPITAL</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_1"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_1" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">5</field>
     </record>
 
 
     <record model="mis.report.kpi" id="mis_report_bsa_b">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_b</field>
       <field name="description">B) FIXED ASSETS</field>
-      <field name="expression"></field>
+      <field name="expression" />
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2" />
       <field name="sequence">10</field>
     </record>
     <record model="mis.report.kpi" id="mis_report_bsa_bi">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_bi</field>
       <field name="description">I) Intangible fixed assets</field>
-      <field name="expression"></field>
+      <field name="expression" />
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2i"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2i" />
       <field name="sequence">15</field>
     </record>
     <record model="mis.report.kpi" id="mis_report_bsa_bi1">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_bi1</field>
       <field name="description">1) start-up costs</field>
       <field name="expression">bals[1101%,1111%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">21</field>
     </record>
     <record model="mis.report.kpi" id="mis_report_bsa_bi2">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_bi2</field>
       <field name="description">2) research, development and advertising costs</field>
       <field name="expression">bals[00%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">22</field>
     </record>
     <record model="mis.report.kpi" id="mis_report_bsa_bi3">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_bi3</field>
-      <field name="description">3) industrial patents and similar intellectual property rights</field>
+      <field
+                name="description"
+            >3) industrial patents and similar intellectual property rights</field>
       <field name="expression">bals[1106%,1116%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">23</field>
     </record>
     <record model="mis.report.kpi" id="mis_report_bsa_bi4">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_bi4</field>
-      <field name="description">4) concessions, licenses, trademarks and similar rights</field>
+      <field
+                name="description"
+            >4) concessions, licenses, trademarks and similar rights</field>
       <field name="expression">bals[00%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">24</field>
     </record>
     <record model="mis.report.kpi" id="mis_report_bsa_bi5">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_bi5</field>
       <field name="description">5) goodwill</field>
       <field name="expression">bals[1108%,1118%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">25</field>
     </record>
     <record model="mis.report.kpi" id="mis_report_bsa_bi6">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_bi6</field>
       <field name="description">6) under construction and advances</field>
       <field name="expression">bals[00%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">26</field>
     </record>
     <record model="mis.report.kpi" id="mis_report_bsa_bi7">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_bi7</field>
       <field name="description">7) other intangible fixed asset</field>
       <field name="expression">bals[00%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">27</field>
     </record>
 
     <record model="mis.report.kpi" id="mis_report_bsa_bit">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_bit</field>
       <field name="description">Total Intangible fixed assets</field>
       <field name="expression">+a_bi1 +a_bi2 +a_bi3 +a_bi4 +a_bi5 +a_bi6 +a_bi7</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2" />
       <field name="sequence">28</field>
     </record>
 
     <record model="mis.report.kpi" id="mis_report_bsa_bii">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_bii</field>
       <field name="description">II) Tangible Fixed Assets</field>
-      <field name="expression"></field>
+      <field name="expression" />
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2i"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2i" />
       <field name="sequence">30</field>
     </record>
 
 <record model="mis.report.kpi" id="mis_report_bsa_bii1">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_bii1</field>
       <field name="description">1) land and buildings</field>
       <field name="expression">bals[1201%,1211%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">31</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_bii2">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_bii2</field>
       <field name="description">2) plants and machinery</field>
       <field name="expression">bals[1202%,1212%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">32</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_bii3">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_bii3</field>
       <field name="description">3) industrial and commercial equipment</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">33</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_bii4">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_bii4</field>
       <field name="description">4) other tangible fixed assets</field>
-      <field name="expression">bals[1204%,1205%,1206%,1207%,1208%,1214%,1215%,1216%,1217%,1218%]</field>
+      <field
+                name="expression"
+            >bals[1204%,1205%,1206%,1207%,1208%,1214%,1215%,1216%,1217%,1218%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">34</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_bii5">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_bii5</field>
       <field name="description">5) under construction and advances</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">35</field>
     </record>
 
      <record model="mis.report.kpi" id="mis_report_bsa_biit">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_biit</field>
       <field name="description">Total Tangible Fixed Assets</field>
       <field name="expression">+a_bii1 +a_bii2 +a_bii3 +a_bii4 +a_bii5</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2i"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2i" />
       <field name="sequence">38</field>
     </record>
 
@@ -236,395 +283,470 @@
 
 
     <record model="mis.report.kpi" id="mis_report_bsa_biii">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_biii</field>
       <field name="description">III) Financial fixed assets</field>
-      <field name="expression"></field>
+      <field name="expression" />
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2i"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2i" />
       <field name="sequence">40</field>
     </record>
 
     <record model="mis.report.kpi" id="mis_report_bsa_biii1">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_biii1</field>
       <field name="description">1) Investments in:</field>
       <field name="expression">+a_biii1a +a_biii1b +a_biii1c +a_biii1d</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="sequence">41</field>
     </record>
 
 <record model="mis.report.kpi" id="mis_report_bsa_biii1a">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_biii1a</field>
       <field name="description">a) subsidiaries</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">42</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_biii1b">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_biii1b</field>
       <field name="description">b) associates</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">43</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_biii1c">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_biii1c</field>
       <field name="description">c) parents</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">44</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_biii1d">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_biii1d</field>
       <field name="description">d) other companies</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">45</field>
     </record>
 
     <record model="mis.report.kpi" id="mis_report_bsa_biii2">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_biii2</field>
       <field name="description">2) Receivables:</field>
       <field name="expression">+a_biii2a+a_biii2b+a_biii2c+a_biii2d</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="sequence">46</field>
     </record>
 
 <record model="mis.report.kpi" id="mis_report_bsa_biii2a">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_biii2a</field>
       <field name="description">a) from subsidiaries</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">47</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_biii2b">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_biii2b</field>
       <field name="description">b) from associates</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">48</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_biii2c">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_biii2c</field>
       <field name="description">c) from parents</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">49</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_biii2d">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_biii2d</field>
       <field name="description">d) from others</field>
       <field name="expression">bals[1301%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">50</field>
     </record>
 
    <record model="mis.report.kpi" id="mis_report_bsa_biii3">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_biii3</field>
       <field name="description">3) other securities</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">51</field>
     </record>
    <record model="mis.report.kpi" id="mis_report_bsa_biii4">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_biii4</field>
       <field name="description">4) treasury shares</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">52</field>
     </record>
 
 
    <record model="mis.report.kpi" id="mis_report_bsa_biiit">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_biiit</field>
       <field name="description">Total Financial fixed assets</field>
       <field name="expression">+a_biii1 +a_biii2 +a_biii3 +a_biii4</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2i"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2i" />
       <field name="sequence">55</field>
     </record>
 
     <record model="mis.report.kpi" id="mis_report_bsa_bt">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_bt</field>
       <field name="description">Total Fixed assets (B)</field>
       <field name="expression">+a_bit +a_biit +a_biiit</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2" />
       <field name="sequence">58</field>
     </record>
 
     <record model="mis.report.kpi" id="mis_report_bsa_c">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_c</field>
       <field name="description">C) CURRENT ASSETS</field>
-      <field name="expression"></field>
+      <field name="expression" />
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2" />
       <field name="sequence">60</field>
     </record>
 
     <record model="mis.report.kpi" id="mis_report_bsa_ci">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_ci</field>
       <field name="description">I) Inventory</field>
-      <field name="expression"></field>
+      <field name="expression" />
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2i"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2i" />
       <field name="sequence">61</field>
     </record>
    <record model="mis.report.kpi" id="mis_report_bsa_ci1">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_ci1</field>
       <field name="description">1) raw materials and consumables</field>
       <field name="expression">bals[1401%,1404%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">62</field>
     </record>
    <record model="mis.report.kpi" id="mis_report_bsa_ci2">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_ci2</field>
       <field name="description">2) work in process</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-       <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+       <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">63</field>
     </record>
    <record model="mis.report.kpi" id="mis_report_bsa_ci3">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_ci3</field>
       <field name="description">3) work in process on long-term contracts</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-       <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+       <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">64</field>
     </record>
    <record model="mis.report.kpi" id="mis_report_bsa_ci4">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_ci4</field>
       <field name="description">4) finished goods and merchandise</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-       <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+       <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">65</field>
     </record>
    <record model="mis.report.kpi" id="mis_report_bsa_ci5">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_ci5</field>
       <field name="description">5) advances</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-       <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+       <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">66</field>
     </record>
 
     <record model="mis.report.kpi" id="mis_report_bsa_cit">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_cit</field>
       <field name="description">Total Inventory</field>
       <field name="expression">+a_ci1 +a_ci2 +a_ci3 +a_ci4 +a_ci5</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2i"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2i" />
       <field name="sequence">68</field>
     </record>
 
 
 
     <record model="mis.report.kpi" id="mis_report_bsa_cii">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_cii</field>
       <field name="description">II) Receivables</field>
-      <field name="expression"></field>
+      <field name="expression" />
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2i"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2i" />
       <field name="sequence">70</field>
     </record>
   <record model="mis.report.kpi" id="mis_report_bsa_cii1">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_cii1</field>
       <field name="description">1) from customers</field>
       <field name="expression">bals[150%,151%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">71</field>
     </record>
   <record model="mis.report.kpi" id="mis_report_bsa_cii2">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_cii2</field>
       <field name="description">2) from subsidiaries</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">72</field>
     </record>
   <record model="mis.report.kpi" id="mis_report_bsa_cii3">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_cii3</field>
       <field name="description">3) from associates</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">73</field>
     </record>
   <record model="mis.report.kpi" id="mis_report_bsa_cii4">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_cii4</field>
       <field name="description">4) from parents</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">74</field>
     </record>
   <record model="mis.report.kpi" id="mis_report_bsa_cii5">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_cii5</field>
-      <field name="description">5) from companies subject to control by the parent companies</field>
+      <field
+                name="description"
+            >5) from companies subject to control by the parent companies</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">75</field>
     </record>
   <record model="mis.report.kpi" id="mis_report_bsa_cii5bis">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_cii5bis</field>
       <field name="description">5bis) tax receivables</field>
-      <field name="expression">(bals[160100]) + (bals[1602%]) + (bals[1605%]) + (bals[1607%]) + (bals[1608%]) + (bals[1609%]) + (bals[161%])  </field>
+      <field
+                name="expression"
+            >(bals[160100]) + (bals[1602%]) + (bals[1605%]) + (bals[1607%]) + (bals[1608%]) + (bals[1609%]) + (bals[161%])  </field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">76</field>
     </record>
 
   <record model="mis.report.kpi" id="mis_report_bsa_cii5ter">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_cii5ter</field>
       <field name="description">5ter) deferred tax assets</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">77</field>
     </record>
   <record model="mis.report.kpi" id="mis_report_bsa_cii5quater">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_cii5quater</field>
       <field name="description">5Quater) from others</field>
       <field name="expression">bals[1410%, 1531%, 154%, 162%, 163%, 164%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">78</field>
     </record>
 
     <record model="mis.report.kpi" id="mis_report_bsa_ciit">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_ciit</field>
       <field name="description">Total Receivables</field>
-      <field name="expression">+a_cii1 +a_cii2 +a_cii3 +a_cii4 +a_cii5 +a_cii5bis +a_cii5ter +a_cii5quater </field>
+      <field
+                name="expression"
+            >+a_cii1 +a_cii2 +a_cii3 +a_cii4 +a_cii5 +a_cii5bis +a_cii5ter +a_cii5quater </field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2i"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2i" />
       <field name="sequence">79</field>
     </record>
 
@@ -632,98 +754,120 @@
 
 
     <record model="mis.report.kpi" id="mis_report_bsa_ciii">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_ciii</field>
       <field name="description">III) Current financial assets</field>
-      <field name="expression">+a_ciii1 +a_ciii2 +a_ciii3 +a_ciii4 +a_ciii5 +a_ciii6 </field>
+      <field
+                name="expression"
+            >+a_ciii1 +a_ciii2 +a_ciii3 +a_ciii4 +a_ciii5 +a_ciii6 </field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2i"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2i" />
       <field name="sequence">80</field>
     </record>
 
  <record model="mis.report.kpi" id="mis_report_bsa_ciii1">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_ciii1</field>
       <field name="description">1) investments in subsidiaries</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">81</field>
     </record>
  <record model="mis.report.kpi" id="mis_report_bsa_ciii2">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_ciii2</field>
       <field name="description">2) investments in associates</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">82</field>
     </record>
  <record model="mis.report.kpi" id="mis_report_bsa_ciii3">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_ciii3</field>
       <field name="description">3) investments in parents</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">83</field>
     </record>
  <record model="mis.report.kpi" id="mis_report_bsa_ciii4">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_ciii4</field>
       <field name="description">4) other investments</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">84</field>
     </record>
  <record model="mis.report.kpi" id="mis_report_bsa_ciii5">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_ciii5</field>
       <field name="description">5) treasury shares</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-     <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+     <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">85</field>
     </record>
  <record model="mis.report.kpi" id="mis_report_bsa_ciii6">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_ciii6</field>
       <field name="description">6) other securities</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-     <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+     <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">86</field>
     </record>
 
 
     <record model="mis.report.kpi" id="mis_report_bsa_ciiit">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_ciiit</field>
       <field name="description">Total Current financial assets</field>
-      <field name="expression">+a_ciii1 +a_ciii2 +a_ciii3 +a_ciii4 +a_ciii5 +a_ciii6 </field>
+      <field
+                name="expression"
+            >+a_ciii1 +a_ciii2 +a_ciii3 +a_ciii4 +a_ciii5 +a_ciii6 </field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2i"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2i" />
       <field name="sequence">88</field>
     </record>
 
@@ -732,295 +876,346 @@
 
 
     <record model="mis.report.kpi" id="mis_report_bsa_civ">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_civ</field>
       <field name="description">IV) Cash and cash equivalents</field>
       <field name="expression">+a_civ1 +a_civ2 +a_civ3 </field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2i"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2i" />
       <field name="sequence">90</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_civ1">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_civ1</field>
       <field name="description">1) deposit accounts</field>
-      <field name="expression">(bals[182001] if bals[182001] > 0 else 0) + (bals[183001] if bals[183001] > 0 else 0)</field>
+      <field
+                name="expression"
+            >(bals[182001] if bals[182001] > 0 else 0) + (bals[183001] if bals[183001] > 0 else 0)</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">91</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_civ2">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_civ2</field>
       <field name="description">2) cheques</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">92</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_civ3">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_civ3</field>
       <field name="description">3) cash on hand</field>
       <field name="expression">bals[180001]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">93</field>
     </record>
 
     <record model="mis.report.kpi" id="mis_report_bsa_civt">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_civt</field>
       <field name="description">Total Cash and cash equivalents</field>
       <field name="expression">+a_civ1 +a_civ2 +a_civ3 </field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2i"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2i" />
       <field name="sequence">95</field>
     </record>
 
 
     <record model="mis.report.kpi" id="mis_report_bsa_ct">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_ct</field>
       <field name="description">TOTAL CURRENT ASSETS (C)</field>
       <field name="expression">+a_cit +a_ciit +a_ciiit +a_civt</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2" />
       <field name="sequence">98</field>
     </record>
 
     <record model="mis.report.kpi" id="mis_report_bsa_d">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_d</field>
       <field name="description">D) ACCRUALS AND PREPAYMENTS</field>
-      <field name="expression"></field>
+      <field name="expression" />
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2" />
       <field name="sequence">100</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_d1">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_d1</field>
       <field name="description">1) accrued income</field>
       <field name="expression">bals[1901%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">101</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_d2">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_d2</field>
       <field name="description">2) prepaid expenses</field>
       <field name="expression">bals[1902%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">102</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_d3">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_d3</field>
       <field name="description">3) securities issuance discounts</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">103</field>
     </record>
 
     <record model="mis.report.kpi" id="mis_report_bsa_dt">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_dt</field>
       <field name="description">TOTAL ACCRUALS AND PREPAYMENTS (D)</field>
       <field name="expression">+a_d1 +a_d2 +a_d3</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2" />
       <field name="sequence">105</field>
     </record>
 
     <record model="mis.report.kpi" id="mis_report_bsa_t">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_t</field>
       <field name="description">TOTAL BALANCE SHEET ASSETS</field>
       <field name="expression">+a_a +a_bt +a_ct +a_dt</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_1"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_1" />
       <field name="sequence">110</field>
     </record>
 
     <record model="mis.report.kpi" id="mis_report_bsx">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">dummy</field>
       <field name="description">.</field>
-      <field name="expression"></field>
+      <field name="expression" />
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2" />
       <field name="sequence">190</field>
     </record>
 
 <!--Patrimoniale passivo -->
 
     <record model="mis.report.kpi" id="mis_report_bsl">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">liabilities</field>
       <field name="description">BALANCE SHEET LIABILITIES AND NET EQUITY</field>
-      <field name="expression"></field>
+      <field name="expression" />
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_1"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_1" />
       <field name="sequence">195</field>
     </record>
 
  <record model="mis.report.kpi" id="mis_report_bsl_a">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_a</field>
       <field name="description">A) Net equity</field>
-      <field name="expression"></field>
+      <field name="expression" />
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2" />
       <field name="sequence">200</field>
   </record>
   <record model="mis.report.kpi" id="mis_report_bsl_ai">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_ai</field>
       <field name="description">I) Share capital</field>
       <field name="expression">-bals[2101%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2i"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2i" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
      <field name="sequence">201</field>
   </record>
  <record model="mis.report.kpi" id="mis_report_bsl_aii">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_aii</field>
       <field name="description">II) Paid-in capital in excess of par</field>
       <field name="expression">-bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2i"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2i" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">202</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_aiii">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_aiii</field>
       <field name="description">III) Revaluation reserves</field>
       <field name="expression">-bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2i"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2i" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">203</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_aiv">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_aiv</field>
       <field name="description">IV) Legal reserve</field>
       <field name="expression">-bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2i"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2i" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">204</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_av">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_av</field>
       <field name="description">V) Statutory reserves</field>
       <field name="expression">-bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2i"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2i" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">205</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_avi">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_avi</field>
       <field name="description">VI) Other reserves</field>
       <field name="expression">-bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2i"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2i" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">206</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_avii">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_avii</field>
-      <field name="description">VII) Reserve for hedging operations of expected cash flows</field>
+      <field
+                name="description"
+            >VII) Reserve for hedging operations of expected cash flows</field>
       <field name="expression">-bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2i"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2i" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">207</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_aviii">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_aviii</field>
       <field name="description">VIII) Retained earnings (losses)</field>
       <field name="expression">-bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2i"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2i" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">208</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_aix">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_aix</field>
       <field name="description">IX) Current earnings (losses)</field>
       <field name="expression">-bals[2102%,2103%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2i"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2i" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">209</field>
     </record>
 
     <record model="mis.report.kpi" id="mis_report_bsl_at">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_at</field>
       <field name="description">Total Net equity</field>
-      <field name="expression">+l_ai +l_aii +l_aiii +l_aiv +l_av +l_avi +l_avii +l_aviii +l_aix</field>
+      <field
+                name="expression"
+            >+l_ai +l_aii +l_aiii +l_aiv +l_av +l_avi +l_avii +l_aviii +l_aix</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2" />
       <field name="sequence">210</field>
     </record>
 
@@ -1028,345 +1223,423 @@
 
 
  <record model="mis.report.kpi" id="mis_report_bsl_b">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_b</field>
       <field name="description">B) Provisions</field>
       <field name="expression">+l_b1 +l_b2 +l_b3 +l_b4</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2" />
       <field name="sequence">211</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_b1">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_b1</field>
-      <field name="description">1) directors' termination benefits and similar provisions</field>
+      <field
+                name="description"
+            >1) directors' termination benefits and similar provisions</field>
       <field name="expression">-bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">212</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_b2">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_b2</field>
-      <field name="description">2) tax provisions, including deferred tax liabilities</field>
+      <field
+                name="description"
+            >2) tax provisions, including deferred tax liabilities</field>
       <field name="expression">-bals[2104%,2105%,22%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">213</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_b3">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_b3</field>
       <field name="description">3) Passive financial derivative instruments</field>
       <field name="expression">-bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">214</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_b4">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_b4</field>
       <field name="description">4) other provisions</field>
       <field name="expression">-bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-    <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+    <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">215</field>
     </record>
 
  <record model="mis.report.kpi" id="mis_report_bsl_bt">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_bt</field>
       <field name="description">Total Provisions (B)</field>
       <field name="expression">+l_b1 +l_b2 +l_b3 +l_b4</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2" />
       <field name="sequence">218</field>
     </record>
 
 
 
  <record model="mis.report.kpi" id="mis_report_bsl_c">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_c</field>
       <field name="description">C) Employees' termination benefits provision</field>
       <field name="expression">-bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2"/>
-      <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2" />
+      <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
 <field name="sequence">220</field>
     </record>
  <record model="mis.report.kpi" id="mis_report_bsl_d">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_d</field>
       <field name="description">D) Payables</field>
-      <field name="expression"></field>
+      <field name="expression" />
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2" />
       <field name="sequence">230</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d1">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_d1</field>
       <field name="description">1) bonds</field>
       <field name="expression">-bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-    <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+    <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">231</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d2">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_d2</field>
       <field name="description">2) convertible bonds</field>
       <field name="expression">-bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-    <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+    <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">232</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d3">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_d3</field>
       <field name="description">3) shareholders' financing</field>
       <field name="expression">-bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-    <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+    <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">233</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d4">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_d4</field>
       <field name="description">4) bank financing</field>
-      <field name="expression">(bals[24%])+ (-bals[182001] if -bals[182001] > 0 else 0) + (-bals[183001] if -bals[183001] > 0 else 0)</field>
+      <field
+                name="expression"
+            >(bals[24%])+ (-bals[182001] if -bals[182001] > 0 else 0) + (-bals[183001] if -bals[183001] > 0 else 0)</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-    <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+    <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">234</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d5">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_d5</field>
       <field name="description">5) other financing</field>
       <field name="expression">-bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-    <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+    <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">235</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d6">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_d6</field>
       <field name="description">6) advances</field>
       <field name="expression">-bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-    <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+    <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">236</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d7">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_d7</field>
       <field name="description">7) payables to suppliers</field>
       <field name="expression">-bals[25%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-    <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+    <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">237</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d8">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_d8</field>
       <field name="description">8) notes payable</field>
       <field name="expression">-bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-    <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+    <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">238</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d9">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_d9</field>
       <field name="description">9) payables to subsidiaries</field>
       <field name="expression">-bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-    <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+    <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">239</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d10">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_d10</field>
       <field name="description">10) payables to associates</field>
       <field name="expression">-bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-    <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+    <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">240</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d11">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_d11</field>
       <field name="description">11) payables to parents</field>
       <field name="expression">-bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-    <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+    <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">241</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d12">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_d12</field>
       <field name="description">12) tax payables</field>
-      <field name="expression"> (-bals[260100]) + (-bals[2602%]) + (-bals[2605%]) + (-bals[2606%]) + (-bals[2619%]) + (-bals[2810%]) + (-bals[2811%]) </field>
+      <field
+                name="expression"
+            > (-bals[260100]) + (-bals[2602%]) + (-bals[2605%]) + (-bals[2606%]) + (-bals[2619%]) + (-bals[2810%]) + (-bals[2811%]) </field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-    <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+    <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">242</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d13">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_d13</field>
-      <field name="description">13) payables to social security and welfare institutions</field>
+      <field
+                name="description"
+            >13) payables to social security and welfare institutions</field>
       <field name="expression">bals[2301%, 263%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-    <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+    <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">243</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d14">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_d14</field>
       <field name="description">14) other payables</field>
       <field name="expression">bals[262%,264%, 29%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-    <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+    <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">244</field>
     </record>
 
  <record model="mis.report.kpi" id="mis_report_bsl_dt">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_dt</field>
       <field name="description">Total Payables (D)</field>
-      <field name="expression">+l_d1 +l_d2 +l_d3 +l_d4 +l_d5 +l_d6 +l_d7 +l_d8 +l_d9 +l_d10 +l_d11 +l_d12 +l_d13 +l_d14</field>
+      <field
+                name="expression"
+            >+l_d1 +l_d2 +l_d3 +l_d4 +l_d5 +l_d6 +l_d7 +l_d8 +l_d9 +l_d10 +l_d11 +l_d12 +l_d13 +l_d14</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2" />
       <field name="sequence">245</field>
  </record>
 
  <record model="mis.report.kpi" id="mis_report_bsl_e">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_e</field>
       <field name="description">E) Accruals and deferrals</field>
-      <field name="expression"></field>
+      <field name="expression" />
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2" />
       <field name="sequence">250</field>
  </record>
  <record model="mis.report.kpi" id="mis_report_bsl_e1">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_e1</field>
       <field name="description">1) accrued liabilities</field>
       <field name="expression">bals[2701%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-    <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+    <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">251</field>
     </record>
     <record model="mis.report.kpi" id="mis_report_bsl_e2">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_e2</field>
       <field name="description">2) deferred income</field>
       <field name="expression">bals[2702%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-        <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+        <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">252</field>
     </record>
     <record model="mis.report.kpi" id="mis_report_bsl_e3">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_e3</field>
       <field name="description">3) securities issuance premiums</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_3"/>
-        <field name="auto_expand_accounts" eval="True"/>
-      <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_it_acc_det"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_3" />
+        <field name="auto_expand_accounts" eval="True" />
+      <field
+                name="auto_expand_accounts_style_id"
+                ref="mis_report_style_l10n_it_acc_det"
+            />
       <field name="sequence">253</field>
     </record>
 
  <record model="mis.report.kpi" id="mis_report_bsl_et">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_et</field>
       <field name="description">Total Accruals and deferrals (E)</field>
       <field name="expression">+l_e1 +l_e2 +l_e3 </field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_2"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_2" />
       <field name="sequence">260</field>
  </record>
 
  <record model="mis.report.kpi" id="mis_report_bsl_t">
-      <field name="report_id" ref="mis_report_bs"/>
+      <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_t</field>
       <field name="description">TOTAL BALANCE SHEET LIABILITIES AND NET EQUITY</field>
       <field name="expression">+l_at +l_bt +l_c +l_dt +l_et </field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
-      <field name="style_id" ref="mis_report_style_l10n_it_1"/>
+      <field name="style_id" ref="mis_report_style_l10n_it_1" />
       <field name="sequence">280</field>
  </record>
 
