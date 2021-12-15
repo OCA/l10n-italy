@@ -321,6 +321,11 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_line_it_FatturaPA
+msgid "INVCONT"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out__message_needaction
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out__message_unread
 msgid "If checked, new messages require your attention."
