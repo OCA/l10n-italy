@@ -13,7 +13,7 @@ class AccountInvoice(models.Model):
         if not self._context.get('default_corrispettivi', False):
             # If this is not a receipts (corrispettivi), do nothing
             return False
-        return self.env.ref('base.public_user').partner_id.id
+        return self.env.user.company_id._get_corrispettivi_partner().id
 
     @api.model
     def _default_journal(self):
