@@ -6,12 +6,12 @@
     >
         <xpath expr="//ImportoTotaleDocumento" position="replace">
             <ImportoTotaleDocumento
-                t-if="record.split_payment"
-                t-esc="format_numbers_two(record.amount_total + record.amount_sp)"
-            />
-            <ImportoTotaleDocumento
                 t-if="not record.split_payment"
                 t-esc="format_numbers_two(record.amount_total)"
+            />
+            <ImportoTotaleDocumento
+                t-if="record.split_payment"
+                t-esc="format_numbers_two(record.amount_total + record.amount_sp)"
             />
         </xpath>
         </template>
