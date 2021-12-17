@@ -45,6 +45,7 @@ class FiscalDocumentType(models.Model):
             res.append((doc_type.id, "[%s] %s" % (doc_type.code, doc_type.name)))
         return res
 
+    @api.model
     def name_search(self, name="", args=None, operator="ilike", limit=100):
         if not args:
             args = []
