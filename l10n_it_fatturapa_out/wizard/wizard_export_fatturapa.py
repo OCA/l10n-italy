@@ -74,6 +74,19 @@ class WizardExportFatturapa(models.TransientModel):
 
         return partner
 
+    @api.model
+    def getImportoTotale(self, invoice):
+        """Entry point for other modules to override computation of
+        ImportoTotaleDocumento"""
+        # this requires a better refactoring. We SHOULD be able to use
+        # amount_total as is, w/o further computations.
+        # At the moment, some modules store the total amount to be paid
+        # by the customer, and handle the printed total in the print
+        # report (there are cases in which the partner does not have to
+        # paid the VAT, yet its amount has to be printed out and included
+        # in the total amount of the invoice)
+        return invoice.amount_total
+
     def group_invoices_by_partner(self):
         def split_list(my_list, size):
             it = iter(my_list)

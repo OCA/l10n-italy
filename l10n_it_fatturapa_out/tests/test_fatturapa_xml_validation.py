@@ -452,62 +452,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, "IT06363391001_00008.xml")
 
-    def test_9_xml_export(self):
-        self.tax_22.price_include = True
-        self.set_sequences(18, "2018-01-07")
-        partner = self.res_partner_fatturapa_4
-        partner.onchange_country_id_e_inv()
-        partner.write(partner._convert_to_write(partner._cache))
-        self.assertEqual(partner.codice_destinatario, "XXXXXXX")
-        invoice = self.invoice_model.create(
-            {
-                "name": "INV/2018/0018",
-                "invoice_date": "2018-01-07",
-                "partner_id": partner.id,
-                "journal_id": self.sales_journal.id,
-                # "account_id": self.a_recv.id,
-                "invoice_payment_term_id": self.account_payment_term.id,
-                "user_id": self.user_demo.id,
-                "move_type": "out_invoice",
-                "currency_id": self.AED.id,
-                "invoice_line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "account_id": self.a_sale.id,
-                            "product_id": self.product_product_10.id,
-                            "name": "Mouse Optical",
-                            "quantity": 1,
-                            "product_uom_id": self.product_uom_unit.id,
-                            "price_unit": 10,
-                            "tax_ids": [(6, 0, {self.tax_22.id})],
-                        },
-                    ),
-                    (
-                        0,
-                        0,
-                        {
-                            "account_id": self.a_sale.id,
-                            "product_id": self.product_order_01.id,
-                            "name": "Zed+ Antivirus",
-                            "quantity": 1,
-                            "product_uom_id": self.product_uom_unit.id,
-                            "price_unit": 4,
-                            "tax_ids": [(6, 0, {self.tax_22.id})],
-                        },
-                    ),
-                ],
-            }
-        )
-        invoice._post()
-        res = self.run_wizard(invoice.id)
-        attachment = self.attach_model.browse(res["res_id"])
-        self.set_e_invoice_file_id(attachment, "IT06363391001_00009.xml")
-
-        xml_content = base64.decodebytes(attachment.datas)
-        self.check_content(xml_content, "IT06363391001_00009.xml")
-
     def test_10_xml_export(self):
         # invoice with descriptive line
         self.set_sequences(10, "2019-08-07")
@@ -749,6 +693,61 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
 
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, "IT06363391001_00014.xml")
+
+    def test_15_xml_export(self):
+        """
+        - create an invoice in USD
+
+        expect an XML with values in EUR
+        """
+
+        usd = self.env.ref("base.USD")
+
+        self.env["res.currency.rate"].create(
+            {
+                "name": fields.Date.from_string("2021-12-16"),
+                "rate": 1.17,
+                "currency_id": usd.id,
+                "company_id": self.env.company.id,
+            }
+        )
+
+        invoice_form = Form(
+            self.env["account.move"].with_context({"default_move_type": "out_invoice"})
+        )
+        invoice_form.currency_id = usd
+        invoice_form.partner_id = self.res_partner_fatturapa_0
+        invoice_form.name = "INV/2021/12/0001"
+        invoice_form.date = fields.Date.from_string("2021-12-16")
+        invoice_form.invoice_date = fields.Date.from_string("2021-12-16")
+        invoice_form.invoice_payment_term_id = self.account_payment_term
+
+        self.tax_00_ns.kind_id = self.env.ref("l10n_it_account_tax_kind.n3_2")
+
+        with invoice_form.line_ids.new() as line_form:
+            line_form.product_id = self.product_product_10
+            line_form.account_id = self.a_sale
+            line_form.tax_ids.clear()
+            line_form.tax_ids.add(self.tax_00_ns)
+        invoice = invoice_form.save()
+        invoice.action_post()
+
+        invoice.company_id.xml_divisa_value = "force_eur"
+        res = self.run_wizard(invoice.id)
+        attachment = self.attach_model.browse(res["res_id"])
+        self.set_e_invoice_file_id(attachment, "IT06363391001_00015.xml")
+
+        xml_content = base64.decodebytes(attachment.datas)
+        self.check_content(xml_content, "IT06363391001_00015.xml")
+        attachment.unlink()
+
+        invoice.company_id.xml_divisa_value = "keep_orig"
+        res = self.run_wizard(invoice.id)
+        attachment = self.attach_model.browse(res["res_id"])
+        self.set_e_invoice_file_id(attachment, "IT06363391001_00016.xml")
+
+        xml_content = base64.decodebytes(attachment.datas)
+        self.check_content(xml_content, "IT06363391001_00016.xml")
 
     def test_no_tax_fail(self):
         """

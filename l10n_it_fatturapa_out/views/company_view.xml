@@ -15,10 +15,20 @@
                     position="after"
                 >
                     <div class="row">
-                        <label for="max_invoice_in_xml" />
+                        <label
+                            for="max_invoice_in_xml"
+                            class="col-lg-3 o_light_label"
+                        />
                         <field
                             name="max_invoice_in_xml"
-                            class="col-lg-3 o_light_label"
+                            options="{'no_create': True, 'no_open':True}"
+                        />
+                    </div>
+                    <div class="row">
+                        <label for="xml_divisa_value" class="col-lg-3 o_light_label" />
+                        <field
+                            name="xml_divisa_value"
+                            options="{'no_create': True, 'no_open':True}"
                         />
                     </div>
                 </xpath>
