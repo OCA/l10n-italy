@@ -99,7 +99,7 @@ class EFatturaOut:
                 return number
             return False
 
-        def format_price(line, sign=1):
+        def format_price(line, sign=1, original_currency=False):
             res = line.price_unit
             if line.tax_ids and line.tax_ids[0].price_include:
                 res = line.price_unit / (1 + (line.tax_ids[0].amount / 100))
@@ -113,6 +113,10 @@ class EFatturaOut:
             # e quantity (vd. format_quantity)
             if line.quantity < 0:
                 res = -res
+
+            # force EUR unless we want the original currency
+            if not original_currency:
+                res = fpa_to_eur(res, line.move_id)
 
             # XXX arrotondamento?
             res = "{prezzo:.{precision}f}".format(
@@ -260,6 +264,20 @@ class EFatturaOut:
                 return False
             return line.price_unit * line.discount / 100
 
+        def get_importo_totale(invoice):
+            # wrapper to a method in wizard (for better overriding)
+            wiz = self.env["wizard.export.fatturapa"]
+            return wiz.getImportoTotale(invoice)
+
+        def fpa_to_eur(amount, invoice):
+            currency = invoice.currency_id
+            euro = self.env.ref("base.EUR")
+            if currency == euro:
+                return amount
+            return currency._convert(
+                amount, euro, invoice.company_id, invoice.date, False
+            )
+
         if self.partner_id.commercial_partner_id.is_pa:
             # check value code
             code = self.partner_id.ipa_code
@@ -291,9 +309,11 @@ class EFatturaOut:
             "unidecode": unidecode,
             "wizard": self.wizard,
             "get_importo": get_importo,
+            "get_importo_totale": get_importo_totale,
             "all_taxes": {
                 invoice.id: get_all_taxes(invoice) for invoice in self.invoices
             },
+            "fpa_to_eur": fpa_to_eur,
         }
         return template_values
 
