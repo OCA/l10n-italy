@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-08 13:58+0000\n"
-"PO-Revision-Date: 2021-01-08 13:58+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2021-12-19 00:45+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_it_delivery_note_base
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__active
@@ -343,7 +344,7 @@ msgstr ""
 #. module: l10n_it_delivery_note_base
 #: model:res.groups,name:l10n_it_delivery_note_base.show_product_related_fields
 msgid "Show product information in delivery note lines"
-msgstr ""
+msgstr "Mostrare informazioni prodotto nelle righe del documento di trasporto"
 
 #. module: l10n_it_delivery_note_base
 #: model:ir.model.constraint,message:l10n_it_delivery_note_base.constraint_stock_picking_goods_appearance_name_uniq
