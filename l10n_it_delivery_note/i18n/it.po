@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-08 14:45+0000\n"
-"PO-Revision-Date: 2021-12-14 09:37+0000\n"
+"PO-Revision-Date: 2021-12-19 00:45+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -149,7 +149,7 @@ msgstr "Aggiungi una sezione"
 #. module: l10n_it_delivery_note
 #: model:res.groups,name:l10n_it_delivery_note.can_change_number
 msgid "Allow to change delivery note number"
-msgstr ""
+msgstr "Consentire modifica numero documento di trasporto"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_partner__default_goods_appearance_id
