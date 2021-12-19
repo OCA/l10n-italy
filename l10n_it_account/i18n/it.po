@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-21 10:38+0000\n"
-"PO-Revision-Date: 2020-03-06 12:13+0000\n"
+"PO-Revision-Date: 2021-12-19 12:39+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_it_account
 #: model_terms:ir.ui.view,arch_db:l10n_it_account.internal_layout
@@ -101,7 +101,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_group__display_name
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: l10n_it_account
 #: model:ir.ui.menu,name:l10n_it_account.menu_date_range_generator_action
@@ -114,7 +114,7 @@ msgstr "Generazione intervalli date"
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_group__id
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_it_account
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__cee_type
@@ -138,7 +138,7 @@ msgstr "Fiscalità italiana"
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_group____last_update
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_tax____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: l10n_it_account
 #: model_terms:ir.ui.view,arch_db:l10n_it_account.internal_layout
