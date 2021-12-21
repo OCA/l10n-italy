@@ -109,9 +109,7 @@ class AccountMove(models.Model):
 
     def _compute_split_payments(self):
         write_off_line_vals = self._build_debit_line()
-        line_sp = self.line_ids.filtered(
-            lambda l: l.is_split_payment or l.name == _("Split Payment Write Off")
-        )
+        line_sp = self.line_ids.filtered(lambda l: l.is_split_payment)
         if line_sp:
             if self.move_type == "out_invoice" and float_compare(
                 line_sp[0].debit,
