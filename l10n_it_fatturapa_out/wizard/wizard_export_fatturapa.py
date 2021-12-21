@@ -621,13 +621,19 @@ class WizardExportFatturapa(models.TransientModel):
         return True
 
     def _get_prezzo_unitario(self, line):
-        res = line.price_unit
+        if line.quantity < 0:
+            res = -1 * line.price_unit
+        else:
+            res = line.price_unit
+
         if (
             line.invoice_line_tax_ids and
             line.invoice_line_tax_ids[0].price_include
         ):
-            res = line.price_unit / (
-                1 + (line.invoice_line_tax_ids[0].amount / 100))
+            res = res / (
+                1 + (line.invoice_line_tax_ids[0].amount / 100)
+            )
+        
         return res
 
     def setDettaglioLinee(self, invoice, body):
@@ -663,13 +669,14 @@ class WizardExportFatturapa(models.TransientModel):
         AliquotaIVA = '%.2f' % float_round(aliquota, 2)
         line.ftpa_line_number = line_no
         prezzo_unitario = self._get_prezzo_unitario(line)
+        quantity = abs(line.quantity)
         DettaglioLinea = DettaglioLineeType(
             NumeroLinea=str(line_no),
             Descrizione=encode_for_export(line.name, 1000),
             PrezzoUnitario='{prezzo:.{precision}f}'.format(
                 prezzo=prezzo_unitario, precision=price_precision),
             Quantita='{qta:.{precision}f}'.format(
-                qta=line.quantity, precision=uom_precision),
+                qta=quantity, precision=uom_precision),
             UnitaMisura=line.uom_id and (
                 unidecode(line.uom_id.name)) or None,
             PrezzoTotale='%.2f' % float_round(line.price_subtotal, 2),
