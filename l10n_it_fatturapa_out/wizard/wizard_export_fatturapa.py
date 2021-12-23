@@ -118,7 +118,7 @@ class WizardExportFatturapa(models.TransientModel):
         }
         return attach_obj.create(attach_vals)
 
-    def setProgressivoInvio(self, fatturapa, attach=False):
+    def setProgressivoInvioWip(self, fatturapa, attach=False):
         # if the attachment is given than we will reuse its file_id
         if attach:
             # Xml file name uses the format VAT_XXXXX.xml and we are interested
@@ -900,7 +900,7 @@ class WizardExportFatturapa(models.TransientModel):
                 fatturapa.FatturaElettronicaBody.append(invoice_body)
                 # TODO DatiVeicoli
 
-            number = self.setProgressivoInvio(fatturapa, attach=attach)
+            number = self.setProgressivoInvioWip(fatturapa, attach=attach)
         except (SimpleFacetValueError, SimpleTypeValueError) as e:
             raise UserError(str(e))
         return fatturapa, number
