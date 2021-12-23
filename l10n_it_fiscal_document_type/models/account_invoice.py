@@ -8,13 +8,24 @@ class AccountInvoice(models.Model):
     @api.depends('partner_id', 'journal_id', 'type', 'fiscal_position_id')
     def _set_document_fiscal_type(self):
         for invoice in self:
+            # Edit only draft invoices
+            # or invoices that do not have a document type
             if invoice.state != 'draft':
                 continue
-            dt = invoice._get_document_fiscal_type(
-                invoice.type, invoice.partner_id, invoice.fiscal_position_id,
-                invoice.journal_id)
-            if dt:
-                invoice.fiscal_document_type_id = dt[0]
+            accepted_document_type_ids = invoice._get_document_fiscal_type(
+                invoice.type,
+                invoice.partner_id,
+                invoice.fiscal_position_id,
+                invoice.journal_id,
+            )
+            if invoice.fiscal_document_type_id.id in accepted_document_type_ids:
+                continue
+
+            invoice.fiscal_document_type_id = (
+                accepted_document_type_ids[0]
+                if accepted_document_type_ids
+                else False
+            )
 
     def _get_document_fiscal_type(self, type=None, partner=None,
                                   fiscal_position=None, journal=None):
