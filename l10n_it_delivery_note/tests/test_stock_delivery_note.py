@@ -56,3 +56,60 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         picking_backorder.move_lines[0].quantity_done = 1
         picking_backorder.button_validate()
         self.assertTrue(picking_backorder.delivery_note_id)
+
+    # ⇒ "Consegna senza ordine"
+    def test_delivery_without_so(self):
+        #
+        #     Picking ┐
+        #             └ DdT
+        #
+
+        user = new_test_user(
+            self.env,
+            login="test",
+            groups="stock.group_stock_manager,"
+            "l10n_it_delivery_note.use_advanced_delivery_notes",
+        )
+        # change user in order to automatically create delivery note
+        # when picking is validated
+        self.env.user = user
+
+        picking = self.env["stock.picking"].create(
+            {
+                "partner_id": self.recipient.id,
+                "picking_type_id": self.env.ref("stock.picking_type_out").id,
+                "location_id": self.env.ref("stock.stock_location_stock").id,
+                "location_dest_id": self.env.ref("stock.stock_location_customers").id,
+            }
+        )
+        self.env["stock.move"].create(
+            {
+                "name": self.env.ref("product.product_product_8").name,
+                "product_id": self.env.ref("product.product_product_8").id,
+                "product_uom_qty": 1,
+                "product_uom": self.env.ref("product.product_product_8").uom_id.id,
+                "picking_id": picking.id,
+                "location_id": self.env.ref("stock.stock_location_stock").id,
+                "location_dest_id": self.env.ref("stock.stock_location_customers").id,
+            }
+        )
+
+        self.assertEqual(len(picking.move_lines), 1)
+
+        # deliver product
+        picking.move_lines.quantity_done = 1
+        picking.button_validate()
+
+        # create delivery note with advanced mode
+        dn_form = Form(
+            self.env["stock.delivery.note.create.wizard"].with_context(
+                {"active_ids": [picking.id]}
+            )
+        )
+        dn = dn_form.save()
+        dn.confirm()
+
+        self.assertTrue(picking.delivery_note_id)
+        picking.delivery_note_id.action_confirm()
+        self.assertEqual(picking.delivery_note_id.state, "confirm")
+        self.assertEqual(picking.delivery_note_id.invoice_status, "no")

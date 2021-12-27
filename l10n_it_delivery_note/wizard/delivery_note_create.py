@@ -70,7 +70,7 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
         self.check_compliance(self.selected_picking_ids)
 
         sale_order_ids = self.mapped("selected_picking_ids.sale_id")
-        sale_order_id = sale_order_ids and sale_order_ids[0] or False
+        sale_order_id = sale_order_ids and sale_order_ids[0] or self.env["sale.order"]
 
         delivery_note = self.env["stock.delivery.note"].create(
             {
@@ -100,7 +100,8 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
         )
 
         self.selected_picking_ids.write({"delivery_note_id": delivery_note.id})
-        sale_order_id._assign_delivery_notes_invoices(sale_order_id.invoice_ids)
+        if sale_order_id:
+            sale_order_id._assign_delivery_notes_invoices(sale_order_id.invoice_ids)
 
         if self.user_has_groups("l10n_it_delivery_note.use_advanced_delivery_notes"):
             return delivery_note.goto()
