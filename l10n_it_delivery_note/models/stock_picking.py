@@ -321,6 +321,8 @@ class StockPicking(models.Model):
         if delivery_note_to_create and not self.delivery_note_id:
             delivery_note = self._create_delivery_note()
             self.write({"delivery_note_id": delivery_note.id})
+            if self.sale_id:
+                self.sale_id._assign_delivery_notes_invoices(self.sale_id.invoice_ids)
         return res
 
     def _create_delivery_note(self):
