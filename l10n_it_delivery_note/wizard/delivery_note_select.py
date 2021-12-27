@@ -48,8 +48,9 @@ class StockDeliveryNoteSelectWizard(models.TransientModel):
         self.selected_picking_ids.write({"delivery_note_id": self.delivery_note_id.id})
 
         sale_order_ids = self.selected_picking_ids.sale_id
-        sale_order_id = sale_order_ids and sale_order_ids[0] or False
-        sale_order_id._assign_delivery_notes_invoices(sale_order_id.invoice_ids)
+        sale_order_id = sale_order_ids and sale_order_ids[0] or self.env["sale.order"]
+        if sale_order_id:
+            sale_order_id._assign_delivery_notes_invoices(sale_order_id.invoice_ids)
 
         if self.user_has_groups("l10n_it_delivery_note.use_advanced_delivery_notes"):
             return self.delivery_note_id.goto()
