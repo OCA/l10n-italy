@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-05 15:44+0000\n"
-"PO-Revision-Date: 2021-03-04 11:45+0000\n"
-"Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
+"PO-Revision-Date: 2021-12-28 10:39+0000\n"
+"Last-Translator: Sergio Corato <sergiocorato@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -36,39 +36,39 @@ msgstr "Conto"
 #. module: l10n_it_account_balance_report
 #: model:ir.actions.client,name:l10n_it_account_balance_report.action_account_balance_report
 msgid "Account Balance"
-msgstr "Saldo contabile"
+msgstr "Bilancio Contabile"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.actions.act_window,name:l10n_it_account_balance_report.action_account_balance_wizard
 #: model:ir.ui.menu,name:l10n_it_account_balance_report.menu_account_balance_wizard
 msgid "Account Balance Report"
-msgstr "Saldo contabile"
+msgstr "Stampa Bilancio Contabile"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_account__account_balance_report_section
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_account_type__account_balance_report_section
 msgid "Account Balance Report - Section"
-msgstr "Saldo contabile - Sezione"
+msgstr "Bilancio Contabile - Sezione"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.actions.report,name:l10n_it_account_balance_report.report_account_balance_report_html
 msgid "Account Balance Report HTML"
-msgstr "Saldo contabile in HTML"
+msgstr "Bilancio Contabile in HTML"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.actions.report,name:l10n_it_account_balance_report.report_account_balance_report_pdf
 msgid "Account Balance Report PDF"
-msgstr "Saldo contabile in PDF"
+msgstr "Bilancio Contabile in PDF"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__account_balance_report_type
 msgid "Account Balance Report Type"
-msgstr "Tipo di saldo contabile"
+msgstr "Tipo di bilancio contabile"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.actions.report,name:l10n_it_account_balance_report.report_account_balance_report_xlsx
 msgid "Account Balance Report XLSX"
-msgstr "Saldo contabile in XLSX"
+msgstr "Bilancio contabile in XLSX"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__account_group_id
@@ -124,6 +124,8 @@ msgid ""
 "                            company have only one unaffected earnings "
 "account."
 msgstr ""
+"Il Bilancio Contabile può essere calcolato solo se l'azienda selezionata\n"
+"                            ha un solo conto di risultato economico."
 
 #. module: l10n_it_account_balance_report
 #: selection:account_balance_report,account_balance_report_type:0
@@ -384,7 +386,7 @@ msgstr "Da: {} A: {}"
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__fy_start_date
 msgid "Fy Start Date"
-msgstr ""
+msgstr "Data Inizio Anno Fiscale"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__general_ledger_id
@@ -525,7 +527,7 @@ msgstr "Nessun limite"
 #: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:445
 #, python-format
 msgid "No partner allocated"
-msgstr ""
+msgstr "Nessuno partner allocato"
 
 #. module: l10n_it_account_balance_report
 #: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:67
