@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Lorenzo Battistini - Agile Business Group
+     Copyright 2018-2019 Simone Rubino - Agile Business Group
+     Copyright 2021 Kevin Poli - AIR s.r.l.                 -->
+
+<odoo>
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="corrispettivi_form" model="ir.ui.view">
+        <field name="name">account.move.inherit.form</field>
+        <field name="model">account.move</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='fiscal_position_id']" position="after">
+                <field name="corrispettivo"/>
+
+            </xpath>
+            <xpath expr="//header" position="inside">
+                    <button name="corrispettivo_print" string="Print Receipt"
+                            type="object"
+                            />
+
+            </xpath>
+            <xpath expr="//button[@name='action_invoice_sent' and hasclass('oe_highlight')]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_invoice_sent' and not(hasclass('oe_highlight'))]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="account.action_move_out_invoice_type" model="ir.actions.act_window">
+        <field name="domain">[('move_type', '=', 'out_invoice'),('corrispettivo', '=', False)]</field>
+    </record>
+
+    <record id="account.action_move_out_refund_type" model="ir.actions.act_window">
+        <field name="domain">[('move_type', '=','out_refund')]</field>
+    </record>
+
+    <record id="action_corrispettivi_tree1" model="ir.actions.act_window">
+        <field name="name">Receipts</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field eval="False" name="view_id"/>
+        <field name="domain">[('move_type', '=', 'out_invoice'), ('corrispettivo', '=', True)]</field>
+        <field name="context">{'default_move_type': 'out_invoice','default_corrispettivi': True}</field>
+
+    </record>
+
+    <record id="action_corrispettivi_tree1_view1" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field eval="1" name="sequence"/>
+        <field name="view_id" ref="account.view_invoice_tree"/>
+        <field name="act_window_id" ref="action_corrispettivi_tree1"/>
+    </record>
+
+    <record id="action_corrispettivi_tree1_view2" model="ir.actions.act_window.view">
+        <field eval="2" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="l10n_it_corrispettivi.corrispettivi_form"/>
+        <field name="act_window_id" ref="l10n_it_corrispettivi.action_corrispettivi_tree1"/>
+    </record>
+
+    <menuitem action="action_corrispettivi_tree1" id="menu_action_corrispettivi_tree"
+              parent="account.menu_finance_receivables"/>
+
+
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="groups_id" eval="[(4, ref('account.group_account_manager'))]"/>
+        <field name="arch" type="xml">
+            <group name="accounting_entries" position="inside">
+                <field name="use_corrispettivi"/>
+            </group>
+        </field>
+    </record>
+
+    <!-- Journal -->
+
+    <record id="view_account_journal_form" model="ir.ui.view">
+        <field name="name">account.journal.form</field>
+        <field name="model">account.journal</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='advanced_settings']/group" position="inside">
+                <group name="corrispettivi" string="Receipts" attrs="{'invisible': [('type', '!=',  'sale')]}">
+                    <field name="corrispettivi"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Fiscal position -->
+
+    <record id="view_account_position_form" model="ir.ui.view">
+        <field name="name">account.fiscal.position.form</field>
+        <field name="model">account.fiscal.position</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="account.view_account_position_form"/>
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="corrispettivi"/>
+            </field>
+        </field>
+    </record>
+</odoo>

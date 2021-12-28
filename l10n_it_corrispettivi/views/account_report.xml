@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Simone Rubino - Agile Business Group
+    Copyright 2021 Kevin Poli - AIR s.r.l.
+    -->
+
+<odoo>
+    <report
+        id="account_corrispettivi"
+        model="account.move"
+        string="Receipt"
+        report_type="qweb-pdf"
+        name="l10n_it_corrispettivi.report_corrispettivi"
+        file="l10n_it_corrispettivi.report_corrispettivi"
+        attachment_use="True"
+        attachment="(object.state in ('draft','posted')) and ('RICEV'+(object.name or '').replace('/','')+'.pdf')"
+    />
+
+    <template id="report_corrispettivi">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="l10n_it_corrispettivi.report_corrispettivi_document" t-lang="o.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_corrispettivi_document" inherit_id="account.report_invoice_document" primary="True">
+            <address position="attributes">
+                <attribute name="style">display: none;</attribute>
+            </address>
+            <div t-if="o.partner_id.vat" position="attributes">
+                <attribute name="style">display: none;</attribute>
+            </div>
+            <div name="due_date" position="attributes">
+                <attribute name="style">display: none;</attribute>
+            </div>
+            <xpath expr="//div[@t-if='o.partner_id.ref']" position="attributes">
+                <attribute name="style">display: none;</attribute>
+            </xpath>
+            <span t-if="o.move_type == 'out_invoice' and o.state == 'posted'" position="replace">
+                <span t-if="o.move_type == 'out_invoice' and o.state == 'posted'">
+                    Receipt
+                </span>
+            </span>
+            <span t-if="o.move_type == 'out_invoice' and o.state == 'draft'" position="replace">
+                <span t-if="o.move_type == 'out_invoice' and o.state == 'draft'">
+                    Draft Receipt
+                </span>
+            </span>
+            <span t-if="o.move_type == 'out_invoice' and o.state == 'cancel'" position="replace">
+                <span t-if="o.move_type == 'out_invoice' and o.state == 'cancel'">
+                    Cancelled Receipt
+                </span>
+            </span>
+            <div name="invoice_date" position="replace">
+                <div class="col-auto mw-100 mb-2" t-if="o.invoice_date" name="invoice_date">
+                    <strong>Receipt Date:</strong>
+                    <p class="m-0" t-field="o.invoice_date"/>
+                </div>
+            </div>
+<!--            <p t-if="o.ref" position="attributes">-->
+<!--                <attribute name="style">display: none;</attribute>-->
+<!--            </p>-->
+    </template>
+</odoo>
