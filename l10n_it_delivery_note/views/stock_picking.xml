@@ -20,7 +20,7 @@
                 >
                     <attribute
                         name="attrs"
-                    >{'invisible': [('picking_type_code', '=', 'internal')]}</attribute>
+                    >{'required': [('picking_type_code', '!=', 'internal')], 'invisible': [('picking_type_code', '=', 'internal')]}</attribute>
                 </xpath>
                 <xpath
                     expr="//button[@name='%(stock.action_report_delivery)d']"
