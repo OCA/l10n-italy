@@ -398,7 +398,7 @@ class WizardImportFatturapa(models.TransientModel):
         )
         def_purchase_tax = False
         if supplier_taxes_ids:
-            def_purchase_tax = account_tax_model.browse(supplier_taxes_ids, limit=1)
+            def_purchase_tax = account_tax_model.browse(supplier_taxes_ids)[0]
         if float(AliquotaIVA) == 0.0 and Natura:
             account_taxes = account_tax_model.search(
                 [
