@@ -321,17 +321,21 @@ class AccountMove(models.Model):
                 )
         return False
 
-    def remove_rc_payment(self):
+    def remove_rc_payment(self, delete_self_invoice=True):
         rc_invoice = self.rc_self_invoice_id
-        if rc_invoice.payment_id:
-            move = rc_invoice.payment_id.move_id
+        rc_invoice.remove_invoice_payment()
+
+        if delete_self_invoice:
+            # unlink self invoice
+            self_invoice = self.with_context(force_delete=True).browse(rc_invoice.id)
+            self_invoice.unlink()
+
+    def remove_invoice_payment(self):
+        if self.payment_id:
+            move = self.payment_id.move_id
             for line in move.line_ids:
                 line.remove_move_reconcile()
-            rc_invoice.payment_id.unlink()
-
-        # cancel self invoice
-        self_invoice = self.with_context(force_delete=True).browse(rc_invoice.id)
-        self_invoice.unlink()
+            self.payment_id.unlink()
 
     def button_cancel(self):
         for inv in self:
@@ -349,9 +353,12 @@ class AccountMove(models.Model):
 
     def button_draft(self):
         new_self = self.with_context(rc_set_to_draft=True)
-        super(AccountMove, new_self).button_draft()
         invoice_model = new_self.env["account.move"]
         for inv in new_self:
+            # remove payments without deleting self invoice
+            inv.remove_rc_payment(delete_self_invoice=False)
+            inv.remove_invoice_payment()
+
             if inv.rc_self_invoice_id:
                 self_invoice = invoice_model.browse(inv.rc_self_invoice_id.id)
                 self_invoice.button_draft()
@@ -360,7 +367,7 @@ class AccountMove(models.Model):
                     inv.rc_self_purchase_invoice_id.id
                 )
                 self_purchase_invoice.button_draft()
-        return True
+        return super(AccountMove, new_self).button_draft()
 
     def get_tax_amount_added_for_rc(self):
         res = 0
