@@ -134,3 +134,23 @@ class TestReverseCharge(ReverseChargeCommon):
         invoice.button_draft()
         invoice.refresh()
         self.assertEqual(invoice.state, "draft")
+
+    def test_intra_EU_draft_and_reconfirm(self):
+        """Check that the payments are deleted if invoice is reset to draft."""
+        self.supplier_intraEU.property_payment_term_id = self.term_15_30.id
+        invoice = self.create_invoice(
+            self.supplier_intraEU, amounts=[100], taxes=self.tax_22ai
+        )
+
+        inv_payment = invoice.payment_id
+        rc_payment = invoice.rc_self_invoice_id.payment_id
+        invoice.button_draft()
+
+        self.assertEqual(invoice.rc_self_invoice_id.state, "draft")
+        self.assertEqual(bool(invoice.payment_id), False)
+        self.assertEqual(bool(invoice.rc_self_invoice_id.payment_id), False)
+
+        invoice.action_post()
+        self.assertEqual(invoice.rc_self_invoice_id.state, "posted")
+        self.assertIsNot(invoice.payment_id, inv_payment)
+        self.assertIsNot(invoice.rc_self_invoice_id.payment_id, rc_payment)
