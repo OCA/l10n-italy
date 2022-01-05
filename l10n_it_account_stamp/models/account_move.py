@@ -126,6 +126,7 @@ class AccountMove(models.Model):
             "debit": 0,
             "credit": product.list_price,
             "exclude_from_invoice_tab": True,
+            "currency_id": self.currency_id.id,
         }
         if self.move_type == "out_refund":
             income_vals["debit"] = product.list_price
@@ -141,6 +142,7 @@ class AccountMove(models.Model):
             "debit": product.list_price,
             "credit": 0,
             "exclude_from_invoice_tab": True,
+            "currency_id": self.currency_id.id,
         }
         if self.move_type == "out_refund":
             income_vals["debit"] = 0
