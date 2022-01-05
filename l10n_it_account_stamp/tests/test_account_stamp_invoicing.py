@@ -84,3 +84,16 @@ class InvoicingTest(TestAccountInvoiceReport):
         # Add stamp and check that edited description is kept
         invoice.add_tax_stamp_line()
         self.assertEqual(invoice.invoice_line_ids[0].name, edited_descr)
+
+    def test_amount_total_changing_currency(self):
+        """Modify invoice currency and check that amount_total does not change after
+        action_post"""
+        self.env.company.tax_stamp_product_id.auto_compute = False
+        invoice = self.invoices.filtered(lambda inv: inv.move_type == "out_invoice")
+        invoice_form = Form(invoice)
+        invoice_form.manually_apply_tax_stamp = False
+        invoice_form.currency_id = self.env.ref("base.USD")
+        invoice = invoice_form.save()
+        total = invoice.amount_total
+        invoice.action_post()
+        self.assertEqual(total, invoice.amount_total)
