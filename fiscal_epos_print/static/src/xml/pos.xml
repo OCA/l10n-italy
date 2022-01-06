@@ -2,7 +2,7 @@
 <templates id="template" xml:space="preserve">
 
     <t t-name="EpsonEPOSWidget">
-        <div class="header-button">
+        <div class="header-button epos-button">
             <img src="/fiscal_epos_print/static/src/img/epos.svg" alt="Epson ePOS" title="Epson ePOS Operation" />
         </div>
     </t>
@@ -139,6 +139,18 @@
                             </span>
                             <span class="category-label">
                                 Financial Report X
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="button epos_close_and_report" style="display: flex;">
+                            <span>
+                                <img src="/fiscal_epos_print/static/src/img/ZX.svg"
+                                     alt="Fiscal closure and report"
+                                     title="Send closure and fiscal X report to printer"/>
+                            </span>
+                            <span style="padding-left: 8px;">
+                                Closure Report (Z) and Financial Report (X)
                             </span>
                         </div>
                     </li>

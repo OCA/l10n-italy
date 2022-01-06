@@ -12,6 +12,9 @@ odoo.define("fiscal_epos_print.chrome", function (require) {
 
     var EpsonFP81IIWidget = PosBaseWidget.extend({
         template: "EpsonFP81IIWidget",
+        events: {
+            "click .epos_close_and_report": "close_and_report",
+        },
 
         init: function(parent, options){
             this._super(parent, options);
@@ -164,6 +167,35 @@ odoo.define("fiscal_epos_print.chrome", function (require) {
             });
         },
 
+        close_and_report: function(event) {
+            this.hide();
+            var printer_options = this.getPrinterOptions();
+            var fp90 = new eposDriver(printer_options, this);
+
+            var self = this;
+            self.chrome.loading_show();
+            this.gui.show_popup('confirm', {
+                'title': _t('Confirm?'),
+                'body': _t('Execute Fiscal Closure (Report Z) and Daily Financial Report (Report X)'),
+                confirm: function() {
+                    self.chrome.loading_message(_t('Connecting to the fiscal printer'));
+
+                    // Setup the onreceive function to call the closure
+                    var original_onreceive = fp90.fiscalPrinter.onreceive;
+                    fp90.fiscalPrinter.onreceive = function() {
+                        // Restore the original onreceive so that after next call, the original behavior is followed
+                        fp90.fiscalPrinter.onreceive = original_onreceive;
+                        fp90.printFiscalXReport();
+                    }
+                    fp90.printFiscalReport();
+
+                    self.chrome.loading_hide();
+                },
+                cancel: function() {
+                    self.chrome.loading_hide();
+                },
+            });
+        },
     });
 
     var EpsonEPOSWidget = PosBaseWidget.extend({
