@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <template id="assets_backend" inherit_id="web.assets_backend" name="Fiscal EPOS print backend assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/fiscal_epos_print/static/src/js/tours.js"/>
+        </xpath>
+    </template>
+
     <template id="assets" inherit_id="point_of_sale.assets">
         <xpath expr="." position="inside">
             <script type="text/javascript" src="/fiscal_epos_print/static/lib/fiscalprint/fiscalprint.js"/>
