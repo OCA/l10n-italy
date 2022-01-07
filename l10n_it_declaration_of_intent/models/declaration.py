@@ -64,6 +64,9 @@ class DeclarationOfIntent(models.Model):
     used_amount = fields.Monetary(compute="_compute_amounts", store=True)
     limit_amount = fields.Monetary(required=True)
     available_amount = fields.Monetary(compute="_compute_amounts", store=True)
+    company_id = fields.Many2one(
+        "res.company", string="Company", default=lambda self: self.env.company
+    )
     currency_id = fields.Many2one(
         "res.currency",
         string="Currency",
@@ -271,4 +274,7 @@ class DeclarationOfIntentLine(models.Model):
     base_amount = fields.Monetary(string="Base Amount")
     invoice_id = fields.Many2one("account.move", string="Invoice")
     date_invoice = fields.Date(related="invoice_id.invoice_date", string="Date Invoice")
+    company_id = fields.Many2one(
+        "res.company", string="Company", related="declaration_id.company_id"
+    )
     currency_id = fields.Many2one("res.currency", string="Currency")
