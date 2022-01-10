@@ -128,6 +128,7 @@ class TestRibaCommon(common.TransactionCase):
                 "journal_id": self.sale_journal.id,
                 "partner_id": self.partner.id,
                 "invoice_payment_term_id": self.payment_term1.id,
+                "riba_partner_bank_id": self.partner.bank_ids[0].id,
                 "invoice_line_ids": [
                     (
                         0,
