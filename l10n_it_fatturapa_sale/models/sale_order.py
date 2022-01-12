@@ -33,7 +33,6 @@ class SaleOrder (models.Model):
 
     @api.multi
     def unlink(self):
-        related_documents = self.mapped('related_documents')
-        res = super().unlink()
+        related_documents = self.sudo().mapped('related_documents')
         related_documents.check_unlink().unlink()
-        return res
+        return super().unlink()
