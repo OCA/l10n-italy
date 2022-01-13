@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-08 06:01+0000\n"
-"PO-Revision-Date: 2022-01-13 15:06+0000\n"
+"PO-Revision-Date: 2022-01-13 18:45+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -71,7 +71,7 @@ msgstr "Annulla"
 #: selection:dichiarazione.intento,state:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_search
 msgid "Close"
-msgstr "Chiudi"
+msgstr "Chiusa"
 
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model,name:l10n_it_dichiarazione_intento.model_res_company
@@ -444,7 +444,7 @@ msgstr "Importo usato"
 #: selection:dichiarazione.intento,state:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_search
 msgid "Valid"
-msgstr "Valido"
+msgstr "Valida"
 
 #. module: l10n_it_dichiarazione_intento
 #: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_form
