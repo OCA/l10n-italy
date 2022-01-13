@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-08 06:01+0000\n"
-"PO-Revision-Date: 2022-01-12 10:39+0000\n"
+"PO-Revision-Date: 2022-01-13 14:38+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -25,7 +25,7 @@ msgstr "Contabilità"
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_yearly_limit__actual_used_amount
 msgid "Actual Used Amount"
-msgstr ""
+msgstr "Importo effettivo utilizzato"
 
 #. module: l10n_it_dichiarazione_intento
 #: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:149
@@ -33,8 +33,8 @@ msgstr ""
 msgid ""
 "All taxes in declaration of intent must be used in fiscal position taxes"
 msgstr ""
-"Tutte le imposte della dichiarazione d'intento devono essere nella posizione "
-"fiscale"
+"Nella posizione fiscale devono essere utilizzate tutte le imposte della "
+"dichiarazione di intento"
 
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_line__amount
@@ -54,7 +54,7 @@ msgid ""
 "Available plafond insufficent.\n"
 "Excess value: %s"
 msgstr ""
-"Plafond insufficiente.\n"
+"Plafond disponibile non sufficiente.\n"
 "Valore in eccesso: %s"
 
 #. module: l10n_it_dichiarazione_intento
@@ -143,7 +143,7 @@ msgstr "Dichiarazione"
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model,name:l10n_it_dichiarazione_intento.model_dichiarazione_intento
 msgid "Declaration of intent"
-msgstr "Dichiarazione d'intento"
+msgstr "Dichiarazione di intento"
 
 #. module: l10n_it_dichiarazione_intento
 #: code:addons/l10n_it_dichiarazione_intento/models/account_invoice.py:77
@@ -152,8 +152,8 @@ msgid ""
 "Declaration of intent not found. Add new declaration or change fiscal "
 "position and verify applied tax"
 msgstr ""
-"Dichiarazione d'intento non trovata. Aggiungere una nuova dichiarazione o "
-"modificare la posizione fiscale e verificare l'imposta applicata"
+"Dichiarazione di intento non trovata. Aggiungere una nuova dichiarazione o "
+"cambiare la posizione fiscale verificando l'imposta applicata"
 
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_res_company__dichiarazione_yearly_limit_ids
@@ -163,7 +163,7 @@ msgstr "Limite annuale dichiarazione"
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_select_manually_declarations__declaration_ids
 msgid "Declarations of Intent"
-msgstr "Dichiarazioni d'intento"
+msgstr "Dichiarazioni di intento"
 
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.actions.act_window,name:l10n_it_dichiarazione_intento.dichiarazione_intento_action
@@ -171,7 +171,7 @@ msgstr "Dichiarazioni d'intento"
 #: model:ir.ui.menu,name:l10n_it_dichiarazione_intento.dichiarazione_intento_menu
 #: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_search
 msgid "Declarations of intent"
-msgstr "Dichiarazioni d'intento"
+msgstr "Dichiarazioni di intento"
 
 #. module: l10n_it_dichiarazione_intento
 #: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:105
@@ -186,8 +186,8 @@ msgstr ""
 #, python-format
 msgid "Define taxes for fiscal position %s valid for declaration of intent"
 msgstr ""
-"Definire delle imposte per la posizione fiscale %s valide per la "
-"dichiarazione d'intento"
+"Definire le imposte per la posizione fiscale %s valide per la dichiarazione "
+"di intento"
 
 #. module: l10n_it_dichiarazione_intento
 #: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_form
@@ -197,7 +197,7 @@ msgstr "Dettagli"
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model,name:l10n_it_dichiarazione_intento.model_dichiarazione_intento_line
 msgid "Details of declaration of intent"
-msgstr "Dettagli della dichiarazione d'intento"
+msgstr "Dettagli della dichiarazione di intento"
 
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__display_name
@@ -283,7 +283,7 @@ msgstr "Riga fattura"
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_yearly_limit__used_amount
 msgid "Issued Declarations"
-msgstr ""
+msgstr "Dichiarazioni emesse"
 
 #. module: l10n_it_dichiarazione_intento
 #: selection:dichiarazione.intento,type:0
@@ -336,7 +336,7 @@ msgid ""
 "Limit passed for declaration %s.\n"
 "Excess value: %s%s"
 msgstr ""
-"Limite oltrepassato per la dichiarazione %s.\n"
+"Limite superato per la dichiarazione %s.\n"
 "Valore in eccesso: %s%s"
 
 #. module: l10n_it_dichiarazione_intento
@@ -368,7 +368,7 @@ msgstr "Partner"
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_yearly_limit__limit_amount
 msgid "Plafond"
-msgstr ""
+msgstr "Plafond"
 
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model,name:l10n_it_dichiarazione_intento.model_product_product
@@ -383,7 +383,7 @@ msgstr "Ricevuta da clienti"
 #. module: l10n_it_dichiarazione_intento
 #: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_form
 msgid "Refs"
-msgstr ""
+msgstr "Riferimenti"
 
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model,name:l10n_it_dichiarazione_intento.model_sale_order
@@ -405,13 +405,13 @@ msgstr "Selezione manuale delle dichiarazioni"
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model,name:l10n_it_dichiarazione_intento.model_select_manually_declarations
 msgid "Set declaration of intent manually on invoice"
-msgstr "Impostare la dichiarazione d'intento manualmente sulla fattura"
+msgstr "Impostare manualmente la dichiarazione di intento sulla fattura"
 
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__state
 #: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.dichiarazione_intento_search
 msgid "State"
-msgstr "Provincia"
+msgstr "Stato"
 
 #. module: l10n_it_dichiarazione_intento
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__taxes_ids
@@ -469,4 +469,4 @@ msgstr "Limite annuale per le dichiarazioni"
 #. module: l10n_it_dichiarazione_intento
 #: model_terms:ir.ui.view,arch_db:l10n_it_dichiarazione_intento.select_manually_declarations_wizard
 msgid "or"
-msgstr "o"
+msgstr "oppure"
