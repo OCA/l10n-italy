@@ -37,6 +37,7 @@ setuptools.setup(
         'odoo14-addon-l10n_it_invoices_data_communication',
         'odoo14-addon-l10n_it_invoices_data_communication_fatturapa',
         'odoo14-addon-l10n_it_ipa',
+        'odoo14-addon-l10n_it_mis_reports_pl_bs',
         'odoo14-addon-l10n_it_payment_reason',
         'odoo14-addon-l10n_it_pec',
         'odoo14-addon-l10n_it_rea',
