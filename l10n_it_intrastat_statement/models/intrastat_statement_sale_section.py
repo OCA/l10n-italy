@@ -392,6 +392,10 @@ class IntrastatStatementSaleSection4(models.Model):
     country_payment_id = fields.Many2one(
         comodel_name="res.country", string="Payment Country"
     )
+    cancellation = fields.Boolean(
+        string="Cancellation",
+        help="The Adjustment is intended for cancellation",
+    )
 
     @api.model
     def get_section_number(self):
@@ -435,12 +439,13 @@ class IntrastatStatementSaleSection4(models.Model):
             raise ValidationError(
                 _("Missing progressive to adjust on 'Sales - Section 4'")
             )
-        if not self.country_payment_id:
+        if not self.country_payment_id and not self.cancellation:
             raise ValidationError(_("Missing payment country on 'Sales - Section 4'"))
 
     @api.model
     def _prepare_export_line(self):
         self._export_line_checks(_("Sales"), self.get_section_number())
+        modifying = not self.cancellation
 
         rcd = ""
         # Codice della sezione doganale in cui è stato registrata la
@@ -455,26 +460,26 @@ class IntrastatStatementSaleSection4(models.Model):
         rcd += format_9(self.progressive_to_modify, 5)
         # Codice dello Stato membro dell’acquirente
         country_id = self.country_partner_id or self.partner_id.country_id
-        rcd += format_x(country_id.code, 2)
+        rcd += format_x(modifying and country_id.code, 2)
         #  Codice IVA dell’acquirente
-        rcd += format_x(self.vat_code.replace(" ", ""), 12)
+        rcd += format_x(modifying and self.vat_code.replace(" ", ""), 12)
         # Ammontare delle operazioni in euro
-        rcd += format_9(self.amount_euro, 13)
+        rcd += format_9(modifying and self.amount_euro, 13)
         # Numero Fattura
-        rcd += format_x(self.invoice_number, 15)
+        rcd += format_x(modifying and self.invoice_number, 15)
         # Data Fattura
         invoice_date_ddmmyy = False
         if self.invoice_date:
             invoice_date_ddmmyy = self.invoice_date.strftime("%d%m%y")
-        rcd += format_x(invoice_date_ddmmyy, 6)
+        rcd += format_x(modifying and invoice_date_ddmmyy, 6)
         # Codice del servizio
-        rcd += format_9(self.intrastat_code_id.name, 6)
+        rcd += format_9(modifying and self.intrastat_code_id.name, 6)
         # Modalità di erogazione
-        rcd += format_x(self.supply_method, 1)
+        rcd += format_x(modifying and self.supply_method, 1)
         # Modalità di incasso
-        rcd += format_x(self.payment_method, 1)
+        rcd += format_x(modifying and self.payment_method, 1)
         # Codice del paese di pagamento
-        rcd += format_x(self.country_payment_id.code, 2)
+        rcd += format_x(modifying and self.country_payment_id.code, 2)
 
         rcd += "\r\n"
         return rcd
