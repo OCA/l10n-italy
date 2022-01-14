@@ -67,7 +67,7 @@ class IntrastatStatementSection(models.AbstractModel):
 
     def _export_line_checks(self, section_label, section_number):
         self.ensure_one()
-        if not self.vat_code:
+        if not self.vat_code and section_number != 4:
             raise ValidationError(
                 _("Missing vat code for %s on '%s - Section %s'")
                 % (self.partner_id.display_name, section_label, section_number)
@@ -75,7 +75,7 @@ class IntrastatStatementSection(models.AbstractModel):
         country_id = self.country_partner_id or self.partner_id.country_id
         if country_id:
             country_id.intrastat_validate()
-        else:
+        elif section_number == 4 and not self.cancellation:
             raise ValidationError(
                 _("Missing State for Partner %s") % self.partner_id.display_name
             )
