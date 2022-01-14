@@ -22,7 +22,8 @@ exclude: |
   # XML tests should not be reformatted
   ^l10n_it_fatturapa_out/tests/data|
   ^l10n_it_fatturapa_in/tests/data|
-  ^l10n_it_fatturapa_out_sp/tests/data
+  ^l10n_it_fatturapa_out_sp/tests/data|
+  ^l10n_it_fatturapa_out_di/tests/data
 default_language_version:
   python: python3
   node: "14.13.0"
