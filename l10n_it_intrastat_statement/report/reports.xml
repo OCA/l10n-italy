@@ -1,0 +1,112 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="no_header_format_a4_vertical" model="report.paperformat">
+        <field name="name">No Header A4 Vertical</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">5</field>
+        <field name="orientation">Portrait</field>
+        <field name="header_spacing">15</field>
+    </record>
+
+    <record id="no_header_format_a4_landscape" model="report.paperformat">
+        <field name="name">No Header A4 Landscape</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">5</field>
+        <field name="orientation">Landscape</field>
+        <field name="header_spacing">15</field>
+    </record>
+
+    <!-- Mod. Intra-1 -->
+    <record id="print_intrastat_mod1" model="ir.actions.report">
+        <field name="name">INTRA-1 Model</field>
+        <field name="model">account.intrastat.statement</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >l10n_it_intrastat_statement.report_intrastat_mod1</field>
+        <field
+            name="report_file"
+        >l10n_it_intrastat_statement.report_intrastat_mod1</field>
+        <field name="binding_model_id" ref="model_account_intrastat_statement" />
+        <field name="binding_type">report</field>
+        <field
+            name="paperformat_id"
+            ref="l10n_it_intrastat_statement.no_header_format_a4_vertical"
+        />
+    </record>
+
+    <!-- Mod. Intra-2 -->
+    <record id="print_intrastat_mod2" model="ir.actions.report">
+        <field name="name">INTRA-2 Model</field>
+        <field name="model">account.intrastat.statement</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >l10n_it_intrastat_statement.report_intrastat_mod2</field>
+        <field
+            name="report_file"
+        >l10n_it_intrastat_statement.report_intrastat_mod2</field>
+        <field name="binding_model_id" ref="model_account_intrastat_statement" />
+        <field name="binding_type">report</field>
+        <field
+            name="paperformat_id"
+            ref="l10n_it_intrastat_statement.no_header_format_a4_vertical"
+        />
+    </record>
+
+    <!-- Mod. Intra-1 bis -->
+    <record id="print_intrastat_mod1_bis" model="ir.actions.report">
+        <field name="name">INTRA-1 Bis Model</field>
+        <field name="model">account.intrastat.statement</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >l10n_it_intrastat_statement.report_intrastat_mod1_bis</field>
+        <field
+            name="report_file"
+        >l10n_it_intrastat_statement.report_intrastat_mod1_bis</field>
+        <field name="binding_model_id" ref="model_account_intrastat_statement" />
+        <field name="binding_type">report</field>
+        <field
+            name="paperformat_id"
+            ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"
+        />
+    </record>
+
+    <!-- Mod. Intra-1 Ter -->
+    <record id="print_intrastat_mod1_ter" model="ir.actions.report">
+        <field name="name">INTRA-1 Ter Model</field>
+        <field name="model">account.intrastat.statement</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >l10n_it_intrastat_statement.report_intrastat_mod1_ter</field>
+        <field
+            name="report_file"
+        >l10n_it_intrastat_statement.report_intrastat_mod1_ter</field>
+        <field name="binding_model_id" ref="model_account_intrastat_statement" />
+        <field name="binding_type">report</field>
+        <field
+            name="paperformat_id"
+            ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"
+        />
+    </record>
+
+    <!-- Mod. Intra-2 bis -->
+    <record id="print_intrastat_mod2_bis" model="ir.actions.report">
+        <field name="name">INTRA-2 Bis Model</field>
+        <field name="model">account.intrastat.statement</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >l10n_it_intrastat_statement.report_intrastat_mod2_bis</field>
+        <field
+            name="report_file"
+        >l10n_it_intrastat_statement.report_intrastat_mod2_bis</field>
+        <field name="binding_model_id" ref="model_account_intrastat_statement" />
+        <field
+            name="paperformat_id"
+            ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"
+        />
+    </record>
+</odoo>
