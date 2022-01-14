@@ -193,7 +193,7 @@
                     attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}"
                 />
             </field>
-            <field name="invoice_date" position="before">
+            <div name="journal_div" position="after">
                 <field
                     name="sender"
                     readonly="1"
@@ -208,7 +208,7 @@
                     readonly="1"
                     attrs="{'invisible': [('fatturapa_attachment_in_id', '=', False)]}"
                 />
-            </field>
+            </div>
             <field name="price_unit" position="before">
                 <field name="fatturapa_attachment_in_id" invisible="1" />
             </field>
