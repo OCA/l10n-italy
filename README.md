@@ -60,6 +60,7 @@ addon | version | maintainers | summary
 [l10n_it_vat_registries_split_payment](l10n_it_vat_registries_split_payment/) | 14.0.1.1.0 |  | Modulo di congiunzione tra registri IVA e scissione dei pagamenti
 [l10n_it_vat_statement_communication](l10n_it_vat_statement_communication/) | 14.0.1.0.0 |  | Comunicazione liquidazione IVA ed esportazione file xmlconforme alle specifiche dell'Agenzia delle Entrate
 [l10n_it_vat_statement_split_payment](l10n_it_vat_statement_split_payment/) | 14.0.1.0.1 |  | Migliora la liquidazione dell'IVA tenendo in considerazione la scissione dei pagamenti
+[l10n_it_website_portal_fiscalcode](l10n_it_website_portal_fiscalcode/) | 14.0.1.0.0 |  | Add fiscal code to details of frontend user
 [l10n_it_website_portal_ipa](l10n_it_website_portal_ipa/) | 14.0.1.0.0 |  | Aggiunge l'indice PA (IPA) tra i dettagli dell'utente nel portale.
 [l10n_it_withholding_tax](l10n_it_withholding_tax/) | 14.0.1.1.1 |  | ITA - Ritenute d'acconto
 [l10n_it_withholding_tax_payment](l10n_it_withholding_tax_payment/) | 14.0.1.0.1 |  | Gestisce le ritenute sulle fatture e sui pagamenti
