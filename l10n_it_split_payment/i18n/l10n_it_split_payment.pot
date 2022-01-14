@@ -128,7 +128,6 @@ msgstr ""
 
 #. module: l10n_it_split_payment
 #: code:addons/l10n_it_split_payment/models/account.py:0
-#: code:addons/l10n_it_split_payment/models/account.py:0
 #, python-format
 msgid "Split Payment Write Off"
 msgstr ""
