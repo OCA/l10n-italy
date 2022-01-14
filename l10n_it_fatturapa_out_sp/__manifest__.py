@@ -7,14 +7,12 @@
     "category": "Localization/Italy",
     "summary": "Scissione pagamenti in fatturapa",
     "author": "Marco Colombo," "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/l10n-italy" "l10n_it_fatturapa_out_sp",
+    "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
     "depends": [
         "l10n_it_fatturapa_out",
         "l10n_it_split_payment",
     ],
-    "data": [
-        "view/invoice_it_template.xml",
-    ],
     "installable": True,
+    "autoinstall": True,
 }
