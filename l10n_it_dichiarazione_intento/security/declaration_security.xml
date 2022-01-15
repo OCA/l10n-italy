@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2022 Simone Rubino - Takobi
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+
 <odoo noupdate="1">
 
     <!-- Multi - Company Rules -->
@@ -6,11 +11,10 @@
         <field name="name">Yearly limit multi-company</field>
         <field
             name="model_id"
-            ref="l10n_it_declaration_of_intent.model_l10n_it_declaration_of_intent_yearly_limit"
+            ref="model_dichiarazione_intento_yearly_limit"
         />
-        <field name="global" eval="True" />
         <field name="domain_force">
-            ['|',('company_id','=',False),('company_id','in',company_ids)]
+            ['|', ('company_id', '=', False), ('company_id', 'in', user.company_ids.ids)]
         </field>
     </record>
 
@@ -18,11 +22,10 @@
         <field name="name">Declaration multi-company</field>
         <field
             name="model_id"
-            ref="l10n_it_declaration_of_intent.model_l10n_it_declaration_of_intent_declaration"
+            ref="model_dichiarazione_intento"
         />
-        <field name="global" eval="True" />
         <field name="domain_force">
-            ['|',('company_id','=',False),('company_id','in',company_ids)]
+            ['|', ('company_id', '=', False), ('company_id', 'in', user.company_ids.ids)]
         </field>
     </record>
 
@@ -30,11 +33,10 @@
         <field name="name">Declaration line multi-company</field>
         <field
             name="model_id"
-            ref="l10n_it_declaration_of_intent.model_l10n_it_declaration_of_intent_declaration_line"
+            ref="model_dichiarazione_intento_line"
         />
-        <field name="global" eval="True" />
         <field name="domain_force">
-            ['|',('company_id','=',False),('company_id','in',company_ids)]
+            ['|', ('company_id', '=', False), ('company_id', 'in', user.company_ids.ids)]
         </field>
     </record>
 
