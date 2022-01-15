@@ -131,7 +131,6 @@ class ResPartner(models.Model):
         if self.use_corrispettivi:
             # Partner is receipts, assign a receipts (corrispettivi)
             # fiscal position only if there is none
-            import pdb;pdb.set_trace()
             if not self.property_account_position_id:
                 company = self.company_id or self.env.user.company_id
                 self.property_account_position_id = \
