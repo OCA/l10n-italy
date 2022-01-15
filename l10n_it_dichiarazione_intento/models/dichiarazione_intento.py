@@ -76,7 +76,7 @@ class DichiarazioneIntento(models.Model):
     limit_amount = fields.Monetary(required=True)
     available_amount = fields.Monetary(compute='_compute_amounts', store=True)
     company_id = fields.Many2one(
-        "res.company", string="Company", default=lambda self: self.env.company
+        "res.company", string="Company", default=lambda self: self.env.user.company_id,
     )
     currency_id = fields.Many2one('res.currency', string='Currency',
                                   default=_default_currency,)
@@ -272,6 +272,6 @@ class DichiarazioneIntentoLine(models.Model):
         string='Date Invoice'
     )
     company_id = fields.Many2one(
-        "res.company", string="Company", related="declaration_id.company_id"
+        "res.company", string="Company", related="dichiarazione_id.company_id"
     )
     currency_id = fields.Many2one('res.currency', string='Currency')
