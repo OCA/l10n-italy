@@ -17,6 +17,7 @@
         'sale',
         ],
     'data': [
+        "security/declaration_security.xml",
         'wizard/manually_declarations_view.xml',
         'views/account_view.xml',
         'views/dichiarazione_intento_view.xml',
