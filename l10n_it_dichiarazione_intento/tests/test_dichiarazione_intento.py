@@ -11,7 +11,7 @@ from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 class TestDichiarazioneIntento(TransactionCase):
 
     def _create_dichiarazione(self, partner, type_d):
-        return self.env['dichiarazione.intento'].sudo().create({
+        return self.env['dichiarazione.intento'].create({
             'partner_id': partner.id,
             'date': self.today_date.strftime('%Y-%m-%d'),
             'date_start': self.today_date.strftime('%Y-%m-%d'),
@@ -160,6 +160,17 @@ class TestDichiarazioneIntento(TransactionCase):
         self.invoice4 = self._create_invoice(self.partner3, tax=self.tax22)
         self.invoice4.fiscal_position_id = self.fiscal_position2.id
         self.invoice5 = self._create_invoice(self.partner4, tax=self.tax1, in_type=True)
+        self.other_company = self.env['res.company'].create({
+            'name': 'other',
+        })
+        self.other_user = self.env['res.users'].create({
+            'name': "User of other company",
+            'login': "other",
+            'company_ids': [
+                (4, self.other_company.id),
+            ],
+            'company_id': self.other_company.id,
+        })
 
     def test_dichiarazione_data(self):
         self.assertTrue(self.dichiarazione1.number)
@@ -263,3 +274,16 @@ class TestDichiarazioneIntento(TransactionCase):
     def test_copy_dichiarazione_in(self):
         dichiarazione_copy = self.dichiarazione4.copy()
         self.assertTrue(dichiarazione_copy)
+
+    def test_multi_company(self):
+        """Check that a user can only see and create declarations in his company."""
+        self.env = self.env(user=self.other_user)
+        declaration_model = self.env['dichiarazione.intento']
+
+        # See only declarations in current company
+        self.assertFalse(declaration_model.search_count([]))
+
+        # Created declaration is in current company
+        declaration = self._create_dichiarazione(self.partner1, 'out')
+        self.assertEqual(declaration_model.search([]), declaration)
+        self.assertEqual(self.env.user.company_id, declaration.company_id)
