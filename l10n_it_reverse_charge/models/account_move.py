@@ -354,7 +354,7 @@ class AccountMove(models.Model):
     def button_draft(self):
         new_self = self.with_context(rc_set_to_draft=True)
         invoice_model = new_self.env["account.move"]
-        for inv in new_self:
+        for inv in new_self.filtered(lambda i: i != i.payment_id.move_id):
             # remove payments without deleting self invoice
             inv.remove_rc_payment(delete_self_invoice=False)
             inv.remove_invoice_payment()
