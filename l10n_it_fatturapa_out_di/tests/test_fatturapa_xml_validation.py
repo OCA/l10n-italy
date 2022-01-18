@@ -56,7 +56,7 @@ class TestInvoiceDI(FatturaPACommon):
             'partner_id': self.res_partner_fatturapa_0.id,
             'date': fields.Date.from_string("2016-06-15"),
             'date_start': fields.Date.from_string("2016-06-15"),
-            'date_end': self.today_date.strftime('%Y-%m-%d'),
+            'date_end': self.today_date,
             'taxes_ids': [(6, 0, [self.tax1.id])],
             'limit_amount': 1000.00,
             'fiscal_position_id': self.fiscal_position.id,
@@ -64,6 +64,7 @@ class TestInvoiceDI(FatturaPACommon):
             'telematic_protocol': '08060120341234567-000001',
             "partner_document_number": "DI/111",
             "partner_document_date": fields.Date.from_string("2016-06-15"),
+            "number": 60,
 
         })
 
@@ -103,7 +104,7 @@ class TestInvoiceDI(FatturaPACommon):
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res["res_id"])
         self.set_e_invoice_file_id(attachment, "IT06363391001_00001.xml")
-        xml_content = base64.decodebytes(attachment.datas)
+        xml_content = base64.decodestring(attachment.datas)
         self.check_content(xml_content, "IT06363391001_00001.xml")
 
     def test_2_di_xml_export(self):
@@ -117,7 +118,7 @@ class TestInvoiceDI(FatturaPACommon):
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res["res_id"])
         self.set_e_invoice_file_id(attachment, "IT06363391001_00002.xml")
-        xml_content = base64.decodebytes(attachment.datas)
+        xml_content = base64.decodestring(attachment.datas)
         self.check_content(xml_content, "IT06363391001_00002.xml")
 
     def test_3_di_xml_export(self):
@@ -137,5 +138,5 @@ class TestInvoiceDI(FatturaPACommon):
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res["res_id"])
         self.set_e_invoice_file_id(attachment, "IT06363391001_00003.xml")
-        xml_content = base64.decodebytes(attachment.datas)
+        xml_content = base64.decodestring(attachment.datas)
         self.check_content(xml_content, "IT06363391001_00003.xml")

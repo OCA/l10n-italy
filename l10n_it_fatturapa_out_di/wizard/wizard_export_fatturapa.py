@@ -1,20 +1,29 @@
 # Copyright 2021 Marco Colombo - Phi srl
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models
-from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
+import re
+
 from odoo.addons.l10n_it_fatturapa.bindings.fatturapa import (
     DatiRiepilogoType,
     DettaglioLineeType,
     AltriDatiGestionaliType,
 )
 
+from odoo import models
+
+reg_whitespace = re.compile(r'\s+')
+
+
+def encode_for_export(string_to_encode, max_chars, encoding='latin'):
+    return reg_whitespace.sub(' ', string_to_encode).encode(
+        encoding, errors='replace').decode(encoding)[:max_chars]
+
 
 class WizardExportFatturapa(models.TransientModel):
     _inherit = "wizard.export.fatturapa"
 
     def setDettaglioLinea(self, line_no, line, body, price_precision, uom_precision):
-        DettaglioLinea = super().setDettaglioLinea(
+        DettaglioLinea = super(WizardExportFatturapa, self).setDettaglioLinea(
             line_no, line, body, price_precision, uom_precision)
 
         if line.force_dichiarazione_intento_id:
@@ -28,7 +37,7 @@ class WizardExportFatturapa(models.TransientModel):
         return DettaglioLinea
 
     def setDettaglioLinee(self, invoice, body):
-        super().setDettaglioLinee(invoice, body)
+        super(WizardExportFatturapa, self).setDettaglioLinee(invoice, body)
 
         force_dichiarazione_intento_ids = invoice.dichiarazione_intento_ids.browse()
         line_no = 1
@@ -57,7 +66,7 @@ class WizardExportFatturapa(models.TransientModel):
         body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
 
     def setDatiRiepilogo(self, invoice, body):
-        super().setDatiRiepilogo(invoice, body)
+        super(WizardExportFatturapa, self).setDatiRiepilogo(invoice, body)
 
         force_dichiarazione_intento_ids = invoice.dichiarazione_intento_ids.browse()
         for line in invoice.invoice_line_ids:

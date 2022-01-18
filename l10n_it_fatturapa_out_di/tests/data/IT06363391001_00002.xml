@@ -44,9 +44,9 @@
             <DatiAnagrafici>
                 <IdFiscaleIVA>
                     <IdPaese>IT</IdPaese>
-                    <IdCodice>06363391001</IdCodice>
+                    <IdCodice>00146089990</IdCodice>
                 </IdFiscaleIVA>
-                <CodiceFiscale>06363391001</CodiceFiscale>
+                <CodiceFiscale>00146089990</CodiceFiscale>
                 <Anagrafica>
                     <Denominazione>Public Administration</Denominazione>
                 </Anagrafica>
@@ -68,14 +68,14 @@
                 <Data>2016-06-15</Data>
                 <Numero>INV/2016/0001</Numero>
                 <ImportoTotaleDocumento>14.00</ImportoTotaleDocumento>
-                <Causale>Vostra dichiarazione d'intento del 06/15/2016, protocollo telematico nr 08060120341234567-000001.</Causale>
+                <Causale>Vostra dichiarazione d'intento nr DI/111 del Jun 15, 2016, nostro protocollo nr 60 del Jun 15, 2016, protocollo telematico nr 08060120341234567-000001.</Causale>
                 <Art73>SI</Art73>
             </DatiGeneraliDocumento>
         </DatiGenerali>
         <DatiBeniServizi>
             <DettaglioLinee>
                 <NumeroLinea>1</NumeroLinea>
-                <Descrizione>Cabinet with Doors</Descrizione>
+                <Descrizione>Mouse, Optical</Descrizione>
                 <Quantita>1.000</Quantita>
                 <UnitaMisura>Unit(s)</UnitaMisura>
                 <PrezzoUnitario>14.00000</PrezzoUnitario>
