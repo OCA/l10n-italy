@@ -145,12 +145,24 @@ class EFatturaOut:
             res = ("{qta:.{precision}f}".format(qta=quantity, precision=uom_precision),)
             return res[0]
 
-        def get_vat_number(vat):
-            # return vat[2:].replace(' ', '') if vat else ""
-            return vat[2:] if vat else ""
+        def get_id_fiscale_iva(partner, prefer_fiscalcode=False):
+            id_paese = partner.country_id.code
 
-        def get_vat_country(vat):
-            return vat[:2].upper() if vat else ""
+            if partner.vat:
+                if id_paese == "IT" and partner.vat.startswith("IT"):
+                    id_codice = partner.vat[2:]
+                else:
+                    id_codice = partner.vat
+            else:
+                id_codice = "99999999999"
+
+            if prefer_fiscalcode and partner.fiscalcode:
+                id_codice = partner.fiscalcode
+
+            return {
+                "id_paese": id_paese,
+                "id_codice": id_codice,
+            }
 
         def get_causale(invoice):
             res = []
@@ -299,11 +311,10 @@ class EFatturaOut:
             "format_phone": format_phone,
             "format_quantity": format_quantity,
             "format_price": format_price,
-            "get_vat_number": get_vat_number,
-            "get_vat_country": get_vat_country,
             "get_causale": get_causale,
             "get_nome_attachment": get_nome_attachment,
             "get_type_attachment": get_type_attachment,
+            "get_id_fiscale_iva": get_id_fiscale_iva,
             "codice_destinatario": code.upper(),
             "in_eu": in_eu,
             "unidecode": unidecode,

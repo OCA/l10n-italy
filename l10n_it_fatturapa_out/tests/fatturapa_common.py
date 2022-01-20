@@ -144,6 +144,10 @@ class FatturaPACommon(AccountTestInvoicingCommon):
         self.res_partner_fatturapa_4 = self.env.ref(
             "l10n_it_fatturapa.res_partner_fatturapa_4"
         )
+        # B2C Customer IT
+        self.res_partner_fatturapa_6 = self.env.ref(
+            "l10n_it_fatturapa.res_partner_fatturapa_6"
+        )
         self.EUR = self.env.ref("base.EUR")
         # United Arab Emirates currency
         self.AED = self.env.ref("base.AED")
