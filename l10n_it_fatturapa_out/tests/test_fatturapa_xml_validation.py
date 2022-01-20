@@ -755,6 +755,34 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, "IT06363391001_00015a.xml")
 
+    def test_16_xml_export(self):
+        """
+        B2C Customer ITA w fiscalcode w/o vat
+        """
+
+        invoice_form = Form(
+            self.env["account.move"].with_context({"default_move_type": "out_invoice"})
+        )
+        invoice_form.partner_id = self.res_partner_fatturapa_6
+        invoice_form.name = "INV/2021/12/0001"
+        invoice_form.date = fields.Date.from_string("2021-12-16")
+        invoice_form.invoice_date = fields.Date.from_string("2021-12-16")
+        invoice_form.invoice_payment_term_id = self.account_payment_term
+
+        with invoice_form.line_ids.new() as line_form:
+            line_form.product_id = self.product_product_10
+            line_form.account_id = self.a_sale
+        invoice = invoice_form.save()
+        invoice.action_post()
+
+        res = self.run_wizard(invoice.id)
+        attachment = self.attach_model.browse(res["res_id"])
+        self.set_e_invoice_file_id(attachment, "IT06363391001_00016.xml")
+        xml_content = base64.decodebytes(attachment.datas)
+        with open("/tmp/IT06363391001_00016.xml", "wb") as o:
+            o.write(xml_content)
+        self.check_content(xml_content, "IT06363391001_00016.xml")
+
     def test_no_tax_fail(self):
         """
         - create an invoice with a product line without taxes
