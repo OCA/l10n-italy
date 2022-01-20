@@ -47,7 +47,7 @@ class SdiChannelPEC(models.Model):
             'sdi.pec.first.address')
     )
     first_invoice_sent = fields.Boolean(
-        "First e-invoice sent",
+        "SDI already assigned a PEC address to my company",
         help="This is set after having sent the first e-invoice to SDI")
 
     @api.constrains('fetch_pec_server_id')
