@@ -1199,3 +1199,53 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         # XML doc to be validated
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, "IT06363391001_00018.xml")
+
+    def test_max_invoice_in_xml(self):
+        invoice1_form = Form(
+            self.env["account.move"].with_context({"default_move_type": "out_invoice"})
+        )
+        invoice1_form.partner_id = self.res_partner_fatturapa_0
+        with invoice1_form.line_ids.new() as line_form:
+            line_form.product_id = self.product_product_10
+            line_form.account_id = self.a_sale
+            line_form.tax_ids.clear()
+            line_form.tax_ids.add(self.tax_22)
+        invoice1 = invoice1_form.save()
+        invoice2 = invoice1.copy()
+        invoice3 = invoice1.copy()
+
+        invoice1.action_post()
+        invoice2.action_post()
+        invoice3.action_post()
+        invoices = invoice1 | invoice2 | invoice3
+
+        # partner limited, company limited (expect 3 xml attachments)
+        self.res_partner_fatturapa_0.max_invoice_in_xml = 1
+        self.env.company.max_invoice_in_xml = 2
+        res = self.run_wizard(invoices.ids)
+        attachments = self.attach_model.search(res["domain"])
+        self.assertEqual(len(attachments), 3)
+        attachments.unlink()
+
+        # partner limited, company unlimited (expect 3 xml attachments)
+        self.res_partner_fatturapa_0.max_invoice_in_xml = 1
+        self.env.company.max_invoice_in_xml = 0
+        res = self.run_wizard(invoices.ids)
+        attachments = self.attach_model.search(res["domain"])
+        self.assertEqual(len(attachments), 3)
+        attachments.unlink()
+
+        # partner unlimited, company limited (expect 2 xml attachments)
+        self.res_partner_fatturapa_0.max_invoice_in_xml = 0
+        self.env.company.max_invoice_in_xml = 2
+        res = self.run_wizard(invoices.ids)
+        attachments = self.attach_model.search(res["domain"])
+        self.assertEqual(len(attachments), 2)
+        attachments.unlink()
+
+        # partner unlimited, company unlimited (expect 1 xml attachment)
+        self.res_partner_fatturapa_0.max_invoice_in_xml = 0
+        self.env.company.max_invoice_in_xml = 0
+        res = self.run_wizard(invoices.ids)
+        attachments = self.attach_model.browse(res["res_id"])
+        self.assertEqual(len(attachments), 1)
