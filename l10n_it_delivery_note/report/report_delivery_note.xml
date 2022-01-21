@@ -10,7 +10,7 @@
             <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)" />
 
             <!--if is an outgoing move -->
-            <t id="partner_outgoing" t-if="doc.picking_type=='outgoing'">
+            <t id="partner_outgoing" t-if="doc.type_code=='outgoing'">
                 <t t-set="address">
                     <h4>
                         <strong>Delivery address:</strong>
@@ -49,7 +49,7 @@
             </t>
 
             <!--if is an internal move -->
-            <t id="partner_outgoing" t-if="doc.picking_type=='internal'">
+            <t id="partner_outgoing" t-if="doc.type_code=='internal'">
                 <t t-set="address">
                     <h4>
                         <strong>Delivery address:</strong>
@@ -95,7 +95,7 @@
                         </t>
                     </t>
                 </t>
-                <t t-if="location != doc.picking_ids[0].location_id.id">
+                <t t-if="doc.picking_ids and doc.picking_ids[0].location_id.id">
                     <t t-set="information_block">
                         <h4>
                             <strong>Warehouse:</strong>
@@ -111,7 +111,9 @@
 
             <div class="page">
                 <div id="warehouse_outgoing">
-                    <div t-if="doc.picking_type=='outgoing'">
+                    <div
+                        t-if="doc.type_code=='outgoing' and doc.picking_ids and doc.picking_ids[0].location_id.id"
+                    >
                         <strong>Warehouse:</strong>
                         <p>
                             <t
