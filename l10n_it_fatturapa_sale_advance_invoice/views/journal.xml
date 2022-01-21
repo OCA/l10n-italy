@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_journal_form" model="ir.ui.view">
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <field name="arch" type="xml">
+            <field name="refund_sequence" position="after">
+                <field name="advance_fiscal_document_type_id" attrs="{'invisible': [('type', '!=', 'sale')]}"/>
+            </field>
+        </field>
+    </record>
+</odoo>

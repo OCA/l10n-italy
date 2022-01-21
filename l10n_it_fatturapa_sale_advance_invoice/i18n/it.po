@@ -1,0 +1,33 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_fatturapa_sale_advance_invoice
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-21 12:01+0000\n"
+"PO-Revision-Date: 2022-01-21 12:01+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_fatturapa_sale_advance_invoice
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale_advance_invoice.field_account_bank_statement_import_journal_creation__advance_fiscal_document_type_id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale_advance_invoice.field_account_journal__advance_fiscal_document_type_id
+msgid "Advance Fiscal Document Type"
+msgstr "Tipo di Documento Fiscale Anticipi"
+
+#. module: l10n_it_fatturapa_sale_advance_invoice
+#: model:ir.model,name:l10n_it_fatturapa_sale_advance_invoice.model_account_journal
+msgid "Journal"
+msgstr "Registro"
+
+#. module: l10n_it_fatturapa_sale_advance_invoice
+#: model:ir.model,name:l10n_it_fatturapa_sale_advance_invoice.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
+msgstr "Fattura Anticipo Vendite"
+
