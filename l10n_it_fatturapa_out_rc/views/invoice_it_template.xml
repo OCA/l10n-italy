@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Alex Comba - Agile Business Group
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+        <template
+        id="account_invoice_it_FatturaPA_export"
+        inherit_id="l10n_it_fatturapa_out.account_invoice_it_FatturaPA_export"
+    >
+            <xpath
+            expr="//t[@t-call='l10n_it_fatturapa_out.account_invoice_it_cedente_prestatore']"
+            position="replace"
+        >
+                    <t
+                t-call="l10n_it_fatturapa_out.account_invoice_it_cedente_prestatore"
+            >
+                        <t
+                    t-set="rc_supplier"
+                    t-value="invoices.mapped('rc_purchase_invoice_id.partner_id')"
+                />
+                        <t
+                    t-if="rc_supplier"
+                    t-set="partner_id"
+                    t-value="rc_supplier"
+                />
+                        <t t-if="rc_supplier" t-set="company_id" t-value="" />
+                    </t>
+            </xpath>
+            <xpath
+            expr="//t[@t-call='l10n_it_fatturapa_out.account_invoice_it_fattura_elettronica_body']"
+            position="replace"
+        >
+                    <t
+                t-call="l10n_it_fatturapa_out.account_invoice_it_fattura_elettronica_body"
+            >
+                        <t
+                    t-set="rc_document_type"
+                    t-value="record.rc_purchase_invoice_id.fiscal_position_id.rc_type_id.fiscal_document_type_id"
+                />
+                    </t>
+            </xpath>
+        </template>
+
+        <template
+        id="account_invoice_it_fattura_elettronica_body"
+        inherit_id="l10n_it_fatturapa_out.account_invoice_it_fattura_elettronica_body"
+    >
+            <xpath expr="//DatiGeneraliDocumento/TipoDocumento" position="replace">
+                <TipoDocumento t-if="rc_document_type" t-esc="rc_document_type.code" />
+                <TipoDocumento
+                t-if="not rc_document_type"
+                t-esc="record.fiscal_document_type_id.code"
+            />
+            </xpath>
+            <xpath
+            expr="//DatiGeneraliDocumento/ImportoTotaleDocumento"
+            position="replace"
+        >
+                <ImportoTotaleDocumento
+                t-esc="format_numbers_two(get_sign(record) * record.amount_total)"
+            />
+            </xpath>
+            <xpath expr="//DettaglioPagamento/ImportoPagamento" position="replace">
+                <ImportoPagamento
+                t-esc="format_numbers_two(get_sign(record) * (move_line.amount_currency or move_line.debit))"
+            />
+            </xpath>
+            <xpath expr="//DatiRiepilogo/ImponibileImporto" position="replace">
+                <ImponibileImporto
+                t-esc="format_monetary(get_sign(record) * tax_data['ImponibileImporto'], currency)"
+            />
+            </xpath>
+            <xpath expr="//DatiRiepilogo/Imposta" position="replace">
+                <Imposta
+                t-esc="format_monetary(get_sign(record) * tax_data['Imposta'], currency)"
+            />
+            </xpath>
+        </template>
+
+        <template
+        id="account_invoice_line_it_FatturaPA"
+        inherit_id="l10n_it_fatturapa_out.account_invoice_line_it_FatturaPA"
+    >
+                <xpath expr="//PrezzoUnitario" position="replace">
+                    <PrezzoUnitario
+                t-esc="format_price(line, get_sign(line.move_id))"
+            />
+                </xpath>
+                <xpath expr="//PrezzoTotale" position="replace">
+                    <PrezzoTotale
+                t-esc="format_monetary(get_sign(line.move_id) * line.price_subtotal, currency)"
+            />
+                </xpath>
+        </template>
+
+</odoo>

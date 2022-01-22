@@ -1,0 +1,122 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_fatturapa_out_rc
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-25 05:47+0000\n"
+"PO-Revision-Date: 2020-12-25 05:47+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:68
+#, python-format
+msgid ""
+"A self-invoice cannot be issued with IT country code and fiscal document "
+"type in 'TD17', 'TD18', 'TD19'."
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:74
+#, python-format
+msgid "Country code does not exist or it is not mapped in countries: %s"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: model:ir.model,name:l10n_it_fatturapa_out_rc.model_wizard_export_fatturapa
+msgid "Export E-invoice"
+msgstr "Esporta e-fattura"
+
+#. module: l10n_it_fatturapa_out_rc
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_account_rc_type__fiscal_document_type_id
+msgid "Fiscal Document Type"
+msgstr "Tipo di documento fiscale"
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:85
+#, python-format
+msgid "Impossible to set IdFiscaleIVA for %s"
+msgstr "Impossibile impostare IdFiscaleIVA per %s"
+
+#. module: l10n_it_fatturapa_out_rc
+#: model:ir.model,name:l10n_it_fatturapa_out_rc.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:100
+#, python-format
+msgid "Partner %s, City is not set."
+msgstr "Partner %s, la città non è impostata"
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:103
+#, python-format
+msgid "Partner %s, Country is not set."
+msgstr "Partner %s, la nazione non è impostata"
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:97
+#, python-format
+msgid "Partner %s, Street is not set."
+msgstr "Partner %s, l'indirizzo non è impostato"
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:115
+#, python-format
+msgid "Partner %s, ZIP is not set."
+msgstr "Partner %s, il CAP non è impostato"
+
+#. module: l10n_it_fatturapa_out_rc
+#: model:ir.model,name:l10n_it_fatturapa_out_rc.model_account_rc_type
+msgid "Reverse Charge Type"
+msgstr "Tipo inversione contabile"
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:38
+#, python-format
+msgid ""
+"Select invoices are of too many fiscal document types: select invoices "
+"exclusively of type 'TD17', 'TD18', 'TD19' or exclusively of other types."
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:28
+#, python-format
+msgid ""
+"Selected invoices are both with and without reverse charge. You should "
+"selected a smaller set of invoices"
+msgstr ""
+"Le fatture selezionate sono sia con che senza inversione contabile. È "
+"necessario selezionare un insieme più piccolo di fatture"
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:45
+#, python-format
+msgid ""
+"Selected reverse charge invoices have different suppliers. Please select "
+"invoices with same supplier"
+msgstr ""
+"Le fatture in inversione contabile selezionate hanno fornitori diversi. "
+"Selezionare fatture con lo stesso fornitore"
+
+#. module: l10n_it_fatturapa_out_rc
+#: model:ir.model.fields,help:l10n_it_fatturapa_out_rc.field_account_rc_type__fiscal_document_type_id
+msgid "To be used when sending self invoices to the exchange system"
+msgstr "Da usare quando si inviano le autofatture al sistema di interscambio"
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/models/account_invoice.py:34
+#, python-format
+msgid ""
+"Vendor invoice that has generated this self invoice isn't validated. "
+"Validate vendor invoice before."
+msgstr ""
