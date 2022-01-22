@@ -377,19 +377,33 @@ class AccountInvoice(models.Model):
         'invoice_line_ids.price_subtotal', 'withholding_tax_line_ids.tax',
         'currency_id', 'company_id', 'date_invoice', 'payment_move_line_ids')
     def _amount_withholding_tax(self):
-        dp_obj = self.env['decimal.precision']
+        prec_account = self.env['decimal.precision'].precision_get('Account')
+        wst_obj = self.env['withholding.tax.statement']
         for invoice in self:
-            withholding_tax_amount = 0.0
-            for wt_line in invoice.withholding_tax_line_ids:
-                withholding_tax_amount += round(
-                    wt_line.tax, dp_obj.precision_get('Account'))
-            invoice.amount_net_pay = invoice.amount_total - \
-                withholding_tax_amount
-            amount_net_pay_residual = invoice.amount_net_pay
+            amount_net_pay = 0
+            amount_net_pay_residual = 0
+            # WT
+            withholding_tax_amount = sum(
+                invoice.mapped('withholding_tax_line_ids.tax')
+            )
+            # WT total to pay
+            amount_net_pay = round(
+                invoice.amount_total - withholding_tax_amount,
+                prec_account
+            )
+            # WT residual to paid
+            # Amount net residual is the residual - quote of WT residual
+            domain = [
+                ('invoice_id', '=', invoice.id)
+            ]
+            wtss = wst_obj.search(domain)
+            wt_paid = sum(wtss.mapped('move_ids.amount'))
+            wt_residual = withholding_tax_amount - wt_paid
+            amount_net_pay_residual = round(
+                invoice.residual - wt_residual, prec_account
+            )
             invoice.withholding_tax_amount = withholding_tax_amount
-            for line in invoice.payment_move_line_ids:
-                if not line.withholding_tax_generated_by_move_id:
-                    amount_net_pay_residual -= (line.debit or line.credit)
+            invoice.amount_net_pay = amount_net_pay
             invoice.amount_net_pay_residual = amount_net_pay_residual
 
     withholding_tax = fields.Boolean('Withholding Tax')
