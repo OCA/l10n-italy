@@ -81,9 +81,11 @@ class AccountMove(models.Model):
         :param all_date_due: list of due dates for partner
         :return: True if month of invoice_date_due is in a list of all_date_due
         """
-        for d in all_date_due:
-            if invoice_date_due[:7] == str(d.strftime("%Y-%m")):
-                return True
+        self.ensure_one()
+        if self.partner_id.riba_policy_expenses != 'unlimited':
+            for d in all_date_due:
+                if invoice_date_due[:7] == str(d.strftime('%Y-%m')):
+                    return True
         return False
 
     def action_post(self):
@@ -94,7 +96,8 @@ class AccountMove(models.Model):
                 invoice.move_type != "out_invoice"
                 or not invoice.invoice_payment_term_id
                 or not invoice.invoice_payment_term_id.riba
-                or invoice.invoice_payment_term_id.riba_payment_cost == 0.0
+                or invoice.invoice_payment_term_id.riba_payment_cost == 0.0 or
+                invoice.partner_id.commercial_partner_id.riba_exclude_expenses
             ):
                 continue
             if not invoice.company_id.due_cost_service_id:
@@ -103,13 +106,15 @@ class AccountMove(models.Model):
                 )
             # ---- Apply Collection Fees on invoice only on first due date of the month
             # ---- Get Date of first due date
-            move_line = self.env["account.move.line"].search(
-                [("partner_id", "=", invoice.partner_id.id)]
-            )
-            if not any(line.due_cost_line for line in move_line):
-                move_line = self.env["account.move.line"]
+            move_line = self.env['account.move.line'].search([
+                ('partner_id', '=', invoice.partner_id.id),
+                ('move_id.invoice_payment_term_id.riba', '=', True),
+                ('date_maturity', '>=', fields.Date.context_today(invoice)),
+                ('move_id.state', '=', 'posted'),
+                ])
             # ---- Filtered recordset with date_maturity
-            move_line = move_line.filtered(lambda l: l.date_maturity is not False)
+            move_line = move_line.filtered(
+                lambda l: l.date_maturity is not False)
             # ---- Sorted
             move_line = move_line.sorted(key=lambda r: r.date_maturity)
             # ---- Get date
@@ -122,9 +127,10 @@ class AccountMove(models.Model):
                 if not self.month_check(pay_date[0], previous_date_due):
                     # ---- Get Line values for service product
                     service_prod = invoice.company_id.due_cost_service_id
-                    account = service_prod.product_tmpl_id.get_product_accounts(
-                        invoice.fiscal_position_id
-                    )["income"]
+                    account =\
+                        service_prod.product_tmpl_id.get_product_accounts(
+                            invoice.fiscal_position_id
+                        )["income"]
                     line_vals = {
                         "partner_id": invoice.partner_id.id,
                         "product_id": service_prod.id,

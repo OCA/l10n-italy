@@ -10,9 +10,11 @@
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="groups_id" eval="[(4, ref('account.group_account_user'))]" />
         <field name="arch" type="xml">
-            <field name="parent_id" position="after">
-                <label for="group_riba" />
-                <field name="group_riba" />
+            <field name="property_payment_term_id" position="after">
+                <field name="group_riba"/>
+                <field name="riba_exclude_expenses"/>
+                <field name="riba_policy_expenses"
+                    attrs="{'invisible': [('riba_exclude_expenses', '=', True)]}"/>
             </field>
         </field>
     </record>
