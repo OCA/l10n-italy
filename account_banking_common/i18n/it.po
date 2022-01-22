@@ -1,0 +1,386 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * account_banking_common
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo (12.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-09 13:09+0000\n"
+"PO-Revision-Date: 2022-01-09 13:09+0000\n"
+"Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
+"Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
+"Language: it_IT\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#. module: account_banking_common
+#: model_terms:ir.ui.view,arch_db:account_banking_common.inherit_account_payment_order_form
+#: model_terms:ir.ui.view,arch_db:account_banking_common.wizard_payment_order_credit
+msgid "Accredito"
+msgstr ""
+
+#. module: account_banking_common
+#: model_terms:ir.ui.view,arch_db:account_banking_common.wizard_account_payment_add_move_line
+msgid "Add"
+msgstr "Aggiungere"
+
+#. module: account_banking_common
+#: model_terms:ir.ui.view,arch_db:account_banking_common.wizard_account_payment_add_move_line
+msgid "Add Payment Lines"
+msgstr "Aggiungi linee"
+
+#. module: account_banking_common
+#: model:ir.model,name:account_banking_common.model_wizard_account_payment_add_move_lines
+msgid "Add to payment order from due dates tree view"
+msgstr "Aggiungi all'ordine di pagamento"
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_banking_common_insoluto__charge_client
+msgid "Addebito spese a cliente"
+msgstr ""
+
+#. module: account_banking_common
+#: model_terms:ir.ui.view,arch_db:account_banking_common.wizard_set_payment_method
+msgid "Aggiorna"
+msgstr ""
+
+#. module: account_banking_common
+#: model_terms:ir.ui.view,arch_db:account_banking_common.wizard_set_payment_method
+msgid "Aggiorna metodi di pagamento"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.actions.server,name:account_banking_common.server_action_duedates_update
+msgid "Aggiorna metodo di pagamento"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.actions.server,name:account_banking_common.server_action_add_to_payment_order
+msgid "Aggiungi a Distinta"
+msgstr ""
+
+#. module: account_banking_common
+#: model_terms:ir.ui.view,arch_db:account_banking_common.wizard_payment_order_confirm
+#: model_terms:ir.ui.view,arch_db:account_banking_common.wizard_payment_order_credit
+msgid "Annulla"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_account_invoice__partner_bank_id
+msgid "Bank Account"
+msgstr "Conto bancario"
+
+#. module: account_banking_common
+#: model:ir.model.fields,help:account_banking_common.field_account_invoice__partner_bank_id
+msgid ""
+"Bank Account Number to which the invoice will be paid. A Company bank "
+"account if this is a Customer Invoice or Vendor Credit Note, otherwise a "
+"Partner bank account number."
+msgstr ""
+"Numero del conto bancario sul quale verrà pagata la fattura. Sarà un "
+"conto dell'azienda se si tratta di fattura cliente o di nota di credito "
+"fornitore, altrimenti un conto bancario del partner."
+
+#. module: account_banking_common
+#: model:ir.model,name:account_banking_common.model_res_partner_bank
+msgid "Bank Accounts"
+msgstr "Conti bancari"
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_payment_generate__journal_id
+msgid "Bank Journal"
+msgstr "Registro banca"
+
+#. module: account_banking_common
+#: model_terms:ir.ui.view,arch_db:account_banking_common.wizard_account_banking_common_insoluto
+#: model_terms:ir.ui.view,arch_db:account_banking_common.wizard_account_payment_add_move_line
+#: model_terms:ir.ui.view,arch_db:account_banking_common.wizard_account_payment_generate
+#: model_terms:ir.ui.view,arch_db:account_banking_common.wizard_set_payment_method
+msgid "Cancel"
+msgstr "Annullare"
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_account_payment_order__payment_method_code
+msgid "Codice metodo di pagamento"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_account_invoice__company_partner_id
+msgid "Company partner"
+msgstr ""
+
+#. module: account_banking_common
+#: model_terms:ir.ui.view,arch_db:account_banking_common.wizard_payment_order_confirm
+#: model_terms:ir.ui.view,arch_db:account_banking_common.wizard_payment_order_credit
+msgid "Conferma"
+msgstr ""
+
+#. module: account_banking_common
+#: model_terms:ir.ui.view,arch_db:account_banking_common.wizard_payment_order_confirm
+msgid "Conferma Pgamento"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.actions.server,name:account_banking_common.server_action_payment_confirm
+msgid "Conferma pagamento"
+msgstr ""
+
+#. module: account_banking_common
+#: model_terms:ir.ui.view,arch_db:account_banking_common.payment_config_notebook_res_partner_bank_form
+msgid "Configurazione pagamenti"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_account_setup_bank_manual_config__bank_wallet_ids
+#: model:ir.model.fields,field_description:account_banking_common.field_res_partner_bank__bank_wallet_ids
+msgid "Conti bancari"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_account_bank_statement_import_journal_creation__wallet_ids
+#: model:ir.model.fields,field_description:account_banking_common.field_account_journal__wallet_ids
+#: model:ir.model.fields,field_description:account_banking_common.field_account_setup_bank_manual_config__journal_wallet_ids
+#: model:ir.model.fields,field_description:account_banking_common.field_res_partner_bank__journal_wallet_ids
+#: model_terms:ir.ui.view,arch_db:account_banking_common.view_account_bank_journal_form_banking_common
+msgid "Conti di portafoglio"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_banking_common_insoluto__expenses_account
+msgid "Conto Spese"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_account_bank_statement_import_journal_creation__is_wallet
+#: model:ir.model.fields,field_description:account_banking_common.field_account_journal__is_wallet
+#: model:ir.model.fields,field_description:account_banking_common.field_account_setup_bank_manual_config__bank_is_wallet
+#: model:ir.model.fields,field_description:account_banking_common.field_account_setup_bank_manual_config__journal_is_wallet
+#: model:ir.model.fields,field_description:account_banking_common.field_res_partner_bank__bank_is_wallet
+#: model:ir.model.fields,field_description:account_banking_common.field_res_partner_bank__journal_is_wallet
+msgid "Conto di portafoglio"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_account_bank_statement_import_journal_creation__has_children
+#: model:ir.model.fields,field_description:account_banking_common.field_account_bank_statement_import_journal_creation__main_bank_account_id
+#: model:ir.model.fields,field_description:account_banking_common.field_account_journal__has_children
+#: model:ir.model.fields,field_description:account_banking_common.field_account_journal__main_bank_account_id
+#: model:ir.model.fields,field_description:account_banking_common.field_account_setup_bank_manual_config__bank_main_bank_account_id
+#: model:ir.model.fields,field_description:account_banking_common.field_account_setup_bank_manual_config__journal_main_bank_account_id
+#: model:ir.model.fields,field_description:account_banking_common.field_res_partner_bank__bank_main_bank_account_id
+#: model:ir.model.fields,field_description:account_banking_common.field_res_partner_bank__journal_main_bank_account_id
+msgid "Conto padre"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_payment_order_confirm__account_expense
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_payment_order_credit__account_expense
+msgid "Conto spese"
+msgstr ""
+
+#. module: account_banking_common
+#: model_terms:ir.ui.view,arch_db:account_banking_common.wizard_account_payment_generate
+msgid "Create"
+msgstr "Creare"
+
+#. module: account_banking_common
+#: model_terms:ir.ui.view,arch_db:account_banking_common.wizard_account_payment_generate
+msgid "Create Payment Lines"
+msgstr "Creare righe di pagamento"
+
+#. module: account_banking_common
+#: model:ir.model,name:account_banking_common.model_wizard_payment_order_confirm
+msgid "Create confirm payment wizard from due dates tree view"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.model,name:account_banking_common.model_wizard_account_payment_generate
+msgid "Create payment order from due dates tree view"
+msgstr "Creare distinta da vista scadenze"
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_banking_common_insoluto__create_uid
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_payment_add_move_lines__create_uid
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_payment_generate__create_uid
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_payment_order_confirm__create_uid
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_payment_order_credit__create_uid
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_set_payment_method__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_banking_common_insoluto__create_date
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_payment_add_move_lines__create_date
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_payment_generate__create_date
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_payment_order_confirm__create_date
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_payment_order_credit__create_date
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_set_payment_method__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_payment_generate__description
+msgid "Description"
+msgstr "Descrizione"
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_banking_common_insoluto__display_name
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_payment_add_move_lines__display_name
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_payment_generate__display_name
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_payment_order_confirm__display_name
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_payment_order_credit__display_name
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_set_payment_method__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: account_banking_common
+#: model:ir.actions.server,name:account_banking_common.server_action_payment_order_generate
+msgid "Genera Distinta"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.model,name:account_banking_common.model_wizard_account_banking_common_insoluto
+msgid "Gestione insoluti"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_banking_common_insoluto__id
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_payment_add_move_lines__id
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_payment_generate__id
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_payment_order_confirm__id
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_payment_order_credit__id
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_set_payment_method__id
+msgid "ID"
+msgstr "ID"
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_payment_order_confirm__amount_expense
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_payment_order_credit__amount_expense
+msgid "Importo"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_banking_common_insoluto__expenses_amount
+msgid "Importo spese"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.model,name:account_banking_common.model_account_invoice
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: account_banking_common
+#: model:ir.model,name:account_banking_common.model_account_journal
+msgid "Journal"
+msgstr "Sezionale"
+
+#. module: account_banking_common
+#: model:ir.model,name:account_banking_common.model_account_move
+msgid "Journal Entries"
+msgstr "Registrazioni contabili"
+
+#. module: account_banking_common
+#: model:ir.model,name:account_banking_common.model_account_move_line
+msgid "Journal Item"
+msgstr "Movimento contabile"
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_banking_common_insoluto____last_update
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_payment_add_move_lines____last_update
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_payment_generate____last_update
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_payment_order_confirm____last_update
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_payment_order_credit____last_update
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_set_payment_method____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_banking_common_insoluto__write_uid
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_payment_add_move_lines__write_uid
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_payment_generate__write_uid
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_payment_order_confirm__write_uid
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_payment_order_credit__write_uid
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_set_payment_method__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_banking_common_insoluto__write_date
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_payment_add_move_lines__write_date
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_payment_generate__write_date
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_payment_order_confirm__write_date
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_payment_order_credit__write_date
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_set_payment_method__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_set_payment_method__payment_method
+msgid "Metodo di pagamento"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_res_partner_bank__display_name
+msgid "Name"
+msgstr "Descrizione"
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_payment_add_move_lines__payment_orders
+msgid "Ordini di pagamento"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_account_setup_bank_manual_config__has_children
+#: model:ir.model.fields,field_description:account_banking_common.field_res_partner_bank__has_children
+msgid "Padre"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_account_payment_generate__payment_mode_id
+msgid "Payment Mode"
+msgstr "Modo di pagamento"
+
+#. module: account_banking_common
+#: model:ir.model,name:account_banking_common.model_account_payment_order
+msgid "Payment Order"
+msgstr "Ordini di pagamento"
+
+#. module: account_banking_common
+#: model_terms:ir.ui.view,arch_db:account_banking_common.wizard_account_banking_common_insoluto
+msgid "Registra"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.actions.server,name:account_banking_common.server_action_insoluto
+#: model_terms:ir.ui.view,arch_db:account_banking_common.wizard_account_banking_common_insoluto
+msgid "Registra Insoluto"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.model,name:account_banking_common.model_wizard_set_payment_method
+msgid "Set or update payment mathod into due dates"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.model.fields,field_description:account_banking_common.field_wizard_set_payment_method__overwrite
+msgid "Sovrascrivi"
+msgstr ""
+
+#. module: account_banking_common
+#: model:ir.model.fields,help:account_banking_common.field_account_payment_order__payment_method_code
+msgid ""
+"This code is used in the code of the Odoo module that handles this "
+"payment method. Therefore, if you change it, the generation of the "
+"payment file may fail."
+msgstr "."
+
+#. module: account_banking_common
+#: model:ir.model,name:account_banking_common.model_wizard_payment_order_credit
+msgid "wizard.payment.order.credit"
+msgstr ""
+
+

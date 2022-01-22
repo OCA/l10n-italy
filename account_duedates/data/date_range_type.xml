@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo >
+    <record id="duedate_period" model="date.range.type">
+        <field name="name">Duedate</field>
+        <field name="allow_overlap">True</field>
+        <field name="active">True</field>
+    </record>
+</odoo>
+

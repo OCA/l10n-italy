@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="wizard_duedates_simulator_form" model="ir.ui.view" >
+        <field name="name">wizard.duedates.simulator.form</field>
+        <field name="model">wizard.duedates.simulator</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Simulatore">
+                <group>
+                    <field name="date_due" />
+                    <field name="amount_total" />
+                    <field name="amount_untaxed" />
+                </group>
+                <group>
+                    <field name="duedates_lines" readonly="1">
+                        <tree editable="bottom">
+                            <field name="due_date" />
+                            <field name="due_amount" />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button name="simulate"
+                            string="Avvia"
+                            type="object"
+                            class="oe_highlight" />
+
+                    <button string="Chiudi" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="wizard_duedates_simulator_result" model="ir.ui.view" >
+        <field name="name">wizard.duedates.simulator.result</field>
+        <field name="model">wizard.duedates.simulator</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Simulatore" >
+                <group>
+                    <field name="date_due" readonly="1"/>
+                    <field name="amount_total" readonly="1"/>
+                    <field name="amount_untaxed" readonly="1"/>
+                </group>
+                <group>
+                    <field name="duedates_lines" readonly="1">
+                        <tree editable="bottom">
+                            <field name="due_date" />
+                            <field name="due_amount" />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button string="Chiudi" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_load_simulator" model="ir.actions.act_window">
+        <field name="name">Simulatore scadenze</field>
+
+        <field name="res_model">wizard.duedates.simulator</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
+

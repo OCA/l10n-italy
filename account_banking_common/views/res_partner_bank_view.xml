@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  © 2013-2016 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <record id="payment_config_notebook_res_partner_bank_form" model="ir.ui.view">
+        <field name="name">payment_config_notebook.res.partner.bank.form</field>
+        <field name="model">res.partner.bank</field>
+        <field name="inherit_id" ref="base.view_partner_bank_form"/>
+        <field name="arch" type="xml">
+<!--            <xpath expr="/form/group" position="inside">-->
+<!--                <group string="Configurazione pagamenti" colspan="2" attrs="{'invisible': [('bank_is_wallet', '=', False)]}">-->
+<!--                    <notebook name="payment_config"></notebook>-->
+<!--                </group>-->
+<!--            </xpath>-->
+
+            <xpath expr="//form/group/group[2]" position="after">
+                <group colspan="4" name="invoice_financing" string="Conti di portafoglio">
+                    <html>
+                        <style>
+                              .o_form_label{
+                              white-space:nowrap;
+                              }
+                        </style>
+                    </html>
+                    <group colspan="2">
+                        <field name="has_children" invisible="1"/>
+                        <field name="bank_is_wallet" attrs="{'readonly':[('has_children', '=', True)]}"/>
+                    </group>
+                    <!-- leaf -->
+                    <group colspan="4" attrs="{'invisible': [('bank_is_wallet', '=', False)]}">
+                        <group colspan="2">
+                                <field name="bank_main_bank_account_id"
+                                       domain="[('partner_id', '=', partner_id), ('bank_is_wallet', '=', False)]"
+                                       attrs="{'required': [('bank_is_wallet', '=', True)]}"/>
+                        </group>
+                    </group>
+
+                    <group colspan="4" attrs="{'invisible': [('bank_is_wallet', '=', True)]}">
+                    <!-- father -->
+                        <field name="bank_wallet_ids"/>
+                    </group>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

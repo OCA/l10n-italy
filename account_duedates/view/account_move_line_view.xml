@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="inherit_view_move_line_form" model="ir.ui.view">
+        <field name="name">inherit.view.move.line.form</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@groups='base.group_multi_currency']" position="before">
+                <group name="additional" string="Altre Informazioni">
+                    <field name="payment_method" />
+                    <field name="state" />
+                    <field name="company_id" invisible="1" />
+                    <field name="partner_id" invisible="1" />
+                    <field name="company_bank_id" />
+                    <field name="counterparty_bank_id" domain="[('partner_id', '=', partner_id.id)]"/>
+                </group>
+            </xpath>
+
+            <field name="invoice_id" position="after">
+                <field name="payment_order_name" />
+                <field name="incasso_effettuato" readonly="1"/>
+            </field>
+
+            <xpath expr="//field[@name='quantity']" position="after">
+                <field name="prorogation_ctr"/>
+                <field name="unpaid_ctr"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- <record id="account_duedates_view_payments_tree" model="ir.ui.view">-->
+    <!-- <field name="name">Payments</field>-->
+    <!-- <field name="model">account.move.line</field>-->
+    <!-- <field name="inherit_id" ref="account_due_list.view_payments_tree"/>-->
+    <!-- <field name="arch" type="xml">-->
+
+    <!-- <xpath expr="//field[@name='account_id']" position="after">-->
+    <!-- <field name="prorogation_ctr"/>-->
+    <!-- <field name="unpaid_ctr"/>-->
+    <!-- </xpath>-->
+
+    <!-- </field>-->
+    <!-- </record>-->
+
+</odoo>
+

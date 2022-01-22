@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="invoice_form_banking_common" model="ir.ui.view">
+            <field name="name">account.invoice.form.banking.common</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_bank_id']" position="after">
+                    <field name="company_partner_id" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_bank_id']" position="attributes">
+                    <attribute name="domain">[('bank_is_wallet', '=', False), ('partner_id', '=', company_partner_id)]</attribute>
+                    <attribute name="readonly">1</attribute>
+                    <attribute name="force_save">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="invoice_supplier_form_banking_common" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form.banking.common</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='other_info']/group/group[2]/field[@name='company_id']" position="after">
+                    <field name="company_partner_id" invisible="1"/>
+                    <field name="partner_bank_id" force_save="1" readonly="1" domain="[('bank_is_wallet', '=', False), '|', ('partner_id', '=', company_partner_id), ('partner_id', '=', partner_id)]"/>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

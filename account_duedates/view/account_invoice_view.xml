@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- -->
+    <!-- SUPPLIER INVOICE -->
+    <!-- -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <record id="view_supplier_invoice_entry_dates_form" model="ir.ui.view">
+        <field name="name">view.supplier.invoice.entry.dates.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_invoice']" position="after">
+                <field name="date_effective"/>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page[1]" position="after">
+                <page string="Scadenze">
+                    <field name="check_duedates_payment" invisible="1" />
+                    <field name="duedate_line_ids" attrs="{'invisible':[('check_duedates_payment', '=', True)]}" nolabel="1">
+                        <!--
+                            NB: editable="top" let's the user modify the item directly from the row, without
+                                opening a new form dialog
+                        -->
+                        <tree editable="top">
+                            <field name="due_date"/>
+                            <field name="payment_method_id"/>
+                            <field name="due_amount" sum="Totale"/>
+                            <field name="is_paid"/>
+                            <field name="schedule_payment"/>
+                            <field name="proposed_new_value" attrs="{'invisible':[('proposed_new_value', '=', 0)]}" readonly="1"/>
+                            <!-- Shown in debug mode only -->
+                            <field name="move_line_id" groups="base.group_no_one" readonly="1"/>
+                        </tree>
+                    </field>
+                    <field name="no_delete_duedate_line_ids" attrs="{'invisible':[('check_duedates_payment', '=', False)]}" nolabel="1">
+                        <!--
+                            NB: editable="top" let's the user modify the item directly from the row, without
+                                opening a new form dialog
+                        -->
+                        <tree editable="top" delete="false" create="false">
+                            <field name="due_date" attrs="{'readonly':[('schedule_payment', '=', True)]}"/>
+                            <field name="payment_method_id" attrs="{'readonly':[('schedule_payment', '=', True)]}"/>
+                            <field name="due_amount" sum="Totale" attrs="{'readonly':[('schedule_payment', '=', True)]}"/>
+                            <field name="is_paid"/>
+                            <field name="schedule_payment"/>
+                            <!-- <field name="proposed_new_value" attrs="{'invisible':[('proposed_new_value', '=', 0)]}"/>-->
+                            <!-- Shown only in debug mode -->
+                            <field name="move_line_id" groups="base.group_no_one" readonly="1"/>
+                        </tree>
+                    </field>
+                    <group col="2" colspan="2">
+                        <span colspan="2" col="2">
+                            <span><strong>Assegnato: </strong></span>
+                            <field name="duedates_amount_current" nolabel="1"/>
+                        </span>
+
+                        <span colspan="2" col="2">
+                            <span><strong>Residuo: </strong></span>
+                            <field name="duedates_amount_unassigned" decoration-danger="duedates_amount_unassigned != 0" decoration-success="duedates_amount_unassigned == 0" nolabel="1"/>
+                        </span>
+
+                        <span colspan="2" col="2">
+                            <span><strong>Totale fattura: </strong></span>
+                            <field name="amount_total" nolabel="1"/>
+                        </span>
+                    </group>
+                    <button name="action_update_duedates_and_move_lines" type="object" string="Ricalcola scadenze" class="oe_edit_only" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+
+                    <!-- Hidden fields required to have them values to be passed as values to create and write methods -->
+                    <field name="duedate_manager_id" invisible="1"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+
+
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- -->
+    <!-- CUSTOMER INVOICE -->
+    <!-- -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <record id="view_invoice_entry_dates_form" model="ir.ui.view">
+        <field name="name">view.invoice.entry.dates.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/sheet/group/group[2]/field[@name='date_invoice']" position="after">
+                <field name="date_effective"/>
+            </xpath>
+
+            <xpath expr="/form/sheet/notebook/page[1]" position="after">
+                <page string="Scadenze">
+                    <field name="check_duedates_payment" invisible="1" />
+                    <field name="duedate_line_ids" attrs="{'invisible':[('check_duedates_payment', '=', True)]}" nolabel="1">
+                        <!--
+                            NB: editable="top" let's the user modify the item directly from the row, without
+                                opening a new form dialog
+                        -->
+                        <tree editable="top">
+                            <field name="due_date"/>
+                            <field name="payment_method_id"/>
+                            <field name="due_amount" sum="Totale"/>
+                            <field name="is_paid"/>
+                            <field name="schedule_payment"/>
+                            <!-- <field name="proposed_new_value" attrs="{'invisible':[('proposed_new_value', '=', 0)]}" readonly="1"/>-->
+                            <!-- Shown in debug mode only -->
+                            <field name="move_line_id" groups="base.group_no_one" readonly="1"/>
+                        </tree>
+                    </field>
+                    <field name="no_delete_duedate_line_ids" attrs="{'invisible':[('check_duedates_payment', '=', False)]}" nolabel="1">
+                        <!--
+                            NB: editable="top" let's the user modify the item directly from the row, without
+                                opening a new form dialog
+                        -->
+                        <tree editable="top" delete="false">
+                            <field name="due_date" attrs="{'readonly':[('schedule_payment', '=', True)]}"/>
+                            <field name="payment_method_id" attrs="{'readonly':[('schedule_payment', '=', True)]}"/>
+                            <field name="due_amount" sum="Totale" attrs="{'readonly':[('schedule_payment', '=', True)]}"/>
+                            <field name="is_paid"/>
+                            <field name="schedule_payment"/>
+                            <field name="proposed_new_value" attrs="{'invisible':[('proposed_new_value', '=', 0)]}"/>
+                            <field name="move_line_id" groups="base.group_no_one"/> <!-- Shown only in debug mode -->
+                        </tree>
+                    </field>
+
+                    <group col="2" colspan="2">
+                        <span colspan="2" col="2">
+                            <span><strong>Assegnato: </strong></span>
+                            <field name="duedates_amount_current"/>
+                        </span>
+
+                        <span colspan="2" col="2">
+                            <span><strong>Residuo: </strong></span>
+                            <field name="duedates_amount_unassigned" decoration-danger="duedates_amount_unassigned != 0" decoration-success="duedates_amount_unassigned == 0"/>
+                        </span>
+
+                        <span colspan="2" col="2">
+                            <span><strong>Totale fattura: </strong></span>
+                            <field name="amount_total"/>
+                        </span>
+                        <button name="action_update_duedates_and_move_lines" type="object" string="Ricalcola scadenze" class="oe_edit_only" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+
+                        <!-- Hidden fields required to have them values to be passed as values to create and write methods -->
+                        <field name="duedate_manager_id" invisible="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
+

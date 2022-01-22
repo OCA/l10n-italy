@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="inherit_account_payment_order_form" model="ir.ui.view">
+        <field name="name">inherit.account.payment.order.form</field>
+        <field name="model">account.payment.order</field>
+        <field name="inherit_id" ref="account_payment_order.account_payment_order_form"/>
+
+        <field name="arch" type="xml">
+
+            <xpath expr="//button[@name='action_cancel']" position="before">
+                <field name="payment_method_code" invisible="1" />
+                <field name="is_wallet_company_bank" invisible="1" />
+
+                <button name="action_accreditato"
+                        type="object"
+                        attrs="{'invisible': ['|', '|', ('payment_method_code', '=', 'invoice_financing'),
+                        ('state', '!=', 'uploaded'), ('is_wallet_company_bank', '=', False)]}"
+                        string="Accredito"
+                        class="oe_highlight"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

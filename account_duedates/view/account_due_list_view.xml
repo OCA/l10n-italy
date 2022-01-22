@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="inherit_view_payments_tree" model="ir.ui.view">
+        <field name="name">Payments</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account_due_list.view_payments_tree"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="payment_method"/>
+                <field name="state"/>
+                <field name="company_bank_id" />
+            </xpath>
+
+            <xpath expr="//field[@name='payment_term_id']" position="before">
+                <field name="payment_order_name" readonly="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='amount_residual']" position="before">
+                <field name="balance" />
+            </xpath>
+
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_bank_id" class="text-nowrap"/>
+                <field name="iban" class="text-nowrap"/>
+            </xpath>
+
+            <xpath expr="//field[@name='debit']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='credit']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='account_id']" position="before">
+                <field name="incasso_effettuato" readonly="1" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='account_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_ref']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='balance']" position="attributes">
+                <attribute name="string">Importo</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+
+    <!-- account_due_list.view_payments_filter-->
+
+    <record id="inherit_view_payments_filter" model="ir.ui.view">
+        <field name="name">Payments Selection</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account_due_list.view_payments_filter"/>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='group_by_salesperson']" position="after">
+                <filter string="Metodo di pagamento"
+                        domain="[]"
+                        context="{'group_by':'payment_method'}" name="group_by_payment_method"/>
+            </xpath>
+            <xpath expr="//filter[@name='overdue']" position="after">
+                <field name="payment_order_name" />
+            </xpath>
+            <xpath expr="//filter[@name='unreconciled']" position="after">
+                <separator/>
+                <filter string="Non in distinta"
+                        domain="[('payment_order_lines', '=', False)]"
+                        name="not_in_distinta"/>
+                <filter string="In distinta"
+                        domain="[('payment_order_lines', '!=', False)]"
+                        name="in_distinta"/>
+                <separator/>
+                <filter string="Effetti incassati"
+                        domain="[('incasso_effettuato', '=', True)]"
+                        name="effetti_incassati"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
+

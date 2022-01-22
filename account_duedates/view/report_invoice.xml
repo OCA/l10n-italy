@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="report_invoice_duedates" inherit_id="account.report_invoice_document"  name="Duedates">
+            <xpath expr="//div[@class='page']/div[last()]" position="after">
+
+                <t t-if="len(o.duedate_line_ids) > 1">
+                    <table class="table table-sm" id="dudates_table" name="dudates_table">
+                        <thead>
+                            <tr>
+                                <th colspan="3"
+                                    class="text-center"
+                                    style="
+                                        border-bottom: 1px solid #83d2fb;
+                                        border-top: 1px solid #83d2fb;
+                                        background-color: #fff;
+                                        margin: 5px 0 0 0;
+                                        text-transform: uppercase;
+                                    ">
+                                    <span>Scadenze</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            <t t-foreach="o.duedate_line_ids" t-as="line">
+                                <tr>
+                                    <td >
+                                        <span t-field="line.due_date"/>
+                                    </td>
+                                    <td >
+                                        <span t-field="line.due_amount"/>
+                                    </td>
+                                    <td >
+                                        <span t-field="line.payment_method_id.name"/>
+                                    </td>
+                               </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </t>
+           </xpath>
+        </template>
+
+    </data>
+</odoo>

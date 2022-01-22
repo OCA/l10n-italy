@@ -1,0 +1,25 @@
+<odoo>
+
+    <record id="wizard_payment_order_confirm" model="ir.ui.view">
+        <field name="name">wizard.payment.order.confirm.form</field>
+        <field name="model">wizard.payment.order.confirm</field>
+        <field name="arch" type="xml">
+            <form string="Conferma Pgamento">
+                <group>
+                    <field name="account_expense" />
+                    <field name="amount_expense"
+                           attrs="{'invisible':[('account_expense','=', False)]}"/>
+                </group>
+
+                <footer>
+                    <button type="object" name="registra_incasso"
+                            string="Conferma"
+                            class="oe_highlight"/>
+                    <button special="cancel" string="Annulla" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>
+

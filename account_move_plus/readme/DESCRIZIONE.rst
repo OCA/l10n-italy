@@ -1,0 +1,1 @@
+Questo modulo aggiunge alcuni campi alle registrazioni di prima nota, principalmente l'anno fiscale
