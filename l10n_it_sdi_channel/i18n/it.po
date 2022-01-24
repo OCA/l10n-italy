@@ -107,11 +107,6 @@ msgid "Exchange System Email Address"
 msgstr "Indirizzo e-mail SdI"
 
 #. module: l10n_it_sdi_channel
-#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__first_invoice_sent
-msgid "First e-invoice sent"
-msgstr "Prima e-fattura inviata"
-
-#. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__id
 msgid "ID"
 msgstr "ID"
@@ -190,6 +185,11 @@ msgstr ""
 "dal SdI stesso dopo il primo invio"
 
 #. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__first_invoice_sent
+msgid "SDI already assigned a PEC address to my company"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_ir_mail_server__email_from_for_fatturaPA
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company__email_from_for_fatturaPA
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_config_settings__email_from_for_fatturaPA
@@ -255,6 +255,9 @@ msgstr "Password server web"
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__web_server_token
 msgid "Web server token"
 msgstr "Token server web"
+
+#~ msgid "First e-invoice sent"
+#~ msgstr "Prima e-fattura inviata"
 
 #~ msgid "PEC and FatturaPA"
 #~ msgstr "PEC e e-fattura"
