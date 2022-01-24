@@ -5,3 +5,4 @@
 * Sergio Zanchetta <https://github.com/primes2h>
 * Marco Colombo <https://github.com/TheMule71>
 * Gianmarco Conte <gconte@dinamicheaziendali.it>
+* Giovanni Serra <giovanni@gslab.it>
