@@ -1,4 +1,4 @@
-from odoo import fields, models, api
+from odoo import _, fields, models, api
 from odoo.exceptions import ValidationError
 import re
 
@@ -17,4 +17,4 @@ class AccountTax(models.Model):
     def _validate_fpdeptax(self):
         for tax in self:
             if not re.search(regex, tax.fpdeptax):
-                raise ValidationError("Department ID number range [1 - 99]")
+                raise ValidationError(_("Department ID number range [1 - 99]"))

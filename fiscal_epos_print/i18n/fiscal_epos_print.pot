@@ -128,6 +128,12 @@ msgid "Debug info"
 msgstr ""
 
 #. module: fiscal_epos_print
+#: code:addons/fiscal_epos_print/models/account.py:20
+#, python-format
+msgid "Department ID number range [1 - 99]"
+msgstr ""
+
+#. module: fiscal_epos_print
 #: model:ir.model.fields,field_description:fiscal_epos_print.field_account_tax__fpdeptax
 msgid "Department on fiscal printer 1~99"
 msgstr ""
