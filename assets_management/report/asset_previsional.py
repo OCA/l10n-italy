@@ -736,7 +736,6 @@ class ReportDepreciationLineByYear(models.TransientModel):
                 lines_grouped[dep] = line
             else:
                 lines_grouped[dep] += line
-
         ctx = dict(force_prorata=True)
         for lines in lines_grouped.values():
             lines = lines.sorted()
@@ -749,7 +748,8 @@ class ReportDepreciationLineByYear(models.TransientModel):
         self.ensure_one()
         dep = self.report_depreciation_id.depreciation_id
         to_date = min(self.fiscal_year_id.date_to, self.report_id.date)
-        previsional_lines = dep.generate_depreciation_lines(to_date)
+        previsional_lines = dep.with_context(
+            previsional_line=True).generate_depreciation_lines(to_date)
         self.dep_line_ids += previsional_lines
         self.report_id.previsional_line_ids += previsional_lines
 
