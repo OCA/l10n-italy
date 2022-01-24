@@ -6,3 +6,4 @@
 
 * Alessio Gerace
 * Roberto Fichera
+* Giovanni Serra <giovanni@gslab.it>
