@@ -185,9 +185,9 @@ odoo.define("fiscal_epos_print.chrome", function (require) {
                     fp90.fiscalPrinter.onreceive = function() {
                         // Restore the original onreceive so that after next call, the original behavior is followed
                         fp90.fiscalPrinter.onreceive = original_onreceive;
-                        fp90.printFiscalXReport();
+                        fp90.printFiscalReport();
                     }
-                    fp90.printFiscalReport();
+                    fp90.printFiscalXReport();
 
                     self.chrome.loading_hide();
                 },
