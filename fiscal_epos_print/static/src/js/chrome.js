@@ -179,8 +179,8 @@ odoo.define("fiscal_epos_print.chrome", function (require) {
                 'body': _t('Execute Fiscal Closure (Report Z) and Daily Financial Report (Report X)'),
                 confirm: function() {
                     self.chrome.loading_message(_t('Connecting to the fiscal printer'));
-                    fp90.printFiscalReport();
                     fp90.printFiscalXReport();
+                    fp90.printFiscalReport();
                     self.chrome.loading_hide();
                 },
                 cancel: function() {
