@@ -106,29 +106,6 @@ class AccountInvoice(models.Model):
                         invoice.move_id.post()
                     # end if
 
-                    if 'company_bank_id' in values:
-                        lines = invoice.move_id.line_ids.filtered(
-                            lambda
-                                x: x.reconciled is False and x.payment_order.id is False
-                        )
-
-                        lines.write({
-                            'company_bank_id': values['company_bank_id']
-                        })
-                    # end if
-
-                    if 'counterparty_bank_id' in values:
-                        lines = invoice.move_id.line_ids.filtered(
-                            lambda
-                                x: x.reconciled is False and x.payment_order.id is False
-                        )
-
-                        lines.write({
-                            'counterparty_bank_id': values[
-                                'counterparty_bank_id']
-                        })
-                    # end if
-
                 elif invoice.state == 'draft':
                     # Set default value for date_effective if user did not
                     # supplied a value. This operation is performed only if

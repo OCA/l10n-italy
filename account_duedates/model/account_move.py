@@ -6,10 +6,12 @@
 
 from odoo import models, fields, api
 from odoo.tools.float_utils import float_is_zero
+# from odoo.addons.account_common_mixin.models.mixin_base import BaseMixin
 
 from ..utils.misc import MOVE_TYPE_INV_CN
 
 
+# class AccountMove(models.Model, BaseMixin):
 class AccountMove(models.Model):
     _inherit = 'account.move'
 
@@ -83,26 +85,6 @@ class AccountMove(models.Model):
         #   - infinite recursion guard variable (writing_c_d_m_l) is not True
             self.write_credit_debit_move_lines()
         # end if
-
-        # if 'company_bank_id' in values:
-        #     lines = self.line_ids.filtered(
-        #         lambda x: x.reconciled is False and x.payment_order.id is False
-        #     )
-        #
-        #     lines.write({
-        #         'company_bank_id': values['company_bank_id']
-        #     })
-        # # end if
-        #
-        # if 'counterparty_bank_id' in values:
-        #     lines = self.line_ids.filtered(
-        #         lambda x: x.reconciled is False and x.payment_order.id is False
-        #     )
-        #
-        #     lines.write({
-        #         'counterparty_bank_id': values['counterparty_bank_id']
-        #     })
-        # # end if
 
         return result
 

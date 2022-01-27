@@ -5,7 +5,7 @@
 #
 {
     'name': 'Account Banking Common',
-    'version': '12.0.3.7.25',
+    'version': '12.0.3.7.26',
     'category': 'Accounting',
     'summary': 'Common stuff for payment modules',
     'author': 'powERP enterprise network and other partners',
@@ -18,7 +18,7 @@
         'account_duedates',
         'account_payment_order',
         'account_payment_method',
-        'l10n_it_iban_in_stampa',
+        'account_common_mixin',
     ],
     'data': [
         'views/res_partner_bank_view.xml',

@@ -1,12 +1,12 @@
 
-=========================================
-|icon| Account Banking Common 12.0.3.7.26
-=========================================
+=====================================
+|icon| Account Fiscal Year 12.0.1.1.1
+=====================================
 
 
-**Common stuff for payment modules**
+**Create a menu for Account Fiscal Year**
 
-.. |icon| image:: https://raw.githubusercontent.com/PowERP-cloud/l10n-italy/12.0/account_banking_common/static/description/icon.png
+.. |icon| image:: https://raw.githubusercontent.com/PowERP-cloud/accounting/12.0/account_fiscal_year/static/description/icon.png
 
 |Maturity| |Build Status| |license opl|
 
@@ -18,18 +18,33 @@
 Overview / Panoramica
 =====================
 
-|en| This module adds some fields to account.journal and res.partner.bank to manage wallet account.
-A wallet account is a special bank account with financial amounts.
-Any bank acount may be linked to one ore more wallet accounts.
-With this module, user can declare the bank account hierarchy.
+|en| 
+This module extends date.range.type to add fiscal_year flag.
+
+Override official res_company.compute_fiscal_year_dates to get the
+fiscal year date start / date end for any given date.
+That methods first looks for a date range of type fiscal year that
+encloses the give date.
+If it does not find it, it falls back on the standard Odoo
+technique based on the day/month of end of fiscal year.
+
 
 |
 
-|it| Questo modulo aggiunge i campi per la gestione dei conti di portafoglio.
-I conti di portafoglio sono conti bancari speciali usati per la gestione degli importi SBF.
-Ogni conto bancario puà essere collegato ad uno o più conti di portafoglio.
-Ad esempio, la Banca Alpha oltre al conto di liquidità con IBAN ufficiale puà fornire un conto di portafoglio per la presentazione RIBA ed uno per gli anticipi fatture.
-Grazie a questo modulo l'utente può dichiarare la gerarchia dei conti bancari.
+|it| Anno fiscale
+
+Estensione dell'intervallo date per gestire gli anni fiscali.
+
+
+|
+
+OCA comparation / Confronto con OCA
+-----------------------------------
+
+The differences between this module and OCA version are:
+
+* Status of fiscal year (Open or Closed)
+
 
 |
 |
@@ -77,14 +92,14 @@ Installation / Installazione
     source $HOME/devel/activate_tools
     # *** End of tools installation or upgrade ***
     # Odoo repository installation; OCB repository must be installed
-    odoo_install_repository l10n-italy -b 12.0 -O powerp -o $HOME/12.0
+    odoo_install_repository accounting -b 12.0 -O powerp -o $HOME/12.0
     vem create $HOME/12.0/venv_odoo -O 12.0 -a "*" -DI -o $HOME/12.0
 
 From UI: go to:
 
 * |menu| Setting > Activate Developer mode 
 * |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **account_banking_common** > Install
+* |menu| Setting > Apps |right_do| Select **account_fiscal_year** > Install
 
 
 |
@@ -108,7 +123,7 @@ Upgrade / Aggiornamento
     source $HOME/devel/activate_tools
     # *** End of tools installation or upgrade ***
     # Odoo repository upgrade
-    odoo_install_repository l10n-italy -b 12.0 -o $HOME/12.0 -U
+    odoo_install_repository accounting -b 12.0 -o $HOME/12.0 -U
     vem amend $HOME/12.0/venv_odoo -o $HOME/12.0
     # Adjust following statements as per your system
     sudo systemctl restart odoo
@@ -123,7 +138,7 @@ Support / Supporto
 
 This module is maintained by the / Questo modulo è mantenuto dalla rete di imprese `Powerp <http://www.powerp.it/>`__
 
-Developer companies are / I soci sviluppatori sono:
+Developer companies are / I soci sviluppatoro sono:
 
 * `Didotech s.r.l. <http://www.didotech.com>`__
 * `SHS-AV s.r.l. <https://www.shs-av.com/>`__
@@ -137,7 +152,7 @@ Get involved / Ci mettiamo in gioco
 
 Bug reports are welcome! You can use the issue tracker to report bugs,
 and/or submit pull requests on `GitHub Issues
-<https://github.com/PowERP-cloud/l10n-italy/issues>`_.
+<https://github.com/PowERP-cloud/accounting/issues>`_.
 
 In case of trouble, please check there if your issue has already been reported.
 
@@ -147,71 +162,6 @@ Proposals for enhancement
 
 If you have a proposal to change this module, you may want to send an email to <info@powerp.it> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
-
-
-ChangeLog History / Cronologia modifiche
-----------------------------------------
-
-12.0.3.7.26 (2022-01-27)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [REF] Update dependencies
-
-12.0.3.7.25 (2022-01-18)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [REF] Refactoring impostazione conti trasferiti nel registro
-
-12.0.3.7.24 (2022-01-14)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Gestione visibiltà pulsante accredito
-
-12.0.3.7.23 (2022-01-14)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Gestione viste conto di portafoglio
-
-12.0.3.7.22 (2022-01-14)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Gestione registrazioni contabili con conto di portafoglio
-
-12.0.3.7.21 (2021-12-28)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Impostato default per importo accreditato
-
-12.0.3.7.20 (2021-12-17)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Gestito conti bancari nelle scadenze
-
-12.0.3.7.19 (2021-12-13)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Gestito iban non impostato
-
-12.0.3.7.18 (2021-12-10)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Corretto formattazione conti
-
-12.0.3.7.17 (2021-12-02)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Impostato metodo che valorizza il conto per il credit
-
-12.0.3.7.16 (2021-11-30)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Fix ricerca ordini in aggiungi a distinta
-
-12.0.3.7.15 (2021-11-30)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Impostato formattazione conto solo per tipo iban
-
 
 
 |
@@ -232,27 +182,31 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
-* `powERP <https://www.powerp.it>`__
+* `Odoo Community Association (OCA) <https://odoo-community.org>`__
+* `Camptocamp SA <http://www.camptocamp.com>`__
+* `ACSONE SA/NV <http://acsone.eu>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
-* `Didotech s.r.l. <https://www.didotech.com>`__
 
 
 Contributors / Collaboratori
 ----------------------------
 
-* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
-* Marco Tosato <marco.tosato@didotech.com>
-* Fabio Giovannelli <fabio.giovannelli@didotech.com>
+* Damien Crier <damien.crier@camptocamp.com>
+* Laurent Mignon <laurent.mignon@acsone.eu>
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Antonio M. Vigliotti <info@shs-av.com>
 
 
 Maintainer / Manutenzione
 -------------------------
 
 
-This module is maintained by the / Questo modulo è mantenuto dalla rete di imprese Powerp <http://www.powerp.it/>
-Developer companies are / I soci sviluppatori sono:
-* Didotech s.r.l. <http://www.didotech.com>
-* SHS-AV s.r.l. <https://www.shs-av.com/>
+This module is maintained by the / Questo modulo è mantenuto dalla rete di imprese `Powerp <http://www.powerp.it/>`__
+
+Developer companies are / I soci sviluppatoro sono:
+
+* `Didotech s.r.l. <http://www.didotech.com>`__
+* `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 
 
 |
@@ -281,15 +235,15 @@ I soci fondatori sono:
 
 |
 
-This module is part of l10n-italy project.
+This module is part of accounting project.
 
-Last Update / Ultimo aggiornamento: 2022-01-27
+Last Update / Ultimo aggiornamento: 2021-08-06
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: 
-.. |Build Status| image:: https://travis-ci.org/PowERP-cloud/l10n-italy.svg?branch=12.0
-    :target: https://travis-ci.com/PowERP-cloud/l10n-italy
+.. |Build Status| image:: https://travis-ci.org/PowERP-cloud/accounting.svg?branch=12.0
+    :target: https://travis-ci.com/PowERP-cloud/accounting
     :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-LGPL--3-7379c3.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
@@ -297,11 +251,11 @@ Last Update / Ultimo aggiornamento: 2022-01-27
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
     :target: https://www.odoo.com/documentation/user/14.0/legal/licenses/licenses.html
     :alt: License: OPL
-.. |Coverage Status| image:: https://coveralls.io/repos/github/PowERP-cloud/l10n-italy/badge.svg?branch=12.0
-    :target: https://coveralls.io/github/PowERP-cloud/l10n-italy?branch=12.0
+.. |Coverage Status| image:: https://coveralls.io/repos/github/PowERP-cloud/accounting/badge.svg?branch=12.0
+    :target: https://coveralls.io/github/PowERP-cloud/accounting?branch=12.0
     :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/PowERP-cloud/l10n-italy/branch/12.0/graph/badge.svg
-    :target: https://codecov.io/gh/PowERP-cloud/l10n-italy/branch/12.0
+.. |Codecov Status| image:: https://codecov.io/gh/PowERP-cloud/accounting/branch/12.0/graph/badge.svg
+    :target: https://codecov.io/gh/PowERP-cloud/accounting/branch/12.0
     :alt: Codecov
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-12.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/12.0/dev
@@ -312,8 +266,8 @@ Last Update / Ultimo aggiornamento: 2022-01-27
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-12.svg
     :target: https://erp12.zeroincombenze.it
     :alt: Try Me
-.. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/12.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/12.0
+.. |OCA Codecov| image:: https://codecov.io/gh/OCA/accounting/branch/12.0/graph/badge.svg
+    :target: https://codecov.io/gh/OCA/accounting/branch/12.0
     :alt: Codecov
 .. |Odoo Italia Associazione| image:: https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png
    :target: https://odoo-italia.org
@@ -342,5 +296,5 @@ Last Update / Ultimo aggiornamento: 2022-01-27
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://t.me/Assitenza_clienti_powERP
+   :target: https://t.me/axitec_helpdesk
 

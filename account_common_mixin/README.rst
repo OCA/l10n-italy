@@ -1,12 +1,12 @@
 
-=========================================
-|icon| Account Banking Common 12.0.3.7.26
-=========================================
+======================================
+|icon| Account Common Mixin 12.0.1.0.0
+======================================
 
 
-**Common stuff for payment modules**
+**Common account fields**
 
-.. |icon| image:: https://raw.githubusercontent.com/PowERP-cloud/l10n-italy/12.0/account_banking_common/static/description/icon.png
+.. |icon| image:: https://raw.githubusercontent.com/PowERP-cloud/l10n-italy/12.0/account_common_mixin/static/description/icon.png
 
 |Maturity| |Build Status| |license opl|
 
@@ -18,18 +18,13 @@
 Overview / Panoramica
 =====================
 
-|en| This module adds some fields to account.journal and res.partner.bank to manage wallet account.
-A wallet account is a special bank account with financial amounts.
-Any bank acount may be linked to one ore more wallet accounts.
-With this module, user can declare the bank account hierarchy.
+|en| This module adds some fields to models to manage company and counterpart bank accounts.
+
 
 |
 
-|it| Questo modulo aggiunge i campi per la gestione dei conti di portafoglio.
-I conti di portafoglio sono conti bancari speciali usati per la gestione degli importi SBF.
-Ogni conto bancario puà essere collegato ad uno o più conti di portafoglio.
-Ad esempio, la Banca Alpha oltre al conto di liquidità con IBAN ufficiale puà fornire un conto di portafoglio per la presentazione RIBA ed uno per gli anticipi fatture.
-Grazie a questo modulo l'utente può dichiarare la gerarchia dei conti bancari.
+|it| Questo modulo aggiunge i campi per la gestione dei conti bancari aziendali e di appoggio.
+
 
 |
 |
@@ -84,7 +79,7 @@ From UI: go to:
 
 * |menu| Setting > Activate Developer mode 
 * |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **account_banking_common** > Install
+* |menu| Setting > Apps |right_do| Select **account_common_mixin** > Install
 
 
 |
@@ -152,65 +147,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
-12.0.3.7.26 (2022-01-27)
-~~~~~~~~~~~~~~~~~~~~~~~~
+12.0.1.0.0 (2022-01-27)
+~~~~~~~~~~~~~~~~~~~~~~~
 
-* [REF] Update dependencies
+* [REF] Impostati campi dei conti bancari e operazioni inerenti
 
-12.0.3.7.25 (2022-01-18)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [REF] Refactoring impostazione conti trasferiti nel registro
-
-12.0.3.7.24 (2022-01-14)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Gestione visibiltà pulsante accredito
-
-12.0.3.7.23 (2022-01-14)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Gestione viste conto di portafoglio
-
-12.0.3.7.22 (2022-01-14)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Gestione registrazioni contabili con conto di portafoglio
-
-12.0.3.7.21 (2021-12-28)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Impostato default per importo accreditato
-
-12.0.3.7.20 (2021-12-17)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Gestito conti bancari nelle scadenze
-
-12.0.3.7.19 (2021-12-13)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Gestito iban non impostato
-
-12.0.3.7.18 (2021-12-10)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Corretto formattazione conti
-
-12.0.3.7.17 (2021-12-02)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Impostato metodo che valorizza il conto per il credit
-
-12.0.3.7.16 (2021-11-30)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Fix ricerca ordini in aggiungi a distinta
-
-12.0.3.7.15 (2021-11-30)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Impostato formattazione conto solo per tipo iban
 
 
 
