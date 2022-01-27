@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_partner_abank_form" model="ir.ui.view">
+        <field name="name">res.partner.abank.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <group name="accounting_entries" position="before">
+                <group>
+                    <field name="assigned_bank"/>
+                    <field name="assigned_income_bank"/>
+                </group>
+            </group>
+        </field>
+    </record>
+
+</odoo>
+
