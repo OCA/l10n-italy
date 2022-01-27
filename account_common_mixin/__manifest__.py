@@ -15,6 +15,8 @@
     'depends': [
         'account',
         'account_invoice_13_more',
+        'assigned_bank',
+        'l10n_it_fiscal_payment_term',
     ],
     'data': [
         'views/account_move_view.xml',
