@@ -13,17 +13,17 @@ class AccountInvoice(models.Model):
     ], 'Customs Doc Type', readonly=True)
     supplier_bill_of_entry_ids = fields.Many2many(
         'account.invoice', 'sboe_invoice_rel', 'sboe_id', 'invoice_id',
-        'Supplier Bill of Entries', readonly=True)
+        'Supplier Bill of Entries', readonly=True, copy=False)
     supplier_invoice_ids = fields.Many2many(
         'account.invoice', 'sboe_invoice_rel', 'invoice_id', 'sboe_id',
-        'Supplier Invoices')
+        'Supplier Invoices', copy=False)
     forwarder_invoice_id = fields.Many2one(
-        'account.invoice', 'Forwarder Invoice')
+        'account.invoice', 'Forwarder Invoice', copy=False)
     forwarder_bill_of_entry_ids = fields.One2many(
         'account.invoice', 'forwarder_invoice_id',
-        'Forward Bill of Entries', readonly=True)
+        'Forward Bill of Entries', readonly=True, copy=False)
     bill_of_entry_storno_id = fields.Many2one(
-        'account.move', 'Bill of Entry Storno', readonly=True)
+        'account.move', 'Bill of Entry Storno', readonly=True, copy=False)
     bill_of_entries_count = fields.Integer(
         "Bill of entries number", compute="_compute_bill_of_entries_count")
     extra_supplier_invoices_count = fields.Integer(
