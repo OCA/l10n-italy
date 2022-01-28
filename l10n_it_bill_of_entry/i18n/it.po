@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-10 17:32+0000\n"
-"PO-Revision-Date: 2021-02-10 17:32+0000\n"
+"POT-Creation-Date: 2022-01-28 13:54+0000\n"
+"PO-Revision-Date: 2022-01-28 13:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. module: l10n_it_bill_of_entry
 #: model_terms:ir.ui.view,arch_db:l10n_it_bill_of_entry.view_boe_config_settings
 msgid "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
-msgstr "<span class=\"fa fa-lg fa-building-o\" title=\"I valori impostati qui sono specifici per azienda.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+msgstr "<span class=\"fa fa-lg fa-building-o\" title=\"I valori impostati qui sono specifici per azienda.\" aria-label=\"I valori impostati qui sono specifici per azienda.\" groups=\"base.group_multi_company\" role=\"img\"/>"
 
 #. module: l10n_it_bill_of_entry
 #: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_invoice_line__advance_customs_vat
@@ -76,6 +76,12 @@ msgid "Bill of entry tax"
 msgstr "Imposta bolla doganale"
 
 #. module: l10n_it_bill_of_entry
+#: model:ir.actions.act_window,name:l10n_it_bill_of_entry.action_bill_of_entry
+#: model:ir.ui.menu,name:l10n_it_bill_of_entry.menu_action_bill_of_entry
+msgid "Bills of entry"
+msgstr "Bolle doganali"
+
+#. module: l10n_it_bill_of_entry
 #: code:addons/l10n_it_bill_of_entry/models/account_invoice.py:166
 #, python-format
 msgid "Can't handle more than 1 tax for line %s"
@@ -92,6 +98,7 @@ msgid "Config Settings"
 msgstr "Impostazioni di configurazione"
 
 #. module: l10n_it_bill_of_entry
+#: model:ir.ui.menu,name:l10n_it_bill_of_entry.customs
 #: model_terms:ir.ui.view,arch_db:l10n_it_bill_of_entry.invoice_supplier_boe_form
 msgid "Customs"
 msgstr "Dogana"
@@ -146,6 +153,12 @@ msgstr "Fattura spedizioniere"
 #, python-format
 msgid "Forwarder invoice %s does not have lines with 'Advance Customs Vat'"
 msgstr "La fattura spedizioniere %s non ha righe con 'IVA dogana anticipata'"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.actions.act_window,name:l10n_it_bill_of_entry.action_forwarder_invoice
+#: model:ir.ui.menu,name:l10n_it_bill_of_entry.menu_action_forwarder_invoice
+msgid "Forwarder invoices"
+msgstr "Fatture spedizionieri"
 
 #. module: l10n_it_bill_of_entry
 #: model_terms:ir.ui.view,arch_db:l10n_it_bill_of_entry.invoice_supplier_boe_form
@@ -203,6 +216,8 @@ msgid "Supplier Invoices"
 msgstr "Fatture fornitore"
 
 #. module: l10n_it_bill_of_entry
+#: model:ir.actions.act_window,name:l10n_it_bill_of_entry.action_supplier_invoice
+#: model:ir.ui.menu,name:l10n_it_bill_of_entry.menu_action_supplier_invoice
 #: model_terms:ir.ui.view,arch_db:l10n_it_bill_of_entry.invoice_supplier_boe_form
 msgid "Supplier invoices"
 msgstr "Fatture fornitore"
