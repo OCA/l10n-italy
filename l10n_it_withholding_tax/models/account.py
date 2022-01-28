@@ -119,7 +119,7 @@ class AccountPartialReconcile(models.Model):
         rec_lines = rec_line_model.search(domain)
 
         # Search statements of competence
-        wt_statements = False
+        wt_statements = wt_statement_obj.browse()
         rec_line_statement = rec_line_model.browse()
         for rec_line in rec_lines:
             domain = [("move_id", "=", rec_line.move_id.id)]
