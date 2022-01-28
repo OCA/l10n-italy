@@ -51,7 +51,7 @@
                     <group name="forwarder_invoice">
                         <field name="forwarder_invoice_id"
                             attrs="{'invisible': [('customs_doc_type','!=', 'bill_of_entry')]}"
-                            domain="[('customs_doc_type','=', 'forwarder_invoice')]"
+                            domain="[('customs_doc_type','=', 'forwarder_invoice'), ('state', '=', 'draft')]"
                             context="{'default_customs_doc_type': 'forwarder_invoice'}"/>
                     </group>
                     <group name="storno">
