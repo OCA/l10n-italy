@@ -115,11 +115,12 @@ class AccountPartialReconcile(models.Model):
         line_payment_ids.append(self.debit_move_id.id)
         line_payment_ids.append(self.credit_move_id.id)
         domain = [("id", "in", line_payment_ids)]
-        rec_lines = self.env["account.move.line"].search(domain)
+        rec_line_model = self.env["account.move.line"]
+        rec_lines = rec_line_model.search(domain)
 
         # Search statements of competence
-        wt_statements = False
-        rec_line_statement = False
+        wt_statements = wt_statement_obj.browse()
+        rec_line_statement = rec_line_model.browse()
         for rec_line in rec_lines:
             domain = [("move_id", "=", rec_line.move_id.id)]
             wt_statements = wt_statement_obj.search(domain)
@@ -127,7 +128,7 @@ class AccountPartialReconcile(models.Model):
                 rec_line_statement = rec_line
                 break
         # Search payment move
-        rec_line_payment = False
+        rec_line_payment = rec_line_model.browse()
         for rec_line in rec_lines:
             if rec_line.id != rec_line_statement.id:
                 rec_line_payment = rec_line
