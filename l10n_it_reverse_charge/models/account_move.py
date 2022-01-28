@@ -356,8 +356,9 @@ class AccountMove(models.Model):
         invoice_model = new_self.env["account.move"]
         for inv in new_self:
             # remove payments without deleting self invoice
-            inv.remove_rc_payment(delete_self_invoice=False)
-            inv.remove_invoice_payment()
+            if inv.rc_self_invoice_id:
+                inv.remove_rc_payment(delete_self_invoice=False)
+                inv.remove_invoice_payment()
 
             if inv.rc_self_invoice_id:
                 self_invoice = invoice_model.browse(inv.rc_self_invoice_id.id)
