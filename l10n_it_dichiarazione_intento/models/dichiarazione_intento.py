@@ -272,6 +272,7 @@ class DichiarazioneIntentoLine(models.Model):
         string='Date Invoice'
     )
     company_id = fields.Many2one(
-        "res.company", string="Company", related="dichiarazione_id.company_id"
+        "res.company", string="Company", related="dichiarazione_id.company_id",
+        store=True,
     )
     currency_id = fields.Many2one('res.currency', string='Currency')
