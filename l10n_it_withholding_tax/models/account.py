@@ -128,7 +128,7 @@ class AccountPartialReconcile(models.Model):
                 rec_line_statement = rec_line
                 break
         # Search payment move
-        rec_line_payment = False
+        rec_line_payment = rec_line_model.browse()
         for rec_line in rec_lines:
             if rec_line.id != rec_line_statement.id:
                 rec_line_payment = rec_line
