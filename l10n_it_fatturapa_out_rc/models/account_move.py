@@ -80,40 +80,41 @@ class AccountMove(models.Model):
                 )
             )
         # --- preventive checks related to set CedentePrestatore.DatiAnagrafici --- #
-        partner = rc_suppliers[0]
-        fiscal_document_type_codes = invoices.mapped("fiscal_document_type_id.code")
-        # Se vale IT , il sistema verifica che il TipoDocumento sia diverso da
-        # TD17, TD18 e TD19; in caso contrario il file viene scartato
-        if partner.vat:
-            if partner.vat[0:2] == "IT" and any(
-                [x in ["TD17", "TD18", "TD19"] for x in fiscal_document_type_codes]
-            ):
+        if rc_suppliers:
+            partner = rc_suppliers[0]
+            fiscal_document_type_codes = invoices.mapped("fiscal_document_type_id.code")
+            # Se vale IT , il sistema verifica che il TipoDocumento sia diverso da
+            # TD17, TD18 e TD19; in caso contrario il file viene scartato
+            if partner.vat:
+                if partner.vat[0:2] == "IT" and any(
+                    [x in ["TD17", "TD18", "TD19"] for x in fiscal_document_type_codes]
+                ):
+                    raise UserError(
+                        _(
+                            "A self-invoice cannot be issued with IT country code and "
+                            "fiscal document type in 'TD17', 'TD18', 'TD19'."
+                        )
+                    )
+                if partner.vat[0:2] not in self.env["res.country"].search([]).mapped(
+                    "code"
+                ):
+                    raise ValueError(
+                        _(
+                            "Country code does not exist or it is not mapped in countries: "
+                            "%s" % partner.vat[0:2]
+                        )
+                    )
+            elif not partner.country_id.code or partner.country_id.code == "IT":
                 raise UserError(
-                    _(
-                        "A self-invoice cannot be issued with IT country code and "
-                        "fiscal document type in 'TD17', 'TD18', 'TD19'."
-                    )
+                    _("Impossible to set IdFiscaleIVA for %s") % partner.display_name
                 )
-            if partner.vat[0:2] not in self.env["res.country"].search([]).mapped(
-                "code"
-            ):
-                raise ValueError(
-                    _(
-                        "Country code does not exist or it is not mapped in countries: "
-                        "%s" % partner.vat[0:2]
-                    )
-                )
-        elif not partner.country_id.code or partner.country_id.code == "IT":
-            raise UserError(
-                _("Impossible to set IdFiscaleIVA for %s") % partner.display_name
-            )
-        # --- preventive checks related to set CedentePrestatore.Sede --- #
-        if not partner.street:
-            raise UserError(_("Partner %s, Street is not set.") % partner.display_name)
-        if not partner.city:
-            raise UserError(_("Partner %s, City is not set.") % partner.display_name)
-        if not partner.country_id:
-            raise UserError(_("Partner %s, Country is not set.") % partner.display_name)
-        if not partner.zip:
-            raise UserError(_("Partner %s, ZIP is not set.") % partner.display_name)
+            # --- preventive checks related to set CedentePrestatore.Sede --- #
+            if not partner.street:
+                raise UserError(_("Partner %s, Street is not set.") % partner.display_name)
+            if not partner.city:
+                raise UserError(_("Partner %s, City is not set.") % partner.display_name)
+            if not partner.country_id:
+                raise UserError(_("Partner %s, Country is not set.") % partner.display_name)
+            if not partner.zip:
+                raise UserError(_("Partner %s, ZIP is not set.") % partner.display_name)
         return
