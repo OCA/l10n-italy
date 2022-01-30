@@ -65,6 +65,7 @@ setuptools.setup(
         'odoo12-addon-l10n_it_mis_reports_pl_bs',
         'odoo12-addon-l10n_it_pec',
         'odoo12-addon-l10n_it_pos_fatturapa',
+        'odoo12-addon-l10n_it_pos_fatturapa_send_directly',
         'odoo12-addon-l10n_it_pos_fiscalcode',
         'odoo12-addon-l10n_it_rea',
         'odoo12-addon-l10n_it_reverse_charge',
