@@ -378,3 +378,20 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
             + in_refund_balance
         )
         self.assertEqual(declaration.available_amount, 2000 - used_amount)
+
+    def test_invoice_repost(self):
+        self.declaration1.limit_amount = 2000
+        invoice = self._create_invoice(
+            "test_invoice_repost", self.partner1, tax=self.tax1
+        )
+        invoice.action_post()
+        invoice.button_draft()
+        invoice.action_post()
+        self.assertEqual(
+            len(
+                self.declaration1.line_ids.filtered(
+                    lambda line: line.invoice_id == invoice
+                )
+            ),
+            1,
+        )
