@@ -137,6 +137,10 @@ class AccountMove(models.Model):
                 for declaration in declarations:
                     if tax not in declaration.taxes_ids:
                         continue
+                    # avoid creating line with same invoice_id
+                    declaration.line_ids.filtered(
+                        lambda line: line.invoice_id == self
+                    ).unlink()
                     declaration.line_ids = [
                         (0, 0, self._prepare_declaration_line(amount, lines, tax)),
                     ]
@@ -261,6 +265,11 @@ class AccountMove(models.Model):
                     declarations_amounts[declaration.id] = declaration.available_amount
                 if any(tax in declaration.taxes_ids for tax in tax_line.tax_ids):
                     declarations_amounts[declaration.id] -= amount
+                # exclude amount from lines with invoice_id equals to self
+                for line in declaration.line_ids.filtered(
+                    lambda l: l.invoice_id == self
+                ):
+                    declarations_amounts[declaration.id] += line.amount
         return declarations_amounts
 
     def button_cancel(self):
