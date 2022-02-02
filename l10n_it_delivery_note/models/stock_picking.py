@@ -294,6 +294,8 @@ class StockPicking(models.Model):
 
         if not src_partner_id:
             src_partner_id = partner_id
+            if not dest_partner_id:
+                dest_partner_id = self.mapped('move_lines.partner_id')
 
             if not dest_partner_id:
                 raise ValueError(
