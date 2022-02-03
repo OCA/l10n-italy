@@ -203,6 +203,11 @@ msgid "Contact"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__is_self_invoice
+msgid "Contains self invoices"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Country Code %s not found in system."
