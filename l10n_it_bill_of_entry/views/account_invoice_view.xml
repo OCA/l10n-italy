@@ -61,8 +61,7 @@
                 </page>
             </xpath>
             <xpath expr="//notebook/page[1]/field[@name='invoice_line_ids']/tree/field[@name='price_subtotal']" position="after">
-                <!--It seems attrs doesn't work -->
-                <field name="advance_customs_vat"/>
+                <field name="advance_customs_vat" attrs="{'column_invisible': [('parent.customs_doc_type', '!=', 'forwarder_invoice')]}"/>
             </xpath>
         </field>
     </record>
