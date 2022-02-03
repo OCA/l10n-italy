@@ -398,6 +398,12 @@ msgid "Invoice %s has XML and can't be canceled. Delete the XML before."
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
+#: code:addons/l10n_it_fatturapa_out/models/account.py:0
+#, python-format
+msgid "Invoice %s: company and company partner must have same vat"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 msgid "Invoices"
 msgstr ""
@@ -556,6 +562,11 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__ftpa_preview_link
 msgid "Preview link"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_it_cedente_prestatore
+msgid "RF01"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
