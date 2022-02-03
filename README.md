@@ -37,10 +37,10 @@ addon | version | maintainers | summary
 [l10n_it_fatturapa_export_zip](l10n_it_fatturapa_export_zip/) | 14.0.1.0.0 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche
 [l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 14.0.1.1.3 |  | Ricezione fatture elettroniche
 [l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 14.0.1.0.0 |  | Modulo ponte tra ricezione fatture elettroniche e acquisti
-[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 14.0.2.0.13 |  | Emissione fatture elettroniche
+[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 14.0.2.0.14 |  | Emissione fatture elettroniche
 [l10n_it_fatturapa_out_di](l10n_it_fatturapa_out_di/) | 14.0.1.0.0 |  | Dichiarazioni d'intento in fatturapa
-[l10n_it_fatturapa_out_rc](l10n_it_fatturapa_out_rc/) | 14.0.1.0.0 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge
-[l10n_it_fatturapa_out_sp](l10n_it_fatturapa_out_sp/) | 14.0.1.0.0 |  | Scissione pagamenti in fatturapa
+[l10n_it_fatturapa_out_rc](l10n_it_fatturapa_out_rc/) | 14.0.1.0.1 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge
+[l10n_it_fatturapa_out_sp](l10n_it_fatturapa_out_sp/) | 14.0.1.0.1 |  | Scissione pagamenti in fatturapa
 [l10n_it_fatturapa_out_stamp](l10n_it_fatturapa_out_stamp/) | 14.0.1.0.0 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Modulo ponte tra emissione fatture elettroniche e imposta di bollo
 [l10n_it_fatturapa_sale](l10n_it_fatturapa_sale/) | 14.0.1.0.0 |  | Aggiunge alcuni dati per la fatturazione elettronica nell'ordine di vendita
 [l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 14.0.1.0.5 |  | ITA - Tipi di documento fiscale per dichiarativi
