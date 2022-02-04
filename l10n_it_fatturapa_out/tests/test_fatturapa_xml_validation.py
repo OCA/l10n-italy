@@ -541,6 +541,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                             "display_type": "line_note",
                             "name": "Notes",
                             "tax_ids": [(6, 0, {self.tax_22.id})],
+                            "currency_id": self.EUR.id,
                         },
                     ),
                 ],
