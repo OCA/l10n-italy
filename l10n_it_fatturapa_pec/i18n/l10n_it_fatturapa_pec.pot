@@ -1,0 +1,227 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_fatturapa_pec
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_config_settings_ftpa_pec
+msgid "<span class=\"o_form_label\">Supplier Bills</span>\n"
+"                            <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\"/>"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:res.groups,name:l10n_it_fatturapa_pec.group_force_e_inv_export_state
+msgid "Allow to force e-invoice export state"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
+msgid "Cancel"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server__e_inv_notify_partner_ids
+msgid "Contacts to notify"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_fetchmail_server__e_inv_notify_partner_ids
+msgid "Contacts to notify when PEC message can't be processed"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_config_settings_ftpa_pec
+msgid "Default user used in electronic supplier bills"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
+msgid "Delivered"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_company__e_invoice_user_id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_config_settings__e_invoice_user_id
+msgid "E-bill creator"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_fatturapa_attachment_out
+msgid "E-invoice Export File"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_mail_thread
+msgid "Email Thread"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:180
+#, python-format
+msgid "Fetchmail PEC server [%s] error"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:50
+#, python-format
+msgid "File content and file name are mandatory"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_fetchmail_server
+msgid "Incoming Mail Server"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server__last_pec_error_message
+msgid "Last PEC Error Message"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out__last_sdi_response
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
+msgid "Last Response from Exchange System"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_email_server_form_e_invoice
+msgid "Last error message"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:36
+#, python-format
+msgid "No incoming PEC server found. Please configure it."
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server__pec_error_count
+msgid "PEC error count"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:68
+#, python-format
+msgid "PEC message \"%s\" has been read but not processed, as not related to an e-invoice.\n"
+"Please check PEC mailbox %s, at server %s, with user %s."
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:161
+#, python-format
+msgid "PEC server %s has been reset.Last error message is '%s'"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
+msgid "Reset to ready"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
+msgid "Selected files will be sent to the Exchange System"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
+msgid "Send"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.actions.act_window,name:l10n_it_fatturapa_pec.action_wizard_fatturapa_send_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
+msgid "Send Electronic Invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
+msgid "Send Via PEC"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out__sending_user
+msgid "Sending User"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
+msgid "Sent by"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_res_company__e_invoice_user_id
+#: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_res_config_settings__e_invoice_user_id
+msgid "This user will be used at supplier e-bill creation."
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_wizard_fatturapa_send_pec
+msgid "Wizard to send multiple e-invoice PEC"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:46
+#, python-format
+msgid "You can only send files in 'Ready to Send' state."
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
+msgid "on"
+msgstr ""
+
