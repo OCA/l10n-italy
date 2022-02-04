@@ -48,8 +48,11 @@ class AccountMove(models.Model):
         super().preventive_checks()
         invoices = self
         invoices_with_rc = invoices.filtered(lambda x: x.rc_purchase_invoice_id)
+        # skip preventive checks when there are no invoices with rc
+        if not invoices_with_rc:
+            return
         invoices_without_rc = invoices - invoices_with_rc
-        if invoices_with_rc and invoices_without_rc:
+        if invoices_without_rc:
             raise UserError(
                 _(
                     "Selected invoices are both with and without reverse charge. You "
@@ -70,7 +73,7 @@ class AccountMove(models.Model):
                     "or exclusively of other types."
                 )
             )
-        rc_suppliers = invoices.mapped("rc_purchase_invoice_id.partner_id")
+        rc_suppliers = invoices_with_rc.mapped("rc_purchase_invoice_id.partner_id")
         if len(rc_suppliers) > 1:
             raise UserError(
                 _(
@@ -80,7 +83,9 @@ class AccountMove(models.Model):
             )
         # --- preventive checks related to set CedentePrestatore.DatiAnagrafici --- #
         partner = rc_suppliers and rc_suppliers[0] or self.env["res.partner"].browse()
-        fiscal_document_type_codes = invoices.mapped("fiscal_document_type_id.code")
+        fiscal_document_type_codes = invoices_with_rc.mapped(
+            "fiscal_document_type_id.code"
+        )
         # Se vale IT , il sistema verifica che il TipoDocumento sia diverso da
         # TD17, TD18 e TD19; in caso contrario il file viene scartato
         vat = partner.vat and partner.vat[0:2]
