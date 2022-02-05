@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_pos_fiscalcode
+# 	* l10n_it_pos_fiscalcode
 #
 msgid ""
 msgstr ""
@@ -18,15 +18,14 @@ msgstr ""
 
 #. module: l10n_it_pos_fiscalcode
 #. openerp-web
-#: code:addons/l10n_it_pos_fiscalcode/static/src/xml/pos.xml:7
-#: code:addons/l10n_it_pos_fiscalcode/static/src/xml/pos.xml:20
+#: code:addons/l10n_it_pos_fiscalcode/static/src/xml/pos.xml:0
 #, python-format
 msgid "F.C."
 msgstr "C.F."
 
 #. module: l10n_it_pos_fiscalcode
 #. openerp-web
-#: code:addons/l10n_it_pos_fiscalcode/static/src/xml/pos.xml:12
+#: code:addons/l10n_it_pos_fiscalcode/static/src/xml/pos.xml:0
 #, python-format
 msgid "N/A"
 msgstr "N/D"
