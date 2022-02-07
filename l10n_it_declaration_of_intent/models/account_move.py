@@ -242,7 +242,7 @@ class AccountMove(models.Model):
             # used_amount went < 0
             if declarations_amounts[declaration_id] > declaration.limit_amount:
                 excess = abs(
-                    declarations_amounts[declaration] - declaration.limit_amount
+                    declarations_amounts[declaration_id] - declaration.limit_amount
                 )
                 raise UserError(
                     _("Available plafond insufficent.\n" "Excess value: %s") % excess
@@ -265,11 +265,10 @@ class AccountMove(models.Model):
                     declarations_amounts[declaration.id] = declaration.available_amount
                 if any(tax in declaration.taxes_ids for tax in tax_line.tax_ids):
                     declarations_amounts[declaration.id] -= amount
-                # exclude amount from lines with invoice_id equals to self
-                for line in declaration.line_ids.filtered(
-                    lambda l: l.invoice_id == self
-                ):
-                    declarations_amounts[declaration.id] += line.amount
+        for declaration in declarations:
+            # exclude amount from lines with invoice_id equals to self
+            for line in declaration.line_ids.filtered(lambda l: l.invoice_id == self):
+                declarations_amounts[declaration.id] += line.amount
         return declarations_amounts
 
     def button_cancel(self):
