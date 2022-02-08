@@ -51,7 +51,7 @@ msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model_terms:ir.ui.view,arch_db:l10n_it_fiscalcode.view_partner_form_fiscalcode_button
-msgid "Compute F.C."
+msgid "Compute FC"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
@@ -90,12 +90,14 @@ msgstr ""
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__display_name
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct__display_name
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_company__display_name
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner__display_name
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:192
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:0
 #, python-format
 msgid ""
 "Existing fiscal code %(partner_fiscalcode)s is different from the computed "
@@ -104,7 +106,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: selection:wizard.compute.fc,sex:0
+#: model:ir.model.fields.selection,name:l10n_it_fiscalcode.selection__wizard_compute_fc__sex__f
 msgid "Female"
 msgstr ""
 
@@ -129,6 +131,8 @@ msgstr ""
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__id
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct__id
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_company__id
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner__id
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc__id
 msgid "ID"
 msgstr "Κωδικός"
@@ -148,6 +152,8 @@ msgstr ""
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code____last_update
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct____last_update
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_company____last_update
+#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner____last_update
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -165,7 +171,7 @@ msgid "Last Updated on"
 msgstr "Τελευταία ενημέρωση στις"
 
 #. module: l10n_it_fiscalcode
-#: selection:wizard.compute.fc,sex:0
+#: model:ir.model.fields.selection,name:l10n_it_fiscalcode.selection__wizard_compute_fc__sex__m
 msgid "Male"
 msgstr ""
 
@@ -196,7 +202,7 @@ msgid "National code"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:188
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:0
 #, python-format
 msgid "National code is missing"
 msgstr ""
@@ -212,7 +218,7 @@ msgid "Notes"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:184
+#: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:0
 #, python-format
 msgid "One or more fields are missing"
 msgstr ""
@@ -239,7 +245,8 @@ msgid "Surname"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: constraint:res.partner:0
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:0
+#, python-format
 msgid "The fiscal code doesn't seem to be correct."
 msgstr ""
 
