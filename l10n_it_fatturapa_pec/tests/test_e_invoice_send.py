@@ -79,7 +79,7 @@ class TestEInvoiceSend(EInvoiceCommon):
         invoice = self._create_invoice()
         invoice.action_post()
 
-        wizard = self._get_export_wizard(invoice)
+        wizard = self.create_wizard(invoice.id)
         action = wizard.exportFatturaPA()
         e_invoice = self.env[action["res_model"]].browse(action["res_id"])
 

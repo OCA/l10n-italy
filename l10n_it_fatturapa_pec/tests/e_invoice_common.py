@@ -82,15 +82,11 @@ class EInvoiceCommon(FatturaPACommon):
             )
         )
 
-    def _get_export_wizard(self, invoice):
-        wizard = self.wizard_model.create({})
-        return wizard.with_context({"active_ids": [invoice.id]})
-
     def _create_e_invoice(self):
         invoice = self._create_invoice()
         invoice.action_post()
 
-        wizard = self._get_export_wizard(invoice)
+        wizard = self.create_wizard(invoice.id)
         action = wizard.exportFatturaPA()
 
         return self.env[action["res_model"]].browse(action["res_id"])
