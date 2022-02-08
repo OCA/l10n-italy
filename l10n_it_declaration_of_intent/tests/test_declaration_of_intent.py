@@ -39,7 +39,6 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
         )
         invoice_form.partner_id = partner
         invoice_form.invoice_date = date if date else cls.today_date
-        invoice_form.name = "Test invoice " + name
         invoice_form.invoice_payment_term_id = cls.env.ref(
             "account.account_payment_term_advance"
         )
