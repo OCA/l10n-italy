@@ -11,11 +11,13 @@
                             colspan="2"
                             string="If you want to add a PDF version of the invoice into the XML, select which one. Leave empty otherwise"
                         />
-                        <field
-                            name="report_print_menu"
-                            string="Attached report"
-                            widget="selection"
-                        />
+                        <field name="report_print_ids" string="Attached reports">
+                            <tree editable="top" create="false" delete="false">
+                                <field name="selected" />
+                                <field name="report_name" />
+                                <field name="report_id" invisible="True" />
+                            </tree>
+                        </field>
                     </group>
                 </sheet>
                 <footer>

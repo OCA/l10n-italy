@@ -26,22 +26,54 @@ def id_generator(
     return "".join(random.choice(chars) for dummy in range(size))
 
 
+class WizardExportFatturapaReportLine(models.TransientModel):
+    _name = "wizard.export.fatturapa.report_line"
+    _description = "Allow to select a report to be included in the e-invoice."
+    _rec_name = "report_name"
+
+    wizard_id = fields.Many2one(
+        comodel_name="wizard.export.fatturapa",
+    )
+    report_id = fields.Many2one(
+        string="Report",
+        comodel_name="ir.actions.actions",
+    )
+    report_name = fields.Char(
+        related="report_id.name",
+    )
+    selected = fields.Boolean(
+        string="Select",
+    )
+
+
 class WizardExportFatturapa(models.TransientModel):
     _name = "wizard.export.fatturapa"
     _description = "Export E-invoice"
 
     @api.model
-    def _domain_ir_values(self):
+    def _default_report_print_ids(self):
         model_name = self.env.context.get("active_model", False)
-        # Get all print actions for current model
-        return [
-            ("binding_model_id", "=", model_name),
-            ("type", "=", "ir.actions.report"),
-        ]
+        bindings = self.env["ir.actions.actions"].get_bindings(model_name)
+        report_actions = bindings.get("report")
+        default_values = [(5, 0, 0)]
+        for report_action in report_actions:
+            report_id = report_action.get("id")
+            if report_id:
+                default_values.append(
+                    (
+                        0,
+                        0,
+                        {
+                            "report_id": report_id,
+                        },
+                    )
+                )
+        return default_values
 
-    report_print_menu = fields.Many2one(
-        comodel_name="ir.actions.actions",
-        domain=_domain_ir_values,
+    report_print_ids = fields.One2many(
+        comodel_name="wizard.export.fatturapa.report_line",
+        inverse_name="wizard_id",
+        default=_default_report_print_ids,
         help="This report will be automatically included in the created XML",
     )
 
@@ -125,13 +157,14 @@ class WizardExportFatturapa(models.TransientModel):
         invoice_ids.preventive_checks()
 
         # generate attachments (PDF version of invoice)
+        selected_reports = self.report_print_ids.filtered("selected")
         for inv in invoice_ids:
             if not attach and inv.fatturapa_attachment_out_id:
                 raise UserError(
                     _("E-invoice export file still present for invoice %s.")
                     % (inv.name or "")
                 )
-            if not inv.fatturapa_doc_attachments and self.report_print_menu:
+            if not inv.fatturapa_doc_attachments and selected_reports:
                 self.generate_attach_report(inv)
         fatturapa = EFatturaOut(self, partner, invoice_ids, progressivo_invio)
         return fatturapa, progressivo_invio
@@ -169,26 +202,32 @@ class WizardExportFatturapa(models.TransientModel):
         return action
 
     def generate_attach_report(self, inv):
-        binding_model_id = self.with_context(
-            lang=None
-        ).report_print_menu.binding_model_id.id
-        name = self.report_print_menu.name
-        report_model = (
-            self.env["ir.actions.report"]
-            .with_context(lang=None)
-            .search([("binding_model_id", "=", binding_model_id), ("name", "=", name)])
-        )
-        attachment, attachment_type = report_model._render_qweb_pdf(inv.ids)
-        att_id = self.env["ir.attachment"].create(
-            {
-                "name": "{}.pdf".format(inv.name),
-                "type": "binary",
-                "datas": base64.encodebytes(attachment),
-                "res_model": "account.move",
-                "res_id": inv.id,
-                "mimetype": "application/x-pdf",
-            }
-        )
+        selected_reports = self.report_print_ids.filtered("selected")
+        selected_reports = selected_reports.report_id.sudo()
+        att_ids = self.env["ir.attachment"].browse()
+        for selected_report in selected_reports:
+            binding_model_id = selected_report.with_context(
+                lang=None
+            ).binding_model_id.id
+            name = selected_report.name
+            report_model = (
+                self.env["ir.actions.report"]
+                .with_context(lang=None)
+                .search(
+                    [("binding_model_id", "=", binding_model_id), ("name", "=", name)]
+                )
+            )
+            attachment, attachment_type = report_model._render_qweb_pdf(inv.ids)
+            att_ids |= self.env["ir.attachment"].create(
+                {
+                    "name": "{}.pdf".format(inv.name),
+                    "type": "binary",
+                    "datas": base64.encodebytes(attachment),
+                    "res_model": "account.move",
+                    "res_id": inv.id,
+                    "mimetype": "application/x-pdf",
+                }
+            )
         inv.write(
             {
                 "fatturapa_doc_attachments": [
@@ -203,6 +242,7 @@ class WizardExportFatturapa(models.TransientModel):
                             ),
                         },
                     )
+                    for att_id in att_ids
                 ]
             }
         )

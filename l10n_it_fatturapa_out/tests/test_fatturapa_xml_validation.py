@@ -769,9 +769,8 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         invoice = invoice_form.save()
         invoice.action_post()
 
-        wizard = self.wizard_model.create({})
         with self.assertRaises(UserError) as ue:
-            wizard.with_context({"active_ids": [invoice.id]}).exportFatturaPA()
+            self.run_wizard(invoice.id)
         error_message = "Invoice {} contains product lines w/o taxes".format(
             invoice.name
         )
@@ -826,11 +825,8 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.assertEqual(invoice2.company_id, company2)
         invoice1.action_post()
         invoice2.action_post()
-        wizard = self.wizard_model.create({})
         with self.assertRaises(UserError) as ue:
-            wizard.with_context(
-                {"active_ids": [invoice1.id, invoice2.id]}
-            ).exportFatturaPA()
+            self.run_wizard([invoice1.id, invoice2.id])
         error_message = "Invoices {}, {} must belong to the same company.".format(
             invoice1.name, invoice2.name
         )
@@ -875,3 +871,34 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         with self.assertRaises(UserError) as ue:
             self.run_wizard(invoice.id)
         self.assertIn(invoice.name, ue.exception.args[0])
+
+    def test_no_admin_report(self):
+        """
+        Check that PDF reports can be included also for non-admin users.
+        """
+        invoice = self.init_invoice(
+            "out_invoice",
+            partner=self.res_partner_fatturapa_0,
+            taxes=self.tax_22,
+            products=self.product_product_10,
+            post=True,
+        )
+
+        # pre-conditions:
+        # - We are using a non-admin user
+        self.assertFalse(self.env.user.has_group("base.group_system"))
+        # - There are reports to be printed
+        wizard = self.create_wizard(invoice.ids)
+        report_lines = wizard.report_print_ids
+        self.assertTrue(report_lines)
+
+        # Mark the reports as to pe printed and create the e-invoice
+        for report_line in report_lines:
+            report_line.selected = True
+        wizard.exportFatturaPA()
+
+        # post-condition: All the reports have been included in the invoice
+        self.assertEqual(
+            len(invoice.fatturapa_doc_attachments),
+            len(report_lines),
+        )
