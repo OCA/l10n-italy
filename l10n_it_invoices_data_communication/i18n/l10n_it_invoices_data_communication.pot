@@ -14,21 +14,21 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:917
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1126
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:923
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1132
 #, python-format
 msgid "Address, city, ZIP and country of permanent establishment %s are mandatory, when at least one value is defined"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:902
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1112
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:908
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1118
 #, python-format
 msgid "Address, city, country of %s are mandatory"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1182
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1188
 #, python-format
 msgid "All data are correct.\n"
 "It possible to export XML file"
@@ -171,8 +171,8 @@ msgid "Country ID"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:932
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1140
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:938
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1146
 #, python-format
 msgid "Country ID and fiscal identifier of fiscal representative %s are mandatory, when at least one value is defined"
 msgstr ""
@@ -287,13 +287,13 @@ msgid "Deferred"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:895
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:901
 #, python-format
 msgid "Define a country ID for assignee %s"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1105
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1111
 #, python-format
 msgid "Define a country ID for seller %s"
 msgstr ""
@@ -337,7 +337,7 @@ msgid "Errors"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1185
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1191
 #, python-format
 msgid "Errors:"
 msgstr ""
@@ -602,15 +602,15 @@ msgid "Limit not exceeded. Split not needed"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:761
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:973
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:767
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:979
 #, python-format
 msgid "Limit of 1000 assignees per communication exceeded"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:757
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:969
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:763
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:975
 #, python-format
 msgid "Limit of 1000 invoices per assignee (%s) exceeded"
 msgstr ""
@@ -640,8 +640,8 @@ msgid "Natural person surname"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:950
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1158
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:956
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1164
 #, python-format
 msgid "No VAT data defined for invoice %s of partner %s"
 msgstr ""
@@ -653,13 +653,13 @@ msgid "No communication selected"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1165
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1171
 #, python-format
 msgid "No invoice number for supplier bill %s"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1169
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1175
 #, python-format
 msgid "No registration date for supplier bill %s"
 msgstr ""
@@ -738,229 +738,229 @@ msgid "Registration date"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:786
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1000
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:792
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1006
 #, python-format
 msgid "Remove empty characters around address of permanent establishment"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:854
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1068
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:860
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1074
 #, python-format
 msgid "Remove empty characters around address of permanent establishment %s"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:997
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1003
 #, python-format
 msgid "Remove empty characters around assignee's city"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:979
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:985
 #, python-format
 msgid "Remove empty characters around assignee's denomination"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:989
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:995
 #, python-format
 msgid "Remove empty characters around assignee's headquarters address"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:982
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:988
 #, python-format
 msgid "Remove empty characters around assignee's name"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:994
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1000
 #, python-format
 msgid "Remove empty characters around assignee's street number"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:985
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:991
 #, python-format
 msgid "Remove empty characters around assignee's surname"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:847
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:853
 #, python-format
 msgid "Remove empty characters around city of assignee %s"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:794
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1009
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:800
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1015
 #, python-format
 msgid "Remove empty characters around city of permanent establishment"
-msgstr ""
-
-#. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:868
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1080
-#, python-format
-msgid "Remove empty characters around city of permanent establishment %s"
-msgstr ""
-
-#. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1061
-#, python-format
-msgid "Remove empty characters around city of seller %s"
-msgstr ""
-
-#. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:814
-#, python-format
-msgid "Remove empty characters around denomination of assignee %s"
-msgstr ""
-
-#. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:798
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1014
-#, python-format
-msgid "Remove empty characters around denomination of fiscal representative"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
 #: code:addons/l10n_it_invoices_data_communication/models/communication.py:874
 #: code:addons/l10n_it_invoices_data_communication/models/communication.py:1086
 #, python-format
+msgid "Remove empty characters around city of permanent establishment %s"
+msgstr ""
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1067
+#, python-format
+msgid "Remove empty characters around city of seller %s"
+msgstr ""
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:820
+#, python-format
+msgid "Remove empty characters around denomination of assignee %s"
+msgstr ""
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:804
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1020
+#, python-format
+msgid "Remove empty characters around denomination of fiscal representative"
+msgstr ""
+
+#. module: l10n_it_invoices_data_communication
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:880
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1092
+#, python-format
 msgid "Remove empty characters around denomination of fiscal representative %s"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1030
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1036
 #, python-format
 msgid "Remove empty characters around denomination of seller %s"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:833
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:839
 #, python-format
 msgid "Remove empty characters around headquarters address of assignee %s"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1047
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1053
 #, python-format
 msgid "Remove empty characters around headquarters address of seller %s"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:819
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:825
 #, python-format
 msgid "Remove empty characters around name of assignee %s"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:802
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1018
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:808
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1024
 #, python-format
 msgid "Remove empty characters around name of fiscal representative"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:881
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1091
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:887
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1097
 #, python-format
 msgid "Remove empty characters around name of fiscal representative %s"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1035
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1041
 #, python-format
 msgid "Remove empty characters around name of seller %s"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:783
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:789
 #, python-format
 msgid "Remove empty characters around seller's city"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:766
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:772
 #, python-format
 msgid "Remove empty characters around seller's denomination"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:775
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:781
 #, python-format
 msgid "Remove empty characters around seller's headquarters address"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:769
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:775
 #, python-format
 msgid "Remove empty characters around seller's name"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:780
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:786
 #, python-format
 msgid "Remove empty characters around seller's street number"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:772
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:778
 #, python-format
 msgid "Remove empty characters around seller's surname"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:840
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:846
 #, python-format
 msgid "Remove empty characters around street number of assignee %s"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:790
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1005
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:796
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1011
 #, python-format
 msgid "Remove empty characters around street number of permanent establishment"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:861
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1075
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:867
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1081
 #, python-format
 msgid "Remove empty characters around street number of permanent establishment %s"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1054
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1060
 #, python-format
 msgid "Remove empty characters around street number of seller %s"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:826
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:832
 #, python-format
 msgid "Remove empty characters around surname of assignee %s"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:806
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1022
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:812
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1028
 #, python-format
 msgid "Remove empty characters around surname of fiscal representative"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:888
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1098
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:894
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1104
 #, python-format
 msgid "Remove empty characters around surname of fiscal representative %s"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1040
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1046
 #, python-format
 msgid "Remove empty characters around surname of seller %s"
 msgstr ""
@@ -1004,10 +1004,10 @@ msgid "Split payment"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:625
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:634
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:688
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:697
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:631
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:640
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:694
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:703
 #, python-format
 msgid "Splitted considering invoices\n"
 "%s\n"
@@ -1015,10 +1015,10 @@ msgid "Splitted considering invoices\n"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:593
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:601
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:655
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:663
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:599
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:607
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:661
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:669
 #, python-format
 msgid "Splitted considering partners\n"
 "%s\n"
@@ -1044,7 +1044,7 @@ msgid "State"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:62
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:63
 #, python-format
 msgid "Statement already exists with ID {}"
 msgstr ""
@@ -1211,13 +1211,13 @@ msgid "ZIP"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:941
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:947
 #, python-format
 msgid "ZIP %s of assignee %s is not 5 numeric characters"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
-#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1149
+#: code:addons/l10n_it_invoices_data_communication/models/communication.py:1155
 #, python-format
 msgid "ZIP %s of seller %s is not 5 characters"
 msgstr ""
