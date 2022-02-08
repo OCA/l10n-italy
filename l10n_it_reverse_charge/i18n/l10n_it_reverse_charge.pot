@@ -20,6 +20,12 @@ msgid "Can't find 1 tax mapping for %s"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_company_id
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax_company_id
+msgid "Company"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_create_uid
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax_create_uid
 msgid "Created by"
@@ -309,7 +315,7 @@ msgid "VAT Integration"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_rc_type.py:90
+#: code:addons/l10n_it_reverse_charge/models/account_rc_type.py:96
 #, python-format
 msgid "When \"With additional supplier self invoice\" you must set only one tax mapping line: only 1 tax per invoice is supported"
 msgstr ""
