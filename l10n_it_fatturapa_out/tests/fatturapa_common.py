@@ -182,9 +182,22 @@ class FatturaPACommon(AccountTestInvoicingCommon):
             seq_date = inv_seq._create_date_range_seq(dt)
         seq_date.number_next_actual = invoice_number
 
-    def run_wizard(self, invoice_id):
-        wizard = self.wizard_model.create({})
-        return wizard.with_context({"active_ids": [invoice_id]}).exportFatturaPA()
+    def run_wizard(self, invoice_ids):
+        wizard = self.create_wizard(invoice_ids)
+        return wizard.exportFatturaPA()
+
+    def create_wizard(self, invoice_ids):
+        if invoice_ids is int:
+            invoice_ids = [invoice_ids]
+        wizard = self.wizard_model.with_context(
+            {
+                "active_ids": invoice_ids,
+                "active_model": self.invoice_model._name,
+            }
+        ).create({})
+        wizard = wizard.with_user(self.env.user)
+        self.assertEqual(wizard.env.user, self.env.user)
+        return wizard
 
     def set_e_invoice_file_id(self, e_invoice, file_name):
         # We need this because file name is random and we can't predict it
