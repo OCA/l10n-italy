@@ -39,11 +39,15 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
         )
         invoice_form.partner_id = partner
         invoice_form.invoice_date = date if date else cls.today_date
-        invoice_form.name = "Test invoice " + name
         invoice_form.invoice_payment_term_id = cls.env.ref(
             "account.account_payment_term_advance"
         )
+        cls._add_invoice_line_id(invoice_form, tax=tax, in_type=in_type)
+        invoice = invoice_form.save()
+        return invoice
 
+    @classmethod
+    def _add_invoice_line_id(cls, invoice_form, tax=False, in_type=False):
         with invoice_form.invoice_line_ids.new() as invoice_line:
             invoice_line.product_id = cls.env.ref("product.product_product_5")
             invoice_line.quantity = 10.00
@@ -53,9 +57,6 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
             if tax:
                 invoice_line.tax_ids.clear()
                 invoice_line.tax_ids.add(tax)
-
-        invoice = invoice_form.save()
-        return invoice
 
     @classmethod
     def _create_refund(cls, partner, tax=False, date=False, in_type=False):
@@ -380,10 +381,13 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
         self.assertEqual(declaration.available_amount, 2000 - used_amount)
 
     def test_invoice_repost(self):
-        self.declaration1.limit_amount = 2000
         invoice = self._create_invoice(
             "test_invoice_repost", self.partner1, tax=self.tax1
         )
+        invoice_form = Form(invoice)
+        for tax in (self.tax2, self.tax22):
+            self._add_invoice_line_id(invoice_form, tax=tax)
+        invoice = invoice_form.save()
         invoice.action_post()
         invoice.button_draft()
         invoice.action_post()
