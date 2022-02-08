@@ -93,3 +93,13 @@ class TestRegistry(TransactionCase):
         html = report._render_qweb_html(data["ids"], data)
 
         self.assertTrue(b"Tax 10.0" in html[0])
+
+    def test_no_report_from_invoice(self):
+        """Check that the report is not available from invoice context menu."""
+        report_id = self.ref("l10n_it_vat_registries.action_report_registro_iva")
+
+        bindings = self.env["ir.actions.actions"].get_bindings("account.move")
+        report_actions = bindings.get("report")
+        report_ids = map(lambda report_action: report_action.get("id"), report_actions)
+
+        self.assertNotIn(report_id, report_ids)

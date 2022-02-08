@@ -12,8 +12,6 @@
                 name="paperformat_id"
                 ref="l10n_it_account.l10n_it_account_a4_landscape"
             />
-            <field name="binding_model_id" ref="account.model_account_move" />
-            <field name="binding_type">report</field>
         </record>
 
     </data>
