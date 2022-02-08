@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -31,7 +31,7 @@ msgid "Export E-invoice"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_rc
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_account_rc_type__fiscal_document_type_id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_account_rc_type_fiscal_document_type_id
 msgid "Fiscal Document Type"
 msgstr ""
 
@@ -94,7 +94,7 @@ msgid "Selected reverse charge invoices have different suppliers. Please select 
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_rc
-#: model:ir.model.fields,help:l10n_it_fatturapa_out_rc.field_account_rc_type__fiscal_document_type_id
+#: model:ir.model.fields,help:l10n_it_fatturapa_out_rc.field_account_rc_type_fiscal_document_type_id
 msgid "To be used when sending self invoices to the exchange system"
 msgstr ""
 
