@@ -1,0 +1,136 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_fatturapa_out_rc
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
+#, python-format
+msgid ""
+"A self-invoice cannot be issued with IT country code and fiscal document "
+"type in 'TD17', 'TD18', 'TD19'."
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
+#, python-format
+msgid "Country code does not exist or it is not mapped in countries: %s"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_account_rc_type__display_name
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_wizard_export_fatturapa__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: model:ir.model,name:l10n_it_fatturapa_out_rc.model_wizard_export_fatturapa
+msgid "Export E-invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_account_rc_type__fiscal_document_type_id
+msgid "Fiscal Document Type"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_account_rc_type__id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_wizard_export_fatturapa__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
+#, python-format
+msgid "Impossible to set IdFiscaleIVA for %s"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: model:ir.model,name:l10n_it_fatturapa_out_rc.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_account_move____last_update
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_account_rc_type____last_update
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_wizard_export_fatturapa____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
+#, python-format
+msgid "Partner %s, City is not set."
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
+#, python-format
+msgid "Partner %s, Country is not set."
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
+#, python-format
+msgid "Partner %s, Street is not set."
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
+#, python-format
+msgid "Partner %s, ZIP is not set."
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: model:ir.model,name:l10n_it_fatturapa_out_rc.model_account_rc_type
+msgid "Reverse Charge Type"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
+#, python-format
+msgid ""
+"Select invoices are of too many fiscal document types: select invoices "
+"exclusively of type 'TD17', 'TD18', 'TD19' or exclusively of other types."
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
+#, python-format
+msgid ""
+"Selected invoices are both with and without reverse charge. You should "
+"selected a smaller set of invoices"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
+#, python-format
+msgid ""
+"Selected reverse charge invoices have different suppliers. Please select "
+"invoices with same supplier"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: model:ir.model.fields,help:l10n_it_fatturapa_out_rc.field_account_rc_type__fiscal_document_type_id
+msgid "To be used when sending self invoices to the exchange system"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
+#, python-format
+msgid ""
+"Vendor invoice that has generated this self invoice isn't validated. "
+"Validate vendor invoice before."
+msgstr ""
