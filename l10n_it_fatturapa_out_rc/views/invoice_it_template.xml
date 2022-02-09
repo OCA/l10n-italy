@@ -23,9 +23,7 @@
                     t-value="rc_supplier"
                 />
                         <t t-if="rc_supplier" t-set="company_id" t-value="" />
-                        <t t-if="not rc_supplier ">
-                          <t t-set="partner_id" t-value="company_id.partner_id"/>
-                        </t>
+                        <t t-if="not rc_supplier" t-set="partner_id" t-value="company_id.partner_id" />
                     </t>
             </xpath>
             <xpath
