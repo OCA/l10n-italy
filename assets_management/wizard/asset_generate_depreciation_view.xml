@@ -6,11 +6,15 @@
         <field name="model">wizard.asset.generate.depreciation</field>
         <field name="arch" type="xml">
             <form>
+                <field name="has_asset_ids" invisible="1"/>
                 <group name="depreciation_data" string="Depreciation Data">
                     <field name="date_dep"/>
                     <field name="type_ids"
                            options="{'no_create': True}"
                            widget="many2many_tags"/>
+                </group>
+                <group name="status" string="State" attrs="{'invisible': [('has_asset_ids', '=', True)]}">
+                    <field name="final" />
                 </group>
                 <group name="filters" string="Filters">
                     <field name="company_id"
@@ -31,13 +35,13 @@
                     </field>
                 </group>
                 <footer>
-                    <button name="do_generate"
+                    <button name="do_warning"
                             string="Generate"
                             invisible="not context.get('allow_reload_window', False)"
                             context="{'reload_window': True}"
                             class="btn-primary"
                             type="object"/>
-                    <button name="do_generate"
+                    <button name="do_warning"
                             string="Generate"
                             invisible="context.get('allow_reload_window', False)"
                             class="btn-primary"

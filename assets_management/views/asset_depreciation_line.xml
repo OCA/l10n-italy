@@ -36,12 +36,13 @@
         <field name="name">asset.dep.line.tree.view</field>
         <field name="model">asset.depreciation.line</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree >
                 <field name="asset_id"/>
                 <field name="depreciation_id"/>
                 <field name="name"/>
                 <field name="date"/>
                 <field name="move_type"/>
+                <field name="final"/>
                 <field name="depreciation_line_type_id" string="In/Out Amount Type"/>
                 <field name="force_dep_nr" invisible="1"/>
                 <field name="depreciation_nr"/>
@@ -64,35 +65,55 @@
                     <button name="button_generate_account_move"
                             string="Generate Move"
                             type="object"
-                            attrs="{'invisible': ['|', '|', '|', ('amount', '=', 0), ('move_id', '!=', False), ('move_type', 'in', ('in', 'out')), ('requires_account_move', '=', False)]}"
+                            attrs="{'invisible': ['|', '|', '|', '|', ('amount', '=', 0), ('move_id', '!=', False), ('move_type', 'in', ('in', 'out')), ('requires_account_move', '=', False), ('final', '=', True)]}"
                             class="oe_highlight"/>
                     <button name="button_regenerate_account_move"
                             string="Regenerate Move"
                             type="object"
-                            attrs="{'invisible': ['|', '|', '|', ('amount', '=', 0), ('move_id', '=', False), ('move_type', 'in', ('in', 'out')), ('requires_account_move', '=', False)]}"
+                            attrs="{'invisible': ['|', '|', '|', '|', ('amount', '=', 0), ('move_id', '=', False), ('move_type', 'in', ('in', 'out')), ('requires_account_move', '=', False), ('final', '=', True)]}"
                             class="oe_highlight"/>
                     <button name="button_remove_account_move"
                             type="object"
                             string="Remove Move"
-                            attrs="{'invisible': ['|', '|', '|', ('amount', '=', 0), ('move_id', '=', False), ('move_type', 'in', ('in', 'out')), ('requires_account_move', '=', False)]}"
+                            attrs="{'invisible': ['|', '|', '|', '|', ('amount', '=', 0), ('move_id', '=', False), ('move_type', 'in', ('in', 'out')), ('requires_account_move', '=', False), ('final', '=', True)]}"
                             class="oe_highlight"/>
                 </header>
                 <sheet>
                     <group name="info" string="General Info">
                         <group>
-                            <field name="asset_id" readonly="1"/>
-                            <field name="name"/>
-                            <field name="date"/>
-                            <field name="move_type"/>
+                            <field name="asset_id"
+                                   attrs="{'readonly': [('final', '=', True)]}"
+                            />
+                            <field name="depreciation_id" string="Natura operazione"
+                                   attrs="{'readonly': [('final', '=', True)]}"
+                            />
+                            <field name="name"
+                                   attrs="{'readonly': [('final', '=', True)]}"
+                            />
+                            <field name="date"
+                                   attrs="{'readonly': [('final', '=', True)]}"
+                            />
+                            <field name="move_type"
+                                   attrs="{'readonly': [('final', '=', True)]}"
+                            />
+                            <field name="final"
+                                   readonly="1"
+                            />
                             <field name="depreciation_line_type_id"
                                    attrs="{'invisible':[('move_type', 'not in', ('in', 'out'))]}"
                                    string="In/Out Amount Type"/>
-                            <field name="depreciation_nr"/>
+                            <field name="depreciation_nr"
+                                   attrs="{'readonly': [('final', '=', True)]}"
+                            />
                         </group>
                         <group>
-                            <field name="amount" widget="monetary"/>
+                            <field name="amount" widget="monetary"
+                                   attrs="{'readonly': [('final', '=', True)]}"
+                            />
                             <field name="balance" widget="monetary"/>
-                            <field name="move_id"/>
+                            <field name="move_id"
+                                   attrs="{'readonly': [('final', '=', True)]}"
+                            />
                             <field name="requires_account_move"
                                    invisible="1"/>
                             <field name="currency_id"
@@ -132,7 +153,9 @@
         <field name="res_model">asset.depreciation.line</field>
         <field name="view_id" ref="asset_dep_line_tree_view"/>
         <field name="search_view_id" ref="asset_dep_line_search_view"/>
-        <field name="context">{'search_default_group_by_asset_id': 1, 'search_default_group_by_depreciation_id': 1}</field>
+        <field name="context">{'search_default_group_by_asset_id': 1,
+                               'search_default_group_by_depreciation_id': 1,
+                               'depreciated_by_line': True}</field>
     </record>
 
     <menuitem id="menu_asset_dep_line"

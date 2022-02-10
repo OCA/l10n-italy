@@ -32,6 +32,7 @@
                 <field name="name"/>
                 <field name="code"/>
                 <field name="category_id"/>
+                <field name="last_depreciation_date"/>
                 <field name="purchase_date"/>
                 <field name="purchase_amount" widget="monetary"/>
                 <field name="currency_id"
@@ -48,6 +49,14 @@
         <field name="arch" type="xml">
             <form>
                 <header>
+                    <field name="is_open" invisible="1"/>
+                    <button name="launch_wizard_generate_open"
+                            string="Apertura bene"
+                            type="object"
+                            attrs="{'invisible': ['|', ('is_open', '=', True),
+                            '|', ('state', '!=', 'non_depreciated'),
+                            ('purchase_invoice_id', '!=', False)]}"
+                    />
                     <button name="launch_wizard_generate_depreciations"
                             string="Generate depreciations"
                             context="{'allow_reload_window': True}"
@@ -71,6 +80,7 @@
                             <field name="category_id" attrs="{'readonly': [('state', '!=', 'non_depreciated')]}"/>
                             <field name="code"/>
                             <field name="used" attrs="{'readonly': [('state', '!=', 'non_depreciated')]}"/>
+                            <field name="is_open" groups="base.group_no_one"/>
                         </group>
                         <group>
                             <field name="company_id"
@@ -111,7 +121,7 @@
                                 <field name="depreciation_ids"
                                        context="{'default_asset_id':id}"
                                        nolabel="1">
-                                    <tree>
+                                    <tree create="false" edit="false" delete="false">
                                         <field name="asset_id" invisible="1"/>
                                         <field name="type_id"/>
                                         <field name="mode_id"/>

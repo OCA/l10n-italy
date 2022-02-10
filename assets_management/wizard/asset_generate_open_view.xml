@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="wizard_asset_generate_open_form_view" model="ir.ui.view">
+        <field name="name">wizard.asset.generate.open.form.view</field>
+        <field name="model">wizard.asset.generate.open</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="asset_id" />
+                </group>
+
+                <group>
+                    <field name="account_id"/>
+                </group>
+
+                <group>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="amount" widget="monetary"/>
+                </group>
+
+                <footer>
+                    <button name="do_generate"
+                            string="Generate"
+                            class="btn-primary"
+                            type="object"/>
+                    or
+                    <button string="Cancel"
+                            class="btn-default"
+                            special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_asset_open" model="ir.actions.act_window">
+        <field name="name">Apertura bene</field>
+        <field name="res_model">wizard.asset.generate.open</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_asset_generate_open_form_view"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

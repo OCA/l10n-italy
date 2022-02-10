@@ -1,5 +1,6 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
+# Copyright 2021-22 powERP enterprise network <https://www.powerp.it>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -14,6 +15,16 @@ class AssetCategory(models.Model):
     @api.model
     def get_default_company_id(self):
         return self.env.user.company_id
+
+    @api.model
+    def get_default_journal(self):
+        journal = self.env['account.journal'].search([('code', '=', 'ADPCD')])
+        if journal:
+            return journal.id
+        else:
+            return False
+        # end if
+    # end get_defaul_journal
 
     @api.model
     def get_default_type_ids(self):
@@ -79,7 +90,8 @@ class AssetCategory(models.Model):
     journal_id = fields.Many2one(
         'account.journal',
         required=True,
-        string="Journal"
+        string="Journal",
+        default=get_default_journal,
     )
 
     loss_account_id = fields.Many2one(

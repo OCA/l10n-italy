@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo >
+    <data noupdate="1">
+        <!-- Registro dedicato Asset Depreciation Journal -->
+        <record id="asset_account_journal" model="account.journal">
+            <field name="name">Ammortamenti</field>
+                <field name="code">ADJ</field>
+                <field name="type">general</field>
+        </record>
+    </data>
+</odoo>

@@ -1,4 +1,4 @@
-**English**
+|en|
 
 You can create and manage assets from accounting section of Odoo.
 
@@ -11,7 +11,7 @@ Assets Management -> Generate Depreciations, or by triggering the same wizard fr
 form view.
 
 
-**Italiano**
+|it|
 
 È possibile creare e gestire cespiti dalla sezione contabilità di Odoo.
 
