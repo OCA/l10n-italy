@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2022 Simone Rubino - Takobi
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+
+<odoo noupdate="1">
+
+    <!-- Multi - Company Rules -->
+    <record id="yearly_limit_company_rule" model="ir.rule">
+        <field name="name">Yearly limit multi-company</field>
+        <field
+            name="model_id"
+            ref="model_dichiarazione_intento_yearly_limit"
+        />
+        <field name="domain_force">
+            ['|', ('company_id', '=', False), ('company_id', 'in', user.company_ids.ids)]
+        </field>
+    </record>
+
+    <record id="declaration_company_rule" model="ir.rule">
+        <field name="name">Declaration multi-company</field>
+        <field
+            name="model_id"
+            ref="model_dichiarazione_intento"
+        />
+        <field name="domain_force">
+            ['|', ('company_id', '=', False), ('company_id', 'in', user.company_ids.ids)]
+        </field>
+    </record>
+
+    <record id="declaration_line_company_rule" model="ir.rule">
+        <field name="name">Declaration line multi-company</field>
+        <field
+            name="model_id"
+            ref="model_dichiarazione_intento_line"
+        />
+        <field name="domain_force">
+            ['|', ('company_id', '=', False), ('company_id', 'in', user.company_ids.ids)]
+        </field>
+    </record>
+
+</odoo>

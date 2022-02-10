@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-24 15:03+0000\n"
-"PO-Revision-Date: 2020-01-07 11:13+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2022-01-19 19:40+0000\n"
+"Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_it_account_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.invoice_form_stamp
@@ -25,6 +25,10 @@ msgid ""
 "invoice is in draft state\n"
 "                            </span>"
 msgstr ""
+"<span attrs=\"{'invisible': [('state', '=', 'draft')]}\">\n"
+"                                Il bollo può essere addebitato al cliente "
+"solo quando la fattura è nello stato bozza\n"
+"                            </span>"
 
 #. module: l10n_it_account_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.invoice_form_stamp
@@ -33,6 +37,9 @@ msgid ""
 "                            Stamp charged to customer\n"
 "                        </span>"
 msgstr ""
+"<span attrs=\"{'invisible': [('tax_stamp_line_present', '=', False)]}\">\n"
+"                            Bollo addebitato al cliente\n"
+"                        </span>"
 
 #. module: l10n_it_account_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings_stamp
@@ -70,7 +77,7 @@ msgstr "Calcolo automatico"
 #. module: l10n_it_account_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.invoice_form_stamp
 msgid "Charge stamp to customer"
-msgstr ""
+msgstr "Addebitare bollo al cliente"
 
 #. module: l10n_it_account_stamp
 #: model:ir.model,name:l10n_it_account_stamp.model_res_company

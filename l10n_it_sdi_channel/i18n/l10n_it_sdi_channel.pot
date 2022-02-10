@@ -95,11 +95,6 @@ msgid "Exchange System Email Address"
 msgstr ""
 
 #. module: l10n_it_sdi_channel
-#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__first_invoice_sent
-msgid "First e-invoice sent"
-msgstr ""
-
-#. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__id
 msgid "ID"
 msgstr ""
@@ -167,6 +162,11 @@ msgstr ""
 #: code:addons/l10n_it_sdi_channel/models/sdi.py:95
 #, python-format
 msgid "SDI PEC address not set. Please update it with the address indicated by SDI after the first sending"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__first_invoice_sent
+msgid "SDI already assigned a PEC address to my company"
 msgstr ""
 
 #. module: l10n_it_sdi_channel

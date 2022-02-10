@@ -24,7 +24,7 @@ msgid "Actual Used Amount"
 msgstr ""
 
 #. module: l10n_it_dichiarazione_intento
-#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:148
+#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:151
 #, python-format
 msgid "All taxes in declaration of intent must be used in fiscal position taxes"
 msgstr ""
@@ -69,6 +69,8 @@ msgid "Companies"
 msgstr ""
 
 #. module: l10n_it_dichiarazione_intento
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento__company_id
+#: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_line__company_id
 #: model:ir.model.fields,field_description:l10n_it_dichiarazione_intento.field_dichiarazione_intento_yearly_limit__company_id
 msgid "Company"
 msgstr ""
@@ -160,7 +162,7 @@ msgid "Declarations of intent"
 msgstr ""
 
 #. module: l10n_it_dichiarazione_intento
-#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:105
+#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:108
 #, python-format
 msgid "Define a yearly plafond for in documents in your company settings"
 msgstr ""
@@ -246,7 +248,7 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_it_dichiarazione_intento
-#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:134
+#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:137
 #, python-format
 msgid "Impossible to delete a document with linked invoices"
 msgstr ""
@@ -312,7 +314,7 @@ msgid "Limit Amount"
 msgstr ""
 
 #. module: l10n_it_dichiarazione_intento
-#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:161
+#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:164
 #, python-format
 msgid "Limit passed for declaration %s.\n"
 "Excess value: %s%s"
@@ -404,7 +406,7 @@ msgid "Telematic Protocol"
 msgstr ""
 
 #. module: l10n_it_dichiarazione_intento
-#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:122
+#: code:addons/l10n_it_dichiarazione_intento/models/dichiarazione_intento.py:125
 #, python-format
 msgid "Total of documents exceed yearly limit"
 msgstr ""
