@@ -1,1 +1,0 @@
-This module is a module bridge between account due date and sale order.

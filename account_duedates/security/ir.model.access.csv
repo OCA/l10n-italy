@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_account_duedate_plus_manager,access_model_account_duedate_plus_manager,model_account_duedate_plus_manager,base.group_user,1,1,1,1
-access_account_duedate_plus_line,access_model_account_duedate_plus_line,model_account_duedate_plus_line,base.group_user,1,1,1,1
-access_partner_duedates_datarange,access_model_partner_duedates_datarange,model_partner_duedates_datarange,base.group_user,1,1,1,1

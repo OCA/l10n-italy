@@ -1,1 +1,0 @@
-Modulo ponte tra il modulo scadenzario evoluto e gli ordini clienti
