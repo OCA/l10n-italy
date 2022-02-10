@@ -35,12 +35,19 @@
       </record>
 
       <template id="l10n_it_account.internal_layout">
-          <!-- Multicompany -->
-          <t t-if="o and 'company_id' in o">
-              <t t-set="company" t-value="o.company_id" />
-          </t>
-          <t t-if="not o or not 'company_id' in o">
-              <t t-set="company" t-value="res_company" />
+          <t t-if="not o" t-set="o" t-value="docs" />
+
+          <t t-if="not company">
+              <!-- Multicompany -->
+              <t t-if="company_id">
+                  <t t-set="company" t-value="company_id" />
+              </t>
+              <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                  <t t-set="company" t-value="o.company_id.sudo()" />
+              </t>
+              <t t-else="else">
+                  <t t-set="company" t-value="res_company" />
+              </t>
           </t>
 
           <div class="header">
