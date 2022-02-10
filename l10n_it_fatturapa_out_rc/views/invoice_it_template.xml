@@ -13,16 +13,15 @@
                     <t
                 t-call="l10n_it_fatturapa_out.account_invoice_it_cedente_prestatore"
             >
+                        <t t-set="partner_id" t-value="company_id.partner_id" />
                         <t
                     t-set="rc_supplier"
                     t-value="invoices.mapped('rc_purchase_invoice_id.partner_id')"
                 />
-                        <t
-                    t-if="rc_supplier"
-                    t-set="partner_id"
-                    t-value="rc_supplier"
-                />
-                        <t t-if="rc_supplier" t-set="company_id" t-value="" />
+                        <t t-if="rc_supplier">
+                        <t t-set="partner_id" t-value="rc_supplier" />
+                        <t t-set="company_id" t-value="" />
+                    </t>
                     </t>
             </xpath>
             <xpath
