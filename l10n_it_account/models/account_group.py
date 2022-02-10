@@ -73,7 +73,7 @@ class AccountGroup(models.Model):
         return 1
 
     def get_group_accounts(self):
-        """ Retrieves every account from `self` and `self`'s subgroups. """
+        """Retrieves every account from `self` and `self`'s subgroups."""
         return (self + self.get_group_subgroups()).mapped("account_ids")
 
     def get_group_progenitor(self):
@@ -97,6 +97,6 @@ class AccountGroup(models.Model):
         return self.browse(parent_ids)
 
     def get_group_subgroups(self):
-        """ Retrieves every subgroup for groups `self`. """
+        """Retrieves every subgroup for groups `self`."""
         subgroups_ids = self.search([("id", "child_of", self.ids)])
         return subgroups_ids
