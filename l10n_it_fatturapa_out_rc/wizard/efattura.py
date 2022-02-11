@@ -6,17 +6,10 @@ from odoo.addons.l10n_it_fatturapa_out.wizard.efattura import (
 )
 
 
+# extend the EFatturaOut class to add a new helper function
 class EFatturaOut(_EFatturaOut):
     def get_template_values(self):
-        def get_sign(invoice):
-            sign = 1
-            if invoice.move_type in [
-                "out_refund",
-                "in_refund",
-            ] and invoice.fiscal_document_type_id.code not in ["TD04", "TD08"]:
-                sign = -1
-            return sign
-
+        get_sign = self.env["wizard.export.fatturapa"].getSign
         template_values = super().get_template_values()
         template_values.update({"get_sign": get_sign})
         return template_values

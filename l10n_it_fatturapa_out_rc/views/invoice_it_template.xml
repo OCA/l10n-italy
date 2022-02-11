@@ -50,22 +50,20 @@
                 t-esc="record.fiscal_document_type_id.code"
             />
             </xpath>
-            <xpath
-            expr="//DatiGeneraliDocumento/ImportoTotaleDocumento"
-            position="replace"
-        >
-                <ImportoTotaleDocumento
-                t-esc="format_numbers_two(get_sign(record) * record.amount_total)"
-            />
-            </xpath>
+            <xpath expr="//DettaglioPagamento/ImportoPagamento" position="replace" />
             <xpath expr="//DettaglioPagamento/ImportoPagamento" position="replace">
                 <ImportoPagamento
+                t-if="record.company_id.xml_divisa_value == 'keep_orig'"
                 t-esc="format_numbers_two(get_sign(record) * (move_line.amount_currency or move_line.debit))"
+            />
+                <ImportoPagamento
+                t-if="not record.company_id.xml_divisa_value == 'keep_orig'"
+                t-esc="format_numbers_two(fpa_to_eur(get_sign(record) * (move_line.amount_currency or move_line.debit), record))"
             />
             </xpath>
             <xpath expr="//DatiRiepilogo/ImponibileImporto" position="replace">
                 <ImponibileImporto
-                t-esc="format_monetary(get_sign(record) * tax_data['ImponibileImporto'], currency)"
+                t-esc="format_monetary(fpa_to_eur(get_sign(record) * tax_data['ImponibileImporto'], record), euro)"
             />
             </xpath>
             <xpath expr="//DatiRiepilogo/Imposta" position="replace">
@@ -86,7 +84,7 @@
                 </xpath>
                 <xpath expr="//PrezzoTotale" position="replace">
                     <PrezzoTotale
-                t-esc="format_monetary(get_sign(line.move_id) * line.price_subtotal, currency)"
+                t-esc="format_monetary(fpa_to_eur(get_sign(line.move_id) * line.price_subtotal, record), euro)"
             />
                 </xpath>
         </template>
