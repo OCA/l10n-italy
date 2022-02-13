@@ -9,6 +9,26 @@ on:
       - "10.0*"
 
 jobs:
+  license:
+    runs-on: ubuntu-latest
+    name: Check licenses
+    container: ghcr.io/oca/oca-ci/py2.7-odoo10.0:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install addons and dependencies
+        run: oca_install_addons
+      - name: Check licenses
+        run: manifestoo -d . check-licenses
+  dev-status:
+    runs-on: ubuntu-latest
+    name: Check development status
+    container: ghcr.io/oca/oca-ci/py2.7-odoo10.0:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install addons and dependencies
+        run: oca_install_addons
+      - name: Check development status
+        run: manifestoo -d . check-dev-status --default-dev-status=Beta
   unreleased-deps:
     runs-on: ubuntu-latest
     name: Detect unreleased dependencies
@@ -54,10 +74,6 @@ jobs:
           persist-credentials: false
       - name: Install addons and dependencies
         run: oca_install_addons
-      - name: Check licenses
-        run: manifestoo -d . check-licenses
-      - name: Check development status
-        run: manifestoo -d . check-dev-status --default-dev-status=Beta
       - name: Initialize test db
         run: oca_init_test_database
       - name: Run tests
@@ -66,3 +82,14 @@ jobs:
       - name: Update .pot files
         run: oca_export_and_push_pot https://x-access-token:${{ secrets.GIT_PUSH_TOKEN }}@github.com/${{ github.repository }}
         if: ${{ matrix.makepot == 'true' && github.event_name == 'push' && github.repository_owner == 'OCA' }}
+  conclusion:
+    runs-on: ubuntu-latest
+    needs:
+      - license
+      - dev-status
+      - test
+      - unreleased-deps
+    if: always()
+    steps:
+      - if: needs.test.result != 'success' || needs.unreleased-deps.result != 'success'
+        run: exit 1
