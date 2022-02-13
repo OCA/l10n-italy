@@ -8,7 +8,7 @@
     'version': '10.0.1.3.0',
     'category': 'Localisation/Italy',
     'author': "Odoo Italia Network, Odoo Community Association (OCA)",
-    'website': 'https://odoo-community.org/',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'AGPL-3',
     'depends': [
         'base_vat'

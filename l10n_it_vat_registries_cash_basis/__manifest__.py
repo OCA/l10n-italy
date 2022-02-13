@@ -11,7 +11,7 @@
     'category': 'Hidden',
     "author": "LinkIt Srl, Agile Business Group"
               ", Odoo Community Association (OCA)",
-    'website': 'http://www.linkgroup.it/',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'LGPL-3',
     "depends": [
         'l10n_it_vat_registries',

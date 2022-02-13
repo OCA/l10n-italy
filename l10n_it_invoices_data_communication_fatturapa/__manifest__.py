@@ -11,7 +11,7 @@
     'category': 'Hidden',
     'author': "Agile Business Group, "
               "Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/l10n-italy/',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'LGPL-3',
     'depends': [
         'l10n_it_invoices_data_communication',

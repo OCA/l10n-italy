@@ -13,7 +13,7 @@
     'category': 'Account',
     'author': "Openforce di Camilli Alessandro,"
         "Odoo Community Association (OCA)",
-    'website': 'http://odoo-italia.net',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'LGPL-3',
     'depends': [
         'account',

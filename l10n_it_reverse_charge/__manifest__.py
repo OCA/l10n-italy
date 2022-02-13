@@ -12,7 +12,7 @@
     'summary': 'Reverse Charge for Italy',
     'author': 'Odoo Italia Network,Odoo Community Association (OCA)',
     'license': 'LGPL-3',
-    'website': 'https://www.odoo-italia.net',
+    'website': 'https://github.com/OCA/l10n-italy',
     'depends': [
         'account_accountant',
         'account_cancel',

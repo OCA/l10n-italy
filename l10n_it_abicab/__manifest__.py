@@ -10,7 +10,7 @@
     'author': "Odoo Italia Network, Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'depends': ['account'],
-    'website': 'http://www.odoo-community.org',
+    'website': 'https://github.com/OCA/l10n-italy',
     'data': ['views/abicab_view.xml'],
     'installable': True,
 }

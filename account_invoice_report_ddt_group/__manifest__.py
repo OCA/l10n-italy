@@ -10,7 +10,7 @@
     'category': 'Localization/Italy',
     'author': 'Agile Business Group, Apulia Software, Openforce,'
               'Odoo Community Association (OCA)',
-    'website': 'http://www.agilebg.com',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'LGPL-3',
     'depends': [
         'account', 'l10n_it_ddt',

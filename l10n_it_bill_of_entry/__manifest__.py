@@ -66,7 +66,7 @@ Alla conferma della fattura spedizioniere, verrà generata la scrittura contabil
 
 """,
     'author': "Agile Business Group,Odoo Community Association (OCA)",
-    'website': 'http://www.agilebg.com',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'AGPL-3',
     "depends": ['base', 'account_invoice_template'],
     "data": [

@@ -12,7 +12,7 @@
     'category': 'Localization/Italy',
     "author": "Agile Business Group, Odoo Community Association (OCA)"
               ", LinkIt Srl",
-    'website': 'http://www.agilebg.com',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'AGPL-3',
     'development_status': 'Production/Stable',
     "depends": [

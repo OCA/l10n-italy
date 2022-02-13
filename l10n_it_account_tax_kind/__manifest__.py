@@ -10,7 +10,7 @@
     'version': '10.0.2.0.0',
     'category': 'Localisation/Italy',
     'author': "Odoo Community Association (OCA), Apulia Software s.r.l",
-    'website': 'https://www.odoo-italia.net/',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'LGPL-3',
     'depends': [
         'l10n_it_account',

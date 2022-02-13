@@ -8,7 +8,7 @@
     'category': 'Account',
     'author': 'Openforce, Odoo Italia Network, '
               'Odoo Community Association (OCA)',
-    'website': 'https://odoo-community.org/',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'AGPL-3',
     "depends": ['account',
                 'l10n_it_withholding_tax'],

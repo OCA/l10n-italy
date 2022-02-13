@@ -9,7 +9,7 @@
               "Odoo Community Association (OCA)",
     'version': '10.0.1.0.2',
     'license': 'LGPL-3',
-    'website': 'http://www.agilebg.com',
+    'website': 'https://github.com/OCA/l10n-italy',
     'depends': [
         'website_sale',
         'l10n_it_fiscalcode'

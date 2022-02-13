@@ -31,7 +31,7 @@
     """,
     "license": "AGPL-3",
     "category" : "Localisation/Italy",
-    'website': 'http://www.openerp-italia.org/',
+    'website': 'https://github.com/OCA/l10n-italy',
     'data': [
         'data/account.account.type.csv',
         'data/account.account.csv',

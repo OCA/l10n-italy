@@ -9,7 +9,7 @@
     'version': '10.0.2.0.0',
     'category': 'Localisation/Italy',
     'author': "Link It srl, Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/l10n-italy/tree/10.0/'
+    'website': 'https://github.com/OCA/l10n-italy'
                'l10n_it_fiscal_document_type',
     'license': 'LGPL-3',
     'depends': ['l10n_it_account'],
