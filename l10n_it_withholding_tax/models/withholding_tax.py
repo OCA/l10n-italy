@@ -236,15 +236,14 @@ class WithholdingTaxStatement(models.Model):
     base = fields.Float("Base")
     tax = fields.Float("Tax")
     amount = fields.Float(
-        string="WT amount applied", store=True, readonly=True, compute="_compute_total"
-    )
-    amount_paid = fields.Float(
-        string="WT amount paid", store=True, readonly=True, compute="_compute_total"
-    )
-    move_ids = fields.One2many("withholding.tax.move", "statement_id", "Moves")
-    display_name = fields.Char(compute="_compute_display_name")
+        string='WT amount applied', store=True, readonly=True,
+        compute='_compute_total')
+    amount_paid = fields.Float(string='WT amount paid', store=True,
+                               readonly=True, compute='_compute_total')
+    move_ids = fields.One2many('withholding.tax.move',
+                               'statement_id', 'Moves')
 
-    @api.depends("move_id.line_ids.account_id.user_type_id.type")
+    @api.depends('move_id.line_ids.account_id.user_type_id.type')
     def _compute_type(self):
         for st in self:
             if st.move_id:
@@ -285,8 +284,13 @@ class WithholdingTaxStatement(models.Model):
                 amount_wt = tax_data["tax"]
             return amount_wt
 
-    def _compute_display_name(self):
-        self.display_name = self.partner_id.name + " - " + self.withholding_tax_id.name
+    @api.multi
+    def name_get(self):
+        res = []
+        for record in self:
+            name = record.partner_id.name + ' - ' + record.withholding_tax_id.name
+            res.append((record.id, name))
+        return res
 
 
 class WithholdingTaxMove(models.Model):
@@ -332,16 +336,15 @@ class WithholdingTaxMove(models.Model):
     )
     withholding_tax_id = fields.Many2one("withholding.tax", "Withholding Tax")
     company_id = fields.Many2one(
-        "res.company", string="Company", related="withholding_tax_id.company_id"
-    )
-    amount = fields.Float("Amount")
-    partner_id = fields.Many2one("res.partner", "Partner")
-    date_maturity = fields.Date("Date Maturity")
-    account_move_id = fields.Many2one(
-        "account.move", "Payment Move", ondelete="cascade"
-    )
-    wt_account_move_id = fields.Many2one("account.move", "WT Move", ondelete="cascade")
-    display_name = fields.Char(compute="_compute_display_name")
+        'res.company', string='Company',
+        related='withholding_tax_id.company_id')
+    amount = fields.Float('Amount')
+    partner_id = fields.Many2one('res.partner', 'Partner')
+    date_maturity = fields.Date('Date Maturity')
+    account_move_id = fields.Many2one('account.move', 'Payment Move',
+                                      ondelete='cascade')
+    wt_account_move_id = fields.Many2one(
+        'account.move', 'WT Move', ondelete='cascade')
     full_reconcile_id = fields.Many2one(
         "account.full.reconcile",
         compute="_compute_full_reconcile_id",
@@ -478,8 +481,13 @@ class WithholdingTaxMove(models.Model):
                 }
             )
 
-    def _compute_display_name(self):
-        self.display_name = self.partner_id.name + " - " + self.withholding_tax_id.name
+    @api.multi
+    def name_get(self):
+        res = []
+        for record in self:
+            name = record.partner_id.name + ' - ' + record.withholding_tax_id.name
+            res.append((record.id, name))
+        return res
 
     def action_paid(self):
         for move in self:
