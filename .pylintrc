@@ -1,0 +1,101 @@
+[MASTER]
+load-plugins=pylint_odoo
+score=n
+
+[ODOOLINT]
+readme_template_url="https://github.com/OCA/maintainer-tools/blob/master/template/module/README.rst"
+manifest_required_authors=Odoo Community Association (OCA)
+manifest_required_keys=license
+manifest_deprecated_keys=description,active
+license_allowed=AGPL-3,GPL-2,GPL-2 or any later version,GPL-3,GPL-3 or any later version,LGPL-3
+valid_odoo_versions=10.0
+
+[MESSAGES CONTROL]
+disable=all
+
+# Beta message and code:
+#   api-one-deprecated - W8104
+#   api-one-multi-together - W8101
+#   attribute-deprecated - W8105
+#   class-camelcase - C8104
+#   create-user-wo-reset-password - W7905
+#   consider-merging-classes-inherited - R7980
+#   copy-wo-api-one - W8102
+#   dangerous-filter-wo-user - W7901
+#   dangerous-view-replace-wo-priority - W7940
+#   deprecated-module - W0402
+#   duplicate-id-csv - W7906
+#   duplicate-xml-fields - W7907
+#   duplicate-xml-record-id - W7902
+#   file-not-used - W7930
+#   incoherent-interpreter-exec-perm - W8201
+#   invalid-commit - E8102
+#   javascript-lint - W7903
+#   manifest-deprecated-key - C8103
+#   method-compute - C8108
+#   method-inverse - C8110
+#   method-required-super - W8106
+#   method-search - C8109
+#   missing-newline-extrafiles - W7908
+#   missing-readme - C7902
+#   no-utf8-coding-comment - C8201
+#   unnecessary-utf8-coding-comment - C8202
+#   odoo-addons-relative-import - W7950
+#   old-api7-method-defined - R8110
+#   openerp-exception-warning - R8101
+#   redundant-modulename-xml - W7909
+#   sql-injection - E8103
+#   too-complex - C0901
+#   translation-field - W8103
+#   translation-required - C8107
+#   use-vim-comment - W8202
+#   wrong-tabs-instead-of-spaces - W7910
+#   xml-syntax-error - E7902
+
+enable=api-one-deprecated,
+    api-one-multi-together,
+    attribute-deprecated,
+    class-camelcase,
+    create-user-wo-reset-password,
+    consider-merging-classes-inherited,
+    copy-wo-api-one,
+    dangerous-filter-wo-user,
+    dangerous-view-replace-wo-priority,
+    deprecated-module,
+    duplicate-id-csv,
+    duplicate-po-message-definition,
+    duplicate-xml-fields,
+    duplicate-xml-record-id,
+    file-not-used,
+    incoherent-interpreter-exec-perm,
+    invalid-commit,
+    javascript-lint,
+    manifest-deprecated-key,
+    method-compute,
+    method-inverse,
+    method-required-super,
+    method-search,
+    missing-newline-extrafiles,
+    missing-readme,
+    po-msgstr-variables,
+    po-syntax-error,
+    no-utf8-coding-comment,
+    unnecessary-utf8-coding-comment,
+    odoo-addons-relative-import,
+    old-api7-method-defined,
+    openerp-exception-warning,
+    redefined-builtin,
+    redundant-modulename-xml,
+    sql-injection,
+    too-complex,
+    translation-field,
+    translation-required,
+    use-vim-comment,
+    wrong-tabs-instead-of-spaces,
+    xml-syntax-error,
+
+[REPORTS]
+msg-template={path}:{line}: [{msg_id}({symbol}), {obj}] {msg}
+output-format=colorized
+reports=no
+

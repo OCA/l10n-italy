@@ -1,0 +1,14 @@
+# Do NOT update manually; changes here will be overwritten by Copier
+_commit: v1.5.1-9-g2078d01
+_src_path: ../../../oca-addons-repo-template
+ci: GitHub
+dependency_installation_mode: PIP
+generate_requirements_txt: true
+include_wkhtmltopdf: false
+odoo_version: 10.0
+rebel_module_groups: []
+repo_description: null
+repo_name: l10n-italy
+repo_slug: l10n-italy
+travis_apt_packages: []
+travis_apt_sources: []
