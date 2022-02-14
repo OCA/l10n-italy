@@ -48,3 +48,38 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         picking_backorder.move_lines[0].quantity_done = 1
         picking_backorder.button_validate()
         self.assertTrue(picking_backorder.delivery_note_id)
+
+    def test_delivery_note_force_number(self):
+        use_adv_notes_group_id = self.env.ref(
+            "l10n_it_delivery_note.use_advanced_delivery_notes").id
+        self.env.user.write({'groups_id': [(4, use_adv_notes_group_id)]})
+
+        StockBackorderConfirmationWizard = self.env['stock.backorder.confirmation']
+        StockDeliveryNoteCreateWizard = self.env['stock.delivery.note.create.wizard']
+        sales_order = self.create_sales_order(
+            [
+                self.large_desk_line,  # 1
+                self.desk_combination_line,  # 1
+            ],
+        )
+        self.assertEqual(len(sales_order.order_line), 2)
+        sales_order.action_confirm()
+        self.assertEqual(len(sales_order.picking_ids), 1)
+        picking = sales_order.picking_ids
+        self.assertEqual(len(picking.move_lines), 2)
+
+        # deliver only the first product
+        picking.move_lines[0].quantity_done = 1
+        backorder_wiz_id = picking.button_validate()['res_id']
+        backorder_wiz = StockBackorderConfirmationWizard.browse(backorder_wiz_id)
+        backorder_wiz.process()
+        wizard_vals = StockDeliveryNoteCreateWizard.with_context(
+            active_id=picking.id,
+            active_model='stock.picking').default_get(
+                ['date', 'type_id', 'partner_shipping_id']
+            )
+        wizard_vals.update({'name': '555'})
+        wizard = StockDeliveryNoteCreateWizard.create(wizard_vals)
+        wizard.confirm()
+        self.assertTrue(picking.delivery_note_id)
+        self.assertEqual(picking.delivery_note_id.name, '555')

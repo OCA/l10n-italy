@@ -24,6 +24,7 @@
                     <group>
                         <field name="type_id" options="{'no_open': True, 'no_create': True}" />
                         <field name="date" />
+                        <field name="name" groups="l10n_it_delivery_note.can_change_number"/>
                     </group>
                 </group>
                 <notebook attrs="{'invisible': [('error_message', '!=', False)]}">

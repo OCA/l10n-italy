@@ -33,6 +33,7 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
     type_id = fields.Many2one('stock.delivery.note.type',
                               default=_default_type,
                               required=True)
+    name = fields.Char()
 
     @api.model
     def check_compliance(self, pickings):
@@ -50,7 +51,7 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
         sale_order_ids = self.mapped('selected_picking_ids.sale_id')
         sale_order_id = sale_order_ids and sale_order_ids[0] or False
 
-        delivery_note = self.env['stock.delivery.note'].create({
+        values = {
             'partner_sender_id': self.partner_sender_id.id,
             'partner_id': self.partner_id.id,
             'partner_shipping_id': self.partner_shipping_id.id,
@@ -79,7 +80,10 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
                 sale_order_id.default_transport_method_id.id or
                 self.partner_id.default_transport_method_id.id or
                 self.type_id.default_transport_method_id.id
-        })
+        }
+        if self.name:
+            values.update({'name': self.name})
+        delivery_note = self.env['stock.delivery.note'].create(values)
 
         self.selected_picking_ids.write({'delivery_note_id': delivery_note.id})
 
