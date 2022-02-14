@@ -160,8 +160,8 @@ class ReportRegistroIva(models.AbstractModel):
                 "tax": amounts_by_tax_id[tax_id]["tax"],
                 "index": index,
                 "invoice_type": invoice_type,
-                "invoice_date": (move and move.invoice_date or move.date or ""),
-                "reference": (move and move.name or ""),
+                "invoice_date": (move.invoice_date or move.date or ""),
+                "reference": (move.ref or move.name or ""),
                 # These 4 items are added to make the dictionary more usable
                 # in further customizations, allowing inheriting modules to
                 # retrieve the records that have been used to create the
