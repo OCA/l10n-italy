@@ -73,50 +73,50 @@ class AccountMove(models.Model):
                     "or exclusively of other types."
                 )
             )
-        rc_suppliers = invoices_with_rc.mapped("rc_purchase_invoice_id.partner_id")
-        if len(rc_suppliers) > 1:
+        rc_supplier = invoices_with_rc.mapped("rc_purchase_invoice_id.partner_id")
+        if len(rc_supplier) > 1:
             raise UserError(
                 _(
                     "Selected reverse charge invoices have different suppliers. Please "
                     "select invoices with same supplier"
                 )
             )
+        if len(rc_supplier) < 1:
+            raise UserError(_("Please specify a supplier in reverse charge invoices."))
+
+        # --- preventive checks related to set CedentePrestatore.Sede --- #
+        if not rc_supplier.street:
+            raise UserError(
+                _("Partner %s, Street is not set.") % rc_supplier.display_name
+            )
+        if not rc_supplier.city:
+            raise UserError(
+                _("Partner %s, City is not set.") % rc_supplier.display_name
+            )
+        if not rc_supplier.country_id:
+            raise UserError(
+                _("Partner %s, Country is not set.") % rc_supplier.display_name
+            )
+        if not rc_supplier.zip:
+            raise UserError(_("Partner %s, ZIP is not set.") % rc_supplier.display_name)
         # --- preventive checks related to set CedentePrestatore.DatiAnagrafici --- #
-        partner = rc_suppliers and rc_suppliers[0] or self.env["res.partner"].browse()
         fiscal_document_type_codes = invoices_with_rc.mapped(
             "fiscal_document_type_id.code"
         )
-        # Se vale IT , il sistema verifica che il TipoDocumento sia diverso da
-        # TD17, TD18 e TD19; in caso contrario il file viene scartato
-        vat = partner.vat and partner.vat[0:2]
-        if vat:
-            if vat == "IT" and any(
-                [x in ["TD17", "TD18", "TD19"] for x in fiscal_document_type_codes]
-            ):
-                raise UserError(
-                    _(
-                        "A self-invoice cannot be issued with IT country code and "
-                        "fiscal document type in 'TD17', 'TD18', 'TD19'."
-                    )
-                )
-            if vat not in self.env["res.country"].search([]).mapped("code"):
-                raise ValueError(
-                    _(
-                        "Country code does not exist or it is not mapped in countries: "
-                        "%s" % vat
-                    )
-                )
-        elif not partner.country_id.code or partner.country_id.code == "IT":
+        # TD17, TD18 e TD19 solo per partner esteri; in caso contrario il file viene scartato
+        ccode = rc_supplier.country_id.code
+        if ccode == "IT" and any(
+            [x in ["TD17", "TD18", "TD19"] for x in fiscal_document_type_codes]
+        ):
             raise UserError(
-                _("Impossible to set IdFiscaleIVA for %s") % partner.display_name
+                _(
+                    "A self-invoice cannot be issued with IT country code and "
+                    "fiscal document type in 'TD17', 'TD18', 'TD19'."
+                )
             )
-        # --- preventive checks related to set CedentePrestatore.Sede --- #
-        if not partner.street:
-            raise UserError(_("Partner %s, Street is not set.") % partner.display_name)
-        if not partner.city:
-            raise UserError(_("Partner %s, City is not set.") % partner.display_name)
-        if not partner.country_id:
-            raise UserError(_("Partner %s, Country is not set.") % partner.display_name)
-        if not partner.zip:
-            raise UserError(_("Partner %s, ZIP is not set.") % partner.display_name)
+        if ccode not in self.env["res.country"].search([]).mapped("code"):
+            raise ValueError(
+                _("Country code does not exist or it is not mapped in countries: %s")
+                % ccode
+            )
         return
