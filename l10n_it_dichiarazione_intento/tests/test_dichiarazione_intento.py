@@ -26,7 +26,7 @@ class TestDichiarazioneIntento(TransactionCase):
             'telematic_protocol': '08060120341234567-000001',
             })
 
-    def _create_invoice(self, partner, tax=False, date=False):
+    def _create_invoice(self, partner, tax=False, date=False, with_date_invoice=True):
         invoice_date = date if date else self.today_date
         payment_term = self.env.ref('account.account_payment_term_advance')
         invoice_line_data = [(0, 0, {
@@ -39,7 +39,7 @@ class TestDichiarazioneIntento(TransactionCase):
             })]
         return self.env['account.invoice'].sudo().create({
             'partner_id': partner.id,
-            'date_invoice': invoice_date,
+            'date_invoice': with_date_invoice and invoice_date,
             'type': 'out_invoice',
             'name': 'Test Invoice for Dichiarazione',
             'payment_term_id': payment_term.id,
@@ -237,3 +237,6 @@ class TestDichiarazioneIntento(TransactionCase):
     def test_fiscal_position_no_dichiarazione(self):
         self.invoice4._onchange_date_invoice()
         self.assertEqual(self.invoice4.fiscal_position_id.id, self.fiscal_position2.id)
+
+    def test_invoice_creation_without_date_invoice(self):
+        self._create_invoice(self.partner1, with_date_invoice=False)
