@@ -66,12 +66,13 @@ class FatturapaCommon(SingleTransactionCase):
             module_name = 'l10n_it_fatturapa_in'
         if datas_fname is None:
             datas_fname = file_name
-        attach_id = self.attach_model.create(
+        attach = self.attach_model.create(
             {
                 'name': name,
                 'datas': self.getFile(file_name, module_name=module_name)[1],
                 'datas_fname': datas_fname
-            }).id
+            })
+        attach_id = attach.id
         if mode == 'import':
             wizard = self.wizard_model.with_context(
                 active_ids=[attach_id], active_model='fatturapa.attachment.in'
@@ -82,6 +83,9 @@ class FatturapaCommon(SingleTransactionCase):
                 active_ids=[attach_id], active_model='fatturapa.attachment.in'
             ).create(wiz_values or {})
             return wizard.link()
+        if not mode:
+            # return created fatturapa.attachment.in record in case no mode provided
+            return attach
 
     def run_wizard_multi(self, file_name_list, module_name=None):
         if module_name is None:

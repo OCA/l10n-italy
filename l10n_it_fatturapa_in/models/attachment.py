@@ -38,6 +38,8 @@ class FatturaPAAttachmentIn(models.Model):
     e_invoice_validation_message = fields.Text(
         compute='_compute_e_invoice_validation_error')
 
+    inconsistencies = fields.Text(compute="_compute_xml_data", store=True)
+
     _sql_constraints = [(
         'ftpa_attachment_in_name_uniq',
         'unique(att_name)',
@@ -72,10 +74,10 @@ class FatturaPAAttachmentIn(models.Model):
     @api.depends('ir_attachment_id.datas')
     def _compute_xml_data(self):
         for att in self:
-            fatt = self.env['wizard.import.fatturapa'].get_invoice_obj(att)
+            wizard = self.env['wizard.import.fatturapa']
+            fatt = wizard.get_invoice_obj(att)
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
-            partner_id = self.env['wizard.import.fatturapa'].getCedPrest(
-                cedentePrestatore)
+            partner_id = wizard.getCedPrest(cedentePrestatore)
             att.xml_supplier_id = partner_id
             att.invoices_number = len(fatt.FatturaElettronicaBody)
             att.invoices_total = 0
@@ -84,6 +86,8 @@ class FatturaPAAttachmentIn(models.Model):
                     invoice_body.DatiGenerali.DatiGeneraliDocumento.
                     ImportoTotaleDocumento or 0
                 )
+            inconsistencies = wizard.env.context.get('inconsistencies', False)
+            att.inconsistencies = inconsistencies
 
     @api.multi
     @api.depends('in_invoice_ids')

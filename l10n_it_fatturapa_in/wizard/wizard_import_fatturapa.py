@@ -149,12 +149,13 @@ class WizardImportFatturapa(models.TransientModel):
                     commercial_partner and
                     partner.commercial_partner_id.id != commercial_partner
                 ):
-                    raise UserError(
+                    self.log_inconsistency(
                         _("Two distinct partners with "
                           "VAT number %s and Fiscal Code %s already "
                           "present in db." %
                           (vat, cf))
                         )
+                    return False
                 commercial_partner = partner.commercial_partner_id.id
         if partners:
             commercial_partner_id = partners[0].commercial_partner_id.id
