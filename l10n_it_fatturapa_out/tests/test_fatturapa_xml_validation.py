@@ -779,8 +779,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         attachment = self.attach_model.browse(res["res_id"])
         self.set_e_invoice_file_id(attachment, "IT06363391001_00016.xml")
         xml_content = base64.decodebytes(attachment.datas)
-        with open("/tmp/IT06363391001_00016.xml", "wb") as o:
-            o.write(xml_content)
         self.check_content(xml_content, "IT06363391001_00016.xml")
 
     def test_no_tax_fail(self):
