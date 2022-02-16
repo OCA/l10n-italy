@@ -38,6 +38,10 @@
                                 string="Transaction Nature"
                             />
                             <field
+                                name="intrastat_sale_transaction_nature_b_id"
+                                string="Transaction Nature B"
+                            />
+                            <field
                                 name="intrastat_sale_delivery_code_id"
                                 string="Delivery Terms"
                             />
@@ -49,6 +53,10 @@
                                 name="intrastat_sale_province_origin_id"
                                 string="Origin Province"
                             />
+                            <field
+                                name="intrastat_sale_country_origin_id"
+                                string="Origin Country"
+                            />
                         </group>
                         <group string="Purchases Default Values">
                             <field
@@ -58,6 +66,10 @@
                             <field
                                 name="intrastat_purchase_transaction_nature_id"
                                 string="Transaction Nature"
+                            />
+                            <field
+                                name="intrastat_purchase_transaction_nature_b_id"
+                                string="Transaction Nature B"
                             />
                             <field
                                 name="intrastat_purchase_delivery_code_id"
