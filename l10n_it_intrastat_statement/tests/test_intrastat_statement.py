@@ -134,8 +134,8 @@ class TestIntrastatStatement(TransactionCase):
         file_content = statement.with_context(sale=True).generate_file_export()
         self.assertIn(invoice.partner_id.vat[2:], file_content)
 
-        # Last line is section line, for monthly report it should be 103 chars
-        self.assertEqual(len(file_content.splitlines()[-1]), 103)
+        # Last line is section line, for monthly report it should be 106 chars
+        self.assertEqual(len(file_content.splitlines()[-1]), 106)
 
     def test_statement_sale_quarter(self):
         invoice = self._get_intrastat_computed_invoice()
@@ -175,8 +175,8 @@ class TestIntrastatStatement(TransactionCase):
         file_content = statement.with_context(purchase=True).generate_file_export()
         self.assertIn(bill.partner_id.vat[2:], file_content)
 
-        # Last line is section line, for monthly report it should be 118 chars
-        self.assertEqual(len(file_content.splitlines()[-1]), 118)
+        # Last line is section line, for monthly report it should be 119 chars
+        self.assertEqual(len(file_content.splitlines()[-1]), 119)
 
     def test_statement_purchase_currency(self):
         bill = self._get_intrastat_computed_bill(currency=self.currency_gbp)
@@ -224,10 +224,10 @@ class TestIntrastatStatement(TransactionCase):
         # Monthly Purchase file lengths
         # File head line: 75
         # Frontispiece: 130
-        # Goods bill: 118
+        # Goods bill: 119
         file_lines = file_content.splitlines()
         self.assertEqual(len(file_lines), 3)
-        self.assertSetEqual({len(line) for line in file_lines}, {75, 130, 118})
+        self.assertSetEqual({len(line) for line in file_lines}, {75, 130, 119})
 
     def test_statement_purchase_refund_no_subtract(self):
         bill = self._get_intrastat_computed_bill()
@@ -263,11 +263,11 @@ class TestIntrastatStatement(TransactionCase):
         # Monthly Purchase file lengths
         # File head line: 75
         # Frontispiece: 130
-        # Goods bill: 118
+        # Goods bill: 119
         # Goods refund: 96
         file_lines = file_content.splitlines()
         self.assertEqual(len(file_lines), 4)
-        self.assertSetEqual({len(line) for line in file_lines}, {75, 130, 118, 96})
+        self.assertSetEqual({len(line) for line in file_lines}, {75, 130, 119, 96})
 
     def test_statement_purchase_service_refund_no_subtract(self):
         bill = self._get_intrastat_computed_bill(self.service01)

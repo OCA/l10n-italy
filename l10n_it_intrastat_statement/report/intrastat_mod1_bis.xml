@@ -127,6 +127,9 @@
                                                     t-field="l.transaction_nature_id.code"
                                                 /></td>
                                             <td><span
+                                                    t-field="l.transaction_nature_b_id.code"
+                                                /></td>
+                                            <td><span
                                                     t-field="l.intrastat_code_id.name"
                                                 /></td>
                                             <td><span t-field="l.weight_kg" /></td>
