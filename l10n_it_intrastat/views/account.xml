@@ -92,7 +92,13 @@
                                <field name="statistic_amount_euro" />
                            </group>
                            <group>
+                               <field name="invoice_type" invisible="1" />
                                <field name="transaction_nature_id" />
+                               <field name="transaction_nature_b_id" />
+                               <field
+                            name="triangulation"
+                            attrs="{'invisible': [('invoice_type', 'in', ['in_invoice', 'in_refund'])]}"
+                        />
                                <field name="weight_kg" />
                                <field name="additional_units" />
                                <field name="additional_units_uom" />
