@@ -47,11 +47,8 @@ class IntrastatStatementSaleSection2(models.Model):
         )
 
         # Amounts
-        dp_model = self.env["decimal.precision"]
         statistic_amount = statement_id.round_min_amount(
-            statistic_amount,
-            statement_id.company_id or company_id,
-            dp_model.precision_get("Account"),
+            statistic_amount, statement_id.company_id or company_id, 0
         )
 
         # Period Ref
