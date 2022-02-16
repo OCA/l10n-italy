@@ -177,6 +177,7 @@ Authors
 * Openforce
 * Link IT srl
 * Agile Business Group
+* Powerp network
 
 Contributors
 ~~~~~~~~~~~~
@@ -190,6 +191,9 @@ Contributors
 * `Ooops <https://www.ooops404.com>`_:
 
    * Giovanni Serra <giovanni@gslab.it>
+* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+* Fabio Giovannelli <fabio.giovannelli@didotech.com>
+* Alex Comba <alex.comba@agilebg.com>
 
 Maintainers
 ~~~~~~~~~~~

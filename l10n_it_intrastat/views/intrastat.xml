@@ -70,6 +70,7 @@
                     <field name="active" />
                     <field name="type" />
                     <field name="name" />
+                    <field name="description" />
                     <field name="additional_unit_required" />
                     <field name="additional_unit_from" />
                     <field name="additional_unit_uom_id" />
@@ -165,6 +166,8 @@
                 <tree string="Transaction Nature">
                     <field name="code" />
                     <field name="name" />
+                    <field name="triangulation" />
+                    <field name="active" />
                 </tree>
             </field>
         </record>
@@ -177,6 +180,8 @@
                     <group>
                         <field name="code" options="{'size': 1}" />
                         <field name="name" />
+                        <field name="triangulation" />
+                        <field name="active" />
                     </group>
                 </form>
             </field>
@@ -201,6 +206,62 @@
         parent="menu_account_intrastat_configuration"
         groups="account.group_account_user"
         sequence="40"
+    />
+
+        <!--
+        TRANSACTION NATURE B
+        -->
+        <record
+        id="account_intrastat_transaction_nature_b_view_tree"
+        model="ir.ui.view"
+    >
+            <field name="name">account.intrastat.transaction.nature.b.view.tree</field>
+            <field name="model">account.intrastat.transaction.nature.b</field>
+            <field name="arch" type="xml">
+                <tree string="Transaction Nature B">
+                    <field name="code" />
+                    <field name="name" />
+                    <field name="nature_parent_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record
+        id="account_intrastat_transaction_nature_b_view_form"
+        model="ir.ui.view"
+    >
+            <field name="name">account.intrastat.transaction.nature.b.view.form</field>
+            <field name="model">account.intrastat.transaction.nature.b</field>
+            <field name="arch" type="xml">
+                <form string="Transaction Nature B">
+                    <group>
+                        <field name="code" options="{'size': 1}" />
+                        <field name="name" />
+                        <field name="nature_parent_id" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record
+        id="action_account_intrastat_transaction_nature_b_transport"
+        model="ir.actions.act_window"
+    >
+            <field name="name">Transaction Nature B</field>
+            <field name="res_model">account.intrastat.transaction.nature.b</field>
+            <field
+            name="view_id"
+            ref="account_intrastat_transaction_nature_b_view_tree"
+        />
+        </record>
+
+        <menuitem
+        id="menu_account_transaction_nature_b"
+        name="Transaction Nature B"
+        action="action_account_intrastat_transaction_nature_b_transport"
+        parent="menu_account_intrastat_configuration"
+        groups="account.group_account_user"
+        sequence="41"
     />
 
 </odoo>
