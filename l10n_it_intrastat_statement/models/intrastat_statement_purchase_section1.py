@@ -16,6 +16,11 @@ class IntrastatStatementPurchaseSection1(models.Model):
         string="Transaction Nature",
         default=lambda m: m._default_transaction_nature_id(),
     )
+    transaction_nature_b_id = fields.Many2one(
+        comodel_name="account.intrastat.transaction.nature.b",
+        string="Transaction Nature B",
+        default=lambda m: m._default_transaction_nature_b_id(),
+    )
     weight_kg = fields.Integer(string="Net Mass (kg)")
     additional_units = fields.Integer(string="Additional Units")
     additional_units_required = fields.Boolean(
@@ -92,6 +97,10 @@ class IntrastatStatementPurchaseSection1(models.Model):
             inv_intra_line.transport_code_id
             or company_id.intrastat_purchase_transport_code_id
         )
+        transaction_nature_b_id = (
+            inv_intra_line.transaction_nature_b_id
+            or company_id.intrastat_purchase_transaction_nature_b_id
+        )
 
         # Amounts
         dp_model = self.env["decimal.precision"]
@@ -115,6 +124,7 @@ class IntrastatStatementPurchaseSection1(models.Model):
                 "country_origin_id": inv_intra_line.country_origin_id.id,
                 "country_good_origin_id": inv_intra_line.country_good_origin_id.id,
                 "province_destination_id": province_destination_id.id,
+                "transaction_nature_b_id": transaction_nature_b_id.id,
             }
         )
         return res
@@ -126,13 +136,19 @@ class IntrastatStatementPurchaseSection1(models.Model):
         rcd = ""
         # Codice dello Stato membro del fornitore
         country_id = self.country_partner_id or self.partner_id.country_id
-        rcd += format_x(country_id.code, 2)
-        #  Codice IVA del fornitore
-        rcd += format_x(self.vat_code.replace(" ", ""), 12)
+        if self.statement_id.exclude_optional_column_sect_1_3:
+            rcd += format_x(" ", 14)
+        else:
+            rcd += format_x(country_id.code, 2)
+            # Codice IVA del fornitore
+            rcd += format_x(self.vat_code.replace(" ", ""), 12)
         # Ammontare delle operazioni in euro
         rcd += format_9(self.amount_euro, 13)
         # Ammontare delle operazioni in valuta
-        rcd += format_9(self.amount_currency, 13)
+        if self.statement_id.exclude_optional_column_sect_1_3:
+            rcd += format_9(0, 13)
+        else:
+            rcd += format_9(self.amount_currency, 13)
         # Codice della natura della transazione
         rcd += format_x(self.transaction_nature_id.code, 1)
         # Codice della nomenclatura combinata della merce
@@ -155,6 +171,8 @@ class IntrastatStatementPurchaseSection1(models.Model):
             rcd += format_x(self.country_good_origin_id.code, 2)
             # Codice della provincia di destinazione della merce
             rcd += format_x(self.province_destination_id.code, 2)
+            # Codice della natura della transazione B
+            rcd += format_x(self.transaction_nature_b_id.code, 1)
 
         rcd += "\r\n"
         return rcd

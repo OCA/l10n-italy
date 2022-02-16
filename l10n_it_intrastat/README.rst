@@ -23,7 +23,7 @@ ITA - Intrastat
     :target: https://runbot.odoo-community.org/runbot/122/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 **Italiano**
 
@@ -177,6 +177,7 @@ Authors
 * Openforce
 * Link IT srl
 * Agile Business Group
+* Powerp network
 
 Contributors
 ~~~~~~~~~~~~
@@ -190,6 +191,8 @@ Contributors
 * `Ooops <https://www.ooops404.com>`_:
 
    * Giovanni Serra <giovanni@gslab.it>
+* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+* Fabio Giovannelli <fabio.giovannelli@didotech.com>
 
 Maintainers
 ~~~~~~~~~~~
