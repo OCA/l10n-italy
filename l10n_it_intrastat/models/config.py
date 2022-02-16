@@ -29,6 +29,10 @@ class ResCompany(models.Model):
         comodel_name="account.intrastat.transaction.nature",
         string="Sales Transaction Nature",
     )
+    intrastat_sale_transaction_nature_b_id = fields.Many2one(
+        comodel_name="account.intrastat.transaction.nature.b",
+        string="Sales Transaction Nature B",
+    )
     intrastat_sale_delivery_code_id = fields.Many2one(
         comodel_name="account.incoterms", string="Sales Delivery Terms"
     )
@@ -38,6 +42,9 @@ class ResCompany(models.Model):
     intrastat_sale_province_origin_id = fields.Many2one(
         comodel_name="res.country.state", string="Origin Province"
     )
+    intrastat_sale_country_origin_id = fields.Many2one(
+        comodel_name="res.country", string="Origin Country"
+    )
 
     # default values purchase section
     intrastat_purchase_statistic_amount = fields.Boolean(
@@ -46,6 +53,10 @@ class ResCompany(models.Model):
     intrastat_purchase_transaction_nature_id = fields.Many2one(
         comodel_name="account.intrastat.transaction.nature",
         string="Purchases Transaction Nature",
+    )
+    intrastat_purchase_transaction_nature_b_id = fields.Many2one(
+        comodel_name="account.intrastat.transaction.nature.b",
+        string="Purchases Transaction Nature B",
     )
     intrastat_purchase_delivery_code_id = fields.Many2one(
         comodel_name="account.incoterms", string="Purchases Delivery Terms"
