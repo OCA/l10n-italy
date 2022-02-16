@@ -642,6 +642,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_intrastat
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature__active
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code__active
 msgid "Active"
 msgstr "Activo"
@@ -9737,6 +9738,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_custom__code
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature__code
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature_b__code
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transport__code
 msgid "Code"
 msgstr "Código"
@@ -11857,6 +11859,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_custom__create_uid
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature__create_uid
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature_b__create_uid
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transport__create_uid
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__create_uid
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code__create_uid
@@ -11866,6 +11869,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_custom__create_date
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature__create_date
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature_b__create_date
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transport__create_date
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__create_date
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code__create_date
@@ -13634,6 +13638,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_fiscal_position__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_custom__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature__display_name
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature_b__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transport__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_move__display_name
@@ -28821,6 +28826,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_fiscal_position__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_custom__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature__id
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature_b__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transport__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_move__id
@@ -30154,6 +30160,11 @@ msgid "Invoice Ref"
 msgstr "Ref Factura"
 
 #. module: l10n_it_intrastat
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__invoice_type
+msgid "Invoice Type"
+msgstr ""
+
+#. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28276000
 msgid ""
 "Iodides and iodide oxides (excl. inorganic or organic compounds of mercury)"
@@ -31479,6 +31490,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_fiscal_position____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_custom____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature____last_update
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature_b____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transport____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_move____last_update
@@ -31496,6 +31508,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_custom__write_uid
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature__write_uid
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature_b__write_uid
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transport__write_uid
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__write_uid
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code__write_uid
@@ -31505,6 +31518,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_custom__write_date
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature__write_date
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature_b__write_date
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transport__write_date
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__write_date
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code__write_date
@@ -39721,6 +39735,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_custom__name
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature__name
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature_b__name
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transport__name
 msgid "Name"
 msgstr "Nombre"
@@ -41783,6 +41798,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_form_invoice_intrastat_form
 msgid "Origin"
 msgstr "Origen"
+
+#. module: l10n_it_intrastat
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_country_origin_id
+#: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_intrastat_company_form
+msgid "Origin Country"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__province_origin_id
@@ -50820,6 +50841,11 @@ msgid "Purchases Transaction Nature"
 msgstr "Naturaleza de la Transacción Compras"
 
 #. module: l10n_it_intrastat
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_transaction_nature_b_id
+msgid "Purchases Transaction Nature B"
+msgstr ""
+
+#. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_purchase_transport_code_id
 msgid "Purchases Transport Mode"
 msgstr "Modo Transporte Compras"
@@ -54545,6 +54571,11 @@ msgstr "Ventas Valor Estadístico en EUR"
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_transaction_nature_id
 msgid "Sales Transaction Nature"
 msgstr "Naturaleza de la Transacción Ventas"
+
+#. module: l10n_it_intrastat
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_transaction_nature_b_id
+msgid "Sales Transaction Nature B"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_transport_code_id
@@ -64896,6 +64927,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.actions.act_window,name:l10n_it_intrastat.action_account_intrastat_transaction_nature_transport
 #: model:ir.model,name:l10n_it_intrastat.model_account_intrastat_transaction_nature
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature_b__nature_parent_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__transaction_nature_id
 #: model:ir.ui.menu,name:l10n_it_intrastat.menu_account_transaction_nature
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.account_intrastat_transaction_nature_view_form
@@ -64903,6 +64935,17 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_intrastat_company_form
 msgid "Transaction Nature"
 msgstr "Naturaleza de la Transacción"
+
+#. module: l10n_it_intrastat
+#: model:ir.actions.act_window,name:l10n_it_intrastat.action_account_intrastat_transaction_nature_b_transport
+#: model:ir.model,name:l10n_it_intrastat.model_account_intrastat_transaction_nature_b
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__transaction_nature_b_id
+#: model:ir.ui.menu,name:l10n_it_intrastat.menu_account_transaction_nature_b
+#: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.account_intrastat_transaction_nature_b_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.account_intrastat_transaction_nature_b_view_tree
+#: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_intrastat_company_form
+msgid "Transaction Nature B"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_99500000
@@ -65164,6 +65207,12 @@ msgid ""
 "Tri- and other polyhydric acyclic alcohols (excl. 2-ethyl-2-\"hydroxymethyl"
 "\" propane-1,3-diol \"trimethylolpropane\", pentaerythritol, mannitol, d-"
 "glucitol \"sorbitol\" and glycerol)"
+msgstr ""
+
+#. module: l10n_it_intrastat
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature__triangulation
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__triangulation
+msgid "Triangulation"
 msgstr ""
 
 #. module: l10n_it_intrastat
