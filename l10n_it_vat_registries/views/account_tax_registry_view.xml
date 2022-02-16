@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<openerp>
+<odoo>
     <data>
         <record id="view_account_tax_registry_form" model="ir.ui.view">
             <field name="name">account.tax.registry.form</field>
             <field name="model">account.tax.registry</field>
             <field name="arch" type="xml">
                 <form>
-                    <group>
+                    <group name="general_settings">
                         <field name="name" />
                         <field name="layout_type" />
+                        <field name="daily_totals" />
                     </group>
-                    <separator string="Journals" />
-                    <field name="journal_ids" />
+                    <group name="journals" string="Journals">
+                        <field name="journal_ids" />
+                    </group>
                 </form>
             </field>
         </record>
@@ -23,7 +25,8 @@
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
                 Click to add a VAT registry.
-              </p><p>
+              </p>
+              <p>
                 A VAT registry is used to group several journals in one registry.
               </p>
             </field>
@@ -34,4 +37,4 @@
             parent="account.account_account_menu"
         />
     </data>
-</openerp>
+</odoo>

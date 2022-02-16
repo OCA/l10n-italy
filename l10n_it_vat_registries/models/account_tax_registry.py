@@ -25,3 +25,5 @@ class AccountTaxRegistry(models.Model):
         "Layout",
         required=True,
     )
+
+    daily_totals = fields.Boolean(string="Print daily totals")
