@@ -141,6 +141,10 @@ class AccountInvoiceLine(models.Model):
             province_origin_id = \
                 company_id.intrastat_sale_province_origin_id \
                 or company_id.partner_id.state_id
+            country_origin_id = \
+                company_id.intrastat_sale_country_origin_id \
+                or company_id.partner_id.country_id
+            res.update({'country_origin_id': country_origin_id.id})
         elif self.invoice_id.type in ('in_invoice', 'in_refund'):
             province_origin_id = \
                 self.invoice_id.partner_id.state_id

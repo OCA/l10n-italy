@@ -24,6 +24,12 @@ class IntrastatStatementSaleSection(models.AbstractModel):
             'company_id', self.env.user.company_id)
         return company_id.intrastat_sale_transaction_nature_id
 
+    @api.model
+    def _default_transaction_nature_b_id(self):
+        company_id = self.env.context.get(
+            'company_id', self.env.user.company_id)
+        return company_id.intrastat_sale_transaction_nature_b_id
+
 
 class IntrastatStatementSaleSection1(models.Model):
     _inherit = 'account.intrastat.statement.sale.section'
@@ -35,6 +41,10 @@ class IntrastatStatementSaleSection1(models.Model):
         string="Transaction Nature",
         default=lambda m: m._default_transaction_nature_id(),
     )
+    transaction_nature_b_id = fields.Many2one(
+        comodel_name='account.intrastat.transaction.nature.b',
+        string="Transaction Nature B",
+        default=lambda m: m._default_transaction_nature_b_id(),)
     weight_kg = fields.Integer(
         string="Net Mass (kg)")
     additional_units = fields.Integer(
@@ -62,6 +72,9 @@ class IntrastatStatementSaleSection1(models.Model):
     province_origin_id = fields.Many2one(
         comodel_name='res.country.state',
         string="Origin Province")
+    country_origin_id = fields.Many2one(
+        comodel_name='res.country',
+        string="Origin Country")
 
     @api.model
     def get_section_number(self):
@@ -95,6 +108,9 @@ class IntrastatStatementSaleSection1(models.Model):
         province_origin_id = \
             inv_intra_line.province_origin_id \
             or company_id.intrastat_sale_province_origin_id
+        country_origin_id = \
+            inv_intra_line.country_origin_id \
+            or company_id.intrastat_sale_country_origin_id
         statistic_amount = \
             inv_intra_line.statistic_amount_euro \
             or company_id.intrastat_sale_statistic_amount
@@ -124,6 +140,7 @@ class IntrastatStatementSaleSection1(models.Model):
             'transport_code_id': transport_code_id.id,
             'country_destination_id': inv_intra_line.country_destination_id.id,
             'province_origin_id': province_origin_id.id,
+            'country_origin_id': country_origin_id.id,
         })
         return res
 
@@ -159,8 +176,12 @@ class IntrastatStatementSaleSection1(models.Model):
             rcd += format_9(transport_code, 1)
             #  Codice del paese di destinazione
             rcd += format_x(self.country_destination_id.code, 2)
-            #  Codice del paese di origine della merce
+            #  Codice della provincia di origine della merce
             rcd += format_x(self.province_origin_id.code, 2)
+            # Codice della natura B della transazione
+            rcd += format_x(self.transaction_nature_b_id.code, 1)
+            # Codice del paese di origine della merce
+            rcd += format_x(self.country_origin_id.code, 2)
 
         rcd += "\r\n"
         return rcd

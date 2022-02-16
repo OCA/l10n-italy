@@ -102,3 +102,15 @@ class AccountIntrastatTransationNature(models.Model):
         required=True)
     name = fields.Char(
         string="Name")
+
+
+class AccountIntrastatTransationNatureB(models.Model):
+    _name = 'account.intrastat.transaction.nature.b'
+    _description = "Transaction Nature B"
+
+    code = fields.Char(
+        string="Code",
+        size=1,
+        required=True)
+    name = fields.Char(
+        string="Name")

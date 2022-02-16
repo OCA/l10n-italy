@@ -382,6 +382,7 @@ class AccountIntrastatStatement(models.Model):
         store=True,
         readonly=True,
         compute='_compute_amount_purchase_s4')
+    exclude_optional_column_sect_1_3 = fields.Boolean()
 
     @api.model
     def create(self, vals):
@@ -665,6 +666,9 @@ class AccountIntrastatStatement(models.Model):
             if section_number == 2:
                 amount = self._format_negative_number_frontispiece(amount)
             rcd += format_9(amount, 13)
+        # Aggiunti segnaposti per sezione 5. non supportata
+        if kind == 'sale':
+            rcd += format_9(0, 5)
 
         rcd += "\r\n"
         return rcd
