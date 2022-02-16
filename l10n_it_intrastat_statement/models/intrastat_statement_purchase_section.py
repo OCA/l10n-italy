@@ -49,3 +49,8 @@ class IntrastatStatementPurchaseSection(models.AbstractModel):
     def _default_transaction_nature_id(self):
         company_id = self.env.context.get("company_id", self.env.company)
         return company_id.intrastat_purchase_transaction_nature_id
+
+    @api.model
+    def _default_transaction_nature_b_id(self):
+        company_id = self.env.context.get("company_id", self.env.user.company_id)
+        return company_id.intrastat_purchase_transaction_nature_b_id

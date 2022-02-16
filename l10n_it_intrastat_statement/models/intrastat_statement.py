@@ -245,6 +245,10 @@ class AccountIntrastatStatement(models.Model):
     )
     sale = fields.Boolean(string="Sales", default=True)
     purchase = fields.Boolean(string="Purchases", default=True)
+    exclude_optional_column_sect_1_3 = fields.Boolean(
+        "Exclude supplier data",
+        help="Exclude supplier country, TIN and currency amount from statement",
+    )
     intrastat_type_data = fields.Selection(
         selection=[
             ("all", "All (Fiscal and Statistic)"),
@@ -678,6 +682,9 @@ class AccountIntrastatStatement(models.Model):
             if section_number == 2:
                 amount = self._format_negative_number_frontispiece(amount)
             rcd += format_9(amount, 13)
+        # Aggiunti segnaposti per sezione 5. non supportata
+        if kind == "sale":
+            rcd += format_9(0, 5)
 
         rcd += "\r\n"
         return rcd
@@ -774,6 +781,7 @@ class AccountIntrastatStatement(models.Model):
 
         statement_data = dict()
         invoices = self.env["account.move"].search(domain)
+
         for inv_intra_line in invoices.mapped("intrastat_line_ids"):
             for section_type in ["purchase", "sale"]:
                 for section_number in range(1, 5):

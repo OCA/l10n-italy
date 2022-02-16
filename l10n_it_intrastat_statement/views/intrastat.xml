@@ -14,6 +14,7 @@
                     <field name="sale" />
                     <field name="purchase" />
                     <field name="fiscalyear" />
+                    <field name="exclude_optional_column_sect_1_3" />
                     <field name="period_type" />
                     <field name="period_number" />
                     <field name="company_id" groups="base.group_multi_company" />
@@ -45,6 +46,7 @@
                                 <field name="vat_taxpayer" />
                                 <field name="date" />
                                 <field name="fiscalyear" />
+                                <field name="exclude_optional_column_sect_1_3" />
                                 <field name="period_type" />
                                 <field name="period_number" />
                                 <field name="date_start" />
@@ -314,6 +316,7 @@
                         </group>
                         <group>
                             <field name="transaction_nature_id" required="1" />
+                            <field name="transaction_nature_b_id" required="1" />
                         </group>
                     </group>
                     <newline />
@@ -334,6 +337,7 @@
                             <field name="statistic_amount_euro" />
                         </group>
                         <group>
+                            <field name="country_origin_id" />
                             <field name="delivery_code_id" />
                             <field name="transport_code_id" />
                             <field name="country_destination_id" required="1" />
@@ -587,6 +591,7 @@
                         </group>
                         <group>
                             <field name="transaction_nature_id" required="1" />
+                            <field name="transaction_nature_b_id" required="1" />
                         </group>
                     </group>
                     <newline />
