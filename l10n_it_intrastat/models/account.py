@@ -48,6 +48,9 @@ class AccountInvoiceLine(models.Model):
         # Transaction
         self._prepare_intrastat_line_transaction(company_id, res)
 
+        # Transaction B
+        self._prepare_intrastat_line_transaction_b(company_id, res)
+
         # Delivery
         self._prepare_intrastat_line_delivery(company_id, res)
 
@@ -141,6 +144,10 @@ class AccountInvoiceLine(models.Model):
             province_origin_id = \
                 company_id.intrastat_sale_province_origin_id \
                 or company_id.partner_id.state_id
+            country_origin_id = \
+                company_id.intrastat_sale_country_origin_id \
+                or company_id.partner_id.country_id
+            res.update({'country_origin_id': country_origin_id.id})
         elif self.invoice_id.type in ('in_invoice', 'in_refund'):
             province_origin_id = \
                 self.invoice_id.partner_id.state_id
@@ -282,6 +289,20 @@ class AccountInvoiceLine(models.Model):
             'amount_currency': amount_currency,
             'amount_euro': amount_euro,
             'statistic_amount_euro': statistic_amount_euro})
+
+    @api.multi
+    def _prepare_intrastat_line_transaction_b(self, company_id, res):
+        self.ensure_one()
+        if self.invoice_id.type in ('out_invoice', 'out_refund'):
+            res.update({
+                'transaction_nature_b_id':
+                    company_id.intrastat_sale_transaction_nature_b_id.id
+            })
+        elif self.invoice_id.type in ('in_invoice', 'in_refund'):
+            res.update({
+                'transaction_nature_b_id':
+                    company_id.intrastat_purchase_transaction_nature_b_id.id
+            })
 
 
 class AccountInvoice(models.Model):
@@ -585,6 +606,10 @@ class AccountInvoiceIntrastat(models.Model):
     transaction_nature_id = fields.Many2one(
         comodel_name='account.intrastat.transaction.nature',
         string="Transaction Nature")
+    transaction_nature_b_id = fields.Many2one(
+        comodel_name='account.intrastat.transaction.nature.b',
+        string="Transaction Nature B")
+
     weight_kg = fields.Float(
         string="Net Mass (kg)")
     additional_units = fields.Float(
@@ -647,6 +672,20 @@ class AccountInvoiceIntrastat(models.Model):
     country_payment_id = fields.Many2one(
         comodel_name='res.country',
         string="Payment Country")
+    triangulation = fields.Boolean(
+        string="Triangulation",
+        default=False)
+    invoice_type = fields.Selection(
+        string="Invoice Type",
+        related="invoice_id.type")
+
+    @api.onchange('transaction_nature_id')
+    def _onchange_transaction_nature_id(self):
+        domain = [('nature_parent_id', '=', self.transaction_nature_id.id)]
+        recs = self.env['account.intrastat.transaction.nature.b'].search(domain)
+        return {
+            'domain': {'transaction_nature_b_id': [('id', 'in', recs.ids)]}
+        }
 
     @api.onchange('weight_kg')
     def change_weight_kg(self):

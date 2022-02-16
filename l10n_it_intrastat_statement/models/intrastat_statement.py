@@ -665,6 +665,9 @@ class AccountIntrastatStatement(models.Model):
             if section_number == 2:
                 amount = self._format_negative_number_frontispiece(amount)
             rcd += format_9(amount, 13)
+        # Aggiunti segnaposti per sezione 5. non supportata
+        if kind == 'sale':
+            rcd += format_9(0, 5)
 
         rcd += "\r\n"
         return rcd
@@ -760,7 +763,13 @@ class AccountIntrastatStatement(models.Model):
         domain.append(('type', 'in', inv_type))
 
         statement_data = dict()
+        # all invoices
         invoices = self.env['account.invoice'].search(domain)
+        # european only
+        europe = self.env.ref('base.europe')
+        invoices = invoices.filtered(
+            lambda x: x.partner_id.country_id in europe.country_ids)
+
         for inv_intra_line in invoices.mapped('intrastat_line_ids'):
             for section_type in ['purchase', 'sale']:
                 for section_number in range(1, 5):
