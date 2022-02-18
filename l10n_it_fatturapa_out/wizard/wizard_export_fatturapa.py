@@ -676,11 +676,15 @@ class WizardExportFatturapa(models.TransientModel):
             AliquotaIVA=AliquotaIVA)
         DettaglioLinea.ScontoMaggiorazione.extend(
             self.setScontoMaggiorazione(line))
-        if aliquota == 0.0:
+        if aliquota == 0.0 or line.invoice_line_tax_ids[0].kind_id:
             if not line.invoice_line_tax_ids[0].kind_id:
                 raise UserError(
                     _("No 'nature' field for tax %s.") %
                     line.invoice_line_tax_ids[0].name)
+            if aliquota != 0.0 and line.invoice_line_tax_ids[0].kind_id.code != 'N3.2':
+                raise UserError(
+                    _("Only N3.2 code can have an amount of tax != 0.")
+                )
             DettaglioLinea.Natura = line.invoice_line_tax_ids[
                 0
             ].kind_id.code
