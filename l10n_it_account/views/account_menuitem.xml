@@ -3,12 +3,34 @@
      Copyright 2022 Alex Comba - Agile Business Group
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-    <!-- accounting label -->
-    <record id="account.menu_finance" model="ir.ui.menu">
-        <field name="name">Accounting</field>
-    </record>
+    <!-- accounting menu -->
+    <menuitem
+        name="Accounting"
+        id="menu_account"
+        groups="account.group_account_user,account.group_account_manager,account.group_account_invoice"
+        web_icon="account,static/description/icon.png"
+        sequence="40"
+    />
 
-        <menuitem
+        <record id="account.menu_board_journal_1" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_account" />
+        </record>
+        <record id="account.menu_finance_receivables" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_account" />
+        </record>
+        <record id="account.menu_finance_payables" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_account" />
+        </record>
+        <record id="account.menu_finance_entries" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_account" />
+        </record>
+        <record id="account.menu_finance_reports" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_account" />
+        </record>
+        <record id="account.menu_finance_configuration" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_account" />
+        </record>
+   <menuitem
         id="account_italian_localization"
         name="Italian Localization"
         sequence="2"
