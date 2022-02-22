@@ -155,7 +155,7 @@ class AccountMove(models.Model):
         # ---- Delete Collection Fees Line of invoice when set Back to Draft
         # ---- line was added on new validate
         super(AccountMove, self).button_draft()
-        for invoice in self:
+        for invoice in self.filtered(lambda r: r.move_type.startswith("out")):
             invoice.write(
                 {
                     "invoice_line_ids": [
