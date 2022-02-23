@@ -98,6 +98,24 @@ class WizardExportFatturapa(models.TransientModel):
         return [('binding_model_id', '=', model_name),
                 ('type', '=', 'ir.actions.report')]
 
+    @api.model
+    def _to_EUR(self, currency, amount, invoice, company=None, today=None):
+        # Dispatch exchange date to convert euros in strange currency
+        if today:
+            exchange_date = today
+        elif invoice and invoice.rc_purchase_invoice_id.date_invoice:
+            exchange_date = invoice.rc_purchase_invoice_id.date_invoice
+        elif invoice and invoice.date_invoice:
+            exchange_date = invoice.date_invoice
+        else:
+            exchange_date = fields.Date.today()
+
+        company = company or self.env.user.company_id
+        euro = self.env.ref('base.EUR')
+        if currency == euro:
+            return amount
+        return currency.with_context(date=exchange_date).compute(amount, euro)
+
     report_print_menu = fields.Many2one(
         comodel_name='ir.actions.actions',
         domain=_domain_ir_values,
