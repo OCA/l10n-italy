@@ -61,6 +61,7 @@
                     <field name="active"/>
                     <field name="type"/>
                     <field name="name"/>
+                    <field name="description"/>
                     <field name="additional_unit_required"/>
                     <field name="additional_unit_from"/>
                     <field name="additional_unit_uom_id"/>
@@ -87,7 +88,7 @@
                 </form>
             </field>
         </record>
-        
+
         <record id="action_report_intrastat_code" model="ir.actions.act_window">
             <field name="name">Nomenclature Codes</field>
             <field name="res_model">report.intrastat.code</field>
