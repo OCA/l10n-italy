@@ -1,0 +1,98 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_fatturapa_out_oss
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-28 16:12+0000\n"
+"PO-Revision-Date: 2022-02-28 16:12+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_fatturapa_out_oss
+#: model:ir.model,name:l10n_it_fatturapa_out_oss.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: l10n_it_fatturapa_out_oss
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_oss.field_oss_year__company_id
+msgid "Company"
+msgstr "Azienda"
+
+#. module: l10n_it_fatturapa_out_oss
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_oss.field_oss_year__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: l10n_it_fatturapa_out_oss
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_oss.field_oss_year__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: l10n_it_fatturapa_out_oss
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_oss.field_oss_year__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: l10n_it_fatturapa_out_oss
+#: model:ir.model,name:l10n_it_fatturapa_out_oss.model_wizard_export_fatturapa
+msgid "Export E-invoice"
+msgstr "Esporta e-fattura"
+
+#. module: l10n_it_fatturapa_out_oss
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_oss.field_oss_year__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_oss
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_oss.field_oss_year____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_fatturapa_out_oss
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_oss.field_oss_year__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_oss
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_oss.field_oss_year__write_date
+msgid "Last Updated on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_fatturapa_out_oss
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_oss.oss_year_view_company_form
+msgid "OSS Year"
+msgstr "Anno OSS"
+
+#. module: l10n_it_fatturapa_out_oss
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_oss.field_res_company__oss_year_ids
+msgid "OSS subjected year"
+msgstr "Anno soggetto OSS"
+
+#. module: l10n_it_fatturapa_out_oss
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_oss.field_account_tax__oss_subjected
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_oss.field_oss_year__oss_subjected
+msgid "Oss Subjected"
+msgstr "Soggetto OSS"
+
+#. module: l10n_it_fatturapa_out_oss
+#: model:ir.model,name:l10n_it_fatturapa_out_oss.model_account_tax
+msgid "Tax"
+msgstr "Imposta"
+
+#. module: l10n_it_fatturapa_out_oss
+#: model:ir.model,name:l10n_it_fatturapa_out_oss.model_oss_year
+msgid "Subjected OSS year"
+msgstr "Anno soggetto OSS"
+
+#. module: l10n_it_fatturapa_out_oss
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_oss.field_oss_year__year
+msgid "Year"
+msgstr "Anno"
+
