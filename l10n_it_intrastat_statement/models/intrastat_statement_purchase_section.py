@@ -190,7 +190,7 @@ class IntrastatStatementPurchaseSection1(models.Model):
             rcd += format_x(' ', 14)
         else:
             rcd += format_x(country_id.code, 2)
-            #  Codice IVA del fornitore
+            # Codice IVA del fornitore
             rcd += format_x(self.vat_code.replace(' ', ''), 12)
         # Ammontare delle operazioni in euro
         rcd += format_9(self.amount_euro, 13)
@@ -422,7 +422,7 @@ class IntrastatStatementPurchaseSection3(models.Model):
             rcd += format_x(' ', 14)
         else:
             rcd += format_x(country_id.code, 2)
-            #  Codice IVA del fornitore
+            # Codice IVA del fornitore
             rcd += format_x(self.vat_code.replace(' ', ''), 12)
         # Ammontare delle operazioni in euro
         rcd += format_9(self.amount_euro, 13)
@@ -532,15 +532,6 @@ class IntrastatStatementPurchaseSection4(models.Model):
         if not self.progressive_to_modify:
             raise ValidationError(
                 _("Missing progressive to adjust on 'Purchases - Section 4'"))
-        if (not self.invoice_number) or (not self.invoice_date):
-            raise ValidationError(
-                _("Missing invoice data on 'Purchases - Section 4'"))
-        if not self.supply_method:
-            raise ValidationError(
-                _("Missing supply method on 'Purchases - Section 4'"))
-        if not self.payment_method:
-            raise ValidationError(
-                _("Missing payment method on 'Purchases - Section 4'"))
         if not self.country_payment_id:
             raise ValidationError(
                 _("Missing payment country on 'Purchases - Section 4'"))

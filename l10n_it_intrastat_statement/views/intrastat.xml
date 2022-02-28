@@ -248,6 +248,7 @@
                             <field name="statistic_amount_euro"/>
                         </group>
                         <group>
+                            <field name="country_origin_id"/>
                             <field name="delivery_code_id"/>
                             <field name="transport_code_id"/>
                             <field name="country_destination_id" required="1"/>
