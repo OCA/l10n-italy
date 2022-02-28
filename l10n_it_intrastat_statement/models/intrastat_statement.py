@@ -245,6 +245,10 @@ class AccountIntrastatStatement(models.Model):
     purchase = fields.Boolean(
         string='Purchases',
         default=True)
+    exclude_optional_column_sect_1_3 = fields.Boolean(
+        "Exclude supplier data",
+        help="Exclude supplier country, TIN and currency amount from statement"
+    )
     intrastat_type_data = fields.Selection(
         selection=[
             ('all', "All (Fiscal and Statistic)"),
@@ -763,12 +767,7 @@ class AccountIntrastatStatement(models.Model):
         domain.append(('type', 'in', inv_type))
 
         statement_data = dict()
-        # all invoices
         invoices = self.env['account.invoice'].search(domain)
-        # european only
-        europe = self.env.ref('base.europe')
-        invoices = invoices.filtered(
-            lambda x: x.partner_id.country_id in europe.country_ids)
 
         for inv_intra_line in invoices.mapped('intrastat_line_ids'):
             for section_type in ['purchase', 'sale']:
