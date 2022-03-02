@@ -11,7 +11,7 @@ class ResPartner(models.Model):
     def create_from_ui(self, partner):
         if "electronic_invoice_subjected" in partner:
             electronic_invoice_subjected = (
-                partner["electronic_invoice_subjected"] == "true"
+                partner["electronic_invoice_subjected"] == "false"
             )
             partner["electronic_invoice_subjected"] = electronic_invoice_subjected
             partner["electronic_invoice_obliged_subject"] = electronic_invoice_subjected
