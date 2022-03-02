@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-25 05:47+0000\n"
-"PO-Revision-Date: 2020-12-25 05:47+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2022-03-02 18:31+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_it_fatturapa_out_rc
 #: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:68
@@ -23,12 +24,14 @@ msgid ""
 "A self-invoice cannot be issued with IT country code and fiscal document "
 "type in 'TD17', 'TD18', 'TD19'."
 msgstr ""
+"Un'autofattura non può essere emessa con codice paese IT e tipo documento "
+"fiscale 'TD17', 'TD18' o 'TD19'."
 
 #. module: l10n_it_fatturapa_out_rc
 #: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:74
 #, python-format
 msgid "Country code does not exist or it is not mapped in countries: %s"
-msgstr ""
+msgstr "Codice paese non esistente o non mappato per i Paesi: %s"
 
 #. module: l10n_it_fatturapa_out_rc
 #: model:ir.model,name:l10n_it_fatturapa_out_rc.model_wizard_export_fatturapa
@@ -49,31 +52,31 @@ msgstr "Impossibile impostare IdFiscaleIVA per %s"
 #. module: l10n_it_fatturapa_out_rc
 #: model:ir.model,name:l10n_it_fatturapa_out_rc.model_account_invoice
 msgid "Invoice"
-msgstr ""
+msgstr "Fattura"
 
 #. module: l10n_it_fatturapa_out_rc
 #: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:100
 #, python-format
 msgid "Partner %s, City is not set."
-msgstr "Partner %s, la città non è impostata"
+msgstr "Partner %s, la città non è impostata."
 
 #. module: l10n_it_fatturapa_out_rc
 #: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:103
 #, python-format
 msgid "Partner %s, Country is not set."
-msgstr "Partner %s, la nazione non è impostata"
+msgstr "Partner %s, la nazione non è impostata."
 
 #. module: l10n_it_fatturapa_out_rc
 #: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:97
 #, python-format
 msgid "Partner %s, Street is not set."
-msgstr "Partner %s, l'indirizzo non è impostato"
+msgstr "Partner %s, l'indirizzo non è impostato."
 
 #. module: l10n_it_fatturapa_out_rc
 #: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:115
 #, python-format
 msgid "Partner %s, ZIP is not set."
-msgstr "Partner %s, il CAP non è impostato"
+msgstr "Partner %s, il CAP non è impostato."
 
 #. module: l10n_it_fatturapa_out_rc
 #: model:ir.model,name:l10n_it_fatturapa_out_rc.model_account_rc_type
@@ -87,6 +90,9 @@ msgid ""
 "Select invoices are of too many fiscal document types: select invoices "
 "exclusively of type 'TD17', 'TD18', 'TD19' or exclusively of other types."
 msgstr ""
+"Le fatture selezionate includono troppi tipi diversi di documento fiscale; "
+"seleziona esclusivamente fatture di tipo 'TD17', 'TD18', 'TD19' o "
+"esclusivamente di altri tipi."
 
 #. module: l10n_it_fatturapa_out_rc
 #: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:28
@@ -120,3 +126,5 @@ msgid ""
 "Vendor invoice that has generated this self invoice isn't validated. "
 "Validate vendor invoice before."
 msgstr ""
+"La fattura fornitore che ha generato quest'autofattura non è validata. "
+"Validare prima la fattura fornitore."
