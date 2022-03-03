@@ -102,7 +102,7 @@ msgid "Attachment URL"
 msgstr "URL allegato"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/attachment.py:123
+#: code:addons/l10n_it_fatturapa_in/models/attachment.py:132
 #, python-format
 msgid "Attachment without name"
 msgstr "Allegato senza nome"
@@ -228,6 +228,11 @@ msgstr "Impostazioni di configurazione"
 #: model:ir.model,name:l10n_it_fatturapa_in.model_res_partner
 msgid "Contact"
 msgstr "Contatto"
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__is_self_invoice
+msgid "Contains self invoices"
+msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:227
