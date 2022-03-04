@@ -56,6 +56,7 @@ addon | version | maintainers | summary
 [l10n_it_mis_reports_pl_bs](l10n_it_mis_reports_pl_bs/) | 14.0.1.0.0 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) | Modelli "MIS Builder" per il conto economico e lo stato patrimoniale
 [l10n_it_payment_reason](l10n_it_payment_reason/) | 14.0.1.0.2 |  | Aggiunge la tabella delle causali di pagamento da usare ad esempio nelle ritenute d'acconto
 [l10n_it_pec](l10n_it_pec/) | 14.0.1.0.0 |  | Aggiunge il campo email PEC al partner
+[l10n_it_pos_fiscalcode](l10n_it_pos_fiscalcode/) | 14.0.1.0.0 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Gestione codice fiscale del cliente all'interno dell'interfaccia del POS
 [l10n_it_rea](l10n_it_rea/) | 14.0.1.0.3 |  | Gestisce i campi del Repertorio Economico Amministrativo
 [l10n_it_reverse_charge](l10n_it_reverse_charge/) | 14.0.1.0.3 |  | Inversione contabile
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 14.0.1.0.0 |  | Ricevute bancarie
