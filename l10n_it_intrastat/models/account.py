@@ -494,7 +494,7 @@ class AccountInvoiceIntrastat(models.Model):
 
     @api.multi
     @api.depends('invoice_id.type', 'intrastat_code_type')
-    def _get_statement_section(self):
+    def _compute_statement_section(self):
         """
         Compute where the invoice intrastat data will be computed.
         This field is used to show the right values to fill in
@@ -592,7 +592,7 @@ class AccountInvoiceIntrastat(models.Model):
             ('purchase_s3', "Purchases section 3"),
             ('purchase_s4', "Purchases section 4")],
         string="Statement Section",
-        compute='_get_statement_section')
+        compute='_compute_statement_section')
 
     amount_euro = fields.Float(
         string="Amount in Euro",
@@ -672,12 +672,18 @@ class AccountInvoiceIntrastat(models.Model):
     country_payment_id = fields.Many2one(
         comodel_name='res.country',
         string="Payment Country")
+
     triangulation = fields.Boolean(
         string="Triangulation",
-        default=False)
+        default=False,
+    )
+
     invoice_type = fields.Selection(
         string="Invoice Type",
-        related="invoice_id.type")
+        related="invoice_id.type",
+        store=False,
+        readonly=True,
+    )
 
     @api.onchange('transaction_nature_id')
     def _onchange_transaction_nature_id(self):
@@ -699,7 +705,7 @@ class AccountInvoiceIntrastat(models.Model):
 
     @api.onchange('intrastat_code_type')
     def change_intrastat_code_type(self):
-        self.statement_section = self._get_statement_section()
+        self.statement_section = self._compute_statement_section()
         self.intrastat_code_id = False
 
 
