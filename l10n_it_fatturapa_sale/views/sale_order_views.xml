@@ -17,6 +17,7 @@
                     name="e_invoice"
                     string="Electronic Invoice"
                     groups="account.group_account_user"
+                    attrs="{'invisible': [('display_type', '!=', False)]}"
                 >
                     <field name="admin_ref" />
                     <field name="related_documents" />
