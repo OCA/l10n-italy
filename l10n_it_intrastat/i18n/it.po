@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2021-12-06 12:36+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2022-03-08 19:17+0000\n"
+"Last-Translator: Samuele Mariani <samuele@ooops404.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -12510,6 +12510,9 @@ msgid ""
 "synthetic fibres (excl. nonwovens, knitted or crocheted, awnings and "
 "sunblinds)"
 msgstr ""
+"Tende, incl. drappeggi e tendine per interni, tende o mantovane da letto in "
+"fibre sintetiche (escl. stoffe non tessute, a maglia, tende da sole e "
+"frangisole)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_63031200
@@ -47092,6 +47095,9 @@ msgid ""
 "weighing <= 100 g/m², bleached (excl. fabrics for the manufacture of "
 "bandages, dressings and medical gauzes)"
 msgstr ""
+"Tessuti semplici di cotone, contenenti in peso >= 85% cotone e del peso <= "
+"100 g/m?, sbiancati (escl. tessuti per la fabbricazione di bende, fasciature "
+"e garze mediche)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_52083100
