@@ -230,6 +230,21 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
         cls.invoice5 = cls._create_invoice(
             "5", cls.partner4, tax=cls.tax1, in_type=True
         )
+        cls.other_company = cls.env["res.company"].create(
+            {
+                "name": "other",
+            }
+        )
+        cls.other_user = cls.env["res.users"].create(
+            {
+                "name": "User of other company",
+                "login": "other",
+                "company_ids": [
+                    (4, cls.other_company.id),
+                ],
+                "company_id": cls.other_company.id,
+            }
+        )
 
     def test_declaration_data(self):
         self.assertTrue(self.declaration1.number)
@@ -399,3 +414,63 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
             ),
             1,
         )
+
+    def test_multi_company(self):
+        """Check that a user can only see and create declarations in his company."""
+        self.env = self.env(user=self.other_user)
+        declaration_model = self.env["l10n_it_declaration_of_intent.declaration"]
+
+        # See only declarations in current company
+        self.assertFalse(declaration_model.search_count([]))
+
+        # Create tax_id in other company
+        other_tax10 = self.env["account.tax"].create(
+            {
+                "name": "10%",
+                "amount": 10,
+            }
+        )
+        other_tax1 = self.env["account.tax"].create(
+            {
+                "name": "FC INC",
+                "amount": 0,
+                "price_include": True,
+            }
+        )
+
+        # Create fiscal_position in other company
+        fiscal_position2 = self.env["account.fiscal.position"].create(
+            {
+                "name": "Test Fiscal Position2",
+                "valid_for_declaration_of_intent": False,
+                "tax_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "tax_src_id": other_tax10.id,
+                            "tax_dest_id": other_tax1.id,
+                        },
+                    )
+                ],
+            }
+        )
+
+        # Create declaration in other company
+        declaration = self.env["l10n_it_declaration_of_intent.declaration"].create(
+            {
+                "partner_id": self.partner1.id,
+                "partner_document_number": "PartnerTest%s" % self.partner1.id,
+                "partner_document_date": self.today_date,
+                "date": self.today_date,
+                "date_start": self.today_date,
+                "date_end": self.today_date,
+                "taxes_ids": [(6, 0, [other_tax1.id])],
+                "limit_amount": 1000.00,
+                "fiscal_position_id": fiscal_position2.id,
+                "type": "out",
+                "telematic_protocol": "08060120341234567-000001",
+            }
+        )
+        self.assertEqual(declaration_model.search([]), declaration)
+        self.assertEqual(self.env.company, declaration.company_id)

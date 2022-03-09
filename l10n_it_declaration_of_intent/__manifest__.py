@@ -16,6 +16,7 @@
         "sale_management",
     ],
     "data": [
+        "security/declaration_security.xml",
         "security/ir.model.access.csv",
         "data/sequence.xml",
         "wizard/select_declarations_view.xml",
