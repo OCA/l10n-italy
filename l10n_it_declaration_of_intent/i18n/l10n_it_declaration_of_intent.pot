@@ -75,6 +75,8 @@ msgid "Companies"
 msgstr ""
 
 #. module: l10n_it_declaration_of_intent
+#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration__company_id
+#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration_line__company_id
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_yearly_limit__company_id
 msgid "Company"
 msgstr ""
