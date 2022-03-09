@@ -81,6 +81,11 @@ msgid "Delivered"
 msgstr "Consegnato"
 
 #. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out__display_name
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server__display_name
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_mail_thread__display_name
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_company__display_name
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
@@ -102,18 +107,23 @@ msgid "Email Thread"
 msgstr "Discussione e-mail"
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:180
+#: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:0
 #, python-format
 msgid "Fetchmail PEC server [%s] error"
 msgstr "Errore fetchmail server PEC [%s]"
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:50
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:0
 #, python-format
 msgid "File content and file name are mandatory"
 msgstr "Il contenuto e il nome del file sono obbligatori"
 
 #. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out__id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server__id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_mail_thread__id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_company__id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_config_settings__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__id
 msgid "ID"
 msgstr "ID"
@@ -124,6 +134,11 @@ msgid "Incoming Mail Server"
 msgstr "Server di posta in arrivo"
 
 #. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out____last_update
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server____last_update
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_mail_thread____last_update
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_company____last_update
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
@@ -155,7 +170,7 @@ msgid "Last error message"
 msgstr "Ultimo messaggio di errore"
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:36
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:0
 #, python-format
 msgid "No incoming PEC server found. Please configure it."
 msgstr "Nessun server PEC in ingresso trovato, configurarne uno."
@@ -166,7 +181,7 @@ msgid "PEC error count"
 msgstr "Numero errori PEC"
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:68
+#: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:0
 #, python-format
 msgid ""
 "PEC message \"%s\" has been read but not processed, as not related to an e-"
@@ -178,11 +193,18 @@ msgstr ""
 "Prego controllare la casella PEC %s, sul server %s, con utente %s."
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:161
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:0
 #, python-format
-msgid "PEC server %s has been reset.Last error message is '%s'"
+msgid ""
+"PEC message \"%s\" is coming from SDI but attachments do not match SDI "
+"response format. Please check."
 msgstr ""
-"Il server PEC %s è stato reimpostato. L'ultimo messaggio di errore è '%s'"
+
+#. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:0
+#, python-format
+msgid "PEC server %s has been reset. Last error message is '%s'"
+msgstr ""
 
 #. module: l10n_it_fatturapa_pec
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
@@ -233,7 +255,7 @@ msgid "Wizard to send multiple e-invoice PEC"
 msgstr "Procedura per inviare PEC e-fattura multiple"
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:46
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:0
 #, python-format
 msgid "You can only send files in 'Ready to Send' state."
 msgstr "È possibile inviare solo file con stato «Pronto per l'invio»."
@@ -242,6 +264,10 @@ msgstr "È possibile inviare solo file con stato «Pronto per l'invio»."
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
 msgid "on"
 msgstr "il"
+
+#~ msgid "PEC server %s has been reset.Last error message is '%s'"
+#~ msgstr ""
+#~ "Il server PEC %s è stato reimpostato. L'ultimo messaggio di errore è '%s'"
 
 #~ msgid "Accepted"
 #~ msgstr "Accettato"

@@ -179,6 +179,14 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:0
+#, python-format
+msgid ""
+"PEC message \"%s\" is coming from SDI but attachments do not match SDI "
+"response format. Please check."
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
 #: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:0
 #, python-format
 msgid "PEC server %s has been reset. Last error message is '%s'"
