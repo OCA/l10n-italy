@@ -28,16 +28,6 @@
                     <table style="width:100%; font-size: small;" cellspacing="0">
                         <thead>
                             <tr class="first_th_row">
-                                <!-- <t t-if="registry_type == 'corrispettivi'">
-                                    <td colspan="4" style="padding:10;"
-                                        t-esc="tax_registry_name + ' Periodo di stampa dal ' + from_date + ' al ' + to_date"
-                                    />
-                                </t>
-                                <t t-if="registry_type != 'corrispettivi'">
-                                    <td colspan="9" style="padding:10;"
-                                        t-esc="tax_registry_name + ' Periodo di stampa dal ' + from_date + ' al ' + to_date"
-                                    />
-                                </t> -->
                                 <td t-att-colspan="colspan_val" style="padding:10;"
                                     t-esc="tax_registry_name + ' Periodo di stampa dal ' + from_date + ' al ' + to_date"
                                 />
