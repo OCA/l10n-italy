@@ -93,8 +93,7 @@ class IntrastatStatementSaleSection1(models.Model):
 
     @api.onchange('weight_kg')
     def change_weight_kg(self):
-        if self.statement_id.company_id.intrastat_additional_unit_from == \
-            'weight':
+        if self.statement_id.company_id.intrastat_additional_unit_from == 'weight':
             self.additional_units = self.weight_kg
 
     @api.onchange('transaction_nature_id')
