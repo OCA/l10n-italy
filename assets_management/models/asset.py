@@ -20,8 +20,9 @@ class Asset(models.Model):
     def compute_last_depreciation_date(self):
         for r in self:
             conf = self.env['res.company'].browse(r.company_id.id)
+            civilistico_id = conf.compute_civilistico()
             cicilistico_max = self.env['asset.depreciation'].search([
-                ('asset_id', '=', r.id), ('type_id', '=', conf.civilistico.id),
+                ('asset_id', '=', r.id), ('type_id', '=', civilistico_id),
             ], order='last_depreciation_date', limit=1,)
 
             r.last_depreciation_date = \
