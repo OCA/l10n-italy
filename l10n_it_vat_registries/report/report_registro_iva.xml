@@ -178,7 +178,7 @@
                                                         >
                                                             <div
                                                                 style="page-break-inside: avoid"
-                                                                t-esc="line['reference']"
+                                                                t-esc="move.ref"
                                                             />
                                                         </td>
                                                     </t>
