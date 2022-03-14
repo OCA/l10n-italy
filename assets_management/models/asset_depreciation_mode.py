@@ -7,22 +7,22 @@ from odoo.exceptions import UserError, ValidationError
 
 
 class AssetDepreciationMode(models.Model):
-    _name = 'asset.depreciation.mode'
+    _name = "asset.depreciation.mode"
     _description = "Asset Depreciation Mode"
-    _order = 'name'
+    _order = "name"
 
     @api.model
     def get_default_company_id(self):
         return self.env.user.company_id
 
     company_id = fields.Many2one(
-        'res.company', default=get_default_company_id, string="Company"
+        "res.company", default=get_default_company_id, string="Company"
     )
 
     default = fields.Boolean(string="Default Mode")
 
     line_ids = fields.One2many(
-        'asset.depreciation.mode.line', 'mode_id', string="Lines"
+        "asset.depreciation.mode.line", "mode_id", string="Lines"
     )
 
     name = fields.Char(
@@ -40,26 +40,24 @@ class AssetDepreciationMode(models.Model):
         default=True,
     )
 
-    @api.multi
     def copy(self, default=None):
         default = dict(default or [])
         default.update(
             {
-                'default': False,
-                'line_ids': [
-                    (0, 0, l.copy_data({'mode_id': False})[0])
-                    for l in self.line_ids
+                "default": False,
+                "line_ids": [
+                    (0, 0, line.copy_data({"mode_id": False})[0])
+                    for line in self.line_ids
                 ],
             }
         )
         return super().copy(default)
 
-    @api.multi
     def unlink(self):
         if (
-            self.env['asset.category.depreciation.type']
+            self.env["asset.category.depreciation.type"]
             .sudo()
-            .search([('mode_id', 'in', self.ids)])
+            .search([("mode_id", "in", self.ids)])
         ):
             raise UserError(
                 _(
@@ -67,8 +65,7 @@ class AssetDepreciationMode(models.Model):
                     "linked to categories."
                 )
             )
-        if self.env['asset.depreciation'].sudo().search([
-            ('mode_id', 'in', self.ids)]):
+        if self.env["asset.depreciation"].sudo().search([("mode_id", "in", self.ids)]):
             raise UserError(
                 _(
                     "Cannot delete depreciation modes while they're still "
@@ -77,10 +74,10 @@ class AssetDepreciationMode(models.Model):
             )
         return super().unlink()
 
-    @api.constrains('company_id', 'default')
+    @api.constrains("company_id", "default")
     def check_default_modes(self):
-        for company in self.mapped('company_id'):
-            domain = [('company_id', '=', company.id), ('default', '=', True)]
+        for company in self.mapped("company_id"):
+            domain = [("company_id", "=", company.id), ("default", "=", True)]
             if self.search_count(domain) > 1:
                 raise ValidationError(
                     _(
@@ -97,7 +94,7 @@ class AssetDepreciationMode(models.Model):
         self.ensure_one()
 
         # Update multiplier from used asset coefficient
-        used_asset = self._context.get('used_asset', False)
+        used_asset = self._context.get("used_asset", False)
         if self.used_asset_coeff and used_asset:
             multiplier *= self.used_asset_coeff
 

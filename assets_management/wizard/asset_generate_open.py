@@ -2,19 +2,19 @@
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models, _
+from odoo import _, api, fields, models
 
 
 class WizardAssetsGenerateOpen(models.TransientModel):
-    _name = 'wizard.asset.generate.open'
+    _name = "wizard.asset.generate.open"
     _description = "Generate Asset Open"
 
     @api.model
     def get_asset(self):
-        active_id = self.env.context.get('active_id')
+        active_id = self.env.context.get("active_id")
         if not active_id:
             return False
-        asset = self.env['asset.asset'].browse(active_id)
+        asset = self.env["asset.asset"].browse(active_id)
         return asset
 
     @api.model
@@ -37,29 +37,26 @@ class WizardAssetsGenerateOpen(models.TransientModel):
         return asset.purchase_amount
 
     asset_id = fields.Many2one(
-        'asset.asset',
+        "asset.asset",
         string="Asset",
         default=get_asset_id,
         readonly=True,
     )
 
     company_id = fields.Many2one(
-        'res.company',
+        "res.company",
         default=get_default_company_id,
         string="Company",
     )
 
     account_id = fields.Many2one(
-        'account.account',
+        "account.account",
         default=get_default_account_id,
         string="Conto di ricavo",
     )
 
     currency_id = fields.Many2one(
-        'res.currency',
-        readonly=True,
-        related='asset_id.currency_id',
-        string="Currency"
+        "res.currency", readonly=True, related="asset_id.currency_id", string="Currency"
     )
 
     amount = fields.Monetary(
@@ -68,43 +65,38 @@ class WizardAssetsGenerateOpen(models.TransientModel):
         readonly=True,
     )
 
-    @api.multi
     def do_generate(self):
         self.ensure_one()
         asset = self.get_asset()
-        am_obj = self.env['account.move']
+        am_obj = self.env["account.move"]
         vals = {
-            'company_id': self.company_id.id,
-            'date': asset.purchase_date,
-            'journal_id': asset.category_id.journal_id.id,
-            'line_ids': [],
-            'ref': _("Apertura Bene: ") + asset.make_name(),
+            "company_id": self.company_id.id,
+            "date": asset.purchase_date,
+            "journal_id": asset.category_id.journal_id.id,
+            "line_ids": [],
+            "ref": _("Apertura Bene: ") + asset.make_name(),
         }
 
         credit_line_vals = {
-            'account_id': self.account_id.id,
-            'credit': self.amount,
-            'debit': 0.0,
-            'currency_id': self.currency_id.id,
-            'name': " - ".join((asset.make_name(), asset.name)),
+            "account_id": self.account_id.id,
+            "credit": self.amount,
+            "debit": 0.0,
+            "currency_id": self.currency_id.id,
+            "name": " - ".join((asset.make_name(), asset.name)),
         }
         debit_line_vals = {
-            'account_id': asset.category_id.asset_account_id.id,
-            'credit': 0.0,
-            'debit': self.amount,
-            'currency_id': self.currency_id.id,
-            'name': " - ".join((asset.make_name(), asset.name)),
+            "account_id": asset.category_id.asset_account_id.id,
+            "credit": 0.0,
+            "debit": self.amount,
+            "currency_id": self.currency_id.id,
+            "name": " - ".join((asset.make_name(), asset.name)),
         }
 
         for v in [credit_line_vals, debit_line_vals]:
-            vals['line_ids'].append((0, 0, v))
+            vals["line_ids"].append((0, 0, v))
 
-        asset.move_id = am_obj.create(vals)
+        am_obj.create(vals)
 
         asset.is_open = True
 
-        return {
-                'type': 'ir.actions.client',
-                'tag': 'reload'
-            }
-
+        return {"type": "ir.actions.client", "tag": "reload"}

@@ -55,7 +55,7 @@ class IntrastatStatementPurchaseSection(models.AbstractModel):
 
 
 class IntrastatStatementPurchaseSection1(models.Model):
-    _inherit = "account.intrastat.statement.purchase.section"
+    _inherit = "account.intrastat.statement.purchase.section"  # pylint: disable=R7980
     _name = "account.intrastat.statement.purchase.section1"
     _description = "Intrastat Statement - Purchases Section 1"
 
@@ -209,7 +209,7 @@ class IntrastatStatementPurchaseSection1(models.Model):
 
 
 class IntrastatStatementPurchaseSection2(models.Model):
-    _inherit = "account.intrastat.statement.purchase.section"
+    _inherit = "account.intrastat.statement.purchase.section"  # pylint: disable=R7980
     _name = "account.intrastat.statement.purchase.section2"
     _description = "Intrastat Statement - Purchases Section 2"
 
@@ -425,7 +425,7 @@ class IntrastatStatementPurchaseSection3(models.Model):
 
 
 class IntrastatStatementPurchaseSection4(models.Model):
-    _inherit = "account.intrastat.statement.purchase.section"
+    _inherit = "account.intrastat.statement.purchase.section"  # pylint: disable=R7980
     _name = "account.intrastat.statement.purchase.section4"
     _description = "Intrastat Statement - Purchases Section 4"
 

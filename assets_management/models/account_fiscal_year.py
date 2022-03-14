@@ -7,12 +7,10 @@ from odoo.exceptions import UserError
 
 
 class AccountFiscalYear(models.Model):
-    _inherit = 'account.fiscal.year'
+    _inherit = "account.fiscal.year"
 
     @api.model
-    def get_fiscal_year_by_date(
-        self, date, limit=1, company=None, miss_raise=True
-    ):
+    def get_fiscal_year_by_date(self, date, limit=1, company=None, miss_raise=True):
         """
         Retrieves fiscal year by given ``date`` (a datetime.date object).
 
@@ -33,7 +31,7 @@ class AccountFiscalYear(models.Model):
         """
         Prepares a search() domain to retrieve fiscal years by given ``date``.
         """
-        domain = [('date_from', '<=', date), ('date_to', '>=', date)]
+        domain = [("date_from", "<=", date), ("date_to", ">=", date)]
         if company:
-            domain.append(('company_id', 'in', company.ids))
+            domain.append(("company_id", "in", company.ids))
         return domain

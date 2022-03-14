@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="asset_generate_warning" model="ir.ui.view">
         <field name="name">asset.generate.warning</field>
@@ -6,16 +6,18 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Conferma">
-                <field name="reason_lines" readonly="1" >
+                <field name="reason_lines" readonly="1">
                     <tree>
                         <field name="reason" />
                     </tree>
                 </field>
                 <footer>
-                    <button name="do_generate"
-                            string="Conferma generazione"
-                            type="object"
-                            class="oe_highlight" />
+                    <button
+                        name="do_generate"
+                        string="Conferma generazione"
+                        type="object"
+                        class="oe_highlight"
+                    />
 
                     <button string="Chiudi" class="oe_link" special="cancel" />
                 </footer>
@@ -24,4 +26,3 @@
     </record>
 
 </odoo>
-

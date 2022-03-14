@@ -11,23 +11,23 @@
                 </group>
 
                 <group>
-                    <field name="account_id"/>
+                    <field name="account_id" />
                 </group>
 
                 <group>
-                    <field name="currency_id" invisible="1"/>
-                    <field name="amount" widget="monetary"/>
+                    <field name="currency_id" invisible="1" />
+                    <field name="amount" widget="monetary" />
                 </group>
 
                 <footer>
-                    <button name="do_generate"
-                            string="Generate"
-                            class="btn-primary"
-                            type="object"/>
+                    <button
+                        name="do_generate"
+                        string="Generate"
+                        class="btn-primary"
+                        type="object"
+                    />
                     or
-                    <button string="Cancel"
-                            class="btn-default"
-                            special="cancel" />
+                    <button string="Cancel" class="btn-default" special="cancel" />
                 </footer>
             </form>
         </field>
@@ -37,8 +37,12 @@
         <field name="name">Apertura bene</field>
         <field name="res_model">wizard.asset.generate.open</field>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="wizard_asset_generate_open_form_view"/>
+        <field name="view_id" ref="wizard_asset_generate_open_form_view" />
         <field name="target">new</field>
+        <field
+            name="groups_id"
+            eval="[(4, ref('assets_management.group_asset_user'))]"
+        />
     </record>
 
 </odoo>

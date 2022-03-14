@@ -23,7 +23,7 @@ class IntrastatStatementSaleSection(models.AbstractModel):
 
 
 class IntrastatStatementSaleSection1(models.Model):
-    _inherit = "account.intrastat.statement.sale.section"
+    _inherit = "account.intrastat.statement.sale.section"  # pylint: disable=R7980
     _name = "account.intrastat.statement.sale.section1"
     _description = "Intrastat Statement - Sales Section 1"
 
@@ -297,7 +297,7 @@ class IntrastatStatementSaleSection2(models.Model):
 
 
 class IntrastatStatementSaleSection3(models.Model):
-    _inherit = "account.intrastat.statement.sale.section"
+    _inherit = "account.intrastat.statement.sale.section"  # pylint: disable=R7980
     _name = "account.intrastat.statement.sale.section3"
     _description = "Intrastat Statement - Sales Section 3"
 
@@ -368,7 +368,7 @@ class IntrastatStatementSaleSection3(models.Model):
 
 
 class IntrastatStatementSaleSection4(models.Model):
-    _inherit = "account.intrastat.statement.sale.section"
+    _inherit = "account.intrastat.statement.sale.section"  # pylint: disable=R7980
     _name = "account.intrastat.statement.sale.section4"
     _description = "Intrastat Statement - Sales Section 4"
 
