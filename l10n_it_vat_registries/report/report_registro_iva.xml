@@ -19,19 +19,18 @@
                     <t t-if="only_totals == True">
                         <t t-set="print_details" t-value="0" />
                     </t>
+                    <t t-set="initial_from_date" t-value="data['from_date']" />
+                    <t t-set="initial_to_date" t-value="data['to_date']" />
+                    <t t-set="colspan_val" t-value="4" t-if="registry_type == 'corrispettivi'" />
+                    <t t-set="colspan_val" t-value="9" t-if="registry_type != 'corrispettivi'" />
+                    <t t-set="prev_move_date" t-value="False" />
+                    <t t-set="move_date" t-value="False" />
                     <table style="width:100%; font-size: small;" cellspacing="0">
                         <thead>
                             <tr class="first_th_row">
-                                <t t-if="registry_type == 'corrispettivi'">
-                                    <td colspan="4" style="padding:10;"
-                                        t-esc="tax_registry_name + ' Periodo di stampa dal ' + from_date + ' al ' + to_date"
-                                    />
-                                </t>
-                                <t t-if="registry_type != 'corrispettivi'">
-                                    <td colspan="9" style="padding:10;"
-                                        t-esc="tax_registry_name + ' Periodo di stampa dal ' + from_date + ' al ' + to_date"
-                                    />
-                                </t>
+                                <td t-att-colspan="colspan_val" style="padding:10;"
+                                    t-esc="tax_registry_name + ' Periodo di stampa dal ' + from_date + ' al ' + to_date"
+                                />
                             </tr>
 
                             <t t-if="print_details > 0 ">
@@ -71,49 +70,58 @@
                                 <t t-set="inv_taxes" t-value="taxes_tuple[0]" />
                                 <t t-set="used_taxes" t-value="taxes_tuple[1]" />
                                 <t t-set="total_used_taxes" t-value="total_used_taxes | used_taxes" />
+                                <t t-if="prev_move_date and prev_move_date != move.date and daily_totals and not only_totals">
+                                    <tr>
+                                        <td t-att-colspan="colspan_val">
+                                            <t t-set="data" t-esc="data.update({'from_date': prev_move_date, 'to_date': prev_move_date})"/>
+                                            <t t-call="l10n_it_vat_registries.daily_totals_template"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <t t-set="prev_move_date" t-value="move.date" t-if="prev_move_date != move.date"/>
                                 <t t-foreach="inv_taxes" t-as="line">
                                     <t t-if="print_details > 0 ">
-                                    <t t-set="line_class_left" t-value="left_without_line" />
-                                    <t t-set="line_class_right" t-value="right_without_line"/>
-                                    <t t-if="line['index'] == 0">
-                                        <tr style="page-break-inside: avoid; border:1px solid #fff;" name="vat_body_invoice">
-                                            <!-- Data registrazione -->
-                                            <td class="left_without_line_bold">
-                                                <div style="page-break-inside: avoid" t-esc="format_date(move.date,date_format)" />
-                                            </td>
-                                            <!-- Numero registrazione -->
-                                            <td class="left_without_line_bold">
-                                                <div style="page-break-inside: avoid" t-esc="move.name" />
-                                            </td>
-                                            <t t-if="registry_type != 'corrispettivi'">
-                                                <!-- Causale -->
+                                        <t t-set="line_class_left" t-value="left_without_line" />
+                                        <t t-set="line_class_right" t-value="right_without_line"/>
+                                        <t t-if="line['index'] == 0">
+                                            <tr style="page-break-inside: avoid; border:1px solid #fff;" name="vat_body_invoice">
+                                                <!-- Data registrazione -->
                                                 <td class="left_without_line_bold">
-                                                    <div style="page-break-inside: avoid" t-esc="line['invoice_type']"/>
+                                                    <div style="page-break-inside: avoid" t-esc="format_date(move.date,date_format)" />
                                                 </td>
-                                                <!-- Data fattura -->
-                                                <td class="left_without_line_bold">
-                                                    <div style="page-break-inside: avoid" t-esc="format_date(line['invoice_date'],date_format)"/>
-                                                </td>
-                                                <t t-if="move.journal_id.type == 'purchase'">
-                                                <!-- Numero fattura (fornitore)-->
-                                                <td class="left_without_line_bold">
-                                                    <div style="page-break-inside: avoid" t-esc="line['reference']" />
-                                                </td>
-                                                </t>
-                                                <t t-if="move.journal_id.type == 'sale'" >
-                                                <!-- Numero fattura -->
+                                                <!-- Numero registrazione -->
                                                 <td class="left_without_line_bold">
                                                     <div style="page-break-inside: avoid" t-esc="move.name" />
                                                 </td>
-                                                </t>
-                                                <!-- Ragione sociale -->
-                                                <td class="left_without_line_bold">
-                                                    <div style="page-break-inside: avoid" t-esc="move.partner_id.name"/>
-                                                </td>
-                                                <!-- PIVA -->
-                                                <td class="left_without_line_bold">
-                                                    <div style="page-break-inside: avoid" t-esc="move.partner_id.vat" />
-                                                </td>
+                                                <t t-if="registry_type != 'corrispettivi'">
+                                                    <!-- Causale -->
+                                                    <td class="left_without_line_bold">
+                                                        <div style="page-break-inside: avoid" t-esc="line['invoice_type']"/>
+                                                    </td>
+                                                    <!-- Data fattura -->
+                                                    <td class="left_without_line_bold">
+                                                        <div style="page-break-inside: avoid" t-esc="format_date(line['invoice_date'],date_format)"/>
+                                                    </td>
+                                                    <t t-if="move.journal_id.type == 'purchase'">
+                                                        <!-- Numero fattura (fornitore)-->
+                                                        <td class="left_without_line_bold">
+                                                            <div style="page-break-inside: avoid" t-esc="line['reference']" />
+                                                        </td>
+                                                    </t>
+                                                    <t t-if="move.journal_id.type == 'sale'" >
+                                                        <!-- Numero fattura -->
+                                                        <td class="left_without_line_bold">
+                                                            <div style="page-break-inside: avoid" t-esc="move.name" />
+                                                        </td>
+                                                    </t>
+                                                    <!-- Ragione sociale -->
+                                                    <td class="left_without_line_bold">
+                                                        <div style="page-break-inside: avoid" t-esc="move.partner_id.name"/>
+                                                    </td>
+                                                    <!-- PIVA -->
+                                                    <td class="left_without_line_bold">
+                                                        <div style="page-break-inside: avoid" t-esc="move.partner_id.vat" />
+                                                    </td>
                                                 </t>
                                                 <td class="left_without_line" />
                                                 <!-- totale -->
@@ -123,9 +131,9 @@
                                             </tr>
                                         </t>
                                         <tr
-                                                style="page-break-inside: avoid; "
-                                                name="vat_body_tax"
-                                            >
+                                            style="page-break-inside: avoid; "
+                                            name="vat_body_tax"
+                                        >
                                             <t t-if="registry_type != 'corrispettivi'">
                                                 <td class="left_without_line" />
                                                 <td class="left_without_line" />
@@ -135,97 +143,43 @@
                                             </t>
                                             <!--  imposta -->
                                             <td class="left_without_line"><div
-                                                        style="page-break-inside: avoid"
-                                                        t-esc="(line['tax_code_name'])"
-                                                    /></td>
+                                                style="page-break-inside: avoid"
+                                                t-esc="(line['tax_code_name'])"
+                                                /></td>
                                             <!-- base -->
                                             <td class="right_without_line"><div
-                                                        style="page-break-inside: avoid"
-                                                        t-esc="formatLang(env, line['base'])"
-                                                    /></td>
+                                                style="page-break-inside: avoid"
+                                                t-esc="formatLang(env, line['base'])"
+                                                /></td>
                                             <!-- tax -->
                                             <td class="right_without_line"><div
-                                                        style="page-break-inside: avoid"
-                                                        t-esc="formatLang(env, line['tax'])"
-                                                    /></td>
+                                                style="page-break-inside: avoid"
+                                                t-esc="formatLang(env, line['tax'])"
+                                                /></td>
                                             <td class="left_without_line" />
                                         </tr>
                                     </t>
                                 </t>
                             </t>
+                            <t t-if="prev_move_date and daily_totals and not only_totals">
+                                <tr>
+                                    <td t-att-colspan="colspan_val">
+                                        <t t-set="data" t-esc="data.update({'from_date': prev_move_date, 'to_date': prev_move_date})"/>
+                                        <t t-call="l10n_it_vat_registries.daily_totals_template"/>
+                                    </td>
+                                </tr>
+                            </t>
                         </tbody>
                     </table>
                     <br />
                     <t t-if="only_totals and daily_totals">
-                    <div style="page-break-inside: avoid;" name="daily_totals_div">
-                        <t t-set="tax_daily_totals" t-value="get_tax_daily_totals(doc_ids, data)"/>
-                        <t t-foreach="tax_daily_totals" t-as="tax_date">
-                            <t t-set="daily_tot_base" t-value="0"/>
-                            <t t-set="daily_tot_tax" t-value="0"/>
-                            <t t-set="daily_tot_ded" t-value="0"/>
-                            <t t-set="daily_tot_unded" t-value="0"/>
-                            <table style="width:100%;" class="mt-3">
-                                <tr>
-                                    <td colspan="2" style="vertical-align:text-top;padding:10">
-                                        <h3><t t-esc="format_date(tax_date, date_format)"/></h3>
-                                        <table style="width:100%;">
-                                            <thead>
-                                                <tr>
-                                                    <th class="left_without_line_bold">
-                                                        Description
-                                                    </th>
-                                                    <th class="right_without_line_bold">
-                                                        Taxable
-                                                    </th>
-                                                    <th class="right_without_line_bold">
-                                                        Tax
-                                                    </th>
-                                                    <th class="right_without_line_bold">
-                                                        Deductible
-                                                    </th>
-                                                    <th class="right_without_line_bold">
-                                                        Non-Deductible
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <t t-foreach="tax_daily_totals[tax_date]" t-as="tax_info">
-                                                <tr>
-                                                    <td class="left_without_line_bold"
-                                                        t-esc="tax_info[0]" />
-                                                    <td class="right_without_line_bold"
-                                                        t-esc="formatLang(env, tax_info[1])" />
-                                                    <td class="right_without_line_bold"
-                                                        t-esc="formatLang(env, tax_info[2])" />
-                                                    <td class="right_without_line_bold"
-                                                        t-esc="formatLang(env, tax_info[3])" />
-                                                    <td class="right_without_line_bold"
-                                                        t-esc="formatLang(env, tax_info[4])" />
-                                                </tr>
-                                                <t t-set="daily_tot_base" t-value="daily_tot_base + tax_info[1]"/>
-                                                <t t-set="daily_tot_tax" t-value="daily_tot_tax + tax_info[2]"/>
-                                                <t t-set="daily_tot_ded" t-value="daily_tot_ded + tax_info[3]"/>
-                                                <t t-set="daily_tot_unded" t-value="daily_tot_unded + tax_info[4]"/>
-                                                </t>
-                                                <tr class="border-top">
-                                                    <td class="left_without_line_bold">Totale giornaliero euro</td>
-                                                    <td class="right_without_line_bold" t-esc="formatLang(env, daily_tot_base)"/>
-                                                    <td class="right_without_line_bold" t-esc="formatLang(env, daily_tot_tax)"/>
-                                                    <td class="right_without_line_bold" t-esc="formatLang(env, daily_tot_ded)"/>
-                                                    <td class="right_without_line_bold" t-esc="formatLang(env, daily_tot_unded)"/>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </t>
-                    </div>
+                        <t t-call="l10n_it_vat_registries.daily_totals_template"/>
                     </t>
                     <t t-set="tot_base" t-value="0"/>
                     <t t-set="tot_tax" t-value="0"/>
                     <t t-set="tot_ded" t-value="0"/>
                     <t t-set="tot_unded" t-value="0"/>
+                    <t t-set="data" t-esc="data.update({'from_date': initial_from_date, 'to_date': initial_to_date})"/>
                     <div style="page-break-inside: avoid;">
                         <table style="width:100%;">
                             <tr>
@@ -242,6 +196,7 @@
                                             </tr>
                                         </thead>
                                         <t t-foreach="total_used_taxes.sorted('name')" t-as="total_used_tax">
+
                                             <t t-set="tax_code_tuple" t-value="compute_totals_tax(total_used_tax, data)"/>
                                             <t t-set="tot_base" t-value="tot_base + tax_code_tuple[1]"/>
                                             <t t-set="tot_tax" t-value="tot_tax + tax_code_tuple[2]"/>
@@ -270,6 +225,81 @@
                 </div>
             </t>
         </t>
+    </template>
+
+    <template id="daily_totals_template">
+        <t t-set="daily_tot_base" t-value="0"/>
+        <t t-set="daily_tot_tax" t-value="0"/>
+        <t t-set="daily_tot_ded" t-value="0"/>
+        <t t-set="daily_tot_unded" t-value="0"/>
+        <div style="page-break-inside: avoid; width:100%;"  class="mb-5" name="daily_totals_div">
+            <t t-set="tax_daily_totals" t-value="get_tax_daily_totals(doc_ids, data)"/>
+            <t t-foreach="tax_daily_totals" t-as="tax_date">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="vertical-align:text-top;padding:10">
+                            <t t-if="only_totals and daily_totals">
+                                <h3><t t-esc="format_date(tax_date, date_format)"/></h3>
+                            </t>
+                            <table style="width:100%;">
+                                <thead>
+                                    <tr>
+                                        <th class="left_without_line_bold">
+                                            Description
+                                        </th>
+                                        <th class="right_without_line_bold">
+                                            Taxable
+                                        </th>
+                                        <th class="right_without_line_bold">
+                                            Tax
+                                        </th>
+                                        <th class="right_without_line_bold">
+                                            Deductible
+                                        </th>
+                                        <th class="right_without_line_bold">
+                                            Non-Deductible
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="tax_daily_totals[tax_date]" t-as="tax_info">
+                                    <tr>
+                                        <td class="left_without_line_bold"
+                                            t-esc="tax_info[0]" />
+                                        <td class="right_without_line_bold"
+                                            t-esc="formatLang(env, tax_info[1])" />
+                                        <td class="right_without_line_bold"
+                                            t-esc="formatLang(env, tax_info[2])" />
+                                        <td class="right_without_line_bold"
+                                            t-esc="formatLang(env, tax_info[3])" />
+                                        <td class="right_without_line_bold"
+                                            t-esc="formatLang(env, tax_info[4])" />
+                                    </tr>
+                                    <t t-set="daily_tot_base" t-value="daily_tot_base + tax_info[1]"/>
+                                    <t t-set="daily_tot_tax" t-value="daily_tot_tax + tax_info[2]"/>
+                                    <t t-set="daily_tot_ded" t-value="daily_tot_ded + tax_info[3]"/>
+                                    <t t-set="daily_tot_unded" t-value="daily_tot_unded + tax_info[4]"/>
+                                    </t>
+                                    <tr class="border-top">
+                                        <t t-if="not only_totals and daily_totals" >
+                                            <t t-set="daily_totals_text" t-value="' del giorno ' + format_date(tax_date, date_format)" />
+                                        </t>
+                                        <t t-else="only_totals and daily_totals" >
+                                            <t t-set="daily_totals_text" t-value="giornaliero" />
+                                        </t>
+                                        <td class="left_without_line_bold">Totale <span t-esc="daily_totals_text" /> euro </td>
+                                        <td class="right_without_line_bold" t-esc="formatLang(env, daily_tot_base)"/>
+                                        <td class="right_without_line_bold" t-esc="formatLang(env, daily_tot_tax)"/>
+                                        <td class="right_without_line_bold" t-esc="formatLang(env, daily_tot_ded)"/>
+                                        <td class="right_without_line_bold" t-esc="formatLang(env, daily_tot_unded)"/>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </t>
+        </div>
     </template>
 
 </odoo>

@@ -57,9 +57,7 @@ class WizardRegistroIva(models.TransientModel):
     def on_change_tax_registry_id(self):
         self.journal_ids = self.tax_registry_id.journal_ids
         if self.tax_registry_id.daily_totals:
-            self.only_totals = True
             self.daily_totals = True
-        return {"type": "ir.actions.do_nothing"}
 
     @api.onchange("date_range_id")
     def on_change_date_range_id(self):
