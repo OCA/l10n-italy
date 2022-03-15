@@ -24,16 +24,16 @@ class FatturaPAAttachmentIn(models.Model):
         string="In Bills", readonly=True)
     xml_supplier_id = fields.Many2one(
         "res.partner", string="Supplier", compute="_compute_xml_data",
-        store=True, default=False)
+        store=True)
     invoices_number = fields.Integer(
-        "Bills Number", compute="_compute_xml_data", store=True, default=0)
+        "Bills Number", compute="_compute_xml_data", store=True)
     invoices_total = fields.Float(
-        "Bills Total", compute="_compute_xml_data", store=True, default=0,
+        "Bills Total", compute="_compute_xml_data", store=True,
         help="If specified by supplier, total amount of the document net of "
              "any discount and including tax charged to the buyer/ordered"
     )
     invoices_date = fields.Char(
-        string="Invoices date", compute="_compute_xml_data", store=True, default=False)
+        string="Invoices date", compute="_compute_xml_data", store=True)
     registered = fields.Boolean(
         "Registered", compute="_compute_registered", store=True)
 
@@ -45,7 +45,7 @@ class FatturaPAAttachmentIn(models.Model):
     e_invoice_validation_message = fields.Text(
         compute='_compute_e_invoice_validation_error')
     is_self_invoice = fields.Boolean(
-        "Contains self invoices", compute="_compute_xml_data", store=True, default=False
+        "Contains self invoices", compute="_compute_xml_data", store=True
     )
 
     _sql_constraints = [(
@@ -87,6 +87,11 @@ class FatturaPAAttachmentIn(models.Model):
     @api.depends('ir_attachment_id.datas')
     def _compute_xml_data(self):
         for att in self:
+            att.xml_supplier_id = False
+            att.invoices_number = 0
+            att.invoices_total = 0
+            att.is_self_invoice = False
+            att.invoices_date = False
             if not att.registered:
                 wiz_obj = self.env['wizard.import.fatturapa'] \
                     .with_context(from_attachment=att)
@@ -95,8 +100,6 @@ class FatturaPAAttachmentIn(models.Model):
                 partner_id = wiz_obj.getCedPrest(cedentePrestatore)
                 att.xml_supplier_id = partner_id
                 att.invoices_number = len(fatt.FatturaElettronicaBody)
-                att.invoices_total = 0
-                att.is_self_invoice = False
                 invoices_date = []
                 for invoice_body in fatt.FatturaElettronicaBody:
                     att.invoices_total += float(
