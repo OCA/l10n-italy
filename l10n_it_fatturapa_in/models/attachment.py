@@ -24,16 +24,16 @@ class FatturaPAAttachmentIn(models.Model):
         string="In Bills", readonly=True)
     xml_supplier_id = fields.Many2one(
         "res.partner", string="Supplier", compute="_compute_xml_data",
-        store=True)
+        store=True, default=False)
     invoices_number = fields.Integer(
-        "Bills Number", compute="_compute_xml_data", store=True)
+        "Bills Number", compute="_compute_xml_data", store=True, default=0)
     invoices_total = fields.Float(
-        "Bills Total", compute="_compute_xml_data", store=True,
+        "Bills Total", compute="_compute_xml_data", store=True, default=0,
         help="If specified by supplier, total amount of the document net of "
              "any discount and including tax charged to the buyer/ordered"
     )
     invoices_date = fields.Char(
-        string="Invoices date", compute="_compute_xml_data", store=True)
+        string="Invoices date", compute="_compute_xml_data", store=True, default=False)
     registered = fields.Boolean(
         "Registered", compute="_compute_registered", store=True)
 
@@ -45,7 +45,7 @@ class FatturaPAAttachmentIn(models.Model):
     e_invoice_validation_message = fields.Text(
         compute='_compute_e_invoice_validation_error')
     is_self_invoice = fields.Boolean(
-        "Contains self invoices", compute="_compute_xml_data", store=True
+        "Contains self invoices", compute="_compute_xml_data", store=True, default=False
     )
 
     _sql_constraints = [(
