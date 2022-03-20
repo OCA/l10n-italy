@@ -46,7 +46,6 @@
                         <field name="delivery_note_readonly" invisible="True" />
                         <field name="delivery_note_visible" invisible="True" />
                         <field name="delivery_note_state" invisible="True" />
-                        <field name="can_be_invoiced" invisible="True" />
                         <div class="no-margin-page-content">
                             <div class="header">
                                 <div
@@ -83,21 +82,10 @@
                                         string="Validate"
                                     />
                                     <button
-                                        name="action_delivery_note_invoice"
-                                        type="object"
-                                        class="oe_highlight"
-                                        attrs="{'invisible': ['|', ('delivery_note_state', '!=', 'confirm'),
-                                                                       ('can_be_invoiced', '=', False)]}"
-                                        groups="account.group_account_invoice"
-                                        string="Create invoice"
-                                    />
-                                    <button
                                         name="action_delivery_note_done"
                                         type="object"
                                         class="oe_highlight"
-                                        attrs="{'invisible': ['&amp;', ('delivery_note_state', '!=', 'invoiced'),
-                                                                  '|', ('delivery_note_state', '!=', 'confirm'),
-                                                                       ('can_be_invoiced', '=', True)]}"
+                                        attrs="{'invisible': [('delivery_note_state', '!=', 'confirm')]}"
                                         string="Set done"
                                     />
                                     <button
@@ -134,12 +122,6 @@
                                         attrs="{'invisible': [('delivery_note_state', '!=', 'done')]}"
                                     >
                                         Done
-                                    </button>
-                                    <button
-                                        class="btn arrow_button active"
-                                        attrs="{'invisible': [('delivery_note_state', '!=', 'invoiced')]}"
-                                    >
-                                        Invoiced
                                     </button>
                                     <button
                                         class="btn arrow_button active"
@@ -205,12 +187,7 @@
                                         <field
                                             name="delivery_note_carrier_id"
                                             attrs="{'readonly': [('delivery_note_readonly', '=', True)]}"
-                                            domain="[('supplier_rank','>', 0)]"
                                             string="Carrier"
-                                        />
-                                        <field
-                                            name="delivery_method_id"
-                                            attrs="{'readonly': [('delivery_note_readonly', '=', True)]}"
                                         />
                                     </group>
                                     <group>

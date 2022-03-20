@@ -288,7 +288,6 @@ class MigrateL10nItDdt(EasyCommand):
                 "type_id": self._document_types[record.ddt_type_id].id,
                 "date": record.date,
                 "carrier_id": record.carrier_id.id,
-                "delivery_method_id": record.partner_id.property_delivery_carrier_id.id,
                 "transport_datetime": record.date_done,
                 "packages": record.parcels,
                 "volume": record.volume,
@@ -312,7 +311,6 @@ class MigrateL10nItDdt(EasyCommand):
                     record.transportation_method_id
                 ].id,
                 "picking_ids": [(4, p.id) for p in record.picking_ids],
-                "invoice_ids": [(4, record.invoice_id.id)] if record.invoice_id else [],
                 "note": record.note,
             }
 
@@ -338,7 +336,6 @@ class MigrateL10nItDdt(EasyCommand):
                             "product_uom_id": line.product_uom_id.id,
                             "price_unit": line.price_unit,
                             "discount": line.discount,
-                            "tax_ids": [(4, t.id) for t in line.tax_ids],
                         }
                     )
 

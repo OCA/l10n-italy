@@ -36,9 +36,6 @@ class StockPicking(models.Model):
     delivery_note_carrier_id = fields.Many2one(
         "res.partner", string="DN Carrier", related="delivery_note_id.carrier_id"
     )
-    delivery_method_id = fields.Many2one(
-        "delivery.carrier", related="delivery_note_id.delivery_method_id"
-    )
 
     delivery_note_type_id = fields.Many2one(
         "stock.delivery.note.type", related="delivery_note_id.type_id"
@@ -92,7 +89,6 @@ class StockPicking(models.Model):
     delivery_note_draft = fields.Boolean(compute="_compute_boolean_flags")
     delivery_note_readonly = fields.Boolean(compute="_compute_boolean_flags")
     delivery_note_visible = fields.Boolean(compute="_compute_boolean_flags")
-    can_be_invoiced = fields.Boolean(compute="_compute_boolean_flags")
 
     @property
     def _delivery_note_fields(self):
@@ -127,7 +123,6 @@ class StockPicking(models.Model):
             picking.delivery_note_draft = False
             picking.delivery_note_readonly = True
             picking.delivery_note_exists = False
-            picking.can_be_invoiced = False
 
             if picking.use_delivery_note and picking.delivery_note_id:
                 picking.delivery_note_exists = True
@@ -137,7 +132,6 @@ class StockPicking(models.Model):
                 picking.delivery_note_readonly = (
                     picking.delivery_note_id.state == DOMAIN_DELIVERY_NOTE_STATES[3]
                 )
-                picking.can_be_invoiced = bool(picking.delivery_note_id.sale_ids)
 
     @api.onchange("delivery_note_type_id")
     def _onchange_delivery_note_type(self):
@@ -230,11 +224,6 @@ class StockPicking(models.Model):
         self.ensure_one()
 
         return self.delivery_note_id.action_confirm()
-
-    def action_delivery_note_invoice(self):
-        self.ensure_one()
-
-        return self.delivery_note_id.action_invoice()
 
     def action_delivery_note_done(self):
         self.ensure_one()
@@ -337,25 +326,20 @@ class StockPicking(models.Model):
                 "partner_shipping_id": partners[1].id,
                 "type_id": type_id.id,
                 "date": self.date_done,
-                "delivery_method_id": self.partner_id.property_delivery_carrier_id.id,
                 "transport_condition_id": (
-                    self.sale_id.default_transport_condition_id.id
-                    or partners[1].default_transport_condition_id.id
+                    partners[1].default_transport_condition_id.id
                     or type_id.default_transport_condition_id.id
                 ),
                 "goods_appearance_id": (
-                    self.sale_id.default_goods_appearance_id.id
-                    or partners[1].default_goods_appearance_id.id
+                    partners[1].default_goods_appearance_id.id
                     or type_id.default_goods_appearance_id.id
                 ),
                 "transport_reason_id": (
-                    self.sale_id.default_transport_reason_id.id
-                    or partners[1].default_transport_reason_id.id
+                    partners[1].default_transport_reason_id.id
                     or type_id.default_transport_reason_id.id
                 ),
                 "transport_method_id": (
-                    self.sale_id.default_transport_method_id.id
-                    or partners[1].default_transport_method_id.id
+                    partners[1].default_transport_method_id.id
                     or type_id.default_transport_method_id.id
                 ),
             }

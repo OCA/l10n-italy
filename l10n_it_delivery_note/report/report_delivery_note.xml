@@ -27,24 +27,13 @@
                     <h4>
                         <strong>Customer:</strong>
                     </h4>
-                    <t t-if="doc.sale_ids">
                         <div
-                            t-field="doc.sale_ids[0].partner_id"
-                            t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
-                        />
-                        <p t-if="doc.sale_ids[0].partner_id.vat"><t
-                                t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"
-                            />: <span t-field="doc.sale_ids[0].partner_id.vat" /></p>
-                    </t>
-                    <t t-else="">
-                        <div
-                            t-field="doc.partner_id"
-                            t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
-                        />
+                        t-field="doc.partner_id"
+                        t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
+                    />
                         <p t-if="doc.partner_id.vat"><t
-                                t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"
-                            />: <span t-field="doc.partner_id.vat" /></p>
-                    </t>
+                            t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"
+                        />: <span t-field="doc.partner_id.vat" /></p>
                 </t>
             </t>
 
@@ -228,11 +217,6 @@
                                         groups="product.group_discount_per_so_line"
                                     >
                                         <span t-field="line.discount" />%
-                                    </td>
-                                    <td t-if="doc.print_prices" class="text-right">
-                                        <span
-                                            t-esc="', '.join(map(lambda t: (t.description or t.name), line.tax_ids))"
-                                        />
                                     </td>
                                 </t>
                                 <t t-else="">

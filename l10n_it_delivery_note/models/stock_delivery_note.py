@@ -18,7 +18,6 @@ DATETIME_FORMAT = "%d/%m/%Y %H:%M:%S"
 DELIVERY_NOTE_STATES = [
     ("draft", "Draft"),
     ("confirm", "Validated"),
-    ("invoiced", "Invoiced"),
     ("done", "Done"),
     ("cancel", "Cancelled"),
 ]
@@ -29,13 +28,6 @@ DOMAIN_LINE_DISPLAY_TYPES = [t[0] for t in LINE_DISPLAY_TYPES]
 
 DRAFT_EDITABLE_STATE = {"draft": [("readonly", False)]}
 DONE_READONLY_STATE = {"done": [("readonly", True)]}
-
-INVOICE_STATUSES = [
-    ("no", "Nothing to invoice"),
-    ("to invoice", "To invoice"),
-    ("invoiced", "Fully invoiced"),
-]
-DOMAIN_INVOICE_STATUSES = [s[0] for s in INVOICE_STATUSES]
 
 
 class StockDeliveryNote(models.Model):
@@ -139,13 +131,6 @@ class StockDeliveryNote(models.Model):
         tracking=True,
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
     )
-    delivery_method_id = fields.Many2one(
-        "delivery.carrier",
-        string="Delivery method",
-        states=DONE_READONLY_STATE,
-        tracking=True,
-    )
-
     date = fields.Date(string="Date", states=DRAFT_EDITABLE_STATE, copy=False)
     type_id = fields.Many2one(
         "stock.delivery.note.type",
@@ -216,16 +201,6 @@ class StockDeliveryNote(models.Model):
     line_ids = fields.One2many(
         "stock.delivery.note.line", "delivery_note_id", string="Lines"
     )
-    invoice_status = fields.Selection(
-        INVOICE_STATUSES,
-        string="Invoice status",
-        compute="_compute_invoice_status",
-        default=DOMAIN_INVOICE_STATUSES[0],
-        readonly=True,
-        store=True,
-        copy=False,
-    )
-
     picking_ids = fields.One2many(
         "stock.picking", "delivery_note_id", string="Pickings"
     )
@@ -240,19 +215,6 @@ class StockDeliveryNote(models.Model):
         string="Picking type",
         compute="_compute_picking_type",
         store=True,
-    )
-
-    sale_ids = fields.Many2many("sale.order", compute="_compute_sales")
-    sale_count = fields.Integer(compute="_compute_sales")
-    sales_transport_check = fields.Boolean(compute="_compute_sales", default=True)
-
-    invoice_ids = fields.Many2many(
-        "account.move",
-        "stock_delivery_note_account_invoice_rel",
-        "delivery_note_id",
-        "invoice_id",
-        string="Invoices",
-        copy=False,
     )
 
     print_prices = fields.Boolean(
@@ -282,23 +244,6 @@ class StockDeliveryNote(models.Model):
 
         return result
 
-    @api.depends("state", "line_ids", "line_ids.invoice_status")
-    def _compute_invoice_status(self):
-        for note in self:
-            lines = note.line_ids.filtered(lambda l: l.sale_line_id)
-            invoice_status = DOMAIN_INVOICE_STATUSES[0]
-            if lines:
-                if all(
-                    line.invoice_status == DOMAIN_INVOICE_STATUSES[2] for line in lines
-                ):
-                    note.state = DOMAIN_DELIVERY_NOTE_STATES[2]
-                    invoice_status = DOMAIN_INVOICE_STATUSES[2]
-                elif any(
-                    line.invoice_status == DOMAIN_INVOICE_STATUSES[1] for line in lines
-                ):
-                    invoice_status = DOMAIN_INVOICE_STATUSES[1]
-            note.invoice_status = invoice_status
-
     def _compute_get_pickings(self):
         for note in self:
             note.pickings_picker = note.picking_ids
@@ -325,20 +270,6 @@ class StockDeliveryNote(models.Model):
                 )
 
             note.picking_type = picking_types[0]
-
-    @api.depends("picking_ids")
-    def _compute_sales(self):
-        for note in self:
-            sales = note.mapped("picking_ids.sale_id")
-
-            note.sale_ids = sales
-            note.sale_count = len(sales)
-
-            tc = sales.mapped("default_transport_condition_id")
-            ga = sales.mapped("default_goods_appearance_id")
-            tr = sales.mapped("default_transport_reason_id")
-            tm = sales.mapped("default_transport_method_id")
-            note.sales_transport_check = all([len(x) < 2 for x in [tc, ga, tr, tm]])
 
     def _compute_boolean_flags(self):
         can_change_number = self.user_has_groups(
@@ -410,47 +341,13 @@ class StockDeliveryNote(models.Model):
 
         return {"domain": {"pickings_picker": pickings_picker_domain}}
 
-    @api.onchange("partner_shipping_id")
-    def _onchange_partner_shipping(self):
-        if self.partner_shipping_id:
-            changed = self._update_partner_shipping_information(
-                self.partner_shipping_id
-            )
-
-            if changed:
-                return {
-                    "warning": {
-                        "title": _("Warning!"),
-                        "message": "Some of the shipping configuration have "
-                        "been overwritten with"
-                        " the default ones of the selected "
-                        "shipping partner address.\n"
-                        "Please, make sure to check this "
-                        "information before continuing.",
-                    }
-                }
-
-        else:
-            self.delivery_method_id = False
-
     def check_compliance(self, pickings):
         super().check_compliance(pickings)
 
         self._check_delivery_notes(self.pickings_picker - self.picking_ids)
 
-    def ensure_annulability(self):
-        if self.mapped("invoice_ids"):
-            raise UserError(
-                _(
-                    "You cannot cancel this delivery note. "
-                    "There is at least one invoice"
-                    " related to this delivery note."
-                )
-            )
-
     def action_draft(self):
         self.write({"state": DOMAIN_DELIVERY_NOTE_STATES[0]})
-        self.line_ids.sync_invoice_status()
 
     def action_confirm(self):
         for note in self:
@@ -464,72 +361,13 @@ class StockDeliveryNote(models.Model):
                 note.name = sequence.next_by_id()
                 note.sequence_id = sequence
 
-    def _fix_quantities_to_invoice(self, lines):
-        cache = {}
-
-        pickings_lines = lines.retrieve_pickings_lines(self.picking_ids)
-        other_lines = lines - pickings_lines
-
-        for line in other_lines:
-            cache[line] = line.fix_qty_to_invoice()
-
-        pickings_move_ids = self.mapped("picking_ids.move_lines")
-        for line in pickings_lines.filtered(lambda l: len(l.move_ids) > 1):
-            move_ids = line.move_ids & pickings_move_ids
-            qty_to_invoice = sum(move_ids.mapped("quantity_done"))
-
-            if qty_to_invoice < line.qty_to_invoice:
-                cache[line] = line.fix_qty_to_invoice(qty_to_invoice)
-
-        return cache
-
-    def action_invoice(self):
-        self.ensure_one()
-
-        orders_lines = self.mapped("sale_ids.order_line").filtered(
-            lambda l: l.product_id
-        )
-
-        downpayment_lines = orders_lines.filtered(lambda l: l.is_downpayment)
-        invoiceable_lines = orders_lines.filtered(lambda l: l.is_invoiceable)
-
-        cache = self._fix_quantities_to_invoice(invoiceable_lines - downpayment_lines)
-
-        for downpayment in downpayment_lines:
-            order = downpayment.order_id
-            order_lines = order.order_line.filtered(
-                lambda l: l.product_id and not l.is_downpayment
-            )
-
-            if order_lines.filtered(lambda l: l.need_to_be_invoiced):
-                cache[downpayment] = downpayment.fix_qty_to_invoice()
-
-        invoice_ids = self.sale_ids.filtered(
-            lambda o: o.invoice_status == DOMAIN_INVOICE_STATUSES[1]
-        )._create_invoices(final=True)
-
-        for line, vals in cache.items():
-            line.write(vals)
-
-        orders_lines._get_to_invoice_qty()
-
-        for line in self.line_ids:
-            line.write({"invoice_status": "invoiced"})
-        if all(line.invoice_status == "invoiced" for line in self.line_ids):
-            self.write(
-                {"invoice_ids": [(4, invoice_id) for invoice_id in invoice_ids.ids]}
-            )
-            self._compute_invoice_status()
-            invoices = self.env["account.move"].browse(invoice_ids.ids)
-            invoices.update_delivery_note_lines()
-
     def action_done(self):
-        self.write({"state": DOMAIN_DELIVERY_NOTE_STATES[3]})
+        self.write({"state": DOMAIN_DELIVERY_NOTE_STATES[2]})
 
     def action_cancel(self):
         self.ensure_annulability()
 
-        self.write({"state": DOMAIN_DELIVERY_NOTE_STATES[4]})
+        self.write({"state": DOMAIN_DELIVERY_NOTE_STATES[3]})
 
     def action_print(self):
         return self.env.ref(
@@ -551,23 +389,6 @@ class StockDeliveryNote(models.Model):
             "target": "current",
             **kwargs,
         }
-
-    def goto_sales(self, **kwargs):
-        sales = self.mapped("sale_ids")
-        action = self.env.ref("sale.action_orders").read()[0]
-        action.update(kwargs)
-
-        if len(sales) > 1:
-            action["domain"] = [("id", "in", sales.ids)]
-
-        elif len(sales) == 1:
-            action["views"] = [(self.env.ref("sale.view_order_form").id, "form")]
-            action["res_id"] = sales.id
-
-        else:
-            action = {"type": "ir.actions.act_window_close"}
-
-        return action
 
     def _create_detail_lines(self, move_ids):
         if not move_ids:
@@ -683,7 +504,6 @@ class StockDeliveryNoteLine(models.Model):
         "res.currency", string="Currency", required=True, default=_default_currency
     )
     discount = fields.Float(string="Discount", digits="Discount")
-    tax_ids = fields.Many2many("account.tax", string="Taxes")
 
     move_id = fields.Many2one(
         "stock.move",
@@ -691,16 +511,6 @@ class StockDeliveryNoteLine(models.Model):
         readonly=True,
         copy=False,
         check_company=True,
-    )
-    sale_line_id = fields.Many2one(
-        "sale.order.line", related="move_id.sale_line_id", store=True, copy=False
-    )
-    invoice_status = fields.Selection(
-        INVOICE_STATUSES,
-        string="Invoice status",
-        required=True,
-        default=DOMAIN_INVOICE_STATUSES[0],
-        copy=False,
     )
 
     _sql_constraints = [
@@ -711,10 +521,6 @@ class StockDeliveryNoteLine(models.Model):
             "different delivery notes!",
         )
     ]
-
-    @property
-    def is_invoiceable(self):
-        return self.invoice_status == DOMAIN_INVOICE_STATUSES[1]
 
     @api.onchange("product_id")
     def _onchange_product_id(self):
@@ -752,16 +558,6 @@ class StockDeliveryNoteLine(models.Model):
                 "product_uom_id": move.product_uom.id,
             }
 
-            if move.sale_line_id:
-                order_line = move.sale_line_id
-                order = order_line.order_id
-
-                line["price_unit"] = order_line.price_unit
-                line["currency_id"] = order.currency_id.id
-                line["discount"] = order_line.discount
-                line["tax_ids"] = [(6, False, order_line.tax_id.ids)]
-                line["invoice_status"] = DOMAIN_INVOICE_STATUSES[1]
-
             lines.append(line)
 
         return lines
@@ -776,7 +572,6 @@ class StockDeliveryNoteLine(models.Model):
                     "product_uom_id": False,
                     "price_unit": 0.0,
                     "discount": 0.0,
-                    "tax_ids": [(5, False, False)],
                 }
             )
 
@@ -795,12 +590,3 @@ class StockDeliveryNoteLine(models.Model):
             )
 
         return super().write(vals)
-
-    def sync_invoice_status(self):
-        for line in self.filtered(lambda l: l.sale_line_id):
-            invoice_status = line.sale_line_id.invoice_status
-            line.invoice_status = (
-                DOMAIN_INVOICE_STATUSES[1]
-                if invoice_status == "upselling"
-                else invoice_status
-            )

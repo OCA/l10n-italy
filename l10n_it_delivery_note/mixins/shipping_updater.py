@@ -48,19 +48,3 @@ class ShippingInformationUpdaterMixin(models.AbstractModel):
             self.transport_method_id = record.default_transport_method_id
 
         return changed
-
-    def _update_partner_shipping_information(self, partner):
-        changed = False
-
-        if (
-            partner.property_delivery_carrier_id
-            and self.delivery_method_id != partner.property_delivery_carrier_id
-        ):
-            if self.delivery_method_id:
-                changed = True
-
-            self.delivery_method_id = partner.property_delivery_carrier_id
-
-        changed |= self._update_generic_shipping_information(partner)
-
-        return changed

@@ -14,8 +14,6 @@
                 <field name="sequence_id" invisible="True" />
                 <field name="type_code" invisible="True" />
                 <field name="picking_ids" invisible="True" />
-                <field name="sale_ids" invisible="True" />
-                <field name="sales_transport_check" invisible="True" />
                 <field name="can_change_number" invisible="True" />
                 <field name="show_product_information" invisible="True" />
                 <header>
@@ -34,25 +32,16 @@
                         string="Validate"
                     />
                     <button
-                        name="action_invoice"
-                        type="object"
-                        class="oe_highlight"
-                        attrs="{'invisible': ['|', ('state', '!=', 'confirm'), ('sale_ids', '=', [])]}"
-                        groups="account.group_account_invoice"
-                        string="Create invoice"
-                    />
-                    <button
                         name="action_done"
                         type="object"
                         class="oe_highlight"
-                        attrs="{'invisible': ['&amp;', ('state', '!=', 'invoiced'),
-                                                  '|', ('state', '!=', 'confirm'), ('sale_ids', '!=', [])]}"
+                        attrs="{'invisible': [('state', '!=', 'confirm')]}"
                         string="Set done"
                     />
                     <button
                         name="action_print"
                         type="object"
-                        states="draft,confirm,invoiced"
+                        states="draft,confirm"
                         string="Print"
                     />
                     <button
@@ -65,7 +54,7 @@
                     <button
                         name="action_cancel"
                         type="object"
-                        states="confirm,invoiced,done"
+                        states="confirm,done"
                         string="Cancel"
                     />
                     <field
@@ -75,21 +64,6 @@
                     />
                 </header>
                 <sheet>
-                    <div class="oe_button_box" name="button_box">
-                        <button
-                            type="object"
-                            class="oe_stat_button"
-                            name="goto_sales"
-                            icon="fa-pencil-square-o"
-                            attrs="{'invisible': [('sale_count', '=', 0)]}"
-                        >
-                            <field
-                                name="sale_count"
-                                widget="statinfo"
-                                string="Sales orders"
-                            />
-                        </button>
-                    </div>
                     <widget
                         name="web_ribbon"
                         text="Archived"
@@ -120,19 +94,6 @@
                             </div>
                         </div>
                     </div>
-                    <div
-                        attrs="{'invisible': [('sales_transport_check', '=', True)]}"
-                        class="alert alert-warning mb0"
-                        role="alert"
-                    >
-                        <p class="text-center mb0">
-                            <strong>
-                                <span class="fa fa-exclamation-triangle" />
-                                Warning!
-                            </strong>
-                            Inconsistent DN info in sale orders!
-                        </p>
-                    </div>
                     <group>
                         <group>
                             <field
@@ -157,11 +118,7 @@
                     </group>
                     <group>
                         <group>
-                            <field
-                                name="carrier_id"
-                                domain="[('supplier_rank','>', 0)]"
-                            />
-                            <field name="delivery_method_id" />
+                            <field name="carrier_id" />
                         </group>
                         <group>
                             <label for="transport_datetime" />
@@ -228,13 +185,11 @@
                             <field name="line_ids" widget="section_and_note_one2many">
                                 <tree
                                     editable="bottom"
-                                    decoration-info="(not display_type and invoice_status == 'to invoice')"
+                                    decoration-info="not display_type"
                                 >
                                     <field name="currency_id" invisible="True" />
                                     <field name="display_type" invisible="True" />
                                     <field name="move_id" invisible="True" />
-                                    <field name="sale_line_id" invisible="True" />
-                                    <field name="invoice_status" invisible="True" />
                                     <control>
                                         <create
                                             string="Add a section"
@@ -262,22 +217,13 @@
                                     />
                                     <field
                                         name="price_unit"
-                                        attrs="{'column_invisible': [('parent.show_product_information', '=', False)],
-                                                   'readonly': [('sale_line_id', '!=', False)]}"
+                                        attrs="{'column_invisible': [('parent.show_product_information', '=', False)]}"
                                         sum="Total"
                                     />
                                     <field
                                         name="discount"
-                                        attrs="{'column_invisible': [('parent.show_product_information', '=', False)],
-                                                   'readonly': [('sale_line_id', '!=', False)]}"
+                                        attrs="{'column_invisible': [('parent.show_product_information', '=', False)]}"
                                         groups="product.group_discount_per_so_line"
-                                    />
-                                    <field
-                                        name="tax_ids"
-                                        domain="[('company_id', 'in', [company_id, False])]"
-                                        attrs="{'column_invisible': [('parent.show_product_information', '=', False)],
-                                                   'readonly': [('sale_line_id', '!=', False)]}"
-                                        widget="many2many_tags"
                                     />
                                     <field name="company_id" invisible="1" />
                                 </tree>
@@ -345,11 +291,6 @@
                                                 name="discount"
                                                 groups="product.group_discount_per_so_line"
                                             />
-                                            <field
-                                                name="tax_ids"
-                                                domain="[('company_id', 'in', [company_id, False])]"
-                                                widget="many2many_tags"
-                                            />
                                             <field name="company_id" invisible="1" />
                                         </group>
                                     </group>
@@ -390,45 +331,6 @@
                                     <field name="scheduled_date" readonly="True" />
                                     <field name="origin" />
                                     <field name="backorder_id" />
-                                    <field name="state" />
-                                </tree>
-                            </field>
-                        </page>
-                        <page
-                            name="invoices"
-                            string="Invoices"
-                            attrs="{'invisible': [('invoice_ids', '=', [])]}"
-                            groups="account.group_account_invoice"
-                        >
-                            <field name="invoice_ids">
-                                <tree editable="bottom">
-                                    <field name="currency_id" invisible="True" />
-                                    <button
-                                        type="object"
-                                        name="goto_invoice"
-                                        class="oe_button"
-                                        icon="fa-external-link"
-                                        aria-label="Go to invoice"
-                                        title="Go to invoice"
-                                    />
-                                    <field name="name" />
-                                    <field name="invoice_origin" readonly="True" />
-                                    <field
-                                        name="amount_untaxed"
-                                        string="Tax excluded"
-                                        sum="Total"
-                                    />
-                                    <field name="amount_tax" string="Tax" sum="Total" />
-                                    <field
-                                        name="amount_total_signed"
-                                        string="Total"
-                                        sum="Total"
-                                    />
-                                    <field
-                                        name="amount_residual_signed"
-                                        string="To pay"
-                                        sum="Total"
-                                    />
                                     <field name="state" />
                                 </tree>
                             </field>
@@ -486,32 +388,11 @@
                     string="Validated"
                     domain="[('state', '=', 'confirm')]"
                 />
-                <filter
-                    name="invoiced"
-                    string="Invoiced"
-                    domain="[('state', '=', 'invoiced')]"
-                />
                 <filter name="done" string="Done" domain="[('state', '=', 'done')]" />
                 <filter
                     name="cancel"
                     string="Cancelled"
                     domain="[('state', '=', 'cancel')]"
-                />
-                <separator />
-                <filter
-                    name="nothing_to_invoice"
-                    string="Nothing to invoice"
-                    domain="[('invoice_status', '=', 'no')]"
-                />
-                <filter
-                    name="to_invoice"
-                    string="To invoice"
-                    domain="[('invoice_status', '=', 'to invoice')]"
-                />
-                <filter
-                    name="invoiced"
-                    string="Invoiced"
-                    domain="[('invoice_status', '=', 'invoiced')]"
                 />
                 <separator />
                 <filter
@@ -566,11 +447,6 @@
                         name="group_by_type_id"
                         string="Types"
                         context="{'group_by': 'type_id'}"
-                    />
-                    <filter
-                        name="group_by_invoice_status"
-                        string="Invoice statuses"
-                        context="{'group_by': 'invoice_status'}"
                     />
                     <filter
                         name="group_by_picking_type"
