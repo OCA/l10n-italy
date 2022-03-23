@@ -882,3 +882,42 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         with self.assertRaises(UserError) as ue:
             self.run_wizard(invoice.id)
         self.assertIn(invoice.name, ue.exception.args[0])
+
+    def test_trasmittente_xml_export(self):
+        self.env.company.e_invoice_transmitter_id = self.trasmittente.id
+        self.set_sequences(19, "2022-03-23")
+        invoice = self.invoice_model.create(
+            {
+                "name": "INV/2022/0019",
+                "invoice_date": "2022-03-23",
+                "partner_id": self.res_partner_fatturapa_0.id,
+                "journal_id": self.sales_journal.id,
+                # "account_id": self.a_recv.id,
+                "invoice_payment_term_id": self.account_payment_term.id,
+                "user_id": self.user_demo.id,
+                "move_type": "out_invoice",
+                "currency_id": self.EUR.id,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "account_id": self.a_sale.id,
+                            "product_id": self.product_product_10.id,
+                            "name": "Mouse, Optical",
+                            "quantity": 1,
+                            "product_uom_id": self.product_uom_unit.id,
+                            "price_unit": 10,
+                            "discount": 10,
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
+                        },
+                    ),
+                ],
+            }
+        )
+        invoice._post()
+        res = self.run_wizard(invoice.id)
+        attachment = self.attach_model.browse(res["res_id"])
+        self.set_e_invoice_file_id(attachment, "IT03297040366_00019.xml")
+        xml_content = base64.decodebytes(attachment.datas)
+        self.check_content(xml_content, "IT03297040366_00019.xml")
