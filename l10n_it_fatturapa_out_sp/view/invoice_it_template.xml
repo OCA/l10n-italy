@@ -2,7 +2,7 @@
 <odoo>
         <template
         id="account_invoice_it_split_payment"
-        inherit_id="l10n_it_fatturapa_out.account_invoice_it_fattura_elettronica_body"
+        inherit_id="l10n_it_fatturapa_out_rc.account_invoice_it_fattura_elettronica_body"
     >
         <xpath expr="//ImportoTotaleDocumento" position="replace">
             <ImportoTotaleDocumento
