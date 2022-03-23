@@ -74,6 +74,7 @@
                                             <th />
                                             <th />
                                             <th />
+                                            <th />
                                         </tr>
                                         <tr>
                                             <th class="text-center">PROGR.</th>
@@ -83,6 +84,7 @@
                                                 class="text-center"
                                             >AMMONTARE DELLE OPERAZIONI IN EURO</th>
                                             <th class="text-center">NATURA TRANS.</th>
+                                            <th class="text-center">NATURA TRANS. B</th>
                                             <th
                                                 class="text-center"
                                             >NOMENCLATURA COMBINATA</th>
@@ -114,6 +116,7 @@
                                             <td>11</td>
                                             <td>12</td>
                                             <td>13</td>
+                                            <td>14</td>
                                         </tr>
                                         <t t-set="total" t-value="0" />
                                         <tr t-foreach="o.sale_section1_ids" t-as="l">
