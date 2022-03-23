@@ -64,6 +64,7 @@ class FatturaPACommon(AccountTestUsers):
         self.fiscal_position_sp = self.env.ref(
             'l10n_it_fatturapa.fiscal_position_sp')
         self.company = self.env.ref('base.main_company')
+        self.company.e_invoice_transmitter_id = self.company.partner_id.id
         self.company.sp_account_id = self.env['account.account'].search([
             (
                 'user_type_id', '=',
@@ -76,6 +77,7 @@ class FatturaPACommon(AccountTestUsers):
         self.cr.execute(
             "UPDATE res_company SET currency_id = %s WHERE id = %s",
             [self.EUR.id, self.company.id])
+        self.trasmittente = self.env.ref("l10n_it_fatturapa.res_partner_fatturapa_1")
         # Otherwise self.company in cache could keep the old wrong value USD
         self.company.refresh()
 
