@@ -24,6 +24,15 @@ msgid "99999999999"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_account_config_settings
+msgid ""
+"<span class=\"o_form_label\">Transmitter</span>\n"
+"                            <span class=\"fa fa-lg fa-building-o\" title="
+"\"Values set here are company-specific.\" aria-label=\"Values set here are "
+"company-specific.\"/>"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa_out.selection__account_move__fatturapa_state__accepted
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa_out.selection__fatturapa_attachment_out__state__accepted
 msgid "Accepted"
@@ -138,6 +147,11 @@ msgid "Database Data"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_account_config_settings
+msgid "Default user used as transmitter in customer e-invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa_out.selection__account_move__fatturapa_state__delivered
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa_out.selection__fatturapa_attachment_out__state__validated
 msgid "Delivered"
@@ -163,6 +177,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_wizard_export_fatturapa__display_name
 msgid "Display Name"
 msgstr "Nama Tampilan"
+
+#. module: l10n_it_fatturapa_out
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_res_company__e_invoice_transmitter_id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_res_config_settings__e_invoice_transmitter_id
+msgid "E-bill Transmitter"
+msgstr ""
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model,name:l10n_it_fatturapa_out.model_fatturapa_attachment_out
@@ -738,6 +758,12 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachments__is_pdf_invoice_print
 msgid "This attachment contains the PDF report of the linked invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
+#: model:ir.model.fields,help:l10n_it_fatturapa_out.field_res_company__e_invoice_transmitter_id
+#: model:ir.model.fields,help:l10n_it_fatturapa_out.field_res_config_settings__e_invoice_transmitter_id
+msgid "This partner will be used as transmitter in out invoice."
 msgstr ""
 
 #. module: l10n_it_fatturapa_out

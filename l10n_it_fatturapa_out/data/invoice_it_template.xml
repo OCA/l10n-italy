@@ -271,35 +271,36 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
             <Nazione t-esc="partner_id.country_id.code" />
         </template>
         <template id="account_invoice_it_dati_trasmissione">
+            <t t-set="transmitter" t-value="company_id.e_invoice_transmitter_id" />
             <DatiTrasmissione>
-                <IdTrasmittente>
-                    <IdPaese t-esc="get_vat_country(company_id.vat)" />
-                    <IdCodice
-                        t-if="company_id.partner_id.fiscalcode"
-                        t-esc="company_id.partner_id.fiscalcode"
+            <IdTrasmittente>
+                <IdPaese t-esc="get_vat_country(transmitter.vat)" />
+                <IdCodice
+                        t-if="transmitter.fiscalcode"
+                        t-esc="transmitter.fiscalcode"
                     />
-                    <IdCodice
-                        t-if="not company_id.partner_id.fiscalcode"
-                        t-esc="get_vat_number(company_id.vat)"
+                <IdCodice
+                        t-if="not transmitter.fiscalcode"
+                        t-esc="get_vat_number(transmitter.vat)"
                     />
-                </IdTrasmittente>
+            </IdTrasmittente>
                 <ProgressivoInvio t-esc="progressivo_invio" />
                 <FormatoTrasmissione t-esc="formato_trasmissione" />
                 <CodiceDestinatario
                     t-if="codice_destinatario"
                     t-esc="codice_destinatario"
                 />
-                <ContattiTrasmittente>
-                    <Telefono
-                        t-if="format_phone(company_id.partner_id.phone)"
-                        t-esc="format_phone(company_id.partner_id.phone)"
+            <ContattiTrasmittente>
+                <Telefono
+                        t-if="format_phone(transmitter.phone)"
+                        t-esc="format_phone(transmitter.phone)"
                     />
-                    <Telefono
-                        t-if="not format_phone(company_id.partner_id.phone) and format_phone(company_id.partner_id.mobile)"
-                        t-esc="format_phone(company_id.partner_id.mobile)"
+                <Telefono
+                        t-if="not format_phone(transmitter.phone) and format_phone(transmitter.mobile)"
+                        t-esc="format_phone(transmitter.mobile)"
                     />
-                    <Email t-if="company_id.email" t-esc="company_id.email" />
-                </ContattiTrasmittente>
+                <Email t-if="transmitter.email" t-esc="transmitter.email" />
+            </ContattiTrasmittente>
                 <PECDestinatario
                     t-if="codice_destinatario == '0000000' and partner_id.pec_destinatario"
                     t-esc="partner_id.pec_destinatario"
