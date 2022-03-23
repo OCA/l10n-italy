@@ -12,6 +12,7 @@
     "depends": [
         "l10n_it_fatturapa_out",
         "l10n_it_split_payment",
+        "l10n_it_fatturapa_out_rc",
     ],
     "data": [
         "view/invoice_it_template.xml",
