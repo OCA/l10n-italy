@@ -179,7 +179,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                         order.fiscal_printer_serial = sender.pos.config.fiscal_printer_serial;
                         sender.pos.db.add_order(order.export_as_JSON());
                         // try to save the order
-                        sender.pos.push_order();
+                        sender.pos.push_order(order);
                     }
                     if(sender.pos.config.fiscal_cashdrawer)
                     {
