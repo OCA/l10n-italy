@@ -6,6 +6,7 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools import date_utils
 from odoo.tools.misc import formatLang
 
 
@@ -228,20 +229,13 @@ class ReportRegistroIva(models.AbstractModel):
             }
         """
         # Get every day from start date to end date
-        start_dt = fields.Date.from_string(data['from_date'])
-        end_dt = fields.Date.from_string(data['to_date'])
-        dates = []
-        while start_dt <= end_dt:
-            dates.append(fields.Date.to_string(start_dt))
-            start_dt += relativedelta(days=1)
+        dates = date_utils.date_range(
+            fields.Datetime.to_datetime(data["from_date"]),
+            fields.Datetime.to_datetime(data["to_date"]),
+            step=relativedelta(days=1),
+        )
 
-        # Retrieve every tax
-        tax_ids = []
-        for move in self.env['account.move'].browse(move_ids):
-            tax_ids.extend(self._get_tax_lines(move, data)[-1].ids)
-        # Avoid duplicated IDs
-        tax_ids = tuple(set(tax_ids))
-
+        tax_ids = self._get_tax_from_moves(move_ids, data)
         tax_daily_totals = {}
         for dt in dates:
             # Avoid overriding original `data`
@@ -257,4 +251,13 @@ class ReportRegistroIva(models.AbstractModel):
                 # Sort taxes alphabetically
                 tax_daily_totals[dt] = sorted(tax_totals)
 
+        # Retrieve every tax
         return tax_daily_totals
+
+    def _get_tax_from_moves(self, move_ids, data):
+        moves = self.env["account.move"].browse(move_ids)
+        tax_ids = []
+        for move in moves:
+            tax_ids.extend(self._get_tax_lines(move, data)[-1].ids)
+        # Avoid duplicated IDs
+        return tuple(set(tax_ids))
