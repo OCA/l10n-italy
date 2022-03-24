@@ -299,7 +299,7 @@ class AccountMove(models.Model):
         supplier_invoice.fiscal_position_id = self.fiscal_position_id.id
 
     def action_post(self):
-        super(AccountMove, self).action_post()
+        ret = super().action_post()
         for invoice in self:
             fp = invoice.fiscal_position_id
             rc_type = fp and fp.rc_type_id
@@ -319,7 +319,7 @@ class AccountMove(models.Model):
                         "defined in fiscal position {fp}, is not managed yet"
                     ).format(fp=fp.display_name)
                 )
-        return False
+        return ret
 
     def remove_rc_payment(self, delete_self_invoice=True):
         rc_invoice = self.rc_self_invoice_id
