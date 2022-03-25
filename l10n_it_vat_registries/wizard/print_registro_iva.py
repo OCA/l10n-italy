@@ -57,9 +57,9 @@ class WizardRegistroIva(models.TransientModel):
     def on_change_tax_registry_id(self):
         self.update(
             {
-                'journal_ids': self.tax_registry_id.journal_ids,
-                'layout_type': self.tax_registry_id.layout_type,
-                'daily_totals': self.tax_registry_id.daily_totals,
+                "journal_ids": self.tax_registry_id.journal_ids,
+                "layout_type": self.tax_registry_id.layout_type,
+                "daily_totals": self.tax_registry_id.daily_totals,
             }
         )
 
