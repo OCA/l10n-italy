@@ -191,7 +191,7 @@ class StockPickingPackagePreparation(models.Model):
         if ddt:
             raise UserError(
                 _("Selected Picking is already linked to TD: %s")
-                % ddt.display_name
+                % ", ".join(ddt.mapped("display_name"))
             )
 
     @api.multi
