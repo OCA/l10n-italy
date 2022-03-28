@@ -149,7 +149,7 @@ class AccountMove(models.Model):
                     invoice.write({"invoice_line_ids": [(0, 0, line_vals)]})
                     # ---- recompute invoice taxes
                     invoice._recompute_tax_lines()
-        super(AccountMove, self).action_post()
+        return super().action_post()
 
     def button_draft(self):
         # ---- Delete Collection Fees Line of invoice when set Back to Draft
