@@ -93,7 +93,6 @@
                                                 <td class="left_without_line_bold">
                                                     <div style="page-break-inside: avoid" t-esc="move.name" />
                                                 </td>
-                                                </t>
                                                 <!-- Ragione sociale -->
                                                 <td class="left_without_line_bold">
                                                     <div style="page-break-inside: avoid" t-esc="move.partner_id.name"/>
