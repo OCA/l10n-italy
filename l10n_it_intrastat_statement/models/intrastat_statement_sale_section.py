@@ -35,6 +35,10 @@ class IntrastatStatementSaleSection1(models.Model):
         string="Transaction Nature",
         default=lambda m: m._default_transaction_nature_id(),
     )
+    transaction_nature_b_id = fields.Many2one(
+        comodel_name='account.intrastat.transaction.nature.b',
+        string="Transaction Nature B",
+        default=lambda m: m._default_transaction_nature_b_id(),)
     weight_kg = fields.Integer(
         string="Net Mass (kg)")
     additional_units = fields.Integer(
@@ -62,6 +66,17 @@ class IntrastatStatementSaleSection1(models.Model):
     province_origin_id = fields.Many2one(
         comodel_name='res.country.state',
         string="Origin Province")
+    transaction_nature_b_id = fields.Many2one(
+        comodel_name='account.intrastat.transaction.nature.b',
+        string="Transaction Nature B"
+    )
+    country_origin_id = fields.Many2one(
+        comodel_name='res.country',
+        string="Origin Country")
+    triangulation = fields.Boolean(
+        string="Triangulation",
+        default=False,
+    )
 
     @api.model
     def get_section_number(self):
@@ -78,9 +93,16 @@ class IntrastatStatementSaleSection1(models.Model):
 
     @api.onchange('weight_kg')
     def change_weight_kg(self):
-        if self.statement_id.company_id.intrastat_additional_unit_from == \
-                'weight':
+        if self.statement_id.company_id.intrastat_additional_unit_from == 'weight':
             self.additional_units = self.weight_kg
+
+    @api.onchange('transaction_nature_id')
+    def _onchange_transaction_nature_id(self):
+        domain = [('nature_parent_id', '=', self.transaction_nature_id.id)]
+        recs = self.env['account.intrastat.transaction.nature.b'].search(domain)
+        return {
+            'domain': {'transaction_nature_b_id': [('id', 'in', recs.ids)]}
+        }
 
     @api.model
     def _prepare_statement_line(self, inv_intra_line, statement_id=None):
@@ -106,24 +128,34 @@ class IntrastatStatementSaleSection1(models.Model):
             or company_id.intrastat_sale_transport_code_id
 
         # Amounts
-        dp_model = self.env['decimal.precision']
         statistic_amount = statement_id.round_min_amount(
             statistic_amount,
             statement_id.company_id or company_id,
-            dp_model.precision_get('Account'))
+            0)
 
-        # check if additional_units has a value
-        has_additional_units = bool(inv_intra_line.additional_units)
+        # not setting default yet
+        nature_b_model = self.env['account.intrastat.transaction.nature.b']
+
+        if inv_intra_line.transaction_nature_b_id:
+            transaction_nature_b_id = inv_intra_line.transaction_nature_b_id
+        else:
+            transaction_nature_b_id = nature_b_model
+
+        triangulation = inv_intra_line.triangulation
+        country_good_origin_id = inv_intra_line.country_good_origin_id
+
         res.update({
             'transaction_nature_id': transaction_nature_id.id,
             'weight_kg': round(inv_intra_line.weight_kg) or 1,
-            'additional_units': round(inv_intra_line.additional_units) or (
-                0 if not has_additional_units else 1),
+            'additional_units': round(inv_intra_line.additional_units) or 1,
             'statistic_amount_euro': statistic_amount,
             'delivery_code_id': delivery_code_id.id,
             'transport_code_id': transport_code_id.id,
             'country_destination_id': inv_intra_line.country_destination_id.id,
             'province_origin_id': province_origin_id.id,
+            'transaction_nature_b_id': transaction_nature_b_id.id,
+            'triangulation': triangulation,
+            'country_origin_id': country_good_origin_id.id
         })
         return res
 
@@ -141,7 +173,11 @@ class IntrastatStatementSaleSection1(models.Model):
         # Ammontare delle operazioni in euro
         rcd += format_9(self.amount_euro, 13)
         # Codice della natura della transazione
-        rcd += format_x(self.transaction_nature_id.code, 1)
+        if self.triangulation:  # in caso triangolazione
+            rcd += format_x(self.transaction_nature_id.triangulation, 1)
+        else:
+            rcd += format_x(self.transaction_nature_id.code, 1)
+
         # Codice della nomenclatura combinata della merce
         rcd += format_9(self.intrastat_code_id.name, 8)
         if self.statement_id.period_type == 'M':
@@ -159,8 +195,16 @@ class IntrastatStatementSaleSection1(models.Model):
             rcd += format_9(transport_code, 1)
             #  Codice del paese di destinazione
             rcd += format_x(self.country_destination_id.code, 2)
-            #  Codice del paese di origine della merce
+            #  Codice della provincia di origine della merce
             rcd += format_x(self.province_origin_id.code, 2)
+            # new fields
+            if self.triangulation:
+                nb_code = ''
+            else:
+                nb_code = self.transaction_nature_b_id.code
+            rcd += format_x(nb_code, 1)
+
+            rcd += format_x(self.country_origin_id.code, 2)
 
         rcd += "\r\n"
         return rcd
@@ -211,11 +255,10 @@ class IntrastatStatementSaleSection2(models.Model):
             or company_id.intrastat_sale_statistic_amount
 
         # Amounts
-        dp_model = self.env['decimal.precision']
         statistic_amount = statement_id.round_min_amount(
             statistic_amount,
             statement_id.company_id or company_id,
-            dp_model.precision_get('Account'))
+            0)
 
         # Period Ref
         ref_period = statement_id._get_period_ref()
