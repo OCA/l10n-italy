@@ -7,6 +7,10 @@
                 type="text/javascript"
                 src="/l10n_it_pos_fiscalcode/static/src/js/models.js"
             />
+            <script
+                type="text/javascript"
+                src="/l10n_it_pos_fiscalcode/static/src/js/screens.js"
+            />
         </xpath>
 
     </template>
