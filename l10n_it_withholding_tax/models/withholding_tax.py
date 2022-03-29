@@ -437,7 +437,11 @@ class WithholdingTaxMove(models.Model):
             move_lines.append((0, 0, ml_vals))
 
         move_vals["line_ids"] = move_lines
-        move = self.env["account.move"].create(move_vals)
+        move = (
+            self.env["account.move"]
+            .with_context(default_move_type="entry")
+            .create(move_vals)
+        )
         move.action_post()
 
         # Save move in the wt move
