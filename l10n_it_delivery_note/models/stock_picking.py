@@ -344,10 +344,11 @@ class StockPicking(models.Model):
 
         return res
 
-    def _create_backorder(self):
+    def _create_backorder(self, backorder_moves=[]):
         """When we make a backorder of a picking the delivery note lines needed
         to be updated otherwise stock_delivery_note_line_move_uniq
         constraint is raised"""
-        backorders = super()._create_backorder()
+        backorders = super()._create_backorder(backorder_moves)
         for backorder in backorders:
             backorder.backorder_id.delivery_note_id.update_detail_lines()
+        return backorders
