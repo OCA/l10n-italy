@@ -1035,6 +1035,14 @@ class WizardImportFatturapa(models.TransientModel):
             FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data, "%Y-%m-%d"
         ).date()
 
+        delivery_partner_id = partner.address_get(["delivery"])["delivery"]
+        fiscal_position_id = (
+            self.env["account.fiscal.position"].get_fiscal_position(
+                partner_id, delivery_id=delivery_partner_id
+            )
+            or False
+        )
+
         invoice_data = {
             "e_invoice_received_date": e_invoice_received_date,
             "date": e_invoice_received_date
@@ -1047,7 +1055,7 @@ class WizardImportFatturapa(models.TransientModel):
             "currency_id": currency[0].id,
             "journal_id": purchase_journal.id,
             # 'origin': xmlData.datiOrdineAcquisto,
-            "fiscal_position_id": (partner.property_account_position_id.id or False),
+            "fiscal_position_id": fiscal_position_id,
             "invoice_payment_term_id": partner.property_supplier_payment_term_id.id,
             "company_id": company.id,
             "fatturapa_attachment_in_id": fatturapa_attachment.id,
