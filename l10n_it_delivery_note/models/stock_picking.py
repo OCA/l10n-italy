@@ -439,3 +439,4 @@ class StockPicking(models.Model):
         backorders = super()._create_backorder()
         for backorder in backorders:
             backorder.backorder_id.delivery_note_id.update_detail_lines()
+        return backorders
