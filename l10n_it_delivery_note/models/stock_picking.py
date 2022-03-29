@@ -344,10 +344,12 @@ class StockPicking(models.Model):
 
         return res
 
-    def _create_backorder(self):
-        """When we make a backorder of a picking the delivery note lines needed
-        to be updated otherwise stock_delivery_note_line_move_uniq
-        constraint is raised"""
-        backorders = super()._create_backorder()
+    def _create_backorder(self, backorder_moves=None):
+        """When we make a backorder of a picking in a return request, we
+           want to have it linked to the return request itself """
+        if backorder_moves is None:
+            backorder_moves = []
+        backorders = super()._create_backorder(backorder_moves)
         for backorder in backorders:
             backorder.backorder_id.delivery_note_id.update_detail_lines()
+        return backorders
