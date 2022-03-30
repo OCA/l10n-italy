@@ -621,6 +621,8 @@ class WizardExportFatturapa(models.TransientModel):
         return True
 
     def _get_prezzo_unitario(self, line):
+        res = line.price_unit
+
         if line.quantity < 0:
             res = -1 * line.price_unit
 
