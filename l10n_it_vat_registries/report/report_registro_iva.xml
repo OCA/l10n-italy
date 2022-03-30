@@ -93,34 +93,70 @@
                                                 <td class="left_without_line_bold">
                                                     <div style="page-break-inside: avoid" t-esc="move.name" />
                                                 </td>
-                                                <t t-if="registry_type != 'corrispettivi'">
+                                                <!-- Ragione sociale -->
+                                                <td class="left_without_line_bold">
+                                                    <div style="page-break-inside: avoid" t-esc="move.partner_id.name"/>
+                                                </td>
+                                                <!-- PIVA -->
+                                                <td class="left_without_line_bold">
+                                                    <div style="page-break-inside: avoid" t-esc="move.partner_id.vat" />
+                                                </td>
+                                                <t
+                                                    t-if="registry_type != 'corrispettivi'"
+                                                >
                                                     <!-- Causale -->
                                                     <td class="left_without_line_bold">
-                                                        <div style="page-break-inside: avoid" t-esc="line['invoice_type']"/>
+                                                        <div
+                                                            style="page-break-inside: avoid"
+                                                            t-esc="line['invoice_type']"
+                                                        />
                                                     </td>
                                                     <!-- Data fattura -->
                                                     <td class="left_without_line_bold">
-                                                        <div style="page-break-inside: avoid" t-esc="format_date(line['invoice_date'],date_format)"/>
+                                                        <div
+                                                            style="page-break-inside: avoid"
+                                                            t-esc="format_date(line['invoice_date'],date_format)"
+                                                        />
                                                     </td>
-                                                    <t t-if="move.journal_id.type == 'purchase'">
+                                                    <t
+                                                        t-if="move.journal_id.type == 'purchase'"
+                                                    >
                                                         <!-- Numero fattura (fornitore)-->
-                                                        <td class="left_without_line_bold">
-                                                            <div style="page-break-inside: avoid" t-esc="line['reference']" />
+                                                        <td
+                                                            class="left_without_line_bold"
+                                                        >
+                                                            <div
+                                                                style="page-break-inside: avoid"
+                                                                t-esc="move.ref"
+                                                            />
                                                         </td>
                                                     </t>
-                                                    <t t-if="move.journal_id.type == 'sale'" >
+                                                    <t
+                                                        t-if="move.journal_id.type == 'sale'"
+                                                    >
                                                         <!-- Numero fattura -->
-                                                        <td class="left_without_line_bold">
-                                                            <div style="page-break-inside: avoid" t-esc="move.name" />
+                                                        <td
+                                                            class="left_without_line_bold"
+                                                        >
+                                                            <div
+                                                                style="page-break-inside: avoid"
+                                                                t-esc="move.name"
+                                                            />
                                                         </td>
                                                     </t>
                                                     <!-- Ragione sociale -->
                                                     <td class="left_without_line_bold">
-                                                        <div style="page-break-inside: avoid" t-esc="move.partner_id.name"/>
+                                                        <div
+                                                            style="page-break-inside: avoid"
+                                                            t-esc="move.partner_id.name"
+                                                        />
                                                     </td>
                                                     <!-- PIVA -->
                                                     <td class="left_without_line_bold">
-                                                        <div style="page-break-inside: avoid" t-esc="move.partner_id.vat" />
+                                                        <div
+                                                            style="page-break-inside: avoid"
+                                                            t-esc="move.partner_id.vat"
+                                                        />
                                                     </td>
                                                 </t>
                                                 <td class="left_without_line" />
