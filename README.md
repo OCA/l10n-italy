@@ -28,7 +28,7 @@ addon | version | maintainers | summary
 [l10n_it_ateco](l10n_it_ateco/) | 14.0.1.0.0 |  | ITA - Codici Ateco
 [l10n_it_central_journal](l10n_it_central_journal/) | 14.0.1.0.0 |  | ITA - Libro giornale
 [l10n_it_declaration_of_intent](l10n_it_declaration_of_intent/) | 14.0.1.1.0 |  | Gestione dichiarazioni di intento
-[l10n_it_delivery_note](l10n_it_delivery_note/) | 14.0.1.0.12 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) [![Byloth](https://github.com/Byloth.png?size=30px)](https://github.com/Byloth) | Crea, gestisce e fattura i DDT partendo dalle consegne
+[l10n_it_delivery_note](l10n_it_delivery_note/) | 14.0.1.0.13 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) [![Byloth](https://github.com/Byloth.png?size=30px)](https://github.com/Byloth) | Crea, gestisce e fattura i DDT partendo dalle consegne
 [l10n_it_delivery_note_base](l10n_it_delivery_note_base/) | 14.0.1.0.0 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) [![Byloth](https://github.com/Byloth.png?size=30px)](https://github.com/Byloth) | Crea e gestisce tabelle principali per gestire i DDT
 [l10n_it_delivery_note_batch](l10n_it_delivery_note_batch/) | 14.0.1.0.0 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) [![TheMule71](https://github.com/TheMule71.png?size=30px)](https://github.com/TheMule71) | Crea i DDT partendo da gruppi di prelievi
 [l10n_it_delivery_note_customer_code](l10n_it_delivery_note_customer_code/) | 14.0.1.0.0 |  | Product Customer code for delivery note
