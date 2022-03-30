@@ -144,8 +144,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
                 self.assertEqual(e_line.cod_article_ids[0].code_val, "12345")
         self.assertEqual(
             invoice.inconsistencies,
-            u"Company Name field contains 'Societa' "
-            u"Alpha SRL'. Your System contains 'SOCIETA' ALPHA SRL'\n\n",
+            "Company Name field contains 'Societa' "
+            "Alpha SRL'. Your System contains 'SOCIETA' ALPHA SRL'\n\n",
         )
         # allow following test to reuse the same XML file
         invoice.ref = invoice.payment_reference = "14041"
@@ -344,13 +344,13 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice2 = self.invoice_model.browse(invoice2_id)
         self.assertEqual(
             invoice1.inconsistencies,
-            u"Company Name field contains 'Societa' "
-            u"Alpha SRL'. Your System contains 'SOCIETA' ALPHA SRL'\n\n",
+            "Company Name field contains 'Societa' "
+            "Alpha SRL'. Your System contains 'SOCIETA' ALPHA SRL'\n\n",
         )
         self.assertEqual(
             invoice2.inconsistencies,
-            u"Company Name field contains 'Societa' "
-            u"Alpha SRL'. Your System contains 'SOCIETA' ALPHA SRL'\n\n",
+            "Company Name field contains 'Societa' "
+            "Alpha SRL'. Your System contains 'SOCIETA' ALPHA SRL'\n\n",
         )
 
     def test_14_xml_import(self):
@@ -366,9 +366,9 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.amount_tax, 0.0)
         self.assertEqual(
             invoice.inconsistencies,
-            u"Company Name field contains 'Societa' "
+            "Company Name field contains 'Societa' "
             "Alpha SRL'. Your System contains 'SOCIETA' ALPHA SRL'\n\n"
-            u"XML contains tax with percentage '15.55'"
+            "XML contains tax with percentage '15.55'"
             " but it does not exist in your system\n"
             "XML contains tax with percentage '15.55'"
             " but it does not exist in your system",
