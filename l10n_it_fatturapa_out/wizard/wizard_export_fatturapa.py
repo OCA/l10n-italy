@@ -10,6 +10,7 @@ import logging
 import os
 import string
 import random
+import itertools
 
 from odoo import api, fields, models
 from odoo.tools.translate import _
@@ -91,15 +92,22 @@ class WizardExportFatturapa(models.TransientModel):
     _description = "Export E-invoice"
 
     @api.model
-    def _to_EUR(self, currency, amount,
-            company=None,
-            today=fields.Date.today()):
-        company = company or self.env.user.company_id
+    def _to_EUR(self, currency, amount, invoice, company=None, today=None):
         euro = self.env.ref('base.EUR')
-        if currency == euro:
 
+        if currency == euro:
             return amount
-        return currency.compute(amount, euro)
+        # Dispatch exchange date to convert foreign currency in EUR
+        if today:
+            exchange_date = today
+        elif invoice and invoice.rc_purchase_invoice_id.date_invoice:
+            exchange_date = invoice.rc_purchase_invoice_id.date_invoice
+        elif invoice and invoice.date_invoice:
+            exchange_date = invoice.date_invoice
+        else:
+            exchange_date = fields.Date.today()
+
+        return currency.with_context(date=exchange_date).compute(amount, euro)
 
     @api.model
     def _domain_ir_values(self):
@@ -129,11 +137,18 @@ class WizardExportFatturapa(models.TransientModel):
         }
         return attach_obj.create(attach_vals)
 
-    def setProgressivoInvio(self, fatturapa):
-
-        file_id = id_generator()
-        while self.env['fatturapa.attachment.out'].file_name_exists(file_id):
+    def setProgressivoInvioWip(self, fatturapa, attach=False):
+        # if the attachment is given than we will reuse its file_id
+        if attach:
+            # Xml file name uses the format VAT_XXXXX.xml and we are interested
+            # to get XXXXX
+            file_id = attach.name.split('_')[1].split('.')[0]
+        else:
             file_id = id_generator()
+            Attachment = self.env['fatturapa.attachment.out']
+            while Attachment.file_name_exists(file_id):
+                file_id = id_generator()
+
         try:
             fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
                 ProgressivoInvio = file_id
@@ -544,10 +559,10 @@ class WizardExportFatturapa(models.TransientModel):
 
         TipoDocumento = invoice.fiscal_document_type_id.code
         ImportoTotaleDocumento = self._to_EUR(
-            invoice.currency_id, invoice.amount_total)
+            invoice.currency_id, invoice.amount_total, invoice=invoice)
         if invoice.split_payment:
             ImportoTotaleDocumento += self._to_EUR(
-                invoice.currency_id, invoice.amount_sp)
+                invoice.currency_id, invoice.amount_sp, invoice=invoice)
         body.DatiGenerali.DatiGeneraliDocumento = DatiGeneraliDocumentoType(
             TipoDocumento=TipoDocumento,
             Divisa=self.env.ref('base.EUR').name,
@@ -666,7 +681,8 @@ class WizardExportFatturapa(models.TransientModel):
         AliquotaIVA = '%.2f' % float_round(aliquota, 2)
         line.ftpa_line_number = line_no
         prezzo_unitario = self._to_EUR(
-            line.currency_id, self._get_prezzo_unitario(line))
+            line.currency_id, self._get_prezzo_unitario(line),
+            invoice=line.invoice_id)
         DettaglioLinea = DettaglioLineeType(
             NumeroLinea=str(line_no),
             Descrizione=encode_for_export(line.name, 1000),
@@ -677,9 +693,15 @@ class WizardExportFatturapa(models.TransientModel):
             UnitaMisura=line.uom_id and (
                 unidecode(line.uom_id.name)) or None,
             PrezzoTotale='%.2f' % float_round(
-                self._to_EUR(line.currency_id, line.price_subtotal), 2),
+                self._to_EUR(line.currency_id, line.price_subtotal,
+                             invoice=line.invoice_id), 2),
             AliquotaIVA=AliquotaIVA)
         if line.currency_id != self.env.ref('base.EUR'):
+            line_total = DettaglioLinea.PrezzoTotale
+            line_qty = DettaglioLinea.Quantita
+            prezzo_unitario = line_total / line_qty
+            DettaglioLinea.PrezzoUnitario = '{prezzo:.{precision}f}'.format(
+                prezzo=prezzo_unitario, precision=price_precision)
             AltriDatiGestionali = AltriDatiGestionaliType(
                 TipoDato="Valuta",
                 RiferimentoTesto=line.currency_id.name,
@@ -687,7 +709,6 @@ class WizardExportFatturapa(models.TransientModel):
                 RiferimentoData=fields.Date.today()
             )
             DettaglioLinea.AltriDatiGestionali.append(AltriDatiGestionali)
-
         DettaglioLinea.ScontoMaggiorazione.extend(
             self.setScontoMaggiorazione(line))
         if aliquota == 0.0:
@@ -737,11 +758,12 @@ class WizardExportFatturapa(models.TransientModel):
             tax = tax_line.tax_id
             riepilogo = DatiRiepilogoType(
                 AliquotaIVA='%.2f' % float_round(tax.amount, 2),
-                ImponibileImporto='%.2f' % float_round(
-                    self._to_EUR(invoice.currency_id, tax_line.base), 2),
+                ImponibileImporto='%.2f' % float_round(self._to_EUR(
+                    invoice.currency_id, tax_line.base, invoice=invoice), 2),
                 Imposta='%.2f' % float_round(
-                    self._to_EUR(invoice.currency_id, tax_line.amount), 2)
-                )
+                    self._to_EUR(invoice.currency_id, tax_line.amount,
+                                 invoice=invoice), 2)
+            )
             if tax.amount == 0.0:
                 if not tax.kind_id:
                     raise UserError(
@@ -782,16 +804,16 @@ class WizardExportFatturapa(models.TransientModel):
             move_line_pool = self.env['account.move.line']
             for move_line_id in payment_line_ids:
                 move_line = move_line_pool.browse(move_line_id)
-                ImportoPagamento = '%.2f' % float_round(
-                    self._to_EUR(
-                        invoice.currency_id,
-                        move_line.amount_currency or move_line.debit), 2)
                 # Create with only mandatory fields
                 DettaglioPagamento = DettaglioPagamentoType(
                     ModalitaPagamento=(
                         invoice.payment_term_id.fatturapa_pm_id.code),
-                    ImportoPagamento=ImportoPagamento
-                    )
+                    ImportoPagamento='%.2f' % float_round(
+                        self._to_EUR(
+                            invoice.currency_id,
+                            move_line.amount_currency or move_line.debit,
+                            invoice=invoice), 2)
+                )
 
                 # Add only the existing optional fields
                 if move_line.date_maturity:
@@ -862,60 +884,89 @@ class WizardExportFatturapa(models.TransientModel):
         return partner
 
     def group_invoices_by_partner(self):
+        def split_list(my_list, size):
+            it = iter(my_list)
+            item = list(itertools.islice(it, size))
+            while item:
+                yield item
+                item = list(itertools.islice(it, size))
+
         invoice_ids = self.env.context.get('active_ids', False)
         res = {}
         for invoice in self.env['account.invoice'].browse(invoice_ids):
-            if invoice.partner_id.id not in res:
-                res[invoice.partner_id.id] = []
-            res[invoice.partner_id.id].append(invoice.id)
+            if invoice.partner_id not in res:
+                res[invoice.partner_id] = []
+            res[invoice.partner_id].append(invoice.id)
+
+        for partner_id in res.keys():
+            if partner_id.max_invoice_in_xml:
+                res[partner_id] = list(
+                    split_list(res[partner_id], partner_id.max_invoice_in_xml))
+            else:
+                res[partner_id] = [res[partner_id]]
+
+        # The returned dictionary contains a plain res.partner object as key
+        # because that avoid to call the .browse() during the xml generation
+        # this will speedup the algorithm. As value we have a list of list
+        # such as [[inv1, inv2, inv3], [inv4, inv5], ...] where every subgroup
+        # represents as per customer splitting invoice block defined by
+        # max_invoice_in_xml field
         return res
+
+    def exportInvoiceXML(
+            self, company, partner, invoice_ids, attach=False, context=None):
+        if context is None:
+            context = {}
+        invoice_obj = self.env['account.invoice']
+        if partner.is_pa:
+            fatturapa = FatturaElettronica(versione='FPA12')
+        else:
+            fatturapa = FatturaElettronica(versione='FPR12')
+
+        try:
+            self.with_context(context). \
+                setFatturaElettronicaHeader(company, partner, fatturapa)
+            for invoice_id in invoice_ids:
+                inv = invoice_obj.with_context(context).browse(invoice_id)
+                if not attach and inv.fatturapa_attachment_out_id:
+                    raise UserError(
+                        _("E-invoice export file still present for invoice %s.")
+                        % (inv.number))
+                if self.report_print_menu:
+                    self.generate_attach_report(inv)
+                invoice_body = FatturaElettronicaBodyType()
+                inv.preventive_checks()
+                self.with_context(
+                    context
+                ).setFatturaElettronicaBody(
+                    inv, invoice_body)
+                fatturapa.FatturaElettronicaBody.append(invoice_body)
+                # TODO DatiVeicoli
+
+            number = self.setProgressivoInvioWip(fatturapa, attach=attach)
+        except (SimpleFacetValueError, SimpleTypeValueError) as e:
+            raise UserError(str(e))
+        return fatturapa, number
 
     def exportFatturaPA(self):
         invoice_obj = self.env['account.invoice']
-        invoices_by_partner = self.group_invoices_by_partner()
         attachments = self.env['fatturapa.attachment.out']
-        for partner_id in invoices_by_partner:
-            invoice_ids = invoices_by_partner[partner_id]
-            partner = self.getPartnerId(invoice_ids)
-            if partner.is_pa:
-                fatturapa = FatturaElettronica(versione='FPA12')
-            else:
-                fatturapa = FatturaElettronica(versione='FPR12')
+        invoices_by_partner = self.group_invoices_by_partner()
+        company = self.env.user.company_id
 
-            company = self.env.user.company_id
+        for partner in invoices_by_partner:
             context_partner = self.env.context.copy()
             context_partner.update({'lang': partner.lang})
-            try:
-                self.with_context(context_partner).setFatturaElettronicaHeader(
-                    company, partner, fatturapa)
+            for invoice_ids in invoices_by_partner[partner]:
+                fatturapa, number = self.exportInvoiceXML(
+                    company, partner, invoice_ids, context=context_partner)
+
+                attach = self.saveAttachment(fatturapa, number)
+                attachments |= attach
+
                 for invoice_id in invoice_ids:
-                    inv = invoice_obj.with_context(context_partner).browse(
-                        invoice_id)
-                    if inv.fatturapa_attachment_out_id:
-                        raise UserError(
-                            _("Invoice %s has e-invoice export file yet.") % (
-                                inv.number))
-                    if self.report_print_menu:
-                        self.generate_attach_report(inv)
-                    invoice_body = FatturaElettronicaBodyType()
-                    inv.preventive_checks()
-                    self.with_context(
-                        context_partner
-                    ).setFatturaElettronicaBody(
-                        inv, invoice_body)
-                    fatturapa.FatturaElettronicaBody.append(invoice_body)
-                    # TODO DatiVeicoli
-
-                number = self.setProgressivoInvio(fatturapa)
-            except (SimpleFacetValueError, SimpleTypeValueError) as e:
-                raise UserError(str(e))
-
-            attach = self.saveAttachment(fatturapa, number)
-            attachments |= attach
-
-            for invoice_id in invoice_ids:
-                inv = invoice_obj.browse(invoice_id)
-                inv.write({'fatturapa_attachment_out_id': attach.id})
+                    inv = invoice_obj.browse(invoice_id)
+                    inv.write({'fatturapa_attachment_out_id': attach.id})
 
         action = {
             'view_type': 'form',
