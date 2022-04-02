@@ -17,7 +17,9 @@
                     </group>
                 </page>
             </notebook>
-            <field name="company_registry" position="replace" />
+            <field name="company_registry" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
         </field>
     </record>
 </odoo>
