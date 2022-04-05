@@ -482,8 +482,9 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def action_invoice_draft(self):
-        super(AccountInvoice, self).action_invoice_draft()
-        invoice_model = self.env['account.invoice']
+        new_self = self.with_context(rc_set_to_draft=True)
+        super(AccountInvoice, new_self).action_invoice_draft()
+        invoice_model = new_self.env['account.invoice']
         for inv in self:
             if inv.rc_self_invoice_id:
                 self_invoice = invoice_model.browse(
