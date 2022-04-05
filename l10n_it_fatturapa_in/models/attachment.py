@@ -74,7 +74,7 @@ class FatturaPAAttachmentIn(models.Model):
             if not bills_with_error:
                 continue
             att.e_invoice_validation_error = True
-            errors_message_template = u"{bill}:\n{errors}"
+            errors_message_template = "{bill}:\n{errors}"
             error_messages = list()
             for bill in bills_with_error:
                 error_messages.append(
