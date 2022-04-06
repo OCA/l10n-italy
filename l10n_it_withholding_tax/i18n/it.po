@@ -347,7 +347,7 @@ msgid "MISC"
 msgstr "VARIE"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:425
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:431
 #, python-format
 msgid "Move %s is reconciled (%s). You must unreconcile it first"
 msgstr ""
@@ -553,13 +553,13 @@ msgid "W.T. Reg. on"
 msgstr "RdA registrata il"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:329
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:331
 #, python-format
 msgid "WT %s - %s"
 msgstr "RdA %s - %s"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:339
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:341
 #, python-format
 msgid "WT %s - %s - %s"
 msgstr "RdA %s - %s - %s"
@@ -601,7 +601,7 @@ msgstr "Riconciliazione RdA"
 
 #. module: l10n_it_withholding_tax
 #: code:addons/l10n_it_withholding_tax/models/account.py:166
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:441
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:447
 #, python-format
 msgid ""
 "Warning! Only Withholding Tax moves in Due status                     can be "
@@ -611,7 +611,7 @@ msgstr ""
 "pagare»"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:325
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:327
 #, python-format
 msgid "Warning! Wt account move already exists: %s"
 msgstr "Attenzione, movimento contabile RdA già esistente: %s"
