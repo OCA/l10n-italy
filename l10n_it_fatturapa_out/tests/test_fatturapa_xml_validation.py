@@ -732,6 +732,12 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         invoice = invoice_form.save()
         invoice.action_post()
 
+        # commit 86febae278f08864e83017d43f6aa9d67165d664 fixed this as
+        # a side effect: now the price is actually 14.00 USD not 16.38
+        # for env.ref("product.product_product_10")
+        # self.assertEqual(invoice.invoice_line_ids[0].price_unit, 16.38)
+        self.assertEqual(invoice.invoice_line_ids[0].price_unit, 14.00)
+
         invoice.company_id.xml_divisa_value = "force_eur"
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res["res_id"])

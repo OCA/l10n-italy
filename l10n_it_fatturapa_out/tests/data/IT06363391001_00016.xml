@@ -64,7 +64,7 @@
         <Divisa>USD</Divisa>
         <Data>2021-12-16</Data>
         <Numero>INV/2021/12/0001</Numero>
-        <ImportoTotaleDocumento>16.38</ImportoTotaleDocumento>
+        <ImportoTotaleDocumento>14.00</ImportoTotaleDocumento>
         <Art73>SI</Art73>
       </DatiGeneraliDocumento>
     </DatiGenerali>
@@ -74,21 +74,21 @@
         <Descrizione>Cabinet with Doors</Descrizione>
         <Quantita>1.000</Quantita>
         <UnitaMisura>Unit(s)</UnitaMisura>
-        <PrezzoUnitario>14.00000</PrezzoUnitario>
-        <PrezzoTotale>14.00</PrezzoTotale>
+        <PrezzoUnitario>11.96581</PrezzoUnitario>
+        <PrezzoTotale>11.97</PrezzoTotale>
         <AliquotaIVA>0.00</AliquotaIVA>
         <Natura>N3.2</Natura>
         <AltriDatiGestionali>
           <TipoDato>Valuta</TipoDato>
           <RiferimentoTesto>USD</RiferimentoTesto>
-          <RiferimentoNumero>16.38000</RiferimentoNumero>
+          <RiferimentoNumero>14.00000</RiferimentoNumero>
           <RiferimentoData>2021-12-16</RiferimentoData>
         </AltriDatiGestionali>
       </DettaglioLinee>
       <DatiRiepilogo>
         <AliquotaIVA>0.00</AliquotaIVA>
         <Natura>N3.2</Natura>
-        <ImponibileImporto>14.00</ImponibileImporto>
+        <ImponibileImporto>11.97</ImponibileImporto>
         <Imposta>0.00</Imposta>
         <RiferimentoNormativo>Not subject to VAT law</RiferimentoNormativo>
       </DatiRiepilogo>
@@ -98,7 +98,7 @@
       <DettaglioPagamento>
         <ModalitaPagamento>MP05</ModalitaPagamento>
         <DataScadenzaPagamento>2022-01-31</DataScadenzaPagamento>
-        <ImportoPagamento>16.38</ImportoPagamento>
+        <ImportoPagamento>14.00</ImportoPagamento>
       </DettaglioPagamento>
     </DatiPagamento>
   </FatturaElettronicaBody>
