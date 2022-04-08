@@ -12,6 +12,7 @@
                     <group>
                         <field name="daterange"/>
                         <field name="company_id"/>
+                        <field name="group_by_account"/>
                         <field name="last_def_date_print" readonly="1"/>
                         <field name="date_move_line_from" invisible="1"/>
                         <field name="date_move_line_from_view" readonly="1"/>
@@ -34,6 +35,11 @@
                         <field name="start_row"/>
                         <field name="progressive_credit" invisible="1"/>
                         <field name="progressive_debit2" invisible="1"/>
+                    </group>
+                    <separator string="PDF"/>
+                    <group>
+                        <field name="report_giornale" filename="report_giornale_name" readonly="1" />
+                        <field name="report_giornale_name" invisible="1" />
                     </group>
                     <footer>
                         <button name="print_giornale" string="Print"

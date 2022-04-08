@@ -13,14 +13,11 @@
     'license': 'AGPL-3',
     "depends": [
         'account',
-        'l10n_it_account',
         'date_range'
     ],
     "data": [
         'security/ir.model.access.csv',
-        'report/reports.xml',
         'wizard/print_giornale.xml',
-        'views/report_account_central_journal.xml',
         'views/date_range_view.xml'
     ],
     "installable": True,
