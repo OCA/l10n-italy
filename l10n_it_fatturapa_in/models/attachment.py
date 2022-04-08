@@ -55,6 +55,8 @@ class FatturaPAAttachmentIn(models.Model):
         "Contains self invoices", compute="_compute_xml_data", store=True
     )
 
+    inconsistencies = fields.Text(compute="_compute_xml_data", store=True)
+
     _sql_constraints = [
         (
             "ftpa_attachment_in_name_uniq",
@@ -123,6 +125,8 @@ class FatturaPAAttachmentIn(models.Model):
                 if dgd.TipoDocumento in SELF_INVOICE_TYPES:
                     att.is_self_invoice = True
             att.invoices_date = " ".join(invoices_date)
+            inconsistencies = wiz_obj.env.context.get("inconsistencies", False)
+            att.inconsistencies = inconsistencies
 
     @api.depends("in_invoice_ids")
     def _compute_registered(self):
