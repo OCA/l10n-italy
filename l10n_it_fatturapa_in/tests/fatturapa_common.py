@@ -144,7 +144,8 @@ class FatturapaCommon(SingleTransactionCase):
         attach_form = Form(self.attach_model)
         attach_form.name = name
         attach_form.datas = self.getFile(file_name, module_name=module_name)[1]
-        attach_id = attach_form.save().id
+        attach = attach_form.save()
+        attach_id = attach.id
         if mode == "import":
             wizard_form = Form(
                 self.wizard_model.with_context(
@@ -163,6 +164,9 @@ class FatturapaCommon(SingleTransactionCase):
             if wiz_values:
                 wiz_values.wizard_id = wizard
             return wizard.link()
+        if not mode:
+            # return created fatturapa.attachment.in record in case no mode provided
+            return attach
 
     def run_wizard_multi(self, file_name_list, module_name=None):
         if module_name is None:

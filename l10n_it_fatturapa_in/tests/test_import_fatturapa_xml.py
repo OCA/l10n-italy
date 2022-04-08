@@ -996,6 +996,17 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoices = self.invoice_model.create([{}, {}])
         self.assertEqual(invoices.mapped("e_invoice_validation_error"), [False, False])
 
+    def test_duplicated_vat_on_partners(self):
+        supplier = self.env["res.partner"].search(
+            [("vat", "=", "IT05979361218")], limit=1
+        )
+
+        duplicated_supplier = supplier.copy()
+        self.assertEqual(supplier.vat, duplicated_supplier.vat)
+        attach = self.run_wizard("duplicated_vat", "IT05979361218_012.xml", mode=False)
+        self.assertFalse(attach.xml_supplier_id)
+        self.assertTrue(attach.inconsistencies)
+
 
 class TestFatturaPAEnasarco(FatturapaCommon):
     def setUp(self):
