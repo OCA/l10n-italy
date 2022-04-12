@@ -141,9 +141,9 @@ class AccountInvoice(models.Model):
         # convert the amount to main company currency, as
         # compute_rc_amount_tax is used for debit/credit fields
         invoice_currency = self.currency_id.with_context(
-            date=self.date_invoice)
+            date=self.date)
         main_currency = self.company_currency_id.with_context(
-            date=self.date_invoice)
+            date=self.date)
         if invoice_currency != main_currency:
             round_curr = main_currency.round
             rc_amount_tax = invoice_currency.compute(
