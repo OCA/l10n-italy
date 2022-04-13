@@ -1006,6 +1006,34 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         attach = self.run_wizard("duplicated_vat", "IT05979361218_012.xml", mode=False)
         self.assertFalse(attach.xml_supplier_id)
         self.assertTrue(attach.inconsistencies)
+        duplicated_supplier.unlink()
+
+    def test_payment_terms_on_partners(self):
+        supplier = self.env["res.partner"].search(
+            [("vat", "=", "IT05979361218")], limit=1
+        )
+        payment_term = self.env["account.payment.term"].create(
+            {
+                "name": "Test",
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "value": "balance",
+                            "days": 16,
+                            "option": "after_invoice_month",
+                        },
+                    )
+                ],
+            }
+        )
+        supplier.property_supplier_payment_term_id = payment_term
+        res = self.run_wizard("payment_terms_on_partners", "IT05979361218_012.xml")
+        invoice_id = res.get("domain")[0][2]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.invoice_date_due, date(2019, 6, 16))
+        supplier.property_supplier_payment_term_id = False
 
 
 class TestFatturaPAEnasarco(FatturapaCommon):

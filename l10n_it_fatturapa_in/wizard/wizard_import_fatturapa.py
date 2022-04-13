@@ -1156,6 +1156,7 @@ class WizardImportFatturapa(models.TransientModel):
         )._move_autocomplete_invoice_lines_values()
 
         self.set_vendor_bill_data(FatturaBody, invoice)
+        invoice._recompute_payment_terms_lines()
 
         # this can happen with refunds with negative amounts
         invoice.process_negative_lines()
