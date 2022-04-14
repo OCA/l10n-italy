@@ -15,4 +15,3 @@
 - connect your fiscal printer to local network and find IP
 - open POS configuration and fill Printer IP Address field
 - that's all, at validation of payment on POS session, system prints fiscal receipt.
-
