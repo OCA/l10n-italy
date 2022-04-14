@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates id="lottery_template" xml:space="preserve">
 
-    <t t-name="SetLotteryCodeButton">
+    <!-- Moved inside SetLotteryCodeButton.xml -->
+    <!-- <t t-name="SetLotteryCodeButton">
         <div id="lottery_code_button" class='control-button'>
-            <i class='fa fa-pencil-square-o' />
+            <i class='fa fa-pencil-square-o'/>
             Lottery Code
         </div>
-    </t>
+    </t> -->
 
     <t t-name="LotteryCodePopupWidget">
         <div class="modal-dialog">
