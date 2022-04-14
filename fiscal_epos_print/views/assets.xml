@@ -3,10 +3,6 @@
 
     <template id="assets" inherit_id="point_of_sale.assets">
         <xpath expr="." position="inside">
-            <script
-                type="text/javascript"
-                src="/fiscal_epos_print/static/lib/fiscalprint/fiscalprint.js"
-            />
             <link
                 rel="stylesheet"
                 type="text/css"
@@ -17,10 +13,16 @@
                 type="text/css"
                 href="/fiscal_epos_print/static/src/css/pos.css"
             />
+
+            <script
+                type="text/javascript"
+                src="/fiscal_epos_print/static/lib/fiscalprint/fiscalprint.js"
+            />
             <script
                 type="text/javascript"
                 src="/fiscal_epos_print/static/lib/pikaday/pikaday.min.js"
             />
+
             <script
                 type="text/javascript"
                 src="/fiscal_epos_print/static/src/js/epson_epos_print.js"
@@ -29,22 +31,43 @@
                 type="text/javascript"
                 src="/fiscal_epos_print/static/src/js/models.js"
             />
+            <!-- TODO is this necessary? -->
+<!--             <script type="text/javascript" src="/fiscal_epos_print/static/src/js/popups.js"/>-->
+            <!-- TODO is this necessary? -->
+            <!-- <script type="text/javascript" src="/fiscal_epos_print/static/src/js/pos_order_mgmt.js"/> -->
+
+            <!-- ChromeWidgets -->
             <script
                 type="text/javascript"
-                src="/fiscal_epos_print/static/src/js/screens.js"
+                src="/fiscal_epos_print/static/src/js/ChromeWidgets/EpsonEPOSButton.js"
             />
             <script
                 type="text/javascript"
-                src="/fiscal_epos_print/static/src/js/popups.js"
+                src="/fiscal_epos_print/static/src/js/ChromeWidgets/EpsonFP81IIComponent.js"
+            />
+            <!-- TODO Unstable components that must be checked -->
+            <!-- NOTE: New components SetLottery and SetRefund-->
+            <!-- <script type="text/javascript" src="/fiscal_epos_print/static/src/js/ChromeWidgets/SetLotteryCodeButton.js"/> -->
+            <script
+                type="text/javascript"
+                src="/fiscal_epos_print/static/src/js/ChromeWidgets/SetRefundInfoButton.js"
+            />
+
+            <!-- Popups -->
+            <script
+                type="text/javascript"
+                src="/fiscal_epos_print/static/src/js/Popups/RefundInfoPopup.js"
+            />
+            <!-- Screens -->
+            <script
+                type="text/javascript"
+                src="/fiscal_epos_print/static/src/js/Screens/PaymentScreen/PaymentScreen.js"
             />
             <script
                 type="text/javascript"
-                src="/fiscal_epos_print/static/src/js/pos_order_mgmt.js"
+                src="/fiscal_epos_print/static/src/js/Screens/ReceiptScreen/ReceiptScreen.js"
             />
-            <script
-                type="text/javascript"
-                src="/fiscal_epos_print/static/src/js/chrome.js"
-            />
+
         </xpath>
 
     </template>

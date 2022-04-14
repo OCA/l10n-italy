@@ -3,10 +3,12 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
 
     var core = require("web.core");
     var utils = require("web.utils");
-    var PosDB = require("point_of_sale.DB");
-    var rpc = require("web.rpc");
+    // Var PosDB = require('point_of_sale.DB');
+    // var rpc = require('web.rpc');
     var _t = core._t;
     var round_pr = utils.round_precision;
+
+    const {Gui} = require("point_of_sale.Gui");
 
     function addPadding(str, padding = 4) {
         var pad = new Array(padding).fill(0).join("") + str;
@@ -127,7 +129,8 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             this.sender = sender;
             this.order = options.order || null;
             this.fiscalPrinter.onreceive = function (res, tag_list_names, add_info) {
-                sender.chrome.loading_hide();
+                // TODO not exist
+                // sender.chrome.loading_hide();
                 var tagStatus = tag_list_names
                     ? tag_list_names.filter(getStatusField)
                     : [];
@@ -147,14 +150,18 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                             JSON.stringify(tag_list_names) +
                             "\n" +
                             JSON.stringify(add_info);
-                        sender.pos.push_order(order);
+                        // TODO is push_orders or push_single_order
+                        // sender.env.pos.push_orders(order);
+                        // sender.env.pos.push_single_order(order);
                     }
                     if (tagStatus.length > 0) {
                         var info = add_info[tagStatus[0]];
                         var msgPrinter = decodeFpStatus(info);
                     }
-                    sender.chrome.screens.receipt.lock_screen(true);
-                    sender.pos.gui.show_popup("error", {
+                    // TODO
+                    // sender.chrome.screens['receipt'].lock_screen(true);
+                    // TODO is this correct?
+                    Gui.showPopup("ErrorPopup", {
                         title: _t("Connection to the printer failed"),
                         body:
                             _t(
@@ -194,7 +201,8 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                         "; " +
                         _t("Rejected files: ") +
                         rejected;
-                    sender.pos.gui.show_popup("alert", {
+                    // TODO is this correct?
+                    Gui.showPopup("ErrorPopup", {
                         title: _t("IRA files"),
                         body: msg,
                     });
@@ -208,7 +216,8 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                     add_info.fiscalReceiptDate &&
                     add_info.zRepNumber
                 ) {
-                    sender.chrome.screens.receipt.lock_screen(false);
+                    // TODO
+                    // sender.chrome.screens['receipt'].lock_screen(false);
                     var order = self.order;
                     order._printed = true;
                     if (!order.fiscal_receipt_number) {
@@ -229,24 +238,30 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                         );
                         order.fiscal_z_rep_number = add_info.zRepNumber;
                         order.fiscal_printer_serial =
-                            sender.pos.config.fiscal_printer_serial;
-                        sender.pos.db.add_order(order.export_as_JSON());
+                            sender.env.pos.config.fiscal_printer_serial;
+                        sender.env.pos.db.add_order(order.export_as_JSON());
                         // Try to save the order
-                        sender.pos.push_order();
+                        // TODO is push_orders or push_single_order
+                        // sender.env.pos.push_orders();
+                        // sender.env.pos.push_single_order();
                     }
-                    if (sender.pos.config.fiscal_cashdrawer) {
+                    if (sender.env.pos.config.fiscal_cashdrawer) {
                         self.printOpenCashDrawer();
+                        self.resetPrinter();
                     }
-                    if (!sender.pos.config.show_receipt_when_printing) {
-                        sender.chrome.screens.receipt.click_next();
+                    if (!sender.env.pos.config.show_receipt_when_printing) {
+                        // TODO
+                        // sender.chrome.screens['receipt'].click_next();
                     }
                     return;
                 }
             };
             this.fiscalPrinter.onerror = function () {
-                sender.chrome.loading_hide();
-                sender.chrome.screens.receipt.lock_screen(true);
-                sender.pos.gui.show_popup("error", {
+                // TODO not exist
+                // sender.chrome.loading_hide();
+                // sender.chrome.screens['receipt'].lock_screen(true);
+                // TODO is this correct?
+                Gui.showPopup("ErrorPopup", {
                     title: _t("Network error"),
                     body: _t("Printer can not be reached"),
                 });
@@ -468,6 +483,24 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
         },
 
         /*
+        Print the order.id into fiscal receipt for the refund
+        */
+        printOrderId: function (receipt) {
+            var message = receipt.name;
+            // <printRecMessage operator="1" message="Second Additional Row Type 3" messageType="3" index="2" font="1" />
+            var tag =
+                "<printRecMessage" +
+                ' messageType="3" message="' +
+                this.encodeXml(message) +
+                '" font="1" index="4"' +
+                ' operator="' +
+                (receipt.operator || "1") +
+                '"' +
+                " />\n";
+            return tag;
+        },
+
+        /*
           Prints a receipt
         */
         printFiscalReceipt: function (receipt) {
@@ -475,12 +508,13 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             var has_refund = _.every(receipt.orderlines, function (line) {
                 return line.quantity < 0;
             });
-            var xml = "<printerFiscalReceipt>";
+            var xml = "<printerFiscalReceipt><beginFiscalReceipt/>";
             // Header must be printed before beginning a fiscal receipt
             xml += this.printFiscalReceiptHeader(receipt);
-            if (!has_refund) {
-                xml += "<beginFiscalReceipt/>";
-            }
+            // TODO now it's seems to be mandatory for refund too
+            // if (!has_refund) {
+            //     xml += '<beginFiscalReceipt/>';
+            // }
             if (has_refund) {
                 xml += this.printFiscalRefundDetails({
                     refund_date: receipt.refund_date,
@@ -504,13 +538,21 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                                 description: _t("Discount") + " " + l.discount + "%",
                                 amount: round_pr(
                                     l.quantity * l.full_price - l.price_display,
-                                    self.sender.pos.currency.rounding
+                                    self.sender.env.pos.currency.rounding
                                 ),
                             });
                         }
                     } else {
                         xml += self.printRecRefund({
                             description: _t("Refund >>> ") + l.product_name,
+                            quantity: l.quantity * -1.0,
+                            unitPrice: l.price,
+                            department: l.tax_department.code,
+                        });
+
+                        // TODO This line of code is added by us, check if it's right
+                        xml += self.printRecItem({
+                            description: _t("Refund cash"),
                             quantity: l.quantity * -1.0,
                             unitPrice: l.price,
                             department: l.tax_department.code,
@@ -537,33 +579,59 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                     receipt.lottery_code.padEnd(16, " ") +
                     '0000" />';
             }
-            if (has_refund) {
-                xml += self.printRecTotalRefund({});
-            } else {
-                _.each(receipt.paymentlines, function (l, i, list) {
-                    xml += self.printRecTotal({
-                        payment: l.amount,
-                        paymentType: l.type,
-                        paymentIndex: l.type_index,
-                        description: l.journal,
-                    });
+            // TODO is always the same Total for refund and payments?
+            _.each(receipt.paymentlines, function (l, i, list) {
+                // Amount always positive because it's used for refund too
+                xml += self.printRecTotal({
+                    payment: Math.abs(l.amount),
+                    paymentType: l.type,
+                    paymentIndex: l.type_index,
+                    description: l.journal,
                 });
-            }
+            });
+            // If (has_refund) {
+            //     xml += self.printRecTotalRefund({});
+            // }
+            // else {
+            //     _.each(receipt.paymentlines, function(l, i, list) {
+            //         xml += self.printRecTotal({
+            //             payment: l.amount,
+            //             paymentType: l.type,
+            //             paymentIndex: l.type_index,
+            //             description: l.journal,
+            //         });
+            //     });
+            // }
+            xml += this.printOrderId(receipt);
             xml += "<endFiscalReceipt /></printerFiscalReceipt>";
             this.fiscalPrinter.send(this.url, xml);
             console.log(xml);
         },
 
+        /*
+        DON'T USE, this fiscal closure is forbid by Epson by default
+        */
         printFiscalReport: function () {
             var xml = "<printerFiscalReport>";
-            xml += '<printZReport operator="" />';
+            xml += '<printZReport operator="1" timeout="" />';
             xml += "</printerFiscalReport>";
-            this.fiscalPrinter.send(this.url, xml);
+            var res = this.fiscalPrinter.send(this.url, xml);
+        },
+
+        /*
+        It prints report and fiscal closure both
+        */
+        printFiscalXZReport: function () {
+            var xml = "<printerFiscalReport>";
+            xml += '<displayText operator="1" data="Stampa chiusura giornaliera" />';
+            xml += '<printXZReport operator="1" timeout="" />';
+            xml += "</printerFiscalReport>";
+            var res = this.fiscalPrinter.send(this.url, xml);
         },
 
         printFiscalXReport: function () {
             var xml = "<printerFiscalReport>";
-            xml += '<printXReport operator="" />';
+            xml += '<printXReport operator="1" />';
             xml += "</printerFiscalReport>";
             this.fiscalPrinter.send(this.url, xml);
         },
@@ -575,8 +643,13 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             this.fiscalPrinter.send(this.url, xml);
         },
 
+        /*
+        It need to be logged in to print the duplicate, the pw in data is 0212345 plus 93 spaces, total 100 chars
+        */
         printFiscalReprintLast: function () {
             var xml = "<printerCommand>";
+            xml +=
+                '<directIO command="4038" data="0212345                                                                                             " comment="Login password 0212345 followed by 93 spaces for a length of 100" />';
             xml += '<printDuplicateReceipt operator="1" />';
             xml += "</printerCommand>";
             this.fiscalPrinter.send(this.url, xml);
@@ -585,6 +658,14 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
         printOpenCashDrawer: function () {
             var xml = "<printerCommand>";
             xml += '<openDrawer operator="1"/>';
+            xml += "</printerCommand>";
+            this.fiscalPrinter.send(this.url, xml);
+        },
+
+        resetPrinter: function () {
+            var xml = "<printerCommand>";
+            xml += '<displayText operator="" data="Welcome" />';
+            xml += '<resetPrinter operator="1" />';
             xml += "</printerCommand>";
             this.fiscalPrinter.send(this.url, xml);
         },

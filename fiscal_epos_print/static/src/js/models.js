@@ -8,7 +8,9 @@ odoo.define("fiscal_epos_print.models", function (require) {
     var round_pr = utils.round_precision;
     var OrderSuper = models.Order;
 
-    models.load_fields("account.journal", [
+    const {Gui} = require("point_of_sale.Gui");
+
+    models.load_fields("pos.payment.method", [
         "fiscalprinter_payment_type",
         "fiscalprinter_payment_index",
     ]);
@@ -114,6 +116,12 @@ odoo.define("fiscal_epos_print.models", function (require) {
         export_for_printing: function () {
             var res = _orderline_super.export_for_printing.call(this, arguments);
             res.tax_department = this.get_tax_details_r();
+            if (!res.tax_department) {
+                Gui.showPopup("ErrorPopup", {
+                    title: _t("Network error"),
+                    body: _t("Manca iva su prodotto"),
+                });
+            }
             if (res.tax_department.included_in_price == true) {
                 res.full_price = this.price;
             } else {
@@ -122,8 +130,8 @@ odoo.define("fiscal_epos_print.models", function (require) {
             return res;
         },
         get_tax_details_r: function () {
-            var details = this.get_all_prices();
-            for (var i in details.taxDetails) {
+            var detail = this.get_all_prices().taxDetails;
+            for (var i in detail) {
                 return {
                     code: this.pos.taxes_by_id[i].fpdeptax,
                     taxname: this.pos.taxes_by_id[i].name,
@@ -131,7 +139,8 @@ odoo.define("fiscal_epos_print.models", function (require) {
                     tax_amount: this.pos.taxes_by_id[i].amount,
                 };
             }
-            this.pos.gui.show_popup("error", {
+            // TODO is this correct?
+            Gui.showPopup("ErrorPopup", {
                 title: _t("Error"),
                 body: _t("No taxes found"),
             });
@@ -143,6 +152,8 @@ odoo.define("fiscal_epos_print.models", function (require) {
             }
             return _orderline_super.set_quantity.call(this, quantity, keep_price);
         },
+
+        // TODO CONTROLLARE SE SERVE
         compute_all: function (
             taxes,
             price_unit,
@@ -165,30 +176,31 @@ odoo.define("fiscal_epos_print.models", function (require) {
             var base = total_excluded;
             var list_taxes = res.taxes;
             // Amount_type 'group' not handled (used only for purchases, in Italy)
-            _(taxes).each(function (tax) {
+            // _(taxes).each(function(tax) {
+            _(taxes).each(function (tax, index) {
                 if (!no_map_tax) {
                     tax = self._map_tax_fiscal_position(tax);
                 }
                 if (!tax) {
                     return;
                 }
-                var tax_amount = self._compute_all(tax, base, quantity);
+                var tax_amount = self._compute_all(tax[0], base, quantity);
                 tax_amount = round_pr(tax_amount, currency_rounding);
                 if (!tax_amount) {
                     // Intervene here: also add taxes with 0 amount
-                    if (tax.price_include) {
+                    if (tax[0].price_include) {
                         total_excluded -= tax_amount;
                         base -= tax_amount;
                     } else {
                         total_included += tax_amount;
                     }
-                    if (tax.include_base_amount) {
+                    if (tax[0].include_base_amount) {
                         base += tax_amount;
                     }
                     var data = {
-                        id: tax.id,
+                        id: tax[0].id,
                         amount: tax_amount,
-                        name: tax.name,
+                        name: tax[0].name,
                     };
                     list_taxes.push(data);
                 }
@@ -208,8 +220,8 @@ odoo.define("fiscal_epos_print.models", function (require) {
     models.Paymentline = models.Paymentline.extend({
         export_for_printing: function () {
             var res = original.apply(this, arguments);
-            res.type = this.cashregister.journal.fiscalprinter_payment_type;
-            res.type_index = this.cashregister.journal.fiscalprinter_payment_index;
+            res.type = this.payment_method.fiscalprinter_payment_type;
+            res.type_index = this.payment_method.fiscalprinter_payment_index;
             return res;
         },
     });

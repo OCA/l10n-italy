@@ -3,7 +3,7 @@ odoo.define("fiscal_epos_print.popups", function (require) {
 
     var core = require("web.core");
     var popups = require("point_of_sale.popups");
-    var gui = require("point_of_sale.gui");
+    var gui = require("point_of_sale.Gui");
     var _t = core._t;
 
     function addPadding(str, padding = 4) {
