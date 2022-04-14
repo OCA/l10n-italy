@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="EpsonFP81IIComponent" owl="1">
+        <div class="epson-fp81ii-widget oe_hidden">
+            <h1>Epson ePOS</h1>
+
+            <div class="toggle" t-on-click="onToggleComponent">
+                <i class='fa fa-times' />
+            </div>
+
+            <div class="content">
+                <p class="category">Operations</p>
+                <ul name="epos_operations">
+                    <li>
+                        <div
+                            class="button open_cashdrawer"
+                            style="padding-top:5px"
+                            t-on-click="openCashDrawer"
+                        >
+                            <span>
+                                <img
+                                    src="/fiscal_epos_print/static/src/img/cashdrawer.svg"
+                                    alt="Open CashDrawer"
+                                    title="Open CashDrawer"
+                                />
+                            </span>
+                            <span class="category-label">
+                                Open CashDrawer
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div
+                            class="button reprint_last_receipt"
+                            style="padding-top:5px"
+                            t-on-click="reprintLastReceipt"
+                        >
+                            <span>
+                                <img
+                                    src="/fiscal_epos_print/static/src/img/reprint.svg"
+                                    alt="Reprint Last Receipt"
+                                    title="Reprint last receipt"
+                                />
+                            </span>
+                            <span class="category-label">
+                                Reprint Last Receipt
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+                <p class="category">Reports</p>
+                <ul name="epos_reports">
+                    <li>
+                        <div
+                            class="button show_ade_status"
+                            style="padding-top:5px"
+                            t-on-click="showAdeStatus"
+                        >
+                            <span>
+                                <img
+                                    src="/fiscal_epos_print/static/src/img/ade-logo.svg"
+                                    alt="IRA status"
+                                    title="Status of files to be sent to IRA"
+                                />
+                            </span>
+                            <span class="category-label">
+                                IRA status
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div
+                            class="button fiscal_closing"
+                            style="padding-top:5px"
+                            t-on-click="fiscalClosing"
+                        >
+                            <span>
+                                <img
+                                    src="/fiscal_epos_print/static/src/img/Z.svg"
+                                    alt="Fiscal closure"
+                                    title="Send fiscal closure command to the fiscal printer"
+                                />
+                            </span>
+                            <span class="category-label">
+                                Closure Report Z (Fiscal)
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div
+                            class="button fiscal_xreport"
+                            style="padding-top:5px"
+                            t-on-click="fiscalXreport"
+                        >
+                            <span>
+                                <img
+                                    src="/fiscal_epos_print/static/src/img/X.svg"
+                                    alt="Fiscal closure"
+                                    title="Send fiscal X report to the fiscal printer"
+                                />
+                            </span>
+                            <span class="category-label">
+                                Financial Report X
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </t>
+
+</templates>
