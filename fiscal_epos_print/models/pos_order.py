@@ -5,15 +5,15 @@ class PosOrder(models.Model):
     _inherit = "pos.order"
 
     refund_date = fields.Date(string="Refund date reference")
-    refund_report = fields.Integer(string="Closure reference", digits=(4, 0))
-    refund_doc_num = fields.Integer(string="Document Number", digits=(4, 0))
+    refund_report = fields.Integer(string="Closure reference")
+    refund_doc_num = fields.Integer(string="Document Number")
     refund_cash_fiscal_serial = fields.Char(string="Refund Cash Serial")
 
     fiscal_receipt_number = fields.Integer(
-        string="Fiscal receipt number", digits=(4, 0)
+        string="Fiscal receipt number",
     )
     fiscal_receipt_amount = fields.Float("Fiscal receipt amount")
-    fiscal_receipt_date = fields.Date("Fiscal receipt date", digits=(4, 0))
+    fiscal_receipt_date = fields.Date("Fiscal receipt date")
     fiscal_z_rep_number = fields.Integer("Fiscal closure number")
     fiscal_printer_serial = fields.Char(string="Fiscal Printer Serial")
     fiscal_printer_debug_info = fields.Text("Debug info", readonly=True)
@@ -43,7 +43,6 @@ class PosOrder(models.Model):
 
     # This is on pos_order_mgmt to send back the fields of already existing
     # pos.order
-    @api.multi
     def _prepare_done_order_for_pos(self):
         res = super(PosOrder, self)._prepare_done_order_for_pos()
         res["lottery_code"] = self.lottery_code
@@ -95,7 +94,7 @@ class PosOrder(models.Model):
         return True
 
     @api.model
-    def create_from_ui(self, orders):
+    def create_from_ui(self, orders, draft=False):
         res = super(PosOrder, self).create_from_ui(orders)
         for order in orders:
             if order["data"].get("fiscal_receipt_number"):

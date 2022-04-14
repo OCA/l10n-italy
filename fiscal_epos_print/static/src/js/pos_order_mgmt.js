@@ -1,3 +1,4 @@
+// TODO is this necessary?
 odoo.define("fiscal_epos_print.pos_order_mgmt", function (require) {
     "use strict";
 

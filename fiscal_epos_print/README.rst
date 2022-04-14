@@ -98,6 +98,7 @@ Authors
 * Leonardo Donelli
 * TAKOBI
 * Level Prime Srl
+* AIR www.air.co.it
 
 Contributors
 ~~~~~~~~~~~~
@@ -110,7 +111,17 @@ Contributors
 
 * Alessio Gerace
 * Roberto Fichera
-* Giovanni Serra <giovanni@gslab.it>
+
+* Dario Del Zozzo
+
+* `AIR <https://www.air.co.it>`_:
+
+  * Kevin Poli
+  
+  * Simone Cuffaro
+  
+  * Leonardo Guerra
+  
 
 Maintainers
 ~~~~~~~~~~~
