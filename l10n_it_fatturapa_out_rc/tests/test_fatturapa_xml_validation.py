@@ -5,12 +5,14 @@ import base64
 
 from odoo import fields
 from odoo.exceptions import UserError
+from odoo.tests import tagged
 from odoo.tests.common import Form
 
 from odoo.addons.l10n_it_fatturapa_out.tests.fatturapa_common import FatturaPACommon
 from odoo.addons.l10n_it_reverse_charge.tests.rc_common import ReverseChargeCommon
 
 
+@tagged("post_install", "-at_install")
 class TestFatturaPAXMLValidation(ReverseChargeCommon, FatturaPACommon):
     def setUp(self):
         super().setUp()
