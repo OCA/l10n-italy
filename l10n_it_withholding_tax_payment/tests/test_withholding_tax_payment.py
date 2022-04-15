@@ -1,11 +1,12 @@
 #  Copyright 2021 Simone Rubino - Agile Business Group
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests import Form
+from odoo.tests import Form, tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
+@tagged("post_install", "-at_install")
 class TestWithholdingTaxPayment(AccountTestInvoicingCommon):
     @classmethod
     def setup_withholding_tax(cls, company_data):
