@@ -3,9 +3,12 @@
 # Copyright 2016  Alessio Gerace - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo.tests import tagged
+
 from odoo.addons.account.tests.test_account_account import TestAccountAccount
 
 
+@tagged("post_install", "-at_install")
 class TestSP(TestAccountAccount):
     def setUp(self):
         super().setUp()
