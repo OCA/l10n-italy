@@ -6,11 +6,13 @@ import mock
 
 from odoo.fields import Datetime
 from odoo.modules import get_module_resource
+from odoo.tests import tagged
 from odoo.tools import mute_logger, pycompat
 
 from .e_invoice_common import EInvoiceCommon
 
 
+@tagged("post_install", "-at_install")
 class TestEInvoiceResponse(EInvoiceCommon):
     def setUp(self):
         super(TestEInvoiceResponse, self).setUp()
