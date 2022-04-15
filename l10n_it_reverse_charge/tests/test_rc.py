@@ -4,10 +4,12 @@
 import json
 
 from odoo.exceptions import UserError
+from odoo.tests import tagged
 
 from .rc_common import ReverseChargeCommon
 
 
+@tagged("post_install", "-at_install")
 class TestReverseCharge(ReverseChargeCommon):
     def test_intra_EU_invoice_line_no_tax(self):
         invoice = self.create_invoice(self.supplier_intraEU, [], post=False)
