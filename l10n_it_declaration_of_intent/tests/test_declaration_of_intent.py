@@ -5,12 +5,14 @@ from datetime import datetime, timedelta
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
+from odoo.tests import tagged
 from odoo.tests.common import Form
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
+@tagged("post_install", "-at_install")
 class TestDeclarationOfIntent(AccountTestInvoicingCommon):
     @classmethod
     def _create_declaration(cls, partner, type_d):
