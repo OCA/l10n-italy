@@ -9,12 +9,13 @@ from psycopg2 import IntegrityError
 
 from odoo import fields
 from odoo.exceptions import UserError
-from odoo.tests import Form
+from odoo.tests import Form, tagged
 from odoo.tools import mute_logger
 
 from .fatturapa_common import FatturaPACommon
 
 
+@tagged("post_install", "-at_install")
 class TestDuplicatedAttachment(FatturaPACommon):
     def test_duplicated_attachment(self):
         """Attachment name must be unique"""
@@ -35,6 +36,7 @@ class TestDuplicatedAttachment(FatturaPACommon):
         self.assertEqual(ie.exception.pgcode, "23505")
 
 
+@tagged("post_install", "-at_install")
 class TestFatturaPAXMLValidation(FatturaPACommon):
     def setUp(self):
         super(TestFatturaPAXMLValidation, self).setUp()
