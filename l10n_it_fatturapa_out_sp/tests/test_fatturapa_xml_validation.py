@@ -4,9 +4,12 @@
 
 import base64
 
+from odoo.tests import tagged
+
 from .fatturapa_common import FatturaPACommon
 
 
+@tagged("post_install", "-at_install")
 class TestFatturaPAXMLValidation(FatturaPACommon):
     def setUp(self):
         super(TestFatturaPAXMLValidation, self).setUp()
