@@ -12,7 +12,7 @@ class SaleOrder(models.Model):
         inverse_name="sale_order_id",
         string="Related Documents",
         copy=False,
-        groups="account.group_account_user",
+        groups="account.group_account_user,sales_team.group_sale_salesman",
     )
 
     def _create_invoices(self, grouped=False, final=False, date=None):
