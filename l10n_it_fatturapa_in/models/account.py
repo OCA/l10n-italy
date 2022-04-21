@@ -150,8 +150,12 @@ class AccountInvoice(models.Model):
                 "found. Please manually check Withholding tax Amount\n"
             )
         if (
-            sum(self.ftpa_withholding_ids.mapped("amount"))
-            != self.withholding_tax_amount
+            float_compare(
+                sum(self.ftpa_withholding_ids.mapped("amount")),
+                self.withholding_tax_amount,
+                precision_rounding=self.currency_id.rounding,
+            )
+            != 0
         ):
             error_message += _(
                 "E-bill contains ImportoRitenuta %s but created invoice has got"
