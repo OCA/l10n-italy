@@ -750,10 +750,10 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         invoice.company_id.xml_divisa_value = "keep_orig"
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res["res_id"])
-        self.set_e_invoice_file_id(attachment, "IT06363391001_00016.xml")
+        self.set_e_invoice_file_id(attachment, "IT06363391001_00015a.xml")
 
         xml_content = base64.decodebytes(attachment.datas)
-        self.check_content(xml_content, "IT06363391001_00016.xml")
+        self.check_content(xml_content, "IT06363391001_00015a.xml")
 
     def test_no_tax_fail(self):
         """
