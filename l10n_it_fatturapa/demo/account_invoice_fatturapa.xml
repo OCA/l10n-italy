@@ -503,5 +503,17 @@
             <field name="vat">LV40003844254</field>
             <field name="codice_destinatario">XXXXXXX</field>
         </record>
+
+        <record id="res_partner_fatturapa_6" model="res.partner">
+            <field name="name">B2C Customer IT</field>
+            <field name="is_company">0</field>
+            <field name="street">Via Roma, 1</field>
+            <field name="is_pa">0</field>
+            <field name="city">Milano</field>
+            <field name="zip">20100</field>
+            <field name="country_id" ref="base.it" />
+            <field name="email">b2c@example.com</field>
+            <field name="fiscalcode">RSSMRA30A01H501I</field>
+        </record>
     </data>
 </odoo>
