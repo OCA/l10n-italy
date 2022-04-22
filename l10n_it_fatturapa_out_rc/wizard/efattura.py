@@ -6,6 +6,7 @@ from odoo.addons.l10n_it_fatturapa_out.wizard.efattura import (
 )
 
 
+# extend the EFatturaOut class to add a new helper function
 class EFatturaOut(_EFatturaOut):
     def get_template_values(self):
         def get_sign(invoice):

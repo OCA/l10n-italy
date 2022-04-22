@@ -2,11 +2,13 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.exceptions import UserError
+from odoo.tests import tagged
 from odoo.tools import mute_logger
 
 from .e_invoice_common import EInvoiceCommon
 
 
+@tagged("post_install", "-at_install")
 class TestEInvoiceSend(EInvoiceCommon):
     def setUp(self):
         super(TestEInvoiceSend, self).setUp()

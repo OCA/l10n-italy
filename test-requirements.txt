@@ -1,2 +1,1 @@
-openupgradelib @ git+https://github.com/OCA/openupgradelib.git@master
 pdfminer.six # needed by attachment_indexation module
