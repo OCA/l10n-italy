@@ -79,7 +79,7 @@ class AccountInvoice(models.Model):
             if not dichiarazioni:
                 # ----  check se posizione fiscale dichiarazione di intento
                 # ---- e non ho dichiarazioni, segnalo errore
-                if self.fiscal_position_id.valid_for_dichiarazione_intento:
+                if invoice.fiscal_position_id.valid_for_dichiarazione_intento:
                     raise UserError(_(
                         'Declaration of intent not found. '
                         'Add new declaration or '
