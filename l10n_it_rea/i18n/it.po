@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: l10n-italy (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-12 02:39+0000\n"
-"PO-Revision-Date: 2020-01-07 11:13+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2022-04-22 18:05+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-10-0/"
 "language/it/)\n"
 "Language: it\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_it_rea
 #: code:addons/l10n_it_rea/models/res_company.py:0
@@ -40,13 +40,13 @@ msgstr "Contatto"
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__display_name
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__id
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_it_rea
 #: model:ir.model.fields.selection,name:l10n_it_rea.selection__res_partner__rea_liquidation_state__ls
@@ -57,7 +57,7 @@ msgstr "In liquidazione"
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company____last_update
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_liquidation_state
