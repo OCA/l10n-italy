@@ -803,85 +803,82 @@ class ComunicazioneDatiIva(models.Model):
             # -----     Normalizzazione delle stringhe
             if not check_normalized_string(partner.cessionario_Denominazione):
                 errors.append(
-                    _(u"Remove empty characters around denomination of assignee " u"%s")
+                    _("Remove empty characters around denomination of assignee " "%s")
                     % partner.partner_id.display_name
                 )
             if not check_normalized_string(partner.cessionario_Nome):
                 errors.append(
-                    _(u"Remove empty characters around name of assignee " u"%s")
+                    _("Remove empty characters around name of assignee " "%s")
                     % partner.partner_id.display_name
                 )
             if not check_normalized_string(partner.cessionario_Cognome):
                 errors.append(
-                    _(u"Remove empty characters around surname of assignee " u"%s")
+                    _("Remove empty characters around surname of assignee " "%s")
                     % partner.partner_id.display_name
                 )
             if not check_normalized_string(partner.cessionario_sede_Indirizzo):
                 errors.append(
                     _(
-                        u"Remove empty characters around headquarters address of "
-                        u"assignee %s"
+                        "Remove empty characters around headquarters address of "
+                        "assignee %s"
                     )
                     % partner.partner_id.display_name
                 )
             if not check_normalized_string(partner.cessionario_sede_NumeroCivico):
                 errors.append(
-                    _(
-                        u"Remove empty characters around street number of assignee"
-                        u" %s"
-                    )
+                    _("Remove empty characters around street number of assignee" " %s")
                     % partner.partner_id.display_name
                 )
             if not check_normalized_string(partner.cessionario_sede_Comune):
                 errors.append(
-                    _(u"Remove empty characters around city of assignee " u"%s")
+                    _("Remove empty characters around city of assignee " "%s")
                     % partner.partner_id.display_name
                 )
             if not check_normalized_string(partner.cessionario_so_Indirizzo):
                 errors.append(
                     _(
-                        u"Remove empty characters around address of permanent "
-                        u"establishment %s"
+                        "Remove empty characters around address of permanent "
+                        "establishment %s"
                     )
                     % partner.partner_id.display_name
                 )
             if not check_normalized_string(partner.cessionario_so_NumeroCivico):
                 errors.append(
                     _(
-                        u"Remove empty characters around street number of "
-                        u"permanent establishment %s"
+                        "Remove empty characters around street number of "
+                        "permanent establishment %s"
                     )
                     % partner.partner_id.display_name
                 )
             if not check_normalized_string(partner.cessionario_so_Comune):
                 errors.append(
                     _(
-                        u"Remove empty characters around city of permanent "
-                        u"establishment %s"
+                        "Remove empty characters around city of permanent "
+                        "establishment %s"
                     )
                     % partner.partner_id.display_name
                 )
             if not check_normalized_string(partner.cessionario_rf_Denominazione):
                 errors.append(
                     _(
-                        u"Remove empty characters around denomination of fiscal "
-                        u"representative %s"
+                        "Remove empty characters around denomination of fiscal "
+                        "representative %s"
                     )
                     % partner.partner_id.display_name
                 )
             if not check_normalized_string(partner.cessionario_rf_Nome):
                 errors.append(
                     _(
-                        u"Remove empty characters around name of fiscal "
-                        u"representative %s"
+                        "Remove empty characters around name of fiscal "
+                        "representative %s"
                     )
                     % partner.partner_id.display_name
                 )
             if not check_normalized_string(partner.cessionario_rf_Cognome):
                 errors.append(
                     _(
-                        u"Remove empty characters around surname of fiscal "
-                        u"representative %s"
+                        "Remove empty characters around surname of fiscal "
+                        "representative %s"
                     )
                     % partner.partner_id.display_name
                 )
@@ -891,7 +888,7 @@ class ComunicazioneDatiIva(models.Model):
                 and partner.cessionario_IdFiscaleIVA_IdCodice
             ):
                 errors.append(
-                    _(u"Define a country ID for assignee %s")
+                    _("Define a country ID for assignee %s")
                     % partner.partner_id.display_name
                 )
             # ----- Dati Sede
@@ -903,7 +900,7 @@ class ComunicazioneDatiIva(models.Model):
                 ]
             ):
                 errors.append(
-                    _(u"Address, city, country of %s are mandatory")
+                    _("Address, city, country of %s are mandatory")
                     % partner.partner_id.display_name
                 )
             # ----- Dati Stabile Organizzazione
@@ -926,9 +923,9 @@ class ComunicazioneDatiIva(models.Model):
             ):
                 errors.append(
                     _(
-                        u"Address, city, ZIP and country of permanent "
-                        u"establishment %s are mandatory, when at least one value "
-                        u"is defined"
+                        "Address, city, ZIP and country of permanent "
+                        "establishment %s are mandatory, when at least one value "
+                        "is defined"
                     )
                     % partner.partner_id.display_name
                 )
@@ -949,9 +946,9 @@ class ComunicazioneDatiIva(models.Model):
             ):
                 errors.append(
                     _(
-                        u"Country ID and fiscal identifier of fiscal "
-                        u"representative %s are mandatory, when at least one "
-                        u"value is defined"
+                        "Country ID and fiscal identifier of fiscal "
+                        "representative %s are mandatory, when at least one "
+                        "value is defined"
                     )
                     % partner.partner_id.display_name
                 )
@@ -960,14 +957,14 @@ class ComunicazioneDatiIva(models.Model):
                 "[0-9]{5}", partner.cessionario_sede_Cap
             ):
                 errors.append(
-                    _(u"ZIP %s of assignee %s is not 5 numeric characters")
+                    _("ZIP %s of assignee %s is not 5 numeric characters")
                     % (partner.cessionario_sede_Cap, partner.partner_id.display_name)
                 )
             # ----- Dettagli IVA
             for invoice in partner.fatture_emesse_body_ids:
                 if not invoice.dati_fattura_iva_ids:
                     errors.append(
-                        _(u"No VAT data defined for invoice %s of partner %s")
+                        _("No VAT data defined for invoice %s of partner %s")
                         % (invoice.invoice_id.name, partner.partner_id.display_name)
                     )
         return errors
@@ -1042,82 +1039,82 @@ class ComunicazioneDatiIva(models.Model):
             # -----     Normalizzazione delle stringhe
             if not check_normalized_string(partner.cedente_Denominazione):
                 errors.append(
-                    _(u"Remove empty characters around denomination of seller " u"%s")
+                    _("Remove empty characters around denomination of seller " "%s")
                     % partner.partner_id.display_name
                 )
             if not check_normalized_string(partner.cedente_Nome):
                 errors.append(
-                    _(u"Remove empty characters around name of seller " u"%s")
+                    _("Remove empty characters around name of seller " "%s")
                     % partner.partner_id.display_name
                 )
             if not check_normalized_string(partner.cedente_Cognome):
                 errors.append(
-                    _(u"Remove empty characters around surname of seller " u"%s")
+                    _("Remove empty characters around surname of seller " "%s")
                     % partner.partner_id.display_name
                 )
             if not check_normalized_string(partner.cedente_sede_Indirizzo):
                 errors.append(
                     _(
-                        u"Remove empty characters around headquarters address of "
-                        u"seller %s"
+                        "Remove empty characters around headquarters address of "
+                        "seller %s"
                     )
                     % partner.partner_id.display_name
                 )
             if not check_normalized_string(partner.cedente_sede_NumeroCivico):
                 errors.append(
-                    _(u"Remove empty characters around street number of seller " u"%s")
+                    _("Remove empty characters around street number of seller " "%s")
                     % partner.partner_id.display_name
                 )
             if not check_normalized_string(partner.cedente_sede_Comune):
                 errors.append(
-                    _(u"Remove empty characters around city of seller " u"%s")
+                    _("Remove empty characters around city of seller " "%s")
                     % partner.partner_id.display_name
                 )
             if not check_normalized_string(partner.cedente_so_Indirizzo):
                 errors.append(
                     _(
-                        u"Remove empty characters around address of permanent "
-                        u"establishment %s"
+                        "Remove empty characters around address of permanent "
+                        "establishment %s"
                     )
                     % partner.partner_id.display_name
                 )
             if not check_normalized_string(partner.cedente_so_NumeroCivico):
                 errors.append(
                     _(
-                        u"Remove empty characters around street number of "
-                        u"permanent establishment %s"
+                        "Remove empty characters around street number of "
+                        "permanent establishment %s"
                     )
                     % partner.partner_id.display_name
                 )
             if not check_normalized_string(partner.cedente_so_Comune):
                 errors.append(
                     _(
-                        u"Remove empty characters around city of permanent "
-                        u"establishment %s"
+                        "Remove empty characters around city of permanent "
+                        "establishment %s"
                     )
                     % partner.partner_id.display_name
                 )
             if not check_normalized_string(partner.cedente_rf_Denominazione):
                 errors.append(
                     _(
-                        u"Remove empty characters around denomination of fiscal "
-                        u"representative %s"
+                        "Remove empty characters around denomination of fiscal "
+                        "representative %s"
                     )
                     % partner.partner_id.display_name
                 )
             if not check_normalized_string(partner.cedente_rf_Nome):
                 errors.append(
                     _(
-                        u"Remove empty characters around name of fiscal "
-                        u"representative %s"
+                        "Remove empty characters around name of fiscal "
+                        "representative %s"
                     )
                     % partner.partner_id.display_name
                 )
             if not check_normalized_string(partner.cedente_rf_Cognome):
                 errors.append(
                     _(
-                        u"Remove empty characters around surname of fiscal "
-                        u"representative %s"
+                        "Remove empty characters around surname of fiscal "
+                        "representative %s"
                     )
                     % partner.partner_id.display_name
                 )
@@ -1127,7 +1124,7 @@ class ComunicazioneDatiIva(models.Model):
                 and partner.cedente_IdFiscaleIVA_IdCodice
             ):
                 errors.append(
-                    _(u"Define a country ID for seller %s")
+                    _("Define a country ID for seller %s")
                     % partner.partner_id.display_name
                 )
             # ----- Dati Sede
@@ -1139,7 +1136,7 @@ class ComunicazioneDatiIva(models.Model):
                 ]
             ):
                 errors.append(
-                    _(u"Address, city, country of %s are mandatory")
+                    _("Address, city, country of %s are mandatory")
                     % partner.partner_id.display_name
                 )
             # ----- Dati Stabile Organizzazione
@@ -1162,9 +1159,9 @@ class ComunicazioneDatiIva(models.Model):
             ):
                 errors.append(
                     _(
-                        u"Address, city, ZIP and country of permanent "
-                        u"establishment %s are mandatory, when at least one value "
-                        u"is defined"
+                        "Address, city, ZIP and country of permanent "
+                        "establishment %s are mandatory, when at least one value "
+                        "is defined"
                     )
                     % partner.partner_id.display_name
                 )
@@ -1185,9 +1182,9 @@ class ComunicazioneDatiIva(models.Model):
             ):
                 errors.append(
                     _(
-                        u"Country ID and fiscal identifier of fiscal "
-                        u"representative %s are mandatory, when at least one "
-                        u"value is defined"
+                        "Country ID and fiscal identifier of fiscal "
+                        "representative %s are mandatory, when at least one "
+                        "value is defined"
                     )
                     % partner.partner_id.display_name
                 )
@@ -1196,24 +1193,24 @@ class ComunicazioneDatiIva(models.Model):
                 "[0-9]{5}", partner.cedente_sede_Cap
             ):
                 errors.append(
-                    _(u"ZIP %s of seller %s is not 5 characters")
+                    _("ZIP %s of seller %s is not 5 characters")
                     % (partner.cedente_sede_Cap, partner.partner_id.display_name)
                 )
             # ----- Dettagli IVA
             for invoice in partner.fatture_ricevute_body_ids:
                 if not invoice.dati_fattura_iva_ids:
                     errors.append(
-                        _(u"No VAT data defined for invoice %s of partner %s")
+                        _("No VAT data defined for invoice %s of partner %s")
                         % (invoice.invoice_id.name, partner.partner_id.display_name)
                     )
                 if not invoice.dati_fattura_Numero:
                     errors.append(
-                        _(u"No invoice number for supplier bill %s")
+                        _("No invoice number for supplier bill %s")
                         % (invoice.invoice_id.name)
                     )
                 if not invoice.dati_fattura_DataRegistrazione:
                     errors.append(
-                        _(u"No registration date for supplier bill %s")
+                        _("No registration date for supplier bill %s")
                         % (invoice.invoice_id.name)
                     )
         return errors
@@ -1227,11 +1224,11 @@ class ComunicazioneDatiIva(models.Model):
                 errors += comunicazione._check_errors_dtr()
             if not errors:
                 errors = [
-                    _(u"All data are correct.\nIt's possible to export " u"XML file")
+                    _("All data are correct.\nIt's possible to export " "XML file")
                 ]
             else:
                 errors = [_("Errors:")] + errors
-            comunicazione.errors = u"\n - ".join(errors)
+            comunicazione.errors = "\n - ".join(errors)
 
     def _validate(self):
         """

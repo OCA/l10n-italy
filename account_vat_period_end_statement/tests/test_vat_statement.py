@@ -5,9 +5,12 @@ from datetime import date, datetime
 
 from dateutil.rrule import MONTHLY
 
+from odoo.tests import tagged
+
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
+@tagged("post_install", "-at_install")
 class TestTax(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls, chart_template_ref=None):

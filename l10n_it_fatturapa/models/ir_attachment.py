@@ -19,7 +19,7 @@ except (ImportError, IOError) as err:
     _logger.debug(err)
 
 
-re_base64 = re.compile(br"^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$")
+re_base64 = re.compile(rb"^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$")
 
 
 def is_base64(s):

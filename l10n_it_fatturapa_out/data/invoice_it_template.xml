@@ -170,7 +170,9 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                 <t
                     t-call="l10n_it_fatturapa_out.account_invoice_line_it_sconto_maggiorazione"
                 />
-                <PrezzoTotale t-esc="format_monetary(line.price_subtotal, currency)" />
+                <PrezzoTotale
+                    t-esc="format_monetary(fpa_to_eur(line.price_subtotal, record), euro)"
+                />
                 <AliquotaIVA
                     t-if="not line_is_section_note"
                     t-esc="format_numbers(tax_ids.amount)"
@@ -205,6 +207,16 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                 >
                     <TipoDato>INVCONT</TipoDato>
                 </AltriDatiGestionali>
+                <AltriDatiGestionali
+                    t-if="not line_is_section_note and line.currency_id != euro"
+                >
+                    <TipoDato>Valuta</TipoDato>
+                    <RiferimentoTesto t-esc="line.currency_id.name" />
+                    <RiferimentoNumero
+                        t-esc="format_price(line, original_currency=True)"
+                    />
+                    <RiferimentoData t-esc="format_date(record.date)" />
+                </AltriDatiGestionali>
             </DettaglioLinee>
         </template>
 
@@ -217,9 +229,11 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                 <!--                <SpeseAccessorie t-esc=""/>-->
                 <!--                <Arrotondamento t-esc=""/>-->
                 <ImponibileImporto
-                    t-esc="format_monetary(tax_line.tax_base_amount, currency)"
+                    t-esc="format_monetary(fpa_to_eur(tax_line.tax_base_amount, record), euro)"
                 />
-                <Imposta t-esc="format_monetary(tax_line.price_total, currency)" />
+                <Imposta
+                    t-esc="format_monetary(fpa_to_eur(tax_line.price_total, record), euro)"
+                />
                 <EsigibilitaIVA t-if="tax.payability" t-esc="tax.payability" />
                 <RiferimentoNormativo
                     t-if="tax.law_reference"
@@ -530,13 +544,21 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                 t-set="currency"
                 t-value="record.currency_id or record.company_currency_id"
             />
+            <t t-set="euro" t-value="env.ref('base.EUR')" />
             <t t-set="bank" t-value="record.partner_bank_id" />
             <FatturaElettronicaBody>
                 <DatiGenerali>
                     <DatiGeneraliDocumento>
                         <!--2.1.1-->
                         <TipoDocumento t-esc="record.fiscal_document_type_id.code" />
-                        <Divisa t-esc="currency.name" />
+                        <Divisa
+                            t-if="record.company_id.xml_divisa_value == 'keep_orig'"
+                            t-esc="currency.name"
+                        />
+                        <Divisa
+                            t-if="not record.company_id.xml_divisa_value == 'keep_orig'"
+                            t-esc="euro.name"
+                        />
                         <Data t-esc="format_date(record.invoice_date)" />
                         <Numero t-esc="record.name" />
                         <t
@@ -554,7 +576,12 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                         <!--                            <Importo t-esc=""/>-->
                         <!--                        </ScontoMaggiorazione>-->
                         <ImportoTotaleDocumento
-                            t-esc="format_numbers_two(record.amount_total)"
+                            t-if="record.company_id.xml_divisa_value == 'keep_orig'"
+                            t-esc="format_numbers_two(get_importo_totale(record))"
+                        />
+                        <ImportoTotaleDocumento
+                            t-if="not record.company_id.xml_divisa_value == 'keep_orig'"
+                            t-esc="format_numbers_two(fpa_to_eur(get_importo_totale(record), record))"
                         />
                         <!--                        <Arrotondamento t-esc=""/>-->
                         <t t-foreach="get_causale(record)" t-as="causale">
@@ -600,10 +627,10 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                               <!--                <SpeseAccessorie t-esc=""/>-->
                               <!--                <Arrotondamento t-esc=""/>-->
                               <ImponibileImporto
-                                t-esc="format_monetary(tax_data['ImponibileImporto'], currency)"
+                                t-esc="format_monetary(fpa_to_eur(tax_data['ImponibileImporto'], record), euro)"
                             />
                               <Imposta
-                                t-esc="format_monetary(tax_data['Imposta'], currency)"
+                                t-esc="format_monetary(fpa_to_eur(tax_data['Imposta'], record), euro)"
                             />
                                 <EsigibilitaIVA
                                 t-if="tax_data.get('EsigibilitaIVA', False)"
@@ -646,8 +673,14 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                                 t-esc="format_date(move_line.date_maturity)"
                             />
                             <ImportoPagamento
+                                t-if="record.company_id.xml_divisa_value == 'keep_orig'"
                                 t-esc="format_numbers_two(move_line.amount_currency or move_line.debit)"
                             />
+                            <ImportoPagamento
+                                t-if="not record.company_id.xml_divisa_value == 'keep_orig'"
+                                t-esc="format_numbers_two(fpa_to_eur(move_line.amount_currency or move_line.debit, record))"
+                            />
+
                             <!--                            <CodUfficioPostale t-esc=""/>-->
                             <!--                            <CognomeQuietanzante t-esc=""/>-->
                             <!--                            <NomeQuietanzante t-esc=""/>-->

@@ -301,6 +301,11 @@ msgid "Followers (Partners)"
 msgstr "Follower (partner)"
 
 #. module: l10n_it_fatturapa_out
+#: model:ir.model.fields.selection,name:l10n_it_fatturapa_out.selection__res_company__xml_divisa_value__force_eur
+msgid "Force euro"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_bank_statement_line__has_pdf_invoice_print
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_move__has_pdf_invoice_print
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_payment__has_pdf_invoice_print
@@ -445,6 +450,11 @@ msgstr "È un documento pubblico"
 #. module: l10n_it_fatturapa_out
 #: model:ir.model,name:l10n_it_fatturapa_out.model_account_move
 msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
+#: model:ir.model.fields.selection,name:l10n_it_fatturapa_out.selection__res_company__xml_divisa_value__keep_orig
+msgid "Keep original"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
@@ -777,6 +787,11 @@ msgid "User %s uploaded a new e-invoice file"
 msgstr "L'utente %s ha caricato un nuovo file e-fattura"
 
 #. module: l10n_it_fatturapa_out
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_line_it_FatturaPA
+msgid "Valuta"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__website_message_ids
 msgid "Website Messages"
 msgstr "Messaggi sito web"
@@ -785,6 +800,12 @@ msgstr "Messaggi sito web"
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out__website_message_ids
 msgid "Website communication history"
 msgstr "Cronologia comunicazioni sito web"
+
+#. module: l10n_it_fatturapa_out
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_res_company__xml_divisa_value
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_res_config_settings__xml_divisa_value
+msgid "XML Divisa value"
+msgstr ""
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out__type
