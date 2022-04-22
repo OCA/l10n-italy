@@ -318,13 +318,13 @@ class WizardInvoiceManageAsset(models.TransientModel):
             )
 
     def create_asset(self):
-        """ Creates asset and returns it """
+        """Creates asset and returns it"""
         self.ensure_one()
         self.check_pre_create_asset()
         return self.env["asset.asset"].create(self.get_create_asset_vals())
 
     def dismiss_asset(self):
-        """ Dismisses asset and returns it """
+        """Dismisses asset and returns it"""
         self.ensure_one()
         self.check_pre_dismiss_asset()
         old_dep_lines = self.asset_id.mapped("depreciation_ids.line_ids")
@@ -651,7 +651,7 @@ class WizardInvoiceManageAsset(models.TransientModel):
         return vals
 
     def partial_dismiss_asset(self):
-        """ Dismisses asset partially and returns it """
+        """Dismisses asset partially and returns it"""
         self.ensure_one()
         self.check_pre_partial_dismiss_asset()
         old_dep_lines = self.asset_id.mapped("depreciation_ids.line_ids")
@@ -663,7 +663,7 @@ class WizardInvoiceManageAsset(models.TransientModel):
         return self.asset_id
 
     def update_asset(self):
-        """ Updates asset and returns it """
+        """Updates asset and returns it"""
         self.ensure_one()
         self.check_pre_update_asset()
         self.asset_id.write(self.get_update_asset_vals())

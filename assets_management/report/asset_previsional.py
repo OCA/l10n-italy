@@ -13,7 +13,7 @@ from odoo.tools.misc import format_amount
 
 
 def format_date(rec, field_name, fmt):
-    """ Formats record's field value according to given format `fmt` """
+    """Formats record's field value according to given format `fmt`"""
     if not rec[field_name]:
         return ""
     return rec._fields[field_name].from_string(rec[field_name]).strftime(fmt)
@@ -127,7 +127,7 @@ class Report(models.TransientModel):
 
     @api.model
     def get_html(self, given_context=None):
-        """ Method needed from JavaScript widget to render HTML view """
+        """Method needed from JavaScript widget to render HTML view"""
         context = dict(self.env.context)
         context.update(given_context or {})
         report = self or self.browse(context.get("active_id"))
@@ -146,7 +146,7 @@ class Report(models.TransientModel):
     ###########################
 
     def compute_data_for_report(self):
-        """ Compute data to be printed """
+        """Compute data to be printed"""
         self.set_report_name()
         self.generate_structure()
         self.generate_data()
@@ -629,9 +629,9 @@ class ReportDepreciation(models.TransientModel):
         self.ensure_one()
         dep = self.depreciation_id
         if dep.pro_rata_temporis:
-            dep_pro_rata_temporis = u"\u2612"  # checked ballot box -> ☒
+            dep_pro_rata_temporis = "\u2612"  # checked ballot box -> ☒
         else:
-            dep_pro_rata_temporis = u"\u2610"  # empty ballot box -> ☐
+            dep_pro_rata_temporis = "\u2610"  # empty ballot box -> ☐
 
         return {
             "dep_amount_depreciable": dep.amount_depreciable,

@@ -12,11 +12,11 @@ class AssetJournalXslx(models.AbstractModel):
     _inherit = "report.account_financial_report.abstract_report_xlsx"
 
     def __init__(self, pool, cr):
-        """ Adds new attributes """
+        """Adds new attributes"""
         super().__init__(pool, cr)
 
     def generate_xlsx_report(self, workbook, data, objects):
-        """ Set wb, data and report attributes """
+        """Set wb, data and report attributes"""
         # Initialize report variables
         report_data = {
             "workbook": None,
@@ -46,7 +46,7 @@ class AssetJournalXslx(models.AbstractModel):
         self._write_report_footer(report_footer, report_data)
 
     def set_formats(self, workbook, report_data):
-        """ Defines custom formats """
+        """Defines custom formats"""
 
         # 1- Category formats
         report_data["formats"]["format_category_name"] = workbook.add_format(
@@ -494,7 +494,7 @@ class AssetJournalXslx(models.AbstractModel):
         return {n: d for n, d in enumerate(data)}
 
     def _set_column_width(self, report_data):
-        """ Override to force every column to width 25 at least """
+        """Override to force every column to width 25 at least"""
         max_width = self.get_max_width_dict(report_data)
         for col, width in max_width.items():
             report_data["sheet"].set_column(col, col, max(width, 25))
@@ -566,7 +566,7 @@ class AssetJournalXslx(models.AbstractModel):
         report_data["row_pos"] += 5
 
     def _generate_report_content(self, workbook, objects, data, report_data):
-        """ Creates actual xls report """
+        """Creates actual xls report"""
         report = objects
         for categ_section in report.report_category_ids:
             self.write_all(report_data, categ_section, "category_data")
@@ -696,18 +696,18 @@ class AssetJournalXslx(models.AbstractModel):
     ########################################################
 
     def _get_report_filters(self, report):
-        """ Override original method even if not used to avoid errors """
+        """Override original method even if not used to avoid errors"""
         return []
 
     def _get_report_columns(self, report):
-        """ Override original method even if not used to avoid errors """
+        """Override original method even if not used to avoid errors"""
         return {}
 
     def _get_col_count_filter_name(self):
-        """ Override original method even if not used to avoid errors """
+        """Override original method even if not used to avoid errors"""
 
     def _get_col_count_filter_value(self):
-        """ Override original method even if not used to avoid errors """
+        """Override original method even if not used to avoid errors"""
 
     def _write_filters(self, filters):
-        """ Override original method even if not used to avoid errors """
+        """Override original method even if not used to avoid errors"""

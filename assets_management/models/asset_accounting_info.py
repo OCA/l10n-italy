@@ -92,7 +92,7 @@ class AssetAccountingInfo(models.Model):
 
     @api.model
     def cron_vacuum_table(self):
-        """ A cron that deletes obsolete records """
+        """A cron that deletes obsolete records"""
         aa_info = self.get_records_to_delete_by_cron()
         aa_info.unlink()
 
@@ -106,7 +106,7 @@ class AssetAccountingInfo(models.Model):
         ]
 
     def button_unlink(self):
-        """ Button action: deletes a.a.info """
+        """Button action: deletes a.a.info"""
         self.unlink()
 
     def check_and_normalize(self):
@@ -115,12 +115,12 @@ class AssetAccountingInfo(models.Model):
             info.normalize_info()
 
     def check_coherence(self):
-        """ Checks info coherence """
+        """Checks info coherence"""
         self.check_company_coherence()
         self.check_data_coherence()
 
     def check_company_coherence(self):
-        """ Checks companies """
+        """Checks companies"""
         self.ensure_one()
         companies = self.get_all_companies()
         if len(companies) > 1:
@@ -214,7 +214,7 @@ class AssetAccountingInfo(models.Model):
         return name.strip()
 
     def normalize_info(self):
-        """ Normalize asset accounting info if needed """
+        """Normalize asset accounting info if needed"""
         self.ensure_one()
         vals = self.get_normalized_info_vals()
         if vals:
