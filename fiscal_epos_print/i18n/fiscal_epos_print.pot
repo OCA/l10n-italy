@@ -611,6 +611,13 @@ msgid "Reprint Last Receipt?"
 msgstr ""
 
 #. module: fiscal_epos_print
+#: code:addons/fiscal_epos_print/models/point_of_sale.py:34
+#, python-format
+msgid "Reprint cannot be done for a fiscal printer yet.\n"
+"Please disable 'Reprint Orders' or unset 'Printer IP Address'."
+msgstr ""
+
+#. module: fiscal_epos_print
 #. openerp-web
 #: code:addons/fiscal_epos_print/static/src/xml/pos.xml:105
 #, python-format
