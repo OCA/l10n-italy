@@ -77,6 +77,7 @@ Known issues / Roadmap
 * Resi:
    - Aggiungere controllo "rendibilità"
    - Stampare sullo scontrino un barcode identificativo, in modo da generare il reso facendone la scansione
+* Use fiscal printer's reprint functionality
 
 Bug Tracker
 ===========
@@ -107,6 +108,7 @@ Contributors
 * `TAKOBI <https://takobi.online>`_:
 
   * Lorenzo Battistini
+  * Simone Rubino <sir@takobi.online>
 
 * Alessio Gerace
 * Roberto Fichera
