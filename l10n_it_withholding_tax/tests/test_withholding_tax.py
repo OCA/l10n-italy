@@ -40,6 +40,10 @@ class TestWithholdingTax(TransactionCase):
             {"name": "Bank", "type": "bank", "code": "BNK67"}
         )
 
+        # Payment Register
+        self.payment_register_model = self.env["account.payment.register"]
+        self.register_view_id = "account.view_account_payment_register_form"
+
         # Payments
         vals_payment = {
             "name": "",
@@ -139,19 +143,15 @@ class TestWithholdingTax(TransactionCase):
             "active_model": "account.move",
             "active_ids": [self.invoice.id],
         }
-        register_payments = (
-            self.env["account.payment.register"]
-            .with_context(ctx)
-            .create(
-                {
-                    "payment_date": time.strftime("%Y") + "-07-15",
-                    "amount": 800,
-                    "journal_id": self.journal_bank.id,
-                    "payment_method_id": self.env.ref(
-                        "account.account_payment_method_manual_out"
-                    ).id,
-                }
-            )
+        register_payments = self.payment_register_model.with_context(ctx).create(
+            {
+                "payment_date": time.strftime("%Y") + "-07-15",
+                "amount": 800,
+                "journal_id": self.journal_bank.id,
+                "payment_method_id": self.env.ref(
+                    "account.account_payment_method_manual_out"
+                ).id,
+            }
         )
         register_payments.action_create_payments()
 
@@ -183,19 +183,15 @@ class TestWithholdingTax(TransactionCase):
             "active_id": self.invoice.id,
             "default_reconciled_invoice_ids": [(4, self.invoice.id, None)],
         }
-        register_payments = (
-            self.env["account.payment.register"]
-            .with_context(ctx)
-            .create(
-                {
-                    "payment_date": time.strftime("%Y") + "-07-15",
-                    "amount": 600,
-                    "journal_id": self.journal_bank.id,
-                    "payment_method_id": self.env.ref(
-                        "account.account_payment_method_manual_out"
-                    ).id,
-                }
-            )
+        register_payments = self.payment_register_model.with_context(ctx).create(
+            {
+                "payment_date": time.strftime("%Y") + "-07-15",
+                "amount": 600,
+                "journal_id": self.journal_bank.id,
+                "payment_method_id": self.env.ref(
+                    "account.account_payment_method_manual_out"
+                ).id,
+            }
         )
         register_payments.action_create_payments()
 
@@ -283,3 +279,19 @@ class TestWithholdingTax(TransactionCase):
         new_tax = self.wt1040.copy()
         self.assertEqual(new_tax.code, "1040 (copy)")
         self.assertEqual(new_tax.name, "Code 1040")
+
+    def test_create_payments(self):
+        """Test create payment when Register Payment wizard is open from Bill tree view"""
+        ctx = {
+            "active_ids": [self.invoice.id],
+            "active_model": "account.move",
+        }
+        f = Form(
+            self.payment_register_model.with_context(ctx), view=self.register_view_id
+        )
+        payment_register = f.save()
+        # passing default_move_type="in_invoice" in the context in order
+        # to simulate opening of payment_register from Bills tree view
+        payment_register.with_context(
+            default_move_type="in_invoice"
+        ).action_create_payments()
