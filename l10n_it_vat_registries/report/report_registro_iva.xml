@@ -127,7 +127,7 @@
                                                             class="left_without_line_bold"
                                                         ><div
                                                                 style="page-break-inside: avoid"
-                                                                t-esc="line['reference'].split(',')[0]"
+                                                                t-esc="move.ref"
                                                             /></td>
                                                 </t>
                                                 <t
