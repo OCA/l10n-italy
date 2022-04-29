@@ -187,6 +187,7 @@ Contributors
 * Andrea Piovesana <andrea.m.piovesana@gmail.com>
 * Giovanni Serra <giovanni@gslab.it>
 * Alex Comba <alex.comba@agilebg.com>
+* Sergio Corato <https://github.com/sergiocorato>
 
 Maintainers
 ~~~~~~~~~~~
