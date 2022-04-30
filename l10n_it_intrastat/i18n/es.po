@@ -1330,7 +1330,7 @@ msgid "Alkyd resins, in primary forms"
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,intrastat_type_data:0
+#: selection:account.move.intrastat,intrastat_type_data:0
 msgid "All (Fiscal and Statistic)"
 msgstr ""
 
@@ -3879,7 +3879,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,payment_method:0
+#: selection:account.move.intrastat,payment_method:0
 #: selection:account.payment.term,intrastat_code:0
 msgid "Bank Transfer"
 msgstr ""
@@ -11873,7 +11873,7 @@ msgid "Created on"
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,payment_method:0
+#: selection:account.move.intrastat,payment_method:0
 #: selection:account.payment.term,intrastat_code:0
 msgid "Credit"
 msgstr ""
@@ -17835,7 +17835,7 @@ msgid "First-aid boxes and kits"
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,intrastat_type_data:0
+#: selection:account.move.intrastat,intrastat_type_data:0
 msgid "Fiscal"
 msgstr ""
 
@@ -26054,7 +26054,7 @@ msgid "Golf equipment (excl. balls, clubs and parts thereof)"
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,intrastat_code_type:0
+#: selection:account.move.intrastat,intrastat_code_type:0
 #: selection:product.category,intrastat_type:0
 #: selection:product.template,intrastat_type:0
 #: selection:report.intrastat.code,type:0
@@ -29552,7 +29552,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,supply_method:0
+#: selection:account.move.intrastat,supply_method:0
 msgid "Instant"
 msgstr ""
 
@@ -30116,7 +30116,7 @@ msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model,name:l10n_it_intrastat.model_account_invoice
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__invoice_id
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__move_id
 msgid "Invoice"
 msgstr "Factura"
 
@@ -41829,7 +41829,7 @@ msgid "Ossein and bones treated with acid"
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,payment_method:0
+#: selection:account.move.intrastat,payment_method:0
 #: selection:account.payment.term,intrastat_code:0
 msgid "Other"
 msgstr ""
@@ -50793,22 +50793,22 @@ msgid "Purchases Transport Mode"
 msgstr "Modo Transporte Compras"
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,statement_section:0
+#: selection:account.move.intrastat,statement_section:0
 msgid "Purchases section 1"
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,statement_section:0
+#: selection:account.move.intrastat,statement_section:0
 msgid "Purchases section 2"
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,statement_section:0
+#: selection:account.move.intrastat,statement_section:0
 msgid "Purchases section 3"
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,statement_section:0
+#: selection:account.move.intrastat,statement_section:0
 msgid "Purchases section 4"
 msgstr ""
 
@@ -52571,7 +52571,7 @@ msgid "Repair services of watches and clocks"
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,supply_method:0
+#: selection:account.move.intrastat,supply_method:0
 msgid "Repeated"
 msgstr ""
 
@@ -54464,6 +54464,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_intrastat
+#: model:ir.model,name:l10n_it_intrastat.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.731213
 msgid "Sale of Internet advertising space or time on a fee or contract basis"
 msgstr ""
@@ -54516,22 +54521,22 @@ msgid "Sales Transport Mode"
 msgstr "Modo Transporte Ventas"
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,statement_section:0
+#: selection:account.move.intrastat,statement_section:0
 msgid "Sales section 1"
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,statement_section:0
+#: selection:account.move.intrastat,statement_section:0
 msgid "Sales section 2"
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,statement_section:0
+#: selection:account.move.intrastat,statement_section:0
 msgid "Sales section 3"
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,statement_section:0
+#: selection:account.move.intrastat,statement_section:0
 msgid "Sales section 4"
 msgstr ""
 
@@ -56160,7 +56165,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,intrastat_code_type:0
+#: selection:account.move.intrastat,intrastat_code_type:0
 #: selection:product.category,intrastat_type:0
 #: selection:product.template,intrastat_type:0
 #: selection:report.intrastat.code,type:0
@@ -59663,7 +59668,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,intrastat_type_data:0
+#: selection:account.move.intrastat,intrastat_type_data:0
 msgid "Statistic"
 msgstr ""
 

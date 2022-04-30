@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2022-03-08 19:17+0000\n"
-"Last-Translator: Samuele Mariani <samuele@ooops404.com>\n"
+"PO-Revision-Date: 2019-12-21 15:02+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_33074100
@@ -1346,7 +1346,7 @@ msgid "Alkyd resins, in primary forms"
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,intrastat_type_data:0
+#: selection:account.move.intrastat,intrastat_type_data:0
 msgid "All (Fiscal and Statistic)"
 msgstr "Tutti (fiscale e statistico)"
 
@@ -3896,7 +3896,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,payment_method:0
+#: selection:account.move.intrastat,payment_method:0
 #: selection:account.payment.term,intrastat_code:0
 msgid "Bank Transfer"
 msgstr "Bonifico bancario"
@@ -11950,7 +11950,7 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,payment_method:0
+#: selection:account.move.intrastat,payment_method:0
 #: selection:account.payment.term,intrastat_code:0
 msgid "Credit"
 msgstr "Accredito"
@@ -12510,9 +12510,6 @@ msgid ""
 "synthetic fibres (excl. nonwovens, knitted or crocheted, awnings and "
 "sunblinds)"
 msgstr ""
-"Tende, incl. drappeggi e tendine per interni, tende o mantovane da letto in "
-"fibre sintetiche (escl. stoffe non tessute, a maglia, tende da sole e "
-"frangisole)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_63031200
@@ -17950,7 +17947,7 @@ msgid "First-aid boxes and kits"
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,intrastat_type_data:0
+#: selection:account.move.intrastat,intrastat_type_data:0
 msgid "Fiscal"
 msgstr "Fiscale"
 
@@ -26172,7 +26169,7 @@ msgid "Golf equipment (excl. balls, clubs and parts thereof)"
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,intrastat_code_type:0
+#: selection:account.move.intrastat,intrastat_code_type:0
 #: selection:product.category,intrastat_type:0
 #: selection:product.template,intrastat_type:0
 #: selection:report.intrastat.code,type:0
@@ -29718,7 +29715,7 @@ msgstr ""
 "industriali"
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,supply_method:0
+#: selection:account.move.intrastat,supply_method:0
 msgid "Instant"
 msgstr "Istantanea"
 
@@ -37281,7 +37278,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_min_amount
 msgid "Min amount"
-msgstr "Importo min."
+msgstr "Ammontare min."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.711233
@@ -42084,7 +42081,7 @@ msgid "Ossein and bones treated with acid"
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,payment_method:0
+#: selection:account.move.intrastat,payment_method:0
 #: selection:account.payment.term,intrastat_code:0
 msgid "Other"
 msgstr "Altro"
@@ -43761,7 +43758,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__partner_id
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_invoice_intrastat_search
 msgid "Partner"
-msgstr "Contatto"
+msgstr "Partner"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__country_partner_id
@@ -47095,9 +47092,6 @@ msgid ""
 "weighing <= 100 g/m², bleached (excl. fabrics for the manufacture of "
 "bandages, dressings and medical gauzes)"
 msgstr ""
-"Tessuti semplici di cotone, contenenti in peso >= 85% cotone e del peso <= "
-"100 g/m?, sbiancati (escl. tessuti per la fabbricazione di bende, fasciature "
-"e garze mediche)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_52083100
@@ -51144,22 +51138,22 @@ msgid "Purchases Transport Mode"
 msgstr "Modalità di trasporto acquisti"
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,statement_section:0
+#: selection:account.move.intrastat,statement_section:0
 msgid "Purchases section 1"
 msgstr "Acquisti sezione 1"
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,statement_section:0
+#: selection:account.move.intrastat,statement_section:0
 msgid "Purchases section 2"
 msgstr "Acquisti sezione 2"
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,statement_section:0
+#: selection:account.move.intrastat,statement_section:0
 msgid "Purchases section 3"
 msgstr "Acquisti sezione 3"
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,statement_section:0
+#: selection:account.move.intrastat,statement_section:0
 msgid "Purchases section 4"
 msgstr "Acquisti sezione 4"
 
@@ -53019,7 +53013,7 @@ msgid "Repair services of watches and clocks"
 msgstr "Servizi di riparazione di orologi"
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,supply_method:0
+#: selection:account.move.intrastat,supply_method:0
 msgid "Repeated"
 msgstr "A più riprese"
 
@@ -54999,6 +54993,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_intrastat
+#: model:ir.model,name:l10n_it_intrastat.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.731213
 msgid "Sale of Internet advertising space or time on a fee or contract basis"
 msgstr "Vendita di spazi pubblicitari per conto terzi su Internet"
@@ -55052,22 +55051,22 @@ msgid "Sales Transport Mode"
 msgstr "Modalità di trasporto cessioni"
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,statement_section:0
+#: selection:account.move.intrastat,statement_section:0
 msgid "Sales section 1"
 msgstr "Cessioni sezione 1"
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,statement_section:0
+#: selection:account.move.intrastat,statement_section:0
 msgid "Sales section 2"
 msgstr "Cessioni sezione 2"
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,statement_section:0
+#: selection:account.move.intrastat,statement_section:0
 msgid "Sales section 3"
 msgstr "Cessioni sezione 3"
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,statement_section:0
+#: selection:account.move.intrastat,statement_section:0
 msgid "Sales section 4"
 msgstr "Cessioni sezione 4"
 
@@ -56711,7 +56710,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,intrastat_code_type:0
+#: selection:account.move.intrastat,intrastat_code_type:0
 #: selection:product.category,intrastat_type:0
 #: selection:product.template,intrastat_type:0
 #: selection:report.intrastat.code,type:0
@@ -60247,7 +60246,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: selection:account.invoice.intrastat,intrastat_type_data:0
+#: selection:account.move.intrastat,intrastat_type_data:0
 msgid "Statistic"
 msgstr "Statistico"
 
@@ -76335,5 +76334,5 @@ msgstr ""
 #~ msgid "Transfer"
 #~ msgstr "Trasferimento"
 
-#~ msgid "account.invoice.intrastat"
-#~ msgstr "account.invoice.intrastat"
+#~ msgid "account.move.intrastat"
+#~ msgstr "account.move.intrastat"
