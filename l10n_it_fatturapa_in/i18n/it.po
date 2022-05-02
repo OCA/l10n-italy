@@ -718,6 +718,11 @@ msgid "Incoming E-bill Files"
 msgstr "File e-fatture in ingresso"
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__inconsistencies
+msgid "Inconsistencies"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__index_content
 msgid "Indexed Content"
 msgstr "Contenuto indicizzato"
