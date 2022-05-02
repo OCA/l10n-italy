@@ -98,22 +98,6 @@ class TestReverseCharge(ReverseChargeCommon):
         self.assertEqual(invoice.state, "draft")
 
     def test_intra_EU_zero_total(self):
-
-        with self.assertRaises(UserError):
-            # this is defined in odoo.addons.account.tests.common.AccountTestInvoicingCommon
-            self.init_invoice(
-                "in_invoice",
-                partner=self.supplier_intraEU,
-                post=True,
-                amounts=[100, -100],
-                taxes=self.tax_22ai,
-            )
-
-        # disable the rest of the test as it depends on this NOT to fail
-        return
-
-        # TMP
-        # pylint: disable=W0101
         invoice = self.create_invoice(
             self.supplier_intraEU, [100, -100], taxes=self.tax_22ai
         )
