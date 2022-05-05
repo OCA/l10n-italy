@@ -38,8 +38,8 @@ class AccountInvoice(models.Model):
         self.amount_sp = 0
         if self.fiscal_position_id.split_payment:
             self.amount_sp = self.amount_tax
+            self.amount_total -= self.amount_tax
             self.amount_tax = 0
-        self.amount_total = self.amount_untaxed + self.amount_tax
 
     def _build_debit_line(self):
         if not self.company_id.sp_account_id:
