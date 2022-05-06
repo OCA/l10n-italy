@@ -47,7 +47,7 @@ odoo.define("fiscal_epos_print.RefundInfoPopup", function (require) {
                     .find("input")
                     .toArray()
                     .every(function (element) {
-                        return element.value && element.value != "";
+                        return element.value && element.value !== "";
                     });
             }
 
@@ -74,10 +74,10 @@ odoo.define("fiscal_epos_print.RefundInfoPopup", function (require) {
         }
 
         initializeDatePicker() {
-            var self = this;
             this.$el = $(this.el);
             var element = this.$el.find("#refund_date").get(0);
             if (element && !this.datepicker) {
+                // eslint-disable-next-line
                 this.datepicker = new Pikaday({
                     field: element,
                 });

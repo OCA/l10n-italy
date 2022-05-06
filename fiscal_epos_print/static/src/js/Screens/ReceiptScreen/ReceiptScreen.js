@@ -1,13 +1,14 @@
 odoo.define("fiscal_epos_print.ReceiptScreen", function (require) {
     "use strict";
 
-    var core = require("web.core");
+    require("web.core");
     var epson_epos_print = require("fiscal_epos_print.epson_epos_print");
-    var _t = core._t;
+    // Var _t = core._t;
     var eposDriver = epson_epos_print.eposDriver;
     const Registries = require("point_of_sale.Registries");
     const ReceiptScreen = require("point_of_sale.ReceiptScreen");
 
+    // eslint-disable-next-line
     const MyReceiptScreen = (ReceiptScreen) =>
         class extends ReceiptScreen {
             lock_screen(locked) {

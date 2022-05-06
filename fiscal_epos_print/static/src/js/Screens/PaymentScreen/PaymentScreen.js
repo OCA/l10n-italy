@@ -8,10 +8,11 @@ odoo.define("fiscal_epos_print.PaymentScreen", function (require) {
     const Registries = require("point_of_sale.Registries");
     const PaymentScreen = require("point_of_sale.PaymentScreen");
 
+    // eslint-disable-next-line
     const MyPaymentScreen = (PaymentScreen) =>
         class extends PaymentScreen {
             show() {
-                _super.apply(this, arguments);
+                this._super.apply(this, arguments);
                 if (this.pos.config.printer_ip) {
                     var currentOrder = this.env.pos.get_order();
                     var printer_options = currentOrder.getPrinterOptions();
@@ -46,7 +47,7 @@ odoo.define("fiscal_epos_print.PaymentScreen", function (require) {
             }
 
             _isOrderValid(isForceValidate) {
-                if (this.env.pos.config.iface_tax_included == "subtotal") {
+                if (this.env.pos.config.iface_tax_included === "subtotal") {
                     this.showPopup("ErrorPopup", {
                         title: _t("Wrong tax configuration"),
                         body: _t(
@@ -55,18 +56,17 @@ odoo.define("fiscal_epos_print.PaymentScreen", function (require) {
                     });
                     return false;
                 }
-                var self = this;
                 var receipt = this.env.pos.get_order();
                 if (
                     receipt.has_refund &&
-                    (receipt.refund_date == null ||
+                    (receipt.refund_date === null ||
                         receipt.refund_date === "" ||
-                        receipt.refund_doc_num == null ||
-                        receipt.refund_doc_num == "" ||
-                        receipt.refund_cash_fiscal_serial == null ||
-                        receipt.refund_cash_fiscal_serial == "" ||
-                        receipt.refund_report == null ||
-                        receipt.refund_report == "")
+                        receipt.refund_doc_num === null ||
+                        receipt.refund_doc_num === "" ||
+                        receipt.refund_cash_fiscal_serial === null ||
+                        receipt.refund_cash_fiscal_serial === "" ||
+                        receipt.refund_report === null ||
+                        receipt.refund_report === "")
                 ) {
                     this.showPopup("ErrorPopup", {
                         title: _t("Refund Information Not Present"),
