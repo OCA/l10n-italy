@@ -1,15 +1,14 @@
 odoo.define("fiscal_epos_print.popups", function (require) {
     "use strict";
 
-    var core = require("web.core");
+    require("web.core");
     var popups = require("point_of_sale.popups");
     var gui = require("point_of_sale.Gui");
-    var _t = core._t;
 
-    function addPadding(str, padding = 4) {
-        var pad = new Array(padding).fill(0).join("") + str;
-        return pad.substr(pad.length - padding, padding);
-    }
+    // Function addPadding(str, padding = 4) {
+    //     var pad = new Array(padding).fill(0).join("") + str;
+    //     return pad.substr(pad.length - padding, padding);
+    // }
 
     var RefundInfoPopupWidget = popups.extend({
         template: "RefundInfoPopupWidget",
@@ -22,9 +21,9 @@ odoo.define("fiscal_epos_print.popups", function (require) {
             return this._super(parent);
         },
         show: function (options) {
-            options = options || {};
-            this._super(options);
-            this.update_refund_info_button = options.update_refund_info_button;
+            var opts = options || {};
+            this._super(opts);
+            this.update_refund_info_button = opts.update_refund_info_button;
             this.renderElement();
             this.datepicker = null;
             this.$("refund_report").focus();
@@ -37,7 +36,7 @@ odoo.define("fiscal_epos_print.popups", function (require) {
                     .$("input")
                     .toArray()
                     .every(function (element) {
-                        return element.value && element.value != "";
+                        return element.value && element.value !== "";
                     });
             }
 
@@ -63,10 +62,10 @@ odoo.define("fiscal_epos_print.popups", function (require) {
             }
         },
         initializeDatePicker: function () {
-            var self = this,
-                element = this.$("#refund_date").get(0);
+            var element = this.$("#refund_date").get(0);
 
             if (element && !this.datepicker) {
+                // eslint-disable-next-line
                 this.datepicker = new Pikaday({
                     field: element,
                 });
@@ -81,9 +80,9 @@ odoo.define("fiscal_epos_print.popups", function (require) {
             return this._super(parent);
         },
         show: function (options) {
-            options = options || {};
-            this._super(options);
-            this.update_lottery_info_button = options.update_lottery_info_button;
+            var opts = options || {};
+            this._super(opts);
+            this.update_lottery_info_button = opts.update_lottery_info_button;
             this.renderElement();
             this.$("#lottery_code").focus();
         },
@@ -95,7 +94,7 @@ odoo.define("fiscal_epos_print.popups", function (require) {
                     .$("input")
                     .toArray()
                     .every(function (element) {
-                        return element.value && element.value != "";
+                        return element.value && element.value !== "";
                     });
             }
 
