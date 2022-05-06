@@ -35,7 +35,7 @@ odoo.define("fiscal_epos_print.models", function (require) {
         // Manages the case in which after printing an invoice
         // you pass a barcode in the mask of the registered invoice
         add_product: function (product, options) {
-            if (this._printed || this.finalized == true) {
+            if (this._printed || this.finalized === true) {
                 this.destroy();
                 return this.pos.get_order().add_product(product, options);
             }
@@ -49,7 +49,7 @@ odoo.define("fiscal_epos_print.models", function (require) {
                 order.has_refund =
                     lines.find(function (line) {
                         return line.quantity < 0.0;
-                    }) != undefined;
+                    }) !== undefined;
             }
         },
 
@@ -78,7 +78,8 @@ odoo.define("fiscal_epos_print.models", function (require) {
             result.refund_cash_fiscal_serial = this.refund_cash_fiscal_serial;
             result.fiscal_receipt_number = this.fiscal_receipt_number;
             result.fiscal_receipt_amount = this.fiscal_receipt_amount;
-            result.fiscal_receipt_date = this.fiscal_receipt_date; // Parsed by backend
+            // Parsed by backend
+            result.fiscal_receipt_date = this.fiscal_receipt_date;
             result.fiscal_z_rep_number = this.fiscal_z_rep_number;
             result.fiscal_printer_serial = this.fiscal_printer_serial || null;
             result.fiscal_printer_debug_info = this.fiscal_printer_debug_info;
@@ -122,7 +123,7 @@ odoo.define("fiscal_epos_print.models", function (require) {
                     body: _t("Manca iva su prodotto"),
                 });
             }
-            if (res.tax_department.included_in_price == true) {
+            if (res.tax_department.included_in_price === true) {
                 res.full_price = this.price;
             } else {
                 res.full_price = this.price * (1 + res.tax_department.tax_amount / 100);
@@ -146,11 +147,12 @@ odoo.define("fiscal_epos_print.models", function (require) {
             });
         },
         set_quantity: function (quantity, keep_price) {
-            if (quantity == "0") {
+            var qty = quantity;
+            if (qty === "0") {
                 // Epson FP doesn't allow lines with quantity 0
-                quantity = "remove";
+                qty = "remove";
             }
-            return _orderline_super.set_quantity.call(this, quantity, keep_price);
+            return _orderline_super.set_quantity.call(this, qty, keep_price);
         },
 
         // TODO CONTROLLARE SE SERVE
@@ -172,35 +174,37 @@ odoo.define("fiscal_epos_print.models", function (require) {
             var self = this;
 
             var total_excluded = round_pr(price_unit * quantity, currency_rounding);
-            var total_included = total_excluded;
+            // Var total_included = total_excluded;
             var base = total_excluded;
             var list_taxes = res.taxes;
             // Amount_type 'group' not handled (used only for purchases, in Italy)
             // _(taxes).each(function(tax) {
-            _(taxes).each(function (tax, index) {
+            _(taxes).each(function (tax) {
+                var t = tax;
                 if (!no_map_tax) {
-                    tax = self._map_tax_fiscal_position(tax);
+                    t = self._map_tax_fiscal_position(t);
                 }
-                if (!tax) {
+                if (!t) {
                     return;
                 }
-                var tax_amount = self._compute_all(tax[0], base, quantity);
+                var tax_amount = self._compute_all(t[0], base, quantity);
                 tax_amount = round_pr(tax_amount, currency_rounding);
                 if (!tax_amount) {
                     // Intervene here: also add taxes with 0 amount
-                    if (tax[0].price_include) {
+                    if (t[0].price_include) {
                         total_excluded -= tax_amount;
                         base -= tax_amount;
-                    } else {
-                        total_included += tax_amount;
                     }
-                    if (tax[0].include_base_amount) {
+                    // Else {
+                    //     total_included += tax_amount;
+                    // }
+                    if (t[0].include_base_amount) {
                         base += tax_amount;
                     }
                     var data = {
-                        id: tax[0].id,
+                        id: t[0].id,
                         amount: tax_amount,
-                        name: tax[0].name,
+                        name: t[0].name,
                     };
                     list_taxes.push(data);
                 }

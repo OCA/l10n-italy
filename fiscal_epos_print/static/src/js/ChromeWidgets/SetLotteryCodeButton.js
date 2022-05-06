@@ -6,13 +6,15 @@ odoo.define("fiscal_epos_print.SetLotteryCodeButton", function (require) {
     const {useListener} = require("web.custom_hooks");
     const Registries = require("point_of_sale.Registries");
     const {Gui} = require("point_of_sale.Gui");
+    var core = require("web.core");
+    var _t = core._t;
 
     class SetLotteryCodeButton extends PosComponent {
         constructor() {
             super(...arguments);
             useListener("click", this.onClick);
             // This is from older widget system 12.0
-            var self = this;
+            // var self = this;
             // This.pos.bind('change:selectedOrder',function(){
             //     //self.renderElement();
             // },this);

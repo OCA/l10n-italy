@@ -5,22 +5,22 @@ odoo.define("fiscal_epos_print.SetRefundInfoButton", function (require) {
     var _t = core._t;
     const PosComponent = require("point_of_sale.PosComponent");
     const ProductScreen = require("point_of_sale.ProductScreen");
-    const {useListener} = require("web.custom_hooks");
+    // Const {useListener} = require("web.custom_hooks");
     const Registries = require("point_of_sale.Registries");
-    const {Gui} = require("point_of_sale.Gui");
-    const {posbus} = require("point_of_sale.utils");
-    const PaymentScreen = require("point_of_sale.PaymentScreen");
+    // Const {Gui} = require("point_of_sale.Gui");
+    // const {posbus} = require("point_of_sale.utils");
+    // const PaymentScreen = require("point_of_sale.PaymentScreen");
 
     class SetRefundInfoButton extends PosComponent {
-        constructor() {
-            super(...arguments);
-            // UseListener('click', this.onClick);
-            // This is from older widget system 12.0
-            // this.pos.bind('change:selectedOrder',function(){
-            //     this.orderline_change();
-            //     this.bind_order_events();
-            // },this);
-        }
+        // Constructor() {
+        // super(...arguments);
+        // useListener('click', this.onClick);
+        // This is from older widget system 12.0
+        // this.pos.bind('change:selectedOrder',function(){
+        //     this.orderline_change();
+        //     this.bind_order_events();
+        // },this);
+        // }
 
         mounted() {
             this.bind_order_events();
@@ -57,7 +57,6 @@ odoo.define("fiscal_epos_print.SetRefundInfoButton", function (require) {
         }
 
         bind_order_events() {
-            var self = this;
             var order = this.env.pos.get_order();
 
             if (!order) {
@@ -89,17 +88,17 @@ odoo.define("fiscal_epos_print.SetRefundInfoButton", function (require) {
                 var has_refund =
                     lines.find(function (line) {
                         return line.quantity < 0.0;
-                    }) != undefined;
-                if (has_refund == true) {
+                    }) !== undefined;
+                if (has_refund === true) {
                     if (
                         order.refund_date &&
-                        order.refund_date != "" &&
+                        order.refund_date !== "" &&
                         order.refund_doc_num &&
-                        order.refund_doc_num != "" &&
+                        order.refund_doc_num !== "" &&
                         order.refund_cash_fiscal_serial &&
-                        order.refund_cash_fiscal_serial != "" &&
+                        order.refund_cash_fiscal_serial !== "" &&
                         order.refund_report &&
-                        order.refund_report != ""
+                        order.refund_report !== ""
                     ) {
                         color = "lightgreen";
                     } else {
@@ -117,7 +116,7 @@ odoo.define("fiscal_epos_print.SetRefundInfoButton", function (require) {
                 order.has_refund =
                     lines.find(function (line) {
                         return line.quantity < 0.0;
-                    }) != undefined;
+                    }) !== undefined;
             }
             this.render();
         }
