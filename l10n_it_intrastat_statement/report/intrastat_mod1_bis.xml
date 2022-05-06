@@ -68,6 +68,7 @@
                                             <th></th>
                                             <th></th>
                                             <th></th>
+                                            <th></th>
                                         </tr>
                                         <tr>
                                             <th class="text-center">PROGR.</th>
@@ -84,6 +85,7 @@
                                             <th class="text-center">MODO TRASP.</th>
                                             <th class="text-center">PAESE DEST.</th>
                                             <th class="text-center">PROV. ORIG.</th>
+                                            <th class="text-center">PAESE ORIG.</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -102,6 +104,7 @@
                                             <td>12</td>
                                             <td>13</td>
                                             <td>14</td>
+                                            <td>15</td>
                                         </tr>
                                         <t t-set="total" t-value="0"/>
                                         <tr t-foreach="o.sale_section1_ids" t-as="l">
@@ -119,6 +122,7 @@
                                             <td><span t-field="l.transport_code_id.code"/></td>
                                             <td><span t-field="l.country_destination_id.code"/></td>
                                             <td><span t-field="l.province_origin_id.code"/></td>
+                                            <td><span t-field="l.country_origin_id.code"/></td>
                                             <t t-set="total" t-value="total + l.amount_euro"/>
                                         </tr>
                                         <tr>
