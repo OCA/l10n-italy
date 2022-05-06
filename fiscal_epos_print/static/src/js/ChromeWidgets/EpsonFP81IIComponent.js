@@ -35,7 +35,7 @@ odoo.define("fiscal_epos_print.EpsonFP81IIComponent", function (require) {
                 };
             }
 
-            this.dragend_handler = function (event) {
+            this.dragend_handler = function () {
                 self.dragging = false;
             };
             this.dragstart_handler = function (event) {
