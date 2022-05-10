@@ -162,14 +162,14 @@ def migrate(env, version):
             )
             payment_id = cr.fetchone()[0]
 
-            line_ids = tuple(move_vals[inv])
+            line_ids = ",".join([str(line_id) for line_id in move_vals[inv]])
             openupgrade.logged_query(
                 cr,
                 """
                 update account_move_line
                 set move_id = {move_id},
                     payment_id = {payment_id}
-                where id in {line_ids};
+                where id in ({line_ids});
                 """.format(
                     move_id=move_id, payment_id=payment_id, line_ids=line_ids
                 ),
