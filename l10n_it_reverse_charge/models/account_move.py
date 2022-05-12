@@ -45,6 +45,13 @@ class AccountMove(models.Model):
         copy=False,
         readonly=True,
     )
+    orig_purchase_invoice_id = fields.One2many(
+        comodel_name="account.move",
+        inverse_name="rc_self_purchase_invoice_id",
+        string="Original Purchase Invoice",
+        copy=False,
+        readonly=True,
+    )
 
     @api.onchange("fiscal_position_id")
     def onchange_rc_fiscal_position_id(self):
@@ -71,7 +78,12 @@ class AccountMove(models.Model):
         }
 
     def rc_inv_vals(self, partner, rc_type, lines, currency):
-        if self.move_type == "in_invoice":
+        self.ensure_one()
+
+        # we can be either a self bill or a bill
+        origin_invoice = self.orig_purchase_invoice_id or self
+
+        if origin_invoice.move_type == "in_invoice":
             move_type = "out_invoice"
         else:
             move_type = "out_refund"
@@ -83,10 +95,10 @@ class AccountMove(models.Model):
             "Date: %s\n"
             "Internal reference: %s"
         ) % (
-            self.partner_id.display_name,
-            self.ref or "",
-            self.date,
-            self.name,
+            origin_invoice.partner_id.display_name,
+            origin_invoice.ref or "",
+            origin_invoice.date,
+            origin_invoice.name,
         )
         return {
             "partner_id": partner.id,
@@ -269,8 +281,7 @@ class AccountMove(models.Model):
 
     def generate_supplier_self_invoice(self):
         rc_type = self.fiscal_position_id.rc_type_id
-        if not len(rc_type.tax_ids) == 1:
-            raise UserError(_("Can't find 1 tax mapping for %s" % rc_type.name))
+
         supplier_invoice_vals = self.copy_data()[0]
         supplier_invoice = False
         if self.rc_self_purchase_invoice_id:
@@ -291,10 +302,24 @@ class AccountMove(models.Model):
         if not supplier_invoice:
             supplier_invoice = self.create(supplier_invoice_vals)
         for inv_line in supplier_invoice.invoice_line_ids:
+            # XXX assert len(inv_line.tax_ids) == 1
             inv_line.tax_ids = [(6, 0, [rc_type.tax_ids[0].purchase_tax_id.id])]
+            if inv_line.product_id and inv_line.product_id.supplier_taxes_id:
+                product_taxes = inv_line.product_id.supplier_taxes_id.filtered(
+                    lambda tax: tax.company_id == supplier_invoice.company_id
+                )
+                if product_taxes:
+                    inv_line.tax_ids = [(6, 0, [product_taxes.id])]
             inv_line.account_id = rc_type.transitory_account_id.id
+            inv_line.with_context(
+                check_move_validity=False
+            )._onchange_mark_recompute_taxes()
         self.rc_self_purchase_invoice_id = supplier_invoice.id
 
+        supplier_invoice.with_context(
+            check_move_validity=False
+        )._onchange_invoice_line_ids()
+        supplier_invoice._recompute_dynamic_lines()
         supplier_invoice.action_post()
         supplier_invoice.fiscal_position_id = self.fiscal_position_id.id
 

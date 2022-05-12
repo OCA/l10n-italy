@@ -1,10 +1,9 @@
 # Copyright 2016 Davide Corio
 # Copyright 2017 Alex Comba - Agile Business Group
-# Copyright 2017 Lorenzo Battistini - Agile Business Group
+# Copyright 2017 Lorenzo Batttini - Agile Business Group
 # Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl
 
-from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo import fields, models
 
 
 class AccountRCTypeTax(models.Model):
@@ -92,15 +91,3 @@ class AccountRCType(models.Model):
         required=True,
         default=lambda self: self.env.company,
     )
-
-    @api.constrains("with_supplier_self_invoice", "tax_ids")
-    def _check_tax_ids(self):
-        for rctype in self:
-            if rctype.with_supplier_self_invoice and len(rctype.tax_ids) > 1:
-                raise ValidationError(
-                    _(
-                        'When "With additional supplier self invoice" you must set'
-                        " only one tax mapping line: only 1 tax per invoice is "
-                        "supported"
-                    )
-                )

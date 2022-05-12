@@ -73,7 +73,9 @@ class AccountMove(models.Model):
                     "or exclusively of other types."
                 )
             )
-        rc_suppliers = invoices_with_rc.mapped("rc_purchase_invoice_id.partner_id")
+        rc_suppliers = invoices.mapped(
+            "rc_purchase_invoice_id.orig_purchase_invoice_id.partner_id"
+        ) or invoices_with_rc.mapped("rc_purchase_invoice_id.partner_id")
         if len(rc_suppliers) > 1:
             raise UserError(
                 _(

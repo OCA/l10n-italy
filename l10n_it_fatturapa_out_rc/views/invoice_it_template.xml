@@ -16,7 +16,7 @@
                         <t t-set="partner_id" t-value="company_id.partner_id" />
                         <t
                     t-set="rc_supplier"
-                    t-value="invoices.mapped('rc_purchase_invoice_id.partner_id')"
+                    t-value="invoices.mapped('rc_purchase_invoice_id.orig_purchase_invoice_id.partner_id') or invoices.mapped('rc_purchase_invoice_id.partner_id')"
                 />
                         <t t-if="rc_supplier">
                         <t t-set="partner_id" t-value="rc_supplier" />
