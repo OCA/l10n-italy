@@ -61,6 +61,7 @@
                                     'readonly': [('method', '!=', 'selfinvoice')],
                                     'required': [('method', '=', 'selfinvoice')]}">
                             <tree string="Tax Mapping" editable="bottom">
+                                <field name="original_purchase_tax_id" />
                                 <field name="purchase_tax_id" />
                                 <field name="sale_tax_id" />
                             </tree>
