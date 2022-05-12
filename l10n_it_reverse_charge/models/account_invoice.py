@@ -58,6 +58,20 @@ class AccountInvoice(models.Model):
         self.onchange_rc_fiscal_position_id()
         return res
 
+    @api.multi
+    def _get_original_suppliers(self):
+        rc_purchase_invoices = self.mapped("rc_purchase_invoice_id")
+        supplier_invoices = self.env["account.invoice"]
+        for rc_purchase_invoice in rc_purchase_invoices:
+            current_supplier_invoices = self.search([
+                ("rc_self_purchase_invoice_id", "=", rc_purchase_invoice.id)
+            ])
+            if current_supplier_invoices:
+                supplier_invoices |= current_supplier_invoices
+            else:
+                supplier_invoices |= rc_purchase_invoice
+        return supplier_invoices.mapped("partner_id")
+
     def rc_inv_line_vals(self, line):
         return {
             'product_id': line.product_id.id,
@@ -73,6 +87,12 @@ class AccountInvoice(models.Model):
             type = 'out_invoice'
         else:
             type = 'out_refund'
+        supplier = self.partner_id
+        original_invoice = self.search([
+            ("rc_self_purchase_invoice_id", "=", self.id)
+        ], limit=1)
+        if original_invoice:
+            supplier = original_invoice.partner_id
 
         comment = _(
             "Reverse charge self invoice.\n"
@@ -80,7 +100,7 @@ class AccountInvoice(models.Model):
             "Reference: %s\n"
             "Date: %s\n"
             "Internal reference: %s") % (
-            self.partner_id.display_name, self.reference or '', self.date,
+            supplier.display_name, self.reference or '', self.date,
             self.number
         )
         return {
