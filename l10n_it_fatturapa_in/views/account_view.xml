@@ -23,6 +23,7 @@
                             <field name="e_invoice_received_date"/>
                             <field name="registered"/>
                             <field name="invoices_total"/>
+                            <field name="linked_invoice_id_xml"/>
                         </group>
                     </group>
                     <field name="ftpa_preview_link" widget="url" text="Show preview" class="btn btn-default"/>

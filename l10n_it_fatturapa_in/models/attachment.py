@@ -38,6 +38,9 @@ class FatturaPAAttachmentIn(models.Model):
     e_invoice_validation_message = fields.Text(
         compute='_compute_e_invoice_validation_error')
 
+    linked_invoice_id_xml = fields.Char(
+        compute="_compute_linked_invoice_id_xml", store=True)
+
     _sql_constraints = [(
         'ftpa_attachment_in_name_uniq',
         'unique(att_name)',
@@ -67,6 +70,20 @@ class FatturaPAAttachmentIn(models.Model):
 
     def get_xml_string(self):
         return self.ir_attachment_id.get_xml_string()
+
+    @api.multi
+    @api.depends('ir_attachment_id.datas')
+    def _compute_linked_invoice_id_xml(self):
+        for att in self:
+            att.linked_invoice_id_xml = ""
+            fatt = att.get_invoice_obj()
+            if fatt:
+                for invoice_body in fatt.FatturaElettronicaBody:
+                    if len(invoice_body.DatiGenerali.DatiFattureCollegate) == 1:
+                        att.linked_invoice_id_xml = (
+                            invoice_body.DatiGenerali.DatiFattureCollegate[0].
+                            IdDocumento
+                        )
 
     @api.multi
     @api.depends('ir_attachment_id.datas')
