@@ -130,6 +130,15 @@ msgid "Bank Account"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
+#: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_account_bank_statement_line__riba_partner_bank_id
+#: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_account_move__riba_partner_bank_id
+#: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_account_payment__riba_partner_bank_id
+msgid ""
+"Bank Account Number to which the C/O will be debited. If not set, first bank"
+" in partner will be used."
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_res_partner_bank
 msgid "Bank Accounts"
 msgstr ""
@@ -210,6 +219,13 @@ msgstr ""
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_unsolved__riba_bank_amount
 msgid "C/O Amount"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_bank_statement_line__riba_partner_bank_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_move__riba_partner_bank_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_payment__riba_partner_bank_id
+msgid "C/O Bank Account"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
@@ -737,6 +753,13 @@ msgid "Invoice is linked to C/O slip No. {riba}"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_bank_statement_line__is_riba_payment
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_move__is_riba_payment
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_payment__is_riba_payment
+msgid "Is C/O Payment"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta__message_is_follower
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line__message_is_follower
 msgid "Is Follower"
@@ -953,7 +976,7 @@ msgstr ""
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_issue.py:0
 #, python-format
-msgid "No bank has been specified for partner %s!"
+msgid "No bank has been specified for invoice %s"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
