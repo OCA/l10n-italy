@@ -9,7 +9,7 @@
     'author': 'Openindustry.it Sas, Odoo Community Association (OCA)',
     'website': "https://github.com/OCA/l10n-italy/tree/12.0/"
                "l10n_it_delivery_note_order_link",
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'license': 'AGPL-3',
     'maintainers': ['As400it', 'andreampiovesana'],
     'category': 'Localization',
