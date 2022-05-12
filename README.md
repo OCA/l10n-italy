@@ -81,7 +81,7 @@ addon | version | maintainers | summary
 
 ## Licenses
 
-This repository is licensed under [GPL-3.0](LICENSE).
+This repository is licensed under [OPL-1](LICENSE).
 
 However, each module can have a totally different license, as long as they adhere to Odoo Community Association (OCA)
 policy. Consult each module's `__manifest__.py` file, which contains a `license` key
