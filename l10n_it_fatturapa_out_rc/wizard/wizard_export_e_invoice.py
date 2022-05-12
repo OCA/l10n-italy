@@ -40,7 +40,7 @@ class WizardExportFatturapa(models.TransientModel):
                 "select invoices exclusively of type 'TD17', 'TD18', 'TD19' "
                 "or exclusively of other types."
             ))
-        rc_suppliers = invoices.mapped("rc_purchase_invoice_id.partner_id")
+        rc_suppliers = invoices._get_original_suppliers()
         if len(rc_suppliers) > 1:
             raise UserError(_(
                 "Selected reverse charge invoices have different suppliers. Please "
