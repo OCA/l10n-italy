@@ -390,9 +390,6 @@ class AccountInvoice(models.Model):
 
     def generate_supplier_self_invoice(self):
         rc_type = self.fiscal_position_id.rc_type_id
-        if not len(rc_type.tax_ids) == 1:
-            raise UserError(_(
-                "Can't find 1 tax mapping for %s" % rc_type.name))
         if not self.rc_self_purchase_invoice_id:
             supplier_invoice = self.copy()
         else:
@@ -410,8 +407,19 @@ class AccountInvoice(models.Model):
         supplier_invoice.partner_id = rc_type.partner_id.id
         supplier_invoice.journal_id = rc_type.supplier_journal_id.id
         for inv_line in supplier_invoice.invoice_line_ids:
-            inv_line.invoice_line_tax_ids = [
-                (6, 0, [rc_type.tax_ids[0].purchase_tax_id.id])]
+            line_tax_ids = inv_line.invoice_line_tax_ids
+            tax_ids = list()
+            for tax_mapping in rc_type.tax_ids:
+                for line_tax_id in line_tax_ids:
+                    if tax_mapping.original_purchase_tax_id == line_tax_id:
+                        tax_ids.append(tax_mapping.purchase_tax_id.id)
+            if not tax_ids:
+                raise UserError(_("Tax code used is not a RC tax.\nCan't "
+                                  "find tax mapping"))
+            if line_tax_ids:
+                inv_line.invoice_line_tax_ids = [
+                    (6, False, tax_ids)]
+
             inv_line.account_id = rc_type.transitory_account_id.id
         self.rc_self_purchase_invoice_id = supplier_invoice.id
 
