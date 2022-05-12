@@ -197,6 +197,15 @@ class FatturaPAAttachmentOut(models.Model):
         regex = re.compile(RESPONSE_MAIL_REGEX)
         attachments = [x for x in message_dict["attachments"] if regex.match(x.fname)]
 
+        if not attachments:
+            raise UserError(
+                _(
+                    'PEC message "%s" is coming from SDI but attachments do not '
+                    "match SDI response format. Please check."
+                )
+                % (message_dict["subject"])
+            )
+
         for attachment in attachments:
             response_name = attachment.fname
             message_type = response_name.split("_")[2]
