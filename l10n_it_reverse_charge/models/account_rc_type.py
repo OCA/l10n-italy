@@ -4,8 +4,7 @@
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import fields, models, _, api
-from openerp.exceptions import ValidationError
+from openerp import fields, models
 
 
 class AccountRCTypeTax(models.Model):
@@ -17,6 +16,10 @@ class AccountRCTypeTax(models.Model):
         string='RC type',
         required=True,
         ondelete='cascade')
+    original_purchase_tax_id = fields.Many2one(
+        'account.tax',
+        string='Original Purchase Tax',
+        required=False)
     purchase_tax_id = fields.Many2one(
         'account.tax',
         string='Purchase Tax',
@@ -86,14 +89,3 @@ class AccountRCType(models.Model):
     company_id = fields.Many2one(
         'res.company', string='Company', required=True,
         default=lambda self: self.env.user.company_id)
-
-    @api.multi
-    @api.constrains('with_supplier_self_invoice', 'tax_ids')
-    def _check_tax_ids(self):
-        for rctype in self:
-            if rctype.with_supplier_self_invoice and len(rctype.tax_ids) > 1:
-                raise ValidationError(_(
-                    'When "With additional supplier self invoice" you must set'
-                    ' only one tax mapping line: only 1 tax per invoice is '
-                    'supported'
-                ))
