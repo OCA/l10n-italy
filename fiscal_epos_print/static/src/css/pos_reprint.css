@@ -1,0 +1,20 @@
+.receipt-screen .default-view .actions .reprint_buttons .button {
+    flex: 1;
+    border: solid 1px rgb(209, 209, 209);
+    padding: 1rem;
+    text-align: center;
+    border-radius: 3px;
+    cursor: pointer;
+    background: rgb(230, 230, 230);
+}
+
+.receipt-screen .default-view .actions .reprint_buttons {
+    display: flex;
+    margin: 1rem 0px;
+}
+
+.receipt-screen .default-view .actions .reprint_buttons .printing-error{
+    background: rgb(255, 0, 0);
+    border: solid 1px #648B0000 !important;
+    color: white !important;
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="ClientDetailsAddFiscalCode1" t-inherit="point_of_sale.ClientDetailsEdit"
+       t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('client-details-right')]/div[hasclass('client-detail')][5]" position="inside">
+            <div class="client-detail">
+                <span class='label'>Print F.C.</span>
+                <input type="checkbox" class='detail o_checkbox epos_print_fiscalcode_receipt'
+                       t-on-change="captureChange"
+                       name='epos_print_fiscalcode_receipt'
+                       t-att-value="props.partner.epos_print_fiscalcode_receipt || ''"/>
+            </div>
+        </xpath>
+    </t>
+
+    <!--    <t t-extend="ClientDetails" >-->
+    <!--        <t t-jquery=".client-details-right" t-operation="append">-->
+    <!--            <div class='client-detail'>-->
+    <!--                <span class='label'>Print F.C.</span>-->
+    <!--                <input type="checkbox" class='detail o_checkbox epos_print_fiscalcode_receipt'-->
+    <!--                       t-att-checked="partner.epos_print_fiscalcode_receipt ? 'checked' : null" disabled="disabled"-->
+    <!--                       t-att-value="partner.epos_print_fiscalcode_receipt"/><br/>-->
+    <!--            </div>-->
+    <!--        </t>-->
+    <!--    </t>-->
+    <!--    <t t-extend="ClientDetailsEdit">-->
+    <!--        <t t-jquery=".client-details-right" t-operation="append">-->
+    <!--            <div class='client-detail'>-->
+    <!--                <span class='label'>Print F.C.</span>-->
+    <!--                <input type='checkbox' class='detail o_checkbox checkbox epos_print_fiscalcode_receipt'-->
+    <!--                       name='epos_print_fiscalcode_receipt' t-att-checked="partner.epos_print_fiscalcode_receipt ? 'checked' : null"-->
+    <!--                       t-att-value="partner.epos_print_fiscalcode_receipt"/>-->
+    <!--            </div>-->
+    <!--        </t>-->
+    <!--    </t>-->
+</templates>

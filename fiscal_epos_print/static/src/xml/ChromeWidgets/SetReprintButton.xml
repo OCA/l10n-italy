@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="SetReprintButton" t-inherit="point_of_sale.ReceiptScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//form[hasclass('send-email')]" position="after">
+            <div class="reprint_buttons" >
+<!--                <div class="button disabled printing-error">-->
+<!--                    In caso di Errore di Stampa-->
+<!--                </div>-->
+                 <div class='button highlight printing-retry' t-on-click="rePrintReceipt"> <!--   style="display:none">-->
+                    <i class='fa fa-pencil-square-o'/>
+                        Ristampa Ultimo Scontrino
+                </div>
+            </div>
+        </xpath>
+    </t>
+
+</templates>

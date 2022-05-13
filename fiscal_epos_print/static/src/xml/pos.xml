@@ -1,0 +1,156 @@
+<!-- TODO THIS XML MUST BE DISTRIBUTED IN THE PROPER COMPONENT FILE -->
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!-- Moved inside EpostonEPOSButton.xml -->
+    <!-- <t t-name="EpsonEPOSWidget">
+        <div class="header-button">
+            <img src="/fiscal_epos_print/static/src/img/epos.svg" alt="Epson ePOS" title="Epson ePOS Operation" />
+        </div>
+    </t> -->
+
+<!--    <t t-extend="PosTicket">-->
+<!--        <t t-jquery="div[class='pos-sale-ticket']" t-operation="after">-->
+<!--            <div class="button disabled receipt-sent" t-if="!order.is_to_invoice()">-->
+<!--                Receipt sent to the printer-->
+<!--            </div>-->
+<!--            <div class="button disabled invoice-recorded" t-if="order.is_to_invoice()">-->
+<!--                Invoice recorded-->
+<!--            </div>-->
+<!--            <div class="button disabled printing-error" style="display:none">-->
+<!--                Printing error-->
+<!--            </div>-->
+<!--            <div class="button highlight printing-retry" >-->
+<!--                Retry-->
+<!--            </div>-->
+<!--        </t>-->
+<!--    </t>-->
+
+    <t t-extend="ReceiptScreenWidget">
+        <t t-jquery="div[class='button print']" t-operation="attributes">
+            <attribute name="style">display:none</attribute>
+        </t>
+    </t>
+
+    <!-- Moved inside SetRefundInfoButton.xml -->
+    <!-- <t t-name="SetRefundInfoButton">
+        <div id="refund_info_button" class='control-button'>
+            <i class='fa fa-pencil-square-o'/>
+            Refund Data
+        </div>
+    </t> -->
+
+    <!-- MOVED INSIDE RefundInfoPopup -->
+    <!-- <t t-name="RefundInfoPopupWidget">
+        <div class="modal-dialog">
+            <div class="popup popup-text">
+
+                <p class="title">
+                   <t t-esc=" widget.options.title || '' "/>
+                </p>
+
+                <div class='client-detail'>
+                    <div class='label'>Closing Seq.</div>
+                    <input id="refund_report" class="detail refund_report"
+                           type='text' t-att-value="widget.options.refund_report || ''" placeholder="Max 4 numbers"/>
+                </div>
+                <div class='client-detail'>
+                    <div class='label'>Receipt Num.</div>
+                    <input id="refund_doc_num" class="detail refund_doc_num"
+                           type='text' t-att-value="widget.options.refund_doc_num || ''" placeholder="Max 4 numbers"/>
+                </div>
+                <div class='client-detail'>
+                    <div class='label'>Receipt Date</div>
+                    <input id="refund_date" class="detail refund_date" type='text'
+                           t-att-value="widget.options.refund_date || ''"
+                           placeholder="YYYY-MM-DD"/>
+                </div>
+                <div class='client-detail'>
+                    <div class='label'>RT Serial</div>
+                    <input id="refund_cash_fiscal_serial" class="detail refund_cash_fiscal_serial" type='text'
+                           t-att-value="widget.options.refund_cash_fiscal_serial || ''" placeholder="RT Serial"/>
+                </div>
+
+                <div class="footer">
+                    <div class="button confirm">
+                        Apply
+                    </div>
+                    <div class="button cancel">
+                        Cancel
+                    </div>
+                    <div id="error-message-dialog"
+                         style="color: red; font-weight: bold; font-size: 18px; font-style: italic; display: none;">
+                        Some fields are empty.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t> -->
+
+    <!-- Moved inside EpostonFP81IIComponent.xml -->
+    <!-- <t t-name="EpsonFP81IIWidget">
+        <div class="epson-fp81ii-widget oe_hidden">
+            <h1>Epson ePOS</h1>
+            <div class="toggle"><i class='fa fa-times'/></div>
+            <div class="content">
+                <p class="category">Operations</p>
+                <ul name="epos_operations">
+                    <li>
+                        <div class="button open_cashdrawer" style="padding-top:5px">
+                            <span>
+                                <img src="/fiscal_epos_print/static/src/img/cashdrawer.svg" alt="Open CashDrawer" title="Open CashDrawer"/>
+                            </span>
+                            <span class="category-label">
+                                Open CashDrawer
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="button reprint_last_receipt" style="padding-top:5px">
+                            <span>
+                                <img src="/fiscal_epos_print/static/src/img/reprint.svg" alt="Reprint Last Receipt" title="Reprint last receipt"/>
+                            </span>
+                            <span class="category-label">
+                                Reprint Last Receipt
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+                <p class="category">Reports</p>
+                <ul name="epos_reports">
+                    <li>
+                        <div class="button show_ade_status" style="padding-top:5px">
+                            <span>
+                                <img src="/fiscal_epos_print/static/src/img/ade-logo.svg" alt="IRA status" title="Status of files to be sent to IRA"/>
+                            </span>
+                            <span class="category-label">
+                                IRA status
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="button fiscal_closing" style="padding-top:5px">
+                            <span>
+                                <img src="/fiscal_epos_print/static/src/img/Z.svg" alt="Fiscal closure" title="Send fiscal closure command to the fiscal printer"/>
+                            </span>
+                            <span class="category-label">
+                                Closure Report Z (Fiscal)
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="button fiscal_xreport" style="padding-top:5px">
+                            <span>
+                                <img src="/fiscal_epos_print/static/src/img/X.svg" alt="Fiscal closure" title="Send fiscal X report to the fiscal printer"/>
+                            </span>
+                            <span class="category-label">
+                                Financial Report X
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </t> -->
+
+</templates>

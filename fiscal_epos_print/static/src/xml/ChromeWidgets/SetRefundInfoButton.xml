@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="SetRefundInfoButton" owl="1">
+        <div id="refund_info_button" class='control-button' t-on-click="onClickRefund">
+            <i class='fa fa-pencil-square-o'/>
+            Refund Data
+        </div>
+    </t>
+
+</templates>

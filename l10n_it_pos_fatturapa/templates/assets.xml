@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="assets" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/l10n_it_pos_fatturapa/static/src/js/model.js"></script>
+            <script type="text/javascript" src="/l10n_it_pos_fatturapa/static/src/js/screen.js"></script>
+            <!--            <link rel="stylesheet" href="/l10n_it_pos_fatturapa/static/src/pos_demo.scss"/>-->
+        </xpath>
+    </template>
+</odoo>

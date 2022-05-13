@@ -1,4 +1,5 @@
 # Copyright 2019 Lorenzo Battistini
+# © 2022 Leonardo Guerra, Kevin Poli, Simone Cuffaro, Dario Del Zozzo, Riccardo Cipriani
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
@@ -9,7 +10,7 @@
     "development_status": "Beta",
     "category": "Point Of Sale",
     "website": "https://github.com/OCA/l10n-italy",
-    "author": "Odoo Community Association (OCA)",
+    "author": "Air s.r.l., Odoo Community Association (OCA)",
     "maintainers": ["eLBati"],
     "license": "AGPL-3",
     "application": False,

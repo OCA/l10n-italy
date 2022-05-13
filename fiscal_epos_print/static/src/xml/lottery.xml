@@ -1,0 +1,41 @@
+<!-- TODO THIS XML MUST BE DISTRIBUTED IN THE PROPER COMPONENT FILE -->
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="lottery_template" xml:space="preserve">
+
+    <!-- Moved inside SetLotteryCodeButton.xml -->
+    <!-- <t t-name="SetLotteryCodeButton">
+        <div id="lottery_code_button" class='control-button'>
+            <i class='fa fa-pencil-square-o'/>
+            Lottery Code
+        </div>
+    </t> -->
+
+    <t t-name="LotteryCodePopupWidget">
+        <div class="modal-dialog">
+            <div class="popup popup-text">
+
+                <p class="title">
+                   <t t-esc=" widget.options.title || '' " />
+                </p>
+
+                <div class='client-detail'>
+                    <input id="lottery_code" class="detail lottery_code"
+                           type='text' t-att-value="widget.options.lottery_code || ''" placeholder="XXXXXXXX"/>
+                </div>
+
+                <div class="footer">
+                    <div class="button confirm">
+                        Apply
+                    </div>
+                    <div class="button cancel">
+                        Cancel
+                    </div>
+                    <div id="lottery-error-message-dialog"
+                         style="color: red; font-weight: bold; font-size: 18px; font-style: italic; display: none;">
+                        Some fields are empty.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

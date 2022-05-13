@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="ClientDetailsAddElectronicInvoice" t-inherit="point_of_sale.ClientDetailsEdit" t-inherit-mode="extension" owl="1">
+<!--        <xpath expr="//input[hasclass('client-name')]" position="replace">-->
+<!--            <div>-->
+<!--                <i t-esc="props.partner.company_type"></i>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <input class="detail client-name" name="name" t-att-value="props.partner.name"-->
+<!--                   placeholder="Name" t-on-change="captureChange" />-->
+<!--                <t t-if="props.partner.company_type='person'">-->
+<!--                    <span class="label">First name</span>-->
+<!--                    <input class="detail" name="firstname" t-att-value="props.partner.firstname"-->
+<!--                       t-on-change="captureChange" />-->
+<!--                    <span class="label">Last name</span>-->
+<!--                    <input class="detail" name="lastname" t-att-value="props.partner.lastname"-->
+<!--                           t-on-change="captureChange" />-->
+<!--                </t>-->
+<!--            </div>-->
+<!--        </xpath>-->
+        <xpath expr="//div[hasclass('client-details-right')]/div[hasclass('client-detail')][5]" position="after">
+<!--            <div class="client-detail">-->
+<!--                <span class="label">Enable electronic invoicing</span>-->
+<!--&lt;!&ndash;                <input class="detail" name="electronic_invoice_subjected" t-on-change="captureChange" type="checkbox"&ndash;&gt;-->
+<!--&lt;!&ndash;                       t-att-value="props.partner.electronic_invoice_subjected || true"/> &lt;!&ndash;  &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                <select class="detail electronic_invoice_subjected needsclick" name="electronic_invoice_subjected"&ndash;&gt;-->
+<!--&lt;!&ndash;                                t-on-change="captureChange">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <t t-foreach="[false, true]" t-as="value" t-key="value">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <option t-att-value="value" t-att-selected="value.name">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <t t-esc="value"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </option>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </t>&ndash;&gt;-->
+<!--&lt;!&ndash;                </select>&ndash;&gt;-->
+<!--                <input class="detail" name="electronic_invoice_subjected" t-on-change="captureChange"-->
+<!--                       t-att-value="props.partner.electronic_invoice_subjected"/>-->
+<!--            </div>-->
+<!--            <div class="client-detail">-->
+<!--                <span class="label">Obliged Subject</span>-->
+<!--                <input class="detail" name="electronic_invoice_obliged_subject" t-on-change="captureChange"-->
+<!--                       t-att-value="props.partner.electronic_invoice_obliged_subject"/>-->
+<!--                &lt;!&ndash; t-att-value="props.partner.vat || ''"  &ndash;&gt;-->
+<!--            </div>-->
+            <!--<t t-if="props.partner.electronic_invoice_subjected &amp;&amp; props.partner.electronic_invoice_obliged_subject">-->
+            <div class="client-detail">
+                <span class="label pos-receipt-right-align">PEC</span>
+                <input class="detail pec-destinatario" name="pec_destinatario" t-on-change="captureChange"
+                       t-att-value="props.partner.pec_destinatario || ''"/> <!-- t-att-value="props.partner.vat || ''"  -->
+            </div>
+            <!--</t>-->
+            <div class="client-detail">
+                <span class="label pos-receipt-right-align">Addr. code</span>
+                <input class="detail codice-destinatario" name="codice_destinatario" t-on-change="captureChange"
+                       t-att-value="props.partner.codice_destinatario || ''"/> <!-- t-att-value="props.partner.codice_destinatario || ''"  -->
+            </div>
+        </xpath>
+    </t>
+</templates>

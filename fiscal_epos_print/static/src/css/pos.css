@@ -1,0 +1,83 @@
+/*  ********* The Epson ePOS FP81II Widget  ********* */
+
+.pos .epson-fp81ii-widget {
+    z-index:100000;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 236px;
+    font-size: 14px;
+
+    background: rgba(0,0,0,0.82);
+    color: white;
+    padding-bottom: 10px;
+    cursor: move;
+    -webkit-transform: translate3d(0,0,0);
+}
+.pos .pos-rightheader .header-button > img {
+    vertical-align: middle;
+}
+.pos .epson-fp81ii-widget .toggle {
+    position: absolute;
+    font-size: 16px;
+    cursor:pointer;
+    top:0px;
+    right:0px;
+    padding:10px;
+    padding-right:15px;
+}
+.pos .epson-fp81ii-widget .content {
+    overflow: hidden;
+}
+.pos .epson-fp81ii-widget h1 {
+    background:black;
+    padding-top: 10px;
+    padding-left: 10px;
+    margin-top:0;
+    margin-bottom:0;
+}
+.pos .epson-fp81ii-widget .category {
+    background: black;
+    padding-left: 10px;
+    margin: 0px;
+    font-weight: bold;
+    font-size: 16px;
+    padding-top:3px;
+    padding-bottom:3px;
+}
+.pos .epson-fp81ii-widget .button {
+    padding: 5px;
+    padding-left: 15px;
+    display: block;
+    cursor:pointer;
+}
+.pos .epson-fp81ii-widget .button:hover{
+    background: #546E7A;
+}
+.pos .epson-fp81ii-widget .category-label {
+    position: relative;
+    padding: 4px;
+    top: -12px;
+}
+.pos .epson-fp81ii-widget li img {
+    min-width: 32px;
+}
+.pos .epson-fp81ii-widget .button:active {
+    background: rgba(96,21,177,0.45);
+}
+.pos .epson-fp81ii-widget .status {
+    padding: 5px;
+    padding-left: 15px;
+    display: block;
+    cursor:default;
+}
+.pos .epson-fp81ii-widget .status.on {
+    background-color: #6cd11d;
+}
+.pos .epson-fp81ii-widget .event {
+    padding: 5px;
+    padding-left: 15px;
+    display: block;
+    cursor:default;
+    background-color: #1E1E1E;
+}

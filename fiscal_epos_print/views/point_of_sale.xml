@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record model="ir.ui.view" id="view_pos_config_printer_form">
+            <field name="name">pos.config.form.printer.view</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet//h2[1]" position="before">
+                    <h2 name="fiscal_epos_print">Fiscal printer</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box" id="epos_printer_ip">
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Printer address</span>
+                                <div class="text-muted">
+                                    The hostname or IP address of the fiscal printer
+                                </div>
+                                <div class="content-group mt16">
+                                    <field name="printer_ip" colspan="4" nolabel="1"/>
+                                </div>
+                            </div>
+                            <div class="o_setting_left_pane">
+                                <field name="use_https"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="use_https"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="show_receipt_when_printing"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="show_receipt_when_printing"/>
+                            </div>
+                            <br/>
+                            <div class="o_setting_left_pane">
+                                <field name="fiscal_cashdrawer"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="fiscal_cashdrawer"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box" id="fiscal_printer_serial">
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Fiscal Printer Serial</span>
+                                <div class="content-group mt16">
+                                    <field name="fiscal_printer_serial" colspan="4" nolabel="1"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_pos_pos_form_refund_info" model="ir.ui.view">
+            <field name="name">pos.order.form</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <xpath expr='//notebook' position="inside">
+                    <page name="rt_data" string="RT data">
+                        <group>
+                            <group string="Receipt">
+                                <field name="fiscal_receipt_number"/>
+                                <field name="fiscal_receipt_amount"/>
+                                <field name="fiscal_receipt_date"/>
+                                <field name="fiscal_z_rep_number"/>
+                                <field name="fiscal_printer_serial"/>
+                                <field name="fiscal_printer_debug_info" groups="base.group_no_one"/>
+                            </group>
+                            <group string="Refund Info">
+                                <field name="refund_date"/>
+                                <field name="refund_report"/>
+                                <field name="refund_doc_num"/>
+                                <field name="refund_cash_fiscal_serial"/>
+                            </group>
+                            <group string="Lottery">
+                                <field name="lottery_code"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

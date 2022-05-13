@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="RefundInfoPopup" owl="1">
+
+        <div class="modal-dialog">
+            <div class="popup popup-text">
+
+                <p class="title">
+                   <t t-esc=" props.title || '' "/>
+                </p>
+
+                <div class='client-detail'>
+                    <div class='label'>Closing Seq.</div>
+                    <input id="refund_report" class="detail refund_report" type='text' t-att-value="props.refund_report || ''" t-ref="inputRefundReport" placeholder="Max 4 numbers"/>
+                </div>
+                <div class='client-detail'>
+                    <div class='label'>Receipt Num.</div>
+                    <input id="refund_doc_num" class="detail refund_doc_num" type='text' t-att-value="props.refund_doc_num || ''" t-ref="inputRefundDocNum" placeholder="Max 4 numbers"/>
+                </div>
+                <div class='client-detail'>
+                    <div class='label'>Receipt Date</div>
+                    <input id="refund_date" class="detail refund_date" type='text' t-att-value="props.refund_date || ''" t-ref="inputRefundDate" placeholder="YYYY-MM-DD"/>
+                </div>
+                <div class='client-detail'>
+                    <div class='label'>RT Serial</div>
+                    <input id="refund_cash_fiscal_serial" class="detail refund_cash_fiscal_serial" type='text' t-att-value="props.refund_cash_fiscal_serial || ''" t-ref="inputRefundCashFiscalSerial" placeholder="RT Serial"/>
+                </div>
+
+                <div class="footer">
+                    <div class="button confirm" t-on-click="clickConfirmRefund">
+                        Apply
+                    </div>
+                    <div class="button cancel" t-on-click="cancel">
+                            <t t-esc="props.cancelText" />
+                        </div>
+                    <div id="error-message-dialog" style="color: red; font-weight: bold; font-size: 18px; font-style: italic; display: none;">
+                        Some fields are empty.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </t>
+
+</templates>

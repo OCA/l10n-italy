@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="view_apos_payment_method_form_fp90">
+            <field name="name">POS Journal - Fiscal Printer field</field>
+            <field name="model">pos.payment.method</field>
+            <field name="inherit_id" ref="point_of_sale.pos_payment_method_view_form"/>
+            <field name="arch" type="xml">
+                <group name="Payment methods" position="inside">
+                    <group name="fiscalprinter" string="Termini pagamento stampante">
+                        <field name="fiscalprinter_payment_type"/>
+                        <field name="fiscalprinter_payment_index"
+                               attrs="{'required': [('fiscalprinter_payment_type', 'in', ('2', '3', '6'))], 'invisible': [('fiscalprinter_payment_type', 'not in', ('2', '3', '6'))]}"/>
+                    </group>
+                </group>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_account_tax_printer_form_fp90">
+            <field name="name">account.tax.printer.form.view</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_form"/>
+            <field name="arch" type="xml">
+                <field name="description" position="after">
+                    <field name="fpdeptax" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>
