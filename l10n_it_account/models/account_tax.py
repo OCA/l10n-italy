@@ -205,7 +205,7 @@ class AccountTax(models.Model):
                     continue
 
                 tax_balance += child_balance
-                if child.account_id:
+                if child.tax_exigibility == "on_invoice":
                     deductible += child_balance
                 else:
                     undeductible += child_balance
