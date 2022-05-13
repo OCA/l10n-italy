@@ -150,7 +150,6 @@ class AccountMove(models.Model):
                     }
                     # ---- Update Line Value with tax if is set on product
                     if invoice.company_id.due_cost_service_id.taxes_id:
-                        # tax = invoice.company_id.due_cost_service_id.taxes_id
                         tax = invoice.fiscal_position_id.map_tax(
                             service_prod.taxes_id,
                             service_prod,
