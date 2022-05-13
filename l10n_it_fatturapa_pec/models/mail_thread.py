@@ -185,6 +185,7 @@ class MailThread(models.AbstractModel):
         if e_invoice_user_id:
             fatturapa_attachment_in = fatturapa_attachment_in.sudo(
                 e_invoice_user_id)
+        fatturapa_attachment = fatturapa_attachment_in.browse()
         if attachment.file_type == 'application/zip':
             with zipfile.ZipFile(io.BytesIO(decoded)) as zf:
                 for file_name in zf.namelist():
@@ -198,7 +199,7 @@ class MailThread(models.AbstractModel):
                             _logger.info("In invoice %s already processed"
                                          % fatturapa_atts.mapped('name'))
                         else:
-                            fatturapa_attachment_in.create({
+                            fatturapa_attachment = fatturapa_attachment_in.create({
                                 'name': file_name,
                                 'datas_fname': file_name,
                                 'datas': base64.encodestring(inv_file.read()),
@@ -212,7 +213,12 @@ class MailThread(models.AbstractModel):
                     "Invoice xml already processed in %s"
                     % fatturapa_atts.mapped('name'))
             else:
-                fatturapa_attachment_in.create({
+                fatturapa_attachment = fatturapa_attachment_in.create({
                     'ir_attachment_id': attachment.id,
                     'company_id': company_id,
                 })
+        # Notify if there was an error
+        # during automatic import of invoices from PEC.
+        parsing_error = fatturapa_attachment.e_invoice_parsing_error
+        if parsing_error:
+            raise Exception(parsing_error)
