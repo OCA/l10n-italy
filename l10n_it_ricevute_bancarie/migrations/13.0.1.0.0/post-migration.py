@@ -5,6 +5,7 @@ def migrate(cr, installed_version):
     openupgrade.logged_query(
         cr,
         """
+alter table invoice_unsolved_line_rel rename invoice_id to move_id;
 update invoice_unsolved_line_rel iulr
 set
     move_id = am.id
