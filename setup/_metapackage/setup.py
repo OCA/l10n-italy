@@ -33,6 +33,7 @@ setuptools.setup(
         'odoo10-addon-l10n_it_fatturapa_in_rc',
         'odoo10-addon-l10n_it_fatturapa_out',
         'odoo10-addon-l10n_it_fatturapa_out_ddt',
+        'odoo10-addon-l10n_it_fatturapa_out_di',
         'odoo10-addon-l10n_it_fatturapa_out_rc',
         'odoo10-addon-l10n_it_fatturapa_out_stamp',
         'odoo10-addon-l10n_it_fatturapa_out_triple_discount',
