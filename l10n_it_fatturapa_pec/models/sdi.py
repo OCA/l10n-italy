@@ -10,7 +10,7 @@ class SdiChannel(models.Model):
     _inherit = "sdi.channel"
 
     channel_type = fields.Selection(
-        selection_add=[("pec", "PEC")], ondelete={"pec": "cascade"}
+        selection_add=[("pec", "PEC")],
     )
 
     # SdiChannelPEC
