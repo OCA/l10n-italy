@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="sdi_pec_first_address" model="ir.config_parameter">
+            <field name="key">sdi.pec.first.address</field>
+            <field name="value">sdi01@pec.fatturapa.it</field>
+        </record>
+    </data>
+</odoo>
