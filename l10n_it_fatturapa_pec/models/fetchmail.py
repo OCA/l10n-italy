@@ -11,6 +11,8 @@ MAX_POP_MESSAGES = 50
 class Fetchmail(models.Model):
     _inherit = 'fetchmail.server'
 
+    is_fatturapa_pec = fields.Boolean("E-invoice PEC server")
+
     def _default_e_inv_notify_partner_ids(self):
         return [(6, 0, [self.env.user.partner_id.id])]
 

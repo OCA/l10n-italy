@@ -6,6 +6,9 @@
         <field name="model">fetchmail.server</field>
         <field name="inherit_id" ref="fetchmail.view_email_server_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='server_type']" position="after">
+                <field name="is_fatturapa_pec" />
+            </xpath>
             <notebook position="inside">
                 <page string="Last error message" attrs="{'invisible': [('last_pec_error_message', '=', False)]}">
                     <field name="last_pec_error_message"/>
