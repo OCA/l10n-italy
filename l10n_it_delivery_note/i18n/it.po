@@ -1442,8 +1442,8 @@ msgid "Warehouse movement"
 msgstr "Movimento di magazzino"
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:326
-#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:362
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:327
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:363
 #: code:addons/l10n_it_delivery_note/models/stock_picking.py:142
 #: code:addons/l10n_it_delivery_note/models/stock_picking.py:161
 #: code:addons/l10n_it_delivery_note/wizard/delivery_note_base.py:65
@@ -1468,7 +1468,7 @@ msgid ""
 msgstr "Non puoi assegnare lo stesso movimento di magazzino a DdT differenti!"
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:383
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:384
 #, python-format
 msgid ""
 "You cannot cancel this delivery note. There is at least one invoice related "
@@ -1478,7 +1478,7 @@ msgstr ""
 "questo DdT."
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:700
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:701
 #, python-format
 msgid ""
 "You cannot change the type of a delivery note line. Instead you should "
@@ -1488,7 +1488,7 @@ msgstr ""
 "riga corrente e creare una riga nuova del tipo corretto."
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:320
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:321
 #: code:addons/l10n_it_delivery_note/models/stock_picking.py:136
 #, python-format
 msgid ""
