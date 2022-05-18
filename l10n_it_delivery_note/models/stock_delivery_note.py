@@ -48,6 +48,7 @@ class StockDeliveryNote(models.Model):
     ]
     _description = "Delivery Note"
     _order = 'date DESC, id DESC'
+    _rec_name = 'display_name'
 
     def _default_company(self):
         return self.env.user.company_id
