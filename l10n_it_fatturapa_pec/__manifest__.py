@@ -28,7 +28,6 @@
         "views/company_view.xml",
         "views/sdi_view.xml",
         "views/ir_mail_server.xml",
-        "wizard/send_pec_view.xml",
         "data/fetchmail_data.xml",
         "data/config_parameter.xml",
         "data/sdi_channel_demo.xml",
