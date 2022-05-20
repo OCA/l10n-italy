@@ -13,18 +13,9 @@ SELF_INVOICE_TYPES = ("TD16", "TD17", "TD18", "TD19", "TD20", "TD21")
 
 
 class FatturaPAAttachmentIn(models.Model):
+    _inherit = "fatturapa.attachment"
     _name = "fatturapa.attachment.in"
-    _description = "E-bill import file"
-    _inherits = {'ir.attachment': 'ir_attachment_id'}
-    _inherit = ['mail.thread']
-    _order = 'id desc'
 
-    ir_attachment_id = fields.Many2one(
-        'ir.attachment', 'Attachment', required=True, ondelete="cascade")
-    att_name = fields.Char(
-        string="E-bill file name",
-        related='ir_attachment_id.name',
-        store=True)
     in_invoice_ids = fields.One2many(
         'account.invoice', 'fatturapa_attachment_in_id',
         string="In Bills", readonly=True)
@@ -85,9 +76,6 @@ class FatturaPAAttachmentIn(models.Model):
     @api.onchange('datas_fname')
     def onchagne_datas_fname(self):
         self.name = self.datas_fname
-
-    def get_xml_string(self):
-        return self.ir_attachment_id.get_xml_string()
 
     @api.multi
     def recompute_xml_fields(self):
