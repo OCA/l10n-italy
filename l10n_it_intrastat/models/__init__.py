@@ -4,3 +4,4 @@ from . import product
 from . import account
 from . import intrastat
 from . import config
+from . import sale_order
