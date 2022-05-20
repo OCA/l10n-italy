@@ -19,7 +19,7 @@ class TestEInvoiceSend(EInvoiceCommon):
 
         # There is no PEC server configured
         with self.assertRaises(UserError):
-            e_invoice.send_via_pec()
+            e_invoice.send_to_sdi()
 
     @mute_logger("odoo.addons.mail.models.mail_mail")
     def test_sender_error(self):
@@ -31,7 +31,7 @@ class TestEInvoiceSend(EInvoiceCommon):
         self.env.user.company_id.sdi_channel_id. \
             pec_server_id.email_from_for_fatturaPA = False
 
-        e_invoice.send_via_pec()
+        e_invoice.send_to_sdi()
         self.assertEqual(e_invoice.state, 'sender_error')
 
     def test_send(self):
@@ -39,7 +39,7 @@ class TestEInvoiceSend(EInvoiceCommon):
         e_invoice = self._create_e_invoice()
 
         self._create_fetchmail_pec_server()
-        e_invoice.send_via_pec()
+        e_invoice.send_to_sdi()
         self.assertEqual(e_invoice.state, 'sent')
 
     def test_send_empty_file(self):
@@ -49,15 +49,15 @@ class TestEInvoiceSend(EInvoiceCommon):
         self._create_fetchmail_pec_server()
         e_invoice.datas = False
         with self.assertRaises(UserError):
-            e_invoice.send_via_pec()
+            e_invoice.send_to_sdi()
 
     def test_wizard_send(self):
         """Sending e-invoice with wizard changes its state to 'sent'"""
         e_invoice = self._create_e_invoice()
 
         self._create_fetchmail_pec_server()
-        wiz = self.env['wizard.fatturapa.send.pec'].create({})
-        wiz.with_context(active_ids=e_invoice.ids).send_pec()
+        wiz = self.env['wizard.fatturapa.send_to_sdi'].create({})
+        wiz.with_context(active_ids=e_invoice.ids).send_to_sdi()
         self.assertEqual(e_invoice.state, 'sent')
 
     def test_resend_reset(self):
@@ -65,12 +65,12 @@ class TestEInvoiceSend(EInvoiceCommon):
         e_invoice = self._create_e_invoice()
 
         self._create_fetchmail_pec_server()
-        e_invoice.send_via_pec()
+        e_invoice.send_to_sdi()
         self.assertEqual(e_invoice.state, 'sent')
 
         # Cannot re-send e-invoice whose state is 'sent'
         with self.assertRaises(UserError):
-            e_invoice.send_via_pec()
+            e_invoice.send_to_sdi()
 
         # Cannot reset e-invoice whose state is 'sent'
         with self.assertRaises(UserError):
@@ -86,7 +86,7 @@ class TestEInvoiceSend(EInvoiceCommon):
         e_invoice = self.env[action['res_model']].browse(action['res_id'])
 
         self._create_fetchmail_pec_server()
-        e_invoice.send_via_pec()
+        e_invoice.send_to_sdi()
         self.assertEqual(e_invoice.state, 'sent')
 
         # Set the e_invoice to error
@@ -117,5 +117,5 @@ class TestEInvoiceSend(EInvoiceCommon):
         self.env.user.company_id.sdi_channel_id.email_exchange_system = (
             'sdi01@pec.fatturapa.it')
         # Send it again
-        e_invoice.send_via_pec()
+        e_invoice.send_to_sdi()
         self.assertEqual(e_invoice.state, 'sent')
