@@ -4,8 +4,14 @@
     <record id="view_fatturapa_in_attachment_form" model="ir.ui.view">
         <field name="name">fatturapa.attachment.in.form</field>
         <field name="model">fatturapa.attachment.in</field>
+        <field name="inherit_id" ref="l10n_it_fatturapa.fatturapa_attachment_view_form"/>
+        <field name="mode">primary</field>
         <field name="arch" type="xml">
-            <form string="Import e-bill" duplicate="false">
+            <form position="attributes">
+                <attribute name="string">Import Electronic Bill</attribute>
+                <attribute name="duplicate">false</attribute>
+            </form>
+            <xpath expr="//sheet/group[1]" position="before">
                 <div class="alert alert-info" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('e_invoice_validation_error','=',False)]}">
                      <bold><field name="e_invoice_validation_message" nolabel="1"/></bold>
                 </div>
@@ -13,61 +19,39 @@
                      <bold><field name="e_invoice_parsing_error" nolabel="1"/></bold>
                 </div>
                 <field name="e_invoice_validation_error" invisible="1"/>
-                <div>
-                    <group>
-                        <group>
-                            <field name='id' invisible="1"/>
-                            <label for="datas"/>
-                            <div>
-                                <field name="datas" filename="datas_fname"/>
-                                <field name="ftpa_preview_link" widget="url" text="Show preview"
-                                       attrs="{'invisible': [('id', '=', False)]}"/>
-                                <button type="object" name="recompute_xml_fields" string="Recompute XML fields" icon="fa-refresh"
-                                    attrs="{'invisible': [('invoices_number', '!=', 0), ('xml_supplier_id', '!=', False), ('invoices_date', '!=', False)]}"/>
-                            </div>
-                            <field name="datas_fname" invisible="1"></field>
-                            <field name="name" invisible="1"></field>
-                        </group>
-                        <group>
-                            <field name="xml_supplier_id"/>
-                            <field name="invoices_number"/>
-                            <field name="e_invoice_received_date"/>
-                            <field name="registered"/>
-                            <field name="invoices_total"/>
-                            <field name="invoices_date"/>
-                        </group>
-                    </group>
-                    <notebook>
-                        <page string="Bills">
-                            <field name="in_invoice_ids"
-                                   context="{'form_view_ref': 'account.invoice_supplier_form', 'tree_view_ref': 'account.invoice_supplier_tree'}">
-                                <tree>
-                                    <field name="partner_id"/>
-                                    <field name="date_invoice"/>
-                                    <field name="reference"/>
-                                    <field name="origin"/>
-                                    <field name="amount_total"/>
-                                    <field name="state"/>
-                                    <button name="open_form_current" type="object" string="Open full-screen" icon="fa-external-link"
-                                            context="{'form_view_ref': 'account.invoice_supplier_form'}"/>
-                                    <button name="remove_attachment_link" type="object" string="Remove" icon="fa-times"/>
-                                </tree>
-                            </field>
-                            <group groups="base.group_no_one" string="History">
-                                <label for="create_uid" string="Creation"></label>
-                                <div name="creation_div">
-                                    <field class="oe_inline" name="create_uid" readonly="1"></field> on
-                                    <field class="oe_inline" name="create_date" readonly="1"></field>
-                                </div>
-                            </group>
-                        </page>
-                    </notebook>
-                </div>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers"></field>
-                    <field name="message_ids" widget="mail_thread"></field>
-                </div>
-            </form>
+            </xpath>
+            <field name="ftpa_preview_link" position="after">
+                <button type="object" name="recompute_xml_fields" string="Recompute XML fields" icon="fa-refresh"
+                        attrs="{'invisible': [('invoices_number', '!=', 0), ('xml_supplier_id', '!=', False), ('invoices_date', '!=', False)]}"/>
+            </field>
+            <group name="preview" position="after">
+                <group name="e_bill_data">
+                    <field name="xml_supplier_id"/>
+                    <field name="invoices_number"/>
+                    <field name="e_invoice_received_date"/>
+                    <field name="registered"/>
+                    <field name="invoices_total"/>
+                    <field name="invoices_date"/>
+                </group>
+            </group>
+            <notebook position="inside">
+                <page string="Bills">
+                    <field name="in_invoice_ids"
+                           context="{'form_view_ref': 'account.invoice_supplier_form', 'tree_view_ref': 'account.invoice_supplier_tree'}">
+                        <tree>
+                            <field name="partner_id"/>
+                            <field name="date_invoice"/>
+                            <field name="reference"/>
+                            <field name="origin"/>
+                            <field name="amount_total"/>
+                            <field name="state"/>
+                            <button name="open_form_current" type="object" string="Open full-screen" icon="fa-external-link"
+                                    context="{'form_view_ref': 'account.invoice_supplier_form'}"/>
+                            <button name="remove_attachment_link" type="object" string="Remove" icon="fa-times"/>
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
         </field>
     </record>
     <record id="view_fatturapa_in_attachment_tree" model="ir.ui.view">
