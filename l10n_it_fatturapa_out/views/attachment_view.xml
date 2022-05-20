@@ -49,8 +49,17 @@
         <record model="ir.ui.view" id="view_fatturapa_out_attachment_form">
             <field name="name">fatturapa.attachment.out.form</field>
             <field name="model">fatturapa.attachment.out</field>
+            <field
+                name="inherit_id"
+                ref="l10n_it_fatturapa.fatturapa_attachment_view_form"
+            />
+            <field name="mode">primary</field>
             <field name="arch" type="xml">
-                <form string="Export Electronic Invoice" create="false">
+                <form position="attributes">
+                    <attribute name="string">Export Electronic Invoice</attribute>
+                    <attribute name="create">false</attribute>
+                </form>
+                <sheet position="before">
                     <header>
                         <field name="state" widget="statusbar" />
                     </header>
@@ -85,7 +94,8 @@
                         <separator string="Invoices" />
                         <field
                         name="out_invoice_ids"
-                        context="{'form_view_ref': 'account.view_move_form', 'tree_view_ref': 'account.view_move_tree'}"
+                            nolabel="1"
+                        context="{'form_view_ref': 'account.invoice_form', 'tree_view_ref': 'account.invoice_tree'}"
                     >
                             <tree>
                                 <field name="partner_id" />
