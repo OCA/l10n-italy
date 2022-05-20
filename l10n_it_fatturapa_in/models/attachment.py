@@ -5,18 +5,10 @@ SELF_INVOICE_TYPES = ("TD16", "TD17", "TD18", "TD19", "TD20", "TD21", "TD27", "T
 
 
 class FatturaPAAttachmentIn(models.Model):
+    _inherit = "fatturapa.attachment"
     _name = "fatturapa.attachment.in"
-    _description = "E-bill import file"
-    _inherits = {"ir.attachment": "ir_attachment_id"}
-    _inherit = ["mail.thread"]
-    _order = "id desc"
+    _description = "Electronic Invoice"
 
-    ir_attachment_id = fields.Many2one(
-        "ir.attachment", "Attachment", required=True, ondelete="cascade"
-    )
-    att_name = fields.Char(
-        string="E-bill file name", related="ir_attachment_id.name", store=True
-    )
     in_invoice_ids = fields.One2many(
         "account.move",
         "fatturapa_attachment_in_id",
@@ -86,9 +78,6 @@ class FatturaPAAttachmentIn(models.Model):
                 )
             att.e_invoice_validation_message = "\n\n".join(error_messages)
 
-    def get_xml_string(self):
-        return self.ir_attachment_id.get_xml_string()
-
     def recompute_xml_fields(self):
         self._compute_xml_data()
         self._compute_registered()
@@ -154,5 +143,23 @@ class FatturaPAAttachmentIn(models.Model):
             }
             AttachModel.create(_attach_dict)
 
-    def ftpa_preview(self):
-        return self.env["ir.attachment"].ftpa_preview(self)
+    @api.depends("ir_attachment_id.datas")
+    def _compute_linked_invoice_id_xml(self):
+        for att in self:
+            if isinstance(att.id, int):
+                att.linked_invoice_id_xml = ""
+                wiz_obj = self.env["wizard.import.fatturapa"].with_context(
+                    from_attachment=att
+                )
+                fatt = wiz_obj.get_invoice_obj(att)
+                if fatt:
+                    for invoice_body in fatt.FatturaElettronicaBody:
+                        if (
+                            invoice_body.DatiGenerali.DatiFattureCollegate
+                            and len(invoice_body.DatiGenerali.DatiFattureCollegate) == 1
+                        ):
+                            att.linked_invoice_id_xml = (
+                                invoice_body.DatiGenerali.DatiFattureCollegate[
+                                    0
+                                ].IdDocumento
+                            )
