@@ -9,21 +9,6 @@
             ref="l10n_it_fatturapa_out.view_fatturapa_out_attachment_form"
         />
         <field name="arch" type="xml">
-            <xpath expr="//header" position="inside">
-                <button
-                    name="send_via_pec"
-                    states="ready"
-                    string="Send Via PEC"
-                    type="object"
-                    class="oe_highlight"
-                />
-                <button
-                    name="reset_to_ready"
-                    states="sender_error"
-                    string="Reset to ready"
-                    type="object"
-                />
-            </xpath>
             <xpath expr="//div/group[last()]" position="after">
                 <separator
                     string="Last Response from Exchange System"
