@@ -39,6 +39,7 @@ class FatturaPAAttachment(models.AbstractModel):
     }
     _inherit = [
         "mail.thread",
+        "l10n_it_fatturapa.attachment.e_invoice.link",
     ]
     _order = "id desc"
 
