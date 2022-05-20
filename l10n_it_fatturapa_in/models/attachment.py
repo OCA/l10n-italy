@@ -51,7 +51,7 @@ class FatturaPAAttachmentIn(models.Model):
         store=True,
     )
     is_self_invoice = fields.Boolean(
-        "Contains self invoices", compute="_compute_xml_data", store=True
+        "Contains self invoices", compute="_compute_is_self_invoice", store=True
     )
 
     linked_invoice_id_xml = fields.Char(
@@ -133,6 +133,22 @@ class FatturaPAAttachmentIn(models.Model):
 
     @api.multi
     @api.depends('ir_attachment_id.datas')
+    def _compute_is_self_invoice(self):
+        for att in self:
+            fatt = att.get_invoice_obj()
+            att.is_self_invoice = False
+            if fatt:
+                for invoice_body in fatt.FatturaElettronicaBody:
+                    document_type = invoice_body.DatiGenerali \
+                        .DatiGeneraliDocumento.TipoDocumento
+                    if document_type in SELF_INVOICE_TYPES:
+                        # If at least one invoice is a self invoice,
+                        # then the whole attachment is flagged
+                        att.is_self_invoice = True
+                        break
+
+    @api.multi
+    @api.depends('ir_attachment_id.datas')
     def _compute_e_invoice_parsing_error(self):
         for att in self:
             att.get_invoice_obj()
@@ -148,28 +164,16 @@ class FatturaPAAttachmentIn(models.Model):
                     'xml_supplier_id': False,
                     'invoices_number': 0,
                     'invoices_total': 0,
-                    'is_self_invoice': False,
                 })
                 continue
 
             # Look into each invoice to compute the following values
-            is_self_invoice = False
             for invoice_body in fatt.FatturaElettronicaBody:
                 # Assign this directly so that rounding is applied each time
                 att.invoices_total += float(
                     invoice_body.DatiGenerali.DatiGeneraliDocumento.
                     ImportoTotaleDocumento or 0
                 )
-                # If at least one invoice is a self invoice,
-                # then the whole attachment is flagged
-                if not is_self_invoice:
-                    document_type = invoice_body \
-                        .DatiGenerali.DatiGeneraliDocumento.TipoDocumento
-                    if document_type in SELF_INVOICE_TYPES:
-                        is_self_invoice = True
-            att.update(dict(
-                is_self_invoice=is_self_invoice,
-            ))
 
             # We don't need to look into each invoice
             # for the following fields
