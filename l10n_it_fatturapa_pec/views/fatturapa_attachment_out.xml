@@ -6,11 +6,11 @@
         <field name="model">fatturapa.attachment.out</field>
         <field name="inherit_id" ref="l10n_it_fatturapa_out.view_fatturapa_out_attachment_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//div/group[last()]" position="after">
+            <page name="history" position="inside">
                 <group name="last_sdi_response" string="Last Response from Exchange System" attrs="{'invisible':[('state', '=', 'ready')]}">
                     <field name="last_sdi_response" nolabel="1"/>
                 </group>
-            </xpath>
+            </page>
             <div name="creation_div" position="after">
                 <label for="sending_user" string="Sent by" attrs="{'invisible': [('sending_user' ,'=', False)]}"/>
                 <div name="sending_user" attrs="{'invisible': [('sending_user' ,'=', False)]}">
