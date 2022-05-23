@@ -44,7 +44,8 @@ class ReportAccountBalanceReport(models.TransientModel):
     trial_balance_id = fields.Many2one(
         'report_trial_balance',
         ondelete='cascade',
-        required=True
+        required=True,
+        index=True,
     )
 
     @api.multi
@@ -242,16 +243,19 @@ class ReportAccountBalanceReportAccount(models.TransientModel):
     )
     report_credit_id = fields.Many2one(
         'account_balance_report',
-        ondelete='cascade'
+        ondelete='cascade',
+        index=True
     )
     report_debit_id = fields.Many2one(
         'account_balance_report',
-        ondelete='cascade'
+        ondelete='cascade',
+        index=True
     )
     trial_balance_line_id = fields.Many2one(
         'report_trial_balance_account',
         ondelete='cascade',
-        required=True
+        required=True,
+        index=True
     )
 
 
@@ -270,12 +274,14 @@ class ReportAccountBalanceReportPartner(models.TransientModel):
     )
     report_section_id = fields.Many2one(
         'account_balance_report_account',
-        ondelete='cascade'
+        ondelete='cascade',
+        index=True
     )
     trial_balance_partner_id = fields.Many2one(
         'report_trial_balance_partner',
         ondelete='cascade',
-        required=True
+        required=True,
+        index=True
     )
 
     @api.multi
