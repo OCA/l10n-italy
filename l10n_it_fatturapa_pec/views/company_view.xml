@@ -44,13 +44,6 @@
                                         class="col-lg-6"
                                     />
                                 </div>
-                                <div class="row">
-                                    <label
-                                        for="e_invoice_user_id"
-                                        class="col-lg-6 o_light_label"
-                                    />
-                                    <field name="e_invoice_user_id" class="col-lg-6" />
-                                </div>
                             </div>
                         </div>
                     </div>
