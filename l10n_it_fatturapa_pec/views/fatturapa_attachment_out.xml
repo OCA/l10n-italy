@@ -9,7 +9,7 @@
             ref="l10n_it_fatturapa_out.view_fatturapa_out_attachment_form"
         />
         <field name="arch" type="xml">
-            <xpath expr="//div/group[last()]" position="after">
+            <page name="history" position="inside">
                 <group
                     name="last_sdi_response"
                     string="Last Response from Exchange System"
@@ -17,7 +17,7 @@
                 >
                     <field name="last_sdi_response" nolabel="1" />
                 </group>
-            </xpath>
+            </page>
             <div name="creation_div" position="after">
                 <label
                     for="sending_user"
