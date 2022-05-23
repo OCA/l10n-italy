@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:188
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:189
 #, python-format
 msgid "ASSETS"
 msgstr ""
@@ -103,7 +103,7 @@ msgid "Assets"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:194
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:195
 #, python-format
 msgid "BALANCE SHEET"
 msgstr ""
@@ -126,7 +126,7 @@ msgid "Balance Sheet"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:199
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:200
 #, python-format
 msgid "COSTS"
 msgstr ""
@@ -422,7 +422,7 @@ msgid "Initial Balance Foreign Currency"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:192
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:193
 #, python-format
 msgid "LIABILITIES"
 msgstr ""
@@ -505,13 +505,13 @@ msgid "No partner allocated"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:67
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:68
 #, python-format
 msgid "No report has been defined for report type '{}'."
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:71
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:72
 #, python-format
 msgid "No report type has been declared for current print."
 msgstr ""
@@ -522,7 +522,7 @@ msgid "Only Posted Moves"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:205
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:206
 #, python-format
 msgid "PROFIT & LOSS"
 msgstr ""
@@ -557,7 +557,7 @@ msgid "Profit & Loss"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:203
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:204
 #, python-format
 msgid "REVENUES"
 msgstr ""
@@ -705,7 +705,7 @@ msgid "Trial Balance Report Wizard"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:116
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:117
 #, python-format
 msgid "Unknown report type; cannot parse it into a table."
 msgstr ""
