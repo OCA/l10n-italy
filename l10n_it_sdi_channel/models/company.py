@@ -11,6 +11,12 @@ class ResCompany(models.Model):
         'sdi.channel', string='ES channel')
     sdi_channel_type = fields.Selection(
         related='sdi_channel_id.channel_type', readonly=True)
+    e_invoice_user_id = fields.Many2one(
+        comodel_name="res.users",
+        string="E-bill creator",
+        help="This user will be used at supplier e-bill creation.",
+        default=lambda self: self.env.user.id
+    )
 
 
 class AccountConfigSettings(models.TransientModel):
@@ -21,3 +27,7 @@ class AccountConfigSettings(models.TransientModel):
         readonly=False)
     sdi_channel_type = fields.Selection(
         related='sdi_channel_id.channel_type', readonly=True)
+    e_invoice_user_id = fields.Many2one(
+        related='company_id.e_invoice_user_id',
+        readonly=False,
+    )
