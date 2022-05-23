@@ -1,12 +1,18 @@
 #  Copyright 2022 Simone Rubino - TAKOBI
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, models
+from odoo import _, fields, models
 from odoo.exceptions import UserError
 
 
 class FatturaPAAttachmentOut(models.Model):
     _inherit = "fatturapa.attachment.out"
+
+    last_sdi_response = fields.Text(
+        string="Last Response from Exchange System",
+        default="No response yet",
+        readonly=True,
+    )
 
     def send_to_sdi(self):
         states = self.mapped("state")
