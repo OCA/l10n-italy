@@ -32,7 +32,7 @@
                 >
                     <field name="last_sdi_response" nolabel="1" />
                 </group>
-            </xpath>
+            </page>
             <div name="creation_div" position="after">
                 <label
                     for="sending_user"
