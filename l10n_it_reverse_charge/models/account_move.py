@@ -11,7 +11,13 @@ from odoo.tools.translate import _
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
-    @api.depends("move_id", "move_id.fiscal_position_id", "tax_ids")
+    @api.depends(
+        "move_id",
+        "move_id.move_type",
+        "move_id.fiscal_position_id",
+        "move_id.fiscal_position_id.rc_type_id",
+        "tax_ids",
+    )
     def _compute_rc_flag(self):
         for line in self.filtered(lambda r: not r.exclude_from_invoice_tab):
             if line.move_id.is_purchase_document():
