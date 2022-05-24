@@ -85,7 +85,7 @@ class FatturapaBDS(domutils.BindingDOMSupport):
             # instead of letting PyXB edit it
             return str(value)
         
-        if IGNORE_PYXB_DATE and isinstance(value, pyxb_date) and False:
+        if IGNORE_PYXB_DATE and isinstance(value, pyxb_date):
             # PyXB with python 3.8 breaks datetime conversion,
             #  giving an TypeError on pyxb/binding/datatypes.py line 686
             return value.strftime(DT)
