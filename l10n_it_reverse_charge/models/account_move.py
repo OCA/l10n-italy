@@ -11,17 +11,15 @@ from odoo.tools.translate import _
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
-    def _set_rc_flag(self, invoice):
-        self.ensure_one()
-        if invoice.is_purchase_document():
-            fposition = invoice.fiscal_position_id
-            self.rc = bool(fposition.rc_type_id)
+    @api.depends("move_id", "move_id.fiscal_position_id", "tax_ids")
+    def _compute_rc_flag(self):
+        for line in self.filtered(lambda r: not r.exclude_from_invoice_tab):
+            if line.move_id.is_purchase_document():
+                line.rc = bool(line.move_id.fiscal_position_id.rc_type_id)
 
-    rc = fields.Boolean("RC")
-
-    @api.onchange("tax_ids")
-    def onchange_rc_tax_ids(self):
-        self._set_rc_flag(self.move_id)
+    rc = fields.Boolean(
+        "RC", compute="_compute_rc_flag", store=True, readonly=False, default=False
+    )
 
 
 class AccountMove(models.Model):
@@ -45,20 +43,6 @@ class AccountMove(models.Model):
         copy=False,
         readonly=True,
     )
-
-    @api.onchange("fiscal_position_id")
-    def onchange_rc_fiscal_position_id(self):
-        for line in self.invoice_line_ids:
-            line._set_rc_flag(self)
-
-    @api.onchange("partner_id", "company_id")
-    def _onchange_partner_id(self):
-        res = super(AccountMove, self)._onchange_partner_id()
-        # In some cases (like creating the invoice from PO),
-        # fiscal position's onchange is triggered
-        # before than being changed by this method.
-        self.onchange_rc_fiscal_position_id()
-        return res
 
     def rc_inv_line_vals(self, line):
         return {
