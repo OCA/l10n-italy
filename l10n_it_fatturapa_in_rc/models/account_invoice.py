@@ -1,17 +1,23 @@
-from odoo import _, models
+from odoo import _, api, models
 from odoo.tools import float_compare
 
 
 class InvoiceLine(models.Model):
     _inherit = "account.move.line"
 
-    def _set_rc_flag(self, invoice):
-        self.ensure_one()
+    @api.depends(
+        "move_id",
+        "move_id.move_type",
+        "move_id.fiscal_position_id",
+        "move_id.fiscal_position_id.rc_type_id",
+        "tax_ids",
+    )
+    def _compute_rc_flag(self):
         if "fatturapa.attachment.in" in self.env.context.get("active_model", []):
             # this means we are importing an e-invoice,
             # so RC flag is already set, where needed
             return
-        return super(InvoiceLine, self)._set_rc_flag(invoice)
+        super()._compute_rc_flag()
 
 
 class Invoice(models.Model):
