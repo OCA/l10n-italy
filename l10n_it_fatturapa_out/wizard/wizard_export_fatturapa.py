@@ -11,12 +11,14 @@ import os
 import string
 import random
 import itertools
+import sys
 
 from odoo import api, fields, models
 from odoo.tools.translate import _
 from odoo.exceptions import UserError
 from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
 from odoo.tools.float_utils import float_round
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT as DT
 
 from odoo.addons.l10n_it_fatturapa.bindings.fatturapa import (
     FatturaElettronica,
@@ -58,11 +60,13 @@ _logger = logging.getLogger(__name__)
 try:
     from pyxb.utils import domutils
     from pyxb.binding.datatypes import decimal as pyxb_decimal
+    from pyxb.binding.datatypes import date as pyxb_date
     from unidecode import unidecode
     from pyxb.exceptions_ import SimpleFacetValueError, SimpleTypeValueError
 except ImportError as err:
     _logger.debug(err)
 
+IGNORE_PYXB_DATE = True if sys.version_info.major == 3 and sys.version_info.minor >= 8 else False
 
 def id_generator(
     size=5, chars=string.ascii_uppercase + string.digits +
@@ -80,6 +84,12 @@ class FatturapaBDS(domutils.BindingDOMSupport):
             # We have to use directly the string value
             # instead of letting PyXB edit it
             return str(value)
+        
+        if IGNORE_PYXB_DATE and isinstance(value, pyxb_date) and False:
+            # PyXB with python 3.8 breaks datetime conversion,
+            #  giving an TypeError on pyxb/binding/datatypes.py line 686
+            return value.strftime(DT)
+        
         return super(FatturapaBDS, self) \
             .valueAsText(value, enable_default_namespace)
 
