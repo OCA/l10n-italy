@@ -11,6 +11,14 @@ _DEFAULT_XML_DIVISA_VALUE = "force_eur"
 class ResCompany(models.Model):
     _inherit = "res.company"
 
+    e_invoice_transmitter_id = fields.Many2one(
+        "res.partner",
+        "E-bill Transmitter",
+        help="This partner will be used as transmitter in out invoice.",
+        default=lambda self: self.env.company.partner_id.id,
+        required=True,
+    )
+
     max_invoice_in_xml = fields.Integer(
         string="Max Invoice # in XML",
         default=0,
@@ -41,6 +49,9 @@ class ResCompany(models.Model):
 class AccountConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
+    e_invoice_transmitter_id = fields.Many2one(
+        related="company_id.e_invoice_transmitter_id", readonly=False
+    )
     max_invoice_in_xml = fields.Integer(
         related="company_id.max_invoice_in_xml", readonly=False
     )
