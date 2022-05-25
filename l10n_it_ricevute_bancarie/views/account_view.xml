@@ -131,7 +131,7 @@
         <field name="search_view_id" ref="riba_filter" />
         <field
             name="domain"
-        >['&amp;','|',('riba','=','True'),('unsolved_invoice_ids','!=',False),('account_id.internal_type','=','receivable')]</field>
+        >['&amp;','&amp;',('riba','=','True'),'|',('unsolved_invoice_ids','!=',False),('account_id.internal_type','=','receivable'),('move_id.move_type','!=','out_refund')]</field>
         <field
             name="context"
         >{'search_default_da_emettere':1, 'search_default_to_reconcile':1}</field>
