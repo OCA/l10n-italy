@@ -191,16 +191,12 @@ class AccountMove(models.Model):
         # ---- line was added on new validate
         super(AccountMove, self).button_draft()
         for invoice in self:
-            invoice.write(
-                {
-                    "invoice_line_ids": [
-                        (2, line.id, 0)
-                        for line in invoice.invoice_line_ids
-                        if line.due_cost_line
-                    ]
-                }
-            )
-            invoice._recompute_tax_lines()
+            due_cost_line_ids = invoice.get_due_cost_line_ids()
+            if due_cost_line_ids:
+                invoice.write(
+                    {"invoice_line_ids": [(2, id, 0) for id in due_cost_line_ids]}
+                )
+                invoice._recompute_tax_lines()
 
     def button_cancel(self):
         for invoice in self:
@@ -230,17 +226,16 @@ class AccountMove(models.Model):
         # Delete Collection Fees Line of invoice when copying
         invoice = super(AccountMove, self).copy(default)
         if invoice:
-            invoice.write(
-                {
-                    "invoice_line_ids": [
-                        (2, line.id, 0)
-                        for line in invoice.invoice_line_ids
-                        if line.due_cost_line
-                    ]
-                }
-            )
-            invoice._recompute_tax_lines()
+            due_cost_line_ids = invoice.get_due_cost_line_ids()
+            if due_cost_line_ids:
+                invoice.write(
+                    {"invoice_line_ids": [(2, id, 0) for id in due_cost_line_ids]}
+                )
+                invoice._recompute_tax_lines()
         return invoice
+
+    def get_due_cost_line_ids(self):
+        return self.invoice_line_ids.filtered(lambda l: l.due_cost_line).ids
 
 
 # se distinta_line_ids == None allora non è stata emessa
