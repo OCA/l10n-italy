@@ -51,7 +51,8 @@ class AccountInvoice(models.Model):
     @api.multi
     def compute_invoice_totals(self, company_currency, invoice_move_lines):
         total, total_currency, iml = \
-            super(AccountInvoice, self).compute_invoice_totals(company_currency, invoice_move_lines)
+            super(AccountInvoice, self).compute_invoice_totals(
+                company_currency, invoice_move_lines)
 
         if self.split_payment:
             if self.type in ['in_invoice', 'in_refund']:
@@ -64,7 +65,8 @@ class AccountInvoice(models.Model):
 
             diff_currency = self.currency_id != company_currency
             amount_sp_currency = company_currency._convert(
-                amount_sp, self.currency_id, self.company_id, self._get_currency_rate_date() or fields.Date.today())
+                amount_sp, self.currency_id, self.company_id, 
+                self._get_currency_rate_date() or fields.Date.today())
 
             iml.append({
                 'type': 'dest',
@@ -77,4 +79,4 @@ class AccountInvoice(models.Model):
                 'invoice_id': self.id
             })
 
-        return total, total_currency, iml    
+        return total, total_currency, iml
