@@ -30,6 +30,6 @@
     ],
     "installable": True,
     "external_dependencies": {
-        "python": ["elementpath", "xmlschema", "asn1crypto"],
+        "python": ["elementpath", "asn1crypto"],
     },
 }
