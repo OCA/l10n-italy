@@ -7,7 +7,7 @@
     'name': "ITA - Stato patrimoniale e conto economico",
     'summary': "Rendicontazione .pdf e .xls per stato patrimoniale e conto"
                " economico a sezioni contrapposte",
-    'version': '12.0.1.0.3',
+    'version': '12.0.1.0.4',
     'category': 'Localisation/Italy',
     'author': "Odoo Community Association (OCA), Openforce",
     'maintainers': ["SilvioGregorini"],
