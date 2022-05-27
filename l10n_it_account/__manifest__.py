@@ -9,7 +9,7 @@
 {
     "name": "ITA - Contabilità base",
     "summary": "Modulo base usato come dipendenza di altri moduli contabili",
-    "version": "14.0.1.1.6",
+    "version": "14.0.1.2.0",
     "development_status": "Production/Stable",
     "category": "Hidden",
     "author": "Agile Business Group, Abstract, Odoo Community Association (OCA)",
@@ -30,6 +30,11 @@
         "reports/account_reports_view.xml",
         "views/account_view.xml",
     ],
+    "external_dependencies": {
+        "python": [
+            "xmlschema",
+        ],
+    },
     "installable": True,
     "post_init_hook": "_l10n_it_account_post_init",
 }
