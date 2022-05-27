@@ -1,5 +1,9 @@
+import xmlschema
+
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import ValidationError
+
+from ..tools.account_tools import fpa_schema
 
 
 class TestAccount(TransactionCase):
@@ -34,3 +38,6 @@ class TestAccount(TransactionCase):
                 'user_type_id': self.data_account_type_current_liabilities.id,
                 'company_id': self.company.id
             })
+
+    def test_xmlschema_loading(self):
+        self.assertIsInstance(fpa_schema, xmlschema.XMLSchema)

@@ -6,3 +6,4 @@ PyXB==1.2.6
 unidecode
 xlrd
 xlsxwriter
+xmlschema>=1.7.0
