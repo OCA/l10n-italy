@@ -36,7 +36,6 @@
         "python": [
             "unidecode",
             "elementpath",
-            "xmlschema",
         ],
     },
 }
