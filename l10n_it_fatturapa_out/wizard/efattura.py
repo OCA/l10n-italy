@@ -4,63 +4,24 @@ import logging
 import os
 from datetime import datetime
 
-import xmlschema
 from lxml import etree
 from unidecode import unidecode
 
 from odoo.exceptions import UserError
-from odoo.modules.module import get_module_resource
 from odoo.tools import float_repr
 from odoo.tools.translate import _
 
-from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
+from odoo.addons.l10n_it_account.tools.account_tools import (
+    encode_for_export,
+    fpa_schema,
+)
 
 _logger = logging.getLogger(__name__)
-
-# XXX da vedere se spostare in fatturapa e fare una import del validator, es.
-# from from odoo.addons.l10n_it_fatturapa import FPAValidator
-
-
-# fix <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
-#      schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd" /> # noqa: B950
-class FPAValidator:
-
-    _XSD_SCHEMA = "Schema_del_file_xml_FatturaPA_versione_1.2.1.xsd"
-    _xml_schema_1_2_1 = get_module_resource(
-        "l10n_it_fatturapa", "data", "xsd", _XSD_SCHEMA
-    )
-    _old_xsd_specs = get_module_resource(
-        "l10n_it_fatturapa", "data", "xsd", "xmldsig-core-schema.xsd"
-    )
-
-    def __init__(self):
-        self.error_log = []
-        locations = {"http://www.w3.org/2000/09/xmldsig#": self._old_xsd_specs}
-        self._validator = xmlschema.XMLSchema(
-            self._xml_schema_1_2_1,
-            locations=locations,
-            validation="lax",
-            allow="local",
-            loglevel=20,
-        )
-
-    def __call__(self, *args, **kwargs):
-        self.error_log = list(self._validator.iter_errors(*args, **kwargs))
-        return not self.error_log
-
 
 DEFAULT_INVOICE_ITALIAN_DATE_FORMAT = "%Y-%m-%d"
 
 
 class EFatturaOut:
-
-    _validator = FPAValidator()
-
-    def validate(self, tree):
-        ret = self._validator(tree)
-        errors = self._validator.error_log
-        return (ret, errors)
-
     def get_template_values(self):  # noqa: C901
         """Prepare values and helper functions for the template"""
 
@@ -331,8 +292,8 @@ class EFatturaOut:
         # 14.0 - occorre rimuovere gli spazi tra i tag
         root = etree.fromstring(content, parser=etree.XMLParser(remove_blank_text=True))
         # già che ci siamo, validiamo con l'XMLSchema dello SdI
-        ok, errors = self.validate(root)
-        if not ok:
+        errors = list(fpa_schema.iter_errors(root))
+        if errors:
             # XXX - da migliorare?
             # i controlli precedenti dovrebbero escludere errori di sintassi XML
             # with open("/tmp/fatturaout.xml", "wb") as o:
