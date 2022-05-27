@@ -4,6 +4,7 @@
 from odoo.tests import Form, tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
+from odoo.addons.l10n_it_account.tools.account_tools import fpa_schema_get_enum
 
 
 @tagged("post_install", "-at_install")
@@ -142,3 +143,20 @@ class TestDocType(AccountTestInvoicingCommon):
         td02 = self.doc_type_model.search([("code", "=", "TD02")], limit=1)
         invoice = self._set_recompute_document_type(invoice, td02)
         self.assertEqual(invoice.fiscal_document_type_id, td02)
+
+    def test_compare_with_fpa_schema(self):
+        """Check that the values we define in this module are
+        the same as those defined in FPA xsd"""
+
+        my_codes = self.doc_type_model.search([]).mapped("code")
+
+        # XXX hardcoded: fattura elettronica semplificata
+        my_codes = [code for code in my_codes if code not in ["TD07", "TD08", "TD09"]]
+
+        # XXX hardcoded: esterometro
+        my_codes = [code for code in my_codes if code not in ["TD10", "TD11", "TD12"]]
+
+        # from fatturapa xml Schema
+        xsd_codes = [code for code, descr in fpa_schema_get_enum("TipoDocumentoType")]
+
+        self.assertCountEqual(my_codes, xsd_codes)
