@@ -2,6 +2,8 @@
 
 from odoo.tests.common import TransactionCase
 
+from odoo.addons.l10n_it_account.tools.account_tools import fpa_schema_get_enum
+
 
 class TestDocType(TransactionCase):
 
@@ -80,3 +82,20 @@ class TestDocType(TransactionCase):
             invoice.journal_id.id
         )
         self.assertEqual(refund.fiscal_document_type_id.id, self.TD04.id)
+
+    def test_compare_with_fpa_schema(self):
+        """Check that the values we define in this module are
+        the same as those defined in FPA xsd"""
+
+        my_codes = self.doc_type_model.search([]).mapped("code")
+
+        # XXX hardcoded: fattura elettronica semplificata
+        my_codes = [code for code in my_codes if code not in ["TD07", "TD08", "TD09"]]
+
+        # XXX hardcoded: esterometro
+        my_codes = [code for code in my_codes if code not in ["TD10", "TD11", "TD12"]]
+
+        # from fatturapa xml Schema
+        xsd_codes = [code for code, descr in fpa_schema_get_enum("TipoDocumentoType")]
+
+        self.assertCountEqual(my_codes, xsd_codes)
