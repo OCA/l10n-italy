@@ -15,6 +15,8 @@ exclude: |
   # You don't usually want a bot to modify your legal texts
   (LICENSE.*|COPYING.*)|
   # official goverment specs
+  (l10n_it_account/tools/xsd)|
+  # official goverment specs
   (l10n_it_fatturapa/data/xsd)|
   # external stylesheets
   (l10n_it_fatturapa/data/fatturaordinaria_v1.2.1.xsl)|

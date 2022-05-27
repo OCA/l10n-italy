@@ -30,6 +30,11 @@
         "reports/account_reports_view.xml",
         "views/account_view.xml",
     ],
+    "external_dependencies": {
+        "python": [
+            "xmlschema",
+        ],
+    },
     "installable": True,
     "post_init_hook": "_l10n_it_account_post_init",
 }
