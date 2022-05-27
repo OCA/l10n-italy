@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:188
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:189
 #, python-format
 msgid "ASSETS"
 msgstr "ATTIVITÀ"
@@ -107,7 +107,7 @@ msgid "Assets"
 msgstr "Attività"
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:194
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:195
 #, python-format
 msgid "BALANCE SHEET"
 msgstr "STATO PATRIMONIALE"
@@ -134,7 +134,7 @@ msgid "Balance Sheet"
 msgstr "Stato patrimoniale"
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:199
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:200
 #, python-format
 msgid "COSTS"
 msgstr "COSTI"
@@ -447,7 +447,7 @@ msgid "Initial Balance Foreign Currency"
 msgstr "Saldo iniziale valuta estera"
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:192
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:193
 #, python-format
 msgid "LIABILITIES"
 msgstr "PASSIVITÀ"
@@ -530,13 +530,13 @@ msgid "No partner allocated"
 msgstr "Nessuno partner allocato"
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:67
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:68
 #, python-format
 msgid "No report has been defined for report type '{}'."
 msgstr "Nessun rendiconto definito per la tipologia \"{}\"."
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:71
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:72
 #, python-format
 msgid "No report type has been declared for current print."
 msgstr ""
@@ -548,7 +548,7 @@ msgid "Only Posted Moves"
 msgstr "Solo registrazioni confermate"
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:205
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:206
 #, python-format
 msgid "PROFIT & LOSS"
 msgstr "CONTO ECONOMICO"
@@ -583,7 +583,7 @@ msgid "Profit & Loss"
 msgstr "Conto economico"
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:203
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:204
 #, python-format
 msgid "REVENUES"
 msgstr "RICAVI"
@@ -731,7 +731,7 @@ msgid "Trial Balance Report Wizard"
 msgstr "Procedura guidata bilancio di verifica"
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:116
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:117
 #, python-format
 msgid "Unknown report type; cannot parse it into a table."
 msgstr ""
