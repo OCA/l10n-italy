@@ -1,11 +1,15 @@
 import datetime
 
+import xmlschema
+
 from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.tests import tagged
 from odoo.tests.common import Form
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
+
+from ..tools.account_tools import fpa_schema
 
 
 @tagged("post_install", "-at_install")
@@ -227,6 +231,9 @@ class TestAccount(AccountTestInvoicingCommon):
 
         # Check tomorrow's balance
         self.check_date_balance(self.iva_22I5, tomorrow, -22, -22)
+
+    def test_xmlschema_loading(self):
+        self.assertIsInstance(fpa_schema, xmlschema.XMLSchema)
 
     def check_date_balance(self, tax, date, deductible, not_deductible):
         """Compare expected balances with tax's balance in specified date."""
