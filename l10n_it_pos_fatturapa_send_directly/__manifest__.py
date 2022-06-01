@@ -16,7 +16,7 @@
     "auto_install": True,
     "depends": [
         "l10n_it_pos_fatturapa",
-        "l10n_it_fatturapa_pec",
+        "l10n_it_sdi_channel",
     ],
     'qweb': [
     ],
