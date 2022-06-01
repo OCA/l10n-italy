@@ -25,7 +25,7 @@ ITA - POS - Fattura elettronica - Invio diretto
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-Al pagamento dell'ordine POS, quando viene richiesta fattura, inviarla immediatamente a SDI via PEC.
+Al pagamento dell'ordine POS, quando viene richiesta fattura, inviarla immediatamente a SDI.
 
 **Table of contents**
 

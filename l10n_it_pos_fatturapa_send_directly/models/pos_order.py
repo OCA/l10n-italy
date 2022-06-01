@@ -5,7 +5,7 @@ class Order(models.Model):
     _inherit = "pos.order"
 
     def _send_e_invoice(self):
-        self.invoice_id.fatturapa_attachment_out_id.send_via_pec()
+        self.invoice_id.fatturapa_attachment_out_id.send_to_sdi()
 
     @api.model
     def create_from_ui(self, orders):
