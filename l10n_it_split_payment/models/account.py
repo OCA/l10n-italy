@@ -59,7 +59,6 @@ class AccountInvoice(models.Model):
                 raise UserError(_("Can't handle supplier invoices with split payment"))
 
             sign = 1 if self.type == 'out_invoice' else -1
-
             amount_sp = sign * self.amount_sp
             total -= amount_sp
 
