@@ -546,6 +546,10 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
                 move_line = True
         self.assertTrue(move_line)
 
+        # Update the reference so that importing the same file
+        # (in other tests) does not raise "Duplicated vendor reference..."
+        invoice.reference = 'test25'
+
     def test_26_xml_import(self):
         res = self.run_wizard('test26', 'IT05979361218_015.xml')
         invoice_id = res.get('domain')[0][2][0]
@@ -787,6 +791,74 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertIn('http://ivaservizi.agenziaentrate.gov.it/ '
                       'has no category elementBinding',
                       attachment.e_invoice_parsing_error)
+
+    def _check_invoice_configured_date(self, invoice, configured_date):
+        """
+        Check that `invoice`'s Accounting Date is `configured date`.
+        Also check that resetting to draft and validating again
+        does not change the `invoice`'s Accounting Date.
+        """
+        self.assertEqual(
+            invoice.date,
+            configured_date,
+            "Configured date not set in the invoice after import",
+        )
+
+        invoice.action_invoice_cancel()
+        invoice.action_invoice_draft()
+        invoice.action_invoice_open()
+
+        self.assertEqual(
+            invoice.date,
+            configured_date,
+            "Configured date not set in the invoice after reset to draft",
+        )
+
+    def test_xml_import_rec_date(self):
+        """
+        Set 'Vendor invoice registration default date' to 'Received Date'.
+
+        Check that the received date is set during the import
+        and kept after reset to draft and validation.
+        """
+        company = self.env.user.company_id
+        company.in_invoice_registration_date = 'rec_date'
+
+        res = self.run_wizard('xml_import_rec_date', 'IT05979361218_013.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+
+        self._check_invoice_configured_date(
+            invoice,
+            invoice.e_invoice_received_date,
+        )
+
+        # Update the reference so that importing the same file
+        # (in other tests) does not raise "Duplicated vendor reference..."
+        invoice.reference = 'xml_import_rec_date'
+
+    def test_xml_import_inv_date(self):
+        """
+        Set 'Vendor invoice registration default date' to 'Invoice Date'.
+
+        Check that the invoice date is set during the import
+        and kept after reset to draft and validation.
+        """
+        company = self.env.user.company_id
+        company.in_invoice_registration_date = 'inv_date'
+
+        res = self.run_wizard('xml_import_inv_date', 'IT05979361218_013.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+
+        self._check_invoice_configured_date(
+            invoice,
+            invoice.date_invoice,
+        )
+
+        # Update the reference so that importing the same file
+        # (in other tests) does not raise "Duplicated vendor reference..."
+        invoice.reference = 'xml_import_inv_date'
 
     def test_01_xml_link(self):
         """
