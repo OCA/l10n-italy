@@ -1,6 +1,16 @@
 
 from odoo import fields, models
 
+REGISTRATION_DATE_TO_FIELD = {
+    'inv_date': 'date_invoice',
+    'rec_date': 'e_invoice_received_date',
+}
+"""
+Mapping values of `res.company.in_invoice_registration_date`
+to the field of `account.invoice` that will actually be used
+to set `account.invoice.date`.
+"""
+
 
 class ResCompany(models.Model):
     _inherit = 'res.company'
