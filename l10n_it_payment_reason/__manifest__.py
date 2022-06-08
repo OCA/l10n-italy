@@ -20,4 +20,5 @@
         "views/payment_reason_view.xml",
     ],
     "installable": True,
+    "pre_init_hook": "module_migration",
 }
