@@ -1,9 +1,8 @@
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
-# Copyright 2021 Alex Comba - Agile Business Group
+from openupgradelib import openupgrade
+
+from odoo import SUPERUSER_ID, api
 
 from . import models
-
-from openupgradelib import openupgrade
 
 
 def rename_old_italian_module(cr):
@@ -27,4 +26,17 @@ def rename_old_italian_module(cr):
             ("l10n_it_withholding_tax_causali", "l10n_it_withholding_tax_reason"),
         ],
         merge_modules=True,
+    )
+
+    env = api.Environment(cr, SUPERUSER_ID, {})
+    openupgrade.rename_fields(
+        env,
+        [
+            (
+                "withholding.tax",
+                "withholding_tax",
+                "causale_pagamento_id",
+                "payment_reason_id",
+            ),
+        ],
     )
