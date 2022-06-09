@@ -36,11 +36,8 @@
         </record>
 
         <!--
-        Incomes = "Current Year Earnings", "Income", "Other Income"
+        Incomes = "Income", "Other Income"
         -->
-        <record model="account.account.type" id="account.data_unaffected_earnings">
-            <field name="account_balance_report_section" eval="'incomes'"/>
-        </record>
         <record model="account.account.type" id="account.data_account_type_revenue">
             <field name="account_balance_report_section" eval="'incomes'"/>
         </record>
@@ -49,9 +46,12 @@
         </record>
 
         <!--
-        Liabilities = "Payable", "Credit Card", "Prepayments",
+        Liabilities = "Current Year Earnings", "Payable", "Credit Card", "Prepayments",
             "Current Liabilities", "Non-current Liabilities", "Equity"
         -->
+        <record model="account.account.type" id="account.data_unaffected_earnings">
+            <field name="account_balance_report_section" eval="'liabilities'"/>
+        </record>
         <record model="account.account.type" id="account.data_account_type_payable">
             <field name="account_balance_report_section" eval="'liabilities'"/>
         </record>
