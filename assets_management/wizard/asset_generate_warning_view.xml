@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="asset_generate_warning" model="ir.ui.view">
-        <field name="name">asset.generate.warning</field>
+    <record id="asset_generate_warning_view" model="ir.ui.view">
+        <field name="name">asset.generate.warning.view</field>
         <field name="model">asset.generate.warning</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
