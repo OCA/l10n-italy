@@ -34,12 +34,12 @@ class SdiChannel(models.Model):
     email_exchange_system = fields.Char(
         "Exchange System Email Address",
         help="The first time you send a PEC to SDI, you must use the address "
-        "sdi01@pec.fatturapa.it . The system, with the first response "
+        "sdi01@pec.fatturapa.it.\n"
+        "Odoo will automatically set this address "
+        "the first time you send an e-invoice to SdI using this channel.\n"
+        "The system, with the first response "
         "or notification, communicates the PEC address to be used for "
         "future messages",
-        default=lambda self: self.env["ir.config_parameter"].get_param(
-            "sdi.pec.first.address"
-        ),
     )
     first_invoice_sent = fields.Boolean(
         "SDI already assigned a PEC address to my company",
@@ -48,8 +48,12 @@ class SdiChannel(models.Model):
 
     @api.constrains("fetch_pec_server_id")
     def check_fetch_pec_server_id(self):
-        for channel in self:
-            domain = [("fetch_pec_server_id", "=", channel.fetch_pec_server_id.id)]
+        pec_channels = self.filtered(lambda c: c.channel_type == "pec")
+        for channel in pec_channels:
+            domain = [
+                ("fetch_pec_server_id", "=", channel.fetch_pec_server_id.id),
+                ("id", "in", pec_channels.ids),
+            ]
             elements = self.search(domain)
             if len(elements) > 1:
                 raise exceptions.ValidationError(
@@ -65,8 +69,12 @@ class SdiChannel(models.Model):
 
     @api.constrains("pec_server_id")
     def check_pec_server_id(self):
-        for channel in self:
-            domain = [("pec_server_id", "=", channel.pec_server_id.id)]
+        pec_channels = self.filtered(lambda c: c.channel_type == "pec")
+        for channel in pec_channels:
+            domain = [
+                ("pec_server_id", "=", channel.pec_server_id.id),
+                ("id", "in", pec_channels.ids),
+            ]
             elements = self.search(domain)
             if len(elements) > 1:
                 raise exceptions.ValidationError(
@@ -84,20 +92,19 @@ class SdiChannel(models.Model):
     def check_email_validity(self):
         if self.env.context.get("skip_check_email_validity"):
             return
-        for channel in self:
+        pec_channels = self.filtered(lambda c: c.channel_type == "pec")
+        for channel in pec_channels:
             if not extract_rfc2822_addresses(channel.email_exchange_system):
                 raise exceptions.ValidationError(
                     _("Email %s is not valid") % channel.email_exchange_system
                 )
 
     def check_first_pec_sending(self):
-        sdi_address = self.env["ir.config_parameter"].get_param("sdi.pec.first.address")
         if not self.first_invoice_sent:
-            if self.email_exchange_system != sdi_address:
-                raise exceptions.UserError(
-                    _("This is a first sending but SDI address is different " "from %s")
-                    % sdi_address
-                )
+            sdi_address = self.env["ir.config_parameter"].get_param(
+                "sdi.pec.first.address",
+            )
+            self.email_exchange_system = sdi_address
         else:
             if not self.email_exchange_system:
                 raise exceptions.UserError(
