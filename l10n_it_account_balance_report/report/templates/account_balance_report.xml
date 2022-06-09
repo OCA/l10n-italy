@@ -216,7 +216,7 @@
                            t-att-data-res-model="'account.move.line'"
                            class="o_account_financial_reports_web_action_monetary_multi"
                            t-att-style="style">
-                        <t t-att-style="style" t-raw="line.period_balance" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></a>
+                        <t t-att-style="style" t-raw="line.final_balance" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></a>
                     </span>
                 </t>
                 <t t-elif="line.account_group_id">
@@ -229,7 +229,7 @@
                            t-att-data-res-model="'account.move.line'"
                            class="o_account_financial_reports_web_action_monetary_multi"
                            t-att-style="style">
-                        <t t-att-style="style" t-raw="line.period_balance" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></a>
+                        <t t-att-style="style" t-raw="line.final_balance" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></a>
                     </span>
                 </t>
             </div>
@@ -329,7 +329,7 @@
                            t-att-data-res-model="'account.move.line'"
                            class="o_account_financial_reports_web_action_monetary_multi"
                            t-att-style="partner_style">
-                            <t t-att-style="partner_style" t-raw="partner_line.period_balance" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                            <t t-att-style="partner_style" t-raw="partner_line.final_balance" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
                         </a>
                     </span>
                 </div>

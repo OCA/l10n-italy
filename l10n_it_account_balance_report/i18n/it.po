@@ -368,6 +368,12 @@ msgid "Final Balance Foreign Currency"
 msgstr "Saldo finale valuta estera"
 
 #. module: l10n_it_account_balance_report
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:155
+#, python-format
+msgid "Final balance"
+msgstr ""
+
+#. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__foreign_currency
 msgid "Foreign Currency"
 msgstr "Valuta estera"
@@ -571,12 +577,6 @@ msgid "Period Balance"
 msgstr "Saldo periodo"
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:155
-#, python-format
-msgid "Period balance"
-msgstr "Saldo periodo"
-
-#. module: l10n_it_account_balance_report
 #: selection:account_balance_report,account_balance_report_type:0
 #: selection:trial.balance.report.wizard,account_balance_report_type:0
 msgid "Profit & Loss"
@@ -776,3 +776,6 @@ msgstr "report.l10n_it_a_b_r.account_balance_report_xlsx"
 #: model:ir.model,name:l10n_it_account_balance_report.model_report_trial_balance_account
 msgid "report_trial_balance_account"
 msgstr "report_trial_balance_account"
+
+#~ msgid "Period balance"
+#~ msgstr "Saldo periodo"
