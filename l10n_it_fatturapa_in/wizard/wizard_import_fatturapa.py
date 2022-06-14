@@ -167,7 +167,9 @@ class WizardImportFatturapa(models.TransientModel):
             else:
                 vat = "{}{}".format(
                     DatiAnagrafici.IdFiscaleIVA.IdPaese.upper(),
-                    re.sub(r"\W+", "", DatiAnagrafici.IdFiscaleIVA.IdCodice).upper(),
+                    re.sub(r"\W+", "",
+                           DatiAnagrafici.IdFiscaleIVA.IdCodice
+                           ).upper().lstrip('0'),
                 )
         partners = partner_model
         res_partner_rule = (
