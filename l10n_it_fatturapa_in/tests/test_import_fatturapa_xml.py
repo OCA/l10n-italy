@@ -144,8 +144,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
                 self.assertEqual(e_line.cod_article_ids[0].code_val, "12345")
         self.assertEqual(
             invoice.inconsistencies,
-            u"Company Name field contains 'Societa' "
-            u"Alpha SRL'. Your System contains 'SOCIETA' ALPHA SRL'\n\n",
+            "Company Name field contains 'Societa' "
+            "Alpha SRL'. Your System contains 'SOCIETA' ALPHA SRL'\n\n",
         )
         # allow following test to reuse the same XML file
         invoice.ref = invoice.payment_reference = "14041"
@@ -344,13 +344,13 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice2 = self.invoice_model.browse(invoice2_id)
         self.assertEqual(
             invoice1.inconsistencies,
-            u"Company Name field contains 'Societa' "
-            u"Alpha SRL'. Your System contains 'SOCIETA' ALPHA SRL'\n\n",
+            "Company Name field contains 'Societa' "
+            "Alpha SRL'. Your System contains 'SOCIETA' ALPHA SRL'\n\n",
         )
         self.assertEqual(
             invoice2.inconsistencies,
-            u"Company Name field contains 'Societa' "
-            u"Alpha SRL'. Your System contains 'SOCIETA' ALPHA SRL'\n\n",
+            "Company Name field contains 'Societa' "
+            "Alpha SRL'. Your System contains 'SOCIETA' ALPHA SRL'\n\n",
         )
 
     def test_14_xml_import(self):
@@ -366,9 +366,9 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.amount_tax, 0.0)
         self.assertEqual(
             invoice.inconsistencies,
-            u"Company Name field contains 'Societa' "
+            "Company Name field contains 'Societa' "
             "Alpha SRL'. Your System contains 'SOCIETA' ALPHA SRL'\n\n"
-            u"XML contains tax with percentage '15.55'"
+            "XML contains tax with percentage '15.55'"
             " but it does not exist in your system\n"
             "XML contains tax with percentage '15.55'"
             " but it does not exist in your system",
@@ -995,6 +995,17 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         See https://github.com/OCA/l10n-italy/issues/2349"""
         invoices = self.invoice_model.create([{}, {}])
         self.assertEqual(invoices.mapped("e_invoice_validation_error"), [False, False])
+
+    def test_duplicated_vat_on_partners(self):
+        supplier = self.env["res.partner"].search(
+            [("vat", "=", "IT05979361218")], limit=1
+        )
+
+        duplicated_supplier = supplier.copy()
+        self.assertEqual(supplier.vat, duplicated_supplier.vat)
+        attach = self.run_wizard("duplicated_vat", "IT05979361218_012.xml", mode=False)
+        self.assertFalse(attach.xml_supplier_id)
+        self.assertTrue(attach.inconsistencies)
 
 
 class TestFatturaPAEnasarco(FatturapaCommon):

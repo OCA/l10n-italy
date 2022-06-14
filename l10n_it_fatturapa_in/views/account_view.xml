@@ -6,16 +6,17 @@
         <field name="model">fatturapa.attachment.in</field>
         <field name="arch" type="xml">
             <form string="Import e-bill" duplicate="false">
+                <field name="inconsistencies" invisible="1" />
                 <div
                     class="alert alert-info"
                     role="alert"
                     style="margin-bottom:0px;"
-                    attrs="{'invisible': [('e_invoice_validation_error','=',False)]}"
+                    attrs="{'invisible': [('e_invoice_validation_error','=',False), ('inconsistencies','=',False)]}"
                 >
-                     <bold><field
-                            name="e_invoice_validation_message"
-                            nolabel="1"
-                        /></bold>
+                     <bold>
+                         <field name="e_invoice_validation_message" nolabel="1" />
+                         <field name="inconsistencies" nolabel="1" />
+                     </bold>
                 </div>
                 <field name="e_invoice_validation_error" invisible="1" />
                 <div>
