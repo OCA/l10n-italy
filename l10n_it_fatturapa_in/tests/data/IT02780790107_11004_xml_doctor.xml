@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:FatturaElettronica versione="FPA12" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+xmlns:p="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2 http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd">
+    <FatturaElettronicaHeader>
+        <DatiTrasmissione>
+            <IdTrasmittente>
+                <IdPaese>IT</IdPaese>
+                <IdCodice>02780790107</IdCodice>
+            </IdTrasmittente>
+            <ProgressivoInvio>00001</ProgressivoInvio>
+            <FormatoTrasmissione>FPA12</FormatoTrasmissione>
+            <CodiceDestinatario>UFPQ1O</CodiceDestinatario>
+            <ContattiTrasmittente></ContattiTrasmittente>
+        </DatiTrasmissione>
+        <CedentePrestatore>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>02780790107</IdCodice>
+                </IdFiscaleIVA>
+                <Anagrafica>
+                    <Denominazione>SOCIETA' ALPHA SRL</Denominazione>
+                </Anagrafica>
+                <RegimeFiscale>RF01</RegimeFiscale>
+            </DatiAnagrafici>
+            <Sede>
+                <Indirizzo>VIALE ROMA 543</Indirizzo>
+                <CAP>07100</CAP>
+                <Comune>SASSARI</Comune>
+                <Provincia>SS</Provincia>
+                <Nazione>IT</Nazione>
+            </Sede>
+        </CedentePrestatore>
+        <RappresentanteFiscale>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>03339130126</IdCodice>
+                </IdFiscaleIVA>
+                <CodiceFiscale>03339130126</CodiceFiscale>
+                <Anagrafica>
+                    <Denominazione>Rappresentante fiscale</Denominazione>
+                    <CodEORI>1234567890123</CodEORI>
+                </Anagrafica>
+            </DatiAnagrafici>
+        </RappresentanteFiscale>
+        <CessionarioCommittente>
+            <DatiAnagrafici>
+                <CodiceFiscale>80213330584</CodiceFiscale>
+                <Anagrafica>
+                    <Denominazione>AMMINISTRAZIONE BETA</Denominazione>
+                </Anagrafica>
+            </DatiAnagrafici>
+            <Sede>
+                <Indirizzo>VIA TORINO 38-B</Indirizzo>
+                <CAP>00145</CAP>
+                <Comune>ROMA</Comune>
+                <Provincia>RM</Provincia>
+                <Nazione>IT</Nazione>
+            </Sede>
+        </CessionarioCommittente>
+        <TerzoIntermediarioOSoggettoEmittente>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>03339130126</IdCodice>
+                </IdFiscaleIVA>
+                <CodiceFiscale>03339130126</CodiceFiscale>
+                <Anagrafica>
+                    <Denominazione>Rappresentante fiscale</Denominazione>
+                    <CodEORI>1234567890123</CodEORI>
+                </Anagrafica>
+            </DatiAnagrafici>
+        </TerzoIntermediarioOSoggettoEmittente>
+    </FatturaElettronicaHeader>
+    <FatturaElettronicaBody>
+        <DatiGenerali>
+            <DatiGeneraliDocumento>
+                <TipoDocumento>TD01</TipoDocumento>
+                <Divisa>EUR</Divisa>
+                <Data>2014-12-18+01:00</Data>
+                <Numero>14221</Numero>
+                <DatiCassaPrevidenziale>
+                    <TipoCassa>TC01</TipoCassa>
+                    <AlCassa>4.00</AlCassa>
+                    <ImportoContributoCassa>9.00</ImportoContributoCassa>
+                    <AliquotaIVA>22.00</AliquotaIVA>
+                    <RiferimentoAmministrazione>rif. amm</RiferimentoAmministrazione>
+                </DatiCassaPrevidenziale>
+                <Causale> </Causale>
+                <Art73>SI</Art73>
+            </DatiGeneraliDocumento>
+            <DatiOrdineAcquisto>
+                <RiferimentoNumeroLinea>1</RiferimentoNumeroLinea>
+                <IdDocumento>66685</IdDocumento>
+                <NumItem>1</NumItem>
+                <CodiceCUP>123abc</CodiceCUP>
+                <CodiceCIG>456def</CodiceCIG>
+            </DatiOrdineAcquisto>
+            <DatiContratto>
+                <RiferimentoNumeroLinea>1</RiferimentoNumeroLinea>
+                <IdDocumento>123</IdDocumento>
+                <Data>2012-09-01</Data>
+                <NumItem>5</NumItem>
+                <CodiceCUP>123abc</CodiceCUP>
+                <CodiceCIG>456def</CodiceCIG>
+            </DatiContratto>
+            <DatiConvenzione>
+                <RiferimentoNumeroLinea>1</RiferimentoNumeroLinea>
+                <IdDocumento>123</IdDocumento>
+                <NumItem>5</NumItem>
+                <CodiceCUP>123abc</CodiceCUP>
+                <CodiceCIG>456def</CodiceCIG>
+            </DatiConvenzione>
+            <DatiRicezione>
+                <RiferimentoNumeroLinea>1</RiferimentoNumeroLinea>
+                <IdDocumento>123</IdDocumento>
+                <NumItem>5</NumItem>
+                <CodiceCUP>123abc</CodiceCUP>
+                <CodiceCIG>456def</CodiceCIG>
+            </DatiRicezione>
+            <DatiTrasporto>
+                <DatiAnagraficiVettore>
+                    <IdFiscaleIVA>
+                        <IdPaese>IT</IdPaese>
+                        <IdCodice>05714511002</IdCodice>
+                    </IdFiscaleIVA>
+                    <Anagrafica>
+                        <Denominazione>Trasporto spa</Denominazione>
+                    </Anagrafica>
+                </DatiAnagraficiVettore>
+                <UnitaMisuraPeso>KGM</UnitaMisuraPeso>
+                <TipoResa>DAP</TipoResa>
+                <IndirizzoResa>
+                    <Indirizzo>strada dei test</Indirizzo>
+                    <NumeroCivico> </NumeroCivico>
+                    <CAP>12042</CAP>
+                    <Comune>Bra</Comune>
+                    <Provincia>CN</Provincia>
+                    <Nazione>IT</Nazione>
+                </IndirizzoResa>
+                <DataOraConsegna>0001-01-01T00:00:00.000+02:00</DataOraConsegna>
+            </DatiTrasporto>
+        </DatiGenerali>
+        <DatiBeniServizi>
+            <DettaglioLinee>
+                <NumeroLinea>1</NumeroLinea>
+                <Descrizione> </Descrizione>
+                <Quantita>5.00</Quantita>
+                <PrezzoUnitario>1.00</PrezzoUnitario>
+                <PrezzoTotale>5.00</PrezzoTotale>
+                <AliquotaIVA>22.00</AliquotaIVA>
+            </DettaglioLinee>
+            <DettaglioLinee>
+                <NumeroLinea>2</NumeroLinea>
+                <Descrizione>FORNITURE VARIE PER UFFICIO</Descrizione>
+                <Quantita>10.00</Quantita>
+                <PrezzoUnitario>2.00</PrezzoUnitario>
+                <PrezzoTotale>20.00</PrezzoTotale>
+                <AliquotaIVA>22.00</AliquotaIVA>
+            </DettaglioLinee>
+            <DatiRiepilogo>
+                <AliquotaIVA>22.00</AliquotaIVA>
+                <ImponibileImporto>34.00</ImponibileImporto>
+                <Imposta>7.48</Imposta>
+                <EsigibilitaIVA>D</EsigibilitaIVA>
+            </DatiRiepilogo>
+        </DatiBeniServizi>
+        <DatiPagamento>
+            <CondizioniPagamento>TP01</CondizioniPagamento>
+            <DettaglioPagamento>
+                <ModalitaPagamento>MP05</ModalitaPagamento>
+                <DataScadenzaPagamento>2015-04-30</DataScadenzaPagamento>
+                <ImportoPagamento>20.00</ImportoPagamento>
+                <IstitutoFinanziario>Bank Test</IstitutoFinanziario>
+                <IBAN>IT28V0100003245232200001200</IBAN>
+                <BIC>GEBABEBB</BIC>
+                <PenalitaPagamentiRitardati>2.00</PenalitaPagamentiRitardati>
+                <DataDecorrenzaPenale>2015-05-01</DataDecorrenzaPenale>
+            </DettaglioPagamento>
+            <DettaglioPagamento>
+                <ModalitaPagamento>MP05</ModalitaPagamento>
+                <DataScadenzaPagamento>2015-05-30</DataScadenzaPagamento>
+                <ImportoPagamento>9.00</ImportoPagamento>
+                <IstitutoFinanziario>Bank Test</IstitutoFinanziario>
+                <IBAN>IT28V0100003245232200001200</IBAN>
+                <BIC>GEBABEBB</BIC>
+                <PenalitaPagamentiRitardati>1.00</PenalitaPagamentiRitardati>
+                <DataDecorrenzaPenale>2015-05-31</DataDecorrenzaPenale>
+            </DettaglioPagamento>
+        </DatiPagamento>
+        <DatiPagamento>
+            <CondizioniPagamento>TP02</CondizioniPagamento>
+            <DettaglioPagamento>
+                <ModalitaPagamento>MP05</ModalitaPagamento>
+                <DataScadenzaPagamento>2015-06-30</DataScadenzaPagamento>
+                <ImportoPagamento>1.50</ImportoPagamento>
+                <IstitutoFinanziario>Bank Test</IstitutoFinanziario>
+                <IBAN>IT28V0100003245232200001200</IBAN>
+                <BIC>GEBABEBB</BIC>
+                <PenalitaPagamentiRitardati>0.15</PenalitaPagamentiRitardati>
+                <DataDecorrenzaPenale>2015-07-01+02:00</DataDecorrenzaPenale>
+            </DettaglioPagamento>
+        </DatiPagamento>
+    </FatturaElettronicaBody>
+</p:FatturaElettronica>
