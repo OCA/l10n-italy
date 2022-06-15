@@ -97,7 +97,9 @@ class AccountMove(models.Model):
             "date": self.date,
             "invoice_origin": self.sequence_number,
             "rc_purchase_invoice_id": self.id,
-            "name": rc_type.self_invoice_text,
+            "name": rc_type.self_invoice_text
+            if not self.rc_self_invoice_id
+            else self.rc_self_invoice_id.name,
             "currency_id": currency.id,
             "fiscal_position_id": False,
             "invoice_payment_term_id": False,
