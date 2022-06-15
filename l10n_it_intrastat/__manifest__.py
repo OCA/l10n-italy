@@ -13,7 +13,6 @@
     "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
     "depends": [
-        "sale_management",
         "product",
         "stock",
         "stock_account",
