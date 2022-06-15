@@ -4,7 +4,7 @@
 
 {
     "name": "ITA - Intrastat",
-    "version": "14.0.1.1.0",
+    "version": "14.0.1.2.0",
     "category": "Account",
     "summary": "Riclassificazione merci e servizi per dichiarazioni Intrastat",
     "author": "Openforce, Link IT srl, Agile Business Group, "
@@ -13,7 +13,6 @@
     "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
     "depends": [
-        "sale_management",
         "product",
         "stock",
         "stock_account",
