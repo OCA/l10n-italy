@@ -121,6 +121,12 @@ class AccountInvoice(models.Model):
         return True
 
     @api.multi
+    def action_invoice_draft(self):
+        res = super(AccountInvoice, self).action_invoice_draft()
+        self._fatturapa_set_invoice_date()
+        return res
+
+    @api.multi
     def invoice_validate(self):
         for invoice in self:
             if (invoice.e_invoice_validation_error and
@@ -129,7 +135,6 @@ class AccountInvoice(models.Model):
                     _("The invoice '%s' doesn't match the related e-invoice") %
                     invoice.display_name)
 
-        self._fatturapa_set_invoice_date()
         return super(AccountInvoice, self).invoice_validate()
 
     def e_inv_check_amount_untaxed(self):
