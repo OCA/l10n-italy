@@ -190,7 +190,7 @@ class FatturaPAAttachmentOut(models.Model):
                 }
             )
 
-    def parse_pec_response(self, message_dict):
+    def parse_pec_response(self, message_dict):  # noqa: C901
         message_dict["model"] = self._name
         message_dict["res_id"] = 0
 
@@ -212,7 +212,20 @@ class FatturaPAAttachmentOut(models.Model):
             if attachment.fname.lower().endswith(".zip"):
                 # not implemented, case of AT, todo
                 continue
-            root = etree.fromstring(attachment.content)
+            # after https://github.com/odoo/odoo/commit/3e877d316a004b46c3535d7a8d01a96e92a9df15
+            # attachment.content is a string, not bytes
+            # lxml requires either bytes or an XML w/o a encoding declaration
+            # we try and re-encode the attachment with the original encoding, fallback is UTF-8
+            if isinstance(attachment.content, str):
+                try:
+                    encoding = re.search(
+                        r"encoding=(\"|\')(.*?)(\"|\')", attachment.content
+                    ).group(2)
+                    binary_content = attachment.content.encode(encoding)
+                except Exception:
+                    binary_content = attachment.content.encode()
+
+            root = etree.fromstring(binary_content)
             file_name = root.find("NomeFile")
             fatturapa_attachment_out = self.env["fatturapa.attachment.out"]
 
