@@ -212,7 +212,10 @@ class FatturaPAAttachmentOut(models.Model):
             if attachment.fname.lower().endswith(".zip"):
                 # not implemented, case of AT, todo
                 continue
-            root = etree.fromstring(attachment.content)
+            attachment_content = attachment.content
+            if isinstance(attachment_content, str):
+                attachment_content = attachment_content.encode()
+            root = etree.fromstring(attachment_content)
             file_name = root.find("NomeFile")
             fatturapa_attachment_out = self.env["fatturapa.attachment.out"]
 
