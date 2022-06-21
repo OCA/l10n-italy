@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-11 07:51+0000\n"
-"PO-Revision-Date: 2020-10-05 08:16+0000\n"
-"Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
+"PO-Revision-Date: 2022-06-21 13:05+0000\n"
+"Last-Translator: Riccardo Bellanova <bellanova@webmonks.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_it_withholding_tax
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
@@ -26,17 +26,17 @@ msgstr ""
 #. module: l10n_it_withholding_tax
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.print_withholding_tax
 msgid "<span>Withholding Tax</span>"
-msgstr ""
+msgstr "<span>Ritenuta d'acconto</span>"
 
 #. module: l10n_it_withholding_tax
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.print_withholding_tax
 msgid "<strong>Net To Pay</strong>"
-msgstr ""
+msgstr "<strong>Netto da pagare</strong>"
 
 #. module: l10n_it_withholding_tax
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.print_withholding_tax
 msgid "<strong>Residual Net To Pay</strong>"
-msgstr ""
+msgstr "<strong>Netto da pagare residuo</strong>"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__move_line_id
@@ -287,7 +287,7 @@ msgstr "Riconciliazione fattura"
 #. module: l10n_it_withholding_tax
 #: model:ir.model,name:l10n_it_withholding_tax.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Registrazione contabile"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model,name:l10n_it_withholding_tax.model_account_move_line
@@ -473,7 +473,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move__withholding_tax_in_print
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_payment__withholding_tax_in_print
 msgid "Show Withholding Tax In Print"
-msgstr ""
+msgstr "Mostra la ritenuta d'acconto in stampa"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__statement_id
