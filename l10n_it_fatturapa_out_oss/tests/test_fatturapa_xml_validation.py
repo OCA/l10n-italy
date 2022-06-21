@@ -13,10 +13,11 @@ class TestInvoiceOss(FatturaPACommon):
 
         self.today_date = fields.Date.today()
         self.env.user.company_id.fatturapa_art73 = False
+        au_country = self.env.ref("base.at")
         self.tax1 = self.env["account.tax"].create({
             "name": "OSS AU",
             "amount": 20.0,
-            "oss_subjected": True,
+            "oss_country_id": au_country.id,
             "kind_id": self.env.ref("l10n_it_account_tax_kind.n3_2").id,
             "law_reference": "NON IMPONIBILE ART. 41 COMMA 1, LETT. B",
 
@@ -46,17 +47,6 @@ class TestInvoiceOss(FatturaPACommon):
             "zip": "12345",
             "country_id": self.env.ref("base.at").id,
             "codice_destinatario": "XXXXXXX",
-        })
-
-        self.env['oss.year'].create({
-            'year': '2022',
-            'oss_subjected': True,
-            'company_id': self.env.user.company_id.id,
-        })
-        self.env['oss.year'].create({
-            'year': '2023',
-            'oss_subjected': False,
-            'company_id': self.env.user.company_id.id,
         })
 
     def getAttachment(self, name, module_name=None):

@@ -14,10 +14,6 @@
         "l10n_eu_oss",
     ],
     "data": [
-        "security/ir.model.access.csv",
-        "security/oss_security.xml",
-        "views/account.xml",
-        "views/company_view.xml",
     ],
     "installable": True,
     "autoinstall": True,
