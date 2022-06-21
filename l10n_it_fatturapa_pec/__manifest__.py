@@ -22,7 +22,6 @@
     ],
     "data": [
         "security/ir.model.access.csv",
-        "security/groups.xml",
         "views/fatturapa_attachment_out.xml",
         "views/fetchmail_view.xml",
         "views/company_view.xml",
