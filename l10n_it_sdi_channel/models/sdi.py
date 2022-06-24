@@ -63,6 +63,7 @@ class SdiChannel(models.Model):
         send_method = getattr(self, send_method_name)
         return send_method(attachment_out_ids)
 
+    @api.model
     def _prepare_attachment_in_values(
         self,
         file_name,
@@ -104,16 +105,9 @@ class SdiChannel(models.Model):
                     "datas": base64.encodebytes(file_content),
                 }
             )
-            if len(self) == 1:
-                # Link the attachment to the channel
-                # to inherit channel's followers
-                attachment_values.update(
-                    {
-                        "channel_id": self.id,
-                    }
-                )
         return attachment_values
 
+    @api.model
     def _process_single_fe(
         self,
         file_name,
@@ -154,6 +148,7 @@ class SdiChannel(models.Model):
 
         return attachments_values
 
+    @api.model
     def receive_fe(
         self,
         file_name_content_dict,
