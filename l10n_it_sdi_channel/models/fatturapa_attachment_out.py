@@ -49,15 +49,3 @@ class FatturaPAAttachmentOut (models.Model):
             if state_subtype:
                 return state_subtype
         return super()._track_subtype(init_values)
-
-    @api.model_create_multi
-    def create(self, vals_list):
-        attachments = super().create(vals_list)
-        sdi_channel = self.env.user.company_id.sdi_channel_id
-        if sdi_channel:
-            # Link the attachments to the channel
-            # to inherit channel's followers
-            attachments.update({
-                'channel_id': sdi_channel.id,
-            })
-        return attachments
