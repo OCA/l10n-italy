@@ -664,6 +664,9 @@ class WizardImportFatturapa(models.TransientModel):
             self.e_invoice_detail_level == '2'
         ):
             invoice = self.env['account.invoice'].browse(invoice_id)
+            if invoice.amount_total == float(DatiGeneraliDocumento.ImportoTotaleDocumento):
+                return True
+            
             for DiscRise in DatiGeneraliDocumento.ScontoMaggiorazione:
                 if DiscRise.Percentuale:
                     amount = (
