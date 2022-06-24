@@ -8,5 +8,5 @@ class FatturaPAAttachment(models.AbstractModel):
     _inherit = "fatturapa.attachment"
 
     channel_id = fields.Many2one(
-        comodel_name="sdi.channel",
+        comodel_name="sdi.channel", related="company_id.sdi_channel_id", store=True
     )
