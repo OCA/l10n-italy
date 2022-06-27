@@ -14,5 +14,5 @@
         "l10n_it_split_payment",
     ],
     "installable": True,
-    "autoinstall": True,
+    "auto_install": True,
 }
