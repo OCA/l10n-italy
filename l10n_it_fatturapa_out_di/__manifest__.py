@@ -17,5 +17,5 @@
         "data/invoice_it_template.xml",
     ],
     "installable": True,
-    "autoinstall": True,
+    "auto_install": True,
 }
