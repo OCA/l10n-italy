@@ -14,5 +14,5 @@
         "l10n_it_dichiarazione_intento",
     ],
     "installable": True,
-    "autoinstall": True,
+    "auto_install": True,
 }
