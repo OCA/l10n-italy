@@ -95,7 +95,7 @@ class AccountInvoice(models.Model):
                 )
         return
 
-    def action_invoice_cancel(self):
+    def button_draft(self):
         for invoice in self:
             if (
                 invoice.fatturapa_state != "error"
@@ -103,10 +103,10 @@ class AccountInvoice(models.Model):
             ):
                 raise UserError(
                     _(
-                        "Invoice %s has XML and can't be canceled. "
+                        "Invoice %s has XML and can't be reset to draft. "
                         "Delete the XML before."
                     )
                     % invoice.name
                 )
-        res = super(AccountInvoice, self).action_invoice_cancel()
+        res = super(AccountInvoice, self).button_draft()
         return res
