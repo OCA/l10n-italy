@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # Copyright 2018 Simone Rubino - Agile Business Group
 # Copyright 2019 Alex Comba - Agile Business Group
 
