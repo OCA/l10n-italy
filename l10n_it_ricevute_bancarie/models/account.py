@@ -71,9 +71,44 @@ class AccountMove(models.Model):
         "line_id",
         "Past Due Journal Items",
     )
+
     is_unsolved = fields.Boolean(
         "Is a past due invoice", compute="_compute_is_unsolved", store=True
     )
+    is_riba_payment = fields.Boolean(
+        "Is C/O Payment", related="invoice_payment_term_id.riba", default=False
+    )
+
+    riba_partner_bank_id = fields.Many2one(
+        "res.partner.bank",
+        string="C/O Bank Account",
+        help="Bank Account Number to which the C/O will be debited. "
+        "If not set, first bank in partner will be used.",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+    )
+
+    @api.model
+    def create(self, vals):
+        invoice = super().create(vals)
+        if not invoice.riba_partner_bank_id:
+            invoice._onchange_riba_partner_bank_id()
+        return invoice
+
+    @api.onchange("partner_id", "invoice_payment_term_id", "move_type")
+    def _onchange_riba_partner_bank_id(self):
+        if (
+            not self.riba_partner_bank_id
+            or self.riba_partner_bank_id not in self.partner_id.bank_ids
+        ):
+            bank_ids = self.env["res.partner.bank"]
+            if (
+                self.partner_id
+                and self.invoice_payment_term_id.riba
+                and self.move_type in ["out_invoice", "out_refund"]
+            ):
+                bank_ids = self.partner_id.bank_ids
+            self.riba_partner_bank_id = bank_ids[0] if bank_ids else None
 
     def month_check(self, invoice_date_due, all_date_due):
         """
@@ -144,7 +179,7 @@ class AccountMove(models.Model):
                     }
                     # ---- Update Line Value with tax if is set on product
                     if invoice.company_id.due_cost_service_id.taxes_id:
-                        tax = invoice.company_id.due_cost_service_id.taxes_id
+                        tax = invoice.fiscal_position_id.map_tax(service_prod.taxes_id)
                         line_vals.update({"tax_ids": [(4, tax.id)]})
                     invoice.write({"invoice_line_ids": [(0, 0, line_vals)]})
                     # ---- recompute invoice taxes
@@ -226,7 +261,7 @@ class AccountMoveLine(models.Model):
         "Past Due Invoices",
     )
     iban = fields.Char(
-        related="partner_id.bank_ids.acc_number", string="IBAN", store=False
+        related="move_id.riba_partner_bank_id.acc_number", string="IBAN", store=False
     )
     due_cost_line = fields.Boolean("C/O Collection Fees Line")
 
