@@ -56,8 +56,16 @@ class RibaIssue(models.TransientModel):
         move_lines = move_line_obj.search(
             [('id', 'in', self._context['active_ids'])])
         do_group_riba = True
-        if len(set(['%s%s' % (x.cig, x.cup) for x in
-               move_lines.mapped('invoice_id.related_documents')])) > 1:
+        cig_cup_list = []
+        for move_line in move_lines:
+            if move_line.invoice_id.related_documents:
+                cig_cup_list.append('%s%s' % (
+                    move_line.mapped('invoice_id.related_documents.cig'),
+                    move_line.mapped('invoice_id.related_documents.cup'),
+                ))
+            else:
+                cig_cup_list.append('')
+        if len(set(cig_cup_list)) > 1:
             do_group_riba = False
         if do_group_riba:
             for move_line in move_lines:

@@ -430,6 +430,50 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
             )],
         })
         invoice1.action_invoice_open()
+        # invoice with same cig-cup to be grouped
+        invoice2 = self.env['account.invoice'].create({
+            'date_invoice': recent_date,
+            'journal_id': self.sale_journal.id,
+            'partner_id': self.partner.id,
+            'payment_term_id': self.account_payment_term_riba.id,
+            'account_id': self.account_rec1_id.id,
+            'invoice_line_ids': [(
+                0, 0, {
+                    'name': 'product1',
+                    'product_id': self.product1.id,
+                    'quantity': 1.0,
+                    'price_unit': 450.00,
+                    'account_id': self.sale_account.id
+                }
+            )],
+            'related_documents': [(
+                0, 0, {
+                    'type': 'order',
+                    'name': 'SO1232',
+                    'cig': '7987210EG5',
+                    'cup': 'H71N17000690125',
+                }
+            )],
+        })
+        invoice2.action_invoice_open()
+        # invoice without related documents to be left alone
+        invoice3 = self.env['account.invoice'].create({
+            'date_invoice': recent_date,
+            'journal_id': self.sale_journal.id,
+            'partner_id': self.partner.id,
+            'payment_term_id': self.account_payment_term_riba.id,
+            'account_id': self.account_rec1_id.id,
+            'invoice_line_ids': [(
+                0, 0, {
+                    'name': 'product1',
+                    'product_id': self.product1.id,
+                    'quantity': 1.0,
+                    'price_unit': 450.00,
+                    'account_id': self.sale_account.id
+                }
+            )],
+        })
+        invoice3.action_invoice_open()
         # issue wizard
         riba_move_line_id = invoice.move_id.line_ids.filtered(
             lambda x: x.account_id == self.account_rec1_id
