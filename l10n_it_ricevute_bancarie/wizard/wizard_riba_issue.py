@@ -90,6 +90,12 @@ class RibaIssue(models.TransientModel):
                             self.configuration_id.acceptance_account_id.id).id
                         # total = 0.0
                         # invoice_date_group = ''
+                        # add Warning for negative riba!
+                        if sum(x.amount_residual for x in grouped_lines[key]) < 0.0:
+                            raise exceptions.UserError(
+                                _('Ri.ba. cannot be negative! Group with other'
+                                  ' positive one(s) changing maturity date.')
+                            )
                         for grouped_line in grouped_lines[key]:
                             riba_list_move_line.create({
                                 'riba_line_id': rdl_id,
@@ -103,6 +109,11 @@ class RibaIssue(models.TransientModel):
                     countme, bank_id.id, rd_id, move_line.date_maturity,
                     move_line.partner_id.id,
                     self.configuration_id.acceptance_account_id.id).id
+                if move_line.amount_residual < 0.0:
+                    raise exceptions.UserError(
+                        _('Ri.ba. cannot be negative! Group with other '
+                          'positive one(s) changing maturity date.')
+                    )
                 riba_list_move_line.create({
                     'riba_line_id': rdl_id,
                     'amount': move_line.amount_residual,
