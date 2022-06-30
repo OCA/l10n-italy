@@ -4,6 +4,7 @@
 # @author: Gianmarco Conte <gconte@dinamicheaziendali.it>
 # Copyright (c) 2019, Link IT Europe Srl
 # @author: Matteo Bilotta <mbilotta@linkeurope.it>
+# Copyright 2022 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 # noinspection PyStatementEffect
