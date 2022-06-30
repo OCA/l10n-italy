@@ -1,0 +1,2 @@
+
+from . import test_l10n_it_fatturapa_sale_advance_invoice
