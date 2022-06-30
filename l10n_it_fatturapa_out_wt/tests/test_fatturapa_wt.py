@@ -245,7 +245,7 @@ class TestInvoiceWT(FatturaPACommon):
             module_name='l10n_it_fatturapa_out_wt')
 
 
-def test_e_invoice_wt_inps_0(self):
+    def test_e_invoice_wt_inps_0(self):
         self.set_sequences(17, '2019-01-07')
         invoice = self.invoice_model.create({
             'date_invoice': '2019-01-07',
@@ -285,7 +285,7 @@ def test_e_invoice_wt_inps_0(self):
             module_name='l10n_it_fatturapa_out_wt')
 
 
-def test_e_invoice_wt_inps_1(self):
+    def test_e_invoice_wt_inps_1(self):
         """
         Fill DatiCassaPrevidenziale with INPS data
         """
@@ -330,7 +330,7 @@ def test_e_invoice_wt_inps_1(self):
             module_name='l10n_it_fatturapa_out_wt')
 
 
-def test_e_invoice_wt_inps_2(self):
+    def test_e_invoice_wt_inps_2(self):
         """
         Fill DatiCassaPrevidenziale with INPS data,
         when DatiRiepilogo already has 0 VAT
