@@ -323,11 +323,14 @@ class RibaListLine(models.Model):
         for line in self:
             journal = line.distinta_id.config_id.acceptance_journal_id
             total_credit = 0.0
+            if not line.distinta_id.date_accepted:
+                line.distinta_id.date_accepted = fields.Date.context_today(self)
+            date_accepted = line.distinta_id.date_accepted
             move = move_model.create({
                 'ref': 'C/O %s - Line %s' % (line.distinta_id.name,
                                              line.sequence),
                 'journal_id': journal.id,
-                'date': line.distinta_id.registration_date,
+                'date': date_accepted,
             })
             to_be_reconciled = self.env['account.move.line']
             riba_move_line_name = ''
@@ -359,6 +362,7 @@ class RibaListLine(models.Model):
                         'credit': riba_move_line.amount,
                         'debit': 0.0,
                         'move_id': move.id,
+                        'date': date_accepted,
                     }
                 )
                 to_be_reconciled |= move_line
@@ -382,6 +386,7 @@ class RibaListLine(models.Model):
                 'credit': 0.0,
                 'debit': total_credit,
                 'move_id': move.id,
+                'date': date_accepted,
             })
             move.post()
             to_be_reconciled.reconcile()
@@ -390,9 +395,6 @@ class RibaListLine(models.Model):
                 'state': 'confirmed',
             })
             line.distinta_id.state = 'accepted'
-            if not line.distinta_id.date_accepted:
-                line.distinta_id.date_accepted = \
-                    fields.Date.context_today(self)
 
     @api.multi
     def riba_line_settlement(self):
