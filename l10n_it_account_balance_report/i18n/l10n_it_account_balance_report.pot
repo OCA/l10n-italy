@@ -1,12 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_account_balance_report
+# 	* l10n_it_account_balance_report
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0+e-20220610\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2022-07-01 09:31+0000\n"
+"PO-Revision-Date: 2022-07-01 09:31+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,15 +16,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:188
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:0
 #, python-format
 msgid "ASSETS"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:150
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #: model:ir.model,name:l10n_it_account_balance_report.model_account_account
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__account_ids
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__account_id
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_lines_header
 #, python-format
@@ -38,6 +39,16 @@ msgstr ""
 #: model:ir.actions.act_window,name:l10n_it_account_balance_report.action_account_balance_wizard
 #: model:ir.ui.menu,name:l10n_it_account_balance_report.menu_account_balance_wizard
 msgid "Account Balance Report"
+msgstr ""
+
+#. module: l10n_it_account_balance_report
+#: model:ir.model,name:l10n_it_account_balance_report.model_account_balance_report_account
+msgid "Account Balance Report - Account"
+msgstr ""
+
+#. module: l10n_it_account_balance_report
+#: model:ir.model,name:l10n_it_account_balance_report.model_account_balance_report_partner
+msgid "Account Balance Report - Partner"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
@@ -67,7 +78,13 @@ msgid "Account Balance Report XLSX"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__account_group_id
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__currency_id
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner__currency_id
+msgid "Account Currency"
+msgstr ""
+
+#. module: l10n_it_account_balance_report
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__group_id
 msgid "Account Group"
 msgstr ""
 
@@ -77,33 +94,48 @@ msgid "Account Type"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:120
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_filters
 #, python-format
 msgid "Account at 0 filter"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:119
+#: model:ir.model,name:l10n_it_account_balance_report.model_account_balance_report
+msgid "Account balance report"
+msgstr ""
+
+#. module: l10n_it_account_balance_report
+#: model:ir.model.fields.selection,name:l10n_it_account_balance_report.selection__account_balance_report__target_move__all
+msgid "All Entries"
+msgstr ""
+
+#. module: l10n_it_account_balance_report
+#: model:ir.model.fields.selection,name:l10n_it_account_balance_report.selection__account_balance_report__target_move__posted
+msgid "All Posted Entries"
+msgstr ""
+
+#. module: l10n_it_account_balance_report
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_filters
 #, python-format
 msgid "All entries"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:117
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_filters
 #, python-format
 msgid "All posted entries"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: selection:account.account.type,account_balance_report_section:0
+#: model:ir.model.fields.selection,name:l10n_it_account_balance_report.selection__account_account_type__account_balance_report_section__assets
 msgid "Assets"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:194
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:0
 #, python-format
 msgid "BALANCE SHEET"
 msgstr ""
@@ -114,19 +146,26 @@ msgid "BALANCE:"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__balance
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner__balance
+msgid "Balance"
+msgstr ""
+
+#. module: l10n_it_account_balance_report
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.wizard_report_account_balance_report
-msgid "Balance Report can be computed only if selected\n"
+msgid ""
+"Balance Report can be computed only if selected\n"
 "                            company have only one unaffected earnings account."
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: selection:account_balance_report,account_balance_report_type:0
-#: selection:trial.balance.report.wizard,account_balance_report_type:0
+#: model:ir.model.fields.selection,name:l10n_it_account_balance_report.selection__account_balance_report__account_balance_report_type__balance_sheet
+#: model:ir.model.fields.selection,name:l10n_it_account_balance_report.selection__trial_balance_report_wizard__account_balance_report_type__balance_sheet
 msgid "Balance Sheet"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:199
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:0
 #, python-format
 msgid "COSTS"
 msgstr ""
@@ -137,31 +176,25 @@ msgid "Cancel"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:337
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #, python-format
 msgid "Cannot filter lines with attribute `{}`."
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:332
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #, python-format
 msgid "Cannot filter lines with function `{}({})`."
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:340
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #, python-format
 msgid "Cannot filter lines with unknown parameter."
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__child_account_ids
-msgid "Child accounts"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:145
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__code
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_lines_header
 #, python-format
 msgid "Code"
@@ -173,31 +206,19 @@ msgid "Company"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__compute_account_ids
-msgid "Compute accounts"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: model:ir.model.fields,help:l10n_it_account_balance_report.field_account_balance_report__hierarchy_on
-msgid "Computed Accounts: Use when the account group have codes\n"
-"        that represent prefixes of the actual accounts.\n"
-"\n"
-"        Child Accounts: Use when your account groups are hierarchical.\n"
-"\n"
-"        No hierarchy: Use to display just the accounts, without any grouping.\n"
-"        "
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:286
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #, python-format
-msgid "Could not retrieve table datas for report '{}': no lines found to be printed."
+msgid ""
+"Could not retrieve table datas for report '{}': no lines found to be "
+"printed."
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:291
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #, python-format
-msgid "Could not retrieve table datas for report '{}': unknown columns to be printed."
+msgid ""
+"Could not retrieve table datas for report '{}': unknown columns to be "
+"printed."
 msgstr ""
 
 #. module: l10n_it_account_balance_report
@@ -215,26 +236,24 @@ msgid "Created on"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__credit
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner__credit
-msgid "Credit"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:163
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_lines_header
 #, python-format
 msgid "Cur."
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__currency_id
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner__currency_id
-msgid "Currency"
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__currency_balance
+msgid "Currency Balance"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:541
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__currency_ending_balance
+msgid "Currency Ending Balance"
+msgstr ""
+
+#. module: l10n_it_account_balance_report
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #, python-format
 msgid "DEFICIT"
 msgstr ""
@@ -259,29 +278,45 @@ msgid "Date To"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:114
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_filters
 #, python-format
 msgid "Date range filter"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__debit
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner__debit
-msgid "Debit"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_account__display_name
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_account_type__display_name
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__display_name
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__display_name
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner__display_name
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_report_account_financial_report_trial_balance__display_name
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_report_l10n_it_a_b_r_account_balance_report_xlsx__display_name
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_trial_balance_report_wizard__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_account_balance_report
+#: model:ir.model.fields,help:l10n_it_account_balance_report.field_account_balance_report__foreign_currency
+msgid ""
+"Display foreign currency for move lines, unless account currency is not "
+"setup through chart of accounts will display initial and final balance in "
+"that currency."
+msgstr ""
+
+#. module: l10n_it_account_balance_report
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__only_posted_moves
+msgid "Display only posted moves"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__hide_parent_hierarchy_level
 msgid "Do not display parent levels"
+msgstr ""
+
+#. module: l10n_it_account_balance_report
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__ending_balance
+msgid "Ending Balance"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
@@ -295,13 +330,13 @@ msgid "Ending balance cur."
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:167
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #, python-format
 msgid "Ending balance in cur."
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: selection:account.account.type,account_balance_report_section:0
+#: model:ir.model.fields.selection,name:l10n_it_account_balance_report.selection__account_account_type__account_balance_report_section__expenses
 msgid "Expenses"
 msgstr ""
 
@@ -316,74 +351,36 @@ msgid "Export XLSX"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__filter_account_ids
-msgid "Filter Account"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__filter_journal_ids
-msgid "Filter Journal"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__filter_partner_ids
-msgid "Filter Partner"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__final_balance
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner__final_balance
-msgid "Final Balance"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__final_balance_foreign_currency
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner__final_balance_foreign_currency
-msgid "Final Balance Foreign Currency"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__foreign_currency
-msgid "Foreign Currency"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_filters
 msgid "From:"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:115
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #, python-format
 msgid "From: {} To: {}"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__fy_start_date
-msgid "Fy Start Date"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__general_ledger_id
-msgid "General Ledger"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:121
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_filters
 #, python-format
 msgid "Hide"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner__hide_line
+msgid "Hide Line"
+msgstr ""
+
+#. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__hide_account_at_0
-msgid "Hide Account At 0"
+msgid "Hide accounts at 0"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__hide_line
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner__hide_line
-msgid "Hide Line"
+msgid "Hide line"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
@@ -392,46 +389,42 @@ msgid "Hierarchy Levels to display"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__hierarchy_on
-msgid "Hierarchy On"
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__level
+msgid "Hierarchy level"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_account__id
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_account_type__id
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__id
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__id
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner__id
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_report_account_financial_report_trial_balance__id
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_report_l10n_it_a_b_r_account_balance_report_xlsx__id
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_trial_balance_report_wizard__id
 msgid "ID"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: selection:account.account.type,account_balance_report_section:0
+#: model:ir.model.fields.selection,name:l10n_it_account_balance_report.selection__account_account_type__account_balance_report_section__incomes
 msgid "Incomes"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__initial_balance
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner__initial_balance
-msgid "Initial Balance"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__initial_balance_foreign_currency
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner__initial_balance_foreign_currency
-msgid "Initial Balance Foreign Currency"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:192
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:0
 #, python-format
 msgid "LIABILITIES"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_account____last_update
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_account_type____last_update
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report____last_update
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account____last_update
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner____last_update
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_report_account_financial_report_trial_balance____last_update
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_report_l10n_it_a_b_r_account_balance_report_xlsx____last_update
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_trial_balance_report_wizard____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -455,24 +448,23 @@ msgid "Left Col Name"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__level
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_filters
 msgid "Level"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:129
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #, python-format
 msgid "Level %s"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: selection:account.account.type,account_balance_report_section:0
+#: model:ir.model.fields.selection,name:l10n_it_account_balance_report.selection__account_account_type__account_balance_report_section__liabilities
 msgid "Liabilities"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:128
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__limit_hierarchy_level
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_filters
 #, python-format
@@ -480,97 +472,72 @@ msgid "Limit hierarchy levels"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__name
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner__name
-msgid "Name"
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__code
+msgid "Line code"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:127
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__name
+msgid "Line name"
+msgstr ""
+
+#. module: l10n_it_account_balance_report
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #, python-format
 msgid "No"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:131
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_filters
 #, python-format
 msgid "No limit"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:445
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #, python-format
 msgid "No partner allocated"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:67
-#, python-format
-msgid "No report has been defined for report type '{}'."
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:71
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:0
 #, python-format
 msgid "No report type has been declared for current print."
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__only_posted_moves
-msgid "Only Posted Moves"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:205
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:0
 #, python-format
 msgid "PROFIT & LOSS"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__parent_id
-msgid "Parent"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__partner_ids
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner__partner_id
 msgid "Partner"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__period_balance
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner__period_balance
-msgid "Period Balance"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:155
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #, python-format
 msgid "Period balance"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: selection:account_balance_report,account_balance_report_type:0
-#: selection:trial.balance.report.wizard,account_balance_report_type:0
+#: model:ir.model.fields.selection,name:l10n_it_account_balance_report.selection__account_balance_report__account_balance_report_type__profit_loss
+#: model:ir.model.fields.selection,name:l10n_it_account_balance_report.selection__trial_balance_report_wizard__account_balance_report_type__profit_loss
 msgid "Profit & Loss"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:203
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:0
 #, python-format
 msgid "REVENUES"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__report_id
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner__report_id
 msgid "Report"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner__report_account_id
-msgid "Report Account"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
@@ -604,7 +571,7 @@ msgid "Right Col Name"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:541
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #, python-format
 msgid "SURPLUS"
 msgstr ""
@@ -625,12 +592,7 @@ msgid "Section Debit"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__sequence
-msgid "Sequence"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:123
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_filters
 #, python-format
 msgid "Show"
@@ -647,13 +609,25 @@ msgid "Show Partner Details"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:124
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__foreign_currency
 #, python-format
 msgid "Show foreign currency"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:116
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__show_hierarchy
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_trial_balance_report_wizard__show_hierarchy
+msgid "Show hierarchy"
+msgstr ""
+
+#. module: l10n_it_account_balance_report
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__target_move
+msgid "Target Moves"
+msgstr ""
+
+#. module: l10n_it_account_balance_report
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.account_balance_report_filters
 #, python-format
 msgid "Target moves filter"
@@ -685,18 +659,8 @@ msgid "Total Debit"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__trial_balance_id
-msgid "Trial Balance"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__trial_balance_line_id
-msgid "Trial Balance Line"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner__trial_balance_partner_id
-msgid "Trial Balance Partner"
+#: model:ir.model,name:l10n_it_account_balance_report.model_report_account_financial_report_trial_balance
+msgid "Trial Balance Report"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
@@ -705,9 +669,20 @@ msgid "Trial Balance Report Wizard"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:116
+#: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__trial_balance_wiz_id
+msgid "Trial Balance Wiz"
+msgstr ""
+
+#. module: l10n_it_account_balance_report
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:0
 #, python-format
 msgid "Unknown report type; cannot parse it into a table."
+msgstr ""
+
+#. module: l10n_it_account_balance_report
+#: model:ir.model.fields,help:l10n_it_account_balance_report.field_account_balance_report__show_hierarchy
+#: model:ir.model.fields,help:l10n_it_account_balance_report.field_trial_balance_report_wizard__show_hierarchy
+msgid "Use when your account groups are hierarchical"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
@@ -716,38 +691,24 @@ msgid "View"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:125
+#: model:ir.model.fields,help:l10n_it_account_balance_report.field_account_balance_report__hide_account_at_0
+msgid ""
+"When this option is enabled, the trial balance will not display accounts "
+"that have initial balance = debit = credit = end balance = 0"
+msgstr ""
+
+#. module: l10n_it_account_balance_report
+#: model:ir.model,name:l10n_it_account_balance_report.model_report_l10n_it_a_b_r_account_balance_report_xlsx
+msgid "XLSX account balance report"
+msgstr ""
+
+#. module: l10n_it_account_balance_report
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:0
 #, python-format
 msgid "Yes"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: model:ir.model,name:l10n_it_account_balance_report.model_account_balance_report
-msgid "account_balance_report"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: model:ir.model,name:l10n_it_account_balance_report.model_account_balance_report_account
-msgid "account_balance_report_account"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: model:ir.model,name:l10n_it_account_balance_report.model_account_balance_report_partner
-msgid "account_balance_report_partner"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_report.wizard_report_account_balance_report
 msgid "or"
 msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: model:ir.model,name:l10n_it_account_balance_report.model_report_l10n_it_a_b_r_account_balance_report_xlsx
-msgid "report.l10n_it_a_b_r.account_balance_report_xlsx"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: model:ir.model,name:l10n_it_account_balance_report.model_report_trial_balance_account
-msgid "report_trial_balance_account"
-msgstr ""
-

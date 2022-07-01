@@ -19,92 +19,10 @@ def order_currency_amount(curr, val):
 
 class AccountBalanceReportXslx(models.AbstractModel):
     _name = "report.l10n_it_a_b_r.account_balance_report_xlsx"
+    _description = "XLSX account balance report"
     _inherit = "report.account_financial_report.abstract_report_xlsx"
 
-    def __init__(self, pool, cr):
-        """Adds new attributes"""
-        super().__init__(pool, cr)
-
-        # Add report data
-        self.workbook = None
-        self.data = None
-        self.report = None
-        self.lang = None
-        self.currency = None
-
-        # Add table data
-        self.left_columns = None
-        self.right_columns = None
-        self.left_partner_columns = None
-        self.right_partner_columns = None
-        self.left_lines = None
-        self.right_lines = None
-
-        # Add formats
-        self.format_amount_right = None
-        self.format_amount_bold_right = None
-        self.format_header_amount_right = None
-        self.format_title = None
-        self.format_filter_title = None
-        self.format_filter_value = None
-
-    def generate_xlsx_report(self, workbook, data, objects):
-        """Set wb, data and report attributes"""
-        self.workbook = workbook
-        self.data = data
-        self.report = objects
-        self.lang = self.env["res.lang"]._lang_get(self.env.user.lang)
-        self.currency = (
-            self.report.company_id.currency_id
-            or self.report.company_id._get_euro()
-            or self.env["res.currency"].search([("active", "=", True)], limit=1)
-        )
-        super().generate_xlsx_report(workbook, data, objects)
-
-    def _define_formats(self, workbook):
-        """Defines new formats"""
-        super()._define_formats(workbook)
-        self.format_amount_right = self.format_amount
-        self.format_amount_right.set_align("right")
-        self.format_amount_bold_right = self.format_amount_bold
-        self.format_amount_bold_right.set_align("right")
-        # '#875a7b' is Odoo default purple color
-        self.format_title = workbook.add_format(
-            {
-                "align": "center",
-                "bg_color": "#337AB7",
-                "bold": True,
-                "border": True,
-                "font_color": "white",
-                "font_size": 16,
-            }
-        )
-        self.format_filter_title = workbook.add_format(
-            {
-                "bg_color": "#337AB7",
-                "bold": True,
-                "border": True,
-                "font_color": "white",
-            }
-        )
-        self.format_filter_value = workbook.add_format(
-            {
-                "bg_color": "#337AB7",
-                "border": True,
-                "font_color": "white",
-            }
-        )
-        # Change background and font color for header formats
-        self.format_header_center.set_bg_color("#337AB7")
-        self.format_header_center.set_font_color("#FFFFFF")
-        self.format_header_right.set_bg_color("#337AB7")
-        self.format_header_right.set_font_color("#FFFFFF")
-        self.format_header_amount_right = self.format_header_right
-        self.format_header_amount_right.set_num_format(
-            "#,##0." + "0" * self.currency.decimal_places
-        )
-
-    def _get_report_name(self, report):
+    def _get_report_name(self, report, data=False):
         """
         * Overrides standard method *
         Returns name for both sheet and report title
@@ -167,7 +85,7 @@ class AccountBalanceReportXslx(models.AbstractModel):
                 "width": 60,
             },
             2: {
-                "field": "period_balance",
+                "field": "ending_balance",
                 "header": _("Period balance"),
                 "type": "amount",
                 "width": 20,
@@ -192,14 +110,17 @@ class AccountBalanceReportXslx(models.AbstractModel):
                 }
             )
 
-        self.set_lr_cols(cols)
-        self.set_partner_columns(cols)
-        return {**self.left_columns, **self.right_columns}
+        left_columns, right_columns = self.set_lr_cols(cols)
+        dict_columns = {"left_columns": left_columns, "right_columns": right_columns}
+        dict_partner = self.set_partner_columns({**cols, **dict_columns})
+        dict_partner.update(dict_columns)
+        return {**left_columns, **right_columns, **dict_partner}
 
     def set_lr_cols(self, cols):
         """Takes 'cols' as a template for column info, sets L/R columns"""
-        self.left_columns = self.generate_section_cols(cols, "left")
-        self.right_columns = self.generate_section_cols(cols, "right")
+        return self.generate_section_cols(cols, "left"), self.generate_section_cols(
+            cols, "right"
+        )
 
     def generate_section_cols(self, cols, mode):
         """Takes 'cols' as a template for column info, returns L/R column"""
@@ -211,21 +132,23 @@ class AccountBalanceReportXslx(models.AbstractModel):
         return section_cols
 
     def set_partner_columns(self, cols):
-        self.left_partner_columns = self.generate_partner_columns(cols, "left")
-        self.right_partner_columns = self.generate_partner_columns(cols, "right")
+        return {
+            "left_partner_columns": self.generate_partner_columns(cols, "left"),
+            "right_partner_columns": self.generate_partner_columns(cols, "right"),
+        }
 
     def generate_partner_columns(self, cols, mode):
         if mode == "left":
-            left_partner_cols = {k: {} for k in self.left_columns.keys()}
+            left_partner_cols = {k: {} for k in cols["left_columns"].keys()}
             left_partner_cols.update(
                 {
                     1: {"field": "partner_id", "type": "many2one", "width": 60},
-                    2: {"field": "period_balance", "type": "amount", "width": 20},
+                    2: {"field": "ending_balance", "type": "amount", "width": 20},
                 }
             )
             return left_partner_cols
         elif mode == "right":
-            right_partner_cols = {k: {} for k in self.right_columns.keys()}
+            right_partner_cols = {k: {} for k in cols["right_columns"].keys()}
             right_partner_cols.update(
                 {
                     1
@@ -236,7 +159,7 @@ class AccountBalanceReportXslx(models.AbstractModel):
                     },
                     2
                     + len(cols): {
-                        "field": "period_balance",
+                        "field": "ending_balance",
                         "type": "amount",
                         "width": 20,
                     },
@@ -245,77 +168,112 @@ class AccountBalanceReportXslx(models.AbstractModel):
             return right_partner_cols
         raise NotImplementedError
 
-    def _write_report_title(self, title):
+    def _write_report_title(self, title, report_data):
         """
         * Overrides standard method *
         Writes report title on current line using all defined columns width
         """
-        self.sheet.merge_range(
-            self.row_pos,
+        report_data["sheet"].merge_range(
+            report_data["row_pos"],
             0,
-            self.row_pos,
-            len(self.columns) - 1,
+            report_data["row_pos"],
+            len(report_data["columns"]) - 1,
             title,
-            self.format_title,
+            report_data["workbook"].add_format(
+                {
+                    "align": "center",
+                    "bg_color": "#337AB7",
+                    "bold": True,
+                    "border": True,
+                    "font_color": "white",
+                    "font_size": 16,
+                }
+            ),
         )
-        self.row_pos += 3
+        report_data["row_pos"] += 3
 
-    def _write_filters(self, filters):
+    def _write_filters(self, filters, report_data):
         """
         * Overrides standard method *
         Writes filter info
         """
-        title_format = self.format_filter_title
-        value_format = self.format_filter_value
+        title_format = report_data["workbook"].add_format(
+            {
+                "bg_color": "#337AB7",
+                "bold": True,
+                "border": True,
+                "font_color": "white",
+            }
+        )
+        value_format = report_data["workbook"].add_format(
+            {
+                "bg_color": "#337AB7",
+                "border": True,
+                "font_color": "white",
+            }
+        )
         for title, value in filters:
-            self.sheet.write_string(self.row_pos, 0, title, title_format)
-            self.sheet.write_string(self.row_pos, 1, value, value_format)
-            self.row_pos += 1
-        self.row_pos += 1
+            report_data["sheet"].write_string(
+                report_data["row_pos"], 0, title, title_format
+            )
+            report_data["sheet"].write_string(
+                report_data["row_pos"], 1, value, value_format
+            )
+            report_data["row_pos"] += 1
+        report_data["row_pos"] += 1
 
-    def _generate_report_content(self, workbook, report):
+    def _generate_report_content(self, workbook, objects, data, report_data):
         """Creates actual xls report"""
-        self.write_main_headers()
-        self.write_sub_headers()
-        self.generate_table()
-        self.write_sections_balance()
-        self.write_total_balance()
+        self.write_main_headers(objects, report_data)
+        self.write_sub_headers(report_data)
+        self.generate_table(objects, report_data)
+        self.write_sections_balance(objects, report_data)
+        self.write_total_balance(objects, report_data)
 
-    def write_main_headers(self):
+    def write_main_headers(self, objects, report_data):
         """Writes main left and right section names"""
-        self.sheet.merge_range(
-            self.row_pos,
-            min(self.left_columns.keys()),
-            self.row_pos,
-            max(self.left_columns.keys()),
-            self.report.left_col_name,
-            self.format_header_center,
+        report_data["sheet"].merge_range(
+            report_data["row_pos"],
+            min(report_data["left_columns"].keys()),
+            report_data["row_pos"],
+            max(report_data["left_columns"].keys()),
+            objects.left_col_name,
+            report_data["formats"]["format_header_center"],
         )
-        self.sheet.merge_range(
-            self.row_pos,
-            min(self.right_columns.keys()),
-            self.row_pos,
-            max(self.right_columns.keys()),
-            self.report.right_col_name,
-            self.format_header_center,
+        report_data["sheet"].merge_range(
+            report_data["row_pos"],
+            min(report_data["right_columns"].keys()),
+            report_data["row_pos"],
+            max(report_data["right_columns"].keys()),
+            objects.right_col_name,
+            report_data["formats"]["format_header_center"],
         )
-        self.row_pos += 1
+        report_data["row_pos"] += 1
 
-    def write_sub_headers(self):
+    def write_sub_headers(self, report_data):
         """Writes single headers names"""
-        row, style = self.row_pos, self.format_header_center
-        for col, val_dict in self.columns.items():
+        row, style = (
+            report_data["row_pos"],
+            report_data["formats"]["format_header_center"],
+        )
+        for col, val_dict in report_data["columns"].items():
             value = val_dict.get("header", "")
-            self.sheet.write_string(row, col, value, style)
-        self.row_pos += 1
+            report_data["sheet"].write_string(row, col, value, style)
+        report_data["row_pos"] += 1
 
-    def generate_table(self):
+    def generate_table(self, objects, report_data):
         """Creates the table"""
-        report = self.report
+        report = objects
 
-        self.left_lines = self.get_report_lines("section_debit_ids")
-        self.right_lines = self.get_report_lines("section_credit_ids")
-        table = self.get_table_data()
+        report_data["left_lines"] = self.get_report_lines(
+            "section_debit_ids", objects=objects, report_data=report_data
+        )
+        report_data["right_lines"] = self.get_report_lines(
+            "section_credit_ids", objects=objects, report_data=report_data
+        )
+        table = self.get_table_data(
+            report_data["left_lines"], report_data["right_lines"], report_data
+        )
 
         msg = ""
         if not table.get("row"):
@@ -330,35 +288,41 @@ class AccountBalanceReportXslx(models.AbstractModel):
             )
         if msg:
             _logger.warning(msg)
-            self.sheet.merge_range(
-                self.row_pos,
+            report_data["sheet"].merge_range(
+                report_data["row_pos"],
                 0,
-                self.row_pos,
-                len(self.columns) - 1,
+                report_data["row_pos"],
+                len(report_data["columns"]) - 1,
                 msg,
-                self.format_bold,
+                report_data["format_bold"],
             )
-            self.row_pos += 2
+            report_data["row_pos"] += 2
             return
 
         for row in range(table["row"]["first"], table["row"]["last"] + 1):
-            self.row_pos = row
-            for (_l, cell), (val, style, allow) in self.get_line_info().items():
+            report_data["row_pos"] = row
+            for (_l, cell), (val, style, allow) in self.get_line_info(
+                objects=objects, report_data=report_data
+            ).items():
                 col, row = cell
                 if allow:
-                    self.sheet.write(row, col, val, style)
+                    report_data["sheet"].write(row, col, val, style)
 
-        self.row_pos += 2
+        report_data["row_pos"] += 2
 
-    def get_report_lines(self, field, func=None):
+    def get_report_lines(self, field, func=None, objects=None, report_data=None):
         """
         Returns report's lines, enumerated by row, as assigned by field 'field'
         and filtered by 'func' (either a function or a dot-separated
         list of fields).
         """
-        func = func or self.get_default_line_filter_func(field=field) or False
+        func = (
+            func
+            or self.get_default_line_filter_func(field=field, objects=objects)
+            or False
+        )
         enum_lines = {}
-        report = self.report
+        report = objects
 
         lines = getattr(report, field, False)
         if lines and isinstance(lines, models.BaseModel) and func:
@@ -380,7 +344,7 @@ class AccountBalanceReportXslx(models.AbstractModel):
                     msg = _("Cannot filter lines with unknown parameter.")
                 _logger.info(msg)
 
-        if lines and self.report.show_partner_details:
+        if lines and report.show_partner_details:
             counter = 0
             for line in lines:
                 enum_lines.update({counter: line})
@@ -393,14 +357,17 @@ class AccountBalanceReportXslx(models.AbstractModel):
 
         if enum_lines:
             # Shift line number to actual xls row
-            enum_lines = {self.row_pos + k: v for k, v in enum_lines.items()}
+            enum_lines = {report_data["row_pos"] + k: v for k, v in enum_lines.items()}
 
         return enum_lines
 
     def get_default_line_filter_func(self, **kwargs):
         func = None
         field = kwargs.get("field")
-        if self.report.hide_account_at_0 and field in (
+        wizard = self.env["trial.balance.report.wizard"].browse(
+            self.env.context["active_id"]
+        )
+        if wizard.hide_account_at_0 and field in (
             "section_credit_ids",
             "section_debit_ids",
         ):
@@ -411,14 +378,14 @@ class AccountBalanceReportXslx(models.AbstractModel):
             func = show
         return func
 
-    def get_table_data(self, left_lines=None, right_lines=None):
+    def get_table_data(self, left_lines=None, right_lines=None, report_data=None):
         if not left_lines:
-            left_lines = self.left_lines
+            left_lines = report_data["left_lines"]
         if not right_lines:
-            right_lines = self.right_lines
+            right_lines = report_data["right_lines"]
         table = {}
         rows = list(left_lines) + list(right_lines)
-        cols = list(self.left_columns) + list(self.right_columns)
+        cols = list(report_data["left_columns"]) + list(report_data["right_columns"])
         if rows:
             table.update(
                 {
@@ -439,21 +406,23 @@ class AccountBalanceReportXslx(models.AbstractModel):
             )
         return table
 
-    def get_line_info(self, row=None):
+    def get_line_info(self, row=None, objects=None, report_data=None):
         """Returns {col: (val, style)} for current row"""
-        row = row or self.row_pos
+        row = row or report_data["row_pos"]
         info = {}
-        l, r = self.left_lines.get(row), self.right_lines.get(row)
+        l, r = report_data["left_lines"].get(row), report_data["right_lines"].get(row)
 
         cols_dict = {}
         if l:
             if l._name == "account_balance_report_account":
-                cols_dict = self.left_columns
+                cols_dict = report_data["left_columns"]
             elif l._name == "account_balance_report_partner":
-                cols_dict = self.left_partner_columns
+                cols_dict = report_data["left_partner_columns"]
             info.update(
                 {
-                    (l, (c, row)): self.get_write_data(l, cols_dict[c])
+                    (l, (c, row)): self.get_write_data(
+                        l, cols_dict[c], objects, report_data
+                    )
                     for c in cols_dict
                     if cols_dict[c]
                 }
@@ -461,12 +430,14 @@ class AccountBalanceReportXslx(models.AbstractModel):
 
         if r:
             if r._name == "account_balance_report_account":
-                cols_dict = self.right_columns
+                cols_dict = report_data["right_columns"]
             elif r._name == "account_balance_report_partner":
-                cols_dict = self.right_partner_columns
+                cols_dict = report_data["right_partner_columns"]
             info.update(
                 {
-                    (r, (c, row)): self.get_write_data(r, cols_dict[c])
+                    (r, (c, row)): self.get_write_data(
+                        r, cols_dict[c], objects, report_data
+                    )
                     for c in cols_dict
                     if cols_dict[c]
                 }
@@ -474,11 +445,11 @@ class AccountBalanceReportXslx(models.AbstractModel):
 
         return info
 
-    def get_write_data(self, line, col_dict):
+    def get_write_data(self, line, col_dict, objects, report_data):
         """Returns value and style for cell"""
         cell_type = col_dict.get("type", "string")
         field = col_dict.get("field")
-        decimals = self.currency.decimal_places
+        decimals = objects.company_id.currency_id.decimal_places
 
         value = getattr(line, field, False)
         style = None
@@ -503,7 +474,7 @@ class AccountBalanceReportXslx(models.AbstractModel):
             if getattr(line, "account_group_id", False):
                 style = self.format_amount_bold_right
             else:
-                style = self.format_amount_right
+                style = report_data["formats"]["format_amount"]
             allow = True
         elif cell_type == "amount_currency":
             currency = (
@@ -516,7 +487,7 @@ class AccountBalanceReportXslx(models.AbstractModel):
             if getattr(line, "account_group_id", False):
                 style = self.format_amount_bold_right
             else:
-                style = self.format_amount_right
+                style = report_data["formats"]["format_amount"]
             allow = True
 
         if value:
@@ -531,12 +502,7 @@ class AccountBalanceReportXslx(models.AbstractModel):
             ):
                 value = str(value)
             indent_field, indent_unit = self.get_indent_data(line, col_dict)
-            if (
-                self.report.hierarchy_on != "none"
-                and indent_field
-                and indent_unit
-                and hasattr(line, indent_field)
-            ):
+            if indent_field and indent_unit and hasattr(line, indent_field):
                 indent = " " * getattr(line, indent_field, 0) * indent_unit
                 value = indent + value
             allow = True
@@ -550,15 +516,19 @@ class AccountBalanceReportXslx(models.AbstractModel):
         """Mimics `res.lang` model's `format` method"""
         percent = "%.{}f".format(decimals or 2)
         value = value or 0
-        return self.lang.format(percent, value, grouping=True, monetary=True)
+        return (
+            self.env["res.lang"]
+            ._lang_get(self.env.user.lang)
+            .format(percent, value, grouping=True, monetary=True)
+        )
 
     def get_indent_data(self, line=None, col_dict=None):
         return col_dict.get("indent_field"), col_dict.get("indent_unit")
 
-    def write_sections_balance(self):
+    def write_sections_balance(self, objects, report_data):
         """Writes balances rows for left and right sections"""
-        report = self.report
-        curr = self.currency
+        report = objects
+        curr = objects.company_id.currency_id
         decimals = curr.decimal_places
         credit = self.format_value_by_lang(report.total_credit, decimals)
         credit_data = order_currency_amount(curr, credit)
@@ -568,33 +538,33 @@ class AccountBalanceReportXslx(models.AbstractModel):
         left_str = "{} BALANCE: {} {}".format(
             report.left_col_name, debit_data[0], debit_data[1]
         )
-        self.sheet.merge_range(
-            self.row_pos,
-            min(self.left_columns.keys()),
-            self.row_pos,
-            max(self.left_columns.keys()),
+        report_data["sheet"].merge_range(
+            report_data["row_pos"],
+            min(report_data["left_columns"].keys()),
+            report_data["row_pos"],
+            max(report_data["left_columns"].keys()),
             left_str,
-            self.format_header_right,
+            report_data["formats"]["format_header_right"],
         )
 
         right_str = "{} BALANCE: {} {}".format(
             report.right_col_name, credit_data[0], credit_data[1]
         )
-        self.sheet.merge_range(
-            self.row_pos,
-            min(self.right_columns.keys()),
-            self.row_pos,
-            max(self.right_columns.keys()),
+        report_data["sheet"].merge_range(
+            report_data["row_pos"],
+            min(report_data["right_columns"].keys()),
+            report_data["row_pos"],
+            max(report_data["right_columns"].keys()),
             right_str,
-            self.format_header_right,
+            report_data["formats"]["format_header_right"],
         )
 
-        self.row_pos += 1
+        report_data["row_pos"] += 1
 
-    def write_total_balance(self):
+    def write_total_balance(self, objects, report_data):
         """Writes total balance row"""
-        report = self.report
-        curr = self.currency
+        report = objects
+        curr = objects.company_id.currency_id
         decimals = curr.decimal_places
         balance = self.format_value_by_lang(report.total_balance, decimals)
         total_credit = report.total_credit
@@ -605,20 +575,37 @@ class AccountBalanceReportXslx(models.AbstractModel):
             title = _("SURPLUS") if surplus else _("DEFICIT")
             bal_data = order_currency_amount(curr, balance)
             balance_str = "{}: {} {}".format(title, bal_data[0], bal_data[1])
-            self.sheet.merge_range(
-                self.row_pos,
-                min(self.left_columns.keys()),
-                self.row_pos,
-                max(self.left_columns.keys()),
+            report_data["sheet"].merge_range(
+                report_data["row_pos"],
+                min(report_data["left_columns"].keys()),
+                report_data["row_pos"],
+                max(report_data["left_columns"].keys()),
                 balance_str if surplus else "",
-                self.format_header_amount_right,
+                report_data["formats"]["format_header_right"],
             )
-            self.sheet.merge_range(
-                self.row_pos,
-                min(self.right_columns.keys()),
-                self.row_pos,
-                max(self.right_columns.keys()),
+            report_data["sheet"].merge_range(
+                report_data["row_pos"],
+                min(report_data["right_columns"].keys()),
+                report_data["row_pos"],
+                max(report_data["right_columns"].keys()),
                 balance_str if deficit else "",
-                self.format_header_amount_right,
+                report_data["formats"]["format_header_right"],
             )
-            self.row_pos += 1
+            report_data["row_pos"] += 1
+
+    def _set_column_width(self, report_data):
+        report_data.update(
+            {
+                "left_partner_columns": report_data["columns"].pop(
+                    "left_partner_columns"
+                ),
+                "right_partner_columns": report_data["columns"].pop(
+                    "right_partner_columns"
+                ),
+                "left_columns": report_data["columns"].pop("left_columns"),
+                "right_columns": report_data["columns"].pop("right_columns"),
+            }
+        )
+
+        result = super()._set_column_width(report_data)
+        return result

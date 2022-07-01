@@ -13,6 +13,9 @@ class ReportAccountBalanceWizard(models.TransientModel):
         string="Report Type",
     )
 
+    # Override of `trial.balance.report.wizard` to set True as default value
+    show_hierarchy = fields.Boolean(default=True)
+
     @api.onchange("show_partner_details")
     def onchange_show_partner_details(self):
         """Override to avoid unwanted changes"""
@@ -24,21 +27,18 @@ class ReportAccountBalanceWizard(models.TransientModel):
             if self.receivable_accounts_only:
                 self.receivable_accounts_only = False
 
-    @api.multi
     def button_export_html(self):
         self.ensure_one()
         if self.account_balance_report_type not in REPORT_TYPES:
             return super().button_export_html()
         return self.export_account_balance("qweb-html")
 
-    @api.multi
     def button_export_pdf(self):
         self.ensure_one()
         if self.account_balance_report_type not in REPORT_TYPES:
             return super().button_export_pdf()
         return self.export_account_balance("qweb-pdf")
 
-    @api.multi
     def button_export_xlsx(self):
         self.ensure_one()
         if self.account_balance_report_type not in REPORT_TYPES:
@@ -50,36 +50,43 @@ class ReportAccountBalanceWizard(models.TransientModel):
         report_obj = self.env["account_balance_report"]
         report_vals = self.prepare_report_vals()
         report = report_obj.create(report_vals)
-        report.compute_data_for_report()
         return report.print_report(report_type)
 
     def prepare_report_vals(self):
         self.ensure_one()
-        trial_obj = self.env["report_trial_balance"]
-        trial_vals = self.prepare_trial_balance_vals()
-        trial_balance = trial_obj.create(trial_vals)
-        trial_balance.compute_data_for_report()
+        trial_wiz_obj = self.env["trial.balance.report.wizard"]
+        trial_wiz_vals = self.prepare_trial_balance_vals()
+        trial_wiz = trial_wiz_obj.create(trial_wiz_vals)
+        common_vals = self._get_common_report_values()
         return {
+            **common_vals,
             "account_balance_report_type": self.account_balance_report_type,
-            "trial_balance_id": trial_balance.id,
+            "only_posted_moves": self.target_move == "posted",
+            "trial_balance_wiz_id": trial_wiz.id,
         }
 
     def prepare_trial_balance_vals(self):
+        self.ensure_one()
+        common_vals = self._get_common_report_values()
+        return {
+            **common_vals,
+            "account_ids": [(6, 0, self.account_ids.ids)],
+            "partner_ids": [(6, 0, self.partner_ids.ids)],
+            "journal_ids": [(6, 0, self.journal_ids.ids)],
+        }
+
+    def _get_common_report_values(self):
         self.ensure_one()
         return {
             "company_id": self.company_id.id,
             "date_from": self.date_from,
             "date_to": self.date_to,
             "foreign_currency": self.foreign_currency,
-            "filter_account_ids": [(6, 0, self.account_ids.ids)],
-            "filter_partner_ids": [(6, 0, self.partner_ids.ids)],
-            "filter_journal_ids": [(6, 0, self.journal_ids.ids)],
-            "fy_start_date": self.fy_start_date,
             "hide_account_at_0": self.hide_account_at_0,
             "hide_parent_hierarchy_level": self.hide_parent_hierarchy_level,
-            "hierarchy_on": self.hierarchy_on,
             "limit_hierarchy_level": self.limit_hierarchy_level,
-            "only_posted_moves": self.target_move == "posted",
+            "show_hierarchy": self.show_hierarchy,
             "show_hierarchy_level": self.show_hierarchy_level,
             "show_partner_details": self.show_partner_details,
+            "target_move": self.target_move,
         }
