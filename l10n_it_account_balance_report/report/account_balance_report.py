@@ -602,10 +602,11 @@ class ReportAccountBalanceReport(models.TransientModel):
         groups_ids = {}
         for account_id in accounts_data.keys():
             account = account_obj.browse(account_id).exists()
-            if account.group_id and account.group_id.id not in groups_ids:
-                groups_ids.update({account.group_id.id: [account.id]})
-            else:
-                groups_ids[account.group_id.id].append(account.id)
+            if account.group_id:
+                if account.group_id.id not in groups_ids:
+                    groups_ids.update({account.group_id.id: [account.id]})
+                else:
+                    groups_ids[account.group_id.id].append(account.id)
 
         groups = self.env['account.group'].browse(groups_ids.keys()).exists()
         groups_data = {}
@@ -706,17 +707,16 @@ class ReportAccountBalanceReport(models.TransientModel):
         account_obj = self.env['account.account']
         for section_val in section_vals:
             data = section_val[2]
-            if data.get('account_id'):
-                account = account_obj.browse(data['account_id']).exists()
-                data.update(complete_code="/".join([
-                    account.group_id.complete_code,
-                    data['code']
-                ]))
+            if data.get("account_id"):
+                account = account_obj.browse(data["account_id"]).exists()
+                if account.group_id:
+                    data["complete_code"] = "/".join(
+                        [account.group_id.complete_code, data["code"]]
+                    )
+                else:
+                    data["complete_code"] = data["code"]
 
-        section_vals = sorted(
-            section_vals,
-            key=lambda sv: sv[2]['code']
-        )
+        section_vals = sorted(section_vals, key=lambda sv: sv[2]["code"])
 
         for section_val in section_vals:
             data = section_val[2]
