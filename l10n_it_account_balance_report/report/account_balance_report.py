@@ -386,11 +386,16 @@ class ReportAccountBalanceReport(models.TransientModel):
             section report
         """
         currency_data = self._get_foreign_currency_data(line, digits)
-        return {
+        group_id = line.get("id")
+        r_data = {
             **line,
             **currency_data,
-            'group_id': line['id'],
+            "group_id": group_id,
         }
+        group = self.env['account.group'].browse(group_id).exists()
+        sign = self.get_balance_sign(group_id=group)
+        r_data["balance"] *= sign
+        return r_data
 
     def _get_account_line_data(
         self,
@@ -501,18 +506,16 @@ class ReportAccountBalanceReport(models.TransientModel):
                 "currency_id": data.get('currency_id', False),
                 "date_from": self.date_from,
                 "date_to": self.date_to,
-                'group_id': data.get('group_id', False),
-                'hide_line': data.get('hide_account', False),
-                'balance': data.get('balance', 0.0),
-                'ending_balance': data.get('ending_balance', 0.0),
-                'currency_balance': data.get('currency_balance', 0.0),
-                'currency_ending_balance': data.get(
-                    'ending_currency_balance',
-                    0.0
-                ),
-                'level': data.get('level', 0),
-                'code': data.get('code', ''),
-                'name': data.get('name', ''),
+                "group_id": data.get("group_id", False),
+                "hide_line": data.get("hide_account", False),
+                "balance": data.get("balance", 0.0),
+                "ending_balance": data.get("ending_balance", 0.0),
+                "currency_balance": data.get("currency_balance", 0.0),
+                "currency_ending_balance": data.get("ending_currency_balance", 0.0),
+                "level": data.get("level", 0),
+                "code": data.get("code", ""),
+                "name": data.get("name", ""),
+                "complete_code": data.get('complete_code', ""),
                 "report_partner_ids": [
                     (
                         0,
@@ -719,19 +722,18 @@ class ReportAccountBalanceReport(models.TransientModel):
                 else:
                     data["complete_code"] = data["code"]
 
-        section_vals = sorted(section_vals, key=lambda sv: sv[2]["code"])
+        section_vals = sorted(section_vals, key=lambda sv: sv[2]["complete_code"])
 
         for section_val in section_vals:
             data = section_val[2]
-            data['level'] = data['complete_code'].count('/')
-            data.pop('complete_code')
+            data["level"] = data["complete_code"].count("/")
 
 
 class ReportAccountBalanceReportAccount(models.TransientModel):
     _name = "account_balance_report_account"
     _description = "Account Balance Report - Account"
     _inherit = "account_financial_report_abstract"
-    _order = "code ASC"
+    _order = "complete_code ASC"
 
     account_id = fields.Many2one(
         comodel_name="account.account",
@@ -786,6 +788,7 @@ class ReportAccountBalanceReportAccount(models.TransientModel):
         string="Line name"
     )
 
+    complete_code = fields.Char(string="Complete line code")
 
 class ReportAccountBalanceReportPartner(models.TransientModel):
     _name = "account_balance_report_partner"
