@@ -1,7 +1,5 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import copy
-
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.tools.float_utils import float_compare, float_is_zero, float_round
@@ -320,7 +318,7 @@ class ReportAccountBalanceReport(models.TransientModel):
         }
 
     def get_report_section(self, valid_sections, line):
-        """Get section name where to insert account_balnace_report_account
+        """Get section name where to insert account_balance_report_account
         line
 
         :param valid_sections: ``tuple(str)`` Allowed account type, to insert
@@ -330,7 +328,7 @@ class ReportAccountBalanceReport(models.TransientModel):
         :return: ``str`` The section name, where to insert this line
         """
         section = ""
-        account = self.env['account.account'].browse()
+        account = self.env['account.account']
 
         if line.get('type') == self.GROUP_TYPE:
             account = self._get_group_account(valid_sections, line)
@@ -368,7 +366,7 @@ class ReportAccountBalanceReport(models.TransientModel):
             while group and group.parent_id and not group.account_ids:
                 group = group.parent_id
             accounts = group.account_ids
-        elif group and not group.account_ids and line.get('account_ids'):
+        else:
             accounts = self.env['account.account'].browse(
                 line.get('account_ids')
             ).exists()
@@ -398,8 +396,8 @@ class ReportAccountBalanceReport(models.TransientModel):
         self,
         line,
         digits,
-        partners_data=[],
-        amounts_data={}
+        partners_data=None,
+        amounts_data=None
     ):
         """Use data of account_type line to prepare the values to be inserted
         in `account_balance_report_account`
@@ -414,6 +412,11 @@ class ReportAccountBalanceReport(models.TransientModel):
         :return: ``dict`` The dictionary with data to be set in the
             section report
         """
+
+        if not line.get("type", False):
+            partners_data = []
+            amounts_data = {}
+
         r_data = {
             **line,
             'account_id': line['id'],
@@ -784,7 +787,6 @@ class ReportAccountBalanceReportAccount(models.TransientModel):
     )
 
 
-
 class ReportAccountBalanceReportPartner(models.TransientModel):
     _name = "account_balance_report_partner"
     _description = "Account Balance Report - Partner"
@@ -815,10 +817,7 @@ class ReportAccountBalanceReportPartner(models.TransientModel):
         "report_id.hide_account_at_0",
     )
     def _compute_hide_line(self):
-        report = self.mapped("report_section_id.report_credit_id") + self.mapped(
-            "report_section_id.report_debit_id"
-        )
-        if report.hide_account_at_0:
+        if self.report_id.hide_account_at_0:
             for partner_line in self:
                 p_bal = partner_line.balance
                 digits = partner_line.currency_id.decimal_places
