@@ -684,7 +684,6 @@ class ReportAccountBalanceReport(models.TransientModel):
                         )
                 acc_keys = ["debit", "credit", "balance"]
                 acc_keys += ["initial_balance", "ending_balance"]
-                import pdb; pdb.set_trace()
                 for acc_key in acc_keys:
                     groups_data[parent_id][acc_key] += groups_data[group.id][acc_key]
                 if self.foreign_currency:
