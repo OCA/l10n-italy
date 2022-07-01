@@ -88,6 +88,8 @@ class ReportAccountBalanceReport(models.TransientModel):
 
     def print_report(self, report_type=None):
         """
+        Method used to get data from trial balance, and call method to process
+        them to be printed
 
         :param report_type: string that represents the report type
         """
