@@ -16,8 +16,8 @@ class ReportAccountBalanceReport(models.TransientModel):
     _description = "Account balance report"
     _inherit = "report.account_financial_report.abstract_report"
 
-    GROUP_TYPE = 'group_type'
-    ACC_TYPE = 'account_type'
+    GROUP_TYPE = "group_type"
+    ACC_TYPE = "account_type"
 
     account_balance_report_type = fields.Selection(
         [("profit_loss", "Profit & Loss"), ("balance_sheet", "Balance Sheet")],
@@ -50,9 +50,7 @@ class ReportAccountBalanceReport(models.TransientModel):
 
     left_col_name = fields.Char()
     right_col_name = fields.Char()
-    only_posted_moves = fields.Boolean(
-        string="Display only posted moves"
-    )
+    only_posted_moves = fields.Boolean(string="Display only posted moves")
     section_credit_ids = fields.One2many(
         "account_balance_report_account", "report_credit_id"
     )
@@ -82,9 +80,7 @@ class ReportAccountBalanceReport(models.TransientModel):
     total_credit = fields.Float(digits=(16, 2))
     total_debit = fields.Float(digits=(16, 2))
 
-    trial_balance_wiz_id = fields.Many2one(
-        comodel_name="trial.balance.report.wizard"
-    )
+    trial_balance_wiz_id = fields.Many2one(comodel_name="trial.balance.report.wizard")
 
     def print_report(self, report_type=None):
         """
@@ -103,10 +99,7 @@ class ReportAccountBalanceReport(models.TransientModel):
         return (
             self.env["ir.actions.report"]
             .search(
-                [
-                    ("report_name", "=", report_name),
-                    ("report_type", "=", report_type)
-                ],
+                [("report_name", "=", report_name), ("report_type", "=", report_type)],
                 limit=1,
             )
             .report_action(self, data=data)
@@ -158,6 +151,42 @@ class ReportAccountBalanceReport(models.TransientModel):
         act["context"] = ctx
         return act
 
+    def clear_data(self, tb_data):
+        for element in tb_data["trial_balance"]:
+            if element["credit"] < 0:
+                element["credit"] = -element["credit"]
+
+            if element["debit"] < 0:
+                element["debit"] = -element["debit"]
+
+            if element["balance"] < 0:
+                element["balance"] = -element["balance"]
+
+            if element["ending_balance"] < 0:
+                element["ending_balance"] = -element["ending_balance"]
+
+        if not tb_data["docs"].show_partner_details:
+            for element in tb_data["accounts_data"]:
+                if tb_data["accounts_data"][element]["credit"] < 0:
+                    tb_data["accounts_data"][element]["credit"] = -tb_data[
+                        "accounts_data"
+                    ][element]["credit"]
+
+                if tb_data["accounts_data"][element]["debit"] < 0:
+                    tb_data["accounts_data"][element]["debit"] = -tb_data[
+                        "accounts_data"
+                    ][element]["debit"]
+
+                if tb_data["accounts_data"][element]["balance"] < 0:
+                    tb_data["accounts_data"][element]["balance"] = -tb_data[
+                        "accounts_data"
+                    ][element]["balance"]
+
+                if tb_data["accounts_data"][element]["ending_balance"] < 0:
+                    tb_data["accounts_data"][element]["ending_balance"] = -tb_data[
+                        "accounts_data"
+                    ][element]["ending_balance"]
+
     def compute_data_for_report(self, tb_data):
         """
         Sets data for report.
@@ -165,6 +194,9 @@ class ReportAccountBalanceReport(models.TransientModel):
         sections should have, the report title, amounts and balances
         """
         self.ensure_one()
+
+        self.clear_data(tb_data)
+
         rep_type = self.account_balance_report_type
 
         # Trial balance already has every data we may need
@@ -188,20 +220,17 @@ class ReportAccountBalanceReport(models.TransientModel):
             digits = self.env["decimal.precision"].precision_get("Account")
 
         if not self.show_partner_details:
-            lines = tb_data['trial_balance']
+            lines = tb_data["trial_balance"]
         else:
-            lines = tb_data['accounts_data'].values()
+            lines = tb_data["accounts_data"].values()
 
         for ln_data in lines:
-            section = self.get_report_section(
-                valid_sections,
-                ln_data
-            )
+            section = self.get_report_section(valid_sections, ln_data)
 
             if not (section and section in valid_sections):
                 continue
 
-            line_type = ln_data.get('type')
+            line_type = ln_data.get("type")
             if not self.show_partner_details:
                 # Group line
                 if line_type == self.GROUP_TYPE:
@@ -209,21 +238,16 @@ class ReportAccountBalanceReport(models.TransientModel):
 
                 # Account line
                 elif line_type == self.ACC_TYPE:
-                    line_data = self._get_account_line_data(
-                        ln_data,
-                        digits
-                    )
+                    line_data = self._get_account_line_data(ln_data, digits)
             else:
                 line_data = self._get_account_line_data(
                     ln_data,
                     digits,
-                    tb_data.get('partners_data', []),
-                    tb_data.get('total_amount'),
+                    tb_data.get("partners_data", []),
+                    tb_data.get("total_amount"),
                 )
 
-            balance_section_vals = self.get_section_balance_vals(
-                line_data
-            )
+            balance_section_vals = self.get_section_balance_vals(line_data)
 
             total_debit, total_credit = self._insert_section_values(
                 section,
@@ -235,46 +259,28 @@ class ReportAccountBalanceReport(models.TransientModel):
                 total_credit,
                 balance_section_vals,
                 line_data,
-                digits
+                digits,
             )
 
         if self.show_partner_details and self.show_hierarchy:
             credit_account_data = self._get_filtered_account(
-                tb_data.get('accounts_data'),
-                section_credit_vals
+                tb_data.get("accounts_data"), section_credit_vals
             )
             credit_group_data = self._get_group_data(
-                credit_account_data,
-                tb_data.get('total_amount')
+                credit_account_data, tb_data.get("total_amount")
             )
-            self._compute_group_hierarchy(
-                credit_group_data
-            )
-            self._add_group_to_section_vals(
-                section_credit_vals,
-                credit_group_data
-            )
+            self._compute_group_hierarchy(credit_group_data)
+            self._add_group_to_section_vals(section_credit_vals, credit_group_data)
             debit_account_data = self._get_filtered_account(
-                tb_data.get('accounts_data'),
-                section_debit_vals
+                tb_data.get("accounts_data"), section_debit_vals
             )
             debit_group_data = self._get_group_data(
-                debit_account_data,
-                tb_data.get('total_amount')
+                debit_account_data, tb_data.get("total_amount")
             )
-            self._compute_group_hierarchy(
-                debit_group_data
-            )
-            self._add_group_to_section_vals(
-                section_debit_vals,
-                debit_group_data
-            )
+            self._compute_group_hierarchy(debit_group_data)
+            self._add_group_to_section_vals(section_debit_vals, debit_group_data)
 
-        total_balance = self.get_total_balance(
-            total_debit,
-            total_credit,
-            digits
-        )
+        total_balance = self.get_total_balance(total_debit, total_credit, digits)
 
         self.write(
             {
@@ -330,14 +336,12 @@ class ReportAccountBalanceReport(models.TransientModel):
         :return: ``str`` The section name, where to insert this line
         """
         section = ""
-        account = self.env['account.account']
+        account = self.env["account.account"]
 
-        if line.get('type') == self.GROUP_TYPE:
+        if line.get("type") == self.GROUP_TYPE:
             account = self._get_group_account(valid_sections, line)
-        elif line.get('type') == self.ACC_TYPE or self.show_partner_details:
-            account = self.env['account.account'].browse(
-                line.get('id')
-            ).exists()
+        elif line.get("type") == self.ACC_TYPE or self.show_partner_details:
+            account = self.env["account.account"].browse(line.get("id")).exists()
 
         if account:
             section = account.account_balance_report_section
@@ -359,9 +363,7 @@ class ReportAccountBalanceReport(models.TransientModel):
         :return: ``account.account`` The account to be used to compute
             section name
         """
-        group = self.env['account.group'].browse(
-            line.get('id')
-        ).exists()
+        group = self.env["account.group"].browse(line.get("id")).exists()
         if group and group.account_ids:
             accounts = group.account_ids
         elif group and not group.account_ids and group.parent_id:
@@ -369,9 +371,9 @@ class ReportAccountBalanceReport(models.TransientModel):
                 group = group.parent_id
             accounts = group.account_ids
         else:
-            accounts = self.env['account.account'].browse(
-                line.get('account_ids')
-            ).exists()
+            accounts = (
+                self.env["account.account"].browse(line.get("account_ids")).exists()
+            )
 
         return accounts.filtered(
             lambda acc: acc.account_balance_report_section in valid_sections
@@ -388,23 +390,18 @@ class ReportAccountBalanceReport(models.TransientModel):
             section report
         """
         currency_data = self._get_foreign_currency_data(line, digits)
-        group_id = line.get("id")
+        group = self.env["account.group"].browse(line.get("id")).exists()
+        sign = self.get_balance_sign(group_id=group)
+        line["ending_balance"] *= sign
         r_data = {
             **line,
             **currency_data,
-            "group_id": group_id,
+            "group_id": group.id,
         }
-        group = self.env['account.group'].browse(group_id).exists()
-        sign = self.get_balance_sign(group_id=group)
-        r_data["balance"] *= sign
         return r_data
 
     def _get_account_line_data(
-        self,
-        line,
-        digits,
-        partners_data=None,
-        amounts_data=None
+        self, line, digits, partners_data=None, amounts_data=None
     ):
         """Use data of account_type line to prepare the values to be inserted
         in `account_balance_report_account`
@@ -425,71 +422,62 @@ class ReportAccountBalanceReport(models.TransientModel):
         if amounts_data is None:
             amounts_data = {}
 
+        account = self.env["account.account"].browse(line.get("id")).exists()
         r_data = {
             **line,
-            'account_id': line['id'],
+            "account_id": account.id,
         }
-        account_id = line.get('id')
-        account = self.env['account.account'].browse(account_id).exists()
 
         # The sign was computed only for 'account_type' lines because
         # group line don't partecipate in total_balance computation
-        sign = self.get_balance_sign(
-            account, account.group_id
-        )
+        sign = self.get_balance_sign(account, account.group_id)
 
         if self.show_partner_details:
-            balance = amounts_data[account_id].get('balance') * sign
+            account_data = amounts_data[account.id]
+            balance = account_data.get("ending_balance") * sign
             curr_data = self._get_foreign_currency_data(line, digits)
-            account_partners = self._get_account_partners(
-                amounts_data[account_id],
-                partners_data
-            )
+            account_partners = self._get_account_partners(account_data, partners_data)
             partners = []
             for partner_id in account_partners:
-                partner_balance = amounts_data[account_id][partner_id]['balance']
-                partners.append({
-                    'id': partner_id,
-                    'balance': partner_balance * sign,
-                })
+                partner_balance = account_data[partner_id]["ending_balance"]
+                partners.append(
+                    {
+                        "id": partner_id,
+                        "balance": partner_balance * sign,
+                    }
+                )
 
         else:
-            partners = partners_data
+            partners = []
             curr_data = self._get_foreign_currency_data(line, digits)
-            balance = line.get('balance') * sign
+            balance = line.get("ending_balance") * sign
 
-        r_data.update({
-            'balance': balance,
-            'partners': partners,
-            **curr_data
-        })
+        r_data.update({"balance": balance, "partners": partners, **curr_data})
 
         return r_data
 
     def _get_foreign_currency_data(self, data, digits):
-        end_curr_bal = data.get('ending_currency_balance', 0.0)
+        end_curr_bal = data.get("ending_currency_balance", 0.0)
         curr_data = {
-            'ending_currency_balance': end_curr_bal,
+            "ending_currency_balance": end_curr_bal,
         }
         if self.foreign_currency:
-            init_curr_bal = data.get('initial_currency_balance', 0.0)
-            curr_balance = float_round(
-                end_curr_bal - init_curr_bal,
-                digits
+            init_curr_bal = data.get("initial_currency_balance", 0.0)
+            curr_balance = float_round(end_curr_bal - init_curr_bal, digits)
+            curr_data.update(
+                {
+                    "currency_balance": curr_balance,
+                }
             )
-            curr_data.update({
-                'currency_balance': curr_balance,
-            })
         else:
-            curr_data.update({
-                'currency_balance': 0.0,
-            })
+            curr_data.update(
+                {
+                    "currency_balance": 0.0,
+                }
+            )
         return curr_data
 
-    def get_section_balance_vals(
-        self,
-        data
-    ):
+    def get_section_balance_vals(self, data):
         """Get the command tuple to get section data
 
         Used to setup command tuple, to insert values into correct balance
@@ -505,8 +493,8 @@ class ReportAccountBalanceReport(models.TransientModel):
             0,
             0,
             {
-                "account_id": data.get('account_id', False),
-                "currency_id": data.get('currency_id', False),
+                "account_id": data.get("account_id", False),
+                "currency_id": data.get("currency_id", False),
                 "date_from": self.date_from,
                 "date_to": self.date_to,
                 "group_id": data.get("group_id", False),
@@ -518,21 +506,20 @@ class ReportAccountBalanceReport(models.TransientModel):
                 "level": data.get("level", 0),
                 "code": data.get("code", ""),
                 "name": data.get("name", ""),
-                "complete_code": data.get('complete_code', ""),
                 "report_partner_ids": [
                     (
                         0,
                         0,
                         {
-                            "currency_id": data.get('currency_id', False),
+                            "currency_id": data.get("currency_id", False),
                             "date_from": self.date_from,
                             "date_to": self.date_to,
                             "report_id": self.id,
-                            "balance": p.get('balance', 0.0),
-                            "partner_id": p.get('id'),
+                            "balance": p.get("balance", 0.0),
+                            "partner_id": p.get("id"),
                         },
                     )
-                    for p in data.get('partners', [])
+                    for p in data.get("partners", [])
                 ],
             },
         )
@@ -567,9 +554,6 @@ class ReportAccountBalanceReport(models.TransientModel):
         """
         account_partners = []
         if isinstance(partners, dict):
-            account_partners = [
-                p_id for p_id in partners if p_id in account_data
-            ]
         return account_partners
 
     def _insert_section_values(
@@ -583,20 +567,27 @@ class ReportAccountBalanceReport(models.TransientModel):
         total_credit,
         section_vals,
         line,
-        digits
+        digits,
     ):
         if section == r_sec:
             credit_section.append(section_vals)
-            if line.get('type', '') != self.GROUP_TYPE:
-                total_credit += line.get('balance')
+            if line.get("type", "") != self.GROUP_TYPE:
+                total_credit += (
+                    line.get("ending_balance")
+                    if "ending_balance" in line
+                    else line.get("balance")
+                )
 
         elif section == l_sec:
             debit_section.append(section_vals)
-            if line.get('type', '') != self.GROUP_TYPE:
-                total_debit += line.get('balance')
+            if line.get("type", "") != self.GROUP_TYPE:
+                total_debit += (
+                    line.get("ending_balance")
+                    if "ending_balance" in line
+                    else line.get("balance")
+                )
 
-        return float_round(total_debit, digits), \
-            float_round(total_credit, digits)
+        return float_round(total_debit, digits), float_round(total_credit, digits)
 
     def _get_filtered_account(self, accounts_data, section_vals):
         """Method to filter account for balance section
@@ -612,7 +603,7 @@ class ReportAccountBalanceReport(models.TransientModel):
         """
         account_data = {}
         for sec_val in section_vals:
-            sec_val_account_id = sec_val[2]['account_id']
+            sec_val_account_id = sec_val[2]["account_id"]
             if sec_val_account_id in accounts_data.keys():
                 account_data[sec_val_account_id] = accounts_data.keys()
         return account_data
@@ -629,7 +620,7 @@ class ReportAccountBalanceReport(models.TransientModel):
 
             :return ``dict``: Group data with child account and child group
         """
-        account_obj = self.env['account.account']
+        account_obj = self.env["account.account"]
         groups_ids = {}
         for account_id in accounts_data.keys():
             account = account_obj.browse(account_id).exists()
@@ -639,7 +630,7 @@ class ReportAccountBalanceReport(models.TransientModel):
                 else:
                     groups_ids[account.group_id.id].append(account.id)
 
-        groups = self.env['account.group'].browse(groups_ids.keys()).exists()
+        groups = self.env["account.group"].browse(groups_ids.keys()).exists()
         groups_data = {}
         for group in groups:
             groups_data.update(
@@ -664,27 +655,33 @@ class ReportAccountBalanceReport(models.TransientModel):
             if self.foreign_currency:
                 groups_data[group.id]["initial_currency_balance"] = 0.0
                 groups_data[group.id]["ending_currency_balance"] = 0.0
-        group_obj = self.env['account.group']
+        group_obj = self.env["account.group"]
         for group_id, group_accounts in groups_ids.items():
             for account_id in group_accounts:
-                t_a_init_bal = total_amounts[account_id]['initial_balance']
-                t_a_debit = total_amounts[account_id]['debit']
-                t_a_credit = total_amounts[account_id]['credit']
-                t_a_balance = total_amounts[account_id]['balance']
-                t_a_end_bal = total_amounts[account_id]['ending_balance']
-                groups_data[group_id]['initial_balance'] += t_a_init_bal
-                groups_data[group_id]['debit'] += t_a_debit
-                groups_data[group_id]['credit'] += t_a_credit
-                groups_data[group_id]['balance'] += t_a_balance
-                groups_data[group_id]['ending_balance'] += t_a_end_bal
+                t_a_init_bal = total_amounts[account_id]["initial_balance"]
+                t_a_debit = total_amounts[account_id]["debit"]
+                t_a_credit = total_amounts[account_id]["credit"]
+                t_a_balance = total_amounts[account_id]["balance"]
+                t_a_end_bal = total_amounts[account_id]["ending_balance"]
+                groups_data[group_id]["initial_balance"] += t_a_init_bal
+                groups_data[group_id]["debit"] += t_a_debit
+                groups_data[group_id]["credit"] += t_a_credit
+                groups_data[group_id]["balance"] += t_a_balance
+                groups_data[group_id]["ending_balance"] += t_a_end_bal
                 if self.foreign_currency:
-                    t_a_init_curr_bal = total_amounts[account_id]['initial_currency_balance']
-                    t_a_end_curr_bal = total_amounts[account_id]['ending_currency_balance']
-                    groups_data[group_id]["initial_currency_balance"] += t_a_init_curr_bal
+                    t_a_init_curr_bal = total_amounts[account_id][
+                        "initial_currency_balance"
+                    ]
+                    t_a_end_curr_bal = total_amounts[account_id][
+                        "ending_currency_balance"
+                    ]
+                    groups_data[group_id][
+                        "initial_currency_balance"
+                    ] += t_a_init_curr_bal
                     groups_data[group_id]["ending_currency_balance"] += t_a_end_curr_bal
             group = group_obj.browse(group_id).exists()
             grp_sign = self.get_balance_sign(group_id=group)
-            groups_data[group_id]['balance'] *= grp_sign
+            groups_data[group_id]["ending_balance"] *= grp_sign
         return groups_data
 
     def _compute_group_hierarchy(self, groups_data):
@@ -697,7 +694,7 @@ class ReportAccountBalanceReport(models.TransientModel):
             :param group_data: ``dict`` group data, used to compute hierarchy
                 and amounts
         """
-        groups = self.env['account.group'].browse(groups_data.keys())
+        groups = self.env["account.group"].browse(groups_data.keys())
         for group in groups:
             parent_id = groups_data[group.id]["parent_id"]
             while parent_id:
@@ -739,12 +736,12 @@ class ReportAccountBalanceReport(models.TransientModel):
     def _add_group_to_section_vals(self, section_vals, groups_data):
         for group_data in groups_data.values():
             counter = group_data["complete_code"].count("/")
-            group_data['level'] = counter
+            group_data["level"] = counter
             sect_vals = self.get_section_balance_vals(group_data)
             sect_vals[2]["complete_code"] = group_data["complete_code"]
             section_vals.append(sect_vals)
 
-        account_obj = self.env['account.account']
+        account_obj = self.env["account.account"]
         for section_val in section_vals:
             data = section_val[2]
             if data.get("account_id"):
@@ -756,11 +753,12 @@ class ReportAccountBalanceReport(models.TransientModel):
                 else:
                     data["complete_code"] = data["code"]
 
-        section_vals = sorted(section_vals, key=lambda sv: sv[2]["complete_code"])
+        section_vals = sorted(section_vals, key=lambda sv: sv[2]["code"])
 
         for section_val in section_vals:
             data = section_val[2]
             data["level"] = data["complete_code"].count("/")
+            data.pop("complete_code")
 
 
 class ReportAccountBalanceReportAccount(models.TransientModel):
@@ -769,32 +767,19 @@ class ReportAccountBalanceReportAccount(models.TransientModel):
     _inherit = "report.account_financial_report.abstract_report"
     _order = "code ASC"
 
-    account_id = fields.Many2one(
-        comodel_name="account.account",
-        string="Account"
-    )
+    account_id = fields.Many2one(comodel_name="account.account", string="Account")
 
     currency_id = fields.Many2one(
-        comodel_name="res.currency",
-        string="Account Currency"
+        comodel_name="res.currency", string="Account Currency"
     )
 
     date_from = fields.Date()
     date_to = fields.Date()
 
-    group_id = fields.Many2one(
-        comodel_name="account.group",
-        string="Account Group"
-    )
+    group_id = fields.Many2one(comodel_name="account.group", string="Account Group")
 
-    hide_line = fields.Boolean(
-        string="Hide line"
-    )
-    level = fields.Integer(
-        index=True,
-        default=0,
-        string="Hierarchy level"
-    )
+    hide_line = fields.Boolean(string="Hide line")
+    level = fields.Integer(index=True, default=0, string="Hierarchy level")
 
     balance = fields.Float(digits=(16, 2))
     ending_balance = fields.Float(digits=(16, 2))
@@ -805,22 +790,12 @@ class ReportAccountBalanceReportAccount(models.TransientModel):
         "account_balance_report_partner",
         "report_section_id",
     )
-    report_credit_id = fields.Many2one(
-        "account_balance_report",
-        ondelete="cascade"
-    )
-    report_debit_id = fields.Many2one(
-        "account_balance_report",
-        ondelete="cascade"
-    )
+    report_credit_id = fields.Many2one("account_balance_report", ondelete="cascade")
+    report_debit_id = fields.Many2one("account_balance_report", ondelete="cascade")
 
-    code = fields.Char(
-        string="Line code"
-    )
+    code = fields.Char(string="Line code")
 
-    name = fields.Char(
-        string="Line name"
-    )
+    name = fields.Char(string="Line name")
 
     complete_code = fields.Char(string="Complete line code")
 
@@ -831,8 +806,7 @@ class ReportAccountBalanceReportPartner(models.TransientModel):
     _inherit = "report.account_financial_report.abstract_report"
 
     currency_id = fields.Many2one(
-        comodel_name="res.currency",
-        string="Account Currency"
+        comodel_name="res.currency", string="Account Currency"
     )
 
     date_from = fields.Date()
@@ -844,9 +818,7 @@ class ReportAccountBalanceReportPartner(models.TransientModel):
     report_section_id = fields.Many2one(
         "account_balance_report_account", ondelete="cascade"
     )
-    partner_id = fields.Many2one(
-        "res.partner", required=True
-    )
+    partner_id = fields.Many2one("res.partner", required=True)
 
     balance = fields.Float(digits=(16, 2))
 

@@ -17,9 +17,7 @@ class ReportAccountBalanceWizard(models.TransientModel):
     )
 
     # Override of `trial.balance.report.wizard` to set True as default value
-    show_hierarchy = fields.Boolean(
-        default=True
-    )
+    show_hierarchy = fields.Boolean(default=True)
 
     @api.onchange("show_partner_details")
     def onchange_show_partner_details(self):
@@ -66,7 +64,7 @@ class ReportAccountBalanceWizard(models.TransientModel):
         return {
             **common_vals,
             "account_balance_report_type": self.account_balance_report_type,
-            'only_posted_moves': self.target_move == 'posted',
+            "only_posted_moves": self.target_move == "posted",
             "trial_balance_wiz_id": trial_wiz.id,
         }
 
@@ -78,7 +76,6 @@ class ReportAccountBalanceWizard(models.TransientModel):
             "account_ids": [(6, 0, self.account_ids.ids)],
             "partner_ids": [(6, 0, self.partner_ids.ids)],
             "journal_ids": [(6, 0, self.journal_ids.ids)],
-
         }
 
     def _get_common_report_values(self):
@@ -94,5 +91,5 @@ class ReportAccountBalanceWizard(models.TransientModel):
             "show_hierarchy": self.show_hierarchy,
             "show_hierarchy_level": self.show_hierarchy_level,
             "show_partner_details": self.show_partner_details,
-            'target_move': self.target_move,
+            "target_move": self.target_move,
         }

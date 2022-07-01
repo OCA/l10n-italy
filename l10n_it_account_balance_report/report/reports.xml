@@ -5,18 +5,32 @@
         <field name="name">Account Balance Report HTML</field>
         <field name="model">account_balance_report</field>
         <field name="report_type">qweb-html</field>
-        <field name="report_name">l10n_it_account_balance_report.account_balance_report_qweb</field>
-        <field name="report_file">l10n_it_account_balance_report.account_balance_report_html</field>
-        <field name="paperformat_id" ref="l10n_it_account.l10n_it_account_a4_landscape" />
+        <field
+            name="report_name"
+        >l10n_it_account_balance_report.account_balance_report_qweb</field>
+        <field
+            name="report_file"
+        >l10n_it_account_balance_report.account_balance_report_html</field>
+        <field
+            name="paperformat_id"
+            ref="l10n_it_account.l10n_it_account_a4_landscape"
+        />
     </record>
 
     <record id="report_account_balance_report_pdf" model="ir.actions.report">
         <field name="name">Account Balance Report PDF</field>
         <field name="model">account_balance_report</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">l10n_it_account_balance_report.account_balance_report_qweb</field>
-        <field name="report_file">l10n_it_account_balance_report.account_balance_report_qweb</field>
-        <field name="paperformat_id" ref="l10n_it_account.l10n_it_account_a4_landscape" />
+        <field
+            name="report_name"
+        >l10n_it_account_balance_report.account_balance_report_qweb</field>
+        <field
+            name="report_file"
+        >l10n_it_account_balance_report.account_balance_report_qweb</field>
+        <field
+            name="paperformat_id"
+            ref="l10n_it_account.l10n_it_account_a4_landscape"
+        />
     </record>
 
     <record id="report_account_balance_report_xlsx" model="ir.actions.report">

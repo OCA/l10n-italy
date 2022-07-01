@@ -15,6 +15,7 @@ class TrialBalanceReport(models.AbstractModel):
         simply ignore them), but when we try to create an Account Balance
         Report, the only data we need is the ending_balance field.
         """
+
         def is_removable(d):
             rounding = company.currency_id.rounding
             return float_is_zero(d["ending_balance"], precision_rounding=rounding)
