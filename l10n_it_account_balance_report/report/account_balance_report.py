@@ -728,7 +728,7 @@ class ReportAccountBalanceReportAccount(models.TransientModel):
     _name = "account_balance_report_account"
     _description = "Account Balance Report - Account"
     _inherit = "account_financial_report_abstract"
-    _order="code ASC"
+    _order = "code ASC"
 
     account_id = fields.Many2one(
         comodel_name="account.account",
