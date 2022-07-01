@@ -15,7 +15,7 @@
               "Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
                'l10n_it_delivery_note',
-    'version': '12.0.1.0.7',
+    'version': '12.0.1.0.8',
     'category': "Localization",
     'license': 'AGPL-3',
     'maintainers': ['As400it', 'Byloth'],
