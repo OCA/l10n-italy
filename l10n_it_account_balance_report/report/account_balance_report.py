@@ -793,6 +793,7 @@ class ReportAccountBalanceReportAccount(models.TransientModel):
 
     complete_code = fields.Char(string="Complete line code")
 
+
 class ReportAccountBalanceReportPartner(models.TransientModel):
     _name = "account_balance_report_partner"
     _description = "Account Balance Report - Partner"
