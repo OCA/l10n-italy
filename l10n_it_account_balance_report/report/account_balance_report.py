@@ -420,8 +420,9 @@ class ReportAccountBalanceReport(models.TransientModel):
             section report
         """
 
-        if not line.get("type", False):
+        if partners_data is None:
             partners_data = []
+        if amounts_data is None:
             amounts_data = {}
 
         r_data = {
@@ -822,8 +823,11 @@ class ReportAccountBalanceReportPartner(models.TransientModel):
         "report_id.hide_account_at_0",
     )
     def _compute_hide_line(self):
-        if self.report_id.hide_account_at_0:
-            for partner_line in self:
+        for partner_line in self:
+            if self.report_id.hide_account_at_0:
                 p_bal = partner_line.balance
                 digits = partner_line.currency_id.decimal_places
-                partner_line.hide_line = float_is_zero(p_bal, digits)
+                hide_partner_line = float_is_zero(p_bal, digits)
+            else:
+                hide_partner_line = False
+            partner_line.hide_line = hide_partner_line
