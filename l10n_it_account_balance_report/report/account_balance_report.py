@@ -488,7 +488,7 @@ class ReportAccountBalanceReport(models.TransientModel):
 
     def get_section_balance_vals(
         self,
-        data={}
+        data
     ):
         """Get the command tuple to get section data
 
