@@ -824,7 +824,7 @@ class ReportAccountBalanceReportPartner(models.TransientModel):
     )
     def _compute_hide_line(self):
         for partner_line in self:
-            if self.report_id.hide_account_at_0:
+            if partner_line.report_id.hide_account_at_0:
                 p_bal = partner_line.balance
                 digits = partner_line.currency_id.decimal_places
                 hide_partner_line = float_is_zero(p_bal, digits)
