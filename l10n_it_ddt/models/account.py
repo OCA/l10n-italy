@@ -11,7 +11,7 @@
 ##############################################################################
 
 
-from openerp import fields, models
+from openerp import fields, models, api
 
 
 class AccountInvoice(models.Model):
@@ -30,17 +30,15 @@ class AccountInvoice(models.Model):
         'Method of Transportation')
     parcels = fields.Integer()
 
-    def onchange_partner_id(
-            self, cr, uid, ids, type, partner_id, date_invoice=False,
-            payment_term=False, partner_bank_id=False, company_id=False,
-            context=None):
-        if context is None:
-            context = {}
+    @api.multi
+    def onchange_partner_id(self, type, partner_id, date_invoice=False,
+                            payment_term=False, partner_bank_id=False,
+                            company_id=False):
         result = super(AccountInvoice, self).onchange_partner_id(
-            cr, uid, ids, type, partner_id, date_invoice, payment_term,
-            partner_bank_id, company_id, context)
+            type, partner_id, date_invoice, payment_term,
+            partner_bank_id, company_id)
         if partner_id:
-            partner = self.pool.get('res.partner').browse(cr, uid, partner_id)
+            partner = self.env['res.partner'].browse(partner_id)
             result['value'][
                 'carriage_condition_id'] = partner.carriage_condition_id.id
             result['value'][
