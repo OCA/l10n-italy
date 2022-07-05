@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from openerp import models
+from openerp import models, api, _
+from openerp.exceptions import Warning as UserError
 
 
 class Invoice(models.Model):
@@ -24,3 +25,16 @@ class Invoice(models.Model):
                 })
             ]
         return res
+
+    @api.multi
+    def action_cancel_draft(self):
+        super(Invoice, self).action_cancel_draft()
+        for inv in self:
+            if not inv.env.context.get("rc_set_to_draft") and \
+                    inv.rc_purchase_invoice_id.state in ['draft', 'cancel']:
+                raise UserError(_(
+                    "Vendor invoice that has generated this self invoice isn't "
+                    "validated. "
+                    "Validate vendor invoice before."
+                ))
+        return True
