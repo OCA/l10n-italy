@@ -44,10 +44,11 @@ class AccountInvoice(models.Model):
         for line in self.invoice_line:
             line._set_rc_flag(self)
 
+    @api.multi
     @api.onchange('partner_id', 'company_id')
-    def onchange_partner_id(
-        self, invoice_type, partner_id, date_invoice=False,
-        payment_term=False, partner_bank_id=False, company_id=False):
+    def onchange_partner_id(self, invoice_type, partner_id, date_invoice=False,
+                            payment_term=False, partner_bank_id=False,
+                            company_id=False):
         res = super(AccountInvoice, self).onchange_partner_id(
             invoice_type, partner_id, date_invoice=date_invoice,
             payment_term=payment_term, partner_bank_id=partner_bank_id,
