@@ -10,12 +10,6 @@ class Account(models.Model):
     # report independent from Odoo's accounting workflow, so we'll use this
     # new field for the report
     account_balance_report_section = fields.Selection(
-        # [
-        #     ("assets", "Assets"),
-        #     ("expenses", "Expenses"),
-        #     ("incomes", "Incomes"),
-        #     ("liabilities", "Liabilities"),
-        # ],
         readonly=True,
         related="user_type_id.account_balance_report_section",
         string="Account Balance Report - Section",
