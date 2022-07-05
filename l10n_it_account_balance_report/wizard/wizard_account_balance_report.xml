@@ -121,13 +121,6 @@
                                 type="object"
                                 class="oe_highlight"
                             />
-                            <!-- or
-                            <button
-                                name="button_export_xlsx"
-                                string="Export XLSX"
-                                type="object"
-                                class="oe_highlight"
-                            /> -->
                             or
                             <button string="Cancel" class="oe_link" special="cancel" />
                         </div>
