@@ -5,7 +5,7 @@
 
 {
     "name": "ITA - Stato patrimoniale e conto economico",
-    "summary": "Rendicontazione .pdf e .xls per stato patrimoniale e conto"
+    "summary": "Rendicontazione .pdf per stato patrimoniale e conto"
     " economico a sezioni contrapposte",
     "version": "14.0.1.0.0",
     "category": "Localisation/Italy",
