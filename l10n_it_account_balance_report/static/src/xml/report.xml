@@ -9,11 +9,6 @@
                 class="btn btn-primary o_report_print"
                 title="Print"
             >Print</button>
-            <button
-                type="button"
-                class="btn btn-secondary o_report_export"
-                title="Export"
-            >Export</button>
         </div>
     </t>
 </template>
