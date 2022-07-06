@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 
 import base64
+import logging
 from openerp import fields, models, api, _
 from openerp.exceptions import ValidationError
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT as DF
 
 from openerp.addons.l10n_it_fatturapa.bindings import fatturapa
 
+_logger = logging.getLogger(__name__)
 
 SELF_INVOICE_TYPES = ("TD16", "TD17", "TD18", "TD19", "TD20", "TD21")
 
@@ -124,7 +126,13 @@ class FatturaPAAttachmentIn(models.Model):
             xml_string = self.get_xml_string()
             invoice_obj = fatturapa.CreateFromDocument(xml_string)
         except Exception as e:
-            error_msg = _("Impossible to parse XML for %s: %s") % (self.display_name, e)
+            error_msg = \
+                _("Impossible to parse XML for {att_name}: {error_msg}") \
+                .format(
+                    att_name=self.display_name,
+                    error_msg=e,
+                )
+            _logger.warning(error_msg)
             self.e_invoice_parsing_error = error_msg
         else:
             self.e_invoice_parsing_error = False
