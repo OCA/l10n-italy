@@ -76,7 +76,7 @@ class FatturaPAAttachmentIn(models.Model):
     def _compute_linked_invoice_id_xml(self):
         for att in self:
             att.linked_invoice_id_xml = ""
-            fatt = att.get_invoice_obj()
+            fatt = self.env['wizard.import.fatturapa'].get_invoice_obj(att)
             if fatt:
                 for invoice_body in fatt.FatturaElettronicaBody:
                     if len(invoice_body.DatiGenerali.DatiFattureCollegate) == 1:
