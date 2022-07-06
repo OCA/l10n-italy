@@ -112,7 +112,7 @@ class FatturaPAAttachmentIn(models.Model):
                     att_name=self.display_name,
                     error_msg=e,
                 )
-            _logger.error(error_msg)
+            _logger.warning(error_msg)
             self.e_invoice_parsing_error = error_msg
         else:
             self.e_invoice_parsing_error = False
