@@ -2,8 +2,10 @@
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
 # Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl
+# Copyright 2022 Simone Rubino - TAKOBI
 
-from odoo import fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class AccountRCTypeTax(models.Model):
@@ -33,8 +35,32 @@ class AccountRCTypeTax(models.Model):
     _sql_constraints = [
         ('purchase_sale_tax_uniq',
          'unique (rc_type_id,purchase_tax_id,sale_tax_id)',
-         'Tax mappings can be defined only once per rc type.')
+         'Tax mappings from Purchase Tax to Sale Tax '
+         'can be defined only once per Reverse Charge Type.'),
+        ('original_purchase_sale_tax_uniq',
+         'unique (rc_type_id,'
+         'original_purchase_tax_id,purchase_tax_id,sale_tax_id)',
+         'Tax mappings from Original Purchase Tax to Purchase Tax to Sale Tax '
+         'can be defined only once per Reverse Charge Type.'),
     ]
+
+    @api.constrains(
+        'original_purchase_tax_id',
+        'rc_type_id',
+    )
+    def _constrain_supplier_self_invoice_mapping(self):
+        for mapping in self:
+            rc_type = mapping.rc_type_id
+            if rc_type.with_supplier_self_invoice:
+                if not mapping.original_purchase_tax_id:
+                    raise ValidationError(
+                        _("Original Purchase Tax is required "
+                          "for Reverse Charge Type {rc_type_name} having "
+                          "With additional supplier self invoice enabled")
+                        .format(
+                            rc_type_name=rc_type.display_name,
+                        )
+                    )
 
 
 class AccountRCType(models.Model):
@@ -88,3 +114,13 @@ class AccountRCType(models.Model):
     company_id = fields.Many2one(
         'res.company', string='Company', required=True,
         default=lambda self: self.env.user.company_id)
+
+    @api.constrains(
+        'with_supplier_self_invoice',
+        'tax_ids',
+    )
+    def _constrain_with_supplier_self_invoice(self):
+        with_supplier_types = self.filtered('with_supplier_self_invoice')
+        if with_supplier_types:
+            with_supplier_types.mapped('tax_ids') \
+                ._constrain_supplier_self_invoice_mapping()
