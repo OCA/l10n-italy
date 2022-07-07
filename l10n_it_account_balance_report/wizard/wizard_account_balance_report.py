@@ -9,7 +9,10 @@ class ReportAccountBalanceWizard(models.TransientModel):
     _inherit = "trial.balance.report.wizard"
 
     account_balance_report_type = fields.Selection(
-        [("profit_loss", "Profit & Loss"), ("balance_sheet", "Balance Sheet")],
+        [
+            ("profit_loss", "Profit & Loss"),
+            ("balance_sheet", "Balance Sheet")
+        ],
         string="Report Type",
     )
 
