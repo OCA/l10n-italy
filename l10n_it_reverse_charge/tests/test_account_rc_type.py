@@ -1,0 +1,27 @@
+# -*- coding: utf-8 -*-
+#  Copyright 2022 Simone Rubino - TAKOBI
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+from openerp.exceptions import ValidationError
+from .rc_common import ReverseChargeCommon
+
+
+class TestAccountRCType(ReverseChargeCommon):
+
+    def test_with_supplier_self_invoice(self):
+        """
+        Check that Reverse Charge Types
+        that require a supplier self invoice,
+        must have an Original Purchase Tax in the mapping.
+        """
+        rc_type = self.rc_type_eeu
+        rc_type_mapping = rc_type.tax_ids[0]
+        self.assertTrue(rc_type.with_supplier_self_invoice)
+        self.assertTrue(rc_type_mapping.original_purchase_tax_id)
+
+        with self.assertRaises(ValidationError) as ve:
+            rc_type_mapping.original_purchase_tax_id = False
+        exc_message = ve.exception[1]
+
+        self.assertIn("Original Purchase Tax is required", exc_message)
+        self.assertIn(rc_type.display_name, exc_message)
