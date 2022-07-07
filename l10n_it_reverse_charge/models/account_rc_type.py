@@ -5,7 +5,7 @@
 # Copyright 2022 Simone Rubino - TAKOBI
 
 from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 
 
 class AccountRCTypeTax(models.Model):
@@ -124,3 +124,35 @@ class AccountRCType(models.Model):
         if with_supplier_types:
             with_supplier_types.mapped('tax_ids') \
                 ._constrain_supplier_self_invoice_mapping()
+
+    def map_tax(self, taxes, key_tax_field, value_tax_field):
+        """
+        Map each tax in `taxes`, based on the mapping defined by `self.tax_ids`.
+
+        Raise an exception if a mapping is not found for some of `taxes`.
+
+        :param key_tax_field: Field of the mapping lines
+            to be used as key for searching the tax
+        :param value_tax_field: Field of the mapping lines
+            to be used as value for mapping the tax
+        :param taxes: Taxes to be mapped
+        """
+        self.ensure_one()
+        mapped_taxes = self.env['account.tax'].browse()
+        for tax in taxes:
+            for tax_mapping in self.tax_ids:
+                if tax_mapping[key_tax_field] == tax:
+                    mapped_taxes |= tax_mapping[value_tax_field]
+                    break
+            else:
+                # Tax not found in mapping
+                raise UserError(
+                    _("Can't find tax mapping for {tax_name} "
+                      "in Reverse Charge Type {rc_type_name}, "
+                      "please check the configuration.")
+                    .format(
+                        tax_name=tax.display_name,
+                        rc_type_name=self.display_name,
+                    )
+                )
+        return mapped_taxes
