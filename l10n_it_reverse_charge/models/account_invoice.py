@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 Davide Corio
 # Copyright 2017 Alex Comba - Agile Business Group
+# Copyright 2017 Lorenzo Battistini - Agile Business Group
+# Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl
+# Copyright 2022 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import api, fields, models
@@ -338,19 +341,19 @@ class AccountInvoice(models.Model):
         for line in self.invoice_line:
             if line.rc:
                 rc_invoice_line = self.rc_inv_line_vals(line)
-                line_tax = line.invoice_line_tax_id
-                if not line_tax:
+                line_tax_ids = line.invoice_line_tax_id
+                if not line_tax_ids:
                     raise UserError(_(
-                        "Invoice line\n%s\nis RC but has not tax") % line.name)
-                tax_code_id = None
-                for tax_mapping in rc_type.tax_ids:
-                    if tax_mapping.purchase_tax_id == line_tax[0]:
-                        tax_code_id = tax_mapping.sale_tax_id.id
-                if not tax_code_id:
-                    raise UserError(_("Can't find tax mapping"))
-                if line_tax:
+                        "Invoice %s, line\n%s\nis RC but has not tax"
+                    ) % ((self.reference or self.partner_id.display_name), line.name))
+                mapped_taxes = rc_type.map_tax(
+                    line_tax_ids,
+                    'purchase_tax_id',
+                    'sale_tax_id',
+                )
+                if line_tax_ids and mapped_taxes:
                     rc_invoice_line['invoice_line_tax_id'] = [
-                        (6, False, [tax_code_id])]
+                        (6, False, mapped_taxes.ids)]
                 rc_invoice_line[
                     'account_id'] = rc_type.transitory_account_id.id
                 rc_invoice_lines.append([0, False, rc_invoice_line])
@@ -396,17 +399,15 @@ class AccountInvoice(models.Model):
         supplier_invoice.journal_id = rc_type.supplier_journal_id.id
         for inv_line in supplier_invoice.invoice_line:
             line_tax_ids = inv_line.invoice_line_tax_id
-            tax_ids = list()
-            for tax_mapping in rc_type.tax_ids:
-                for line_tax_id in line_tax_ids:
-                    if tax_mapping.original_purchase_tax_id == line_tax_id:
-                        tax_ids.append(tax_mapping.purchase_tax_id.id)
-            if not tax_ids:
-                raise UserError(_("Tax code used is not a RC tax.\nCan't "
-                                  "find tax mapping"))
-            if line_tax_ids:
-                inv_line.invoice_line_tax_ids = [
-                    (6, False, tax_ids)]
+            mapped_taxes = rc_type.map_tax(
+                line_tax_ids,
+                'original_purchase_tax_id',
+                'purchase_tax_id',
+            )
+            if line_tax_ids and mapped_taxes:
+                inv_line.invoice_line_tax_id = [
+                    (6, False, mapped_taxes.ids),
+                ]
 
             inv_line.account_id = rc_type.transitory_account_id.id
         self.rc_self_purchase_invoice_id = supplier_invoice.id
