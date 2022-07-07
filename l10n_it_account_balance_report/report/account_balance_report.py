@@ -410,11 +410,11 @@ class ReportAccountBalanceReport(models.TransientModel):
         in `account_balance_report_account`
 
         :param line: ``dict`` The line data
+        :param digits: ``int`` The rounding digits, used in float calc
         :param partners_data: ``list`` partner data, used to compute which of
             them belongs to an account
-        :param account_sign: ``int`` The account sign, can be 1 or -1, used to
-            confirm or change account balance value sign
-        :param digits: ``int`` The rounding digits, used in float calc
+        :param amounts_data: ``list`` amount data, used to compute account
+            amounts data
 
         :return: ``dict`` The dictionary with data to be set in the
             section report
@@ -430,7 +430,7 @@ class ReportAccountBalanceReport(models.TransientModel):
             'account_id': line['id'],
         }
         account_id = line.get('id')
-        account = self.env['account.account'].browse(account_id)
+        account = self.env['account.account'].browse(account_id).exists()
 
         # The sign was computed only for 'account_type' lines because
         # group line don't partecipate in total_balance computation
@@ -495,7 +495,7 @@ class ReportAccountBalanceReport(models.TransientModel):
         Used to setup command tuple, to insert values into correct balance
         section
 
-        :param data (dict, optional): The data to setup create dictionary,
+        :param data (dict): The data to setup create dictionary,
             to insert data into correct balance section. Defaults to {}.
 
         :return tuple: The insert command tuple, with data to create
@@ -568,7 +568,7 @@ class ReportAccountBalanceReport(models.TransientModel):
         account_partners = []
         if isinstance(partners, dict):
             account_partners = [
-                p_id for p_id in partners.keys() if p_id in account_data
+                p_id for p_id in partners if p_id in account_data
             ]
         return account_partners
 
@@ -599,6 +599,17 @@ class ReportAccountBalanceReport(models.TransientModel):
             float_round(total_credit, digits)
 
     def _get_filtered_account(self, accounts_data, section_vals):
+        """Method to filter account for balance section
+        Filter which account or group of account belongs to correct section of
+        balance
+
+            :param accounts_data: ``dict`` all account computed from trial
+                balance
+            :param section_vals: ``list(tuple)`` section data, used to assign
+                accounts and its groups to the correct section of balance
+
+        :returns dict: account that belongs to correct balance section
+        """
         account_data = {}
         for sec_val in section_vals:
             sec_val_account_id = sec_val[2]['account_id']
@@ -607,6 +618,17 @@ class ReportAccountBalanceReport(models.TransientModel):
         return account_data
 
     def _get_group_data(self, accounts_data, total_amounts):
+        """Full override of method in trial_balance model
+        Method was overrode because, in trial balance when show partner details
+        is checked, no account grouping is possible
+
+            :param accounts_data: ``dict`` The accounts data, used to build
+                grouping hierarchy
+            :param total_amounts: ``dict`` Amount data of every account, used
+                to compute group totals
+
+            :return ``dict``: Group data with child account and child group
+        """
         account_obj = self.env['account.account']
         groups_ids = {}
         for account_id in accounts_data.keys():
@@ -666,6 +688,15 @@ class ReportAccountBalanceReport(models.TransientModel):
         return groups_data
 
     def _compute_group_hierarchy(self, groups_data):
+        """Full override of method in trial_balance model
+        Method was overrode because, in trial balance when show partner details
+        is checked, no account grouping is possible and because in v14.0 trial
+        balance has been moved to an Abstract model, without any reference in
+        db
+
+            :param group_data: ``dict`` group data, used to compute hierarchy
+                and amounts
+        """
         groups = self.env['account.group'].browse(groups_data.keys())
         for group in groups:
             parent_id = groups_data[group.id]["parent_id"]
