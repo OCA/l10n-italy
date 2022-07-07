@@ -128,7 +128,6 @@ class TestEInvoiceResponse(EInvoiceCommon):
             instance.retr.return_value = ('', [incoming_mail], '')
 
             with mute_logger(
-                    'odoo.addons.l10n_it_fatturapa_in.models.attachment',
                     'odoo.addons.l10n_it_fatturapa_pec.models.fetchmail'):
                 self.PEC_server.fetch_mail()
 
