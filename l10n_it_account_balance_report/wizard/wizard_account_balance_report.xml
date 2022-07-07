@@ -143,7 +143,6 @@
             <field
                 name="context"
             >{'default_account_balance_report_type':'profit_loss'}</field>
-            <!-- ,'default_hierarchy_on':'relation'}</field> -->
         </record>
 
         <menuitem
