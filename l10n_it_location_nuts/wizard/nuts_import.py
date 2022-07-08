@@ -124,7 +124,7 @@ class NutsImport(models.TransientModel):
         mapping = super(NutsImport, self).state_mapping(data, node)
         level = data.get("level", 0)
         code = data.get("code", "")
-        if self._current_country.code == "IT" and level == 4:
+        if self.current_country_id.code == "IT" and level == 4:
             external_ref = self._it_state_map.get(code, False)
             if external_ref:
                 state = self.env.ref(external_ref)
