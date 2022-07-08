@@ -1,0 +1,5 @@
+.data_table .act_as_cell,
+.list_table .act_as_cell,
+.totals_table .act_as_cell {
+    padding: 0 3px;
+}
