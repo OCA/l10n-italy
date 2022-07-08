@@ -5,17 +5,15 @@ from odoo.tests.common import SavepointCase
 
 
 class TestNUTS(SavepointCase):
-
     @classmethod
     def setUpClass(cls):
         super(TestNUTS, cls).setUpClass()
-        importer = cls.env['nuts.import']
+        importer = cls.env["nuts.import"]
         importer.run_import()
-        cls.rome_nuts = cls.env['res.partner.nuts'].search(
-            [('code', '=', 'ITI43')])
-        rome_state_id = cls.env.ref('base.state_it_rm').id
-        cls.it_partner = cls.env['res.partner'].create({'name': 'it_partner'})
-        cls.it_partner.write({'state_id': rome_state_id})
+        cls.rome_nuts = cls.env["res.partner.nuts"].search([("code", "=", "ITI43")])
+        rome_state_id = cls.env.ref("base.state_it_rm").id
+        cls.it_partner = cls.env["res.partner"].create({"name": "it_partner"})
+        cls.it_partner.write({"state_id": rome_state_id})
 
     def test_italian_nuts(self):
         """
@@ -23,6 +21,4 @@ class TestNUTS(SavepointCase):
         italian states.
         """
         self.it_partner.onchange_state_id_base_location_nuts()
-        self.assertEqual(
-            self.it_partner.state_id,
-            self.it_partner.nuts4_id.state_id)
+        self.assertEqual(self.it_partner.state_id, self.it_partner.nuts4_id.state_id)
