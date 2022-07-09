@@ -384,6 +384,8 @@ class EInvoiceLine(models.Model):
     other_data_ids = fields.One2many(
         "einvoice.line.other.data", "e_invoice_line_id",
         string="Other Administrative Data", readonly=True)
+    e_invoice_line_id = fields.Many2one(
+        'einvoice.line', 'Related E-bill Line', readonly=True)
 
 
 class EInvoiceLineOtherData(models.Model):

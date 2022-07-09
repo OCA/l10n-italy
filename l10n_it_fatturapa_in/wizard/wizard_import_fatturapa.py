@@ -1476,8 +1476,9 @@ class WizardImportFatturapa(models.TransientModel):
 
     def set_e_invoice_lines(self, FatturaBody, invoice_data):
         e_invoice_lines = self.env['einvoice.line'].browse()
-        for line in FatturaBody.DatiBeniServizi.DettaglioLinee:
-            e_invoice_lines |= self.create_e_invoice_line(line)
+        if self.e_invoice_detail_level != '2':
+            for line in FatturaBody.DatiBeniServizi.DettaglioLinee:
+                e_invoice_lines |= self.create_e_invoice_line(line)
         if e_invoice_lines:
             invoice_data['e_invoice_line_ids'] = [(6, 0, e_invoice_lines.ids)]
 
@@ -1511,12 +1512,18 @@ class WizardImportFatturapa(models.TransientModel):
                                         invoice_line_model)
 
         elif self.e_invoice_detail_level == '2':
+            e_invoice_lines = self.env['einvoice.line'].browse()
             for line in FatturaBody.DatiBeniServizi.DettaglioLinee:
                 invoice_line_data = self._prepareInvoiceLine(
                     credit_account_id, line, wt_founds)
                 product = self.get_line_product(line, partner)
+                e_invoice_line = self.create_e_invoice_line(line)
+                e_invoice_lines |= e_invoice_line
+                invoice_line_data.update({'e_invoice_line_id': e_invoice_line.id})
                 self._set_invoice_lines(product, invoice_line_data, invoice_lines,
                                         invoice_line_model)
+            if e_invoice_lines:
+                invoice_data['e_invoice_line_ids'] = [(6, 0, e_invoice_lines.ids)]
 
         invoice_data['invoice_line_ids'] = [(6, 0, invoice_lines)]
 
