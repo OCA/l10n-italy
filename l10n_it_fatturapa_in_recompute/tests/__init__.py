@@ -1,0 +1,1 @@
+from . import test_l10n_it_fatturapa_in_recompute
