@@ -17,6 +17,7 @@
         "account_financial_report",
         "account_menu",
         "l10n_it_account",
+        "web",
     ],
     "data": [
         "security/ir.model.access.csv",
