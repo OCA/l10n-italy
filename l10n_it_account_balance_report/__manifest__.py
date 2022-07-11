@@ -13,6 +13,7 @@
     "website": "https://github.com/OCA/l10n-italy" "/l10n_it_account_balance_report",
     "license": "AGPL-3",
     "depends": [
+        "account",
         "account_financial_report",
         "account_menu",
         "l10n_it_account",
