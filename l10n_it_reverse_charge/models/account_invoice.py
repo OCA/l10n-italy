@@ -11,6 +11,8 @@ from openerp.tools.translate import _
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
+    rc = fields.Boolean("RC")
+
     @api.multi
     def _set_rc_flag(self, invoice):
         self.ensure_one()
@@ -22,7 +24,14 @@ class AccountInvoiceLine(models.Model):
     def onchange_invoice_line_tax_id(self):
         self._set_rc_flag(self.invoice_id)
 
-    rc = fields.Boolean("RC")
+    @api.model
+    def create(self, vals):
+        if 'rc' not in vals and 'invoice_id' in vals:
+            invoice = self.env['account.invoice'].browse(vals['invoice_id'])
+            fiscal_position = invoice.fiscal_position
+            vals.update({'rc': True if fiscal_position.rc_type_id else False})
+
+        return super(AccountInvoiceLine, self).create(vals)
 
 
 class AccountInvoice(models.Model):

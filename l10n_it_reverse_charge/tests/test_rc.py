@@ -23,14 +23,13 @@ class TestReverseCharge(ReverseChargeCommon):
         res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
         invoice.fiscal_position = res['value']['fiscal_position']
 
-        invoice_line = self.invoice_line_model.create({
+        self.invoice_line_model.create({
             'name': 'Invoice for sample product',
             'account_id': self.invoice_line_account,
             'invoice_id': invoice.id,
             'product_id': self.sample_product.id,
             'price_unit': 100
         })
-        invoice_line.onchange_invoice_line_tax_id()
         with self.assertRaises(UserError):
             invoice.signal_workflow('invoice_open')
 
@@ -52,8 +51,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'product_id': self.sample_product.id,
             'price_unit': 100,
             'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
-        invoice_line = self.invoice_line_model.create(invoice_line_vals)
-        invoice_line.onchange_invoice_line_tax_id()
+        self.invoice_line_model.create(invoice_line_vals)
         self.env['account.invoice.tax'].compute(invoice)
 
         invoice.signal_workflow('invoice_open')
@@ -129,8 +127,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'quantity': 15,
             'rc': True,
             'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
-        invoice_line = self.invoice_line_model.create(invoice_line_vals)
-        invoice_line.onchange_invoice_line_tax_id()
+        self.invoice_line_model.create(invoice_line_vals)
         invoice_line_vals = {
             'name': 'invoice line 2',
             'account_id': self.invoice_line_account,
@@ -139,8 +136,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'quantity': 5,
             'rc': True,
             'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
-        invoice_line = self.invoice_line_model.create(invoice_line_vals)
-        invoice_line.onchange_invoice_line_tax_id()
+        self.invoice_line_model.create(invoice_line_vals)
         invoice_line_vals = {
             'name': 'invoice line 3',
             'account_id': self.invoice_line_account,
@@ -149,8 +145,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'quantity': 5,
             'rc': True,
             'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
-        invoice_line = self.invoice_line_model.create(invoice_line_vals)
-        invoice_line.onchange_invoice_line_tax_id()
+        self.invoice_line_model.create(invoice_line_vals)
         invoice_line_vals = {
             'name': 'invoice line 4',
             'account_id': self.invoice_line_account,
@@ -159,8 +154,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'quantity': 5,
             'rc': True,
             'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
-        invoice_line = self.invoice_line_model.create(invoice_line_vals)
-        invoice_line.onchange_invoice_line_tax_id()
+        self.invoice_line_model.create(invoice_line_vals)
         invoice_line_vals = {
             'name': 'invoice line 5',
             'account_id': self.invoice_line_account,
@@ -169,8 +163,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'quantity': 5,
             'rc': True,
             'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
-        invoice_line = self.invoice_line_model.create(invoice_line_vals)
-        invoice_line.onchange_invoice_line_tax_id()
+        self.invoice_line_model.create(invoice_line_vals)
         invoice_line_vals = {
             'name': 'invoice line 6',
             'account_id': self.invoice_line_account,
@@ -179,8 +172,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'quantity': 1,
             'rc': True,
             'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
-        invoice_line = self.invoice_line_model.create(invoice_line_vals)
-        invoice_line.onchange_invoice_line_tax_id()
+        self.invoice_line_model.create(invoice_line_vals)
         invoice_line_vals = {
             'name': 'invoice line 7',
             'account_id': self.invoice_line_account,
@@ -189,8 +181,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'quantity': 1,
             'rc': True,
             'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
-        invoice_line = self.invoice_line_model.create(invoice_line_vals)
-        invoice_line.onchange_invoice_line_tax_id()
+        self.invoice_line_model.create(invoice_line_vals)
 
         self.env['account.invoice.tax'].compute(invoice)
         invoice.signal_workflow('invoice_open')
@@ -222,8 +213,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'product_id': self.sample_product.id,
             'price_unit': 100,
             'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
-        invoice_line = self.invoice_line_model.create(invoice_line_vals)
-        invoice_line.onchange_invoice_line_tax_id()
+        self.invoice_line_model.create(invoice_line_vals)
         self.env['account.invoice.tax'].compute(invoice)
 
         invoice.signal_workflow('invoice_open')
@@ -260,8 +250,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'product_id': self.sample_product.id,
             'price_unit': 100,
             'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
-        invoice_line = self.invoice_line_model.create(invoice_line_vals)
-        invoice_line.onchange_invoice_line_tax_id()
+        self.invoice_line_model.create(invoice_line_vals)
         self.env['account.invoice.tax'].compute(invoice)
 
         invoice.signal_workflow('invoice_open')
@@ -291,8 +280,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'product_id': self.sample_product.id,
             'price_unit': 100,
             'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
-        invoice_line = self.invoice_line_model.create(invoice_line_vals)
-        invoice_line.onchange_invoice_line_tax_id()
+        self.invoice_line_model.create(invoice_line_vals)
         invoice_line_vals = {
             'name': 'Invoice for sample product',
             'account_id': self.invoice_line_account,
@@ -300,8 +288,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'product_id': self.sample_product.id,
             'price_unit': -100,
             'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
-        invoice_line = self.invoice_line_model.create(invoice_line_vals)
-        invoice_line.onchange_invoice_line_tax_id()
+        self.invoice_line_model.create(invoice_line_vals)
 
         self.env['account.invoice.tax'].compute(invoice)
 
@@ -340,8 +327,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'product_id': self.sample_product.id,
             'price_unit': 100,
             'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
-        invoice_line = self.invoice_line_model.create(invoice_line_vals)
-        invoice_line.onchange_invoice_line_tax_id()
+        self.invoice_line_model.create(invoice_line_vals)
         self.assertTrue(all(line.rc for line in invoice.invoice_line))
 
     def test_intra_EU_exempt(self):
@@ -362,8 +348,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'product_id': self.sample_product.id,
             'price_unit': 100,
             'invoice_line_tax_id': [(4, self.tax_0_pur.id, 0)]}
-        invoice_line = self.invoice_line_model.create(invoice_line_vals)
-        invoice_line.onchange_invoice_line_tax_id()
+        self.invoice_line_model.create(invoice_line_vals)
         self.env['account.invoice.tax'].compute(invoice)
 
         invoice.signal_workflow('invoice_open')
