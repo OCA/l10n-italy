@@ -69,7 +69,7 @@ class TestInvoiceWT(FatturaPACommon):
             'account_receivable_id': self.wt_account_receivable.id,
             'account_payable_id': self.wt_account_payable.id,
             'journal_id': self.journal_misc.id,
-            'wt_types': 'enasarco',
+            'wt_types': 'inps',
             'payment_term': self.payment_term_15.id,
             'causale_pagamento_id': self.env.ref(
                 'l10n_it_causali_pagamento.a').id,
@@ -244,8 +244,7 @@ class TestInvoiceWT(FatturaPACommon):
             xml_content, 'IT06363391001_00016.xml',
             module_name='l10n_it_fatturapa_out_wt')
 
-
-def test_e_invoice_wt_inps_0(self):
+    def test_e_invoice_wt_inps_0(self):
         self.set_sequences(17, '2019-01-07')
         invoice = self.invoice_model.create({
             'date_invoice': '2019-01-07',
@@ -284,8 +283,7 @@ def test_e_invoice_wt_inps_0(self):
             xml_content, 'IT06363391001_00017.xml',
             module_name='l10n_it_fatturapa_out_wt')
 
-
-def test_e_invoice_wt_inps_1(self):
+    def test_e_invoice_wt_inps_1(self):
         """
         Fill DatiCassaPrevidenziale with INPS data
         """
@@ -329,8 +327,7 @@ def test_e_invoice_wt_inps_1(self):
             xml_content, 'IT06363391001_00018.xml',
             module_name='l10n_it_fatturapa_out_wt')
 
-
-def test_e_invoice_wt_inps_2(self):
+    def test_e_invoice_wt_inps_2(self):
         """
         Fill DatiCassaPrevidenziale with INPS data,
         when DatiRiepilogo already has 0 VAT
