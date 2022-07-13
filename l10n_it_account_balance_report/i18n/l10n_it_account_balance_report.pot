@@ -343,6 +343,12 @@ msgid "Final Balance Foreign Currency"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
+#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:155
+#, python-format
+msgid "Final balance"
+msgstr ""
+
+#. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__foreign_currency
 msgid "Foreign Currency"
 msgstr ""
@@ -542,12 +548,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_account__period_balance
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report_partner__period_balance
 msgid "Period Balance"
-msgstr ""
-
-#. module: l10n_it_account_balance_report
-#: code:addons/l10n_it_account_balance_report/report/account_balance_report_xlsx.py:155
-#, python-format
-msgid "Period balance"
 msgstr ""
 
 #. module: l10n_it_account_balance_report
