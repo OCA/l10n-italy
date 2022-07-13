@@ -4,6 +4,8 @@ from odoo.exceptions import ValidationError, UserError
 from odoo.tools import float_compare
 import odoo.addons.decimal_precision as dp
 
+from .company import REGISTRATION_DATE_TO_FIELD
+
 
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
@@ -97,6 +99,34 @@ class AccountInvoice(models.Model):
         return res
 
     @api.multi
+    def _fatturapa_set_invoice_date(self):
+        """
+        Set the Accounting date of invoices coming from e-invoices.
+
+        The date is set according to
+        the configuration of `in_invoice_registration_date`.
+        """
+        invoice_fields = self._fields.keys()
+        get_invoice_default_date_field = REGISTRATION_DATE_TO_FIELD.get
+
+        # Edit only invoices coming from e-invoices
+        fatturapa_invoices = self.filtered('fatturapa_attachment_in_id')
+        for invoice in fatturapa_invoices:
+            company = invoice.company_id
+            invoice_default_date_field = get_invoice_default_date_field(
+                company.in_invoice_registration_date,
+            )
+            if invoice_default_date_field in invoice_fields:
+                invoice.date = invoice[invoice_default_date_field]
+        return True
+
+    @api.multi
+    def action_invoice_draft(self):
+        res = super(AccountInvoice, self).action_invoice_draft()
+        self._fatturapa_set_invoice_date()
+        return res
+
+    @api.multi
     def invoice_validate(self):
         for invoice in self:
             if (invoice.e_invoice_validation_error and
@@ -104,6 +134,7 @@ class AccountInvoice(models.Model):
                 raise ValidationError(
                     _("The invoice '%s' doesn't match the related e-invoice") %
                     invoice.display_name)
+
         return super(AccountInvoice, self).invoice_validate()
 
     def e_inv_check_amount_untaxed(self):
