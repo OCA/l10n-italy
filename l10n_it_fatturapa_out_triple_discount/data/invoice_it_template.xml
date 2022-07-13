@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2022 Simone Rubino - TAKOBI
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
 <odoo>
     <data>
         <template
@@ -8,11 +12,11 @@
             <xpath expr="//ScontoMaggiorazione" position="after">
                 <t
                     t-set="importo2"
-                    t-value="get_importo(line.price_unit, line.discount2)"
+                    t-value="get_importo(line, discount_field='discount2')"
                 />
                 <t
                     t-set="importo3"
-                    t-value="get_importo(line.price_unit, line.discount3)"
+                    t-value="get_importo(line, discount_field='discount3')"
                 />
                 <ScontoMaggiorazione t-if="line.discount2 != 0 or importo2 != 0">
                 <!-- [2.2.1.10] -->
