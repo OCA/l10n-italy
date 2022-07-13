@@ -1,3 +1,9 @@
 * Simone Rubino
 * Alex Comba <alex.comba@agilebg.com>
-* Giovanni Serra <giovanni@gslab.it>
+* `Ooops <https://ooops404.com>`_:
+
+  * Giovanni Serra <giovanni@gslab.it>
+
+* `TAKOBI <https://takobi.online>`_:
+
+  * Simone Rubino <sir@takobi.online>
