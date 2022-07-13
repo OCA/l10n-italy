@@ -151,8 +151,8 @@ class AccountBalanceReportXslx(models.AbstractModel):
                 'indent_field': 'level',
                 'indent_unit': 2,
                 'width': 60},
-            2: {'field': 'period_balance',
-                'header': _("Period balance"),
+            2: {'field': 'final_balance',
+                'header': _("Final balance"),
                 'type': 'amount',
                 'width': 20}
         }
@@ -199,7 +199,7 @@ class AccountBalanceReportXslx(models.AbstractModel):
                 1: {'field': 'partner_id',
                     'type': 'many2one',
                     'width': 60},
-                2: {'field': 'period_balance',
+                2: {'field': 'final_balance',
                     'type': 'amount',
                     'width': 20}
             })
@@ -210,7 +210,7 @@ class AccountBalanceReportXslx(models.AbstractModel):
                 1 + len(cols): {'field': 'partner_id',
                                 'type': 'many2one',
                                 'width': 60},
-                2 + len(cols): {'field': 'period_balance',
+                2 + len(cols): {'field': 'final_balance',
                                 'type': 'amount',
                                 'width': 20}
             })
