@@ -176,7 +176,7 @@ class EFatturaOut:
             wiz = self.env["wizard.export.fatturapa"]
             return wiz.getAllTaxes(record)
 
-        def get_importo(line, discount_field='discount'):
+        def get_importo(line, discount_field="discount"):
             str_number = str(line[discount_field])
             number = str_number[::-1].find(".")
             if number <= 2:
