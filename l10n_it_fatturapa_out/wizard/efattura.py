@@ -1,5 +1,7 @@
 # Copyright 2020 Giuseppe Borruso
 # Copyright 2020 Marco Colombo
+# Copyright 2022 Simone Rubino - TAKOBI
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import logging
 import os
 from datetime import datetime
@@ -257,12 +259,12 @@ class EFatturaOut:
             out.update(out_computed)
             return out
 
-        def get_importo(price_unit, discount):
-            str_number = str(discount)
+        def get_importo(line, discount_field='discount'):
+            str_number = str(line[discount_field])
             number = str_number[::-1].find(".")
             if number <= 2:
                 return False
-            return price_unit * discount / 100
+            return line.price_unit * line.discount / 100
 
         def get_importo_totale(invoice):
             # wrapper to a method in wizard (for better overriding)
