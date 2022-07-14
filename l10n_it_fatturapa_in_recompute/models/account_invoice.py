@@ -2,6 +2,15 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import api, fields, models
 from odoo.tools.float_utils import float_round
+import odoo.addons.decimal_precision as dp
+
+
+class EInvoiceLine(models.Model):
+    _inherit = 'einvoice.line'
+
+    unit_price = fields.Float(
+        digits=dp.get_precision('Product Price for XML e-invoices')
+    )
 
 
 class AccountInvoiceLine(models.Model):
