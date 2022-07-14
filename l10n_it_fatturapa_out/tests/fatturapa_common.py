@@ -3,6 +3,7 @@ import tempfile
 from lxml import etree
 from odoo.modules.module import get_module_resource
 from odoo.addons.account.tests.account_test_users import AccountTestUsers
+from odoo.tests import Form
 
 
 class FatturaPACommon(AccountTestUsers):
@@ -146,22 +147,16 @@ class FatturaPACommon(AccountTestUsers):
         return self.getFilePath(path)
 
     def _create_invoice(self):
-        invoice_line_data = {
-            'product_id': self.product_product_10.id,
-            'quantity': 1,
-            'price_unit': 1,
-            'account_id': self.a_recv.id,
-            'name': self.product_product_10.name,
-            'invoice_line_tax_ids': [(6, 0, [self.ref('l10n_it_fatturapa.tax_22')])]
-        }
-        return self.invoice_model.create(
-            dict(
-                name='Test Invoice',
-                account_id=self.a_recv.id,
-                invoice_line_ids=[(0, 0, invoice_line_data)],
-                partner_id=self.res_partner_fatturapa_0.id
+        invoice_form = Form(self.invoice_model)
+        invoice_form.partner_id = self.res_partner_fatturapa_0
+        with invoice_form.invoice_line_ids.new() as invoice_line:
+            invoice_line.product_id = self.product_product_10
+            invoice_line.invoice_line_tax_ids.clear()
+            invoice_line.invoice_line_tax_ids.add(
+                self.env.ref('l10n_it_fatturapa.tax_22'),
             )
-        )
+        invoice = invoice_form.save()
+        return invoice
 
     def _create_e_invoice(self):
         invoice = self._create_invoice()
