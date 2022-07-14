@@ -43,6 +43,15 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="o_setting_left_pane">
+                            <field name="group_sdi_channel_validate_send" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="group_sdi_channel_validate_send" />
+                            <div class="text-muted">
+                                Allow users to validate, export and send invoices to SdI in one click.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </xpath>

@@ -32,3 +32,9 @@ class AccountConfigSettings(models.TransientModel):
         related="company_id.e_invoice_user_id",
         readonly=False,
     )
+    group_sdi_channel_validate_send = fields.Boolean(
+        string="Validate, export and send invoices",
+        help="Allow users to validate, export and send invoices to SdI "
+        "in one click.",
+        implied_group="l10n_it_sdi_channel.res_groups_validate_send",
+    )
