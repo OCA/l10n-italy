@@ -111,3 +111,20 @@ class TestEInvoiceSend(EInvoiceCommon):
         # Send it again
         e_invoice.send_to_sdi()
         self.assertEqual(e_invoice.state, "sent")
+
+    def test_action_open_export_send_sdi(self):
+        """
+        Check that the "Validate, export and send to SdI" button
+        sends the e-invoice.
+        """
+        # Arrange: create a draft invoice with no attachment
+        invoice = self._create_invoice()
+        self._create_fetchmail_pec_server()
+        self.assertEqual(invoice.state, "draft")
+        self.assertFalse(invoice.fatturapa_attachment_out_id)
+
+        # Act: open, export and send the invoice
+        invoice.action_open_export_send_sdi()
+        e_invoice = invoice.fatturapa_attachment_out_id
+
+        self.assertEqual(e_invoice.state, "sent")
