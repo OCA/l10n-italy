@@ -10,4 +10,7 @@
         >['|',('company_id','=',False),('company_id','in',company_ids)]</field>
     </record>
 
+    <record model="res.groups" id="res_groups_validate_send">
+        <field name="name">Validate, export and send invoices</field>
+    </record>
 </odoo>
