@@ -706,7 +706,7 @@ class WizardExportFatturapa(models.TransientModel):
                 TipoDato="Valuta",
                 RiferimentoTesto=line.currency_id.name,
                 RiferimentoNumero=self._get_prezzo_unitario(line),
-                RiferimentoData=fields.Date.today()
+                RiferimentoData=line.invoice_id.date
             )
             DettaglioLinea.AltriDatiGestionali.append(AltriDatiGestionali)
         DettaglioLinea.ScontoMaggiorazione.extend(
