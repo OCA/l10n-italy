@@ -648,16 +648,13 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                 <!--                    <Data t-esc=""/>-->
                 <!--                    <TotalePercorso t-esc=""/>-->
                 <!--                </DatiVeicoli>-->
-                <t
-                    t-set="payments"
-                    t-value="record.line_ids.filtered(lambda line: line.account_id.user_type_id.type in ('receivable', 'payable'))"
-                />
+                <t t-set="payments" t-value="get_payments(record)" />
                 <DatiPagamento t-if="record.invoice_payment_term_id and payments">
                     <!--                    <CondizioniPagamento><t t-if="len(payments) == 1">TP02</t><t t-else="">TP01</t></CondizioniPagamento>-->
                     <CondizioniPagamento
                         t-esc="record.invoice_payment_term_id.fatturapa_pt_id.code"
                     />
-                    <t t-foreach="payments" t-as="move_line">
+                    <t t-foreach="payments" t-as="payment">
                         <DettaglioPagamento>
                             <t
                                 t-set="company_bank_account"
@@ -670,16 +667,16 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                             <!--                            <DataRiferimentoTerminiPagamento t-esc=""/>-->
                             <!--                            <GiorniTerminiPagamento t-esc=""/>-->
                             <DataScadenzaPagamento
-                                t-if="move_line.date_maturity"
-                                t-esc="format_date(move_line.date_maturity)"
+                                t-if="payment.date_maturity"
+                                t-esc="format_date(payment.date_maturity)"
                             />
                             <ImportoPagamento
                                 t-if="record.company_id.xml_divisa_value == 'keep_orig'"
-                                t-esc="format_numbers_two(move_line.amount_currency or move_line.debit)"
+                                t-esc="format_numbers_two(payment.amount_currency or payment.debit)"
                             />
                             <ImportoPagamento
                                 t-if="not record.company_id.xml_divisa_value == 'keep_orig'"
-                                t-esc="format_numbers_two(fpa_to_eur(move_line.amount_currency or move_line.debit, record))"
+                                t-esc="format_numbers_two(fpa_to_eur(payment.amount_currency or payment.debit, record))"
                             />
 
                             <!--                            <CodUfficioPostale t-esc=""/>-->
