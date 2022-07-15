@@ -15,7 +15,9 @@ from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.translate import _
 
-from .efattura import EFatturaOut
+from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
+
+from .efattura import EFatturaOut, format_numbers
 
 _logger = logging.getLogger(__name__)
 
@@ -75,6 +77,31 @@ class WizardExportFatturapa(models.TransientModel):
         return partner
 
     @api.model
+    def getPayments(self, invoice):
+        """Entry point for other modules to override computation of
+        DettaglioPagamento
+
+        We use a specialized class to allow other modules change
+        values w/o altering the original lines"""
+
+        class _Payment:
+            __slots__ = "date_maturity", "amount_currency", "debit"
+
+            def __init__(self, date_maturity, amount_currency, debit):
+                self.date_maturity = date_maturity
+                self.amount_currency = amount_currency
+                self.debit = debit
+
+        payments = []
+        for line in invoice.line_ids.filtered(
+            lambda line: line.account_id.user_type_id.type in ("receivable", "payable")
+        ):
+            payments.append(
+                _Payment(line.date_maturity, line.amount_currency, line.debit)
+            )
+        return payments
+
+    @api.model
     def getImportoTotale(self, invoice):
         """Entry point for other modules to override computation of
         ImportoTotaleDocumento"""
@@ -86,6 +113,78 @@ class WizardExportFatturapa(models.TransientModel):
         # paid the VAT, yet its amount has to be printed out and included
         # in the total amount of the invoice)
         return invoice.amount_total
+
+    @api.model
+    def getAllTaxes(self, invoice):
+        """Generate summary data for taxes.
+        Odoo does that for us, but only for nonzero taxes.
+        SdI expects a summary for every tax mentioned in the invoice,
+        even those with price_total == 0.
+        """
+
+        def _key(tax_id):
+            return tax_id.id
+
+        out_computed = {}
+        # existing tax lines
+        tax_ids = invoice.line_ids.filtered(lambda line: line.tax_line_id)
+        for tax_id in tax_ids:
+            tax_line_id = tax_id.tax_line_id
+            aliquota = format_numbers(tax_line_id.amount)
+            key = _key(tax_line_id)
+            out_computed[key] = {
+                "AliquotaIVA": aliquota,
+                "Natura": tax_line_id.kind_id.code,
+                # 'Arrotondamento':'',
+                "ImponibileImporto": tax_id.tax_base_amount,
+                "Imposta": tax_id.price_total,
+                "EsigibilitaIVA": tax_line_id.payability,
+            }
+            if tax_line_id.law_reference:
+                out_computed[key]["RiferimentoNormativo"] = encode_for_export(
+                    tax_line_id.law_reference, 100
+                )
+
+        out = {}
+        # check for missing tax lines
+        for line in invoice.invoice_line_ids:
+            if line.display_type in ("line_section", "line_note"):
+                # notes and sections
+                # we ignore line.tax_ids altogether,
+                # (it is popolated with a default tax usually)
+                # and use another tax in the template
+                continue
+            for tax_id in line.tax_ids:
+                aliquota = format_numbers(tax_id.amount)
+                key = _key(tax_id)
+                if key in out_computed:
+                    continue
+                if key not in out:
+                    out[key] = {
+                        "AliquotaIVA": aliquota,
+                        "Natura": tax_id.kind_id.code,
+                        # 'Arrotondamento':'',
+                        "ImponibileImporto": line.price_subtotal,
+                        "Imposta": 0.0,
+                        "EsigibilitaIVA": tax_id.payability,
+                    }
+                    if tax_id.law_reference:
+                        out[key]["RiferimentoNormativo"] = encode_for_export(
+                            tax_id.law_reference, 100
+                        )
+                else:
+                    out[key]["ImponibileImporto"] += line.price_subtotal
+                    out[key]["Imposta"] += 0.0
+        out.update(out_computed)
+        return out
+
+    @api.model
+    def getTemplateValues(self, template_values):
+        """
+        Entry point for other modules to override values
+        (and helper functions) passed to template
+        """
+        return template_values
 
     def group_invoices_by_partner(self):
         def split_list(my_list, size):
