@@ -4,7 +4,7 @@
 {
     "name": "ITA - POS - Fattura elettronica - Invio diretto",
     "summary": "Inviare automaticamente a SDI la fattura elettronica dal POS",
-    "version": "12.0.1.0.0",
+    "version": "12.0.2.0.0",
     "development_status": "Beta",
     "category": "Point Of Sale",
     "website": "https://github.com/OCA/l10n-italy",
