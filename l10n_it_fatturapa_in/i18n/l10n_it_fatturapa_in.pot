@@ -84,7 +84,7 @@ msgid "Attachment URL"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/attachment.py:224
+#: code:addons/l10n_it_fatturapa_in/models/attachment.py:212
 #, python-format
 msgid "Attachment without name"
 msgstr ""
@@ -249,11 +249,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice__create_date
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice_line__create_date
 msgid "Created on"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
-msgid "Creation"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -455,16 +450,6 @@ msgid "E-bill description"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__att_name
-msgid "E-bill file name"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
-#: model:ir.model,name:l10n_it_fatturapa_in.model_fatturapa_attachment_in
-msgid "E-bill import file"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_partner__e_invoice_detail_level
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_users__e_invoice_detail_level
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_import_fatturapa__e_invoice_detail_level
@@ -578,11 +563,6 @@ msgid "Global bill discount from document general data"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
-msgid "History"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_article_code__id
@@ -625,6 +605,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.actions.act_window,name:l10n_it_fatturapa_in.action_wizard_import_fatturapa
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
 msgid "Import Electronic Bill"
 msgstr ""
 
@@ -634,12 +615,7 @@ msgid "Import Inconsistencies"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
-msgid "Import e-bill"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/attachment.py:122
+#: code:addons/l10n_it_fatturapa_in/models/attachment.py:110
 #, python-format
 msgid "Impossible to parse XML for {att_name}: {error_msg}"
 msgstr ""
@@ -1113,6 +1089,11 @@ msgid "Sale Provision Type"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__att_name
+msgid "SdI file name"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
 msgid "Set default date used to register vendor invoices: date of invoice or received date."
 msgstr ""
@@ -1432,7 +1413,7 @@ msgid "You can select only one XML file to link."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
-msgid "on"
+#: model:ir.model,name:l10n_it_fatturapa_in.model_fatturapa_attachment_in
+msgid "fatturapa.attachment.in"
 msgstr ""
 
