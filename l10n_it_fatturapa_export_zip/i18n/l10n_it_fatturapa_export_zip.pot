@@ -57,19 +57,14 @@ msgid "Download ZIP e-invoice XML"
 msgstr ""
 
 #. module: l10n_it_fatturapa_export_zip
-#: model:ir.model,name:l10n_it_fatturapa_export_zip.model_fatturapa_attachment_in
-msgid "E-bill import file"
+#: code:addons/l10n_it_fatturapa_export_zip/wizard/export_fatturapa.py:18
+#, python-format
+msgid "E-invoice-export"
 msgstr ""
 
 #. module: l10n_it_fatturapa_export_zip
 #: model:ir.model,name:l10n_it_fatturapa_export_zip.model_fatturapa_attachment_out
-msgid "E-invoice Export File"
-msgstr ""
-
-#. module: l10n_it_fatturapa_export_zip
-#: code:addons/l10n_it_fatturapa_export_zip/wizard/export_fatturapa.py:18
-#, python-format
-msgid "E-invoice-export"
+msgid "Electronic Invoice"
 msgstr ""
 
 #. module: l10n_it_fatturapa_export_zip
@@ -134,5 +129,10 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_export_zip.view_fatturapa_in_attachment_search
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_export_zip.view_fatturapa_out_attachment_search
 msgid "ZIP Not Exported"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: model:ir.model,name:l10n_it_fatturapa_export_zip.model_fatturapa_attachment_in
+msgid "fatturapa.attachment.in"
 msgstr ""
 
