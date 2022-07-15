@@ -35,30 +35,35 @@
         <record model="ir.ui.view" id="view_fatturapa_out_attachment_form">
             <field name="name">fatturapa.attachment.out.form</field>
             <field name="model">fatturapa.attachment.out</field>
+            <field name="inherit_id" ref="l10n_it_fatturapa.fatturapa_attachment_view_form"/>
+            <field name="mode">primary</field>
             <field name="arch" type="xml">
-                <form string="Export Electronic Invoice" create="false">
+                <form position="attributes">
+                    <attribute name="string">Export Electronic Invoice</attribute>
+                    <attribute name="create">false</attribute>
+                </form>
+                <sheet position="before">
                     <header>
                         <field name="state" widget="statusbar"/>
                     </header>
-                    <div>
-                        <group>
-                            <group>
-                                <label for="datas"/>
-                                <div>
-                                    <field name="datas" filename="datas_fname"
-                                           attrs="{'readonly': [('state', 'not in', ['ready', 'sender_error'])]}"/>
-                                    <field name="ftpa_preview_link" widget="url" text="Show preview"/>
-                                </div>
-                                <field name="datas_fname" />
-                                <field name="name" readonly="1"/>
-                            </group>
-                            <group>
-                                <field name="has_pdf_invoice_print"/>
-                                <field name="invoice_partner_id"/>
-                            </group>
-                        </group>
-                        <separator string="Invoices"/>
+                </sheet>
+                <field name="datas" position="attributes">
+                    <!-- Add readonly to parent's invisible rules -->
+                    <attribute name="attrs">
+                        {
+                            'invisible': [('id', '=', False)],
+                            'readonly': [('state', 'not in', ['ready', 'sender_error'])]
+                        }
+                    </attribute>
+                </field>
+                <group name="preview" position="after">
+                    <group>
+                        <field name="has_pdf_invoice_print"/>
+                        <field name="invoice_partner_id"/>
+                    </group>
+                    <group string="Invoices" colspan="2">
                         <field name="out_invoice_ids"
+                               nolabel="1"
                                context="{'form_view_ref': 'account.invoice_form', 'tree_view_ref': 'account.invoice_tree'}">
                             <tree>
                                 <field name="partner_id"/>
@@ -72,19 +77,8 @@
                                         context="{'form_view_ref': 'account.invoice_form'}"/>
                             </tree>
                         </field>
-                        <group string="History">
-                            <label for="create_uid" string="Created by"/>
-                            <div name="creation_div">
-                                <field name="create_uid" readonly="1" class="oe_inline"/> on
-                                <field name="create_date" readonly="1" class="oe_inline"/>
-                            </div>
-                        </group>
-                    </div>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids" widget="mail_followers"/>
-                        <field name="message_ids" widget="mail_thread"/>
-                    </div>
-                </form>
+                    </group>
+                </group>
             </field>
         </record>
 
@@ -103,5 +97,16 @@
             name="E-invoice Export Files"
             id="fatturapa_attachment_menu"/>
 
+        <record model="ir.ui.view" id="fatturapa_attachment_out_form_statusbar">
+            <field name="name">Allow to change status by clicking on the status bar</field>
+            <field name="model">fatturapa.attachment.out</field>
+            <field name="inherit_id" ref="l10n_it_fatturapa_out.view_fatturapa_out_attachment_form"/>
+            <field name="groups_id" eval="[(4,ref('l10n_it_fatturapa_out.group_force_e_inv_export_state'))]"/>
+            <field name="arch" type="xml">
+                <field name="state" position="attributes">
+                    <attribute name="clickable">1</attribute>
+                </field>
+            </field>
+        </record>
     </data>
 </openerp>

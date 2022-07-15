@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2022 Simone Rubino - TAKOBI
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <record id="sdi_channel_sdicoop" model="sdi.channel">
+        <field name="name">SDICoop (Web service)</field>
+        <field name="channel_type">sdi_coop</field>
+    </record>
+</odoo>
