@@ -1,0 +1,123 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_fatturapa_in_recompute
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-02 13:29+0000\n"
+"PO-Revision-Date: 2022-08-02 13:29+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_fatturapa_in_recompute
+#: model:ir.model,name:l10n_it_fatturapa_in_recompute.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: l10n_it_fatturapa_in_recompute
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_recompute.field_account_invoice__compute_on_einvoice_values
+msgid "Compute On Einvoice Values"
+msgstr "Calcola Sui Valori della E-fattura"
+
+#. module: l10n_it_fatturapa_in_recompute
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_recompute.field_res_company__compute_on_einvoice_values
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_recompute.field_res_config_settings__compute_on_einvoice_values
+msgid "Compute imported invoices on e-invoices precision values"
+msgstr "Calcola le fattura importate con la precisione dei valori delle e-fatture"
+
+#. module: l10n_it_fatturapa_in_recompute
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_recompute.field_wizard_import_fatturapa__compute_on_einvoice_values
+msgid "Compute on einvoice values precision"
+msgstr "Calcola con la precisione dei valori della e-fattura"
+
+#. module: l10n_it_fatturapa_in_recompute
+#: model:ir.model,name:l10n_it_fatturapa_in_recompute.model_res_config_settings
+msgid "Config Settings"
+msgstr "Impostazioni di configurazione"
+
+#. module: l10n_it_fatturapa_in_recompute
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_recompute.field_wizard_import_fatturapa__e_invoice_detail_level
+msgid "E-bills Detail Level"
+msgstr "Livello di dettaglio e-fatture"
+
+#. module: l10n_it_fatturapa_in_recompute
+#: model:ir.model,name:l10n_it_fatturapa_in_recompute.model_einvoice_line
+msgid "E-invoice line"
+msgstr "Riga e-fattura"
+
+#. module: l10n_it_fatturapa_in_recompute
+#: model:ir.model,name:l10n_it_fatturapa_in_recompute.model_wizard_import_fatturapa
+msgid "Import E-bill"
+msgstr "Importa e-fattura"
+
+#. module: l10n_it_fatturapa_in_recompute
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in_recompute.view_invoice_form_fatturapa_in
+msgid "Import Precisions"
+msgstr "Precisione Importazione"
+
+#. module: l10n_it_fatturapa_in_recompute
+#: model:ir.model.fields,help:l10n_it_fatturapa_in_recompute.field_res_company__compute_on_einvoice_values
+#: model:ir.model.fields,help:l10n_it_fatturapa_in_recompute.field_res_config_settings__compute_on_einvoice_values
+msgid "Import vendor invoices preserving e-invoices datas."
+msgstr "Importa le fatture dei fornitori preservati i dati delle e-fatture."
+
+#. module: l10n_it_fatturapa_in_recompute
+#: model:ir.model,name:l10n_it_fatturapa_in_recompute.model_account_invoice
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: l10n_it_fatturapa_in_recompute
+#: model:ir.model,name:l10n_it_fatturapa_in_recompute.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Riga fattura"
+
+#. module: l10n_it_fatturapa_in_recompute
+#: selection:wizard.import.fatturapa,e_invoice_detail_level:0
+msgid "Maximum"
+msgstr "Massimo"
+
+#. module: l10n_it_fatturapa_in_recompute
+#: selection:wizard.import.fatturapa,e_invoice_detail_level:0
+msgid "Minimum"
+msgstr "Minimo"
+
+#. module: l10n_it_fatturapa_in_recompute
+#: model:ir.model.fields,help:l10n_it_fatturapa_in_recompute.field_wizard_import_fatturapa__e_invoice_detail_level
+msgid "Minimum level: Bill is created with no lines; User will have to create them, according to what specified in the electronic bill.\n"
+"Tax rate level: Rate level: an invoice line is created for each rate present in the electronic invoice\n"
+"Maximum level: every line contained in the electronic bill will create a line in the bill."
+msgstr "Livello minimo: la fattura viene creata senza righe; l'utente dovrà crearle, secondo quanto specificato nella fattura elettronica.\n"
+"Livello aliquota fiscale: viene creata una riga fattura per ciascuna aliquota fiscale presente nella fattura elettronica.\n"
+"Livello massimo: viene creata una riga fattura per ogni riga contenuta nella fattura elettronica."
+
+#. module: l10n_it_fatturapa_in_recompute
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_recompute.field_einvoice_line__qty
+msgid "Quantity"
+msgstr "Quantità"
+
+#. module: l10n_it_fatturapa_in_recompute
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_recompute.field_account_invoice_line__e_invoice_line_id
+msgid "Related E-bill Line"
+msgstr "Riga e-fattura collegata"
+
+#. module: l10n_it_fatturapa_in_recompute
+#: selection:wizard.import.fatturapa,e_invoice_detail_level:0
+msgid "Tax rate"
+msgstr "Aliquota fiscale"
+
+#. module: l10n_it_fatturapa_in_recompute
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in_recompute.view_account_config_settings
+msgid "This option configure vendor e-invoices import default full precision"
+msgstr "Questa opzione configura l'importazione delle e-fatture dei fornitori con la precisione completa di default"
+
+#. module: l10n_it_fatturapa_in_recompute
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_recompute.field_einvoice_line__unit_price
+msgid "Unit Price"
+msgstr "Prezzo unitario"
+

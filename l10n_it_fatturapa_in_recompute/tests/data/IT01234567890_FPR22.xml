@@ -1,0 +1,615 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<p:FatturaElettronica versione="FPR12" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:p="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2 http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd">
+  <FatturaElettronicaHeader>
+    <DatiTrasmissione>
+      <IdTrasmittente>
+        <IdPaese>IT</IdPaese>
+        <IdCodice>05979361218</IdCodice>
+      </IdTrasmittente>
+      <ProgressivoInvio>00022</ProgressivoInvio>
+      <FormatoTrasmissione>FPR12</FormatoTrasmissione>
+      <CodiceDestinatario>0000000</CodiceDestinatario>
+    </DatiTrasmissione>
+    <CedentePrestatore>
+      <DatiAnagrafici>
+        <IdFiscaleIVA>
+          <IdPaese>IT</IdPaese>
+          <IdCodice>02780790107</IdCodice>
+        </IdFiscaleIVA>
+        <Anagrafica>
+          <Denominazione>SOCIETA' ALPHA SRL</Denominazione>
+        </Anagrafica>
+        <RegimeFiscale>RF01</RegimeFiscale>
+      </DatiAnagrafici>
+      <Sede>
+        <Indirizzo>VIALE ROMA 543</Indirizzo>
+        <CAP>07100</CAP>
+        <Comune>SASSARI</Comune>
+        <Provincia>SS</Provincia>
+        <Nazione>IT</Nazione>
+      </Sede>
+    </CedentePrestatore>
+    <CessionarioCommittente>
+      <DatiAnagrafici>
+        <IdFiscaleIVA>
+          <IdPaese>IT</IdPaese>
+          <IdCodice>03533590174</IdCodice>
+        </IdFiscaleIVA>
+        <Anagrafica>
+          <Denominazione>BETA GAMMA</Denominazione>
+        </Anagrafica>
+      </DatiAnagrafici>
+      <Sede>
+        <Indirizzo>VIA TORINO 38-B</Indirizzo>
+        <CAP>00145</CAP>
+        <Comune>ROMA</Comune>
+        <Provincia>RM</Provincia>
+        <Nazione>IT</Nazione>
+      </Sede>
+    </CessionarioCommittente>
+  </FatturaElettronicaHeader>
+  <FatturaElettronicaBody>
+    <DatiGenerali>
+      <DatiGeneraliDocumento>
+        <TipoDocumento>TD01</TipoDocumento>
+        <Divisa>EUR</Divisa>
+        <Data>2022-01-26</Data>
+        <Numero>400033759</Numero>
+        <ImportoTotaleDocumento>558.61</ImportoTotaleDocumento>
+        <Causale>Fatture consumi GAS</Causale>
+      </DatiGeneraliDocumento>
+    </DatiGenerali>
+    <DatiBeniServizi>
+      <DettaglioLinee>
+        <NumeroLinea>26</NumeroLinea>
+        <Descrizione>Corrispettivo di commercializzazione all'ingrosso</Descrizione>
+        <Quantita>359.64733300</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-21</DataFinePeriodo>
+        <PrezzoUnitario>0.26641700</PrezzoUnitario>
+        <PrezzoTotale>95.82000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>27</NumeroLinea>
+        <Descrizione>Corrispettivo di commercializzazione all'ingrosso</Descrizione>
+        <Quantita>124.00000000</Quantita>
+        <DataInizioPeriodo>2021-12-22</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>0.26641700</PrezzoUnitario>
+        <PrezzoTotale>33.04000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>29</NumeroLinea>
+        <Descrizione>Corrispettivo di commercializzazione all'ingrosso</Descrizione>
+        <Quantita>120.00000000</Quantita>
+        <DataInizioPeriodo>2022-01-01</DataInizioPeriodo>
+        <DataFinePeriodo>2022-01-25</DataFinePeriodo>
+        <PrezzoUnitario>0.26641700</PrezzoUnitario>
+        <PrezzoTotale>31.97000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>28</NumeroLinea>
+        <Descrizione>Corrispettivo di commercializzazione all'ingrosso</Descrizione>
+        <Quantita>125.00000000</Quantita>
+        <DataInizioPeriodo>2022-01-01</DataInizioPeriodo>
+        <DataFinePeriodo>2022-01-25</DataFinePeriodo>
+        <PrezzoUnitario>0.26641700</PrezzoUnitario>
+        <PrezzoTotale>33.30000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>30</NumeroLinea>
+        <Descrizione>Oneri aggiuntivi</Descrizione>
+        <Quantita>233.12320200</Quantita>
+        <DataInizioPeriodo>2021-11-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-11-24</DataFinePeriodo>
+        <PrezzoUnitario>0.00000000</PrezzoUnitario>
+        <PrezzoTotale>0.00000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>31</NumeroLinea>
+        <Descrizione>Oneri aggiuntivi- detrazione</Descrizione>
+        <Quantita>216.00000000</Quantita>
+        <DataInizioPeriodo>2021-11-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-11-25</DataFinePeriodo>
+        <PrezzoUnitario>0.00000000</PrezzoUnitario>
+        <PrezzoTotale>0.00000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>33</NumeroLinea>
+        <Descrizione>Oneri aggiuntivi</Descrizione>
+        <Quantita>359.64733300</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-21</DataFinePeriodo>
+        <PrezzoUnitario>0.00000000</PrezzoUnitario>
+        <PrezzoTotale>0.00000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>32</NumeroLinea>
+        <Descrizione>Oneri aggiuntivi</Descrizione>
+        <Quantita>92.65152900</Quantita>
+        <DataInizioPeriodo>2021-11-25</DataInizioPeriodo>
+        <DataFinePeriodo>2021-11-30</DataFinePeriodo>
+        <PrezzoUnitario>0.00000000</PrezzoUnitario>
+        <PrezzoTotale>0.00000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>34</NumeroLinea>
+        <Descrizione>Oneri aggiuntivi</Descrizione>
+        <Quantita>124.00000000</Quantita>
+        <DataInizioPeriodo>2021-12-22</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>0.00000000</PrezzoUnitario>
+        <PrezzoTotale>0.00000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>35</NumeroLinea>
+        <Descrizione>Oneri aggiuntivi</Descrizione>
+        <Quantita>125.00000000</Quantita>
+        <DataInizioPeriodo>2022-01-01</DataInizioPeriodo>
+        <DataFinePeriodo>2022-01-25</DataFinePeriodo>
+        <PrezzoUnitario>0.00000000</PrezzoUnitario>
+        <PrezzoTotale>0.00000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>36</NumeroLinea>
+        <Descrizione>Oneri aggiuntivi</Descrizione>
+        <Quantita>120.00000000</Quantita>
+        <DataInizioPeriodo>2022-01-01</DataInizioPeriodo>
+        <DataFinePeriodo>2022-01-25</DataFinePeriodo>
+        <PrezzoUnitario>0.00000000</PrezzoUnitario>
+        <PrezzoTotale>0.00000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>37</NumeroLinea>
+        <Descrizione>Quota energia-trasporto e cont. 1° scagl.</Descrizione>
+        <Quantita>120.00000000</Quantita>
+        <DataInizioPeriodo>2022-01-01</DataInizioPeriodo>
+        <DataFinePeriodo>2022-01-25</DataFinePeriodo>
+        <PrezzoUnitario>0.06453000</PrezzoUnitario>
+        <PrezzoTotale>7.74000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>38</NumeroLinea>
+        <Descrizione>Quota energia-trasporto e cont. 2° scagl.</Descrizione>
+        <Quantita>125.00000000</Quantita>
+        <DataInizioPeriodo>2022-01-01</DataInizioPeriodo>
+        <DataFinePeriodo>2022-01-25</DataFinePeriodo>
+        <PrezzoUnitario>0.12310100</PrezzoUnitario>
+        <PrezzoTotale>15.39000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>39</NumeroLinea>
+        <Descrizione>Quota energia-trasporto e cont. 4° scagl.</Descrizione>
+        <Quantita>233.12320200</Quantita>
+        <DataInizioPeriodo>2021-11-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-11-24</DataFinePeriodo>
+        <PrezzoUnitario>0.11176500</PrezzoUnitario>
+        <PrezzoTotale>26.06000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>40</NumeroLinea>
+        <Descrizione>Quota energia-trasporto e cont. 4° scagl.- detrazione</Descrizione>
+        <Quantita>216.00000000</Quantita>
+        <DataInizioPeriodo>2021-11-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-11-25</DataFinePeriodo>
+        <PrezzoUnitario>-0.11176500</PrezzoUnitario>
+        <PrezzoTotale>-24.14000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>41</NumeroLinea>
+        <Descrizione>Quota energia-trasporto e cont. 4° scagl.</Descrizione>
+        <Quantita>92.65152900</Quantita>
+        <DataInizioPeriodo>2021-11-25</DataInizioPeriodo>
+        <DataFinePeriodo>2021-11-30</DataFinePeriodo>
+        <PrezzoUnitario>0.11176500</PrezzoUnitario>
+        <PrezzoTotale>10.36000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>42</NumeroLinea>
+        <Descrizione>Quota energia-trasporto e cont. 4° scagl.</Descrizione>
+        <Quantita>359.64733300</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-21</DataFinePeriodo>
+        <PrezzoUnitario>0.11176500</PrezzoUnitario>
+        <PrezzoTotale>40.20000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>45</NumeroLinea>
+        <Descrizione>Quota energia - oneri di sistema 2° scagl.</Descrizione>
+        <Quantita>125.00000000</Quantita>
+        <DataInizioPeriodo>2022-01-01</DataInizioPeriodo>
+        <DataFinePeriodo>2022-01-25</DataFinePeriodo>
+        <PrezzoUnitario>0.04842000</PrezzoUnitario>
+        <PrezzoTotale>6.05000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>46</NumeroLinea>
+        <Descrizione>Quota energia - oneri di sistema 4° scagl.</Descrizione>
+        <Quantita>233.12320200</Quantita>
+        <DataInizioPeriodo>2021-11-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-11-24</DataFinePeriodo>
+        <PrezzoUnitario>0.02432000</PrezzoUnitario>
+        <PrezzoTotale>5.67000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>47</NumeroLinea>
+        <Descrizione>Quota energia - oneri di sistema 4° scagl.- detrazione</Descrizione>
+        <Quantita>216.00000000</Quantita>
+        <DataInizioPeriodo>2021-11-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-11-25</DataFinePeriodo>
+        <PrezzoUnitario>-0.02432000</PrezzoUnitario>
+        <PrezzoTotale>-5.25000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>44</NumeroLinea>
+        <Descrizione>Quota energia - oneri di sistema 1° scagl.</Descrizione>
+        <Quantita>120.00000000</Quantita>
+        <DataInizioPeriodo>2022-01-01</DataInizioPeriodo>
+        <DataFinePeriodo>2022-01-25</DataFinePeriodo>
+        <PrezzoUnitario>0.00222000</PrezzoUnitario>
+        <PrezzoTotale>0.27000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>43</NumeroLinea>
+        <Descrizione>Quota energia-trasporto e cont. 4° scagl.</Descrizione>
+        <Quantita>124.00000000</Quantita>
+        <DataInizioPeriodo>2021-12-22</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>0.11176500</PrezzoUnitario>
+        <PrezzoTotale>13.86000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>48</NumeroLinea>
+        <Descrizione>Quota energia - oneri di sistema 4° scagl.</Descrizione>
+        <Quantita>92.65152900</Quantita>
+        <DataInizioPeriodo>2021-11-25</DataInizioPeriodo>
+        <DataFinePeriodo>2021-11-30</DataFinePeriodo>
+        <PrezzoUnitario>0.02432000</PrezzoUnitario>
+        <PrezzoTotale>2.25000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>49</NumeroLinea>
+        <Descrizione>Quota energia - oneri di sistema 4° scagl.</Descrizione>
+        <Quantita>359.64733300</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-21</DataFinePeriodo>
+        <PrezzoUnitario>0.02432000</PrezzoUnitario>
+        <PrezzoTotale>8.75000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>50</NumeroLinea>
+        <Descrizione>Quota energia - oneri di sistema 4° scagl.</Descrizione>
+        <Quantita>124.00000000</Quantita>
+        <DataInizioPeriodo>2021-12-22</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>0.02432000</PrezzoUnitario>
+        <PrezzoTotale>3.02000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>51</NumeroLinea>
+        <Descrizione>Quota fissa - materia gas</Descrizione>
+        <Quantita>2.00000000</Quantita>
+        <DataInizioPeriodo>2021-11-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>8.00000000</PrezzoUnitario>
+        <PrezzoTotale>16.00000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>52</NumeroLinea>
+        <Descrizione>Quota fissa - trasporto e cont.</Descrizione>
+        <Quantita>2.00000000</Quantita>
+        <DataInizioPeriodo>2021-11-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>4.87319000</PrezzoUnitario>
+        <PrezzoTotale>9.75000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>53</NumeroLinea>
+        <Descrizione>Quota fissa - oneri di sistema</Descrizione>
+        <Quantita>2.00000000</Quantita>
+        <DataInizioPeriodo>2021-11-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>-2.17750000</PrezzoUnitario>
+        <PrezzoTotale>-4.36000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>25</NumeroLinea>
+        <Descrizione>Corrispettivo di commercializzazione all'ingrosso</Descrizione>
+        <Quantita>92.65152900</Quantita>
+        <DataInizioPeriodo>2021-11-25</DataInizioPeriodo>
+        <DataFinePeriodo>2021-11-30</DataFinePeriodo>
+        <PrezzoUnitario>0.26641700</PrezzoUnitario>
+        <PrezzoTotale>24.68000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>24</NumeroLinea>
+        <Descrizione>Corrispettivo di commercializzazione all'ingrosso- detrazione</Descrizione>
+        <Quantita>216.00000000</Quantita>
+        <DataInizioPeriodo>2021-11-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-11-25</DataFinePeriodo>
+        <PrezzoUnitario>-0.26641700</PrezzoUnitario>
+        <PrezzoTotale>-57.55000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>22</NumeroLinea>
+        <Descrizione>Componente di commercializzazione</Descrizione>
+        <Quantita>120.00000000</Quantita>
+        <DataInizioPeriodo>2022-01-01</DataInizioPeriodo>
+        <DataFinePeriodo>2022-01-25</DataFinePeriodo>
+        <PrezzoUnitario>0.02000000</PrezzoUnitario>
+        <PrezzoTotale>2.40000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>23</NumeroLinea>
+        <Descrizione>Corrispettivo di commercializzazione all'ingrosso</Descrizione>
+        <Quantita>233.12320200</Quantita>
+        <DataInizioPeriodo>2021-11-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-11-24</DataFinePeriodo>
+        <PrezzoUnitario>0.26641700</PrezzoUnitario>
+        <PrezzoTotale>62.11000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>21</NumeroLinea>
+        <Descrizione>Componente di commercializzazione</Descrizione>
+        <Quantita>125.00000000</Quantita>
+        <DataInizioPeriodo>2022-01-01</DataInizioPeriodo>
+        <DataFinePeriodo>2022-01-25</DataFinePeriodo>
+        <PrezzoUnitario>0.02000000</PrezzoUnitario>
+        <PrezzoTotale>2.50000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>20</NumeroLinea>
+        <Descrizione>Componente di commercializzazione</Descrizione>
+        <Quantita>124.00000000</Quantita>
+        <DataInizioPeriodo>2021-12-22</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>0.02000000</PrezzoUnitario>
+        <PrezzoTotale>2.48000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>19</NumeroLinea>
+        <Descrizione>Componente di commercializzazione</Descrizione>
+        <Quantita>359.64733300</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-21</DataFinePeriodo>
+        <PrezzoUnitario>0.02000000</PrezzoUnitario>
+        <PrezzoTotale>7.19000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>17</NumeroLinea>
+        <Descrizione>Componente di commercializzazione- detrazione</Descrizione>
+        <Quantita>216.00000000</Quantita>
+        <DataInizioPeriodo>2021-11-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-11-25</DataFinePeriodo>
+        <PrezzoUnitario>-0.02000000</PrezzoUnitario>
+        <PrezzoTotale>-4.32000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>18</NumeroLinea>
+        <Descrizione>Componente di commercializzazione</Descrizione>
+        <Quantita>92.65152900</Quantita>
+        <DataInizioPeriodo>2021-11-25</DataInizioPeriodo>
+        <DataFinePeriodo>2021-11-30</DataFinePeriodo>
+        <PrezzoUnitario>0.02000000</PrezzoUnitario>
+        <PrezzoTotale>1.85000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>16</NumeroLinea>
+        <Descrizione>Componente di commercializzazione</Descrizione>
+        <Quantita>233.12320200</Quantita>
+        <DataInizioPeriodo>2021-11-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-11-24</DataFinePeriodo>
+        <PrezzoUnitario>0.02000000</PrezzoUnitario>
+        <PrezzoTotale>4.66000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>15</NumeroLinea>
+        <Descrizione>Quota annuale per l'assicurazione contro i rischi derivanti dall'uso del gas</Descrizione>
+        <Quantita>1.00000000</Quantita>
+        <DataInizioPeriodo>2022-01-04</DataInizioPeriodo>
+        <DataFinePeriodo>2022-01-04</DataFinePeriodo>
+        <PrezzoUnitario>0.45000000</PrezzoUnitario>
+        <PrezzoTotale>0.45000000</PrezzoTotale>
+        <AliquotaIVA>22.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>13</NumeroLinea>
+        <Descrizione>Addizionale regionale oltre 1.560 smc/anno</Descrizione>
+        <Quantita>359.64733300</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-21</DataFinePeriodo>
+        <PrezzoUnitario>0.03098700</PrezzoUnitario>
+        <PrezzoTotale>11.14000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>14</NumeroLinea>
+        <Descrizione>Addizionale regionale oltre 1.560 smc/anno</Descrizione>
+        <Quantita>124.00000000</Quantita>
+        <DataInizioPeriodo>2021-12-22</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>0.03098700</PrezzoUnitario>
+        <PrezzoTotale>3.84000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>7</NumeroLinea>
+        <Descrizione>Accisa oltre 1.560 smc/anno</Descrizione>
+        <Quantita>124.00000000</Quantita>
+        <DataInizioPeriodo>2021-12-22</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>0.18600000</PrezzoUnitario>
+        <PrezzoTotale>23.06000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>9</NumeroLinea>
+        <Descrizione>Addizionale regionale da 121 a 480 smc/anno</Descrizione>
+        <Quantita>125.00000000</Quantita>
+        <DataInizioPeriodo>2022-01-01</DataInizioPeriodo>
+        <DataFinePeriodo>2022-01-25</DataFinePeriodo>
+        <PrezzoUnitario>0.02324100</PrezzoUnitario>
+        <PrezzoTotale>2.91000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>8</NumeroLinea>
+        <Descrizione>Addizionale regionale fino a 120 smc/anno</Descrizione>
+        <Quantita>120.00000000</Quantita>
+        <DataInizioPeriodo>2022-01-01</DataInizioPeriodo>
+        <DataFinePeriodo>2022-01-25</DataFinePeriodo>
+        <PrezzoUnitario>0.00774700</PrezzoUnitario>
+        <PrezzoTotale>0.93000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>12</NumeroLinea>
+        <Descrizione>Addizionale regionale oltre 1.560 smc/anno</Descrizione>
+        <Quantita>92.65152900</Quantita>
+        <DataInizioPeriodo>2021-11-25</DataInizioPeriodo>
+        <DataFinePeriodo>2021-11-30</DataFinePeriodo>
+        <PrezzoUnitario>0.03098700</PrezzoUnitario>
+        <PrezzoTotale>2.87000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>11</NumeroLinea>
+        <Descrizione>Addizionale regionale oltre 1.560 smc/anno- detrazione</Descrizione>
+        <Quantita>216.00000000</Quantita>
+        <DataInizioPeriodo>2021-11-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-11-25</DataFinePeriodo>
+        <PrezzoUnitario>-0.03098700</PrezzoUnitario>
+        <PrezzoTotale>-6.69000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>10</NumeroLinea>
+        <Descrizione>Addizionale regionale oltre 1.560 smc/anno</Descrizione>
+        <Quantita>233.12320200</Quantita>
+        <DataInizioPeriodo>2021-11-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-11-24</DataFinePeriodo>
+        <PrezzoUnitario>0.03098700</PrezzoUnitario>
+        <PrezzoTotale>7.22000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>5</NumeroLinea>
+        <Descrizione>Accisa oltre 1.560 smc/anno</Descrizione>
+        <Quantita>92.65152900</Quantita>
+        <DataInizioPeriodo>2021-11-25</DataInizioPeriodo>
+        <DataFinePeriodo>2021-11-30</DataFinePeriodo>
+        <PrezzoUnitario>0.18600000</PrezzoUnitario>
+        <PrezzoTotale>17.23000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>6</NumeroLinea>
+        <Descrizione>Accisa oltre 1.560 smc/anno</Descrizione>
+        <Quantita>359.64733300</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-21</DataFinePeriodo>
+        <PrezzoUnitario>0.18600000</PrezzoUnitario>
+        <PrezzoTotale>66.89000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>4</NumeroLinea>
+        <Descrizione>Accisa oltre 1.560 smc/anno- detrazione</Descrizione>
+        <Quantita>216.00000000</Quantita>
+        <DataInizioPeriodo>2021-11-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-11-25</DataFinePeriodo>
+        <PrezzoUnitario>-0.18600000</PrezzoUnitario>
+        <PrezzoTotale>-40.18000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>3</NumeroLinea>
+        <Descrizione>Accisa oltre 1.560 smc/anno</Descrizione>
+        <Quantita>233.12320200</Quantita>
+        <DataInizioPeriodo>2021-11-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-11-24</DataFinePeriodo>
+        <PrezzoUnitario>0.18600000</PrezzoUnitario>
+        <PrezzoTotale>43.36000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>2</NumeroLinea>
+        <Descrizione>Accisa da 121 a 480 smc/anno</Descrizione>
+        <Quantita>125.00000000</Quantita>
+        <DataInizioPeriodo>2022-01-01</DataInizioPeriodo>
+        <DataFinePeriodo>2022-01-25</DataFinePeriodo>
+        <PrezzoUnitario>0.17500000</PrezzoUnitario>
+        <PrezzoTotale>21.88000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>1</NumeroLinea>
+        <Descrizione>Accisa fino a 120 smc/anno</Descrizione>
+        <Quantita>120.00000000</Quantita>
+        <DataInizioPeriodo>2022-01-01</DataInizioPeriodo>
+        <DataFinePeriodo>2022-01-25</DataFinePeriodo>
+        <PrezzoUnitario>0.04400000</PrezzoUnitario>
+        <PrezzoTotale>5.28000000</PrezzoTotale>
+        <AliquotaIVA>5.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DatiRiepilogo>
+        <AliquotaIVA>22.00</AliquotaIVA>
+        <ImponibileImporto>0.45</ImponibileImporto>
+        <Imposta>0.10</Imposta>
+        <EsigibilitaIVA>I</EsigibilitaIVA>
+      </DatiRiepilogo>
+      <DatiRiepilogo>
+        <AliquotaIVA>5.00</AliquotaIVA>
+        <ImponibileImporto>531.49</ImponibileImporto>
+        <Imposta>26.57</Imposta>
+        <EsigibilitaIVA>I</EsigibilitaIVA>
+      </DatiRiepilogo>
+    </DatiBeniServizi>
+    <DatiPagamento>
+      <CondizioniPagamento>TP02</CondizioniPagamento>
+      <DettaglioPagamento>
+        <ModalitaPagamento>MP19</ModalitaPagamento>
+        <DataScadenzaPagamento>2022-02-21</DataScadenzaPagamento>
+        <ImportoPagamento>558.61</ImportoPagamento>
+      </DettaglioPagamento>
+    </DatiPagamento>
+  </FatturaElettronicaBody>
+</p:FatturaElettronica>
