@@ -40,6 +40,11 @@ msgid "Active"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
+#: model:res.groups,name:l10n_it_fatturapa_out.group_force_e_inv_export_state
+msgid "Allow to force e-invoice export state"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view
 msgid "Attached report"
 msgstr ""
@@ -97,7 +102,7 @@ msgid "Company"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:66
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:58
 #, python-format
 msgid "Company %s TIN not set."
 msgstr ""
@@ -157,7 +162,6 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__create_uid
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_wizard_export_fatturapa__create_uid
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 msgid "Created by"
 msgstr "Dibuat oleh"
 
@@ -232,7 +236,6 @@ msgid "Display Name"
 msgstr "Nama Tampilan"
 
 #. module: l10n_it_fatturapa_out
-#: model:ir.model,name:l10n_it_fatturapa_out.model_fatturapa_attachment_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_invoice__fatturapa_attachment_out_id
 msgid "E-invoice Export File"
 msgstr ""
@@ -248,7 +251,7 @@ msgid "E-invoice State"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:133
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:125
 #, python-format
 msgid "E-invoice attachment changed"
 msgstr ""
@@ -265,11 +268,7 @@ msgid "E-invoice export file still present for invoice %s."
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__att_name
-msgid "E-invoice file name"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out
+#: model:ir.model,name:l10n_it_fatturapa_out.model_fatturapa_attachment_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
 msgid "Electronic Invoice"
 msgstr ""
@@ -332,7 +331,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:95
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:87
 #, python-format
 msgid "File %s already present."
 msgstr ""
@@ -379,11 +378,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_invoice__has_pdf_invoice_print
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__has_pdf_invoice_print
 msgid "Has Pdf Invoice Print"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
-msgid "History"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
@@ -597,7 +591,7 @@ msgid "Out Invoices"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:59
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:51
 #, python-format
 msgid "Partner %s TIN not set."
 msgstr ""
@@ -709,6 +703,11 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
 msgid "Results"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__att_name
+msgid "SdI file name"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
@@ -854,7 +853,7 @@ msgid "Url"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:134
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:126
 #, python-format
 msgid "User %s uploaded a new e-invoice file"
 msgstr ""
@@ -894,13 +893,13 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:143
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:135
 #, python-format
 msgid "You can only delete files in 'Ready to Send' state."
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:124
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:116
 #, python-format
 msgid "You can only reset files in 'Sender Error' state."
 msgstr ""
@@ -909,9 +908,4 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:294
 #, python-format
 msgid "ZIP is not set for %s."
-msgstr ""
-
-#. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
-msgid "on"
 msgstr ""
