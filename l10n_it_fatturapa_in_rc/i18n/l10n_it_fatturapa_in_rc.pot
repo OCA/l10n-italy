@@ -55,3 +55,8 @@ msgstr ""
 msgid "Total amount ({bill_amount_total}) does not match with e-bill total amount ({e_bill_amount_total})"
 msgstr ""
 
+#. module: l10n_it_fatturapa_in_rc
+#: model:ir.model,name:l10n_it_fatturapa_in_rc.model_fatturapa_attachment_in
+msgid "fatturapa.attachment.in"
+msgstr ""
+
