@@ -102,7 +102,7 @@ msgid "Attachment URL"
 msgstr "URL allegato"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/attachment.py:212
+#: code:addons/l10n_it_fatturapa_in/models/attachment.py:228
 #, python-format
 msgid "Attachment without name"
 msgstr "Allegato senza nome"
@@ -683,7 +683,7 @@ msgid "Import Inconsistencies"
 msgstr "Incongruenze nell'importazione"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/attachment.py:110
+#: code:addons/l10n_it_fatturapa_in/models/attachment.py:112
 #, python-format
 msgid "Impossible to parse XML for {att_name}: {error_msg}"
 msgstr ""
@@ -824,6 +824,11 @@ msgstr "Collega a fattura"
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.wizard_link_supplier_invoice
 msgid "Link to existing supplier bills"
 msgstr "Collega a fatture fornitore esistenti"
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__linked_invoice_id_xml
+msgid "Linked Invoice Id Xml"
+msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_main_attachment_id
