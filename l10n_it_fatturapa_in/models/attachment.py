@@ -49,6 +49,8 @@ class FatturaPAAttachmentIn(models.Model):
     is_self_invoice = fields.Boolean(
         "Contains self invoices", compute="_compute_is_self_invoice", store=True
     )
+    linked_invoice_id_xml = fields.Char(
+        compute="_compute_linked_invoice_id_xml", store=True)
 
     _sql_constraints = [(
         'ftpa_attachment_in_name_uniq',
@@ -133,6 +135,20 @@ class FatturaPAAttachmentIn(models.Model):
                         # then the whole attachment is flagged
                         att.is_self_invoice = True
                         break
+
+    @api.multi
+    @api.depends('ir_attachment_id.datas')
+    def _compute_linked_invoice_id_xml(self):
+        for att in self:
+            att.linked_invoice_id_xml = ""
+            fatt = att.get_invoice_obj()
+            if fatt:
+                for invoice_body in fatt.FatturaElettronicaBody:
+                    if len(invoice_body.DatiGenerali.DatiFattureCollegate) == 1:
+                        att.linked_invoice_id_xml = (
+                            invoice_body.DatiGenerali.DatiFattureCollegate[0].
+                            IdDocumento
+                        )
 
     @api.multi
     @api.depends('ir_attachment_id.datas')
