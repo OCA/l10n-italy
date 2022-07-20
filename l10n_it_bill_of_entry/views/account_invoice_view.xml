@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="invoice_supplier_boe_form">
+        <field name="name">invoice.supplier.boe.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/div[1]" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_view_bill_of_entries"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-pencil-square-o"
+                        attrs="{'invisible': [('bill_of_entries_count', '=', 0)]}">
+                        <field name="bill_of_entries_count" widget="statinfo" string="Bill of entries"/>
+                    </button>
+                    <button name="action_view_extra_supplier_invoices"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-pencil-square-o"
+                        attrs="{'invisible': [('extra_supplier_invoices_count', '=', 0)]}">
+                        <field name="extra_supplier_invoices_count" widget="statinfo" string="Extra invoices"/>
+                    </button>
+                    <button name="action_view_forwarder_bill_of_entries"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-pencil-square-o"
+                        attrs="{'invisible': [('forwarder_bill_of_entries_count', '=', 0)]}">
+                        <field name="forwarder_bill_of_entries_count" widget="statinfo" string="Bill of entries"/>
+                    </button>
+                </div>
+            </xpath>
+            <xpath expr="//button[@name='action_invoice_draft']" position="after">
+                <button name="generate_bill_of_entry" class="oe_highlight"
+                        attrs="{'invisible': ['|', ('customs_doc_type', '!=', 'supplier_invoice'), ('bill_of_entries_count', '!=', 0)]}"
+                        string="Generate bill of entry" type="object" groups="account.group_account_invoice"/>
+            </xpath>
+            <xpath expr="//field[@name='move_name']" position="after">
+                <field name="customs_doc_type"
+                    attrs="{'readonly': ['|',('state', '!=', 'draft'), ('forwarder_bill_of_entries_count', '!=', 0)]}"/>
+            </xpath>
+            <xpath expr="//notebook/page[2]" position="after">
+                <page string="Customs" name="customs" attrs="{'invisible': [('customs_doc_type','not in', ['bill_of_entry', 'forwarder_invoice'])]}">
+                    <separator string="Supplier invoices" name="supplier_invoices" colspan="4"
+                        attrs="{'invisible': [('customs_doc_type','!=', 'bill_of_entry')]}"/>
+                    <field name="supplier_invoice_ids"
+                        attrs="{'invisible': [('customs_doc_type','!=', 'bill_of_entry')]}"
+                        domain="[('customs_doc_type', '=', 'supplier_invoice')]"
+                        context="{'default_customs_doc_type': 'supplier_invoice'}"/>
+                    <group name="forwarder_invoice">
+                        <field name="forwarder_invoice_id"
+                            attrs="{'invisible': [('customs_doc_type','!=', 'bill_of_entry')]}"
+                            domain="[('customs_doc_type','=', 'forwarder_invoice'), ('state', '=', 'draft')]"
+                            context="{'default_customs_doc_type': 'forwarder_invoice'}"/>
+                    </group>
+                    <group name="storno">
+                        <field name="bill_of_entry_storno_id"
+                            attrs="{'invisible': [('customs_doc_type','!=', 'forwarder_invoice')]}"/>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//notebook/page[1]/field[@name='invoice_line_ids']/tree/field[@name='price_subtotal']" position="after">
+                <field name="advance_customs_vat" attrs="{'column_invisible': [('parent.customs_doc_type', '!=', 'forwarder_invoice')]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <menuitem id="customs" name="Customs"
+          sequence="99" parent="account.menu_finance_payables"/>
+
+    <record id="action_supplier_invoice" model="ir.actions.act_window">
+        <field name="name">Supplier invoices</field>
+        <field name="res_model">account.invoice</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+        <field name="domain">[('type','=','in_invoice'), ('customs_doc_type', '=', 'supplier_invoice')]</field>
+        <field name="context">{'default_type': 'in_invoice', 'type': 'in_invoice', 'journal_type': 'purchase', 'default_customs_doc_type': 'supplier_invoice'}</field>
+    </record>
+    <record id="action_supplier_invoice_view1" model="ir.actions.act_window.view">
+        <field eval="1" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="account.invoice_supplier_tree"/>
+        <field name="act_window_id" ref="action_supplier_invoice"/>
+    </record>
+    <record id="action_supplier_invoice_view2" model="ir.actions.act_window.view">
+        <field eval="2" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="account.invoice_supplier_form"/>
+        <field name="act_window_id" ref="action_supplier_invoice"/>
+    </record>
+    <menuitem action="action_supplier_invoice" id="menu_action_supplier_invoice" parent="customs"/>
+
+    <record id="action_bill_of_entry" model="ir.actions.act_window">
+        <field name="name">Bills of entry</field>
+        <field name="res_model">account.invoice</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+        <field name="domain">[('type','=','in_invoice'), ('customs_doc_type', '=', 'bill_of_entry')]</field>
+        <field name="context">{'default_type': 'in_invoice', 'type': 'in_invoice', 'journal_type': 'purchase', 'default_customs_doc_type': 'bill_of_entry'}</field>
+    </record>
+    <record id="action_bill_of_entry_view1" model="ir.actions.act_window.view">
+        <field eval="1" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="account.invoice_supplier_tree"/>
+        <field name="act_window_id" ref="action_bill_of_entry"/>
+    </record>
+    <record id="action_bill_of_entry_view2" model="ir.actions.act_window.view">
+        <field eval="2" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="account.invoice_supplier_form"/>
+        <field name="act_window_id" ref="action_bill_of_entry"/>
+    </record>
+    <menuitem action="action_bill_of_entry" id="menu_action_bill_of_entry" parent="customs"/>
+
+    <record id="action_forwarder_invoice" model="ir.actions.act_window">
+        <field name="name">Forwarder invoices</field>
+        <field name="res_model">account.invoice</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+        <field name="domain">[('type','=','in_invoice'), ('customs_doc_type', '=', 'forwarder_invoice')]</field>
+        <field name="context">{'default_type': 'in_invoice', 'type': 'in_invoice', 'journal_type': 'purchase', 'default_customs_doc_type': 'forwarder_invoice'}</field>
+    </record>
+    <record id="action_forwarder_invoice_view1" model="ir.actions.act_window.view">
+        <field eval="1" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="account.invoice_supplier_tree"/>
+        <field name="act_window_id" ref="action_forwarder_invoice"/>
+    </record>
+    <record id="action_forwarder_invoice_view2" model="ir.actions.act_window.view">
+        <field eval="2" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="account.invoice_supplier_form"/>
+        <field name="act_window_id" ref="action_forwarder_invoice"/>
+    </record>
+    <menuitem action="action_forwarder_invoice" id="menu_action_forwarder_invoice" parent="customs"/>
+
+</odoo>
