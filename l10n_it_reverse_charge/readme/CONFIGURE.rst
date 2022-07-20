@@ -24,13 +24,13 @@ Creare l'imposta **22% extra UE** - Acquisti:
   :alt: 22% extra UE - Acquisti
   :width: 600 px
 
-Creare il conto 'Transitorio autofatturazione':
+Creare il conto 'Transitorio autofatturazione', accessibile dalla vista di modifica del tipo inversione contabile:
 
 .. figure:: ../static/description/temp_account_auto_inv.png
   :alt: conto transitorio Autofattura
   :width: 600 px
 
-Il 'Registro pagamento autofattura' deve essere configurato con il conto 'Transitorio autofatturazione' appena creato:
+Creare il 'Registro pagamento autofattura' (anch'esso accessibile dalla vista di modifica del tipo inversione contabile) che deve essere configurato con il conto 'Transitorio autofatturazione' appena creato:
 
 .. figure:: ../static/description/registro_riconciliazione.png
   :alt: Registro pagamento autofattura
@@ -38,6 +38,10 @@ Il 'Registro pagamento autofattura' deve essere configurato con il conto 'Transi
 
 .. figure:: ../static/description/registro_riconciliazione_2.png
   :alt: Registro pagamento autofattura (tab Configurazione)
+  :width: 600 px
+
+.. figure:: ../static/description/registro_riconciliazione_3.png
+  :alt: Conto bancario da collegare
   :width: 600 px
 
 Modificare il tipo inversione contabile **Intra-UE (autofattura)**:
@@ -54,10 +58,10 @@ Modificare il tipo inversione contabile **Extra-UE (autofattura)**:
   :alt: inversione contabile con Autofattura
   :width: 600 px
 
-Il 'Registro autofattura passiva' deve essere di tipo 'Acquisto'.
+Il 'Registro autofattura passiva' ('Registro autofattura fornitore') deve essere di tipo 'Acquisto'.
 
 
-Nella posizione fiscale, impostare il tipo inversione contabile:
+Aggiungere le posizioni fiscali ed impostare il tipo inversione contabile:
 
 .. figure:: ../static/description/fiscal_pos_intra.png
   :alt: Impostazione posizioni fiscali Intra CEE
@@ -99,13 +103,13 @@ Create the tax **22% extra EU** - Purchase:
   :alt: 22% extra UE - Purchase
   :width: 600 px
 
-Create the account 'Self Invoice Transitory' as follows:
+Create the account 'Self Invoice Transitory' as follows (accessible in the 'reverse charge type' edit view):
 
 .. figure:: ../static/description/temp_account_auto_inv.png
   :alt: Self Invoice Transitory Account
   :width: 600 px
 
-The 'Self Invoice Payment' Journal has to be configured with the just created 'Self Invoice Transitory' account:
+The 'Self Invoice Payment' Journal (this too accessible in the 'reverse charge type' edit view) has to be configured with the just created 'Self Invoice Transitory' account:
 
 .. figure:: ../static/description/registro_riconciliazione.png
   :alt: Registro pagamento autofattura
@@ -113,6 +117,10 @@ The 'Self Invoice Payment' Journal has to be configured with the just created 'S
 
 .. figure:: ../static/description/registro_riconciliazione_2.png
   :alt: Registro pagamento autofattura (tab Configurazione)
+  :width: 600 px
+
+.. figure:: ../static/description/registro_riconciliazione_3.png
+  :alt: Conto bancario da collegare
   :width: 600 px
 
 Edit the reverse charge type **Intra-EU (self-invoice)**:
@@ -131,7 +139,7 @@ Edit the reverse charge type **Extra-EU (self-invoice)** :
 
 The 'Supplier Self Invoice Journal' has to be of type 'Purchase'.
 
-In the fiscal position, set the reverse charge type:
+Add the fiscal position and set the reverse charge type:
 
 .. figure:: ../static/description/fiscal_pos_intra.png
   :alt: Impostazione posizioni fiscali Intra CEE
