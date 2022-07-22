@@ -118,6 +118,7 @@ class AccountMove(models.Model):
         write_off_line_vals = self._build_debit_line()
         line_sp = self.line_ids.filtered(lambda l: l.is_split_payment)
         if line_sp:
+            line_sp = line_sp[0].with_context(check_move_validity=False)
             if (
                 self.move_type == "out_invoice"
                 and float_compare(
@@ -127,7 +128,7 @@ class AccountMove(models.Model):
                 )
                 != 0
             ):
-                line_sp.with_context(check_move_validity=False).update(
+                line_sp.update(
                     {
                         "price_unit": 0.0,
                         "amount_currency": 0.0,
@@ -146,7 +147,7 @@ class AccountMove(models.Model):
                 )
                 != 0
             ):
-                line_sp.with_context(check_move_validity=False).update(
+                line_sp.update(
                     {
                         "price_unit": 0.0,
                         "amount_currency": 0.0,

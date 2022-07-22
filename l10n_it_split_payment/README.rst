@@ -134,6 +134,7 @@ Contributors
 * Giacomo Grasso <giacomo.grasso.82@gmail.com>
 * Ruben Tonetto <https://github.com/ruben-tonetto>
 * Giuseppe Borruso - Dinamiche Aziendali srl <gborruso@dinamicheaziendali.it>
+* Alex Comba <alex.comba@agilebg.com>
 
 Maintainers
 ~~~~~~~~~~~
