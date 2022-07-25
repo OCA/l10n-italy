@@ -25,6 +25,7 @@
     "data": [
         "security/ir.model.access.csv",
         "security/security.xml",
+        "data/mail_message_subtype_data.xml",
         "views/account_move_views.xml",
         "views/sdi_view.xml",
         "views/company_view.xml",
