@@ -41,6 +41,12 @@ msgstr ""
 "\" role=\"img\"/>"
 
 #. module: l10n_it_sdi_channel
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_res_config_settings__group_sdi_channel_validate_send
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_account_config_settings
+msgid "Allow users to validate, export and send invoices to SdI in one click."
+msgstr ""
+
+#. module: l10n_it_sdi_channel
 #: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.wizard_fatturapa_send_to_sdi_view
 msgid "Cancel"
 msgstr ""
@@ -129,6 +135,11 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_sdi_channel
+#: model:ir.model,name:l10n_it_sdi_channel.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel____last_update
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_wizard_fatturapa_send_to_sdi____last_update
 msgid "Last Modified on"
@@ -196,6 +207,17 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_it_sdi_channel.field_res_company__e_invoice_user_id
 #: model:ir.model.fields,help:l10n_it_sdi_channel.field_res_config_settings__e_invoice_user_id
 msgid "This user will be used at supplier e-bill creation."
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_config_settings__group_sdi_channel_validate_send
+#: model:res.groups,name:l10n_it_sdi_channel.res_groups_validate_send
+msgid "Validate, export and send invoices"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_invoice_form_fatturapa
+msgid "Validate, export and send to SdI"
 msgstr ""
 
 #. module: l10n_it_sdi_channel
