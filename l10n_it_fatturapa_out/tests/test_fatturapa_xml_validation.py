@@ -609,3 +609,15 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         e_invoice.state = 'sender_error'
         e_invoice.reset_to_ready()
         self.assertEqual(e_invoice.state, 'ready')
+
+    def test_validate_invoice(self):
+        """
+        Check that the invoice used for tests
+        is open when validated.
+        """
+        invoice = self._create_invoice()
+        self.assertEqual(invoice.state, 'draft')
+
+        invoice.action_invoice_open()
+
+        self.assertEqual(invoice.state, 'open')
