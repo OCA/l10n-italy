@@ -15,7 +15,7 @@
             <DatiRitenuta t-foreach="ritenuta_lines" t-as="wt_line">
                 <t
                     t-set="tipo_ritenuta"
-                    t-value="get_withholding_type(wt_line.withholding_tax_id.wt_types, record.partner_id)"
+                    t-value="get_withholding_type(wt_line.withholding_tax_id.wt_types, record.company_id.partner_id)"
                 />
                 <TipoRitenuta t-esc="tipo_ritenuta" />
                 <ImportoRitenuta t-esc="format_numbers_two(wt_line.tax)" />
@@ -73,35 +73,4 @@
         </xpath>
     </template>
 
-    <template
-        id="wt_account_invoice_it_fattura_elettronica_body"
-        inherit_id="l10n_it_fatturapa_out.account_invoice_it_fattura_elettronica_body"
-    >
-
-        <xpath expr="t" position="after">
-            <t
-                t-set="wt_hack_rate"
-                t-value="record.amount_net_pay / record.amount_total if record.withholding_tax_line_ids else 1.0"
-            />
-        </xpath>
-
-        <xpath expr="//DettaglioPagamento//ImportoPagamento" position="replace">
-            <ImportoPagamento
-                t-esc="format_numbers_two(wt_hack_rate * (move_line.amount_currency or move_line.debit or 0.0))"
-            />
-        </xpath>
-
-        <!--
-        <xpath expr="//DatiBeniServizi" position="inside">
-            <t t-set="wt_lines_to_write" t-value="record.withholding_tax_line_ids.filtered(lambda x: x.withholding_tax_id.wt_types not in ('ritenuta', 'other') and x.withholding_tax_id.use_daticassaprev)"/>
-            <t t-if="wt_lines_to_write">
-                <t t-foreach="wt_lines_to_write" t-as="wt_line">
-                    <DatiRiepilogo>
-
-                    </DatiRiepilogo>
-                </t>
-            </t>
-        </xpath>
-        -->
-    </template>
 </odoo>
