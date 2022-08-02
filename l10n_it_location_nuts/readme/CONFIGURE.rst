@@ -9,6 +9,7 @@ e confermare.
 Questo aggiornerà le regioni NUTS con i dati presenti nel `RAMON <http://ec.europa.eu/eurostat/ramon>`__ (Reference And Management Of Nomenclatures)
 e le collegherà alle province già presenti in Odoo.
 
+
 **English**
 
 After installing the module, open the wizard:

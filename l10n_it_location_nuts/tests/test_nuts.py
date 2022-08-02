@@ -1,4 +1,5 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
+# Copyright 2022 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests.common import SavepointCase
@@ -8,7 +9,7 @@ class TestNUTS(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super(TestNUTS, cls).setUpClass()
-        importer = cls.env["nuts.import"]
+        importer = cls.env["nuts.import"].create([{}])
         importer.run_import()
         cls.rome_nuts = cls.env["res.partner.nuts"].search([("code", "=", "ITI43")])
         rome_state_id = cls.env.ref("base.state_it_rm").id
