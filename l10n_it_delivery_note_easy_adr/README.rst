@@ -39,11 +39,19 @@ Nel DDT verrà mostrato un tab Massa Virtuale se presente almeno un prodotto adr
 * Emily Manfredi <emily.manfredi@bloomup.it>
 
 
-**Maintainer**
------------------------
+Maintainers
+~~~~~~~~~~~
 
-.. image:: 
-   :alt: Bloomup
-   :target: https://www.bloomup.it/
+This module is maintained by the OCA.
 
-Bloomup Srl <info@bloomup.it>
+.. image:: https://odoo-community.org/logo.png
+   :alt: Odoo Community Association
+   :target: https://odoo-community.org
+
+OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.
+
+This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_account>`_ project on GitHub.
+
+You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
