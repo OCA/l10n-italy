@@ -34,7 +34,7 @@ Nel DDT verrà mostrato un tab Massa Virtuale se presente almeno un prodotto adr
 **Contributors**
 -----------------------
 
-* Matteo Pichiucchi <matteo.piciucchi@bloomup.it>
+* Matteo Piciucchi <matteo.piciucchi@bloomup.it>
 * Letizia Freda <letizia.freda@bloomup.it>
 * Emily Manfredi <emily.manfredi@bloomup.it>
 
