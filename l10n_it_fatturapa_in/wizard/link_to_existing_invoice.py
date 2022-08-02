@@ -2,12 +2,6 @@
 
 from openerp import models, api, fields, _
 from openerp.exceptions import Warning as UserError
-from openerp.addons.l10n_it_fatturapa.bindings import fatturapa
-
-
-def get_invoice_obj(fatturapa_attachment):
-        xml_string = fatturapa_attachment.get_xml_string()
-        return fatturapa.CreateFromDocument(xml_string)
 
 
 class WizardLinkToInvoiceLine(models.TransientModel):
@@ -42,7 +36,12 @@ class WizardLinkToInvoiceLine(models.TransientModel):
             .new({
                 'e_invoice_detail_level': '2',
             })
-        fatt = get_invoice_obj(fatturapa_attachment)
+        fatt = fatturapa_attachment.get_invoice_obj()
+        if not fatt:
+            raise UserError(
+                _("Cannot link an attachment that could not be parsed.\n"
+                  "Please fix the parsing error first, then try again."))
+
         FatturaBody = fatt.FatturaElettronicaBody[self.e_invoice_nbr]
         cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
 
@@ -88,7 +87,12 @@ class WizardLinkToInvoice(models.TransientModel):
 
     @api.model
     def _get_default_lines_vals(self, attachment):
-        fatt = get_invoice_obj(attachment)
+        fatt = attachment.get_invoice_obj()
+        if not fatt:
+            raise UserError(
+                _("Cannot link an attachment that could not be parsed.\n"
+                  "Please fix the parsing error first, then try again."))
+
         invoice_model = self.env['account.invoice']
         line_vals = list()
         descr_template = _("Bill number {bill_nbr} of {bill_date}.\n"

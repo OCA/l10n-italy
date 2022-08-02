@@ -147,18 +147,31 @@ class FatturapaCommon(SingleTransactionCase):
             'fiscalyear_id': self.fiscalyear2019.id,
         })
 
+    def create_attachment(self, name, file_name,
+                          datas_fname=None, module_name=None):
+        if module_name is None:
+            module_name = 'l10n_it_fatturapa_in'
+        if datas_fname is None:
+            datas_fname = file_name
+        attach = self.attach_model.create(
+            {
+                'name': name,
+                'datas': self.getFile(file_name, module_name=module_name)[1],
+                'datas_fname': datas_fname
+            })
+        return attach
+
     def run_wizard(self, name, file_name, datas_fname=None,
                    mode='import', wiz_values=None, module_name=None):
         if module_name is None:
             module_name = 'l10n_it_fatturapa_in'
         if datas_fname is None:
             datas_fname = file_name
-        attach_id = self.attach_model.create(
-            {
-                'name': name,
-                'datas': self.getFile(file_name, module_name=module_name)[1],
-                'datas_fname': datas_fname
-            }).id
+
+        attach = self.create_attachment(name, file_name,
+                                        datas_fname=datas_fname,
+                                        module_name=module_name)
+        attach_id = attach.id
         if mode == 'import':
             wizard = self.wizard_model.with_context(
                 active_ids=[attach_id], active_model='fatturapa.attachment.in'
