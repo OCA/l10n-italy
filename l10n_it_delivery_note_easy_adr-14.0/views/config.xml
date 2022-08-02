@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="res_config_settings_form_view" model="ir.ui.view">
+        <field name="name">res.config.settings.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="stock.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='stock']/div[last()]" position="after">
+                <h2>Adr Configuration</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="virtual_mass_limit" />
+                            <div class="text-muted">
+                                <p>
+                                    Maximum limit value of the virtual mass
+                                </p>
+                            </div>
+                            <field name="virtual_mass_limit" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="virtual_mass_min_limit" />
+                            <div class="text-muted">
+                                <p>
+                                    Minimum limit value of the virtual mass, 
+                                    below which the weight of the product is not added
+                                </p>
+                            </div>
+                            <field name="virtual_mass_min_limit" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="limit_exceeded_message" />
+                            <div class="text-muted">
+                                <p>
+                                    Maximum limit exceeded message that appears 
+                                    in the delivery note
+                                </p>
+                                <p>
+                                    use {virtual_mass} to insert the total weight of the delivery note in the message
+                                </p>
+                            </div>
+                            <field name="limit_exceeded_message" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="limit_not_exceeded_message" />
+                            <div class="text-muted">
+                                <p>
+                                    Maximum limit not exceeded message that appears 
+                                    in the delivery note
+                                </p>
+                                <p>
+                                    use {virtual_mass} to insert the total weight of the delivery note in the message
+                                </p>
+                            </div>
+                            <field name="limit_not_exceeded_message" />
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
