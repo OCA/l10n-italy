@@ -270,7 +270,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         # inconsistencies must not be duplicated
         res = self.run_wizard_multi([
             'IT02780790107_11005.xml',
-            'IT02780790107_11005.xml',
+            'IT02780790107_11006.xml',
             ])
         invoice1_id = res.get('domain')[0][2][0]
         invoice2_id = res.get('domain')[0][2][1]
@@ -495,7 +495,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             'street': 'Viale Repubblica, 34',
             'electronic_invoice_no_contact_update': True,
         })
-        res = self.run_wizard('test30', 'IT05979361218_002.xml')
+        res = self.run_wizard('test30a', 'IT05979361218_002.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.partner_id.id, partner_id.id)
@@ -713,7 +713,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertTrue(orig_invoice.date_invoice)
 
     def test_42_xml_import(self):
-        res = self.run_wizard('test42', 'IT01234567890_FPR05.xml')
+        res = self.run_wizard('test42b', 'IT01234567890_FPR05.xml')
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.invoice_line[1].discount, 100)
