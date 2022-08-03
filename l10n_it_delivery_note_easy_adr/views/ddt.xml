@@ -1,25 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="stock_delivery_note_form_view_inherit_adr" model="ir.ui.view">
         <field name="name">stock.delivery.note.view.form.inherit</field>
         <field name="model">stock.delivery.note</field>
-        <field name="inherit_id" ref="l10n_it_delivery_note.stock_delivery_note_form_view"/>
+        <field
+            name="inherit_id"
+            ref="l10n_it_delivery_note.stock_delivery_note_form_view"
+        />
         <field name="arch" type="xml">
             <notebook position="inside">
-                <page name="virtual_mass" string="Virtual Mass" 
-                attrs="{'invisible':[('is_adr','=',False)]}">
-                    <field name="is_adr" invisible="1"/>
+                <page
+                    name="virtual_mass"
+                    string="Virtual Mass"
+                    attrs="{'invisible':[('is_adr','=',False)]}"
+                >
+                    <field name="is_adr" invisible="1" />
                     <field name="virtual_mass" widget="html" nolabel="1" />
                 </page>
             </notebook>
         </field>
     </record>
 
-    <template id="delivery_note_report_template" 
-    inherit_id="l10n_it_delivery_note.delivery_note_report_template">
+    <template
+        id="delivery_note_report_template"
+        inherit_id="l10n_it_delivery_note.delivery_note_report_template"
+    >
         <xpath expr="//div[hasclass('oe_structure')][last()]" position="after">
             <div class="col-12">
-                <t t-raw="doc.virtual_mass"/>   
+                <t t-raw="doc.virtual_mass" />
             </div>
         </xpath>
     </template>

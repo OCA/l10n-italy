@@ -1,5 +1,5 @@
-**l10n_it_delivery_note_easy_adr**
-==================
+**Delivery Note Easy ADR**
+==========================
 
 **Funzionalità:** Questo modulo permette la configurazione dell'ADR semplificata, scegliando se un prodotto è ADR e mostrando in caso positivo un tab relativo
 all'adr, nel DDT verrà mostrato un tab relatvo alla mass virtuale.

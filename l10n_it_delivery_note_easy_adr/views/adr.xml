@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="adr_category_action" model="ir.actions.act_window">
-        <field name="name" >Adr Categories</field>
+        <field name="name">Adr Categories</field>
         <field name="res_model">product.adr.category</field>
         <field name="view_mode">tree,form</field>
     </record>
@@ -11,16 +11,17 @@
         name="Adr Categories"
         action="adr_category_action"
         parent="stock.menu_product_in_config_stock"
-        sequence="99"/>
+        sequence="99"
+    />
 
     <record id="product_adr_view_tree" model="ir.ui.view">
         <field name="name">product.adr.view.tree</field>
         <field name="model">product.adr.category</field>
         <field name="arch" type="xml">
             <tree editable="bottom">
-                <field name="name" required="1"/>
-                <field name="multiplier" required="1"/>
-                <field name="active" widget="boolean_toggle"/>
+                <field name="name" required="1" />
+                <field name="multiplier" required="1" />
+                <field name="active" widget="boolean_toggle" />
             </tree>
         </field>
     </record>
