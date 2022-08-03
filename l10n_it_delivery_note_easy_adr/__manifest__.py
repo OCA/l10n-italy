@@ -7,8 +7,9 @@
 {
     "name": "ITA - Gestione ADR Semplificata",
     "summary": "Gestione ADR semplificata con calcolo massa virtuale",
-    "author": "Matteo Piciucchi, Letizia Freda, Bloomup srl",
-    "website": "https://www.bloomup.it",
+    "author": "Odoo Italia Network, Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/l10n-italy",
+    "maintainers": ["Matteo Piciucchi, Letizia Freda, Emily Manfredi, Daniele La Martina"],
     "version": "14.0.1.0.0",
     "category": "Localization/Italy",
     "license": "AGPL-3",
