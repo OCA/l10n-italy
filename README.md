@@ -55,6 +55,7 @@ addon | version | maintainers | summary
 [l10n_it_invoices_data_communication](l10n_it_invoices_data_communication/) | 14.0.1.0.1 |  | Comunicazione dati fatture (c.d. "nuovo spesometro" o "esterometro")
 [l10n_it_invoices_data_communication_fatturapa](l10n_it_invoices_data_communication_fatturapa/) | 14.0.1.0.0 |  | Integrazione fatturazione elettronica e comunicazione dati fatture (c.d. "nuovo spesometro")
 [l10n_it_ipa](l10n_it_ipa/) | 14.0.1.0.2 |  | ITA - Codice IPA
+[l10n_it_location_nuts](l10n_it_location_nuts/) | 14.0.1.0.1 |  | Opzioni NUTS specifiche per l'Italia
 [l10n_it_mis_reports_pl_bs](l10n_it_mis_reports_pl_bs/) | 14.0.1.0.0 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) | Modelli "MIS Builder" per il conto economico e lo stato patrimoniale
 [l10n_it_payment_reason](l10n_it_payment_reason/) | 14.0.1.0.2 |  | Aggiunge la tabella delle causali di pagamento da usare ad esempio nelle ritenute d'acconto
 [l10n_it_pec](l10n_it_pec/) | 14.0.1.0.0 |  | Aggiunge il campo email PEC al partner
