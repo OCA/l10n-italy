@@ -12,7 +12,7 @@
     'author': "Odoo Community Association (OCA), Openforce",
     'maintainers': ["SilvioGregorini"],
     'website': "https://github.com/OCA/l10n-italy"
-               "/l10n_it_account_balance_report",
+               "/tree/12.0/l10n_it_account_balance_report",
     'license': "AGPL-3",
     'depends': [
         'account_financial_report',

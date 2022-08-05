@@ -12,7 +12,8 @@
     'summary': "Gestione automatica dell'imposta di bollo",
     'author': 'Ermanno Gnan, Sergio Corato, Enrico Ganzaroli, '
               'Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/l10n-italy',
+    'website': 'https://github.com/OCA/l10n-italy'
+               '/tree/12.0/l10n_it_account_stamp',
     'license': 'LGPL-3',
     'depends': [
         'product',

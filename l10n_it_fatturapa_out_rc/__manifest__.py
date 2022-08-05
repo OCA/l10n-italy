@@ -6,7 +6,8 @@
     "version": "12.0.1.1.0",
     "development_status": "Beta",
     "category": "Hidden",
-    "website": "https://github.com/OCA/l10n-italy",
+    "website": "https://github.com/OCA/l10n-italy"
+               "/tree/12.0/l10n_it_fatturapa_out_rc",
     "author": "TAKOBI, Odoo Community Association (OCA)",
     "maintainers": ["eLBati"],
     "license": "AGPL-3",

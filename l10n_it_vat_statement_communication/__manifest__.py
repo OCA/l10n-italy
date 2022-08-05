@@ -9,7 +9,8 @@
     'category': 'Account',
     'author': "Openforce di Camilli Alessandro, "
               "Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/l10n-italy',
+    'website': 'https://github.com/OCA/l10n-italy'
+               '/tree/12.0/l10n_it_vat_statement_communication',
     'license': 'AGPL-3',
     'depends': [
         'account_vat_period_end_statement',

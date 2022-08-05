@@ -10,7 +10,8 @@
     'version': '12.0.2.0.1',
     'development_status': 'Beta',
     'category': 'Hidden',
-    'website': 'https://github.com/OCA/l10n-italy',
+    'website': 'https://github.com/OCA/l10n-italy'
+               '/tree/12.0/l10n_it_fatturapa_out_wt',
     'author': 'Sergio Corato, Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'depends': [

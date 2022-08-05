@@ -10,7 +10,8 @@
     "author": "TAKOBI, "
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "website": "https://github.com/OCA/l10n-italy",
+    "website": "https://github.com/OCA/l10n-italy"
+               "/tree/12.0/fiscal_epos_print_meal_voucher",
     "maintainers": ["eLBati"],
     "depends": [
         "fiscal_epos_print",

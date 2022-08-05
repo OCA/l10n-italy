@@ -10,7 +10,8 @@
     'summary': 'Condizioni di pagamento delle fatture elettroniche',
     'author': 'Davide Corio, Agile Business Group, Innoviu, '
               'Odoo Italia Network, Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/l10n-italy',
+    'website': 'https://github.com/OCA/l10n-italy'
+               '/tree/12.0/l10n_it_fiscal_payment_term',
     'license': 'LGPL-3',
     'depends': [
         'account',

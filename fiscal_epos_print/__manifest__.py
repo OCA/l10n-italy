@@ -16,7 +16,8 @@
         'Leonardo Donelli, TAKOBI, Level Prime Srl'
     ),
     'license': 'AGPL-3',
-    'website': 'https://github.com/OCA/l10n-italy',
+    'website': 'https://github.com/OCA/l10n-italy'
+               '/tree/12.0/fiscal_epos_print',
     'maintainers': ['eLBati'],
     'depends': ['point_of_sale', 'pos_order_mgmt'],
     'data': [

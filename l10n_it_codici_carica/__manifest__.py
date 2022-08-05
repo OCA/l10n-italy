@@ -13,7 +13,7 @@
     'author': "Openforce di Camilli Alessandro,"
               "Odoo Community Association (OCA)",
     'website':  'https://github.com/OCA/l10n-italy'
-                'l10n_it_codici_carica',
+               '/tree/12.0/l10n_it_codici_carica',
     'license': 'LGPL-3',
     'depends': ['account'],
     'data': [

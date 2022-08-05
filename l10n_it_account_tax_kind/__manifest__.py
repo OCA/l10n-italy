@@ -10,7 +10,8 @@
     'development_status': 'Production/Stable',
     'category': 'Localisation/Italy',
     'author': "Odoo Community Association (OCA), Apulia Software s.r.l",
-    'website': 'https://github.com/OCA/l10n-italy',
+    'website': 'https://github.com/OCA/l10n-italy'
+               '/tree/12.0/l10n_it_account_tax_kind',
     'license': 'AGPL-3',
     'depends': [
         'l10n_it_account',
