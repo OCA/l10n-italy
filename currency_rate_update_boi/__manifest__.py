@@ -9,6 +9,7 @@
     'author':
         'TAKOBI, '
         'Odoo Community Association (OCA)',
+    'website': 'https://github.com/OCA/l10n-italy',
     'maintainers': ['eLBati'],
     'license': 'AGPL-3',
     'installable': True,
