@@ -7,7 +7,7 @@
     'category': 'Localization/Italy',
     'summary': 'Invio fatture elettroniche tramite SDICoop',
     'author': 'TAKOBI, Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
+    'website': 'https://github.com/OCA/l10n-italy'
                'l10n_it_fatturapa_sdicoop',
     'license': 'AGPL-3',
     'depends': [
