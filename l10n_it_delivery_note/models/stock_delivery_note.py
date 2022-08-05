@@ -82,7 +82,7 @@ class StockDeliveryNote(models.Model):
                               copy=False,
                               states=DONE_READONLY_STATE,
                               track_visibility='onchange')
-    display_name = fields.Char(compute='_compute_display_name', store=True,
+    display_name = fields.Char(compute='_compute_display_name_function', store=True,
                                index=True, copy=False)
 
     state = fields.Selection(DELIVERY_NOTE_STATES,
@@ -222,7 +222,7 @@ class StockDeliveryNote(models.Model):
     @api.multi
     @api.depends('name', 'partner_id',
                  'partner_ref', 'partner_id.display_name')
-    def _compute_display_name(self):
+    def _compute_display_name_function(self):
         for note in self:
             if not note.name:
                 partner_name = note.partner_id.display_name
