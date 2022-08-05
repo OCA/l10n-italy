@@ -13,7 +13,7 @@
     "author": "Agile Business Group, Odoo Community Association (OCA)"
               ", LinkIt Spa",
     'website': 'https://github.com/OCA/l10n-italy'
-               'account_vat_period_end_statement',
+               '/tree/12.0/account_vat_period_end_statement',
     "depends": [
         "account",
         "account_tax_balance",

@@ -10,7 +10,8 @@
     'development_status': 'Production/Stable',
     'summary': 'Base Bank ABI/CAB codes',
     'author': "Odoo Italia Network, Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_abicab',
+    'website': 'https://github.com/OCA/l10n-italy'
+               '/tree/12.0/l10n_it_abicab',
     'license': 'AGPL-3',
     'depends': ['account'],
     'data': ['views/abicab_view.xml'],

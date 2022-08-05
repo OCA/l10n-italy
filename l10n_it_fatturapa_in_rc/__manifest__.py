@@ -8,7 +8,7 @@
     "development_status": "Beta",
     "category": "Hidden",
     'website': 'https://github.com/OCA/l10n-italy'
-               'l10n_it_fatturapa_in_rc',
+               '/tree/12.0/l10n_it_fatturapa_in_rc',
     "author": "Efatto.it di Sergio Corato, Odoo Community Association (OCA)",
     "maintainers": ["sergiocorato"],
     "license": "AGPL-3",

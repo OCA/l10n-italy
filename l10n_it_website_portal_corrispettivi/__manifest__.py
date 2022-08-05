@@ -8,7 +8,8 @@
     "version": "12.0.1.0.0",
     "author": "Odoo Community Association (OCA), TAKOBI",
     "category": "Localization/Italy",
-    "website": "https://github.com/OCA/l10n-italy",
+    "website": "https://github.com/OCA/l10n-italy"
+               "/tree/12.0/l10n_it_website_portal_corrispettivi",
     "license": "AGPL-3",
     "depends": [
         "l10n_it_corrispettivi",

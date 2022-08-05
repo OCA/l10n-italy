@@ -9,8 +9,8 @@
     "version": "12.0.1.4.0",
     "development_status": "Beta",
     "category": "Hidden",
-    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
-               'l10n_it_fatturapa_out_ddt',
+    'website': 'https://github.com/OCA/l10n-italy'
+               '/tree/12.0/l10n_it_fatturapa_out_ddt',
     "author": "Agile Business Group, Odoo Community Association (OCA)",
     "maintainers": [
         "eLBati",

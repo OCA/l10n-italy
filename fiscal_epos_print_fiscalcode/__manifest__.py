@@ -10,7 +10,7 @@
               'Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'website': 'https://github.com/OCA/l10n-italy'
-               '12.0/fiscal_epos_print_fiscalcode',
+               '/tree/12.0/fiscal_epos_print_fiscalcode',
     'depends': [
         'fiscal_epos_print',
         'l10n_it_pos_fiscalcode',

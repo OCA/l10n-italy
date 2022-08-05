@@ -11,7 +11,7 @@
     'author': 'Francesco Apruzzese, Odoo Community Association (OCA), '
               'Sergio Corato, Glauco Prina, Lara Baggio',
     'website': 'https://github.com/OCA/l10n-italy'
-               '12.0/l10n_it_dichiarazione_intento',
+               '/tree/12.0/l10n_it_dichiarazione_intento',
     'depends': [
         'account',
         'sale',

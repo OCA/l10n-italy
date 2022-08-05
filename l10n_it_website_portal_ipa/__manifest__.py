@@ -6,8 +6,8 @@
                "tra i dettagli dell'utente nel portale.",
     "version": "12.0.1.1.1",
     "category": "Localization/Italy",
-    "website": "https://github.com/OCA/l10n-italy/tree/"
-               "12.0/l10n_it_website_portal_ipa",
+    "website": "https://github.com/OCA/l10n-italy"
+               "/tree/12.0/l10n_it_website_portal_ipa",
     "author": "Agile Business Group, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "depends": [

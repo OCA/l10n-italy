@@ -8,7 +8,8 @@
     "version": "12.0.1.0.2",
     "development_status": "Beta",
     "category": "Point Of Sale",
-    "website": "https://github.com/OCA/l10n-italy",
+    "website": "https://github.com/OCA/l10n-italy"
+               "/tree/12.0/l10n_it_pos_fatturapa",
     "author": "Roberto Fichera, Odoo Community Association (OCA)",
     "maintainers": ["robyf70"],
     "license": "AGPL-3",

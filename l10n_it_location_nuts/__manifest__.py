@@ -6,7 +6,8 @@
     'summary': 'Opzioni NUTS specifiche per l\'Italia',
     'version': '12.0.1.0.2',
     'category': 'Localisation/Europe',
-    'website': 'https://github.com/OCA/l10n-italy',
+    'website': 'https://github.com/OCA/l10n-italy'
+               '/tree/12.0/l10n_it_location_nuts',
     'author': 'Agile Business Group, '
               'Odoo Community Association (OCA)',
     'license': 'AGPL-3',
