@@ -1,47 +1,37 @@
-[![Runbot Status](https://runbot.odoo-community.org/runbot/badge/flat/122/12.0.svg)](https://runbot.odoo-community.org/runbot/repo/github-com-oca-l10n-italy-122)
-[![Build Status](https://travis-ci.org/OCA/l10n-italy.svg?branch=12.0)](https://travis-ci.org/OCA/l10n-italy/branches)
-[![Coverage Status](https://coveralls.io/repos/OCA/l10n-italy/badge.svg?branch=12.0)](https://coveralls.io/r/OCA/l10n-italy?branch=12.0)
-[![Code Climate](https://codeclimate.com/github/OCA/l10n-italy/badges/gpa.svg)](https://codeclimate.com/github/OCA/l10n-italy)
 
-Odoo Italia Modules
-===================
+[![Runboat](https://img.shields.io/badge/runboat-Try%20me-875A7B.png)](https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&target_branch=12.0)
+[![Pre-commit Status](https://github.com/OCA/l10n-italy/actions/workflows/pre-commit.yml/badge.svg?branch=12.0)](https://github.com/OCA/l10n-italy/actions/workflows/pre-commit.yml?query=branch%3A12.0)
+[![Build Status](https://github.com/OCA/l10n-italy/actions/workflows/test.yml/badge.svg?branch=12.0)](https://github.com/OCA/l10n-italy/actions/workflows/test.yml?query=branch%3A12.0)
+[![codecov](https://codecov.io/gh/OCA/l10n-italy/branch/12.0/graph/badge.svg)](https://codecov.io/gh/OCA/l10n-italy)
+[![Translation Status](https://translation.odoo-community.org/widgets/l10n-italy-12-0/-/svg-badge.svg)](https://translation.odoo-community.org/engage/l10n-italy-12-0/?utm_source=widget)
 
-## English
+<!-- /!\ do not modify above this line -->
 
-### Contributing
+# Odoo Italia Modules
 
-Visit https://www.odoo-italia.org/contribuire
+Addons concerning Odoo Italian Localization.
 
-#### Review
+<!-- /!\ do not modify below this line -->
 
-You can find all OCA/l10n-italy contributions needing reviews [here](https://github.com/OCA/l10n-italy/pulls?q=is%3Apr+is%3Aopen+label%3A%22needs+review%22).
+<!-- prettier-ignore-start -->
 
-#### Coding
+[//]: # (addons)
 
-Please read our [contributing guidelines](https://github.com/OCA/odoo-community.org/blob/master/website/Contribution/CONTRIBUTING.rst).
+This part will be replaced when running the oca-gen-addons-table script from OCA/maintainer-tools.
 
-#### Translations
+[//]: # (end addons)
 
-See our [documentation for translators](https://github.com/OCA/l10n-italy/wiki/Traduzioni).
+<!-- prettier-ignore-end -->
 
-## Italiano
+## Licenses
 
-### Contribuire
+This repository is licensed under [AGPL-3.0](LICENSE).
 
-Visita https://www.odoo-italia.org/contribuire
+However, each module can have a totally different license, as long as they adhere to Odoo Community Association (OCA)
+policy. Consult each module's `__manifest__.py` file, which contains a `license` key
+that explains its license.
 
-#### Revisioni
-
-Puoi trovare [qui](https://github.com/OCA/l10n-italy/pulls?q=is%3Apr+is%3Aopen+label%3A%22needs+review%22) tutti i contributi a OCA/l10n-italy che hanno bisogno di revisione.
-
-#### Codice
-
-Leggi le nostre [linee guida](https://github.com/OCA/odoo-community.org/blob/master/website/Contribution/CONTRIBUTING.rst).
-
-#### Traduzioni
-
-Vedi la nostra [documentazione per i traduttori](https://github.com/OCA/l10n-italy/wiki/Traduzioni).
-
-## Translation Status
-
-[![Translation status](https://translation.odoo-community.org/widgets/l10n-italy-12-0/-/multi-auto.svg)](https://translation.odoo-community.org/engage/l10n-italy-12-0/?utm_source=widget)
+----
+OCA, or the [Odoo Community Association](http://odoo-community.org/), is a nonprofit
+organization whose mission is to support the collaborative development of Odoo features
+and promote its widespread use.
