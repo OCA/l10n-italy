@@ -6,7 +6,7 @@
     "summary": "Modulo per integrare ricevute e fatturazione elettronica",
     "version": "12.0.1.0.1",
     "category": "Localization/Italy",
-    "website": "https://github.com/OCA/l10n-italy/tree/"
+    "website": "https://github.com/OCA/l10n-italy"
                "12.0/l10n_it_corrispettivi_fatturapa_out",
     "author": "Odoo Community Association (OCA)",
     "license": "AGPL-3",
