@@ -13,7 +13,7 @@
     'author': "Odoo Community Association (OCA)",
     'category': 'Localization/Italy',
     'summary': 'Ricevute bancarie',
-    'website': 'https://github.com/OCA/l10n-italy/tree/'
+    'website': 'https://github.com/OCA/l10n-italy'
                '12.0/l10n_it_ricevute_bancarie',
     'license': "AGPL-3",
     'depends': [

@@ -14,7 +14,7 @@
     'author': 'Davide Corio, Odoo Community Association (OCA),'
               'Agile Business Group, Francesco Apruzzese, '
               'Openforce di Camilli Alessandro',
-    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_ddt',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'AGPL-3',
     'depends': [
         'sale_stock',

@@ -12,7 +12,7 @@
     'category': 'Localization/Italy',
     'summary': 'Invio fatture elettroniche tramite PEC',
     'author': 'Openforce Srls Unipersonale, Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
+    'website': 'https://github.com/OCA/l10n-italy'
                'l10n_it_fatturapa_pec',
     'license': 'AGPL-3',
     'depends': [

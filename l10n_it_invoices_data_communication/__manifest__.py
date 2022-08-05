@@ -11,7 +11,7 @@
     'category': 'Account',
     'author': "Openforce di Camilli Alessandro, "
               "Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/l10n-italy/',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'AGPL-3',
     'depends': [
         'account', 'l10n_it_fiscal_document_type', 'l10n_it_codici_carica',

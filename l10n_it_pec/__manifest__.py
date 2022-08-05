@@ -8,7 +8,7 @@
     'category': 'Localization/Italy',
     'summary': 'Aggiunge il campo email PEC al partner',
     'author': "Odoo Italia Network,Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_pec',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'AGPL-3',
     'depends': ['mail'],
     'data': [
