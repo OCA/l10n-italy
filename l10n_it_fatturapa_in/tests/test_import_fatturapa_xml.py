@@ -784,8 +784,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             "test52",
             "ZGEXQROO37831_anonimizzata.xml",
         )
-        self.assertIn('http://ivaservizi.agenziaentrate.gov.it/ '
-                      'has no category elementBinding',
+        self.assertIn('syntax error',
                       attachment.e_invoice_parsing_error)
 
     def test_53_xml_import(self):
