@@ -30,7 +30,7 @@ class FatturaPAAttachmentIn(models.Model):
         'account.invoice', 'fatturapa_attachment_in_id',
         string="In Bills", readonly=True)
     xml_supplier_id = fields.Many2one(
-        "res.partner", string="Supplier", compute="_compute_xml_data",
+        "res.partner", string="Supplier", compute="_compute_xml_supplier_id",
         store=True)
     invoices_number = fields.Integer(
         "Bills Number", compute="_compute_xml_data", store=True)
@@ -182,7 +182,6 @@ class FatturaPAAttachmentIn(models.Model):
             if not fatt:
                 # Set default values and carry on
                 att.update({
-                    'xml_supplier_id': False,
                     'invoices_number': 0,
                     'invoices_total': 0,
                     'invoices_date': False,
@@ -210,17 +209,23 @@ class FatturaPAAttachmentIn(models.Model):
             # for the following fields
             att.invoices_number = len(fatt.FatturaElettronicaBody)
 
-            # Partner creation that may happen in `getCedPrest`
-            # triggers a recomputation
-            # that messes up the cache of some fields if they are set
-            # (more properly, put in cache) afterwards;
-            # this happens for `is_self_invoice` for instance.
-            # That is why we set it as the last field.
-            cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
-            wiz_obj = self.env['wizard.import.fatturapa'] \
-                .with_context(from_attachment=att)
-            partner_id = wiz_obj.getCedPrest(cedentePrestatore)
-            att.xml_supplier_id = partner_id
+    @api.multi
+    @api.depends('ir_attachment_id.datas')
+    def _compute_xml_supplier_id(self):
+        for att in self:
+            fatt = att.get_invoice_obj()
+            if fatt:
+                # Partner creation that may happen in `getCedPrest`
+                # triggers a recomputation
+                # that messes up the cache of some fields if they are set
+                # (more properly, put in cache) afterwards;
+                # this happens for `is_self_invoice` for instance.
+                # That is why we call getCedPrest in a different method
+                cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
+                wiz_obj = self.env['wizard.import.fatturapa'] \
+                    .with_context(from_attachment=att)
+                partner_id = wiz_obj.getCedPrest(cedentePrestatore)
+                att.xml_supplier_id = partner_id
 
     @api.multi
     @api.depends('in_invoice_ids', 'invoices_number')
