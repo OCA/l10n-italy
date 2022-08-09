@@ -15,6 +15,7 @@
         "sale_management",
     ],
     "data": [
+        "security/ir.model.access.csv",
         "views/related_document_type_views.xml",
         "views/sale_order_line_views.xml",
         "views/sale_order_views.xml",
