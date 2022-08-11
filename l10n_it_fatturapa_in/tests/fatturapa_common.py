@@ -138,13 +138,30 @@ class FatturapaCommon(SingleTransactionCase):
                 'date_stop': '2019-12-31',
             }
         )
-        self.period_2019_05 = self.account_period_model.create({
+        self.account_period_model.create({
             'name': 'Period 05/2019',
             'code': '05/2019',
             'date_start': '2019-05-01',
             'date_stop': '2019-05-31',
             'special': False,
             'fiscalyear_id': self.fiscalyear2019.id,
+        })
+
+        self.fiscalyear2020 = self.account_fiscalyear_model.create(
+            vals={
+                'name': '2020',
+                'code': '2020',
+                'date_start': '2020-01-01',
+                'date_stop': '2020-12-31',
+            }
+        )
+        self.account_period_model.create({
+            'name': 'Period 10/2020',
+            'code': '10/2020',
+            'date_start': '2020-10-01',
+            'date_stop': '2020-10-31',
+            'special': False,
+            'fiscalyear_id': self.fiscalyear2020.id,
         })
 
     def create_attachment(self, name, file_name,
