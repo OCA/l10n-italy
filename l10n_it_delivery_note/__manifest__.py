@@ -16,7 +16,7 @@
     "version": "14.0.1.0.13",
     "category": "Localization/Italy",
     "license": "AGPL-3",
-    "maintainers": ["As400it", "Byloth"],
+    "maintainers": ["As400it"],
     "depends": [
         "delivery",
         "l10n_it_delivery_note_base",
