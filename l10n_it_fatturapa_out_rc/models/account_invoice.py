@@ -17,6 +17,7 @@ class Invoice(models.Model):
                 doc_id = self.fatturapa_attachment_in_id.name
             else:
                 doc_id = self.reference if self.reference else self.number
+            self.rc_self_invoice_id.related_documents = [(5, False, False)]
             self.rc_self_invoice_id.related_documents = [
                 (0, 0, {
                     "type": "invoice",

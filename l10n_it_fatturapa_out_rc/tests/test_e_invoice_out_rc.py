@@ -251,3 +251,51 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
         xml_content = attachment.datas.decode('base64')
         self.check_content(
             xml_content, 'IT10538570960_00004.xml', "l10n_it_fatturapa_out_rc")
+
+    def test_self_invoice_related_documents_not_duplicated(self):
+        self.set_sequence_journal_selfinvoice(15, '2019')
+        self.set_bill_sequence(25, '2019')
+        self.supplier_intraEU.property_payment_term_id = self.term_15_30.id
+        self.supplier_intraEU.vat = "BE0477472701"
+        self.supplier_intraEU.street = "Street"
+        self.supplier_intraEU.zip = "12345"
+        self.supplier_intraEU.city = "city"
+        self.supplier_intraEU.country_id = self.env.ref("base.be")
+        self.purchases_journal.update_posted = True
+
+        invoice = self.invoice_model.create({
+            'partner_id': self.supplier_intraEU.id,
+            'account_id': self.invoice_account,
+            'journal_id': self.purchases_journal.id,
+            'type': 'in_invoice',
+            'date_invoice': '2019-01-15',
+            'reference': 'EU-SUPPLIER-REF'
+        })
+        res = invoice.onchange_partner_id(invoice.type, invoice.partner_id.id)
+        invoice.fiscal_position = res['value']['fiscal_position']
+
+        invoice_line_vals = {
+            'name': 'Invoice for sample product',
+            'account_id': self.invoice_line_account,
+            'invoice_id': invoice.id,
+            'product_id': self.sample_product.id,
+            'price_unit': 100,
+            'invoice_line_tax_id': [(4, self.tax_22ai.id, 0)]}
+        invoice_line = self.invoice_line_model.create(invoice_line_vals)
+        invoice_line.onchange_invoice_line_tax_id()
+        self.env['account.invoice.tax'].compute(invoice)
+
+        invoice.signal_workflow('invoice_open')
+        self.assertEqual(len(invoice.rc_self_invoice_id.related_documents), 1)
+
+        invoice.signal_workflow('invoice_cancel')
+        invoice.action_cancel_draft()
+        invoice.signal_workflow('invoice_open')
+        self.assertEqual(len(invoice.rc_self_invoice_id.related_documents), 1)
+
+        res = self.run_wizard(invoice.rc_self_invoice_id.id)
+        attachment = self.attach_model.browse(res['res_id'])
+        self.set_e_invoice_file_id(attachment, 'IT10538570960_00002.xml')
+        xml_content = attachment.datas.decode('base64')
+        self.check_content(
+            xml_content, 'IT10538570960_00002.xml', "l10n_it_fatturapa_out_rc")
