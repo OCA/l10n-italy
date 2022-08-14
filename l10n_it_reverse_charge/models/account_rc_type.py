@@ -3,10 +3,11 @@
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
 # Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl
+# Copyright 2022 Simone Rubino - TAKOBI
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from odoo import fields, models, _, api
-from odoo.exceptions import ValidationError
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError, ValidationError
 
 
 class AccountRCTypeTax(models.Model):
@@ -18,6 +19,10 @@ class AccountRCTypeTax(models.Model):
         string='RC type',
         required=True,
         ondelete='cascade')
+    original_purchase_tax_id = fields.Many2one(
+        'account.tax',
+        string='Original Purchase Tax',
+        required=False)
     purchase_tax_id = fields.Many2one(
         'account.tax',
         string='Purchase Tax',
@@ -25,15 +30,39 @@ class AccountRCTypeTax(models.Model):
     sale_tax_id = fields.Many2one(
         'account.tax',
         string='Sale Tax',
-        required=True)
+        required=False)
     company_id = fields.Many2one(
         'res.company', string='Company', related='rc_type_id.company_id',
         store=True)
     _sql_constraints = [
         ('purchase_sale_tax_uniq',
          'unique (rc_type_id,purchase_tax_id,sale_tax_id)',
-         'Tax mappings can be defined only once per rc type.')
+         'Tax mappings from Purchase Tax to Sale Tax '
+         'can be defined only once per Reverse Charge Type.'),
+        ('original_purchase_sale_tax_uniq',
+         'unique (rc_type_id,'
+         'original_purchase_tax_id,purchase_tax_id,sale_tax_id)',
+         'Tax mappings from Original Purchase Tax to Purchase Tax to Sale Tax '
+         'can be defined only once per Reverse Charge Type.'),
     ]
+
+    @api.constrains(
+        'original_purchase_tax_id',
+        'rc_type_id',
+    )
+    def _constrain_supplier_self_invoice_mapping(self):
+        for mapping in self:
+            rc_type = mapping.rc_type_id
+            if rc_type.with_supplier_self_invoice:
+                if not mapping.original_purchase_tax_id:
+                    raise ValidationError(
+                        _("Original Purchase Tax is required "
+                          "for Reverse Charge Type {rc_type_name} having "
+                          "With additional supplier self invoice enabled")
+                        .format(
+                            rc_type_name=rc_type.display_name,
+                        )
+                    )
 
 
 class AccountRCType(models.Model):
@@ -88,13 +117,44 @@ class AccountRCType(models.Model):
         'res.company', string='Company', required=True,
         default=lambda self: self.env.user.company_id)
 
-    @api.multi
-    @api.constrains('with_supplier_self_invoice', 'tax_ids')
-    def _check_tax_ids(self):
-        for rctype in self:
-            if rctype.with_supplier_self_invoice and len(rctype.tax_ids) > 1:
-                raise ValidationError(_(
-                    'When "With additional supplier self invoice" you must set'
-                    ' only one tax mapping line: only 1 tax per invoice is '
-                    'supported'
-                ))
+    @api.constrains(
+        'with_supplier_self_invoice',
+        'tax_ids',
+    )
+    def _constrain_with_supplier_self_invoice(self):
+        with_supplier_types = self.filtered('with_supplier_self_invoice')
+        if with_supplier_types:
+            with_supplier_types.mapped('tax_ids') \
+                ._constrain_supplier_self_invoice_mapping()
+
+    def map_tax(self, taxes, key_tax_field, value_tax_field):
+        """
+        Map each tax in `taxes`, based on the mapping defined by `self.tax_ids`.
+
+        Raise an exception if a mapping is not found for some of `taxes`.
+
+        :param key_tax_field: Field of the mapping lines
+            to be used as key for searching the tax
+        :param value_tax_field: Field of the mapping lines
+            to be used as value for mapping the tax
+        :param taxes: Taxes to be mapped
+        """
+        self.ensure_one()
+        mapped_taxes = self.env['account.tax'].browse()
+        for tax in taxes:
+            for tax_mapping in self.tax_ids:
+                if tax_mapping[key_tax_field] == tax:
+                    mapped_taxes |= tax_mapping[value_tax_field]
+                    break
+            else:
+                # Tax not found in mapping
+                raise UserError(
+                    _("Can't find tax mapping for {tax_name} "
+                      "in Reverse Charge Type {rc_type_name}, "
+                      "please check the configuration.")
+                    .format(
+                        tax_name=tax.display_name,
+                        rc_type_name=self.display_name,
+                    )
+                )
+        return mapped_taxes

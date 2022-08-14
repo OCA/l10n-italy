@@ -179,6 +179,7 @@ class ReverseChargeCommon(TransactionCase):
 
         self.rc_type_tax_eeu = rc_type_tax_model.create({
             'rc_type_id': self.rc_type_eeu.id,
+            'original_purchase_tax_id': self.tax_0_pur.id,
             'purchase_tax_id': self.tax_22ae.id,
             'sale_tax_id': self.tax_22ve.id
         })

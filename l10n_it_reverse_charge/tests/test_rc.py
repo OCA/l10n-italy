@@ -209,7 +209,7 @@ class TestReverseCharge(ReverseChargeCommon):
             'invoice_id': invoice.id,
             'product_id': self.sample_product.id,
             'price_unit': 100,
-            'invoice_line_tax_ids': [(4, self.tax_22ai.id, 0)]}
+            'invoice_line_tax_ids': [(4, self.tax_0_pur.id, 0)]}
         invoice_line = self.invoice_line_model.create(invoice_line_vals)
         invoice_line.onchange_invoice_line_tax_id()
         invoice.compute_taxes()

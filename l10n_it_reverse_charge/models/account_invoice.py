@@ -3,6 +3,7 @@
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
 # Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl
+# Copyright 2022 Simone Rubino - TAKOBI
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from odoo import api, fields, models
@@ -60,6 +61,20 @@ class AccountInvoice(models.Model):
         self.onchange_rc_fiscal_position_id()
         return res
 
+    @api.multi
+    def _get_original_suppliers(self):
+        rc_purchase_invoices = self.mapped("rc_purchase_invoice_id")
+        supplier_invoices = self.env["account.invoice"]
+        for rc_purchase_invoice in rc_purchase_invoices:
+            current_supplier_invoices = self.search([
+                ("rc_self_purchase_invoice_id", "=", rc_purchase_invoice.id)
+            ])
+            if current_supplier_invoices:
+                supplier_invoices |= current_supplier_invoices
+            else:
+                supplier_invoices |= rc_purchase_invoice
+        return supplier_invoices.mapped("partner_id")
+
     def rc_inv_line_vals(self, line):
         return {
             'product_id': line.product_id.id,
@@ -75,6 +90,12 @@ class AccountInvoice(models.Model):
             type = 'out_invoice'
         else:
             type = 'out_refund'
+        supplier = self.partner_id
+        original_invoice = self.search([
+            ("rc_self_purchase_invoice_id", "=", self.id)
+        ], limit=1)
+        if original_invoice:
+            supplier = original_invoice.partner_id
 
         comment = _(
             "Reverse charge self invoice.\n"
@@ -82,7 +103,7 @@ class AccountInvoice(models.Model):
             "Reference: %s\n"
             "Date: %s\n"
             "Internal reference: %s") % (
-            self.partner_id.display_name, self.reference or '', self.date,
+            supplier.display_name, self.reference or '', self.date,
             self.number
         )
         return {
@@ -329,17 +350,14 @@ class AccountInvoice(models.Model):
                 if not line_tax_ids:
                     raise UserError(_(
                         "Invoice line\n%s\nis RC but has not tax") % line.name)
-                tax_ids = list()
-                for tax_mapping in rc_type.tax_ids:
-                    for line_tax_id in line_tax_ids:
-                        if tax_mapping.purchase_tax_id == line_tax_id:
-                            tax_ids.append(tax_mapping.sale_tax_id.id)
-                if not tax_ids:
-                    raise UserError(_("Tax code used is not a RC tax.\nCan't "
-                                      "find tax mapping"))
-                if line_tax_ids:
+                mapped_taxes = rc_type.map_tax(
+                    line_tax_ids,
+                    'purchase_tax_id',
+                    'sale_tax_id',
+                )
+                if line_tax_ids and mapped_taxes:
                     rc_invoice_line['invoice_line_tax_ids'] = [
-                        (6, False, tax_ids)]
+                        (6, False, mapped_taxes.ids)]
                 rc_invoice_line[
                     'account_id'] = rc_type.transitory_account_id.id
                 rc_invoice_lines.append([0, False, rc_invoice_line])
@@ -369,9 +387,6 @@ class AccountInvoice(models.Model):
 
     def generate_supplier_self_invoice(self):
         rc_type = self.fiscal_position_id.rc_type_id
-        if not len(rc_type.tax_ids) == 1:
-            raise UserError(_(
-                "Can't find 1 tax mapping for %s" % rc_type.name))
         if not self.rc_self_purchase_invoice_id:
             supplier_invoice = self.copy()
         else:
@@ -387,8 +402,17 @@ class AccountInvoice(models.Model):
         supplier_invoice.partner_id = rc_type.partner_id.id
         supplier_invoice.journal_id = rc_type.supplier_journal_id.id
         for inv_line in supplier_invoice.invoice_line_ids:
-            inv_line.invoice_line_tax_ids = [
-                (6, 0, [rc_type.tax_ids[0].purchase_tax_id.id])]
+            line_tax_ids = inv_line.invoice_line_tax_ids
+            mapped_taxes = rc_type.map_tax(
+                line_tax_ids,
+                'original_purchase_tax_id',
+                'purchase_tax_id',
+            )
+            if line_tax_ids and mapped_taxes:
+                inv_line.invoice_line_tax_ids = [
+                    (6, False, mapped_taxes.ids),
+                ]
+
             inv_line.account_id = rc_type.transitory_account_id.id
         self.rc_self_purchase_invoice_id = supplier_invoice.id
 
