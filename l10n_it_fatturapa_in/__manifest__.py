@@ -8,7 +8,7 @@
 
 {
     'name': 'ITA - Fattura elettronica - Ricezione',
-    'version': '10.0.3.0.2',
+    'version': '10.0.3.1.0',
     'category': 'Localization/Italy',
     'summary': 'Ricezione fatture elettroniche',
     'author': 'Agile Business Group, Innoviu, '
