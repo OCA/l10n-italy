@@ -70,7 +70,7 @@ msgid "Attachment id"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/attachment.py:104
+#: code:addons/l10n_it_fatturapa_in/models/attachment.py:121
 #, python-format
 msgid "Attachment without name"
 msgstr ""
@@ -597,6 +597,11 @@ msgstr ""
 #: model:ir.actions.act_window,name:l10n_it_fatturapa_in.action_wizard_link_supplier_invoice
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_in.wizard_link_supplier_invoice
 msgid "Link to existing supplier bills"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in_linked_invoice_id_xml
+msgid "Linked invoice id xml"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
