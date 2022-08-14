@@ -36,13 +36,13 @@ addon | version | maintainers | summary
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 10.0.1.0.0 |  | Esigibilità IVA
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 10.0.3.0.0 |  | Fatture elettroniche
 [l10n_it_fatturapa_export_zip](l10n_it_fatturapa_export_zip/) | 10.0.1.0.0 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche
-[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 10.0.3.0.2 |  | Ricezione fatture elettroniche
+[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 10.0.3.1.0 |  | Ricezione fatture elettroniche
 [l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 10.0.1.0.0 |  | Modulo ponte tra ricezione fatture elettroniche e acquisti
-[l10n_it_fatturapa_in_rc](l10n_it_fatturapa_in_rc/) | 10.0.2.0.0 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Modulo di collegamento tra e-fattura in acquisto e reverse charge
+[l10n_it_fatturapa_in_rc](l10n_it_fatturapa_in_rc/) | 10.0.2.1.0 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Modulo di collegamento tra e-fattura in acquisto e reverse charge
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 10.0.2.0.0 |  | Emissione fatture elettroniche
 [l10n_it_fatturapa_out_ddt](l10n_it_fatturapa_out_ddt/) | 10.0.2.0.0 |  | Modulo ponte tra emissione fatture elettroniche e DDT
 [l10n_it_fatturapa_out_di](l10n_it_fatturapa_out_di/) | 10.0.1.0.0 |  | Dichiarazioni d'intento in fatturapa
-[l10n_it_fatturapa_out_rc](l10n_it_fatturapa_out_rc/) | 10.0.1.0.1 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge
+[l10n_it_fatturapa_out_rc](l10n_it_fatturapa_out_rc/) | 10.0.1.1.0 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge
 [l10n_it_fatturapa_out_stamp](l10n_it_fatturapa_out_stamp/) | 10.0.2.0.0 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Modulo ponte tra emissione fatture elettroniche e imposta di bollo
 [l10n_it_fatturapa_out_triple_discount](l10n_it_fatturapa_out_triple_discount/) | 10.0.2.0.0 |  | Modulo ponte tra emissione fatture elettroniche e sconto triplo
 [l10n_it_fatturapa_out_wt](l10n_it_fatturapa_out_wt/) | 10.0.2.0.0 |  | Modulo ponte tra emissione fatture elettroniche e ritenute.
@@ -61,7 +61,7 @@ addon | version | maintainers | summary
 [l10n_it_pos_fatturapa](l10n_it_pos_fatturapa/) | 10.0.1.0.0 | [![robyf70](https://github.com/robyf70.png?size=30px)](https://github.com/robyf70) | Gestione dati fattura elettronica del cliente all'interno dell'interfaccia del POS
 [l10n_it_pos_fiscalcode](l10n_it_pos_fiscalcode/) | 10.0.1.0.0 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Gestione codice fiscale del cliente all'interno dell'interfaccia del POS
 [l10n_it_rea](l10n_it_rea/) | 10.0.1.1.3 |  | Gestisce i campi del Repertorio Economico Amministrativo
-[l10n_it_reverse_charge](l10n_it_reverse_charge/) | 10.0.1.2.4 |  | Reverse Charge for Italy
+[l10n_it_reverse_charge](l10n_it_reverse_charge/) | 10.0.1.3.0 |  | Reverse Charge for Italy
 [l10n_it_riba_commission](l10n_it_riba_commission/) | 10.0.1.0.1 |  | Ricevute bancarie & commissioni
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 10.0.1.3.0 |  | Ricevute Bancarie
 [l10n_it_sdi_channel](l10n_it_sdi_channel/) | 10.0.1.2.0 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI
