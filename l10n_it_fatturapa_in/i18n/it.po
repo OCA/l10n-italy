@@ -75,7 +75,7 @@ msgid "Attachment id"
 msgstr "Allegato"
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/models/attachment.py:104
+#: code:addons/l10n_it_fatturapa_in/models/attachment.py:121
 #, python-format
 msgid "Attachment without name"
 msgstr "Allegato senza nome"
@@ -627,6 +627,11 @@ msgstr "Collega a fattura"
 #, fuzzy
 msgid "Link to existing supplier bills"
 msgstr "Collega a fattura fornitore esistente"
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in_linked_invoice_id_xml
+msgid "Linked invoice id xml"
+msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: selection:res.partner,e_invoice_detail_level:0
