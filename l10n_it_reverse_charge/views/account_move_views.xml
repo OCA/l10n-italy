@@ -12,6 +12,11 @@
             <group name="accounting_info_group">
                 <field name="rc_self_invoice_id" readonly="True" />
                 <field name="rc_self_purchase_invoice_id" readonly="True" />
+                <field
+                    name="rc_original_purchase_invoice_ids"
+                    readonly="True"
+                    widget="many2many_tags"
+                />
                 <field name="rc_purchase_invoice_id" readonly="True" />
             </group>
             <xpath
