@@ -49,6 +49,13 @@ class AccountMove(models.Model):
         copy=False,
         readonly=True,
     )
+    rc_original_purchase_invoice_ids = fields.One2many(
+        "account.move",
+        "rc_self_purchase_invoice_id",
+        string="Original purchase invoices",
+        copy=False,
+        readonly=True,
+    )
 
     def rc_inv_line_vals(self, line):
         return {
@@ -74,7 +81,7 @@ class AccountMove(models.Model):
             "Internal reference: %s"
         ) % (
             self.partner_id.display_name,
-            self.ref or "",
+            self.invoice_origin or self.ref or "",
             self.date,
             self.name,
         )
@@ -273,6 +280,7 @@ class AccountMove(models.Model):
         # because this field has copy=False
         supplier_invoice_vals["date"] = self.date
         supplier_invoice_vals["invoice_date"] = self.date
+        supplier_invoice_vals["invoice_origin"] = self.ref or self.name
         supplier_invoice_vals["partner_id"] = rc_type.partner_id.id
         supplier_invoice_vals["journal_id"] = rc_type.supplier_journal_id.id
         # temporary disabling self invoice automations
