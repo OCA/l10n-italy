@@ -19,6 +19,7 @@ class TestInvoiceDDT(FatturaPACommon):
 
     def test_e_invoice_ddt(self):
         # 2 ordini, 2 DDT e 1 fattura differita
+        self.env.ref('product.list0').currency_id = self.EUR.id
         self.so1 = self.env['sale.order'].create({
             'partner_id': self.res_partner_fatturapa_2.id,
             'partner_invoice_id': self.res_partner_fatturapa_2.id,
