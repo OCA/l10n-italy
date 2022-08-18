@@ -124,7 +124,7 @@ class FatturaPACommon(AccountTestUsers):
         test_fatt_content = base64.decodebytes(test_fatt_data)
         test_fatt = etree.fromstring(test_fatt_content, parser)
         xml = etree.fromstring(xml_content, parser)
-        self.assertEqual(etree.tostring(test_fatt), etree.tostring(xml))
+        self.assertTreesEqual(test_fatt, xml)
 
     def getFilePath(self, filepath):
         with open(filepath, 'rb') as test_data:
