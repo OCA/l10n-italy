@@ -666,10 +666,20 @@ class WizardExportFatturapa(models.TransientModel):
             'Product Unit of Measure')
         if uom_precision < 2:
             uom_precision = 2
-        for line in invoice.invoice_line_ids:
+        for line in self._get_e_invoice_lines(invoice):
             self.setDettaglioLinea(
                 line_no, line, body, price_precision, uom_precision)
             line_no += 1
+
+    @api.model
+    def _get_e_invoice_lines(self, invoice):
+        """
+        Invoice lines are not all to be translated to e-invoice lines.
+
+        For instance, some invoice lines will be translated
+        to DatiCassaPrevidenziale nodes.
+        """
+        return invoice.invoice_line_ids
 
     def setDettaglioLinea(
         self, line_no, line, body, price_precision, uom_precision
