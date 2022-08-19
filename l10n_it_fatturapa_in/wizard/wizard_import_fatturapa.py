@@ -260,7 +260,10 @@ class WizardImportFatturapa(models.TransientModel):
 
     def getCedPrest(self, cedPrest):
         partner_model = self.env["res.partner"]
-        partner_id = self.getPartnerBase(cedPrest.DatiAnagrafici)
+        # Assume that any non-IT VAT coming from SdI is correct
+        partner_id = self.with_context(
+            fatturapa_in_skip_no_it_vat_check=True,
+        ).getPartnerBase(cedPrest.DatiAnagrafici)
         no_contact_update = False
         if partner_id:
             no_contact_update = partner_model.browse(
