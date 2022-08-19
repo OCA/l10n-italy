@@ -369,8 +369,6 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             "Company Name field contains 'Societa' "
             "Alpha SRL'. Your System contains 'SOCIETA' ALPHA SRL'\n\n"
             "XML contains tax with percentage '15.55'"
-            " but it does not exist in your system\n"
-            "XML contains tax with percentage '15.55'"
             " but it does not exist in your system",
         )
 

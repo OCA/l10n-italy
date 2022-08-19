@@ -1,3 +1,6 @@
+#  Copyright 2022 Simone Rubino - TAKOBI
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 import logging
 import re
 from datetime import datetime
@@ -5,7 +8,7 @@ from datetime import datetime
 from odoo import api, fields, models, registry
 from odoo.exceptions import UserError
 from odoo.fields import first
-from odoo.tools import float_is_zero
+from odoo.tools import float_is_zero, frozendict
 from odoo.tools.translate import _
 
 from odoo.addons.base_iban.models.res_partner_bank import pretty_iban
@@ -114,14 +117,55 @@ class WizardImportFatturapa(models.TransientModel):
             [("code", "=", provinceCode), ("country_id.code", "=", "IT")]
         )
 
+    def reset_inconsistencies(self):
+        """
+        Clean all existing inconsistencies.
+        Note that inconsistencies can be spread in any environment.
+        """
+        for env in self.env.all:
+            env_context = dict(env.context)
+            env_context.pop("inconsistencies", None)
+            env.context = frozendict(env_context)
+
+    def get_inconsistencies(self):
+        """
+        Get all existing inconsistencies.
+        Note that inconsistencies can be spread in any environment.
+        """
+        all_envs_inconsistencies = ""
+        for env in self.env.all:
+            env_inconsistencies = env.context.get("inconsistencies")
+            if not env_inconsistencies:
+                continue
+
+            if all_envs_inconsistencies:
+                if env_inconsistencies not in all_envs_inconsistencies:
+                    all_envs_inconsistencies = "\n".join(
+                        (
+                            all_envs_inconsistencies,
+                            env_inconsistencies,
+                        )
+                    )
+            else:
+                all_envs_inconsistencies = env_inconsistencies
+        return all_envs_inconsistencies
+
     def log_inconsistency(self, message):
-        inconsistencies = self.env.context.get("inconsistencies", "")
-        if inconsistencies:
-            inconsistencies += "\n"
-        inconsistencies += message
-        # convert to dict in order to be able to modify context
-        self.env.context = dict(self.env.context)
-        self.env.context.update(inconsistencies=inconsistencies)
+        """
+        Add `message` to existing inconsistencies.
+        """
+        inconsistencies = self.get_inconsistencies()
+        if message not in inconsistencies:
+            if inconsistencies:
+                inconsistencies += "\n"
+            inconsistencies += message
+            # we can't set
+            # self = self.with_context(inconsistencies=inconsistencies)
+            # because self is a locale variable.
+            self.env.context = frozendict(
+                self.env.context,
+                inconsistencies=inconsistencies,
+            )
 
     def check_partner_base_data(self, partner_id, DatiAnagrafici):
         partner = self.env["res.partner"].browse(partner_id)
@@ -1729,7 +1773,7 @@ class WizardImportFatturapa(models.TransientModel):
         # convert to dict in order to be able to modify context
         self.env.context = dict(self.env.context)
         for fatturapa_attachment_id in fatturapa_attachment_ids:
-            self.env.context.update(inconsistencies="")
+            self.reset_inconsistencies()
             fatturapa_attachment = fatturapa_attachment_obj.browse(
                 fatturapa_attachment_id
             )
@@ -1748,8 +1792,9 @@ class WizardImportFatturapa(models.TransientModel):
             )
 
             generic_inconsistencies = ""
-            if self.env.context.get("inconsistencies"):
-                generic_inconsistencies = self.env.context["inconsistencies"] + "\n\n"
+            existing_inconsistencies = self.get_inconsistencies()
+            if existing_inconsistencies:
+                generic_inconsistencies = existing_inconsistencies + "\n\n"
 
             xmlproblems = getattr(fatt, "_xmldoctor", None)
             if xmlproblems:  # None or []
@@ -1759,7 +1804,7 @@ class WizardImportFatturapa(models.TransientModel):
             for fattura in fatt.FatturaElettronicaBody:
 
                 # reset inconsistencies
-                self.env.context.update(inconsistencies="")
+                self.reset_inconsistencies()
 
                 invoice = self.invoiceCreate(
                     fatt, fatturapa_attachment, fattura, partner_id
@@ -1779,8 +1824,9 @@ class WizardImportFatturapa(models.TransientModel):
 
                 invoice.set_einvoice_data(fattura)
 
-                if self.env.context.get("inconsistencies"):
-                    invoice_inconsistencies = self.env.context["inconsistencies"]
+                existing_inconsistencies = self.get_inconsistencies()
+                if existing_inconsistencies:
+                    invoice_inconsistencies = existing_inconsistencies
                 else:
                     invoice_inconsistencies = ""
                 invoice.inconsistencies = (
