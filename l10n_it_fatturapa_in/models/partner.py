@@ -1,5 +1,12 @@
+#  Copyright 2022 Simone Rubino - TAKOBI
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields
+import logging
+
+from odoo import api, models, fields
+from odoo.exceptions import ValidationError
+
+_logger = logging.getLogger(__name__)
 
 
 class Partner(models.Model):
@@ -47,3 +54,24 @@ class Partner(models.Model):
              "-1 to use the default precision",
         default=-1
     )
+
+    @api.constrains('vat', 'country_id')
+    def check_vat(self):
+        if 'fatturapa_in_skip_no_it_vat_check' in self.env.context:
+            # Replicate e-invoice specifications check on IdFiscaleIVA:
+            # only italian VAT is checked
+            italy = self.env.ref('base.it')
+            it_partners = self.filtered(lambda p: p.country_id == italy)
+            super(Partner, it_partners).check_vat()
+            try:
+                super(Partner, self - it_partners).check_vat()
+            except ValidationError as ve:
+                log_message = \
+                    "Validation Error skipped during e-bill import:\n" \
+                    "{exc_message}" \
+                    .format(
+                        exc_message=ve.args[0],
+                    )
+                _logger.info(log_message)
+        else:
+            super().check_vat()
