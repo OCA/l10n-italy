@@ -32,6 +32,15 @@ class Currency(models.Model):
             .with_context(active_test=False)
             .search([("code", "=", lang_code)])
         )
+
+        # use num2words native 'currency' option to handle exceptions.
+        # eg. 'uno euro' -> 'un euro', 'uno centesimi' -> 'un centesimo'"""
+        if self.name == "EUR":
+            try:
+                return num2words(amount, to="currency", lang=lang.iso_code)
+            except NotImplementedError:
+                return num2words(amount, to="currency", lang="en")
+
         currency_unit_label = self._convert_currency_name_hook(self.currency_unit_label)
         amount_words = tools.ustr("{amt_value} {amt_word}").format(
             amt_value=num2words(integer_value, lang=lang.iso_code),

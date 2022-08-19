@@ -31,12 +31,19 @@ Il core di Odoo fornisce ``amount_to_text``, il quale converte importi numerici 
 
 Esempio: 45,75 €
 
-* Lingua utente "Italiano" → Quarantacinque Euros e Settantacinque Cents
 * Lingua utente "Inglese" → Forty-Five Euros and Seventy-Five Cents
+* Lingua utente "Italiano" → Quarantacinque Euros e Settantacinque Cents
 
-L'unità/sottounità di valuta non viene tradotta e tutte le parole possiedono l'iniziale maiuscola, forma non corretta nella lingua italiana.
+L'unità/sottounità di valuta non viene tradotta e non viene gestita la forma singolare. Inoltre tutte le parole possiedono l'iniziale maiuscola, forma non corretta nella lingua italiana.
 
 Questo modulo fornisce una base per tradurre le unità/sottounità di valuta, adattando le parole alle regole della lingua italiana.
+
+Vengono anche gestite le eccezioni per la forma singolare della valuta EUR.
+
+Esempio: 1,01 €
+
+* La parte intera diventa "un euro", non "uno euro"
+* La parte decimale diventa "un centesimo", non "uno centesimi"
 
 **English**
 
@@ -44,12 +51,19 @@ Odoo core provides ``amount_to_text``, which converts numerical amounts to text 
 
 Example: 45,75 €
 
-* User Language 'Italian' -> Quaranta Euros e Settantacinque Cents
 * User Language 'English' -> Forty-Five Euros and Seventy-Five Cents
+* User Language 'Italian' -> Quaranta Euros e Settantacinque Cents
 
-Currency unit/subunit is not translated and all words are capitalized, which is incorrect in italian language.
+Currency unit/subunit is not translated and singular form is not handled. Moreover all words are capitalized, which is incorrect in italian language.
 
 This module provides a base for translating currency unit/subunit adapting words to italian language rules.
+
+Singular form expections for EUR currency are handled as well.
+
+Example: 1,01 €
+
+* Integer part becomes "un euro", not "uno euro"
+* Decimal part becomes "un centesimo", not "uno centesimi"
 
 **Table of contents**
 
@@ -61,11 +75,11 @@ Configuration
 
 **Italiano**
 
-Versione libreria ``num2words`` >= 0.5.5
+Versione libreria ``num2words`` >= 0.5.12
 
 **English**
 
-``num2words`` library version >= 0.5.5
+``num2words`` library version >= 0.5.12
 
 Usage
 =====
@@ -101,31 +115,6 @@ For example, add this code if you need to convert amount to text in your reports
         # If not it_IT, Odoo core amount_to_text will be used.
         <t t-esc="currency.amount_to_text(45.75)"/>
     </t>
-
-Known issues / Roadmap
-======================
-
-**Italiano**
-
-Non sono attualmente gestite le eccezioni per gli articoli e le forme singolari/plurali della valuta.
-
-Esempio: 1,01 €
-
-* La parte intera è "un euro", non "uno euro"
-* La parte decimale è "un centesimo, non "uno centesimi"
-
-Vedi https://github.com/savoirfairelinux/num2words/pull/434
-
-**English**
-
-Exceptions in articles and singular/plural forms of currency are not currently handled.
-
-Example: 1,01 €
-
-* Integer part is "un euro", not "uno euro"
-* Decimal part is "un centesimo, not "uno centesimi"
-
-See https://github.com/savoirfairelinux/num2words/pull/434
 
 Bug Tracker
 ===========

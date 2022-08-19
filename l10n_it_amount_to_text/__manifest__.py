@@ -13,7 +13,7 @@
     "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
     "depends": ["base"],
-    "external_dependencies": {"python": ["num2words"]},
+    "external_dependencies": {"python": ["num2words"]},  # num2words >= 0.5.12
     "data": [],
     "installable": True,
 }
