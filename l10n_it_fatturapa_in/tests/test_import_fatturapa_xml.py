@@ -2,7 +2,7 @@ from datetime import date
 
 from psycopg2 import IntegrityError
 
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 from odoo.modules import get_module_resource
 from odoo.tests import Form
 from odoo.tools import mute_logger
@@ -896,6 +896,50 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice_ids = res.get("domain")[0][2]
         invoice = self.invoice_model.browse(invoice_ids)
         self.assertTrue(invoice.fatturapa_attachment_in_id.is_self_invoice)
+
+    def test_53_xml_import(self):
+        """
+        Check that VAT of non-IT partner is not checked.
+        """
+        partner_model = self.env["res.partner"]
+        # Arrange: A partner with vat GB99999999999 does not exist
+        not_valid_vat = "GB99999999999"
+
+        def vat_partner_exists():
+            return partner_model.search(
+                [
+                    ("vat", "=", not_valid_vat),
+                ]
+            )
+
+        self.assertFalse(vat_partner_exists())
+
+        # Act: Import an e-bill containing a supplier with vat GB99999999999
+        self.create_attachment(
+            "test53",
+            "IT01234567890_x05mX.xml",
+        )
+
+        # Assert: A partner with vat GB99999999999 exists,
+        # and the vat is usually not valid for UK
+        self.assertTrue(vat_partner_exists())
+        with self.assertRaises(ValidationError) as ve:
+            partner_model.create(
+                [
+                    {
+                        "name": "Test not valid VAT",
+                        "country_id": self.ref("base.uk"),
+                        "vat": not_valid_vat,
+                    }
+                ]
+            )
+        exc_message = ve.exception.args[0]
+        self.assertRegex(
+            exc_message,
+            "VAT number .*{not_valid_vat}.* does not seem to be valid".format(
+                not_valid_vat=not_valid_vat,
+            ),
+        )
 
     def test_01_xml_link(self):
         """
