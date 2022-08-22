@@ -94,7 +94,6 @@ class RibaAccreditation(orm.TransientModel):
     def skip(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-        # wf_service = netsvc.LocalService("workflow")
         active_id = context and context.get('active_id', False) or False
         if not active_id:
             raise orm.except_orm(_('Error'), _('No active ID found'))
@@ -105,7 +104,6 @@ class RibaAccreditation(orm.TransientModel):
     def create_move(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-        # wf_service = netsvc.LocalService("workflow")
         active_id = context and context.get('active_id', False) or False
         if not active_id:
             raise orm.except_orm(_('Error'), _('No active ID found'))
