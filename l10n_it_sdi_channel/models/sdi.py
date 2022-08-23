@@ -9,7 +9,7 @@ import zipfile
 
 from lxml import etree
 
-from odoo import api, models, fields
+from odoo import _, api, models, fields
 from odoo.fields import first
 
 FATTURAPA_IN_REGEX = '^(IT[a-zA-Z0-9]{11,16}|'\
@@ -25,6 +25,7 @@ _logger = logging.getLogger(__name__)
 
 class SdiChannel(models.Model):
     _name = "sdi.channel"
+    _inherit = "mail.thread"
     _description = "ES channel"
 
     name = fields.Char(string='Name', required=True)
@@ -179,7 +180,16 @@ class SdiChannel(models.Model):
             e_invoice_user = company.e_invoice_user_id
             if e_invoice_user:
                 attachment_model = attachment_model.sudo(e_invoice_user.id)
-        return attachment_model.create(all_attachments_values)
+
+        attachments = attachment_model.create(all_attachments_values)
+        for attachment in attachments:
+            attachment.message_post(
+                subject=_('Received new e-bill: {att_name}').format(
+                    att_name=attachment.att_name,
+                ),
+                subtype='l10n_it_sdi_channel.e_bill_received',
+            )
+        return attachments
 
     @api.model
     def _search_attachment_out_by_notification(
