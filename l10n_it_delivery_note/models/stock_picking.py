@@ -189,7 +189,7 @@ class StockPicking(models.Model):
 
         else:
             self.delivery_method_id = False
-    
+
     def _compute_show_mark_as_todo(self):
         # ToDo: E' necessario rimettere il decoratore api.depends? Funziona lo stesso
         res = super(StockPicking, self)._compute_show_mark_as_todo()
