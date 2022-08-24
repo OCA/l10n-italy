@@ -191,12 +191,12 @@ class StockPicking(models.Model):
             self.delivery_method_id = False
     
     def _compute_show_mark_as_todo(self):
-    #ToDo: decorator needed? Seems to work without it
-    res = super(StockPicking, self)._compute_show_mark_as_todo()
-    for picking in self:
-        if self.env.context.get('from_delivery_note', False):
-            picking.show_mark_as_todo = True
-    return res
+        #ToDo: decorator needed? Seems to work without it
+        res = super(StockPicking, self)._compute_show_mark_as_todo()
+        for picking in self:
+            if self.env.context.get('from_delivery_note', False):
+                picking.show_mark_as_todo = True
+        return res
 
     def _add_delivery_cost_to_so(self):
         self.ensure_one()
