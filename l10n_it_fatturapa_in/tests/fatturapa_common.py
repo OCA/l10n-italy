@@ -131,6 +131,15 @@ class FatturapaCommon(SingleTransactionCase):
             }
         )
 
+    def create_attachment(self, name, file_name, module_name=None):
+        if module_name is None:
+            module_name = "l10n_it_fatturapa_in"
+        attach_form = Form(self.attach_model)
+        attach_form.name = name
+        attach_form.datas = self.getFile(file_name, module_name=module_name)[1]
+        attach = attach_form.save()
+        return attach
+
     def run_wizard(
         self,
         name,
@@ -141,10 +150,8 @@ class FatturapaCommon(SingleTransactionCase):
     ):
         if module_name is None:
             module_name = "l10n_it_fatturapa_in"
-        attach_form = Form(self.attach_model)
-        attach_form.name = name
-        attach_form.datas = self.getFile(file_name, module_name=module_name)[1]
-        attach = attach_form.save()
+
+        attach = self.create_attachment(name, file_name, module_name=module_name)
         attach_id = attach.id
         if mode == "import":
             wizard_form = Form(
