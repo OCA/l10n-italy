@@ -41,7 +41,7 @@ addon | version | maintainers | summary
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 8.0.2.0.0 |  | Esigibilità IVA
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 8.0.3.0.3 |  | Electronic invoices
 [l10n_it_fatturapa_export_zip](l10n_it_fatturapa_export_zip/) | 8.0.1.0.0 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche
-[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 8.0.2.0.5 |  | Electronic invoices reception
+[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 8.0.2.0.6 |  | Electronic invoices reception
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 8.0.4.0.0 |  | Electronic invoices emission
 [l10n_it_fatturapa_out_ddt](l10n_it_fatturapa_out_ddt/) | 8.0.2.0.0 |  | Modulo ponte tra emissione fatture elettroniche e DDT
 [l10n_it_fatturapa_out_sale](l10n_it_fatturapa_out_sale/) | 8.0.2.0.1 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Modulo ponte tra emissione fatture elettroniche e dati ordine di vendita
