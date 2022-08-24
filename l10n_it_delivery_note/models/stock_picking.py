@@ -191,10 +191,10 @@ class StockPicking(models.Model):
             self.delivery_method_id = False
     
     def _compute_show_mark_as_todo(self):
-        #ToDo: E' necessario rimettere il decoratore api.depends? Funziona lo stesso
+        # ToDo: E' necessario rimettere il decoratore api.depends? Funziona lo stesso
         res = super(StockPicking, self)._compute_show_mark_as_todo()
         for picking in self:
-            if self.env.context.get('from_delivery_note', False):
+            if self.env.context.get("from_delivery_note", False):
                 picking.show_mark_as_todo = True
         return res
 
