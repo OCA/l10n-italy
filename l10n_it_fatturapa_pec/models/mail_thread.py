@@ -3,6 +3,7 @@
 # Copyright 2018 Sergio Corato (https://efatto.it)
 # Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
 
+import base64
 import logging
 import re
 
@@ -184,7 +185,7 @@ class MailThread(models.AbstractModel):
                 # See check_fetch_pec_server_id
                 company_id = sdi_chan.company_id.id
         file_name_content_dict = {
-            attachment.name: attachment.datas,
+            attachment.name: base64.b64decode(attachment.datas),
         }
         default_values = {
             'company_id': company_id,
