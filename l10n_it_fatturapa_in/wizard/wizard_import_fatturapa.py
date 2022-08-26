@@ -120,7 +120,7 @@ class WizardImportFatturapa(models.TransientModel):
     def reset_inconsistencies(self):
         """
         Clean all existing inconsistencies.
-        Note that inconsistencies can be spread in any environment.
+        Note that inconsistencies are in all environments.
         """
         for env in self.env.all:
             env_context = dict(env.context)
@@ -130,29 +130,13 @@ class WizardImportFatturapa(models.TransientModel):
     def get_inconsistencies(self):
         """
         Get all existing inconsistencies.
-        Note that inconsistencies can be spread in any environment.
         """
-        all_envs_inconsistencies = ""
-        for env in self.env.all:
-            env_inconsistencies = env.context.get("inconsistencies")
-            if not env_inconsistencies:
-                continue
-
-            if all_envs_inconsistencies:
-                if env_inconsistencies not in all_envs_inconsistencies:
-                    all_envs_inconsistencies = "\n".join(
-                        (
-                            all_envs_inconsistencies,
-                            env_inconsistencies,
-                        )
-                    )
-            else:
-                all_envs_inconsistencies = env_inconsistencies
-        return all_envs_inconsistencies
+        return self.env.context.get("inconsistencies", "")
 
     def log_inconsistency(self, message):
         """
         Add `message` to existing inconsistencies.
+        Note that inconsistencies are in all environments.
         """
         inconsistencies = self.get_inconsistencies()
         if message not in inconsistencies:
@@ -162,10 +146,14 @@ class WizardImportFatturapa(models.TransientModel):
             # we can't set
             # self = self.with_context(inconsistencies=inconsistencies)
             # because self is a locale variable.
-            self.env.context = frozendict(
-                self.env.context,
-                inconsistencies=inconsistencies,
-            )
+            # Environments are weakly referenced,
+            # so they might disappear if they are no more referenced.
+            # Save the inconsistencies in all the environments
+            # to avoid losing them.
+            for env in self.env.all:
+                env_context = dict(env.context)
+                env_context.setdefault("inconsistencies", inconsistencies)
+                env.context = frozendict(env_context)
 
     def check_partner_base_data(self, partner_id, DatiAnagrafici):
         partner = self.env["res.partner"].browse(partner_id)
