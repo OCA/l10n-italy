@@ -165,7 +165,7 @@ class SdiChannel(models.Model):
         for file_name, file_content in file_name_content_dict.items():
             attachments_values = self._process_single_fe(
                 file_name,
-                file_content,
+                base64.decodebytes(file_content),
                 **default_values,
             )
             if attachments_values:
