@@ -175,44 +175,11 @@ class AccountMove(models.Model):
             move_line = move_line.filtered(lambda l: l.date_maturity is not False)
             # ---- Sorted
             move_line = move_line.sorted(key=lambda r: r.date_maturity)
-            # ---- Get date
-            previous_date_due = move_line.mapped("date_maturity")
-            pterm = self.env["account.payment.term"].browse(
-                self.invoice_payment_term_id.id
-            )
-            pterm_list = pterm.compute(value=1, date_ref=self.invoice_date)
-            for pay_date in pterm_list:
-                if not self.month_check(pay_date[0], previous_date_due):
-                    # ---- Get Line values for service product
-                    service_prod = invoice.company_id.due_cost_service_id
-                    account = service_prod.product_tmpl_id.get_product_accounts(
-                        invoice.fiscal_position_id
-                    )["income"]
-                    line_vals = {
-                        "partner_id": invoice.partner_id.id,
-                        "product_id": service_prod.id,
-                        "move_id": invoice.id,
-                        "price_unit": (
-                            invoice.invoice_payment_term_id.riba_payment_cost
-                        ),
-                        "due_cost_line": True,
-                        "exclude_from_invoice_tab": False,
-                        "name": _("{line_name} for {month}-{year}").format(
-                            line_name=service_prod.name,
-                            month=pay_date[0][5:7],
-                            year=pay_date[0][:4],
-                        ),
-                        "account_id": account.id,
-                        "sequence": 9999,
-                    }
-                    # ---- Update Line Value with tax if is set on product
-                    if invoice.company_id.due_cost_service_id.taxes_id:
-                        tax = invoice.fiscal_position_id.map_tax(service_prod.taxes_id)
-                        line_vals.update({"tax_ids": [(4, tax.id)]})
-                    invoice.write({"invoice_line_ids": [(0, 0, line_vals)]})
-                    # ---- recompute invoice taxes
-                    invoice._recompute_tax_lines()
-        return super().action_post()
+            due_cost_lines = invoice._get_due_costs_lines(move_line)
+            for line_vals in due_cost_lines:
+                invoice.write({"invoice_line_ids": [(0, 0, line_vals)]})
+
+            return super().action_post()
 
     def button_draft(self):
         # ---- Delete Collection Fees Line of invoice when set Back to Draft
@@ -264,6 +231,54 @@ class AccountMove(models.Model):
 
     def get_due_cost_line_ids(self):
         return self.invoice_line_ids.filtered(lambda l: l.due_cost_line).ids
+
+    def _get_due_costs_lines(self, move_lines):
+        self.ensure_one()
+        # ---- Get date
+        previous_date_due = move_lines.mapped("date_maturity")
+        pterm = self.invoice_payment_term_id
+        pterm_list = pterm.compute(value=1, date_ref=self.invoice_date)
+        due_cost_lines = []
+        # ---- Get Line values for service product
+        service_prod = self.company_id.due_cost_service_id
+        account = service_prod.product_tmpl_id.get_product_accounts(
+            self.fiscal_position_id
+        )["income"]
+        for pay_date in pterm_list:
+            if not self.month_check(pay_date[0], previous_date_due):
+                line_vals = self._get_due_costs_line_vals(
+                    service_prod, pay_date, account
+                )
+                # ---- Update Line Value with tax if is set on product
+                self._get_service_prod_line_tax(service_prod, line_vals)
+                due_cost_lines.append(line_vals)
+        return due_cost_lines
+
+    def _get_due_costs_line_vals(self, service_prod, pay_date, account):
+        self.ensure_one()
+        return {
+            "partner_id": self.partner_id.id,
+            "product_id": service_prod.id,
+            "move_id": self.id,
+            "price_unit": (self.invoice_payment_term_id.riba_payment_cost),
+            "due_cost_line": True,
+            "exclude_from_invoice_tab": False,
+            "name": _("{line_name} for {month}-{year}").format(
+                line_name=service_prod.name,
+                month=pay_date[0][5:7],
+                year=pay_date[0][:4],
+            ),
+            "account_id": account.id,
+            "sequence": 9999,
+        }
+
+    def _get_service_prod_line_tax(self, service_prod, line_vals):
+        self.ensure_one()
+        if self.company_id.due_cost_service_id.taxes_id:
+            tax = self.fiscal_position_id.map_tax(
+                service_prod.taxes_id, service_prod, self.partner_id
+            )
+            line_vals.update({"tax_ids": [(4, tax.id)]})
 
 
 # se distinta_line_ids == None allora non è stata emessa
