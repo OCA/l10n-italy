@@ -1,10 +1,11 @@
 #  Copyright 2020 Simone Rubino - Agile Business Group
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests.common import TransactionCase
+from odoo.addons.sale.tests.test_sale_common import TestSale
+from odoo.tests import Form
 
 
-class TestFatturapaSale(TransactionCase):
+class TestFatturapaSale (TestSale):
 
     def setUp(self):
         super().setUp()
@@ -112,3 +113,19 @@ class TestFatturapaSale(TransactionCase):
         sale_order.action_cancel()
         sale_order.unlink()
         self.assertFalse(related_documents.exists())
+
+    def test_create_order_sale_user(self):
+        """
+        A user having only group "Sales | User: Own Documents Only"
+        can create an order
+        """
+        sale_user_order_model = self.env['sale.order'] \
+            .sudo(
+                user=self.user.id,
+            )
+
+        sale_order_form = Form(sale_user_order_model)
+        sale_order_form.partner_id = self.partner
+        sale_order = sale_order_form.save()
+
+        self.assertTrue(sale_order)
