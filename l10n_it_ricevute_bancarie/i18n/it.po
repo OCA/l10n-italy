@@ -395,6 +395,7 @@ msgstr "Aziende"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration__company_id
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta__company_id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line__company_id
 msgid "Company"
 msgstr "Azienda"
 
