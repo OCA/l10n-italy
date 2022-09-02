@@ -4,4 +4,4 @@ codicefiscale
 elementpath
 openupgradelib
 unidecode
-xmlschema
+xmlschema>=1.7.0
