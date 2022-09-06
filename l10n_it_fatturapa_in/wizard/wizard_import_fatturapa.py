@@ -167,9 +167,9 @@ class WizardImportFatturapa(models.TransientModel):
             else:
                 vat = "{}{}".format(
                     DatiAnagrafici.IdFiscaleIVA.IdPaese.upper(),
-                    re.sub(r"\W+", "",
-                           DatiAnagrafici.IdFiscaleIVA.IdCodice
-                           ).upper().lstrip('0'),
+                    re.sub(
+                        r"\W+", "", DatiAnagrafici.IdFiscaleIVA.IdCodice
+                    ).upper().lstrip('0'),
                 )
         partners = partner_model
         res_partner_rule = (
@@ -362,8 +362,10 @@ class WizardImportFatturapa(models.TransientModel):
                 vals["rea_liquidation_state"] = REA.StatoLiquidazione or False
 
             if cedPrest.Contatti:
-                vals["phone"] = cedPrest.Contatti.Telefono
-                vals["email"] = cedPrest.Contatti.Email
+                if cedPrest.Contatti.Telefono:
+                    vals["phone"] = cedPrest.Contatti.Telefono
+                if cedPrest.Contatti.Email:
+                    vals["email"] = cedPrest.Contatti.Email
             partner_model.browse(partner_id).write(vals)
         return partner_id
 

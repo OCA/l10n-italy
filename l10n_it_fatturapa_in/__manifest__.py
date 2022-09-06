@@ -6,7 +6,7 @@
 
 {
     "name": "ITA - Fattura elettronica - Ricezione",
-    "version": "14.0.1.3.0+PR2682",
+    "version": "14.0.1.4.0+PR2682",
     "development_status": "Beta",
     "category": "Localization/Italy",
     "summary": "Ricezione fatture elettroniche",
@@ -30,6 +30,6 @@
     ],
     "installable": True,
     "external_dependencies": {
-        "python": ["elementpath", "xmlschema", "asn1crypto"],
+        "python": ["elementpath", "asn1crypto"],
     },
 }
