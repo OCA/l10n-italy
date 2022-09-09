@@ -49,6 +49,7 @@ setuptools.setup(
         'odoo12-addon-l10n_it_fatturapa_out_rc',
         'odoo12-addon-l10n_it_fatturapa_out_stamp',
         'odoo12-addon-l10n_it_fatturapa_out_triple_discount',
+        'odoo12-addon-l10n_it_fatturapa_out_welfare',
         'odoo12-addon-l10n_it_fatturapa_out_wt',
         'odoo12-addon-l10n_it_fatturapa_pec',
         'odoo12-addon-l10n_it_fatturapa_sale',
