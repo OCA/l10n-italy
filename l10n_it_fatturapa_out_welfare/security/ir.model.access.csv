@@ -1,0 +1,3 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_welfare_fund_type_amount_manager,Welfare Fund Type Amount Manager,model_welfare_fund_type_amount,account.group_account_manager,1,1,1,1
+access_welfare_fund_type_amount_user,Welfare Fund Type Amount Manager User,model_welfare_fund_type_amount,account.group_account_invoice,1,0,0,0
