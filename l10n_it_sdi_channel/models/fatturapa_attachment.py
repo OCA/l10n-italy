@@ -27,10 +27,16 @@ class FatturaPAAttachment (models.AbstractModel):
             # but only if all the attachments share the same SdI channel
             channel = self.mapped('channel_id')
             if all(attachment.channel_id == channel for attachment in self):
-                for partner_follower in channel.message_partner_ids:
-                    res.append((
-                        partner_follower.id,
-                        default_subtype_ids,
-                        False,
-                    ))
+                subtype_model = self.env['mail.message.subtype']
+                child_ids, def_ids, all_int_ids, parent, relation = \
+                    subtype_model._get_auto_subscription_subtypes(self._name)
+                for channel_follower in channel.message_follower_ids:
+                    for channel_subtype in channel_follower.subtype_ids:
+                        attachment_subtype_id = parent.get(channel_subtype.id)
+                        if attachment_subtype_id:
+                            res.append((
+                                channel_follower.partner_id.id,
+                                [attachment_subtype_id],
+                                False,
+                            ))
         return res
