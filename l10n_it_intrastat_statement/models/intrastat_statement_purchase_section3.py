@@ -50,13 +50,19 @@ class IntrastatStatementPurchaseSection3(models.Model):
         rcd = ""
         # Codice dello Stato membro del fornitore
         country_id = self.country_partner_id or self.partner_id.country_id
-        rcd += format_x(country_id.code, 2)
-        #  Codice IVA del fornitore
-        rcd += format_x(self.vat_code.replace(" ", ""), 12)
+        if self.statement_id.exclude_optional_column_sect_1_3:
+            rcd += format_x(" ", 14)
+        else:
+            rcd += format_x(country_id.code, 2)
+            #  Codice IVA del fornitore
+            rcd += format_x(self.vat_code.replace(" ", ""), 12)
         # Ammontare delle operazioni in euro
         rcd += format_9(self.amount_euro, 13)
         # Ammontare delle operazioni in valuta
-        rcd += format_9(self.amount_currency, 13)
+        if self.statement_id.exclude_optional_column_sect_1_3:
+            rcd += format_9(0, 13)
+        else:
+            rcd += format_9(self.amount_currency, 13)
         # Numero Fattura
         rcd += format_x(self.invoice_number, 15)
         # Data Fattura

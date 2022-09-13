@@ -74,6 +74,8 @@
                                             <th />
                                             <th />
                                             <th />
+                                            <th />
+                                            <th />
                                         </tr>
                                         <tr>
                                             <th class="text-center">PROGR.</th>
@@ -83,6 +85,7 @@
                                                 class="text-center"
                                             >AMMONTARE DELLE OPERAZIONI IN EURO</th>
                                             <th class="text-center">NATURA TRANS.</th>
+                                            <th class="text-center">NATURA TRANS. B</th>
                                             <th
                                                 class="text-center"
                                             >NOMENCLATURA COMBINATA</th>
@@ -97,6 +100,7 @@
                                             <th class="text-center">MODO TRASP.</th>
                                             <th class="text-center">PAESE DEST.</th>
                                             <th class="text-center">PROV. ORIG.</th>
+                                            <th class="text-center">PAESE ORIG.</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -114,6 +118,8 @@
                                             <td>11</td>
                                             <td>12</td>
                                             <td>13</td>
+                                            <td>14</td>
+                                            <td>15</td>
                                         </tr>
                                         <t t-set="total" t-value="0" />
                                         <tr t-foreach="o.sale_section1_ids" t-as="l">
@@ -125,6 +131,9 @@
                                             <td><span t-field="l.amount_euro" /></td>
                                             <td><span
                                                     t-field="l.transaction_nature_id.code"
+                                                /></td>
+                                            <td><span
+                                                    t-field="l.transaction_nature_b_id.code"
                                                 /></td>
                                             <td><span
                                                     t-field="l.intrastat_code_id.name"
@@ -147,6 +156,9 @@
                                                 /></td>
                                             <td><span
                                                     t-field="l.province_origin_id.code"
+                                                /></td>
+                                            <td><span
+                                                    t-field="l.country_origin_id.code"
                                                 /></td>
                                             <t
                                                 t-set="total"

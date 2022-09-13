@@ -49,11 +49,8 @@ class IntrastatStatementSection(models.AbstractModel):
         partner_id = invoice_id.partner_id
 
         # Amounts
-        dp_model = self.env["decimal.precision"]
         amount_euro = statement_id.round_min_amount(
-            inv_intra_line.amount_euro,
-            statement_id.company_id or company_id,
-            dp_model.precision_get("Account"),
+            inv_intra_line.amount_euro, statement_id.company_id or company_id, 0
         )
 
         return {
