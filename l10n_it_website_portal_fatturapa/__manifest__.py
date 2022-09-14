@@ -7,8 +7,8 @@
     "version": "12.0.1.3.0",
     "author": "Odoo Community Association (OCA)",
     "category": "Localization/Italy",
-    "website": "https://github.com/OCA/l10n-italy/tree/"
-               "12.0/l10n_it_website_portal_fatturapa",
+    "website": "https://github.com/OCA/l10n-italy"
+               "/tree/12.0/l10n_it_website_portal_fatturapa",
     "license": "AGPL-3",
     "depends": [
         "l10n_it_fatturapa",

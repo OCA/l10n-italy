@@ -10,8 +10,8 @@
     "version": "12.0.2.2.0",
     "development_status": "Beta",
     "category": "Hidden",
-    'website': 'https://github.com/OCA/l10n-italy/tree/10.0/'
-               'l10n_it_sdi_channel',
+    'website': 'https://github.com/OCA/l10n-italy'
+               '/tree/12.0/l10n_it_sdi_channel',
     "author": "Efatto.it di Sergio Corato, Odoo Community Association (OCA)",
     "maintainers": ["sergiocorato"],
     "license": "AGPL-3",

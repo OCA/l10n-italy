@@ -9,8 +9,8 @@
     'license': 'AGPL-3',
     'author': 'Agile Business Group, Odoo Community Association (OCA)',
     'maintainers': ['tafaRU'],
-    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
-                'l10n_it_account_stamp_sale',
+    'website': 'https://github.com/OCA/l10n-italy'
+               '/tree/12.0/l10n_it_account_stamp_sale',
     'depends': [
         'l10n_it_account_stamp',
         'sale',

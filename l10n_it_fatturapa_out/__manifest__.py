@@ -13,8 +13,8 @@
     'summary': 'Emissione fatture elettroniche',
     'author': 'Davide Corio, Agile Business Group, Innoviu,'
               'Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
-               'l10n_it_fatturapa_out',
+    'website': 'https://github.com/OCA/l10n-italy'
+               '/tree/12.0/l10n_it_fatturapa_out',
     'license': 'AGPL-3',
     'depends': [
         'l10n_it_account',

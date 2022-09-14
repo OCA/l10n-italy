@@ -11,8 +11,8 @@
     'summary': 'Fatture elettroniche',
     'author': 'Davide Corio, Agile Business Group, Innoviu, '
               'Odoo Italia Network, Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
-               'l10n_it_fatturapa',
+    'website': 'https://github.com/OCA/l10n-italy'
+               '/tree/12.0/l10n_it_fatturapa',
     'license': 'AGPL-3',
     'excludes': ['l10n_it_edi'],
     "depends": [

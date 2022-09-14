@@ -10,8 +10,8 @@
     'author': "Openforce, Link IT srl, Agile Business Group, "
               "Powerp network, "
               "Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/l10n-italy/tree/'
-               '12.0/l10n_it_intrastat',
+    'website': 'https://github.com/OCA/l10n-italy'
+               '/tree/12.0/l10n_it_intrastat',
     'license': 'AGPL-3',
     'depends': [
         'sale_management',

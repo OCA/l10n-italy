@@ -8,8 +8,8 @@
     'category': 'Localization/Italy',
     'author': 'Gianmarco Conte - Dinamiche Aziendali srl, '
               'Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/'
-               'l10n_it_central_journal',
+    'website': 'https://github.com/OCA/l10n-italy'
+               '/tree/12.0/l10n_it_central_journal',
     'license': 'AGPL-3',
     "depends": [
         'account',

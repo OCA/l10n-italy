@@ -11,8 +11,8 @@
     'summary': 'Inversione contabile',
     'author': 'Odoo Italia Network, Odoo Community Association (OCA)',
     'license': 'LGPL-3',
-    'website': 'https://github.com/OCA/l10n-italy/tree/'
-               '12.0/l10n_it_reverse_charge',
+    'website': 'https://github.com/OCA/l10n-italy'
+               '/tree/12.0/l10n_it_reverse_charge',
     'depends': [
         'account',
         'account_cancel',

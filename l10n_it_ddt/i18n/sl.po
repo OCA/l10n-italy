@@ -721,25 +721,25 @@ msgstr "Prodajni nalog"
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:46
 #, fuzzy, python-format
 msgid "Sale order %s and DDT %s have different carriage condition"
-msgstr "Izbrani zbirnik %s ima drugačen prevozni pogoj"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:57
 #, fuzzy, python-format
 msgid "Sale order %s and DDT %s have different goods description"
-msgstr "Izbrani zbirnik %s ima drugačen opis blaga"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:79
 #, fuzzy, python-format
 msgid "Sale order %s and DDT %s have different transportation method"
-msgstr "Izbrani zbirnik %s ima drugačen razlog prevoza"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:68
 #, fuzzy, python-format
 msgid "Sale order %s and DDT %s have different transportation reason"
-msgstr "Izbrani zbirnik %s ima drugačen razlog prevoza"
+msgstr ""
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_line__sale_line_id

@@ -9,10 +9,12 @@
     'name': 'ITA - Contabilità base',
     'summary': 'Modulo base usato come dipendenza di altri moduli contabili',
     'version': '12.0.1.4.5',
+    "development_status": "Production/Stable",
     'category': 'Hidden',
     'author': "Agile Business Group, Abstract, "
               "Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_account',
+    'website': 'https://github.com/OCA/l10n-italy'
+               '/tree/12.0/l10n_it_account',
     'license': 'AGPL-3',
     "depends": [
         'account_fiscal_year',

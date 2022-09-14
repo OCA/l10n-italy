@@ -10,7 +10,8 @@
     'version': '12.0.1.0.2',
     'development_status': "Beta",
     'category': "Accounting & Finance",
-    'website': 'https://github.com/OCA/l10n-italy',
+    'website': 'https://github.com/OCA/l10n-italy'
+               '/tree/12.0/l10n_it_vat_statement_split_payment',
     'author': "Openforce Srls Unipersonale, Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'application': False,

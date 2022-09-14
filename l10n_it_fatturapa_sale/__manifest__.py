@@ -5,8 +5,8 @@
     "summary": "Aggiunge alcuni dati per la "
                "fatturazione elettronica nell'ordine di vendita",
     "version": "12.0.1.1.3",
-    "website": "https://github.com/OCA/l10n-italy/tree/"
-               "12.0/l10n_it_fatturapa_sale",
+    "website": "https://github.com/OCA/l10n-italy"
+               "/tree/12.0/l10n_it_fatturapa_sale",
     "author": "Agile Business Group, "
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
