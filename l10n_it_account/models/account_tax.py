@@ -205,7 +205,11 @@ class AccountTax(models.Model):
                     continue
 
                 tax_balance += child_balance
-                if child.account_id:
+                account_ids = (
+                    child.mapped("invoice_repartition_line_ids.account_id")
+                    | child.mapped("refund_repartition_line_ids.account_id")
+                ).ids
+                if account_ids:
                     deductible += child_balance
                 else:
                     undeductible += child_balance
