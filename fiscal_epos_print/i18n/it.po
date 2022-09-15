@@ -379,6 +379,13 @@ msgstr "Non fiscale aperto"
 
 #. module: fiscal_epos_print
 #. openerp-web
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:430
+#, python-format
+msgid "Not paid"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. openerp-web
 #: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:44
 #, python-format
 msgid "Offline (end of paper or open cover)"
