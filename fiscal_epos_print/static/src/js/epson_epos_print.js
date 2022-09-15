@@ -411,14 +411,25 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                 xml += self.printRecTotalRefund({});
             }
             else {
-                _.each(receipt.paymentlines, function(l, i, list) {
-                    xml += self.printRecTotal({
-                        payment: l.amount,
-                        paymentType: l.type,
-                        paymentIndex: l.type_index,
-                        description: l.journal,
+                if (receipt.paymentlines.length) {
+                    _.each(receipt.paymentlines, function(l, i, list) {
+                        xml += self.printRecTotal({
+                            payment: l.amount,
+                            paymentType: l.type,
+                            paymentIndex: l.type_index,
+                            description: l.journal,
+                        });
                     });
-                });
+                }
+                else {
+                    // no payment lines, assuming not paid
+                    xml += self.printRecTotal({
+                        payment: 0,
+                        paymentType: 5,
+                        paymentIndex: 0,
+                        description: _t("Not paid"),
+                    });
+                }
             }
             xml += '<endFiscalReceipt /></printerFiscalReceipt>';
             this.fiscalPrinter.send(this.url, xml);
