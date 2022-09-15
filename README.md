@@ -25,7 +25,7 @@ addon | version | maintainers | summary
 [account_vat_period_end_statement](account_vat_period_end_statement/) | 12.0.1.8.0 |  | Allow to create the 'VAT Statement'.
 [assets_management](assets_management/) | 12.0.1.0.0 |  | Gestione Cespiti
 [currency_rate_update_boi](currency_rate_update_boi/) | 12.0.1.0.0 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Update exchange rates using www.bancaditalia.it
-[fiscal_epos_print](fiscal_epos_print/) | 12.0.2.0.1 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | ePOS-Print XML Fiscal Printer Driver - Stampanti Epson compatibili: FP81II, FP90III
+[fiscal_epos_print](fiscal_epos_print/) | 12.0.2.0.2 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | ePOS-Print XML Fiscal Printer Driver - Stampanti Epson compatibili: FP81II, FP90III
 [fiscal_epos_print_fiscalcode](fiscal_epos_print_fiscalcode/) | 12.0.1.1.0 |  | Consente di includere il codice fiscale negli scontrini
 [fiscal_epos_print_meal_voucher](fiscal_epos_print_meal_voucher/) | 12.0.1.1.0 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Consente di controllare e comunicare al registratore telematico le informazioni relative ai ticket
 [l10n_it_abicab](l10n_it_abicab/) | 12.0.1.1.1 |  | Base Bank ABI/CAB codes
