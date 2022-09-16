@@ -18,6 +18,7 @@
     ],
     "excludes": ["sale_order_action_invoice_create_hook"],
     "data": [
+        "security/ir.model.access.csv",
         "views/related_document_type_views.xml",
         "views/sale_order_line_views.xml",
         "views/sale_order_views.xml",
