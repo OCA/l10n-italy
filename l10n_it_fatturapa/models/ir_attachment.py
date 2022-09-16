@@ -76,6 +76,8 @@ class FatturaPAAttachment (models.AbstractModel):
             if elem.tag.find('Signature') > -1:
                 elem.getparent().remove(elem)
                 break
+            if any(" " in elem.nsmap[tag] for tag in elem.nsmap):
+                ET.cleanup_namespaces(elem)
         return ET.tostring(root)
 
     @api.model
