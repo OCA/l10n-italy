@@ -1,5 +1,6 @@
 # Copyright 2015 Alessandro Camilli (<http://www.openforce.it>)
 # Copyright 2018 Lorenzo Battistini - Agile Business Group
+# Copyright 2022 ~ 2023 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import models, fields, api, _
@@ -66,6 +67,101 @@ class AccountPartialReconcile(models.Model):
             paying_invoice = self.env['account.invoice'].browse()
         return paying_invoice
 
+    def _get_wt_payment_lines(self):
+        """
+        Get Payment Lines linked to `self`.
+
+        The Payment Lines can be linked to the Invoice reconciled by `self`.
+        """
+        self.ensure_one()
+        reconciled_move_lines = self.credit_move_id | self.debit_move_id
+        reconciled_moves = reconciled_move_lines.mapped('move_id')
+        wt_move_lines = self.env['account.move.line'].search(
+            [
+                (
+                    'withholding_tax_generated_by_move_id',
+                    'in',
+                    reconciled_moves.ids,
+                ),
+            ],
+        )
+        return wt_move_lines
+
+    def _get_line_to_reconcile(self, wt_move):
+        """
+        Get which line of the Journal Entry `wt_move` can be reconciled.
+        """
+        reconcilable_account_types = ['payable', 'receivable']
+        for line in wt_move.line_ids:
+            account_type = line.account_id.user_type_id.type
+            if account_type in reconcilable_account_types \
+               and line.partner_id:
+                line_to_reconcile = line
+                break
+        else:
+            line_to_reconcile = self.env['account.move.line'].browse()
+        return line_to_reconcile
+
+    def _reconcile_wt_payment(self, invoice, wt_move):
+        """
+        Reconcile the WT payment `wt_move` in `invoice`.
+
+        :return: The created Reconciliation
+        """
+        line_to_reconcile = self._get_line_to_reconcile(wt_move)
+
+        if invoice.type in ['in_refund', 'out_invoice']:
+            debit_move = self.debit_move_id
+            credit_move = line_to_reconcile
+        else:
+            debit_move = line_to_reconcile
+            credit_move = self.credit_move_id
+        return self.with_context(no_generate_wt_move=True).create({
+            'debit_move_id': debit_move.id,
+            'credit_move_id': credit_move.id,
+            'amount': abs(wt_move.amount),
+        })
+
+    def _create_reconcile_wt_payment(self, invoice):
+        """
+        Create a WT payment for `invoice`'s WT lines and reconcile it.
+
+        Create the WT Move in the WT Statement.
+        If a WT reconciled payment already exists, do nothing.
+        If a WT payment already exists, just reconcile it.
+        Otherwise, create and reconcile the WT payment.
+        `self` is the invoice's reconciliation.
+
+        :param invoice: Invoice containing the WT lines
+        """
+        reconciled_move_lines = self.credit_move_id | self.debit_move_id
+        is_wt_move = any(
+            ml.withholding_tax_generated_by_move_id
+            for ml in reconciled_move_lines
+        )
+        # Avoid re-generate wt moves if the move line is a wt move.
+        # It's possible if the user unreconciles a wt move under invoice
+        generate_moves = not is_wt_move \
+            and not self._context.get('no_generate_wt_move')
+
+        wt_moves = self.env['withholding.tax.move'].browse()
+        if generate_moves:
+            # Wt moves creation
+            wt_moves = self.generate_wt_moves()
+
+        # Retrieve any WT payments linked to the invoice
+        wt_move_lines = self._get_wt_payment_lines()
+        reconciled_wt_move_lines = wt_move_lines.filtered('reconciled')
+        if not reconciled_wt_move_lines:
+            unreconciled_wt_move_lines = wt_move_lines - reconciled_wt_move_lines
+            if unreconciled_wt_move_lines:
+                # Reconcile only the first existing WT payment
+                wt_move = first(unreconciled_wt_move_lines.mapped('move_id'))
+                self._reconcile_wt_payment(invoice, wt_move)
+            else:
+                for wt_move in wt_moves:
+                    wt_move.generate_account_move()
+
     @api.model
     def create(self, vals):
         # In case of WT The amount of reconcile mustn't exceed the tot net
@@ -92,16 +188,8 @@ class AccountPartialReconcile(models.Model):
         # Create reconciliation
         reconcile = super(AccountPartialReconcile, self).create(vals)
 
-        if paying_invoice:
-            # Avoid re-generate wt moves if the move line is an wt move.
-            # It's possible if the user unreconciles a wt move under invoice
-            wt_move = move_lines.mapped('withholding_tax_generated_by_move_id')
-            # Wt moves creation
-            if paying_invoice.withholding_tax_line_ids \
-               and not self.env.context.get('no_generate_wt_move') \
-               and not wt_move:
-                # and not wt_existing_moves\
-                reconcile.generate_wt_moves()
+        if paying_invoice.withholding_tax_line_ids:
+            reconcile._create_reconcile_wt_payment(paying_invoice)
 
         return reconcile
 
@@ -111,32 +199,38 @@ class AccountPartialReconcile(models.Model):
         """
         return vals
 
-    @api.model
-    def generate_wt_moves(self):
-        wt_statement_obj = self.env['withholding.tax.statement']
-        # Reconcile lines
-        line_payment_ids = []
-        line_payment_ids.append(self.debit_move_id.id)
-        line_payment_ids.append(self.credit_move_id.id)
-        domain = [('id', 'in', line_payment_ids)]
-        rec_lines = self.env['account.move.line'].search(domain)
+    def _get_wt_statement(self):
+        """
+        Search WT Statement linked to this Reconciliation.
 
-        # Search statements of competence
-        wt_statements = False
-        rec_line_statement = False
-        for rec_line in rec_lines:
+        :return: The WT statement
+            and the line of the Reconciliation is involved in it.
+        """
+        rec_move_lines = self.debit_move_id | self.credit_move_id
+        wt_statement_obj = self.env['withholding.tax.statement']
+        for rec_line in rec_move_lines:
             domain = [('move_id', '=', rec_line.move_id.id)]
             wt_statements = wt_statement_obj.search(domain)
             if wt_statements:
                 rec_line_statement = rec_line
                 break
-        # Search payment move
-        rec_line_payment = False
-        for rec_line in rec_lines:
-            if rec_line.id != rec_line_statement.id:
-                rec_line_payment = rec_line
+        else:
+            wt_statements = wt_statement_obj.browse()
+            rec_line_statement = self.env['account.move.line'].browse()
+        return wt_statements, rec_line_statement
+
+    @api.model
+    def generate_wt_moves(self):
+        # Search statements of competence
+        wt_statements, rec_line_statement = self._get_wt_statement()
+
+        # Search payment move line
+        rec_move_lines = self.debit_move_id | self.credit_move_id
+        rec_line_payment = rec_move_lines - rec_line_statement
+
         # Generate wt moves
-        wt_moves = []
+        wt_tax_move_model = self.env['withholding.tax.move']
+        wt_moves = wt_tax_move_model.browse()
         for wt_st in wt_statements:
             amount_wt = wt_st.get_wt_competence(self.amount)
             # Date maturity
@@ -160,10 +254,8 @@ class AccountPartialReconcile(models.Model):
                 'amount': amount_wt
             }
             wt_move_vals = self._prepare_wt_move(wt_move_vals)
-            wt_move = self.env['withholding.tax.move'].create(wt_move_vals)
-            wt_moves.append(wt_move)
-            # Generate account move
-            wt_move.generate_account_move()
+            wt_move = wt_tax_move_model.create(wt_move_vals)
+            wt_moves |= wt_move
         return wt_moves
 
     @api.multi

@@ -1,5 +1,6 @@
 # Copyright 2015 Alessandro Camilli (<http://www.openforce.it>)
 # Copyright 2018 Lorenzo Battistini - Agile Business Group
+# Copyright 2023 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
@@ -322,6 +323,7 @@ class WithholdingTaxMove(models.Model):
         """
         Creation of account move to increase credit/debit vs tax authority
         """
+        self.ensure_one()
         if self.wt_account_move_id:
             raise ValidationError(
                 _('Warning! Wt account move already exists: %s') % (
