@@ -1,6 +1,7 @@
 # Copyright 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
 # Copyright 2012-15 Agile Business Group sagl (<http://www.agilebg.com>)
 # Copyright 2015 Associazione Odoo Italia (<http://www.odoo-italia.org>)
+# Copyright 2022 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import math
@@ -536,6 +537,20 @@ class AccountVatPeriodEndStatement(models.Model):
 
         return True
 
+    def _get_previous_statements(self):
+        self.ensure_one()
+        prev_statements = self.search(
+            [
+                ('date', '<', self.date),
+                ('annual', '=', False),
+            ],
+            order='date desc',
+        )
+        prev_statements_same_accounts = prev_statements.filtered(
+            lambda s: s.account_ids == self.account_ids
+        )
+        return prev_statements_same_accounts
+
     @api.multi
     def compute_amounts(self):
         decimal_precision_obj = self.env['decimal.precision']
@@ -543,9 +558,7 @@ class AccountVatPeriodEndStatement(models.Model):
         credit_line_model = self.env['statement.credit.account.line']
         for statement in self:
             statement.previous_debit_vat_amount = 0.0
-            prev_statements = self.search(
-                [('date', '<', statement.date), ('annual', '=', False)],
-                order='date desc')
+            prev_statements = statement._get_previous_statements()
             if prev_statements and not statement.annual:
                 prev_statement = prev_statements[0]
                 if (
