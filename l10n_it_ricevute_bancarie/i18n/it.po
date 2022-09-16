@@ -570,6 +570,7 @@ msgstr "Dettaglio"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_partial_reconcile__display_name
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_payment_term__display_name
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_ir_ui_menu__display_name
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_report_l10n_it_ricevute_bancarie_distinta_qweb__display_name
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_bank__display_name
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_company__display_name
@@ -709,6 +710,7 @@ msgstr "IBAN"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_move_line__id
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_partial_reconcile__id
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_payment_term__id
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_ir_ui_menu__id
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_report_l10n_it_ricevute_bancarie_distinta_qweb__id
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_bank__id
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_company__id
@@ -855,6 +857,7 @@ msgstr "Lasciare vuoto per utilizzare la data corrente."
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_move_line____last_update
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_partial_reconcile____last_update
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_payment_term____last_update
+#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_ir_ui_menu____last_update
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_report_l10n_it_ricevute_bancarie_distinta_qweb____last_update
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_bank____last_update
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_company____last_update
@@ -937,6 +940,11 @@ msgstr "Segna come insoluta"
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
 msgid "Mark as Settled"
 msgstr "Segna come pagata"
+
+#. module: l10n_it_ricevute_bancarie
+#: model:ir.model,name:l10n_it_ricevute_bancarie.model_ir_ui_menu
+msgid "Menu"
+msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta__message_has_error
