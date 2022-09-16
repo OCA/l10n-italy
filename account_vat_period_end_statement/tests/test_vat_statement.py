@@ -1,11 +1,14 @@
 #  Copyright 2015 Agile Business Group <http://www.agilebg.com>
+#  Copyright 2022 Simone Rubino - TAKOBI
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from datetime import date, datetime
 
 from dateutil.rrule import MONTHLY
 
+from odoo import fields
 from odoo.tests import tagged
+from odoo.tests.common import Form
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
@@ -261,3 +264,137 @@ class TestTax(AccountTestInvoicingCommon):
                 self.assertEqual(line.debit, 100)
         self.assertTrue(vat_auth_found)
         # TODO payment
+
+    def _create_vendor_bill(self, partner, invoice_date, price_unit, tax):
+        """
+        Create an open Vendor Bill for `partner` having date `invoice_date`.
+        The Bill will also have a Line having Price `price_unit` and Tax `tax`.
+        """
+        bill_model = self.invoice_model.with_context(default_move_type="in_invoice")
+        bill_form = Form(bill_model)
+        bill_form.partner_id = partner
+        bill_form.invoice_date = invoice_date
+        with bill_form.invoice_line_ids.new() as line:
+            line.tax_ids.clear()
+            line.tax_ids.add(tax)
+            line.name = "Test Invoice Line"
+            line.account_id = self.company_data["default_account_expense"]
+            line.price_unit = price_unit
+        bill = bill_form.save()
+        bill.action_post()
+        return bill
+
+    def _get_statement(self, period, statement_date, accounts):
+        """
+        Create a VAT Statement in date `statement_date`
+        for Period `period` and Accounts `accounts`.
+        """
+        # Create statement
+        statement_form = Form(self.vat_statement_model)
+        statement_form.journal_id = self.general_journal
+        statement_form.authority_vat_account_id = self.vat_authority
+        statement_form.payment_term_id = self.account_payment_term
+        statement_form.date = statement_date
+        statement_form.account_ids.clear()
+        for account in accounts:
+            statement_form.account_ids.add(account)
+        statement = statement_form.save()
+
+        # Add period
+        add_period_model = self.env["add.period.to.vat.statement"]
+        add_period_model = add_period_model.with_context(
+            active_id=statement.id,
+            active_model=statement._name,
+        )
+        add_period_form = Form(add_period_model)
+        add_period_form.period_id = period
+        add_period = add_period_form.save()
+        add_period.add_period()
+        return statement
+
+    def test_different_previous_vat_statements(self):
+        """
+        Statements for different Accounts
+        only count previous Amounts from Statements with the same Accounts.
+        """
+        # Arrange: Create two different VAT Statements
+        # selecting two different Accounts
+        partner = self.env.ref("base.res_partner_4")
+        tax = self.account_tax_22_credit
+        tax_statement_account = tax.vat_statement_account_id
+        last_year_bill = self._create_vendor_bill(
+            partner,
+            self.last_year_recent_date,
+            10,
+            tax,
+        )
+        self.assertEqual(last_year_bill.state, "posted")
+        last_year_period = self.last_year_period
+        last_year_statement = self._get_statement(
+            last_year_period,
+            self.last_year_date,
+            tax_statement_account,
+        )
+        self.assertTrue(last_year_statement)
+
+        # Create another Bill and Statement
+        other_tax_statement_account = tax_statement_account.copy()
+        other_tax = tax.copy(
+            default={
+                "vat_statement_account_id": other_tax_statement_account.id,
+            },
+        )
+        other_last_year_bill = self._create_vendor_bill(
+            partner,
+            self.last_year_recent_date,
+            20,
+            other_tax,
+        )
+        self.assertEqual(other_last_year_bill.state, "posted")
+        last_year_period.type_id.allow_overlap = True
+        other_last_year_period = last_year_period.copy(
+            default={
+                "name": "Test Other last Year Period",
+                "vat_statement_id": False,
+            },
+        )
+        other_last_year_statement = self._get_statement(
+            other_last_year_period,
+            self.last_year_date,
+            other_tax_statement_account,
+        )
+        self.assertTrue(other_last_year_statement)
+
+        # Act: Create this Year's Statements,
+        # one for each Account used in previous Statements
+        today = fields.Date.today()
+        current_period = self.current_period
+        statement = self._get_statement(
+            current_period,
+            today,
+            tax_statement_account,
+        )
+
+        current_period.type_id.allow_overlap = True
+        other_current_period = current_period.copy(
+            default={
+                "name": "Test Other current Period",
+                "vat_statement_id": False,
+            },
+        )
+        other_statement = self._get_statement(
+            other_current_period,
+            today,
+            other_tax_statement_account,
+        )
+
+        # Assert: Each one of this Year's Statements counts as previous Amount
+        # only the corresponding last Year's Statement
+        self.assertEqual(
+            statement.previous_credit_vat_amount,
+            -last_year_statement.authority_vat_amount,
+        )
+        self.assertEqual(
+            other_statement.previous_credit_vat_amount,
+            -other_last_year_statement.authority_vat_amount,
+        )
