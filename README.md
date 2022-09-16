@@ -65,7 +65,7 @@ addon | version | maintainers | summary
 [l10n_it_fatturapa_out_welfare](l10n_it_fatturapa_out_welfare/) | 12.0.1.0.0 |  | Registrazione della cassa previdenziale nelle fatture elettroniche in uscita
 [l10n_it_fatturapa_out_wt](l10n_it_fatturapa_out_wt/) | 12.0.2.0.1 |  | Modulo ponte tra emissione fatture elettroniche e ritenute.
 [l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 12.0.2.1.0 |  | Invio fatture elettroniche tramite PEC
-[l10n_it_fatturapa_sale](l10n_it_fatturapa_sale/) | 12.0.1.1.3 |  | Aggiunge alcuni dati per la fatturazione elettronica nell'ordine di vendita
+[l10n_it_fatturapa_sale](l10n_it_fatturapa_sale/) | 12.0.1.1.4 |  | Aggiunge alcuni dati per la fatturazione elettronica nell'ordine di vendita
 [l10n_it_fatturapa_sdicoop](l10n_it_fatturapa_sdicoop/) | 12.0.2.2.0 |  | Invio fatture elettroniche tramite SDICoop
 [l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 12.0.2.1.1 |  | Italian Localization - Tipi di documento fiscale per dichiarativi
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 12.0.2.0.0 |  | Condizioni di pagamento delle fatture elettroniche
