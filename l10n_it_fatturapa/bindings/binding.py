@@ -1,18 +1,26 @@
-# ./binding.py
-# -*- coding: utf-8 -*-
+# flake8: noqa
 # PyXB bindings for NM:32e521a6da5b62d07147ea75b23acb0fb9726893
 # Generated 2022-09-19 12:37:19.433213 by PyXB version 1.2.6 using Python 3.6.15.final.0
 # Namespace http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2
 
 from __future__ import unicode_literals
-import pyxb
-import pyxb.binding
-import pyxb.binding.saxer
+import logging
 import io
-import pyxb.utils.utility
-import pyxb.utils.domutils
 import sys
-import pyxb.utils.six as _six
+
+_logger = logging.getLogger(__name__)
+
+try:
+    import pyxb
+    import pyxb.binding
+    import pyxb.binding.saxer
+    import pyxb.utils.utility
+    import pyxb.utils.domutils
+    import pyxb.utils.six as _six
+    # Import bindings for namespaces imported into schema
+    import pyxb.binding.datatypes
+except (ImportError) as err:
+    _logger.debug(err)
 # Unique identifier for bindings created at the same time
 _GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:0937e7fe-3807-11ed-9890-99c59b328e7e')
 
@@ -26,9 +34,7 @@ if pyxb.__version__ != _PyXBVersion:
 # inside class definitions where property names may conflict.
 _module_typeBindings = pyxb.utils.utility.Object()
 
-# Import bindings for namespaces imported into schema
-import pyxb.binding.datatypes
-import _ds as _ImportedBinding__ds
+from . import _ds as _ImportedBinding__ds
 
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI('http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2', create_if_missing=True)
