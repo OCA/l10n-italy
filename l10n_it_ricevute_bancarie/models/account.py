@@ -182,8 +182,6 @@ class AccountMove(models.Model):
                         tax = invoice.fiscal_position_id.map_tax(service_prod.taxes_id)
                         line_vals.update({"tax_ids": [(4, tax.id)]})
                     invoice.write({"invoice_line_ids": [(0, 0, line_vals)]})
-                    # ---- recompute invoice taxes
-                    invoice._recompute_tax_lines()
         return super().action_post()
 
     def button_draft(self):
@@ -196,7 +194,6 @@ class AccountMove(models.Model):
                 invoice.write(
                     {"invoice_line_ids": [(2, id, 0) for id in due_cost_line_ids]}
                 )
-                invoice._recompute_tax_lines()
 
     def button_cancel(self):
         for invoice in self:
