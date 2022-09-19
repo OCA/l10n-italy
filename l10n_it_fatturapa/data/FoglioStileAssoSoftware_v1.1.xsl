@@ -493,7 +493,7 @@
 
           <td class="import" >
             <xsl:if test="PrezzoUnitario">
-              <xsl:if test="number(PrezzoTotale)">
+              <xsl:if test="number(PrezzoUnitario)">
 
                 <xsl:value-of select="format-number(PrezzoUnitario,  '###.###.##0,00######', 'euro')" />
               </xsl:if>
@@ -1799,14 +1799,7 @@
               <tr>
 
                 <th>Tipologia documento</th>
-				<xsl:if test="$IsFPRS='0'">
-					<th class="perc">Art. 73</th>
-				</xsl:if>
-
-				<xsl:if test="$IsFPRS='1'">
-                  <th class="perc">Imposta bollo</th>
-                </xsl:if>
-
+                <th class="perc">Art. 73</th>
                 <th >Numero documento</th>
                 <th class="data">Data documento</th>
                 <th >Codice destinatario</th>
@@ -1879,6 +1872,9 @@
 						<xsl:when test="$TD='TD27'">
 							fattura per autoconsumo o per cessioni gratuite senza rivalsa
 						</xsl:when>
+						<xsl:when test="$TD='TD28'">
+							acquisti da San Marino con IVA - fattura cartacea
+						</xsl:when>
 
                       <!--FPRS-->
                       <xsl:when test="$TD='TD07'">
@@ -1900,21 +1896,11 @@
                   </xsl:if>
                 </td>
 
-				<xsl:if test="$IsFPRS='0'">
-					<td class="ritenuta"  >
-					  <xsl:if test="DatiGenerali/DatiGeneraliDocumento/Art73">
-						<xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Art73" />
-					  </xsl:if>
-					</td>
-				</xsl:if>
-
-				 <xsl:if test="$IsFPRS='1'">
-                  <td class="textCenter">
-                    <xsl:if test="DatiGenerali/DatiGeneraliDocumento/BolloVirtuale">
-                      <xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/BolloVirtuale" />
-                    </xsl:if>
-                  </td>
-                </xsl:if>
+                <td class="ritenuta"  >
+                  <xsl:if test="DatiGenerali/DatiGeneraliDocumento/Art73">
+                    <xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Art73" />
+                  </xsl:if>
+                </td>
 
                 <td class="textCenter" >
 
@@ -1970,7 +1956,6 @@
 
                       <xsl:for-each select="DatiGenerali/DatiGeneraliDocumento/Causale"  >
                         <xsl:value-of select="." />
-						<br/>
                       </xsl:for-each>
 
                     </xsl:if>
@@ -2485,7 +2470,7 @@
                   <tr >
 
                     <th  colspan="2">
-                      Imposta bollo
+                      Importo bollo
                     </th>
                     <th  colspan="3">
                       Sconto/Maggiorazione
