@@ -6,7 +6,8 @@
 import base64
 import os
 from . import riba_common
-from odoo.tools import config
+from odoo.tests import Form
+from odoo.tools import config, safe_eval
 
 
 class TestInvoiceDueCost(riba_common.TestRibaCommon):
@@ -228,6 +229,40 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         to_reconcile.remove_move_reconcile()
         self.assertEqual(riba_list.state, 'accredited')
         self.assertEqual(riba_list.line_ids[0].state, 'accredited')
+
+    def test_riba_incasso_flow(self):
+        """
+        RiBa of type 'After Collection' pays invoice when accepted.
+        """
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost
+        self.invoice.action_invoice_open()
+        self.assertEqual(self.invoice.state, 'open')
+
+        to_issue_action = self.env.ref('l10n_it_ricevute_bancarie'
+                                       '.action_riba_da_emettere')
+        to_issue_model = self.env[to_issue_action.res_model]
+        to_issue_domain = safe_eval(to_issue_action.domain)
+        to_issue_records = to_issue_model.search(to_issue_domain)
+        self.assertTrue(to_issue_records)
+
+        issue_wizard_context = {
+            'active_model': to_issue_records._name,
+            'active_ids': to_issue_records.ids,
+        }
+        issue_wizard_model = self.env['riba.issue'] \
+            .with_context(issue_wizard_context)
+        issue_wizard_form = Form(issue_wizard_model)
+        issue_wizard_form.configuration_id = self.riba_config_incasso
+        issue_wizard = issue_wizard_form.save()
+        issue_result = issue_wizard.create_list()
+
+        riba_list_id = issue_result['res_id']
+        riba_list_model = issue_result['res_model']
+        riba_list = self.env[riba_list_model].browse(riba_list_id)
+        riba_list.confirm()
+
+        self.assertEqual(riba_list.state, 'accepted')
+        self.assertEqual(self.invoice.state, 'paid')
 
     def test_unsolved_riba(self):
         # create another invoice to test past due C/O

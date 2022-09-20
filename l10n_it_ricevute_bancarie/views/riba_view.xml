@@ -117,7 +117,7 @@
         <field name="arch" type="xml">
             <form string="C/O Slip" version="7.0">
                 <header>
-                    <button name="confirm" type='object' string="Mark as Accepted" class="oe_highlight" attrs="{'invisible':['|',('state','!=','draft'),('type','=','incasso')]}"/>
+                    <button name="confirm" type='object' string="Mark as Accepted" class="oe_highlight" attrs="{'invisible':['|',('state','!=','draft'),('type','not in',('incasso', 'sbf'))]}"/>
                     <button name="%(riba_accreditation_action)d" type='action' attrs="{'invisible':['|',('state','!=','accepted'),('type','=','incasso')]}" string="Mark as Credited" class="oe_highlight"/>
                     <button name="riba_cancel" type='object' attrs="{'invisible':[('state','=','cancel')]}" string="Cancel" />
                     <button name="settle_all_line" type='object' string="Mark All as Settled" class="oe_highlight" attrs="{'invisible':['|',('state','!=','accredited')]}"/>
@@ -158,26 +158,30 @@
                         </group>
                     </page>
                     <page string="Accounting">
-                        <separator colspan="4" string="Acceptance Entries"/>
-                        <field name='acceptance_move_ids' colspan="4" nolabel="1"/>
-                        <separator colspan="4" string="Credit Entry"/>
-                        <field name='accreditation_move_id' colspan="4" nolabel="1"/>
-                        <separator colspan="4" string="Payments"/>
-                        <field name='payment_ids' colspan="4" nolabel="1">
-                            <tree string="Payments">
-                                <field name="date"/>
-                                <field name="move_id"/>
-                                <field name="ref"/>
-                                <field name="name"/>
-                                <field name="journal_id" groups="base.group_user"/>
-                                <field name="debit"/>
-                                <field name="credit"/>
-                                <field name="amount_currency"/>
-                                <field name="currency_id"/>
-                            </tree>
-                        </field>
-                        <separator colspan="4" string="Past Dues"/>
-                        <field name='unsolved_move_ids' colspan="4" nolabel="1"/>
+                        <group string="Acceptance Entries"  attrs="{'invisible':[('type', 'not in', ('incasso', 'sbf'))]}">
+                            <field name='acceptance_move_ids' nolabel="1"/>
+                        </group>
+                        <group string="Credit Entry" attrs="{'invisible':[('type', '!=', 'sbf')]}">
+                            <field name='accreditation_move_id' nolabel="1"/>
+                        </group>
+                        <group string="Payments" attrs="{'invisible':[('type', '!=', 'sbf')]}">
+                            <field name='payment_ids' nolabel="1">
+                                <tree string="Payments">
+                                    <field name="date"/>
+                                    <field name="move_id"/>
+                                    <field name="ref"/>
+                                    <field name="name"/>
+                                    <field name="journal_id" groups="base.group_user"/>
+                                    <field name="debit"/>
+                                    <field name="credit"/>
+                                    <field name="amount_currency"/>
+                                    <field name="currency_id"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group colspan="4" string="Past Dues" attrs="{'invisible':[('type', '!=', 'sbf')]}">
+                            <field name='unsolved_move_ids' colspan="4" nolabel="1"/>
+                        </group>
                     </page>
                 </notebook>
             </form>
