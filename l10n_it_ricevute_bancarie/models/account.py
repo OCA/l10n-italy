@@ -194,7 +194,6 @@ class AccountMove(models.Model):
                 invoice.write(
                     {"invoice_line_ids": [(2, id, 0) for id in due_cost_line_ids]}
                 )
-                invoice._recompute_tax_lines()
 
     def button_cancel(self):
         for invoice in self:
