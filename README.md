@@ -65,7 +65,7 @@ addon | version | maintainers | summary
 [l10n_it_reverse_charge](l10n_it_reverse_charge/) | 14.0.1.1.2 |  | Inversione contabile
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 14.0.1.2.1 |  | Ricevute bancarie
 [l10n_it_sdi_channel](l10n_it_sdi_channel/) | 14.0.1.0.1 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI
-[l10n_it_split_payment](l10n_it_split_payment/) | 14.0.1.0.5 |  | Scissione pagamenti
+[l10n_it_split_payment](l10n_it_split_payment/) | 14.0.1.0.6 |  | Scissione pagamenti
 [l10n_it_vat_payability](l10n_it_vat_payability/) | 14.0.1.0.2 |  | ITA - Esigibilità IVA
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 14.0.1.0.5 |  | ITA - Registri IVA
 [l10n_it_vat_registries_split_payment](l10n_it_vat_registries_split_payment/) | 14.0.1.1.1 |  | Modulo di congiunzione tra registri IVA e scissione dei pagamenti
