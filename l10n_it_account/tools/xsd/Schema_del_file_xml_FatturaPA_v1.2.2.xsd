@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
 	xmlns:ds="http://www.w3.org/2000/09/xmldsig#" 
 	xmlns="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2" 
 	targetNamespace="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2" 
-	version="1.2.1">
+	version="1.2.2">
   
   <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd" />
     
   <xs:element name="FatturaElettronica" type="FatturaElettronicaType">
     <xs:annotation>
-      <xs:documentation>XML schema fatture destinate a PA e privati in forma ordinaria 1.2.1</xs:documentation>
+      <xs:documentation>XML schema fatture destinate a PA e privati in forma ordinaria 1.2.2</xs:documentation>
     </xs:annotation>
   </xs:element>
   
@@ -426,6 +426,11 @@
       <xs:enumeration value="TD27">
         <xs:annotation>
           <xs:documentation>Fattura per autoconsumo o per cessioni gratuite senza rivalsa</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TD28">
+        <xs:annotation>
+          <xs:documentation>Acquisti da San Marino con IVA (fattura cartacea)</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
     </xs:restriction>
@@ -1181,7 +1186,7 @@
       </xs:enumeration>
       <xs:enumeration value="N7">
         <xs:annotation>
-          <xs:documentation>IVA assolta in altro stato UE (prestazione di servizi di telecomunicazioni, tele-radiodiffusione ed elettronici ex art. 7-sexies lett. f, g, art. 74-sexies DPR 633/72)</xs:documentation>
+          <xs:documentation>IVA assolta in altro stato UE (prestazione di servizi di telecomunicazioni, tele-radiodiffusione ed elettronici ex art. 7-octies lett. a, b, art. 74-sexies DPR 633/72)</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
     </xs:restriction>
