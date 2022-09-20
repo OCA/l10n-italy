@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0"?>
 <xsl:stylesheet 
-	version="1.1" 
+	version="1.2.2" 
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
 	xmlns:a="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2">
 	<xsl:output method="html" />
@@ -1145,10 +1145,10 @@
 																		con versamento IVA)
 																	</xsl:when>
 																	<xsl:when test="$TD='TD24'">
-																		(fattura differita - art.21 c.4 lett. a)
+																		(fattura differita - art.21 c.4 terzo periodo lett. a - DPR 633/72) 
 																	</xsl:when>
 																	<xsl:when test="$TD='TD25'">
-																		(fattura differita - art.21 c.4 terzo periodo lett. b)
+																		(fattura differita - art.21 c.4 terzo periodo lett. b - DPR 633/72)
 																	</xsl:when>
 																	<xsl:when test="$TD='TD26'">
 																		(cessione di beni ammortizzabili e per 
@@ -1157,6 +1157,9 @@
 																	<xsl:when test="$TD='TD27'">
 																		(fattura per autoconsumo o per cessioni 
 																		gratuite senza rivalsa)
+																	</xsl:when>
+																	<xsl:when test="$TD='TD28'">
+																		(acquisti da San Marino con IVA - Fattura Cartacea)
 																	</xsl:when>
 																	<xsl:when test="$TD=''">
 																	</xsl:when>
@@ -1548,7 +1551,8 @@
 																				</xsl:when>
 																				<xsl:when test="$NT='N6.2'">
 																					(inversione contabile - cessione di oro e 
-																					argento puro)
+																					argento ai sensi della legge 7/2000 nonché di oreficeria
+                                                                                                                                                                        usata ad OPO)
 																				</xsl:when>
 																				<xsl:when test="$NT='N6.3'">
 																					(inversione contabile - subappalto nel settore 
@@ -1577,11 +1581,9 @@
 																					(inversione contabile - altri casi)
 																				</xsl:when>
 																				<xsl:when test="$NT='N7'">
-																					(IVA assolta in altro stato UE - vendite a distanza 
-																					ex art.40 c.3 e 4 e art.41 c.1 lett. b DL 331/93; 
-																					prestazione di servizi di telecomunicazioni, 
-																					tele-radiodiffusione ed elettronici ex art.7-sexies 
-																					lett. f, g, e art.74-sexies DPR 633/72)
+																					(IVA assolta in altro stato UE - prestazione di servizi di 
+																					telecomunicazioni, tele-radiodiffusione ed elettronici ex 
+																					art. 7-octies, comma 1 lett. a, b, art. 74-sexies DPR 633/72)
 																				</xsl:when>
 																				<xsl:when test="$NT=''">
 																				</xsl:when>
@@ -2640,7 +2642,8 @@
 																		</xsl:when>
 																		<xsl:when test="$NAT='N6.2'">
 																			(inversione contabile - cessione di oro e 
-																			argento puro)
+																			argento ai sensi della legge 7/2000 nonché di oreficeria
+                                                                                                                                                        usata ad OPO)
 																		</xsl:when>
 																		<xsl:when test="$NAT='N6.3'">
 																			(inversione contabile - subappalto nel settore 
@@ -2818,7 +2821,8 @@
 																		</xsl:when>
 																		<xsl:when test="$NAT1='N6.2'">
 																			(inversione contabile - cessione di oro e 
-																			argento puro)
+																			argento ai sensi della legge 7/2000 nonché di oreficeria
+                                                                                                                                                        usata ad OPO)
 																		</xsl:when>
 																		<xsl:when test="$NAT1='N6.3'">
 																			(inversione contabile - subappalto nel settore 

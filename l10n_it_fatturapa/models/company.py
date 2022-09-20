@@ -33,12 +33,12 @@ class ResCompany(models.Model):
     )
     fatturapa_preview_style = fields.Selection(
         [
-            ("fatturaordinaria_v1.2.1.xsl", "Fattura Ordinaria"),
-            ("FoglioStileAssoSoftware_v1.1.xsl", "AssoSoftware"),
+            ("Foglio_di_stile_fatturaordinaria_v1.2.2.xsl", "Fattura Ordinaria"),
+            ("FoglioStileAssoSoftware.xsl", "AssoSoftware"),
         ],
         string="Preview Format Style",
         required=True,
-        default="fatturaordinaria_v1.2.1.xsl",
+        default="Foglio_di_stile_fatturaordinaria_v1.2.2.xsl",
     )
 
 
@@ -108,7 +108,7 @@ class AccountConfigSettings(models.TransientModel):
         related="company_id.fatturapa_preview_style",
         string="Preview Format Style",
         required=True,
-        default="fatturaordinaria_v1.2.1.xsl",
+        default="Foglio_di_stile_fatturaordinaria_v1.2.2.xsl",
         readonly=False,
     )
 
@@ -160,4 +160,4 @@ class AccountConfigSettings(models.TransientModel):
             self.fatturapa_tax_representative = False
             self.fatturapa_sender_partner = False
             self.fatturapa_stabile_organizzazione = False
-            self.fatturapa_preview_style = "fatturaordinaria_v1.2.1.xsl"
+            self.fatturapa_preview_style = "Foglio_di_stile_fatturaordinaria_v1.2.2.xsl"
