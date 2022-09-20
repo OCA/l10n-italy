@@ -31,6 +31,11 @@
                     <separator colspan="4" string="Settlement"/>
                     <field name="settlement_journal_id" />
                 </group>
+                <group string="After Collection" attrs="{'invisible': [('type','!=','incasso')]}" colspan="4" col="4">
+                    <separator colspan="4" string="Acceptance"/>
+                    <field name="acceptance_journal_id" attrs="{'required':[('type','=','incasso')]}"/>
+                    <field name="acceptance_account_id" attrs="{'required':[('type','=','incasso')]}"/>
+                </group>
             </form>
         </field>
     </record>
