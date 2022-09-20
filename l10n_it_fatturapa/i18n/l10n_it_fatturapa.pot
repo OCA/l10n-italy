@@ -116,7 +116,7 @@ msgid "Assignee / Partner"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: model:ir.model.fields.selection,name:l10n_it_fatturapa.selection__res_company__fatturapa_preview_style__fogliostileassosoftware_v1_1_xsl
+#: model:ir.model.fields.selection,name:l10n_it_fatturapa.selection__res_company__fatturapa_preview_style__fogliostileassosoftware_xsl
 msgid "AssoSoftware"
 msgstr ""
 
@@ -524,7 +524,7 @@ msgid "Enable electronic invoicing"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: model:ir.model.fields.selection,name:l10n_it_fatturapa.selection__res_company__fatturapa_preview_style__fatturaordinaria_v1_2_1_xsl
+#: model:ir.model.fields.selection,name:l10n_it_fatturapa.selection__res_company__fatturapa_preview_style__foglio_di_stile_fatturaordinaria_v1_2_2_xsl
 msgid "Fattura Ordinaria"
 msgstr ""
 
