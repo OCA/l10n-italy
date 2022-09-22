@@ -22,6 +22,9 @@ class AccountInvoice (models.Model):
             .with_context(
                 active_model=self._name,
                 active_ids=self.ids,
+                # Otherwise default_type could be set for invoice ("out_invoice")
+                # and conflict with ir.attachment.type
+                default_type="binary",
             ) \
             .create([{}])
         export_result = export_wizard.exportFatturaPA()
