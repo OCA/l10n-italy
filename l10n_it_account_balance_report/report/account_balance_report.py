@@ -129,8 +129,10 @@ class ReportAccountBalanceReport(models.TransientModel):
 
             sign = trial_acc_line.get_balance_sign()
             trial_acc_line.final_balance *= sign
+            trial_acc_line.period_balance *= sign
             for trial_partner_line in trial_acc_line.partner_ids:
                 trial_partner_line.final_balance *= sign
+                trial_partner_line.period_balance *= sign
 
             balance_line_vals = (
                 0, 0, {
@@ -150,11 +152,23 @@ class ReportAccountBalanceReport(models.TransientModel):
             if section == r_sec:
                 section_credit_vals.append(balance_line_vals)
                 if not trial_acc_line.account_group_id:
-                    total_credit += trial_acc_line.final_balance
+                    # get total from period when we create a profit/loss report
+                    total_credit += (
+                        trial_acc_line.period_balance if
+                        trial_acc_line.account_id.internal_group in
+                        ["income", "expense"]
+                        else trial_acc_line.final_balance
+                    )
             elif section == l_sec:
                 section_debit_vals.append(balance_line_vals)
                 if not trial_acc_line.account_group_id:
-                    total_debit += trial_acc_line.final_balance
+                    # get total from period when we create a profit/loss report
+                    total_debit += (
+                        trial_acc_line.period_balance if
+                        trial_acc_line.account_id.internal_group in
+                        ["income", "expense"]
+                        else trial_acc_line.final_balance
+                    )
 
         curr = self.company_id.currency_id or self.company_id._get_euro()
         digits = curr.decimal_places

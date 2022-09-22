@@ -151,19 +151,23 @@ class AccountBalanceReportXslx(models.AbstractModel):
                 'indent_field': 'level',
                 'indent_unit': 2,
                 'width': 60},
-            2: {'field': 'final_balance',
+            2: {'field': 'period_balance',
+                'header': _("Period balance"),
+                'type': 'amount',
+                'width': 20},
+            3: {'field': 'final_balance',
                 'header': _("Final balance"),
                 'type': 'amount',
                 'width': 20}
         }
         if report.foreign_currency:
             cols.update({
-                3: {'field': 'currency_id',
+                4: {'field': 'currency_id',
                     'field_currency_balance': 'currency_id',
                     'header': _("Cur."),
                     'type': 'many2one',
                     'width': 10},
-                4: {'field': 'final_balance_foreign_currency',
+                5: {'field': 'final_balance_foreign_currency',
                     'header': _("Ending balance in cur."),
                     'type': 'amount_currency',
                     'width': 20}
@@ -199,7 +203,10 @@ class AccountBalanceReportXslx(models.AbstractModel):
                 1: {'field': 'partner_id',
                     'type': 'many2one',
                     'width': 60},
-                2: {'field': 'final_balance',
+                2: {'field': 'period_balance',
+                    'type': 'amount',
+                    'width': 20},
+                3: {'field': 'final_balance',
                     'type': 'amount',
                     'width': 20}
             })
@@ -210,7 +217,10 @@ class AccountBalanceReportXslx(models.AbstractModel):
                 1 + len(cols): {'field': 'partner_id',
                                 'type': 'many2one',
                                 'width': 60},
-                2 + len(cols): {'field': 'final_balance',
+                2 + len(cols): {'field': 'period_balance',
+                                'type': 'amount',
+                                'width': 20},
+                3 + len(cols): {'field': 'final_balance',
                                 'type': 'amount',
                                 'width': 20}
             })
