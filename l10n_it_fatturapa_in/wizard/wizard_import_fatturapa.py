@@ -746,7 +746,7 @@ class WizardImportFatturapa(models.TransientModel):
             self.env['account.invoice.line'].create(line_vals)
         return True
 
-    def _createPaymentsLine(self, payment_id, line, partner_id, invoice_id):
+    def _createPaymentsLine(self, payment, line, partner_id, invoice_id):
         invoice = self.env["account.invoice"].browse(invoice_id)
         details = line.DettaglioPagamento or False
         if details:
@@ -807,7 +807,7 @@ class WizardImportFatturapa(models.TransientModel):
                         dline.DataDecorrenzaPenale or False,
                     'payment_code':
                         dline.CodicePagamento or '',
-                    'payment_data_id': payment_id
+                    'payment_data_id': payment.id
                 }
                 bank = False
                 payment_bank_id = False
@@ -837,7 +837,10 @@ class WizardImportFatturapa(models.TransientModel):
                             'acc_number', '=',
                             pretty_iban(iban)
                         ),
-                        ('partner_id', '=', partner_id),
+                        ('partner_id', 'in', (
+                            partner_id,
+                            payment.invoice_id.company_id.partner_id.id,
+                        )),
                     ]
                     payment_bank_id = False
                     payment_banks = PartnerBankModel.search(SearchDom)
@@ -856,7 +859,7 @@ class WizardImportFatturapa(models.TransientModel):
                         )
                     elif not payment_banks and bank:
                         existing_account = PartnerBankModel.search([
-                            ("acc_number", "=", iban),
+                            ("acc_number", "=", pretty_iban(iban)),
                             ("company_id", "=", invoice.company_id.id)
                         ])
                         if existing_account:
@@ -1372,7 +1375,7 @@ class WizardImportFatturapa(models.TransientModel):
                         'payment_terms': term_id,
                         'invoice_id': invoice_id
                     }
-                ).id
+                )
                 self._createPaymentsLine(
                     PayDataId, PaymentLine, partner_id, invoice_id)
 
