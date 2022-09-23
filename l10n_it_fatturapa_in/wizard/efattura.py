@@ -1,5 +1,6 @@
 import logging
 import re
+import urllib.parse
 from collections.abc import MutableMapping
 from datetime import datetime
 
@@ -91,20 +92,34 @@ def _fix_xmlstring(xml_string):
     Il controllo effettuato è che l'URI che arriva inizi per
     http://www.w3.org/2000/09/xmldsig, e si tronca il resto.
 
-    HACK2: 0.0000000 rappresentato come 0E-7 da decimal.Decimal
+    Un altro esempio reale sono spazi lasciati nell'URL del namespace:
+    anche in questo caso l'URL non è corretto, per cui procediamo
+    a fare l'encoding.
     """
 
-    # xmlns:ds="http://www.w3.org/2000/09/xmldsig#&quot;"
     xml_string = xml_string.decode()
     # HACK#1 - url invalido
+    # xmlns:ds="http://www.w3.org/2000/09/xmldsig#&quot;"
     xml_string = re.sub(
         r'xmlns:ds="http://www.w3.org/2000/09/xmldsig([^"]*)"',
         'xmlns:ds="http://www.w3.org/2000/09/xmldsig#"',
         xml_string,
     )
+    # xmlns:ds='http://www.w3.org/2000/09/xmldsig#&quot;'
     xml_string = re.sub(
         r"xmlns:ds='http://www.w3.org/2000/09/xmldsig([^']*)'",
         "xmlns:ds='http://www.w3.org/2000/09/xmldsig#'",
+        xml_string,
+    )
+    # xmlns:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2 fatturaordinaria_v1.2.xsd" # noqa: B950
+    xml_string = re.sub(
+        r"xmlns:(\S*?)=(\"|')([^\"']*?)(\"|')",
+        lambda m: "xmlns:{}={}{}{}".format(
+            m.group(1),
+            m.group(2),
+            urllib.parse.quote(m.group(3), safe="/:#"),
+            m.group(4),
+        ),
         xml_string,
     )
     return xml_string.encode()
