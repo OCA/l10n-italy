@@ -259,17 +259,14 @@ class AccountInvoice(models.Model):
         payment_credit_line_data = self.rc_payment_credit_line_vals(
             rc_invoice)
         payment_debit_line_data = self.rc_debit_line_vals(
-            payment_credit_line_data['credit'])
+            payment_credit_line_data['credit'] or payment_credit_line_data['debit'])
         rc_payment_data['line_ids'] = [
             (0, 0, payment_debit_line_data),
             (0, 0, payment_credit_line_data),
         ]
         rc_payment = move_model.create(rc_payment_data)
-        for move_line in rc_payment.line_ids:
-            if move_line.debit:
-                payment_debit_line = move_line
-            elif move_line.credit:
-                payment_credit_line = move_line
+        payment_debit_line = self._get_payment_line(rc_payment, "payable")
+        payment_credit_line = self._get_payment_line(rc_payment, "receivable")
         rc_payment.post()
 
         lines_to_rec = move_line_model.browse([
@@ -284,14 +281,18 @@ class AccountInvoice(models.Model):
         ])
         rc_lines_to_rec.reconcile()
 
-    def partially_reconcile_supplier_invoice(self, rc_payment):
-        move_line_model = self.env['account.move.line']
+    def _get_payment_line(self, rc_payment, internal_type):
         payment_debit_line = None
         for move_line in rc_payment.line_ids:
-            if move_line.account_id.internal_type == 'payable' and (
+            if move_line.account_id.internal_type == internal_type and (
                     move_line.debit or move_line.credit):
                 payment_debit_line = move_line
                 break
+        return payment_debit_line
+
+    def partially_reconcile_supplier_invoice(self, rc_payment):
+        move_line_model = self.env['account.move.line']
+        payment_debit_line = self._get_payment_line(rc_payment, "payable")
         if payment_debit_line:
             inv_lines_to_rec = move_line_model.browse(
                 [self.get_inv_line_to_reconcile().id,
