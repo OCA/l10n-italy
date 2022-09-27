@@ -89,7 +89,7 @@ msgid "Invoice"
 msgstr "Fattura"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:349
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:353
 #, python-format
 msgid ""
 "Invoice %s, line\n"
@@ -167,6 +167,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_invoice__rc_original_purchase_invoice_ids
+msgid "Original purchase invoices"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
 #: selection:account.rc.type,partner_type:0
 msgid "Other"
 msgstr "Altro"
@@ -225,7 +230,7 @@ msgid "Reverse Charge Types"
 msgstr "Tipi di inversione contabile"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:98
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:101
 #, python-format
 msgid ""
 "Reverse charge self invoice.\n"
@@ -330,7 +335,7 @@ msgid "Text on Self Invoice"
 msgstr "Testo su autofattura"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:456
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:461
 #, python-format
 msgid ""
 "There are more than one payment line.\n"
@@ -342,7 +347,7 @@ msgstr ""
 "Procedere manualmente"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:334
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:338
 #, python-format
 msgid ""
 "There is no default credit account defined \n"
@@ -362,7 +367,7 @@ msgid "VAT Integration"
 msgstr "Integrazione IVA"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:446
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:451
 #, python-format
 msgid ""
 "VAT integration RC type, defined in fiscal position {fp}, is not managed yet"
