@@ -233,7 +233,7 @@ class AccountInvoice(models.Model):
     def _check_no_taxes(self):
         for line in self.invoice_line_ids:
             if line.invoice_line_tax_ids:
-                raise (_("Extra UE supplier invoice must have no taxes"))
+                raise UserError(_("Extra UE supplier invoice must have no taxes"))
 
     def generate_bill_of_entry(self):
         self.ensure_one()
