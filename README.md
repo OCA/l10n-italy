@@ -37,7 +37,7 @@ addon | version | maintainers | summary
 [l10n_it_account_stamp_sale](l10n_it_account_stamp_sale/) | 12.0.1.0.1 | [![tafaRU](https://github.com/tafaRU.png?size=30px)](https://github.com/tafaRU) | Modulo ponte tra imposta di bollo e vendite
 [l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 12.0.2.1.0 |  | Italian Localisation - Natura delle aliquote IVA
 [l10n_it_ateco](l10n_it_ateco/) | 12.0.1.0.1 |  | ITA - Codici Ateco
-[l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 12.0.1.0.0 |  | ITA - Bolle doganali
+[l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 12.0.1.0.1 |  | ITA - Bolle doganali
 [l10n_it_causali_pagamento](l10n_it_causali_pagamento/) | 12.0.2.0.0 |  | Aggiunge la tabella delle causali di pagamento da usare ad esempio nelle ritenute d'acconto
 [l10n_it_central_journal](l10n_it_central_journal/) | 12.0.1.1.4 |  | ITA - Libro giornale
 [l10n_it_codici_carica](l10n_it_codici_carica/) | 12.0.1.0.2 |  | Aggiunge la tabella dei codici carica da usare nelle dichiarazioni fiscali italiane
