@@ -23,7 +23,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [account_vat_period_end_statement](account_vat_period_end_statement/) | 14.0.1.0.2 |  | Allow to create the 'VAT Statement'.
 [l10n_it_abicab](l10n_it_abicab/) | 14.0.1.0.1 | [![Borruso](https://github.com/Borruso.png?size=30px)](https://github.com/Borruso) | Base Bank ABI/CAB codes
-[l10n_it_account](l10n_it_account/) | 14.0.1.2.1 |  | Modulo base usato come dipendenza di altri moduli contabili
+[l10n_it_account](l10n_it_account/) | 14.0.1.2.2 |  | Modulo base usato come dipendenza di altri moduli contabili
 [l10n_it_account_stamp](l10n_it_account_stamp/) | 14.0.1.1.0 |  | Gestione automatica dell'imposta di bollo
 [l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 14.0.1.1.0 |  | Gestione natura delle aliquote IVA
 [l10n_it_appointment_code](l10n_it_appointment_code/) | 14.0.1.0.0 |  | Aggiunge la tabella dei codici carica da usare nelle dichiarazioni fiscali italiane
@@ -35,7 +35,7 @@ addon | version | maintainers | summary
 [l10n_it_delivery_note_batch](l10n_it_delivery_note_batch/) | 14.0.1.0.0 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) [![TheMule71](https://github.com/TheMule71.png?size=30px)](https://github.com/TheMule71) | Crea i DDT partendo da gruppi di prelievi
 [l10n_it_delivery_note_customer_code](l10n_it_delivery_note_customer_code/) | 14.0.1.0.0 |  | Product Customer code for delivery note
 [l10n_it_delivery_note_order_link](l10n_it_delivery_note_order_link/) | 14.0.1.0.1 | [![andreampiovesana](https://github.com/andreampiovesana.png?size=30px)](https://github.com/andreampiovesana) | Crea collegamento tra i DDT e ordine di vendita/acquisto
-[l10n_it_fatturapa](l10n_it_fatturapa/) | 14.0.1.1.1 |  | Fatture elettroniche
+[l10n_it_fatturapa](l10n_it_fatturapa/) | 14.0.1.1.2 |  | Fatture elettroniche
 [l10n_it_fatturapa_export_zip](l10n_it_fatturapa_export_zip/) | 14.0.1.0.1 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche
 [l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 14.0.1.4.1 |  | Ricezione fatture elettroniche
 [l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 14.0.1.0.0 |  | Modulo ponte tra ricezione fatture elettroniche e acquisti
@@ -48,7 +48,7 @@ addon | version | maintainers | summary
 [l10n_it_fatturapa_out_wt](l10n_it_fatturapa_out_wt/) | 14.0.1.0.0 |  | Modulo ponte tra emissione fatture elettroniche e ritenute.
 [l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 14.0.1.0.3 |  | Invio fatture elettroniche tramite PEC
 [l10n_it_fatturapa_sale](l10n_it_fatturapa_sale/) | 14.0.1.0.1 |  | Aggiunge alcuni dati per la fatturazione elettronica nell'ordine di vendita
-[l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 14.0.1.1.0 |  | ITA - Tipi di documento fiscale per dichiarativi
+[l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 14.0.1.1.1 |  | ITA - Tipi di documento fiscale per dichiarativi
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 14.0.1.1.0 |  | Condizioni di pagamento delle fatture elettroniche
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 14.0.1.0.2 |  | ITA - Codice fiscale
 [l10n_it_intrastat](l10n_it_intrastat/) | 14.0.1.1.0 |  | Riclassificazione merci e servizi per dichiarazioni Intrastat
