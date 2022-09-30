@@ -41,7 +41,7 @@
             <DatiAnagrafici>
                 <IdFiscaleIVA>
                     <IdPaese>SI</IdPaese>
-                    <IdCodice>12345679</IdCodice>
+                    <IdCodice>SI12345679</IdCodice>
                 </IdFiscaleIVA>
                 <Anagrafica>
                     <Denominazione>REMODELA&#199;&#195;O DECORA&#199;&#195;O ?ALEC LDA?</Denominazione>

@@ -4,7 +4,7 @@
         <DatiTrasmissione>
             <IdTrasmittente>
                 <IdPaese>CH</IdPaese>
-                <IdCodice>E-114.993.395 IVA</IdCodice>
+                <IdCodice>CHE-114.993.395 IVA</IdCodice>
             </IdTrasmittente>
             <ProgressivoInvio>00007</ProgressivoInvio>
             <FormatoTrasmissione>FPR12</FormatoTrasmissione>
@@ -19,7 +19,7 @@
             <DatiAnagrafici>
                 <IdFiscaleIVA>
                     <IdPaese>CH</IdPaese>
-                    <IdCodice>E-114.993.395 IVA</IdCodice>
+                    <IdCodice>CHE-114.993.395 IVA</IdCodice>
                 </IdFiscaleIVA>
                 <Anagrafica>
                     <Denominazione>Azienda estera</Denominazione>
