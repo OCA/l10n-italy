@@ -17,8 +17,8 @@ exclude: |
   # official goverment specs
   (l10n_it_account/tools/xsd)|
   # external stylesheets
-  (l10n_it_fatturapa/data/fatturaordinaria_v1.2.1.xsl)|
-  (l10n_it_fatturapa/data/FoglioStileAssoSoftware_v1.1.xsl)|
+  (l10n_it_fatturapa/data/Foglio_di_stile_fatturaordinaria_v1.2.2.xsl)|
+  (l10n_it_fatturapa/data/FoglioStileAssoSoftware.xsl)|
   # XML tests should not be reformatted
   ^l10n_it_fatturapa_out/tests/data|
   ^l10n_it_fatturapa_in/tests/data|

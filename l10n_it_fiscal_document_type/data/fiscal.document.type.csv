@@ -23,3 +23,4 @@ id,code,name,out_invoice,in_invoice,out_refund,in_refund,priority,refund_fiscal_
 22,TD25,"fattura differita di cui all'art. 21, comma 4, terzo periodo lett. b)",True,False,False,False,3,TD04
 23,TD26,"cessione di beni ammortizzabili e per passaggi interni (ex art.36 DPR 633/72)",True,False,False,False,3,TD04
 24,TD27,fattura per autoconsumo o per cessioni gratuite senza rivalsa,True,False,False,False,3,TD04
+25,TD28,Acquisti da San Marino con IVA (fattura cartacea),False,True,False,False,3,TD04
