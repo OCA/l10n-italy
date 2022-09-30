@@ -51,7 +51,7 @@ addon | version | maintainers | summary
 [l10n_it_delivery_note_order_link](l10n_it_delivery_note_order_link/) | 12.0.1.0.1 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) [![andreampiovesana](https://github.com/andreampiovesana.png?size=30px)](https://github.com/andreampiovesana) | Crea collegamento tra i DDT e ordine di vendita
 [l10n_it_dichiarazione_intento](l10n_it_dichiarazione_intento/) | 12.0.0.2.0 |  | Gestione dichiarazioni di intento
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 12.0.2.0.0 |  | Italian Localization - Esigibilita' IVA
-[l10n_it_fatturapa](l10n_it_fatturapa/) | 12.0.3.0.0 |  | Fatture elettroniche
+[l10n_it_fatturapa](l10n_it_fatturapa/) | 12.0.3.0.1 |  | Fatture elettroniche
 [l10n_it_fatturapa_export_zip](l10n_it_fatturapa_export_zip/) | 12.0.1.0.1 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche
 [l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 12.0.3.1.2 |  | Ricezione fatture elettroniche
 [l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 12.0.1.0.2 |  | Modulo ponte tra ricezione fatture elettroniche e acquisti
@@ -67,7 +67,7 @@ addon | version | maintainers | summary
 [l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 12.0.2.1.0 |  | Invio fatture elettroniche tramite PEC
 [l10n_it_fatturapa_sale](l10n_it_fatturapa_sale/) | 12.0.1.1.4 |  | Aggiunge alcuni dati per la fatturazione elettronica nell'ordine di vendita
 [l10n_it_fatturapa_sdicoop](l10n_it_fatturapa_sdicoop/) | 12.0.2.2.0 |  | Invio fatture elettroniche tramite SDICoop
-[l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 12.0.2.1.1 |  | Italian Localization - Tipi di documento fiscale per dichiarativi
+[l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 12.0.2.1.2 |  | Italian Localization - Tipi di documento fiscale per dichiarativi
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 12.0.2.0.0 |  | Condizioni di pagamento delle fatture elettroniche
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 12.0.1.1.4 |  | Italian Localization - Fiscal Code
 [l10n_it_fiscalcode_crm](l10n_it_fiscalcode_crm/) | 12.0.1.0.2 |  | Aggiunge il campo codice fiscale ai contatti/opportunità
