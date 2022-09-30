@@ -21,8 +21,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa.view_account_config_settings
 msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" aria-label=\"Values set here are company-specific.\" "
-"groups=\"base.group_multi_company\" role=\"img\"/>"
+"specific.\" aria-label=\"Values set here are company-specific.\" groups="
+"\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"I valori impostati qui sono "
 "specifici per azienda.\" aria-label=\"I valori impostati qui sono specifici "
@@ -109,7 +109,6 @@ msgstr "Art. 73"
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/partner.py:0
-#: code:addons/l10n_it_fatturapa/models/partner.py:0
 #, python-format
 msgid ""
 "As a Public Administration, partner %s IPA Code must be 6 characters long."
@@ -118,7 +117,6 @@ msgstr ""
 "6 caratteri."
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:0
 #: code:addons/l10n_it_fatturapa/models/partner.py:0
 #, python-format
 msgid "As a natural person, partner %s must have Name and Surname."
@@ -130,7 +128,7 @@ msgid "Assignee / Partner"
 msgstr "Cessionario / Committente"
 
 #. module: l10n_it_fatturapa
-#: model:ir.model.fields.selection,name:l10n_it_fatturapa.selection__res_company__fatturapa_preview_style__fogliostileassosoftware_v1_1_xsl
+#: model:ir.model.fields.selection,name:l10n_it_fatturapa.selection__res_company__fatturapa_preview_style__fogliostileassosoftware_xsl
 msgid "AssoSoftware"
 msgstr "AssoSoftware"
 
@@ -156,7 +154,6 @@ msgid "Bank Name"
 msgstr "Nome banca"
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:0
 #: code:addons/l10n_it_fatturapa/models/ir_attachment.py:0
 #, python-format
 msgid "Base64 encoded file %s."
@@ -226,7 +223,6 @@ msgstr "Contratto"
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/ir_attachment.py:0
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:0
 #, python-format
 msgid "Corrupted attachment %s."
 msgstr "Allegato danneggiato %s."
@@ -273,20 +269,17 @@ msgstr "Creato il"
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/partner.py:0
-#: code:addons/l10n_it_fatturapa/models/partner.py:0
 #, python-format
 msgid "Customer %s: city is needed for XML generation."
 msgstr "Cliente %s: per la generazione dell'XML è necessaria la città."
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/partner.py:0
-#: code:addons/l10n_it_fatturapa/models/partner.py:0
 #, python-format
 msgid "Customer %s: country is needed for XML generation."
 msgstr "Cliente %s: per la generazione dell'XML è necessaria la nazione."
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:0
 #: code:addons/l10n_it_fatturapa/models/partner.py:0
 #, python-format
 msgid "Customer %s: street is needed for XML generation."
@@ -546,7 +539,7 @@ msgid "Enable electronic invoicing"
 msgstr "Abilitare fatturazione elettronica"
 
 #. module: l10n_it_fatturapa
-#: model:ir.model.fields.selection,name:l10n_it_fatturapa.selection__res_company__fatturapa_preview_style__fatturaordinaria_v1_2_1_xsl
+#: model:ir.model.fields.selection,name:l10n_it_fatturapa.selection__res_company__fatturapa_preview_style__foglio_di_stile_fatturaordinaria_v1_2_2_xsl
 msgid "Fattura Ordinaria"
 msgstr "Fattura Ordinaria"
 
@@ -662,8 +655,8 @@ msgstr "Contenuto indicizzato"
 msgid ""
 "Indicates whether the document has been issued according to methods and "
 "terms laid down in a ministerial decree under the terms of Article 73 of "
-"Italian Presidential Decree 633/72 (this enables the company to issue in the"
-" same year several documents with same number)"
+"Italian Presidential Decree 633/72 (this enables the company to issue in the "
+"same year several documents with same number)"
 msgstr ""
 "Indica se il documento è stato emesso secondo le modalità e i termini "
 "stabiliti con decreto ministeriale ai sensi dell'articolo 73 del DPR n. "
@@ -694,7 +687,6 @@ msgstr "Intermediario"
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/ir_attachment.py:0
-#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:0
 #, python-format
 msgid "Invalid xml %s."
 msgstr "Xml %s non valido."
@@ -706,13 +698,11 @@ msgstr "È un documento pubblico"
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/partner.py:0
-#: code:addons/l10n_it_fatturapa/models/partner.py:0
 #, python-format
 msgid "Italian partner %s must have VAT Number or Fiscal Code."
 msgstr "Il partner italiano %s deve avere una partita IVA o un codice fiscale."
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:0
 #: code:addons/l10n_it_fatturapa/models/partner.py:0
 #, python-format
 msgid "Italian partner %s: ZIP is needed for XML generation."
@@ -959,13 +949,11 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/partner.py:0
-#: code:addons/l10n_it_fatturapa/models/partner.py:0
 #, python-format
 msgid "Partner %s Addressee Code must be 7 characters long."
 msgstr "Il codice destinatario del partner %s deve essere lungo 7 caratteri."
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:0
 #: code:addons/l10n_it_fatturapa/models/partner.py:0
 #, python-format
 msgid "Partner %s has Addressee PEC %s, the Addresse Code must be %s."
@@ -973,7 +961,6 @@ msgstr ""
 "Il partner %s ha PEC destinatario %s, il codice destinatario deve essere %s."
 
 #. module: l10n_it_fatturapa
-#: code:addons/l10n_it_fatturapa/models/partner.py:0
 #: code:addons/l10n_it_fatturapa/models/partner.py:0
 #, python-format
 msgid "Partner %s must have Addresse Code. Use %s if unknown"
