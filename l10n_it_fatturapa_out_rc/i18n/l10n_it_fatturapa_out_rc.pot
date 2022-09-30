@@ -52,12 +52,6 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_rc
-#: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
-#, python-format
-msgid "Impossible to set IdFiscaleIVA for %s"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out_rc
 #: model:ir.model,name:l10n_it_fatturapa_out_rc.model_account_move
 msgid "Journal Entry"
 msgstr ""
@@ -91,6 +85,12 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
 #, python-format
 msgid "Partner %s, ZIP is not set."
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
+#, python-format
+msgid "Please specify a supplier in reverse charge invoices."
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_rc
