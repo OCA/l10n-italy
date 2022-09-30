@@ -20,11 +20,6 @@ msgstr ""
 "2);\n"
 
 #. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_it_cessionario_committente
-msgid "99999999999"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_account_config_settings
 msgid ""
 "<span class=\"o_form_label\">Transmitter</span>\n"
