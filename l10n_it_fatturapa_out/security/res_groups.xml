@@ -8,4 +8,12 @@
         <field name="name">Allow to force e-invoice export state</field>
         <field name="category_id" ref="base.module_category_hidden" />
     </record>
+
+    <record id="group_edit_invoice_sent_sdi" model="res.groups">
+        <field name="name">Edit Invoice Sent SDI</field>
+        <field
+            name="comment"
+        >Can reset to draft and then edit invoice sent to SDI</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
 </odoo>
