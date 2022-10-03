@@ -1,6 +1,10 @@
 # Copyright 2014 Davide Corio
 # Copyright 2016 Lorenzo Battistini - Agile Business Group
 
+import base64
+
+from lxml import etree
+
 from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.translate import _
@@ -95,11 +99,216 @@ class AccountInvoice(models.Model):
                 )
         return
 
+    def check_tag(self, new_xml, original_xml, list_tags, precision=None):
+        for tag in list_tags:
+            new_tag_text = new_xml.find(tag) is not None and new_xml.find(tag).text
+            original_tag_text = (
+                original_xml.find(tag) is not None and original_xml.find(tag).text
+            )
+            if precision:
+                new_tag_text = "{text:.{precision}f}".format(
+                    text=float(new_tag_text), precision=precision
+                )
+                original_tag_text = "{text:.{precision}f}".format(
+                    text=float(original_tag_text), precision=precision
+                )
+            if (new_tag_text or "").strip() != (original_tag_text or "").strip():
+                raise UserError(
+                    _(
+                        "{} isn't equal to tag in file e-invoice already created!".format(
+                            tag[2:]
+                        )
+                    )
+                )
+
+    def check_CessionarioCommittente(self, new_xml, original_xml):
+        list_tag = [
+            ".//CessionarioCommittente/DatiAnagrafici/IdFiscaleIVA/IdPaese",
+            ".//CessionarioCommittente/DatiAnagrafici/IdFiscaleIVA/IdCodice",
+        ]
+        self.check_tag(new_xml, original_xml, list_tag)
+
+    def check_DatiGeneraliDocumento(self, new_xml, original_xml):
+        price_precision = self.env["decimal.precision"].precision_get(
+            "Product Price for XML e-invoices"
+        )
+
+        list_tag = [
+            ".//DatiGeneraliDocumento/Data",
+            ".//DatiGeneraliDocumento/TipoDocumento",
+            ".//DatiGeneraliDocumento/Divisa",
+            ".//DatiGeneraliDocumento/Numero",
+        ]
+        self.check_tag(new_xml, original_xml, list_tag)
+        list_tag = [
+            ".//DatiGeneraliDocumento/ImportoTotaleDocumento",
+        ]
+        self.check_tag(new_xml, original_xml, list_tag, price_precision)
+
+        if len(new_xml.findall(".//DatiGeneraliDocumento/DatiRitenuta")) != len(
+            original_xml.findall(".//DatiGeneraliDocumento/DatiRitenuta")
+        ):
+            raise UserError(
+                _(
+                    "{} isn't equal to tag in file e-invoice already created!".format(
+                        "DatiGeneraliDocumento/DatiRitenuta"
+                    )
+                )
+            )
+        lr = 0
+        for new_line_ritenuta in new_xml.findall(
+            ".//DatiGeneraliDocumento/DatiRitenuta"
+        ):
+            original_line_ritenuta = original_xml.findall(
+                ".//DatiGeneraliDocumento/DatiRitenuta"
+            )[lr]
+            list_tag_DatiRitenuta = [
+                ".//TipoRitenuta",
+                ".//CausalePagamento",
+            ]
+            self.check_tag(
+                new_line_ritenuta, original_line_ritenuta, list_tag_DatiRitenuta
+            )
+            list_tag_DatiRitenuta = [
+                ".//ImportoRitenuta",
+                ".//AliquotaRitenuta",
+            ]
+            self.check_tag(
+                new_line_ritenuta,
+                original_line_ritenuta,
+                list_tag_DatiRitenuta,
+                price_precision,
+            )
+            lr += 1
+
+    def check_DatiBeniServizi(self, new_xml, original_xml):
+        price_precision = self.env["decimal.precision"].precision_get(
+            "Product Price for XML e-invoices"
+        )
+        uom_precision = self.env["decimal.precision"].precision_get(
+            "Product Unit of Measure"
+        )
+
+        if len(new_xml.findall(".//DatiBeniServizi/DettaglioLinee")) != len(
+            original_xml.findall(".//DatiBeniServizi/DettaglioLinee")
+        ):
+            raise UserError(
+                _(
+                    "{} isn't equal to tag in file e-invoice already created!".format(
+                        "DatiBeniServizi/DettaglioLinee"
+                    )
+                )
+            )
+        ld = 0
+        for new_line_details in new_xml.findall(".//DatiBeniServizi/DettaglioLinee"):
+            original_line_details = original_xml.findall(
+                ".//DatiBeniServizi/DettaglioLinee"
+            )[ld]
+            list_tag_DettaglioLinee = [
+                ".//NumeroLinea",
+                ".//CodiceTipo",
+                ".//CodiceValore",
+                ".//Descrizione",
+                ".//Natura",
+                ".//Ritenuta",
+            ]
+            self.check_tag(
+                new_line_details, original_line_details, list_tag_DettaglioLinee
+            )
+            list_tag_DettaglioLinee = [
+                ".//Quantita",
+            ]
+            self.check_tag(
+                new_line_details,
+                original_line_details,
+                list_tag_DettaglioLinee,
+                uom_precision,
+            )
+            list_tag_DettaglioLinee = [
+                ".//PrezzoUnitario",
+                ".//AliquotaIVA",
+                ".//PrezzoTotale",
+            ]
+            self.check_tag(
+                new_line_details,
+                original_line_details,
+                list_tag_DettaglioLinee,
+                price_precision,
+            )
+            ld += 1
+
+        if len(new_xml.findall(".//DatiBeniServizi/DatiRiepilogo")) != len(
+            original_xml.findall(".//DatiBeniServizi/DatiRiepilogo")
+        ):
+            raise UserError(
+                _(
+                    "{} isn't equal to tag in file e-invoice already created!".format(
+                        "DatiBeniServizi/DatiRiepilogo"
+                    )
+                )
+            )
+        lr = 0
+        for new_line_riepilogo in new_xml.findall(".//DatiBeniServizi/DatiRiepilogo"):
+            original_line_riepilogo = original_xml.findall(
+                ".//DatiBeniServizi/DatiRiepilogo"
+            )[lr]
+            list_tag_DatiRiepilogo = [
+                ".//AliquotaIVA",
+                ".//ImponibileImporto",
+                ".//Imposta",
+            ]
+            self.check_tag(
+                new_line_riepilogo,
+                original_line_riepilogo,
+                list_tag_DatiRiepilogo,
+                price_precision,
+            )
+            lr += 1
+
+    def elements_equal(self, new_xml, original_xml):
+        self.check_CessionarioCommittente(new_xml, original_xml)
+        self.check_DatiGeneraliDocumento(new_xml, original_xml)
+        self.check_DatiBeniServizi(new_xml, original_xml)
+
+    def write(self, vals):
+        is_draft = {}
+        for move in self:
+            is_draft[move.id] = True if move.state == "draft" else False
+        res = super(AccountInvoice, self).write(vals)
+        for move in self:
+            if (
+                move.is_sale_document()
+                and move.fatturapa_attachment_out_id
+                and is_draft[move.id]
+                and not move.state == "cancel"
+                and not move.env.context.get("skip_check_xml", False)
+            ):
+                context_partner = self.env.context.copy()
+                context_partner.update({"lang": move.partner_id.lang})
+                context_partner.update(skip_check_xml=True)
+                fatturapa, progressivo_invio = self.env[
+                    "wizard.export.fatturapa"
+                ].exportInvoiceXML(move.partner_id, [move.id], context=context_partner)
+                new_xml_content = fatturapa.to_xml(self.env)
+                original_xml_content = base64.decodebytes(
+                    move.fatturapa_attachment_out_id.datas
+                )
+                parser = etree.XMLParser(remove_blank_text=True)
+                new_xml = etree.fromstring(new_xml_content, parser)
+                original_xml = etree.fromstring(original_xml_content, parser)
+                move.elements_equal(new_xml, original_xml)
+                if not move.state == "posted":
+                    move.with_context(skip_check_xml=True).action_post()
+        return res
+
     def button_draft(self):
         for invoice in self:
             if (
                 invoice.fatturapa_state != "error"
                 and invoice.fatturapa_attachment_out_id
+                and not self.env.user.has_group(
+                    "l10n_it_fatturapa_out.group_edit_invoice_sent_sdi"
+                )
             ):
                 raise UserError(
                     _(
