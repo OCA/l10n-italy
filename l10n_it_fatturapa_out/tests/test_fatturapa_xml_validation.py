@@ -1194,3 +1194,34 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         # XML doc to be validated
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, "IT06363391001_00018.xml")
+
+    def test_edit_invoice_sent_sdi(self):
+        """
+        Check e-invoice tags after edit invoice.
+        """
+        invoice = self._create_invoice()
+        invoice.action_post()
+        self.run_wizard(invoice.id)
+        self.assertEqual(invoice.state, "posted")
+        self.assertTrue(invoice.fatturapa_attachment_out_id.exists())
+
+        with self.assertRaises(UserError), self.cr.savepoint():
+            invoice.with_user(self.account_manager.id).button_draft()
+
+        self.account_manager.groups_id += self.env.ref(
+            "l10n_it_fatturapa_out.group_edit_invoice_sent_sdi"
+        )
+        invoice.with_user(self.account_manager.id).button_draft()
+        self.assertEqual(invoice.state, "draft")
+
+        with self.assertRaises(UserError), self.cr.savepoint():
+            move_form = Form(invoice)
+            with move_form.invoice_line_ids.edit(0) as line_form:
+                line_form.price_unit = 800
+            move_form.save()
+
+        move_form = Form(invoice)
+        move_form.invoice_payment_term_id = self.account_payment_term
+        move_form.save()
+        self.assertEqual(invoice.state, "posted")
+
