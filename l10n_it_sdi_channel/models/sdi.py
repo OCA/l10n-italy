@@ -63,7 +63,7 @@ class SdiChannel(models.Model):
         self,
         file_name,
         file_content,
-        **default_values,
+        **default_values
     ):
         """
         Get values to create an Electronic Bill (`fatturapa.attachment.in`).
@@ -102,7 +102,7 @@ class SdiChannel(models.Model):
         self,
         file_name,
         file_content,
-        **default_values,
+        **default_values
     ):
         """
         Extract values from SdI file to create Electronic Bill(s).
@@ -143,7 +143,7 @@ class SdiChannel(models.Model):
         self,
         file_name_content_dict,
         metadata_file_name_content_dict,
-        **default_values,
+        **default_values
     ):
         """
         Save Electronic Bills received from SdI.
