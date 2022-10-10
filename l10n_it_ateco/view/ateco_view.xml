@@ -25,7 +25,7 @@
         <field name="type">tree</field>
         <field name="field_parent">child_ids</field>
         <field name="arch" type="xml">
-            <tree string="Ateco categories">
+            <tree>
                 <field name="code" />
                 <field name="name" />
             </tree>
