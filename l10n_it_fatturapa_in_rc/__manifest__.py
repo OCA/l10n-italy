@@ -3,7 +3,7 @@
 {
     "name": "ITA - Fattura elettronica - Inversione contabile",
     "summary": "Modulo ponte tra e-fattura in acquisto e inversione" " contabile",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "development_status": "Beta",
     "category": "Hidden",
     "website": "https://github.com/OCA/l10n-italy" "l10n_it_fatturapa_in_rc",
