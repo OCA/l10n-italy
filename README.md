@@ -29,6 +29,7 @@ addon | version | maintainers | summary
 [l10n_it_appointment_code](l10n_it_appointment_code/) | 14.0.1.0.0 |  | Aggiunge la tabella dei codici carica da usare nelle dichiarazioni fiscali italiane
 [l10n_it_ateco](l10n_it_ateco/) | 14.0.1.0.0 |  | ITA - Codici Ateco
 [l10n_it_central_journal](l10n_it_central_journal/) | 14.0.1.0.0 |  | ITA - Libro giornale
+[l10n_it_central_journal_reportlab](l10n_it_central_journal_reportlab/) | 14.0.1.0.0 |  | ITA - Libro giornale - Reportlab
 [l10n_it_declaration_of_intent](l10n_it_declaration_of_intent/) | 14.0.1.1.1 |  | Gestione dichiarazioni di intento
 [l10n_it_delivery_note](l10n_it_delivery_note/) | 14.0.1.0.14 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) | Crea, gestisce e fattura i DDT partendo dalle consegne
 [l10n_it_delivery_note_base](l10n_it_delivery_note_base/) | 14.0.1.0.0 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) [![Byloth](https://github.com/Byloth.png?size=30px)](https://github.com/Byloth) | Crea e gestisce tabelle principali per gestire i DDT
