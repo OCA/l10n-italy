@@ -101,6 +101,7 @@
                             attrs="{'invisible': [('invoice_type', 'in', ['in_invoice', 'in_refund'])]}"
                         />
                                <field name="weight_kg" />
+                               <field name="show_weight" />
                                <field name="additional_units" />
                                <field name="additional_units_uom" />
                            </group>
