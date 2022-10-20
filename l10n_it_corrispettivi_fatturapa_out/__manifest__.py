@@ -7,15 +7,10 @@
     "version": "12.0.1.0.1",
     "category": "Localization/Italy",
     "website": "https://github.com/OCA/l10n-italy"
-               "/tree/12.0/l10n_it_corrispettivi_fatturapa_out",
+    "/tree/12.0/l10n_it_corrispettivi_fatturapa_out",
     "author": "Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "depends": [
-        "l10n_it_corrispettivi",
-        "l10n_it_fatturapa_out"
-    ],
-    "data": [
-        "views/account_invoice_view.xml"
-    ],
-    "auto_install": True
+    "depends": ["l10n_it_corrispettivi", "l10n_it_fatturapa_out"],
+    "data": ["views/account_invoice_view.xml"],
+    "auto_install": True,
 }
