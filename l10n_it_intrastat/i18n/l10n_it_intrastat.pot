@@ -13682,6 +13682,11 @@ msgid "Display Name"
 msgstr ""
 
 #. module: l10n_it_intrastat
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__show_weight
+msgid "Display weight in declaration"
+msgstr ""
+
+#. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90065310
 msgid "Disposable cameras for roll film of a width of 35 mm"
 msgstr ""
