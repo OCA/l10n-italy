@@ -7,7 +7,10 @@
         <field name="inherit_id" ref="account.view_invoice_tree" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='state']" position="before">
-                <field name="fatturapa_state" />
+                <field
+                    name="fatturapa_state"
+                    invisible="context.get('default_move_type') not in ('out_invoice', 'in_refund')"
+                />
             </xpath>
         </field>
     </record>
@@ -24,27 +27,60 @@
                     type="action"
                     string="Export E-invoice"
                     class="oe_highlight"
-                    attrs="{'invisible': ['|', '|', ('fatturapa_attachment_out_id', '!=', False), ('state' ,'!=', 'posted'), ('electronic_invoice_subjected', '=', False)]}"
+                    attrs="{
+                        'invisible': [
+                            '|',
+                                ('move_type', 'not in', ('out_invoice', 'in_refund')),
+                                '|',
+                                    '|',
+                                        ('fatturapa_attachment_out_id', '!=', False),
+                                        ('state' ,'!=', 'posted'),
+                                    ('electronic_invoice_subjected', '=', False),
+                        ],
+                    }"
                 />
                 <button
                     name="%(action_wizard_export_fatturapa_regenerate)d"
                     type="action"
                     string="Re-Export E-invoice"
                     class="oe_highlight"
-                    attrs="{'invisible': ['|', '|', ('fatturapa_attachment_out_id', '=', False), ('state' ,'!=', 'posted'), ('fatturapa_state', 'not in', ['error'])]}"
+                    attrs="{
+                        'invisible': [
+                            '|',
+                                ('move_type', 'not in', ('out_invoice', 'in_refund')),
+                                '|',
+                                    '|',
+                                        ('fatturapa_attachment_out_id', '=', False),
+                                        ('state' ,'!=', 'posted'),
+                                    ('fatturapa_state', 'not in', ['error']),
+                        ],
+                    }"
                 />
             </button>
             <field name="partner_id" position="after">
                 <field name="electronic_invoice_subjected" invisible="1" />
             </field>
             <xpath expr="//field[@name='invoice_date']" position="after">
-                <field name="fatturapa_state" />
+                <field
+                    name="fatturapa_state"
+                    attrs="{
+                        'invisible': [
+                            ('move_type', 'not in', ('out_invoice', 'in_refund')),
+                        ],
+                    }"
+                />
             </xpath>
 
             <xpath expr="//notebook" position="inside">
                 <page
                     string="Related Documents"
-                    attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}"
+                    attrs="{
+                        'invisible': [
+                            '|',
+                                ('move_type', 'not in', ('out_invoice', 'in_refund')),
+                                ('electronic_invoice_subjected', '=', False),
+                        ],
+                    }"
                 >
                     <field name="related_documents" nolabel="1">
                         <tree editable="bottom">
@@ -62,8 +98,15 @@
                 </page>
                 <page
                     string="Electronic Invoice"
-                    attrs="{'invisible': [('electronic_invoice_subjected', '=', False),
-                                          ('fatturapa_attachment_out_id', '=', False)]}"
+                    attrs="{
+                        'invisible': [
+                            '|',
+                                ('move_type', 'not in', ('out_invoice', 'in_refund')),
+                                '&amp;',
+                                    ('electronic_invoice_subjected', '=', False),
+                                    ('fatturapa_attachment_out_id', '=', False),
+                        ],
+                    }"
                 >
                     <group>
                         <group string="Results">
@@ -77,8 +120,15 @@
                 </page>
                 <page
                     string="Electronic Invoice Attachments"
-                    attrs="{'invisible': [('electronic_invoice_subjected', '=', False),
-                                          ('fatturapa_attachment_out_id', '=', False)]}"
+                    attrs="{
+                        'invisible': [
+                            '|',
+                                ('move_type', 'not in', ('out_invoice', 'in_refund')),
+                                '&amp;',
+                                    ('electronic_invoice_subjected', '=', False),
+                                    ('fatturapa_attachment_out_id', '=', False),
+                        ],
+                    }"
                 >
                     <field name="fatturapa_doc_attachments" nolabel="1">
                         <tree>
