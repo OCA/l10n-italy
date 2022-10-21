@@ -19,5 +19,6 @@
         "data/payment_reason_data.xml",
         "views/payment_reason_view.xml",
     ],
+    "pre_init_hook": "rename_old_italian_module",
     "installable": True,
 }
