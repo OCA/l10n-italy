@@ -68,7 +68,7 @@ class TestFatturaPAXMLValidation(ReverseChargeCommon, FatturaPACommon):
         invoice_form.date = fields.Date.from_string(invoice_date)
         invoice_form.ref = ref
         with invoice_form.line_ids.new() as line_form:
-            line_form.product_id = cls.env.ref("product.product_product_4d")
+            line_form.product_id = cls.env.ref("product.product_product_4c")
             line_form.name = "Invoice for sample product"
             line_form.price_unit = 100
             line_form.tax_ids.clear()
