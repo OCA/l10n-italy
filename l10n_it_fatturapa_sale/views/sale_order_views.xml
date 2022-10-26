@@ -26,7 +26,7 @@
                 expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']"
                 position="before"
             >
-                <field name="admin_ref" />
+                <field name="admin_ref" optional="show" />
             </xpath>
             <notebook position="inside">
                 <page
