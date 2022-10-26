@@ -157,20 +157,22 @@ class WizardExportFatturapa(models.TransientModel):
         return file_id
 
     def _setIdTrasmittente(self, company, fatturapa):
+        transmitter = company.e_invoice_transmitter_id
 
-        if not company.country_id:
+        country = transmitter.country_id
+        if not country:
             raise UserError(
-                _('Company %s, Country not set.') % company.display_name)
-        IdPaese = company.country_id.code
+                _('Partner %s, Country not set.') % transmitter.display_name)
+        IdPaese = country.code
 
-        IdCodice = company.partner_id.fiscalcode
+        IdCodice = transmitter.fiscalcode
         if not IdCodice:
             if company.vat:
-                IdCodice = company.vat[2:]
+                IdCodice = transmitter.vat[2:]
         if not IdCodice:
             raise UserError(
-                _('Company %s does not have fiscal code or VAT number.')
-                % company.display_name)
+                _('Partner %s does not have fiscal code or VAT number.')
+                % transmitter.display_name)
 
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
             IdTrasmittente = IdFiscaleType(
@@ -214,8 +216,9 @@ class WizardExportFatturapa(models.TransientModel):
         return True
 
     def _setContattiTrasmittente(self, company, fatturapa):
-        Telefono = company.phone_electronic_invoice or company.phone
-        Email = company.email
+        transmitter = company.e_invoice_transmitter_id
+        Telefono = transmitter.phone_electronic_invoice or transmitter.phone
+        Email = transmitter.email
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
             ContattiTrasmittente = ContattiTrasmittenteType(
                 Telefono=Telefono or None,

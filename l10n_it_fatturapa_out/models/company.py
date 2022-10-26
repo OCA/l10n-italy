@@ -16,7 +16,7 @@ class ResCompany(models.Model):
         "res.partner",
         "E-bill Transmitter",
         help="This partner will be used as transmitter in out invoice.",
-        default=lambda self: self.env.company.partner_id.id,
+        default=lambda self: self.env.user.company_id.partner_id.id,
         required=True,
     )
 
