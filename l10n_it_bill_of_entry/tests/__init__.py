@@ -1,10 +1,3 @@
-##############################################################################
-#
-#    Copyright (C) 2017 CQ Creativi Quadrati (http://www.creativiquadrati.it)
-#    @author Diego Bruselli <d.bruselli@creativiquadrati.it>
-#
-#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-#
-##############################################################################
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from . import test_bill_of_entry
