@@ -57,6 +57,9 @@ class ResPartner(models.Model):
         "Use this e-invoicing data when invoicing to this address",
         help="Set this when the main company has got several Addressee Codes or PEC"
     )
+    phone_electronic_invoice = fields.Char(
+        string="Phone for Electronic Invoice"
+    )
 
     @api.multi
     def _compute_electronic_invoice_data_complete(self):

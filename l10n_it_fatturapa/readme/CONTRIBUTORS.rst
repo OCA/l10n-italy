@@ -5,3 +5,6 @@
 * Sergio Zanchetta <https://github.com/primes2h>
 * Gianluigi Tiesi <https://github.com/sherpya>
 * Roberto Fichera <https://github.com/robyf70>
+* `TAKOBI <https://takobi.online>`_:
+
+  * Simone Rubino <sir@takobi.online>

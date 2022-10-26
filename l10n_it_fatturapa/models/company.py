@@ -33,10 +33,6 @@ class ResCompany(models.Model):
         string='Preview Format Style', required=True,
         default='fatturaordinaria_v1.2.1.xsl')
 
-    phone_electronic_invoice = fields.Char(
-        string="Phone for Electronic Invoice"
-    )
-
 
 class AccountConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
