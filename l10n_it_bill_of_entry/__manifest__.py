@@ -12,24 +12,23 @@
 ##############################################################################
 
 {
-    'name': 'ITA - Bolle doganali',
-    'version': '12.0.1.0.1',
-    'category': 'Localization/Italy',
-    'author': "Agile Business Group, CQ Creativi Quadrati, TAKOBI, "
-              "Odoo Community Association (OCA)",
-    'website': "https://github.com/OCA/l10n-italy"
-               "/tree/12.0/l10n_it_bill_of_entry",
-    'license': 'AGPL-3',
-    'depends': [
-        'base',
-        'account',
+    "name": "ITA - Bolle doganali",
+    "version": "12.0.1.0.1",
+    "category": "Localization/Italy",
+    "author": "Agile Business Group, CQ Creativi Quadrati, TAKOBI, "
+    "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/l10n-italy" "/tree/12.0/l10n_it_bill_of_entry",
+    "license": "AGPL-3",
+    "depends": [
+        "base",
+        "account",
     ],
-    'data': [
-        'views/company_view.xml',
-        'views/account_invoice_view.xml',
+    "data": [
+        "views/company_view.xml",
+        "views/account_invoice_view.xml",
     ],
-    'demo': [
-        'demo/bill_of_entry_demo.xml',
+    "demo": [
+        "demo/bill_of_entry_demo.xml",
     ],
-    'installable': True,
+    "installable": True,
 }

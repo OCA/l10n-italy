@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2017 CQ Creativi Quadrati (http://www.creativiquadrati.it)
