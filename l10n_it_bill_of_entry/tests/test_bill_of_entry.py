@@ -1,62 +1,51 @@
-##############################################################################
-#
-#    Copyright (C) 2017 CQ Creativi Quadrati (http://www.creativiquadrati.it)
-#    @author Diego Bruselli <d.bruselli@creativiquadrati.it>
-#
-#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-#
-##############################################################################
+# Copyright 2017 CQ Creativi Quadrati (http://www.creativiquadrati.it)
+# Copyright 2017 Diego Bruselli <d.bruselli@creativiquadrati.it>
+# Copyright 2022 Simone Rubino - TAKOBI
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import TransactionCase
+from odoo.exceptions import UserError
+from odoo.fields import first
+from odoo.tests.common import Form, tagged
+
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
-class TestBillOfEntry(TransactionCase):
-    def _get_invline_vals(self, product, quantity=1.0, price_unit=1.0):
-        vals = {
-            "product_id": product.id,
-            "quantity": quantity,
-            "price_unit": price_unit,
-        }
-        return vals
-
-    def _create_invoice(self, partner, customs_doc_type, journal):
-        vals = {
-            "type": "in_invoice",
-            "partner_id": partner.id,
-        }
+@tagged("post_install", "-at_install")
+class TestBillOfEntry(AccountTestInvoicingCommon):
+    def _create_invoice(self, partner, customs_doc_type, journal, products_list):
+        invoice = self.init_invoice(
+            "in_invoice",
+            partner=partner,
+        )
+        invoice_form = Form(invoice)
         if customs_doc_type:
-            vals["customs_doc_type"] = customs_doc_type
+            invoice_form.customs_doc_type = customs_doc_type
         if journal:
-            vals["journal_id"] = journal.id
-        invoice = self.env["account.invoice"].create(vals)
-        invoice._onchange_partner_id()
-        invoice._onchange_journal_id()
-        invoice._convert_to_write(invoice._cache)
+            invoice_form.journal_id = journal
+        for product, qty, price in products_list:
+            with invoice_form.invoice_line_ids.new() as line:
+                line.product_id = product
+                line.price_unit = price
+                line.quantity = qty
+
+        invoice = invoice_form.save()
         return invoice
 
-    def _create_invoice_line(self, invoice, vals):
-        new_vals = {
-            "invoice_id": invoice.id,
-            "account_id": self.account_revenue.id,
-            "name": "something in",
-        }
-        vals.update(new_vals)
-        line = self.env["account.invoice.line"].create(vals)
-        line._onchange_product_id()
-        line._convert_to_write(line._cache)
-        return line
-
     def setUp(self):
-        super(TestBillOfEntry, self).setUp()
+        super().setUp()
 
         self.account_model = self.env["account.account"]
         self.tax_model = self.env["account.tax"]
         self.journal_model = self.env["account.journal"]
-        self.invoice_model = self.env["account.invoice"]
-        self.inv_line_model = self.env["account.invoice.line"]
+        self.invoice_model = self.env["account.move"]
+        self.inv_line_model = self.env["account.move.line"]
         self.move_line_model = self.env["account.move.line"]
         self.fp_model = self.env["account.fiscal.position"]
         self.fp_tax_model = self.env["account.fiscal.position.tax"]
+
+        demo_data_company = self.env.ref("base.main_company")
+        self.env.user.company_ids |= demo_data_company
+        self.env.user.company_id = demo_data_company
 
         # Default accounts for invoice line account_id
         revenue_acctype_id = self.env.ref("account.data_account_type_revenue").id
@@ -65,7 +54,6 @@ class TestBillOfEntry(TransactionCase):
         )
         # Default purchase journal
         self.journal = self.journal_model.search([("type", "=", "purchase")], limit=1)
-        self.journal.update_posted = True
         # Extra EU purchase journal for differentiate
         # extra EU purchase invoices from ordinary ones
         self.extra_journal = self.env.ref(
@@ -78,7 +66,6 @@ class TestBillOfEntry(TransactionCase):
                 "name": "bill_of_entry_journal",
                 "type": "general",
                 "code": "BOE",
-                "update_posted": True,
             }
         )
         self.company.bill_of_entry_journal_id = self.bill_of_entry_journal.id
@@ -147,56 +134,105 @@ class TestBillOfEntry(TransactionCase):
 
         # Extra EU supplier invoice - draft state
         self.supplier_invoice = self._create_invoice(
-            self.supplier, "supplier_invoice", self.journal_extra
+            self.supplier,
+            "supplier_invoice",
+            self.journal_extra,
+            [
+                (self.product1, 1, 2500),
+            ],
         )
-        line_vals = self._get_invline_vals(self.product1, 1, 2500)
-        self._create_invoice_line(self.supplier_invoice, line_vals)
-        self.supplier_invoice.compute_taxes()
-        # self.supplier_invoice.action_invoice_open()
 
         # Bill of Entry - draft state
         self.bill_of_entry = self._create_invoice(
-            self.customs, "bill_of_entry", self.journal
+            self.customs,
+            "bill_of_entry",
+            self.journal,
+            [
+                (self.product_extra, 1, 2500),
+            ],
         )
-        line_vals = self._get_invline_vals(self.product_extra, 1, 2500)
-        self._create_invoice_line(self.bill_of_entry, line_vals)
-        self.bill_of_entry.compute_taxes()
-        self.bill_of_entry.write(
-            {"supplier_invoice_ids": [(6, 0, [self.supplier_invoice.id])]}
-        )
-        # self.bill_of_entry.action_invoice_open()
+        bill_of_entry_form = Form(self.bill_of_entry)
+        bill_of_entry_form.supplier_invoice_ids.clear()
+        bill_of_entry_form.supplier_invoice_ids.add(self.supplier_invoice)
+        bill_of_entry_form.save()
 
         # Forwarder Invoice - draft state
         self.forwarder_invoice = self._create_invoice(
-            self.forwarder, "forwarder_invoice", self.journal
+            self.forwarder,
+            "forwarder_invoice",
+            self.journal,
+            [
+                (self.product_delivery, 1, 300),
+                (self.adv_customs_expense, 1, 550),
+            ],
         )
-        line_vals = self._get_invline_vals(self.product_delivery, 1, 300)
-        self._create_invoice_line(self.forwarder_invoice, line_vals)
-        line_vals = self._get_invline_vals(self.adv_customs_expense, 1, 550)
-        self.adv_customs_expense_line = self._create_invoice_line(
-            self.forwarder_invoice, line_vals
+        forwarder_invoice_form = Form(self.forwarder_invoice)
+        with forwarder_invoice_form.invoice_line_ids.edit(1) as line:
+            line.advance_customs_vat = True
+            line.tax_ids.clear()
+        forwarder_invoice_form.save()
+        self.adv_customs_expense_line = (
+            self.forwarder_invoice.invoice_line_ids.filtered("advance_customs_vat")
         )
-        self.adv_customs_expense_line.advance_customs_vat = True
-        self.adv_customs_expense_line.invoice_line_tax_ids = [(6, 0, [])]
-        self.forwarder_invoice.compute_taxes()
-        self.forwarder_invoice.write(
+        self.forwarder_invoice.update(
             {
                 "forwarder_bill_of_entry_ids": [(4, self.bill_of_entry.id)],
             }
         )
 
+        demo_data_company.bill_of_entry_tax_id = (
+            demo_data_company.account_purchase_tax_id.copy()
+        )
+        demo_data_company.bill_of_entry_partner_id = self.env[
+            "res.partner"
+        ].name_create("Customs")
+
+    def test_generate_bill_of_entry_required_configurations(self):
+        company = self.env.company
+        missing_configurations_fields = [
+            "bill_of_entry_tax_id",
+            "bill_of_entry_partner_id",
+        ]
+        fields_dict = company.fields_get(
+            allfields=missing_configurations_fields,
+            attributes=["string"],
+        )
+        supplier_invoice = self.supplier_invoice
+        for field_name in missing_configurations_fields:
+            # Save and empty the configuration
+            configuration_value = company[field_name]
+            company[field_name] = False
+
+            # Assert it is needed for generating the bill of entry
+            with self.assertRaises(UserError) as ue:
+                supplier_invoice.generate_bill_of_entry()
+            exc_message = ue.exception.args[0]
+            field_attributes = fields_dict.get(field_name)
+            self.assertIn(field_attributes.get("string"), exc_message)
+
+            # Restore the configuration
+            company[field_name] = configuration_value
+
+    def test_generate_bill_of_entry(self):
+        bill_of_entry_action = self.supplier_invoice.generate_bill_of_entry()
+        bill_of_entry_model = bill_of_entry_action.get("res_model")
+        bill_of_entry_id = bill_of_entry_action.get("res_id")
+        bill_of_entry = self.env[bill_of_entry_model].browse(bill_of_entry_id)
+        self.assertTrue(bill_of_entry)
+        self.assertEqual(bill_of_entry.state, "draft")
+
     def test_storno_create(self):
 
         # Validate bill of entry
-        self.bill_of_entry.action_invoice_open()
+        self.bill_of_entry.action_post()
 
         # Validate forwarder invoice
-        self.forwarder_invoice.action_invoice_open()
+        self.forwarder_invoice.action_post()
 
         # Storno Bill of Entry account.move
         storno = self.forwarder_invoice.bill_of_entry_storno_id
         self.assertTrue(storno)
-        self.assertEqual(storno.date, self.forwarder_invoice.date_invoice)
+        self.assertEqual(storno.date, self.forwarder_invoice.invoice_date)
 
         # Advance Customs Expense account.move.line
         move_line_domain = [
@@ -210,8 +246,12 @@ class TestBillOfEntry(TransactionCase):
         self.assertEqual(len(adv_customs_expense_moveline), 1)
 
         # Customs Expense account.move.lines
+        boe_payable_lines = self.bill_of_entry.line_ids.filtered(
+            lambda l: l.account_internal_type == "payable"
+        )
+        boe_account = first(boe_payable_lines).account_id
         move_line_domain = [
-            ("account_id", "=", self.bill_of_entry.account_id.id),
+            ("account_id", "=", boe_account.id),
             ("debit", "=", self.bill_of_entry.amount_total),
             ("credit", "=", 0.0),
             ("partner_id", "=", self.bill_of_entry.partner_id.id),
@@ -238,7 +278,7 @@ class TestBillOfEntry(TransactionCase):
             .ids
         )
         boe_reconcile_ids = (
-            self.bill_of_entry.move_id.line_ids.filtered(lambda l: l.full_reconcile_id)
+            self.bill_of_entry.line_ids.filtered(lambda l: l.full_reconcile_id)
             .mapped("full_reconcile_id")
             .ids
         )
