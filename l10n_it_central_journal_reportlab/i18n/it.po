@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-17 18:19+0000\n"
+"PO-Revision-Date: 2022-10-26 16:44+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -26,13 +26,13 @@ msgstr "Conto"
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
 #, python-format
 msgid "Account Central Journal - %s.pdf"
-msgstr ""
+msgstr "Libro giornale - %s.pdf"
 
 #. module: l10n_it_central_journal_reportlab
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
 #, python-format
 msgid "Account Central Journal.pdf"
-msgstr ""
+msgstr "Libro giornale.pdf"
 
 #. module: l10n_it_central_journal_reportlab
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
@@ -86,7 +86,7 @@ msgstr "Data"
 #. module: l10n_it_central_journal_reportlab
 #: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_wizard_giornale_reportlab__date_move_line_from
 msgid "Date Move Line From"
-msgstr ""
+msgstr "Data movimento contabile da"
 
 #. module: l10n_it_central_journal_reportlab
 #: model:ir.model,name:l10n_it_central_journal_reportlab.model_date_range
@@ -294,7 +294,7 @@ msgstr ""
 #. module: l10n_it_central_journal_reportlab
 #: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_wizard_giornale_reportlab__report_giornale_name
 msgid "Report Giornale Name"
-msgstr ""
+msgstr "Nome report giornale"
 
 #. module: l10n_it_central_journal_reportlab
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
