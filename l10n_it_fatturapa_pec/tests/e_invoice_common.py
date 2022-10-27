@@ -44,7 +44,7 @@ class EInvoiceCommon(FatturaPACommon):
         self.partner = self.env.ref("l10n_it_fatturapa.res_partner_fatturapa_2")
         self.product = self.env.ref("product.product_product_5")
         self.env.company.sdi_channel_id = self.env.ref(
-            "l10n_it_sdi_channel.sdi_channel_pec"
+            "l10n_it_fatturapa_pec.sdi_channel_pec"
         )
         self.env.company.sdi_channel_id.pec_server_id = self.env[
             "ir.mail_server"
