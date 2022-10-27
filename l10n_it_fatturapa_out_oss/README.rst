@@ -33,6 +33,11 @@ Modulo tecnico di integrazione tra l10n_eu_oss e l10n_it_fatturapa_out
 
 Technical module for integrating l10n_eu_oss and l10n_it_fatturapa_out
 
+.. IMPORTANT::
+   This is an alpha version, the data model and design can change at any time without warning.
+   Only for development or testing purpose, do not use in production.
+   `More details on development status <https://odoo-community.org/page/development-status>`_
+
 **Table of contents**
 
 .. contents::
@@ -60,6 +65,10 @@ Contributors
 ~~~~~~~~~~~~
 
 * Sergio Corato <https://github.com/sergiocorato>
+
+* `TAKOBI <https://takobi.online>`_:
+
+  * Lorenzo Battistini
 
 Maintainers
 ~~~~~~~~~~~
