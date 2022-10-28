@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 Nicola Malcontenti - Agile Business Group
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/Lgpl).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/Agpl).
 
 {
     'name': 'Website Sale FiscalCode',
@@ -8,8 +8,8 @@
     'author': "Agile Business Group,"
               "Odoo Community Association (OCA)",
     'version': '10.0.1.0.2',
-    'license': 'LGPL-3',
-    'website': 'http://www.agilebg.com',
+    'license': 'AGPL-3',
+    'website': 'https://github.com/OCA/l10n-italy',
     'depends': [
         'website_sale',
         'l10n_it_fiscalcode'

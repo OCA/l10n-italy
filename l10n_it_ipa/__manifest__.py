@@ -12,7 +12,7 @@
     "category": "Localisation/Italy",
     "author": "KTec S.r.l,Odoo Community Association (OCA),"
               "Odoo Italia Network",
-    "website": "http://www.ktec.it",
+    "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
     "depends": ['base'],
     "data": [

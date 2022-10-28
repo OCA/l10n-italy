@@ -3,7 +3,7 @@
 # (<http://www.linkgroup.it/>)
 # Copyright 2014-2017 Lorenzo Battistini - Agile Business Group
 # (<http://www.agilebg.com>)
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     'name': 'Italian Localization - VAT Registries - Cash Basis',
@@ -11,8 +11,8 @@
     'category': 'Hidden',
     "author": "LinkIt Srl, Agile Business Group"
               ", Odoo Community Association (OCA)",
-    'website': 'http://www.linkgroup.it/',
-    'license': 'LGPL-3',
+    'website': 'https://github.com/OCA/l10n-italy',
+    'license': 'AGPL-3',
     "depends": [
         'l10n_it_vat_registries',
         'account_tax_cash_basis'],

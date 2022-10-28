@@ -10,9 +10,9 @@ Italian Localization - Fattura elettronica - Integrazione bollo
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
-    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
-    :alt: License: LGPL-3
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+    :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
     :target: https://github.com/OCA/l10n-italy/tree/10.0/l10n_it_fatturapa_out_stamp
     :alt: OCA/l10n-italy
@@ -23,7 +23,7 @@ Italian Localization - Fattura elettronica - Integrazione bollo
     :target: https://runbot.odoo-community.org/runbot/122/10.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 Modulo ponte tra emissione fatture elettroniche e imposta di bollo.
 
@@ -77,7 +77,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-eLBati| 
+|maintainer-eLBati|
 
 This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/10.0/l10n_it_fatturapa_out_stamp>`_ project on GitHub.
 

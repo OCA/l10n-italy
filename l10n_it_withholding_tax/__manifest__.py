@@ -8,7 +8,7 @@
     'category': 'Account',
     'author': 'Openforce, Odoo Italia Network, '
               'Odoo Community Association (OCA)',
-    'website': 'https://www.odoo-italia.net/',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'AGPL-3',
     "depends": ['account'],
     "data": [

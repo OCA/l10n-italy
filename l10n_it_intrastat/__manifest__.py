@@ -10,7 +10,7 @@
     'summary': 'Riclassificazione merci e servizi per dichiarazioni Intrastat',
     'author': "Openforce, Link IT srl, Agile Business Group, "
               "Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/l10n-italy/tree/'
+    'website': 'https://github.com/OCA/l10n-italy'
                '10.0/l10n_it_intrastat',
     'license': 'AGPL-3',
     'depends': [

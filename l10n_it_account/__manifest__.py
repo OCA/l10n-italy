@@ -7,10 +7,11 @@
 {
     'name': 'Italian Localization - Account',
     'version': '10.0.1.2.5',
+    "development_status": "Production/Stable",
     'category': 'Hidden',
     'author': "Agile Business Group, Abstract, "
               "Odoo Community Association (OCA)",
-    'website': 'http://www.odoo-italia.net',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'AGPL-3',
     "depends": [
         'account_fiscal_year',

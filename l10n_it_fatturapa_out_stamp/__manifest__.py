@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2018 Lorenzo Battistini
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Italian Localization - Fattura elettronica - Integrazione bollo",
     "summary": "Modulo ponte tra emissione fatture elettroniche e imposta di "
@@ -11,7 +11,7 @@
     "website": "https://github.com/OCA/l10n-italy",
     "author": "Agile Business Group, Odoo Community Association (OCA)",
     "maintainers": ["eLBati"],
-    "license": "LGPL-3",
+    "license": "AGPL-3",
     "application": False,
     "installable": True,
     "auto_install": True,

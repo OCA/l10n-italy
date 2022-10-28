@@ -8,9 +8,9 @@
     "summary": "Aggiunge il canale di invio/ricezione dei file XML "
                "attraverso lo SdI",
     "version": "10.0.1.2.0",
-    "development_status": "Alpha",
+    "development_status": "Beta",
     "category": "Hidden",
-    'website': 'https://github.com/OCA/l10n-italy/tree/10.0/'
+    'website': 'https://github.com/OCA/l10n-italy'
                'l10n_it_sdi_channel',
     "author": "Efatto.it di Sergio Corato, Odoo Community Association (OCA)",
     "maintainers": ["sergiocorato"],

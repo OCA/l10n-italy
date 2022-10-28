@@ -30,7 +30,7 @@ Functionalities:
 
 """,
     'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
-    'website': 'http://www.openerp-italia.org',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'AGPL-3',
     "depends" : ['account',],
     "data" : [],

@@ -8,7 +8,7 @@
     "version": "10.0.1.0.0",
     "development_status": "Beta",
     "category": "Hidden",
-    "website": "https://github.com/OCA/l10n-italy/",
+    "website": "https://github.com/OCA/l10n-italy",
     "author": "Agile Business Group, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,

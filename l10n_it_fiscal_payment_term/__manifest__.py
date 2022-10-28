@@ -10,7 +10,7 @@
     'summary': 'Electronic invoices payment',
     'author': 'Davide Corio, Agile Business Group, Innoviu, '
               'Odoo Italia Network, Odoo Community Association (OCA)',
-    'website': 'https://odoo-community.org',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'LGPL-3',
     'depends': [
         'account',

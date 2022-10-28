@@ -9,7 +9,7 @@
               'Odoo Community Association (OCA)',
     'version': '10.0.1.1.1',
     'license': 'AGPL-3',
-    'website': 'https://github.com/OCA/l10n-italy/tree/10.0/'
+    'website': 'https://github.com/OCA/l10n-italy'
                'l10n_it_website_sale_corrispettivi',
     'depends': [
         'website_sale',

@@ -4,7 +4,7 @@
 # Copyright 2018-2019 Lorenzo Battistini
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2020 Simone Rubino - Agile Business Group
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     'name': 'ITA - Fattura elettronica - Ricezione',
@@ -13,9 +13,9 @@
     'summary': 'Ricezione fatture elettroniche',
     'author': 'Agile Business Group, Innoviu, '
               'Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/l10n-italy/tree/10.0/'
+    'website': 'https://github.com/OCA/l10n-italy'
                'l10n_it_fatturapa_in',
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
     "depends": [
         'l10n_it_fatturapa',
         'l10n_it_withholding_tax_causali',

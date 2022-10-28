@@ -3,7 +3,7 @@
 # Copyright 2015 Apulia Software srl
 # Copyright 2016 Lorenzo Battistini - Agile Business Group
 # Copyright 2016 Andrea Cometa - Apulia Software
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp.tests.common import TransactionCase
 from odoo import fields

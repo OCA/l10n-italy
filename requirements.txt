@@ -1,0 +1,5 @@
+# generated from manifests external_dependencies
+asn1crypto
+codicefiscale
+PyXB==1.2.6
+Unidecode<1.3.0

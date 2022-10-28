@@ -32,7 +32,7 @@ Funcionalities:
 - Automatistmi su crm.lead
 """,
     'author': "Agile Business Group,Odoo Community Association (OCA)",
-    'website': 'http://www.agilebg.com',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'AGPL-3',
     "depends": ['crm','l10n_it_base'],
     "data": ['crm/crm_view.xml'

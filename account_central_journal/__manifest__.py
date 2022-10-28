@@ -23,7 +23,7 @@
     'name': 'Account Central Journal',
     'version': '3',
     'author': "ISA S.r.l.,Odoo Community Association (OCA)",
-    'website': 'http://www.isa.it',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'AGPL-3',
     'category': 'Generic Modules/Accounting',
     'description': """

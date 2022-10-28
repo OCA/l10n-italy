@@ -6,7 +6,7 @@
     "summary": "Ricevute bancarie & commissioni",
     "version": "10.0.1.0.1",
     "category": "Accounting & Finance",
-    "website": "https://github.com/OCA/l10n-italy/tree/10.0/"
+    "website": "https://github.com/OCA/l10n-italy"
                "l10n_it_riba_commission",
     "author": "Agile Business Group, Odoo Community Association (OCA)",
     "license": "AGPL-3",

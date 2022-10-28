@@ -250,7 +250,7 @@ msgstr "Contratto"
 #: code:addons/l10n_it_fatturapa/models/ir_attachment.py:79
 #, fuzzy, python-format
 msgid "Corrupted attachment %s."
-msgstr "Allegati e-fattura"
+msgstr "Allegato %s corrotto."
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_invoice_efatt_stabile_organizzazione_nazione

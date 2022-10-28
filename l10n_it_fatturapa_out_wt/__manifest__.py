@@ -13,7 +13,7 @@
     'category': 'Hidden',
     'website': 'https://github.com/OCA/l10n-italy',
     'author': 'Sergio Corato, Odoo Community Association (OCA)',
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
     'depends': [
         'l10n_it_fatturapa',
         'l10n_it_fatturapa_out',

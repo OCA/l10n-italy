@@ -12,7 +12,7 @@
     'version': "10.0.1.3.0",
     'author': "Odoo Community Association (OCA)",
     'category': "Accounting & Finance",
-    'website': "https://odoo-community.org/",
+    'website': "https://github.com/OCA/l10n-italy",
     'license': "AGPL-3",
     'depends': [
         'account_accountant',

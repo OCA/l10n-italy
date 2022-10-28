@@ -39,7 +39,7 @@
         ],
     "author": "Agile Business Group, Odoo Community Association (OCA)"
               ", LinkIt Spa",
-    'website': 'http://www.agilebg.com',
+    'website': 'https://github.com/OCA/l10n-italy',
     'data': [
         'wizard/add_period.xml',
         'wizard/remove_period.xml',

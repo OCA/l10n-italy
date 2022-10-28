@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Lorenzo Battistini
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     'name': 'Italian Localization - Comunicazione dati fatture - '
@@ -11,8 +11,8 @@
     'category': 'Hidden',
     'author': "Agile Business Group, "
               "Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/l10n-italy/',
-    'license': 'LGPL-3',
+    'website': 'https://github.com/OCA/l10n-italy',
+    'license': 'AGPL-3',
     'depends': [
         'l10n_it_invoices_data_communication',
         'l10n_it_fatturapa_in',

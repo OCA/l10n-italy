@@ -13,7 +13,7 @@
     'summary': 'Gestisce i campi del Repertorio Economico Amministrativo',
     'author': 'Agile Business Group, Odoo Italia Network,'
               'Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/l10n-italy/tree/10.0/l10n_it_rea',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'AGPL-3',
     "depends": [
         'account'
