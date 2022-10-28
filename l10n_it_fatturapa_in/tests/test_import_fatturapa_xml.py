@@ -606,3 +606,12 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice_id = res.get('domain')[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.partner_id.vat, 'IT05979361218')
+
+    def test_32_xml_import(self):
+        """
+        If an unused namespace contains a space, the XML is imported anyway.
+        """
+        res = self.run_wizard('test32', 'IT01234567890_space.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertTrue(invoice)
