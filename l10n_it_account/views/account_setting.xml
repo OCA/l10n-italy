@@ -5,7 +5,7 @@
         id="account_italian_localization"
         name="Italian Localization"
         sequence="2"
-        parent="account.account_account_menu"
+        parent="account.menu_finance_configuration"
     />
 
 </odoo>
