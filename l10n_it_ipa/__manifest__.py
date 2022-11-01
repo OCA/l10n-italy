@@ -3,11 +3,12 @@
 # Copyright 2014 Associazione Odoo Italia
 # (<http://www.odoo-italia.org>).
 # Copyright 2016 Lorenzo Battistini - Agile Business Group
+# Copyright 2022 Marco Colombo - <marco.colombo@phi.technology>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 {
     "name": "ITA - Codice IPA",
-    "version": "14.0.1.0.2",
+    "version": "16.0.1.0.0",
     "development_status": "Beta",
     "category": "Localization/Italy",
     "author": "KTec S.r.l,Odoo Community Association (OCA),Odoo Italia Network",

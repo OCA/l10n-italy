@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <data>
         <record id="view_partner_ipa_form" model="ir.ui.view">
             <field name="name">res.partner.ipa.form</field>
             <field name="model">res.partner</field>
@@ -8,16 +7,16 @@
             <field name="arch" type="xml">
                 <field name="website" position="after">
                     <field
-                        name="ipa_code"
-                        placeholder="IPA123"
-                        attrs="{'invisible': [('is_pa','=', False)]}"
-                    />
+                    name="ipa_code"
+                    placeholder="IPA123"
+                    attrs="{'invisible': [('is_pa','=', False)]}"
+                />
                 </field>
                 <field name="company_type" position="after">
                     <div
-                        attrs="{'invisible': [('is_company','=', False)]}"
-                        class="oe_edit_only"
-                    >
+                    attrs="{'invisible': [('is_company','=', False)]}"
+                    class="oe_edit_only"
+                >
                         <field name="is_pa" />
                         <label for="is_pa" />
                     </div>
@@ -34,5 +33,4 @@
                 </filter>
             </field>
         </record>
-    </data>
 </odoo>
