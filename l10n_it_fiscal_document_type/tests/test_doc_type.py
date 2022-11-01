@@ -107,6 +107,7 @@ class TestDocType(AccountTestInvoicingCommon):
                 {
                     "reason": "no reason",
                     "refund_method": "cancel",
+                    "journal_id": invoice.journal_id.id,
                 }
             )
         )
@@ -125,7 +126,7 @@ class TestDocType(AccountTestInvoicingCommon):
 
         # Recompute document type for the invoice
         self.env.add_to_compute(invoice._fields["fiscal_document_type_id"], invoice)
-        self.inv_model.flush()
+        self.inv_model.flush_model()
         return invoice
 
     def test_keep_edited_invoice(self):

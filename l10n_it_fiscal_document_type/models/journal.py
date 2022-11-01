@@ -13,8 +13,8 @@ class AccountJournal(models.Model):
             if len(docs) > 1:
                 raise UserError(
                     _(
-                        "Journal %s can be linked to only 1 fiscal document "
-                        "type (found in %s)"
+                        "Journal %(name)s can be linked to only 1 fiscal document "
+                        "type (found in %(spec)s)"
                     )
-                    % (journal.name, ", ".join([d.code for d in docs]))
+                    % {"name": journal.name, "spec": ", ".join([d.code for d in docs])}
                 )

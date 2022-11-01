@@ -4,7 +4,7 @@
         <field name="name">fiscal.document.type.tree</field>
         <field name="model">fiscal.document.type</field>
         <field name="arch" type="xml">
-            <tree string="Fiscal Document Types">
+            <tree>
                 <field name="code" />
                 <field name="name" />
                 <field name="out_invoice" />
