@@ -4,14 +4,15 @@ from odoo import api, fields, models
 class FiscalDocumentType(models.Model):
     _name = "fiscal.document.type"
     _description = "Fiscal document type"
+    _rec_names_search = ["name", "code"]
 
-    code = fields.Char(string="Code", size=5, required=True)
-    name = fields.Char(string="Name", size=100, required=True)
+    code = fields.Char(size=5, required=True)
+    name = fields.Char(size=100, required=True)
     out_invoice = fields.Boolean(string="Customer Invoice")
     in_invoice = fields.Boolean(string="Vendor Bill")
     out_refund = fields.Boolean(string="Customer Credit Note")
     in_refund = fields.Boolean(string="Vendor Credit Note")
-    priority = fields.Integer(string="Priority", default="3")
+    priority = fields.Integer(default="3")
 
     journal_ids = fields.Many2many(
         "account.journal",
@@ -27,9 +28,9 @@ class FiscalDocumentType(models.Model):
 
     _order = "code, priority asc"
 
-    @api.model
-    def create(self, vals):
-        res = super(FiscalDocumentType, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        res = super(FiscalDocumentType, self).create(vals_list)
         res.journal_ids.check_doc_type_relation()
         return res
 
@@ -44,16 +45,3 @@ class FiscalDocumentType(models.Model):
         for doc_type in self:
             res.append((doc_type.id, "[%s] %s" % (doc_type.code, doc_type.name)))
         return res
-
-    @api.model
-    def name_search(self, name="", args=None, operator="ilike", limit=100):
-        if not args:
-            args = []
-        if name:
-            records = self.search(
-                ["|", ("name", operator, name), ("code", operator, name)] + args,
-                limit=limit,
-            )
-        else:
-            records = self.search(args, limit=limit)
-        return records.name_get()

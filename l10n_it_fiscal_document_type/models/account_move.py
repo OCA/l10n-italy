@@ -84,9 +84,10 @@ class AccountMove(models.Model):
         readonly=False,
     )
 
-    def _reverse_move_vals(self, default_values, cancel=True):
-        vals = super()._reverse_move_vals(default_values, cancel)
-        # when reversing a move, fiscal_document_type_id should be recomputed, not copied
-        if "fiscal_document_type_id" in vals:
-            del vals["fiscal_document_type_id"]
-        return vals
+    def _reverse_moves(self, default_values_list=None, cancel=False):
+        reverse_moves = super()._reverse_moves(
+            default_values_list=default_values_list, cancel=cancel
+        )
+        reverse_moves.update({"fiscal_document_type_id": False})
+        reverse_moves._compute_set_document_fiscal_type()
+        return reverse_moves
