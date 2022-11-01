@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <data>
-
       <record id="l10n_it_account_a4_portrait" model="report.paperformat">
         <field name="name">Italian Accounting Reports A4 Portrait</field>
         <field name="default" eval="True" />
@@ -56,18 +54,18 @@
                       <h3><span t-esc="company.name" /></h3>
                       <span t-esc="company.street" class="" /><br />
                       <span t-esc="company.zip" class="" /> - <span
-                            t-esc="company.city"
-                            class=""
-                        /> - <span t-esc="company.state_id.code" class="" /><br />
+                        t-esc="company.city"
+                        class=""
+                    /> - <span t-esc="company.state_id.code" class="" /><br />
                       <span class="text-right">TIN: </span><span
-                            t-esc="company.partner_id.vat"
-                            class=""
-                        /><br />
+                        t-esc="company.partner_id.vat"
+                        class=""
+                    /><br />
                   </div>
                   <div
-                        class="col-xs-4 col-xs-offset-4 text-right"
-                        style="margin-left:10px"
-                    >
+                    class="col-xs-4 col-xs-offset-4 text-right"
+                    style="margin-left:10px"
+                >
                       <h3 t-esc="title" />
                   </div>
               </div>
@@ -82,18 +80,18 @@
             <div class="text-center">
                 <div class="text-muted">
                     <span
-                            style="display: none;"
-                            id="l10n_it_count_fiscal_page_base"
-                            t-esc="l10n_it_count_fiscal_page_base"
-                        />
+                        style="display: none;"
+                        id="l10n_it_count_fiscal_page_base"
+                        t-esc="l10n_it_count_fiscal_page_base"
+                    />
                     Page:
                     <t t-if="l10n_it_count_fiscal_year">
                         <span t-esc="l10n_it_count_fiscal_year" />
                     </t>
                     <t t-if="not l10n_it_count_fiscal_year">
                          <li><span
-                                    t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y')"
-                                /></li>
+                                t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y')"
+                            /></li>
                     </t>
                     <span> / </span>
                     <span class="page" />
@@ -103,14 +101,8 @@
       </template>
 
 
-        <template id="minimal_layout" inherit_id="web.minimal_layout">
-            <xpath expr="//head" position="inside">
-                <link
-                    rel="stylesheet"
-                    href="/l10n_it_account/static/src/css/l10n_it_account.css"
-                />
-            </xpath>
-            <xpath expr="//head/t[5]/script" position="replace">
+        <template id="minimal_layout" inherit_id="web.minimal_layout" priority="100">
+            <xpath expr="//head/script" position="replace">
                 <script>
                     function subst() {
                         var vars = {};
@@ -152,5 +144,4 @@
                 </script>
             </xpath>
         </template>
-    </data>
 </odoo>
