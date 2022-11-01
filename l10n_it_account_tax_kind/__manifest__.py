@@ -3,11 +3,12 @@
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
 # Copyright 2021 Gianmarco Conte <gconte@dinamicheaziendali.it>
+# Copyright 2022 Marco Colombo <marco.colombo@phi.technology>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "ITA - Natura delle aliquote IVA",
-    "version": "14.0.1.1.0",
+    "version": "16.0.1.0.0",
     "development_status": "Production/Stable",
     "category": "Localization/Italy",
     "summary": "Gestione natura delle aliquote IVA",
