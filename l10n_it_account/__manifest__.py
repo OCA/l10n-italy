@@ -4,12 +4,13 @@
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
 # Copyright 2020 Gianmarco Conte <gconte@dinamicheaziendali.it>
+# Copyright 2022 Marco Colombo <marco.colombo@phi.technology>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "ITA - Contabilità base",
     "summary": "Modulo base usato come dipendenza di altri moduli contabili",
-    "version": "14.0.1.2.2",
+    "version": "16.0.1.0.0",
     "development_status": "Production/Stable",
     "category": "Hidden",
     "author": "Agile Business Group, Abstract, Odoo Community Association (OCA)",
@@ -30,6 +31,11 @@
         "reports/account_reports_view.xml",
         "views/account_view.xml",
     ],
+    "assets": {
+        "web.minimal_layout": [
+            "l10n_it_account/static/src/css/*.css",
+        ]
+    },
     "external_dependencies": {
         "python": [
             "xmlschema",
