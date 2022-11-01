@@ -21,12 +21,8 @@ class AccountTax(models.Model):
         string="Parent Taxes",
     )
 
-    deductible_balance = fields.Float(
-        string="Deductible Balance", compute="_compute_deductible_balance"
-    )
-    undeductible_balance = fields.Float(
-        string="Undeductible Balance", compute="_compute_undeductible_balance"
-    )
+    deductible_balance = fields.Float(compute="_compute_deductible_balance")
+    undeductible_balance = fields.Float(compute="_compute_undeductible_balance")
 
     @api.depends_context(
         "from_date",
@@ -164,7 +160,7 @@ class AccountTax(models.Model):
         if data.get("journal_ids"):
             context["vat_registry_journal_ids"] = data["journal_ids"]
 
-        tax = self.env["account.tax"].with_context(context).browse(self.id)
+        tax = self.env["account.tax"].with_context(**context).browse(self.id)
         tax_name = tax._get_tax_name()
         if not tax.children_tax_ids:
             base_balance = tax.base_balance
