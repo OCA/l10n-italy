@@ -59,11 +59,14 @@ class Company(models.Model):
                     ._description_selection(self.env)
                 )[self.rea_liquidation_state]
             # using always €, as this is a registry of Italian companies
-            company_registry = _("%s - %s / Share Cap. %s € / %s / %s") % (
-                self.rea_office.code or "",
-                self.rea_code or "",
-                formatLang(self.env, self.rea_capital),
-                rea_member_type,
-                rea_liquidation_state,
-            )
+            company_registry = _(
+                "%(rea_office.code)s - %(rea_code)s / "
+                "Share Cap. %(rea_capital)s € / %(rea_member_type)s / %(rea_liquidation_state)s"
+            ) % {
+                "rea_office.code": self.rea_office.code or "",
+                "rea_code": self.rea_code or "",
+                "rea_capital": formatLang(self.env, self.rea_capital),
+                "rea_member_type": rea_member_type,
+                "rea_liquidation_state": rea_liquidation_state,
+            }
             self.company_registry = company_registry

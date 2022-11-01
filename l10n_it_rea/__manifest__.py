@@ -4,11 +4,12 @@
 # Copyright 2018 Lorenzo Battistini
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2020 Gianmarco Conte (Dinamiche Aziendali Srl)
+# Copyright 2022 Marco Colombo (<marco.colombo@phi.technology>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     "name": "ITA - Registro REA",
-    "version": "14.0.1.0.4",
+    "version": "16.0.1.0.0",
     "category": "Localization/Italy",
     "development_status": "Production/Stable",
     "summary": "Gestisce i campi del Repertorio Economico Amministrativo",
