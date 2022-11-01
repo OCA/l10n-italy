@@ -5,7 +5,7 @@
         <field name="name">account.tax.kind.tree</field>
         <field name="model">account.tax.kind</field>
         <field name="arch" type="xml">
-            <tree string="Tax Exemption Kind">
+            <tree>
                 <field name="code" />
                 <field name="name" />
             </tree>
