@@ -33,9 +33,7 @@ class WizardComputeFc(models.TransientModel):
     birth_province = fields.Many2one(
         "res.country.state", required=True, string="Province"
     )
-    sex = fields.Selection(
-        [("M", "Male"), ("F", "Female")], required=True, string="Sex"
-    )
+    sex = fields.Selection([("M", "Male"), ("F", "Female")], required=True)
 
     @api.onchange("birth_city")
     def onchange_birth_city(self):
@@ -205,8 +203,8 @@ class WizardComputeFc(models.TransientModel):
                         "Existing fiscal code %(partner_fiscalcode)s is different "
                         "from the computed one (%(compute)s). If you want to use"
                         " the computed one, remove the existing one"
-                        % {"partner_fiscalcode": partner.fiscalcode, "compute": c_f}
                     )
+                    % {"partner_fiscalcode": partner.fiscalcode, "compute": c_f}
                 )
             partner.fiscalcode = c_f
             partner.company_type = "person"
