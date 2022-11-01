@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
 
         <!-- Payment Terms -->
         <record id="fatturapa_TP01" model="fatturapa.payment_term">
@@ -113,5 +112,4 @@
             <field name="code">MP23</field>
             <field name="name">PagoPA</field>
         </record>
-    </data>
 </odoo>
