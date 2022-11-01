@@ -72,7 +72,7 @@
                   </div>
               </div>
           </div>
-          <t t-raw="0" />
+          <t t-out="0" />
           <div class="footer">
               <!-- The variable "l10n_it_count_fiscal_year" shall be used to set manually the fiscal year
                 in the report footer. Define it in you report as follows:
