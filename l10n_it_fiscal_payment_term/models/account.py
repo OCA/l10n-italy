@@ -10,7 +10,7 @@ class FatturapaPaymentTerm(models.Model):
     _description = "Fiscal Payment Term"
 
     name = fields.Char("Description", size=128)
-    code = fields.Char("Code", size=4)
+    code = fields.Char(size=4)
 
 
 class FatturapaPaymentMethod(models.Model):
@@ -19,7 +19,7 @@ class FatturapaPaymentMethod(models.Model):
     _description = "Fiscal Payment Method"
 
     name = fields.Char("Description", size=128)
-    code = fields.Char("Code", size=4)
+    code = fields.Char(size=4)
 
 
 #  used in fatturaPa export
