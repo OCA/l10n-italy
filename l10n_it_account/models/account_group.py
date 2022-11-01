@@ -29,7 +29,7 @@ class AccountGroup(models.Model):
                         group.name_get()[0][-1],
                         err.name,
                     )
-                )
+                ) from err
 
     @api.constrains("account_ids", "parent_id")
     def check_balance_sign_coherence(self):
@@ -53,7 +53,7 @@ class AccountGroup(models.Model):
 
         for progenitor in self.browse(tuple(set(progenitor_ids))):
             accounts = progenitor.get_group_accounts()
-            if not accounts.mapped("user_type_id").have_same_sign():
+            if not accounts.have_same_sign():
                 raise ValidationError(
                     _("Incoherent balance signs for '{}' and its subgroups.").format(
                         progenitor.name_get()[0][-1]
@@ -67,9 +67,9 @@ class AccountGroup(models.Model):
     def get_account_balance_sign(self):
         self.ensure_one()
         progenitor = self.get_group_progenitor()
-        types = progenitor.get_group_accounts().mapped("user_type_id")
-        if types:
-            return types[0].account_balance_sign
+        accounts = progenitor.get_group_accounts()
+        if accounts:
+            return accounts[0].account_balance_sign
         return 1
 
     def get_group_accounts(self):
