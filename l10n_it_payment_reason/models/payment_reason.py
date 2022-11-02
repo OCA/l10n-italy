@@ -25,5 +25,5 @@ class PaymentReason(models.Model):
             res.append((cau.id, name))
         return res
 
-    code = fields.Char(string="Code", size=2, required=True)
+    code = fields.Char(size=2, required=True)
     name = fields.Text(string="Description", required=True)
