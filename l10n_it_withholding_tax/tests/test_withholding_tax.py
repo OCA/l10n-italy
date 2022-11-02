@@ -13,21 +13,19 @@ class TestWithholdingTax(TransactionCase):
         super(TestWithholdingTax, self).setUp()
 
         # Accounts
-        type_payable = self.env.ref("account.data_account_type_payable")
-        type_receivable = self.env.ref("account.data_account_type_receivable")
         self.wt_account_payable = self.env["account.account"].create(
             {
                 "name": "Debiti per ritenute da versare",
-                "code": "WT_001",
-                "user_type_id": type_payable.id,
+                "code": "WT.001",
+                "account_type": "liability_payable",
                 "reconcile": True,
             }
         )
         self.wt_account_receivable = self.env["account.account"].create(
             {
                 "name": "Crediti per ritenute subite",
-                "code": "WT_002",
-                "user_type_id": type_receivable.id,
+                "code": "WT.002",
+                "account_type": "asset_receivable",
                 "reconcile": True,
             }
         )
@@ -82,13 +80,7 @@ class TestWithholdingTax(TransactionCase):
                     "quantity": 1.0,
                     "account_id": self.env["account.account"]
                     .search(
-                        [
-                            (
-                                "user_type_id",
-                                "=",
-                                self.env.ref("account.data_account_type_expenses").id,
-                            )
-                        ],
+                        [("account_type", "=", "expense")],
                         limit=1,
                     )
                     .id,
@@ -143,19 +135,19 @@ class TestWithholdingTax(TransactionCase):
             "active_model": "account.move",
             "active_ids": [self.invoice.id],
         }
-        register_payments = self.payment_register_model.with_context(ctx).create(
+        register_payments = self.payment_register_model.with_context(**ctx).create(
             {
                 "payment_date": time.strftime("%Y") + "-07-15",
                 "amount": 800,
                 "journal_id": self.journal_bank.id,
-                "payment_method_id": self.env.ref(
-                    "account.account_payment_method_manual_out"
-                ).id,
+                "payment_method_line_id": self.journal_bank.outbound_payment_method_line_ids[
+                    0
+                ].id,
             }
         )
         register_payments.action_create_payments()
 
-        partials = self.invoice._get_reconciled_invoices_partials()
+        partials = self.invoice._get_reconciled_invoices_partials()[0]
 
         # WT payment generation
         self.assertEqual(len(partials), 2, msg="Missing WT payment")
@@ -183,19 +175,19 @@ class TestWithholdingTax(TransactionCase):
             "active_id": self.invoice.id,
             "default_reconciled_invoice_ids": [(4, self.invoice.id, None)],
         }
-        register_payments = self.payment_register_model.with_context(ctx).create(
+        register_payments = self.payment_register_model.with_context(**ctx).create(
             {
                 "payment_date": time.strftime("%Y") + "-07-15",
                 "amount": 600,
                 "journal_id": self.journal_bank.id,
-                "payment_method_id": self.env.ref(
-                    "account.account_payment_method_manual_out"
-                ).id,
+                "payment_method_line_id": self.journal_bank.outbound_payment_method_line_ids[
+                    0
+                ].id,
             }
         )
         register_payments.action_create_payments()
 
-        partials = self.invoice._get_reconciled_invoices_partials()
+        partials = self.invoice._get_reconciled_invoices_partials()[0]
 
         # WT payment generation
         self.assertEqual(len(partials), 2, msg="Missing WT payment")
@@ -240,13 +232,7 @@ class TestWithholdingTax(TransactionCase):
                     "quantity": 1.0,
                     "account_id": self.env["account.account"]
                     .search(
-                        [
-                            (
-                                "user_type_id",
-                                "=",
-                                self.env.ref("account.data_account_type_expenses").id,
-                            )
-                        ],
+                        [("account_type", "=", "expense")],
                         limit=1,
                     )
                     .id,
@@ -287,7 +273,7 @@ class TestWithholdingTax(TransactionCase):
             "active_model": "account.move",
         }
         f = Form(
-            self.payment_register_model.with_context(ctx), view=self.register_view_id
+            self.payment_register_model.with_context(**ctx), view=self.register_view_id
         )
         payment_register = f.save()
         # passing default_move_type="in_invoice" in the context in order

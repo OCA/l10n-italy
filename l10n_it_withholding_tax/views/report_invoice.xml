@@ -28,7 +28,28 @@
                 </t>
             </xpath>
 
-            <xpath expr="//div[@id='total']//tr[hasclass('o_total')]" position="after">
+            <xpath expr="//t[@t-if='print_with_payments']/t" position="inside">
+                <t t-if="o.withholding_tax_in_print and len(payments_vals) > 0">
+                    <tr class="border-black">
+                        <td>
+                            <strong>Residual Net To Pay</strong>
+                        </td>
+                        <td class="text-right">
+                            <span
+                                t-field="o.amount_net_pay_residual"
+                                t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
+                            />
+                        </td>
+                    </tr>
+                </t>
+            </xpath>
+        </field>
+    </record>
+    <record id="document_tax_totals_wt" model="ir.ui.view">
+        <field name="name">document_tax_totals_wt</field>
+        <field name="inherit_id" ref="account.document_tax_totals" />
+        <field name="arch" type="xml">
+            <xpath expr="//tr[hasclass('o_total')]" position="after">
                 <t t-if="o.withholding_tax_in_print and o.withholding_tax">
                     <tr>
                         <td>
@@ -48,22 +69,6 @@
                         <td class="text-right">
                             <span
                                 t-field="o.amount_net_pay"
-                                t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
-                            />
-                        </td>
-                    </tr>
-                </t>
-            </xpath>
-
-            <xpath expr="//t[@t-if='print_with_payments']/t" position="inside">
-                <t t-if="o.withholding_tax_in_print and len(payments_vals) > 0">
-                    <tr class="border-black">
-                        <td>
-                            <strong>Residual Net To Pay</strong>
-                        </td>
-                        <td class="text-right">
-                            <span
-                                t-field="o.amount_net_pay_residual"
                                 t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
                             />
                         </td>

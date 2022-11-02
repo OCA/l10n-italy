@@ -43,18 +43,18 @@ class WithholdingTax(models.Model):
             return misc_journal[0].id
         return False
 
-    active = fields.Boolean("Active", default=True)
+    active = fields.Boolean(default=True)
     company_id = fields.Many2one(
         "res.company",
         string="Company",
         required=True,
         default=lambda self: self.env.company,
     )
-    name = fields.Char("Name", size=256, required=True)
-    code = fields.Char("Code", size=256, required=True)
-    certification = fields.Boolean("Certification")
+    name = fields.Char(size=256, required=True)
+    code = fields.Char(size=256, required=True)
+    certification = fields.Boolean()
     comment = fields.Text("Text")
-    sequence = fields.Integer("Sequence")
+    sequence = fields.Integer()
     account_receivable_id = fields.Many2one(
         "account.account", string="Account Receivable", required=True
     )
@@ -72,7 +72,7 @@ class WithholdingTax(models.Model):
         "account.payment.term", "Payment Terms", required=True
     )
     tax = fields.Float(string="Tax %", compute="_compute_get_rate")
-    base = fields.Float(string="Base", compute="_compute_get_rate")
+    base = fields.Float(compute="_compute_get_rate")
     rate_ids = fields.One2many(
         "withholding.tax.rate", "withholding_tax_id", "Rates", required=True
     )
@@ -188,8 +188,8 @@ class WithholdingTaxRate(models.Model):
     withholding_tax_id = fields.Many2one(
         "withholding.tax", string="Withholding Tax", ondelete="cascade", readonly=True
     )
-    date_start = fields.Date(string="Date Start")
-    date_stop = fields.Date(string="Date Stop")
+    date_start = fields.Date()
+    date_stop = fields.Date()
     comment = fields.Text(string="Text")
     base = fields.Float(string="Base Coeff.", default=1)
     tax = fields.Float(string="Tax %")
@@ -216,7 +216,7 @@ class WithholdingTaxStatement(models.Model):
             statement.amount = tot_wt_amount
             statement.amount_paid = tot_wt_amount_paid
 
-    date = fields.Date("Date")
+    date = fields.Date()
     wt_type = fields.Selection(
         [
             ("in", "In"),
@@ -233,8 +233,8 @@ class WithholdingTaxStatement(models.Model):
     company_id = fields.Many2one(
         "res.company", string="Company", related="withholding_tax_id.company_id"
     )
-    base = fields.Float("Base")
-    tax = fields.Float("Tax")
+    base = fields.Float()
+    tax = fields.Float()
     amount = fields.Float(
         string="WT amount applied", store=True, readonly=True, compute="_compute_total"
     )
@@ -244,13 +244,13 @@ class WithholdingTaxStatement(models.Model):
     move_ids = fields.One2many("withholding.tax.move", "statement_id", "Moves")
     display_name = fields.Char(compute="_compute_display_name")
 
-    @api.depends("move_id.line_ids.account_id.user_type_id.type")
+    @api.depends("move_id.line_ids.account_id.account_type")
     def _compute_type(self):
         for st in self:
             if st.move_id:
                 domain = [
                     ("move_id", "=", st.move_id.id),
-                    ("account_id.user_type_id.type", "=", "payable"),
+                    ("account_id.account_type", "=", "liability_payable"),
                 ]
                 lines = self.env["account.move.line"].search(domain)
                 if lines:
@@ -334,9 +334,9 @@ class WithholdingTaxMove(models.Model):
     company_id = fields.Many2one(
         "res.company", string="Company", related="withholding_tax_id.company_id"
     )
-    amount = fields.Float("Amount")
+    amount = fields.Float()
     partner_id = fields.Many2one("res.partner", "Partner")
-    date_maturity = fields.Date("Date Maturity")
+    date_maturity = fields.Date()
     account_move_id = fields.Many2one(
         "account.move", "Payment Move", ondelete="cascade"
     )
@@ -353,11 +353,8 @@ class WithholdingTaxMove(models.Model):
             if rec.state not in ["due"]:
                 raise ValidationError(
                     _(
-                        (
-                            "Warning! You can not delete withholding tax move in\
-                     state: {}"
-                        ).format(rec.state)
-                    )
+                        "Warning! You can not delete withholding tax move in state: {}"
+                    ).format(rec.state)
                 )
         return super(WithholdingTaxMove, self).unlink()
 
@@ -372,8 +369,9 @@ class WithholdingTaxMove(models.Model):
             )
         # Move - head
         move_vals = {
-            "ref": _("WT %s - %s")
-            % (self.withholding_tax_id.code, self.credit_debit_line_id.move_id.name),
+            "ref": _("WT {0} - {1}").format(
+                self.withholding_tax_id.code, self.credit_debit_line_id.move_id.name
+            ),
             "journal_id": self.withholding_tax_id.journal_id.id,
             "date": self.payment_line_id.move_id.date,
         }
@@ -381,8 +379,7 @@ class WithholdingTaxMove(models.Model):
         move_lines = []
         for _type in ("partner", "tax"):
             ml_vals = {
-                "ref": _("WT %s - %s - %s")
-                % (
+                "ref": _("WT {0} - {1} - {2}").format(
                     self.withholding_tax_id.code,
                     self.partner_id.name,
                     self.credit_debit_line_id.move_id.name,
@@ -451,7 +448,8 @@ class WithholdingTaxMove(models.Model):
         line_to_reconcile = False
         for line in move.line_ids:
             if (
-                line.account_id.user_type_id.type in ["payable", "receivable"]
+                line.account_id.account_type
+                in ["liability_payable", "asset_receivable"]
                 and line.partner_id
             ):
                 line_to_reconcile = line
@@ -492,10 +490,10 @@ class WithholdingTaxMove(models.Model):
                 if move.full_reconcile_id:
                     raise ValidationError(
                         _(
-                            "Move %s is reconciled (%s). You must unreconcile it "
-                            "first"
-                        )
-                        % (move.display_name, move.full_reconcile_id.display_name)
+                            "Move {0.display_name} is reconciled "
+                            "({0.full_reconcile_id.display_name})."
+                            " You must unreconcile it first"
+                        ).format(move)
                     )
                 move.write({"state": "due"})
 
