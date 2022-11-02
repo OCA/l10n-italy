@@ -1,8 +1,9 @@
 # Copyright 2018 Lorenzo Battistini - Agile Business Group
+# Copyright 2022 Marco Colombo - <marco.colombo@phi.technology>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "ITA - Causali pagamento per ritenute d'acconto",
-    "version": "14.0.1.0.2",
+    "version": "16.0.1.0.0",
     "development_status": "Beta",
     "category": "Localization/Italy",
     "website": "https://github.com/OCA/l10n-italy",
@@ -17,6 +18,5 @@
     "data": [
         "views/withholding_tax.xml",
     ],
-    "pre_init_hook": "rename_old_italian_module",
     "auto_install": True,
 }
