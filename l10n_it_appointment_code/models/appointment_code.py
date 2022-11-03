@@ -1,6 +1,7 @@
 # Copyright 2017 Alessandro Camilli - Openforce
 # Copyright 2019 Stefano Consolaro (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2021 Alex Comba - Agile Business Group
+# Copyright 2022 Giuseppe Borruso - Dinamiche Aziendali
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
