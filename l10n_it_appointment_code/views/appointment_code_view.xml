@@ -5,7 +5,7 @@
         <field name="name">view.appointment.code.tree</field>
         <field name="model">appointment.code</field>
         <field name="arch" type="xml">
-            <tree string="Appointment Code">
+            <tree>
                 <field name="code" />
                 <field name="name" />
             </tree>
