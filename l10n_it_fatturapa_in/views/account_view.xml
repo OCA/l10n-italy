@@ -113,7 +113,7 @@
         <field name="name">fatturapa.attachment.in.tree</field>
         <field name="model">fatturapa.attachment.in</field>
         <field name="arch" type="xml">
-            <tree string="Xml Attachment">
+            <tree>
                 <field name="name" />
                 <field name="create_date" />
                 <field name="xml_supplier_id" />
@@ -218,10 +218,10 @@
             <field name="price_unit" position="before">
                 <field name="fatturapa_attachment_in_id" invisible="1" />
             </field>
-            <field name="analytic_tag_ids" position="after">
+            <field name="analytic_distribution" position="after">
                 <field name="admin_ref" />
             </field>
-            <field name="amount_tax" position="after">
+            <field name="tax_totals" position="before">
                 <field
                     name="efatt_rounding"
                     widget="monetary"
@@ -263,7 +263,7 @@
                         string="Lines Detail"
                     />
                         <field name="e_invoice_line_ids" nolabel="1">
-                            <tree string="Lines Detail">
+                            <tree>
                                 <field name="line_number" />
                                 <field name="name" />
                                 <field name="qty" />
@@ -321,7 +321,7 @@
                         string="Summary Data"
                     />
                         <field name="fatturapa_summary_ids" nolabel="1" readonly="1">
-                            <tree editable="bottom" string="Summary Data">
+                            <tree editable="bottom">
                                 <field name="tax_rate" />
                                 <field name="non_taxable_nature" />
                                 <field name="incidental_charges" readonly="1" />
@@ -360,7 +360,7 @@
                         nolabel="1"
                         readonly="1"
                     >
-                            <tree string="Attachments">
+                            <tree>
                                 <field name="ir_attachment_id" />
                                 <field name="name" />
                                 <field name="description" />
@@ -384,7 +384,7 @@
                         string="Related Documents"
                     />
                         <field name="related_documents" nolabel="1" readonly="1">
-                            <tree editable="bottom" string="Related Documents">
+                            <tree editable="bottom">
                                 <field name="type" />
                                 <field name="name" />
                                 <field name="lineRef" readonly="1" />
@@ -401,7 +401,7 @@
                         string="Welfare Fund"
                     />
                         <field name="welfare_fund_ids" nolabel="1" readonly="1">
-                            <tree editable="bottom" string="Welfare Fund Details">
+                            <tree editable="bottom">
                                 <field name="name" />
                                 <field name="kind_id" />
                                 <field name="welfare_rate_tax" readonly="1" />
@@ -418,7 +418,7 @@
                         string="Withholding"
                     />
                         <field name="ftpa_withholding_ids" nolabel="1" readonly="1">
-                            <tree editable="bottom" string="Withholding Details">
+                            <tree editable="bottom">
                                 <field name="name" />
                                 <field name="amount" />
                             </tree>
@@ -429,7 +429,7 @@
                         string="Payments"
                     />
                         <field name="fatturapa_payments" nolabel="1" readonly="1">
-                            <tree string="Payments">
+                            <tree>
                                 <field name="payment_terms" />
                                 <field name="payment_methods" widget="many2many_tags" />
                             </tree>

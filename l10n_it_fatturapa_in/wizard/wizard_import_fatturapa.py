@@ -122,7 +122,7 @@ class WizardImportFatturapa(models.TransientModel):
         Clean all existing inconsistencies.
         Note that inconsistencies are in all environments.
         """
-        for env in self.env.all:
+        for env in self.env.all.envs:
             env_context = dict(env.context)
             env_context.pop("inconsistencies", None)
             env.context = frozendict(env_context)
@@ -150,7 +150,7 @@ class WizardImportFatturapa(models.TransientModel):
             # so they might disappear if they are no more referenced.
             # Save the inconsistencies in all the environments
             # to avoid losing them.
-            for env in self.env.all:
+            for env in self.env.all.envs:
                 env_context = dict(env.context)
                 env_context.setdefault("inconsistencies", inconsistencies)
                 env.context = frozendict(env_context)
@@ -162,24 +162,42 @@ class WizardImportFatturapa(models.TransientModel):
             and partner.name != DatiAnagrafici.Anagrafica.Denominazione
         ):
             self.log_inconsistency(
-                _("Company Name field contains '%s'." " Your System contains '%s'")
-                % (DatiAnagrafici.Anagrafica.Denominazione, partner.name)
+                _(
+                    "Company Name field contains '%(name)s'."
+                    " Your System contains '%(partner)s'"
+                )
+                % {
+                    "name": DatiAnagrafici.Anagrafica.Denominazione,
+                    "partner": partner.name,
+                }
             )
         if (
             DatiAnagrafici.Anagrafica.Nome
             and partner.firstname != DatiAnagrafici.Anagrafica.Nome
         ):
             self.log_inconsistency(
-                _("Name field contains '%s'." " Your System contains '%s'")
-                % (DatiAnagrafici.Anagrafica.Nome, partner.firstname)
+                _(
+                    "Name field contains '%(name)s'."
+                    " Your System contains '%(firstname)s'"
+                )
+                % {
+                    "name": DatiAnagrafici.Anagrafica.Nome,
+                    "firstname": partner.firstname,
+                }
             )
         if (
             DatiAnagrafici.Anagrafica.Cognome
             and partner.lastname != DatiAnagrafici.Anagrafica.Cognome
         ):
             self.log_inconsistency(
-                _("Surname field contains '%s'." " Your System contains '%s'")
-                % (DatiAnagrafici.Anagrafica.Cognome, partner.lastname)
+                _(
+                    "Surname field contains '%(surname)s'."
+                    " Your System contains '%(lastname)s'"
+                )
+                % {
+                    "surname": DatiAnagrafici.Anagrafica.Cognome,
+                    "lastname": partner.lastname,
+                }
             )
 
     def getPartnerBase(self, DatiAnagrafici):  # noqa: C901
@@ -199,10 +217,8 @@ class WizardImportFatturapa(models.TransientModel):
             else:
                 vat = id_codice
         partners = partner_model
-        res_partner_rule = (
-            self.env["ir.model.data"]
-            .sudo()
-            .xmlid_to_object("base.res_partner_rule", raise_if_not_found=False)
+        res_partner_rule = self.sudo().env.ref(
+            "base.res_partner_rule", raise_if_not_found=False
         )
         if vat:
             domain = [("vat", "=", vat)]
@@ -246,9 +262,10 @@ class WizardImportFatturapa(models.TransientModel):
                     self.log_inconsistency(
                         _(
                             "Two distinct partners with "
-                            "VAT number %s or Fiscal Code %s already "
-                            "present in db." % (vat, cf)
+                            "VAT number %(vat)s or Fiscal Code %(fiscalcode)s already "
+                            "present in db."
                         )
+                        % {"vat": vat, "fiscalcode": cf}
                     )
                     return False
                 commercial_partner_id = partner.commercial_partner_id.id
@@ -381,8 +398,8 @@ class WizardImportFatturapa(models.TransientModel):
                             "Current invoice is from {} with REA Code"
                             " {}. Yet it seems that partners {} have the same"
                             " REA Code. This code should be unique; please fix"
-                            " it.".format(p_name, rea_nr, rea_names)
-                        )
+                            " it."
+                        ).format(p_name, rea_nr, rea_names)
                     )
                 else:
                     vals["rea_code"] = REA.NumeroREA
@@ -420,7 +437,9 @@ class WizardImportFatturapa(models.TransientModel):
         retLine = {}
         account_taxes = self.get_account_taxes(line.AliquotaIVA, line.Natura)
         if account_taxes:
-            retLine["tax_ids"] = [(6, 0, [account_taxes[0].id])]
+            retLine["tax_ids"] = [fields.Command.set([account_taxes[0].id])]
+        else:
+            retLine["tax_ids"] = [fields.Command.clear()]
         return retLine
 
     def get_account_taxes(self, AliquotaIVA, Natura):
@@ -447,18 +466,23 @@ class WizardImportFatturapa(models.TransientModel):
                 self.log_inconsistency(
                     _(
                         "No tax with percentage "
-                        "%s and nature %s found. Please configure this tax."
+                        "%(percentage)s and nature %(nature)s found. Please configure this tax."
                     )
-                    % (AliquotaIVA, Natura)
+                    % {"percentage": AliquotaIVA, "nature": Natura}
                 )
             if len(account_taxes) > 1:
                 self.log_inconsistency(
                     _(
                         "Too many taxes with percentage "
-                        "%s and nature %s found. Tax %s with lower priority has "
+                        "%(percentage)s and nature %(nature)s found. "
+                        "Tax %(tax)s with lower priority has "
                         "been set on invoice lines."
                     )
-                    % (AliquotaIVA, Natura, account_taxes[0].description)
+                    % {
+                        "percentage": AliquotaIVA,
+                        "nature": Natura,
+                        "tax": account_taxes[0].description,
+                    }
                 )
         else:
             account_taxes = account_tax_model.search(
@@ -504,7 +528,7 @@ class WizardImportFatturapa(models.TransientModel):
         supplier_info = self.env["product.supplierinfo"]
         partner_supplier_info = supplier_info.search(
             [
-                ("name", "=", partner.id),
+                ("partner_id", "=", partner.id),
             ]
         )
         found_supplier_infos = supplier_info.browse()
@@ -547,16 +571,23 @@ class WizardImportFatturapa(models.TransientModel):
             new_tax = product.product_tmpl_id.supplier_taxes_id[0]
         elif len(account.tax_ids) == 1:
             new_tax = account.tax_ids[0]
-        line_tax_id = line_vals.get("tax_ids") and line_vals["tax_ids"][0][2][0]
-        line_tax = self.env["account.tax"].browse(line_tax_id)
+        line_tax = self.env["account.tax"]
+        if line_vals.get("tax_ids") and line_vals["tax_ids"][0] == fields.Command.SET:
+            line_tax_id = line_vals["tax_ids"][0][2][0]
+            line_tax = self.env["account.tax"].browse(line_tax_id)
         if new_tax and line_tax and new_tax != line_tax:
             if new_tax._get_tax_amount() != line_tax._get_tax_amount():
                 self.log_inconsistency(
                     _(
-                        "XML contains tax %s. Product %s has tax %s. Using "
+                        "XML contains tax %(line_tax)s. "
+                        "Product %(product)s has tax %(new_tax)s. Using "
                         "the XML one"
                     )
-                    % (line_tax.name, product.name, new_tax.name)
+                    % {
+                        "line_tax": line_tax.name,
+                        "product": product.name,
+                        "new_tax": new_tax.name,
+                    }
                 )
             else:
                 # If product has the same amount of the one in XML,
@@ -573,7 +604,9 @@ class WizardImportFatturapa(models.TransientModel):
         retLine = {}
         account_taxes = self.get_account_taxes(line.AliquotaIVA, line.Natura)
         if account_taxes:
-            retLine["tax_ids"] = [(6, 0, [account_taxes[0].id])]
+            retLine["tax_ids"] = [fields.Command.set([account_taxes[0].id])]
+        else:
+            retLine["tax_ids"] = [fields.Command.clear()]
 
         retLine.update(
             {
@@ -601,7 +634,7 @@ class WizardImportFatturapa(models.TransientModel):
                 "sequence": int(line.NumeroLinea),
                 "account_id": credit_account_id,
                 "price_unit": float(line.PrezzoUnitario),
-                "exclude_from_invoice_tab": False,
+                "display_type": "product",
             }
         )
         if line.Quantita is None:
@@ -769,6 +802,8 @@ class WizardImportFatturapa(models.TransientModel):
                 line_vals["product_id"] = global_discount_product.id
                 line_vals["name"] = global_discount_product.name
                 self.adjust_accounting_data(global_discount_product, line_vals)
+            else:
+                line_vals["tax_ids"] = [fields.Command.clear()]
             self.env["account.move.line"].with_context(
                 check_move_validity=False
             ).create(line_vals)
@@ -787,10 +822,8 @@ class WizardImportFatturapa(models.TransientModel):
                 )
                 if not method:
                     raise UserError(
-                        _(
-                            "Payment method %s is not defined in your system."
-                            % dline.ModalitaPagamento
-                        )
+                        _("Payment method %s is not defined in your system.")
+                        % dline.ModalitaPagamento
                     )
                 val = {
                     "recipient": dline.Beneficiario,
@@ -853,13 +886,13 @@ class WizardImportFatturapa(models.TransientModel):
                             _(
                                 "BIC is required and not exist in Xml\n"
                                 "Curr bank data is: \n"
-                                "IBAN: %s\n"
-                                "Bank Name: %s\n"
+                                "IBAN: %(iban)s\n"
+                                "Bank Name: %(bank)s\n"
                             )
-                            % (
-                                iban or "",
-                                dline.IstitutoFinanziario or "",
-                            )
+                            % {
+                                "iban": iban or "",
+                                "bank": dline.IstitutoFinanziario or "",
+                            }
                         )
                     elif not payment_banks and bank:
                         existing_account = PartnerBankModel.search(
@@ -919,8 +952,10 @@ class WizardImportFatturapa(models.TransientModel):
         )
         if not journals:
             raise UserError(
-                _("Define a purchase journal " "for this company: '%s' (id: %d).")
-                % (company.name, company.id)
+                _(
+                    "Define a purchase journal for this company: '%(name)s' (id: %(id)s)."
+                )
+                % {"name": company.name, "id": company.id}
             )
         return journals[0]
 
@@ -1033,10 +1068,8 @@ class WizardImportFatturapa(models.TransientModel):
         )
         if not currency:
             raise UserError(
-                _(
-                    "No currency found with code %s."
-                    % FatturaBody.DatiGenerali.DatiGeneraliDocumento.Divisa
-                )
+                _("No currency found with code %s.")
+                % FatturaBody.DatiGenerali.DatiGeneraliDocumento.Divisa
             )
         purchase_journal = self.get_purchase_journal(company)
         credit_account = self.get_credit_account()
@@ -1058,6 +1091,8 @@ class WizardImportFatturapa(models.TransientModel):
         if causLst:
             for rel_doc in causLst:
                 comment += rel_doc + "\n"
+        if comment:
+            comment = "<pre>" + comment + "</pre>"
 
         if fatturapa_attachment.e_invoice_received_date:
             e_invoice_received_date = (
@@ -1071,9 +1106,10 @@ class WizardImportFatturapa(models.TransientModel):
         ).date()
 
         delivery_partner_id = partner.address_get(["delivery"])["delivery"]
+        delivery_partner = partner_model.browse(delivery_partner_id)
         fiscal_position_id = (
             self.env["account.fiscal.position"]
-            .get_fiscal_position(partner_id, delivery_id=delivery_partner_id)
+            ._get_fiscal_position(partner, delivery=delivery_partner)
             .id
             or False
         )
@@ -1128,8 +1164,6 @@ class WizardImportFatturapa(models.TransientModel):
         )
 
         invoice._onchange_invoice_line_wt_ids()
-        invoice._recompute_dynamic_lines()
-        invoice.write(invoice._convert_to_write(invoice._cache))
 
         rel_docs_dict = {
             # 2.1.2
@@ -1184,11 +1218,6 @@ class WizardImportFatturapa(models.TransientModel):
         if self.e_invoice_detail_level != "1":
             self.set_roundings(FatturaBody, invoice)
 
-        # compute the invoice
-        invoice.with_context(
-            check_move_validity=False
-        )._move_autocomplete_invoice_lines_values()
-
         self.set_vendor_bill_data(FatturaBody, invoice)
 
         # this can happen with refunds with negative amounts
@@ -1207,8 +1236,8 @@ class WizardImportFatturapa(models.TransientModel):
         if not invoice.ref:
             today = fields.Date.context_today(self)
             x = invoice.line_ids.filtered(
-                lambda line: line.account_id.user_type_id.type
-                in ("receivable", "payable")
+                lambda line: line.account_id.account_type
+                in ("asset_receivable", "liability_payable")
             ).sorted(lambda line: line.date_maturity or today)
             if x:
                 x[-1].name = FatturaBody.DatiGenerali.DatiGeneraliDocumento.Numero
@@ -1339,7 +1368,6 @@ class WizardImportFatturapa(models.TransientModel):
                         "name": name,
                         "account_id": arrotondamenti_account_id,
                         "price_unit": to_round,
-                        "exclude_from_invoice_tab": False,
                         "tax_ids": [(6, 0, [invoice_line_tax_id])],
                     }
                     # Valutare se in caso di importazione senza rounding sia meglio
@@ -1350,6 +1378,7 @@ class WizardImportFatturapa(models.TransientModel):
                     #                     else:
                     #                        upd_vals["credit"]= abs(to_round)
                     line_vals.append(upd_vals)
+
             if line_vals:
                 self.env["account.move.line"].with_context(
                     check_move_validity=False
@@ -1387,7 +1416,7 @@ class WizardImportFatturapa(models.TransientModel):
                     "account_id": arrotondamenti_account_id.id,
                     "price_unit": invoice.efatt_rounding,
                     "quantity": 1,
-                    "exclude_from_invoice_tab": False,
+                    "tax_ids": [fields.Command.set([])],
                 }
                 self.create_and_get_line_id(
                     invoice_line_ids, invoice_line_model, upd_vals
@@ -1476,14 +1505,14 @@ class WizardImportFatturapa(models.TransientModel):
             else:
                 raise UserError(
                     _(
-                        "No withholding tax found with "
-                        "document payment reason %s, rate %s and type %s."
+                        "No withholding tax found with document payment "
+                        "reason %(reason)s rate %(rate)s and type %(type)s."
                     )
-                    % (
-                        Withholding.CausalePagamento,
-                        Withholding.AliquotaRitenuta,
-                        WT_CODES_MAPPING[Withholding.TipoRitenuta],
-                    )
+                    % {
+                        "reason": Withholding.CausalePagamento,
+                        "rate": Withholding.AliquotaRitenuta,
+                        "type": WT_CODES_MAPPING[Withholding.TipoRitenuta],
+                    }
                 )
             invoice_data["ftpa_withholding_ids"].append(
                 (
@@ -1556,7 +1585,7 @@ class WizardImportFatturapa(models.TransientModel):
             dt = datetime.strptime(dtstring, "%Y-%m-%dT%H:%M:%S")
             if dt:
                 ret = dt.strftime("%Y-%m-%d %H:%M:%S")
-        except (TypeError, ValueError):
+        except (TypeError, ValueError):  # pylint: disable=except-pass
             pass
         return ret
 
@@ -1673,8 +1702,14 @@ class WizardImportFatturapa(models.TransientModel):
                 invoice.amount_total - ImportoTotaleDocumento, precision_digits=2
             ):
                 self.log_inconsistency(
-                    _("Bill total %s is different from " "document total amount %s")
-                    % (invoice.amount_total, ImportoTotaleDocumento)
+                    _(
+                        "Bill total %(amount_total)s is different "
+                        "from document total amount %(document_total_amount)s"
+                    )
+                    % {
+                        "amount_total": invoice.amount_total,
+                        "document_total_amount": ImportoTotaleDocumento,
+                    }
                 )
         else:
             # else, we can only check DatiRiepilogo if
@@ -1686,8 +1721,14 @@ class WizardImportFatturapa(models.TransientModel):
                 invoice.amount_untaxed - amount_untaxed, precision_digits=2
             ):
                 self.log_inconsistency(
-                    _("Computed amount untaxed %s is different from" " summary data %s")
-                    % (invoice.amount_untaxed, amount_untaxed)
+                    _(
+                        "Computed amount untaxed %(amount_untaxed)s is "
+                        "different from summary data %(summary_data)s"
+                    )
+                    % {
+                        "amount_untaxed": invoice.amount_untaxed,
+                        "summary_data": amount_untaxed,
+                    }
                 )
 
     def get_invoice_obj(self, fatturapa_attachment):

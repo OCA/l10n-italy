@@ -85,3 +85,4 @@ class Partner(models.Model):
                 _logger.info(log_message)
         else:
             super().check_vat()
+        return  # W8110

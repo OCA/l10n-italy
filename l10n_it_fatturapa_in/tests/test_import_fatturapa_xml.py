@@ -26,15 +26,6 @@ class TestDuplicatedAttachment(FatturapaCommon):
 
 
 class TestFatturaPAXMLValidation(FatturapaCommon):
-    def setUp(self):
-        super(TestFatturaPAXMLValidation, self).setUp()
-        self.wt = self.create_wt_4q()
-        self.wtq = self.create_wt_27_20q()
-        self.wt4q = self.create_wt_26_40q()
-        self.wt2q = self.create_wt_26_20q()
-        self.invoice_model = self.env["account.move"]
-        self.wizard_link_inv_line_model = self.env["wizard.link.to.invoice.line"]
-
     def test_00_xml_import(self):
         self.env.company.cassa_previdenziale_product_id = self.service.id
         res = self.run_wizard("test0", "IT05979361218_001.xml")
@@ -412,7 +403,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         # I create a supplier code to be matched in XML
         self.env["product.supplierinfo"].create(
             {
-                "name": partner.id,
+                "partner_id": partner.id,
                 "product_tmpl_id": self.headphones.id,
                 "product_code": "ART123",
             }
@@ -735,6 +726,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         # allow following tests to reuse the same XML file
         invoices[0].ref = invoices[0].payment_reference = "14381"
         invoices[1].ref = invoices[1].payment_reference = "14382"
+        self.env.user.lang = "en_US"
 
     def test_40_xml_import_withholding(self):
         res = self.run_wizard("test40", "IT01234567890_FPR11.xml")
@@ -835,15 +827,19 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         # IT01234567890_FPR14.xml should be tested manually
 
     def test_48_xml_import(self):
+        # depends on test_36_xml_import
         # my company bank account is the same as the one in XML:
         # invoice creation must not be blocked
-        self.env["res.partner.bank"].create(
+        partner_bank = self.env["res.partner.bank"].create(
             {
                 "acc_number": "IT59R0100003228000000000622",
                 "company_id": self.env.company.id,
                 "partner_id": self.env.company.partner_id.id,
             }
         )
+        # 16.0: company_id gets reset right after creation
+        partner_bank.company_id = self.env.company
+        self.assertEqual(partner_bank.company_id, self.env.company)
         res = self.run_wizard("test48", "IT01234567890_FPR15.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
@@ -867,7 +863,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         )[0]
         self.env["product.supplierinfo"].create(
             {
-                "name": partner_id,
+                "partner_id": partner_id,
                 "product_name": "FORNITURE VARIE PER UFFICIO",
                 "product_id": product_id,
                 "min_qty": 1,
@@ -913,10 +909,12 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertFalse(vat_partner_exists())
 
         # Act: Import an e-bill containing a supplier with vat GB99999999999
-        self.create_attachment(
+        attach = self.create_attachment(
             "test53",
             "IT01234567890_x05mX.xml",
         )
+        # access the field to trigger creation (see _compute_xml_data())
+        self.assertTrue(attach.xml_supplier_id)
 
         # Assert: A partner with vat GB99999999999 exists,
         # and the vat is usually not valid for UK
@@ -938,6 +936,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
                 not_valid_vat=not_valid_vat,
             ),
         )
+        self.wizard_model.reset_inconsistencies()
 
     def test_01_xml_link(self):
         """
@@ -1018,6 +1017,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
 
     def test_xml_import_summary_tax_rate(self):
         # Invoice  with positive total. Detail Level:  '1' -- Tax Rate
+        # Note: this test depends on test_14_xml_import for supplier creation
         supplier = self.env["res.partner"].search([("vat", "=", "IT02780790107")])[0]
         # in order to make the system create the invoice lines
         supplier.e_invoice_detail_level = "1"
@@ -1061,7 +1061,7 @@ class TestFatturaPAEnasarco(FatturapaCommon):
             {
                 "name": "Test WH tax",
                 "code": "whtaxpay2",
-                "user_type_id": self.env.ref("account.data_account_type_payable").id,
+                "account_type": "liability_payable",
                 "reconcile": True,
             }
         )
@@ -1069,11 +1069,16 @@ class TestFatturaPAEnasarco(FatturapaCommon):
             {
                 "name": "Test WH tax",
                 "code": "whtaxrec2",
-                "user_type_id": self.env.ref("account.data_account_type_receivable").id,
+                "account_type": "asset_receivable",
                 "reconcile": True,
             }
         )
-        misc_journal = self.env["account.journal"].search([("code", "=", "MISC")])
+        misc_journal = self.env["account.journal"].search(
+            [
+                ("company_id", "=", self.env.company.id),
+                ("code", "=", "MISC"),
+            ]
+        )
         self.env["withholding.tax"].create(
             {
                 "name": "Enasarco",

@@ -3,7 +3,7 @@ from odoo.exceptions import ValidationError
 from odoo.tools import float_compare
 
 
-class AccountInvoice(models.Model):
+class AccountMove(models.Model):
     _inherit = "account.move"
 
     fatturapa_attachment_in_id = fields.Many2one(
@@ -55,12 +55,13 @@ class AccountInvoice(models.Model):
         "line_ids.full_reconcile_id",
     )
     def _compute_amount(self):
-        super(AccountInvoice, self)._compute_amount()
+        super()._compute_amount()
         for inv in self:
             if inv.efatt_rounding != 0:
                 inv.amount_total += inv.efatt_rounding
                 sign = inv.move_type in ["in_refund", "out_refund"] and -1 or 1
                 inv.amount_total_signed = inv.amount_total * sign
+        return  # fix W8110
 
     def action_post(self):
         for invoice in self:
@@ -158,13 +159,12 @@ class AccountInvoice(models.Model):
             != 0
         ):
             error_message += _(
-                "E-bill contains ImportoRitenuta %s but created invoice has got"
-                " %s\n"
-                % (
-                    sum(self.ftpa_withholding_ids.mapped("amount")),
-                    self.withholding_tax_amount,
-                )
-            )
+                "E-bill contains ImportoRitenuta %(amount)s "
+                "but created invoice has got %(withholding_tax_amount)s\n"
+            ) % {
+                "amount": sum(self.ftpa_withholding_ids.mapped("amount")),
+                "withholding_tax_amount": self.withholding_tax_amount,
+            }
         return error_message
 
     @api.depends(
@@ -252,7 +252,7 @@ class AccountInvoice(models.Model):
             bill.e_invoice_validation_message = ",\n".join(error_messages) + "."
 
     def name_get(self):
-        result = super(AccountInvoice, self).name_get()
+        result = super().name_get()
         res = []
         for tup in result:
             invoice = self.browse(tup[0])
@@ -328,9 +328,6 @@ class AccountInvoice(models.Model):
             line.with_context(check_move_validity=False).update(
                 {"price_unit": -line.price_unit}
             )
-        self.with_context(check_move_validity=False)._recompute_dynamic_lines(
-            recompute_all_taxes=True
-        )
 
 
 class FatturapaArticleCode(models.Model):
@@ -345,7 +342,7 @@ class FatturapaArticleCode(models.Model):
     )
 
 
-class AccountInvoiceLine(models.Model):
+class AccountMoveLine(models.Model):
     # _position = [
     #     '2.2.1.3', '2.2.1.6', '2.2.1.7',
     #     '2.2.1.8', '2.1.1.10'
@@ -373,7 +370,7 @@ class EInvoiceLine(models.Model):
     invoice_id = fields.Many2one(
         "account.move", "Bill", readonly=True, ondelete="cascade"
     )
-    line_number = fields.Integer("Line Number", readonly=True)
+    line_number = fields.Integer(readonly=True)
     service_type = fields.Char("Sale Provision Type", readonly=True)
     cod_article_ids = fields.One2many(
         "fatturapa.article.code", "e_invoice_line_id", "Articles Code", readonly=True
@@ -381,16 +378,16 @@ class EInvoiceLine(models.Model):
     name = fields.Char("Description", readonly=True)
     qty = fields.Float("Quantity", readonly=True, digits="Product Unit of Measure")
     uom = fields.Char("Unit of measure", readonly=True)
-    period_start_date = fields.Date("Period Start Date", readonly=True)
-    period_end_date = fields.Date("Period End Date", readonly=True)
-    unit_price = fields.Float("Unit Price", readonly=True, digits="Product Price")
+    period_start_date = fields.Date(readonly=True)
+    period_end_date = fields.Date(readonly=True)
+    unit_price = fields.Float(readonly=True, digits="Product Price")
     discount_rise_price_ids = fields.One2many(
         "discount.rise.price",
         "e_invoice_line_id",
         "Discount and Supplement Details",
         readonly=True,
     )
-    total_price = fields.Float("Total Price", readonly=True)
+    total_price = fields.Float(readonly=True)
     tax_amount = fields.Float("VAT Rate", readonly=True)
     wt_amount = fields.Char("Tax Withholding", readonly=True)
     tax_kind = fields.Char("Nature", readonly=True)

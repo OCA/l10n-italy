@@ -38,7 +38,6 @@
     <record id="action_wizard_link_supplier_invoice" model="ir.actions.act_window">
         <field name="name">Link to existing supplier bills</field>
         <field name="res_model">wizard.link.to.invoice</field>
-        <!-- src_model="fatturapa.attachment.in" -->
         <field name="binding_model_id" ref="model_fatturapa_attachment_in" />
         <field name="view_mode">form</field>
         <field name="target">new</field>

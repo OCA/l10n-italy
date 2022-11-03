@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-09 20:32+0000\n"
+"PO-Revision-Date: 2023-03-09 20:32+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -99,8 +101,8 @@ msgstr ""
 msgid ""
 "BIC is required and not exist in Xml\n"
 "Curr bank data is: \n"
-"IBAN: %s\n"
-"Bank Name: %s\n"
+"IBAN: %(iban)s\n"
+"Bank Name: %(bank)s\n"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -131,7 +133,9 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
-msgid "Bill total %s is different from document total amount %s"
+msgid ""
+"Bill total %(amount_total)s is different from document total amount "
+"%(document_total_amount)s"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -183,13 +187,16 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
-msgid "Company Name field contains '%s'. Your System contains '%s'"
+msgid ""
+"Company Name field contains '%(name)s'. Your System contains '%(partner)s'"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
-msgid "Computed amount untaxed %s is different from summary data %s"
+msgid ""
+"Computed amount untaxed %(amount_untaxed)s is different from summary data "
+"%(summary_data)s"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -316,7 +323,7 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
-msgid "Define a purchase journal for this company: '%s' (id: %d)."
+msgid "Define a purchase journal for this company: '%(name)s' (id: %(id)s)."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -352,16 +359,10 @@ msgid "Discounts decimal digits"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_move__display_name
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_move_line__display_name
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_discount_rise_price__display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line__display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data__display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_article_code__display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__display_name
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_company__display_name
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_config_settings__display_name
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_partner__display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_import_fatturapa__display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice__display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice_line__display_name
@@ -459,7 +460,9 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/models/account.py:0
 #, python-format
-msgid "E-bill contains ImportoRitenuta %s but created invoice has got %s\n"
+msgid ""
+"E-bill contains ImportoRitenuta %(amount)s but created invoice has got "
+"%(withholding_tax_amount)s\n"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -569,11 +572,6 @@ msgid "Followers"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_channel_ids
-msgid "Followers (Channels)"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_partner_ids
 msgid "Followers (Partners)"
 msgstr ""
@@ -597,21 +595,20 @@ msgid "Global bill discount from document general data"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
 msgid "History"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_move__id
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_move_line__id
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_discount_rise_price__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_article_code__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__id
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_company__id
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_config_settings__id
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_partner__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_import_fatturapa__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice_line__id
@@ -620,7 +617,6 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_needaction
-#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
@@ -744,16 +740,10 @@ msgid "Journal Item"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_move____last_update
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_move_line____last_update
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_discount_rise_price____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_article_code____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in____last_update
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_company____last_update
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_config_settings____last_update
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_partner____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_import_fatturapa____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice_line____last_update
@@ -876,7 +866,7 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
-msgid "Name field contains '%s'. Your System contains '%s'"
+msgid "Name field contains '%(name)s'. Your System contains '%(firstname)s'"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -900,15 +890,16 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
-"No tax with percentage %s and nature %s found. Please configure this tax."
+"No tax with percentage %(percentage)s and nature %(nature)s found. Please "
+"configure this tax."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
-"No withholding tax found with document payment reason %s, rate %s and type "
-"%s."
+"No withholding tax found with document payment reason %(reason)s rate "
+"%(rate)s and type %(type)s."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -934,11 +925,6 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_unread_counter
-msgid "Number of unread messages"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -1212,7 +1198,8 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
-msgid "Surname field contains '%s'. Your System contains '%s'"
+msgid ""
+"Surname field contains '%(surname)s'. Your System contains '%(lastname)s'"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -1270,11 +1257,6 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__res_model
-msgid "The database object this attachment will be attached to."
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/models/account.py:0
 #, python-format
 msgid "The invoice '%s' doesn't match the related e-invoice"
@@ -1286,11 +1268,6 @@ msgid "The name of the e-bill file must be unique!"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__res_id
-msgid "The record id this is attached to."
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_search
 msgid "To Register"
 msgstr ""
@@ -1299,8 +1276,8 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
-"Too many taxes with percentage %s and nature %s found. Tax %s with lower "
-"priority has been set on invoice lines."
+"Too many taxes with percentage %(percentage)s and nature %(nature)s found. "
+"Tax %(tax)s with lower priority has been set on invoice lines."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -1328,8 +1305,8 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
-"Two distinct partners with VAT number %s or Fiscal Code %s already present "
-"in db."
+"Two distinct partners with VAT number %(vat)s or Fiscal Code %(fiscalcode)s "
+"already present in db."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -1345,16 +1322,6 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line__uom
 msgid "Unit of measure"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_unread
-msgid "Unread Messages"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_unread_counter
-msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -1426,11 +1393,6 @@ msgid "Welfare Fund Data Product"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
-msgid "Welfare Fund Details"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -1456,11 +1418,6 @@ msgid "Withholding"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
-msgid "Withholding Details"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice_line__wizard_id
 msgid "Wizard"
 msgstr ""
@@ -1468,7 +1425,9 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
-msgid "XML contains tax %s. Product %s has tax %s. Using the XML one"
+msgid ""
+"XML contains tax %(line_tax)s. Product %(product)s has tax %(new_tax)s. "
+"Using the XML one"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -1476,11 +1435,6 @@ msgstr ""
 #, python-format
 msgid ""
 "XML contains tax with percentage '%s' but it does not exist in your system"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_tree
-msgid "Xml Attachment"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
