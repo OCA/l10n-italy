@@ -15,12 +15,18 @@
                             <field name='id' invisible="1"/>
                             <label for="datas"/>
                             <div>
-                                <field name="datas" filename="datas_fname"/>
-                                <field name="ftpa_preview_link"
-                                       widget="url"
-                                       text="Show preview"
-                                       attrs="{'invisible': [('id', '=', False)]}"
-                                />
+                                <div>
+                                    <field name="datas" filename="datas_fname"/>
+                                </div>
+                                <div>
+                                    <button 
+                                        type="object"
+                                        name="ftpa_preview"
+                                        string="Show preview"
+                                        style="margin-bottom:10px;"
+                                        attrs="{'invisible': [('id', '=', False)]}"
+                                    />
+                                </div>
                             </div>
                             <field name="datas_fname" invisible="True" />
                             <field name="name" invisible="True"/>
