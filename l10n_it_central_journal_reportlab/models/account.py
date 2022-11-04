@@ -15,11 +15,5 @@ class DateRangeInherit(models.Model):
     date_last_print = fields.Date("Last printed date")
     progressive_page_number = fields.Integer("Progressive of the page")
     progressive_line_number = fields.Integer("Progressive line")
-    progressive_credit = fields.Float(
-        "Progressive Credit",
-        digits="Account",
-    )
-    progressive_debit = fields.Float(
-        "Progressive Debit",
-        digits="Account",
-    )
+    progressive_credit = fields.Float(digits="Account")
+    progressive_debit = fields.Float(digits="Account")

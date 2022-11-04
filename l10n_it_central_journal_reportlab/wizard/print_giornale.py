@@ -1,4 +1,5 @@
 # Copyright 2018 Gianmarco Conte (gconte@dinamicheaziendali.it)
+# Copyright 2022 Giuseppe Borruso (gborruso@dinamicheaziendali.it)
 
 import base64
 import io
@@ -46,7 +47,7 @@ class WizardGiornaleReportlab(models.TransientModel):
     company_id = fields.Many2one(
         related="daterange_id.company_id", readonly=True, store=True
     )
-    progressive_credit = fields.Float("Progressive Credit")
+    progressive_credit = fields.Float()
     progressive_debit2 = fields.Float("Progressive Debit")
     print_state = fields.Selection(
         [("print", "Ready for printing"), ("printed", "Printed")],
@@ -65,28 +66,24 @@ class WizardGiornaleReportlab(models.TransientModel):
     )
     target_move = fields.Selection(
         [("all", "All"), ("posted", "Posted"), ("draft", "Draft")],
-        "Target Move",
         default="all",
     )
     fiscal_page_base = fields.Integer("Last printed page", required=True)
     start_row = fields.Integer("Start row", required=True)
     year_footer = fields.Char(
         string="Year for Footer",
-        help="Value printed near number " "of page in the footer",
+        help="Value printed near number of page in the footer",
     )
-    report_giornale = fields.Binary(string="Report Giornale")
-    report_giornale_name = fields.Char(
-        string="Report Giornale Name",
-        compute="_compute_report_giornale_name",
-    )
-    group_by_account = fields.Boolean(string="Group by account", default=False)
+    report_giornale = fields.Binary()
+    report_giornale_name = fields.Char(compute="_compute_report_giornale_name")
+    group_by_account = fields.Boolean(default=False)
 
     @api.depends("report_giornale", "daterange_id")
     def _compute_report_giornale_name(self):
         for wizard in self:
             if wizard.report_giornale and wizard.daterange_id:
-                wizard.report_giornale_name = _(
-                    "Account Central Journal - %s.pdf" % wizard.daterange_id.name
+                wizard.report_giornale_name = (
+                    _("Account Central Journal - %s.pdf") % wizard.daterange_id.name
                 )
             elif wizard.report_giornale:
                 wizard.report_giornale_name = _("Account Central Journal.pdf")
@@ -204,7 +201,11 @@ class WizardGiornaleReportlab(models.TransientModel):
     def get_template_header_report_giornale(self, report, height_available):
         report.setFont("Helvetica-Bold", 12)
         height_available -= gap
-        report.drawString(margin_left, height_available, self.env.user.company_id.name)
+        report.drawString(
+            margin_left,
+            height_available,
+            self.env.user.company_id.name + _(" Account Central Journal"),
+        )
         report.setFont("Helvetica", 10)
         text = ""
         if self.env.user.company_id.street:
@@ -223,7 +224,10 @@ class WizardGiornaleReportlab(models.TransientModel):
 
     def get_template_footer_report_giornale(self, report):
         page_num = report.getPageNumber() + self.fiscal_page_base
-        page_text = _("Page: %s / %s" % (self.year_footer, page_num))
+        page_text = _("Page: %(year_footer)s / %(page_num)s") % {
+            "year_footer": self.year_footer,
+            "page_num": page_num,
+        }
         report.drawString(margin_left, margin_bottom + 12, page_text)
 
     def get_styles_report_giornale_line(self):
@@ -390,7 +394,10 @@ class WizardGiornaleReportlab(models.TransientModel):
             move = Paragraph(move_name, style_name)
             account_name = self._get_account_name_reportlab(line)
             account = Paragraph(account_name, style_name)
-            if line.account_id.user_type_id.type in ["receivable", "payable"]:
+            if line.account_id.account_type in [
+                "asset_receivable",
+                "liability_payable",
+            ]:
                 name = Paragraph(str(line.partner_id.name or ""), style_name)
             else:
                 name = Paragraph(str(line.name or ""), style_name)
@@ -553,14 +560,13 @@ class WizardGiornaleReportlab(models.TransientModel):
     def print_giornale_reportlab(self):
         self.create_report_giornale_reportlab()
 
-        model_data_obj = self.env["ir.model.data"]
-        view_rec = model_data_obj.get_object_reference(
-            "l10n_it_central_journal_reportlab", "wizard_giornale_reportlab"
+        view_id = self.env.ref(
+            "l10n_it_central_journal_reportlab.wizard_giornale_reportlab",
+            raise_if_not_found=False,
         )
-        view_id = view_rec and view_rec[1] or False
 
         return {
-            "view_id": [view_id],
+            "view_id": view_id.id,
             "view_mode": "form",
             "res_model": "wizard.giornale.reportlab",
             "res_id": self.id,
@@ -585,14 +591,13 @@ class WizardGiornaleReportlab(models.TransientModel):
         }
         self.daterange_id.write(daterange_vals)
 
-        model_data_obj = self.env["ir.model.data"]
-        view_rec = model_data_obj.get_object_reference(
-            "l10n_it_central_journal_reportlab", "wizard_giornale_reportlab"
+        view_id = self.env.ref(
+            "l10n_it_central_journal_reportlab.wizard_giornale_reportlab",
+            raise_if_not_found=False,
         )
-        view_id = view_rec and view_rec[1] or False
 
         return {
-            "view_id": [view_id],
+            "view_id": view_id.id,
             "view_mode": "form",
             "res_model": "wizard.giornale.reportlab",
             "res_id": self.id,

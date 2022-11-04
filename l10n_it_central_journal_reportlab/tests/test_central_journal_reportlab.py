@@ -35,7 +35,7 @@ class TestCentralJournalReportlab(TransactionCase):
         )
         self.wizard_model = self.env["wizard.giornale.reportlab"]
         self.report_model = self.env["ir.actions.report"]
-        self.report_name = "l10n_it_central_journal_reportlab.report_giornale_reportlab"
+        self.report_name = "central_journal_reportlab.report_giornale_reportlab"
         self.journals = self.env["account.journal"].search([])
 
     def test_wizard_reportlab(self):
