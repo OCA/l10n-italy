@@ -61,16 +61,21 @@
                             <group>
                                 <label for="datas" />
                                 <div>
-                                    <field
-                                        name="datas"
-                                        filename="name"
-                                        attrs="{'readonly': [('state', 'not in', ['ready', 'sender_error'])]}"
-                                    />
-                                    <field
-                                        name="ftpa_preview_link"
-                                        widget="url"
-                                        text="Show preview"
-                                    />
+                                    <div>
+                                        <field
+                                            name="datas"
+                                            filename="name"
+                                            attrs="{'readonly': [('state', 'not in', ['ready', 'sender_error'])]}"
+                                        />
+                                    </div>
+                                    <div>
+                                        <button
+                                            type="object"
+                                            name="ftpa_preview"
+                                            string="Show preview"
+                                            style="margin-bottom:10px;"
+                                        />
+                                    </div>
                                 </div>
                                 <field name="name" />
                             </group>
