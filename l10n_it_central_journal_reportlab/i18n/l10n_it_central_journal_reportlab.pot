@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,24 +14,35 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_central_journal_reportlab
+#. odoo-python
+#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
+#, python-format
+msgid " Account Central Journal"
+msgstr ""
+
+#. module: l10n_it_central_journal_reportlab
+#. odoo-python
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
 #, python-format
 msgid "Account"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
+#. odoo-python
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
 #, python-format
 msgid "Account Central Journal - %s.pdf"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
+#. odoo-python
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
 #, python-format
 msgid "Account Central Journal.pdf"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
+#. odoo-python
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
 #, python-format
 msgid "Account Move"
@@ -43,6 +54,7 @@ msgid "All"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
+#. odoo-python
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
 #, python-format
 msgid "Balance"
@@ -69,12 +81,14 @@ msgid "Created on"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
+#. odoo-python
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
 #, python-format
 msgid "Credit"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
+#. odoo-python
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
 #, python-format
 msgid "Date"
@@ -97,14 +111,13 @@ msgid "Dates movements"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
+#. odoo-python
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
 #, python-format
 msgid "Debit"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
-#: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_account_journal__display_name
-#: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_date_range__display_name
 #: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_wizard_giornale_reportlab__display_name
 msgid "Display Name"
 msgstr ""
@@ -120,6 +133,7 @@ msgid "Exclude from General Journal"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
+#. odoo-python
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
 #, python-format
 msgid "Final Balance"
@@ -153,17 +167,16 @@ msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
 #: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_wizard_giornale_reportlab__group_by_account
-msgid "Group by account"
+msgid "Group By Account"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
-#: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_account_journal__id
-#: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_date_range__id
 #: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_wizard_giornale_reportlab__id
 msgid "ID"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
+#. odoo-python
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
 #, python-format
 msgid "Initial Balance"
@@ -181,8 +194,6 @@ msgid "Journals"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
-#: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_account_journal____last_update
-#: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_date_range____last_update
 #: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_wizard_giornale_reportlab____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -218,12 +229,14 @@ msgid "Layout"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
+#. odoo-python
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
 #, python-format
 msgid "Name"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
+#. odoo-python
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
 #, python-format
@@ -236,9 +249,10 @@ msgid "PDF"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
+#. odoo-python
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
 #, python-format
-msgid "Page: %s / %s"
+msgid "Page: %(year_footer)s / %(page_num)s"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
@@ -294,6 +308,7 @@ msgid "Report Giornale Name"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
+#. odoo-python
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
 #, python-format
 msgid "Row"
