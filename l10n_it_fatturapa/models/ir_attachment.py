@@ -41,6 +41,15 @@ class Attachment(models.Model):
                 att.get_base_url() + "/fatturapa/preview/%s" % att.id
             )
 
+    @staticmethod
+    def ftpa_preview(self):
+        return {
+            "type": "ir.actions.act_url",
+            "name": "Show preview",
+            "url": self.ftpa_preview_link,
+            "target": "new",
+        }
+
     def remove_xades_sign(self, xml):
         # Recovering parser is needed for files where strings like
         # xmlns:ds="http://www.w3.org/2000/09/xmldsig#&quot;"
