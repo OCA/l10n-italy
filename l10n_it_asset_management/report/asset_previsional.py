@@ -1,5 +1,6 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
+# Copyright 2022 Simone Rubino - TAKOBI
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
@@ -393,6 +394,13 @@ class ReportCategory(models.TransientModel):
                         if fy_start <= report_date <= fy_end:
                             totals_by_dep_type[dep_type][fname] += line_curr._convert(
                                 last_line[fname],
+                                curr,
+                                categ.report_id.company_id,
+                                report_date,
+                            )
+                        elif fy_end < report_date:
+                            totals_by_dep_type[dep_type][fname] += line_curr._convert(
+                                last_line["amount_depreciation_fund_curr_year"],
                                 curr,
                                 categ.report_id.company_id,
                                 report_date,
