@@ -13678,7 +13678,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_country__display_name
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_sale_order__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -28916,7 +28915,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_country__id
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_sale_order__id
 msgid "ID"
 msgstr ""
 
@@ -31587,7 +31585,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_country____last_update
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_sale_order____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -54699,11 +54696,6 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_delivery_code_id
 msgid "Sales Delivery Terms"
-msgstr ""
-
-#. module: l10n_it_intrastat
-#: model:ir.model,name:l10n_it_intrastat.model_sale_order
-msgid "Sales Order"
 msgstr ""
 
 #. module: l10n_it_intrastat
