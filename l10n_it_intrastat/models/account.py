@@ -290,6 +290,24 @@ class AccountMove(models.Model):
     def change_fiscal_position(self):
         self.intrastat = self.fiscal_position_id.intrastat
 
+    @api.onchange("partner_id")
+    def _onchange_partner_id(self):
+        res = super()._onchange_partner_id()
+        self.change_fiscal_position()
+        return res
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for val in vals_list:
+            if "intrastat" not in val and "fiscal_position_id" in val:
+                intrastat = (
+                    self.env["account.fiscal.position"]
+                    .browse(val["fiscal_position_id"])
+                    .intrastat
+                )
+                val.update({"intrastat": intrastat})
+        return super().create(vals_list)
+
     def action_post(self):
         for invoice in self:
             if not invoice.intrastat_line_ids and invoice.intrastat:
