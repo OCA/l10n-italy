@@ -7,7 +7,7 @@
 
 <!-- /!\ do not modify above this line -->
 
-# l10n-italy
+# Odoo Italia Modules
 
 Addons concerning Odoo Italian Localization.
 
