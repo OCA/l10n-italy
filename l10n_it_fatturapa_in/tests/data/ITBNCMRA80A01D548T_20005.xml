@@ -24,95 +24,95 @@
                     <IdCodice>01484710387</IdCodice>
                 </IdFiscaleIVA>
                <Anagrafica>
-				<Nome>Mario</Nome>
-				<Cognome>Bianchi</Cognome>
-				<Titolo>Avvocato</Titolo>
-			</Anagrafica>
-			<RegimeFiscale>RF01</RegimeFiscale>
-		</DatiAnagrafici>
-		<Sede>
-			<Indirizzo>Via Voltapaletto 12</Indirizzo>
-			<CAP>44121</CAP>
-			<Comune>Ferrara</Comune>
-			<Provincia>FE</Provincia>
-			<Nazione>IT</Nazione>
-		</Sede>
-	</CedentePrestatore>
+                <Nome>Mario</Nome>
+                <Cognome>Bianchi</Cognome>
+                <Titolo>Avvocato</Titolo>
+            </Anagrafica>
+            <RegimeFiscale>RF01</RegimeFiscale>
+        </DatiAnagrafici>
+        <Sede>
+            <Indirizzo>Via Voltapaletto 12</Indirizzo>
+            <CAP>44121</CAP>
+            <Comune>Ferrara</Comune>
+            <Provincia>FE</Provincia>
+            <Nazione>IT</Nazione>
+        </Sede>
+    </CedentePrestatore>
 
-	<CessionarioCommittente>
-		<DatiAnagrafici>
-			<CodiceFiscale>04006460275</CodiceFiscale>
-			<Anagrafica>
-				<Denominazione>BIZZ SRL</Denominazione>
-			</Anagrafica>
-		</DatiAnagrafici>
-		<Sede>
-			<Indirizzo>VIA TORINO 135</Indirizzo>
-			<CAP>30100</CAP>
-			<Comune>Venezia</Comune>
-			<Provincia>VE</Provincia>
-			<Nazione>IT</Nazione>
-		</Sede>
-	</CessionarioCommittente>
+    <CessionarioCommittente>
+        <DatiAnagrafici>
+            <CodiceFiscale>04006460275</CodiceFiscale>
+            <Anagrafica>
+                <Denominazione>BIZZ SRL</Denominazione>
+            </Anagrafica>
+        </DatiAnagrafici>
+        <Sede>
+            <Indirizzo>VIA TORINO 135</Indirizzo>
+            <CAP>30100</CAP>
+            <Comune>Venezia</Comune>
+            <Provincia>VE</Provincia>
+            <Nazione>IT</Nazione>
+        </Sede>
+    </CessionarioCommittente>
 
   </FatturaElettronicaHeader>
 
 
 <FatturaElettronicaBody>
 
-	       <DatiGenerali>
-		<DatiGeneraliDocumento>
-			<TipoDocumento>TD01</TipoDocumento>
-			<Divisa>EUR</Divisa>
-			<Data>2020-10-25</Data>
-			<Numero>14441</Numero>
+           <DatiGenerali>
+        <DatiGeneraliDocumento>
+            <TipoDocumento>TD01</TipoDocumento>
+            <Divisa>EUR</Divisa>
+            <Data>2020-10-25</Data>
+            <Numero>14441</Numero>
 
-			<DatiRitenuta>
-				<TipoRitenuta>RT01</TipoRitenuta>
-				<ImportoRitenuta>23.00</ImportoRitenuta>
-				<AliquotaRitenuta>20.00</AliquotaRitenuta>
-				<CausalePagamento>A</CausalePagamento>
-			</DatiRitenuta>
+            <DatiRitenuta>
+                <TipoRitenuta>RT01</TipoRitenuta>
+                <ImportoRitenuta>23.00</ImportoRitenuta>
+                <AliquotaRitenuta>20.00</AliquotaRitenuta>
+                <CausalePagamento>A</CausalePagamento>
+            </DatiRitenuta>
 
-			<DatiCassaPrevidenziale>
-				<TipoCassa>TC01</TipoCassa>
-				<AlCassa>4.00</AlCassa>
-				<ImportoContributoCassa>4.60</ImportoContributoCassa>
-				<ImponibileCassa>115.00</ImponibileCassa>
-				<AliquotaIVA>22.00</AliquotaIVA>
-			</DatiCassaPrevidenziale>
+            <DatiCassaPrevidenziale>
+                <TipoCassa>TC01</TipoCassa>
+                <AlCassa>4.00</AlCassa>
+                <ImportoContributoCassa>4.60</ImportoContributoCassa>
+                <ImponibileCassa>115.00</ImponibileCassa>
+                <AliquotaIVA>22.00</AliquotaIVA>
+            </DatiCassaPrevidenziale>
 
-			<ImportoTotaleDocumento>122.91</ImportoTotaleDocumento>
+            <ImportoTotaleDocumento>122.91</ImportoTotaleDocumento>
 
-		</DatiGeneraliDocumento>
-	</DatiGenerali>
+        </DatiGeneraliDocumento>
+    </DatiGenerali>
 
-	<DatiBeniServizi>
-		<DettaglioLinee>
-			<NumeroLinea>1</NumeroLinea>
-			<Descrizione>Competenze</Descrizione>
-			<PrezzoUnitario>100.00</PrezzoUnitario>
-			<PrezzoTotale>100.00</PrezzoTotale>
-			<AliquotaIVA>22.00</AliquotaIVA>
-			<Ritenuta>SI</Ritenuta>
-		</DettaglioLinee>
+    <DatiBeniServizi>
+        <DettaglioLinee>
+            <NumeroLinea>1</NumeroLinea>
+            <Descrizione>Competenze</Descrizione>
+            <PrezzoUnitario>100.00</PrezzoUnitario>
+            <PrezzoTotale>100.00</PrezzoTotale>
+            <AliquotaIVA>22.00</AliquotaIVA>
+            <Ritenuta>SI</Ritenuta>
+        </DettaglioLinee>
 
-		<DettaglioLinee>
-			<NumeroLinea>2</NumeroLinea>
-			<Descrizione>Spese generali ( 15% )</Descrizione>
-			<PrezzoUnitario>15.00</PrezzoUnitario>
-			<PrezzoTotale>15.00</PrezzoTotale>
-			<AliquotaIVA>22.00</AliquotaIVA>
-			<Ritenuta>SI</Ritenuta>
-		</DettaglioLinee>
+        <DettaglioLinee>
+            <NumeroLinea>2</NumeroLinea>
+            <Descrizione>Spese generali ( 15% )</Descrizione>
+            <PrezzoUnitario>15.00</PrezzoUnitario>
+            <PrezzoTotale>15.00</PrezzoTotale>
+            <AliquotaIVA>22.00</AliquotaIVA>
+            <Ritenuta>SI</Ritenuta>
+        </DettaglioLinee>
 
-		<DatiRiepilogo>
-			<AliquotaIVA>22.00</AliquotaIVA>
-			<ImponibileImporto>119.60</ImponibileImporto>
-			<Imposta>26.31</Imposta>
-			<EsigibilitaIVA>I</EsigibilitaIVA>
-		</DatiRiepilogo>
-	</DatiBeniServizi>
+        <DatiRiepilogo>
+            <AliquotaIVA>22.00</AliquotaIVA>
+            <ImponibileImporto>119.60</ImponibileImporto>
+            <Imposta>26.31</Imposta>
+            <EsigibilitaIVA>I</EsigibilitaIVA>
+        </DatiRiepilogo>
+    </DatiBeniServizi>
 
 
     <DatiPagamento>

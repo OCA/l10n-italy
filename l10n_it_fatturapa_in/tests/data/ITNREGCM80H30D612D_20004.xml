@@ -39,28 +39,28 @@
             </Sede>
         </CedentePrestatore>
 
-	<CessionarioCommittente>
-		<DatiAnagrafici>
-			<CodiceFiscale>04006460275</CodiceFiscale>
-			<Anagrafica>
-				<Denominazione>BIZZ SRL</Denominazione>
-			</Anagrafica>
-		</DatiAnagrafici>
-		<Sede>
-			<Indirizzo>VIA TORINO 135</Indirizzo>
-			<CAP>30100</CAP>
-			<Comune>Venezia</Comune>
-			<Provincia>VE</Provincia>
-			<Nazione>IT</Nazione>
-		</Sede>
-	</CessionarioCommittente>
+    <CessionarioCommittente>
+        <DatiAnagrafici>
+            <CodiceFiscale>04006460275</CodiceFiscale>
+            <Anagrafica>
+                <Denominazione>BIZZ SRL</Denominazione>
+            </Anagrafica>
+        </DatiAnagrafici>
+        <Sede>
+            <Indirizzo>VIA TORINO 135</Indirizzo>
+            <CAP>30100</CAP>
+            <Comune>Venezia</Comune>
+            <Provincia>VE</Provincia>
+            <Nazione>IT</Nazione>
+        </Sede>
+    </CessionarioCommittente>
 
   </FatturaElettronicaHeader>
 
 
 <FatturaElettronicaBody>
 
-	       <DatiGenerali>
+           <DatiGenerali>
 
             <DatiGeneraliDocumento>
                 <TipoDocumento>TD01</TipoDocumento>
