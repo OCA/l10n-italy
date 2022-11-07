@@ -76,7 +76,7 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                 <Quantita>1.00</Quantita>
                 <UnitaMisura>Pz.</UnitaMisura>
                 <PrezzoUnitario>16.60</PrezzoUnitario>
-		<ScontoMaggiorazione>
+        <ScontoMaggiorazione>
                     <Tipo>SC</Tipo>
                     <Percentuale>100.00</Percentuale>
                 </ScontoMaggiorazione>
