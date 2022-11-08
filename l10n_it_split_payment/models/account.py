@@ -33,9 +33,7 @@ class AccountMove(models.Model):
         for move in self:
             if move.split_payment:
                 if move.is_purchase_document():
-                    raise UserError(
-                        _("Can't handle supplier invoices with split payment")
-                    )
+                    continue
                 move.amount_sp = move.amount_tax
                 move.amount_tax = 0.0
                 move.amount_total = move.amount_untaxed
