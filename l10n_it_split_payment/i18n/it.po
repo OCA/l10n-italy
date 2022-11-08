@@ -39,13 +39,6 @@ msgid "Account used to write off the VAT amount"
 msgstr "Conto utilizzato per ammortizzare l'importo dell'IVA"
 
 #. module: l10n_it_split_payment
-#: code:addons/l10n_it_split_payment/models/account.py:0
-#, python-format
-msgid "Can't handle supplier invoices with split payment"
-msgstr ""
-"Impossibile gestire le fatture fornitore con la scissione dei pagamenti"
-
-#. module: l10n_it_split_payment
 #: model:ir.model,name:l10n_it_split_payment.model_res_company
 msgid "Companies"
 msgstr "Aziende"
@@ -162,6 +155,11 @@ msgstr "Conto storno scissione pagamenti"
 #: model:ir.model,name:l10n_it_split_payment.model_account_tax
 msgid "Tax"
 msgstr "Imposta"
+
+#, python-format
+#~ msgid "Can't handle supplier invoices with split payment"
+#~ msgstr ""
+#~ "Impossibile gestire le fatture fornitore con la scissione dei pagamenti"
 
 #~ msgid "Invoice"
 #~ msgstr "Fattura"

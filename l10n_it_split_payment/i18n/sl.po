@@ -35,12 +35,6 @@ msgid "Account used to write off the VAT amount"
 msgstr "Konto za odpis zneska DDV"
 
 #. module: l10n_it_split_payment
-#: code:addons/l10n_it_split_payment/models/account.py:0
-#, python-format
-msgid "Can't handle supplier invoices with split payment"
-msgstr "Prejetih računov se ne more obravnavati z deljenim plačilom"
-
-#. module: l10n_it_split_payment
 #: model:ir.model,name:l10n_it_split_payment.model_res_company
 msgid "Companies"
 msgstr "Družbe"
@@ -159,6 +153,10 @@ msgstr "Konto odpisov deljenih plačil"
 #: model:ir.model,name:l10n_it_split_payment.model_account_tax
 msgid "Tax"
 msgstr ""
+
+#, python-format
+#~ msgid "Can't handle supplier invoices with split payment"
+#~ msgstr "Prejetih računov se ne more obravnavati z deljenim plačilom"
 
 #~ msgid "Invoice"
 #~ msgstr "Račun"
