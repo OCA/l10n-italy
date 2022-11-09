@@ -1075,9 +1075,9 @@ class WizardImportFatturapa(models.TransientModel):
 
         delivery_partner_id = partner.address_get(["delivery"])["delivery"]
         fiscal_position_id = (
-            self.env["account.fiscal.position"].get_fiscal_position(
-                partner_id, delivery_id=delivery_partner_id
-            )
+            self.env["account.fiscal.position"]
+            .get_fiscal_position(partner_id, delivery_id=delivery_partner_id)
+            .id
             or False
         )
 
