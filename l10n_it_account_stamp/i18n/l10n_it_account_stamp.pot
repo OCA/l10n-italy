@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,8 +16,9 @@ msgstr ""
 #. module: l10n_it_account_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings_stamp
 msgid ""
-"<span class=\"o_form_label\">Configuration for Tax stamp</span>\n"
-"                            <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+"<span class=\"o_form_label\">Configuration for Tax stamp\n"
+"                        </span>\n"
+"                        <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
 
 #. module: l10n_it_account_stamp
@@ -57,28 +58,10 @@ msgid "Configuration for Tax stamp"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move__display_name
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move_line__display_name
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__display_name
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_company__display_name
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_config_settings__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: l10n_it_account_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.product_template_form_view_account_stamp
 msgid ""
-"For each invoice, the base amount for each selected tax will be added up and"
-" used to determine the application of the account stamp."
-msgstr ""
-
-#. module: l10n_it_account_stamp
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move__id
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move_line__id
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__id
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_company__id
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_config_settings__id
-msgid "ID"
+"For each invoice, the base amount for each selected tax will be added up and used to determine\n"
+"                        the application of the account stamp."
 msgstr ""
 
 #. module: l10n_it_account_stamp
@@ -103,21 +86,14 @@ msgid "Journal Item"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move____last_update
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move_line____last_update
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template____last_update
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_company____last_update
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_config_settings____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
 #, python-format
 msgid "Missing account income configuration for %s"
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
@@ -126,14 +102,15 @@ msgid "Missing tax stamp product in company settings!"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: code:addons/l10n_it_account_stamp/models/account_move.py:0
-#, python-format
-msgid "Product %s must have income and expense accounts"
+#: model:ir.model,name:l10n_it_account_stamp.model_product_template
+msgid "Product"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: model:ir.model,name:l10n_it_account_stamp.model_product_template
-msgid "Product Template"
+#. odoo-python
+#: code:addons/l10n_it_account_stamp/models/account_move.py:0
+#, python-format
+msgid "Product %s must have income and expense accounts"
 msgstr ""
 
 #. module: l10n_it_account_stamp
@@ -154,12 +131,11 @@ msgid "Stamp applicability min total base"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: model:product.product,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro
 #: model:product.template,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
 msgid ""
 "Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree June\n"
-"                17, 2014\n"
-"            "
+"            17, 2014\n"
+"        "
 msgstr ""
 
 #. module: l10n_it_account_stamp
@@ -176,18 +152,19 @@ msgid "Tax Stamp"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: model:product.product,name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro
 #: model:product.template,name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
 msgid "Tax Stamp 2 euro"
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
 #, python-format
 msgid "Tax Stamp Expense"
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
 #, python-format
 msgid "Tax Stamp Income"
@@ -207,25 +184,22 @@ msgid "Tax stamp"
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
 #, python-format
 msgid "Tax stamp is not applicable"
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
 #, python-format
 msgid "Tax stamp line %s already present. Remove it first."
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/product.py:0
 #, python-format
 msgid "The product %s must be a stamp to apply set taxes!"
-msgstr ""
-
-#. module: l10n_it_account_stamp
-#: model:product.product,uom_name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro
-#: model:product.template,uom_name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
-msgid "Units"
 msgstr ""
