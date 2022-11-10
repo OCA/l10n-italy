@@ -79,7 +79,6 @@ class StockDeliveryNote(models.Model):
 
     active = fields.Boolean(default=True)
     name = fields.Char(
-        string="Name",
         readonly=True,
         index=True,
         copy=False,
@@ -95,7 +94,6 @@ class StockDeliveryNote(models.Model):
 
     state = fields.Selection(
         DELIVERY_NOTE_STATES,
-        string="State",
         copy=False,
         default=DOMAIN_DELIVERY_NOTE_STATES[0],
         required=True,
@@ -146,7 +144,7 @@ class StockDeliveryNote(models.Model):
         tracking=True,
     )
 
-    date = fields.Date(string="Date", states=DRAFT_EDITABLE_STATE, copy=False)
+    date = fields.Date(states=DRAFT_EDITABLE_STATE, copy=False)
     type_id = fields.Many2one(
         "stock.delivery.note.type",
         string="Type",
@@ -161,8 +159,8 @@ class StockDeliveryNote(models.Model):
     type_code = fields.Selection(
         string="Type of Operation", related="type_id.code", store=True
     )
-    packages = fields.Integer(string="Packages", states=DONE_READONLY_STATE)
-    volume = fields.Float(string="Volume", states=DONE_READONLY_STATE)
+    packages = fields.Integer(states=DONE_READONLY_STATE)
+    volume = fields.Float(states=DONE_READONLY_STATE)
 
     volume_uom_id = fields.Many2one(
         "uom.uom",
@@ -437,6 +435,7 @@ class StockDeliveryNote(models.Model):
         super().check_compliance(pickings)
 
         self._check_delivery_notes(self.pickings_picker - self.picking_ids)
+        return True
 
     def ensure_annulability(self):
         if self.mapped("invoice_ids"):
@@ -473,7 +472,7 @@ class StockDeliveryNote(models.Model):
         for line in other_lines:
             cache[line] = line.fix_qty_to_invoice()
 
-        pickings_move_ids = self.mapped("picking_ids.move_lines")
+        pickings_move_ids = self.mapped("picking_ids.move_ids")
         for line in pickings_lines.filtered(lambda l: len(l.move_ids) > 1):
             move_ids = line.move_ids & pickings_move_ids
             qty_to_invoice = sum(move_ids.mapped("quantity_done"))
@@ -511,7 +510,7 @@ class StockDeliveryNote(models.Model):
         for line, vals in cache.items():
             line.write(vals)
 
-        orders_lines._get_to_invoice_qty()
+        orders_lines._compute_qty_to_invoice()
 
         for line in self.line_ids:
             line.write({"invoice_status": "invoiced"})
@@ -603,14 +602,13 @@ class StockDeliveryNote(models.Model):
             note._create_detail_lines(move_ids_to_create)
             note._delete_detail_lines(move_ids_to_delete)
 
-    @api.model
-    def create(self, vals):
-        res = super().create(vals)
-
-        if "picking_ids" in vals:
-            res.update_detail_lines()
-
-        return res
+    @api.model_create_multi
+    def create(self, vals_list):
+        notes = super().create(vals_list)
+        for note in notes:
+            if note.picking_ids:
+                note.update_detail_lines()
+        return notes
 
     def write(self, vals):
         res = super().write(vals)
@@ -644,163 +642,3 @@ class StockDeliveryNote(models.Model):
                 location_address += " ({})".format(partner.state_id.name)
 
         return location_address
-
-
-class StockDeliveryNoteLine(models.Model):
-    _name = "stock.delivery.note.line"
-    _description = "Delivery Note Line"
-    _order = "sequence, id"
-
-    def _default_currency(self):
-        return self.env.company.currency_id
-
-    def _default_unit_uom(self):
-        return self.env.ref("uom.product_uom_unit", raise_if_not_found=False)
-
-    delivery_note_id = fields.Many2one(
-        "stock.delivery.note", string="Delivery Note", required=True, ondelete="cascade"
-    )
-    company_id = fields.Many2one(
-        "res.company",
-        related="delivery_note_id.company_id",
-        store=True,
-        readonly=True,
-        index=True,
-    )
-    sequence = fields.Integer(string="Sequence", required=True, default=10, index=True)
-    name = fields.Text(string="Description", required=True)
-    display_type = fields.Selection(
-        LINE_DISPLAY_TYPES, string="Line type", default=False
-    )
-    product_id = fields.Many2one("product.product", string="Product")
-    product_description = fields.Text(related="product_id.description_sale")
-    product_qty = fields.Float(
-        string="Quantity", digits="Product Unit of Measure", default=1.0
-    )
-    product_uom_id = fields.Many2one("uom.uom", string="UoM", default=_default_unit_uom)
-    price_unit = fields.Monetary(string="Unit price", currency_field="currency_id")
-    currency_id = fields.Many2one(
-        "res.currency", string="Currency", required=True, default=_default_currency
-    )
-    discount = fields.Float(string="Discount", digits="Discount")
-    tax_ids = fields.Many2many("account.tax", string="Taxes")
-
-    move_id = fields.Many2one(
-        "stock.move",
-        string="Warehouse movement",
-        readonly=True,
-        copy=False,
-        check_company=True,
-    )
-    sale_line_id = fields.Many2one(
-        "sale.order.line", related="move_id.sale_line_id", store=True, copy=False
-    )
-    invoice_status = fields.Selection(
-        INVOICE_STATUSES,
-        string="Invoice status",
-        required=True,
-        default=DOMAIN_INVOICE_STATUSES[0],
-        copy=False,
-    )
-
-    _sql_constraints = [
-        (
-            "move_uniq",
-            "unique(move_id)",
-            "You cannot assign the same warehouse movement to "
-            "different delivery notes!",
-        )
-    ]
-
-    @property
-    def is_invoiceable(self):
-        return self.invoice_status == DOMAIN_INVOICE_STATUSES[1]
-
-    @api.onchange("product_id")
-    def _onchange_product_id(self):
-        if self.product_id:
-
-            name = self.product_id.name
-            if self.product_id.description_sale:
-                name += "\n" + self.product_id.description_sale
-
-            self.name = name
-
-            product_uom_domain = [
-                ("category_id", "=", self.product_id.uom_id.category_id.id)
-            ]
-
-        else:
-            product_uom_domain = []
-
-        return {"domain": {"product_uom_id": product_uom_domain}}
-
-    @api.model
-    def _prepare_detail_lines(self, moves):
-        lines = []
-        for move in moves:
-
-            name = move.product_id.name
-            if move.product_id.description_sale:
-                name += "\n" + move.product_id.description_sale
-
-            line = {
-                "move_id": move.id,
-                "name": name,
-                "product_id": move.product_id.id,
-                "product_qty": move.product_uom_qty,
-                "product_uom_id": move.product_uom.id,
-            }
-
-            if move.sale_line_id:
-                order_line = move.sale_line_id
-                order = order_line.order_id
-
-                line["price_unit"] = order_line.price_unit
-                line["currency_id"] = order.currency_id.id
-                line["discount"] = order_line.discount
-                line["tax_ids"] = [(6, False, order_line.tax_id.ids)]
-                line["invoice_status"] = DOMAIN_INVOICE_STATUSES[1]
-
-            lines.append(line)
-
-        return lines
-
-    @api.model
-    def create(self, vals):
-        if vals.get("display_type"):
-            vals.update(
-                {
-                    "product_id": False,
-                    "product_qty": 0.0,
-                    "product_uom_id": False,
-                    "price_unit": 0.0,
-                    "discount": 0.0,
-                    "tax_ids": [(5, False, False)],
-                }
-            )
-
-        return super().create(vals)
-
-    def write(self, vals):
-        if "display_type" in vals and self.filtered(
-            lambda l: l.display_type != vals["display_type"]
-        ):
-            raise UserError(
-                _(
-                    "You cannot change the type of a delivery note line. "
-                    "Instead you should delete the current line"
-                    " and create a new line of the proper type."
-                )
-            )
-
-        return super().write(vals)
-
-    def sync_invoice_status(self):
-        for line in self.filtered(lambda l: l.sale_line_id):
-            invoice_status = line.sale_line_id.invoice_status
-            line.invoice_status = (
-                DOMAIN_INVOICE_STATUSES[1]
-                if invoice_status == "upselling"
-                else invoice_status
-            )

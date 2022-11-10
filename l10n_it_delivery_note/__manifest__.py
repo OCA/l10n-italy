@@ -13,7 +13,7 @@
     "author": "Marco Calcagni, Gianmarco Conte, Link IT Europe Srl, "
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
-    "version": "14.0.1.0.14",
+    "version": "16.0.1.0.0",
     "category": "Localization/Italy",
     "license": "AGPL-3",
     "maintainers": ["As400it"],
@@ -32,7 +32,6 @@
         "security/res_users.xml",
         "report/report_delivery_note.xml",
         "views/account_move.xml",
-        "views/assets.xml",
         "views/res_config_settings.xml",
         "views/res_partner.xml",
         "views/sale_order.xml",
@@ -43,4 +42,9 @@
         "wizard/delivery_note_template.xml",
         "wizard/sale_advance_payment_inv.xml",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "l10n_it_delivery_note/static/src/scss/stock_delivery_note.scss",
+        ],
+    },
 }
