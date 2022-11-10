@@ -6,14 +6,13 @@
 # @author: Matteo Bilotta <mbilotta@linkeurope.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 #  Copyright 2015 Associazione Odoo Italia (<http://www.odoo-italia.org>)
-# noinspection PyStatementEffect
 {
     "name": "ITA - Documento di trasporto - Base",
     "summary": "Crea e gestisce tabelle principali per gestire i DDT",
     "author": "Marco Calcagni, Gianmarco Conte, Link IT Europe Srl, "
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Localization/Italy",
     "license": "AGPL-3",
     "maintainers": ["As400it", "Byloth"],
