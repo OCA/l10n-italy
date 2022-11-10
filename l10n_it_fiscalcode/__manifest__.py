@@ -6,7 +6,7 @@
 
 {
     "name": "ITA - Codice fiscale",
-    "version": "14.0.1.0.2",
+    "version": "16.0.1.0.0",
     "development_status": "Production/Stable",
     "category": "Localization/Italy",
     "author": "Link IT s.r.l., "
@@ -15,7 +15,7 @@
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
-    "depends": ["base_vat"],
+    "depends": ["base", "account"],
     "external_dependencies": {
         "python": ["codicefiscale"],
     },

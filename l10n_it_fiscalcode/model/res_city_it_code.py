@@ -55,9 +55,9 @@ class ResCityItCode(models.Model):
 
     national_code = fields.Char("National code", size=4)
     cadastre_code = fields.Char("Belfiore cadastre code (not used anymore)", size=4)
-    province = fields.Char("Province", size=5)
-    name = fields.Char("Name")
-    notes = fields.Char("Notes", size=4)
+    province = fields.Char(size=5)
+    name = fields.Char()
+    notes = fields.Char(size=4)
     national_code_var = fields.Char("National code variation", size=4)
     cadastre_code_var = fields.Char("Cadastre code variation", size=4)
     province_var = fields.Char("Province variation", size=5)
@@ -71,7 +71,7 @@ class ResCityItCodeDistinct(models.Model):
     _description = "National city codes distinct"
     _auto = False
 
-    name = fields.Char("Name", size=100)
+    name = fields.Char(size=100)
 
     def init(self):
         tools.drop_view_if_exists(self.env.cr, self._table)
