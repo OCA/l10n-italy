@@ -23,7 +23,9 @@ msgstr ""
 #. module: l10n_it_rea
 #: code:addons/l10n_it_rea/models/res_company.py:0
 #, python-format
-msgid "%s - %s / Share Cap. %s € / %s / %s"
+msgid ""
+"%(rea_office.code)s - %(rea_code)s / Share Cap. %(rea_capital)s € / "
+"%(rea_member_type)s / %(rea_liquidation_state)s"
 msgstr ""
 
 #. module: l10n_it_rea
@@ -37,26 +39,8 @@ msgid "Contact"
 msgstr ""
 
 #. module: l10n_it_rea
-#: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__display_name
-#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: l10n_it_rea
-#: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__id
-#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__id
-msgid "ID"
-msgstr ""
-
-#. module: l10n_it_rea
 #: model:ir.model.fields.selection,name:l10n_it_rea.selection__res_partner__rea_liquidation_state__ls
 msgid "In liquidation"
-msgstr ""
-
-#. module: l10n_it_rea
-#: model:ir.model.fields,field_description:l10n_it_rea.field_res_company____last_update
-#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_it_rea
