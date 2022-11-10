@@ -58,5 +58,8 @@ msgstr "Riga ordine di acquisto"
 
 #. module: l10n_it_delivery_note_order_link
 #: model:ir.model,name:l10n_it_delivery_note_order_link.model_sale_order
-msgid "Sale Order"
-msgstr "Ordine di vendita"
+msgid "Sales Order"
+msgstr ""
+
+#~ msgid "Sale Order"
+#~ msgstr "Ordine di vendita"
