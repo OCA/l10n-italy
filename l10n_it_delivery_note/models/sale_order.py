@@ -197,7 +197,7 @@ class SaleOrderLine(models.Model):
         if self.is_delivery:
             return self.delivery_picking_id in picking_ids
 
-        return bool(self.move_ids & picking_ids.mapped("move_lines"))
+        return bool(self.move_ids & picking_ids.mapped("move_ids"))
 
     def retrieve_pickings_lines(self, picking_ids):
         return self.filtered(lambda l: l.has_picking).filtered(

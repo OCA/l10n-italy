@@ -79,7 +79,6 @@ class StockDeliveryNote(models.Model):
 
     active = fields.Boolean(default=True)
     name = fields.Char(
-        string="Name",
         readonly=True,
         index=True,
         copy=False,
@@ -95,7 +94,6 @@ class StockDeliveryNote(models.Model):
 
     state = fields.Selection(
         DELIVERY_NOTE_STATES,
-        string="State",
         copy=False,
         default=DOMAIN_DELIVERY_NOTE_STATES[0],
         required=True,
@@ -117,6 +115,7 @@ class StockDeliveryNote(models.Model):
         "res.partner",
         string="Recipient",
         states=DRAFT_EDITABLE_STATE,
+        default=_default_company,
         readonly=True,
         required=True,
         index=True,
@@ -127,6 +126,7 @@ class StockDeliveryNote(models.Model):
         "res.partner",
         string="Shipping address",
         states=DONE_READONLY_STATE,
+        default=_default_company,
         required=True,
         tracking=True,
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
@@ -136,6 +136,7 @@ class StockDeliveryNote(models.Model):
         "res.partner",
         string="Carrier",
         states=DONE_READONLY_STATE,
+        default=_default_company,
         tracking=True,
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
     )
@@ -146,7 +147,7 @@ class StockDeliveryNote(models.Model):
         tracking=True,
     )
 
-    date = fields.Date(string="Date", states=DRAFT_EDITABLE_STATE, copy=False)
+    date = fields.Date(states=DRAFT_EDITABLE_STATE, copy=False)
     type_id = fields.Many2one(
         "stock.delivery.note.type",
         string="Type",
@@ -161,8 +162,8 @@ class StockDeliveryNote(models.Model):
     type_code = fields.Selection(
         string="Type of Operation", related="type_id.code", store=True
     )
-    packages = fields.Integer(string="Packages", states=DONE_READONLY_STATE)
-    volume = fields.Float(string="Volume", states=DONE_READONLY_STATE)
+    packages = fields.Integer(states=DONE_READONLY_STATE)
+    volume = fields.Float(states=DONE_READONLY_STATE)
 
     volume_uom_id = fields.Many2one(
         "uom.uom",
@@ -437,6 +438,7 @@ class StockDeliveryNote(models.Model):
         super().check_compliance(pickings)
 
         self._check_delivery_notes(self.pickings_picker - self.picking_ids)
+        return True
 
     def ensure_annulability(self):
         if self.mapped("invoice_ids"):
@@ -473,7 +475,7 @@ class StockDeliveryNote(models.Model):
         for line in other_lines:
             cache[line] = line.fix_qty_to_invoice()
 
-        pickings_move_ids = self.mapped("picking_ids.move_lines")
+        pickings_move_ids = self.mapped("picking_ids.move_ids")
         for line in pickings_lines.filtered(lambda l: len(l.move_ids) > 1):
             move_ids = line.move_ids & pickings_move_ids
             qty_to_invoice = sum(move_ids.mapped("quantity_done"))
@@ -511,7 +513,7 @@ class StockDeliveryNote(models.Model):
         for line, vals in cache.items():
             line.write(vals)
 
-        orders_lines._get_to_invoice_qty()
+        orders_lines._compute_qty_to_invoice()
 
         for line in self.line_ids:
             line.write({"invoice_status": "invoiced"})
@@ -603,14 +605,13 @@ class StockDeliveryNote(models.Model):
             note._create_detail_lines(move_ids_to_create)
             note._delete_detail_lines(move_ids_to_delete)
 
-    @api.model
-    def create(self, vals):
-        res = super().create(vals)
-
-        if "picking_ids" in vals:
-            res.update_detail_lines()
-
-        return res
+    @api.model_create_multi
+    def create(self, vals_list):
+        notes = super().create(vals_list)
+        for note in notes:
+            if note.picking_ids:
+                note.update_detail_lines()
+        return notes
 
     def write(self, vals):
         res = super().write(vals)
@@ -667,7 +668,7 @@ class StockDeliveryNoteLine(models.Model):
         readonly=True,
         index=True,
     )
-    sequence = fields.Integer(string="Sequence", required=True, default=10, index=True)
+    sequence = fields.Integer(required=True, default=10, index=True)
     name = fields.Text(string="Description", required=True)
     display_type = fields.Selection(
         LINE_DISPLAY_TYPES, string="Line type", default=False
@@ -682,7 +683,7 @@ class StockDeliveryNoteLine(models.Model):
     currency_id = fields.Many2one(
         "res.currency", string="Currency", required=True, default=_default_currency
     )
-    discount = fields.Float(string="Discount", digits="Discount")
+    discount = fields.Float(digits="Discount")
     tax_ids = fields.Many2many("account.tax", string="Taxes")
 
     move_id = fields.Many2one(

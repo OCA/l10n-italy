@@ -196,6 +196,7 @@ class StockPicking(models.Model):
         super(
             StockPicking, self.with_context(default_delivery_picking_id=self.id)
         )._add_delivery_cost_to_so()
+        return True
 
     def action_delivery_note_create(self):
         self.ensure_one()
@@ -369,8 +370,8 @@ class StockPicking(models.Model):
         src_location_id = self.mapped("location_id")
         dest_location_id = self.mapped("location_dest_id")
 
-        src_warehouse_id = src_location_id.get_warehouse()
-        dest_warehouse_id = dest_location_id.get_warehouse()
+        src_warehouse_id = src_location_id.warehouse_id
+        dest_warehouse_id = dest_location_id.warehouse_id
 
         src_partner_id = src_warehouse_id.partner_id
         dest_partner_id = dest_warehouse_id.partner_id
