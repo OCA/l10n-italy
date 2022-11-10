@@ -27,7 +27,7 @@ class StockDeliveryNoteBaseWizard(models.AbstractModel):
     )
     partner_shipping_id = fields.Many2one("res.partner", string="Shipping address")
 
-    date = fields.Date(string="Date")
+    date = fields.Date()
     type_id = fields.Many2one("stock.delivery.note.type", string="Type")
 
     error_message = fields.Html(compute="_compute_fields")
@@ -49,7 +49,7 @@ class StockDeliveryNoteBaseWizard(models.AbstractModel):
                 validator(pickings)
 
             except ValidationError as exc:
-                errors.append(exc.name)
+                errors.append(exc.args[0])
 
                 if interrupt:
                     break
