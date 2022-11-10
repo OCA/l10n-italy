@@ -26,6 +26,6 @@ class BankCase(TransactionCase):
                 "bank_id": bank1.id,
             }
         )
-        pbank1.onchange_bank_id()
+
         self.assertEqual(pbank1.bank_abi, "abi_1")
         self.assertEqual(pbank1.bank_cab, "cab_1")
