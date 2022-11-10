@@ -1,3 +1,4 @@
+# Copyright 2022 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, fields, models
@@ -17,20 +18,6 @@ class AccountGroup(models.Model):
         string="Balance sign",
     )
 
-    @api.constrains("parent_id")
-    def check_parent_recursion(self):
-        for group in self:
-            try:
-                group.get_group_parents()
-            except ValidationError as err:
-                raise ValidationError(
-                    _("Can't set '{}' as parent for group '{}'." "\n{}").format(
-                        group.parent_id.name_get()[0][-1],
-                        group.name_get()[0][-1],
-                        err.name,
-                    )
-                ) from err
-
     @api.constrains("account_ids", "parent_id")
     def check_balance_sign_coherence(self):
         """
@@ -39,8 +26,6 @@ class AccountGroup(models.Model):
         and then checking, for each of them, the account types' for accounts
         linked to such progenitor group and its subgroups.
         """
-        # Force recursion check
-        self.check_parent_recursion()
         if self.env.context.get("skip_check_balance_sign_coherence"):
             return
         done_group_ids, progenitor_ids = [], []
@@ -48,10 +33,11 @@ class AccountGroup(models.Model):
             if group.id in done_group_ids:
                 continue
             progenitor = group.get_group_progenitor()
-            progenitor_ids.append(progenitor.id)
+            progenitor_ids.extend(progenitor.ids)
             done_group_ids.extend(progenitor.get_group_subgroups().ids)
 
-        for progenitor in self.browse(tuple(set(progenitor_ids))):
+        progenitors = self.browse(tuple(set(progenitor_ids)))
+        for progenitor in progenitors:
             accounts = progenitor.get_group_accounts()
             if not accounts.have_same_sign():
                 raise ValidationError(
