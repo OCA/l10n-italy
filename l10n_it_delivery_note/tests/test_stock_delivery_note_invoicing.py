@@ -26,10 +26,10 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         sales_order.action_confirm()
         self.add_downpayment_line(sales_order, "percentage", 10)
-        self.assertEqual(len(sales_order.order_line), 5)
+        self.assertEqual(len(sales_order.order_line), 6)
         self.assertEqual(sales_order.invoice_status, "no")
 
-        downpayment_order_line = sales_order.order_line[4]
+        downpayment_order_line = sales_order.order_line[5]
         self.assertEqual(downpayment_order_line.invoice_status, "invoiced")
         self.assertEqual(downpayment_order_line.qty_to_invoice, -1)
         self.assertEqual(downpayment_order_line.qty_invoiced, 1)
@@ -43,12 +43,12 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         picking = sales_order.picking_ids
         self.assertEqual(len(picking), 1)
-        self.assertEqual(len(picking.move_lines), 4)
+        self.assertEqual(len(picking.move_ids), 4)
 
-        picking.move_lines[0].quantity_done = 1
-        picking.move_lines[1].quantity_done = 2
-        picking.move_lines[2].quantity_done = 11
-        picking.move_lines[3].quantity_done = 1
+        picking.move_ids[0].quantity_done = 1
+        picking.move_ids[1].quantity_done = 2
+        picking.move_ids[2].quantity_done = 11
+        picking.move_ids[3].quantity_done = 1
 
         result = picking.button_validate()
         self.assertTrue(result)
@@ -66,7 +66,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note.state, "invoiced")
         self.assertEqual(delivery_note.invoice_status, "invoiced")
 
-        self.assertEqual(len(sales_order.order_line), 5)
+        self.assertEqual(len(sales_order.order_line), 6)
         self.assertEqual(sales_order.invoice_status, "invoiced")
 
         invoices = sales_order.invoice_ids
@@ -174,7 +174,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         # Fattura - Linea 5 section (Downpayment)
         # Fattura - Linea 6 (Downpayment)
         #
-        order_line = sales_order.order_line[4]
+        order_line = sales_order.order_line[5]
         self.assertEqual(order_line.invoice_status, "invoiced")
         self.assertEqual(order_line.qty_to_invoice, 0)
         self.assertEqual(order_line.qty_invoiced, 0)
@@ -252,10 +252,10 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         sales_order.action_confirm()
         self.add_downpayment_line(sales_order, "percentage", 10)
-        self.assertEqual(len(sales_order.order_line), 5)
+        self.assertEqual(len(sales_order.order_line), 6)
         self.assertEqual(sales_order.invoice_status, "no")
 
-        downpayment_order_line = sales_order.order_line[4]
+        downpayment_order_line = sales_order.order_line[5]
         self.assertEqual(downpayment_order_line.invoice_status, "invoiced")
         self.assertEqual(downpayment_order_line.qty_to_invoice, -1)
         self.assertEqual(downpayment_order_line.qty_invoiced, 1)
@@ -269,18 +269,18 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         picking = sales_order.picking_ids
         self.assertEqual(len(picking), 1)
-        self.assertEqual(len(picking.move_lines), 4)
+        self.assertEqual(len(picking.move_ids), 4)
 
-        picking.move_lines[0].quantity_done = 2  # 3
-        picking.move_lines[1].quantity_done = 2
-        picking.move_lines[2].quantity_done = 6  # 11
-        picking.move_lines[3].quantity_done = 3  # 5
+        picking.move_ids[0].quantity_done = 2  # 3
+        picking.move_ids[1].quantity_done = 2
+        picking.move_ids[2].quantity_done = 6  # 11
+        picking.move_ids[3].quantity_done = 3  # 5
 
         result = picking.button_validate()
         self.assertTrue(result)
 
         wizard = Form(
-            self.env[(result.get("res_model"))].with_context(result["context"])
+            self.env[(result.get("res_model"))].with_context(**result["context"])
         ).save()
         self.assertEqual(wizard._name, "stock.backorder.confirmation")
         wizard.process()
@@ -297,7 +297,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         sales_order._create_invoices()
 
-        self.assertEqual(len(sales_order.order_line), 5)
+        self.assertEqual(len(sales_order.order_line), 6)
         self.assertEqual(sales_order.invoice_status, "no")
 
         invoices = sales_order.invoice_ids
@@ -318,11 +318,11 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         backorder = StockPicking.search([("backorder_id", "=", picking.id)])
         self.assertEqual(len(backorder), 1)
-        self.assertEqual(len(backorder.move_lines), 3)
+        self.assertEqual(len(backorder.move_ids), 3)
 
-        backorder.move_lines[0].quantity_done = 1
-        backorder.move_lines[1].quantity_done = 5
-        backorder.move_lines[2].quantity_done = 2
+        backorder.move_ids[0].quantity_done = 1
+        backorder.move_ids[1].quantity_done = 5
+        backorder.move_ids[2].quantity_done = 2
 
         result = backorder.button_validate()
         self.assertTrue(result)
@@ -466,7 +466,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(second_delivery_note.state, "invoiced")
         self.assertEqual(second_delivery_note.invoice_status, "invoiced")
 
-        self.assertEqual(len(sales_order.order_line), 5)
+        self.assertEqual(len(sales_order.order_line), 6)
         self.assertEqual(sales_order.invoice_status, "invoiced")
 
         invoices = sales_order.invoice_ids
@@ -549,7 +549,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         # Fattura - Linea 4 section (Downpayment)
         # Fattura - Linea 5 (Downpayment)
         #
-        order_line = sales_order.order_line[4]
+        order_line = sales_order.order_line[5]
         self.assertEqual(order_line.invoice_status, "invoiced")
         self.assertEqual(order_line.qty_to_invoice, 0)
         self.assertEqual(order_line.qty_invoiced, 0)
@@ -617,10 +617,10 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         first_sales_order.action_confirm()
         self.add_downpayment_line(first_sales_order, "percentage", 10)
-        self.assertEqual(len(first_sales_order.order_line), 4)
+        self.assertEqual(len(first_sales_order.order_line), 5)
         self.assertEqual(first_sales_order.invoice_status, "no")
 
-        downpayment_order_line = first_sales_order.order_line[3]
+        downpayment_order_line = first_sales_order.order_line[4]
         self.assertEqual(downpayment_order_line.invoice_status, "invoiced")
         self.assertEqual(downpayment_order_line.qty_to_invoice, -1)
         self.assertEqual(downpayment_order_line.qty_invoiced, 1)
@@ -634,11 +634,11 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         first_picking = first_sales_order.picking_ids
         self.assertEqual(len(first_picking), 1)
-        self.assertEqual(len(first_picking.move_lines), 3)
+        self.assertEqual(len(first_picking.move_ids), 3)
 
-        first_picking.move_lines[0].quantity_done = 1
-        first_picking.move_lines[1].quantity_done = 3
-        first_picking.move_lines[2].quantity_done = 2
+        first_picking.move_ids[0].quantity_done = 1
+        first_picking.move_ids[1].quantity_done = 3
+        first_picking.move_ids[2].quantity_done = 2
 
         result = first_picking.button_validate()
         self.assertTrue(result)
@@ -657,11 +657,11 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         second_picking = second_sales_order.picking_ids
         self.assertEqual(len(second_picking), 1)
-        self.assertEqual(len(second_picking.move_lines), 3)
+        self.assertEqual(len(second_picking.move_ids), 3)
 
-        second_picking.move_lines[0].quantity_done = 11
-        second_picking.move_lines[1].quantity_done = 5
-        second_picking.move_lines[2].quantity_done = 1
+        second_picking.move_ids[0].quantity_done = 11
+        second_picking.move_ids[1].quantity_done = 5
+        second_picking.move_ids[2].quantity_done = 1
 
         result = second_picking.button_validate()
         self.assertTrue(result)
@@ -684,7 +684,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note.state, "invoiced")
         self.assertEqual(delivery_note.invoice_status, "invoiced")
 
-        self.assertEqual(len(first_sales_order.order_line), 4)
+        self.assertEqual(len(first_sales_order.order_line), 5)
         self.assertEqual(first_sales_order.invoice_status, "invoiced")
 
         self.assertEqual(len(second_sales_order.order_line), 3)
@@ -772,7 +772,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         # Fattura - Linea 4 section (Downpayment)
         # Fattura - Linea 5 (Downpayment)
         #
-        order_line = first_sales_order.order_line[3]
+        order_line = first_sales_order.order_line[4]
         self.assertEqual(order_line.invoice_status, "invoiced")
         self.assertEqual(order_line.qty_to_invoice, 0)
         self.assertEqual(order_line.qty_invoiced, 0)
@@ -933,10 +933,10 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         first_sales_order.action_confirm()
         self.add_downpayment_line(first_sales_order, "percentage", 10)
-        self.assertEqual(len(first_sales_order.order_line), 4)
+        self.assertEqual(len(first_sales_order.order_line), 5)
         self.assertEqual(first_sales_order.invoice_status, "no")
 
-        downpayment_order_line = first_sales_order.order_line[3]
+        downpayment_order_line = first_sales_order.order_line[4]
         self.assertEqual(downpayment_order_line.invoice_status, "invoiced")
         self.assertEqual(downpayment_order_line.qty_to_invoice, -1)
         self.assertEqual(downpayment_order_line.qty_invoiced, 1)
@@ -950,17 +950,17 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         first_picking = first_sales_order.picking_ids
         self.assertEqual(len(first_picking), 1)
-        self.assertEqual(len(first_picking.move_lines), 3)
+        self.assertEqual(len(first_picking.move_ids), 3)
 
-        first_picking.move_lines[0].quantity_done = 1
-        first_picking.move_lines[1].quantity_done = 1  # 2
-        first_picking.move_lines[2].quantity_done = 1
+        first_picking.move_ids[0].quantity_done = 1
+        first_picking.move_ids[1].quantity_done = 1  # 2
+        first_picking.move_ids[2].quantity_done = 1
 
         result = first_picking.button_validate()
         self.assertTrue(result)
 
         wizard = Form(
-            self.env[(result.get("res_model"))].with_context(result["context"])
+            self.env[(result.get("res_model"))].with_context(**result["context"])
         ).save()
         self.assertEqual(wizard._name, "stock.backorder.confirmation")
         wizard.process()
@@ -983,17 +983,17 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         second_picking = second_sales_order.picking_ids
         self.assertEqual(len(second_picking), 1)
-        self.assertEqual(len(second_picking.move_lines), 3)
+        self.assertEqual(len(second_picking.move_ids), 3)
 
-        second_picking.move_lines[0].quantity_done = 3
-        second_picking.move_lines[1].quantity_done = 3  # 11
-        second_picking.move_lines[2].quantity_done = 3  # 5
+        second_picking.move_ids[0].quantity_done = 3
+        second_picking.move_ids[1].quantity_done = 3  # 11
+        second_picking.move_ids[2].quantity_done = 3  # 5
 
         result = second_picking.button_validate()
         self.assertTrue(result)
 
         wizard = Form(
-            self.env[(result.get("res_model"))].with_context(result["context"])
+            self.env[(result.get("res_model"))].with_context(**result["context"])
         ).save()
         self.assertEqual(wizard._name, "stock.backorder.confirmation")
         wizard.process()
@@ -1017,7 +1017,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         #  first_delivery_note in una delle fatture... da capire il perchè.
 
         first_sales_order._create_invoices()
-        self.assertEqual(len(first_sales_order.order_line), 4)
+        self.assertEqual(len(first_sales_order.order_line), 5)
         self.assertEqual(first_sales_order.invoice_status, "no")
 
         second_sales_order._create_invoices()
@@ -1051,9 +1051,9 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         first_backorder = StockPicking.search([("backorder_id", "=", first_picking.id)])
         self.assertEqual(len(first_backorder), 1)
-        self.assertEqual(len(first_backorder.move_lines), 1)
+        self.assertEqual(len(first_backorder.move_ids), 1)
 
-        first_backorder.move_lines[0].quantity_done = 1
+        first_backorder.move_ids[0].quantity_done = 1
 
         result = first_backorder.button_validate()
         self.assertTrue(result)
@@ -1066,10 +1066,10 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
             [("backorder_id", "=", second_picking.id)]
         )
         self.assertEqual(len(second_backorder), 1)
-        self.assertEqual(len(second_backorder.move_lines), 2)
+        self.assertEqual(len(second_backorder.move_ids), 2)
 
-        second_backorder.move_lines[0].quantity_done = 8
-        second_backorder.move_lines[1].quantity_done = 2
+        second_backorder.move_ids[0].quantity_done = 8
+        second_backorder.move_ids[1].quantity_done = 2
 
         result = second_backorder.button_validate()
         self.assertTrue(result)
@@ -1274,7 +1274,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(second_delivery_note.state, "invoiced")
         self.assertEqual(second_delivery_note.invoice_status, "invoiced")
 
-        self.assertEqual(len(first_sales_order.order_line), 4)
+        self.assertEqual(len(first_sales_order.order_line), 5)
         self.assertEqual(first_sales_order.invoice_status, "invoiced")
 
         self.assertEqual(len(second_sales_order.order_line), 3)
@@ -1316,7 +1316,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         # Fattura 3 - Linea 2 section (Downpayment)
         # Fattura 3 - Linea 3 (Downpayment)
         #
-        order_line = first_sales_order.order_line[3]
+        order_line = first_sales_order.order_line[4]
         self.assertEqual(order_line.invoice_status, "invoiced")
         self.assertEqual(order_line.qty_to_invoice, 0)
         self.assertEqual(order_line.qty_invoiced, 0)
@@ -1419,7 +1419,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         )
         sales_order.action_confirm()
         picking = sales_order.picking_ids
-        picking.move_lines[0].quantity_done = 1
+        picking.move_ids[0].quantity_done = 1
         picking.button_validate()
         sales_order._create_invoices()
         wizard = Form(

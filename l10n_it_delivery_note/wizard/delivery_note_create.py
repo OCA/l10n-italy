@@ -61,6 +61,7 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
         super().check_compliance(pickings)
 
         self._check_delivery_notes(pickings)
+        return True
 
     @api.onchange("partner_id")
     def _onchange_partner(self):

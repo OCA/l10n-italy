@@ -11,6 +11,7 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form>
+                <field name="company_id" invisible="True" />
                 <field name="sequence_id" invisible="True" />
                 <field name="type_code" invisible="True" />
                 <field name="picking_ids" invisible="True" />
@@ -592,14 +593,6 @@
         <field name="res_model">stock.delivery.note</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="stock_delivery_note_search_view" />
-        <!--<field name="help" type="html">-->
-            <!--<p class="oe_view_nocontent_create">-->
-                <!--TODO: Scrivere una piccola descrizione.-->
-            <!--</p>-->
-            <!--<p>-->
-                <!--Bla, bla, bla...-->
-            <!--</p>-->
-        <!--</field>-->
     </record>
 
     <menuitem
