@@ -19,9 +19,9 @@ class InvoicingTest(TestAccountInvoiceReport):
             [
                 ("company_id", "=", self.env.company.id),
                 (
-                    "user_type_id",
+                    "account_type",
                     "=",
-                    self.env.ref("account.data_account_type_revenue").id,
+                    "income",
                 ),
             ],
             limit=1,
@@ -30,9 +30,9 @@ class InvoicingTest(TestAccountInvoiceReport):
             [
                 ("company_id", "=", self.env.company.id),
                 (
-                    "user_type_id",
+                    "account_type",
                     "=",
-                    self.env.ref("account.data_account_type_expenses").id,
+                    "expense",
                 ),
             ],
             limit=1,
