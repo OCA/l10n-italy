@@ -7,9 +7,7 @@ from odoo.exceptions import UserError
 class AccountMove(models.Model):
     _inherit = "account.move"
 
-    tax_stamp = fields.Boolean(
-        "Tax Stamp", readonly=False, compute="_compute_tax_stamp", store=True
-    )
+    tax_stamp = fields.Boolean(readonly=False, compute="_compute_tax_stamp", store=True)
     auto_compute_stamp = fields.Boolean(
         related="company_id.tax_stamp_product_id.auto_compute"
     )
@@ -81,17 +79,11 @@ class AccountMove(models.Model):
                 "account_id": stamp_account.id,
                 "price_unit": stamp_product_id.list_price,
                 "quantity": 1,
+                "display_type": "product",
                 "product_uom_id": stamp_product_id.uom_id.id,
                 "tax_ids": [(6, 0, stamp_product_id.taxes_id.ids)],
-                "analytic_account_id": None,
             }
             inv.write({"invoice_line_ids": [(0, 0, invoice_line_vals)]})
-
-    def _move_autocomplete_invoice_lines_values(self):
-        # Load line names in cache,
-        # otherwise they are reset to the default value
-        self.line_ids.mapped("name")
-        return super()._move_autocomplete_invoice_lines_values()
 
     def is_tax_stamp_line_present(self):
         for line in self.line_ids:
@@ -125,7 +117,7 @@ class AccountMove(models.Model):
             "date": self.invoice_date,
             "debit": 0,
             "credit": product.list_price,
-            "exclude_from_invoice_tab": True,
+            "display_type": "cogs",
             "currency_id": self.currency_id.id,
         }
         if self.move_type == "out_refund":
@@ -141,7 +133,7 @@ class AccountMove(models.Model):
             "date": self.invoice_date,
             "debit": product.list_price,
             "credit": 0,
-            "exclude_from_invoice_tab": True,
+            "display_type": "cogs",
             "currency_id": self.currency_id.id,
         }
         if self.move_type == "out_refund":
