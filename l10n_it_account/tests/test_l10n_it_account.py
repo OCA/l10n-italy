@@ -1,9 +1,12 @@
+# Copyright 2022 Simone Rubino - TAKOBI
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 import datetime
 
 import xmlschema
 
 from odoo import fields
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 from odoo.tests import tagged
 from odoo.tests.common import Form
 
@@ -136,7 +139,7 @@ class TestAccount(AccountTestInvoicingCommon):
             }
         )
 
-    def XXXTODO_test_group_constraint(self):
+    def test_group_constraint(self):
         self.env["account.account"].create(
             {
                 "name": "it_account_1",
@@ -152,6 +155,22 @@ class TestAccount(AccountTestInvoicingCommon):
                     "account_type": "liability_current",
                 }
             )
+
+    def test_group_recursion(self):
+        """
+        It is not possible to create recursive account groups.
+        """
+        child_group = self.env["account.group"].create(
+            {
+                "name": "child",
+                "code_prefix_start": "it.account.child",
+                "parent_id": self.group_1.id,
+            }
+        )
+        with self.assertRaises(UserError) as ue:
+            self.group_1.parent_id = child_group
+        exc_message = ue.exception.args[0]
+        self.assertEqual("Recursion Detected.", exc_message)
 
     def test_vat_22_50(self):
         today = fields.Date.today()
