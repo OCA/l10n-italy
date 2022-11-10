@@ -7,9 +7,9 @@
 
 <!-- /!\ do not modify above this line -->
 
-# l10n-italy
+# Odoo Italia Modules
 
-TODO: add repo description.
+Addons concerning Odoo Italian Localization.
 
 <!-- /!\ do not modify below this line -->
 

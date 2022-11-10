@@ -14,8 +14,8 @@ odoo_version: 16.0
 org_name: Odoo Community Association (OCA)
 org_slug: OCA
 rebel_module_groups: []
-repo_description: 'TODO: add repo description.'
-repo_name: l10n-italy
+repo_description: Addons concerning Odoo Italian Localization.
+repo_name: Odoo Italia Modules
 repo_slug: l10n-italy
 repo_website: https://github.com/OCA/l10n-italy
 travis_apt_packages: []
