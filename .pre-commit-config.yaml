@@ -13,7 +13,17 @@ exclude: |
   # Repos using Sphinx to generate docs don't need prettying
   ^docs/_templates/.*\.html$|
   # You don't usually want a bot to modify your legal texts
-  (LICENSE.*|COPYING.*)
+  (LICENSE.*|COPYING.*)|
+  # official goverment specs
+  (l10n_it_account/tools/xsd)|
+  # external stylesheets
+  (l10n_it_fatturapa/data/Foglio_di_stile_fatturaordinaria_v1.2.2.xsl)|
+  (l10n_it_fatturapa/data/FoglioStileAssoSoftware.xsl)|
+  # XML tests should not be reformatted
+  ^l10n_it_fatturapa_out/tests/data|
+  ^l10n_it_fatturapa_in/tests/data|
+  ^l10n_it_fatturapa_out_sp/tests/data|
+  ^l10n_it_fatturapa_out_di/tests/data
 default_language_version:
   python: python3
   node: "16.17.0"
