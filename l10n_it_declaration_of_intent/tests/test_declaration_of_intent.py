@@ -427,16 +427,14 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
 
         # Create tax_id in other company
         other_tax10 = self.env["account.tax"].create(
-            {
-                "name": "10%",
-                "amount": 10,
-            }
+            {"name": "10%", "amount": 10, "country_id": self.env.ref("base.it").id}
         )
         other_tax1 = self.env["account.tax"].create(
             {
                 "name": "FC INC",
                 "amount": 0,
                 "price_include": True,
+                "country_id": self.env.ref("base.it").id,
             }
         )
 

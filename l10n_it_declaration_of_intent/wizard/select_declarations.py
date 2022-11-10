@@ -41,12 +41,10 @@ class SelectManuallyDeclarations(models.TransientModel):
 
     def confirm(self):
         self.ensure_one()
-        res = True
         # Link declaration to invoice
         invoice_id = self.env.context.get("active_id", False)
         if not invoice_id:
-            return res
+            return True
         invoice = self.env["account.move"].browse(invoice_id)
-        for declaration in self.declaration_ids:
-            invoice.declaration_of_intent_ids = [(4, declaration.id)]
+        invoice.declaration_of_intent_ids = self.declaration_ids
         return True
