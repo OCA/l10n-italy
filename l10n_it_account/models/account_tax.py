@@ -1,3 +1,4 @@
+# Copyright 2022 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -75,7 +76,10 @@ class AccountTax(models.Model):
         account_ids=None,
         exclude_account_ids=None,
     ):
-        balance = super(AccountTax, self).compute_balance(tax_or_base, financial_type)
+        balance = super(AccountTax, self).compute_balance(
+            tax_or_base=tax_or_base,
+            financial_type=financial_type,
+        )
         if account_ids is not None:
             domain = self.get_move_lines_domain(
                 tax_or_base=tax_or_base,
@@ -106,7 +110,8 @@ class AccountTax(models.Model):
         exclude_account_ids=None,
     ):
         domain = super(AccountTax, self).get_move_lines_domain(
-            tax_or_base, financial_type
+            tax_or_base=tax_or_base,
+            financial_type=financial_type,
         )
         if account_ids is not None:
             domain.append(
