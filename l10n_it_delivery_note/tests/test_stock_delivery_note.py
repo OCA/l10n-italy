@@ -39,21 +39,21 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         sales_order.action_confirm()
         self.assertEqual(len(sales_order.picking_ids), 1)
         picking = sales_order.picking_ids
-        self.assertEqual(len(picking.move_lines), 2)
+        self.assertEqual(len(picking.move_ids), 2)
 
         # deliver only the first product
-        picking.move_lines[0].quantity_done = 1
+        picking.move_ids[0].quantity_done = 1
 
         res_dict = picking.button_validate()
         wizard = Form(
-            self.env[(res_dict.get("res_model"))].with_context(res_dict["context"])
+            self.env[(res_dict.get("res_model"))].with_context(**res_dict["context"])
         ).save()
         self.assertEqual(wizard._name, "stock.backorder.confirmation")
         wizard.process()
         self.assertTrue(picking.delivery_note_id)
         picking_backorder = StockPicking.search([("backorder_id", "=", picking.id)])
-        self.assertEqual(len(picking_backorder.move_lines), 1)
-        picking_backorder.move_lines[0].quantity_done = 1
+        self.assertEqual(len(picking_backorder.move_ids), 1)
+        picking_backorder.move_ids[0].quantity_done = 1
         picking_backorder.button_validate()
         self.assertTrue(picking_backorder.delivery_note_id)
 
@@ -94,16 +94,16 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
             }
         )
 
-        self.assertEqual(len(picking.move_lines), 1)
+        self.assertEqual(len(picking.move_ids), 1)
 
         # deliver product
-        picking.move_lines.quantity_done = 1
+        picking.move_ids.quantity_done = 1
         picking.button_validate()
 
         # create delivery note with advanced mode
         dn_form = Form(
             self.env["stock.delivery.note.create.wizard"].with_context(
-                {"active_ids": [picking.id]}
+                active_ids=[picking.id]
             )
         )
         dn = dn_form.save()

@@ -160,33 +160,33 @@
                     <thead>
                         <tr>
                             <t t-set="colspan" t-value="5" />
-                            <th class="text-left">
+                            <th class="text-start">
                                 Product
                             </th>
-                            <th class="text-left">
+                            <th class="text-start">
                                 Description
                             </th>
-                            <th class="text-right">
+                            <th class="text-end">
                                 Quantity
                             </th>
-                            <th class="text-right" groups="uom.group_uom">
+                            <th class="text-end" groups="uom.group_uom">
                                 UoM
                             </th>
                             <th
                                 t-if="doc.print_prices"
-                                class="text-right"
+                                class="text-end"
                                 style="white-space: nowrap;"
                             >
                                 Unit price
                             </th>
                             <th
                                 t-if="doc.print_prices"
-                                class="text-right"
+                                class="text-end"
                                 groups="product.group_discount_per_so_line"
                             >
                                 Discount
                             </th>
-                            <th t-if="doc.print_prices" class="text-right">
+                            <th t-if="doc.print_prices" class="text-end">
                                 Taxes
                             </th>
                         </tr>
@@ -199,10 +199,10 @@
                                 t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''"
                             >
                                 <t t-if="not line.display_type">
-                                    <td>
+                                    <td class="text-start">
                                         <span t-field="line.product_id.default_code" />
                                     </td>
-                                    <td>
+                                    <td class="text-start">
                                         <span t-field="line.name" />
                                         <t
                                             t-foreach="line.product_id.product_template_attribute_value_ids"
@@ -213,36 +213,40 @@
                                             />
                                         </t>
                                     </td>
-                                    <td class="text-right">
+                                    <td class="text-end">
                                         <span t-field="line.product_qty" />
                                     </td>
-                                    <td class="text-right" groups="uom.group_uom">
+                                    <td class="text-end" groups="uom.group_uom">
                                         <span t-field="line.product_uom_id" />
                                     </td>
-                                    <td t-if="doc.print_prices" class="text-right">
+                                    <td t-if="doc.print_prices" class="text-end">
                                         <span t-field="line.price_unit" />
                                     </td>
                                     <td
                                         t-if="doc.print_prices"
-                                        class="text-right"
+                                        class="text-end"
                                         groups="product.group_discount_per_so_line"
                                     >
                                         <span t-field="line.discount" />%
                                     </td>
-                                    <td t-if="doc.print_prices" class="text-right">
+                                    <td t-if="doc.print_prices" class="text-end">
                                         <span
                                             t-esc="', '.join(map(lambda t: (t.description or t.name), line.tax_ids))"
                                         />
                                     </td>
                                 </t>
                                 <t t-else="">
-                                    <td colspan="6">
+                                    <td colspan="6" class="text-start">
                                         <span t-field="line.name" />
                                     </td>
                                 </t>
                             </tr>
                             <tr t-if="line.product_id.tracking != 'none'">
-                                <td colspan="99" style="font-size:10px;">
+                                <td
+                                    colspan="99"
+                                    style="font-size:10px;"
+                                    class="text-start"
+                                >
                                     <t
                                         t-foreach="line.move_id.move_line_ids"
                                         t-as="lot_line"
@@ -298,7 +302,7 @@
                                 style="font-size:10px;"
                             >Gross Weight</div>
                             <div
-                                class="text-right"
+                                class="text-end"
                                 style="font-size:12px;"
                                 t-field="doc.gross_weight"
                             />
@@ -309,7 +313,7 @@
                                 style="font-size:10px;"
                             >Net Weight</div>
                             <div
-                                class="text-right"
+                                class="text-end"
                                 style="font-size:12px;"
                                 t-field="doc.net_weight"
                             />
@@ -328,7 +332,7 @@
                         <td>
                             <div name="packages" style="font-size:10px;">Packages</div>
                             <div
-                                class="text-right"
+                                class="text-end"
                                 style="font-size:12px;"
                                 t-field="doc.packages"
                             />
