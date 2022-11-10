@@ -2,9 +2,9 @@
 
 Per modificare le impostazioni sul prodotto "Imposta di bollo 2 euro" è necessario abilitare le funzioni complete per la contabilità:
 
-1. Impostazioni -> Utenti e aziende -> Utenti
-2. Selezionare l'utente per il quale si vuole abilitare la funzionalità
-3. Abilitare l'opzione "Mostrare funzionalità contabili complete"
+1. Impostazioni -> Utenti e aziende -> Gruppi
+2. Cercare il gruppo "Mostrare funzionalità contabili complete" e selezionarlo
+3. Nel tab "Utenti" aggiungere l'utente e salvare
 
 
 Modalità automatica:
@@ -25,9 +25,9 @@ Impostare i conti di ricavo/costo nella scheda "Contabilità", generalmente rica
 
 In order to change Tax Stamp 2 euro product settings, enable full accounting features:
 
-1. Settings -> Users & Companies -> Users
-2. Click on the user you want to enable feature
-3. Enable 'Show Full Accounting Features' option
+1. Settings -> Users & Companies -> Groups
+2. Search "Show Full Accounting Features" group and select it
+3. In "Users" Tab, add user and save
 
 Automatic mode:
 
