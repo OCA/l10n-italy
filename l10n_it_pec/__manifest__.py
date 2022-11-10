@@ -4,7 +4,7 @@
 
 {
     "name": "ITA - Email PEC",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Localization/Italy",
     "summary": "Aggiunge il campo email PEC al partner",
     "author": "Odoo Italia Network,Odoo Community Association (OCA)",
