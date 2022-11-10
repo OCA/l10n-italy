@@ -102,7 +102,7 @@ class StockPicking(models.Model):
             {
                 key: field
                 for key, field in self._fields.items()
-                if field.related and field.related[0] == "delivery_note_id"
+                if field.related and field.related.split(".")[0] == "delivery_note_id"
             }
         )
 
@@ -196,6 +196,7 @@ class StockPicking(models.Model):
         super(
             StockPicking, self.with_context(default_delivery_picking_id=self.id)
         )._add_delivery_cost_to_so()
+        return True
 
     def action_delivery_note_create(self):
         self.ensure_one()
@@ -369,8 +370,8 @@ class StockPicking(models.Model):
         src_location_id = self.mapped("location_id")
         dest_location_id = self.mapped("location_dest_id")
 
-        src_warehouse_id = src_location_id.get_warehouse()
-        dest_warehouse_id = dest_location_id.get_warehouse()
+        src_warehouse_id = src_location_id.warehouse_id
+        dest_warehouse_id = dest_location_id.warehouse_id
 
         src_partner_id = src_warehouse_id.partner_id
         dest_partner_id = dest_warehouse_id.partner_id
@@ -415,7 +416,7 @@ class StockPicking(models.Model):
 
         if any(key in note_fields for key in vals.keys()):
             delivery_note_vals = {
-                note_fields[key].related[1]: value
+                note_fields[key].related.split(".")[1]: value
                 for key, value in vals.items()
                 if key in note_fields
             }

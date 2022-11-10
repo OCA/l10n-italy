@@ -142,11 +142,3 @@ class AccountInvoice(models.Model):
         for dn in dnls_to_unlink.mapped("delivery_note_id"):
             dn.state = "confirm"
         return res
-
-
-class AccountInvoiceLine(models.Model):
-    _inherit = "account.move.line"
-
-    delivery_note_id = fields.Many2one(
-        "stock.delivery.note", string="Delivery Note", readonly=True, copy=False
-    )
