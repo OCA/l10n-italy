@@ -14,7 +14,7 @@ class StockPickingGoodsAppearance(models.Model):
     _order = "sequence, name, id"
 
     active = fields.Boolean(default=True)
-    sequence = fields.Integer(string="Sequence", index=True, default=10)
+    sequence = fields.Integer(index=True, default=10)
     name = fields.Char(
         string="Appearance name",
         index=True,
