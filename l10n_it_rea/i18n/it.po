@@ -23,8 +23,10 @@ msgstr ""
 #. module: l10n_it_rea
 #: code:addons/l10n_it_rea/models/res_company.py:0
 #, python-format
-msgid "%s - %s / Share Cap. %s € / %s / %s"
-msgstr "%s - %s / Cap. sociale %s € / %s / %s"
+msgid ""
+"%(rea_office.code)s - %(rea_code)s / Share Cap. %(rea_capital)s € / "
+"%(rea_member_type)s / %(rea_liquidation_state)s"
+msgstr ""
 
 #. module: l10n_it_rea
 #: model:ir.model,name:l10n_it_rea.model_res_company
@@ -37,27 +39,9 @@ msgid "Contact"
 msgstr "Contatto"
 
 #. module: l10n_it_rea
-#: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__display_name
-#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: l10n_it_rea
-#: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__id
-#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner__id
-msgid "ID"
-msgstr "ID"
-
-#. module: l10n_it_rea
 #: model:ir.model.fields.selection,name:l10n_it_rea.selection__res_partner__rea_liquidation_state__ls
 msgid "In liquidation"
 msgstr "In liquidazione"
-
-#. module: l10n_it_rea
-#: model:ir.model.fields,field_description:l10n_it_rea.field_res_company____last_update
-#: model:ir.model.fields,field_description:l10n_it_rea.field_res_partner____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
 
 #. module: l10n_it_rea
 #: model:ir.model.fields,field_description:l10n_it_rea.field_res_company__rea_liquidation_state
@@ -126,6 +110,19 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_it_rea.selection__res_partner__rea_member_type__su
 msgid "Unique Member"
 msgstr "Socio unico"
+
+#, python-format
+#~ msgid "%s - %s / Share Cap. %s € / %s / %s"
+#~ msgstr "%s - %s / Cap. sociale %s € / %s / %s"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
 
 #~ msgid "The rea code code must be unique per company !"
 #~ msgstr "Il codice REA deve essere univoco per azienda !"
