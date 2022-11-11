@@ -1,0 +1,171 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_fiscal_document_type
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-08 03:45+0000\n"
+"PO-Revision-Date: 2017-12-08 03:45+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Spanish (Spain) (https://www.transifex.com/oca/teams/23907/"
+"es_ES/)\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__code
+msgid "Code"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model,name:l10n_it_fiscal_document_type.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__out_refund
+msgid "Customer Credit Note"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__out_invoice
+msgid "Customer Invoice"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_fiscal_position__display_name
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_journal__display_name
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__display_name
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_bank_statement_line__fiscal_document_type_id
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_fiscal_position__fiscal_document_type_id
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_move__fiscal_document_type_id
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_payment__fiscal_document_type_id
+msgid "Fiscal Document Type"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.actions.act_window,name:l10n_it_fiscal_document_type.action_view_fiscal_document_type
+#: model:ir.ui.menu,name:l10n_it_fiscal_document_type.menu_fiscal_document_type
+#: model_terms:ir.ui.view,arch_db:l10n_it_fiscal_document_type.view_fiscal_document_type_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_fiscal_document_type.view_fiscal_document_type_tree
+msgid "Fiscal Document Types"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model,name:l10n_it_fiscal_document_type.model_account_fiscal_position
+msgid "Fiscal Position"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__refund_fiscal_document_type_id
+msgid "Fiscal document for refund"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model,name:l10n_it_fiscal_document_type.model_fiscal_document_type
+msgid "Fiscal document type"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_fiscal_position__id
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_journal__id
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__id
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner__in_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_users__in_fiscal_document_type
+msgid "In Fiscal Document Type"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model,name:l10n_it_fiscal_document_type.model_account_journal
+msgid "Journal"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: code:addons/l10n_it_fiscal_document_type/models/journal.py:0
+#, python-format
+msgid "Journal %s can be linked to only 1 fiscal document type (found in %s)"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model,name:l10n_it_fiscal_document_type.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__journal_ids
+msgid "Journals"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_fiscal_position____last_update
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_journal____last_update
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_move____last_update
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type____last_update
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__name
+msgid "Name"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner__out_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_users__out_fiscal_document_type
+msgid "Out Fiscal Document Type"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__priority
+msgid "Priority"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__in_invoice
+msgid "Vendor Bill"
+msgstr ""
+
+#. module: l10n_it_fiscal_document_type
+#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__in_refund
+msgid "Vendor Credit Note"
+msgstr ""
