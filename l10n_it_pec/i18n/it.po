@@ -1,0 +1,37 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_pec
+#
+# Translators:
+# Paolo Valier <paolo.valier@hotmail.it>, 2017
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-30 05:35+0000\n"
+"PO-Revision-Date: 2019-10-29 01:33+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.8\n"
+
+#. module: l10n_it_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_pec.res_partner_kanban_pec_view
+msgid "<span> (PEC)</span>"
+msgstr "<span> (PEC)</span>"
+
+#. module: l10n_it_pec
+#: model:ir.model,name:l10n_it_pec.model_res_partner
+msgid "Contact"
+msgstr "Contatto"
+
+#. module: l10n_it_pec
+#: model:ir.model.fields,field_description:l10n_it_pec.field_res_partner__pec_mail
+#: model:ir.model.fields,field_description:l10n_it_pec.field_res_users__pec_mail
+msgid "PEC Mail"
+msgstr "E-mail PEC"
