@@ -49,24 +49,6 @@ msgid "CAB"
 msgstr "CAB"
 
 #. module: l10n_it_abicab
-#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_bank__display_name
-#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_partner_bank__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: l10n_it_abicab
-#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_bank__id
-#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_partner_bank__id
-msgid "ID"
-msgstr ""
-
-#. module: l10n_it_abicab
-#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_bank____last_update
-#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_partner_bank____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: l10n_it_abicab
 #: model_terms:ir.ui.view,arch_db:l10n_it_abicab.view_bank_filter_abicab
 msgid "Search Bank"
 msgstr ""
