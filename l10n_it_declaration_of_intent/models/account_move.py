@@ -7,7 +7,6 @@ from odoo.tools.misc import format_date
 
 
 class AccountMove(models.Model):
-
     _inherit = "account.move"
 
     declaration_of_intent_ids = fields.Many2many(
@@ -150,18 +149,18 @@ class AccountMove(models.Model):
                         if not self.narration:
                             self.narration = ""
                         self.narration += _(
-                            "\n\nVostra dichiarazione d'intento nr %s del %s, "
-                            "nostro protocollo nr %s del %s, "
-                            "protocollo telematico nr %s."
-                            % (
-                                declaration.partner_document_number,
-                                format_date(
-                                    self.env, declaration.partner_document_date
-                                ),
-                                declaration.number,
-                                format_date(self.env, declaration.date),
-                                declaration.telematic_protocol,
-                            )
+                            "\n\nVostra dichiarazione d'intento nr {partner_document_number} "
+                            "del {partner_document_date}, nostro protocollo nr {number} del "
+                            "{date}, "
+                            "protocollo telematico nr {telematic_protocol}."
+                        ).format(
+                            partner_document_number=declaration.partner_document_number,
+                            partner_document_date=format_date(
+                                self.env, declaration.partner_document_date
+                            ),
+                            number=declaration.number,
+                            date=format_date(self.env, declaration.date),
+                            telematic_protocol=declaration.telematic_protocol,
                         )
 
     def _prepare_declaration_line(self, amount, lines, tax):
@@ -284,7 +283,6 @@ class AccountMove(models.Model):
 
 
 class AccountMoveLine(models.Model):
-
     _inherit = "account.move.line"
 
     force_declaration_of_intent_id = fields.Many2one(

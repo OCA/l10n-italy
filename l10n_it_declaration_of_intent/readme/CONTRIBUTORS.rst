@@ -5,4 +5,3 @@
 * Lara Baggio <lbaggio@linkeurope.it>
 * Simone Rubino <simone.rubino@agilebg.com>
 * Arcadio Pinto <pinto.a@stesi.eu>
-

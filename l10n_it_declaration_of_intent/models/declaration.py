@@ -162,13 +162,12 @@ class DeclarationOfIntent(models.Model):
             if declaration.available_amount < 0:
                 raise UserError(
                     _(
-                        "Limit passed for declaration %s.\n"
-                        "Excess value: %s%s"
-                        % (
-                            declaration.number,
-                            abs(declaration.available_amount),
-                            declaration.currency_id.symbol,
-                        )
+                        "Limit passed for declaration {number}."
+                        "\nExcess value: {available_amount}{symbol}"
+                    ).format(
+                        number=declaration.number,
+                        available_amount=abs(declaration.available_amount),
+                        symbol=declaration.currency_id.symbol,
                     )
                 )
 
@@ -271,7 +270,7 @@ class DeclarationOfIntentLine(models.Model):
         ondelete="cascade",
     )
     amount = fields.Monetary()
-    base_amount = fields.Monetary(string="Base Amount")
+    base_amount = fields.Monetary()
     invoice_id = fields.Many2one("account.move", string="Invoice")
     date_invoice = fields.Date(related="invoice_id.invoice_date", string="Date Invoice")
     company_id = fields.Many2one(

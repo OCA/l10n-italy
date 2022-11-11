@@ -68,7 +68,6 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
             )
         )
         refund_form.partner_id = partner
-        refund_form.name = "Test Refund for Declaration"
         refund_form.invoice_date = date if date else cls.today_date
         refund_form.invoice_payment_term_id = cls.env.ref(
             "account.account_payment_term_advance"
@@ -100,21 +99,13 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
         cls.tax_model = cls.env["account.tax"]
         cls.a_sale = cls.env["account.account"].search(
             [
-                (
-                    "user_type_id",
-                    "=",
-                    cls.env.ref("account.data_account_type_revenue").id,
-                )
+                ("account_type", "=", "income"),
             ],
             limit=1,
         )
         cls.a_cost = cls.env["account.account"].search(
             [
-                (
-                    "user_type_id",
-                    "=",
-                    cls.env.ref("account.data_account_type_direct_costs").id,
-                )
+                ("account_type", "=", "expense_direct_cost"),
             ],
             limit=1,
         )
