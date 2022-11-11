@@ -4,25 +4,16 @@
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
   -->
 <odoo>
-    <template
-        id="assets_frontend"
-        inherit_id="web.assets_frontend"
-        name="Website Portal Electronic Invoice"
-    >
-        <xpath expr="//script[last()]" position="after">
-            <script
-                type="text/javascript"
-                src="/l10n_it_website_portal_ipa/static/src/js/l10n_it_website_portal_ipa.js"
-            />
-        </xpath>
-    </template>
 
     <template
-        id="portal_my_details"
+        id="portal_my_details_fields"
         name="Add PA index in user details"
-        inherit_id="portal.portal_my_details"
+        inherit_id="portal.portal_my_details_fields"
     >
-        <div class="row" position="inside">
+        <div
+            t-attf-class="mb-3 #{error.get('state_id') and 'o_has_error' or ''} col-xl-6"
+            position="after"
+        >
             <div class="col-xl-12" t-if="partner.company_type == 'company'">
                 <div class="row">
                     <div
