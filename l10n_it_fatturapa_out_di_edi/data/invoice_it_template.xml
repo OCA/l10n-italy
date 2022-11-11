@@ -4,10 +4,10 @@
         id="declaration_of_intent_fattura_elettronica_body"
         inherit_id="l10n_it_edi.account_invoice_it_FatturaPA_export"
     >
-        <xpath expr="//DatiBeniServizi/t[@t-as='line']" position="before">
+        <xpath expr="//DatiBeniServizi/t[@t-as='line_dict']" position="before">
             <t t-set="force_declaration_of_intent_ids" t-value="[]" />
         </xpath>
-        <xpath expr="//DatiBeniServizi/t[@t-as='line']" position="after">
+        <xpath expr="//DatiBeniServizi/t[@t-as='line_dict']" position="after">
             <t
                 t-set="to_add"
                 t-value="record.declaration_of_intent_ids - record.declaration_of_intent_ids.browse(force_declaration_of_intent_ids)"
