@@ -15,6 +15,7 @@
         "security/ir.model.access.csv",
         "wizard/print_giornale.xml",
         "views/date_range_view.xml",
+        "views/account_journal_views.xml",
     ],
     "installable": True,
 }

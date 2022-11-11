@@ -96,7 +96,7 @@ class WizardGiornaleReportlab(models.TransientModel):
     @api.onchange("date_move_line_from_view")
     def get_year_footer_reportlab(self):
         if self.date_move_line_from_view:
-            self.year_footer = fields.Date.to_date(self.date_move_line_from_view).year
+            self.year_footer = self.date_move_line_from_view.year
 
     @api.onchange("daterange_id")
     def on_change_daterange_reportlab(self):
@@ -105,9 +105,9 @@ class WizardGiornaleReportlab(models.TransientModel):
             date_end = fields.Date.to_date(self.daterange_id.date_end)
 
             if self.daterange_id.date_last_print:
-                date_last_print = fields.Date.to_date(self.daterange_id.date_last_print)
+                date_last_print = self.daterange_id.date_last_print
                 self.last_def_date_print = date_last_print
-                date_start = (date_last_print + timedelta(days=1)).__str__()
+                date_start = (date_last_print + timedelta(days=1)).strftime("%Y-%m-%d")
             else:
                 self.last_def_date_print = None
             self.date_move_line_from = date_start
@@ -341,16 +341,12 @@ class WizardGiornaleReportlab(models.TransientModel):
             # dato che nel SQL ho la somma dei crediti e debiti potrei avere
             # che un conto ha sia debito che credito
             lines_data = []
-            if line["debit"] > 0:
-                debit = Paragraph(formatLang(self.env, line["debit"]), style_number)
-                credit = Paragraph(formatLang(self.env, 0), style_number)
-                list_balance.append((line["debit"], 0))
-                lines_data.append([[row, date, move, account, name, debit, credit]])
-            if line["credit"] > 0:
-                debit = Paragraph(formatLang(self.env, 0), style_number)
-                credit = Paragraph(formatLang(self.env, line["credit"]), style_number)
-                list_balance.append((0, line["credit"]))
-                lines_data.append([[row, date, move, account, name, debit, credit]])
+
+            debit = Paragraph(formatLang(self.env, line["debit"]), style_number)
+            credit = Paragraph(formatLang(self.env, line["credit"]), style_number)
+            list_balance.append((line["credit"], line["credit"]))
+            lines_data.append([[row, date, move, account, name, debit, credit]])
+
             for line_data in lines_data:
                 if previous_move_name != line["move_name"]:
                     previous_move_name = line["move_name"]

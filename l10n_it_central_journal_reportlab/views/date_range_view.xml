@@ -2,17 +2,6 @@
 <odoo>
     <data>
 
-        <record id="view_central_journal_account_journal_form" model="ir.ui.view">
-            <field name="name">view.central.journal.account.journal.form</field>
-            <field name="model">account.journal</field>
-            <field name="inherit_id" ref="account.view_account_journal_form" />
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='loss_account_id']" position="after">
-                    <field name="central_journal_exclude" />
-                </xpath>
-            </field>
-        </record>
-
         <record id="view_date_range_form_inherit_view" model="ir.ui.view">
             <field name="name">date.range.form</field>
             <field name="model">date.range</field>
