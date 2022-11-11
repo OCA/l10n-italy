@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2022 Simone Rubino - TAKOBI
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <record id="view_account_form_sign" model="ir.ui.view">
+        <field name="name">account.account.form.sign</field>
+        <field name="model">account.account</field>
+        <field name="inherit_id" ref="account.view_account_form" />
+        <field name="arch" type="xml">
+            <field name="account_type" position="after">
+                <field name="account_balance_sign" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_group_form_sign" model="ir.ui.view">
+        <field name="name">account.group.form.sign</field>
+        <field name="model">account.group</field>
+        <field name="inherit_id" ref="account.view_account_group_form" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="account_balance_sign" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_list_sign" model="ir.ui.view">
+        <field name="name">view.account.list.sign</field>
+        <field name="model">account.account</field>
+        <field name="inherit_id" ref="account.view_account_list" />
+        <field name="arch" type="xml">
+            <field name="account_type" position="after">
+                <field name="account_balance_sign" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

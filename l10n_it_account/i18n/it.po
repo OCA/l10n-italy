@@ -1,0 +1,192 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_account
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-21 10:38+0000\n"
+"PO-Revision-Date: 2021-12-19 12:39+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: l10n_it_account
+#: model_terms:ir.ui.view,arch_db:l10n_it_account.internal_layout
+msgid ""
+"<br/>\n"
+"                      <span class=\"text-right\">TIN: </span>"
+msgstr ""
+"<br/>\n"
+"                      <span class=\"text-right\">IVA:</span>"
+
+#. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_account_account
+msgid "Account"
+msgstr "Conto"
+
+#. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_account_group
+msgid "Account Group"
+msgstr "Gruppo contabile"
+
+#. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_account_account_type
+msgid "Account Type"
+msgstr "Tipo conto"
+
+#. module: l10n_it_account
+#: model_terms:ir.ui.view,arch_db:l10n_it_account.product_template_form_view
+#: model_terms:ir.ui.view,arch_db:l10n_it_account.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_account.view_partner_property_form
+msgid "Accounting"
+msgstr "Contabilità"
+
+#. module: l10n_it_account
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_group__account_ids
+msgid "Accounts"
+msgstr "Conti"
+
+#. module: l10n_it_account
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_account_type__account_balance_sign
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_group__account_balance_sign
+msgid "Balance sign"
+msgstr "Segno del saldo"
+
+#. module: l10n_it_account
+#: code:addons/l10n_it_account/models/account_type.py:0
+#, python-format
+msgid "Balance sign's value can only be 1 or -1."
+msgstr "Il valore del segno per il saldo può essere solo 1 o -1."
+
+#. module: l10n_it_account
+#: code:addons/l10n_it_account/models/account_group.py:0
+#, python-format
+msgid ""
+"Can't set '{}' as parent for group '{}'.\n"
+"{}"
+msgstr ""
+"Impossibile impostare \"{}\" come padre per il gruppo \"{}\".\n"
+"{}"
+
+#. module: l10n_it_account
+#: model:ir.ui.menu,name:l10n_it_account.menu_date_range_type_action_accounting
+msgid "Date Range Types"
+msgstr "Tipi di intervallo date"
+
+#. module: l10n_it_account
+#: model:ir.ui.menu,name:l10n_it_account.menu_date_range_action_accounting
+msgid "Date Ranges"
+msgstr "Intervalli date"
+
+#. module: l10n_it_account
+#: model:ir.ui.menu,name:l10n_it_account.menu_date_range_accounting
+msgid "Date ranges"
+msgstr "Intervalli date"
+
+#. module: l10n_it_account
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__deductible_balance
+msgid "Deductible Balance"
+msgstr ""
+
+#. module: l10n_it_account
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_account__display_name
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_account_type__display_name
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_group__display_name
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: l10n_it_account
+#: model:ir.ui.menu,name:l10n_it_account.menu_date_range_generator_action
+msgid "Generate Date Ranges"
+msgstr "Generazione intervalli date"
+
+#. module: l10n_it_account
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_account__id
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_account_type__id
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_group__id
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_account
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__cee_type
+msgid "Include in VAT register"
+msgstr "Includere nel registro IVA"
+
+#. module: l10n_it_account
+#: code:addons/l10n_it_account/models/account_group.py:0
+#, python-format
+msgid "Incoherent balance signs for '{}' and its subgroups."
+msgstr "Segni del saldo incoerenti per \"{}\" e i sottogruppi."
+
+#. module: l10n_it_account
+#: model:ir.ui.menu,name:l10n_it_account.account_italian_localization
+msgid "Italian Localization"
+msgstr "Fiscalità italiana"
+
+#. module: l10n_it_account
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_account____last_update
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_account_type____last_update
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_group____last_update
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_account
+#: model_terms:ir.ui.view,arch_db:l10n_it_account.internal_layout
+msgid "Page:"
+msgstr "Pagina:"
+
+#. module: l10n_it_account
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__parent_tax_ids
+msgid "Parent Taxes"
+msgstr "Imposte padre"
+
+#. module: l10n_it_account
+#: model:ir.model.fields.selection,name:l10n_it_account.selection__account_tax__cee_type__purchase
+msgid "Purchase"
+msgstr "Acquisto"
+
+#. module: l10n_it_account
+#: model:ir.model.fields.selection,name:l10n_it_account.selection__account_tax__cee_type__sale
+msgid "Sale"
+msgstr "Vendita"
+
+#. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_account_tax
+msgid "Tax"
+msgstr "Imposta"
+
+#. module: l10n_it_account
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__undeductible_balance
+msgid "Undeductible Balance"
+msgstr ""
+
+#. module: l10n_it_account
+#: model:ir.model.fields,help:l10n_it_account.field_account_tax__cee_type
+msgid ""
+"Use in the case of tax with 'VAT integration'. This specifies the VAT "
+"register (sales / purchases) where the tax must be computed."
+msgstr ""
+"Utilizzare nel caso di imposta per \"integrazione IVA\". Specifica il "
+"registro IVA (vendite / acquisti) nel quale deve essere calcolata l'imposta."
+
+#~ msgid "A recursion in '{}' parents has been found."
+#~ msgstr "Trovata una ricorsività in \"{}\" padre."
+
+#~ msgid "Assigned accounts."
+#~ msgstr "Conti assegnati."
+
+#~ msgid "Cannot link accounts of different types to group '{}'."
+#~ msgstr "Impossibile collegare conti di tipo diverso al gruppo '{}'."
+
+#~ msgid "Pag:"
+#~ msgstr "Pag:"
