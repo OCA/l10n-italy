@@ -23,8 +23,11 @@ class AddPeriod(models.TransientModel):
         wizard = self
         if wizard.period_id.vat_statement_id:
             raise UserError(
-                _("Period %s is associated to statement %s yet")
-                % (wizard.period_id.name, wizard.period_id.vat_statement_id.date)
+                _("Period (%(name)s) is associated to statement (%(date)s) yet")
+                % {
+                    "name": wizard.period_id.name,
+                    "date": wizard.period_id.vat_statement_id.date,
+                }
             )
         statement_id = self.env.context["active_id"]
         wizard.period_id.vat_statement_id = statement_id
