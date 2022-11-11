@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo-addon-l10n_it_account_tax_kind>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_ateco>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_fiscal_document_type>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_it_fiscal_payment_term>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_fiscalcode>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_ipa>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_pec>=16.0dev,<16.1dev',
