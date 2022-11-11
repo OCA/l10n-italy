@@ -23,6 +23,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [l10n_it_account](l10n_it_account/) | 16.0.1.0.0 |  | Modulo base usato come dipendenza di altri moduli contabili
 [l10n_it_ateco](l10n_it_ateco/) | 16.0.1.0.0 |  | ITA - Codici Ateco
+[l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 16.0.1.0.0 |  | ITA - Tipi di documento fiscale per dichiarativi
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 16.0.1.0.0 |  | ITA - Codice fiscale
 [l10n_it_ipa](l10n_it_ipa/) | 16.0.1.0.1 |  | ITA - Codice IPA
 [l10n_it_pec](l10n_it_pec/) | 16.0.1.0.0 |  | Aggiunge il campo email PEC al partner
