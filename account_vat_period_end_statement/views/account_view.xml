@@ -11,7 +11,7 @@
         <field name="model">account.vat.period.end.statement</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
-            <form string="Vat statement">
+            <form>
                 <header>
                     <button
                         name="create_move"
@@ -177,7 +177,7 @@
                                 colspan="3"
                                 nolabel="1"
                             >
-                                <tree editable="bottom" string="Account Lines">
+                                <tree editable="bottom">
                                     <field name="account_id" />
                                     <field name="name" />
                                     <field name="amount" />
@@ -244,7 +244,7 @@
         <field name="model">account.vat.period.end.statement</field>
         <field name="type">tree</field>
         <field name="arch" type="xml">
-            <tree string="Vat statement">
+            <tree>
                 <field name="date" />
                 <field name="journal_id" />
                 <field name="previous_credit_vat_amount" />
