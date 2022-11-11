@@ -280,7 +280,6 @@ class AccountVatPeriodEndStatement(models.Model):
         },
     )
     date = fields.Date(
-        "Date",
         required=True,
         states={
             "confirmed": [("readonly", True)],
@@ -296,7 +295,6 @@ class AccountVatPeriodEndStatement(models.Model):
             ("confirmed", "Confirmed"),
             ("paid", "Paid"),
         ],
-        "State",
         readonly=True,
         default="draft",
     )
@@ -784,7 +782,7 @@ class StatementDebitAccountLine(models.Model):
     account_id = fields.Many2one("account.account", "Account", required=True)
     tax_id = fields.Many2one("account.tax", "Tax", required=True)
     statement_id = fields.Many2one("account.vat.period.end.statement", "VAT statement")
-    amount = fields.Float("Amount", required=True, digits="Account")
+    amount = fields.Float(required=True, digits="Account")
 
 
 class StatementCreditAccountLine(models.Model):
@@ -794,7 +792,7 @@ class StatementCreditAccountLine(models.Model):
     account_id = fields.Many2one("account.account", "Account", required=True)
     tax_id = fields.Many2one("account.tax", "Tax", required=True)
     statement_id = fields.Many2one("account.vat.period.end.statement", "VAT statement")
-    amount = fields.Float("Amount", required=True, digits="Account")
+    amount = fields.Float(required=True, digits="Account")
 
 
 class StatementGenericAccountLine(models.Model):
@@ -803,7 +801,7 @@ class StatementGenericAccountLine(models.Model):
 
     account_id = fields.Many2one("account.account", "Account", required=True)
     statement_id = fields.Many2one("account.vat.period.end.statement", "VAT statement")
-    amount = fields.Float("Amount", required=True, digits="Account")
+    amount = fields.Float(required=True, digits="Account")
     name = fields.Char("Description")
 
 

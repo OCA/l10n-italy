@@ -63,13 +63,7 @@ class TestTax(AccountTestInvoicingCommon):
         cls.paid_vat_account = (
             cls.env["account.account"]
             .search(
-                [
-                    (
-                        "user_type_id",
-                        "=",
-                        cls.env.ref("account.data_account_type_current_assets").id,
-                    )
-                ],
+                [("account_type", "=", "asset_current")],
                 limit=1,
             )
             .id
@@ -77,13 +71,7 @@ class TestTax(AccountTestInvoicingCommon):
         cls.received_vat_account = (
             cls.env["account.account"]
             .search(
-                [
-                    (
-                        "user_type_id",
-                        "=",
-                        cls.env.ref("account.data_account_type_current_liabilities").id,
-                    )
-                ],
+                [("account_type", "=", "liability_current")],
                 limit=1,
             )
             .id
@@ -121,10 +109,10 @@ class TestTax(AccountTestInvoicingCommon):
 
         cls.vat_authority = cls.account_model.create(
             {
-                "code": "VAT AUTH",
+                "code": "VAT.AUTH",
                 "name": "VAT Authority",
                 "reconcile": True,
-                "user_type_id": cls.env.ref("account.data_account_type_payable").id,
+                "account_type": "liability_payable",
             }
         )
 
@@ -138,7 +126,6 @@ class TestTax(AccountTestInvoicingCommon):
             {
                 "value": "balance",
                 "days": 16,
-                "option": "after_invoice_month",
                 "payment_id": cls.account_payment_term.id,
             }
         )
@@ -152,9 +139,9 @@ class TestTax(AccountTestInvoicingCommon):
             .search(
                 [
                     (
-                        "user_type_id",
+                        "account_type",
                         "=",
-                        self.env.ref("account.data_account_type_revenue").id,
+                        "income",
                     )
                 ],
                 limit=1,
@@ -182,7 +169,6 @@ class TestTax(AccountTestInvoicingCommon):
                 ],
             }
         )
-        out_invoice._recompute_tax_lines()
         out_invoice.action_post()
 
         in_invoice = self.invoice_model.create(
@@ -206,7 +192,6 @@ class TestTax(AccountTestInvoicingCommon):
                 ],
             }
         )
-        in_invoice._recompute_tax_lines()
         in_invoice.action_post()
 
         last_year_in_invoice = self.invoice_model.create(
@@ -229,7 +214,6 @@ class TestTax(AccountTestInvoicingCommon):
                 ],
             }
         )
-        last_year_in_invoice._recompute_tax_lines()
         last_year_in_invoice.action_post()
 
         self.last_year_vat_statement = self.vat_statement_model.create(
@@ -251,7 +235,7 @@ class TestTax(AccountTestInvoicingCommon):
             }
         )
         self.current_period.vat_statement_id = self.vat_statement
-        self.account_tax_22.refresh()
+        self.account_tax_22.invalidate_model()
         self.vat_statement.compute_amounts()
         self.vat_statement._compute_authority_vat_amount()
         self.vat_statement.previous_credit_vat_account_id = self.received_vat_account

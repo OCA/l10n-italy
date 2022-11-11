@@ -9,3 +9,4 @@
 * Giacomo Grasso <giacomo.grasso.82@gmail.com>
 * Lara Baggio <http://linkgroup.it/>
 * Gianmarco Conte <gconte@dinamicheaziendali.it>
+* Michele Rusticucci <michele.rusticucci@agilebg.com>
