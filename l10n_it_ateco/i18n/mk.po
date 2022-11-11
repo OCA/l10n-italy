@@ -1,0 +1,117 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_ateco
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-italy (10.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-12 02:39+0000\n"
+"PO-Revision-Date: 2016-10-24 13:00+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Macedonian (http://www.transifex.com/oca/OCA-l10n-italy-10-0/"
+"language/mk/)\n"
+"Language: mk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
+
+#. module: l10n_it_ateco
+#: model:ir.model,name:l10n_it_ateco.model_ateco_category
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category__code
+msgid "ATECO Code"
+msgstr ""
+
+#. module: l10n_it_ateco
+#: model_terms:ir.ui.view,arch_db:l10n_it_ateco.view_partner_form_inherit_ateco
+msgid "Ateco"
+msgstr ""
+
+#. module: l10n_it_ateco
+#: model_terms:ir.ui.view,arch_db:l10n_it_ateco.view_ateco_category_form
+msgid "Ateco Category"
+msgstr ""
+
+#. module: l10n_it_ateco
+#: model:ir.actions.act_window,name:l10n_it_ateco.action_ateco_category_search
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_res_partner__ateco_category_ids
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_res_users__ateco_category_ids
+#: model:ir.ui.menu,name:l10n_it_ateco.menu_ateco_category_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_ateco.view_ateco_category_tree
+msgid "Ateco categories"
+msgstr ""
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category__child_ids
+msgid "Child Categories"
+msgstr ""
+
+#. module: l10n_it_ateco
+#: model:ir.model,name:l10n_it_ateco.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category__create_uid
+msgid "Created by"
+msgstr "Креирано од"
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category__create_date
+msgid "Created on"
+msgstr "Креирано на"
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category__description
+msgid "Description"
+msgstr ""
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category__display_name
+msgid "Display Name"
+msgstr "Прикажи име"
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category____last_update
+msgid "Last Modified on"
+msgstr "Последна промена на"
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category__write_uid
+msgid "Last Updated by"
+msgstr "Последно ажурирање од"
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category__write_date
+msgid "Last Updated on"
+msgstr "Последно ажурирање на"
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category__name
+msgid "Name"
+msgstr "Име"
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category__parent_id
+msgid "Parent Category"
+msgstr ""
+
+#. module: l10n_it_ateco
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category__partner_ids
+msgid "Partners"
+msgstr ""
+
+#. module: l10n_it_ateco
+#: model_terms:ir.ui.view,arch_db:l10n_it_ateco.ateco_category_search
+msgid "Search Ateco categories"
+msgstr ""
+
+#~ msgid "Partner"
+#~ msgstr "Партнер"
