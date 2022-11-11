@@ -25,6 +25,7 @@ addon | version | maintainers | summary
 [l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 16.0.1.0.0 |  | Gestione natura delle aliquote IVA
 [l10n_it_ateco](l10n_it_ateco/) | 16.0.1.0.0 |  | ITA - Codici Ateco
 [l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 16.0.1.0.0 |  | ITA - Tipi di documento fiscale per dichiarativi
+[l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 16.0.1.0.0 |  | Condizioni di pagamento delle fatture elettroniche
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 16.0.1.0.0 |  | ITA - Codice fiscale
 [l10n_it_ipa](l10n_it_ipa/) | 16.0.1.0.1 |  | ITA - Codice IPA
 [l10n_it_pec](l10n_it_pec/) | 16.0.1.0.0 |  | Aggiunge il campo email PEC al partner
