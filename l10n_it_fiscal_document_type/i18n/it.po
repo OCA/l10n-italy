@@ -51,11 +51,7 @@ msgid "Customer Invoice"
 msgstr "Fattura cliente"
 
 #. module: l10n_it_fiscal_document_type
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_fiscal_position__display_name
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_journal__display_name
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_move__display_name
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__display_name
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
 
@@ -71,7 +67,6 @@ msgstr "Tipo di documento fiscale"
 #: model:ir.actions.act_window,name:l10n_it_fiscal_document_type.action_view_fiscal_document_type
 #: model:ir.ui.menu,name:l10n_it_fiscal_document_type.menu_fiscal_document_type
 #: model_terms:ir.ui.view,arch_db:l10n_it_fiscal_document_type.view_fiscal_document_type_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_fiscal_document_type.view_fiscal_document_type_tree
 msgid "Fiscal Document Types"
 msgstr "Tipi di documento fiscale"
 
@@ -91,11 +86,7 @@ msgid "Fiscal document type"
 msgstr "Tipo di documento fiscale"
 
 #. module: l10n_it_fiscal_document_type
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_fiscal_position__id
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_journal__id
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_move__id
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__id
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner__id
 msgid "ID"
 msgstr "ID"
 
@@ -113,10 +104,10 @@ msgstr "Registro"
 #. module: l10n_it_fiscal_document_type
 #: code:addons/l10n_it_fiscal_document_type/models/journal.py:0
 #, python-format
-msgid "Journal %s can be linked to only 1 fiscal document type (found in %s)"
+msgid ""
+"Journal %(name)s can be linked to only 1 fiscal document type (found in "
+"%(spec)s)"
 msgstr ""
-"Il registro %s può essere collegato a un solo tipo di documento fiscale "
-"(trovato in %s)"
 
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model,name:l10n_it_fiscal_document_type.model_account_move
@@ -129,11 +120,7 @@ msgid "Journals"
 msgstr "Registri"
 
 #. module: l10n_it_fiscal_document_type
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_fiscal_position____last_update
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_journal____last_update
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_move____last_update
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type____last_update
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
@@ -172,6 +159,13 @@ msgstr "Fattura fornitore"
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__in_refund
 msgid "Vendor Credit Note"
 msgstr "Nota di credito fornitore"
+
+#, python-format
+#~ msgid ""
+#~ "Journal %s can be linked to only 1 fiscal document type (found in %s)"
+#~ msgstr ""
+#~ "Il registro %s può essere collegato a un solo tipo di documento fiscale "
+#~ "(trovato in %s)"
 
 #~ msgid "Invoice"
 #~ msgstr "Fattura"

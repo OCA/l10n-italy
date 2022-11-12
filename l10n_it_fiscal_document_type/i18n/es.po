@@ -50,11 +50,7 @@ msgid "Customer Invoice"
 msgstr "Factura"
 
 #. module: l10n_it_fiscal_document_type
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_fiscal_position__display_name
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_journal__display_name
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_move__display_name
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__display_name
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner__display_name
 msgid "Display Name"
 msgstr "Display Name"
 
@@ -70,7 +66,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:l10n_it_fiscal_document_type.action_view_fiscal_document_type
 #: model:ir.ui.menu,name:l10n_it_fiscal_document_type.menu_fiscal_document_type
 #: model_terms:ir.ui.view,arch_db:l10n_it_fiscal_document_type.view_fiscal_document_type_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_fiscal_document_type.view_fiscal_document_type_tree
 msgid "Fiscal Document Types"
 msgstr ""
 
@@ -90,11 +85,7 @@ msgid "Fiscal document type"
 msgstr ""
 
 #. module: l10n_it_fiscal_document_type
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_fiscal_position__id
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_journal__id
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_move__id
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type__id
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner__id
 msgid "ID"
 msgstr "ID"
 
@@ -112,7 +103,9 @@ msgstr ""
 #. module: l10n_it_fiscal_document_type
 #: code:addons/l10n_it_fiscal_document_type/models/journal.py:0
 #, python-format
-msgid "Journal %s can be linked to only 1 fiscal document type (found in %s)"
+msgid ""
+"Journal %(name)s can be linked to only 1 fiscal document type (found in "
+"%(spec)s)"
 msgstr ""
 
 #. module: l10n_it_fiscal_document_type
@@ -126,11 +119,7 @@ msgid "Journals"
 msgstr ""
 
 #. module: l10n_it_fiscal_document_type
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_fiscal_position____last_update
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_journal____last_update
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_account_move____last_update
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type____last_update
-#: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_res_partner____last_update
 msgid "Last Modified on"
 msgstr "Last Modified on"
 
