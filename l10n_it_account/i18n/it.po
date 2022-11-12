@@ -21,10 +21,15 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_account.internal_layout
 msgid ""
 "<br/>\n"
-"                      <span class=\"text-right\">TIN: </span>"
+"                    <span class=\"text-right\">TIN: </span>"
 msgstr ""
-"<br/>\n"
-"                      <span class=\"text-right\">IVA:</span>"
+
+#. module: l10n_it_account
+#: model_terms:ir.ui.view,arch_db:l10n_it_account.internal_layout
+msgid ""
+"<span> / </span>\n"
+"                    <span class=\"page\"/>"
+msgstr ""
 
 #. module: l10n_it_account
 #: model:ir.model,name:l10n_it_account.model_account_account
@@ -35,11 +40,6 @@ msgstr "Conto"
 #: model:ir.model,name:l10n_it_account.model_account_group
 msgid "Account Group"
 msgstr "Gruppo contabile"
-
-#. module: l10n_it_account
-#: model:ir.model,name:l10n_it_account.model_account_account_type
-msgid "Account Type"
-msgstr "Tipo conto"
 
 #. module: l10n_it_account
 #: model_terms:ir.ui.view,arch_db:l10n_it_account.product_template_form_view
@@ -54,26 +54,16 @@ msgid "Accounts"
 msgstr "Conti"
 
 #. module: l10n_it_account
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_account_type__account_balance_sign
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_account__account_balance_sign
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_group__account_balance_sign
 msgid "Balance sign"
 msgstr "Segno del saldo"
 
 #. module: l10n_it_account
-#: code:addons/l10n_it_account/models/account_type.py:0
+#: code:addons/l10n_it_account/models/account_account.py:0
 #, python-format
 msgid "Balance sign's value can only be 1 or -1."
 msgstr "Il valore del segno per il saldo può essere solo 1 o -1."
-
-#. module: l10n_it_account
-#: code:addons/l10n_it_account/models/account_group.py:0
-#, python-format
-msgid ""
-"Can't set '{}' as parent for group '{}'.\n"
-"{}"
-msgstr ""
-"Impossibile impostare \"{}\" come padre per il gruppo \"{}\".\n"
-"{}"
 
 #. module: l10n_it_account
 #: model:ir.ui.menu,name:l10n_it_account.menu_date_range_type_action_accounting
@@ -96,25 +86,9 @@ msgid "Deductible Balance"
 msgstr ""
 
 #. module: l10n_it_account
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_account__display_name
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_account_type__display_name
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_group__display_name
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: l10n_it_account
 #: model:ir.ui.menu,name:l10n_it_account.menu_date_range_generator_action
 msgid "Generate Date Ranges"
 msgstr "Generazione intervalli date"
-
-#. module: l10n_it_account
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_account__id
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_account_type__id
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_group__id
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__id
-msgid "ID"
-msgstr "ID"
 
 #. module: l10n_it_account
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__cee_type
@@ -131,14 +105,6 @@ msgstr "Segni del saldo incoerenti per \"{}\" e i sottogruppi."
 #: model:ir.ui.menu,name:l10n_it_account.account_italian_localization
 msgid "Italian Localization"
 msgstr "Fiscalità italiana"
-
-#. module: l10n_it_account
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_account____last_update
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_account_type____last_update
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_group____last_update
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
 
 #. module: l10n_it_account
 #: model_terms:ir.ui.view,arch_db:l10n_it_account.internal_layout
@@ -178,6 +144,33 @@ msgid ""
 msgstr ""
 "Utilizzare nel caso di imposta per \"integrazione IVA\". Specifica il "
 "registro IVA (vendite / acquisti) nel quale deve essere calcolata l'imposta."
+
+#~ msgid ""
+#~ "<br/>\n"
+#~ "                      <span class=\"text-right\">TIN: </span>"
+#~ msgstr ""
+#~ "<br/>\n"
+#~ "                      <span class=\"text-right\">IVA:</span>"
+
+#~ msgid "Account Type"
+#~ msgstr "Tipo conto"
+
+#, python-format
+#~ msgid ""
+#~ "Can't set '{}' as parent for group '{}'.\n"
+#~ "{}"
+#~ msgstr ""
+#~ "Impossibile impostare \"{}\" come padre per il gruppo \"{}\".\n"
+#~ "{}"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
 
 #~ msgid "A recursion in '{}' parents has been found."
 #~ msgstr "Trovata una ricorsività in \"{}\" padre."
