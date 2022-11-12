@@ -37,7 +37,6 @@ msgstr "Categoria Ateco"
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_res_partner__ateco_category_ids
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_res_users__ateco_category_ids
 #: model:ir.ui.menu,name:l10n_it_ateco.menu_ateco_category_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_ateco.view_ateco_category_tree
 msgid "Ateco categories"
 msgstr "Categorie Ateco"
 
