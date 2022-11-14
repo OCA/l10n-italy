@@ -21,6 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[l10n_it_abicab](l10n_it_abicab/) | 16.0.1.0.0 | [![Borruso](https://github.com/Borruso.png?size=30px)](https://github.com/Borruso) | Base Bank ABI/CAB codes
 [l10n_it_account](l10n_it_account/) | 16.0.1.0.0 |  | Modulo base usato come dipendenza di altri moduli contabili
 [l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 16.0.1.0.0 |  | Gestione natura delle aliquote IVA
 [l10n_it_ateco](l10n_it_ateco/) | 16.0.1.0.0 |  | ITA - Codici Ateco
