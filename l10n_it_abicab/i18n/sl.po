@@ -1,0 +1,72 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_abicab
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-16 02:46+0000\n"
+"PO-Revision-Date: 2016-07-16 02:46+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
+
+#. module: l10n_it_abicab
+#: model:ir.model.fields,field_description:l10n_it_abicab.field_account_setup_bank_manual_config__bank_abi
+#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_bank__abi
+#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_partner_bank__bank_abi
+msgid "ABI"
+msgstr "ABI"
+
+#. module: l10n_it_abicab
+#: model:ir.model,name:l10n_it_abicab.model_res_bank
+msgid "Bank"
+msgstr "Banka"
+
+#. module: l10n_it_abicab
+#: model:ir.model,name:l10n_it_abicab.model_res_partner_bank
+msgid "Bank Accounts"
+msgstr "Bančni računi"
+
+#. module: l10n_it_abicab
+#: model_terms:ir.ui.view,arch_db:l10n_it_abicab.view_bank_form_abicab
+msgid "Bank Details"
+msgstr "Bančni podatki"
+
+#. module: l10n_it_abicab
+#: model:ir.model.fields,field_description:l10n_it_abicab.field_account_setup_bank_manual_config__bank_cab
+#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_bank__cab
+#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_partner_bank__bank_cab
+msgid "CAB"
+msgstr "CAB"
+
+#. module: l10n_it_abicab
+#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_bank__display_name
+#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_partner_bank__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_abicab
+#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_bank__id
+#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_partner_bank__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_abicab
+#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_bank____last_update
+#: model:ir.model.fields,field_description:l10n_it_abicab.field_res_partner_bank____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_abicab
+#: model_terms:ir.ui.view,arch_db:l10n_it_abicab.view_bank_filter_abicab
+msgid "Search Bank"
+msgstr ""
