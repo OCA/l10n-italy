@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo-addon-l10n_it_abicab>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_account>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_it_account_stamp>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_account_tax_kind>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_ateco>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_fiscal_document_type>=16.0dev,<16.1dev',
