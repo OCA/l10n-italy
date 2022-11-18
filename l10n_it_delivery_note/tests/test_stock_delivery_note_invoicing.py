@@ -75,7 +75,9 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note.invoice_ids, final_invoice)
 
         #
-        # Linea 1
+        # Ordine - Linea 1
+        # Fattura - Linea 1 (DdT in fattura)
+        # Fattura - Linea 2
         #
         order_line = sales_order.order_line[0]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -92,11 +94,17 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note_line.product_qty, 1)
 
         invoice_line = final_invoice.invoice_line_ids[0]
+        self.assertEqual(invoice_line.display_type, 'line_note')
+        self.assertEqual(invoice_line.quantity, 0)
+        self.assertEqual(invoice_line.delivery_note_id, delivery_note)
+
+        invoice_line = final_invoice.invoice_line_ids[1]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 1)
 
         #
-        # Linea 2
+        # Ordine - Linea 2
+        # Fattura - Linea 3
         #
         order_line = sales_order.order_line[1]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -112,12 +120,13 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note_line.sale_line_id, order_line)
         self.assertEqual(delivery_note_line.product_qty, 2)
 
-        invoice_line = final_invoice.invoice_line_ids[1]
+        invoice_line = final_invoice.invoice_line_ids[2]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 2)
 
         #
-        # Linea 3
+        # Ordine - Linea 3
+        # Fattura - Linea 4
         #
         order_line = sales_order.order_line[2]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -133,12 +142,13 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note_line.sale_line_id, order_line)
         self.assertEqual(delivery_note_line.product_qty, 11)
 
-        invoice_line = final_invoice.invoice_line_ids[2]
+        invoice_line = final_invoice.invoice_line_ids[3]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 11)
 
         #
-        # Linea 4
+        # Ordine - Linea 4
+        # Fattura - Linea 5
         #
         order_line = sales_order.order_line[3]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -154,12 +164,13 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note_line.sale_line_id, order_line)
         self.assertEqual(delivery_note_line.product_qty, 1)
 
-        invoice_line = final_invoice.invoice_line_ids[3]
+        invoice_line = final_invoice.invoice_line_ids[4]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 1)
 
         #
-        # Linea 5 (Downpayment)
+        # Ordine - Linea 5
+        # Fattura - Linea 6 (Downpayment)
         #
         order_line = sales_order.order_line[4]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -174,17 +185,9 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         self.assertEqual(len(delivery_note_line), 0)
 
-        invoice_line = final_invoice.invoice_line_ids[4]
+        invoice_line = final_invoice.invoice_line_ids[5]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, -1)
-
-        #
-        # Linea 6 (DdT in fattura)
-        #
-        invoice_line = final_invoice.invoice_line_ids[5]
-        self.assertEqual(invoice_line.display_type, 'line_note')
-        self.assertEqual(invoice_line.quantity, 0)
-        self.assertEqual(invoice_line.delivery_note_id, delivery_note)
 
     # ⇒ "Ordine singolo: fatturazione parziale"
     def test_partial_invoicing_single_so(self):
@@ -290,7 +293,9 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(second_delivery_note.invoice_status, 'to invoice')
 
         #
-        # Linea 1
+        # Ordine - Linea 1
+        # Fattura - Linea 1 (DdT in fattura)
+        # Fattura - Linea 2
         #
         order_line = sales_order.order_line[0]
         self.assertEqual(order_line.invoice_status, 'to invoice')
@@ -307,11 +312,17 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note_line.product_qty, 2)
 
         invoice_line = partial_invoice.invoice_line_ids[0]
+        self.assertEqual(invoice_line.display_type, 'line_note')
+        self.assertEqual(invoice_line.quantity, 0)
+        self.assertEqual(invoice_line.delivery_note_id, first_delivery_note)
+
+        invoice_line = partial_invoice.invoice_line_ids[1]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 2)
 
         #
-        # Linea 2
+        # Ordine - Linea 2
+        # Fattura - Linea 3
         #
         order_line = sales_order.order_line[1]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -327,12 +338,13 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note_line.sale_line_id, order_line)
         self.assertEqual(delivery_note_line.product_qty, 2)
 
-        invoice_line = partial_invoice.invoice_line_ids[1]
+        invoice_line = partial_invoice.invoice_line_ids[2]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 2)
 
         #
-        # Linea 3
+        # Ordine - Linea 3
+        # Fattura - Linea 4
         #
         order_line = sales_order.order_line[2]
         self.assertEqual(order_line.invoice_status, 'to invoice')
@@ -348,12 +360,13 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note_line.sale_line_id, order_line)
         self.assertEqual(delivery_note_line.product_qty, 6)
 
-        invoice_line = partial_invoice.invoice_line_ids[2]
+        invoice_line = partial_invoice.invoice_line_ids[3]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 6)
 
         #
-        # Linea 4
+        # Ordine - Linea 4
+        # Fattura - Linea 5
         #
         order_line = sales_order.order_line[3]
         self.assertEqual(order_line.invoice_status, 'to invoice')
@@ -369,17 +382,9 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note_line.sale_line_id, order_line)
         self.assertEqual(delivery_note_line.product_qty, 3)
 
-        invoice_line = partial_invoice.invoice_line_ids[3]
+        invoice_line = partial_invoice.invoice_line_ids[4]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 3)
-
-        #
-        # Linea 5 (DdT in fattura)
-        #
-        invoice_line = partial_invoice.invoice_line_ids[4]
-        self.assertEqual(invoice_line.display_type, 'line_note')
-        self.assertEqual(invoice_line.quantity, 0)
-        self.assertEqual(invoice_line.delivery_note_id, first_delivery_note)
 
         #
         # =      =  -  =    = - =    =  -  =      =
@@ -403,8 +408,9 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(second_delivery_note.invoice_ids, final_invoice)
 
         #
-        # Linea ordine 1
-        # Linea fattura 1
+        # Ordine - Linea 1
+        # Fattura - Linea 1 (DdT in fattura)
+        # Fattura - Linea 2
         #
         order_line = sales_order.order_line[0]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -413,7 +419,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         moves = order_line.move_ids
         self.assertEqual(len(moves), 2)
-        self.assertEqual(moves[1].quantity_done, 1)
+        self.assertEqual(moves[0].quantity_done, 1)
 
         delivery_note_line = second_delivery_note.line_ids[0]
         self.assertEqual(delivery_note_line.invoice_status, 'invoiced')
@@ -421,12 +427,17 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note_line.product_qty, 1)
 
         invoice_line = final_invoice.invoice_line_ids[0]
+        self.assertEqual(invoice_line.display_type, 'line_note')
+        self.assertEqual(invoice_line.quantity, 0)
+        self.assertEqual(invoice_line.delivery_note_id, second_delivery_note)
+
+        invoice_line = final_invoice.invoice_line_ids[1]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 1)
 
         #
-        # Linea ordine 3
-        # Linea fattura 2
+        # Ordine - Linea 3
+        # Fattura - Linea 3
         #
         order_line = sales_order.order_line[2]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -435,20 +446,20 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         moves = order_line.move_ids
         self.assertEqual(len(moves), 2)
-        self.assertEqual(moves[1].quantity_done, 5)
+        self.assertEqual(moves[0].quantity_done, 5)
 
         delivery_note_line = second_delivery_note.line_ids[1]
         self.assertEqual(delivery_note_line.invoice_status, 'invoiced')
         self.assertEqual(delivery_note_line.sale_line_id, order_line)
         self.assertEqual(delivery_note_line.product_qty, 5)
 
-        invoice_line = final_invoice.invoice_line_ids[1]
+        invoice_line = final_invoice.invoice_line_ids[2]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 5)
 
         #
-        # Linea ordine 4
-        # Linea fattura 3
+        # Ordine - Linea 4
+        # Fattura - Linea 4
         #
         order_line = sales_order.order_line[3]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -457,20 +468,20 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         moves = order_line.move_ids
         self.assertEqual(len(moves), 2)
-        self.assertEqual(moves[1].quantity_done, 2)
+        self.assertEqual(moves[0].quantity_done, 2)
 
         delivery_note_line = second_delivery_note.line_ids[2]
         self.assertEqual(delivery_note_line.invoice_status, 'invoiced')
         self.assertEqual(delivery_note_line.sale_line_id, order_line)
         self.assertEqual(delivery_note_line.product_qty, 2)
 
-        invoice_line = final_invoice.invoice_line_ids[2]
+        invoice_line = final_invoice.invoice_line_ids[3]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 2)
 
         #
-        # Linea ordine 5 (Downpayment)
-        # Linea fattura 4
+        # Ordine - Linea 5 (Downpayment)
+        # Fattura - Linea 5
         #
         order_line = sales_order.order_line[4]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -486,17 +497,9 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         self.assertEqual(len(delivery_note_line), 0)
 
-        invoice_line = final_invoice.invoice_line_ids[3]
+        invoice_line = final_invoice.invoice_line_ids[4]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, -1)
-
-        #
-        # Linea fattura 5 (DdT in fattura)
-        #
-        invoice_line = final_invoice.invoice_line_ids[4]
-        self.assertEqual(invoice_line.display_type, 'line_note')
-        self.assertEqual(invoice_line.quantity, 0)
-        self.assertEqual(invoice_line.delivery_note_id, second_delivery_note)
 
     # ⇒ "Ordini multipli: fatturazione completa"
     def test_complete_invoicing_multiple_so(self):
@@ -606,7 +609,8 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         #
         # Ordine 1 - Linea 1
-        # Linea fattura 1
+        # Fattura - Linea 1 (DdT in fattura)
+        # Fattura - Linea 2
         #
         order_line = first_sales_order.order_line[0]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -623,12 +627,17 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note_line.product_qty, 1)
 
         invoice_line = final_invoice.invoice_line_ids[0]
+        self.assertEqual(invoice_line.display_type, 'line_note')
+        self.assertEqual(invoice_line.quantity, 0)
+        self.assertEqual(invoice_line.delivery_note_id, delivery_note)
+
+        invoice_line = final_invoice.invoice_line_ids[1]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 1)
 
         #
         # Ordine 1 - Linea 2
-        # Linea fattura 2
+        # Fattura - Linea 3
         #
         order_line = first_sales_order.order_line[1]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -644,13 +653,13 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note_line.sale_line_id, order_line)
         self.assertEqual(delivery_note_line.product_qty, 3)
 
-        invoice_line = final_invoice.invoice_line_ids[1]
+        invoice_line = final_invoice.invoice_line_ids[2]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 3)
 
         #
         # Ordine 1 - Linea 3
-        # Linea fattura 3
+        # Fattura - Linea 4
         #
         order_line = first_sales_order.order_line[2]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -666,13 +675,13 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note_line.sale_line_id, order_line)
         self.assertEqual(delivery_note_line.product_qty, 2)
 
-        invoice_line = final_invoice.invoice_line_ids[2]
+        invoice_line = final_invoice.invoice_line_ids[3]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 2)
 
         #
         # Ordine 1 - Linea 4 (Downpayment)
-        # Linea fattura 4
+        # Fattura - Linea 5
         #
         order_line = first_sales_order.order_line[3]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -687,13 +696,13 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         self.assertEqual(len(delivery_note_line), 0)
 
-        invoice_line = final_invoice.invoice_line_ids[3]
+        invoice_line = final_invoice.invoice_line_ids[4]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, -1)
 
         #
         # Ordine 2 - Linea 1
-        # Linea fattura 5
+        # Fattura - Linea 6
         #
         order_line = second_sales_order.order_line[0]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -709,13 +718,13 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note_line.sale_line_id, order_line)
         self.assertEqual(delivery_note_line.product_qty, 11)
 
-        invoice_line = final_invoice.invoice_line_ids[4]
+        invoice_line = final_invoice.invoice_line_ids[5]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 11)
 
         #
         # Ordine 2 - Linea 2
-        # Linea fattura 6
+        # Fattura - Linea 7
         #
         order_line = second_sales_order.order_line[1]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -731,13 +740,13 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note_line.sale_line_id, order_line)
         self.assertEqual(delivery_note_line.product_qty, 5)
 
-        invoice_line = final_invoice.invoice_line_ids[5]
+        invoice_line = final_invoice.invoice_line_ids[6]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 5)
 
         #
         # Ordine 2 - Linea 3
-        # Linea fattura 7
+        # Fattura - Linea 8
         #
         order_line = second_sales_order.order_line[2]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -753,17 +762,9 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note_line.sale_line_id, order_line)
         self.assertEqual(delivery_note_line.product_qty, 1)
 
-        invoice_line = final_invoice.invoice_line_ids[6]
+        invoice_line = final_invoice.invoice_line_ids[7]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 1)
-
-        #
-        # Linea fattura 8 (DdT in fattura)
-        #
-        invoice_line = final_invoice.invoice_line_ids[7]
-        self.assertEqual(invoice_line.display_type, 'line_note')
-        self.assertEqual(invoice_line.quantity, 0)
-        self.assertEqual(invoice_line.delivery_note_id, delivery_note)
 
     # ⇒ "Ordini multipli: fatturazione parziale"
     def test_partial_invoicing_multiple_so(self):
@@ -933,7 +934,8 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         #
         # Ordine 1 - Linea 1
-        # Fattura 1 - Linea 1
+        # Fattura 1 - Linea 1 (DdT in fattura)
+        # Fattura 1 - Linea 2
         #
         order_line = first_sales_order.order_line[0]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -950,12 +952,17 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note_line.product_qty, 1)
 
         invoice_line = first_partial_invoice.invoice_line_ids[0]
+        self.assertEqual(invoice_line.display_type, 'line_note')
+        self.assertEqual(invoice_line.quantity, 0)
+        self.assertEqual(invoice_line.delivery_note_id, first_delivery_note)
+
+        invoice_line = first_partial_invoice.invoice_line_ids[1]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 1)
 
         #
         # Ordine 1 - Linea 2
-        # Fattura 1 - Linea 2
+        # Fattura 1 - Linea 3
         #
         order_line = first_sales_order.order_line[1]
         self.assertEqual(order_line.invoice_status, 'to invoice')
@@ -971,13 +978,13 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note_line.sale_line_id, order_line)
         self.assertEqual(delivery_note_line.product_qty, 1)
 
-        invoice_line = first_partial_invoice.invoice_line_ids[1]
+        invoice_line = first_partial_invoice.invoice_line_ids[2]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 1)
 
         #
         # Ordine 1 - Linea 3
-        # Fattura 1 - Linea 3
+        # Fattura 1 - Linea 4
         #
         order_line = first_sales_order.order_line[2]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -993,21 +1000,14 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note_line.sale_line_id, order_line)
         self.assertEqual(delivery_note_line.product_qty, 1)
 
-        invoice_line = first_partial_invoice.invoice_line_ids[2]
+        invoice_line = first_partial_invoice.invoice_line_ids[3]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 1)
 
         #
-        # Fattura 1 - Linea 4 (DdT in fattura)
-        #
-        invoice_line = first_partial_invoice.invoice_line_ids[3]
-        self.assertEqual(invoice_line.display_type, 'line_note')
-        self.assertEqual(invoice_line.quantity, 0)
-        self.assertEqual(invoice_line.delivery_note_id, first_delivery_note)
-
-        #
         # Ordine 2 - Linea 1
-        # Fattura 2 - Linea 1
+        # Fattura 2 - Linea 1 (DdT in fattura)
+        # Fattura 2 - Linea 2
         #
         order_line = second_sales_order.order_line[0]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -1024,12 +1024,17 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note_line.product_qty, 3)
 
         invoice_line = second_partial_invoice.invoice_line_ids[0]
+        self.assertEqual(invoice_line.display_type, 'line_note')
+        self.assertEqual(invoice_line.quantity, 0)
+        self.assertEqual(invoice_line.delivery_note_id, first_delivery_note)
+
+        invoice_line = second_partial_invoice.invoice_line_ids[1]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 3)
 
         #
         # Ordine 2 - Linea 2
-        # Fattura 2 - Linea 2
+        # Fattura 2 - Linea 3
         #
         order_line = second_sales_order.order_line[1]
         self.assertEqual(order_line.invoice_status, 'to invoice')
@@ -1045,13 +1050,13 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note_line.sale_line_id, order_line)
         self.assertEqual(delivery_note_line.product_qty, 3)
 
-        invoice_line = second_partial_invoice.invoice_line_ids[1]
+        invoice_line = second_partial_invoice.invoice_line_ids[2]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 3)
 
         #
         # Ordine 2 - Linea 3
-        # Fattura 2 - Linea 3
+        # Fattura 2 - Linea 4
         #
         order_line = second_sales_order.order_line[2]
         self.assertEqual(order_line.invoice_status, 'to invoice')
@@ -1067,17 +1072,9 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note_line.sale_line_id, order_line)
         self.assertEqual(delivery_note_line.product_qty, 3)
 
-        invoice_line = second_partial_invoice.invoice_line_ids[2]
+        invoice_line = second_partial_invoice.invoice_line_ids[3]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 3)
-
-        #
-        # Fattura 2 - Linea 4 (DdT in fattura)
-        #
-        invoice_line = second_partial_invoice.invoice_line_ids[3]
-        self.assertEqual(invoice_line.display_type, 'line_note')
-        self.assertEqual(invoice_line.quantity, 0)
-        self.assertEqual(invoice_line.delivery_note_id, first_delivery_note)
 
         #
         # =      =  -  =    = - =    =  -  =      =
@@ -1105,7 +1102,8 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         #
         # Ordine 1 - Linea 2
-        # Fattura 3 - Linea 1
+        # Fattura 3 - Linea 1 (DdT in fattura)
+        # Fattura 3 - Linea 2
         #
         order_line = first_sales_order.order_line[1]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -1122,12 +1120,17 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(delivery_note_line.product_qty, 1)
 
         invoice_line = final_invoice.invoice_line_ids[0]
+        self.assertEqual(invoice_line.display_type, 'line_note')
+        self.assertEqual(invoice_line.quantity, 0)
+        self.assertEqual(invoice_line.delivery_note_id, second_delivery_note)
+
+        invoice_line = final_invoice.invoice_line_ids[1]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 1)
 
         #
         # Ordine 1 - Linea 4 (Downpayment)
-        # Fattura 3 - Linea 2
+        # Fattura 3 - Linea 3
         #
         order_line = first_sales_order.order_line[3]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -1143,13 +1146,13 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         self.assertEqual(len(delivery_note_line), 0)
 
-        invoice_line = final_invoice.invoice_line_ids[1]
+        invoice_line = final_invoice.invoice_line_ids[2]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, -1)
 
         #
         # Ordine 2 - Linea 2
-        # Fattura 3 - Linea 3
+        # Fattura 3 - Linea 4
         #
         order_line = second_sales_order.order_line[1]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -1158,20 +1161,20 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         moves = order_line.move_ids
         self.assertEqual(len(moves), 2)
-        self.assertEqual(moves[1].quantity_done, 8)
+        self.assertEqual(moves[0].quantity_done, 8)
 
         delivery_note_line = second_delivery_note.line_ids[1]
         self.assertEqual(delivery_note_line.invoice_status, 'invoiced')
         self.assertEqual(delivery_note_line.sale_line_id, order_line)
         self.assertEqual(delivery_note_line.product_qty, 8)
 
-        invoice_line = final_invoice.invoice_line_ids[2]
+        invoice_line = final_invoice.invoice_line_ids[3]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 8)
 
         #
         # Ordine 2 - Linea 3
-        # Fattura 3 - Linea 4
+        # Fattura 3 - Linea 5
         #
         order_line = second_sales_order.order_line[2]
         self.assertEqual(order_line.invoice_status, 'invoiced')
@@ -1180,21 +1183,13 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         moves = order_line.move_ids
         self.assertEqual(len(moves), 2)
-        self.assertEqual(moves[1].quantity_done, 2)
+        self.assertEqual(moves[0].quantity_done, 2)
 
         delivery_note_line = second_delivery_note.line_ids[2]
         self.assertEqual(delivery_note_line.invoice_status, 'invoiced')
         self.assertEqual(delivery_note_line.sale_line_id, order_line)
         self.assertEqual(delivery_note_line.product_qty, 2)
 
-        invoice_line = final_invoice.invoice_line_ids[3]
+        invoice_line = final_invoice.invoice_line_ids[4]
         self.assertEqual(invoice_line.sale_line_ids, order_line)
         self.assertEqual(invoice_line.quantity, 2)
-
-        #
-        # Fattura 3 - Linea 5 (DdT in fattura)
-        #
-        invoice_line = final_invoice.invoice_line_ids[4]
-        self.assertEqual(invoice_line.display_type, 'line_note')
-        self.assertEqual(invoice_line.quantity, 0)
-        self.assertEqual(invoice_line.delivery_note_id, second_delivery_note)
