@@ -62,6 +62,14 @@ class FatturaPAAttachment (models.AbstractModel):
             att.ftpa_preview_link = '/fatturapa/preview/%s' \
                                     % att.ir_attachment_id.id
 
+    def ftpa_preview(self):
+        return {
+            "type": "ir.actions.act_url",
+            "name": "Show preview",
+            "url": self.ftpa_preview_link,
+            "target": "new",
+        }
+
     @api.model
     def remove_xades_sign(self, xml):
         # Recovering parser is needed for files where strings like
