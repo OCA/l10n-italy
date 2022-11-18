@@ -11,7 +11,3 @@ class ResConfigSettings(models.TransientModel):
         string="Use Advanced DN Features",
         implied_group='l10n_it_delivery_note.'
                       'use_advanced_delivery_notes')
-
-    draft_delivery_note_invoicing_notify = fields.Boolean(
-        related='company_id.draft_delivery_note_invoicing_notify',
-        readonly=False)
