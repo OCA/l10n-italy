@@ -7,7 +7,8 @@ from odoo import _, api, fields, models
 from odoo.addons import decimal_precision as dp
 from odoo.exceptions import UserError
 
-from ..mixins.picking_checker import DONE_PICKING_STATE, PICKING_TYPES
+from ..mixins.picking_checker import \
+    DONE_PICKING_STATE, PICKING_TYPES, DOMAIN_PICKING_TYPES
 
 DATE_FORMAT = '%d/%m/%Y'
 DATETIME_FORMAT = '%d/%m/%Y %H:%M:%S'
@@ -54,7 +55,8 @@ class StockDeliveryNote(models.Model):
         return self.env.user.company_id
 
     def _default_type(self):
-        return self.env['stock.delivery.note.type'].search([], limit=1)
+        return self.env['stock.delivery.note.type'] \
+            .search([('code', '=', DOMAIN_PICKING_TYPES[1])], limit=1)
 
     def _default_volume_uom(self):
         return self.env.ref('uom.product_uom_litre', raise_if_not_found=False)
@@ -350,6 +352,10 @@ class StockDeliveryNote(models.Model):
             if self.name and self.type_id.sequence_id != self.sequence_id:
                 raise UserError(_("You cannot set this delivery note type due"
                                   " of a different numerator configuration."))
+
+            if self.picking_type and self.type_id.code != self.picking_type:
+                raise UserError(_("You cannot set this delivery note type due"
+                                  " of a different type with related pickings."))
 
             if self._update_generic_shipping_information(self.type_id):
                 return {
@@ -689,7 +695,7 @@ class StockDeliveryNoteLine(models.Model):
         for move in moves:
             line = {
                 'move_id': move.id,
-                'name': move.name,
+                'name': move.product_id.get_product_multiline_description_sale,
                 'product_id': move.product_id.id,
                 'product_qty': move.product_uom_qty,
                 'product_uom_id': move.product_uom.id
