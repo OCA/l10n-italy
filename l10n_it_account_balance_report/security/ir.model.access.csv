@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_balance_report,access_account_balance_report,model_account_balance_report,base.group_user,1,1,1,1
+access_account_balance_report_account,access_account_balance_report_account,model_account_balance_report_account,base.group_user,1,1,1,1
+access_account_balance_report_partner,access_account_balance_report_partner,model_account_balance_report_partner,base.group_user,1,1,1,1
