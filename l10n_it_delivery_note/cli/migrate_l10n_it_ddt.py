@@ -20,7 +20,7 @@ STATES_MAPPING = {
 
 
 # noinspection PyPep8Naming
-class MigrateL10nItDdt(EasyCommand):
+class Migrate_L10n_It_Ddt(EasyCommand):
     _carriage_conditions = None
     _goods_descriptions = None
     _transportation_reasons = None
@@ -296,7 +296,26 @@ class MigrateL10nItDdt(EasyCommand):
 
         documents = Document.search([], order='id ASC')
         for document in documents:
-            DeliveryNote.create(vals_getter(document))
+            delivery_note = DeliveryNote.create(vals_getter(document))
+            extra_lines = document.line_ids.filtered(lambda l: not l.move_id)
+
+            if extra_lines:
+                lines_vals = []
+
+                for line in extra_lines:
+                    lines_vals.append({
+                        'name': line.name,
+                        'product_id': line.product_id.id,
+                        'product_qty': line.product_uom_qty,
+                        'product_uom_id': line.product_uom_id.id,
+                        'price_unit': line.price_unit,
+                        'discount': line.discount,
+                        'tax_ids': [(4, t.id) for t in line.tax_ids]
+                    })
+
+                delivery_note.write({
+                    'line_ids': [(0, False, vals) for vals in lines_vals]
+                })
 
         _logger.info("Documents data successfully migrated.")
 
