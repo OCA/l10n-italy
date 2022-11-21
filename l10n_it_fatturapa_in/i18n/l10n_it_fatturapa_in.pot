@@ -1180,6 +1180,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
+msgid "Show preview"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
 msgid "Stable Organization"
 msgstr ""

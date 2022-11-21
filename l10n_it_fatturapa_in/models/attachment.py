@@ -153,3 +153,6 @@ class FatturaPAAttachmentIn(models.Model):
                 "invoice_id": invoice_id,
             }
             AttachModel.create(_attach_dict)
+
+    def ftpa_preview(self):
+        return self.env["ir.attachment"].ftpa_preview(self)

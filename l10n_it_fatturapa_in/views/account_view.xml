@@ -25,13 +25,18 @@
                             <field name='id' invisible="1" />
                             <label for="datas" />
                             <div>
-                                <field name="datas" filename="name" />
-                                <field
-                                    name="ftpa_preview_link"
-                                    widget="url"
-                                    text="Show preview"
-                                    attrs="{'invisible': [('id', '=', False)]}"
-                                />
+                                <div>
+                                    <field name="datas" filename="name" />
+                                </div>
+                                <div>
+                                    <button
+                                        type="object"
+                                        name="ftpa_preview"
+                                        string="Show preview"
+                                        style="margin-bottom:10px;"
+                                        attrs="{'invisible': [('id', '=', False)]}"
+                                    />
+                                </div>
                                 <button
                                     type="object"
                                     name="recompute_xml_fields"
