@@ -404,7 +404,7 @@
                         >
                             <t
                                 t-att-style="partner_style"
-                                t-raw="partner_line.ending_balance"
+                                t-raw="partner_line.balance"
                                 t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"
                             />
                         </a>
