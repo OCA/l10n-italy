@@ -316,8 +316,8 @@ msgid ""
 "Decimal digits used for quantity field. See \"prices decimal digits\". -1 to "
 "use the default precision"
 msgstr ""
-"Cifre decimali usate per il campo quantità. Vedi \"cifre decimali prezzi\". -"
-"1 per usare le precisione predefinita"
+"Cifre decimali usate per il campo quantità. Vedi \"cifre decimali prezzi\". "
+"-1 per usare le precisione predefinita"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_wizard_import_fatturapa__price_decimal_digits
@@ -495,8 +495,8 @@ msgid ""
 "Please manually check Withholding tax Amount\n"
 msgstr ""
 "La e-fattura contiene DatiRitenuta ma non è stata trovata alcuna riga "
-"soggetta a ritenuta. Controllare manualmente l'importo della ritenuta d'"
-"acconto\n"
+"soggetta a ritenuta. Controllare manualmente l'importo della ritenuta "
+"d'acconto\n"
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/models/account.py:0
@@ -1248,6 +1248,11 @@ msgstr ""
 "della fattura o data ricezione."
 
 #. module: l10n_it_fatturapa_in
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
+msgid "Show preview"
+msgstr "Mostra anteprima"
+
+#. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
 msgid "Stable Organization"
 msgstr "Stabile organizzazione"
@@ -1921,6 +1926,3 @@ msgstr "il"
 
 #~ msgid "TipoCassa is not defined "
 #~ msgstr "TipoCassa non definito "
-
-#~ msgid "Show preview"
-#~ msgstr "Mostra anteprima"
