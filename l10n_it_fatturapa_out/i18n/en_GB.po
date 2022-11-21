@@ -695,6 +695,11 @@ msgid "Sent Date"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
+msgid "Show preview"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__state
 msgid "State"
 msgstr ""
