@@ -118,6 +118,9 @@ class FatturaPAAttachment(models.Model):
                 # one attachment having is_pdf_invoice_print = True
                 attachment_out.has_pdf_invoice_print = True
 
+    def ftpa_preview(self):
+        return self.env["ir.attachment"].ftpa_preview(self)
+
     def reset_to_ready(self):
         for attachment_out in self:
             if attachment_out.state != "sender_error":
