@@ -259,7 +259,11 @@ class AccountMove(models.Model):
         tax_lines = self.line_ids.filtered("tax_ids")
         for tax_line in tax_lines:
             # Move lines having `tax_ids` represent the base amount for those taxes
-            amount = tax_line.price_subtotal
+            if "refund" in self.move_type:
+                amount = -tax_line.price_subtotal
+            else:
+                amount = tax_line.price_subtotal
+
             for declaration in declarations:
                 if declaration.id not in declarations_amounts:
                     declarations_amounts[declaration.id] = declaration.available_amount
