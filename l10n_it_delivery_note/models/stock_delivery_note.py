@@ -285,7 +285,7 @@ class StockDeliveryNote(models.Model):
     @api.depends("state", "line_ids", "line_ids.invoice_status")
     def _compute_invoice_status(self):
         for note in self:
-            lines = note.line_ids.filtered(lambda l: l.sale_line_id)
+            lines = note.line_ids.filtered(lambda l: l.move_id.sale_line_id)
             invoice_status = DOMAIN_INVOICE_STATUSES[0]
             if lines:
                 if all(
@@ -797,8 +797,8 @@ class StockDeliveryNoteLine(models.Model):
         return super().write(vals)
 
     def sync_invoice_status(self):
-        for line in self.filtered(lambda l: l.sale_line_id):
-            invoice_status = line.sale_line_id.invoice_status
+        for line in self.filtered(lambda l: l.move_id.sale_line_id):
+            invoice_status = line.move_id.sale_line_id.invoice_status
             line.invoice_status = (
                 DOMAIN_INVOICE_STATUSES[1]
                 if invoice_status == "upselling"
