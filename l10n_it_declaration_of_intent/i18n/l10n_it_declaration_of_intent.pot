@@ -14,15 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_declaration_of_intent
-#: code:addons/l10n_it_declaration_of_intent/models/account_move.py:0
-#, python-format
-msgid ""
-"\n"
-"\n"
-"Vostra dichiarazione d'intento nr %s del %s, nostro protocollo nr %s del %s, protocollo telematico nr %s."
-msgstr ""
-
-#. module: l10n_it_declaration_of_intent
 #: model_terms:ir.ui.view,arch_db:l10n_it_declaration_of_intent.declaration_of_intent_form
 msgid "Accounting"
 msgstr ""
