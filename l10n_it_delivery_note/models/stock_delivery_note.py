@@ -695,7 +695,7 @@ class StockDeliveryNoteLine(models.Model):
         for move in moves:
             line = {
                 'move_id': move.id,
-                'name': move.product_id.get_product_multiline_description_sale,
+                'name': move.product_id.get_product_multiline_description_sale(),
                 'product_id': move.product_id.id,
                 'product_qty': move.product_uom_qty,
                 'product_uom_id': move.product_uom.id
