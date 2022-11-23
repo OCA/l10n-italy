@@ -11,28 +11,32 @@ from odoo.addons.l10n_it_fatturapa.bindings.fatturapa import (
 class WizardExportFatturapa(models.TransientModel):
     _inherit = "wizard.export.fatturapa"
 
-    def exportInvoiceXML(
-        self, company, partner, invoice_ids, attach=False, context=None
-    ):
-        if context is None:
-            context = {}
+    def _split_rc_invoices(self, invoices):
+        invoices_with_rc = invoices.filtered('rc_purchase_invoice_id')
+        invoices_without_rc = invoices - invoices_with_rc
+        return invoices_with_rc, invoices_without_rc
+
+    def _get_rc_invoices(self, invoice_ids):
+        """
+        Return the invoices having IDs `invoice_ids`,
+        if they satisfy Reverse Charge constraints;
+        otherwise raise an Exception.
+        """
         invoices = self.env["account.invoice"].browse(invoice_ids)
-        invoices_with_rc = False
-        invoices_without_rc = False
-        for invoice in invoices:
-            if invoice.rc_purchase_invoice_id:
-                invoices_with_rc = True
-            else:
-                invoices_without_rc = True
+        # All the invoices are either self-invoices or not
+        invoices_with_rc, invoices_without_rc = self._split_rc_invoices(invoices)
         if invoices_with_rc and invoices_without_rc:
             raise UserError(_(
                 "Selected invoices are both with and without reverse charge. You "
                 "should selected a smaller set of invoices"))
+
+        # All the invoices either have specific fiscal document types or not
+        fiscal_document_codes = ['TD17', 'TD18', 'TD19']
         invoices_fiscal_document_type_codes = invoices.filtered(
-            lambda x: x.fiscal_document_type_id.code in ['TD17', 'TD18', 'TD19']
+            lambda x: x.fiscal_document_type_id.code in fiscal_document_codes
         )
         invoices_fiscal_document_type1_codes = invoices.filtered(
-            lambda x: x.fiscal_document_type_id.code not in ['TD17', 'TD18', 'TD19']
+            lambda x: x.fiscal_document_type_id.code not in fiscal_document_codes
         )
         if invoices_fiscal_document_type_codes and invoices_fiscal_document_type1_codes:
             raise UserError(_(
@@ -40,11 +44,23 @@ class WizardExportFatturapa(models.TransientModel):
                 "select invoices exclusively of type 'TD17', 'TD18', 'TD19' "
                 "or exclusively of other types."
             ))
+        return invoices
+
+    def _get_rc_suppliers(self, invoices):
         rc_suppliers = invoices._get_original_suppliers()
         if len(rc_suppliers) > 1:
             raise UserError(_(
                 "Selected reverse charge invoices have different suppliers. Please "
                 "select invoices with same supplier"))
+        return rc_suppliers
+
+    def exportInvoiceXML(
+        self, company, partner, invoice_ids, attach=False, context=None
+    ):
+        if context is None:
+            context = {}
+        invoices = self._get_rc_invoices(invoice_ids)
+        rc_suppliers = self._get_rc_suppliers(invoices)
         if rc_suppliers:
             context['rc_supplier'] = rc_suppliers[0]
             context['invoices_fiscal_document_type_codes'] = invoices.mapped(
