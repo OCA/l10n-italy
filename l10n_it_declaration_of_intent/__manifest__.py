@@ -13,7 +13,7 @@
     "website": "https://github.com/OCA/l10n-italy",
     "depends": [
         "account",
-        "sale_management",
+        "sale",
     ],
     "data": [
         "security/declaration_security.xml",
