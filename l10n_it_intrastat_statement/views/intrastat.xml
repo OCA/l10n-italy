@@ -86,6 +86,9 @@
                                         <field name="sale_section4_operation_number" string="Operation Count"/>
                                         <field name="sale_section4_operation_amount" string="Operation Amount"/>
                                     </group>
+                                    <group string="Call off stock - Section 5">
+                                        <field name="sale_section5_operation_number" />
+                                    </group>
                                 </group>
                                 <newline/>
                                 <notebook>
@@ -106,6 +109,11 @@
                                     </page>
                                     <page string="Services Adjustment - Section 4">
                                         <field name="sale_section4_ids" nolabel="1"
+                                            context="{'statement_id': id} ">
+                                        </field>
+                                    </page>
+                                    <page string="Call off stock - Section 5">
+                                        <field name="sale_section5_ids" nolabel="1"
                                             context="{'statement_id': id} ">
                                         </field>
                                     </page>
@@ -413,6 +421,52 @@
                             <field name="country_payment_id"/>
                         </group>
                     </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- STATEMENT - Sale section 5 -->
+        <record id="view_tree_statement_sale_section5" model="ir.ui.view">
+            <field name="name">views.tree.statement.sale.section5</field>
+            <field name="model">account.intrastat.statement.sale.section5</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="call_off_stock_op_code" invisible="1"/>
+                    <field name="sequence"/>
+                    <field name="call_off_stock_code_id"/>
+                    <field name="current_partner_id" attrs="{'invisible': [('call_off_stock_code_id', '=', False)]}"/>
+                    <field name="current_partner_country_id" attrs="{'invisible': [('call_off_stock_code_id', '=', False)]}"/>
+                    <field name="current_partner_vat" attrs="{'invisible': [('call_off_stock_code_id', '=', False)]}"/>
+                    <field name="new_partner_id" attrs="{'invisible': ['|', ('call_off_stock_code_id', '=', False), ('call_off_stock_op_code', '!=', '3')]}"/>
+                    <field name="new_partner_country_id" attrs="{'invisible': ['|', ('call_off_stock_code_id', '=', False), ('call_off_stock_op_code', '!=', '3')]}"/>
+                    <field name="new_partner_vat" attrs="{'invisible': ['|', ('call_off_stock_code_id', '=', False), ('call_off_stock_op_code', '!=', '3')]}"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_form_statement_sale_section5" model="ir.ui.view">
+            <field name="name">views.form.statement.sale.section5</field>
+            <field name="model">account.intrastat.statement.sale.section5</field>
+            <field name="arch" type="xml">
+                <form name="call_off_stock" string="Call off stock">
+                    <sheet>
+                        <field name="call_off_stock_op_code" invisible="1"/>
+                        <group>
+                            <field name="call_off_stock_code_id"/>
+                        </group>
+                        <group>
+                            <group attrs="{'invisible': [('call_off_stock_code_id', '=', False)]}">
+                                <field name="current_partner_id" />
+                                <field name="current_partner_country_id" />
+                                <field name="current_partner_vat" />
+                            </group>
+                            <group attrs="{'invisible': ['|', ('call_off_stock_op_code', '!=', '3'), ('call_off_stock_code_id', '=', False)]}">
+                                <field name="new_partner_id" />
+                                <field name="new_partner_country_id" />
+                                <field name="new_partner_vat" />
+                            </group>
+                        </group>
+                        <newline/>
+                    </sheet>
                 </form>
             </field>
         </record>
