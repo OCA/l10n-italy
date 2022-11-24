@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="l10n_it_account_balance_eu_assets_backend"
+        name="l10n_it_account_balance_eu assets_backend"
+        inherit_id="web.assets_backend"
+    >
+        <xpath expr="." position="inside">
+            <script
+                type="text/javascript"
+                src="/l10n_it_account_balance_eu/static/src/js/action_manager_report.js"
+            />
+            <script
+                type="text/javascript"
+                src="/l10n_it_account_balance_eu/static/src/js/client_action.js"
+            />
+        </xpath>
+    </template>
+</odoo>
