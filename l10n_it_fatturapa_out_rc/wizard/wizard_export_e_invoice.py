@@ -6,10 +6,37 @@ from odoo.addons.l10n_it_fatturapa.bindings.fatturapa import (
     AnagraficaType,
     IndirizzoType
 )
+from odoo.fields import first
 
 
 class WizardExportFatturapa(models.TransientModel):
     _inherit = "wizard.export.fatturapa"
+
+    def group_invoices_by_partner(self):
+        """
+        Group Reverse charge self-invoices one by one.
+
+        We are sending invoices to ourselves,
+        and XMLs containing self-invoices are currently managed as
+        if there was one self-invoice in each XML
+        (see `fatturapa.attachment.in.is_self_invoice`
+        and `fatturapa.attachment.in.linked_invoice_id_xml`)
+        """
+        invoice_ids = self.env.context.get('active_ids', False)
+        invoices = self._get_rc_invoices(invoice_ids)
+        invoices_with_rc, _other_invoices = self._split_rc_invoices(invoices)
+        if invoices == invoices_with_rc:
+            # These are self-invoices, they are all for ourselves
+            partner = first(invoices_with_rc).partner_id
+            invoices_by_partner = {
+                partner: [
+                    invoice_with_rc.ids
+                    for invoice_with_rc in invoices_with_rc
+                ],
+            }
+        else:
+            invoices_by_partner = super().group_invoices_by_partner()
+        return invoices_by_partner
 
     def _split_rc_invoices(self, invoices):
         invoices_with_rc = invoices.filtered('rc_purchase_invoice_id')

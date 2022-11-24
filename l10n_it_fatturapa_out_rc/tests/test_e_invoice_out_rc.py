@@ -2,6 +2,7 @@ import base64
 from odoo.addons.l10n_it_reverse_charge.tests.rc_common import ReverseChargeCommon
 from odoo.addons.l10n_it_fatturapa_out.tests.fatturapa_common import FatturaPACommon
 from odoo.exceptions import UserError
+from odoo.tests import Form
 
 
 class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
@@ -240,3 +241,109 @@ class TestReverseCharge(ReverseChargeCommon, FatturaPACommon):
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(
             xml_content, 'IT10538570960_00004.xml', "l10n_it_fatturapa_out_rc")
+
+    def _configure_be_supplier(self, supplier):
+        supplier_form = Form(supplier)
+        supplier_form.property_payment_term_id = self.term_15_30
+        supplier_form.vat = "BE0477472701"
+        supplier_form.street = "Street"
+        supplier_form.zip = "12345"
+        supplier_form.city = "city"
+        supplier_form.country_id = self.env.ref("base.be")
+        supplier = supplier_form.save()
+        return supplier
+
+    def _create_rc_bill(self, supplier, tax):
+        bill_model = self.invoice_model.with_context(type='in_invoice')
+        bill_form = Form(bill_model)
+        bill_form.partner_id = supplier
+        bill_form.date_invoice = '2020-12-01'
+        with bill_form.invoice_line_ids.new() as line:
+            line.name = 'Bill for sample product'
+            line.product_id = self.sample_product
+            line.invoice_line_tax_ids.clear()
+            line.invoice_line_tax_ids.add(tax)
+        bill = bill_form.save()
+        bill.action_invoice_open()
+        return bill
+
+    def test_intra_EU_multiple_suppliers(self):
+        """
+        Export multiple self-invoices coming from different suppliers.
+        """
+        # Arrange: Create 2 self invoices from 2 supplier bills
+        # having different suppliers
+        be_supplier = self._configure_be_supplier(self.supplier_intraEU)
+        be_bill = self._create_rc_bill(be_supplier, self.tax_22ai)
+        be_self_invoice = be_bill.rc_self_invoice_id
+        self.assertTrue(be_self_invoice)
+
+        bg_supplier = be_supplier.copy(default={
+            'vat': 'BG1234567892',
+            'country_id': self.env.ref("base.bg").id,
+        })
+        bg_bill = be_bill.copy(default={
+            'partner_id': bg_supplier.id,
+        })
+        bg_bill.action_invoice_open()
+        bg_self_invoice = bg_bill.rc_self_invoice_id
+        self.assertTrue(bg_self_invoice)
+        # pre-condition: The self-invoices are linked to different suppliers
+        self_invoices = be_self_invoice | bg_self_invoice
+        original_suppliers = self_invoices._get_original_suppliers()
+        self.assertEqual(len(original_suppliers), 2)
+        self.assertItemsEqual(original_suppliers, be_supplier | bg_supplier)
+
+        # Act: Export the self-invoices
+        result_action = self.run_wizard(self_invoices.ids)
+
+        # Assert: 2 different attachments have been created
+        result_model = result_action.get('res_model')
+        result_domain = result_action.get('domain')
+        result_records = self.env[result_model].search(result_domain)
+        self.assertEqual(len(result_records), 2)
+
+    def test_extra_EU_multiple_suppliers_additional_invoice(self):
+        """
+        Export multiple self-invoices coming from different suppliers.
+        The Reverse Charge Type applied
+        has "With additional supplier self invoice" enabled.
+        """
+        # Arrange: Create 2 self invoices from 2 supplier bills
+        # having different suppliers.
+        # Both supplier bills have "With additional supplier self invoice" enabled
+        be_supplier = self._configure_be_supplier(self.supplier_extraEU)
+        be_bill = self._create_rc_bill(be_supplier, self.tax_0_pur)
+        fiscal_position = be_bill.fiscal_position_id
+        reverse_charge_type = fiscal_position.rc_type_id
+        self.assertTrue(reverse_charge_type.with_supplier_self_invoice)
+        be_self_invoice = be_bill.rc_self_purchase_invoice_id.rc_self_invoice_id
+        self.assertTrue(be_self_invoice)
+
+        bg_supplier = be_supplier.copy(default={
+            'vat': 'BG1234567892',
+            'country_id': self.env.ref("base.bg").id,
+        })
+        bg_bill = be_bill.copy(default={
+            'partner_id': bg_supplier.id,
+        })
+        bg_bill.action_invoice_open()
+        fiscal_position = bg_bill.fiscal_position_id
+        reverse_charge_type = fiscal_position.rc_type_id
+        self.assertTrue(reverse_charge_type.with_supplier_self_invoice)
+        bg_self_invoice = bg_bill.rc_self_purchase_invoice_id.rc_self_invoice_id
+        self.assertTrue(bg_self_invoice)
+        # pre-condition: The self-invoices are linked to different suppliers
+        self_invoices = be_self_invoice | bg_self_invoice
+        original_suppliers = self_invoices._get_original_suppliers()
+        self.assertEqual(len(original_suppliers), 2)
+        self.assertItemsEqual(original_suppliers, be_supplier | bg_supplier)
+
+        # Act: Export the self-invoices
+        result_action = self.run_wizard(self_invoices.ids)
+
+        # Assert: 2 different attachments have been created
+        result_model = result_action.get('res_model')
+        result_domain = result_action.get('domain')
+        result_records = self.env[result_model].search(result_domain)
+        self.assertEqual(len(result_records), 2)
