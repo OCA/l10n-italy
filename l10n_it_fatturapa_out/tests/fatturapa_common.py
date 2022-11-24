@@ -101,10 +101,12 @@ class FatturaPACommon(AccountTestUsers):
             seq_date = inv_seq._create_date_range_seq(dt)
         seq_date.number_next_actual = invoice_number
 
-    def run_wizard(self, invoice_id):
+    def run_wizard(self, invoice_ids):
+        if not isinstance(invoice_ids, list):
+            invoice_ids = [invoice_ids]
         wizard = self.wizard_model.create({})
         return wizard.with_context(
-            {'active_ids': [invoice_id]}).exportFatturaPA()
+            {'active_ids': invoice_ids}).exportFatturaPA()
 
     def set_e_invoice_file_id(self, e_invoice, file_name):
         # We need this because file name is random and we can't predict it
