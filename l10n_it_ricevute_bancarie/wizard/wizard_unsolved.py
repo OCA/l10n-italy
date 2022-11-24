@@ -110,7 +110,6 @@ class RibaUnsolved(models.TransientModel):
         if not active_id:
             raise UserError(_("No active ID found."))
         move_model = self.env["account.move"]
-        invoice_model = self.env["account.move"]
         move_line_model = self.env["account.move.line"]
         distinta_line = self.env["riba.distinta.line"].browse(active_id)
         wizard = self
@@ -127,6 +126,7 @@ class RibaUnsolved(models.TransientModel):
             "ref": _("Past Due C/O %s - Line %s")
             % (distinta_line.distinta_id.name, distinta_line.sequence),
             "journal_id": wizard.unsolved_journal_id.id,
+            "date": distinta_line.due_date,
             "line_ids": [
                 (
                     0,
@@ -203,7 +203,7 @@ class RibaUnsolved(models.TransientModel):
                             i.id
                             for i in riba_move_line.move_line_id.unsolved_invoice_ids
                         ]
-                    invoice_model.browse(invoice_ids).write(
+                    move_model.browse(invoice_ids).write(
                         {
                             "unsolved_move_line_ids": [(4, move_line.id)],
                         }
