@@ -1,0 +1,22 @@
+<template>
+    <!-- Buttons of the Control Panel -->
+    <t t-name="l10n_it_account_balance_eu.client_action.ControlButtons">
+        <div class="o_balance_eu_report_buttons">
+            <button
+                type="button"
+                class="btn btn-primary o_report_print"
+                title="Print PDF"
+            >Print PDF</button>
+            <button
+                type="button"
+                class="btn btn-secondary o_report_xlsx"
+                title="Export XLSX"
+            >Export XLSX</button>
+            <button
+                type="button"
+                class="btn btn-secondary o_report_xbrl"
+                title="Export XBRL"
+            >Export XBRL</button>
+        </div>
+    </t>
+</template>
