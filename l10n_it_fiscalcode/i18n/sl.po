@@ -80,8 +80,8 @@ msgstr "Ustvarjeno"
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__creation_date
-msgid "Creation date"
-msgstr "Datum nastanka"
+msgid "Creation Date"
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc__birth_date
@@ -91,19 +91,18 @@ msgstr "Rojstni datum"
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__display_name
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct__display_name
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_company__display_name
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner__display_name
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc__display_name
 msgid "Display Name"
 msgstr "Prikazni naziv"
 
 #. module: l10n_it_fiscalcode
+#. odoo-python
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:0
 #, python-format
 msgid ""
 "Existing fiscal code %(partner_fiscalcode)s is different from the computed "
 "one (%(compute)s). If you want to use the computed one, remove the existing "
-"onepartner_fiscalcode"
+"one"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
@@ -133,8 +132,6 @@ msgstr "Fiskalna koda"
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__id
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct__id
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_company__id
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner__id
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc__id
 msgid "ID"
 msgstr "ID"
@@ -154,8 +151,6 @@ msgstr "Italijanska fiskalna koda"
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code____last_update
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code_distinct____last_update
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_company____last_update
-#: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_partner____last_update
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_wizard_compute_fc____last_update
 msgid "Last Modified on"
 msgstr "Zadnjič spremenjeno"
@@ -206,6 +201,7 @@ msgid "National code"
 msgstr "Koda narodnosti"
 
 #. module: l10n_it_fiscalcode
+#. odoo-python
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:0
 #, python-format
 msgid "National code is missing"
@@ -222,6 +218,7 @@ msgid "Notes"
 msgstr "Opombe"
 
 #. module: l10n_it_fiscalcode
+#. odoo-python
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:0
 #, python-format
 msgid "One or more fields are missing"
@@ -249,6 +246,7 @@ msgid "Surname"
 msgstr "Priimek"
 
 #. module: l10n_it_fiscalcode
+#. odoo-python
 #: code:addons/l10n_it_fiscalcode/model/res_partner.py:0
 #, python-format
 msgid "The fiscal code doesn't seem to be correct."
@@ -258,6 +256,9 @@ msgstr "Kaže, da je fiskalna koda nepravilna."
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__var_date
 msgid "Variation date"
 msgstr "Variacija datuma"
+
+#~ msgid "Creation date"
+#~ msgstr "Datum nastanka"
 
 #~ msgid "Compute F.C."
 #~ msgstr "Obdelaj f. k."
