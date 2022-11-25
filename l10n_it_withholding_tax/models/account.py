@@ -485,89 +485,35 @@ class AccountMove(models.Model):
                 payment_val["wt_move_line"] = False
         return payment_vals
 
-    def action_register_payment(self):
-        """
-        Set net to pay how default amount to pay
-        """
-        dp_obj = self.env["decimal.precision"]
-        res = super().action_register_payment()
-        amount_net_pay_residual = 0
-        for am in self:
-            if am.withholding_tax_amount:
-                amount_net_pay_residual += am.amount_net_pay_residual
-        if not float_is_zero(amount_net_pay_residual, dp_obj.precision_get("Account")):
-            ctx = res.get("context", {})
-            if ctx:
-                ctx.update({"default_amount": amount_net_pay_residual})
-            res.update({"context": ctx})
-        return res
+    @api.model
+    def _refund_cleanup_lines(self, lines):
+        lines_values = super()._refund_cleanup_lines(lines)
+        # Add same Withholding Taxes to Refund lines
+        empty_wt_tax = self.env['withholding.tax'].browse()
+        for line_index, line in enumerate(lines):
+            # `line` can be a tax line
+            # that does not have field `invoice_line_tax_wt_ids`
+            line_wts = getattr(line, 'invoice_line_tax_wt_ids', empty_wt_tax)
+            if line_wts:
+                # There is no field to match the line and its values,
+                # we have to trust that the order is preserved
+                line_values = lines_values[line_index]
+                line_values = line_values[2]  # values have format (0, 0, <values>)
+                update_values = line._convert_to_write({
+                    'invoice_line_tax_wt_ids': line_wts,
+                })
+                line_values.update(update_values)
+        return lines_values
 
-    def _wt_unlink_statements_move_states(self):
-        """Move states that trigger the deletion of linked statements.
-
-        When a posted move is changed in one of these states,
-        its statements are deleted.
-        """
-        return "cancel", "draft"
-
-    def _wt_unlink_statements(self):
-        """Delete the statements linked to posted moves in `self`."""
-        posted_moves = self.filtered_domain(
-            [
-                ("state", "=", "posted"),
-            ],
+    def refund(self, date_invoice=None, date=None, description=None, journal_id=None):
+        refunds = super().refund(
+            date_invoice=date_invoice, date=date,
+            description=description, journal_id=journal_id,
         )
-        if posted_moves:
-            statements = self.env["withholding.tax.statement"].search(
-                [
-                    ("move_id", "in", posted_moves.ids),
-                ],
-            )
-            statements.unlink()
+        for refund in refunds:
+            refund._onchange_invoice_line_wt_ids()
+        return refunds
 
-    def write(self, vals):
-        new_state = vals.get("state")
-        if new_state in self._wt_unlink_statements_move_states():
-            self._wt_unlink_statements()
-        return super().write(vals)
-
-
-class AccountMoveLine(models.Model):
-    _inherit = "account.move.line"
-
-    withholding_tax_id = fields.Many2one("withholding.tax", string="Withholding Tax")
-    withholding_tax_base = fields.Float(string="Withholding Tax Base")
-    withholding_tax_amount = fields.Float(string="Withholding Tax Amount")
-    withholding_tax_generated_by_move_id = fields.Many2one(
-        "account.move", string="Withholding Tax generated from", readonly=True
-    )
-
-    def remove_move_reconcile(self):
-        # When unreconcile a payment with a wt move linked, it will be
-        # unreconciled also the wt account move
-        for account_move_line in self:
-            rec_move_ids = self.env["account.partial.reconcile"]
-            domain = [
-                (
-                    "withholding_tax_generated_by_move_id",
-                    "=",
-                    account_move_line.move_id.id,
-                )
-            ]
-            wt_mls = self.env["account.move.line"].search(domain)
-            # Avoid wt move not in due state
-            domain = [("wt_account_move_id", "in", wt_mls.mapped("move_id").ids)]
-            wt_moves = self.env["withholding.tax.move"].search(domain)
-            wt_moves.check_unlink()
-
-            for wt_ml in wt_mls:
-                rec_move_ids += wt_ml.matched_debit_ids
-                rec_move_ids += wt_ml.matched_credit_ids
-            rec_move_ids.unlink()
-            # Delete wt move
-            for wt_move in wt_mls.mapped("move_id"):
-                wt_move.button_cancel()
-                wt_move.unlink()
 
         return super(AccountMoveLine, self).remove_move_reconcile()
 

@@ -2,7 +2,6 @@
 # Copyright 2023 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-import time
 from datetime import date, timedelta
 
 from odoo import fields
@@ -282,75 +281,47 @@ class TestWithholdingTax(TransactionCase):
         self.assertEqual(new_tax.code, "1040 (copy)")
         self.assertEqual(new_tax.name, "Code 1040")
 
-    def test_create_payments(self):
-        """Test create payment when Register Payment wizard is open from Bill tree view"""
-        ctx = {
-            "active_ids": [self.invoice.id],
-            "active_model": "account.move",
-        }
-        f = Form(
-            self.payment_register_model.with_context(ctx), view=self.register_view_id
+    def _create_bill(self):
+        bill_model = self.env['account.invoice'].with_context(type='in_invoice')
+        bill_form = Form(bill_model)
+        bill_form.name = "Test Supplier Invoice WT"
+        bill_form.partner_id = self.env.ref('base.res_partner_12')
+        with bill_form.invoice_line_ids.new() as line:
+            line.name = "Advice"
+            line.price_unit = 1000
+            line.invoice_line_tax_wt_ids.clear()
+            line.invoice_line_tax_wt_ids.add(self.wt1040)
+        bill = bill_form.save()
+        bill.action_invoice_open()
+        return bill
+
+    def _get_refund(self, bill):
+        refund_wizard_model = self.env['account.invoice.refund'] \
+            .with_context(
+            active_id=bill.id,
+            active_ids=bill.ids,
+            active_model=bill._name,
         )
-        payment_register = f.save()
-        # passing default_move_type="in_invoice" in the context in order
-        # to simulate opening of payment_register from Bills tree view
-        payment_register.with_context(
-            default_move_type="in_invoice"
-        ).action_create_payments()
+        refund_wizard_form = Form(refund_wizard_model)
+        refund_wizard_form.filter_refund = 'cancel'
+        refund_wizard = refund_wizard_form.save()
+        refund_result = refund_wizard.invoice_refund()
 
-    def _get_statements(self, move):
-        """Get statements linked to `move`."""
-        statements = self.env["withholding.tax.statement"].search(
-            [
-                ("move_id", "=", move.id),
-            ],
-        )
-        return statements
+        refund_model = refund_result.get('res_model')
+        refund_domain = refund_result.get('domain')
+        refund = self.env[refund_model].search(refund_domain, limit=1)
+        return refund
 
-    def _assert_recreate_statements(self, move, statements_count):
-        """Post a `move` that is Withholding Tax and has no statements,
-        it creates `statements_count` statements."""
-        # Arrange
-        statements = self._get_statements(move)
-        # pre-condition
-        self.assertFalse(statements)
-        self.assertTrue(move.withholding_tax)
+    def test_refund_wt_propagation(self):
+        """
+        When a Refund is created, the Withholding Tax is propagated to it.
+        """
+        # Arrange: Create a bill
+        bill = self._create_bill()
+        self.assertTrue(bill.withholding_tax)
 
-        # Act
-        move.action_post()
+        # Act: Create a refund
+        refund = self._get_refund(bill)
 
-        # Assert
-        posted_move_statements_count = len(self._get_statements(move))
-        self.assertEqual(posted_move_statements_count, statements_count)
-
-    def test_draft_recreate_statements(self):
-        """Set to draft and re-confirm a move: the Tax Statements are recreated."""
-        # Arrange
-        move = self.invoice
-        statements = self._get_statements(move)
-        statements_count = len(statements)
-        # pre-condition: There is a statement(s)
-        self.assertTrue(statements)
-
-        # Act
-        move.button_draft()
-
-        # Assert: The original statement is deleted and there are no statements
-        self.assertFalse(statements.exists())
-        self._assert_recreate_statements(move, statements_count)
-
-    def test_cancel_recreate_statements(self):
-        """Cancel and re-confirm a move: the Tax Statements are recreated."""
-        # Arrange
-        move = self.invoice
-        statements = self._get_statements(move)
-        statements_count = len(statements)
-        # pre-condition: There is a statement(s)
-        self.assertTrue(statements)
-
-        # Act
-        move.button_cancel()
-
-        # Assert: The original statement is deleted and there are no statements
-        self.assertFalse(statements.exists())
-        self._assert_recreate_statements(move, statements_count)
+        # Assert: The refund has the Withholding Tax flag enabled
+        self.assertTrue(refund.withholding_tax)
