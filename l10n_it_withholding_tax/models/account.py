@@ -482,6 +482,39 @@ class AccountMove(models.Model):
                         payment_val["wt_move_line"] = False
         return
 
+    @api.model
+    def _refund_cleanup_lines(self, lines):
+        lines_values = super()._refund_cleanup_lines(lines)
+        # Add same Withholding Taxes to Refund lines
+        empty_wt_tax = self.env["withholding.tax"].browse()
+        for line_index, line in enumerate(lines):
+            # `line` can be a tax line
+            # that does not have field `invoice_line_tax_wt_ids`
+            line_wts = getattr(line, "invoice_line_tax_wt_ids", empty_wt_tax)
+            if line_wts:
+                # There is no field to match the line and its values,
+                # we have to trust that the order is preserved
+                line_values = lines_values[line_index]
+                line_values = line_values[2]  # values have format (0, 0, <values>)
+                update_values = line._convert_to_write(
+                    {
+                        "invoice_line_tax_wt_ids": line_wts,
+                    }
+                )
+                line_values.update(update_values)
+        return lines_values
+
+    def refund(self, date_invoice=None, date=None, description=None, journal_id=None):
+        refunds = super().refund(
+            date_invoice=date_invoice,
+            date=date,
+            description=description,
+            journal_id=journal_id,
+        )
+        for refund in refunds:
+            refund._onchange_invoice_line_wt_ids()
+        return refunds
+
 
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
