@@ -100,6 +100,7 @@ msgid "Journal"
 msgstr ""
 
 #. module: l10n_it_fiscal_document_type
+#. odoo-python
 #: code:addons/l10n_it_fiscal_document_type/models/journal.py:0
 #, python-format
 msgid ""
