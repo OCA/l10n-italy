@@ -89,6 +89,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
+#. odoo-python
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:0
 #, python-format
 msgid ""
@@ -190,6 +191,7 @@ msgid "National code"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
+#. odoo-python
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:0
 #, python-format
 msgid "National code is missing"
@@ -206,6 +208,7 @@ msgid "Notes"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
+#. odoo-python
 #: code:addons/l10n_it_fiscalcode/wizard/compute_fc.py:0
 #, python-format
 msgid "One or more fields are missing"
@@ -233,6 +236,7 @@ msgid "Surname"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
+#. odoo-python
 #: code:addons/l10n_it_fiscalcode/model/res_partner.py:0
 #, python-format
 msgid "The fiscal code doesn't seem to be correct."
