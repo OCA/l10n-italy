@@ -1,6 +1,6 @@
 # Copyright 2018 Lorenzo Battistini (https://github.com/eLBati)
 
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase, Form
 from datetime import date, timedelta
 from odoo import fields
 from odoo.exceptions import ValidationError
@@ -192,3 +192,48 @@ class TestWithholdingTax(TransactionCase):
         new_tax = self.wt1040.copy()
         self.assertEqual(new_tax.code, "1040 (copy)")
         self.assertEqual(new_tax.name, "Code 1040")
+
+    def _create_bill(self):
+        bill_model = self.env['account.invoice'].with_context(type='in_invoice')
+        bill_form = Form(bill_model)
+        bill_form.name = "Test Supplier Invoice WT"
+        bill_form.partner_id = self.env.ref('base.res_partner_12')
+        with bill_form.invoice_line_ids.new() as line:
+            line.name = "Advice"
+            line.price_unit = 1000
+            line.invoice_line_tax_wt_ids.clear()
+            line.invoice_line_tax_wt_ids.add(self.wt1040)
+        bill = bill_form.save()
+        bill.action_invoice_open()
+        return bill
+
+    def _get_refund(self, bill):
+        refund_wizard_model = self.env['account.invoice.refund'] \
+            .with_context(
+            active_id=bill.id,
+            active_ids=bill.ids,
+            active_model=bill._name,
+        )
+        refund_wizard_form = Form(refund_wizard_model)
+        refund_wizard_form.filter_refund = 'cancel'
+        refund_wizard = refund_wizard_form.save()
+        refund_result = refund_wizard.invoice_refund()
+
+        refund_model = refund_result.get('res_model')
+        refund_domain = refund_result.get('domain')
+        refund = self.env[refund_model].search(refund_domain, limit=1)
+        return refund
+
+    def test_refund_wt_propagation(self):
+        """
+        When a Refund is created, the Withholding Tax is propagated to it.
+        """
+        # Arrange: Create a bill
+        bill = self._create_bill()
+        self.assertTrue(bill.withholding_tax)
+
+        # Act: Create a refund
+        refund = self._get_refund(bill)
+
+        # Assert: The refund has the Withholding Tax flag enabled
+        self.assertTrue(refund.withholding_tax)
