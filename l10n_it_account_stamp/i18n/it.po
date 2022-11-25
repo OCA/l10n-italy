@@ -93,12 +93,14 @@ msgid "Journal Item"
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
 #, python-format
 msgid "Missing account income configuration for %s"
 msgstr "Configurazione mancante del conto di ricavo per %s"
 
 #. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
 #, python-format
 msgid "Missing tax stamp product in company settings!"
@@ -110,6 +112,7 @@ msgid "Product"
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
 #, python-format
 msgid "Product %s must have income and expense accounts"
@@ -162,12 +165,14 @@ msgid "Tax Stamp 2 euro"
 msgstr "Imposta di bollo 2 euro"
 
 #. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
 #, python-format
 msgid "Tax Stamp Expense"
 msgstr "Costo imposta di bollo"
 
 #. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
 #, python-format
 msgid "Tax Stamp Income"
@@ -187,18 +192,21 @@ msgid "Tax stamp"
 msgstr "Imposta di bollo"
 
 #. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
 #, python-format
 msgid "Tax stamp is not applicable"
 msgstr "Imposta di bollo non applicabile"
 
 #. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
 #, python-format
 msgid "Tax stamp line %s already present. Remove it first."
 msgstr "Riga per l'imposta di bollo %s già presente, prima rimuoverla."
 
 #. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/product.py:0
 #, python-format
 msgid "The product %s must be a stamp to apply set taxes!"
