@@ -60,6 +60,7 @@ msgid "Balance sign"
 msgstr "Segno del saldo"
 
 #. module: l10n_it_account
+#. odoo-python
 #: code:addons/l10n_it_account/models/account_account.py:0
 #, python-format
 msgid "Balance sign's value can only be 1 or -1."
@@ -96,6 +97,7 @@ msgid "Include in VAT register"
 msgstr "Includere nel registro IVA"
 
 #. module: l10n_it_account
+#. odoo-python
 #: code:addons/l10n_it_account/models/account_group.py:0
 #, python-format
 msgid "Incoherent balance signs for '{}' and its subgroups."
