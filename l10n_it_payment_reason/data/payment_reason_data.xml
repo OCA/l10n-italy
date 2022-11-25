@@ -1,0 +1,182 @@
+<odoo noupdate="1">
+    <record model="payment.reason" id="a">
+      <field name="code">A</field>
+      <field
+            name="name"
+        >Prestazioni di lavoro autonomo rientranti nell'esercizio di arte o professione abituale</field>
+    </record>
+    <record model="payment.reason" id="b">
+      <field name="code">B</field>
+      <field
+            name="name"
+        >Utilizzazione economica, da parte dell'autore o dell'inventore, di opere dell'ingegno, di brevetti industriali e di processi, formule o informazioni relativi a esperienze acquisite in campo industriale, commerciale o scientifico
+      </field>
+    </record>
+    <record model="payment.reason" id="c">
+      <field name="code">C</field>
+      <field
+            name="name"
+        >Utili derivanti da contratti di associazione in partecipazione e da contratti di cointeressenza, quando l'apporto è costituito esclusivamente dalla prestazione di lavoro</field>
+    </record>
+    <record model="payment.reason" id="d">
+      <field name="code">D</field>
+      <field
+            name="name"
+        >Utili spettanti ai soci promotori e ai soci fondatori delle società di capitali
+      </field>
+    </record>
+    <record model="payment.reason" id="e">
+      <field name="code">E</field>
+      <field name="name">Levata di protesti cambiari da parte dei segretari comunali
+      </field>
+    </record>
+    <record model="payment.reason" id="g">
+      <field name="code">G</field>
+      <field
+            name="name"
+        >Indennità corrisposte per la cessazione di attività sportiva professionale
+      </field>
+    </record>
+    <record model="payment.reason" id="h">
+      <field name="code">H</field>
+      <field
+            name="name"
+        >Indennità corrisposte per la cessazione dei rapporti di agenzia delle persone fisiche e delle società di persone, con esclusione delle somme maturate entro il 31.12.2003, già imputate per competenza e tassate come reddito d'impresa</field>
+    </record>
+    <record model="payment.reason" id="i">
+      <field name="code">I</field>
+      <field
+            name="name"
+        >Indennità corrisposte per la cessazione da funzioni notarili</field>
+    </record>
+    <record model="payment.reason" id="l">
+      <field name="code">L</field>
+      <field
+            name="name"
+        >Redditi derivanti dall’utilizzazione economica di opere dell’ingegno, di brevetti industriali e di processi, formule e informazioni relativi a esperienze acquisite in campo industriale, commerciale o scientifico, che sono percepiti dagli aventi causa a titolo gratuito (ad es. eredi e legatari dell’autore e inventore)</field>
+    </record>
+    <record model="payment.reason" id="m">
+      <field name="code">M</field>
+      <field
+            name="name"
+        >Prestazioni di lavoro autonomo non esercitate abitualmente, obblighi di fare, di non fare o permettere
+      </field>
+    </record>
+    <record model="payment.reason" id="n">
+      <field name="code">N</field>
+      <field
+            name="name"
+        >Indennità di trasferta, rimborso forfetario di spese, premi e compensi erogati: .. nell'esercizio diretto di attività sportive dilettantistiche
+      </field>
+    </record>
+    <record model="payment.reason" id="o">
+      <field name="code">O</field>
+      <field
+            name="name"
+        >Prestazioni di lavoro autonomo non esercitate abitualmente, obblighi di fare, di non fare o permettere, per le quali non sussiste l'obbligo di iscrizione alla gestione separata (Circ. Inps 104/2001)
+      </field>
+    </record>
+    <record model="payment.reason" id="p">
+      <field name="code">P</field>
+      <field
+            name="name"
+        >Compensi corrisposti a soggetti non residenti privi di stabile organizzazione per l'uso o la concessione in uso di attrezzature industriali, commerciali o scientifiche che si trovano nel territorio dello</field>
+    </record>
+    <record model="payment.reason" id="q">
+      <field name="code">Q</field>
+      <field
+            name="name"
+        >Provvigioni corrisposte ad agente o rappresentante di commercio monomandatario
+      </field>
+    </record>
+    <record model="payment.reason" id="r">
+      <field name="code">R</field>
+      <field
+            name="name"
+        >Provvigioni corrisposte ad agente o rappresentante di commercio plurimandatario
+      </field>
+    </record>
+    <record model="payment.reason" id="s">
+      <field name="code">S</field>
+      <field name="name">Provvigioni corrisposte a commissionario
+      </field>
+    </record>
+    <record model="payment.reason" id="t">
+      <field name="code">T</field>
+      <field name="name">Provvigioni corrisposte a mediatore
+      </field>
+    </record>
+    <record model="payment.reason" id="u">
+      <field name="code">U</field>
+      <field name="name">Provvigioni corrisposte a procacciatore di affari
+      </field>
+    </record>
+    <record model="payment.reason" id="v">
+      <field name="code">V</field>
+      <field
+            name="name"
+        >Provvigioni corrisposte a incaricato per le vendite a domicilio e provvigioni corrisposte a incaricato per la vendita porta a porta e per la vendita ambulante di giornali quotidiani e periodici (L. 25.02.1987, n. 67)
+      </field>
+    </record>
+    <record model="payment.reason" id="w">
+      <field name="code">W</field>
+      <field
+            name="name"
+        >Corrispettivi erogati nel 2013 per prestazioni relative a contratti d'appalto cui si sono resi applicabili le disposizioni contenute nell'art. 25-ter D.P.R. 600/1973
+      </field>
+    </record>
+    <record model="payment.reason" id="x">
+      <field name="code">X</field>
+      <field
+            name="name"
+        >Canoni corrisposti nel 2004 da società o enti residenti, ovvero da stabili organizzazioni di società estere di cui all'art. 26-quater, c. 1, lett. a) e b) D.P.R. 600/1973, a società o stabili organizzazioni di società, situate in altro Stato membro dell'Unione Europea in presenza dei relativi requisiti richiesti, per i quali è stato effettuato nel 2006 il rimborso della ritenuta ai sensi dell'art. 4 D. Lgs. 143/2005
+      </field>
+    </record>
+    <record model="payment.reason" id="y">
+      <field name="code">Y</field>
+      <field
+            name="name"
+        >Canoni corrisposti dal 1.01.2005 al 26.07.2005 da soggetti di cui al punto precedente
+      </field>
+    </record>
+    <record model="payment.reason" id="z">
+      <field name="code">ZO</field>
+      <field name="name">Titolo diverso dai precedenti
+      </field>
+    </record>
+    <record model="payment.reason" id="l1">
+      <field name="code">L1</field>
+      <field
+            name="name"
+        >Redditi derivanti dall’utilizzazione economica di opere dell’ingegno, di brevetti industriali e di processi, formule e informazioni relativi a esperienze acquisite in campo industriale, commerciale o scientifico, che sono percepiti da soggetti che abbiano acquistato a titolo oneroso i diritti alla loro utilizzazione
+      </field>
+    </record>
+     <record model="payment.reason" id="m1">
+      <field name="code">M1</field>
+      <field
+            name="name"
+        >Redditi derivanti dall’assunzione di obblighi di fare, di non fare o permettere
+      </field>
+    </record>
+    <record model="payment.reason" id="m2">
+      <field name="code">M2</field>
+      <field
+            name="name"
+        >Prestazioni di lavoro autonomo non esercitate abitualmente per le quali sussiste l’obbligo di iscrizione alla Gestione Separata ENPAPI
+      </field>
+    </record>
+    <record model="payment.reason" id="o1">
+      <field name="code">O1</field>
+      <field
+            name="name"
+        >Redditi derivanti dall’assunzione di obblighi di fare, di non fare o permettere, per le quali non sussiste l’obbligo di iscrizione alla gestione separata (Circ. INPS n. 104/2001)
+      </field>
+    </record>
+    <record model="payment.reason" id="v1">
+      <field name="code">V1</field>
+      <field
+            name="name"
+        >Redditi derivanti da attività commerciali non esercitate abitualmente (ad esempio, provvigioni corrisposte per prestazioni occasionali ad agente o rappresentante di commercio, mediatore, procacciatore d’affari)
+      </field>
+    </record>
+</odoo>

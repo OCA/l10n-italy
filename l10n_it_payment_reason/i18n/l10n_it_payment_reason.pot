@@ -1,0 +1,78 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_payment_reason
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_payment_reason
+#: model:ir.model.fields,field_description:l10n_it_payment_reason.field_payment_reason__code
+msgid "Code"
+msgstr ""
+
+#. module: l10n_it_payment_reason
+#: model:ir.model.fields,field_description:l10n_it_payment_reason.field_payment_reason__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_it_payment_reason
+#: model:ir.model.fields,field_description:l10n_it_payment_reason.field_payment_reason__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: l10n_it_payment_reason
+#: model:ir.model.fields,field_description:l10n_it_payment_reason.field_payment_reason__name
+msgid "Description"
+msgstr ""
+
+#. module: l10n_it_payment_reason
+#: model:ir.model.fields,field_description:l10n_it_payment_reason.field_payment_reason__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_payment_reason
+#: model:ir.model.fields,field_description:l10n_it_payment_reason.field_payment_reason__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_payment_reason
+#: model:ir.model.fields,field_description:l10n_it_payment_reason.field_payment_reason____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_payment_reason
+#: model:ir.model.fields,field_description:l10n_it_payment_reason.field_payment_reason__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_it_payment_reason
+#: model:ir.model.fields,field_description:l10n_it_payment_reason.field_payment_reason__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_it_payment_reason
+#: model:ir.model,name:l10n_it_payment_reason.model_payment_reason
+#: model_terms:ir.ui.view,arch_db:l10n_it_payment_reason.view_payment_reason_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_payment_reason.view_payment_reason_tree
+msgid "Payment Reason"
+msgstr ""
+
+#. module: l10n_it_payment_reason
+#: model:ir.actions.act_window,name:l10n_it_payment_reason.action_payment_reason
+#: model:ir.ui.menu,name:l10n_it_payment_reason.menu_payment_reason
+msgid "Payment Reasons"
+msgstr ""
+
+#. module: l10n_it_payment_reason
+#: code:addons/l10n_it_payment_reason/models/payment_reason.py:0
+#, python-format
+msgid "The element with code %s already exists"
+msgstr ""
