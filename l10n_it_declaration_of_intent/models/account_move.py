@@ -147,10 +147,9 @@ class AccountMove(models.Model):
                     # Link declaration to invoice
                     self.declaration_of_intent_ids = [(4, declaration.id)]
                     if is_sale_document:
-                        if not self.narration:
-                            self.narration = ""
-                        self.narration += _(
-                            "\n\nVostra dichiarazione d'intento nr %s del %s, "
+                        cmt = self.narration or ""
+                        msg = (
+                            "Vostra dichiarazione d'intento nr %s del %s, "
                             "nostro protocollo nr %s del %s, "
                             "protocollo telematico nr %s."
                             % (
@@ -163,6 +162,13 @@ class AccountMove(models.Model):
                                 declaration.telematic_protocol,
                             )
                         )
+                        # Avoid duplication
+                        if msg not in cmt:
+                            if cmt.strip():
+                                cmt += "\n\n" + msg
+                            else:
+                                cmt = msg
+                        self.narration = cmt
 
     def _prepare_declaration_line(self, amount, lines, tax):
         """Dictionary used to create declaration line for this invoice."""
