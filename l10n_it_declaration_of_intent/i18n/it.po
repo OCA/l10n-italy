@@ -18,20 +18,6 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_it_declaration_of_intent
-#: code:addons/l10n_it_declaration_of_intent/models/account_move.py:0
-#, python-format
-msgid ""
-"\n"
-"\n"
-"Vostra dichiarazione d'intento nr %s del %s, nostro protocollo nr %s del %s, "
-"protocollo telematico nr %s."
-msgstr ""
-"\n"
-"\n"
-"Vostra dichiarazione d'intento nr %s del %s, nostro protocollo nr %s del %s, "
-"protocollo telematico nr %s."
-
-#. module: l10n_it_declaration_of_intent
 #: model_terms:ir.ui.view,arch_db:l10n_it_declaration_of_intent.declaration_of_intent_form
 msgid "Accounting"
 msgstr "Contabilità"
@@ -480,3 +466,15 @@ msgstr "Limite annuale per le dichiarazioni"
 #: model_terms:ir.ui.view,arch_db:l10n_it_declaration_of_intent.select_manually_declarations_wizard
 msgid "or"
 msgstr "o"
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "Vostra dichiarazione d'intento nr %s del %s, nostro protocollo nr %s del "
+#~ "%s, protocollo telematico nr %s."
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "Vostra dichiarazione d'intento nr %s del %s, nostro protocollo nr %s del "
+#~ "%s, protocollo telematico nr %s."
