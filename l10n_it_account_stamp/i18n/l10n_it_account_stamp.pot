@@ -86,12 +86,14 @@ msgid "Journal Item"
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
 #, python-format
 msgid "Missing account income configuration for %s"
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
@@ -105,6 +107,7 @@ msgid "Product"
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
 #, python-format
 msgid "Product %s must have income and expense accounts"
@@ -156,12 +159,14 @@ msgid "Tax Stamp 2 euro"
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
 #, python-format
 msgid "Tax Stamp Expense"
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
 #, python-format
 msgid "Tax Stamp Income"
@@ -181,18 +186,21 @@ msgid "Tax stamp"
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
 #, python-format
 msgid "Tax stamp is not applicable"
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
 #, python-format
 msgid "Tax stamp line %s already present. Remove it first."
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#. odoo-python
 #: code:addons/l10n_it_account_stamp/models/product.py:0
 #, python-format
 msgid "The product %s must be a stamp to apply set taxes!"
