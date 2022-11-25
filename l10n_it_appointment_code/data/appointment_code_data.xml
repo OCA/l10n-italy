@@ -1,0 +1,83 @@
+<odoo noupdate="1">
+
+    <record model="appointment.code" id="1">
+      <field name="code">1</field>
+      <field name="name">Rappresentante legale, negoziale o di fatto, socio
+ amministratore</field>
+    </record>
+    <record model="appointment.code" id="2">
+      <field name="code">2</field>
+      <field name="name">Rappresentante di minore, inabilitato o interdetto,
+ amministratore di sostegno, ovvero curatore dell’eredità giacente,
+ amministratore di eredità devoluta sotto condizione sospensiva o in
+ favore di nascituro non ancora concepito</field>
+    </record>
+    <record model="appointment.code" id="3">
+      <field name="code">3</field>
+      <field name="name">Curatore fallimentare</field>
+    </record>
+    <record model="appointment.code" id="4">
+      <field name="code">4</field>
+      <field name="name">Commissario liquidatore (liquidazione coatta
+ amministrativa ovvero amministrazione straordinaria)</field>
+    </record>
+    <record model="appointment.code" id="5">
+      <field name="code">5</field>
+      <field name="name">Custode giudiziario (custodia giudiziaria), ovvero
+ amministratore giudiziario in qualità di rappresentante dei beni
+ sequestrati ovvero commissario giudiziale (amministrazione
+ controllata)</field>
+    </record>
+    <record model="appointment.code" id="6">
+      <field name="code">6</field>
+      <field name="name">Rappresentante fiscale di soggetto non residente</field>
+    </record>
+    <record model="appointment.code" id="7">
+      <field name="code">7</field>
+      <field name="name">Erede</field>
+    </record>
+    <record model="appointment.code" id="8">
+      <field name="code">8</field>
+      <field name="name">Liquidatore (liquidazione volontaria)</field>
+    </record>
+    <record model="appointment.code" id="9">
+      <field name="code">9</field>
+      <field name="name">Soggetto tenuto a presentare la dichiarazione ai fini
+ IVA per conto del soggetto estinto a seguito di operazioni
+ straordinarie o altre trasformazioni sostanziali soggettive
+ (cessionario d’azienda, società beneficiaria, incorporante,
+ conferitaria, ecc.); ovvero, ai fini delle imposte sui redditi,
+ rappresentante della società beneficiaria (scissione) o della società
+ risultante dalla fusione o incorporazione</field>
+    </record>
+    <record model="appointment.code" id="10">
+      <field name="code">10</field>
+      <field name="name">Rappresentante fiscale di soggetto non residente con
+ le limitazioni di cui all’art. 44, comma 3, del D.L. n. 331/1993</field>
+    </record>
+    <record model="appointment.code" id="11">
+      <field name="code">11</field>
+      <field name="name">Soggetto esercente l’attività tutoria del minore o
+ interdetto in relazione alla funzione istituzionale rivestita</field>
+    </record>
+    <record model="appointment.code" id="12">
+      <field name="code">12</field>
+      <field name="name">Liquidatore (liquidazione volontaria di ditta
+ individuale - periodo ante messa in liquidazione)</field>
+    </record>
+    <record model="appointment.code" id="13">
+      <field name="code">13</field>
+      <field name="name">Amministratore di condominio</field>
+    </record>
+    <record model="appointment.code" id="14">
+      <field name="code">14</field>
+      <field name="name">Soggetto che sottoscrive la dichiarazione per conto
+ di una pubblica amministrazione</field>
+    </record>
+    <record model="appointment.code" id="15">
+      <field name="code">15</field>
+      <field name="name">Commissario liquidatore di una pubblica
+ amministrazione</field>
+    </record>
+
+</odoo>
