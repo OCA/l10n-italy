@@ -5,6 +5,7 @@
 from odoo import models, fields, api, _
 import odoo.addons.decimal_precision as dp
 from odoo.exceptions import ValidationError
+from odoo.fields import first
 from odoo.tools import float_compare
 
 
@@ -40,55 +41,59 @@ class AccountFullReconcile(models.Model):
 class AccountPartialReconcile(models.Model):
     _inherit = "account.partial.reconcile"
 
+    def _wt_get_move_lines(self, vals):
+        move_line_model = self.env['account.move.line']
+        debit_move = move_line_model.browse(vals.get('debit_move_id'))
+        credit_move = move_line_model.browse(vals.get('credit_move_id'))
+        move_lines = debit_move | credit_move
+        return move_lines
+
+    def _wt_get_paying_invoice(self, move_lines):
+        moves = move_lines.mapped('move_id')
+        invoices = self.env['account.invoice'].search(
+            [
+                ('move_id', 'in', moves.ids),
+            ],
+        )
+        paying_invoice = first(invoices)
+        return paying_invoice
+
     @api.model
     def create(self, vals):
         # In case of WT The amount of reconcile mustn't exceed the tot net
         # amount. The amount residual will be full reconciled with amount net
         # and amount wt created with payment
-        invoice = False
-        ml_ids = []
-        if vals.get('debit_move_id'):
-            ml_ids.append(vals.get('debit_move_id'))
-        if vals.get('credit_move_id'):
-            ml_ids.append(vals.get('credit_move_id'))
-        move_lines = self.env['account.move.line'].browse(ml_ids)
-        for ml in move_lines:
-            domain = [('move_id', '=', ml.move_id.id)]
-            invoice = self.env['account.invoice'].search(domain)
-            if invoice:
-                break
+        move_lines = self._wt_get_move_lines(vals)
+        paying_invoice = self._wt_get_paying_invoice(move_lines)
         # Limit value of reconciliation
-        if invoice and invoice.withholding_tax and invoice.amount_net_pay:
+        if paying_invoice \
+           and paying_invoice.withholding_tax \
+           and paying_invoice.amount_net_pay:
             # We must consider amount in foreign currency, if present
             # Note that this is always executed, for every reconciliation.
             # Thus, we must not change amount when not in withholding tax case
             amount = vals.get('amount_currency') or vals.get('amount')
-            digits_rounding_precision = invoice.company_id.currency_id.rounding
+            digits_rounding_precision = paying_invoice.company_id.currency_id.rounding
             if float_compare(
                 amount,
-                invoice.amount_net_pay,
+                paying_invoice.amount_net_pay,
                 precision_rounding=digits_rounding_precision
             ) == 1:
-                vals.update({'amount': invoice.amount_net_pay})
+                vals.update({'amount': paying_invoice.amount_net_pay})
 
         # Create reconciliation
         reconcile = super(AccountPartialReconcile, self).create(vals)
-        # Avoid re-generate wt moves if the move line is an wt move.
-        # It's possible if the user unreconciles a wt move under invoice
-        ld = self.env['account.move.line'].browse(vals.get('debit_move_id'))
-        lc = self.env['account.move.line'].browse(vals.get('credit_move_id'))
 
-        if lc.withholding_tax_generated_by_move_id \
-                or ld.withholding_tax_generated_by_move_id:
-            is_wt_move = True
-        else:
-            is_wt_move = False
-        # Wt moves creation
-        if invoice.withholding_tax_line_ids \
-                and not self._context.get('no_generate_wt_move')\
-                and not is_wt_move:
+        if paying_invoice:
+            # Avoid re-generate wt moves if the move line is an wt move.
+            # It's possible if the user unreconciles a wt move under invoice
+            wt_move = move_lines.mapped('withholding_tax_generated_by_move_id')
+            # Wt moves creation
+            if paying_invoice.withholding_tax_line_ids \
+               and not self.env.context.get('no_generate_wt_move') \
+               and not wt_move:
                 # and not wt_existing_moves\
-            reconcile.generate_wt_moves()
+                reconcile.generate_wt_moves()
 
         return reconcile
 
