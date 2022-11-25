@@ -21,9 +21,12 @@
                     >{'fiscal_position_id': fiscal_position_id, 'default_move_type': context.get('default_move_type'), 'journal_id': journal_id, 'default_partner_id': commercial_partner_id, 'default_currency_id': currency_id or company_currency_id}</attribute>
                 </xpath>
 
-                <xpath expr="//page[@name='other_info']/group[1]/group[last()]" position="after">
+                <xpath
+                    expr="//page[@name='other_info']/group[1]/group[last()]"
+                    position="after"
+                >
                     <group name="withholding_tax_info">
-                        <field name="withholding_tax_in_print"/>
+                        <field name="withholding_tax_in_print" />
                     </group>
                 </xpath>
 
@@ -36,11 +39,11 @@
         <record model="ir.ui.view" id="view_withholding_invoice_supplier_form">
             <field name="name">view.withholding.invoice.supplier.form</field>
             <field name="model">account.invoice</field>
-            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="inherit_id" ref="account.invoice_supplier_form" />
             <field name="arch" type="xml">
 
                 <xpath expr="//group/group/field[@name='reference']" position="after">
-                    <field name="withholding_tax" invisible="1"/>
+                    <field name="withholding_tax" invisible="1" />
                 </xpath>
                 <xpath
                     expr="//field[@name='line_ids']/tree/field[@name='tax_ids']"
@@ -92,11 +95,23 @@
                     </field>
                 </xpath>
 
-                <xpath expr="//group[hasclass('oe_subtotal_footer', 'oe_right')]/field[@name='amount_total']" position="after">
-                    <field name="withholding_tax_amount" widget="monetary" options="{'currency_field': 'currency_id'}"
-                        attrs="{'invisible': [('withholding_tax', '=', False)]}"/>
-                    <field name="amount_net_pay" widget="monetary" options="{'currency_field': 'currency_id'}" class="oe_subtotal_footer_separator"
-                        attrs="{'invisible': [('withholding_tax', '=', False)]}"/>
+                <xpath
+                    expr="//group[hasclass('oe_subtotal_footer', 'oe_right')]/field[@name='amount_total']"
+                    position="after"
+                >
+                    <field
+                        name="withholding_tax_amount"
+                        widget="monetary"
+                        options="{'currency_field': 'currency_id'}"
+                        attrs="{'invisible': [('withholding_tax', '=', False)]}"
+                    />
+                    <field
+                        name="amount_net_pay"
+                        widget="monetary"
+                        options="{'currency_field': 'currency_id'}"
+                        class="oe_subtotal_footer_separator"
+                        attrs="{'invisible': [('withholding_tax', '=', False)]}"
+                    />
                 </xpath>
 
                 <xpath
@@ -113,9 +128,12 @@
                     <field name="withholding_tax" invisible="1" />
                 </xpath>
 
-                <xpath expr="//page[@name='other_info']/group[1]/group[last()]" position="after">
+                <xpath
+                    expr="//page[@name='other_info']/group[1]/group[last()]"
+                    position="after"
+                >
                     <group name="withholding_tax_info">
-                        <field name="withholding_tax_in_print"/>
+                        <field name="withholding_tax_in_print" />
                     </group>
                 </xpath>
 
@@ -147,8 +165,15 @@
             <field name="inherit_id" ref="account.view_move_line_form" />
             <field name="arch" type="xml">
 
-                <xpath expr="//group/group/field[@name='invoice_line_tax_ids']" position="after">
-                    <field name="invoice_line_tax_wt_ids" widget="many2many_tags" options="{'no_create': True}" />
+                <xpath
+                    expr="//group/group/field[@name='invoice_line_tax_ids']"
+                    position="after"
+                >
+                    <field
+                        name="invoice_line_tax_wt_ids"
+                        widget="many2many_tags"
+                        options="{'no_create': True}"
+                    />
                 </xpath>
 
             </field>

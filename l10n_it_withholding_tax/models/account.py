@@ -6,7 +6,7 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.fields import first
-from odoo.tools import float_compare
+from odoo.tools import float_compare, float_round
 
 
 class AccountFullReconcile(models.Model):
@@ -42,20 +42,30 @@ class AccountPartialReconcile(models.Model):
     _inherit = "account.partial.reconcile"
 
     def _wt_get_move_lines(self, vals):
-        move_line_model = self.env['account.move.line']
-        debit_move = move_line_model.browse(vals.get('debit_move_id'))
-        credit_move = move_line_model.browse(vals.get('credit_move_id'))
+        move_line_model = self.env["account.move.line"]
+        debit_move = move_line_model.browse(vals.get("debit_move_id"))
+        credit_move = move_line_model.browse(vals.get("credit_move_id"))
         move_lines = debit_move | credit_move
         return move_lines
 
     def _wt_get_paying_invoice(self, move_lines):
-        moves = move_lines.mapped('move_id')
-        invoices = self.env['account.invoice'].search(
+        moves = move_lines.mapped("move_id")
+        invoices = self.env["account.invoice"].search(
             [
-                ('move_id', 'in', moves.ids),
+                ("move_id", "in", moves.ids),
             ],
         )
-        paying_invoice = first(invoices)
+        # If we are reconciling a vendor bill and its refund,
+        # we do not need to generate Withholding Tax Moves
+        # or change the reconciliation amount
+        in_refunding = len(invoices) == 2 and set(invoices.mapped("type")) == {
+            "in_invoice",
+            "in_refund",
+        }
+        if not in_refunding:
+            paying_invoice = first(invoices)
+        else:
+            paying_invoice = self.env["account.invoice"].browse()
         return paying_invoice
 
     @api.model
@@ -66,20 +76,25 @@ class AccountPartialReconcile(models.Model):
         move_lines = self._wt_get_move_lines(vals)
         paying_invoice = self._wt_get_paying_invoice(move_lines)
         # Limit value of reconciliation
-        if paying_invoice \
-           and paying_invoice.withholding_tax \
-           and paying_invoice.amount_net_pay:
+        if (
+            paying_invoice
+            and paying_invoice.withholding_tax
+            and paying_invoice.amount_net_pay
+        ):
             # We must consider amount in foreign currency, if present
             # Note that this is always executed, for every reconciliation.
             # Thus, we must not change amount when not in withholding tax case
-            amount = vals.get('amount_currency') or vals.get('amount')
+            amount = vals.get("amount_currency") or vals.get("amount")
             digits_rounding_precision = paying_invoice.company_id.currency_id.rounding
-            if float_compare(
-                amount,
-                paying_invoice.amount_net_pay,
-                precision_rounding=digits_rounding_precision
-            ) == 1:
-                vals.update({'amount': paying_invoice.amount_net_pay})
+            if (
+                float_compare(
+                    amount,
+                    paying_invoice.amount_net_pay,
+                    precision_rounding=digits_rounding_precision,
+                )
+                == 1
+            ):
+                vals.update({"amount": paying_invoice.amount_net_pay})
 
         # Create reconciliation
         reconcile = super(AccountPartialReconcile, self).create(vals)
@@ -87,11 +102,13 @@ class AccountPartialReconcile(models.Model):
         if paying_invoice:
             # Avoid re-generate wt moves if the move line is an wt move.
             # It's possible if the user unreconciles a wt move under invoice
-            wt_move = move_lines.mapped('withholding_tax_generated_by_move_id')
+            wt_move = move_lines.mapped("withholding_tax_generated_by_move_id")
             # Wt moves creation
-            if paying_invoice.withholding_tax_line_ids \
-               and not self.env.context.get('no_generate_wt_move') \
-               and not wt_move:
+            if (
+                paying_invoice.withholding_tax_line_ids
+                and not self.env.context.get("no_generate_wt_move")
+                and not wt_move
+            ):
                 # and not wt_existing_moves\
                 reconcile.generate_wt_moves()
 
@@ -322,12 +339,12 @@ class AccountMove(models.Model):
                     wt_line.tax, dp_obj.precision_get("Account")
                 )
             invoice.amount_net_pay = invoice.amount_total - withholding_tax_amount
-            amount_net_pay_residual = invoice.amount_net_pay
             invoice.withholding_tax_amount = withholding_tax_amount
 
-    withholding_tax = fields.Boolean('Withholding Tax')
+    withholding_tax = fields.Boolean("Withholding Tax")
     withholding_tax_in_print = fields.Boolean(
-        "Show Withholding Tax In Print", default=True)
+        "Show Withholding Tax In Print", default=True
+    )
     withholding_tax_line_ids = fields.One2many(
         "account.invoice.withholding.tax",
         "invoice_id",
@@ -484,33 +501,34 @@ class AccountMove(models.Model):
     def _refund_cleanup_lines(self, lines):
         lines_values = super()._refund_cleanup_lines(lines)
         # Add same Withholding Taxes to Refund lines
-        empty_wt_tax = self.env['withholding.tax'].browse()
+        empty_wt_tax = self.env["withholding.tax"].browse()
         for line_index, line in enumerate(lines):
             # `line` can be a tax line
             # that does not have field `invoice_line_tax_wt_ids`
-            line_wts = getattr(line, 'invoice_line_tax_wt_ids', empty_wt_tax)
+            line_wts = getattr(line, "invoice_line_tax_wt_ids", empty_wt_tax)
             if line_wts:
                 # There is no field to match the line and its values,
                 # we have to trust that the order is preserved
                 line_values = lines_values[line_index]
                 line_values = line_values[2]  # values have format (0, 0, <values>)
-                update_values = line._convert_to_write({
-                    'invoice_line_tax_wt_ids': line_wts,
-                })
+                update_values = line._convert_to_write(
+                    {
+                        "invoice_line_tax_wt_ids": line_wts,
+                    }
+                )
                 line_values.update(update_values)
         return lines_values
 
     def refund(self, date_invoice=None, date=None, description=None, journal_id=None):
         refunds = super().refund(
-            date_invoice=date_invoice, date=date,
-            description=description, journal_id=journal_id,
+            date_invoice=date_invoice,
+            date=date,
+            description=description,
+            journal_id=journal_id,
         )
         for refund in refunds:
             refund._onchange_invoice_line_wt_ids()
         return refunds
-
-
-        return super(AccountMoveLine, self).remove_move_reconcile()
 
     @api.model
     def _default_withholding_tax(self):
