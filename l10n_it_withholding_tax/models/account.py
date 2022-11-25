@@ -51,7 +51,17 @@ class AccountPartialReconcile(models.Model):
     def _wt_get_paying_invoice(self, move_lines):
         move_lines = move_lines.exists()
         invoices = move_lines.move_id.filtered(lambda move: move.is_invoice())
-        paying_invoice = first(invoices)
+        # If we are reconciling a vendor bill and its refund,
+        # we do not need to generate Withholding Tax Moves
+        # or change the reconciliation amount
+        in_refunding = len(invoices) == 2 and set(invoices.mapped("move_type")) == {
+            "in_invoice",
+            "in_refund",
+        }
+        if not in_refunding:
+            paying_invoice = first(invoices)
+        else:
+            paying_invoice = self.env["account.move"].browse()
         return paying_invoice
 
     @api.model
