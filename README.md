@@ -49,7 +49,7 @@ addon | version | maintainers | summary
 [l10n_it_delivery_note_base](l10n_it_delivery_note_base/) | 12.0.1.0.0 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) [![Byloth](https://github.com/Byloth.png?size=30px)](https://github.com/Byloth) | Crea e gestisce tabelle principali per gestire i DDT
 [l10n_it_delivery_note_batch](l10n_it_delivery_note_batch/) | 12.0.1.0.0 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) [![TheMule71](https://github.com/TheMule71.png?size=30px)](https://github.com/TheMule71) | Crea i DDT partendo da gruppi di prelievi
 [l10n_it_delivery_note_order_link](l10n_it_delivery_note_order_link/) | 12.0.1.0.1 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) [![andreampiovesana](https://github.com/andreampiovesana.png?size=30px)](https://github.com/andreampiovesana) | Crea collegamento tra i DDT e ordine di vendita
-[l10n_it_dichiarazione_intento](l10n_it_dichiarazione_intento/) | 12.0.0.2.0 |  | Gestione dichiarazioni di intento
+[l10n_it_dichiarazione_intento](l10n_it_dichiarazione_intento/) | 12.0.0.2.1 |  | Gestione dichiarazioni di intento
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 12.0.2.0.0 |  | Italian Localization - Esigibilita' IVA
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 12.0.3.0.3 |  | Fatture elettroniche
 [l10n_it_fatturapa_export_zip](l10n_it_fatturapa_export_zip/) | 12.0.1.0.1 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche
