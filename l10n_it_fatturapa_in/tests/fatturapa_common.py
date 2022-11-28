@@ -1,5 +1,7 @@
 import base64
 import tempfile
+
+from odoo.addons.test_mail.tests.common import mail_new_test_user
 from odoo.modules import get_module_resource
 from odoo.tests.common import SingleTransactionCase
 
@@ -132,14 +134,22 @@ class FatturapaCommon(SingleTransactionCase):
                                         module_name=module_name)
         attach_id = attach.id
         if mode == 'import':
-            wizard = self.wizard_model.with_context(
-                active_ids=[attach_id], active_model='fatturapa.attachment.in'
-            ).create(wiz_values or {})
+            wizard = self.wizard_model \
+                .sudo(user=self.env.uid) \
+                .with_context(
+                    active_ids=[attach_id],
+                    active_model='fatturapa.attachment.in',
+                ) \
+                .create(wiz_values or {})
             return wizard.importFatturaPA()
         if mode == 'link':
-            wizard = self.wizard_link_model.with_context(
-                active_ids=[attach_id], active_model='fatturapa.attachment.in'
-            ).create(wiz_values or {})
+            wizard = self.wizard_link_model \
+                .sudo(user=self.env.uid) \
+                .with_context(
+                    active_ids=[attach_id],
+                    active_model='fatturapa.attachment.in',
+                ). \
+                create(wiz_values or {})
             return wizard.link()
 
     def run_wizard_multi(self, file_name_list, module_name=None):
@@ -156,6 +166,15 @@ class FatturapaCommon(SingleTransactionCase):
         wizard = self.wizard_model.with_context(
             active_ids=active_ids).create({})
         return wizard.importFatturaPA()
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.billing_user = mail_new_test_user(
+            cls.env,
+            login="Billing user",
+            groups='account.group_account_invoice,base.group_partner_manager',
+        )
 
     def setUp(self):
         super(FatturapaCommon, self).setUp()
