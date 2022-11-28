@@ -3,3 +3,11 @@ access_fatturapa_attachment_in,access_fatturapa_attachment_in,model_fatturapa_at
 access_fatturapa_article_code,access_fatturapa_article_code,model_fatturapa_article_code,account.group_account_invoice,1,1,1,1
 access_einvoice_line,access_einvoice_line,model_einvoice_line,account.group_account_invoice,1,1,1,1
 access_einvoice_line_other_data,access_einvoice_line_other_data,model_einvoice_line_other_data,account.group_account_invoice,1,1,1,1
+create_billing_fatturapa_summary_data,Allow E-Invoice Summary Data creation for Billing,l10n_it_fatturapa.model_faturapa_summary_data,account.group_account_invoice,0,0,1,0
+create_billing_fatturapa_payment_data,Allow E-Invoice Payment Data creation for Billing,l10n_it_fatturapa.model_fatturapa_payment_data,account.group_account_invoice,0,0,1,0
+create_billing_fatturapa_payment_detail,Allow E-Invoice Payment Detail creation for Billing,l10n_it_fatturapa.model_fatturapa_payment_detail,account.group_account_invoice,0,0,1,0
+create_billing_discount_rise_price,Allow E-Invoice Discount Supplement Data creation for Billing,l10n_it_fatturapa.model_discount_rise_price,account.group_account_invoice,0,0,1,0
+create_billing_welfare_fund_data_line,Allow E-invoice Welfare Fund Data creation for Billing,l10n_it_fatturapa.model_welfare_fund_data_line,account.group_account_invoice,0,0,1,0
+create_billing_fatturapa_activity_progress,Allow E-invoice Activity Progress creation for Billing,l10n_it_fatturapa.model_faturapa_activity_progress,account.group_account_invoice,0,0,1,0
+create_billing_fatturapa_related_ddt,Allow E-invoice Related DDT creation for Billing,l10n_it_fatturapa.model_fatturapa_related_ddt,account.group_account_invoice,0,0,1,0
+create_billing_fatturapa_attachments,Allow E-invoice attachments creation for Billing,l10n_it_fatturapa.model_fatturapa_attachments,account.group_account_invoice,0,0,1,0

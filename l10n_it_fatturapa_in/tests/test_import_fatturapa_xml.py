@@ -1053,6 +1053,24 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             bill.inconsistencies,
         )
 
+    def test_55_xml_import_billing(self):
+        """
+        A user only having groups 'Billing' and 'Create contacts',
+        but not 'Billing Manager',
+        can import an Electronic Invoice.
+        """
+        user = self.billing_user
+        self.uid = user.id
+        user_model = self.env['res.users']
+        self.assertTrue(user_model.has_group('account.group_account_invoice'))
+        self.assertTrue(user_model.has_group('base.group_partner_manager'))
+        self.assertFalse(user_model.has_group('account.group_account_manager'))
+
+        res = self.run_wizard('import_billing', 'IT01234567890_FPR15.xml')
+        invoice_id = res.get('domain')[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertTrue(invoice)
+
     def test_01_xml_link(self):
         """
         E-invoice lines are created.
