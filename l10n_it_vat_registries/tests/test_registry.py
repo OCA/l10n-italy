@@ -9,13 +9,7 @@ class TestRegistry(TransactionCase):
         test_date = fields.Date.today()
         self.journal = self.env["account.journal"].search([("type", "=", "sale")])[0]
         self.ova = self.env["account.account"].search(
-            [
-                (
-                    "user_type_id",
-                    "=",
-                    self.env.ref("account.data_account_type_current_assets").id,
-                )
-            ],
+            [("account_type", "=", "asset_current")],
             limit=1,
         )
         tax = self.env["account.tax"].create(
@@ -35,13 +29,7 @@ class TestRegistry(TransactionCase):
         invoice_line_account = (
             self.env["account.account"]
             .search(
-                [
-                    (
-                        "user_type_id",
-                        "=",
-                        self.env.ref("account.data_account_type_expenses").id,
-                    )
-                ],
+                [("account_type", "=", "expense")],
                 limit=1,
             )
             .id
@@ -69,7 +57,7 @@ class TestRegistry(TransactionCase):
                 ],
             }
         )
-        invoice._onchange_invoice_line_ids()
+        invoice._onchange_quick_edit_line_ids()
         invoice.action_post()
 
         wizard = self.env["wizard.registro.iva"].create(
@@ -84,13 +72,14 @@ class TestRegistry(TransactionCase):
         wizard.on_change_tax_registry_id()
         res = wizard.print_registro()
 
+        report_name = "l10n_it_vat_registries.report_registro_iva"
         domain = [
             ("report_type", "like", "qweb"),
-            ("report_name", "=", "l10n_it_vat_registries.report_registro_iva"),
+            ("report_name", "in", [report_name]),
         ]
         report = self.env["ir.actions.report"].search(domain)
         data = res["context"]["report_action"]["data"]
-        html = report._render_qweb_html(data["ids"], data)
+        html = report._render_qweb_html(report_name, data["ids"], data)
 
         self.assertTrue(b"Tax 10.0" in html[0])
 

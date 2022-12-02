@@ -30,7 +30,7 @@ class WizardRegistroIva(models.TransientModel):
         string="Journals",
         help="Select journals you want retrieve documents from",
     )
-    message = fields.Char(string="Message", size=64, readonly=True)
+    message = fields.Char(size=64, readonly=True)
     only_totals = fields.Boolean(string="Prints only totals")
     fiscal_page_base = fields.Integer("Last printed page", required=True)
     year_footer = fields.Char(
