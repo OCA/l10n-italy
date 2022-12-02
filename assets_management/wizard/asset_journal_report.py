@@ -41,10 +41,6 @@ class WizardAssetJournalReport(models.TransientModel):
         return str(date.today().year)
 
     @api.model
-    def get_default_report_footer_year(self):
-        return str(date.today().year)
-
-    @api.model
     def get_default_type_ids(self):
         return self.env["asset.depreciation.type"].search(
             [("print_by_default", "=", True)]
@@ -91,17 +87,14 @@ class WizardAssetJournalReport(models.TransientModel):
         self.asset_ids = self.filter_assets()
         return {"domain": {"asset_ids": self.get_asset_domain()}}
 
-    @api.multi
     def button_export_asset_journal_html(self):
         self.ensure_one()
         return self.export_asset_journal_report("qweb-html")
 
-    @api.multi
     def button_export_asset_journal_pdf(self):
         self.ensure_one()
         return self.export_asset_journal_report("qweb-pdf")
 
-    @api.multi
     def button_export_asset_journal_xlsx(self):
         self.ensure_one()
         return self.export_asset_journal_report("xlsx")

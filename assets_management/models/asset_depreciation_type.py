@@ -30,7 +30,6 @@ class AssetDepreciationType(models.Model):
 
     requires_account_move = fields.Boolean(string="Requires Account Move")
 
-    @api.multi
     def unlink(self):
         if (
             self.env["asset.category.depreciation.type"]

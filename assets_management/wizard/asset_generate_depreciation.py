@@ -55,7 +55,6 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
         string="Depreciation Types",
     )
 
-    @api.multi
     def do_generate(self):
         """
         Launches the generation of new depreciation lines for the retrieved

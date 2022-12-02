@@ -36,7 +36,6 @@ class AccountMoveLine(models.Model):
                     ).format(move_line.name_get()[0][-1])
                 )
 
-    @api.multi
     @api.depends(
         "asset_accounting_info_ids",
         "asset_accounting_info_ids.asset_id",
@@ -59,10 +58,12 @@ class AccountMoveLine(models.Model):
     def get_asset_purchase_amount(self, currency=None):
         purchase_amount = 0
         for line in self:
-            purchase_amount += line.currency_id.compute(
-                line.debit - line.credit, currency
+            purchase_amount += line.currency_id._convert(
+                line.debit - line.credit,
+                currency,
+                line.company_id,
+                line.date,
             )
-
         return purchase_amount
 
     def get_linked_aa_info_records(self):

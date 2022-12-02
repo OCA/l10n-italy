@@ -35,20 +35,19 @@ class AssetDepreciationMode(models.Model):
         string="Used Asset Coeff.",
     )
 
-    @api.multi
     def copy(self, default=None):
         default = dict(default or [])
         default.update(
             {
                 "default": False,
                 "line_ids": [
-                    (0, 0, l.copy_data({"mode_id": False})[0]) for l in self.line_ids
+                    (0, 0, line.copy_data({"mode_id": False})[0])
+                    for line in self.line_ids
                 ],
             }
         )
         return super().copy(default)
 
-    @api.multi
     def unlink(self):
         if (
             self.env["asset.category.depreciation.type"]
