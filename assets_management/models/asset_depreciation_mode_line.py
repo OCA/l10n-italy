@@ -6,14 +6,13 @@ from odoo import api, fields, models
 
 
 class AssetDepreciationModeLine(models.Model):
-    _name = 'asset.depreciation.mode.line'
+    _name = "asset.depreciation.mode.line"
     _description = "Asset Depreciation Mode Line"
-    _order = 'from_nr asc, to_nr asc'
+    _order = "from_nr asc, to_nr asc"
 
     application = fields.Selection(
-        [('coefficient', 'Coefficient'),
-         ('percentage', 'Percentage')],
-        default='coefficient',
+        [("coefficient", "Coefficient"), ("percentage", "Percentage")],
+        default="coefficient",
         required=True,
         string="Application by",
     )
@@ -23,10 +22,7 @@ class AssetDepreciationModeLine(models.Model):
     )
 
     company_id = fields.Many2one(
-        'res.company',
-        readonly=True,
-        related='mode_id.company_id',
-        string="Company"
+        "res.company", readonly=True, related="mode_id.company_id", string="Company"
     )
 
     from_nr = fields.Integer(
@@ -35,27 +31,25 @@ class AssetDepreciationModeLine(models.Model):
     )
 
     mode_id = fields.Many2one(
-        'asset.depreciation.mode',
-        ondelete='cascade',
+        "asset.depreciation.mode",
+        ondelete="cascade",
         required=True,
         readonly=True,
         string="Mode",
     )
 
-    percentage = fields.Float(
-        string="Percentage"
-    )
+    percentage = fields.Float(string="Percentage")
 
     to_nr = fields.Integer(
         string="To Nr",
     )
 
-    @api.onchange('application')
+    @api.onchange("application")
     def onchange_application(self):
         if self.application:
-            if self.application == 'coefficient':
+            if self.application == "coefficient":
                 self.percentage = 0
-            elif self.application == 'percentage':
+            elif self.application == "percentage":
                 self.coefficient = 0
             else:
                 self.coefficient = 0
@@ -63,7 +57,7 @@ class AssetDepreciationModeLine(models.Model):
 
     def get_depreciation_amount_multiplier(self):
         multiplier = 1
-        nr = self._context.get('dep_nr')
+        nr = self._context.get("dep_nr")
         if nr is None:
             # Cannot compare to any line
             return multiplier
@@ -75,9 +69,9 @@ class AssetDepreciationModeLine(models.Model):
             return multiplier
 
         for line in lines:
-            if line.application == 'coefficient':
+            if line.application == "coefficient":
                 multiplier *= line.coefficient
-            elif line.application == 'percentage':
+            elif line.application == "percentage":
                 multiplier *= line.percentage / 100
 
         return multiplier

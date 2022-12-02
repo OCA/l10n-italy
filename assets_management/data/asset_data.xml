@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="0">
 
     <!-- Natura ammortamento -->
@@ -36,7 +36,7 @@
         <field name="used_asset_coeff">1</field>
     </record>
     <record id="ad_mode_materiale_line" model="asset.depreciation.mode.line">
-        <field name="mode_id" ref="ad_mode_materiale"/>
+        <field name="mode_id" ref="ad_mode_materiale" />
         <field name="from_nr">1</field>
         <field name="to_nr">1</field>
         <field name="coefficient">0.5</field>
