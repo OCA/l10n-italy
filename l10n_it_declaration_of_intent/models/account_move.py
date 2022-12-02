@@ -297,27 +297,3 @@ class AccountMoveLine(models.Model):
         comodel_name="l10n_it_declaration_of_intent.declaration",
         string="Force Declaration of Intent",
     )
-
-    def _compute_tax_id(self):
-        is_sale_document = self.is_sale_document(include_receipts=True)
-        is_purchase_document = self.is_purchase_document(include_receipts=True)
-        for line in self:
-            fpos = (
-                line.move_id.fiscal_position_id
-                or line.move_id.partner_id.property_account_position_id
-            )
-            # If company_id is set, always filter taxes by the company
-            if is_sale_document:
-                product_taxes = line.product_id.taxes_id
-            elif is_purchase_document:
-                product_taxes = line.product_id.supplier_taxes_id
-            else:
-                return
-            taxes = product_taxes.filtered(
-                lambda r: not line.company_id or r.company_id == line.company_id
-            )
-            line.invoice_line_tax_ids = (
-                fpos.map_tax(taxes, line.product_id, line.move_id.partner_shipping_id)
-                if fpos
-                else taxes
-            )
