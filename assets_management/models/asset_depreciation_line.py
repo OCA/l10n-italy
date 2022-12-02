@@ -136,19 +136,18 @@ class AssetDepreciationLine(models.Model):
             line.normalize_depreciation_nr(force=True)
         return line
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
+        self.check_company()
         for line in self:
             if line.need_normalize_depreciation_nr():
                 line.normalize_depreciation_nr(force=True)
         return res
 
-    @api.multi
     def unlink(self):
         if self.mapped("asset_accounting_info_ids"):
             lines = self.filtered("asset_accounting_info_ids")
-            name_list = "\n".join([l[-1] for l in lines.name_get()])
+            name_list = "\n".join([line[-1] for line in lines.name_get()])
             raise ValidationError(
                 _(
                     "The lines you you are trying to delete are currently"
@@ -158,8 +157,10 @@ class AssetDepreciationLine(models.Model):
                 + name_list
             )
         if any([m.state != "draft" for m in self.mapped("move_id")]):
-            lines = self.filtered(lambda l: l.move_id and l.move_id.state != "draft")
-            name_list = "\n".join([l[-1] for l in lines.name_get()])
+            lines = self.filtered(
+                lambda line: line.move_id and line.move_id.state != "draft"
+            )
+            name_list = "\n".join([line[-1] for line in lines.name_get()])
             raise ValidationError(
                 _(
                     "Following lines are linked to posted account moves, and"
@@ -170,11 +171,9 @@ class AssetDepreciationLine(models.Model):
         self.mapped("move_id").unlink()
         return super().unlink()
 
-    @api.multi
     def name_get(self):
         return [(line.id, line.make_name()) for line in self]
 
-    @api.constrains("company_id")
     def check_company(self):
         for dep_line in self:
             comp = dep_line.get_linked_aa_info_records().mapped("company_id")
@@ -197,7 +196,6 @@ class AssetDepreciationLine(models.Model):
                     _("Depreciation number can't be a negative number.")
                 )
 
-    @api.multi
     @api.depends("amount", "move_type")
     def _compute_balance(self):
         for line in self:
@@ -206,12 +204,10 @@ class AssetDepreciationLine(models.Model):
             else:
                 line.balance = line.amount
 
-    @api.multi
     def _compute_requires_depreciation_nr(self):
         for line in self:
             line.requires_depreciation_nr = line.is_depreciation_nr_required()
 
-    @api.multi
     def _search_requires_depreciation_nr_lines(self, operator, value):
         if operator not in ("=", "!="):
             raise ValidationError(_("Invalid search operator!"))
@@ -342,16 +338,13 @@ class AssetDepreciationLine(models.Model):
     #                                                                        #
     ##########################################################################
 
-    @api.multi
     def button_generate_account_move(self):
         self.generate_account_move()
 
-    @api.multi
     def button_regenerate_account_move(self):
         self.button_remove_account_move()
         self.generate_account_move()
 
-    @api.multi
     def button_remove_account_move(self):
         self.mapped("move_id").unlink()
 
@@ -381,6 +374,7 @@ class AssetDepreciationLine(models.Model):
             "journal_id": self.asset_id.category_id.journal_id.id,
             "line_ids": [],
             "ref": _("Asset: ") + self.asset_id.make_name(),
+            "move_type": "entry",
         }
 
     def get_account_move_line_vals(self):

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<odoo noupdate="0">
+<odoo noupdate="1">
 
     <!-- Natura ammortamento -->
     <record id="ad_type_civilistico" model="asset.depreciation.type">

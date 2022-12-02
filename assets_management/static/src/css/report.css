@@ -17,8 +17,7 @@
     display: table-row-group !important;
 }
 .list_table,
-.data_table,
-.totals_table {
+.data_table {
     width: 100% !important;
 }
 .act_as_row.labels {
@@ -26,21 +25,13 @@
 }
 .list_table,
 .data_table,
-.totals_table,
 .list_table .act_as_row {
-    border-left: 0px;
-    border-right: 0px;
+    border-left: 0;
+    border-right: 0;
     text-align: center;
     font-size: 10px;
-    padding-right: 3px;
-    padding-left: 3px;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    padding: 2px 3px;
     border-collapse: collapse;
-}
-.totals_table {
-    font-weight: bold;
-    text-align: center;
 }
 .list_table .act_as_row.labels,
 .list_table .act_as_row.initial_balance,
@@ -85,23 +76,11 @@
     /*    border-right:1px solid lightGrey;  uncomment to active column lines */
 }
 .list_table .act_as_cell.first_column {
-    padding-left: 0px;
+    padding-left: 0;
     /*    border-left:1px solid lightGrey; uncomment to active column lines */
-}
-.overflow_ellipsis {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
 }
 .custom_footer {
     font-size: 7px !important;
-}
-.page_break {
-    page-break-inside: avoid;
-}
-
-.button_row {
-    padding-bottom: 10px;
 }
 
 .o_account_financial_reports_page {
@@ -109,5 +88,5 @@
     width: 90%;
     margin-right: auto;
     margin-left: auto;
-    font-family: Helvetica, Arial;
+    font-family: Helvetica, Arial, serif;
 }

@@ -12,11 +12,6 @@
                     filter_domain="['|', ('asset_id.name', 'ilike', self), ('asset_id.code', 'ilike', self)]"
                 />
                 <field
-                    name="invoice_id"
-                    string="Invoice"
-                    filter_domain="['|', '|', '|', ('invoice_id.number', 'ilike', self), ('invoice_id.origin', 'ilike', self), ('invoice_id.reference', 'ilike', self), ('invoice_id.partner_id', 'child_of', self)]"
-                />
-                <field
                     name="move_id"
                     string="Move"
                     filter_domain="['|', ('move_id.name', 'ilike', self), ('move_id.ref', 'ilike', self)]"
@@ -26,11 +21,6 @@
                         string="Asset"
                         name="group_by_asset"
                         context="{'group_by': 'asset_id'}"
-                    />
-                    <filter
-                        string="Invoice"
-                        name="group_by_invoice"
-                        context="{'group_by': 'invoice_id'}"
                     />
                     <filter
                         string="Move"
@@ -50,8 +40,6 @@
                 <field name="asset_id" />
                 <field name="dep_line_id" />
                 <field name="relation_type" />
-                <field name="invoice_id" />
-                <field name="invoice_line_id" />
                 <field name="move_id" />
                 <field name="move_line_id" />
                 <field name="company_id" groups="base.group_multi_company" />
@@ -85,22 +73,7 @@
                             />
                         </group>
                         <group name="accounting_info">
-                            <field
-                                name="invoice_id"
-                                options="{'no_create_edit': 1}"
-                                attrs="{'required': [('move_id', '=', False)]}"
-                            />
-                            <field
-                                name="invoice_line_id"
-                                options="{'no_create_edit': 1}"
-                                domain="[('invoice_id', '=', invoice_id)]"
-                                attrs="{'invisible': [('invoice_id', '=', False)]}"
-                            />
-                            <field
-                                name="move_id"
-                                options="{'no_create_edit': 1}"
-                                attrs="{'required': [('invoice_id', '=', False)]}"
-                            />
+                            <field name="move_id" options="{'no_create_edit': 1}" />
                             <field
                                 name="move_line_id"
                                 options="{'no_create_edit': 1}"

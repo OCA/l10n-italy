@@ -148,7 +148,6 @@ class AssetDepreciation(models.Model):
                 num_lines.normalize_depreciation_nr()
         return dep
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         need_norm = self.filtered(lambda d: d.need_normalize_first_dep_nr())
@@ -160,7 +159,6 @@ class AssetDepreciation(models.Model):
                 num_lines.normalize_depreciation_nr(force=True)
         return res
 
-    @api.multi
     def unlink(self):
         if self.mapped("line_ids"):
             raise ValidationError(
@@ -171,9 +169,10 @@ class AssetDepreciation(models.Model):
             )
         if any([m.state != "draft" for m in self.mapped("dismiss_move_id")]):
             deps = self.filtered(
-                lambda l: l.dismiss_move_id and l.dismiss_move_id.state != "draft"
+                lambda line: line.dismiss_move_id
+                and line.dismiss_move_id.state != "draft"
             )
-            name_list = "\n".join([l[-1] for l in deps.name_get()])
+            name_list = "\n".join([line[-1] for line in deps.name_get()])
             raise ValidationError(
                 _(
                     "Following lines are linked to posted account moves, and"
@@ -182,11 +181,9 @@ class AssetDepreciation(models.Model):
             )
         return super().unlink()
 
-    @api.multi
     def name_get(self):
         return [(dep.id, dep.make_name()) for dep in self]
 
-    @api.multi
     @api.depends("amount_depreciable", "amount_depreciable_updated", "amount_residual")
     def _compute_state(self):
         for dep in self:
@@ -226,7 +223,6 @@ class AssetDepreciation(models.Model):
         if not self.force_all_dep_nr and self.force_first_dep_nr:
             self.first_dep_nr = 1
 
-    @api.multi
     @api.depends(
         "amount_depreciable",
         "line_ids.amount",
@@ -239,7 +235,6 @@ class AssetDepreciation(models.Model):
             vals = dep.get_computed_amounts()
             dep.update(vals)
 
-    @api.multi
     @api.depends("line_ids", "line_ids.date", "line_ids.move_type")
     def _compute_last_depreciation_date(self):
         """
@@ -248,7 +243,8 @@ class AssetDepreciation(models.Model):
         """
         for dep in self:
             dep_lines = dep.line_ids.filtered(
-                lambda l: l.move_type == "depreciated" and not l.partial_dismissal
+                lambda line: line.move_type == "depreciated"
+                and not line.partial_dismissal
             )
             if dep_lines:
                 dep.last_depreciation_date = max(dep_lines.mapped("date"))
@@ -267,9 +263,9 @@ class AssetDepreciation(models.Model):
         # Check if any depreciation already has newer depreciation lines
         # than the given date
         newer_lines = lines.filtered(
-            lambda l: l.move_type == "depreciated"
-            and not l.partial_dismissal
-            and l.date > dep_date
+            lambda line: line.move_type == "depreciated"
+            and not line.partial_dismissal
+            and line.date > dep_date
         )
         if newer_lines:
             asset_names = ", ".join(
@@ -288,7 +284,9 @@ class AssetDepreciation(models.Model):
             )
 
         posted_lines = lines.filtered(
-            lambda l: l.date == dep_date and l.move_id and l.move_id.state != "draft"
+            lambda line: line.date == dep_date
+            and line.move_id
+            and line.move_id.state != "draft"
         )
         if posted_lines:
             posted_names = ", ".join(
@@ -360,17 +358,17 @@ class AssetDepreciation(models.Model):
                     "amount_depreciable_updated": amt_dep
                     + sum(
                         [
-                            l.balance
-                            for l in self.line_ids
-                            if l.move_type in update_move_types
+                            line.balance
+                            for line in self.line_ids
+                            if line.move_type in update_move_types
                         ]
                     ),
                     "amount_residual": amt_dep
                     + sum(
                         [
-                            l.balance
-                            for l in self.line_ids
-                            if l.move_type not in non_residual_types
+                            line.balance
+                            for line in self.line_ids
+                            if line.move_type not in non_residual_types
                         ]
                     ),
                 }
@@ -382,9 +380,9 @@ class AssetDepreciation(models.Model):
         types = self.line_ids.get_update_move_types()
         return self.amount_depreciable + sum(
             [
-                l.balance
-                for l in self.line_ids
-                if l.move_type in types and (not dep_date or l.date <= dep_date)
+                line.balance
+                for line in self.line_ids
+                if line.move_type in types and (not dep_date or line.date <= dep_date)
             ]
         )
 
@@ -492,6 +490,7 @@ class AssetDepreciation(models.Model):
             "journal_id": self.asset_id.category_id.journal_id.id,
             "line_ids": [],
             "ref": _("Asset dismissal: ") + self.asset_id.make_name(),
+            "move_type": "entry",
         }
 
     def get_max_depreciation_nr(self):

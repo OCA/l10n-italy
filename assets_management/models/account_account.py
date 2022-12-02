@@ -2,14 +2,13 @@
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, models
+from odoo import _, models
 from odoo.exceptions import UserError
 
 
 class AccountAccount(models.Model):
     _inherit = "account.account"
 
-    @api.multi
     def unlink(self):
         if (
             self.env["asset.category"]
