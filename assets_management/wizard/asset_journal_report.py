@@ -8,29 +8,25 @@ from odoo import api, fields, models
 
 
 class WizardAssetJournalReport(models.TransientModel):
-    _name = 'wizard.asset.journal.report'
+    _name = "wizard.asset.journal.report"
     _description = "Wizard Asset Journal Report"
 
     @api.model
     def get_asset_order_fname_selection(self):
-        fnames = ['code', 'name']
-        asset_fields = self.env['asset.asset']._fields
-        return [
-            (fname, asset_fields[fname].string) for fname in fnames
-        ]
+        fnames = ["code", "name"]
+        asset_fields = self.env["asset.asset"]._fields
+        return [(fname, asset_fields[fname].string) for fname in fnames]
 
     @api.model
     def get_default_asset_order_fname(self):
-        vals = self._fields['asset_order_fname'].get_values(self.env)
+        vals = self._fields["asset_order_fname"].get_values(self.env)
         if vals:
             return vals[0]
         return
 
     @api.model
     def get_default_category_ids(self):
-        return self.env['asset.category'].search([
-            ('print_by_default', '=', True)
-        ])
+        return self.env["asset.category"].search([("print_by_default", "=", True)])
 
     @api.model
     def get_default_company_id(self):
@@ -50,33 +46,25 @@ class WizardAssetJournalReport(models.TransientModel):
 
     @api.model
     def get_default_type_ids(self):
-        return self.env['asset.depreciation.type'].search([
-            ('print_by_default', '=', True)
-        ])
+        return self.env["asset.depreciation.type"].search(
+            [("print_by_default", "=", True)]
+        )
 
-    asset_ids = fields.Many2many(
-        'asset.asset',
-        string="Assets"
-    )
+    asset_ids = fields.Many2many("asset.asset", string="Assets")
 
     asset_order_fname = fields.Selection(
         get_asset_order_fname_selection,
         default=get_default_asset_order_fname,
         required=True,
-        string="Asset Print Order"
+        string="Asset Print Order",
     )
 
     category_ids = fields.Many2many(
-        'asset.category',
-        default=get_default_category_ids,
-        string="Categories"
+        "asset.category", default=get_default_category_ids, string="Categories"
     )
 
     company_id = fields.Many2one(
-        'res.company',
-        default=get_default_company_id,
-        required=True,
-        string="Company"
+        "res.company", default=get_default_company_id, required=True, string="Company"
     )
 
     date = fields.Date(
@@ -84,50 +72,43 @@ class WizardAssetJournalReport(models.TransientModel):
         string="To Date",
     )
 
-    show_totals = fields.Boolean(
-        default=True,
-        string="Show Totals"
-    )
+    show_totals = fields.Boolean(default=True, string="Show Totals")
 
-    show_category_totals = fields.Boolean(
-        default=True,
-        string="Show Category Totals"
-    )
+    show_category_totals = fields.Boolean(default=True, string="Show Category Totals")
 
     report_footer_year = fields.Char(
-        default=get_default_report_footer_year,
-        string="Report Footer Year"
+        default=get_default_report_footer_year, string="Report Footer Year"
     )
 
     type_ids = fields.Many2many(
-        'asset.depreciation.type',
+        "asset.depreciation.type",
         default=get_default_type_ids,
-        string="Depreciation Types"
+        string="Depreciation Types",
     )
 
-    @api.onchange('category_ids', 'company_id', 'date', 'type_ids')
+    @api.onchange("category_ids", "company_id", "date", "type_ids")
     def onchange_assets(self):
         self.asset_ids = self.filter_assets()
-        return {'domain': {'asset_ids': self.get_asset_domain()}}
+        return {"domain": {"asset_ids": self.get_asset_domain()}}
 
     @api.multi
     def button_export_asset_journal_html(self):
         self.ensure_one()
-        return self.export_asset_journal_report('qweb-html')
+        return self.export_asset_journal_report("qweb-html")
 
     @api.multi
     def button_export_asset_journal_pdf(self):
         self.ensure_one()
-        return self.export_asset_journal_report('qweb-pdf')
+        return self.export_asset_journal_report("qweb-pdf")
 
     @api.multi
     def button_export_asset_journal_xlsx(self):
         self.ensure_one()
-        return self.export_asset_journal_report('xlsx')
+        return self.export_asset_journal_report("xlsx")
 
     def export_asset_journal_report(self, report_type=None):
         self.ensure_one()
-        report_obj = self.env['report_asset_journal']
+        report_obj = self.env["report_asset_journal"]
         report_vals = self.prepare_report_vals()
         report = report_obj.create(report_vals)
         report.compute_data_for_report()
@@ -148,8 +129,7 @@ class WizardAssetJournalReport(models.TransientModel):
         if self.type_ids:
             assets = assets.filtered(
                 lambda a: any(
-                    [d.type_id.id in self.type_ids.ids
-                     for d in a.depreciation_ids]
+                    [d.type_id.id in self.type_ids.ids for d in a.depreciation_ids]
                 )
             )
         return assets
@@ -157,30 +137,28 @@ class WizardAssetJournalReport(models.TransientModel):
     def get_asset_domain(self):
         asset_domain = []
         if self.category_ids:
-            asset_domain.append(('category_id', 'in', self.category_ids.ids))
+            asset_domain.append(("category_id", "in", self.category_ids.ids))
         if self.company_id:
-            asset_domain.append(
-                ('company_id', 'in', (False, self.company_id.id))
-            )
+            asset_domain.append(("company_id", "in", (False, self.company_id.id)))
         if self.date:
-            asset_domain.append(('purchase_date', '<=', self.date))
+            asset_domain.append(("purchase_date", "<=", self.date))
         if self.type_ids:
-            deps = self.env['asset.depreciation'].search(
-                [('type_id', 'in', self.type_ids.ids)]
+            deps = self.env["asset.depreciation"].search(
+                [("type_id", "in", self.type_ids.ids)]
             )
-            asset_domain.append(('id', 'in', deps.mapped('asset_id').ids))
+            asset_domain.append(("id", "in", deps.mapped("asset_id").ids))
         return asset_domain
 
     def prepare_report_vals(self):
         self.ensure_one()
         return {
-            'asset_ids': [(6, 0, self.asset_ids.ids)],
-            'asset_order_fname': self.asset_order_fname,
-            'category_ids': [(6, 0, self.category_ids.ids)],
-            'company_id': self.company_id.id,
-            'date': self.date,
-            'show_totals': self.show_totals,
-            'show_category_totals': self.show_category_totals,
-            'report_footer_year': self.report_footer_year,
-            'type_ids': [(6, 0, self.type_ids.ids)],
+            "asset_ids": [(6, 0, self.asset_ids.ids)],
+            "asset_order_fname": self.asset_order_fname,
+            "category_ids": [(6, 0, self.category_ids.ids)],
+            "company_id": self.company_id.id,
+            "date": self.date,
+            "show_totals": self.show_totals,
+            "show_category_totals": self.show_category_totals,
+            "report_footer_year": self.report_footer_year,
+            "type_ids": [(6, 0, self.type_ids.ids)],
         }

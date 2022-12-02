@@ -7,45 +7,39 @@ from odoo.exceptions import ValidationError
 
 
 class DepLineType(models.Model):
-    _name = 'asset.depreciation.line.type'
+    _name = "asset.depreciation.line.type"
     _description = "Depreciation Line Type"
-    _table = 'asset_dep_line_type'
-    _order = 'name asc, code asc'
+    _table = "asset_dep_line_type"
+    _order = "name asc, code asc"
 
     @api.model
     def get_default_company_id(self):
         return self.env.user.company_id
 
-    code = fields.Char(
-        string="Code"
-    )
+    code = fields.Char(string="Code")
 
     company_id = fields.Many2one(
-        'res.company',
-        default=get_default_company_id,
-        string="Company"
+        "res.company", default=get_default_company_id, string="Company"
     )
 
-    name = fields.Char(
-        required=True,
-        string="Name"
-    )
+    name = fields.Char(required=True, string="Name")
 
     type = fields.Selection(
-        [('in', 'In'),
-         ('out', 'Out')],
+        [("in", "In"), ("out", "Out")],
         string="Type",
     )
 
     @api.multi
     def unlink(self):
         for line_type in self:
-            if self.env['asset.depreciation.line'].search([
-                ('depreciation_line_type_id', '=', line_type.id)
-            ]):
+            if self.env["asset.depreciation.line"].search(
+                [("depreciation_line_type_id", "=", line_type.id)]
+            ):
                 raise ValidationError(
-                    _("Cannot remove type {}: there is some depreciation"
-                      " line linked to it.".format(line_type.name))
+                    _(
+                        "Cannot remove type {}: there is some depreciation"
+                        " line linked to it.".format(line_type.name)
+                    )
                 )
 
         return super().unlink()
@@ -60,7 +54,7 @@ class DepLineType(models.Model):
         if self.code:
             name += "[{}] ".format(self.code)
         name += self.name
-        type_name = dict(self._fields['type'].selection).get(self.type)
+        type_name = dict(self._fields["type"].selection).get(self.type)
         if type_name:
             name += " - " + type_name
         return name.strip()

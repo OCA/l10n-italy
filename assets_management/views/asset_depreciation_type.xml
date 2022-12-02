@@ -6,10 +6,10 @@
         <field name="model">asset.depreciation.type</field>
         <field name="arch" type="xml">
             <tree editable="bottom">
-                <field name="name"/>
-                <field name="requires_account_move"/>
-                <field name="print_by_default"/>
-                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="name" />
+                <field name="requires_account_move" />
+                <field name="print_by_default" />
+                <field name="company_id" groups="base.group_multi_company" />
             </tree>
         </field>
     </record>
@@ -20,10 +20,10 @@
         <field name="arch" type="xml">
             <form>
                 <group>
-                    <field name="name"/>
-                    <field name="requires_account_move"/>
-                    <field name="print_by_default"/>
-                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="name" />
+                    <field name="requires_account_move" />
+                    <field name="print_by_default" />
+                    <field name="company_id" groups="base.group_multi_company" />
                 </group>
             </form>
         </field>
@@ -34,13 +34,15 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">asset.depreciation.type</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="asset_depreciation_type_tree_view"/>
+        <field name="view_id" ref="asset_depreciation_type_tree_view" />
     </record>
 
-    <menuitem id="menu_asset_depreciation_type"
-              action="action_asset_depreciation_type"
-              name="Depreciation Types"
-              parent="menu_asset_configuration"
-              sequence="5"/>
+    <menuitem
+        id="menu_asset_depreciation_type"
+        action="action_asset_depreciation_type"
+        name="Depreciation Types"
+        parent="menu_asset_configuration"
+        sequence="5"
+    />
 
 </odoo>
