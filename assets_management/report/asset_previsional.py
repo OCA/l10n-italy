@@ -14,9 +14,9 @@ from odoo.addons.mail.models.mail_template import format_amount
 
 
 def format_date(rec, field_name, fmt):
-    """ Formats record's field value according to given format `fmt` """
+    """Formats record's field value according to given format `fmt`"""
     if not rec[field_name]:
-        return ''
+        return ""
     return rec._fields[field_name].from_string(rec[field_name]).strftime(fmt)
 
 
@@ -34,22 +34,23 @@ class Report(models.TransientModel):
     Asset has a relation to the section Accounting Data which stores
     sale/purchase data.
     """
-    _name = 'report_asset_previsional'
-    _inherit = 'account_financial_report_abstract'
+
+    _name = "report_asset_previsional"
+    _inherit = "account_financial_report_abstract"
 
     # Data fields
     asset_ids = fields.Many2many(
-        'asset.asset',
+        "asset.asset",
     )
 
     asset_order_fname = fields.Char()
 
     category_ids = fields.Many2many(
-        'asset.category',
+        "asset.category",
     )
 
     company_id = fields.Many2one(
-        'res.company',
+        "res.company",
     )
 
     date = fields.Date()
@@ -59,38 +60,27 @@ class Report(models.TransientModel):
     show_category_totals = fields.Boolean()
 
     type_ids = fields.Many2many(
-        'asset.depreciation.type',
+        "asset.depreciation.type",
     )
 
     # Report structure fields
-    previsional_line_ids = fields.Many2many(
-        'asset.depreciation.line'
-    )
+    previsional_line_ids = fields.Many2many("asset.depreciation.line")
 
     report_category_ids = fields.One2many(
-        'report_asset_previsional_category',
-        'report_id'
+        "report_asset_previsional_category", "report_id"
     )
 
-    report_asset_ids = fields.One2many(
-        'report_asset_previsional_asset',
-        'report_id'
-    )
+    report_asset_ids = fields.One2many("report_asset_previsional_asset", "report_id")
 
     report_depreciation_ids = fields.One2many(
-        'report_asset_previsional_depreciation',
-        'report_id'
+        "report_asset_previsional_depreciation", "report_id"
     )
 
     report_depreciation_line_year_ids = fields.One2many(
-        'report_asset_previsional_depreciation_line_year',
-        'report_id'
+        "report_asset_previsional_depreciation_line_year", "report_id"
     )
 
-    report_total_ids = fields.One2many(
-        'report_asset_previsional_totals',
-        'report_id'
-    )
+    report_total_ids = fields.One2many("report_asset_previsional_totals", "report_id")
 
     # Fields to be printed
     report_footer_year = fields.Char()
@@ -111,15 +101,14 @@ class Report(models.TransientModel):
         :param report_type: string that represents the report type
         """
         self.ensure_one()
-        report_type = report_type or 'qweb-pdf'
-        if report_type in ('qweb-pdf', 'xlsx'):
+        report_type = report_type or "qweb-pdf"
+        if report_type in ("qweb-pdf", "xlsx"):
             res = self.do_print(report_type)
-        elif report_type == 'qweb-html':
+        elif report_type == "qweb-html":
             res = self.view_report()
         elif report_type:
             raise ValidationError(
-                _("No report has been defined for type `{}`.")
-                .format(report_type)
+                _("No report has been defined for type `{}`.").format(report_type)
             )
         else:
             raise ValidationError(
@@ -129,40 +118,40 @@ class Report(models.TransientModel):
 
     def do_print(self, report_type):
         self.ensure_one()
-        if report_type == 'qweb-pdf':
-            xml_id = 'assets_management.report_asset_previsional_pdf'
+        if report_type == "qweb-pdf":
+            xml_id = "assets_management.report_asset_previsional_pdf"
         else:
-            xml_id = 'assets_management.report_asset_previsional_xlsx'
+            xml_id = "assets_management.report_asset_previsional_xlsx"
         report = self.env.ref(xml_id)
         return report.report_action(self)
 
     @api.multi
     def view_report(self):
-        """ Launches view for HTML report """
+        """Launches view for HTML report"""
         self.ensure_one()
-        xmlid = 'assets_management.act_client_asset_previsional_report'
+        xmlid = "assets_management.act_client_asset_previsional_report"
         [act] = self.env.ref(xmlid).read()
-        ctx = act.get('context', {})
+        ctx = act.get("context", {})
         if isinstance(ctx, string_types):
             ctx = safe_eval(ctx)
         # Call update twice to force 'active_id(s)' values to be overridden
         ctx.update(dict(self._context))
         ctx.update(active_id=self.id, active_ids=self.ids)
-        act['context'] = ctx
+        act["context"] = ctx
         return act
 
     @api.model
     def get_html(self, given_context=None):
-        """ Method needed from JavaScript widget to render HTML view """
+        """Method needed from JavaScript widget to render HTML view"""
         context = dict(self.env.context)
         context.update(given_context or {})
-        report = self or self.browse(context.get('active_id'))
-        xml_id = 'assets_management.template_asset_previsional_report'
+        report = self or self.browse(context.get("active_id"))
+        xml_id = "assets_management.template_asset_previsional_report"
 
         result = {}
         if report:
-            context['o'] = report
-            result['html'] = self.env.ref(xml_id).render(context)
+            context["o"] = report
+            result["html"] = self.env.ref(xml_id).render(context)
         return result
 
     ###########################
@@ -172,7 +161,7 @@ class Report(models.TransientModel):
     ###########################
 
     def compute_data_for_report(self):
-        """ Compute data to be printed """
+        """Compute data to be printed"""
         self.set_report_name()
         self.generate_structure()
         self.generate_data()
@@ -190,8 +179,8 @@ class Report(models.TransientModel):
 
     def generate_structure(self):
         assets = self.get_assets()
-        categories = assets.mapped('category_id')
-        deps = assets.mapped('depreciation_ids')
+        categories = assets.mapped("category_id")
+        deps = assets.mapped("depreciation_ids")
         if self.type_ids:
             deps = deps.filtered(lambda d: d.type_id in self.type_ids)
         if not (categories and assets and deps):
@@ -199,28 +188,30 @@ class Report(models.TransientModel):
                 _("There is nothing to print according to current settings!")
             )
 
-        dep_lines = deps.mapped('line_ids')
+        dep_lines = deps.mapped("line_ids")
         if self.date:
             dep_lines = dep_lines.filtered(lambda dl: dl.date <= self.date)
 
-        fy_domain = [('company_id', '=', self.company_id.id)]
+        fy_domain = [("company_id", "=", self.company_id.id)]
         if self.date:
-            fy_domain += [('date_from', '<=', self.date)]
+            fy_domain += [("date_from", "<=", self.date)]
         # Create an ordered dict where each key is a fiscal year, sorting
         # them for starting date => every fiscal year must have its own
         # depreciation lines or previsional ones
-        dep_line_obj = self.env['asset.depreciation.line']
+        dep_line_obj = self.env["asset.depreciation.line"]
         dep_lines_grouped = {
-            dep: OrderedDict({
-                fy: dep_line_obj
-                for fy in self.env['account.fiscal.year'].search(
-                    fy_domain, order='date_from asc'
-                )
-            })
+            dep: OrderedDict(
+                {
+                    fy: dep_line_obj
+                    for fy in self.env["account.fiscal.year"].search(
+                        fy_domain, order="date_from asc"
+                    )
+                }
+            )
             for dep in deps
         }
 
-        fiscal_year = self.env['account.fiscal.year']
+        fiscal_year = self.env["account.fiscal.year"]
         for dep_line in dep_lines:
             dep = dep_line.depreciation_id
             fyear = fiscal_year.get_fiscal_year_by_date(
@@ -228,28 +219,34 @@ class Report(models.TransientModel):
             )
             dep_lines_grouped[dep][fyear] += dep_line
 
-        self.write({
-            'report_category_ids': [
-                (0, 0, {'category_id': c.id, 'report_id': self.id})
-                for c in categories.sorted('name')
-            ]
-        })
+        self.write(
+            {
+                "report_category_ids": [
+                    (0, 0, {"category_id": c.id, "report_id": self.id})
+                    for c in categories.sorted("name")
+                ]
+            }
+        )
         for report_categ in self.report_category_ids:
-            report_categ.write({
-                'report_asset_ids': [
-                    (0, 0, {'asset_id': a.id, 'report_id': self.id})
-                    for a in self.sort_assets(assets)
-                    if a.category_id == report_categ.category_id
-                ]
-            })
+            report_categ.write(
+                {
+                    "report_asset_ids": [
+                        (0, 0, {"asset_id": a.id, "report_id": self.id})
+                        for a in self.sort_assets(assets)
+                        if a.category_id == report_categ.category_id
+                    ]
+                }
+            )
         for report_asset in self.report_asset_ids:
-            report_asset.write({
-                'report_depreciation_ids': [
-                    (0, 0, {'depreciation_id': d.id, 'report_id': self.id})
-                    for d in deps
-                    if d.asset_id == report_asset.asset_id
-                ]
-            })
+            report_asset.write(
+                {
+                    "report_depreciation_ids": [
+                        (0, 0, {"depreciation_id": d.id, "report_id": self.id})
+                        for d in deps
+                        if d.asset_id == report_asset.asset_id
+                    ]
+                }
+            )
         for report_dep in self.report_depreciation_ids:
             sequence = 0
             for dep, lines_by_fyear in dep_lines_grouped.items():
@@ -257,66 +254,77 @@ class Report(models.TransientModel):
                     for fyear, lines in lines_by_fyear.items():
                         if fyear.date_to >= dep.date_start:
                             prev = not lines or not any(
-                                l.move_type == 'depreciated'
-                                and not l.partial_dismissal
+                                l.move_type == "depreciated" and not l.partial_dismissal
                                 for l in lines
                             )
                             sequence += 1
                             line_ids = lines.ids
-                            report_dep.write({
-                                'report_depreciation_year_line_ids': [
-                                    (0, 0, {'dep_line_ids': [(6, 0, line_ids)],
-                                            'fiscal_year_id': fyear.id,
-                                            'needs_previsional': prev,
-                                            'report_id': self.id,
-                                            'sequence': sequence})
-                                ]
-                            })
+                            report_dep.write(
+                                {
+                                    "report_depreciation_year_line_ids": [
+                                        (
+                                            0,
+                                            0,
+                                            {
+                                                "dep_line_ids": [(6, 0, line_ids)],
+                                                "fiscal_year_id": fyear.id,
+                                                "needs_previsional": prev,
+                                                "report_id": self.id,
+                                                "sequence": sequence,
+                                            },
+                                        )
+                                    ]
+                                }
+                            )
 
     def generate_totals(self):
         curr = self.company_id.currency_id
-        categ_totals = self.report_category_ids.mapped('report_total_ids')
-        fnames = self.env['report_asset_previsional_totals']._total_fnames
+        categ_totals = self.report_category_ids.mapped("report_total_ids")
+        fnames = self.env["report_asset_previsional_totals"]._total_fnames
         totals_by_dep_type = {
-            t: {fname: 0 for fname in fnames}
-            for t in categ_totals.mapped('type_id')
+            t: {fname: 0 for fname in fnames} for t in categ_totals.mapped("type_id")
         }
         for total in categ_totals:
             total_curr = total.get_currency()
             total_type = total.type_id
             for fname in fnames:
-                totals_by_dep_type[total_type][fname] += \
-                    total_curr.compute(total[fname], curr)
-        self.write({
-            'report_total_ids': [
-                (0, 0, dict(
-                    v,
-                    name=_("General Total"),
-                    type_name=t.name_get()[0][-1],
-                    type_id=t.id
-                ))
-                for t, v in totals_by_dep_type.items()
-            ]
-        })
+                totals_by_dep_type[total_type][fname] += total_curr.compute(
+                    total[fname], curr
+                )
+        self.write(
+            {
+                "report_total_ids": [
+                    (
+                        0,
+                        0,
+                        dict(
+                            v,
+                            name=_("General Total"),
+                            type_name=t.name_get()[0][-1],
+                            type_id=t.id,
+                        ),
+                    )
+                    for t, v in totals_by_dep_type.items()
+                ]
+            }
+        )
 
     def get_assets(self):
         domain = []
         if self.asset_ids:
-            domain += [('id', 'in', self.asset_ids.ids)]
+            domain += [("id", "in", self.asset_ids.ids)]
         if self.category_ids:
-            domain += [('category_id', 'in', self.category_ids.ids)]
+            domain += [("category_id", "in", self.category_ids.ids)]
         if self.company_id:
-            domain += [('company_id', '=', self.company_id.id)]
+            domain += [("company_id", "=", self.company_id.id)]
         if self.date:
-            domain += [('purchase_date', '<=', self.date)]
-        return self.env['asset.asset'].search(domain)
+            domain += [("purchase_date", "<=", self.date)]
+        return self.env["asset.asset"].search(domain)
 
     def set_report_name(self):
         report_name = _("Assets Previsional Depreciations ")
         if self.date:
-            report_name += _("to date {}").format(
-                format_date(self, 'date', '%d-%m-%Y')
-            )
+            report_name += _("to date {}").format(format_date(self, "date", "%d-%m-%Y"))
         self.report_name = report_name.strip()
 
     def sort_assets(self, assets):
@@ -325,35 +333,30 @@ class Report(models.TransientModel):
         # If the given
         sortable_assets = assets.filtered(self.asset_order_fname)
         unsortable_assets = assets - sortable_assets
-        sorted_assets = sortable_assets.sorted(self.asset_order_fname) \
-            + unsortable_assets.sorted()
+        sorted_assets = (
+            sortable_assets.sorted(self.asset_order_fname) + unsortable_assets.sorted()
+        )
         return sorted_assets
 
 
 class ReportCategory(models.TransientModel):
-    _name = 'report_asset_previsional_category'
-    _inherit = 'account_financial_report_abstract'
+    _name = "report_asset_previsional_category"
+    _inherit = "account_financial_report_abstract"
 
     # Data fields
-    category_id = fields.Many2one(
-        'asset.category',
-        ondelete='cascade',
-        required=True
-    )
+    category_id = fields.Many2one("asset.category", ondelete="cascade", required=True)
 
     # Report structure fields
     report_id = fields.Many2one(
-        'report_asset_previsional',
+        "report_asset_previsional",
     )
 
     report_asset_ids = fields.One2many(
-        'report_asset_previsional_asset',
-        'report_category_id'
+        "report_asset_previsional_asset", "report_category_id"
     )
 
     report_total_ids = fields.One2many(
-        'report_asset_previsional_totals',
-        'report_category_id'
+        "report_asset_previsional_totals", "report_category_id"
     )
 
     # Fields to be printed
@@ -365,93 +368,93 @@ class ReportCategory(models.TransientModel):
 
     def get_report_categ_data(self):
         self.ensure_one()
-        return {'category_name': self.category_id.name}
+        return {"category_name": self.category_id.name}
 
     def generate_totals(self):
         for categ in self:
             curr = categ.report_id.company_id.currency_id
             report_date = categ.report_id.date
-            report_deps = categ.report_asset_ids\
-                .mapped('report_depreciation_ids')
-            fnames = categ.env['report_asset_previsional_totals']._total_fnames
+            report_deps = categ.report_asset_ids.mapped("report_depreciation_ids")
+            fnames = categ.env["report_asset_previsional_totals"]._total_fnames
             totals_by_dep_type = {
                 t: {fname: 0 for fname in fnames}
-                for t in report_deps.mapped('depreciation_id.type_id')
+                for t in report_deps.mapped("depreciation_id.type_id")
             }
-            for report_dep in report_deps.filtered(
-                'report_depreciation_year_line_ids'
-            ):
+            for report_dep in report_deps.filtered("report_depreciation_year_line_ids"):
                 dep_type = report_dep.depreciation_id.type_id
                 last_line = report_dep.report_depreciation_year_line_ids[-1]
                 line_curr = last_line.get_currency()
                 fy_start = last_line.fiscal_year_id.date_from
                 fy_end = last_line.fiscal_year_id.date_to
                 for fname in fnames:
-                    if fname == 'amount_depreciation_fund_prev_year':
+                    if fname == "amount_depreciation_fund_prev_year":
                         if fy_start <= report_date <= fy_end:
-                            totals_by_dep_type[dep_type][fname] += \
-                                line_curr.compute(last_line[fname], curr)
+                            totals_by_dep_type[dep_type][fname] += line_curr.compute(
+                                last_line[fname], curr
+                            )
                     elif fname in (
-                        'amount_in_total',
-                        'amount_out_total',
-                        'gain_loss_total'
+                        "amount_in_total",
+                        "amount_out_total",
+                        "gain_loss_total",
                     ):
                         if fy_start <= report_date <= fy_end:
-                            totals_by_dep_type[dep_type][fname] += \
-                                line_curr.compute(last_line[fname], curr)
+                            totals_by_dep_type[dep_type][fname] += line_curr.compute(
+                                last_line[fname], curr
+                            )
                         elif report_date < fy_start:
                             totals_by_dep_type[dep_type][fname] = 0
-                    elif fname == 'amount_depreciated':
+                    elif fname == "amount_depreciated":
                         if fy_start <= report_date <= fy_end:
-                            totals_by_dep_type[dep_type][fname] += \
-                                line_curr.compute(last_line[fname], curr)
+                            totals_by_dep_type[dep_type][fname] += line_curr.compute(
+                                last_line[fname], curr
+                            )
                     else:
-                        totals_by_dep_type[dep_type][fname] += \
-                            line_curr.compute(last_line[fname], curr)
-            categ.write({
-                'report_total_ids': [
-                    (0, 0, dict(
-                        v,
-                        name=categ.category_id.name_get()[0][-1],
-                        type_name=t.name_get()[0][-1],
-                        type_id=t.id
-                    ))
-                    for t, v in totals_by_dep_type.items()
-                ]
-            })
+                        totals_by_dep_type[dep_type][fname] += line_curr.compute(
+                            last_line[fname], curr
+                        )
+            categ.write(
+                {
+                    "report_total_ids": [
+                        (
+                            0,
+                            0,
+                            dict(
+                                v,
+                                name=categ.category_id.name_get()[0][-1],
+                                type_name=t.name_get()[0][-1],
+                                type_id=t.id,
+                            ),
+                        )
+                        for t, v in totals_by_dep_type.items()
+                    ]
+                }
+            )
 
 
 class ReportAsset(models.TransientModel):
-    _name = 'report_asset_previsional_asset'
-    _inherit = 'account_financial_report_abstract'
+    _name = "report_asset_previsional_asset"
+    _inherit = "account_financial_report_abstract"
 
     # Data fields
-    asset_id = fields.Many2one(
-        'asset.asset',
-        ondelete='cascade',
-        required=True
-    )
+    asset_id = fields.Many2one("asset.asset", ondelete="cascade", required=True)
 
     # Report structure fields
     report_id = fields.Many2one(
-        'report_asset_previsional',
+        "report_asset_previsional",
     )
 
-    report_category_id = fields.Many2one(
-        'report_asset_previsional_category'
-    )
+    report_category_id = fields.Many2one("report_asset_previsional_category")
 
     report_depreciation_ids = fields.One2many(
-        'report_asset_previsional_depreciation',
-        'report_asset_id'
+        "report_asset_previsional_depreciation", "report_asset_id"
     )
 
     report_purchase_doc_id = fields.Many2one(
-        'report_asset_previsional_accounting_doc',
+        "report_asset_previsional_accounting_doc",
     )
 
     report_sale_doc_id = fields.Many2one(
-        'report_asset_previsional_accounting_doc',
+        "report_asset_previsional_accounting_doc",
     )
 
     # Fields to be printed
@@ -477,70 +480,80 @@ class ReportAsset(models.TransientModel):
     def get_report_asset_data(self):
         self.ensure_one()
         asset = self.asset_id
-        states_dict = dict(asset._fields['state'].selection)
+        states_dict = dict(asset._fields["state"].selection)
 
         vals = {
-            'asset_code': asset.code or "/",
-            'asset_name': asset.name,
-            'asset_purchase_amount': asset.purchase_amount,
-            'asset_state': states_dict.get(asset.state) or _("Unknown"),
-            'asset_used': _("Used") if asset.used else _("New"),
+            "asset_code": asset.code or "/",
+            "asset_name": asset.name,
+            "asset_purchase_amount": asset.purchase_amount,
+            "asset_state": states_dict.get(asset.state) or _("Unknown"),
+            "asset_used": _("Used") if asset.used else _("New"),
         }
 
-        acc_doc = self.env['report_asset_previsional_accounting_doc']
+        acc_doc = self.env["report_asset_previsional_accounting_doc"]
         purchase_vals = self.get_purchase_vals()
         if purchase_vals:
-            vals.update({
-                'report_purchase_doc_id': acc_doc.create(purchase_vals).id,
-            })
+            vals.update(
+                {
+                    "report_purchase_doc_id": acc_doc.create(purchase_vals).id,
+                }
+            )
 
         sale_vals = self.get_sale_vals()
         if sale_vals:
-            vals.update({
-                'report_sale_doc_id': acc_doc.create(sale_vals).id,
-            })
+            vals.update(
+                {
+                    "report_sale_doc_id": acc_doc.create(sale_vals).id,
+                }
+            )
 
         return vals
 
     def get_purchase_vals(self):
         asset = self.asset_id
         purchase_vals = {
-            'partner_name': asset.supplier_id.name or "/",
-            'partner_vat': asset.supplier_id.vat or "/",
+            "partner_name": asset.supplier_id.name or "/",
+            "partner_vat": asset.supplier_id.vat or "/",
         }
 
         if asset.purchase_date:
-            purchase_vals['document_date'] = format_date(
-                asset, 'purchase_date', '%d-%m-%Y'
+            purchase_vals["document_date"] = format_date(
+                asset, "purchase_date", "%d-%m-%Y"
             )
 
         if asset.supplier_ref:
-            purchase_vals['partner_ref'] = asset.supplier_ref
+            purchase_vals["partner_ref"] = asset.supplier_ref
         elif asset.purchase_invoice_id.reference:
-            purchase_vals['partner_ref'] = asset.purchase_invoice_id.reference
+            purchase_vals["partner_ref"] = asset.purchase_invoice_id.reference
         elif asset.purchase_move_id.ref:
-            purchase_vals['partner_ref'] = asset.purchase_move_id.ref
+            purchase_vals["partner_ref"] = asset.purchase_move_id.ref
         else:
-            purchase_vals['partner_ref'] = "/"
+            purchase_vals["partner_ref"] = "/"
 
         if asset.purchase_invoice_id:
-            purchase_vals.update({
-                'document_nr': asset.purchase_invoice_id.number or "/",
-                'res_id': asset.purchase_invoice_id.id,
-                'res_model': 'account.invoice',
-            })
+            purchase_vals.update(
+                {
+                    "document_nr": asset.purchase_invoice_id.number or "/",
+                    "res_id": asset.purchase_invoice_id.id,
+                    "res_model": "account.invoice",
+                }
+            )
         elif asset.purchase_move_id:
-            purchase_vals.update({
-                'document_nr': asset.purchase_move_id.name or "/",
-                'res_id': asset.purchase_move_id.id,
-                'res_model': 'account.move',
-            })
+            purchase_vals.update(
+                {
+                    "document_nr": asset.purchase_move_id.name or "/",
+                    "res_id": asset.purchase_move_id.id,
+                    "res_model": "account.move",
+                }
+            )
         else:
-            purchase_vals.update({
-                'document_nr': "/",
-                'res_id': asset.id,
-                'res_model': 'asset.asset',
-            })
+            purchase_vals.update(
+                {
+                    "document_nr": "/",
+                    "res_id": asset.id,
+                    "res_model": "asset.asset",
+                }
+            )
 
         return purchase_vals
 
@@ -550,56 +563,57 @@ class ReportAsset(models.TransientModel):
             return {}
 
         sale_vals = {
-            'document_date': format_date(asset, 'sale_date', '%d-%m-%Y'),
-            'partner_name': asset.customer_id.name,
-            'partner_vat': asset.customer_id.vat or "/",
+            "document_date": format_date(asset, "sale_date", "%d-%m-%Y"),
+            "partner_name": asset.customer_id.name,
+            "partner_vat": asset.customer_id.vat or "/",
         }
 
         if asset.sale_invoice_id:
-            sale_vals.update({
-                'document_nr': asset.sale_invoice_id.number or "/",
-                'res_id': asset.sale_invoice_id.id,
-                'res_model': 'account.invoice',
-            })
+            sale_vals.update(
+                {
+                    "document_nr": asset.sale_invoice_id.number or "/",
+                    "res_id": asset.sale_invoice_id.id,
+                    "res_model": "account.invoice",
+                }
+            )
         elif asset.sale_move_id:
-            sale_vals.update({
-                'document_nr': asset.sale_move_id.name or "/",
-                'res_id': asset.sale_move_id.id,
-                'res_model': 'account.move',
-            })
+            sale_vals.update(
+                {
+                    "document_nr": asset.sale_move_id.name or "/",
+                    "res_id": asset.sale_move_id.id,
+                    "res_model": "account.move",
+                }
+            )
         else:
-            sale_vals.update({
-                'document_nr': "/",
-                'res_id': asset.id,
-                'res_model': 'asset.asset',
-            })
+            sale_vals.update(
+                {
+                    "document_nr": "/",
+                    "res_id": asset.id,
+                    "res_model": "asset.asset",
+                }
+            )
         return sale_vals
 
 
 class ReportDepreciation(models.TransientModel):
-    _name = 'report_asset_previsional_depreciation'
-    _inherit = 'account_financial_report_abstract'
-    _order = 'type_name asc'
+    _name = "report_asset_previsional_depreciation"
+    _inherit = "account_financial_report_abstract"
+    _order = "type_name asc"
 
     # Data fields
     depreciation_id = fields.Many2one(
-        'asset.depreciation',
-        ondelete='cascade',
-        required=True
+        "asset.depreciation", ondelete="cascade", required=True
     )
 
     # Report structure fields
     report_id = fields.Many2one(
-        'report_asset_previsional',
+        "report_asset_previsional",
     )
 
-    report_asset_id = fields.Many2one(
-        'report_asset_previsional_asset'
-    )
+    report_asset_id = fields.Many2one("report_asset_previsional_asset")
 
     report_depreciation_year_line_ids = fields.One2many(
-        'report_asset_previsional_depreciation_line_year',
-        'report_depreciation_id'
+        "report_asset_previsional_depreciation_line_year", "report_depreciation_id"
     )
 
     # Fields to be printed
@@ -627,45 +641,40 @@ class ReportDepreciation(models.TransientModel):
         self.ensure_one()
         dep = self.depreciation_id
         if dep.pro_rata_temporis:
-            dep_pro_rata_temporis = u"\u2612"  # checked ballot box -> ☒
+            dep_pro_rata_temporis = "\u2612"  # checked ballot box -> ☒
         else:
-            dep_pro_rata_temporis = u"\u2610"  # empty ballot box -> ☐
+            dep_pro_rata_temporis = "\u2610"  # empty ballot box -> ☐
 
         return {
-            'dep_amount_depreciable': dep.amount_depreciable,
-            'dep_date_start': format_date(dep, 'date_start', '%d-%m-%Y'),
-            'dep_percentage': dep.percentage,
-            'dep_pro_rata_temporis': dep_pro_rata_temporis,
-            'mode_name': dep.mode_id.name_get()[0][-1] if dep.mode_id else "",
-            'type_name': dep.type_id.name_get()[0][-1] if dep.type_id else ""
+            "dep_amount_depreciable": dep.amount_depreciable,
+            "dep_date_start": format_date(dep, "date_start", "%d-%m-%Y"),
+            "dep_percentage": dep.percentage,
+            "dep_pro_rata_temporis": dep_pro_rata_temporis,
+            "mode_name": dep.mode_id.name_get()[0][-1] if dep.mode_id else "",
+            "type_name": dep.type_id.name_get()[0][-1] if dep.type_id else "",
         }
 
 
 class ReportDepreciationLineByYear(models.TransientModel):
-    _name = 'report_asset_previsional_depreciation_line_year'
-    _inherit = 'account_financial_report_abstract'
-    _order = 'sequence asc'
+    _name = "report_asset_previsional_depreciation_line_year"
+    _inherit = "account_financial_report_abstract"
+    _order = "sequence asc"
 
     # Data fields
     dep_line_ids = fields.Many2many(
-        'asset.depreciation.line',
-        relation='report_previsional_line_year_dep_line'
+        "asset.depreciation.line", relation="report_previsional_line_year_dep_line"
     )
 
-    fiscal_year_id = fields.Many2one(
-        'account.fiscal.year'
-    )
+    fiscal_year_id = fields.Many2one("account.fiscal.year")
 
     # Report structure fields
     hidden = fields.Boolean()
 
     report_id = fields.Many2one(
-        'report_asset_previsional',
+        "report_asset_previsional",
     )
 
-    report_depreciation_id = fields.Many2one(
-        'report_asset_previsional_depreciation'
-    )
+    report_depreciation_id = fields.Many2one("report_asset_previsional_depreciation")
 
     sequence = fields.Integer()
 
@@ -701,14 +710,17 @@ class ReportDepreciationLineByYear(models.TransientModel):
 
     def do_clean(self):
         self.ensure_one()
-        digits = self.env['decimal.precision'].precision_get('Account')
-        if not self.dep_line_ids \
-                and float_is_zero(self.amount_residual, digits) \
-                and self.sequence > 1:
-            previous_line = self.report_depreciation_id \
-                .report_depreciation_year_line_ids.filtered(
+        digits = self.env["decimal.precision"].precision_get("Account")
+        if (
+            not self.dep_line_ids
+            and float_is_zero(self.amount_residual, digits)
+            and self.sequence > 1
+        ):
+            previous_line = (
+                self.report_depreciation_id.report_depreciation_year_line_ids.filtered(
                     lambda l: l.sequence == self.sequence - 1
                 )
+            )
             if float_is_zero(previous_line.amount_residual, digits):
                 return True
         return False
@@ -730,7 +742,7 @@ class ReportDepreciationLineByYear(models.TransientModel):
 
     def generate_previsional_lines(self):
         lines_grouped = dict()
-        for line in self.filtered('needs_previsional'):
+        for line in self.filtered("needs_previsional"):
             dep = line.report_depreciation_id.depreciation_id
             if dep not in lines_grouped:
                 lines_grouped[dep] = line
@@ -759,32 +771,34 @@ class ReportDepreciationLineByYear(models.TransientModel):
         grouped_amounts = self.dep_line_ids.get_balances_grouped()
 
         amount_depreciable = report_dep.dep_amount_depreciable
-        amount_gain = grouped_amounts.get('gain') or 0.0
+        amount_gain = grouped_amounts.get("gain") or 0.0
         amount_gain_total = amount_gain
-        amount_historical = abs(grouped_amounts.get('historical') or 0.0)
-        amount_in = abs(grouped_amounts.get('in') or 0.0)
+        amount_historical = abs(grouped_amounts.get("historical") or 0.0)
+        amount_in = abs(grouped_amounts.get("in") or 0.0)
         amount_in_total = amount_in
-        amount_loss = grouped_amounts.get('loss') or 0.0
+        amount_loss = grouped_amounts.get("loss") or 0.0
         amount_loss_total = amount_loss
-        amount_out = abs(grouped_amounts.get('out') or 0.0)
+        amount_out = abs(grouped_amounts.get("out") or 0.0)
         amount_out_total = amount_out
         gain_loss = amount_gain + amount_loss
         gain_loss_total = gain_loss
 
-        amount_depreciated = sum([
-            line.amount
-            for line in self.dep_line_ids.filtered(
-                lambda l: l.move_type == 'depreciated'
-                and not l.partial_dismissal
-            )
-        ])
-        amount_dismissal = sum([
-            line.amount
-            for line in self.dep_line_ids.filtered(
-                lambda l: l.move_type == 'depreciated'
-                and l.partial_dismissal
-            )
-        ])
+        amount_depreciated = sum(
+            [
+                line.amount
+                for line in self.dep_line_ids.filtered(
+                    lambda l: l.move_type == "depreciated" and not l.partial_dismissal
+                )
+            ]
+        )
+        amount_dismissal = sum(
+            [
+                line.amount
+                for line in self.dep_line_ids.filtered(
+                    lambda l: l.move_type == "depreciated" and l.partial_dismissal
+                )
+            ]
+        )
 
         prev_year_line = report_dep.report_depreciation_year_line_ids.filtered(
             lambda l: l.sequence == self.sequence - 1
@@ -792,46 +806,52 @@ class ReportDepreciationLineByYear(models.TransientModel):
         asset = self.report_depreciation_id.report_asset_id.asset_id
         fy_start = self.fiscal_year_id.date_from
         fy_end = self.fiscal_year_id.date_to
-        if asset.sold and asset.sale_date \
-                and fy_start <= asset.sale_date <= fy_end:
+        if asset.sold and asset.sale_date and fy_start <= asset.sale_date <= fy_end:
             amount_depreciable_upd = 0.0
             depreciation_fund_curr_year = 0.0
             amount_residual = 0.0
             if prev_year_line:
-                depreciation_fund_prev_year = prev_year_line\
-                    .amount_depreciation_fund_curr_year
+                depreciation_fund_prev_year = (
+                    prev_year_line.amount_depreciation_fund_curr_year
+                )
                 amount_in_total += prev_year_line.amount_in_total
                 amount_out_total += prev_year_line.amount_out_total
             else:
                 depreciation_fund_prev_year = 0.0
         else:
             if prev_year_line:
-                depreciation_fund_prev_year = prev_year_line\
-                    .amount_depreciation_fund_curr_year
+                depreciation_fund_prev_year = (
+                    prev_year_line.amount_depreciation_fund_curr_year
+                )
                 prev_year_resid = prev_year_line.amount_residual
-                amount_depreciable_upd = prev_year_line.\
-                    amount_depreciable_updated + amount_in - amount_out
+                amount_depreciable_upd = (
+                    prev_year_line.amount_depreciable_updated + amount_in - amount_out
+                )
                 amount_in_total += prev_year_line.amount_in_total
                 amount_out_total += prev_year_line.amount_out_total
             else:
                 depreciation_fund_prev_year = 0.0
                 prev_year_resid = amount_depreciable
-                amount_depreciable_upd = amount_depreciable + amount_in \
-                    - amount_out
+                amount_depreciable_upd = amount_depreciable + amount_in - amount_out
 
-            depreciation_fund_curr_year = depreciation_fund_prev_year \
-                + amount_depreciated + amount_dismissal
-            amount_residual = prev_year_resid + amount_in - amount_out \
-                - amount_depreciated - amount_dismissal
+            depreciation_fund_curr_year = (
+                depreciation_fund_prev_year + amount_depreciated + amount_dismissal
+            )
+            amount_residual = (
+                prev_year_resid
+                + amount_in
+                - amount_out
+                - amount_depreciated
+                - amount_dismissal
+            )
         if prev_year_line:
             amount_gain_total += prev_year_line.amount_gain_total
             amount_loss_total += prev_year_line.amount_loss_total
             gain_loss_total += prev_year_line.gain_loss_total
 
-        type_mapping = {'in': {}, 'out': {}}
+        type_mapping = {"in": {}, "out": {}}
         for dep_line in self.dep_line_ids.filtered(
-            lambda l: l.move_type in ('in', 'out')
-            and l.depreciation_line_type_id
+            lambda l: l.move_type in ("in", "out") and l.depreciation_line_type_id
         ):
             dep_type = dep_line.depreciation_line_type_id
             if dep_type not in type_mapping[dep_line.move_type]:
@@ -840,19 +860,21 @@ class ReportDepreciationLineByYear(models.TransientModel):
 
         amount_in_detail = amount_out_detail = ""
         has_amount_detail = False
-        if type_mapping['in']:
-            amount_in_detail = "; ".join([
-                "{}: {}".format(dep_type.name, self.format_amount(amount))
-                for dep_type, amount in sorted(list(
-                    type_mapping['in'].items()))
-            ])
+        if type_mapping["in"]:
+            amount_in_detail = "; ".join(
+                [
+                    "{}: {}".format(dep_type.name, self.format_amount(amount))
+                    for dep_type, amount in sorted(list(type_mapping["in"].items()))
+                ]
+            )
             has_amount_detail = True
-        if type_mapping['out']:
-            amount_out_detail = "; ".join([
-                "{}: {}".format(dep_type.name, self.format_amount(amount))
-                for dep_type, amount in sorted(list(
-                    type_mapping['out'].items()))
-            ])
+        if type_mapping["out"]:
+            amount_out_detail = "; ".join(
+                [
+                    "{}: {}".format(dep_type.name, self.format_amount(amount))
+                    for dep_type, amount in sorted(list(type_mapping["out"].items()))
+                ]
+            )
             has_amount_detail = True
 
         start = fields.Date.from_string(self.fiscal_year_id.date_from).year
@@ -863,39 +885,39 @@ class ReportDepreciationLineByYear(models.TransientModel):
             year = "{} - {}".format(start, end)
 
         return {
-            'amount_depreciable': amount_depreciable,
-            'amount_depreciable_updated': amount_depreciable_upd,
-            'amount_depreciated': amount_depreciated,
-            'amount_depreciation_fund_curr_year': depreciation_fund_curr_year,
-            'amount_depreciation_fund_prev_year': depreciation_fund_prev_year,
-            'amount_gain': amount_gain,
-            'amount_historical': amount_historical,
-            'amount_in': amount_in,
-            'amount_in_detail': amount_in_detail,
-            'amount_in_total': amount_in_total,
-            'amount_loss': amount_loss,
-            'amount_out': amount_out,
-            'amount_out_detail': amount_out_detail,
-            'amount_out_total': amount_out_total,
-            'amount_residual': amount_residual,
-            'date_start': report_dep.dep_date_start,
-            'gain_loss': gain_loss,
-            'gain_loss_total': gain_loss_total,
-            'has_amount_detail': has_amount_detail,
-            'percentage': report_dep.dep_percentage,
-            'type_name': report_dep.type_name,
-            'year': year,
+            "amount_depreciable": amount_depreciable,
+            "amount_depreciable_updated": amount_depreciable_upd,
+            "amount_depreciated": amount_depreciated,
+            "amount_depreciation_fund_curr_year": depreciation_fund_curr_year,
+            "amount_depreciation_fund_prev_year": depreciation_fund_prev_year,
+            "amount_gain": amount_gain,
+            "amount_historical": amount_historical,
+            "amount_in": amount_in,
+            "amount_in_detail": amount_in_detail,
+            "amount_in_total": amount_in_total,
+            "amount_loss": amount_loss,
+            "amount_out": amount_out,
+            "amount_out_detail": amount_out_detail,
+            "amount_out_total": amount_out_total,
+            "amount_residual": amount_residual,
+            "date_start": report_dep.dep_date_start,
+            "gain_loss": gain_loss,
+            "gain_loss_total": gain_loss_total,
+            "has_amount_detail": has_amount_detail,
+            "percentage": report_dep.dep_percentage,
+            "type_name": report_dep.type_name,
+            "year": year,
         }
 
 
 class ReportAccountingDoc(models.TransientModel):
-    _name = 'report_asset_previsional_accounting_doc'
-    _inherit = 'account_financial_report_abstract'
-    _order = 'sequence asc'
+    _name = "report_asset_previsional_accounting_doc"
+    _inherit = "account_financial_report_abstract"
+    _order = "sequence asc"
 
     # Report structure fields
     report_id = fields.Many2one(
-        'report_asset_previsional',
+        "report_asset_previsional",
     )
 
     # Fields to be printed
@@ -910,34 +932,32 @@ class ReportAccountingDoc(models.TransientModel):
 
 
 class ReportTotals(models.TransientModel):
-    _name = 'report_asset_previsional_totals'
-    _inherit = 'account_financial_report_abstract'
+    _name = "report_asset_previsional_totals"
+    _inherit = "account_financial_report_abstract"
     _total_fnames = [
-        'amount_depreciable_updated',
-        'amount_depreciated',
-        'amount_depreciation_fund_curr_year',
-        'amount_depreciation_fund_prev_year',
-        'amount_gain',
-        'amount_in_total',
-        'amount_loss',
-        'amount_out_total',
-        'amount_residual',
-        'gain_loss_total',
+        "amount_depreciable_updated",
+        "amount_depreciated",
+        "amount_depreciation_fund_curr_year",
+        "amount_depreciation_fund_prev_year",
+        "amount_gain",
+        "amount_in_total",
+        "amount_loss",
+        "amount_out_total",
+        "amount_residual",
+        "gain_loss_total",
     ]
 
     # Data fields
     type_id = fields.Many2one(
-        'asset.depreciation.type',
+        "asset.depreciation.type",
     )
 
     # Report structure fields
     report_id = fields.Many2one(
-        'report_asset_previsional',
+        "report_asset_previsional",
     )
 
-    report_category_id = fields.Many2one(
-        'report_asset_previsional_category'
-    )
+    report_category_id = fields.Many2one("report_asset_previsional_category")
 
     # Fields to be printed
     amount_depreciable_updated = fields.Float()

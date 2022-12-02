@@ -8,7 +8,7 @@ from odoo.tools.float_utils import float_compare, float_is_zero
 
 
 class WizardInvoiceManageAsset(models.TransientModel):
-    _name = 'wizard.invoice.manage.asset'
+    _name = "wizard.invoice.manage.asset"
     _description = "Manage Assets from Invoices"
 
     @api.model
@@ -17,19 +17,14 @@ class WizardInvoiceManageAsset(models.TransientModel):
 
     @api.model
     def get_default_invoice_ids(self):
-        return self._context.get('invoice_ids')
+        return self._context.get("invoice_ids")
 
-    asset_id = fields.Many2one(
-        'asset.asset',
-        string="Asset"
-    )
+    asset_id = fields.Many2one("asset.asset", string="Asset")
 
-    asset_purchase_amount = fields.Monetary(
-        string="Purchase Amount"
-    )
+    asset_purchase_amount = fields.Monetary(string="Purchase Amount")
 
     category_id = fields.Many2one(
-        'asset.category',
+        "asset.category",
         string="Category",
     )
 
@@ -39,25 +34,22 @@ class WizardInvoiceManageAsset(models.TransientModel):
     )
 
     company_id = fields.Many2one(
-        'res.company',
+        "res.company",
         default=get_default_company_id,
         string="Company",
     )
 
     currency_id = fields.Many2one(
-        'res.currency',
+        "res.currency",
         readonly=True,
-        related='company_id.currency_id',
+        related="company_id.currency_id",
         string="Currency",
     )
 
-    depreciated_fund_amount = fields.Monetary(
-        string="Depreciated Fund Amount"
-    )
+    depreciated_fund_amount = fields.Monetary(string="Depreciated Fund Amount")
 
     depreciation_type_ids = fields.Many2many(
-        'asset.depreciation.type',
-        string="Depreciation Types"
+        "asset.depreciation.type", string="Depreciation Types"
     )
 
     dismiss_date = fields.Date(
@@ -66,13 +58,13 @@ class WizardInvoiceManageAsset(models.TransientModel):
     )
 
     invoice_ids = fields.Many2many(
-        'account.invoice',
+        "account.invoice",
         default=get_default_invoice_ids,
         string="Invoices",
     )
 
     invoice_line_ids = fields.Many2many(
-        'account.invoice.line',
+        "account.invoice.line",
         string="Invoice Lines",
     )
 
@@ -81,20 +73,24 @@ class WizardInvoiceManageAsset(models.TransientModel):
     )
 
     invoice_type = fields.Selection(
-        [('out_invoice', "Customer Invoice"),
-         ('in_invoice', "Vendor Bill"),
-         ('out_refund', "Customer Credit Note"),
-         ('in_refund', "Vendor Credit Note"),
-         ('wrong', "Wrong")],
-        string="Invoice Type"
+        [
+            ("out_invoice", "Customer Invoice"),
+            ("in_invoice", "Vendor Bill"),
+            ("out_refund", "Customer Credit Note"),
+            ("in_refund", "Vendor Credit Note"),
+            ("wrong", "Wrong"),
+        ],
+        string="Invoice Type",
     )
 
     management_type = fields.Selection(
-        [('create', "Create New"),
-         ('update', "Update Existing"),
-         ('partial_dismiss', "Partial Dismiss"),
-         ('dismiss', "Dismiss Asset")],
-        string="Management Type"
+        [
+            ("create", "Create New"),
+            ("update", "Update Existing"),
+            ("partial_dismiss", "Partial Dismiss"),
+            ("dismiss", "Dismiss Asset"),
+        ],
+        string="Management Type",
     )
 
     name = fields.Char(
@@ -112,56 +108,57 @@ class WizardInvoiceManageAsset(models.TransientModel):
 
     # Mapping between invoice type and depreciation line type
     _invoice_type_2_dep_line_type = {
-        'in_invoice': 'in',
-        'out_invoice': 'out',
-        'in_refund': 'out',
-        'out_refund': 'in'
+        "in_invoice": "in",
+        "out_invoice": "out",
+        "in_refund": "out",
+        "out_refund": "in",
     }
 
     # Every method used in here must return an asset
     _management_type_2_method = {
-        'create': lambda w: w.create_asset(),
-        'dismiss': lambda w: w.dismiss_asset(),
-        'partial_dismiss': lambda w: w.partial_dismiss_asset(),
-        'update': lambda w: w.update_asset(),
+        "create": lambda w: w.create_asset(),
+        "dismiss": lambda w: w.dismiss_asset(),
+        "partial_dismiss": lambda w: w.partial_dismiss_asset(),
+        "update": lambda w: w.update_asset(),
     }
 
-    @api.onchange('asset_id', 'management_type')
+    @api.onchange("asset_id", "management_type")
     def onchange_depreciation_type_ids(self):
-        if self.management_type == 'update':
+        if self.management_type == "update":
             if self.asset_id:
                 self.depreciation_type_ids = self.asset_id.mapped(
-                    'depreciation_ids.type_id'
+                    "depreciation_ids.type_id"
                 )
             else:
                 self.depreciation_type_ids = False
         else:
             self.depreciation_type_ids = False
 
-    @api.onchange('invoice_ids')
+    @api.onchange("invoice_ids")
     def onchange_invoices(self):
         if self.invoice_ids:
             invoices = self.invoice_ids
             invoice_type = invoices[0].type
 
             if any([inv.type != invoice_type for inv in invoices]):
-                invoice_type = 'wrong'
+                invoice_type = "wrong"
             self.invoice_type = invoice_type
 
-            if invoice_type in ('in_invoice', 'out_refund'):
-                self.management_type = 'create'
-            elif invoice_type in ('in_refund', 'out_invoice'):
-                self.management_type = 'dismiss'
+            if invoice_type in ("in_invoice", "out_refund"):
+                self.management_type = "create"
+            elif invoice_type in ("in_refund", "out_invoice"):
+                self.management_type = "dismiss"
             else:
                 self.management_type = False
 
             is_invoice_state_ok = False
-            if all([inv.state in ('open', 'paid') for inv in invoices]):
+            if all([inv.state in ("open", "paid") for inv in invoices]):
                 is_invoice_state_ok = True
             self.is_invoice_state_ok = is_invoice_state_ok
 
-            self.invoice_line_ids = invoices.mapped('invoice_line_ids')\
-                .filtered(lambda l: not l.asset_accounting_info_ids)
+            self.invoice_line_ids = invoices.mapped("invoice_line_ids").filtered(
+                lambda l: not l.asset_accounting_info_ids
+            )
 
     @api.multi
     def link_asset(self):
@@ -171,24 +168,28 @@ class WizardInvoiceManageAsset(models.TransientModel):
         method = self.get_management_type_2_method().get(self.management_type)
         if not method:
             raise ValidationError(
-                _("Could not determine how to link invoice lines to asset"
-                  " in mode `{}`.").format(self.management_type)
+                _(
+                    "Could not determine how to link invoice lines to asset"
+                    " in mode `{}`."
+                ).format(self.management_type)
             )
         # As written above: method defined in here must return an asset
         asset = method(self)
 
-        if self._context.get('show_asset'):
-            act_xmlid = 'assets_management.action_asset'
+        if self._context.get("show_asset"):
+            act_xmlid = "assets_management.action_asset"
             act = self.env.ref(act_xmlid).read()[0]
-            form_xmlid = 'assets_management.asset_form_view'
+            form_xmlid = "assets_management.asset_form_view"
             form = self.env.ref(form_xmlid)
-            act.update({
-                'res_id': asset.id,
-                'view_id': form.id,
-                'view_mode': 'form',
-                'view_type': 'form',
-                'views': [(form.id, 'form')],
-            })
+            act.update(
+                {
+                    "res_id": asset.id,
+                    "view_id": form.id,
+                    "view_mode": "form",
+                    "view_type": "form",
+                    "views": [(form.id, "form")],
+                }
+            )
             return act
 
         return asset
@@ -197,145 +198,137 @@ class WizardInvoiceManageAsset(models.TransientModel):
         self.ensure_one()
         if not self.invoice_line_ids:
             raise ValidationError(
-                _("At least one invoice line is mandatory to create"
-                  " a new asset!")
+                _("At least one invoice line is mandatory to create" " a new asset!")
             )
 
-        if not len(self.invoice_line_ids.mapped('invoice_id')) == 1:
+        if not len(self.invoice_line_ids.mapped("invoice_id")) == 1:
             raise ValidationError(
                 _("Cannot create asset if lines come from different invoices!")
             )
 
-        if not all([
-            l.account_id == self.category_id.asset_account_id
-            for l in self.invoice_line_ids
-        ]):
+        if not all(
+            [
+                l.account_id == self.category_id.asset_account_id
+                for l in self.invoice_line_ids
+            ]
+        ):
             categ_name = self.category_id.name_get()[0][-1]
             acc_name = self.category_id.asset_account_id.name_get()[0][-1]
             raise ValidationError(
-                _("You need to choose invoice lines with account `{}`"
-                  " if you need them to create an asset for"
-                  " category `{}`!").format(acc_name, categ_name)
+                _(
+                    "You need to choose invoice lines with account `{}`"
+                    " if you need them to create an asset for"
+                    " category `{}`!"
+                ).format(acc_name, categ_name)
             )
 
     def check_pre_dismiss_asset(self):
         self.ensure_one()
         if not self.asset_id:
-            raise ValidationError(
-                _("Please choose an asset before continuing!")
-            )
+            raise ValidationError(_("Please choose an asset before continuing!"))
 
         if not self.invoice_line_ids:
             raise ValidationError(
-                _("At least one invoice line is mandatory to dismiss"
-                  " an asset!")
+                _("At least one invoice line is mandatory to dismiss" " an asset!")
             )
 
-        if not len(self.invoice_line_ids.mapped('invoice_id')) == 1:
+        if not len(self.invoice_line_ids.mapped("invoice_id")) == 1:
             raise ValidationError(
-                _("Cannot dismiss asset if lines come from different"
-                  " invoices!")
+                _("Cannot dismiss asset if lines come from different" " invoices!")
             )
 
-        if not all([
-            l.account_id == self.asset_id.category_id.asset_account_id
-            for l in self.invoice_line_ids
-        ]):
+        if not all(
+            [
+                l.account_id == self.asset_id.category_id.asset_account_id
+                for l in self.invoice_line_ids
+            ]
+        ):
             ass_name = self.asset_id.make_name()
-            ass_acc = self.asset_id.category_id.asset_account_id \
-                .name_get()[0][-1]
+            ass_acc = self.asset_id.category_id.asset_account_id.name_get()[0][-1]
             raise ValidationError(
-                _("You need to choose invoice lines with account `{}` if you"
-                  " need them to dismiss asset `{}`!")
-                .format(ass_acc, ass_name)
+                _(
+                    "You need to choose invoice lines with account `{}` if you"
+                    " need them to dismiss asset `{}`!"
+                ).format(ass_acc, ass_name)
             )
 
     def check_pre_link_asset(self):
         self.ensure_one()
-        if len(self.invoice_line_ids.mapped('account_id')) > 1:
-            raise ValidationError(
-                _("Every invoice line must share the same account!")
-            )
+        if len(self.invoice_line_ids.mapped("account_id")) > 1:
+            raise ValidationError(_("Every invoice line must share the same account!"))
 
         if not self.management_type:
-            raise ValidationError(
-                _("Couldn't determine which action should be done.")
-            )
+            raise ValidationError(_("Couldn't determine which action should be done."))
 
     def check_pre_partial_dismiss_asset(self):
         self.ensure_one()
         if not self.asset_id:
-            raise ValidationError(
-                _("Please choose an asset before continuing!")
-            )
+            raise ValidationError(_("Please choose an asset before continuing!"))
 
         if not self.invoice_line_ids:
             raise ValidationError(
-                _("At least one invoice line is mandatory to dismiss"
-                  " an asset!")
+                _("At least one invoice line is mandatory to dismiss" " an asset!")
             )
 
-        if not len(self.invoice_line_ids.mapped('invoice_id')) == 1:
+        if not len(self.invoice_line_ids.mapped("invoice_id")) == 1:
             raise ValidationError(
-                _("Cannot dismiss asset if lines come from different"
-                  " invoices!")
+                _("Cannot dismiss asset if lines come from different" " invoices!")
             )
 
-        if not all([
-            l.account_id == self.asset_id.category_id.asset_account_id
-            for l in self.invoice_line_ids
-        ]):
+        if not all(
+            [
+                l.account_id == self.asset_id.category_id.asset_account_id
+                for l in self.invoice_line_ids
+            ]
+        ):
             ass_name = self.asset_id.make_name()
-            ass_acc = self.asset_id.category_id.asset_account_id \
-                .name_get()[0][-1]
+            ass_acc = self.asset_id.category_id.asset_account_id.name_get()[0][-1]
             raise ValidationError(
-                _("You need to choose invoice lines with account `{}`"
-                  " if you need them to dismiss asset `{}`!")
-                .format(ass_acc, ass_name)
+                _(
+                    "You need to choose invoice lines with account `{}`"
+                    " if you need them to dismiss asset `{}`!"
+                ).format(ass_acc, ass_name)
             )
 
     def check_pre_update_asset(self):
         self.ensure_one()
         if not self.asset_id:
-            raise ValidationError(
-                _("Please choose an asset before continuing!")
-            )
+            raise ValidationError(_("Please choose an asset before continuing!"))
 
         if not self.depreciation_type_ids:
-            raise ValidationError(
-                _("Please choose at least one depreciation type!")
-            )
+            raise ValidationError(_("Please choose at least one depreciation type!"))
 
         if not self.invoice_line_ids:
             raise ValidationError(
-                _("At least one invoice line is mandatory to update"
-                  " an asset!")
+                _("At least one invoice line is mandatory to update" " an asset!")
             )
 
-        if not all([
-            l.account_id == self.asset_id.category_id.asset_account_id
-            for l in self.invoice_line_ids
-        ]):
+        if not all(
+            [
+                l.account_id == self.asset_id.category_id.asset_account_id
+                for l in self.invoice_line_ids
+            ]
+        ):
             ass_name = self.asset_id.make_name()
-            ass_acc = self.asset_id.category_id.asset_account_id \
-                .name_get()[0][-1]
+            ass_acc = self.asset_id.category_id.asset_account_id.name_get()[0][-1]
             raise ValidationError(
-                _("You need to choose invoice lines with account `{}`"
-                  " if you need them to update asset `{}`!")
-                .format(ass_acc, ass_name)
+                _(
+                    "You need to choose invoice lines with account `{}`"
+                    " if you need them to update asset `{}`!"
+                ).format(ass_acc, ass_name)
             )
 
     def create_asset(self):
-        """ Creates asset and returns it """
+        """Creates asset and returns it"""
         self.ensure_one()
         self.check_pre_create_asset()
-        return self.env['asset.asset'].create(self.get_create_asset_vals())
+        return self.env["asset.asset"].create(self.get_create_asset_vals())
 
     def dismiss_asset(self):
-        """ Dismisses asset and returns it """
+        """Dismisses asset and returns it"""
         self.ensure_one()
         self.check_pre_dismiss_asset()
-        old_dep_lines = self.asset_id.mapped('depreciation_ids.line_ids')
+        old_dep_lines = self.asset_id.mapped("depreciation_ids.line_ids")
         self.asset_id.write(self.get_dismiss_asset_vals())
 
         for dep in self.asset_id.depreciation_ids:
@@ -348,24 +341,23 @@ class WizardInvoiceManageAsset(models.TransientModel):
         purchase_amount = self.invoice_line_ids.get_asset_purchase_amount(
             currency=self.currency_id
         )
-        purchase_invoice = self.invoice_line_ids.mapped('invoice_id')
+        purchase_invoice = self.invoice_line_ids.mapped("invoice_id")
         return {
-            'asset_accounting_info_ids': [
-                (0, 0, {'invoice_line_id': l.id,
-                        'relation_type': self.management_type})
+            "asset_accounting_info_ids": [
+                (0, 0, {"invoice_line_id": l.id, "relation_type": self.management_type})
                 for l in self.invoice_line_ids
             ],
-            'category_id': self.category_id.id,
-            'code': self.code,
-            'company_id': self.company_id.id,
-            'currency_id': self.currency_id.id,
-            'name': self.name,
-            'purchase_amount': purchase_amount,
-            'purchase_date': self.purchase_date,
-            'purchase_invoice_id': purchase_invoice.id,
-            'supplier_id': purchase_invoice.partner_id.id,
-            'supplier_ref': purchase_invoice.reference or "",
-            'used': self.used,
+            "category_id": self.category_id.id,
+            "code": self.code,
+            "company_id": self.company_id.id,
+            "currency_id": self.currency_id.id,
+            "name": self.name,
+            "purchase_amount": purchase_amount,
+            "purchase_date": self.purchase_date,
+            "purchase_invoice_id": purchase_invoice.id,
+            "supplier_id": purchase_invoice.partner_id.id,
+            "supplier_ref": purchase_invoice.reference or "",
+            "used": self.used,
         }
 
     def get_dismiss_asset_vals(self):
@@ -373,18 +365,19 @@ class WizardInvoiceManageAsset(models.TransientModel):
         asset = self.asset_id
         currency = self.asset_id.currency_id
         dismiss_date = self.dismiss_date
-        digits = self.env['decimal.precision'].precision_get('Account')
+        digits = self.env["decimal.precision"].precision_get("Account")
 
-        max_date = max(asset.depreciation_ids.mapped('last_depreciation_date'))
+        max_date = max(asset.depreciation_ids.mapped("last_depreciation_date"))
         if max_date and max_date > dismiss_date:
             raise ValidationError(
-                _("Cannot dismiss an asset earlier than the last depreciation"
-                  " date.\n"
-                  "(Dismiss date: {}, last depreciation date: {}).")
-                .format(dismiss_date, max_date)
+                _(
+                    "Cannot dismiss an asset earlier than the last depreciation"
+                    " date.\n"
+                    "(Dismiss date: {}, last depreciation date: {})."
+                ).format(dismiss_date, max_date)
             )
 
-        invoice = self.invoice_line_ids.mapped('invoice_id')
+        invoice = self.invoice_line_ids.mapped("invoice_id")
         inv_num = invoice.number
 
         writeoff = 0
@@ -393,49 +386,61 @@ class WizardInvoiceManageAsset(models.TransientModel):
         writeoff = round(writeoff, digits)
 
         vals = {
-            'customer_id': invoice.partner_id.id,
-            'depreciation_ids': [],
-            'sale_amount': writeoff,
-            'sale_date': invoice.date,
-            'sale_invoice_id': invoice.id,
-            'sold': True,
+            "customer_id": invoice.partner_id.id,
+            "depreciation_ids": [],
+            "sale_amount": writeoff,
+            "sale_date": invoice.date,
+            "sale_invoice_id": invoice.id,
+            "sold": True,
         }
         for dep in asset.depreciation_ids:
             residual = dep.amount_residual
-            dep_vals = {'line_ids': []}
+            dep_vals = {"line_ids": []}
             dep_writeoff = writeoff
 
             dep_line_vals = {
-                'asset_accounting_info_ids': [
-                    (0, 0, {'invoice_line_id': l.id,
-                            'relation_type': self.management_type})
+                "asset_accounting_info_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "invoice_line_id": l.id,
+                            "relation_type": self.management_type,
+                        },
+                    )
                     for l in self.invoice_line_ids
                 ],
-                'amount': min(residual, dep_writeoff),
-                'date': dismiss_date,
-                'move_type': 'out',
-                'name': _("From invoice(s) ") + inv_num,
+                "amount": min(residual, dep_writeoff),
+                "date": dismiss_date,
+                "move_type": "out",
+                "name": _("From invoice(s) ") + inv_num,
             }
-            dep_vals['line_ids'].append((0, 0, dep_line_vals))
+            dep_vals["line_ids"].append((0, 0, dep_line_vals))
 
             balance = dep_writeoff - residual
             if not float_is_zero(balance, digits):
                 balance = round(balance, digits)
-                move_type = 'gain' if balance > 0 else 'loss'
+                move_type = "gain" if balance > 0 else "loss"
                 dep_balance_vals = {
-                    'asset_accounting_info_ids': [
-                        (0, 0, {'invoice_line_id': l.id,
-                                'relation_type': self.management_type})
+                    "asset_accounting_info_ids": [
+                        (
+                            0,
+                            0,
+                            {
+                                "invoice_line_id": l.id,
+                                "relation_type": self.management_type,
+                            },
+                        )
                         for l in self.invoice_line_ids
                     ],
-                    'amount': abs(balance),
-                    'date': dismiss_date,
-                    'move_type': move_type,
-                    'name': _("From invoice(s) ") + inv_num,
+                    "amount": abs(balance),
+                    "date": dismiss_date,
+                    "move_type": move_type,
+                    "name": _("From invoice(s) ") + inv_num,
                 }
-                dep_vals['line_ids'].append((0, 0, dep_balance_vals))
+                dep_vals["line_ids"].append((0, 0, dep_balance_vals))
 
-            vals['depreciation_ids'].append((1, dep.id, dep_vals))
+            vals["depreciation_ids"].append((1, dep.id, dep_vals))
 
         return vals
 
@@ -452,20 +457,21 @@ class WizardInvoiceManageAsset(models.TransientModel):
         asset = self.asset_id
         currency = self.asset_id.currency_id
         dismiss_date = self.dismiss_date
-        digits = self.env['decimal.precision'].precision_get('Account')
+        digits = self.env["decimal.precision"].precision_get("Account")
         fund_amt = self.depreciated_fund_amount
         purchase_amt = self.asset_purchase_amount
 
-        max_date = max(asset.depreciation_ids.mapped('last_depreciation_date'))
+        max_date = max(asset.depreciation_ids.mapped("last_depreciation_date"))
         if max_date and max_date > dismiss_date:
             raise ValidationError(
-                _("Cannot dismiss an asset earlier than the last depreciation"
-                  " date.\n"
-                  "(Dismiss date: {}, last depreciation date: {}).")
-                .format(dismiss_date, max_date)
+                _(
+                    "Cannot dismiss an asset earlier than the last depreciation"
+                    " date.\n"
+                    "(Dismiss date: {}, last depreciation date: {})."
+                ).format(dismiss_date, max_date)
             )
 
-        invoice = self.invoice_line_ids.mapped('invoice_id')
+        invoice = self.invoice_line_ids.mapped("invoice_id")
         inv_num = invoice.number
 
         writeoff = 0
@@ -473,11 +479,11 @@ class WizardInvoiceManageAsset(models.TransientModel):
             writeoff += l.currency_id.compute(l.price_subtotal, currency)
         writeoff = round(writeoff, digits)
 
-        vals = {'depreciation_ids': []}
+        vals = {"depreciation_ids": []}
         for dep in asset.depreciation_ids:
             if dep.pro_rata_temporis:
                 dep_writeoff = writeoff * dep.get_pro_rata_temporis_multiplier(
-                    dismiss_date, 'std'
+                    dismiss_date, "std"
                 )
             else:
                 dep_writeoff = writeoff
@@ -485,51 +491,67 @@ class WizardInvoiceManageAsset(models.TransientModel):
             name = _("Partial dismissal from invoice(s) {}").format(inv_num)
 
             out_line_vals = {
-                'asset_accounting_info_ids': [
-                    (0, 0, {'invoice_line_id': l.id,
-                            'relation_type': self.management_type})
+                "asset_accounting_info_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "invoice_line_id": l.id,
+                            "relation_type": self.management_type,
+                        },
+                    )
                     for l in self.invoice_line_ids
                 ],
-                'amount': purchase_amt,
-                'date': dismiss_date,
-                'move_type': 'out',
-                'name': name,
-                'partial_dismissal': True,
+                "amount": purchase_amt,
+                "date": dismiss_date,
+                "move_type": "out",
+                "name": name,
+                "partial_dismissal": True,
             }
             dep_line_vals = {
-                'asset_accounting_info_ids': [
-                    (0, 0, {'invoice_line_id': l.id,
-                            'relation_type': self.management_type})
+                "asset_accounting_info_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "invoice_line_id": l.id,
+                            "relation_type": self.management_type,
+                        },
+                    )
                     for l in self.invoice_line_ids
                 ],
-                'amount': - fund_amt,
-                'date': dismiss_date,
-                'move_type': 'depreciated',
-                'name': name,
-                'partial_dismissal': True,
+                "amount": -fund_amt,
+                "date": dismiss_date,
+                "move_type": "depreciated",
+                "name": name,
+                "partial_dismissal": True,
             }
 
-            dep_vals = {'line_ids': [
-                (0, 0, out_line_vals), (0, 0, dep_line_vals)
-            ]}
+            dep_vals = {"line_ids": [(0, 0, out_line_vals), (0, 0, dep_line_vals)]}
 
             balance = (fund_amt + dep_writeoff) - purchase_amt
             if not float_is_zero(balance, digits):
                 loss_gain_vals = {
-                    'asset_accounting_info_ids': [
-                        (0, 0, {'invoice_line_id': l.id,
-                                'relation_type': self.management_type})
+                    "asset_accounting_info_ids": [
+                        (
+                            0,
+                            0,
+                            {
+                                "invoice_line_id": l.id,
+                                "relation_type": self.management_type,
+                            },
+                        )
                         for l in self.invoice_line_ids
                     ],
-                    'amount': abs(balance),
-                    'date': dismiss_date,
-                    'move_type': 'gain' if balance > 0 else 'loss',
-                    'name': name,
-                    'partial_dismissal': True,
+                    "amount": abs(balance),
+                    "date": dismiss_date,
+                    "move_type": "gain" if balance > 0 else "loss",
+                    "name": name,
+                    "partial_dismissal": True,
                 }
-                dep_vals['line_ids'].append((0, 0, loss_gain_vals))
+                dep_vals["line_ids"].append((0, 0, loss_gain_vals))
 
-            vals['depreciation_ids'].append((1, dep.id, dep_vals))
+            vals["depreciation_ids"].append((1, dep.id, dep_vals))
 
         return vals
 
@@ -537,33 +559,33 @@ class WizardInvoiceManageAsset(models.TransientModel):
         self.ensure_one()
         asset = self.asset_id
         asset_name = asset.make_name()
-        digits = self.env['decimal.precision'].precision_get('Account')
+        digits = self.env["decimal.precision"].precision_get("Account")
 
         grouped_invoice_lines = {}
         for l in self.invoice_line_ids:
             inv = l.invoice_id
             if inv not in grouped_invoice_lines:
-                grouped_invoice_lines[inv] = self.env['account.invoice.line']
+                grouped_invoice_lines[inv] = self.env["account.invoice.line"]
             grouped_invoice_lines[inv] |= l
 
-        vals = {'depreciation_ids': []}
+        vals = {"depreciation_ids": []}
         for dep in asset.depreciation_ids.filtered(
             lambda d: d.type_id in self.depreciation_type_ids
         ):
             residual = dep.amount_residual
             balances = 0
 
-            dep_vals = {'line_ids': []}
+            dep_vals = {"line_ids": []}
             for inv, lines in grouped_invoice_lines.items():
                 inv_num, inv_type = inv.number, inv.type
 
-                move_type = self.get_invoice_type_2_dep_line_type() \
-                    .get(inv_type)
+                move_type = self.get_invoice_type_2_dep_line_type().get(inv_type)
                 if not move_type:
                     raise ValidationError(
-                        _("Could not retrieve depreciation line type from"
-                          " invoice `{}` (type `{}`).")
-                        .format(inv_num, inv_type)
+                        _(
+                            "Could not retrieve depreciation line type from"
+                            " invoice `{}` (type `{}`)."
+                        ).format(inv_num, inv_type)
                     )
 
                 # Compute amount and sign to preview how much the line
@@ -576,52 +598,60 @@ class WizardInvoiceManageAsset(models.TransientModel):
                         line.price_subtotal, dep.currency_id
                     )
                 sign = 1
-                if move_type in ['out', 'depreciated', 'historical']:
+                if move_type in ["out", "depreciated", "historical"]:
                     sign = -1
                 # Block updates if the amount to be written off is higher than
                 # the residual amount
                 if sign < 0 and float_compare(residual, amount, digits) < 0:
                     raise ValidationError(
-                        _("Could not update `{}`: not enough residual amount"
-                          " to write off invoice `{}`.\n"
-                          "(Amount to write off: {}; residual amount: {}.)\n"
-                          "Maybe you should try to dismiss this asset"
-                          " instead?")
-                        .format(asset_name, inv_num, - amount, residual)
+                        _(
+                            "Could not update `{}`: not enough residual amount"
+                            " to write off invoice `{}`.\n"
+                            "(Amount to write off: {}; residual amount: {}.)\n"
+                            "Maybe you should try to dismiss this asset"
+                            " instead?"
+                        ).format(asset_name, inv_num, -amount, residual)
                     )
                 balances += sign * amount
 
                 dep_line_vals = {
-                    'asset_accounting_info_ids': [
-                        (0, 0, {'invoice_line_id': l.id,
-                                'relation_type': self.management_type})
+                    "asset_accounting_info_ids": [
+                        (
+                            0,
+                            0,
+                            {
+                                "invoice_line_id": l.id,
+                                "relation_type": self.management_type,
+                            },
+                        )
                         for l in lines
                     ],
-                    'amount': amount,
-                    'date': inv.date,
-                    'move_type': move_type,
-                    'name': _("From invoice(s) ") + inv_num,
+                    "amount": amount,
+                    "date": inv.date,
+                    "move_type": move_type,
+                    "name": _("From invoice(s) ") + inv_num,
                 }
-                dep_vals['line_ids'].append((0, 0, dep_line_vals))
+                dep_vals["line_ids"].append((0, 0, dep_line_vals))
 
             if balances < 0 and residual + balances < 0:
                 raise ValidationError(
-                    _("Could not update `{}`: not enough residual amount to"
-                      " write off.\n"
-                      "(Amount to write off: {}; residual amount: {}.)\n"
-                      "Maybe you should try to dismiss this asset instead?")
-                    .format(asset_name, balances, residual)
+                    _(
+                        "Could not update `{}`: not enough residual amount to"
+                        " write off.\n"
+                        "(Amount to write off: {}; residual amount: {}.)\n"
+                        "Maybe you should try to dismiss this asset instead?"
+                    ).format(asset_name, balances, residual)
                 )
 
-            vals['depreciation_ids'].append((1, dep.id, dep_vals))
+            vals["depreciation_ids"].append((1, dep.id, dep_vals))
 
         return vals
 
     def partial_dismiss_asset(self):
-        """ Dismisses asset partially and returns it """
+        """Dismisses asset partially and returns it"""
         self.ensure_one()
         self.check_pre_partial_dismiss_asset()
-        old_dep_lines = self.asset_id.mapped('depreciation_ids.line_ids')
+        old_dep_lines = self.asset_id.mapped("depreciation_ids.line_ids")
         self.asset_id.write(self.get_partial_dismiss_asset_vals())
 
         for dep in self.asset_id.depreciation_ids:
@@ -630,7 +660,7 @@ class WizardInvoiceManageAsset(models.TransientModel):
         return self.asset_id
 
     def update_asset(self):
-        """ Updates asset and returns it """
+        """Updates asset and returns it"""
         self.ensure_one()
         self.check_pre_update_asset()
         self.asset_id.write(self.get_update_asset_vals())
