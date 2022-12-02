@@ -132,8 +132,6 @@
                                 <field name="asset_id" />
                                 <field name="dep_line_id" />
                                 <field name="relation_type" />
-                                <field name="invoice_id" />
-                                <field name="invoice_line_id" />
                                 <field name="move_id" />
                                 <field name="move_line_id" />
                                 <button

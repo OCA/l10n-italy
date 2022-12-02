@@ -29,7 +29,6 @@ class DepLineType(models.Model):
         string="Type",
     )
 
-    @api.multi
     def unlink(self):
         for line_type in self:
             if self.env["asset.depreciation.line"].search(
@@ -44,7 +43,6 @@ class DepLineType(models.Model):
 
         return super().unlink()
 
-    @api.multi
     def name_get(self):
         return [(line_type.id, line_type.make_name()) for line_type in self]
 
