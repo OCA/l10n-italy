@@ -17,15 +17,17 @@ msgstr ""
 "X-Generator: Weblate 3.8\n"
 
 #. module: l10n_it_pos_fiscalcode
-#. openerp-web
+#. odoo-javascript
 #: code:addons/l10n_it_pos_fiscalcode/static/src/xml/pos.xml:0
 #, python-format
 msgid "F.C."
 msgstr "C.F."
 
 #. module: l10n_it_pos_fiscalcode
-#. openerp-web
-#: code:addons/l10n_it_pos_fiscalcode/static/src/xml/pos.xml:0
+#: model:ir.model,name:l10n_it_pos_fiscalcode.model_pos_session
+msgid "Point of Sale Session"
+msgstr ""
+
 #, python-format
-msgid "N/A"
-msgstr "N/D"
+#~ msgid "N/A"
+#~ msgstr "N/D"
