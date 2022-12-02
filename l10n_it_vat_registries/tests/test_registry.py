@@ -1,21 +1,17 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import Form, TransactionCase
 
 
 class TestRegistry(TransactionCase):
     def test_invoice_and_report(self):
         test_date = fields.Date.today()
-        self.journal = self.env["account.journal"].search([("type", "=", "sale")])[0]
+        self.journal = self.env["account.journal"].search(
+            [("type", "=", "sale")], limit=1
+        )
         self.ova = self.env["account.account"].search(
-            [
-                (
-                    "user_type_id",
-                    "=",
-                    self.env.ref("account.data_account_type_current_assets").id,
-                )
-            ],
+            [("account_type", "=", "asset_current")],
             limit=1,
         )
         tax = self.env["account.tax"].create(
@@ -32,44 +28,20 @@ class TestRegistry(TransactionCase):
                 "journal_ids": [(6, 0, [self.journal.id])],
             }
         )
-        invoice_line_account = (
-            self.env["account.account"]
-            .search(
-                [
-                    (
-                        "user_type_id",
-                        "=",
-                        self.env.ref("account.data_account_type_expenses").id,
-                    )
-                ],
-                limit=1,
-            )
-            .id
-        )
 
-        invoice = self.env["account.move"].create(
-            {
-                "partner_id": self.env.ref("base.res_partner_2").id,
-                "invoice_date": test_date,
-                "move_type": "out_invoice",
-                "journal_id": self.journal.id,
-                "invoice_line_ids": [
-                    (
-                        0,
-                        None,
-                        {
-                            "product_id": self.env.ref("product.product_product_4").id,
-                            "quantity": 1.0,
-                            "price_unit": 100.0,
-                            "name": "product that cost 100",
-                            "account_id": invoice_line_account,
-                            "tax_ids": [(6, 0, [tax.id])],
-                        },
-                    )
-                ],
-            }
-        )
-        invoice._onchange_invoice_line_ids()
+        with Form(
+            self.env["account.move"].with_context(default_move_type="out_invoice")
+        ) as invoice_form:
+            invoice_form.partner_id = self.env.ref("base.res_partner_2")
+            invoice_form.invoice_date = test_date
+            with invoice_form.invoice_line_ids.new() as invoice_line_form:
+                invoice_line_form.product_id = self.env.ref("product.product_product_4")
+                invoice_line_form.name = "product that cost 100"
+                invoice_line_form.quantity = 1.0
+                invoice_line_form.price_unit = 100.0
+                invoice_line_form.tax_ids.clear()
+                invoice_line_form.tax_ids.add(tax)
+        invoice = invoice_form.save()
         invoice.action_post()
 
         wizard = self.env["wizard.registro.iva"].create(
@@ -84,13 +56,14 @@ class TestRegistry(TransactionCase):
         wizard.on_change_tax_registry_id()
         res = wizard.print_registro()
 
+        report_name = "l10n_it_vat_registries.report_registro_iva"
         domain = [
             ("report_type", "like", "qweb"),
-            ("report_name", "=", "l10n_it_vat_registries.report_registro_iva"),
+            ("report_name", "in", [report_name]),
         ]
         report = self.env["ir.actions.report"].search(domain)
         data = res["context"]["report_action"]["data"]
-        html = report._render_qweb_html(data["ids"], data)
+        html = report._render_qweb_html(report_name, data["ids"], data)
 
         self.assertTrue(b"Tax 10.0" in html[0])
 

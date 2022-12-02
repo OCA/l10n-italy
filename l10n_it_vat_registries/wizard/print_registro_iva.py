@@ -1,7 +1,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
-from odoo.exceptions import Warning as UserError
+from odoo.exceptions import UserError
 
 
 class WizardRegistroIva(models.TransientModel):
@@ -30,7 +30,7 @@ class WizardRegistroIva(models.TransientModel):
         string="Journals",
         help="Select journals you want retrieve documents from",
     )
-    message = fields.Char(string="Message", size=64, readonly=True)
+    message = fields.Char(size=64, readonly=True)
     only_totals = fields.Boolean(string="Prints only totals")
     fiscal_page_base = fields.Integer("Last printed page", required=True)
     year_footer = fields.Char(
