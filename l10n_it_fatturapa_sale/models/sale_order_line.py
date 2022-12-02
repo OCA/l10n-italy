@@ -10,7 +10,6 @@ class SaleOrderLine(models.Model):
     related_documents = fields.One2many(
         comodel_name="fatturapa.related_document_type",
         inverse_name="sale_order_line_id",
-        string="Related Documents",
         copy=False,
         groups="account.group_account_user,sales_team.group_sale_salesman",
     )

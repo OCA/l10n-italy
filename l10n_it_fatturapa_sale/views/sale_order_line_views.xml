@@ -11,7 +11,7 @@
         <field name="model">sale.order.line</field>
         <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
         <field name="arch" type="xml">
-            <xpath expr="//sheet/group" position="inside">
+            <xpath expr="//sheet/group" position="after">
                 <group name="e_invoice" string="Electronic Invoice">
                     <field name="admin_ref" readonly="1" />
                     <field name="related_documents" readonly="1" />

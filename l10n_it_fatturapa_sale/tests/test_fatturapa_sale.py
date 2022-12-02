@@ -106,6 +106,6 @@ class TestFatturapaSale(TransactionCase):
         self.assertTrue(related_documents.exists())
 
         # Delete the sale order: the related document is deleted too
-        sale_order.action_cancel()
+        sale_order._action_cancel()
         sale_order.unlink()
         self.assertFalse(related_documents.exists())
