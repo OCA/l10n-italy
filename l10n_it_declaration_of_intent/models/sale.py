@@ -23,8 +23,7 @@ class SaleOrder(models.Model):
     def onchange_date_order(self):
         self._set_fiscal_position()
 
-    @api.onchange("partner_id")
-    def onchange_partner_id(self):
-        res = super(SaleOrder, self).onchange_partner_id()
+    def _compute_fiscal_position_id(self):
+        res = super()._compute_fiscal_position_id()
         self._set_fiscal_position()
         return res

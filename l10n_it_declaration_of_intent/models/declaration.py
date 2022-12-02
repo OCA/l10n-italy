@@ -90,43 +90,44 @@ class DeclarationOfIntent(models.Model):
         string="Lines",
     )
 
-    @api.model
-    def create(self, values):
-        # ----- Check if yearly plafond is enough
-        #       to create an in declaration
-        # Declaration issued by company are "IN"
-        if values.get("type", False) == "in":
-            year = fields.Date.to_date(values["date_start"]).strftime("%Y")
-            plafond = self.env.company.declaration_yearly_limit_ids.filtered(
-                lambda r: r.year == year
-            )
-            if not plafond:
-                raise UserError(
-                    _(
-                        "Define a yearly plafond for in documents in your company "
-                        "settings"
-                    )
+    @api.model_create_multi
+    def create(self, vals_list):
+        for values in vals_list:
+            # ----- Check if yearly plafond is enough
+            #       to create an in declaration
+            # Declaration issued by company are "IN"
+            if values.get("type", False) == "in":
+                year = fields.Date.to_date(values["date_start"]).strftime("%Y")
+                plafond = self.env.company.declaration_yearly_limit_ids.filtered(
+                    lambda r: r.year == year
                 )
-            date_start = datetime.strptime("01-01-{}".format(year), "%d-%m-%Y")
-            date_end = datetime.strptime("31-12-{}".format(year), "%d-%m-%Y")
-            declarations = self.search(
-                [
-                    ("date_start", ">=", date_start),
-                    ("date_end", "<=", date_end),
-                    ("type", "=", "in"),
-                ]
-            )
-            actual_limit_total = (
-                sum([d.limit_amount for d in declarations]) + values["limit_amount"]
-            )
-            if actual_limit_total > plafond.limit_amount:
-                raise UserError(_("Total of documents exceed yearly limit"))
-        # ----- Assign a number to declaration
-        if values and not values.get("number", ""):
-            values["number"] = self.env["ir.sequence"].next_by_code(
-                "declaration_of_intent"
-            )
-        return super().create(values)
+                if not plafond:
+                    raise UserError(
+                        _(
+                            "Define a yearly plafond for in documents in your company "
+                            "settings"
+                        )
+                    )
+                date_start = datetime.strptime("01-01-{}".format(year), "%d-%m-%Y")
+                date_end = datetime.strptime("31-12-{}".format(year), "%d-%m-%Y")
+                declarations = self.search(
+                    [
+                        ("date_start", ">=", date_start),
+                        ("date_end", "<=", date_end),
+                        ("type", "=", "in"),
+                    ]
+                )
+                actual_limit_total = (
+                    sum([d.limit_amount for d in declarations]) + values["limit_amount"]
+                )
+                if actual_limit_total > plafond.limit_amount:
+                    raise UserError(_("Total of documents exceed yearly limit"))
+            # ----- Assign a number to declaration
+            if values and not values.get("number", ""):
+                values["number"] = self.env["ir.sequence"].next_by_code(
+                    "declaration_of_intent"
+                )
+        return super().create(vals_list)
 
     def unlink(self):
         for record in self:
@@ -162,13 +163,12 @@ class DeclarationOfIntent(models.Model):
             if declaration.available_amount < 0:
                 raise UserError(
                     _(
-                        "Limit passed for declaration %s.\n"
-                        "Excess value: %s%s"
-                        % (
-                            declaration.number,
-                            abs(declaration.available_amount),
-                            declaration.currency_id.symbol,
-                        )
+                        "Limit passed for declaration {number}."
+                        "\nExcess value: {symbol}{available_amount}"
+                    ).format(
+                        number=declaration.number,
+                        symbol=declaration.currency_id.symbol,
+                        available_amount=abs(declaration.available_amount),
                     )
                 )
 
@@ -271,7 +271,7 @@ class DeclarationOfIntentLine(models.Model):
         ondelete="cascade",
     )
     amount = fields.Monetary()
-    base_amount = fields.Monetary(string="Base Amount")
+    base_amount = fields.Monetary()
     invoice_id = fields.Many2one("account.move", string="Invoice")
     date_invoice = fields.Date(related="invoice_id.invoice_date", string="Date Invoice")
     company_id = fields.Many2one(
