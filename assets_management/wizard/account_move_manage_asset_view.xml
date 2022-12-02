@@ -250,17 +250,15 @@
         </field>
     </record>
 
-    <act_window
-        id="action_wizard_account_move_manage_asset"
-        name="Link to Assets"
-        context="{'move_ids': active_ids}"
-        src_model="account.move"
-        res_model="wizard.account.move.manage.asset"
-        view_mode="form"
-        view_type="form"
-        multi="True"
-        key2="client_action_multi"
-        target="new"
-    />
+    <record id="action_wizard_account_move_manage_asset" model="ir.actions.act_window">
+        <field name="name">Link to Assets</field>
+        <field name="res_model">wizard.account.move.manage.asset</field>
+        <field name="binding_view_types">form</field>
+        <field name="binding_model_id" ref="account.model_account_move" />
+        <field name="view_mode">form</field>
+        <field name="context">{'move_ids': active_ids}</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="wizard_account_move_mange_asset_form_view" />
+    </record>
 
 </odoo>

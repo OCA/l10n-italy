@@ -4,7 +4,7 @@
 
 {
     "name": "ITA - Gestione Cespiti",
-    "version": "12.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Localization/Italy",
     "summary": "Gestione Cespiti",
     "author": "Openforce, Odoo Community Association (OCA)",
@@ -12,7 +12,6 @@
     "license": "AGPL-3",
     "depends": [
         "account",
-        "account_cancel",
         "account_financial_report",
         "account_fiscal_year",
         "mail",
@@ -30,7 +29,6 @@
         "report/reports.xml",
         "views/action_client.xml",
         "views/asset_menuitems.xml",
-        "views/account_invoice.xml",
         "views/account_move.xml",
         "views/asset.xml",
         "views/asset_accounting_info.xml",
@@ -41,7 +39,6 @@
         "views/asset_depreciation_mode.xml",
         "views/asset_depreciation_type.xml",
         "views/asset_tag.xml",
-        "wizard/account_invoice_manage_asset_view.xml",
         "wizard/account_move_manage_asset_view.xml",
         "wizard/asset_generate_depreciation_view.xml",
         "wizard/asset_journal_report_view.xml",

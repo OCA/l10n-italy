@@ -36,7 +36,7 @@ class Asset(models.Model):
         default=get_default_company_id,
         required=True,
         string="Company",
-        track_visibility="onchange",
+        tracking=True,
     )
 
     currency_id = fields.Many2one(
@@ -56,21 +56,19 @@ class Asset(models.Model):
     name = fields.Char(
         required=True,
         string="Name",
-        track_visibility="onchange",
+        tracking=True,
     )
 
     purchase_amount = fields.Monetary(
         string="Purchase Value",
-        track_visibility="onchange",
+        tracking=True,
     )
 
     purchase_date = fields.Date(
         default=fields.Date.today(),
         string="Purchase Date",
-        track_visibility="onchange",
+        tracking=True,
     )
-
-    purchase_invoice_id = fields.Many2one("account.invoice", string="Purchase Invoice")
 
     purchase_move_id = fields.Many2one("account.move", string="Purchase Move")
 
@@ -79,8 +77,6 @@ class Asset(models.Model):
     )
 
     sale_date = fields.Date(string="Sale Date")
-
-    sale_invoice_id = fields.Many2one("account.invoice", string="Sale Invoice")
 
     sale_move_id = fields.Many2one("account.move", string="Sale Move")
 
@@ -119,13 +115,11 @@ class Asset(models.Model):
             asset.onchange_category_id()
         return asset
 
-    @api.multi
     def write(self, vals):
         if vals.get("code"):
             vals["code"] = " ".join(vals.get("code").split())
         return super().write(vals)
 
-    @api.multi
     def unlink(self):
         if self.mapped("asset_accounting_info_ids"):
             assets = self.filtered("asset_accounting_info_ids")
@@ -141,7 +135,6 @@ class Asset(models.Model):
         self.mapped("depreciation_ids").unlink()
         return super().unlink()
 
-    @api.multi
     def name_get(self):
         return [(asset.id, asset.make_name()) for asset in self]
 
@@ -157,7 +150,6 @@ class Asset(models.Model):
                     ).format(asset.make_name())
                 )
 
-    @api.multi
     @api.depends("depreciation_ids", "depreciation_ids.state")
     def _compute_state(self):
         for asset in self:
@@ -214,7 +206,6 @@ class Asset(models.Model):
             for dep in self.depreciation_ids:
                 dep.date_start = self.purchase_date
 
-    @api.multi
     def launch_wizard_generate_depreciations(self):
         self.ensure_one()
         xmlid = "assets_management.action_wizard_asset_generate_depreciation"

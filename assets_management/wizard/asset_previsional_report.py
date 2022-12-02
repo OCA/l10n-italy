@@ -87,17 +87,14 @@ class WizardAssetPrevisionalReport(models.TransientModel):
         self.asset_ids = self.filter_assets()
         return {"domain": {"asset_ids": self.get_asset_domain()}}
 
-    @api.multi
     def button_export_asset_previsional_html(self):
         self.ensure_one()
         return self.export_asset_previsional_report("qweb-html")
 
-    @api.multi
     def button_export_asset_previsional_pdf(self):
         self.ensure_one()
         return self.export_asset_previsional_report("qweb-pdf")
 
-    @api.multi
     def button_export_asset_previsional_xlsx(self):
         self.ensure_one()
         return self.export_asset_previsional_report("xlsx")

@@ -10,8 +10,8 @@ class AssetAccountingInfo(models.Model):
     """
     This model is necessary to manage info about the relationships between
     assets and accounting records. We could have used `Many2many` fields to
-    create tables between assets, depreciation lines, invoices, invoice
-    lines, account moves and account move lines; but we need a custom
+    create tables between assets, depreciation lines, account moves and account
+    move lines; but we need a custom
     management, a bit more complex than the one provided by the standard
     `Many2many` field.
 
@@ -40,15 +40,7 @@ class AssetAccountingInfo(models.Model):
     dep_line_id = fields.Many2one(
         "asset.depreciation.line", ondelete="set null", string="Depreciation Line"
     )
-
-    invoice_id = fields.Many2one(
-        "account.invoice", ondelete="set null", string="Invoice"
-    )
-
-    invoice_line_id = fields.Many2one(
-        "account.invoice.line", ondelete="set null", string="Invoice Line"
-    )
-
+    move_type = fields.Selection(related="dep_line_id.move_type")
     move_id = fields.Many2one("account.move", ondelete="set null", string="Move")
 
     move_line_id = fields.Many2one(
@@ -72,7 +64,6 @@ class AssetAccountingInfo(models.Model):
         info.check_and_normalize()
         return info
 
-    @api.multi
     def write(self, vals):
         fnames = self.get_main_fields()
 
@@ -96,7 +87,6 @@ class AssetAccountingInfo(models.Model):
 
         return res
 
-    @api.multi
     def name_get(self):
         return [(aa_info.id, aa_info.make_name()) for aa_info in self]
 
@@ -111,13 +101,10 @@ class AssetAccountingInfo(models.Model):
         return [
             "asset_id",
             "dep_line_id",
-            "invoice_id",
-            "invoice_line_id",
             "move_id",
             "move_line_id",
         ]
 
-    @api.multi
     def button_unlink(self):
         """Button action: deletes a.a.info"""
         self.unlink()
@@ -151,15 +138,6 @@ class AssetAccountingInfo(models.Model):
         ):
             raise ValidationError(_("Incoherent asset data."))
 
-        # If invoice_line_id and invoice_id are set, check whether the invoice
-        # line belongs to the given invoice
-        if (
-            self.invoice_id
-            and self.invoice_line_id
-            and self.invoice_id != self.invoice_line_id.invoice_id
-        ):
-            raise ValidationError(_("Incoherent invoice data."))
-
         # If move_line_id and move_id are set, check whether the move line
         # belongs to the given move
         if (
@@ -190,10 +168,6 @@ class AssetAccountingInfo(models.Model):
         if not self.asset_id and self.dep_line_id:
             vals["asset_id"] = self.dep_line_id.asset_id.id
 
-        # Set invoice_id as invoice line's invoice if invoice line is set
-        if not self.invoice_id and self.invoice_line_id:
-            vals["invoice_id"] = self.invoice_line_id.invoice_id.id
-
         # Set move_id as move line's move if move line is set
         if not self.move_id and self.move_line_id:
             vals["move_id"] = self.move_line_id.move_id.id
@@ -212,7 +186,7 @@ class AssetAccountingInfo(models.Model):
         Returns every a.a.info that fits the condition:
             (no asset AND no depreciation line)
             OR
-            (no invoice AND no invoice line AND no move AND no move line)
+            (no move AND no move line)
         """
         return self.search(
             [
@@ -221,10 +195,6 @@ class AssetAccountingInfo(models.Model):
                 ("asset_id", "=", False),
                 ("dep_line_id", "=", False),
                 "&",
-                "&",
-                "&",
-                ("invoice_id", "=", False),
-                ("invoice_line_id", "=", False),
                 ("move_id", "=", False),
                 ("move_line_id", "=", False),
             ]
