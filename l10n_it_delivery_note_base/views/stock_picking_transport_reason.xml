@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="stock_picking_transport_reason_form_view" model="ir.ui.view">
+        <field name="name">stock.picking.transport.reason.form</field>
+        <field name="model">stock.picking.transport.reason</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <div class="oe_title">
+                        <field name="active" invisible="1" />
+                        <label class="oe_edit_only" for="name" />
+                        <h1>
+                            <field name="name" default_focus="true" />
+                        </h1>
+                    </div>
+                    <group />
+                    <notebook>
+                        <page name="internal_notes" string="Internal notes">
+                            <field name="note" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="stock_picking_transport_reason_tree_view" model="ir.ui.view">
+        <field name="name">stock.picking.transport.reason.tree</field>
+        <field name="model">stock.picking.transport.reason</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+</odoo>

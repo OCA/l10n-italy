@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright (c) 2020, Link IT Europe Srl
+    @author: Matteo Bilotta <mbilotta@linkeurope.it>
+  -->
+<odoo noupdate="1">
+
+        <record id="base.user_root" model="res.users">
+            <field name="groups_id" eval="[(4, ref('show_product_related_fields'))]" />
+        </record>
+
+        <record id="base.user_admin" model="res.users">
+            <field name="groups_id" eval="[(4, ref('show_product_related_fields'))]" />
+        </record>
+
+</odoo>
