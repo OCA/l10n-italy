@@ -7,9 +7,9 @@ from odoo.exceptions import UserError
 
 
 class AssetCategory(models.Model):
-    _name = 'asset.category'
+    _name = "asset.category"
     _description = "Asset Category"
-    _order = 'name'
+    _order = "name"
 
     @api.model
     def get_default_company_id(self):
@@ -17,33 +17,33 @@ class AssetCategory(models.Model):
 
     @api.model
     def get_default_type_ids(self):
-        mode_obj = self.env['asset.depreciation.mode']
-        dom = [('company_id', '=', self.get_default_company_id().id)]
-        mode = mode_obj.search(dom + [('default', '=', True)], limit=1)
+        mode_obj = self.env["asset.depreciation.mode"]
+        dom = [("company_id", "=", self.get_default_company_id().id)]
+        mode = mode_obj.search(dom + [("default", "=", True)], limit=1)
         # Field ``mode_id`` is required for asset.category.depreciation.type;
         # if no default mode is found, retry by getting the first one found.
         if not mode:
             mode = mode_obj.search(dom, limit=1)
 
-        types = self.env['asset.depreciation.type'].search(dom)
+        types = self.env["asset.depreciation.type"].search(dom)
 
         # Raise error if configuration has not been completed.
         if not (mode and types):
             raise UserError(
-                _("Before creating new categories, please complete the"
-                  " assets' configuration for both depreciation types"
-                  " and modes.")
+                _(
+                    "Before creating new categories, please complete the"
+                    " assets' configuration for both depreciation types"
+                    " and modes."
+                )
             )
 
         return [
-            (0, 0, {'base_coeff': 1,
-                    'depreciation_type_id': t.id,
-                    'mode_id': mode.id})
+            (0, 0, {"base_coeff": 1, "depreciation_type_id": t.id, "mode_id": mode.id})
             for t in types
         ]
 
     asset_account_id = fields.Many2one(
-        'account.account',
+        "account.account",
         required=True,
         string="Asset Account",
     )
@@ -53,37 +53,31 @@ class AssetCategory(models.Model):
     )
 
     company_id = fields.Many2one(
-        'res.company',
-        default=get_default_company_id,
-        string="Company"
+        "res.company", default=get_default_company_id, string="Company"
     )
 
     depreciation_account_id = fields.Many2one(
-        'account.account',
+        "account.account",
         required=True,
         string="Depreciation Account",
     )
 
     fund_account_id = fields.Many2one(
-        'account.account',
+        "account.account",
         required=True,
         string="Fund Account",
     )
 
     gain_account_id = fields.Many2one(
-        'account.account',
+        "account.account",
         required=True,
         string="Capital Gain Account",
     )
 
-    journal_id = fields.Many2one(
-        'account.journal',
-        required=True,
-        string="Journal"
-    )
+    journal_id = fields.Many2one("account.journal", required=True, string="Journal")
 
     loss_account_id = fields.Many2one(
-        'account.account',
+        "account.account",
         required=True,
         string="Capital Loss Account",
     )
@@ -96,18 +90,18 @@ class AssetCategory(models.Model):
     print_by_default = fields.Boolean(
         default=True,
         help="Defines whether a category should be added by default when"
-             " printing assets' reports.",
-        string="Print By Default"
+        " printing assets' reports.",
+        string="Print By Default",
     )
 
     tag_ids = fields.Many2many(
-        'asset.tag',
+        "asset.tag",
         string="Tag",
     )
 
     type_ids = fields.One2many(
-        'asset.category.depreciation.type',
-        'category_id',
+        "asset.category.depreciation.type",
+        "category_id",
         default=get_default_type_ids,
         string="Depreciation Types",
     )
@@ -115,28 +109,24 @@ class AssetCategory(models.Model):
     @api.multi
     def copy(self, default=None):
         default = dict(default or [])
-        default.update({
-            'tag_ids': [(6, 0, self.tag_ids.ids)],
-            'type_ids': [
-                (0, 0, t.copy_data({'category_id': False})[0])
-                for t in self.type_ids
-            ]
-        })
+        default.update(
+            {
+                "tag_ids": [(6, 0, self.tag_ids.ids)],
+                "type_ids": [
+                    (0, 0, t.copy_data({"category_id": False})[0])
+                    for t in self.type_ids
+                ],
+            }
+        )
         return super().copy(default)
 
     @api.multi
     def unlink(self):
-        if self.env['asset.asset'].sudo().search([
-            ('category_id', 'in', self.ids)
-        ]):
+        if self.env["asset.asset"].sudo().search([("category_id", "in", self.ids)]):
             raise UserError(
-                _("Cannot delete categories while they're still linked"
-                  " to an asset.")
+                _("Cannot delete categories while they're still linked" " to an asset.")
             )
         return super().unlink()
 
     def get_depreciation_vals(self, amount_depreciable=0):
-        return [
-            t.get_depreciation_vals(amount_depreciable)
-            for t in self.type_ids
-        ]
+        return [t.get_depreciation_vals(amount_depreciable) for t in self.type_ids]
