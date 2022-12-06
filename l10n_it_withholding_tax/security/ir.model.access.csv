@@ -1,0 +1,11 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+withholding_tax_user,withholding_tax user,model_withholding_tax,account.group_account_invoice,1,0,0,0
+withholding_tax_manager,withholding_tax manager,model_withholding_tax,account.group_account_manager,1,1,1,1
+withholding_tax_rate_user,withholding_tax_rate user,model_withholding_tax_rate,account.group_account_invoice,1,0,0,0
+withholding_tax_rate_manager,withholding_tax_rate manager,model_withholding_tax_rate,account.group_account_manager,1,1,1,1
+withholding_tax_statement_user,withholding_tax_statement user,model_withholding_tax_statement,account.group_account_invoice,1,1,1,1
+withholding_tax_statement_manager,withholding_tax_statement manager,model_withholding_tax_statement,account.group_account_manager,1,1,1,1
+withholding_tax_move_user,withholding_tax_move user,model_withholding_tax_move,account.group_account_invoice,1,0,0,0
+withholding_tax_move_manager,withholding_tax_move manager,model_withholding_tax_move,account.group_account_manager,1,1,1,1
+account_invoice_withholding_tax_user,account_invoice_withholding_tax user,model_account_invoice_withholding_tax,account.group_account_invoice,1,1,1,1
+account_invoice_withholding_tax_manager,account_invoice_withholding_tax manager,model_account_invoice_withholding_tax,account.group_account_manager,1,1,1,1

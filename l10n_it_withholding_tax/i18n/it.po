@@ -1,0 +1,749 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_withholding_tax
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-11 07:51+0000\n"
+"PO-Revision-Date: 2022-06-21 13:05+0000\n"
+"Last-Translator: Riccardo Bellanova <bellanova@webmonks.it>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
+#, python-format
+msgid "%s (copy)"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.print_withholding_tax
+msgid "<span>Withholding Tax</span>"
+msgstr "<span>Ritenuta d'acconto</span>"
+
+#. module: l10n_it_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.print_withholding_tax
+msgid "<strong>Net To Pay</strong>"
+msgstr "<strong>Netto da pagare</strong>"
+
+#. module: l10n_it_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.print_withholding_tax
+msgid "<strong>Residual Net To Pay</strong>"
+msgstr "<strong>Netto da pagare residuo</strong>"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__move_line_id
+msgid "Account Move line"
+msgstr "Riga movimento contabile"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__account_payable_id
+msgid "Account Payable"
+msgstr "Conto di debito"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__account_receivable_id
+msgid "Account Receivable"
+msgstr "Conto di credito"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__move_id
+msgid "Account move"
+msgstr "Movimento contabile"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__active
+msgid "Active"
+msgstr "Attiva"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__amount
+msgid "Amount"
+msgstr "Importo"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax__base
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__base
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__base
+msgid "Base"
+msgstr "Imponibile"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax__base_coeff
+msgid "Base Coeff"
+msgstr "Coeff. imponibile"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_rate__base
+msgid "Base Coeff."
+msgstr "Coeff. imponibile"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__certification
+msgid "Certification"
+msgstr "Certificazione"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__code
+msgid "Code"
+msgstr "Codice"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,help:l10n_it_withholding_tax.field_account_invoice_withholding_tax__base_coeff
+#: model:ir.model.fields,help:l10n_it_withholding_tax.field_account_invoice_withholding_tax__tax_coeff
+msgid "Coeff used         to compute amount competence in the riconciliation"
+msgstr ""
+"Coefficiente utilizzato per calcolare l'importo di competenza nella "
+"riconciliazione"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__company_id
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__company_id
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__company_id
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
+msgid "Company"
+msgstr "Azienda"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax__create_uid
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__create_uid
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__create_uid
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_rate__create_uid
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax__create_date
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__create_date
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__create_date
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_rate__create_date
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__credit_debit_line_id
+msgid "Credit/Debit Line"
+msgstr "Riga in dare/avere"
+
+#. module: l10n_it_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
+msgid "Customer invoices"
+msgstr "Fatture cliente"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__date
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
+msgid "Date"
+msgstr "Data"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__date
+msgid "Date Competence"
+msgstr "Data competenza"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__date_maturity
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
+msgid "Date Maturity"
+msgstr "Data scadenza"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_rate__date_start
+msgid "Date Start"
+msgstr "Data inizio"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_rate__date_stop
+msgid "Date Stop"
+msgstr "Data fine"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__use_daticassaprev
+msgid "DatiCassa export"
+msgstr "Esportazione DatiCassa"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__daticassprev_tax_id
+msgid "Daticassprev Tax"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_fiscal_position__display_name
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_full_reconcile__display_name
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax__display_name
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_partial_reconcile__display_name
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_payment__display_name
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__display_name
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__display_name
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_rate__display_name
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields.selection,name:l10n_it_withholding_tax.selection__withholding_tax_move__state__due
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
+msgid "Due"
+msgstr "Debito"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields.selection,name:l10n_it_withholding_tax.selection__withholding_tax__wt_types__enasarco
+msgid "Enasarco tax"
+msgstr "Contributo Enasarco"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields.selection,name:l10n_it_withholding_tax.selection__withholding_tax__wt_types__enpam
+msgid "Enpam Tax"
+msgstr "Contributo Enpam"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
+#, python-format
+msgid "Error! Rates are required"
+msgstr "Errore! Le aliquote sono obbligatorie"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
+#, python-format
+msgid "Error! You cannot have 2 rates that overlap!"
+msgstr "Errore, due aliquote non possono sovrapporsi."
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_fiscal_position
+msgid "Fiscal Position"
+msgstr "Posizione fiscale"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_full_reconcile
+msgid "Full Reconcile"
+msgstr "Riconciliazione totale"
+
+#. module: l10n_it_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
+msgid "Group By..."
+msgstr "Raggruppa per..."
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_fiscal_position__id
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_full_reconcile__id
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax__id
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move_line__id
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_partial_reconcile__id
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_payment__id
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__id
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__id
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_rate__id
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields.selection,name:l10n_it_withholding_tax.selection__withholding_tax_statement__wt_type__in
+msgid "In"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
+msgid "In type"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields.selection,name:l10n_it_withholding_tax.selection__withholding_tax__wt_types__inps
+msgid "Inps Tax"
+msgstr "Contributo Inps"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax__invoice_id
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__invoice_id
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_invoice_withholding_tax
+msgid "Invoice Withholding Tax Line"
+msgstr "Riga ritenuta d'acconto fattura"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__reconcile_partial_id
+msgid "Invoice reconciliation"
+msgstr "Riconciliazione fattura"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_move
+msgid "Journal Entry"
+msgstr "Registrazione contabile"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_move_line
+msgid "Journal Item"
+msgstr "Movimento contabile"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,help:l10n_it_withholding_tax.field_withholding_tax__journal_id
+msgid "Journal used at invoice payment to register withholding tax"
+msgstr ""
+"Registro usato per registrare la ritenuta d'acconto al pagamento della "
+"fattura"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_fiscal_position____last_update
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_full_reconcile____last_update
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax____last_update
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move____last_update
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_partial_reconcile____last_update
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_payment____last_update
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax____last_update
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move____last_update
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_rate____last_update
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax__write_uid
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__write_uid
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__write_uid
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_rate__write_uid
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax__write_date
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__write_date
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__write_date
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_rate__write_date
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
+#, python-format
+msgid "MISC"
+msgstr "VARIE"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
+#, python-format
+msgid "Move %s is reconciled (%s). You must unreconcile it first"
+msgstr ""
+"Il movimento %s è riconciliato (%s). Prima è necessario annullare la "
+"riconciliazione"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__move_ids
+msgid "Moves"
+msgstr "Movimenti"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_bank_statement_line__amount_net_pay
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move__amount_net_pay
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_payment__amount_net_pay
+msgid "Net To Pay"
+msgstr "Netto a pagare"
+
+#. module: l10n_it_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.invoice_supplier_tree_wt
+msgid "Net to pay"
+msgstr "Netto a pagare"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields.selection,name:l10n_it_withholding_tax.selection__withholding_tax__wt_types__other
+msgid "Other Tax"
+msgstr "Altro"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields.selection,name:l10n_it_withholding_tax.selection__withholding_tax_statement__wt_type__out
+msgid "Out"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
+msgid "Out type"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields.selection,name:l10n_it_withholding_tax.selection__withholding_tax_move__state__paid
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
+msgid "Paid"
+msgstr "Pagata"
+
+#. module: l10n_it_withholding_tax
+#. openerp-web
+#: code:addons/l10n_it_withholding_tax/static/src/xml/account_payment.xml:0
+#, python-format
+msgid "Paid on"
+msgstr "Pagata il"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_partial_reconcile
+msgid "Partial Reconcile"
+msgstr "Riconciliazione parziale"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__partner_id
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__partner_id
+msgid "Partner"
+msgstr "Partner"
+
+#. module: l10n_it_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
+msgid "Partners"
+msgstr "Partner"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__payment_line_id
+msgid "Payment Line"
+msgstr "Riga pagamento"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__account_move_id
+msgid "Payment Move"
+msgstr "Movimento di pagamento"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__payment_term
+msgid "Payment Terms"
+msgstr "Termini di pagamento"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_payment
+msgid "Payments"
+msgstr "Pagamenti"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__rate_ids
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_form
+msgid "Rates"
+msgstr "Aliquote"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_bank_statement_line__amount_net_pay_residual
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move__amount_net_pay_residual
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_payment__amount_net_pay_residual
+msgid "Residual Net To Pay"
+msgstr "Netto a pagare residuo"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax__sequence
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__sequence
+msgid "Sequence"
+msgstr "Sequenza"
+
+#. module: l10n_it_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_form
+msgid "Set to Due"
+msgstr "Imposta a dovuto"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,help:l10n_it_withholding_tax.field_withholding_tax__use_daticassaprev
+msgid ""
+"Setting this, while exporting e-invoice XML, data will be also added to "
+"DatiCassaPrevidenziale"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_bank_statement_line__withholding_tax_in_print
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move__withholding_tax_in_print
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_payment__withholding_tax_in_print
+msgid "Show Withholding Tax In Print"
+msgstr "Mostra la ritenuta d'acconto in stampa"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__statement_id
+msgid "Statement"
+msgstr "Dichiarazione"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__state
+msgid "Status"
+msgstr "Stato"
+
+#. module: l10n_it_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
+msgid "Supplier invoices"
+msgstr "Fatture fornitore"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax__tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__tax
+msgid "Tax"
+msgstr "Imposta"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_rate__tax
+msgid "Tax %"
+msgstr "% imposta"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax__tax_coeff
+msgid "Tax Coeff"
+msgstr "Coeff. imposta"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__comment
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_rate__comment
+msgid "Text"
+msgstr "Testo"
+
+#. module: l10n_it_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_tree
+msgid "Tot"
+msgstr "Tot."
+
+#. module: l10n_it_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_statement_tree
+msgid "Tot Amount"
+msgstr "Importo tot."
+
+#. module: l10n_it_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_statement_tree
+msgid "Tot Amount Paid"
+msgstr "Importo totale pagato"
+
+#. module: l10n_it_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_statement_tree
+msgid "Tot Base"
+msgstr "Totale imponibile"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__wt_type
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__wt_type
+msgid "Type"
+msgstr "Tipologia"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,help:l10n_it_withholding_tax.field_withholding_tax_move__move_line_id
+msgid "Used from trace WT from other parts"
+msgstr "Usato per tenere traccia della RdA da posizioni diverse"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move_line__invoice_line_tax_wt_ids
+msgid "W.T."
+msgstr "RdA"
+
+#. module: l10n_it_withholding_tax
+#. openerp-web
+#: code:addons/l10n_it_withholding_tax/static/src/xml/account_payment.xml:0
+#, python-format
+msgid "W.T. Reg. on"
+msgstr "RdA registrata il"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
+#, python-format
+msgid "WT %s - %s"
+msgstr "RdA %s - %s"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
+#, python-format
+msgid "WT %s - %s - %s"
+msgstr "RdA %s - %s - %s"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__wt_account_move_id
+msgid "WT Move"
+msgstr "Movimento RdA"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.ui.menu,name:l10n_it_withholding_tax.menu_withholding_tax_move
+msgid "WT Moves"
+msgstr "Movimenti RdA"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.ui.menu,name:l10n_it_withholding_tax.menu_withholding_tax_statement
+msgid "WT Statements"
+msgstr "Dichiarazioni RdA"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__amount
+msgid "WT amount applied"
+msgstr "Importo RdA applicato"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__amount_paid
+msgid "WT amount paid"
+msgstr "Importo RdA versato"
+
+#. module: l10n_it_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_statement_form
+msgid "WT moves"
+msgstr "Movimenti RdA"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__full_reconcile_id
+msgid "WT reconciliation"
+msgstr "Riconciliazione RdA"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/account.py:0
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
+#, python-format
+msgid ""
+"Warning! Only Withholding Tax moves in Due status                     can be "
+"deleted"
+msgstr ""
+"Attenzione, possono essere eliminati solo i movimenti RdA con stato «Da "
+"pagare»"
+
+#. module: l10n_it_withholding_tax
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
+#, python-format
+msgid "Warning! Wt account move already exists: %s"
+msgstr "Attenzione, movimento contabile RdA già esistente: %s"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.actions.act_window,name:l10n_it_withholding_tax.action_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_bank_statement_line__withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_fiscal_position__withholding_tax_ids
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move__withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move_line__withholding_tax_id
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_payment__withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__withholding_tax_id
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_rate__withholding_tax_id
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__withholding_tax_id
+#: model:ir.ui.menu,name:l10n_it_withholding_tax.menu_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.print_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_fiscal_position_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_tree
+msgid "Withholding Tax"
+msgstr "Ritenuta d'acconto"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move_line__withholding_tax_amount
+msgid "Withholding Tax Amount"
+msgstr "Importo ritenuta d'acconto"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move_line__withholding_tax_base
+msgid "Withholding Tax Base"
+msgstr "Imponibile ritenuta d'acconto"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_bank_statement_line__withholding_tax_line_ids
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move__withholding_tax_line_ids
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_payment__withholding_tax_line_ids
+msgid "Withholding Tax Lines"
+msgstr "Righe ritenuta d'acconto"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.actions.act_window,name:l10n_it_withholding_tax.action_withholding_tax_move
+#: model:ir.model,name:l10n_it_withholding_tax.model_withholding_tax_move
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_tree
+msgid "Withholding Tax Move"
+msgstr "Movimento ritenuta di acconto"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_withholding_tax_rate
+msgid "Withholding Tax Rates"
+msgstr "Aliquote ritenuta d'acconto"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.actions.act_window,name:l10n_it_withholding_tax.action_withholding_tax_statement
+#: model:ir.model,name:l10n_it_withholding_tax.model_withholding_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
+msgid "Withholding Tax Statement"
+msgstr "Dichiarazione ritenuta d'acconto"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move_line__withholding_tax_generated_by_move_id
+msgid "Withholding Tax generated from"
+msgstr "Ritenuta d'acconto generata da"
+
+#. module: l10n_it_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_statement_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_statement_tree
+msgid "Withholding Tax statement"
+msgstr "Dichiarazione ritenuta d'acconto"
+
+#. module: l10n_it_withholding_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_invoice_form
+msgid "Withholding Taxes"
+msgstr "Ritenute d'acconto"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax__withholding_tax_id
+#: model:ir.model.fields.selection,name:l10n_it_withholding_tax.selection__withholding_tax__wt_types__ritenuta
+#: model:ir.ui.menu,name:l10n_it_withholding_tax.wt_main
+msgid "Withholding tax"
+msgstr "Ritenuta d'acconto"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_bank_statement_line__withholding_tax_amount
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move__withholding_tax_amount
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_payment__withholding_tax_amount
+msgid "Withholding tax Amount"
+msgstr "Importo ritenuta d'acconto"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__journal_id
+msgid "Withholding tax journal"
+msgstr "Registro ritenuta d'acconto"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__wt_types
+msgid "Withholding tax type"
+msgstr "Tipologia ritenuta d'acconto"
+
+#~ msgid " (Residual Net to pay: %s)"
+#~ msgstr " (Netto a pagare residuo: %s)"
+
+#~ msgid "Account Reconciliation widget"
+#~ msgstr "Widget riconciliazione conto"
+
+#~ msgid ""
+#~ "Contains the logic shared between models which allows to register payments"
+#~ msgstr ""
+#~ "Contiene la logica condivisa dai modelli che consente di registrare "
+#~ "pagamenti"
+
+#~ msgid "Invoice Line"
+#~ msgstr "Riga fattura"
+
+#~ msgid "Journal Entries"
+#~ msgstr "Registrazioni contabili"
+
+#~ msgid ""
+#~ "Setting this, while exporting e-invoice XML, Enasarco data will be also "
+#~ "added to DatiCassaPrevidenziale"
+#~ msgstr ""
+#~ "Se impostato, i dati Enasarco verranno aggiunti a DatiCassaPrevidenziale "
+#~ "durante l'esportazione XML della e-fattura"
+
+#~ msgid "Register Payments"
+#~ msgstr "Registrazione pagamenti"
