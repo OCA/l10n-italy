@@ -73,38 +73,40 @@ class AccountMove(models.Model):
                     "or exclusively of other types."
                 )
             )
-        rc_supplier = invoices_with_rc.mapped("rc_purchase_invoice_id.partner_id")
-        if len(rc_supplier) > 1:
+        rc_suppliers = invoices._get_original_suppliers()
+        if len(rc_suppliers) > 1:
             raise UserError(
                 _(
                     "Selected reverse charge invoices have different suppliers. Please "
                     "select invoices with same supplier"
                 )
             )
-        if len(rc_supplier) < 1:
+        if len(rc_suppliers) < 1:
             raise UserError(_("Please specify a supplier in reverse charge invoices."))
 
         # --- preventive checks related to set CedentePrestatore.Sede --- #
-        if not rc_supplier.street:
+        if not rc_suppliers.street:
             raise UserError(
-                _("Partner %s, Street is not set.") % rc_supplier.display_name
+                _("Partner %s, Street is not set.") % rc_suppliers.display_name
             )
-        if not rc_supplier.city:
+        if not rc_suppliers.city:
             raise UserError(
-                _("Partner %s, City is not set.") % rc_supplier.display_name
+                _("Partner %s, City is not set.") % rc_suppliers.display_name
             )
-        if not rc_supplier.country_id:
+        if not rc_suppliers.country_id:
             raise UserError(
-                _("Partner %s, Country is not set.") % rc_supplier.display_name
+                _("Partner %s, Country is not set.") % rc_suppliers.display_name
             )
-        if not rc_supplier.zip:
-            raise UserError(_("Partner %s, ZIP is not set.") % rc_supplier.display_name)
+        if not rc_suppliers.zip:
+            raise UserError(
+                _("Partner %s, ZIP is not set.") % rc_suppliers.display_name
+            )
         # --- preventive checks related to set CedentePrestatore.DatiAnagrafici --- #
         fiscal_document_type_codes = invoices_with_rc.mapped(
             "fiscal_document_type_id.code"
         )
         # TD17, TD18 e TD19 solo per partner esteri; in caso contrario il file viene scartato
-        ccode = rc_supplier.country_id.code
+        ccode = rc_suppliers.country_id.code
         if ccode == "IT" and any(
             [x in ["TD17", "TD18", "TD19"] for x in fiscal_document_type_codes]
         ):
