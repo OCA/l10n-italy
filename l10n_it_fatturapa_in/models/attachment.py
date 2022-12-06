@@ -57,6 +57,11 @@ class FatturaPAAttachmentIn(models.Model):
 
     inconsistencies = fields.Text(compute="_compute_xml_data", store=True)
 
+    linked_invoice_id_xml = fields.Char(
+        compute="_compute_linked_invoice_id_xml",
+        store=True,
+    )
+
     _sql_constraints = [
         (
             "ftpa_attachment_in_name_uniq",
@@ -153,6 +158,27 @@ class FatturaPAAttachmentIn(models.Model):
                 "invoice_id": invoice_id,
             }
             AttachModel.create(_attach_dict)
+
+    @api.depends("ir_attachment_id.datas")
+    def _compute_linked_invoice_id_xml(self):
+        for att in self:
+            if isinstance(att.id, int):
+                att.linked_invoice_id_xml = ""
+                wiz_obj = self.env["wizard.import.fatturapa"].with_context(
+                    from_attachment=att
+                )
+                fatt = wiz_obj.get_invoice_obj(att)
+                if fatt:
+                    for invoice_body in fatt.FatturaElettronicaBody:
+                        if (
+                            invoice_body.DatiGenerali.DatiFattureCollegate
+                            and len(invoice_body.DatiGenerali.DatiFattureCollegate) == 1
+                        ):
+                            att.linked_invoice_id_xml = (
+                                invoice_body.DatiGenerali.DatiFattureCollegate[
+                                    0
+                                ].IdDocumento
+                            )
 
     def ftpa_preview(self):
         return self.env["ir.attachment"].ftpa_preview(self)
