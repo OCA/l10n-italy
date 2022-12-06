@@ -14,13 +14,13 @@ ITA - Ritenute d'acconto
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_withholding_tax
+    :target: https://github.com/OCA/l10n-italy/tree/16.0/l10n_it_withholding_tax
     :alt: OCA/l10n-italy
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-italy-14-0/l10n-italy-14-0-l10n_it_withholding_tax
+    :target: https://translation.odoo-community.org/projects/l10n-italy-16-0/l10n-italy-16-0-l10n_it_withholding_tax
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/122/14.0
+    :target: https://runbot.odoo-community.org/runbot/122/16.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -43,7 +43,7 @@ Visto che le aliquote possono variare nel corso del tempo, nella codifica sono p
 
 E’ necessario anche inserire i conti contabili che verranno utilizzati quando il modulo si occuperà di generare registrazioni contabili per la rilevazione della ritenuta.
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_withholding_tax/static/img/ritenuta-acconto-odoo-codifica-768x457.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_withholding_tax/static/img/ritenuta-acconto-odoo-codifica-768x457.png
    :alt: Withholding tax
    :width: 600 px
 
@@ -55,18 +55,18 @@ Il modulo ritenute calcolerà i valori corrispondenti e ne mostrerà il dettagli
 
 In calce ai totali, verrà totalizzato l’ammontare della ritenuta e il netto a pagare. Questa sezione sarà visibile solamente in presenza di almeno una ritenuta
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_withholding_tax/static/img/fattura-fornitore-768x517.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_withholding_tax/static/img/fattura-fornitore-768x517.png
    :alt: Supplier invoice
    :width: 600 px
 
 Per registrare il pagamento di una fattura con ritenuta, indicare come importo il "Netto a pagare" e lasciare aperta la fattura:
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_withholding_tax/static/img/pagamento-fattura-fornitore.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_withholding_tax/static/img/pagamento-fattura-fornitore.png
    :alt: Pagamento fattura fornitore
 
 Il sistema provvederà alla creazione di un ulteriore pagamento che coprirà l'ammontare della ritenuta e la fattura risulterà completamente pagata:
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_withholding_tax/static/img/pagamento-ritenuta.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_withholding_tax/static/img/pagamento-ritenuta.png
    :alt: Pagamento ritenuta
 
 Per il pagamento della ritenuta d'acconto fare riferimento al modulo `l10n_it_withholding_tax_payment`.
@@ -81,7 +81,7 @@ I campi principalmente da tenere in considerazione in questa tabella sono: riten
 
 *Ritenuta versata* contiene l’importo di ritenuta, già applicata, che è stata versata all’erario
 
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_withholding_tax/static/img/foto-3-1-1024x505.png
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_withholding_tax/static/img/foto-3-1-1024x505.png
    :alt: WT statement
    :width: 600 px
 
@@ -91,7 +91,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_withholding_tax%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_withholding_tax%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -124,6 +124,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_withholding_tax>`_ project on GitHub.
+This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/16.0/l10n_it_withholding_tax>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
