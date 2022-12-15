@@ -17,7 +17,7 @@ class ResPartner(models.Model):
     # 1.2.1.4
     register = fields.Char("Professional Register", size=60)
     # 1.2.1.5
-    register_province = fields.Many2one("res.country.state", string="Register Province")
+    register_province = fields.Many2one("res.country.state")
     # 1.2.1.6
     register_code = fields.Char("Register Registration Number", size=60)
     # 1.2.1.7
@@ -113,8 +113,10 @@ class ResPartner(models.Model):
                     )
                 if not partner.is_pa and not partner.codice_destinatario:
                     raise ValidationError(
-                        _("Partner %s must have Addresse Code. Use %s if unknown")
-                        % (partner.name, STANDARD_ADDRESSEE_CODE)
+                        _(
+                            "Partner %(name)s must have Addresse Code. Use %(code)s if unknown"
+                        )
+                        % {"name": partner.name, "code": STANDARD_ADDRESSEE_CODE}
                     )
                 if (
                     not partner.is_pa
@@ -122,21 +124,21 @@ class ResPartner(models.Model):
                     and len(partner.codice_destinatario) != 7
                 ):
                     raise ValidationError(
-                        _("Partner %s Addressee Code must be 7 characters long.")
-                        % partner.name
+                        _("Partner %(name)s Addressee Code must be 7 characters long.")
+                        % {"name": partner.name}
                     )
                 if partner.pec_destinatario:
                     if partner.codice_destinatario != STANDARD_ADDRESSEE_CODE:
                         raise ValidationError(
                             _(
-                                "Partner %s has Addressee PEC %s, "
-                                "the Addresse Code must be %s."
+                                "Partner %(name)s has Addressee PEC %(pec)s, "
+                                "the Addresse Code must be %(code)s."
                             )
-                            % (
-                                partner.name,
-                                partner.pec_destinatario,
-                                STANDARD_ADDRESSEE_CODE,
-                            )
+                            % {
+                                "name": partner.name,
+                                "pec": partner.pec_destinatario,
+                                "code": STANDARD_ADDRESSEE_CODE,
+                            }
                         )
                 if (
                     not partner.vat

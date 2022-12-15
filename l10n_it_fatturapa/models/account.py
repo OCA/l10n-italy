@@ -35,15 +35,15 @@ class FatturapaPaymentDetail(models.Model):
     _name = "fatturapa.payment.detail"
     _description = "E-invoice payment details"
     _rec_name = "payment_due_date"
-    recipient = fields.Char("Recipient", size=200)
+    recipient = fields.Char(size=200)
     fatturapa_pm_id = fields.Many2one(
         "fatturapa.payment_method", string="Electronic Invoice Payment Method"
     )
-    payment_term_start = fields.Date("Payment Term Start")
+    payment_term_start = fields.Date()
     payment_days = fields.Integer("Payment Term Days")
-    payment_due_date = fields.Date("Payment Due Date")
-    payment_amount = fields.Float("Payment Amount")
-    post_office_code = fields.Char("Post Office Code", size=20)
+    payment_due_date = fields.Date()
+    payment_amount = fields.Float()
+    post_office_code = fields.Char(size=20)
     recepit_name = fields.Char("Receipt Issuer Name")
     recepit_surname = fields.Char("Receipt Issuer Surname")
     recepit_cf = fields.Char("Receipt Issuer FC")
@@ -53,12 +53,12 @@ class FatturapaPaymentDetail(models.Model):
     payment_bank_abi = fields.Char("ABI")
     payment_bank_cab = fields.Char("CAB")
     payment_bank_bic = fields.Char("BIC")
-    payment_bank = fields.Many2one("res.partner.bank", string="Payment Bank")
-    prepayment_discount = fields.Float("Prepayment Discount")
+    payment_bank = fields.Many2one("res.partner.bank")
+    prepayment_discount = fields.Float()
     max_payment_date = fields.Date("Maximum Date for Payment")
     penalty_amount = fields.Float("Amount of Penalty")
     penalty_date = fields.Date("Effective Date of Penalty")
-    payment_code = fields.Char("Payment Code")
+    payment_code = fields.Char()
     account_move_line_id = fields.Many2one("account.move.line", string="Payment Line")
     payment_data_id = fields.Many2one(
         "fatturapa.payment.data",
@@ -74,7 +74,7 @@ class FatturapaFiscalPosition(models.Model):
     _description = "Electronic Invoice Fiscal Position"
 
     name = fields.Char("Description", size=128)
-    code = fields.Char("Code", size=4)
+    code = fields.Char(size=4)
 
 
 class WelfareFundType(models.Model):
@@ -82,8 +82,8 @@ class WelfareFundType(models.Model):
     _name = "welfare.fund.type"
     _description = "Welfare Fund Type"
 
-    name = fields.Char("Name")
-    description = fields.Char("Description")
+    name = fields.Char()
+    description = fields.Char()
 
     def name_get(self):
         res = []
@@ -101,7 +101,7 @@ class WelfareFundDataLine(models.Model):
     kind_id = fields.Many2one("account.tax.kind", string="Non taxable nature")
     welfare_rate_tax = fields.Float("Welfare Tax Rate")
     welfare_amount_tax = fields.Float("Welfare Tax Amount")
-    welfare_taxable = fields.Float("Welfare Taxable")
+    welfare_taxable = fields.Float()
     welfare_Iva_tax = fields.Float("VAT Tax Rate")
     subjected_withholding = fields.Char("Subjected to Withholding", size=2)
     pa_line_code = fields.Char("PA Code for this Record", size=20)
@@ -137,8 +137,8 @@ class DiscountRisePrice(models.Model):
     _description = "E-invoice Discount Supplement Data"
 
     name = fields.Selection([("SC", "Discount"), ("MG", "Supplement")], "Type")
-    percentage = fields.Float("Percentage")
-    amount = fields.Float("Amount", digits="Discount")
+    percentage = fields.Float()
+    amount = fields.Float(digits="Discount")
     invoice_line_id = fields.Many2one(
         "account.move.line",
         "Related Invoice from line",
@@ -182,19 +182,20 @@ class FatturapaRelatedDocumentType(models.Model):
         index=True,
         readonly=True,
     )
-    date = fields.Date("Date")
+    date = fields.Date()
     numitem = fields.Char("Item Num.", size=20)
     code = fields.Char("Order Agreement Code", size=100)
     cig = fields.Char("CIG Code", size=15)
     cup = fields.Char("CUP Code", size=15)
 
-    @api.model
-    def create(self, vals):
-        if vals.get("invoice_line_id"):
-            line_obj = self.env["account.move.line"]
-            line = line_obj.browse(vals["invoice_line_id"])
-            vals["lineRef"] = line.sequence
-        return super(FatturapaRelatedDocumentType, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        line_obj = self.env["account.move.line"]
+        for vals in vals_list:
+            if vals.get("invoice_line_id"):
+                line = line_obj.browse(vals["invoice_line_id"])
+                vals["lineRef"] = line.sequence
+        return super(FatturapaRelatedDocumentType, self).create(vals_list)
 
 
 class FatturapaActivityProgress(models.Model):
@@ -217,8 +218,8 @@ class FatturaAttachments(models.Model):
     ir_attachment_id = fields.Many2one(
         "ir.attachment", "Attachment", required=True, ondelete="cascade"
     )
-    compression = fields.Char("Compression", size=10)
-    format = fields.Char("Format", size=10)
+    compression = fields.Char(size=10)
+    format = fields.Char(size=10)
     invoice_id = fields.Many2one(
         "account.move", "Related Invoice", ondelete="cascade", index=True
     )
@@ -230,7 +231,7 @@ class FatturapaRelatedDdt(models.Model):
     _description = "E-invoice Related DDT"
 
     name = fields.Char("Document ID", size=20, required=True)
-    date = fields.Date("Date")
+    date = fields.Date()
     lineRef = fields.Integer("Line Ref.")
     invoice_line_id = fields.Many2one(
         "account.move.line", "Related Invoice Line", ondelete="cascade", index=True
@@ -239,13 +240,14 @@ class FatturapaRelatedDdt(models.Model):
         "account.move", "Related Invoice", ondelete="cascade", index=True
     )
 
-    @api.model
-    def create(self, vals):
-        if vals.get("invoice_line_id"):
-            line_obj = self.env["account.move.line"]
-            line = line_obj.browse(vals["invoice_line_id"])
-            vals["lineRef"] = line.sequence
-        return super(FatturapaRelatedDdt, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        line_obj = self.env["account.move.line"]
+        for vals in vals_list:
+            if vals.get("invoice_line_id"):
+                line = line_obj.browse(vals["invoice_line_id"])
+                vals["lineRef"] = line.sequence
+        return super(FatturapaRelatedDdt, self).create(vals_list)
 
 
 class AccountInvoiceLine(models.Model):
@@ -275,7 +277,7 @@ class FatturapaSummaryData(models.Model):
     # _position = ['2.2.2']
     _name = "fatturapa.summary.data"
     _description = "E-invoice summary data"
-    tax_rate = fields.Float("Tax Rate")
+    tax_rate = fields.Float()
 
     @api.model
     def _get_tax_kinds(self):
@@ -285,10 +287,10 @@ class FatturapaSummaryData(models.Model):
         selection="_get_tax_kinds",
         string="Non taxable nature",
     )
-    incidental_charges = fields.Float("Incidental Charges")
-    rounding = fields.Float("Rounding")
-    amount_untaxed = fields.Float("Amount Untaxed")
-    amount_tax = fields.Float("Amount Tax")
+    incidental_charges = fields.Float()
+    rounding = fields.Float()
+    amount_untaxed = fields.Float()
+    amount_tax = fields.Float()
     payability = fields.Selection(
         [
             ("I", "Immediate payability"),
@@ -306,17 +308,15 @@ class FatturapaSummaryData(models.Model):
 class AccountInvoice(models.Model):
     # _position = ['2.1', '2.2', '2.3', '2.4', '2.5']
     _inherit = "account.move"
-    protocol_number = fields.Char("Protocol Number", size=64, copy=False)
+    protocol_number = fields.Char(size=64, copy=False)
     # 1.2 -- partner_id
     # 1.3
     tax_representative_id = fields.Many2one("res.partner", string="Tax Representative")
     #  1.4 company_id
     #  1.5
-    intermediary = fields.Many2one("res.partner", string="Intermediary")
+    intermediary = fields.Many2one("res.partner")
     #  1.6
-    sender = fields.Selection(
-        [("CC", "Assignee / Partner"), ("TZ", "Third Person")], "Sender"
-    )
+    sender = fields.Selection([("CC", "Assignee / Partner"), ("TZ", "Third Person")])
     # 2.1.1.5 mapped to l10n_it_withholding_tax fields
     ftpa_withholding_ids = fields.One2many(
         "withholding.data.line", "invoice_id", "Withholding", copy=False
@@ -327,7 +327,7 @@ class AccountInvoice(models.Model):
     )
     #  2.1.2 - 2.1.6
     related_documents = fields.One2many(
-        "fatturapa.related_document_type", "invoice_id", "Related Documents", copy=False
+        "fatturapa.related_document_type", "invoice_id", copy=False
     )
     #  2.1.7
     activity_progress_ids = fields.One2many(
@@ -345,18 +345,18 @@ class AccountInvoice(models.Model):
     transport_vehicle = fields.Char("Vehicle", size=80, copy=False)
     transport_reason = fields.Char("Reason", size=80, copy=False)
     number_items = fields.Integer("Number of Items", copy=False)
-    description = fields.Char("Description", size=100, copy=False)
+    description = fields.Char(size=100, copy=False)
     unit_weight = fields.Char("Weight Unit", size=10, copy=False)
-    gross_weight = fields.Float("Gross Weight", copy=False)
-    net_weight = fields.Float("Net Weight", copy=False)
+    gross_weight = fields.Float(copy=False)
+    net_weight = fields.Float(copy=False)
     pickup_datetime = fields.Datetime("Pick up", copy=False)
-    transport_date = fields.Date("Transport Date", copy=False)
+    transport_date = fields.Date(copy=False)
     delivery_address = fields.Text("Delivery Address for E-invoice", copy=False)
     delivery_datetime = fields.Datetime("Delivery Date Time", copy=False)
     ftpa_incoterms = fields.Char(string="E-inv Incoterms", copy=False)
     #  2.1.10
-    related_invoice_code = fields.Char("Related Invoice Code", copy=False)
-    related_invoice_date = fields.Date("Related Invoice Date", copy=False)
+    related_invoice_code = fields.Char(copy=False)
+    related_invoice_date = fields.Date(copy=False)
     #  2.2.1 invoice lines
     #  2.2.2
     fatturapa_summary_ids = fields.One2many(
@@ -366,7 +366,7 @@ class AccountInvoice(models.Model):
         copy=False,
     )
     #  2.3
-    vehicle_registration = fields.Date("Vehicle Registration", copy=False)
+    vehicle_registration = fields.Date(copy=False)
     total_travel = fields.Char("Travel in hours or Km", size=15, copy=False)
     #  2.4
     fatturapa_payments = fields.One2many(
