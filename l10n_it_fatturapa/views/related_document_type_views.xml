@@ -4,6 +4,7 @@
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
   -->
 <odoo>
+
     <record id="fatturapa_related_document_type_view_tree" model="ir.ui.view">
         <field name="name">Tree view for fatturapa.related_document_type</field>
         <field name="model">fatturapa.related_document_type</field>
@@ -75,4 +76,5 @@
         parent="fatturapa_common_menu"
         action="fatturapa_related_document_type_action"
     />
+
 </odoo>
