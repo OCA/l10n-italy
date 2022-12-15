@@ -48,7 +48,7 @@
                 >
                     <group string="Related Documents">
                         <field name="related_documents" nolabel="1">
-                            <tree editable="bottom" string="Related Documents">
+                            <tree editable="bottom">
                                 <field name="type" />
                                 <field name="name" />
                                 <field name="lineRef" readonly="1" />
@@ -84,7 +84,7 @@
                 >
                     <group string="Attachments">
                         <field name="fatturapa_doc_attachments" nolabel="1">
-                            <tree string="Attachments">
+                            <tree>
                                 <field name="ir_attachment_id" />
                                 <field name="name" />
                                 <field name="description" />

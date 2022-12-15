@@ -70,7 +70,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
 
     def test_1_xml_export(self):
         self.env.company.fatturapa_pub_administration_ref = "F000000111"
-        self.set_sequences(13, "2016-01-07")
         invoice = self.invoice_model.create(
             {
                 "name": "INV/2016/0013",
@@ -130,7 +129,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.check_content(xml_content, "IT06363391001_00001.xml")
 
     def test_2_xml_export(self):
-        self.set_sequences(14, "2016-06-15")
         invoice = self.invoice_model.create(
             {
                 "name": "INV/2016/0014",
@@ -194,7 +192,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.check_content(xml_content, "IT06363391001_00002.xml")
 
     def test_3_xml_export(self):
-        self.set_sequences(15, "2016-06-15")
         invoice = self.invoice_model.create(
             {
                 "name": "INV/2016/0015",
@@ -262,7 +259,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
 
     def test_5_xml_export(self):
         self.env.company.fatturapa_sender_partner = self.intermediario.id
-        self.set_sequences(17, "2016-06-15")
         invoice = self.invoice_model.create(
             {
                 "name": "INV/2016/0017",
@@ -302,7 +298,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
     def test_6_xml_export(self):
         self.product_product_10.default_code = "ODOOCODE"
         self.product_order_01.barcode = "987654"
-        self.set_sequences(13, "2018-01-07")
         invoice = self.invoice_model.create(
             {
                 "name": "INV/2018/0013",
@@ -362,7 +357,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.company.partner_id.country_id = self.env.ref("base.ch").id
         self.company.fatturapa_tax_representative = self.intermediario.id
         self.company.fatturapa_stabile_organizzazione = self.stabile_organizzazione.id
-        self.set_sequences(14, "2018-01-07")
         invoice = self.invoice_model.create(
             {
                 "name": "INV/2018/0014",
@@ -401,7 +395,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
 
     def test_8_xml_export(self):
         self.tax_22.price_include = True
-        self.set_sequences(15, "2018-01-07")
         invoice = self.invoice_model.create(
             {
                 "name": "INV/2018/0015",
@@ -413,7 +406,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                 "user_id": self.user_demo.id,
                 "move_type": "out_invoice",
                 "currency_id": self.EUR.id,
-                "narration": "firsrt line\n\nsecond line",
+                "narration": "first line\n\nsecond line",
                 "invoice_line_ids": [
                     (
                         0,
@@ -454,7 +447,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
 
     def test_10_xml_export(self):
         # invoice with descriptive line
-        self.set_sequences(10, "2019-08-07")
         invoice = self.invoice_model.create(
             {
                 "name": "INV/2019/0010",
@@ -503,7 +495,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.check_content(xml_content, "IT06363391001_00010.xml")
 
     def test_11_xml_export(self):
-        self.set_sequences(11, "2018-01-07")
         self.product_product_10.default_code = "GH82Ø23€ŦD11"
         self.product_order_01.default_code = "GZD11"
         partner = self.res_partner_fatturapa_2
@@ -582,7 +573,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                 "electronic_invoice_use_this_address": True,
             }
         )
-        self.set_sequences(12, "2020-01-07")
         invoice = self.invoice_model.create(
             {
                 "name": "INV/2020/0012",
@@ -620,7 +610,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.check_content(xml_content, "IT06363391001_00012.xml")
 
     def test_13_xml_export(self):
-        self.set_sequences(13, "2020-01-07")
         self.tax_00_ns.kind_id = self.env.ref("l10n_it_account_tax_kind.n2_1")
         invoice = self.invoice_model.create(
             {
@@ -668,23 +657,23 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         tax_22b = self.tax_22.copy({"name": self.tax_22.name + "b"})
 
         invoice_form = Form(
-            self.env["account.move"].with_context({"default_move_type": "out_invoice"})
+            self.env["account.move"].with_context(default_move_type="out_invoice")
         )
         invoice_form.partner_id = self.res_partner_fatturapa_0
-        invoice_form.name = "INV/2021/10/0001"
-        invoice_form.date = fields.Date.from_string("2021-10-29")
         invoice_form.invoice_date = fields.Date.from_string("2021-10-29")
-        with invoice_form.line_ids.new() as line_form:
+        with invoice_form.invoice_line_ids.new() as line_form:
             line_form.product_id = self.product_product_10
             line_form.account_id = self.a_sale
             line_form.tax_ids.clear()
             line_form.tax_ids.add(self.tax_22)
-        with invoice_form.line_ids.new() as line_form:
+        with invoice_form.invoice_line_ids.new() as line_form:
             line_form.product_id = product_product_9
             line_form.account_id = self.a_sale
             line_form.tax_ids.clear()
             line_form.tax_ids.add(tax_22b)
         invoice = invoice_form.save()
+        invoice.date = fields.Date.from_string("2021-10-29")
+        invoice.name = "INV/2021/10/0001"
         invoice.action_post()
 
         res = self.run_wizard(invoice.id)
@@ -713,23 +702,23 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         )
 
         invoice_form = Form(
-            self.env["account.move"].with_context({"default_move_type": "out_invoice"})
+            self.env["account.move"].with_context(default_move_type="out_invoice")
         )
         invoice_form.currency_id = usd
         invoice_form.partner_id = self.res_partner_fatturapa_0
-        invoice_form.name = "INV/2021/12/0001"
-        invoice_form.date = fields.Date.from_string("2021-12-16")
         invoice_form.invoice_date = fields.Date.from_string("2021-12-16")
         invoice_form.invoice_payment_term_id = self.account_payment_term
 
         self.tax_00_ns.kind_id = self.env.ref("l10n_it_account_tax_kind.n3_2")
 
-        with invoice_form.line_ids.new() as line_form:
+        with invoice_form.invoice_line_ids.new() as line_form:
             line_form.product_id = self.product_product_10
             line_form.account_id = self.a_sale
             line_form.tax_ids.clear()
             line_form.tax_ids.add(self.tax_00_ns)
         invoice = invoice_form.save()
+        invoice.date = fields.Date.from_string("2021-12-16")
+        invoice.name = "INV/2021/12/0001"
         invoice.action_post()
 
         # commit 86febae278f08864e83017d43f6aa9d67165d664 fixed this as
@@ -761,18 +750,18 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         """
 
         invoice_form = Form(
-            self.env["account.move"].with_context({"default_move_type": "out_invoice"})
+            self.env["account.move"].with_context(default_move_type="out_invoice")
         )
         invoice_form.partner_id = self.res_partner_fatturapa_6
-        invoice_form.name = "INV/2021/12/0001"
-        invoice_form.date = fields.Date.from_string("2021-12-16")
         invoice_form.invoice_date = fields.Date.from_string("2021-12-16")
         invoice_form.invoice_payment_term_id = self.account_payment_term
 
-        with invoice_form.line_ids.new() as line_form:
+        with invoice_form.invoice_line_ids.new() as line_form:
             line_form.product_id = self.product_product_10
             line_form.account_id = self.a_sale
         invoice = invoice_form.save()
+        invoice.date = fields.Date.from_string("2021-12-16")
+        invoice.name = "INV/2021/12/0001"
         invoice.action_post()
 
         res = self.run_wizard(invoice.id)
@@ -788,14 +777,14 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         expect to fail with a proper message
         """
         invoice_form = Form(
-            self.env["account.move"].with_context({"default_move_type": "out_invoice"})
+            self.env["account.move"].with_context(default_move_type="out_invoice")
         )
         invoice_form.partner_id = self.res_partner_fatturapa_0
-        with invoice_form.line_ids.new() as line_form:
+        with invoice_form.invoice_line_ids.new() as line_form:
             line_form.product_id = self.product_product_10
             line_form.account_id = self.a_sale
             line_form.tax_ids.clear()
-        with invoice_form.line_ids.new() as line_form:
+        with invoice_form.invoice_line_ids.new() as line_form:
             line_form.display_type = "line_note"
             line_form.name = "just a note"
             line_form.account_id = self.env["account.account"]
@@ -804,7 +793,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
 
         wizard = self.wizard_model.create({})
         with self.assertRaises(UserError) as ue:
-            wizard.with_context({"active_ids": [invoice.id]}).exportFatturaPA()
+            wizard.with_context(active_ids=[invoice.id]).exportFatturaPA()
         error_message = "Invoice {} contains product lines w/o taxes".format(
             invoice.name
         )
@@ -818,52 +807,47 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         expect to fail with a proper message
         """
 
-        invoice1_form = Form(
-            self.env["account.move"].with_context({"default_move_type": "out_invoice"})
-        )
-        invoice1_form.partner_id = self.res_partner_fatturapa_0
-        with invoice1_form.line_ids.new() as line_form:
-            line_form.product_id = self.product_product_10
-            line_form.account_id = self.a_sale
-            line_form.tax_ids.clear()
-            line_form.tax_ids.add(self.tax_22)
-        invoice1 = invoice1_form.save()
-
-        company_form = Form(self.env["res.company"].sudo(True))
-        company_form.name = "YourCompany 2"
-        company_form.vat = "IT07973780013"
-        company_form.fatturapa_fiscal_position_id = (
-            self.env.company.fatturapa_fiscal_position_id
-        )
-        company2 = company_form.save()
-
-        self.env.user.company_ids |= company2
-
-        journal2 = invoice1.journal_id.copy()
-        journal2.write(
-            {
-                "company_id": company2.id,
-            }
-        )
-        invoice2 = invoice1.copy()
-        invoice2.write(
-            {
-                "name": invoice1.name,
-                "company_id": company2.id,
-                "journal_id": journal2.id,
-            }
-        )
-
-        self.assertTrue(company2 != self.env.company)
-        self.assertEqual(invoice1.company_id, self.env.company)
-        self.assertEqual(invoice2.company_id, company2)
+        self.env.company = self.company
+        invoice1 = self._create_invoice()
         invoice1.action_post()
+
+        self.create_2nd_company()
+        self.env.company = self.company2
+        product2 = self.product_product_10.copy(
+            {
+                "company_id": self.company2.id,
+            }
+        )
+        invoice2 = (
+            self.env["account.move"]
+            .with_context(
+                default_company=self.company2, default_move_type="out_invoice"
+            )
+            .create(
+                {
+                    "company_id": self.company2.id,
+                    "partner_id": invoice1.partner_id.id,
+                    "invoice_line_ids": [
+                        (
+                            0,
+                            0,
+                            {
+                                "product_id": product2.id,
+                                "tax_ids": [(6, 0, {self.tax_22_c2.id})],
+                            },
+                        ),
+                    ],
+                }
+            )
+        )
         invoice2.action_post()
+
+        self.env.company = self.company
+        self.assertEqual(invoice1.company_id, self.company)
+        self.assertEqual(invoice2.company_id, self.company2)
         wizard = self.wizard_model.create({})
         with self.assertRaises(UserError) as ue:
-            wizard.with_context(
-                {"active_ids": [invoice1.id, invoice2.id]}
-            ).exportFatturaPA()
+            wizard.with_context(active_ids=[invoice1.id, invoice2.id]).exportFatturaPA()
         error_message = "Invoices {}, {} must belong to the same company.".format(
             invoice1.name, invoice2.name
         )
@@ -911,7 +895,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
 
     def test_trasmittente_xml_export(self):
         self.env.company.e_invoice_transmitter_id = self.trasmittente.id
-        self.set_sequences(19, "2022-03-23")
         invoice = self.invoice_model.create(
             {
                 "name": "INV/2022/0019",
