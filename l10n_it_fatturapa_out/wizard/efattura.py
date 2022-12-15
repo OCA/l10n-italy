@@ -129,8 +129,23 @@ class EFatturaOut:
         def get_causale(invoice):
             res = []
             if invoice.narration:
+                # see: OCA/server-tools/html_text/models/ir_fields_converter.py
+                # after server_tools/html_text is ported to 16.0 we could use:
+                # narration_text = self.env["ir.fields.converter"]
+                #                  .text_from_html(invoice.narration, 40, 100, "...")
+                # meanwhile: 8<
+                from lxml import html
+
+                try:
+                    narration_text = "\n".join(
+                        html.fromstring(invoice.narration).xpath("//text()")
+                    )
+                except Exception:
+                    narration_text = ""
+                # >8 end meanwhile
+
                 # max length of Causale is 200
-                caus_list = invoice.narration.split("\n")
+                caus_list = narration_text.split("\n")
                 for causale in caus_list:
                     if not causale:
                         continue
@@ -248,9 +263,13 @@ class EFatturaOut:
         self.env = env
 
         template_values = self.get_template_values()
-        content = env.ref(
+        ir_ui_view = env.ref(
             "l10n_it_fatturapa_out.account_invoice_it_FatturaPA_export"
-        )._render(template_values)
+        )
+        content = ir_ui_view._render_template(
+            "l10n_it_fatturapa_out.account_invoice_it_FatturaPA_export", template_values
+        )
+
         # 14.0 - occorre rimuovere gli spazi tra i tag
         root = etree.fromstring(content, parser=etree.XMLParser(remove_blank_text=True))
         # già che ci siamo, validiamo con l'XMLSchema dello SdI

@@ -10,6 +10,50 @@ from odoo.addons.mail.tests.common import mail_new_test_user
 
 
 class FatturaPACommon(AccountTestInvoicingCommon):
+    # XXX l10n_it_fatturapa.tax_* should be either fixed or removed
+    # here we need to copy the values to be able to use them
+    # as company (in the accounts) is different
+    def _tax_vals(self, ref):
+        # if the repartition_lines have an account set, we replace it
+        tax = self.env.ref(ref).sudo()
+        invoice_rpls = [
+            (
+                0,
+                0,
+                {
+                    "factor_percent": rpl.factor_percent,
+                    "repartition_type": rpl.repartition_type,
+                    "account_id": self.company_data["default_account_tax_sale"].id
+                    if rpl.account_id
+                    else None,
+                },
+            )
+            for rpl in tax.invoice_repartition_line_ids
+        ]
+        refund_rpls = [
+            (
+                0,
+                0,
+                {
+                    "factor_percent": rpl.factor_percent,
+                    "repartition_type": rpl.repartition_type,
+                    "account_id": self.company_data["default_account_tax_sale"].id
+                    if rpl.account_id
+                    else None,
+                },
+            )
+            for rpl in tax.refund_repartition_line_ids
+        ]
+        tax_values = tax.copy_data()[0]
+        tax_values.update(
+            {
+                "company_id": self.env.company.id,
+                "invoice_repartition_line_ids": invoice_rpls,
+                "refund_repartition_line_ids": refund_rpls,
+            }
+        )
+        return tax_values
+
     def setUp(self):
         super(FatturaPACommon, self).setUp()
         # used to be in AccountTestUsers
@@ -30,7 +74,6 @@ class FatturaPACommon(AccountTestInvoicingCommon):
         self.company.e_invoice_transmitter_id = self.company.partner_id.id
 
         self.wizard_model = self.env["wizard.export.fatturapa"]
-        self.data_model = self.env["ir.model.data"]
         self.attach_model = self.env["fatturapa.attachment.out"]
         self.invoice_model = self.env["account.move"]
         self.fatturapa_attach = self.env["fatturapa.attachments"]
@@ -39,24 +82,16 @@ class FatturaPACommon(AccountTestInvoicingCommon):
         self.sales_journal = self.env["account.journal"].search(
             [("type", "=", "sale"), ("company_id", "=", self.env.company.id)]
         )[0]
-        account_user_type = self.env.ref("account.data_account_type_receivable")
         self.a_recv = self.account_model.with_user(self.account_manager.id).create(
             dict(
-                code="cust_acc",
+                code="cust.acc",
                 name="customer account",
-                user_type_id=account_user_type.id,
+                account_type="asset_receivable",
                 reconcile=True,
             )
         )
         self.a_sale = self.env["account.account"].search(
-            [
-                (
-                    "user_type_id",
-                    "=",
-                    self.env.ref("account.data_account_type_revenue").id,
-                )
-            ],
-            limit=1,
+            [("account_type", "=", "income")], limit=1
         )
         self.account_payment_term = self.env.ref(
             "account.account_payment_term_end_following_month"
@@ -73,58 +108,15 @@ class FatturaPACommon(AccountTestInvoicingCommon):
         self.product_order_01 = self.env.ref("product.product_order_01")
         self.product_product_10.default_code = False
         self.product_product_10.barcode = False
+        self.product_product_10.list_price = 14.0
         self.product_order_01.default_code = False
         self.product_order_01.barcode = False
 
-        # XXX l10n_it_fatturapa.tax_* should be either fixed or removed
-        # here we need to copy the values to be able to use them
-        # as company (in the accounts) is different
-        def _tax_vals(ref):
-            # if the repartition_lines have an account set, we replace it
-            tax = self.env.ref(ref).sudo()
-            invoice_rpls = [
-                (
-                    0,
-                    0,
-                    {
-                        "factor_percent": rpl.factor_percent,
-                        "repartition_type": rpl.repartition_type,
-                        "account_id": self.company_data["default_account_tax_sale"].id
-                        if rpl.account_id
-                        else None,
-                    },
-                )
-                for rpl in tax.invoice_repartition_line_ids
-            ]
-            refund_rpls = [
-                (
-                    0,
-                    0,
-                    {
-                        "factor_percent": rpl.factor_percent,
-                        "repartition_type": rpl.repartition_type,
-                        "account_id": self.company_data["default_account_tax_sale"].id
-                        if rpl.account_id
-                        else None,
-                    },
-                )
-                for rpl in tax.refund_repartition_line_ids
-            ]
-            tax_values = tax.copy_data()[0]
-            tax_values.update(
-                {
-                    "company_id": self.env.company.id,
-                    "invoice_repartition_line_ids": invoice_rpls,
-                    "refund_repartition_line_ids": refund_rpls,
-                }
-            )
-            return tax_values
-
         tax_model = self.env["account.tax"]
-        self.tax_22 = tax_model.create(_tax_vals("l10n_it_fatturapa.tax_22"))
-        self.tax_10 = tax_model.create(_tax_vals("l10n_it_fatturapa.tax_10"))
-        self.tax_22_SP = tax_model.create(_tax_vals("l10n_it_fatturapa.tax_22_SP"))
-        self.tax_00_ns = tax_model.create(_tax_vals("l10n_it_fatturapa.tax_00_ns"))
+        self.tax_22 = tax_model.create(self._tax_vals("l10n_it_fatturapa.tax_22"))
+        self.tax_10 = tax_model.create(self._tax_vals("l10n_it_fatturapa.tax_10"))
+        self.tax_22_SP = tax_model.create(self._tax_vals("l10n_it_fatturapa.tax_22_SP"))
+        self.tax_00_ns = tax_model.create(self._tax_vals("l10n_it_fatturapa.tax_00_ns"))
 
         self.res_partner_fatturapa_0 = self.env.ref(
             "l10n_it_fatturapa.res_partner_fatturapa_0"
@@ -157,7 +149,54 @@ class FatturaPACommon(AccountTestInvoicingCommon):
         )
         self.trasmittente = self.env.ref("l10n_it_fatturapa.res_partner_fatturapa_1")
         # Otherwise self.company in cache could keep the old wrong value USD
-        self.company.refresh()
+        self.company.invalidate_recordset()
+
+    def create_2nd_company(self):
+        fatturapa_fiscal_position_id = self.env.company.fatturapa_fiscal_position_id.id
+        self.company2 = (
+            self.env["res.company"]
+            .sudo(True)
+            .create(
+                {
+                    "name": "YourCompany 2",
+                    "vat": "IT06363391002",
+                    "email": "info@yourcompany.example.com",
+                    "fatturapa_fiscal_position_id": fatturapa_fiscal_position_id,
+                    "country_id": self.env.company.country_id.id,
+                    "account_fiscal_country_id": self.env.company.account_fiscal_country_id.id,
+                    "fatturapa_art73": True,
+                }
+            )
+        )
+        self.company2.partner_id = self.company.partner_id.copy(
+            {
+                "company_id": self.company2.id,
+                "street": "Via Milano, 1",
+                "city": "Roma",
+                "state_id": self.env.ref("base.state_us_2").id,
+                "zip": "00100",
+                "phone": "06543534343",
+                "country_id": self.env.ref("base.it").id,
+            }
+        )
+
+        default_chart_templates = self.env["account.chart.template"].search([], limit=1)
+        default_chart_templates.with_company(self.company2).try_loading()
+        self.account_manager.company_ids |= self.company2
+
+        tax_22_c2_vals = self._tax_vals("l10n_it_fatturapa.tax_22")
+        tax_22_c2_vals["company_id"] = self.company2.id
+        tax_22_c2_vals["invoice_repartition_line_ids"][1][2][
+            "account_id"
+        ] = self.tax_22.invoice_repartition_line_ids.account_id.copy(
+            {"company_id": self.company2.id}
+        ).id
+        tax_22_c2_vals["refund_repartition_line_ids"][1][2][
+            "account_id"
+        ] = self.tax_22.refund_repartition_line_ids.account_id.copy(
+            {"company_id": self.company2.id}
+        ).id
+        self.tax_22_c2 = self.env["account.tax"].create(tax_22_c2_vals)
 
     def AttachFileToInvoice(self, InvoiceId, filename):
         self.fatturapa_attach.create(
@@ -190,7 +229,7 @@ class FatturaPACommon(AccountTestInvoicingCommon):
 
     def run_wizard(self, invoice_id):
         wizard = self.wizard_model.create({})
-        return wizard.with_context({"active_ids": [invoice_id]}).exportFatturaPA()
+        return wizard.with_context(active_ids=invoice_id).exportFatturaPA()
 
     def set_e_invoice_file_id(self, e_invoice, file_name):
         # We need this because file name is random and we can't predict it

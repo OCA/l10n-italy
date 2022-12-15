@@ -46,12 +46,11 @@ class FatturaPAAttachment(models.Model):
             ("validated", "Delivered"),
             ("accepted", "Accepted"),
         ],
-        string="State",
         default="ready",
         tracking=True,
     )
     sending_date = fields.Datetime("Sent Date", readonly=True)
-    delivered_date = fields.Datetime("Delivered Date", readonly=True)
+    delivered_date = fields.Datetime(readonly=True)
 
     _sql_constraints = [
         (
