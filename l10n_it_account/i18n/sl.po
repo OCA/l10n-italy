@@ -79,11 +79,6 @@ msgid "Date Ranges"
 msgstr ""
 
 #. module: l10n_it_account
-#: model:ir.ui.menu,name:l10n_it_account.menu_date_range_accounting
-msgid "Date ranges"
-msgstr ""
-
-#. module: l10n_it_account
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__deductible_balance
 msgid "Deductible Balance"
 msgstr ""
