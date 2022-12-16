@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2019 Simone Rubino - Agile Business Group
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+<odoo>
+    <!--
+    Document
+     -->
+    <template id="report_vatperiodendstatement_document">
+            <t t-call="l10n_it_account.internal_layout">
+                <div class="article">
+                    <!--
+                    Periods detail
+                    -->
+                    <t t-foreach="statement.date_range_ids" t-as="period">
+                           <h3><span>Summary</span> <span t-esc="period.name" /> </h3>
+
+                           <!-- Purchase -->
+                           <t
+                        t-set="tax_code_amounts"
+                        t-value="tax_amounts(period.id, [l.tax_id.id for l in statement.credit_vat_account_line_ids], 'supplier')"
+                    />
+                           <t t-set="tax_code_type" t-value="'credit'" />
+                           <t t-set="tax_code_section" t-value="'purchase'" />
+                           <t
+                        t-call="account_vat_period_end_statement.report_vatperiodendstatement_tax_code"
+                    />
+
+                           <!-- Sale -->
+                           <t
+                        t-set="tax_code_amounts"
+                        t-value="tax_amounts(period.id, [l.tax_id.id for l in statement.debit_vat_account_line_ids], 'customer')"
+                    />
+                           <t t-set="tax_code_type" t-value="'debit'" />
+                           <t t-set="tax_code_section" t-value="'sale'" />
+                           <t
+                        t-call="account_vat_period_end_statement.report_vatperiodendstatement_tax_code"
+                    />
+                       </t>
+
+                       <!--
+                    Total Compentence
+                    -->
+                    <t t-set="total_statement" t-value="(0)" />
+
+                    <h3>Total Statement</h3>
+
+                    <table class="table table-condensed">
+                        <!-- tot debit -->
+                           <t
+                        t-set="vat_accounts"
+                        t-value="account_vat_amounts('debit', statement.debit_vat_account_line_ids)"
+                    />
+                           <t t-foreach="vat_accounts" t-as="account_id">
+                               <tr>
+                                   <td class="text-right">Total debit vat</td>
+                                   <td class="text-right"><span
+                                    t-esc="formatLang(env, vat_accounts[account_id]['amount'])"
+                                /></td>
+                               </tr>
+                               <!-- sum -->
+                               <t
+                            t-set="total_statement"
+                            t-value="(total_statement + vat_accounts[account_id]['amount'])"
+                        />
+                           </t>
+
+                        <!-- tot credit -->
+                        <t
+                        t-set="vat_accounts"
+                        t-value="account_vat_amounts('credit', statement.credit_vat_account_line_ids)"
+                    />
+                           <t t-foreach="vat_accounts" t-as="account_id">
+                               <tr>
+                                   <td class="text-right">Total credit vat</td>
+                                   <td class="text-right"><span
+                                    t-esc="formatLang(env, vat_accounts[account_id]['amount'])"
+                                /></td>
+                               </tr>
+                               <!-- sum -->
+                               <t
+                            t-set="total_statement"
+                            t-value="(total_statement - vat_accounts[account_id]['amount'])"
+                        />
+                           </t>
+
+                           <!-- tot statement -->
+                           <tr>
+                              <td class="text-right"><strong
+                            >Total Statement</strong></td>
+                              <td class="text-right"><strong><span
+                                    t-esc="formatLang(env, total_statement)"
+                                /></strong></td>
+                          </tr>
+                       </table>
+
+                       <!--
+                       To pay
+                       -->
+                       <t t-set="total_to_pay" t-value="(total_statement)" />
+                      <table class="table table-condensed">
+                           <!-- previous credit -->
+                           <tr>
+                               <td />
+                               <td class="text-right">Previous credit vat</td>
+                               <td class="text-right">-<span
+                                t-esc="formatLang(env, statement.previous_credit_vat_amount)"
+                            /></td>
+                               <!-- sum -->
+                               <t
+                            t-set="total_to_pay"
+                            t-value="(total_to_pay - statement.previous_credit_vat_amount)"
+                        />
+                           </tr>
+                           <!-- previous debit -->
+                           <tr>
+                               <td />
+                               <td class="text-right">Previous debit vat</td>
+                               <td class="text-right"><span
+                                t-esc="formatLang(env, statement.previous_debit_vat_amount)"
+                            /></td>
+                               <!-- sum -->
+                               <t
+                            t-set="total_to_pay"
+                            t-value="(total_to_pay + statement.previous_debit_vat_amount)"
+                        />
+                           </tr>
+                           <!-- Due interests -->
+                           <tr>
+                               <td />
+                               <td class="text-right">Due interests</td>
+                               <td class="text-right"><span
+                                t-esc="formatLang(env, statement.interests_debit_vat_amount)"
+                            /></td>
+                               <!-- sum -->
+                               <t
+                            t-set="total_to_pay"
+                            t-value="(total_to_pay + statement.interests_debit_vat_amount)"
+                        />
+                           </tr>
+                           <!-- tax credit -->
+                           <tr>
+                               <td />
+                               <td class="text-right">Tax credits</td>
+                               <td class="text-right">-<span
+                                t-esc="formatLang(env, statement.tax_credit_amount)"
+                            /></td>
+                               <!-- sum -->
+                               <t
+                            t-set="total_to_pay"
+                            t-value="(total_to_pay - statement.tax_credit_amount)"
+                        />
+                           </tr>
+                           <!-- advance -->
+                           <tr>
+                               <td />
+                               <td class="text-right">Down payment<t
+                                t-if="statement.advance_computation_method"
+                            >&amp;nbsp;(<span
+                                    t-field="statement.advance_computation_method"
+                                />)</t></td>
+                               <td class="text-right">-<span
+                                t-esc="formatLang(env, statement.advance_amount)"
+                            /></td>
+                               <!-- sum -->
+                               <t
+                            t-set="total_to_pay"
+                            t-value="(total_to_pay - statement.advance_amount)"
+                        />
+                           </tr>
+
+                           <!-- ...Other tot debit/credit -->
+                           <t
+                        t-foreach="statement.generic_vat_account_line_ids"
+                        t-as="generic_vat"
+                    >
+                           <tr>
+                               <td class="text-right"><span
+                                    t-esc="generic_vat.name"
+                                /></td>
+                               <td class="text-right"><span
+                                    t-esc="generic_vat.account_id.name"
+                                /></td>
+                               <td class="text-right"><span
+                                    t-esc="formatLang(env, generic_vat.amount*-1)"
+                                /></td>
+                               <!-- sum -->
+                               <t
+                                t-set="total_to_pay"
+                                t-value="(total_to_pay + (generic_vat.amount*-1))"
+                            />
+                           </tr>
+                           </t>
+
+                           <!-- Total to pay -->
+                           <tr>
+                               <span t-if="(total_to_pay >= 0)">
+                                   <td />
+                                   <td class="text-right"><strong
+                                >Total To Pay</strong></td>
+                                   <td class="text-right"><strong><span
+                                        t-esc="formatLang(env, total_to_pay)"
+                                    /></strong></td>
+                               </span>
+
+                               <span t-if="not (total_to_pay >= 0)">
+                                   <td />
+                                   <td class="text-right"><strong
+                                >Total Credit</strong></td>
+                                   <td class="text-right"><strong><span
+                                        t-esc="formatLang(env, (total_to_pay * -1))"
+                                    /></strong></td>
+                               </span>
+                           </tr>
+                    </table>
+                    <!-- payment info -->
+                    <t t-if="statement.payment_ids">
+                        <br />
+
+                    <table class="table table-condensed">
+                            <t t-foreach="statement.payment_ids" t-as="payment_line">
+                                <tr>
+                                    <td
+                                    t-esc="'Importo versato (Estremi del versamento: data '+ payment_line.date.strftime('%d/%m/%Y') + ' - ' +payment_line.journal_id.name+')'"
+                                />
+                                    <td
+                                    class="text-right"
+                                    t-esc="formatLang(env, payment_line.debit)"
+                                />
+                               </tr>
+                               <tr>
+                                   <td colspan="2">
+                                   Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in Italia, Beni FUE in Italia, Cell., Microproc.
+    Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, Cell. UE, Microproc. UE
+                                   </td>
+                               </tr>
+                           </t>
+                           </table>
+                      </t>
+
+
+                </div>
+            </t>
+
+    </template>
+
+    <!--
+    Tax Code
+     -->
+    <template id="report_vatperiodendstatement_tax_code">
+
+        <t t-set="total_vat" t-value="(0)" />
+        <t t-set="total_vat_deductible" t-value="(0)" />
+        <t t-set="total_vat_undeductible" t-value="(0)" />
+        <t t-set="total_base" t-value="(0)" />
+
+
+        <h4>
+            <span t-if="(tax_code_section == 'sale')">Sale</span>
+            <span t-if="(tax_code_section == 'purchase')">Purchase</span>
+        </h4>
+        <table class="table table-condensed">
+            <thead>
+                   <tr class="text-center">
+                       <th style="width:40%;">Description</th>
+                       <th style="width:15%;" class="text-right">Base</th>
+                       <th style="width:15%;" class="text-right">Vat</th>
+                       <span t-if="(tax_code_type == 'credit')">
+                           <th style="width:15%;" class="text-right">Deductible</th>
+                           <th style="width:15%;" class="text-right">Undeductible</th>
+                    </span>
+                    <span t-if="not (tax_code_type == 'credit')">
+                        <th style="width:15%;" />
+                        <th style="width:15%;" />
+                    </span>
+                </tr>
+               </thead>
+            <t t-foreach="tax_code_amounts" t-as="tax_code">
+                <!-- Prepare values -->
+                <t t-set="code" t-value="(tax_code_amounts[tax_code]['code'])" />
+                <t
+                    t-set="tax_code_base"
+                    t-value="(tax_code_amounts[tax_code]['base'])"
+                />
+                <t t-set="tax_code_vat" t-value="(tax_code_amounts[tax_code]['vat'])" />
+                <t
+                    t-set="tax_code_vat_deductible"
+                    t-value="(tax_code_amounts[tax_code]['vat_deductible'])"
+                />
+                <t
+                    t-set="tax_code_vat_undeductible"
+                    t-value="(tax_code_amounts[tax_code]['vat_undeductible'])"
+                />
+                <!-- print values  -->
+                <tr
+                    t-if="tax_code_base or tax_code_vat or tax_code_vat_deductible or tax_code_vat_undeductible"
+                >
+                    <td><span t-esc="code" /></td>
+                    <td class="text-right"><span
+                            t-esc="formatLang(env, tax_code_base)"
+                        /></td>
+                    <td class="text-right"><span
+                            t-esc="formatLang(env, tax_code_vat)"
+                        /></td>
+                    <span t-if="(tax_code_type == 'credit')">
+                        <td class="text-right"><span
+                                t-esc="formatLang(env, tax_code_vat_deductible)"
+                            /></td>
+                        <td class="text-right"><span
+                                t-esc="formatLang(env, tax_code_vat_undeductible)"
+                            /></td>
+                    </span>
+                    <span t-if="not (tax_code_type == 'credit')">
+                        <td />
+                        <td />
+                    </span>
+                </tr>
+                <!-- sum total  -->
+                <t t-set="total_vat" t-value="(total_vat + tax_code_vat)" />
+                <t t-set="total_base" t-value="(total_base + tax_code_base)" />
+                <t
+                    t-set="total_vat_deductible"
+                    t-value="(total_vat_deductible + tax_code_vat_deductible)"
+                />
+                <t
+                    t-set="total_vat_undeductible"
+                    t-value="(total_vat_undeductible + tax_code_vat_undeductible)"
+                />
+            </t>
+
+            <!-- total -->
+            <tr>
+                <td class="text-right"><strong>Total</strong></td>
+                <td class="text-right"><strong><span
+                            t-esc="formatLang(env, total_base)"
+                        /></strong></td>
+                <td class="text-right"><strong><span
+                            t-esc="formatLang(env, total_vat)"
+                        /></strong></td>
+                <span t-if="(tax_code_type == 'credit')">
+                    <td class="text-right"><strong><span
+                                t-esc="formatLang(env, total_vat_deductible)"
+                            /></strong></td>
+                    <td class="text-right"><strong><span
+                                t-esc="formatLang(env, total_vat_undeductible)"
+                            /></strong></td>
+                </span>
+                <span t-if="not (tax_code_type == 'credit')">
+                    <td />
+                    <td />
+                </span>
+            </tr>
+        </table>
+
+    </template>
+
+    <!--
+    Main
+     -->
+    <template id="vat_statement">
+        <t t-call="web.html_container">
+
+            <t t-set="title" t-value="'Liquidazione IVA'" />
+            <t t-foreach="docs" t-as="statement">
+                <t
+                    t-set="l10n_it_count_fiscal_page_base"
+                    t-value="statement.fiscal_page_base"
+                />
+                <t t-set="l10n_it_count_fiscal_year" t-value="statement.fiscal_year" />
+                <t
+                    t-call="account_vat_period_end_statement.report_vatperiodendstatement_document"
+                />
+            </t>
+        </t>
+    </template>
+</odoo>
