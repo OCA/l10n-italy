@@ -131,7 +131,6 @@ msgid "Stamp applicability min total base"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: model:product.product,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro
 #: model:product.template,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
 msgid ""
 "Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree June\n"
@@ -153,7 +152,6 @@ msgid "Tax Stamp"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: model:product.product,name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro
 #: model:product.template,name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
 msgid "Tax Stamp 2 euro"
 msgstr ""
@@ -204,10 +202,4 @@ msgstr ""
 #: code:addons/l10n_it_account_stamp/models/product.py:0
 #, python-format
 msgid "The product %s must be a stamp to apply set taxes!"
-msgstr ""
-
-#. module: l10n_it_account_stamp
-#: model:product.product,uom_name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro
-#: model:product.template,uom_name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
-msgid "Units"
 msgstr ""
