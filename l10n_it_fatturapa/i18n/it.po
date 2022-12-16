@@ -108,6 +108,7 @@ msgid "Art. 73"
 msgstr "Art. 73"
 
 #. module: l10n_it_fatturapa
+#. odoo-python
 #: code:addons/l10n_it_fatturapa/models/partner.py:0
 #, python-format
 msgid ""
@@ -117,6 +118,7 @@ msgstr ""
 "6 caratteri."
 
 #. module: l10n_it_fatturapa
+#. odoo-python
 #: code:addons/l10n_it_fatturapa/models/partner.py:0
 #, python-format
 msgid "As a natural person, partner %s must have Name and Surname."
@@ -154,6 +156,7 @@ msgid "Bank Name"
 msgstr "Nome banca"
 
 #. module: l10n_it_fatturapa
+#. odoo-python
 #: code:addons/l10n_it_fatturapa/models/ir_attachment.py:0
 #, python-format
 msgid "Base64 encoded file %s."
@@ -222,6 +225,7 @@ msgid "Contract"
 msgstr "Contratto"
 
 #. module: l10n_it_fatturapa
+#. odoo-python
 #: code:addons/l10n_it_fatturapa/models/ir_attachment.py:0
 #, python-format
 msgid "Corrupted attachment %s."
@@ -268,18 +272,21 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: l10n_it_fatturapa
+#. odoo-python
 #: code:addons/l10n_it_fatturapa/models/partner.py:0
 #, python-format
 msgid "Customer %s: city is needed for XML generation."
 msgstr "Cliente %s: per la generazione dell'XML è necessaria la città."
 
 #. module: l10n_it_fatturapa
+#. odoo-python
 #: code:addons/l10n_it_fatturapa/models/partner.py:0
 #, python-format
 msgid "Customer %s: country is needed for XML generation."
 msgstr "Cliente %s: per la generazione dell'XML è necessaria la nazione."
 
 #. module: l10n_it_fatturapa
+#. odoo-python
 #: code:addons/l10n_it_fatturapa/models/partner.py:0
 #, python-format
 msgid "Customer %s: street is needed for XML generation."
@@ -346,8 +353,6 @@ msgid "Discount or Supplement Details"
 msgstr "Dettagli sconto o maggiorazione"
 
 #. module: l10n_it_fatturapa
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_move__display_name
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_discount_rise_price__display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_activity_progress__display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__display_name
@@ -357,10 +362,6 @@ msgstr "Dettagli sconto o maggiorazione"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_ddt__display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_document_type__display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_summary_data__display_name
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_ir_attachment__display_name
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company__display_name
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_config_settings__display_name
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line__display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type__display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_withholding_data_line__display_name
@@ -588,8 +589,6 @@ msgid "IBAN"
 msgstr "IBAN"
 
 #. module: l10n_it_fatturapa
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_move__id
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_move_line__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_discount_rise_price__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_activity_progress__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__id
@@ -599,10 +598,6 @@ msgstr "IBAN"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_ddt__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_document_type__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_summary_data__id
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_ir_attachment__id
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company__id
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_config_settings__id
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_withholding_data_line__id
@@ -686,6 +681,7 @@ msgid "Intermediary"
 msgstr "Intermediario"
 
 #. module: l10n_it_fatturapa
+#. odoo-python
 #: code:addons/l10n_it_fatturapa/models/ir_attachment.py:0
 #, python-format
 msgid "Invalid xml %s."
@@ -697,12 +693,14 @@ msgid "Is public document"
 msgstr "È un documento pubblico"
 
 #. module: l10n_it_fatturapa
+#. odoo-python
 #: code:addons/l10n_it_fatturapa/models/partner.py:0
 #, python-format
 msgid "Italian partner %s must have VAT Number or Fiscal Code."
 msgstr "Il partner italiano %s deve avere una partita IVA o un codice fiscale."
 
 #. module: l10n_it_fatturapa
+#. odoo-python
 #: code:addons/l10n_it_fatturapa/models/partner.py:0
 #, python-format
 msgid "Italian partner %s: ZIP is needed for XML generation."
@@ -724,8 +722,6 @@ msgid "Journal Item"
 msgstr "Movimento contabile"
 
 #. module: l10n_it_fatturapa
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_move____last_update
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_move_line____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_discount_rise_price____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_activity_progress____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments____last_update
@@ -735,10 +731,6 @@ msgstr "Movimento contabile"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_ddt____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_document_type____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_summary_data____last_update
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_ir_attachment____last_update
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company____last_update
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_config_settings____last_update
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_partner____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_data_line____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_welfare_fund_type____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_withholding_data_line____last_update
@@ -948,24 +940,27 @@ msgstr ""
 "nei casi in cui l'elemento informativo <CodiceDestinatario> vale \"0000000\""
 
 #. module: l10n_it_fatturapa
+#. odoo-python
 #: code:addons/l10n_it_fatturapa/models/partner.py:0
 #, python-format
-msgid "Partner %s Addressee Code must be 7 characters long."
-msgstr "Il codice destinatario del partner %s deve essere lungo 7 caratteri."
+msgid "Partner %(name)s Addressee Code must be 7 characters long."
+msgstr ""
 
 #. module: l10n_it_fatturapa
+#. odoo-python
 #: code:addons/l10n_it_fatturapa/models/partner.py:0
 #, python-format
-msgid "Partner %s has Addressee PEC %s, the Addresse Code must be %s."
+msgid ""
+"Partner %(name)s has Addressee PEC %(pec)s, the Addresse Code must be "
+"%(code)s."
 msgstr ""
-"Il partner %s ha PEC destinatario %s, il codice destinatario deve essere %s."
 
 #. module: l10n_it_fatturapa
+#. odoo-python
 #: code:addons/l10n_it_fatturapa/models/partner.py:0
 #, python-format
-msgid "Partner %s must have Addresse Code. Use %s if unknown"
+msgid "Partner %(name)s must have Addresse Code. Use %(code)s if unknown"
 msgstr ""
-"Il partner %s deve avere il codice destinatario. Usare %s se non è conosciuto"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail__payment_amount
@@ -1346,11 +1341,6 @@ msgstr ""
 "(\"0000000\")."
 
 #. module: l10n_it_fatturapa
-#: model:ir.model.fields,help:l10n_it_fatturapa.field_fatturapa_attachments__res_model
-msgid "The database object this attachment will be attached to."
-msgstr "L'oggetto del database a cui verrà assegnato questo allegato."
-
-#. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_company__fatturapa_stabile_organizzazione
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_res_config_settings__fatturapa_stabile_organizzazione
 msgid ""
@@ -1381,11 +1371,6 @@ msgid ""
 msgstr ""
 "Blocco da valorizzare solo nei casi in cui il cedente/prestatore si avvalga "
 "di un rappresentante fiscale in Italia"
-
-#. module: l10n_it_fatturapa
-#: model:ir.model.fields,help:l10n_it_fatturapa.field_fatturapa_attachments__res_id
-msgid "The record id this is attached to."
-msgstr "L'ID del record a cui questo è collegato."
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company__fatturapa_sender_partner
@@ -1522,3 +1507,26 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_payment__efatt_stabile_organizzazione_cap
 msgid "ZIP Code"
 msgstr "CAP"
+
+#, python-format
+#~ msgid "Partner %s Addressee Code must be 7 characters long."
+#~ msgstr ""
+#~ "Il codice destinatario del partner %s deve essere lungo 7 caratteri."
+
+#, python-format
+#~ msgid "Partner %s has Addressee PEC %s, the Addresse Code must be %s."
+#~ msgstr ""
+#~ "Il partner %s ha PEC destinatario %s, il codice destinatario deve essere "
+#~ "%s."
+
+#, python-format
+#~ msgid "Partner %s must have Addresse Code. Use %s if unknown"
+#~ msgstr ""
+#~ "Il partner %s deve avere il codice destinatario. Usare %s se non è "
+#~ "conosciuto"
+
+#~ msgid "The database object this attachment will be attached to."
+#~ msgstr "L'oggetto del database a cui verrà assegnato questo allegato."
+
+#~ msgid "The record id this is attached to."
+#~ msgstr "L'ID del record a cui questo è collegato."
