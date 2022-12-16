@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-l10n-italy Odoo addons",
     version=version,
     install_requires=[
+        'odoo-addon-account_vat_period_end_statement>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_abicab>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_account>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_account_stamp>=16.0dev,<16.1dev',
