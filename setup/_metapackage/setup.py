@@ -25,6 +25,7 @@ setuptools.setup(
         'odoo-addon-l10n_it_rea>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_vat_payability>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_withholding_tax>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_it_withholding_tax_reason>=16.0dev,<16.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',
