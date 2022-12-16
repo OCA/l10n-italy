@@ -136,7 +136,6 @@ msgid "Stamp applicability min total base"
 msgstr "Totale imponibile minimo per applicabilità bollo"
 
 #. module: l10n_it_account_stamp
-#: model:product.product,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro
 #: model:product.template,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
 msgid ""
 "Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree "
@@ -159,7 +158,6 @@ msgid "Tax Stamp"
 msgstr "Imposta di bollo"
 
 #. module: l10n_it_account_stamp
-#: model:product.product,name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro
 #: model:product.template,name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
 msgid "Tax Stamp 2 euro"
 msgstr "Imposta di bollo 2 euro"
@@ -211,12 +209,6 @@ msgstr "Riga per l'imposta di bollo %s già presente, prima rimuoverla."
 #, python-format
 msgid "The product %s must be a stamp to apply set taxes!"
 msgstr "Il prodotto %s deve essere un bollo per applicare le imposte definite!"
-
-#. module: l10n_it_account_stamp
-#: model:product.product,uom_name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro
-#: model:product.template,uom_name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
-msgid "Units"
-msgstr ""
 
 #~ msgid ""
 #~ "<span class=\"o_form_label\">Configuration for Tax stamp</span>\n"
