@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo-addon-l10n_it_appointment_code>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_ateco>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_delivery_note_base>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_it_fatturapa>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_fiscal_document_type>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_fiscal_payment_term>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_fiscalcode>=16.0dev,<16.1dev',
