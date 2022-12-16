@@ -17,21 +17,6 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_it_withholding_tax_reason
-#: model:ir.model.fields,field_description:l10n_it_withholding_tax_reason.field_withholding_tax__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: l10n_it_withholding_tax_reason
-#: model:ir.model.fields,field_description:l10n_it_withholding_tax_reason.field_withholding_tax__id
-msgid "ID"
-msgstr "ID"
-
-#. module: l10n_it_withholding_tax_reason
-#: model:ir.model.fields,field_description:l10n_it_withholding_tax_reason.field_withholding_tax____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: l10n_it_withholding_tax_reason
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_reason.field_withholding_tax__payment_reason_id
 msgid "Payment reason"
 msgstr "Causale di pagamento"
@@ -40,3 +25,12 @@ msgstr "Causale di pagamento"
 #: model:ir.model,name:l10n_it_withholding_tax_reason.model_withholding_tax
 msgid "Withholding Tax"
 msgstr "Ritenuta d'acconto"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
