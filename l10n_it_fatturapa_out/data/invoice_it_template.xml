@@ -602,7 +602,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                               <!--                <SpeseAccessorie t-esc=""/>-->
                               <!--                <Arrotondamento t-esc=""/>-->
                               <ImponibileImporto
-                                t-esc="format_monetary(fpa_to_eur(tax_data['ImponibileImporto'], record), euro)"
+                                t-esc="format_monetary(tax_data['ImponibileImporto'], euro)"
                             />
                               <Imposta
                                 t-esc="format_monetary(fpa_to_eur(tax_data['Imposta'], record), euro)"
