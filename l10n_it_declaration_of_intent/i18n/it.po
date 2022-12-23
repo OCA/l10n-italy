@@ -23,6 +23,7 @@ msgid "Accounting"
 msgstr "Contabilità"
 
 #. module: l10n_it_declaration_of_intent
+#. odoo-python
 #: code:addons/l10n_it_declaration_of_intent/models/declaration.py:0
 #, python-format
 msgid ""
@@ -42,6 +43,7 @@ msgid "Available Amount"
 msgstr "Importo disponibile"
 
 #. module: l10n_it_declaration_of_intent
+#. odoo-python
 #: code:addons/l10n_it_declaration_of_intent/models/account_move.py:0
 #, python-format
 msgid ""
@@ -142,6 +144,7 @@ msgid "Declaration of intent"
 msgstr "Dichiarazione d'intento"
 
 #. module: l10n_it_declaration_of_intent
+#. odoo-python
 #: code:addons/l10n_it_declaration_of_intent/models/account_move.py:0
 #, python-format
 msgid ""
@@ -173,6 +176,7 @@ msgid "Declarations of intent"
 msgstr "Dichiarazioni d'intento"
 
 #. module: l10n_it_declaration_of_intent
+#. odoo-python
 #: code:addons/l10n_it_declaration_of_intent/models/declaration.py:0
 #, python-format
 msgid "Define a yearly plafond for in documents in your company settings"
@@ -181,6 +185,7 @@ msgstr ""
 "dell'azienda"
 
 #. module: l10n_it_declaration_of_intent
+#. odoo-python
 #: code:addons/l10n_it_declaration_of_intent/models/account.py:0
 #, python-format
 msgid "Define taxes for fiscal position %s valid for declaration of intent"
@@ -199,16 +204,10 @@ msgid "Details of declaration of intent"
 msgstr "Dettagli della dichiarazione d'intento"
 
 #. module: l10n_it_declaration_of_intent
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_account_fiscal_position__display_name
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_account_move__display_name
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration__display_name
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration_line__display_name
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_select_declarations__display_name
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_yearly_limit__display_name
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_product_product__display_name
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_res_company__display_name
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_sale_order__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
 
@@ -255,20 +254,15 @@ msgid "Force Reopen"
 msgstr "Forza riapertura"
 
 #. module: l10n_it_declaration_of_intent
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_account_fiscal_position__id
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_account_move__id
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_account_move_line__id
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration__id
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration_line__id
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_select_declarations__id
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_yearly_limit__id
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_product_product__id
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_res_company__id
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_sale_order__id
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_declaration_of_intent
+#. odoo-python
 #: code:addons/l10n_it_declaration_of_intent/models/declaration.py:0
 #, python-format
 msgid "Impossible to delete a document with linked invoices"
@@ -295,16 +289,10 @@ msgid "Journal Item"
 msgstr "Movimento contabile"
 
 #. module: l10n_it_declaration_of_intent
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_account_fiscal_position____last_update
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_account_move____last_update
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_account_move_line____last_update
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration____last_update
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration_line____last_update
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_select_declarations____last_update
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_yearly_limit____last_update
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_product_product____last_update
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_res_company____last_update
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_sale_order____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
@@ -331,14 +319,13 @@ msgid "Limit Amount"
 msgstr "Importo limite"
 
 #. module: l10n_it_declaration_of_intent
+#. odoo-python
 #: code:addons/l10n_it_declaration_of_intent/models/declaration.py:0
 #, python-format
 msgid ""
-"Limit passed for declaration %s.\n"
-"Excess value: %s%s"
+"Limit passed for declaration {number}.\n"
+"Excess value: {symbol}{available_amount}"
 msgstr ""
-"Limite oltrepassato per la dichiarazione %s.\n"
-"Valore in eccesso: %s%s"
 
 #. module: l10n_it_declaration_of_intent
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration__line_ids
@@ -368,8 +355,8 @@ msgstr ""
 
 #. module: l10n_it_declaration_of_intent
 #: model:ir.model,name:l10n_it_declaration_of_intent.model_product_product
-msgid "Product"
-msgstr "Prodotto"
+msgid "Product Variant"
+msgstr ""
 
 #. module: l10n_it_declaration_of_intent
 #: model:ir.model.fields.selection,name:l10n_it_declaration_of_intent.selection__l10n_it_declaration_of_intent_declaration__type__out
@@ -420,6 +407,7 @@ msgid "Telematic Protocol"
 msgstr "Protocollo telematico"
 
 #. module: l10n_it_declaration_of_intent
+#. odoo-python
 #: code:addons/l10n_it_declaration_of_intent/models/declaration.py:0
 #, python-format
 msgid "Total of documents exceed yearly limit"
@@ -466,6 +454,17 @@ msgstr "Limite annuale per le dichiarazioni"
 #: model_terms:ir.ui.view,arch_db:l10n_it_declaration_of_intent.select_manually_declarations_wizard
 msgid "or"
 msgstr "o"
+
+#, python-format
+#~ msgid ""
+#~ "Limit passed for declaration %s.\n"
+#~ "Excess value: %s%s"
+#~ msgstr ""
+#~ "Limite oltrepassato per la dichiarazione %s.\n"
+#~ "Valore in eccesso: %s%s"
+
+#~ msgid "Product"
+#~ msgstr "Prodotto"
 
 #, python-format
 #~ msgid ""
