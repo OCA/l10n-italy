@@ -1478,7 +1478,7 @@ msgstr ""
 "questo DdT."
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:731
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:733
 #, python-format
 msgid ""
 "You cannot change the type of a delivery note line. Instead you should "
