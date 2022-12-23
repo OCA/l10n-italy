@@ -144,6 +144,14 @@
                                 <button name="%(riba_unsolved_action)d" type='action' attrs="{'invisible':['|',('type','=','incasso'),('state','!=','accredited')]}" string="Mark as Past Due" icon="fa-exclamation-triangle"/>
                                 <button name="riba_line_settlement" type='object' attrs="{'invisible':['|',('type','=','incasso'),('state','!=','accredited')]}" string="Mark as Settled" icon="fa-check"/>
                                 <field name="type" invisible="1" />
+                                <field name="is_already_reconciled" invisible="1"/>
+                                <button
+                                    string="Reconciled Alert"
+                                    name="action_reconciled_alert"
+                                    type="object"
+                                    class="badge badge-danger"
+                                    attrs="{'invisible': ['|', ('is_already_reconciled', '=', False), ('state', '!=', 'draft')]}"
+                                />
                             </tree>
                         </field>
                         <field name="type" invisible="1" />

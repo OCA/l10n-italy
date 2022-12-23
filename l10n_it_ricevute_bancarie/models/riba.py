@@ -222,6 +222,21 @@ class RibaListLine(models.Model):
         compute='_get_cig_cup_values', string="CIG", size=256)
     cup = fields.Char(
         compute='_get_cig_cup_values', string="CUP", size=256)
+    is_already_reconciled = fields.Boolean(
+        compute='_compute_is_already_reconciled'
+    )
+
+    @api.multi
+    def _compute_is_already_reconciled(self):
+        for line in self:
+            if any([x.reconciled for x in line.mapped('move_line_ids.move_line_id')]):
+                line.is_already_reconciled = True
+
+    @api.multi
+    def action_reconciled_alert(self):
+        raise UserError(_(
+            'This line is already reconciled!')
+        )
 
     @api.multi
     def _get_cig_cup_values(self):
