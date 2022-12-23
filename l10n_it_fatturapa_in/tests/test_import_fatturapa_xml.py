@@ -1038,6 +1038,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         inconsistencies = invoice.inconsistencies
         self.assertIn("Two distinct partners", inconsistencies)
         self.assertIn("VAT number", inconsistencies)
+        for partner in partners:
+            self.assertIn(partner.name, inconsistencies)
 
     def test_01_xml_link(self):
         """
