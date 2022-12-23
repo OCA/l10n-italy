@@ -199,6 +199,14 @@
                                     icon="fa-check"
                                 />
                                 <field name="type" invisible="1" />
+                                <field name="is_already_reconciled" invisible="1" />
+                                <button
+                                    string="Reconciled Alert"
+                                    name="action_reconciled_alert"
+                                    type="object"
+                                    class="badge badge-danger"
+                                    attrs="{'invisible': ['|', ('is_already_reconciled', '=', False), ('state', '!=', 'draft')]}"
+                                />
                             </tree>
                         </field>
                         <field name="type" invisible="1" />

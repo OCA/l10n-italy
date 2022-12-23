@@ -260,6 +260,16 @@ class RibaListLine(models.Model):
     )
     cig = fields.Char(compute="_compute_cig_cup_values", string="CIG", size=256)
     cup = fields.Char(compute="_compute_cig_cup_values", string="CUP", size=256)
+    is_already_reconciled = fields.Boolean(compute="_compute_is_already_reconciled")
+
+    def _compute_is_already_reconciled(self):
+        for line in self:
+            line.is_already_reconciled = bool(
+                any([x.reconciled for x in line.mapped("move_line_ids.move_line_id")])
+            )
+
+    def action_reconciled_alert(self):
+        raise UserError(_("This line is already reconciled!"))
 
     def _compute_cig_cup_values(self):
         for line in self:
