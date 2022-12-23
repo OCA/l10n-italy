@@ -40,9 +40,9 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
             cls.env["account.account"].search(
                 [
                     (
-                        "user_type_id",
+                        "account_type",
                         "=",
-                        cls.env.ref("account.data_account_type_payable").id,
+                        "liability_payable",
                     )
                 ],
                 limit=1,
@@ -51,9 +51,9 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
         cls.invoice_line_account = cls.env["account.account"].search(
             [
                 (
-                    "user_type_id",
+                    "account_type",
                     "=",
-                    cls.env.ref("account.data_account_type_expenses").id,
+                    "expense",
                 )
             ],
             limit=1,
@@ -69,7 +69,6 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
                             "value": "percent",
                             "value_amount": 50,
                             "days": 15,
-                            "sequence": 1,
                         },
                     ),
                     (
@@ -78,7 +77,6 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
                         {
                             "value": "balance",
                             "days": 30,
-                            "sequence": 2,
                         },
                     ),
                 ],
@@ -90,7 +88,9 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
         invoice = cls.init_invoice(
             "in_invoice", partner=partner, post=post, amounts=amounts, taxes=taxes
         )
-        for line in invoice.invoice_line_ids:
+        for line in invoice.invoice_line_ids.filtered(
+            lambda l: l.display_type == "product"
+        ):
             line.account_id = cls.invoice_line_account.id
         return invoice
 
@@ -101,9 +101,7 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
             {
                 "code": "295000",
                 "name": "selfinvoice temporary",
-                "user_type_id": cls.env.ref(
-                    "account.data_account_type_current_liabilities"
-                ).id,
+                "account_type": "liability_current",
             }
         )
 
@@ -124,6 +122,24 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
                 "amount": 22,
             }
         )
+
+        (
+            cls.tax_22ai.invoice_repartition_line_ids
+            + cls.tax_22ai.refund_repartition_line_ids
+        ).filtered(
+            lambda repartition_line_id: repartition_line_id.repartition_type == "tax"
+        ).write(
+            {
+                "account_id": cls.env["account.account"].search(
+                    [
+                        ("company_id", "=", cls.env.company.id),
+                        ("account_type", "=", "asset_current"),
+                    ],
+                    limit=1,
+                )
+            }
+        )
+
         cls.tax_22vi = tax_model.create(
             {"name": "Tax 22% Sales Intra-EU", "type_tax_use": "sale", "amount": 22}
         )
@@ -144,7 +160,20 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
     def _create_journals(cls):
         journal_model = cls.env["account.journal"]
         cls.journal_selfinvoice = journal_model.create(
-            {"name": "selfinvoice", "type": "sale", "code": "SLF"}
+            {
+                "name": "selfinvoice",
+                "type": "sale",
+                "code": "SLF",
+                "default_account_id": cls.env["account.account"]
+                .search(
+                    [
+                        ("company_id", "=", cls.env.company.id),
+                        ("account_type", "=", "income"),
+                    ],
+                    limit=1,
+                )
+                .id,
+            }
         )
 
         cls.journal_reconciliation = journal_model.create(
@@ -161,7 +190,20 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
         )
 
         cls.journal_cee_extra = journal_model.create(
-            {"name": "Extra CEE", "type": "purchase", "code": "EXCEE"}
+            {
+                "name": "Extra CEE",
+                "type": "purchase",
+                "code": "EXCEE",
+                "default_account_id": cls.env["account.account"]
+                .search(
+                    [
+                        ("company_id", "=", cls.env.company.id),
+                        ("account_type", "=", "expense"),
+                    ],
+                    limit=1,
+                )
+                .id,
+            }
         )
 
     @classmethod

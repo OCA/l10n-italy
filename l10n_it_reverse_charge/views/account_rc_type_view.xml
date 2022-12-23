@@ -79,7 +79,7 @@
                                     'readonly': [('method', '!=', 'selfinvoice')],
                                     'required': [('method', '=', 'selfinvoice')]}"
                         >
-                            <tree string="Tax Mapping" editable="bottom">
+                            <tree editable="bottom">
                                 <field name="purchase_tax_id" />
                                 <field name="sale_tax_id" />
                             </tree>
@@ -101,7 +101,7 @@
         <field name="model">account.rc.type</field>
         <field name="type">tree</field>
         <field name="arch" type="xml">
-            <tree string="Reverse Charge Types">
+            <tree>
                 <field name="name" />
                 <field name="method" />
                 <field name="partner_type" />

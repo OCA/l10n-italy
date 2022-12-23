@@ -71,7 +71,7 @@ msgid ""
 "instead of the extraUE partner"
 msgstr ""
 "Selezionare questo per abilitare la creazione di un'addizionale autofattura "
-"passiva. Questo ?? usato tipicamente per i fornitori extra UE, per mostrare, "
+"passiva. Questo è usato tipicamente per i fornitori extra UE, per mostrare, "
 "nel registro IVA acquisti, una fattura per il partner specificato "
 "(tipicamente, la propria azienda), invece del fornitore extra UE"
 
@@ -101,7 +101,7 @@ msgid ""
 msgstr ""
 "La riga fattura\n"
 "%s\n"
-"?? RC ma non ha imposte"
+"è RC ma non ha imposte"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,help:l10n_it_reverse_charge.field_account_rc_type__journal_id
@@ -297,13 +297,13 @@ msgid ""
 "Tax code used is not a RC tax.\n"
 "Can't find tax mapping"
 msgstr ""
-"Il codice imposta utilizzato non ?? di tipo RC.\n"
+"Il codice imposta utilizzato non è di tipo RC.\n"
 "Impossibile trovare la mappatura imposte"
 
 #. module: l10n_it_reverse_charge
 #: sql_constraint:account.rc.type.tax:0
 msgid "Tax mappings can be defined only once per rc type."
-msgstr "Una mappatura pu?? essere definita solo una volta per ogni tipo rc."
+msgstr "Una mappatura può essere definita solo una volta per ogni tipo rc."
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__self_invoice_text
@@ -323,7 +323,7 @@ msgid ""
 "In that case account entries cannot be canceledautomatically. Please proceed "
 "manually"
 msgstr ""
-"?? presente pi?? di una riga di pagamento.\n"
+"É presente più di una riga di pagamento.\n"
 "In tal caso le registrazioni non possono essere annullate automaticamente. "
 "Procedere manualmente"
 
@@ -334,7 +334,7 @@ msgid ""
 "There is no default credit account defined \n"
 "on journal \"%s\"."
 msgstr ""
-"Non c'?? un conto di credito di default \n"
+"Non c'è un conto di credito di default \n"
 "sul sezionale \"%s\"."
 
 #. module: l10n_it_reverse_charge
@@ -353,7 +353,7 @@ msgstr "Integrazione IVA"
 msgid ""
 "VAT integration RC type, defined in fiscal position {fp}, is not managed yet"
 msgstr ""
-"Il tipo RC Integrazione IVA, definito nella posizione fiscale {fp}, non ?? "
+"Il tipo RC Integrazione IVA, definito nella posizione fiscale {fp}, non è "
 "ancora gestito"
 
 #. module: l10n_it_reverse_charge
@@ -364,7 +364,7 @@ msgid ""
 "mapping line: only 1 tax per invoice is supported"
 msgstr ""
 "Quando \"Con autofattura passiva aggiuntiva\" bisogna impostare una sola "
-"riga di mappatura imposte: solo un'imposta per fattura ?? supportata"
+"riga di mappatura imposte: solo un'imposta per fattura è supportata"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__with_supplier_self_invoice

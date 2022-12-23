@@ -15,13 +15,13 @@
                 <field name="rc_purchase_invoice_id" readonly="True" />
             </group>
             <xpath
-                expr="//field[@name='invoice_line_ids']/tree/field[@name='price_subtotal']"
+                expr="//field[@name='invoice_line_ids']/tree/field[@name='tax_ids']"
                 position="after"
             >
-                <field name="rc" />
+                <field name="rc" optional="hide" />
             </xpath>
              <xpath
-                expr="//field[@name='line_ids']/tree/field[@name='price_subtotal']"
+                expr="//field[@name='line_ids']/tree/field[@name='tax_ids']"
                 position="after"
             >
                 <field name="rc" invisible="1" />
