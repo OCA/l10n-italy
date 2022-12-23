@@ -971,6 +971,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         exc_message = ue.exception.args[0]
         self.assertIn("Two distinct partners", exc_message)
         self.assertIn("VAT number", exc_message)
+        for partner in partners:
+            self.assertIn(partner.name, exc_message)
 
     def test_01_xml_link(self):
         """
