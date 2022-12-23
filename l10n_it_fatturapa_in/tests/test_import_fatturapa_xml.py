@@ -1041,6 +1041,62 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         for partner in partners:
             self.assertIn(partner.name, inconsistencies)
 
+    def test_56_xml_import_vat_group(self):
+        """Importing bills from VAT groups creates different suppliers."""
+        # Arrange: The involved XMLs contain suppliers from a VAT group:
+        # the suppliers have the same VAT `common_vat`,
+        # but each supplier has a different fiscal code
+        common_vat = "IT03309970733"
+        vat_group_1_fiscalcode = "MRORSS90E25B111T"
+        vat_group_2_fiscalcode = "03533590174"
+
+        # Update any conflicting partner from other tests
+        existing_partners = self.env["res.partner"].search(
+            [
+                "|",
+                ("vat", "=", common_vat),
+                (
+                    "fiscalcode",
+                    "in",
+                    (
+                        vat_group_1_fiscalcode,
+                        vat_group_2_fiscalcode,
+                    ),
+                ),
+            ],
+        )
+        existing_partners.update(
+            {
+                "vat": "IT12345670017",
+                "is_company": True,
+                "fiscalcode": "1234567890123456",
+            }
+        )
+
+        # Act: Import the XMLs,
+        # checking that the suppliers match the data in the XML
+        res = self.run_wizard("VATG1_group", "IT03309970733_VATG1.xml")
+        invoice_model = res.get("res_model")
+        invoice_domain = res.get("domain")
+        invoice_vat_group_1 = self.env[invoice_model].search(invoice_domain)
+        vat_group_1_partner = invoice_vat_group_1.partner_id
+        self.assertEqual(vat_group_1_partner.vat, common_vat)
+        self.assertEqual(vat_group_1_partner.fiscalcode, vat_group_1_fiscalcode)
+
+        res = self.run_wizard("VATG2", "IT03309970733_VATG2.xml")
+        invoice_model = res.get("res_model")
+        invoice_domain = res.get("domain")
+        invoice_vat_group_2 = self.env[invoice_model].search(invoice_domain)
+        vat_group_2_partner = invoice_vat_group_2.partner_id
+        self.assertEqual(vat_group_2_partner.vat, common_vat)
+        self.assertEqual(vat_group_2_partner.fiscalcode, vat_group_2_fiscalcode)
+
+        # Assert: Two different partners have been created
+        self.assertNotEqual(
+            vat_group_1_partner,
+            vat_group_2_partner,
+        )
+
     def test_01_xml_link(self):
         """
         E-invoice lines are created.

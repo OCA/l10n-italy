@@ -224,6 +224,15 @@ class WizardImportFatturapa(models.TransientModel):
         vat_domain = [("vat", "=", vat)]
         fc_domain = [("fiscalcode", "=", fc)]
         domains = list()
+        if vat and fc:
+            # The partner must match exactly (both VAT and FC)
+            domains.append(expression.AND([vat_domain, fc_domain]))
+            # Or it is missing either FC or VAT
+            no_vat_domain = [("vat", "=", False)]
+            no_fc_domain = [("fiscalcode", "=", False)]
+            vat_domain = expression.AND([vat_domain, no_fc_domain])
+            fc_domain = expression.AND([no_vat_domain, fc_domain])
+
         if vat:
             domains.append(vat_domain)
         if fc:
