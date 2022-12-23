@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <record id="declaration_of_intent_seq" model="ir.sequence">
+        <field name="name">Declaration of intent sequence</field>
+        <field name="code">declaration_of_intent</field>
+        <field eval="1" name="number_next" />
+        <field eval="1" name="number_increment" />
+    </record>
+
+</odoo>
