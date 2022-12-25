@@ -461,7 +461,9 @@ class StockDeliveryNote(models.Model):
                 note.date = datetime.date.today()
 
             if not note.name:
-                note.name = sequence.next_by_id()
+                note.name = sequence.with_context(
+                    ir_sequence_date=note.date
+                ).next_by_id()
                 note.sequence_id = sequence
 
     def _fix_quantities_to_invoice(self, lines):
