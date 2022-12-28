@@ -15,7 +15,7 @@
     "installable": True,
     "auto_install": True,
     "depends": [
-        "sale",
+        "sale_management",
         "l10n_it_fiscalcode",
     ],
     "data": [
