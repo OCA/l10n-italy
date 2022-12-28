@@ -13,7 +13,7 @@
                '/tree/12.0/l10n_it_account_stamp_sale',
     'depends': [
         'l10n_it_account_stamp',
-        'sale',
+        'sale_management',
     ],
     'auto_install': True,
     'installable': True,
