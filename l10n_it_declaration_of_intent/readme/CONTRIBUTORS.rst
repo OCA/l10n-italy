@@ -4,3 +4,4 @@
 * Lorenzo Battistini <lb@takobi.online>
 * Lara Baggio <lbaggio@linkeurope.it>
 * Simone Rubino <simone.rubino@agilebg.com>
+* Michele Rusticucci <michele.rusticucci@agilebg.com>
