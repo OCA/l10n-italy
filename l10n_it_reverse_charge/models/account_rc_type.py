@@ -15,9 +15,7 @@ class AccountRCTypeTax(models.Model):
         "account.rc.type", string="RC type", required=True, ondelete="cascade"
     )
     original_purchase_tax_id = fields.Many2one(
-        'account.tax',
-        string='Original Purchase Tax',
-        required=False
+        "account.tax", string="Original Purchase Tax", required=False
     )
     purchase_tax_id = fields.Many2one(
         "account.tax", string="Purchase Tax", required=True
@@ -30,21 +28,20 @@ class AccountRCTypeTax(models.Model):
         (
             "purchase_sale_tax_uniq",
             "unique (rc_type_id,purchase_tax_id,sale_tax_id)",
-            'Tax mappings from Purchase Tax to Sale Tax '
-            'can be defined only once per Reverse Charge Type.'
+            "Tax mappings from Purchase Tax to Sale Tax "
+            "can be defined only once per Reverse Charge Type.",
         ),
         (
-            'original_purchase_sale_tax_uniq',
-            'unique (rc_type_id,'
-            'original_purchase_tax_id,purchase_tax_id,sale_tax_id)',
-            'Tax mappings from Original Purchase Tax to Purchase Tax to Sale Tax '
-            'can be defined only once per Reverse Charge Type.'
+            "original_purchase_sale_tax_uniq",
+            "unique (rc_type_id,original_purchase_tax_id,purchase_tax_id,sale_tax_id)",
+            "Tax mappings from Original Purchase Tax to Purchase Tax to Sale Tax "
+            "can be defined only once per Reverse Charge Type.",
         ),
     ]
 
     @api.constrains(
-        'original_purchase_tax_id',
-        'rc_type_id',
+        "original_purchase_tax_id",
+        "rc_type_id",
     )
     def _constrain_supplier_self_invoice_mapping(self):
         for mapping in self:
@@ -52,10 +49,11 @@ class AccountRCTypeTax(models.Model):
             if rc_type.with_supplier_self_invoice:
                 if not mapping.original_purchase_tax_id:
                     raise ValidationError(
-                        _("Original Purchase Tax is required "
-                          "for Reverse Charge Type {rc_type_name} having "
-                          "With additional supplier self invoice enabled")
-                        .format(
+                        _(
+                            "Original Purchase Tax is required "
+                            "for Reverse Charge Type {rc_type_name} having "
+                            "With additional supplier self invoice enabled"
+                        ).format(
                             rc_type_name=rc_type.display_name,
                         )
                     )
@@ -125,14 +123,15 @@ class AccountRCType(models.Model):
     )
 
     @api.constrains(
-        'with_supplier_self_invoice',
-        'tax_ids',
+        "with_supplier_self_invoice",
+        "tax_ids",
     )
     def _constrain_with_supplier_self_invoice(self):
-        with_supplier_types = self.filtered('with_supplier_self_invoice')
+        with_supplier_types = self.filtered("with_supplier_self_invoice")
         if with_supplier_types:
-            with_supplier_types.mapped('tax_ids') \
-                ._constrain_supplier_self_invoice_mapping()
+            with_supplier_types.mapped(
+                "tax_ids"
+            )._constrain_supplier_self_invoice_mapping()
 
     def map_tax(self, taxes, key_tax_field, value_tax_field):
         """
@@ -145,7 +144,7 @@ class AccountRCType(models.Model):
         :param taxes: Taxes to be mapped
         """
         self.ensure_one()
-        mapped_taxes = self.env['account.tax'].browse()
+        mapped_taxes = self.env["account.tax"].browse()
         for tax in taxes:
             for tax_mapping in self.tax_ids:
                 if tax_mapping[key_tax_field] == tax:
@@ -154,12 +153,13 @@ class AccountRCType(models.Model):
             else:
                 # Tax not found in mapping
                 raise UserError(
-                    _("Can't find tax mapping for {tax_name} "
-                      "in Reverse Charge Type {rc_type_name}, "
-                      "please check the configuration.")
-                    .format(
+                    _(
+                        "Can't find tax mapping for {tax_name} "
+                        "in Reverse Charge Type {rc_type_name}, "
+                        "please check the configuration."
+                    ).format(
                         tax_name=tax.display_name,
                         rc_type_name=self.display_name,
-                     )
-                 )
+                    )
+                )
         return mapped_taxes
