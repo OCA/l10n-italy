@@ -1,10 +1,13 @@
+from odoo.tests import tagged
+
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
+@tagged("post_install", "-at_install")
 class ReverseChargeCommon(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls, chart_template_ref=None):
-        super(ReverseChargeCommon, cls).setUpClass(chart_template_ref)
+        super().setUpClass(chart_template_ref=chart_template_ref)
         cls.invoice_model = cls.env["account.move"].with_context(
             default_move_type="in_invoice"
         )
@@ -217,6 +220,7 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
         cls.rc_type_tax_eeu = rc_type_tax_model.create(
             {
                 "rc_type_id": cls.rc_type_eeu.id,
+                "original_purchase_tax_id": cls.tax_0_pur.id,
                 "purchase_tax_id": cls.tax_22ae.id,
                 "sale_tax_id": cls.tax_22ve.id,
             }

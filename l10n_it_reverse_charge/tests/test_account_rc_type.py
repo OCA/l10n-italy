@@ -1,11 +1,12 @@
 from odoo.exceptions import UserError, ValidationError
 from odoo.fields import first
+from odoo.tests import tagged
 
 from .rc_common import ReverseChargeCommon
 
 
+@tagged("post_install", "-at_install")
 class TestAccountRCType(ReverseChargeCommon):
-
     def test_with_supplier_self_invoice(self):
         """
         Check that Reverse Charge Types
@@ -35,8 +36,8 @@ class TestAccountRCType(ReverseChargeCommon):
 
         mapped_tax = rc_type.map_tax(
             key_tax,
-            'original_purchase_tax_id',
-            'purchase_tax_id',
+            "original_purchase_tax_id",
+            "purchase_tax_id",
         )
 
         value_tax = rc_type_mapping.purchase_tax_id
@@ -48,10 +49,10 @@ class TestAccountRCType(ReverseChargeCommon):
         raise an Error when can't map a tax.
         """
         rc_type = self.rc_type_eeu
-        key_taxes = rc_type.tax_ids.mapped('original_purchase_tax_id')
-        other_tax = self.env['account.tax'].search(
+        key_taxes = rc_type.tax_ids.mapped("original_purchase_tax_id")
+        other_tax = self.env["account.tax"].search(
             [
-                ('id', 'not in', key_taxes.ids),
+                ("id", "not in", key_taxes.ids),
             ],
             limit=1,
         )
@@ -60,8 +61,8 @@ class TestAccountRCType(ReverseChargeCommon):
         with self.assertRaises(UserError) as ue:
             rc_type.map_tax(
                 other_tax,
-                'original_purchase_tax_id',
-                'purchase_tax_id',
+                "original_purchase_tax_id",
+                "purchase_tax_id",
             )
         exc_message = ue.exception.args[0]
 

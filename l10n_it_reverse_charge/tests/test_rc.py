@@ -70,7 +70,7 @@ class TestReverseCharge(ReverseChargeCommon):
 
     def test_extra_EU(self):
         invoice = self.create_invoice(
-            self.supplier_extraEU, amounts=[100], taxes=self.tax_22ai
+            self.supplier_extraEU, amounts=[100], taxes=self.tax_0_pur
         )
 
         self.assertIsNot(bool(invoice.rc_self_purchase_invoice_id), False)

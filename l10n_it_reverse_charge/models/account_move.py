@@ -152,13 +152,17 @@ class AccountMove(models.Model):
         rc_type = self.fiscal_position_id.rc_type_id
         payment_reg = (
             self.env["account.payment.register"]
-            .with_context(active_model="account.move", active_ids=self.ids)
+            .with_context(
+                active_model="account.move",
+                active_ids=[self.id, self.rc_self_invoice_id.id],
+            )
             .create(
                 {
                     "payment_date": self.date,
                     "amount": self.amount_total,
                     "journal_id": rc_type.payment_journal_id.id,
                     "currency_id": self.currency_id.id,
+                    "group_payment": True,
                 }
             )
         )
@@ -251,7 +255,6 @@ class AccountMove(models.Model):
                 for line in rc_invoice.line_ids:
                     line.remove_move_reconcile()
                 rc_invoice.invoice_line_ids.unlink()
-                # rc_invoice.period_id = False
                 rc_invoice.write(inv_vals)
             else:
                 rc_invoice = self.create(inv_vals)
@@ -261,6 +264,7 @@ class AccountMove(models.Model):
             if self.amount_total:
                 # No need to reconcile invoices with total = 0
                 if rc_type.with_supplier_self_invoice:
+                    self.reconcile_rc_invoice()
                     self.reconcile_supplier_invoice()
                 else:
                     self.reconcile_rc_invoice()
@@ -274,7 +278,9 @@ class AccountMove(models.Model):
             supplier_invoice = self.rc_self_purchase_invoice_id
             for line in supplier_invoice.line_ids:
                 line.remove_move_reconcile()
-            supplier_invoice.invoice_line_ids.unlink()
+            supplier_invoice.line_ids.unlink()
+            # temporary disabling self invoice automations
+            supplier_invoice.fiscal_position_id = False
 
         supplier_invoice_vals["partner_bank_id"] = None
         # because this field has copy=False
@@ -284,10 +290,14 @@ class AccountMove(models.Model):
         supplier_invoice_vals["journal_id"] = rc_type.supplier_journal_id.id
         # temporary disabling self invoice automations
         supplier_invoice_vals["fiscal_position_id"] = None
+        supplier_invoice_vals.pop("line_ids")
 
         if not supplier_invoice:
             supplier_invoice = self.create(supplier_invoice_vals)
-        for inv_line in supplier_invoice.invoice_line_ids:
+        invoice_line_vals = []
+        for inv_line in self.invoice_line_ids:
+            line_vals = inv_line.copy_data()[0]
+            line_vals["move_id"] = supplier_invoice.id
             line_tax_ids = inv_line.tax_ids
             mapped_taxes = rc_type.map_tax(
                 line_tax_ids,
@@ -295,10 +305,12 @@ class AccountMove(models.Model):
                 "purchase_tax_id",
             )
             if line_tax_ids and mapped_taxes:
-                inv_line.tax_ids = [
+                line_vals["tax_ids"] = [
                     (6, False, mapped_taxes.ids),
                 ]
-            inv_line.account_id = rc_type.transitory_account_id.id
+            line_vals["account_id"] = rc_type.transitory_account_id.id
+            invoice_line_vals.append((0, 0, line_vals))
+        supplier_invoice.write({"invoice_line_ids": invoice_line_vals})
         self.rc_self_purchase_invoice_id = supplier_invoice.id
 
         supplier_invoice.action_post()
