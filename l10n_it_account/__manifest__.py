@@ -23,7 +23,6 @@
         "web",
     ],
     "data": [
-        "views/account_setting.xml",
         "views/account_menuitem.xml",
         "views/partner_view.xml",
         "views/product_view.xml",
