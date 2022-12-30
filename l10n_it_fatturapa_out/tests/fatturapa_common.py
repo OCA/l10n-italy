@@ -159,7 +159,7 @@ class FatturaPACommon(AccountTestInvoicingCommon):
             .create(
                 {
                     "name": "YourCompany 2",
-                    "vat": "IT06363391002",
+                    "vat": "IT06363381002",
                     "email": "info@yourcompany.example.com",
                     "fatturapa_fiscal_position_id": fatturapa_fiscal_position_id,
                     "country_id": self.env.company.country_id.id,
