@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:FatturaElettronica xmlns:ns1="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2" versione="FPR12">
+    <FatturaElettronicaHeader>
+        <DatiTrasmissione>
+            <IdTrasmittente>
+                <IdPaese>IT</IdPaese>
+                <IdCodice>06363391001</IdCodice>
+            </IdTrasmittente>
+            <ProgressivoInvio>00008</ProgressivoInvio>
+            <FormatoTrasmissione>FPR12</FormatoTrasmissione>
+            <CodiceDestinatario>0000000</CodiceDestinatario>
+            <ContattiTrasmittente>
+                <Telefono>06543534343</Telefono>
+                <Email>info@yourcompany.example.com</Email>
+            </ContattiTrasmittente>
+            <PECDestinatario>test@pec.it</PECDestinatario>
+        </DatiTrasmissione>
+        <CedentePrestatore>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>06363391001</IdCodice>
+                </IdFiscaleIVA>
+                <Anagrafica>
+                    <Denominazione>YourCompany</Denominazione>
+                </Anagrafica>
+                <RegimeFiscale>RF01</RegimeFiscale>
+            </DatiAnagrafici>
+            <Sede>
+                <Indirizzo>Via Milano, 1</Indirizzo>
+                <CAP>00100</CAP>
+                <Comune>Roma</Comune>
+                <Provincia>AK</Provincia>
+                <Nazione>IT</Nazione>
+            </Sede>
+            <Contatti>
+                <Telefono>06543534343</Telefono>
+                <Email>info@yourcompany.example.com</Email>
+            </Contatti>
+        </CedentePrestatore>
+        <CessionarioCommittente>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>07973780013</IdCodice>
+                </IdFiscaleIVA>
+                <CodiceFiscale>07973780013</CodiceFiscale>
+                <Anagrafica>
+                    <Denominazione>B2B Customer</Denominazione>
+                </Anagrafica>
+            </DatiAnagrafici>
+            <Sede>
+                <Indirizzo>Via Roma, 1</Indirizzo>
+                <CAP>16100</CAP>
+                <Comune>Genova</Comune>
+                <Provincia>AK</Provincia>
+                <Nazione>IT</Nazione>
+            </Sede>
+        </CessionarioCommittente>
+    </FatturaElettronicaHeader>
+    <FatturaElettronicaBody>
+        <DatiGenerali>
+            <DatiGeneraliDocumento>
+                <TipoDocumento>TD01</TipoDocumento>
+                <Divisa>EUR</Divisa>
+                <Data>2018-01-07</Data>
+                <Numero>INV/2018/0015</Numero>
+                <ImportoTotaleDocumento>14.00</ImportoTotaleDocumento>
+                <Causale>first line</Causale>
+                <Causale>second line</Causale>
+                <Art73>SI</Art73>
+            </DatiGeneraliDocumento>
+        </DatiGenerali>
+        <DatiBeniServizi>
+            <DettaglioLinee>
+                <NumeroLinea>1</NumeroLinea>
+                <Descrizione>Mouse Optical</Descrizione>
+                <Quantita>1.000</Quantita>
+                <UnitaMisura>Unit(s)</UnitaMisura>
+                <PrezzoUnitario>8.19672</PrezzoUnitario>
+                <PrezzoTotale>8.20</PrezzoTotale>
+                <AliquotaIVA>22.00</AliquotaIVA>
+            </DettaglioLinee>
+            <DettaglioLinee>
+                <NumeroLinea>2</NumeroLinea>
+                <Descrizione>Zed+ Antivirus</Descrizione>
+                <Quantita>1.000</Quantita>
+                <UnitaMisura>Unit(s)</UnitaMisura>
+                <PrezzoUnitario>3.27869</PrezzoUnitario>
+                <PrezzoTotale>3.28</PrezzoTotale>
+                <AliquotaIVA>22.00</AliquotaIVA>
+            </DettaglioLinee>
+            <DatiRiepilogo>
+                <AliquotaIVA>22.00</AliquotaIVA>
+                <ImponibileImporto>11.48</ImponibileImporto>
+                <Imposta>2.52</Imposta>
+            </DatiRiepilogo>
+        </DatiBeniServizi>
+        <DatiPagamento>
+            <CondizioniPagamento>TP02</CondizioniPagamento>
+            <DettaglioPagamento>
+                <ModalitaPagamento>MP05</ModalitaPagamento>
+                <DataScadenzaPagamento>2018-02-28</DataScadenzaPagamento>
+                <ImportoPagamento>14.00</ImportoPagamento>
+            </DettaglioPagamento>
+        </DatiPagamento>
+    </FatturaElettronicaBody>
+</ns1:FatturaElettronica>
