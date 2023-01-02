@@ -63,6 +63,18 @@ class TestFatturaPAOUTWelfare (FatturaPACommon):
         - subtotal 100, with 10% Welfare and 20% Withholding Tax
         - subtotal 100, with 10% Welfare and 20% on another Welfare
         """
+        # Cancel other open invoices to avoid conflict on date or sequence
+        open_invoices = self.invoice_model.search(
+            [
+                ('state', '=', 'open'),
+            ],
+        )
+        journals = open_invoices.mapped('journal_id')
+        journals.update({
+            'update_posted': True,
+        })
+        open_invoices.action_cancel()
+
         date_invoice = '2023-01-01'
         self.set_sequences(1, date_invoice)
         # Explicitly request the customer invoice form view,
