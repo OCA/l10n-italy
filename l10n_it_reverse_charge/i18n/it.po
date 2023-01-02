@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0+e-20190208\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-07-24 13:42+0000\n"
-"PO-Revision-Date: 2022-12-29 16:46+0000\n"
+"PO-Revision-Date: 2023-01-02 12:07+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -44,7 +44,7 @@ msgstr "Descrizione"
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_display_name
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax_display_name
 msgid "Display Name"
-msgstr "Nome Completo"
+msgstr "Nome da visualizzare"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,help:l10n_it_reverse_charge.field_account_rc_type_tax_ids
