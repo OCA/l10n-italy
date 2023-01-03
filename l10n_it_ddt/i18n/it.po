@@ -14,15 +14,16 @@ msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-29 10:06+0000\n"
-"PO-Revision-Date: 2018-05-29 10:07+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"PO-Revision-Date: 2023-01-03 13:44+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_it_ddt
 #: view:add.pickings.to.ddt:l10n_it_ddt.view_add_pickings_to_ddt
@@ -324,7 +325,7 @@ msgstr "ID"
 #. module: l10n_it_ddt
 #: help:stock.ddt.type,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr "Se selezionato i nuovi messaggi richiedono attenzione."
+msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:148
@@ -384,7 +385,7 @@ msgstr "Ultima modifica il"
 #: field:stock.picking.transportation_method,write_uid:0
 #: field:stock.picking.transportation_reason,write_uid:0
 msgid "Last Updated by"
-msgstr "Ultima Modifica di"
+msgstr "Ultimo aggiornamento di"
 
 #. module: l10n_it_ddt
 #: field:add.pickings.to.ddt,write_date:0
