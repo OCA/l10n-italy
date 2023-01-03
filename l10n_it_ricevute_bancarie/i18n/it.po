@@ -13,15 +13,16 @@ msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-20 06:12+0000\n"
-"PO-Revision-Date: 2017-09-22 17:55+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"PO-Revision-Date: 2023-01-03 13:44+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.configuration:l10n_it_ricevute_bancarie.view_riba_configuration_form
@@ -197,7 +198,7 @@ msgstr "Annulla"
 #. module: l10n_it_ricevute_bancarie
 #: selection:riba.distinta,state:0 selection:riba.distinta.line,state:0
 msgid "Canceled"
-msgstr "Annullata"
+msgstr "Annullato"
 
 #. module: l10n_it_ricevute_bancarie
 #: field:riba.distinta.line,partner_id:0
@@ -634,7 +635,7 @@ msgstr "Ultima modifica il"
 #: field:riba.file.export,write_uid:0 field:riba.issue,write_uid:0
 #: field:riba.unsolved,write_uid:0
 msgid "Last Updated by"
-msgstr "Ultima Modifica di"
+msgstr "Ultimo aggiornamento di"
 
 #. module: l10n_it_ricevute_bancarie
 #: field:riba.accreditation,write_date:0 field:riba.configuration,write_date:0
