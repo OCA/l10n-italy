@@ -60,6 +60,7 @@ class AccountInvoice(models.Model):
         res = super(AccountInvoice, self).action_move_create()
         dichiarazione_model = self.env['dichiarazione.intento']
         # ------ Check if there is enough available amount on dichiarazioni
+        invoice_dichiarazioni_used_amounts = {}
         for invoice in self:
             if invoice.dichiarazione_intento_ids:
                 dichiarazioni = invoice.dichiarazione_intento_ids
@@ -89,10 +90,12 @@ class AccountInvoice(models.Model):
                 available_plafond = plafond.limit_amount - plafond.actual_used_amount
             sign = 1 if invoice.type in ['out_invoice', 'in_invoice'] else -1
             dichiarazioni_amounts = {}
+            dichiarazioni_used_amounts = {}
             for tax_line in invoice.tax_line_ids:
                 amount = sign * tax_line.base
                 for dichiarazione in dichiarazioni:
                     if dichiarazione.id not in dichiarazioni_amounts:
+                        dichiarazioni_used_amounts[dichiarazione.id] = 0
                         if invoice.type in ['in_invoice', 'in_refund'] and \
                                 dichiarazione.available_amount > available_plafond:
                             dichiarazioni_amounts[dichiarazione.id] = available_plafond
@@ -102,6 +105,7 @@ class AccountInvoice(models.Model):
                     if tax_line.tax_id.id in [t.id for t
                                               in dichiarazione.taxes_ids]:
                         dichiarazioni_amounts[dichiarazione.id] -= amount
+                        dichiarazioni_used_amounts[dichiarazione.id] += amount
                         amount = 0.0
             dichiarazioni_residual = sum([
                 dichiarazioni_amounts[da] for da in dichiarazioni_amounts])
@@ -121,18 +125,12 @@ class AccountInvoice(models.Model):
                             abs(dichiarazioni_amounts[dich] -
                                 dichiarazione.limit_amount)
                     ))
+            invoice_dichiarazioni_used_amounts[invoice] = dichiarazioni_used_amounts
         # ----- Assign account move lines to dichiarazione for invoices
         for invoice in self:
-            if invoice.dichiarazione_intento_ids:
-                dichiarazioni = invoice.dichiarazione_intento_ids
+            if invoice in invoice_dichiarazioni_used_amounts:
+                dichiarazioni = invoice_dichiarazioni_used_amounts[invoice]
             else:
-                dichiarazioni = dichiarazione_model.with_context(
-                    ignore_state=True if invoice.type.endswith('_refund')
-                    else False).get_valid(type_d=invoice.type.split('_')[0],
-                                          partner_id=invoice.partner_id.id,
-                                          date=invoice.date_invoice)
-            # ----- If partner hasn't dichiarazioni, do nothing
-            if not dichiarazioni:
                 continue
             # ----- Get only lines with taxes
             lines = invoice.move_id.line_ids.filtered(
@@ -163,16 +161,18 @@ class AccountInvoice(models.Model):
                                       for line in lines])
                     # Select right declaration(s)
                     if force_declaration:
-                        declarations = [force_declaration, ]
+                        declarations = {force_declaration.id: amount}
                     else:
                         declarations = dichiarazioni
-                    for dichiarazione in declarations:
+                    for dichiarazione_id in declarations:
+                        dichiarazione = self.env['dichiarazione.intento'].browse(
+                            dichiarazione_id)
                         if tax not in dichiarazione.taxes_ids:
                             continue
                         dichiarazione.line_ids = [(0, 0, {
                             'taxes_ids': [(6, 0, [tax.id, ])],
                             'move_line_ids': [(6, 0, [l.id for l in lines])],
-                            'amount': amount,
+                            'amount': declarations[dichiarazione_id],
                             'invoice_id': invoice.id,
                             'base_amount': invoice.amount_untaxed,
                             'currency_id': invoice.currency_id.id,
