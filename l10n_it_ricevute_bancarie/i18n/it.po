@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-25 05:18+0000\n"
-"PO-Revision-Date: 2023-01-02 11:53+0000\n"
+"PO-Revision-Date: 2023-01-03 12:49+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -204,7 +204,7 @@ msgstr "Annulla"
 #. module: l10n_it_ricevute_bancarie
 #: selection:riba.distinta,state:0 selection:riba.distinta.line,state:0
 msgid "Canceled"
-msgstr "Annullata"
+msgstr "Annullato"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line_partner_id
