@@ -3,7 +3,7 @@
 
 {
     "name": "ITA - Fattura elettronica - Supporto SDICoop",
-    "version": "12.0.2.2.0",
+    "version": "14.0.1.0.0",
     "category": "Localization/Italy",
     "summary": "Invio fatture elettroniche tramite SDICoop",
     "author": "TAKOBI, Odoo Community Association (OCA)",

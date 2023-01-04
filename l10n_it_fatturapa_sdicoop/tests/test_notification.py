@@ -1,11 +1,12 @@
 #  Copyright 2022 Simone Rubino - TAKOBI
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tests import new_test_user
+from odoo.tests import new_test_user, tagged
 
 from odoo.addons.l10n_it_fatturapa_in.tests.fatturapa_common import FatturapaCommon
 
 
+@tagged("post_install", "-at_install")
 class TestBillNotification(FatturapaCommon):
     def setUp(self):
         super().setUp()
@@ -24,7 +25,7 @@ class TestBillNotification(FatturapaCommon):
         """
         # Arrange: Set the channel in the company,
         # and a follower for the channel
-        company = self.env.user.company_id
+        company = self.env.company
         notified_partner = self.notified_user.partner_id
         company.sdi_channel_id = self.sdicoop_channel
         company.sdi_channel_id.message_subscribe(
@@ -66,5 +67,5 @@ class TestBillNotification(FatturapaCommon):
         # The message notifies the SdI channel's follower
         self.assertIn(
             notified_partner,
-            received_e_bill_message.needaction_partner_ids,
+            received_e_bill_message.notified_partner_ids,
         )
