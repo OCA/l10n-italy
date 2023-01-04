@@ -11,6 +11,9 @@ class SdIChannel(models.Model):
         selection_add=[
             ("sdi_coop", "SDICoop (Web service)"),
         ],
+        ondelete={
+            "sdi_coop": "cascade",
+        },
     )
 
     def send_via_sdi_coop(self, attachment_out_ids):
