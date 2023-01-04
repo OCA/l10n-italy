@@ -4,8 +4,8 @@
 from odoo import fields, models
 
 
-class SdIChannel (models.Model):
-    _inherit = 'sdi.channel'
+class SdIChannel(models.Model):
+    _inherit = "sdi.channel"
 
     channel_type = fields.Selection(
         selection_add=[
