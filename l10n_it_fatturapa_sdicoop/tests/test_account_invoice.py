@@ -1,18 +1,20 @@
 #  Copyright 2022 Simone Rubino - TAKOBI
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.addons.l10n_it_fatturapa_out.tests.fatturapa_common import \
-    FatturaPACommon
+from odoo.addons.l10n_it_fatturapa_out.tests.fatturapa_common import FatturaPACommon
 
 
-class TestAccountInvoice (FatturaPACommon):
-
+class TestAccountInvoice(FatturaPACommon):
     def setUp(self):
         super().setUp()
-        self.sdi_coop_channel = self.env['sdi.channel'].create([{
-            'name': "Test SdiCoop channel",
-            'channel_type': 'sdi_coop',
-        }])
+        self.sdi_coop_channel = self.env["sdi.channel"].create(
+            [
+                {
+                    "name": "Test SdiCoop channel",
+                    "channel_type": "sdi_coop",
+                }
+            ]
+        )
 
     def test_action_open_export_send_sdi(self):
         """
@@ -23,7 +25,7 @@ class TestAccountInvoice (FatturaPACommon):
         # and create a draft invoice with no attachment
         self.env.user.company_id.sdi_channel_id = self.sdi_coop_channel
         invoice = self._create_invoice()
-        self.assertEqual(invoice.state, 'draft')
+        self.assertEqual(invoice.state, "draft")
         self.assertFalse(invoice.fatturapa_attachment_out_id)
 
         # Act and Assert: open, export and send.
