@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo14-addon-account_vat_period_end_statement',
+        'odoo14-addon-assets_management',
         'odoo14-addon-l10n_it_abicab',
         'odoo14-addon-l10n_it_account',
         'odoo14-addon-l10n_it_account_stamp',
