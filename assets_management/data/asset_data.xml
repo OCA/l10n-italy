@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <!-- Natura ammortamento -->
+    <record id="ad_type_civilistico" model="asset.depreciation.type">
+        <field name="name">Civilistico</field>
+        <field name="requires_account_move">1</field>
+        <field name="print_by_default">1</field>
+    </record>
+    <record id="ad_type_fiscale" model="asset.depreciation.type">
+        <field name="name">Fiscale</field>
+        <field name="requires_account_move">0</field>
+        <field name="print_by_default">1</field>
+    </record>
+
+    <!-- Tipo operazione -->
+    <record id="adpl_type_riv" model="asset.depreciation.line.type">
+        <field name="name">Rivalutazione</field>
+        <field name="code">RIV</field>
+        <field name="type">in</field>
+    </record>
+
+    <record id="adpl_type_sva" model="asset.depreciation.line.type">
+        <field name="name">Svalutazione</field>
+        <field name="code">SVA</field>
+        <field name="type">out</field>
+    </record>
+
+    <!-- Metodi di ammortamento -->
+    <record id="ad_mode_immateriale" model="asset.depreciation.mode">
+        <field name="name">IMMATERIALE</field>
+        <field name="used_asset_coeff">1</field>
+    </record>
+    <record id="ad_mode_materiale" model="asset.depreciation.mode">
+        <field name="name">MATERIALE</field>
+        <field name="used_asset_coeff">1</field>
+    </record>
+    <record id="ad_mode_materiale_line" model="asset.depreciation.mode.line">
+        <field name="mode_id" ref="ad_mode_materiale" />
+        <field name="from_nr">1</field>
+        <field name="to_nr">1</field>
+        <field name="coefficient">0.5</field>
+    </record>
+
+</odoo>

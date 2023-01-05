@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- General Menu -->
+    <menuitem
+        id="menu_asset"
+        name="Assets"
+        groups="assets_management.group_asset_user"
+        web_icon="assets_management,static/description/icon.png"
+        sequence="100"
+    />
+
+    <!-- Management Menu -->
+    <menuitem
+        id="menu_asset_management"
+        name="Assets Management"
+        parent="menu_asset"
+        groups="assets_management.group_asset_user"
+        sequence="4"
+    />
+
+    <!-- Report Menu -->
+    <menuitem
+        id="menu_asset_reports"
+        name="Asset Reports"
+        parent="menu_asset"
+        groups="assets_management.group_asset_user"
+        sequence="100"
+    />
+
+    <!-- Config Menu -->
+    <menuitem
+        id="menu_asset_configuration"
+        name="Asset Configuration"
+        parent="menu_asset"
+        groups="assets_management.group_asset_user"
+        sequence="200"
+    />
+
+    <!-- Technical Data Menu -->
+    <menuitem
+        id="menu_asset_technical_data"
+        name="Technical Data"
+        parent="menu_asset"
+        groups="base.group_no_one"
+        sequence="1000"
+    />
+
+</odoo>

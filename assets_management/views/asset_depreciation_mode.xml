@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="asset_depreciation_mode_tree_view">
+        <field name="name">asset.depreciation.mode.tree.view</field>
+        <field name="model">asset.depreciation.mode</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="default" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="asset_depreciation_mode_form_view">
+        <field name="name">asset.depreciation.mode.form.view</field>
+        <field name="model">asset.depreciation.mode</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="id" invisible="1" />
+                        <field name="name" />
+                        <field name="default" />
+                        <field name="used_asset_coeff" />
+                    </group>
+                    <group>
+                        <field name="company_id" groups="base.group_multi_company" />
+                    </group>
+                </group>
+                <group>
+                    <field name="line_ids" context="{'default_mode_id':id}" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="mode_id" invisible="1" />
+                            <field name="from_nr" />
+                            <field name="to_nr" />
+                            <field name="application" />
+                            <field
+                                name="coefficient"
+                                attrs="{'readonly': [('application', '!=', 'coefficient')]}"
+                            />
+                            <field
+                                name="percentage"
+                                attrs="{'readonly': [('application', '!=', 'percentage')]}"
+                            />
+                        </tree>
+                    </field>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_asset_depreciation_mode" model="ir.actions.act_window">
+        <field name="name">Assets Depreciation Mode</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">asset.depreciation.mode</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="asset_depreciation_mode_tree_view" />
+    </record>
+
+    <menuitem
+        id="menu_asset_depreciation_mode"
+        action="action_asset_depreciation_mode"
+        name="Depreciation Modes"
+        parent="menu_asset_configuration"
+        sequence="10"
+    />
+
+</odoo>
