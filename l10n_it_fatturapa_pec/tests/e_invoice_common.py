@@ -12,16 +12,17 @@ class EInvoiceCommon(FatturaPACommon):
         self.wizard_model = self.env["wizard.export.fatturapa"]
         self.tax_model = self.env["account.tax"]
 
-        self.env.company.vat = "IT06363391001"
-        self.env.company.fatturapa_art73 = True
-        self.env.company.partner_id.street = "Via Milano, 1"
-        self.env.company.partner_id.city = "Roma"
-        self.env.company.partner_id.state_id = self.env.ref("base.state_us_2").id
-        self.env.company.partner_id.zip = "00100"
-        self.env.company.partner_id.phone = "06543534343"
-        self.env.company.email = "info@yourcompany.example.com"
-        self.env.company.partner_id.country_id = self.env.ref("base.it").id
-        self.env.company.fatturapa_fiscal_position_id = self.env.ref(
+        company = self.env.company
+        company.vat = "IT06363391001"
+        company.fatturapa_art73 = True
+        company.partner_id.street = "Via Milano, 1"
+        company.partner_id.city = "Roma"
+        company.partner_id.state_id = self.env.ref("base.state_us_2").id
+        company.partner_id.zip = "00100"
+        company.partner_id.phone = "06543534343"
+        company.email = "info@yourcompany.example.com"
+        company.partner_id.country_id = self.env.ref("base.it").id
+        company.fatturapa_fiscal_position_id = self.env.ref(
             "l10n_it_fatturapa.fatturapa_RF01"
         ).id
 
@@ -43,12 +44,12 @@ class EInvoiceCommon(FatturaPACommon):
         )
         self.partner = self.env.ref("l10n_it_fatturapa.res_partner_fatturapa_2")
         self.product = self.env.ref("product.product_product_5")
-        self.env.company.sdi_channel_id = self.env.ref(
-            "l10n_it_fatturapa_pec.sdi_channel_pec"
-        )
-        self.env.company.sdi_channel_id.pec_server_id = self.env[
-            "ir.mail_server"
-        ].create(
+        channel = self.env.ref("l10n_it_fatturapa_pec.sdi_channel_pec")
+        # Channel in demo data is linked to another company:
+        # link it to current company
+        channel.sudo().company_id = self.env.company
+        company.sdi_channel_id = channel
+        company.sdi_channel_id.pec_server_id = self.env["ir.mail_server"].create(
             {
                 "name": "dummy",
                 "smtp_host": "smtp_host",
