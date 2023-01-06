@@ -62,10 +62,12 @@ class AccountInvoice(models.Model):
                 raise UserError(
                     _(
                         "Invoice %(name)s fiscal payment term must be"
-                        " set for the selected payment term %(term)s",
-                        invoice.name,
-                        invoice.invoice_payment_term_id.name,
+                        " set for the selected payment term %(term)s"
                     )
+                    % {
+                        "name": invoice.name,
+                        "term": invoice.invoice_payment_term_id.name,
+                    },
                 )
 
             if (
@@ -75,12 +77,12 @@ class AccountInvoice(models.Model):
                 raise UserError(
                     _(
                         "Invoice %(name)s fiscal payment method must be"
-                        " set for the selected payment term %(term)s",
-                        {
-                            "name": invoice.name,
-                            "term": invoice.invoice_payment_term_id.name,
-                        },
+                        " set for the selected payment term %(term)s"
                     )
+                    % {
+                        "name": invoice.name,
+                        "term": invoice.invoice_payment_term_id.name,
+                    },
                 )
 
             if not all(
