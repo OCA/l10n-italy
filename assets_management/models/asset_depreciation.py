@@ -255,7 +255,7 @@ class AssetDepreciation(models.Model):
         # Check if self is a valid recordset
         if not self:
             raise ValidationError(
-                _("Cannot create any depreciation according to current" " settings.")
+                _("Cannot create any depreciation according to current settings.")
             )
 
         lines = self.mapped("line_ids")

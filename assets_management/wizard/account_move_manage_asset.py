@@ -259,7 +259,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
 
         if not self.move_line_ids:
             raise ValidationError(
-                _("At least one move line is mandatory to dismiss" " an asset!")
+                _("At least one move line is mandatory to dismiss an asset!")
             )
 
         if not len(self.move_line_ids.mapped("move_id")) == 1:
@@ -303,7 +303,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
 
         if not self.move_line_ids:
             raise ValidationError(
-                _("At least one move line is mandatory to update" " an asset!")
+                _("At least one move line is mandatory to update an asset!")
             )
 
         if not all(
