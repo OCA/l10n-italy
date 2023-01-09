@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-15 14:06+0000\n"
-"PO-Revision-Date: 2022-10-26 13:43+0000\n"
+"PO-Revision-Date: 2023-01-09 11:44+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -364,7 +364,7 @@ msgstr "Numero documento del partner"
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration__partner_id
 #: model_terms:ir.ui.view,arch_db:l10n_it_declaration_of_intent.declaration_of_intent_search
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: l10n_it_declaration_of_intent
 #: model:ir.model,name:l10n_it_declaration_of_intent.model_product_product
