@@ -9,3 +9,6 @@
 * `Tecnativa <https://www.tecnativa.com>`_:
 
   * Víctor Martínez
+* `TAKOBI <https://takobi.online>`_:
+
+  * Simone Rubino <sir@takobi.online>
