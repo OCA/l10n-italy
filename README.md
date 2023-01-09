@@ -34,7 +34,7 @@ addon | version | maintainers | summary
 [l10n_it_account_balance_report](l10n_it_account_balance_report/) | 12.0.1.0.5 | [![SilvioGregorini](https://github.com/SilvioGregorini.png?size=30px)](https://github.com/SilvioGregorini) | Rendicontazione .pdf e .xls per stato patrimoniale e conto economico a sezioni contrapposte
 [l10n_it_account_stamp](l10n_it_account_stamp/) | 12.0.1.4.0 |  | Gestione automatica dell'imposta di bollo
 [l10n_it_account_stamp_ddt](l10n_it_account_stamp_ddt/) | 12.0.1.0.1 | [![tafaRU](https://github.com/tafaRU.png?size=30px)](https://github.com/tafaRU) | Modulo ponte tra imposta di bollo e DDT
-[l10n_it_account_stamp_sale](l10n_it_account_stamp_sale/) | 12.0.1.0.1 | [![tafaRU](https://github.com/tafaRU.png?size=30px)](https://github.com/tafaRU) | Modulo ponte tra imposta di bollo e vendite
+[l10n_it_account_stamp_sale](l10n_it_account_stamp_sale/) | 12.0.1.0.2 | [![tafaRU](https://github.com/tafaRU.png?size=30px)](https://github.com/tafaRU) | Modulo ponte tra imposta di bollo e vendite
 [l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 12.0.2.1.0 |  | Italian Localisation - Natura delle aliquote IVA
 [l10n_it_ateco](l10n_it_ateco/) | 12.0.1.0.1 |  | ITA - Codici Ateco
 [l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 12.0.1.0.1 |  | ITA - Bolle doganali
