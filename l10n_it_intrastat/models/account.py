@@ -100,7 +100,7 @@ class AccountMoveLine(models.Model):
             self.move_id.invoice_payment_term_id
             and self.move_id.invoice_payment_term_id.intrastat_code
         ):
-            payment_method = self.move_id.payment_term_id.intrastat_code
+            payment_method = self.move_id.invoice_payment_term_id.intrastat_code
         res.update({"payment_method": payment_method})
 
     def _prepare_intrastat_line_province_dest(self, company_id, res):
