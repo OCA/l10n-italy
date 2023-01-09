@@ -7,13 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-23 08:16+0000\n"
-"PO-Revision-Date: 2022-12-23 08:16+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2023-01-09 11:44+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_journal_body
@@ -127,13 +129,13 @@ msgstr "<span>Rettifica positiva</span>"
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_previsional_asset_year_depreciation_table_header
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_previsional_totals_header
 msgid "<span>Out Amount</span>"
-msgstr "<Rettifica negativa</span>"
+msgstr "<span>Rettifica negativa</span>"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_journal_asset_accounting_table_header
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_previsional_asset_accounting_table_header
 msgid "<span>Partner</span>"
-msgstr ""
+msgstr "<span>Partner</span>"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_journal_asset_year_depreciation_table_header
@@ -147,7 +149,7 @@ msgstr "<span>Fondo Amm.to anno precedente</span>"
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_journal_asset_depreciation_table_header
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_previsional_asset_depreciation_table_header
 msgid "<span>Pro Rata Temporis</span>"
-msgstr ""
+msgstr "<span>Pro Rata Temporis</span>"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_journal_asset_table_header
@@ -1082,7 +1084,7 @@ msgstr "Crea nuovo e mostra"
 #. module: assets_management
 #: model:ir.model.fields.selection,name:assets_management.selection__wizard_account_move_manage_asset__management_type__create
 msgid "Create New"
-msgstr ""
+msgstr "Crea nuovo"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_accounting_info__create_uid
@@ -1561,7 +1563,7 @@ msgstr "Anni fiscali"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Follower"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__message_channel_ids
@@ -1594,7 +1596,7 @@ msgstr ""
 #. module: assets_management
 #: model:ir.model.fields,help:assets_management.field_asset_asset__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Icona Font Awesome es. fa-tasks"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__force_all_dep_nr
@@ -1772,12 +1774,12 @@ msgstr "Valore storico"
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_journal_report__id
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_previsional_report__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Icona"
 
 #. module: assets_management
 #: model:ir.model.fields,help:assets_management.field_asset_asset__activity_exception_icon
@@ -1793,7 +1795,7 @@ msgstr "Se selezionato, nuovi messaggi richiedono attenzione."
 #. module: assets_management
 #: model:ir.model.fields,help:assets_management.field_asset_asset__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr "Se selezionato, alcuni messaggi presentano un errore di consegna. "
+msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
 #. module: assets_management
 #: model:ir.model.fields.selection,name:assets_management.selection__asset_depreciation_line__move_type__in
@@ -2088,7 +2090,7 @@ msgstr "Partner multipli trovati nelle righe movimento!"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "Scadenza della mia attività"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__name
@@ -2161,7 +2163,7 @@ msgstr "Nessun tipo di report è stato dichiarato per la stampa corrente."
 #: model:ir.model.fields.selection,name:assets_management.selection__asset_asset__state__non_depreciated
 #: model:ir.model.fields.selection,name:assets_management.selection__asset_depreciation__state__non_depreciated
 msgid "Non Depreciated"
-msgstr ""
+msgstr "Non ammortizzato"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__message_needaction_counter
@@ -2265,7 +2267,7 @@ msgstr "Parzialmente Ammortizzato"
 #: code:addons/assets_management/report/asset_previsional_xlsx.py:0
 #, python-format
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_accounting_doc__partner_name
@@ -2347,13 +2349,13 @@ msgstr "Stampa PDF"
 #: code:addons/assets_management/report/asset_previsional_xlsx.py:0
 #, python-format
 msgid "Pro Rata Temporis"
-msgstr ""
+msgstr "Pro Rata Temporis"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_category_depreciation_type__pro_rata_temporis
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__pro_rata_temporis
 msgid "Pro-rata Temporis"
-msgstr ""
+msgstr "Pro-rata Temporis"
 
 #. module: assets_management
 #: model:ir.model.fields.selection,name:assets_management.selection__wizard_account_move_manage_asset__move_type__purchase
@@ -2561,7 +2563,7 @@ msgstr "Stampa Annuale Riga Amm.to"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation__report_depreciation_year_line_ids
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_depreciation__report_depreciation_year_line_ids
 msgid "Report Depreciation Year Line"
-msgstr ""
+msgstr "Stampa Annuale Riga Amm.to"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal__report_footer_year
@@ -2617,7 +2619,7 @@ msgstr "Richiede Nr Amm.to"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_accounting_doc__res_id
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_accounting_doc__res_id
 msgid "Res"
-msgstr ""
+msgstr "Res"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_accounting_doc__res_model
@@ -2854,7 +2856,7 @@ msgstr "Nome tipo"
 #. module: assets_management
 #: model:ir.model.fields,help:assets_management.field_asset_asset__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Tipo di attività eccezione sul record."
 
 #. module: assets_management
 #: code:addons/assets_management/report/asset_journal.py:0
@@ -2892,7 +2894,7 @@ msgstr "Aggiorna Cespite e Mostra"
 #. module: assets_management
 #: model:ir.model.fields.selection,name:assets_management.selection__wizard_account_move_manage_asset__management_type__update
 msgid "Update Existing"
-msgstr ""
+msgstr "Aggiorna esistente"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__amount_depreciable_updated
@@ -2911,7 +2913,7 @@ msgstr "Usato"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_mode__used_asset_coeff
 msgid "Used Asset Coeff."
-msgstr ""
+msgstr "Coeff. cespite usato"
 
 #. module: assets_management
 #: code:addons/assets_management/report/asset_journal_xlsx.py:0
@@ -2926,7 +2928,7 @@ msgstr "P.IVA"
 #: model:ir.cron,cron_name:assets_management.clean_asset_accounting_info_cron
 #: model:ir.cron,name:assets_management.clean_asset_accounting_info_cron
 msgid "Vacuum Empty Asset Accounting Info"
-msgstr ""
+msgstr "Svuota info contabili cespiti vuote"
 
 #. module: assets_management
 #: model:ir.model.fields.selection,name:assets_management.selection__wizard_account_move_manage_asset__move_type__in_invoice
@@ -2978,7 +2980,7 @@ msgstr "Registro Previsionale"
 #. module: assets_management
 #: model:ir.model.fields.selection,name:assets_management.selection__wizard_account_move_manage_asset__move_type__wrong
 msgid "Wrong"
-msgstr ""
+msgstr "Errato"
 
 #. module: assets_management
 #: code:addons/assets_management/report/asset_journal_xlsx.py:0
@@ -2996,6 +2998,8 @@ msgid ""
 "You confirm the removal of the current line? Depreciation line amounts will "
 "not be affected and will have to be updated manually."
 msgstr ""
+"Vuoi confermare la rimozione della riga corrente? Gli importi delle righe "
+"ammortamento non saranno modificati e dovranno essere aggiornati manualmente."
 
 #. module: assets_management
 #: code:addons/assets_management/wizard/account_move_manage_asset.py:0
