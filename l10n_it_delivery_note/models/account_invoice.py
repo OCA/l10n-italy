@@ -125,7 +125,7 @@ class AccountInvoice(models.Model):
                 )
             else:
                 sequence = 1
-                done_invoice_lines = self.env["account.invoice.line"]
+                done_invoice_lines = self.env["account.move.line"]
                 for dn in invoice.mapped(
                     "invoice_line_ids.sale_line_ids.delivery_note_line_ids."
                     "delivery_note_id"
