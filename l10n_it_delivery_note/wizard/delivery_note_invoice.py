@@ -42,7 +42,7 @@ class StockDeliveryNoteInvoiceWizard(models.TransientModel):
                 invoice.invoice_date = self.invoice_date
                 invoice._onchange_invoice_date()
             ir_model_data = self.env["ir.model.data"]
-            form_res = ir_model_data.get_object_reference("account", "invoice_form")
+            form_res = ir_model_data.get_object_reference("account", "view_move_form")
             form_id = form_res and form_res[1] or False
             tree_res = ir_model_data.get_object_reference("account", "invoice_tree")
             tree_id = tree_res and tree_res[1] or False
