@@ -72,6 +72,9 @@ class StockDdtType(models.Model):
     default_transportation_method_id = fields.Many2one(
         'stock.picking.transportation_method',
         string='Default Method of Transportation')
+    default_note = fields.Text(
+        string='Default Note',
+    )
     company_id = fields.Many2one(
         comodel_name='res.company', string='Company',
         default=lambda self: self.env.user.company_id.id)
@@ -184,6 +187,7 @@ class StockPickingPackagePreparation(models.Model):
                 self.partner_id.transportation_method_id.id
                 if self.partner_id.transportation_method_id
                 else self.ddt_type_id.default_transportation_method_id)
+            self.note = self.ddt_type_id.default_note
 
     @api.model
     def check_linked_picking(self, picking):
