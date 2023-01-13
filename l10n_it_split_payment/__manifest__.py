@@ -6,7 +6,7 @@
 
 {
     "name": "ITA - Scissione pagamenti",
-    "version": "14.0.1.0.6",
+    "version": "16.0.1.0.0",
     "category": "Localization/Italy",
     "summary": "Scissione pagamenti",
     "author": "Abstract, Agile Business Group, Odoo Community Association (OCA)",

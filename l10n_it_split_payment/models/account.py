@@ -11,7 +11,7 @@ from odoo.tools import float_compare
 class AccountFiscalPosition(models.Model):
     _inherit = "account.fiscal.position"
 
-    split_payment = fields.Boolean("Split Payment")
+    split_payment = fields.Boolean()
 
 
 class AccountMove(models.Model):
@@ -29,7 +29,7 @@ class AccountMove(models.Model):
     )
 
     def _compute_amount(self):
-        super()._compute_amount()
+        ret = super()._compute_amount()
         for move in self:
             if move.split_payment:
                 if move.is_purchase_document():
@@ -42,6 +42,7 @@ class AccountMove(models.Model):
                 move._compute_split_payments()
             else:
                 move.amount_sp = 0.0
+        return ret
 
     def _build_debit_line(self):
         if not self.company_id.sp_account_id:
@@ -166,4 +167,4 @@ class AccountMove(models.Model):
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
-    is_split_payment = fields.Boolean(string="Is Split Payment")
+    is_split_payment = fields.Boolean()
