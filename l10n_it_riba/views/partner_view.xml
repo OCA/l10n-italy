@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+
+    <!--========================================================-->
+    <!--                    RES.PARTNER - FORM                    -->
+    <!--========================================================-->
+    <record id="view_partner_form_riba" model="ir.ui.view">
+        <field name="name">res.parner.form.riba</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <group name="accounting_entries" position="after">
+                <group string="RiBa" name="riba">
+                    <field name="group_riba" />
+                </group>
+            </group>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - AionTech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <record id="seq_riba_slip" model="ir.sequence">
+        <field name="code">seq.riba.slip</field>
+    </record>
+
+    <record id="riba_slip_company_rule" model="ir.rule">
+        <field name="model_id" ref="l10n_it_riba.model_riba_slip" />
+    </record>
+
+    <record id="riba_slip_line_company_rule" model="ir.rule">
+        <field name="model_id" ref="l10n_it_riba.model_riba_slip_line" />
+    </record>
+
+    <record id="riba_configuration_company_rule" model="ir.rule">
+        <field name="model_id" ref="l10n_it_riba.model_riba_configuration" />
+    </record>
+</odoo>

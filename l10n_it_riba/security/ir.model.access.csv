@@ -1,0 +1,20 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_riba_slip_uinvoice,riba_slip,model_riba_slip,account.group_account_invoice,1,1,1,1
+access_riba_slip_group_invoice,riba_slip group invoice,model_riba_slip,account.group_account_invoice,1,1,1,1
+access_riba_slip_user,riba_slip user,model_riba_slip,base.group_user,1,0,0,0
+access_riba_slip_accountant,riba_slip accountant,model_riba_slip,account.group_account_user,1,0,0,0
+access_riba_slip_line_uinvoice,riba_slip_line,model_riba_slip_line,account.group_account_invoice,1,1,1,1
+access_riba_slip_line_group_invoice,riba_slip_line group invoice,model_riba_slip_line,account.group_account_invoice,1,1,1,1
+access_riba_slip_line_user,riba_slip_line user,model_riba_slip_line,base.group_user,1,0,0,0
+access_riba_slip_line_accountant,riba_slip_line accountant,model_riba_slip_line,account.group_account_user,1,0,0,0
+access_riba_slip_move_line_uinvoice,riba_slip_move_line,model_riba_slip_move_line,account.group_account_invoice,1,1,1,1
+access_riba_slip_move_line_group_invoice,riba_slip_move_line group invoice,model_riba_slip_move_line,account.group_account_invoice,1,1,1,1
+access_riba_slip_move_line_user,riba_slip_move_line user,model_riba_slip_move_line,base.group_user,1,0,0,0
+access_riba_slip_move_line_accountant,riba_slip_move_line accountant,model_riba_slip_move_line,account.group_account_user,1,0,0,0
+access_riba_configuration_manager,riba_configuration,model_riba_configuration,account.group_account_manager,1,1,1,1
+access_riba_configuration_invoice,riba_configuration invoice,model_riba_configuration,account.group_account_invoice,1,0,0,0
+access_riba_issue,riba_issue,model_riba_issue,account.group_account_invoice,1,1,1,1
+access_riba_past_due,riba_past_due,model_riba_past_due,account.group_account_invoice,1,1,1,1
+access_riba_credit,riba_credit,model_riba_credit,account.group_account_invoice,1,1,1,1
+access_riba_file_export,riba_file_export,model_riba_file_export,account.group_account_invoice,1,1,1,1
+access_presentation_riba_issue,access_presentation_riba_issue,model_presentation_riba_issue,account.group_account_invoice,1,1,1,1

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo noupdate="1">
+
+    <!-- Multi - Company Rules -->
+    <record id="riba_slip_company_rule" model="ir.rule">
+        <field name="name">RiBa slip multi-company</field>
+        <field name="model_id" ref="l10n_it_riba.model_riba_slip" />
+        <field name="global" eval="True" />
+        <field name="domain_force">
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
+        </field>
+    </record>
+
+    <record id="riba_slip_line_company_rule" model="ir.rule">
+        <field name="name">RiBa slip line multi-company</field>
+        <field name="model_id" ref="l10n_it_riba.model_riba_slip_line" />
+        <field name="global" eval="True" />
+        <field name="domain_force">
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
+        </field>
+    </record>
+
+    <record id="riba_configuration_company_rule" model="ir.rule">
+        <field name="name">Ri.Ba. configuration multi-company</field>
+        <field name="model_id" ref="l10n_it_riba.model_riba_configuration" />
+        <field name="global" eval="True" />
+        <field name="domain_force">
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
+        </field>
+    </record>
+
+</odoo>

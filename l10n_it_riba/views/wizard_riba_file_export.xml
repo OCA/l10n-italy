@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <record id="wizard_riba_file_export" model="ir.ui.view">
+        <field name="name">Export RiBa</field>
+        <field name="model">riba.file.export</field>
+        <field name="arch" type="xml">
+            <form string="Export RiBa file">
+                <group col="4">
+                    <group colspan="4">
+                        <field name="riba_txt" readonly="1" filename="file_name" />
+                        <field name="file_name" invisible="1" />
+                    </group>
+                    <footer colspan="4">
+                        <button name="act_getfile" string="Export" type="object" />
+                        <button special="cancel" string="Close" />
+                    </footer>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_riba_file_export" model="ir.actions.server">
+        <field name="name">Export RiBa</field>
+        <field name="model_id" ref="l10n_it_riba.model_riba_slip" />
+        <field name="binding_model_id" ref="l10n_it_riba.model_riba_slip" />
+        <field name="state">code</field>
+        <field name="code">action = records.action_riba_export()</field>
+    </record>
+</odoo>
