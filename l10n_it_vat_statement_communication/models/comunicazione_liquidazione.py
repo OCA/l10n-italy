@@ -62,22 +62,22 @@ class ComunicazioneLiquidazione(models.Model):
         "res.company", string="Company", required=True, default=_default_company
     )
     identificativo = fields.Integer(string="Identifier", default=_get_identificativo)
-    name = fields.Char(string="Name", compute="_compute_name")
-    year = fields.Integer(string="Year", required=True)
+    name = fields.Char(compute="_compute_name")
+    year = fields.Integer(required=True)
     last_month = fields.Integer(string="Last month")
     liquidazione_del_gruppo = fields.Boolean(string="Group's statement")
     taxpayer_vat = fields.Char(string="Vat", required=True)
     controller_vat = fields.Char(string="Controller TIN")
-    taxpayer_fiscalcode = fields.Char(string="Taxpayer Fiscalcode")
+    taxpayer_fiscalcode = fields.Char()
     declarant_different = fields.Boolean(
         string="Declarant different from taxpayer", default=True
     )
-    declarant_fiscalcode = fields.Char(string="Declarant Fiscalcode")
+    declarant_fiscalcode = fields.Char()
     declarant_fiscalcode_company = fields.Char(string="Fiscalcode company")
     codice_carica_id = fields.Many2one("appointment.code", string="Role code")
     declarant_sign = fields.Boolean(string="Declarant sign", default=True)
 
-    delegate_fiscalcode = fields.Char(string="Delegate Fiscalcode")
+    delegate_fiscalcode = fields.Char()
     delegate_commitment = fields.Selection(
         [
             ("1", "Communication prepared by taxpayer"),
@@ -529,9 +529,9 @@ class ComunicazioneLiquidazioneVp(models.Model):
         string="Period type",
         default="month",
     )
-    month = fields.Integer(string="Month", default=False)
-    quarter = fields.Integer(string="Quarter", default=False)
-    subcontracting = fields.Boolean(string="Subcontracting")
+    month = fields.Integer(default=False)
+    quarter = fields.Integer(default=False)
+    subcontracting = fields.Boolean()
     exceptional_events = fields.Selection(
         [("1", "Code 1"), ("9", "Code 9")], string="Exceptional events"
     )
@@ -609,7 +609,7 @@ class ComunicazioneLiquidazioneVp(models.Model):
         for debit_tax in debit_taxes:
             if debit_tax.vsc_exclude_operation:
                 continue
-            tax = debit_taxes.with_context(self._get_tax_context(period)).browse(
+            tax = debit_taxes.with_context(**self._get_tax_context(period)).browse(
                 debit_tax.id
             )
             self.imponibile_operazioni_attive += tax.base_balance
@@ -622,7 +622,7 @@ class ComunicazioneLiquidazioneVp(models.Model):
         for credit_tax in credit_taxes:
             if credit_tax.vsc_exclude_operation:
                 continue
-            tax = credit_taxes.with_context(self._get_tax_context(period)).browse(
+            tax = credit_taxes.with_context(**self._get_tax_context(period)).browse(
                 credit_tax.id
             )
             self.imponibile_operazioni_passive -= tax.base_balance
