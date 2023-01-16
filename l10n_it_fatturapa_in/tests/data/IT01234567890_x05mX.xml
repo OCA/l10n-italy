@@ -15,7 +15,7 @@
             <DatiAnagrafici>
                 <IdFiscaleIVA>
                     <IdPaese>GB</IdPaese>
-                    <IdCodice>99999999999</IdCodice>
+                    <IdCodice>GB99999999999</IdCodice>
                 </IdFiscaleIVA>
                 <Anagrafica>
                     <Denominazione>ALPHA SOCIETY</Denominazione>
