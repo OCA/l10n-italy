@@ -21,10 +21,10 @@
                 <sheet>
                     <group name="company">
                         <group>
-                        <field name="company_id" widget="selection" />
+                            <field name="company_id" widget="selection" />
                         </group>
                         <group>
-                        <field name="identificativo" />
+                            <field name="identificativo" />
                         </group>
                     </group>
                     <newline />
@@ -85,17 +85,15 @@
                             </group>
                         </page>
                         <page string="VP table" name="quadro_vp">
-                            <group>
-                                <field name="quadri_vp_ids" nolabel="1">
-                                   <tree>
-                                       <field name="period_type" />
-                                       <field name="month" />
-                                       <field name="quarter" />
-                                       <field name="iva_da_versare" />
-                                       <field name="iva_a_credito" />
-                                   </tree>
-                                </field>
-                            </group>
+                            <field name="quadri_vp_ids">
+                                <tree>
+                                    <field name="period_type" />
+                                    <field name="month" />
+                                    <field name="quarter" />
+                                    <field name="iva_da_versare" />
+                                    <field name="iva_a_credito" />
+                                </tree>
+                            </field>
                         </page>
 
                     </notebook>

@@ -1,6 +1,7 @@
 import base64
 
-from odoo import _, exceptions, fields, models
+from odoo import _, fields, models
+from odoo.exceptions import UserError
 
 
 class ComunicazioneLiquidazioneExportFile(models.TransientModel):
@@ -14,9 +15,9 @@ class ComunicazioneLiquidazioneExportFile(models.TransientModel):
 
         comunicazione_ids = self._context.get("active_ids")
         if not comunicazione_ids:
-            raise exceptions.Warning(_("No communication selected"))
+            raise UserError(_("No communication selected"))
         if len(comunicazione_ids) > 1:
-            raise exceptions.Warning(_("You can export only 1 communication at a time"))
+            raise UserError(_("You can export only 1 communication at a time"))
 
         for wizard in self:
             for comunicazione in self.env["comunicazione.liquidazione"].browse(
@@ -28,12 +29,9 @@ class ComunicazioneLiquidazioneExportFile(models.TransientModel):
                     comunicazione.declarant_fiscalcode,
                     str(comunicazione.identificativo).rjust(5, "0"),
                 )
-            model_data_obj = self.env["ir.model.data"]
-            view_rec = model_data_obj.get_object_reference(
-                "l10n_it_vat_statement_communication",
-                "wizard_liquidazione_export_file_exit",
-            )
-            view_id = view_rec and view_rec[1] or False
+            view_id = self.env.ref(
+                "l10n_it_vat_statement_communication.wizard_liquidazione_export_file_exit"
+            ).id
 
             return {
                 "view_id": [view_id],
