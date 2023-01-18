@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 15:51+0000\n"
-"PO-Revision-Date: 2022-12-28 22:46+0000\n"
+"PO-Revision-Date: 2023-01-18 18:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -60,6 +60,8 @@ msgstr "Azione richiesta"
 #: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_account_config_settings
 msgid "Allow users to validate, export and send invoices to SdI in one click."
 msgstr ""
+"Consente agli utenti di validare, esportare e inviare le fatture allo SdI "
+"con un clic."
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__message_attachment_count
@@ -421,12 +423,12 @@ msgstr "Numero messaggi non letti"
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_config_settings__group_sdi_channel_validate_send
 #: model:res.groups,name:l10n_it_sdi_channel.res_groups_validate_send
 msgid "Validate, export and send invoices"
-msgstr ""
+msgstr "Valida, esporta e invia le fatture"
 
 #. module: l10n_it_sdi_channel
 #: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_invoice_form_fatturapa
 msgid "Validate, export and send to SdI"
-msgstr ""
+msgstr "Valida, esporta e invia allo SdI"
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__website_message_ids
