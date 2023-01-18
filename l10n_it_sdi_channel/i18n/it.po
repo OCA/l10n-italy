@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 15:51+0000\n"
 "PO-Revision-Date: 2023-01-18 18:46+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,7 @@ msgstr ""
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Numero allegati"
 
 #. module: l10n_it_sdi_channel
 #: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.wizard_fatturapa_send_to_sdi_view
@@ -78,7 +78,7 @@ msgstr "Annulla"
 #: model:ir.model.fields,help:l10n_it_sdi_channel.field_res_config_settings__sdi_channel_type
 #: model:ir.model.fields,help:l10n_it_sdi_channel.field_sdi_channel__channel_type
 msgid "Channels (Pec, Web, Sftp) could be provided by external modules."
-msgstr ""
+msgstr "I canali (PEC, Web, SFTP) possono essere forniti da moduli esterni."
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model,name:l10n_it_sdi_channel.model_res_company
@@ -219,17 +219,17 @@ msgstr ""
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Seguito da"
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__message_channel_ids
 msgid "Followers (Channels)"
-msgstr ""
+msgstr "Seguito da (canali)"
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Seguito da (partner)"
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__id
@@ -260,7 +260,7 @@ msgstr "Fattura"
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Sta seguendo"
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel____last_update
@@ -359,12 +359,12 @@ msgstr "Rifiutata (PA)"
 #. module: l10n_it_sdi_channel
 #: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_fatturapa_out_attachment_form
 msgid "Reset to ready"
-msgstr "Reimposta a pronto"
+msgstr "Reimposta a pronta"
 
 #. module: l10n_it_sdi_channel
 #: selection:sdi.channel,channel_type:0
 msgid "SDICoop (Web service)"
-msgstr ""
+msgstr "SDICoop (Web Service)"
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model,name:l10n_it_sdi_channel.model_fatturapa_attachment
@@ -385,12 +385,12 @@ msgstr "Invia"
 #: model:ir.actions.act_window,name:l10n_it_sdi_channel.action_wizard_fatturapa_send_to_sdi
 #: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.wizard_fatturapa_send_to_sdi_view
 msgid "Send Electronic Invoice"
-msgstr "Inviare fattura elettronica"
+msgstr "Invia fattura elettronica"
 
 #. module: l10n_it_sdi_channel
 #: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_fatturapa_out_attachment_form
 msgid "Send to SdI"
-msgstr "Inviare a SdI"
+msgstr "Invia a SdI"
 
 #. module: l10n_it_sdi_channel
 #: model:mail.message.subtype,name:l10n_it_sdi_channel.e_invoice_sender_error
@@ -433,23 +433,23 @@ msgstr "Valida, esporta e invia allo SdI"
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Messaggi sito web"
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,help:l10n_it_sdi_channel.field_sdi_channel__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Cronologia comunicazioni sito web"
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model,name:l10n_it_sdi_channel.model_wizard_fatturapa_send_to_sdi
 msgid "Wizard to send multiple e-invoice to SdI"
-msgstr ""
+msgstr "Procedura guidata per inviare e-fatture multiple a SdI"
 
 #. module: l10n_it_sdi_channel
 #: code:addons/l10n_it_sdi_channel/models/fatturapa_attachment_out.py:36
 #, python-format
 msgid "You can only send files in 'Ready to Send' state."
-msgstr "Puoi inviare solamente file nello stato 'pronto per invio'."
+msgstr "È possibile inviare solo file con stato «Pronto per l'invio»."
 
 #~ msgid "E-invoice PEC server"
 #~ msgstr "Server PEC e-fattura"
