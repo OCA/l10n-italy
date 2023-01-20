@@ -19,6 +19,15 @@ class DdTFromPickings(models.TransientModel):
 
     picking_ids = fields.Many2many('stock.picking', default=_get_picking_ids)
 
+    def _set_default_note(self, values):
+        """Set note only if all involved TD types have the same default note."""
+        td_types_notes = self.picking_ids.mapped('ddt_type.default_note')
+        # Exclude falsy notes
+        td_types_notes = list(filter(None, td_types_notes))
+        if len(td_types_notes) == 1:
+            td_types_note = td_types_notes.pop()
+            values['note'] = td_types_note
+
     @api.multi
     def create_ddt(self):
         values = {
@@ -174,6 +183,7 @@ class DdTFromPickings(models.TransientModel):
                     picking.ddt_type.default_transportation_method_id)
                 values['transportation_method_id'] = (
                     transportation_method_id.id)
+        self._set_default_note(values)
         carrier_id = False
         for picking in self.picking_ids:
             if picking.sale_id and picking.sale_id.ddt_carrier_id:

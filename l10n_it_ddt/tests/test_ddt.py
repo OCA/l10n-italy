@@ -8,7 +8,7 @@
 
 from datetime import datetime
 from odoo import fields
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase, Form
 from odoo.exceptions import Warning as UserError
 
 
@@ -585,19 +585,13 @@ class TestDdt(TransactionCase):
 
         picking1 = self._process_picking_with_lots(
             product, lot1, lot2, 3, 3)
-        wizard = self.env['ddt.from.pickings'].with_context({
-            'active_ids': [picking1.id]}).create({})
-        res = wizard.create_ddt()
-        ddt1 = self.ddt_model.browse(res['res_id'])
+        ddt1 = self._get_td_from_pickings_by_wizard(picking1)
         quantity_by_lot = ddt1.line_ids[0].quantity_by_lot()
         self.assertEqual(quantity_by_lot, {lot1: '3.00', lot2: '3.00'})
 
         picking2 = self._process_picking_with_lots(
             product, lot1, lot2, 4, 2)
-        wizard = self.env['ddt.from.pickings'].with_context({
-            'active_ids': [picking2.id]}).create({})
-        res = wizard.create_ddt()
-        ddt2 = self.ddt_model.browse(res['res_id'])
+        ddt2 = self._get_td_from_pickings_by_wizard(picking2)
         quantity_by_lot = ddt2.line_ids[0].quantity_by_lot()
         self.assertEqual(quantity_by_lot, {lot1: '4.00', lot2: '2.00'})
 
@@ -689,3 +683,84 @@ class TestDdt(TransactionCase):
                         .issubset(invoice_b_sale_lines.ids))
         self.assertFalse(set(order3.order_line.ids)
                          .issubset(invoice_b_sale_lines.ids))
+
+    def _create_td_type(self, td_type_values):
+        """Create a "Stock TD Type" with values `td_type_values`.
+
+        Required values for the "Stock TD Type" are already filled in
+        but can be changed in `td_type_values`.
+        """
+        default_note_td_type_form = Form(self.env['stock.ddt.type'])
+        default_note_td_type_form.name = "/"
+        default_note_td_type_form.sequence_id = self.env.ref('l10n_it_ddt.seq_ddt')
+        for td_type_field, td_type_value in td_type_values.items():
+            setattr(default_note_td_type_form, td_type_field, td_type_value)
+        default_note_td_type = default_note_td_type_form.save()
+        return default_note_td_type
+
+    def test_td_default_note_onchange_ddt_type(self):
+        """Changing the "Stock TD Type" of a "Package Preparation"
+        updates its "Note"."""
+        # Arrange: Create a TD Type with Default Note and a TD
+        default_note = "Test default note"
+        default_note_td_type = self._create_td_type({
+            'default_note': default_note,
+            'default_carriage_condition_id': self.carriage_condition_PF,
+            'default_goods_description_id': self.goods_description_CAR,
+            'default_transportation_reason_id': self.transportation_reason_VEN,
+            'default_transportation_method_id': self.transportation_method_DES,
+        })
+        td = self._create_ddt()
+        # pre-condition: The TD does not have a note
+        self.assertFalse(td.note)
+
+        # Act: Set the created TD Type in the TD
+        td_form = Form(td)
+        td_form.ddt_type_id = default_note_td_type
+        td = td_form.save()
+
+        # Assert: The created TD has the note of the created TD Type
+        self.assertEqual(td.note, default_note)
+
+    def _get_td_from_pickings_by_wizard(self, pickings):
+        """Return a "Package Preparation" from `pickings`,
+        using the wizard "TD from pickings".
+        """
+        # Execute wizard
+        wizard_model = self.env['ddt.from.pickings'] \
+            .with_context(
+                active_model=pickings._name,
+                active_ids=pickings.ids,
+            )
+        wizard = wizard_model.create({})
+        wizard_result = wizard.create_ddt()
+
+        # Get resulting TD
+        result_model = wizard_result.get('res_model')
+        result_id = wizard_result.get('res_id')
+        td = self.env[result_model].browse(result_id)
+        return td
+
+    def test_td_default_note_from_picking(self):
+        """Creating a "Package Preparation" from pickings
+        has the "Note" of their "Stock TD Type"."""
+        # Arrange: Create a TD Type with Default Note
+        # and pickings having this TD Type
+        default_note = "Test default note"
+        default_note_td_type = self._create_td_type({
+            'default_note': default_note,
+        })
+        picking1 = self._create_picking()
+        self._create_move(picking1, self.product1, quantity=2)
+        picking2 = self._create_picking()
+        self._create_move(picking2, self.product2, quantity=3)
+        pickings = picking1 | picking2
+        pickings.update({
+            'ddt_type': default_note_td_type,
+        })
+
+        # Act: Create a TD using "TD from pickings"
+        td = self._get_td_from_pickings_by_wizard(pickings)
+
+        # Assert: The created TD has the note of the pickings' "Stock TD Type"
+        self.assertEqual(td.note, default_note)
