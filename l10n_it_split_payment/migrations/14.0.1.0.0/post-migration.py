@@ -26,8 +26,8 @@ def migrate(cr, installed_version):
             """
             update account_move_line
             set is_split_payment = True
-            where id in {line_ids}
+            where id in ({line_ids})
             """.format(
-                line_ids=tuple(line_ids)
+                line_ids=",".join(map(str, line_ids))
             ),
         )
