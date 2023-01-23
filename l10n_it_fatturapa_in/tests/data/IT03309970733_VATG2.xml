@@ -33,6 +33,17 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                 <Nazione>IT</Nazione>
             </Sede>
         </CedentePrestatore>
+        <RappresentanteFiscale>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>03309970733</IdCodice>
+                </IdFiscaleIVA>
+                <Anagrafica>
+                    <Denominazione>Rappresentante fiscale</Denominazione>
+                </Anagrafica>
+            </DatiAnagrafici>
+        </RappresentanteFiscale>
         <CessionarioCommittente>
             <DatiAnagrafici>
                 <CodiceFiscale>80213330584</CodiceFiscale>
@@ -48,6 +59,17 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                 <Nazione>IT</Nazione>
             </Sede>
         </CessionarioCommittente>
+        <TerzoIntermediarioOSoggettoEmittente>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>03309970733</IdCodice>
+                </IdFiscaleIVA>
+                <Anagrafica>
+                    <Denominazione>Terzo Intermediario</Denominazione>
+                </Anagrafica>
+            </DatiAnagrafici>
+        </TerzoIntermediarioOSoggettoEmittente>
     </FatturaElettronicaHeader>
     <FatturaElettronicaBody>
         <DatiGenerali>
@@ -58,6 +80,17 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                 <Numero>FT/2015/0009</Numero>
                 <Causale>Rif ordine MAPA: --- Nr. Identificativo Ordine 1234567</Causale>
             </DatiGeneraliDocumento>
+                <DatiTrasporto>
+                    <DatiAnagraficiVettore>
+                        <IdFiscaleIVA>
+                            <IdPaese>IT</IdPaese>
+                            <IdCodice>03309970733</IdCodice>
+                        </IdFiscaleIVA>
+                        <Anagrafica>
+                            <Denominazione>Trasporto spa</Denominazione>
+                        </Anagrafica>
+                    </DatiAnagraficiVettore>
+                </DatiTrasporto>
         </DatiGenerali>
         <DatiBeniServizi>
             <DettaglioLinee>
