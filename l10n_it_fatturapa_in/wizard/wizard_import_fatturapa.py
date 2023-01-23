@@ -29,6 +29,10 @@ WT_CODES_MAPPING = {
 }
 
 
+class PartnerDuplicatedException (UserError):
+    pass
+
+
 class WizardImportFatturapa(models.TransientModel):
     _name = "wizard.import.fatturapa"
     _description = "Import E-bill"
@@ -264,7 +268,7 @@ class WizardImportFatturapa(models.TransientModel):
                 ):
                     same_vat_cf_partners = partner_commercial_partner \
                         | commercial_partner
-                    raise UserError(
+                    raise PartnerDuplicatedException(
                         _("Two distinct partners {partners} with "
                           "VAT number {vat} or Fiscal Code {cf} already "
                           "present in db.")
@@ -283,11 +287,9 @@ class WizardImportFatturapa(models.TransientModel):
             commercial_partner = self.env['res.partner'].browse()
         return commercial_partner
 
-    def getPartnerBase(self, DatiAnagrafici, supplier=True):
-        if not DatiAnagrafici:
-            return False
-        partner_model = self.env["res.partner"]
-        cf = DatiAnagrafici.CodiceFiscale or False
+    def _extract_vat(self, DatiAnagrafici):
+        """Extract VAT from node DatiAnagrafici."""
+        vat = False
         if DatiAnagrafici.IdFiscaleIVA:
             id_paese = DatiAnagrafici.IdFiscaleIVA.IdPaese.upper()
             id_codice = re.sub(r"\W+", "", DatiAnagrafici.IdFiscaleIVA.IdCodice).upper()
@@ -301,42 +303,61 @@ class WizardImportFatturapa(models.TransientModel):
                     DatiAnagrafici.IdFiscaleIVA.IdPaese.upper(),
                     re.sub(r'\W+', '', DatiAnagrafici.IdFiscaleIVA.IdCodice).upper()
                 )
-        partners = self._search_partner_by_vat_fc(vat, cf)
-        commercial_partner = self._get_commercial_partner(partners)
-        if commercial_partner:
-            commercial_partner_id = commercial_partner.id
-            self.check_partner_base_data(commercial_partner_id, DatiAnagrafici)
-            return commercial_partner_id
-        else:
-            # partner to be created
-            country_id = False
-            if DatiAnagrafici.IdFiscaleIVA:
-                CountryCode = DatiAnagrafici.IdFiscaleIVA.IdPaese
-                countries = self.CountryByCode(CountryCode)
-                if countries:
-                    country_id = countries[0].id
-                else:
-                    raise UserError(
-                        _("Country Code %s not found in system.") % CountryCode
-                    )
-            vals = {
-                "vat": vat,
-                "fiscalcode": cf,
-                "is_company": (
-                    DatiAnagrafici.Anagrafica.Denominazione and True or False
-                ),
-                "eori_code": DatiAnagrafici.Anagrafica.CodEORI or "",
-                "country_id": country_id,
-                "company_id": self.env.company.id,
-            }
-            if DatiAnagrafici.Anagrafica.Nome:
-                vals["firstname"] = DatiAnagrafici.Anagrafica.Nome
-            if DatiAnagrafici.Anagrafica.Cognome:
-                vals["lastname"] = DatiAnagrafici.Anagrafica.Cognome
-            if DatiAnagrafici.Anagrafica.Denominazione:
-                vals["name"] = DatiAnagrafici.Anagrafica.Denominazione
+        return vat
 
-            return partner_model.create(vals).id
+    def _prepare_partner_values(self, DatiAnagrafici, cf, vat, supplier):
+        country_id = False
+        if DatiAnagrafici.IdFiscaleIVA:
+            CountryCode = DatiAnagrafici.IdFiscaleIVA.IdPaese
+            countries = self.CountryByCode(CountryCode)
+            if countries:
+                country_id = countries[0].id
+            else:
+                raise UserError(
+                    _("Country Code %s not found in system.") % CountryCode
+                )
+        vals = {
+            'vat': vat,
+            'fiscalcode': cf,
+            'customer': False,
+            'supplier': supplier,
+            'is_company': (
+                DatiAnagrafici.Anagrafica.Denominazione and True or False),
+            'eori_code': DatiAnagrafici.Anagrafica.CodEORI or '',
+            'country_id': country_id,
+        }
+        if DatiAnagrafici.Anagrafica.Nome:
+            vals['firstname'] = DatiAnagrafici.Anagrafica.Nome
+        if DatiAnagrafici.Anagrafica.Cognome:
+            vals['lastname'] = DatiAnagrafici.Anagrafica.Cognome
+        if DatiAnagrafici.Anagrafica.Denominazione:
+            vals['name'] = DatiAnagrafici.Anagrafica.Denominazione
+        return vals
+
+    def getPartnerBase(self, DatiAnagrafici, supplier=True, raise_if_duplicated=True):
+        if not DatiAnagrafici:
+            return False
+        cf = DatiAnagrafici.CodiceFiscale or False
+        vat = self._extract_vat(DatiAnagrafici)
+        try:
+            partners = self._search_partner_by_vat_fc(vat, cf)
+            commercial_partner = self._get_commercial_partner(partners)
+        except PartnerDuplicatedException as duplicated_exception:
+            if raise_if_duplicated:
+                raise duplicated_exception
+            else:
+                self.log_inconsistency(duplicated_exception.args[0])
+                found_partner = self.env['res.partner'].browse()
+        else:
+            if commercial_partner:
+                commercial_partner_id = commercial_partner.id
+                self.check_partner_base_data(commercial_partner_id, DatiAnagrafici)
+                found_partner = commercial_partner
+            else:
+                # partner to be created
+                vals = self._prepare_partner_values(DatiAnagrafici, cf, vat, supplier)
+                found_partner = self.env['res.partner'].create(vals)
+        return found_partner.id
 
     def get_partner_from_einvoice_node(self, partner_node):
         """
@@ -471,8 +492,11 @@ class WizardImportFatturapa(models.TransientModel):
         self.get_partner_from_einvoice_node(cedPrest)
 
     def getCarrirerPartner(self, Carrier):
-        partner_model = self.env["res.partner"]
-        partner_id = self.getPartnerBase(Carrier.DatiAnagraficiVettore)
+        partner_model = self.env['res.partner']
+        partner_id = self.getPartnerBase(
+            Carrier.DatiAnagraficiVettore,
+            raise_if_duplicated=False,
+        )
         no_contact_update = False
         if partner_id:
             no_contact_update = partner_model.browse(
@@ -1920,13 +1944,28 @@ class WizardImportFatturapa(models.TransientModel):
                 self.set_StabileOrganizzazione(cedentePrestatore, invoice)
                 if TaxRappresentative:
                     tax_partner_id = self.getPartnerBase(
-                        TaxRappresentative.DatiAnagrafici
+                        TaxRappresentative.DatiAnagrafici,
+                        supplier=False,
+                        raise_if_duplicated=False,
+                    )
+                    invoice.write(
+                        {
+                            'tax_representative_id': tax_partner_id
+                        }
                     )
                     invoice.write({"tax_representative_id": tax_partner_id})
                 if Intermediary:
-                    Intermediary_id = self.getPartnerBase(Intermediary.DatiAnagrafici)
-                    invoice.write({"intermediary": Intermediary_id})
-                new_invoices.append(invoice.id)
+                    Intermediary_id = self.getPartnerBase(
+                        Intermediary.DatiAnagrafici,
+                        supplier=False,
+                        raise_if_duplicated=False,
+                    )
+                    invoice.write(
+                        {
+                            'intermediary': Intermediary_id
+                        }
+                    )
+                new_invoices.append(invoice_id)
                 self.check_invoice_amount(invoice, fattura)
 
                 invoice.set_einvoice_data(fattura)
