@@ -314,11 +314,8 @@ class WizardImportFatturapa(models.TransientModel):
             commercial_partner = self.env["res.partner"].browse()
         return commercial_partner
 
-    def getPartnerBase(self, DatiAnagrafici):  # noqa: C901
-        if not DatiAnagrafici:
-            return False
-        partner_model = self.env["res.partner"]
-        cf = DatiAnagrafici.CodiceFiscale or False
+    def _extract_vat(self, DatiAnagrafici):
+        """Extract VAT from node DatiAnagrafici."""
         vat = False
         if DatiAnagrafici.IdFiscaleIVA:
             id_paese = DatiAnagrafici.IdFiscaleIVA.IdPaese.upper()
@@ -330,43 +327,51 @@ class WizardImportFatturapa(models.TransientModel):
             # XXX maybe San Marino needs special formatting too?
             else:
                 vat = id_codice
+        return vat
+
+    def _prepare_partner_values(self, DatiAnagrafici, cf, vat):
+        country_id = False
+        if DatiAnagrafici.IdFiscaleIVA:
+            CountryCode = DatiAnagrafici.IdFiscaleIVA.IdPaese
+            countries = self.CountryByCode(CountryCode)
+            if countries:
+                country_id = countries[0].id
+            else:
+                raise UserError(_("Country Code %s not found in system.") % CountryCode)
+        vals = {
+            "vat": vat,
+            "fiscalcode": cf,
+            "is_company": (DatiAnagrafici.Anagrafica.Denominazione and True or False),
+            "eori_code": DatiAnagrafici.Anagrafica.CodEORI or "",
+            "country_id": country_id,
+        }
+        if DatiAnagrafici.Anagrafica.Nome:
+            vals["firstname"] = DatiAnagrafici.Anagrafica.Nome
+        if DatiAnagrafici.Anagrafica.Cognome:
+            vals["lastname"] = DatiAnagrafici.Anagrafica.Cognome
+        if DatiAnagrafici.Anagrafica.Denominazione:
+            vals["name"] = DatiAnagrafici.Anagrafica.Denominazione
+        return vals
+
+    def getPartnerBase(self, DatiAnagrafici):  # noqa: C901
+        if not DatiAnagrafici:
+            return False
+        partner_model = self.env["res.partner"]
+        cf = DatiAnagrafici.CodiceFiscale or False
+        vat = self._extract_vat(DatiAnagrafici)
         partners = self._search_partner_by_vat_fc(vat, cf)
         commercial_partner = self._get_commercial_partner(partners)
         if len(partners) > 1 and not commercial_partner:
-            return False
+            found_partner = partner_model.browse()
         elif commercial_partner:
             commercial_partner_id = commercial_partner.id
             self.check_partner_base_data(commercial_partner_id, DatiAnagrafici)
-            return commercial_partner_id
+            found_partner = commercial_partner
         else:
             # partner to be created
-            country_id = False
-            if DatiAnagrafici.IdFiscaleIVA:
-                CountryCode = DatiAnagrafici.IdFiscaleIVA.IdPaese
-                countries = self.CountryByCode(CountryCode)
-                if countries:
-                    country_id = countries[0].id
-                else:
-                    raise UserError(
-                        _("Country Code %s not found in system.") % CountryCode
-                    )
-            vals = {
-                "vat": vat,
-                "fiscalcode": cf,
-                "is_company": (
-                    DatiAnagrafici.Anagrafica.Denominazione and True or False
-                ),
-                "eori_code": DatiAnagrafici.Anagrafica.CodEORI or "",
-                "country_id": country_id,
-            }
-            if DatiAnagrafici.Anagrafica.Nome:
-                vals["firstname"] = DatiAnagrafici.Anagrafica.Nome
-            if DatiAnagrafici.Anagrafica.Cognome:
-                vals["lastname"] = DatiAnagrafici.Anagrafica.Cognome
-            if DatiAnagrafici.Anagrafica.Denominazione:
-                vals["name"] = DatiAnagrafici.Anagrafica.Denominazione
-
-            return partner_model.create(vals).id
+            vals = self._prepare_partner_values(DatiAnagrafici, cf, vat)
+            found_partner = partner_model.create(vals)
+        return found_partner.id
 
     def getCedPrest(self, cedPrest):
         partner_model = self.env["res.partner"]
