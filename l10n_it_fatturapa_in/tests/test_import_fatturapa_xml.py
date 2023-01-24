@@ -1000,6 +1000,45 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.invoice_line_ids[0].price_subtotal, 1.5)
         self.assertEqual(invoice.move_type, "in_refund")
 
+    def test_55_duplicated_partner(self):
+        """If there are multiple partners with the same VAT
+        and we try to import an Electronic Invoice for that VAT,
+        an inconsistency is logged."""
+        # Arrange: There are two partners with the same VAT
+        common_vat = "IT03309970733"
+        partners = self.env["res.partner"].create(
+            [
+                {
+                    "name": "Test partner1",
+                    "vat": common_vat,
+                },
+                {
+                    "name": "Test partner2",
+                    "vat": common_vat,
+                },
+            ]
+        )
+
+        # Update any conflicting partner from other tests
+        existing_partners = self.env["res.partner"].search(
+            [
+                ("vat", "=", common_vat),
+                ("id", "not in", partners.ids),
+            ],
+        )
+        existing_partners.update(
+            {
+                "vat": "IT12345670017",
+            }
+        )
+
+        # Assert: The import wizard can't choose between the two created partners
+        res = self.run_wizard("VATG1", "IT03309970733_VATG1.xml")
+        invoice = self.invoice_model.search(res.get("domain"))
+        inconsistencies = invoice.inconsistencies
+        self.assertIn("Two distinct partners", inconsistencies)
+        self.assertIn("VAT number", inconsistencies)
+
     def test_01_xml_link(self):
         """
         E-invoice lines are created.
