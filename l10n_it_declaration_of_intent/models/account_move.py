@@ -1,4 +1,5 @@
 # Copyright 2017 Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+# Copyright 2022 Michele Rusticucci <michele.rusticucci@agilebg.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -77,8 +78,8 @@ class AccountMove(models.Model):
         ).read()[0]
         return action
 
-    def action_post(self):
-        res = super().action_post()
+    def _post(self, soft=True):
+        posted = super()._post(soft)
         # Check if there is enough available amount on declarations
         for invoice in self:
             declarations = invoice.get_declarations()
@@ -98,12 +99,7 @@ class AccountMove(models.Model):
 
             invoice.check_declarations_amounts(declarations)
 
-        # Assign account move lines to declarations for each invoice
-        for invoice in self:
-            declarations = invoice.get_declarations()
-            # If partner has no declarations, do nothing
-            if not declarations:
-                continue
+            # Assign account move lines to declarations for each invoice
             # Get only lines with taxes
             lines = invoice.line_ids.filtered("tax_ids")
             if not lines:
@@ -112,7 +108,7 @@ class AccountMove(models.Model):
             grouped_lines = self.get_move_lines_by_declaration(lines)
             invoice.update_declarations(declarations, grouped_lines)
 
-        return res
+        return posted
 
     def update_declarations(self, declarations, grouped_lines):
         """
@@ -265,7 +261,11 @@ class AccountMove(models.Model):
         tax_lines = self.line_ids.filtered("tax_ids")
         for tax_line in tax_lines:
             # Move lines having `tax_ids` represent the base amount for those taxes
-            amount = tax_line.price_subtotal
+            if self.move_type.endswith("_refund"):
+                amount = -tax_line.price_subtotal
+            else:
+                amount = tax_line.price_subtotal
+
             for declaration in declarations:
                 if declaration.id not in declarations_amounts:
                     declarations_amounts[declaration.id] = declaration.available_amount
