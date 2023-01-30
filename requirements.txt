@@ -4,3 +4,5 @@ codicefiscale
 pyxb
 PyXB==1.2.6
 unidecode
+xlrd
+xlsxwriter
