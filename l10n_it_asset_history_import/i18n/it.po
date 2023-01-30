@@ -1,0 +1,500 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* assets_historical_import
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-12-04 18:02+0000\n"
+"PO-Revision-Date: 2019-12-04 18:02+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/models/asset.py:126
+#, python-format
+msgid "ATTENTION"
+msgstr "ATTENZIONE"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/models/asset.py:141
+#, python-format
+msgid "After using this file to create your own import file, please delete these notes."
+msgstr "Dopo aver utilizzato questo file ed avere creato il proprio file di import, cancellare queste note dal file stesso."
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/models/asset.py:152
+#, python-format
+msgid "Amounts"
+msgstr "Importi"
+
+#. module: assets_historical_import
+#: model:ir.model,name:assets_historical_import.model_asset_category
+msgid "Asset Category"
+msgstr "Categoria Cespite"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:43
+#, python-format
+msgid "Asset Category Import Code"
+msgstr "Codice Importazione Categoria Cespite"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:53
+#, python-format
+msgid "Asset Code"
+msgstr "Codice Cespite"
+
+#. module: assets_historical_import
+#: model:ir.model,name:assets_historical_import.model_asset_depreciation_mode
+msgid "Asset Depreciation Mode"
+msgstr "Modalità Ammortamento"
+
+#. module: assets_historical_import
+#: model:ir.model,name:assets_historical_import.model_asset_depreciation_type
+msgid "Asset Depreciation Type"
+msgstr "Tipo Ammortamento"
+
+#. module: assets_historical_import
+#: model:ir.model,name:assets_historical_import.model_wizard_asset_historical_import
+msgid "Asset Historical Import"
+msgstr "Import Storico Cespiti"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:63
+#, python-format
+msgid "Asset Import Code"
+msgstr "Codice Import Cespite"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:33
+#, python-format
+msgid "Asset Name"
+msgstr "Nome Cespite"
+
+#. module: assets_historical_import
+#: model:ir.model,name:assets_historical_import.model_asset_asset
+msgid "Assets"
+msgstr "Cespiti"
+
+#. module: assets_historical_import
+#: model:ir.model,name:assets_historical_import.model_asset_depreciation_line
+msgid "Assets Depreciations Lines"
+msgstr "Righe Ammortamento"
+
+#. module: assets_historical_import
+#: model:ir.actions.act_window,name:assets_historical_import.action_wizard_asset_historical_import
+#: model:ir.ui.menu,name:assets_historical_import.menu_wizard_asset_historical_import
+msgid "Assets Historical Import"
+msgstr "Import Storico Cespiti"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/models/asset.py:95
+#, python-format
+msgid "Assets Import"
+msgstr "Import Cespiti"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:569
+#, python-format
+msgid "Attention! Invalid xls(x) file. Aborting import."
+msgstr "Attenzione! File xls(x) non valido. Blocco dell'importazione."
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/models/asset.py:150
+#, python-format
+msgid "COLUMN TYPE"
+msgstr "TIPO COLONNA"
+
+#. module: assets_historical_import
+#: model:ir.ui.view,arch_db:assets_historical_import.wizard_wizard_asset_historical_import
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/models/asset.py:90
+#, python-format
+msgid "Cannot create xlsx file: Python package `xlsxwriter` is not available. Please contact your IT assistance."
+msgstr "Impossibile creare file xls(x): il pacchetto Python `xlsxwriter` non è disponibile. Contattare l'assistenza IT."
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:406
+#, python-format
+msgid "Cannot determine file extension. Please check its extension (only .xls and .xlsx are allowed)."
+msgstr "Impossibile determinare l'estensione del file. Per favore, controllare che sia .xls o .xlsx."
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:536
+#, python-format
+msgid "Cannot determine the assets to update, found multiple assets with same code `{}`."
+msgstr "Impossibile stabilire i cespiti da creare o aggiornare: molteplici asset trovati con lo stesso codice importazione `{}`"
+
+#. module: assets_historical_import
+#: model:ir.model.fields,field_description:assets_historical_import.field_wizard_asset_historical_import_company_id
+msgid "Company"
+msgstr "Azienda"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:421
+#, python-format
+msgid "Could not find category for import code "
+msgstr "Impossibile trovare categoria cespiti con codice importazione "
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:430
+#, python-format
+msgid "Could not find currency for name '{}'.\n"
+"Is it in its ISO 4217 format?"
+msgstr "Impossibile trovare la valuta '{}'.\n"
+"Controllare che sia scritta nel file con formato ISO 4217."
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:459
+#, python-format
+msgid "Could not retrieve depreciation mode and type by codes '{}' and '{}'."
+msgstr "Impossibile ritrovare modalità e tipologia di ammortamento per i codici '{}' e '{}'."
+
+#. module: assets_historical_import
+#: model:ir.model.fields,field_description:assets_historical_import.field_wizard_asset_historical_import_create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: assets_historical_import
+#: model:ir.model.fields,field_description:assets_historical_import.field_wizard_asset_historical_import_create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/models/asset.py:153
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:83
+#, python-format
+msgid "Currency"
+msgstr "Valuta"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/models/asset.py:151
+#, python-format
+msgid "Dates"
+msgstr "Date"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:203
+#, python-format
+msgid "Depreciable Amount"
+msgstr "Importo Ammortizzabile"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:183
+#, python-format
+msgid "Depreciation %"
+msgstr "% Ammortamento"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:193
+#, python-format
+msgid "Depreciation Base Coeff."
+msgstr "Coefficiente Ammortamento"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:143
+#, python-format
+msgid "Depreciation Mode Import Code"
+msgstr "Codice Import Modalità Ammortamento"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:153
+#, python-format
+msgid "Depreciation Start Date"
+msgstr "Data Inizio Ammortamento"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:133
+#, python-format
+msgid "Depreciation Type Import Code"
+msgstr "Codice Import Tipo Ammortamento"
+
+#. module: assets_historical_import
+#: model:ir.model.fields,field_description:assets_historical_import.field_wizard_asset_historical_import_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: assets_historical_import
+#: model:ir.ui.view,arch_db:assets_historical_import.wizard_wizard_asset_historical_import
+msgid "Download Template File"
+msgstr "Scarica Template"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/models/asset.py:133
+#, python-format
+msgid "Every cell must be formatted either as text or number."
+msgstr "Ogni cella deve essere formattata come testo o numero."
+
+#. module: assets_historical_import
+#: model:ir.model.fields,field_description:assets_historical_import.field_wizard_asset_historical_import_file
+#: model:ir.ui.view,arch_db:assets_historical_import.wizard_wizard_asset_historical_import
+msgid "File"
+msgstr "File"
+
+#. module: assets_historical_import
+#: model:ir.model.fields,field_description:assets_historical_import.field_wizard_asset_historical_import_filename
+msgid "File Name"
+msgstr "Nome File"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:575
+#, python-format
+msgid "File headers must be set in the first row."
+msgstr "Gli header del file devono essere nella prima colonna"
+
+#. module: assets_historical_import
+#: model:ir.ui.view,arch_db:assets_historical_import.wizard_wizard_asset_historical_import
+msgid "Files will be imported following the position of every single column."
+msgstr "Il file sarà importato seguendo la posizione delle colonne."
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/models/asset.py:150
+#, python-format
+msgid "HOW TO FORMAT CELLS"
+msgstr "COME FORMATTARE LE CELLE"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:579
+#, python-format
+msgid "Headers number mismatch: aborting import. Please download the template file and use it to create your own file to import."
+msgstr "Il numero di colonne è irregolare: blocco dell'importazione. Si prega di scaricare il template e di usarlo per creare il proprio file da importare"
+
+#. module: assets_historical_import
+#: model:ir.model.fields,field_description:assets_historical_import.field_wizard_asset_historical_import_id
+msgid "ID"
+msgstr "ID"
+
+#. module: assets_historical_import
+#: model:ir.ui.view,arch_db:assets_historical_import.wizard_wizard_asset_historical_import
+msgid "If you are unsure whether your file respects or not the column positioning required by Odoo to make a correct import,\n"
+"                            please download this template file and use it to create your own import file:"
+msgstr "Se non si è certi che il proprio file rispetti il posizionamento delle colonne necessario ad Odoo per eseguire un import corretto,\n"
+"                            si prega di scaricare il template ed utilizzarlo per generare il proprio file di import:"
+
+#. module: assets_historical_import
+#: model:ir.model.fields,field_description:assets_historical_import.field_asset_asset_import_code
+#: model:ir.model.fields,field_description:assets_historical_import.field_asset_category_import_code
+#: model:ir.model.fields,field_description:assets_historical_import.field_asset_depreciation_mode_import_code
+#: model:ir.model.fields,field_description:assets_historical_import.field_asset_depreciation_type_import_code
+msgid "Import Code"
+msgstr "Codice Importazione"
+
+#. module: assets_historical_import
+#: model:ir.ui.view,arch_db:assets_historical_import.wizard_wizard_asset_historical_import
+msgid "Import File"
+msgstr "Importa File"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/models/asset.py:81
+#, python-format
+msgid "Import code '{}' already exists for company '{}'.\n"
+"Assets' import codes must be unique per company."
+msgstr "Il codice importazione '{}' esiste già per la company '{}'.\n"
+"I codici di importazione dei cespiti devono essere univoci per company."
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/models/asset_category.py:72
+#, python-format
+msgid "Import code '{}' already exists for company '{}'.\n"
+"Categories' import codes must be unique per company."
+msgstr "Il codice importazione '{}' esiste già per la company '{}'.\n"
+"I codici di importazione delle categorie devono essere univoci per company."
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/models/asset_depreciation_mode.py:72
+#, python-format
+msgid "Import code '{}' already exists for company '{}'.\n"
+"Depreciation modes' import codes must be unique per company."
+msgstr "Il codice importazione '{}' esiste già per la company '{}'.\n"
+"I codici di importazione delle modalità di ammortamento devono essere univoci per company."
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/models/asset_depreciation_type.py:72
+#, python-format
+msgid "Import code '{}' already exists for company '{}'.\n"
+"Depreciation types' import codes must be unique per company."
+msgstr "Il codice importazione '{}' esiste già per la company '{}'.\n"
+"I codici di importazione dei tipi di ammortamento devono essere univoci per company."
+
+#. module: assets_historical_import
+#: model:ir.model.fields,field_description:assets_historical_import.field_wizard_asset_historical_import___last_update
+msgid "Last Modified on"
+msgstr "Ultima Modifica il"
+
+#. module: assets_historical_import
+#: model:ir.model.fields,field_description:assets_historical_import.field_wizard_asset_historical_import_write_uid
+msgid "Last Updated by"
+msgstr "Ultima Modifica di"
+
+#. module: assets_historical_import
+#: model:ir.model.fields,field_description:assets_historical_import.field_wizard_asset_historical_import_write_date
+msgid "Last Updated on"
+msgstr "Ultimao Aggiornamento il"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:243
+#, python-format
+msgid "Line Amount"
+msgstr "Importo Riga"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:223
+#, python-format
+msgid "Line Date"
+msgstr "Data Riga"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:213
+#, python-format
+msgid "Line Description"
+msgstr "Descrizione Riga"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:233
+#, python-format
+msgid "Line Type"
+msgstr "Tipo Riga"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/models/asset.py:131
+#, python-format
+msgid "Maintain columns' order: change in columns' positioning may risult in errors while importing!"
+msgstr "L'ordine delle colonne va mantenuto: modifiche possono risultare in errori durante l'importazione!"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:263
+#, python-format
+msgid "No file column for model `{}` and field `{}`"
+msgstr "Nessuna colonna trovata per model `{}` e field `{}`"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:400
+#, python-format
+msgid "No file to import!"
+msgstr "Nessun file da importare!"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:385
+#, python-format
+msgid "Nothing could be imported."
+msgstr "Nulla da importare."
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:173
+#, python-format
+msgid "Pro-Rata Temporis"
+msgstr "Pro-Rata Temporis"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:103
+#, python-format
+msgid "Purchase Amount"
+msgstr "Importo Acquisto"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:93
+#, python-format
+msgid "Purchase Date"
+msgstr "Data Acquisto"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/models/asset.py:130
+#, python-format
+msgid "Red columns are mandatory."
+msgstr "Le colonne in rosso sono obbligatorie"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:123
+#, python-format
+msgid "Sale Amount"
+msgstr "Importo Vendita"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:113
+#, python-format
+msgid "Sale Date"
+msgstr "Data Vendita"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/models/asset.py:154
+#, python-format
+msgid "Set an X if True, else leave empty"
+msgstr "Lasciare una X se da impostare, altrimenti lasciare vuota la cella"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:498
+#, python-format
+msgid "Some line miss required info. Aborting import."
+msgstr "Alcune righe mancano di informazioni obbligatorie. Blocco dell'importazione."
+
+#. module: assets_historical_import
+#: model:ir.model.fields,field_description:assets_historical_import.field_wizard_asset_historical_import_template_file
+msgid "Template File"
+msgstr "Template"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/models/asset.py:154
+#, python-format
+msgid "True/False"
+msgstr "Vero/Falso"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:73
+#, python-format
+msgid "Used"
+msgstr "Usato"
+
+#. module: assets_historical_import
+#: model:ir.model.fields,help:assets_historical_import.field_asset_asset_import_code
+#: model:ir.model.fields,help:assets_historical_import.field_asset_category_import_code
+#: model:ir.model.fields,help:assets_historical_import.field_asset_depreciation_mode_import_code
+#: model:ir.model.fields,help:assets_historical_import.field_asset_depreciation_type_import_code
+msgid "Used to import data from xls(x) files. Must be unique."
+msgstr "Utilizzato per importare data dai file xls(x). Deve essere univoco."
+
+#. module: assets_historical_import
+#: model:ir.ui.view,arch_db:assets_historical_import.wizard_wizard_asset_historical_import
+msgid "Wrong column positioning can result in errors that might block the import,\n"
+"                            or that may require later manual work to fix."
+msgstr "Il posizionamento errato delle colonne può portare ad errori che blocchino l'importazione,\n"
+"                            o che richiedono lavoro manuale per sistemare i dati errati."
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/wizards/asset_historical_import.py:163
+#, python-format
+msgid "Zero Depreciation Until"
+msgstr "Non Ammortizzare Fino Al"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/models/asset.py:153
+#, python-format
+msgid "`EUR`, `USD`, or equivalent ISO 4217 code"
+msgstr "`EUR`, `USD`, o equivalente codice ISO 4217"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/models/asset.py:134
+#, python-format
+msgid "`Line Type` column valid values are {}."
+msgstr "I valori validi per la colonna `Tipo Riga` sono {}."
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/models/asset.py:151
+#, python-format
+msgid "dd/mm/yyyy"
+msgstr "dd/mm/yyyy"
+
+#. module: assets_historical_import
+#: code:addons/assets_historical_import/models/asset.py:152
+#, python-format
+msgid "Numerical amounts, no currency"
+msgstr "Solo importi numerici, senza valute"
+
