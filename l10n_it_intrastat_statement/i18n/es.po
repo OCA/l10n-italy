@@ -414,6 +414,16 @@ msgid "INTRA-1 Model"
 msgstr "Modelo INTRA-1"
 
 #. module: l10n_it_intrastat_statement
+#: model:ir.actions.report,name:l10n_it_intrastat_statement.print_intrastat_mod1_quater
+msgid "INTRA-1 Quater Model"
+msgstr ""
+
+#. module: l10n_it_intrastat_statement
+#: model:ir.actions.report,name:l10n_it_intrastat_statement.print_intrastat_mod1_quinquies
+msgid "INTRA-1 Quinquies Model"
+msgstr ""
+
+#. module: l10n_it_intrastat_statement
 #: model:ir.actions.report,name:l10n_it_intrastat_statement.print_intrastat_mod1_ter
 msgid "INTRA-1 Ter Model"
 msgstr "Modelo INTRA-1 Ter"
@@ -427,6 +437,16 @@ msgstr "Modelo Bis INTRA-2"
 #: model:ir.actions.report,name:l10n_it_intrastat_statement.print_intrastat_mod2
 msgid "INTRA-2 Model"
 msgstr "Modelo INTRA-2"
+
+#. module: l10n_it_intrastat_statement
+#: model:ir.actions.report,name:l10n_it_intrastat_statement.print_intrastat_mod2_quater
+msgid "INTRA-2 Quater Model"
+msgstr ""
+
+#. module: l10n_it_intrastat_statement
+#: model:ir.actions.report,name:l10n_it_intrastat_statement.print_intrastat_mod2_quinquies
+msgid "INTRA-2 Quinquies Model"
+msgstr ""
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_form_view
