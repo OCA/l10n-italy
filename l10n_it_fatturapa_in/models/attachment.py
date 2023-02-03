@@ -1,7 +1,7 @@
 from odoo import _, api, fields, models
 from odoo.tools import format_date
 
-SELF_INVOICE_TYPES = ("TD16", "TD17", "TD18", "TD19", "TD20", "TD21")
+SELF_INVOICE_TYPES = ("TD16", "TD17", "TD18", "TD19", "TD20", "TD21", "TD27", "TD28")
 
 
 class FatturaPAAttachmentIn(models.Model):
