@@ -124,7 +124,7 @@
                                         <td><span t-field="l.delivery_code_id.code"/></td>
                                         <td><span t-field="l.transport_code_id.code"/></td>
                                         <td><span t-field="l.country_origin_id.code"/></td>
-                                        <td><span t-field="l.country_origin_id.code"/></td>
+                                        <td><span t-field="l.country_good_origin_id.code"/></td>
                                         <td><span t-field="l.province_destination_id.code"/></td>
                                         <t t-set="total" t-value="total + l.amount_euro"/>
                                     </tr>
