@@ -220,7 +220,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         """Check that a useful error message is raised when
         the credit account is missing in purchase journal."""
         company = self.env.company
-        journal = self.wizard_model.get_purchase_journal(company)
+        journal = self.wizard_model.get_invoice_type_journal(company)
         journal_account = journal.default_account_id
         journal.default_account_id = False
 
