@@ -64,7 +64,7 @@
         </record>
 
         <!--
-        Liabilities = "Current Year Earnings", "Payable", "Credit Card", "Prepayments",
+        Liabilities = "Payable", "Credit Card", "Prepayments",
             "Current Liabilities", "Non-current Liabilities", "Equity"
         -->
         <record model="account.account.type" id="account.data_unaffected_earnings">
