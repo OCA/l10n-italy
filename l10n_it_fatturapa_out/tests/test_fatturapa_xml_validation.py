@@ -813,11 +813,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
 
         self.create_2nd_company()
         self.env.company = self.company2
-        product2 = self.product_product_10.copy(
-            {
-                "company_id": self.company2.id,
-            }
-        )
+        product2 = self.product_product_10.with_company(company=self.company2.id).copy()
         invoice2 = (
             self.env["account.move"]
             .with_context(
