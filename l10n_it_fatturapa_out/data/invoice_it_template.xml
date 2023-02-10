@@ -213,6 +213,11 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     <TipoDato>Valuta</TipoDato>
                     <RiferimentoTesto t-esc="line.currency_id.name" />
                     <RiferimentoNumero
+                        t-if="line.discount &gt; 0"
+                        t-esc="format_numbers_two(line.price_unit * (1-abs(line.discount)/100))"
+                    />
+                    <RiferimentoNumero
+                        t-if="line.discount &lt;= 0"
                         t-esc="format_price(line, original_currency=True)"
                     />
                     <RiferimentoData t-esc="format_date(record.date)" />

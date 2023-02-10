@@ -6,6 +6,7 @@
 * Sergio Zanchetta <https://github.com/primes2h>
 * Marco Colombo <https://github.com/TheMule71>
 * Giovanni Serra <giovanni@gslab.it>
+* Michele Rusticucicci <michele.rusticucci@agilebg.com>
 * `Tecnativa <https://www.tecnativa.com>`_:
 
   * Víctor Martínez
