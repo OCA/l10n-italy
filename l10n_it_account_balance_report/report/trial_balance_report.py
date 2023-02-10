@@ -5,7 +5,7 @@ from odoo.tools import float_is_zero
 
 
 class TrialBalanceReportAccount(models.TransientModel):
-    _inherit = 'report_trial_balance_account'
+    _inherit = "report_trial_balance_account"
 
     def _compute_hide_line(self):
         """
@@ -18,10 +18,10 @@ class TrialBalanceReportAccount(models.TransientModel):
         """
         super()._compute_hide_line()
 
-        balance_line_obj = self.env['account_balance_report_account']
-        balance_line_domain = [('trial_balance_line_id', 'in', self.ids)]
+        balance_line_obj = self.env["account_balance_report_account"]
+        balance_line_domain = [("trial_balance_line_id", "in", self.ids)]
         balance_lines = balance_line_obj.search(balance_line_domain)
-        lines_to_recompute = balance_lines.mapped('trial_balance_line_id')
+        lines_to_recompute = balance_lines.mapped("trial_balance_line_id")
 
         # If we use the Trial Balance wizard, no balance line will be
         # created and assigned to a trial line; therefore, lines_to_recompute
@@ -34,8 +34,9 @@ class TrialBalanceReportAccount(models.TransientModel):
             balance = line.final_balance
             currency = line.currency_id or trial_report.company_id.currency_id
             rounding = currency.rounding
-            if trial_report.hide_account_at_0 \
-                    and float_is_zero(balance, precision_rounding=rounding):
+            if trial_report.hide_account_at_0 and float_is_zero(
+                balance, precision_rounding=rounding
+            ):
                 line.hide_line = True
 
     def get_balance_sign(self):

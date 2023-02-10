@@ -6,7 +6,9 @@ from openupgradelib import openupgrade
 
 @openupgrade.migrate()
 def migrate(env, version):
-    unaffected_type = env.ref('account.data_unaffected_earnings')
-    unaffected_type.update({
-        'account_balance_report_section': 'liabilities',
-    })
+    unaffected_type = env.ref("account.data_unaffected_earnings")
+    unaffected_type.update(
+        {
+            "account_balance_report_section": "liabilities",
+        }
+    )
