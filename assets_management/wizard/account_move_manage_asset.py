@@ -374,15 +374,19 @@ class WizardAccountMoveManageAsset(models.TransientModel):
         dismiss_date = self.dismiss_date
         digits = self.env["decimal.precision"].precision_get("Account")
 
-        max_date = max(asset.depreciation_ids.mapped("last_depreciation_date"))
-        if max_date and max_date > dismiss_date:
-            raise ValidationError(
-                _(
-                    "Cannot dismiss an asset earlier than the last depreciation"
-                    " date.\n"
-                    "(Dismiss date: {}, last depreciation date: {})."
-                ).format(dismiss_date, max_date)
-            )
+        last_depreciation_dates = asset.depreciation_ids.filtered(
+            "last_depreciation_date"
+        ).mapped("last_depreciation_date")
+        if last_depreciation_dates:
+            max_date = max(last_depreciation_dates)
+            if max_date > dismiss_date:
+                raise ValidationError(
+                    _(
+                        "Cannot dismiss an asset earlier than the last depreciation"
+                        " date.\n"
+                        "(Dismiss date: {}, last depreciation date: {})."
+                    ).format(dismiss_date, max_date)
+                )
 
         move = self.move_line_ids.mapped("move_id")
         move_nums = move.name
