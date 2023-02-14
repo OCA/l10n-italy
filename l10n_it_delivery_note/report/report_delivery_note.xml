@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright (c) 2019, Link IT Europe Srl
+    @author: Matteo Bilotta <mbilotta@linkeurope.it>
+  -->
+<odoo>
+
+    <template id="delivery_note_report_template">
+        <t t-call="web.external_layout">
+            <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)" />
+
+            <!--if is an outgoing move -->
+            <t id="partner_outgoing" t-if="doc.type_code=='outgoing'">
+                <t t-set="address">
+                    <h4>
+                        <strong>Delivery address:</strong>
+                    </h4>
+                    <div
+                        t-field="doc.partner_shipping_id"
+                        t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
+                    />
+                    <p t-if="doc.partner_shipping_id.vat"><t
+                            t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"
+                        />: <span t-field="doc.partner_shipping_id.vat" /></p>
+                </t>
+                <t t-set="information_block">
+                    <h4>
+                        <strong>Customer:</strong>
+                    </h4>
+                    <t t-if="doc.sale_ids">
+                        <div
+                            t-field="doc.sale_ids[0].partner_id"
+                            t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
+                        />
+                        <p t-if="doc.sale_ids[0].partner_id.vat"><t
+                                t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"
+                            />: <span t-field="doc.sale_ids[0].partner_id.vat" /></p>
+                    </t>
+                    <t t-else="">
+                        <div
+                            t-field="doc.partner_id"
+                            t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
+                        />
+                        <p t-if="doc.partner_id.vat"><t
+                                t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"
+                            />: <span t-field="doc.partner_id.vat" /></p>
+                    </t>
+                </t>
+            </t>
+
+            <!--if is an internal move -->
+            <t id="partner_outgoing" t-if="doc.type_code=='internal'">
+                <t t-set="address">
+                    <h4>
+                        <strong>Delivery address:</strong>
+                    </h4>
+                    <t t-if="doc.partner_id.id == doc.partner_sender_id.id">
+                        <div
+                            t-field="doc.partner_shipping_id"
+                            t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
+                        />
+                        <p t-if="doc.partner_shipping_id.vat"><t
+                                t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"
+                            />: <span t-field="doc.partner_shipping_id.vat" /></p>
+                    </t>
+                    <t t-if="doc.partner_id.id != doc.partner_sender_id.id">
+                        <t
+                            t-if="doc.partner_sender_id.id != doc.partner_shipping_id.id"
+                        >
+                            <small>
+                                <div
+                                    t-field="doc.partner_sender_id"
+                                    t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
+                                />
+                                <p t-if="doc.partner_sender_id.vat"><t
+                                        t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"
+                                    />: <span t-field="doc.partner_sender_id.vat" /></p>
+                            </small>
+                            <div
+                                t-field="doc.partner_shipping_id"
+                                t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
+                            />
+                            <p t-if="doc.partner_shipping_id.vat"><t
+                                    t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"
+                                />: <span t-field="doc.partner_shipping_id.vat" /></p>
+                        </t>
+                        <t t-else="">
+                            <div
+                                t-field="doc.partner_sender_id"
+                                t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
+                            />
+                            <p t-if="doc.partner_sender_id.vat"><t
+                                    t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"
+                                />: <span t-field="doc.partner_sender_id.vat" /></p>
+                        </t>
+                    </t>
+                </t>
+                <t t-if="doc.picking_ids and doc.picking_ids[0].location_id.id">
+                    <t t-set="information_block">
+                        <h4>
+                            <strong>Warehouse:</strong>
+                        </h4>
+                        <p>
+                            <t
+                                t-esc="doc.get_location_address(doc.picking_ids[0].location_id.id)"
+                            />
+                        </p>
+                    </t>
+                </t>
+            </t>
+
+            <div class="page">
+                <div id="warehouse_outgoing">
+                    <div
+                        t-if="doc.type_code=='outgoing' and doc.picking_ids and doc.picking_ids[0].location_id.id"
+                    >
+                        <strong>Warehouse:</strong>
+                        <p>
+                            <t
+                                t-esc="doc.get_location_address(doc.picking_ids[0].location_id.id)"
+                            />
+                        </p>
+                    </div>
+                </div>
+                <div id="dn_terms">
+                    <strong> Delivery Note: </strong>
+                    Under the terms of Italian Presidential Decree 472-96 of 14.08.1996
+                </div>
+
+                <h2 id="document_title">
+                    <span t-if="doc.state in ['draft']">Draft document:</span>
+                    <span t-if="doc.state not in ['draft']">Document:</span>
+                    <small>
+                        <span t-field="doc.display_name" />
+                    </small>
+                    <span t-if="doc.date"> of: </span>
+                    <small>
+                        <span t-field="doc.date" />
+                    </small>
+                </h2>
+
+                <div id="delivery_data_information" class="row mt32 mb32">
+                    <div t-if="doc.transport_reason_id" class="col-3 bm-2">
+                        <strong>Reason of Transport:</strong>
+                        <p t-field="doc.transport_reason_id" class="m-0" />
+                    </div>
+                    <div t-if="doc.transport_condition_id" class="col-3 bm-2">
+                        <strong>Carriage Condition:</strong>
+                        <p t-field="doc.transport_condition_id" class="m-0" />
+                    </div>
+                    <div t-if="doc.transport_method_id" class="col-3 bm-2">
+                        <strong>Method of Transport / Carrier:</strong>
+                        <span t-field="doc.transport_method_id" class="m-0" />
+                        <t t-if="doc.transport_method_id and doc.carrier_id"> / </t>
+                        <span t-field="doc.carrier_id" class="m-0" />
+                    </div>
+                </div>
+
+                <table id="product_data" class="mt32 mb32 o_main_table table table-sm">
+                    <thead>
+                        <tr>
+                            <t t-set="colspan" t-value="5" />
+                            <th class="text-start">
+                                Product
+                            </th>
+                            <th class="text-start">
+                                Description
+                            </th>
+                            <th class="text-end">
+                                Quantity
+                            </th>
+                            <th class="text-end" groups="uom.group_uom">
+                                UoM
+                            </th>
+                            <th
+                                t-if="doc.print_prices"
+                                class="text-end"
+                                style="white-space: nowrap;"
+                            >
+                                Unit price
+                            </th>
+                            <th
+                                t-if="doc.print_prices"
+                                class="text-end"
+                                groups="product.group_discount_per_so_line"
+                            >
+                                Discount
+                            </th>
+                            <th t-if="doc.print_prices" class="text-end">
+                                Taxes
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <!--row delivery note-->
+                    <tbody class="sale_tbody">
+                        <t t-foreach="doc.line_ids" t-as="line">
+                            <tr
+                                t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''"
+                            >
+                                <t t-if="not line.display_type">
+                                    <td class="text-start">
+                                        <span t-field="line.product_id.default_code" />
+                                    </td>
+                                    <td class="text-start">
+                                        <span t-field="line.name" />
+                                        <t
+                                            t-foreach="line.product_id.product_template_attribute_value_ids"
+                                            t-as="attrib_value"
+                                        >
+                                            <span
+                                                t-esc=" '%s: %s' % (attrib_value.attribute_id.name,attrib_value.name)"
+                                            />
+                                        </t>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-field="line.product_qty" />
+                                    </td>
+                                    <td class="text-end" groups="uom.group_uom">
+                                        <span t-field="line.product_uom_id" />
+                                    </td>
+                                    <td t-if="doc.print_prices" class="text-end">
+                                        <span t-field="line.price_unit" />
+                                    </td>
+                                    <td
+                                        t-if="doc.print_prices"
+                                        class="text-end"
+                                        groups="product.group_discount_per_so_line"
+                                    >
+                                        <span t-field="line.discount" />%
+                                    </td>
+                                    <td t-if="doc.print_prices" class="text-end">
+                                        <span
+                                            t-esc="', '.join(map(lambda t: (t.description or t.name), line.tax_ids))"
+                                        />
+                                    </td>
+                                </t>
+                                <t t-else="">
+                                    <td colspan="6" class="text-start">
+                                        <span t-field="line.name" />
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr t-if="line.product_id.tracking != 'none'">
+                                <td
+                                    colspan="99"
+                                    style="font-size:10px;"
+                                    class="text-start"
+                                >
+                                    <t
+                                        t-foreach="line.move_id.move_line_ids"
+                                        t-as="lot_line"
+                                    >
+                                        lot / sn :
+                                        <strong>
+                                            <span t-field="lot_line.lot_id" />
+                                        </strong>
+                                        <t
+                                            t-if="'use_date' in lot_line.lot_id.fields_get()"
+                                        >
+                                            <t t-if="lot_line.lot_id.use_date">
+                                                best before
+                                                <strong>
+                                                    <span
+                                                        t-field="lot_line.lot_id.use_date"
+                                                        t-options='{"format": "dd/MM/yyyy"}'
+                                                    />
+                                                </strong>
+                                            </t>
+                                        </t>
+                                        <t t-if="line.product_qty != lot_line.qty_done">
+                                            qty
+                                            <span t-field="lot_line.qty_done" />
+                                        </t>
+                                        ;
+                                    </t>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+
+                <table
+                    id="parcel_info"
+                    class="table table-condensed table-bordered delivery_data"
+                    style="page-break-inside: avoid"
+                >
+                    <tr>
+                        <td>
+                            <div
+                                name="good_description"
+                                style="font-size:10px;"
+                            >Goods Description</div>
+                            <div
+                                style="font-size:12px;"
+                                t-field="doc.goods_appearance_id"
+                            />
+                        </td>
+                        <td>
+                            <div
+                                name="gross_weight"
+                                style="font-size:10px;"
+                            >Gross Weight</div>
+                            <div
+                                class="text-end"
+                                style="font-size:12px;"
+                                t-field="doc.gross_weight"
+                            />
+                        </td>
+                        <td>
+                            <div
+                                name="net_weight"
+                                style="font-size:10px;"
+                            >Net Weight</div>
+                            <div
+                                class="text-end"
+                                style="font-size:12px;"
+                                t-field="doc.net_weight"
+                            />
+                        </td>
+                        <td>
+                            <div
+                                name="transport_date"
+                                style="font-size:10px;"
+                            >DN date</div>
+                            <div
+                                class="m-0"
+                                style="font-size:12px;"
+                                t-field="doc.transport_datetime"
+                            />
+                        </td>
+                        <td>
+                            <div name="packages" style="font-size:10px;">Packages</div>
+                            <div
+                                class="text-end"
+                                style="font-size:12px;"
+                                t-field="doc.packages"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" class="notes">
+                            <div name="notes" style="font-size:10px;">Notes</div>
+                            <br />
+                            <div
+                                class="signature"
+                                style="font-size:12px;"
+                                t-field="doc.note"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <table class="table table-condensed delivery_data">
+                                <tr>
+                                    <td>
+                                        <div
+                                            name="carrier_signature"
+                                            style="font-size:10px;"
+                                        >Carrier's Signature</div>
+                                        <br />
+                                        <div
+                                            class="signature"
+                                            style="font-size:12px;"
+                                        />
+                                    </td>
+                                    <td>
+                                        <div
+                                            name="driver_signature"
+                                            style="font-size:10px;"
+                                        >Driver's Signature</div>
+                                        <br />
+                                        <div
+                                            class="signature"
+                                            style="font-size:12px;"
+                                        />
+                                    </td>
+                                    <td>
+                                        <div
+                                            name="recipint_signature"
+                                            style="font-size:10px;"
+                                        >Recipient's Signature</div>
+                                        <br />
+                                        <div
+                                            class="signature"
+                                            style="font-size:12px;"
+                                        />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <div class="oe_structure" />
+            </div>
+        </t>
+    </template>
+
+    <template id="delivery_note_report_main_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t
+                    t-call="l10n_it_delivery_note.delivery_note_report_template"
+                    t-lang="doc.partner_id.lang"
+                />
+            </t>
+        </t>
+    </template>
+
+    <record id="delivery_note_report_action" model="ir.actions.report">
+        <field name="name">Delivery Note</field>
+        <field name="model">stock.delivery.note</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >l10n_it_delivery_note.delivery_note_report_main_template</field>
+        <field
+            name="report_file"
+        >l10n_it_delivery_note.delivery_note_report_main_template</field>
+        <field
+            name="print_report_name"
+        >'Delivery Note - %s' % object.display_name</field>
+        <field name="binding_model_id" ref="model_stock_delivery_note" />
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

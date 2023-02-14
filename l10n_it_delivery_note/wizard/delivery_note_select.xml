@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright (c) 2019, Link IT Europe Srl
+    @author: Matteo Bilotta <mbilotta@linkeurope.it>
+  -->
+<odoo>
+
+    <record id="stock_delivery_note_select_form_view" model="ir.ui.view">
+        <field name="name">stock.delivery.note.select.form</field>
+        <field name="model">stock.delivery.note.select.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <div attrs="{'invisible': [('error_message', '=', False)]}">
+                    <field name="error_message" />
+                </div>
+                <field name="selected_picking_ids" invisible="True" />
+                <div
+                    class="oe_title"
+                    attrs="{'invisible': [('error_message', '!=', False)]}"
+                >
+                    <label for="delivery_note_id" />
+                    <h1>
+                        <field
+                            name="delivery_note_id"
+                            domain="[('partner_id', '=', partner_id), ('state', '=', 'draft')]"
+                            options="{'no_open': True, 'no_create': True}"
+                            style="width: 100%;"
+                        />
+                    </h1>
+                </div>
+                <group
+                    string="Summary"
+                    attrs="{'invisible': [('error_message', '!=', False)]}"
+                >
+                    <group>
+                        <field name="partner_sender_id" />
+                        <field name="partner_id" />
+                        <field name="partner_shipping_id" />
+                    </group>
+                    <group>
+                        <field name="type_id" />
+                        <field name="date" />
+                    </group>
+                </group>
+                <notebook attrs="{'invisible': [('error_message', '!=', False)]}">
+                    <page name="pickings" string="Pickings">
+                        <field name="picking_ids">
+                            <tree
+                                decoration-success="id in parent.selected_picking_ids"
+                            >
+                                <field name="name" />
+                                <field
+                                    name="location_dest_id"
+                                    groups="stock.group_stock_multi_locations"
+                                />
+                                <field name="scheduled_date" />
+                                <field name="origin" />
+                                <field name="backorder_id" />
+                                <field name="state" />
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+                <footer>
+                    <button
+                        name="confirm"
+                        type="object"
+                        class="btn-primary"
+                        string="Confirm"
+                        attrs="{'invisible': [('error_message', '!=', False)]}"
+                    />
+                    <button
+                        special="cancel"
+                        class="btn-primary"
+                        string="Cancel"
+                        attrs="{'invisible': [('error_message', '=', False)]}"
+                        style="float: right;"
+                    />
+                    <button
+                        special="cancel"
+                        class="btn-secondary"
+                        string="Cancel"
+                        attrs="{'invisible': [('error_message', '!=', False)]}"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="stock_delivery_note_select_action" model="ir.actions.act_window">
+        <field name="name">Select an existing delivery note</field>
+        <field name="res_model">stock.delivery.note.select.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="stock_delivery_note_select_form_view" />
+        <field name="target">new</field>
+        <field
+            name="groups_id"
+            eval="[(4, ref('l10n_it_delivery_note.use_advanced_delivery_notes'))]"
+        />
+        <field name="binding_model_id" ref="stock.model_stock_picking" />
+        <field name="binding_view_types">list</field>
+    </record>
+
+</odoo>
