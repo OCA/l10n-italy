@@ -1,5 +1,7 @@
-from odoo import api, models
+from odoo import api, models, _
+from odoo.exceptions import ValidationError
 from stdnum.eu.vat import compact
+from stdnum.exceptions import InvalidComponent
 
 
 class ResPartner(models.Model):
@@ -14,7 +16,11 @@ class ResPartner(models.Model):
         if not self.vat:
             return False
         res = self.vat[2:]
-        vat_normalized = compact(self.vat)[2:]
+        try:
+            vat_normalized = compact(self.vat)[2:]
+        except InvalidComponent:
+            raise ValidationError(
+                _("%s is not a EU valid VAT!") % self.vat)
         if vat_normalized != res:
             res = vat_normalized
         return res
