@@ -102,6 +102,19 @@ class AccountMove(models.Model):
                 return inv_line
         return False
 
+    def _get_original_suppliers(self):
+        rc_purchase_invoices = self.mapped("rc_purchase_invoice_id")
+        supplier_invoices = self.env["account.move"]
+        for rc_purchase_invoice in rc_purchase_invoices:
+            current_supplier_invoices = self.search(
+                [("rc_self_purchase_invoice_id", "=", rc_purchase_invoice.id)]
+            )
+            if current_supplier_invoices:
+                supplier_invoices |= current_supplier_invoices
+            else:
+                supplier_invoices |= rc_purchase_invoice
+        return supplier_invoices.mapped("partner_id")
+
     def get_rc_inv_line_to_reconcile(self, invoice):
         for inv_line in invoice.line_ids:
             if ((self.move_type == "out_invoice") and inv_line.debit) or (
@@ -139,13 +152,17 @@ class AccountMove(models.Model):
         rc_type = self.fiscal_position_id.rc_type_id
         payment_reg = (
             self.env["account.payment.register"]
-            .with_context(active_model="account.move", active_ids=self.ids)
+            .with_context(
+                active_model="account.move",
+                active_ids=[self.id, self.rc_self_invoice_id.id],
+            )
             .create(
                 {
                     "payment_date": self.date,
                     "amount": self.amount_total,
                     "journal_id": rc_type.payment_journal_id.id,
                     "currency_id": self.currency_id.id,
+                    "group_payment": True,
                 }
             )
         )
@@ -214,17 +231,13 @@ class AccountMove(models.Model):
                         _("Invoice %s, line\n%s\nis RC but has not tax")
                         % ((self.name or self.partner_id.display_name), line.name)
                     )
-                tax_ids = list()
-                for tax_mapping in rc_type.tax_ids:
-                    for line_tax_id in line_tax_ids:
-                        if tax_mapping.purchase_tax_id == line_tax_id:
-                            tax_ids.append(tax_mapping.sale_tax_id.id)
-                if not tax_ids:
-                    raise UserError(
-                        _("Tax code used is not a RC tax.\nCan't " "find tax mapping")
-                    )
-                if line_tax_ids:
-                    rc_invoice_line["tax_ids"] = [(6, False, tax_ids)]
+                mapped_taxes = rc_type.map_tax(
+                    line_tax_ids,
+                    "purchase_tax_id",
+                    "sale_tax_id",
+                )
+                if line_tax_ids and mapped_taxes:
+                    rc_invoice_line["tax_ids"] = [(6, False, mapped_taxes.ids)]
                 rc_invoice_line["account_id"] = rc_type.transitory_account_id.id
                 rc_invoice_lines.append([0, False, rc_invoice_line])
         if rc_invoice_lines:
@@ -242,7 +255,6 @@ class AccountMove(models.Model):
                 for line in rc_invoice.line_ids:
                     line.remove_move_reconcile()
                 rc_invoice.invoice_line_ids.unlink()
-                # rc_invoice.period_id = False
                 rc_invoice.write(inv_vals)
             else:
                 rc_invoice = self.create(inv_vals)
@@ -252,6 +264,7 @@ class AccountMove(models.Model):
             if self.amount_total:
                 # No need to reconcile invoices with total = 0
                 if rc_type.with_supplier_self_invoice:
+                    self.reconcile_rc_invoice()
                     self.reconcile_supplier_invoice()
                 else:
                     self.reconcile_rc_invoice()
@@ -259,15 +272,15 @@ class AccountMove(models.Model):
 
     def generate_supplier_self_invoice(self):
         rc_type = self.fiscal_position_id.rc_type_id
-        if not len(rc_type.tax_ids) == 1:
-            raise UserError(_("Can't find 1 tax mapping for %s" % rc_type.name))
         supplier_invoice_vals = self.copy_data()[0]
         supplier_invoice = False
         if self.rc_self_purchase_invoice_id:
             supplier_invoice = self.rc_self_purchase_invoice_id
             for line in supplier_invoice.line_ids:
                 line.remove_move_reconcile()
-            supplier_invoice.invoice_line_ids.unlink()
+            supplier_invoice.line_ids.unlink()
+            # temporary disabling self invoice automations
+            supplier_invoice.fiscal_position_id = False
 
         supplier_invoice_vals["partner_bank_id"] = None
         # because this field has copy=False
@@ -277,12 +290,27 @@ class AccountMove(models.Model):
         supplier_invoice_vals["journal_id"] = rc_type.supplier_journal_id.id
         # temporary disabling self invoice automations
         supplier_invoice_vals["fiscal_position_id"] = None
+        supplier_invoice_vals.pop("line_ids")
 
         if not supplier_invoice:
             supplier_invoice = self.create(supplier_invoice_vals)
-        for inv_line in supplier_invoice.invoice_line_ids:
-            inv_line.tax_ids = [(6, 0, [rc_type.tax_ids[0].purchase_tax_id.id])]
-            inv_line.account_id = rc_type.transitory_account_id.id
+        invoice_line_vals = []
+        for inv_line in self.invoice_line_ids:
+            line_vals = inv_line.copy_data()[0]
+            line_vals["move_id"] = supplier_invoice.id
+            line_tax_ids = inv_line.tax_ids
+            mapped_taxes = rc_type.map_tax(
+                line_tax_ids,
+                "original_purchase_tax_id",
+                "purchase_tax_id",
+            )
+            if line_tax_ids and mapped_taxes:
+                line_vals["tax_ids"] = [
+                    (6, False, mapped_taxes.ids),
+                ]
+            line_vals["account_id"] = rc_type.transitory_account_id.id
+            invoice_line_vals.append((0, 0, line_vals))
+        supplier_invoice.write({"invoice_line_ids": invoice_line_vals})
         self.rc_self_purchase_invoice_id = supplier_invoice.id
 
         supplier_invoice.action_post()

@@ -42,7 +42,7 @@
                                     name="recompute_xml_fields"
                                     string="Recompute XML fields"
                                     icon="fa-refresh"
-                                    attrs="{'invisible': [('invoices_number', '!=', 0), ('xml_supplier_id', '!=', False), ('invoices_date', '!=', False)]}"
+                                    attrs="{'invisible': [('invoices_number', '!=', 0), ('xml_supplier_id', '!=', False), ('invoices_date', '!=', False), ('linked_invoice_id_xml', '!=', False)]}"
                                 />
                             </div>
                             <field name="name" invisible="1" />
@@ -54,6 +54,7 @@
                             <field name="registered" />
                             <field name="invoices_total" />
                             <field name="invoices_date" />
+                            <field name="linked_invoice_id_xml" />
                         </group>
                     </group>
                     <notebook>
