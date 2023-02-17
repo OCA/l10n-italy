@@ -239,9 +239,8 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                                 "$3/$2/$1"
                             )
                         );
-                        order.fiscal_receipt_date = moment(fiscalReceiptDate).format(
-                            "YYYY-MM-DD"
-                        );
+                        order.fiscal_receipt_date =
+                            moment(fiscalReceiptDate).format("YYYY-MM-DD");
                         order.fiscal_z_rep_number = add_info.zRepNumber;
                         order.fiscal_printer_serial =
                             sender.env.pos.config.fiscal_printer_serial;
