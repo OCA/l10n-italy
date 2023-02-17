@@ -4,8 +4,8 @@
     <template
         id="wt_account_invoice_it_dati_ritenuta"
         inherit_id="l10n_it_fatturapa_out.account_invoice_it_dati_ritenuta"
+        priority="100"
     >
-
         <xpath expr="t" position="replace">
             <t
                 t-set="ritenuta_lines"
@@ -17,13 +17,13 @@
                     t-set="tipo_ritenuta"
                     t-value="get_withholding_type(wt_line.withholding_tax_id.wt_types, record.company_id.partner_id)"
                 />
-                <TipoRitenuta t-esc="tipo_ritenuta" />
-                <ImportoRitenuta t-esc="format_numbers_two(wt_line.tax)" />
+                <TipoRitenuta t-out="tipo_ritenuta" />
+                <ImportoRitenuta t-out="format_numbers_two(wt_line.tax)" />
                 <AliquotaRitenuta
-                    t-esc="format_numbers_two(wt_line.withholding_tax_id.tax)"
+                    t-out="format_numbers_two(wt_line.withholding_tax_id.tax)"
                 />
                 <CausalePagamento
-                    t-esc="wt_line.withholding_tax_id.payment_reason_id.code"
+                    t-out="wt_line.withholding_tax_id.payment_reason_id.code"
                 />
             </DatiRitenuta>
         </xpath>
@@ -32,8 +32,8 @@
     <template
         id="wt_account_invoice_it_dati_cassa_previdenziale"
         inherit_id="l10n_it_fatturapa_out.account_invoice_it_dati_cassa_previdenziale"
+        priority="100"
     >
-
         <xpath expr="t" position="replace">
             <t
                 t-set="TC_CODE"
@@ -48,12 +48,12 @@
                 t-foreach="ritenuta_lines.filtered(lambda wtl: wtl.withholding_tax_id.use_daticassaprev)"
                 t-as="wt_line"
             >
-                  <TipoCassa t-esc="TC_CODE[wt_line.withholding_tax_id.wt_types]" />
-                  <AlCassa t-esc="format_numbers_two(wt_line.withholding_tax_id.tax)" />
-                  <ImportoContributoCassa t-esc="format_numbers_two(wt_line.tax)" />
+                  <TipoCassa t-out="TC_CODE[wt_line.withholding_tax_id.wt_types]" />
+                  <AlCassa t-out="format_numbers_two(wt_line.withholding_tax_id.tax)" />
+                  <ImportoContributoCassa t-out="format_numbers_two(wt_line.tax)" />
                   <AliquotaIVA>0.00</AliquotaIVA>
                   <Natura
-                    t-esc="wt_line.withholding_tax_id.daticassprev_tax_id.kind_id.code"
+                    t-out="wt_line.withholding_tax_id.daticassprev_tax_id.kind_id.code"
                 />
             </DatiCassaPrevidenziale>
         </xpath>
@@ -63,8 +63,8 @@
     <template
         id="wt_account_invoice_line_ritenuta"
         inherit_id="l10n_it_fatturapa_out.account_invoice_line_ritenuta"
+        priority="100"
     >
-
         <xpath expr="t" position="replace">
             <t t-if="line.invoice_line_tax_wt_ids">
                 <!-- 2.2.1.13 -->

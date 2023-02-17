@@ -38,8 +38,6 @@ class TestInvoiceWT(FatturaPACommon):
         self.env["uom.uom"].search([("name", "=", "Units")]).name = "Unit(s)"
         ###
 
-        type_payable = self.env.ref("account.data_account_type_payable")
-        type_receivable = self.env.ref("account.data_account_type_receivable")
         self.tax_0 = (
             self.env.ref("l10n_it_fatturapa.tax_00_enas")
             .sudo()
@@ -48,16 +46,16 @@ class TestInvoiceWT(FatturaPACommon):
         self.wt_account_payable = self.env["account.account"].create(
             {
                 "name": "Debiti per ritenute da versare",
-                "code": "WT_001",
-                "user_type_id": type_payable.id,
+                "code": "WT.001",
+                "account_type": "liability_payable",
                 "reconcile": True,
             }
         )
         self.wt_account_receivable = self.env["account.account"].create(
             {
                 "name": "Crediti per ritenute subite",
-                "code": "WT_002",
-                "user_type_id": type_receivable.id,
+                "code": "WT.002",
+                "account_type": "asset_receivable",
                 "reconcile": True,
             }
         )
@@ -134,8 +132,6 @@ class TestInvoiceWT(FatturaPACommon):
         self.inps = self.env["withholding.tax"].create(wt_vals)
 
     def test_e_invoice_wt(self):
-        self.set_sequences(13, "2019-01-07")
-
         invoice = self.invoice_model.create(
             {
                 "name": "INV/2019/0013",
@@ -179,7 +175,6 @@ class TestInvoiceWT(FatturaPACommon):
         )
 
     def test_e_invoice_wt_enas_0(self):
-        self.set_sequences(14, "2019-01-07")
         invoice = self.invoice_model.create(
             {
                 "name": "INV/2019/0014",
@@ -235,7 +230,6 @@ class TestInvoiceWT(FatturaPACommon):
         """
         Fill DatiCassaPrevidenziale with Enasarco data
         """
-        self.set_sequences(15, "2019-01-07")
         self.enasarco.use_daticassaprev = True
         self.enasarco.daticassprev_tax_id = self.tax_0
         invoice = self.invoice_model.create(
@@ -294,7 +288,6 @@ class TestInvoiceWT(FatturaPACommon):
         Fill DatiCassaPrevidenziale with Enasarco data,
         when DatiRiepilogo already has 0 VAT
         """
-        self.set_sequences(16, "2019-01-07")
         self.enasarco.use_daticassaprev = True
         self.enasarco.daticassprev_tax_id = self.tax_0
         invoice = self.invoice_model.create(
@@ -349,7 +342,6 @@ class TestInvoiceWT(FatturaPACommon):
         )
 
     def test_e_invoice_wt_inps_0(self):
-        self.set_sequences(17, "2019-01-07")
         invoice = self.invoice_model.create(
             {
                 "name": "INV/2019/0017",
@@ -405,7 +397,6 @@ class TestInvoiceWT(FatturaPACommon):
         """
         Fill DatiCassaPrevidenziale with INPS data
         """
-        self.set_sequences(18, "2019-01-07")
         self.inps.use_daticassaprev = True
         self.inps.daticassprev_tax_id = self.tax_0
         invoice = self.invoice_model.create(
@@ -464,7 +455,6 @@ class TestInvoiceWT(FatturaPACommon):
         Fill DatiCassaPrevidenziale with INPS data,
         when DatiRiepilogo already has 0 VAT
         """
-        self.set_sequences(19, "2019-01-07")
         self.inps.use_daticassaprev = True
         self.inps.daticassprev_tax_id = self.tax_0
         invoice = self.invoice_model.create(
