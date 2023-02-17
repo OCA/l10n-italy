@@ -19,9 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:373
+#: code:addons/l10n_it_reverse_charge/models/account_rc_type.py:0
 #, python-format
-msgid "Can't find 1 tax mapping for %s"
+msgid ""
+"Can't find tax mapping for {tax_name} in Reverse Charge Type {rc_type_name}, "
+"please check the configuration."
 msgstr ""
 
 #. module: l10n_it_reverse_charge
@@ -48,6 +50,9 @@ msgid "Description"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_fiscal_position__display_name
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__display_name
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax__display_name
 msgid "Display Name"
@@ -73,28 +78,31 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_fiscal_position__id
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_move_line__id
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__id
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax__id
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_reverse_charge
-#: model:ir.model,name:l10n_it_reverse_charge.model_account_invoice
-msgid "Invoice"
-msgstr "Faktur"
-
-#. module: l10n_it_reverse_charge
-#: model:ir.model,name:l10n_it_reverse_charge.model_account_invoice_line
-msgid "Invoice Line"
+#: code:addons/l10n_it_reverse_charge/models/account_move.py:0
+#, python-format
+msgid ""
+"Invoice %s, line\n"
+"%s\n"
+"is RC but has not tax"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:328
-#, python-format
-msgid ""
-"Invoice line\n"
-"%s\n"
-"is RC but has not tax"
+#: model:ir.model,name:l10n_it_reverse_charge.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model,name:l10n_it_reverse_charge.model_account_move_line
+msgid "Journal Item"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
@@ -113,6 +121,9 @@ msgid "Journal used to pay RC self invoices."
 msgstr ""
 
 #. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_fiscal_position____last_update
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_move____last_update
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_move_line____last_update
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type____last_update
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax____last_update
 msgid "Last Modified on"
@@ -146,7 +157,20 @@ msgid "Name"
 msgstr "Nama"
 
 #. module: l10n_it_reverse_charge
-#: selection:account.rc.type,partner_type:0
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax__original_purchase_tax_id
+msgid "Original Purchase Tax"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: code:addons/l10n_it_reverse_charge/models/account_rc_type.py:0
+#, python-format
+msgid ""
+"Original Purchase Tax is required for Reverse Charge Type {rc_type_name} "
+"having With additional supplier self invoice enabled"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields.selection,name:l10n_it_reverse_charge.selection__account_rc_type__partner_type__other
 msgid "Other"
 msgstr ""
 
@@ -161,22 +185,28 @@ msgid "Purchase Tax"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_invoice_line__rc
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_move_line__rc
 msgid "RC"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_invoice__rc_purchase_invoice_id
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_bank_statement_line__rc_purchase_invoice_id
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_move__rc_purchase_invoice_id
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_payment__rc_purchase_invoice_id
 msgid "RC Purchase Invoice"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_invoice__rc_self_invoice_id
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_bank_statement_line__rc_self_invoice_id
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_move__rc_self_invoice_id
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_payment__rc_self_invoice_id
 msgid "RC Self Invoice"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_invoice__rc_self_purchase_invoice_id
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_bank_statement_line__rc_self_purchase_invoice_id
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_move__rc_self_purchase_invoice_id
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_payment__rc_self_purchase_invoice_id
 msgid "RC Self Purchase Invoice"
 msgstr ""
 
@@ -204,7 +234,7 @@ msgid "Reverse Charge Types"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:77
+#: code:addons/l10n_it_reverse_charge/models/account_move.py:0
 #, python-format
 msgid ""
 "Reverse charge self invoice.\n"
@@ -220,7 +250,7 @@ msgid "Sale Tax"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: selection:account.rc.type,method:0
+#: model:ir.model.fields.selection,name:l10n_it_reverse_charge.selection__account_rc_type__method__selfinvoice
 msgid "Self Invoice"
 msgstr ""
 
@@ -260,7 +290,7 @@ msgid "Self Invoicing"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: selection:account.rc.type,partner_type:0
+#: model:ir.model.fields.selection,name:l10n_it_reverse_charge.selection__account_rc_type__partner_type__supplier
 msgid "Supplier"
 msgstr ""
 
@@ -280,16 +310,17 @@ msgid "Tax Mapping for self invoices"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:336
-#, python-format
+#: model:ir.model.constraint,message:l10n_it_reverse_charge.constraint_account_rc_type_tax_original_purchase_sale_tax_uniq
 msgid ""
-"Tax code used is not a RC tax.\n"
-"Can't find tax mapping"
+"Tax mappings from Original Purchase Tax to Purchase Tax to Sale Tax can be "
+"defined only once per Reverse Charge Type."
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: sql_constraint:account.rc.type.tax:0
-msgid "Tax mappings can be defined only once per rc type."
+#: model:ir.model.constraint,message:l10n_it_reverse_charge.constraint_account_rc_type_tax_purchase_sale_tax_uniq
+msgid ""
+"Tax mappings from Purchase Tax to Sale Tax can be defined only once per "
+"Reverse Charge Type."
 msgstr ""
 
 #. module: l10n_it_reverse_charge
@@ -303,16 +334,7 @@ msgid "Text on Self Invoice"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:429
-#, python-format
-msgid ""
-"There are more than one payment line.\n"
-"In that case account entries cannot be canceledautomatically. Please proceed "
-"manually"
-msgstr ""
-
-#. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:313
+#: code:addons/l10n_it_reverse_charge/models/account_move.py:0
 #, python-format
 msgid ""
 "There is no default credit account defined \n"
@@ -325,26 +347,21 @@ msgid "Transitory account used on self invoices."
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: selection:account.rc.type,method:0
+#: model:ir.model.fields.selection,name:l10n_it_reverse_charge.selection__account_rc_type__method__integration
 msgid "VAT Integration"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:419
+#: code:addons/l10n_it_reverse_charge/models/account_move.py:0
 #, python-format
 msgid ""
 "VAT integration RC type, defined in fiscal position {fp}, is not managed yet"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_rc_type.py:94
-#, python-format
-msgid ""
-"When \"With additional supplier self invoice\" you must set only one tax "
-"mapping line: only 1 tax per invoice is supported"
-msgstr ""
-
-#. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__with_supplier_self_invoice
 msgid "With additional supplier self invoice"
 msgstr ""
+
+#~ msgid "Invoice"
+#~ msgstr "Faktur"
