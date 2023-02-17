@@ -94,14 +94,13 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         move_form = Form(
             self.env["account.move"].with_context(default_move_type="out_invoice")
         )
-        move_form.date = fields.Date.from_string("2016-06-15")
         move_form.invoice_date = fields.Date.from_string("2016-06-15")
         move_form.invoice_date_due = fields.Date.today()
         move_form.partner_id = self.res_partner_fatturapa_0
         move_form.invoice_payment_term_id = self.payment_term
         move_form.fiscal_position_id = self.fiscal_position
 
-        with move_form.line_ids.new() as line_form:
+        with move_form.invoice_line_ids.new() as line_form:
             line_form.product_id = self.product_product_10
             line_form.tax_ids.clear()
             line_form.tax_ids.add(self.tax1)

@@ -14,7 +14,7 @@
             />
             <DettaglioLinee t-if="to_add">
                 <t t-set="line_counter" t-value="line_counter + 1" />
-                <NumeroLinea t-esc="line_counter" />
+                <NumeroLinea t-out="line_counter" />
                 <Descrizione>Altre lettere d'intento</Descrizione>
                 <PrezzoUnitario>0.00</PrezzoUnitario>
                 <PrezzoTotale>0.00</PrezzoTotale>
@@ -23,9 +23,9 @@
                 <AltriDatiGestionali t-foreach="to_add" t-as="dec">
                     <TipoDato>INTENTO</TipoDato>
                     <RiferimentoTesto
-                        t-esc="encode_for_export(dec.telematic_protocol, 60)"
+                        t-out="encode_for_export(dec.telematic_protocol, 60)"
                     />
-                    <RiferimentoData t-esc="format_date(dec.date)" />
+                    <RiferimentoData t-out="format_date(dec.date)" />
                 </AltriDatiGestionali>
             </DettaglioLinee>
         </xpath>
@@ -52,10 +52,10 @@
                 />
                 <TipoDato>INTENTO</TipoDato>
                 <RiferimentoTesto
-                    t-esc="encode_for_export(line.force_declaration_of_intent_id.telematic_protocol, 60)"
+                    t-out="encode_for_export(line.force_declaration_of_intent_id.telematic_protocol, 60)"
                 />
                 <RiferimentoData
-                    t-esc="format_date(line.force_declaration_of_intent_id.date)"
+                    t-out="format_date(line.force_declaration_of_intent_id.date)"
                 />
             </AltriDatiGestionali>
         </xpath>
