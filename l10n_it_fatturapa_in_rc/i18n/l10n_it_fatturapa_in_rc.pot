@@ -22,8 +22,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_account_move__display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_account_rc_type__display_name
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_fatturapa_attachment_in__display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_wizard_import_fatturapa__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in_rc
+#: model:ir.model,name:l10n_it_fatturapa_in_rc.model_fatturapa_attachment_in
+msgid "E-bill import file"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in_rc
@@ -35,6 +41,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_account_move__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_account_move_line__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_account_rc_type__id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_fatturapa_attachment_in__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_wizard_import_fatturapa__id
 msgid "ID"
 msgstr ""
@@ -58,6 +65,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_account_move____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_account_move_line____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_account_rc_type____last_update
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_fatturapa_attachment_in____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_wizard_import_fatturapa____last_update
 msgid "Last Modified on"
 msgstr ""
