@@ -4,7 +4,7 @@
 - mappare le imposta di vendita di odoo con i gruppi di imposte - dipartimenti della stampante fiscale, per ogni imposta di vendita in odoo, usando il campo "Reparto sulla stampante fiscale 1~99"
 - in odoo, utilizzare imposte incluse nel prezzo
 - connettere la vostra stampante fiscale alla rete locale e recuperare l'IP
-- aprire la configurazione POS e impostare l'indirizzo IP della stampante
+- aprire la configurazione POS e impostare l'indirizzo IP e il seriale della stampante nella sezione "Stampante Fiscale"
 - è tutto, alla validazione del pagamento nella sessione POS, il sistema stamperà lo scontrino fiscale.
 
 **English**
