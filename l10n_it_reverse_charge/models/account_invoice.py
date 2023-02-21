@@ -144,7 +144,6 @@ class AccountInvoice(models.Model):
     def rc_payment_vals(self, rc_type):
         return {
             'journal_id': rc_type.payment_journal_id.id,
-            # 'period_id': self.period_id.id,
             'date': self.date,
             }
 
@@ -211,6 +210,7 @@ class AccountInvoice(models.Model):
             'credit': credit,
             'account_id': self.get_inv_line_to_reconcile().account_id.id,
             'partner_id': self.partner_id.id,
+            'currency_id': self.currency_id.id,
             }
 
     def rc_invoice_payment_vals(self, rc_type):
@@ -233,6 +233,7 @@ class AccountInvoice(models.Model):
             'account_id': self.get_rc_inv_line_to_reconcile(
                 invoice).account_id.id,
             'partner_id': invoice.partner_id.id,
+            'currency_id': invoice.currency_id.id,
             }
 
     def rc_payment_debit_line_vals(self, invoice, journal):
