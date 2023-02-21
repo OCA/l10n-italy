@@ -140,21 +140,21 @@ class StockDeliveryNoteLine(models.Model):
 
         return lines
 
-    @api.model
-    def create(self, vals):
-        if vals.get("display_type"):
-            vals.update(
-                {
-                    "product_id": False,
-                    "product_qty": 0.0,
-                    "product_uom_id": False,
-                    "price_unit": 0.0,
-                    "discount": 0.0,
-                    "tax_ids": [(5, False, False)],
-                }
-            )
-
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("display_type"):
+                vals.update(
+                    {
+                        "product_id": False,
+                        "product_qty": 0.0,
+                        "product_uom_id": False,
+                        "price_unit": 0.0,
+                        "discount": 0.0,
+                        "tax_ids": [(5, False, False)],
+                    }
+                )
+        return super().create(vals_list)
 
     def write(self, vals):
         if "display_type" in vals and self.filtered(
