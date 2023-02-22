@@ -11,13 +11,13 @@ odoo.define("fiscal_epos_print.PaymentScreen", function (require) {
     // eslint-disable-next-line
     const MyPaymentScreen = (PaymentScreen) =>
         class extends PaymentScreen {
-            show() {
-                this._super.apply(this, arguments);
-                if (this.pos.config.printer_ip) {
+            setup() {
+                super.setup();
+                if (this.env.pos.config.printer_ip) {
                     var currentOrder = this.env.pos.get_order();
                     var printer_options = currentOrder.getPrinterOptions();
                     var fp90 = new eposDriver(printer_options, this);
-                    var amount = this.format_currency(
+                    var amount = this.env.pos.format_currency(
                         currentOrder.get_total_with_tax()
                     );
                     fp90.printDisplayText(_t("SubTotal") + " " + amount);
@@ -27,18 +27,32 @@ odoo.define("fiscal_epos_print.PaymentScreen", function (require) {
             sendToFP90Printer(receipt, printer_options) {
                 var fp90 = new eposDriver(printer_options, this);
                 fp90.printFiscalReceipt(receipt);
+                this.env.pos.context = {};
             }
 
-            _finalizeValidation() {
+            async _finalizeValidation() {
                 // We need to get currentOrder before calling the _super()
                 // otherwise we will likely get a empty order when we want to skip
                 // the receipt preview
-                var currentOrder = this.env.pos.get("selectedOrder");
-                super._finalizeValidation(...arguments);
+                var currentOrder = this.currentOrder;
+                await super._finalizeValidation();
                 if (this.env.pos.config.printer_ip && !currentOrder.is_to_invoice()) {
                     // TODO self.chrome does not exists
                     // this.chrome.loading_show();
                     // this.chrome.loading_message(_t('Connecting to the fiscal printer'));
+                    if (
+                        currentOrder.has_refund &&
+                        this.env.pos.context &&
+                        this.env.pos.context.refund_details
+                    ) {
+                        currentOrder.refund_date = this.env.pos.context.refund_date;
+                        currentOrder.refund_report = this.env.pos.context.refund_report;
+                        currentOrder.refund_doc_num =
+                            this.env.pos.context.refund_doc_num;
+                        currentOrder.refund_cash_fiscal_serial =
+                            this.env.pos.context.refund_cash_fiscal_serial;
+                    }
+
                     var printer_options = currentOrder.getPrinterOptions();
                     printer_options.order = currentOrder;
                     var receipt = currentOrder.export_for_printing();
