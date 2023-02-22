@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="LotteryCodePopup" owl="1">
+
+        <div class="modal-dialog">
+            <div class="popup popup-text">
+
+                <p class="title">
+                   <t t-esc=" props.title || '' " />
+                </p>
+
+                <div class='client-detail'>
+                    <input
+                        id="lottery_code"
+                        class="detail lottery_code"
+                        type='text'
+                        t-att-value="props.lottery_code || ''"
+                        t-ref="inputLotteryCode"
+                    />
+                </div>
+
+                <div class="footer">
+                    <div class="button confirm" t-on-click="clickConfirmLotteryCode">
+                        Apply
+                    </div>
+                    <div class="button cancel" t-on-click="cancel">
+                            <t t-esc="props.cancelText" />
+                        </div>
+                    <div
+                        id="error-message-dialog"
+                        style="color: red; font-weight: bold; font-size: 18px; font-style: italic; display: none;"
+                    >
+                        Some fields are empty.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </t>
+
+</templates>
