@@ -1,9 +1,10 @@
 odoo.define("fiscal_epos_print.RefundInfoPopup", function (require) {
     "use strict";
 
-    const {useState, useRef} = owl.hooks;
+    const {useRef, useState} = owl;
     const AbstractAwaitablePopup = require("point_of_sale.AbstractAwaitablePopup");
     const Registries = require("point_of_sale.Registries");
+    const {_lt} = require("@web/core/l10n/translation");
 
     class RefundInfoPopup extends AbstractAwaitablePopup {
         constructor() {
@@ -14,30 +15,8 @@ odoo.define("fiscal_epos_print.RefundInfoPopup", function (require) {
             this.inputRefundDate = useRef("inputRefundDate");
             this.inputRefundDocNum = useRef("inputRefundDocNum");
             this.inputRefundCashFiscalSerial = useRef("inputRefundCashFiscalSerial");
-            this.inputDatePicker = null;
-            // TODO to be removed;
-            // this.refund_report = null;
-            // this.refund_date = null;
-            // this.refund_doc_num = null;
-            // this.refund_cash_fiscal_serial = null;
-            // this.datepicker = null;
+            this.inputDatePicker = this.initializeDatePicker();
         }
-
-        mounted() {
-            this.inputRefundReport.el.focus();
-            this.initializeDatePicker();
-        }
-
-        // TODO this first migration is from method show() and it's seems to be incorrect
-        // mounted(options){
-        //     options = options || {};
-        //     super.mounted(...arguments);
-        //     this.update_refund_info_button = options.update_refund_info_button;
-        //     // this.renderElement();
-        //     this.datepicker = null;
-        //     // this.$('refund_report').focus();
-        //     this.initializeDatePicker();
-        // }
 
         clickConfirmRefund() {
             this.$el = $(this.el);
@@ -54,20 +33,32 @@ odoo.define("fiscal_epos_print.RefundInfoPopup", function (require) {
             if (allValid()) {
                 this.$el.find("#error-message-dialog").hide();
 
-                var order = this.env.pos.get_order();
-                order.refund_report = this.$el.find("#refund_report").val();
-                order.refund_date = this.$el.find("#refund_date").val();
-                order.refund_doc_num = this.$el.find("#refund_doc_num").val();
-                order.refund_cash_fiscal_serial = this.$el
+                var refund_date = this.$el.find("#refund_date").val();
+                var refund_report = this.$el.find("#refund_report").val();
+                var refund_doc_num = this.$el.find("#refund_doc_num").val();
+                var refund_cash_fiscal_serial = this.$el
                     .find("#refund_cash_fiscal_serial")
                     .val();
-                this.trigger("close-popup");
+                this.env.pos.context = {
+                    refund_details: true,
+                    refund_date: refund_date,
+                    refund_report: refund_report,
+                    refund_doc_num: refund_doc_num,
+                    refund_cash_fiscal_serial: refund_cash_fiscal_serial,
+                };
+                this.env.pos.set_refund_data(
+                    refund_date,
+                    refund_report,
+                    refund_doc_num,
+                    refund_cash_fiscal_serial
+                );
                 if (
                     this.props.update_refund_info_button &&
                     this.props.update_refund_info_button instanceof Function
                 ) {
                     this.props.update_refund_info_button();
                 }
+                this.env.posbus.trigger("close-popup", {popupId: this.props.id});
             } else {
                 this.$el.find("#error-message-dialog").show();
             }
@@ -88,8 +79,8 @@ odoo.define("fiscal_epos_print.RefundInfoPopup", function (require) {
     RefundInfoPopup.template = "RefundInfoPopup";
 
     RefundInfoPopup.defaultProps = {
-        confirmText: "Ok",
-        cancelText: "Cancel",
+        confirmText: _lt("Ok"),
+        cancelText: _lt("Cancel"),
         body: "",
     };
 
