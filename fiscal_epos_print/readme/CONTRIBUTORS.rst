@@ -6,3 +6,4 @@
 
 * Alessio Gerace
 * Roberto Fichera
+* Giuseppe Borruso <gborruso@dinamicheaziendali.it>

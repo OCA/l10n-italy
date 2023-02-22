@@ -6,7 +6,7 @@
 
 {
     "name": "ITA - Driver per stampanti fiscali compatibili ePOS-Print XML",
-    "version": "14.0.1.0.1",
+    "version": "16.0.1.0.0",
     "category": "Point Of Sale",
     "summary": "ePOS-Print XML Fiscal Printer Driver - Stampanti Epson compatibili: "
     "FP81II, FP90III",
@@ -25,21 +25,37 @@
     "data": [
         "views/account.xml",
         "views/point_of_sale.xml",
-        "views/assets.xml",
     ],
-    "qweb": [
-        # Popups
-        "static/src/xml/Popups/RefundInfoPopup.xml",
-        # Others
-        "static/src/xml/Chrome.xml",
-        "static/src/xml/ChromeWidgets/EpsonEPOSButton.xml",
-        "static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml",
-        "static/src/xml/ChromeWidgets/SetLotteryCodeButton.xml",
-        "static/src/xml/ChromeWidgets/SetRefundInfoButton.xml",
-        # TODO To be converted with new components system
-        # 'static/src/xml/pos.xml',
-        # 'static/src/xml/lottery.xml',
-    ],
+    "assets": {
+        "point_of_sale.assets": [
+            "fiscal_epos_print/static/lib/pikaday/pikaday.min.css",
+            "fiscal_epos_print/static/src/css/pos.css",
+            "fiscal_epos_print/static/lib/fiscalprint/fiscalprint.js",
+            "fiscal_epos_print/static/lib/pikaday/pikaday.min.js",
+            "fiscal_epos_print/static/src/js/epson_epos_print.js",
+            "fiscal_epos_print/static/src/js/models.js",
+            # ChromeWidgets
+            "fiscal_epos_print/static/src/js/ChromeWidgets/EpsonEPOSButton.js",
+            "fiscal_epos_print/static/src/js/ChromeWidgets/EpsonFP81IIComponent.js",
+            "fiscal_epos_print/static/src/js/ChromeWidgets/SetLotteryCodeButton.js",
+            "fiscal_epos_print/static/src/js/ChromeWidgets/SetRefundInfoButton.js",
+            # Popups
+            "fiscal_epos_print/static/src/js/Popups/LotteryCodePopup.js",
+            "fiscal_epos_print/static/src/js/Popups/RefundInfoPopup.js",
+            # Screens
+            "fiscal_epos_print/static/src/js/Screens/PaymentScreen/PaymentScreen.js",
+            "fiscal_epos_print/static/src/js/Screens/ReceiptScreen/ReceiptScreen.js",
+            # Popups
+            "fiscal_epos_print/static/src/xml/Popups/LotteryCodePopup.xml",
+            "fiscal_epos_print/static/src/xml/Popups/RefundInfoPopup.xml",
+            # Others
+            "fiscal_epos_print/static/src/xml/Chrome.xml",
+            "fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonEPOSButton.xml",
+            "fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml",
+            "fiscal_epos_print/static/src/xml/ChromeWidgets/SetLotteryCodeButton.xml",
+            "fiscal_epos_print/static/src/xml/ChromeWidgets/SetRefundInfoButton.xml",
+        ],
+    },
     "installable": True,
     "auto_install": False,
 }
