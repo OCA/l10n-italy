@@ -1,7 +1,6 @@
 odoo.define("fiscal_epos_print.popups", function (require) {
     "use strict";
 
-    require("web.core");
     var popups = require("point_of_sale.popups");
     var gui = require("point_of_sale.Gui");
 
