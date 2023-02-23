@@ -5,7 +5,7 @@
         <field name="model">sdi.channel</field>
         <field name="name">view_sdi_channel_tree</field>
         <field name="arch" type="xml">
-            <tree string="ES Channel">
+            <tree>
                 <field name="name" />
                 <field name="channel_type" />
                 <field name="company_id" groups="base.group_multi_company" />

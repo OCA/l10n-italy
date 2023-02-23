@@ -8,7 +8,7 @@ class SdiChannel(models.Model):
     _name = "sdi.channel"
     _description = "ES channel"
 
-    name = fields.Char(string="Name", required=True, translate=True)
+    name = fields.Char(required=True, translate=True)
     company_id = fields.Many2one(
         "res.company",
         string="Company",
