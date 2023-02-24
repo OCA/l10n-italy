@@ -168,8 +168,10 @@ class Fetchmail(models.Model):
     def notify_about_server_reset(self):
         self.ensure_one()
         self.notify_or_log(
-            _("PEC server %s has been reset. Last error message is '%s'")
-            % (self.name, self.last_pec_error_message)
+            _(
+                "PEC server %(name)s has been reset. Last error message is '%(error_message)s'"
+            )
+            % {"name": self.name, "error_message": self.last_pec_error_message}
         )
 
     def notify_or_log(self, message):

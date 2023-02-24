@@ -1,6 +1,8 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from odoo.tests import Form
+
 from odoo.addons.l10n_it_fatturapa_out.tests.fatturapa_common import FatturaPACommon
 
 
@@ -29,7 +31,7 @@ class EInvoiceCommon(FatturaPACommon):
             dict(
                 code="REC",
                 name="Receivable",
-                user_type_id=self.ref("account.data_account_type_receivable"),
+                account_type="asset_receivable",
                 reconcile=True,
             )
         )
@@ -37,24 +39,25 @@ class EInvoiceCommon(FatturaPACommon):
             dict(
                 code="INC",
                 name="Income",
-                user_type_id=self.ref("account.data_account_type_revenue"),
+                account_type="income",
                 reconcile=True,
             )
         )
         self.partner = self.env.ref("l10n_it_fatturapa.res_partner_fatturapa_2")
         self.product = self.env.ref("product.product_product_5")
-        self.env.company.sdi_channel_id = self.env.ref(
-            "l10n_it_fatturapa_pec.sdi_channel_pec"
-        )
-        self.env.company.sdi_channel_id.pec_server_id = self.env[
-            "ir.mail_server"
-        ].create(
+        sdi_channel_form = Form(self.env["sdi.channel"])
+        sdi_channel_form.name = "PEC"
+        sdi_channel_form.channel_type = "pec"
+        sdi_channel_form.pec_server_id = self.env["ir.mail_server"].create(
             {
                 "name": "dummy",
                 "smtp_host": "smtp_host",
                 "email_from_for_fatturaPA": "dummy@fatturapa.it",
             }
         )
+        sdi_channel_form.fetch_pec_server_id = self._create_fetchmail_pec_server()
+        self.sdi_channel_id = sdi_channel_form.save()
+        self.env.company.sdi_channel_id = self.sdi_channel_id.id
 
     def _create_invoice(self):
         tax = self.tax_model.create(
@@ -84,7 +87,7 @@ class EInvoiceCommon(FatturaPACommon):
 
     def _get_export_wizard(self, invoice):
         wizard = self.wizard_model.create({})
-        return wizard.with_context({"active_ids": [invoice.id]})
+        return wizard.with_context(active_ids=[invoice.id])
 
     def _create_e_invoice(self):
         invoice = self._create_invoice()

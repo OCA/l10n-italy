@@ -28,7 +28,7 @@ class FatturaPAAttachmentOut(models.Model):
         default="No response yet",
         readonly=True,
     )
-    sending_user = fields.Many2one("res.users", "Sending User", readonly=True)
+    sending_user = fields.Many2one("res.users", readonly=True)
 
     @api.model
     def _check_fetchmail(self):

@@ -2,5 +2,6 @@
 asn1crypto
 codicefiscale
 elementpath
+mock
 unidecode
 xmlschema

@@ -18,9 +18,15 @@ class TestEInvoiceSend(EInvoiceCommon):
         PEC server configured raises UserError"""
         e_invoice = self._create_e_invoice()
 
+        # Remove PEC server
+        self.sdi_channel_id.fetch_pec_server_id.is_fatturapa_pec = False
+
         # There is no PEC server configured
         with self.assertRaises(UserError):
             e_invoice.send_via_pec()
+
+        # Add PEC server
+        self.sdi_channel_id.fetch_pec_server_id.is_fatturapa_pec = True
 
     @mute_logger("odoo.addons.mail.models.mail_mail")
     def test_sender_error(self):

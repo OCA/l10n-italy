@@ -18,7 +18,6 @@ class TestEInvoiceResponse(EInvoiceCommon):
         super(TestEInvoiceResponse, self).setUp()
         self.PEC_server = self._create_fetchmail_pec_server()
         self.env.company.vat = "IT03339130126"
-        self.set_sequences(15, "2018-01-07")
         self.attach_in_model = self.env["fatturapa.attachment.in"]
 
     @staticmethod
@@ -134,7 +133,7 @@ class TestEInvoiceResponse(EInvoiceCommon):
         error_mails_nbr = outbound_mail_model.search_count(error_mail_domain)
         self.assertFalse(error_mails_nbr)
 
-        with mock.patch("odoo.addons.fetchmail.models.fetchmail.POP3") as mock_pop3:
+        with mock.patch("odoo.addons.mail.models.fetchmail.POP3") as mock_pop3:
             instance = mock_pop3.return_value
             instance.stat.return_value = (1, 1)
             instance.retr.return_value = ("", [incoming_mail], "")
@@ -151,7 +150,6 @@ class TestEInvoiceResponse(EInvoiceCommon):
         """Receiving a 'Mancata consegna' sets the state of the
         e-invoice to 'recipient_error'"""
         self.env.company.vat = "IT14627831002"
-        self.set_sequences(2621, "2019-01-08")
         e_invoice = self._create_e_invoice()
         self.set_e_invoice_file_id(e_invoice, "IT14627831002_02621.xml")
         e_invoice.send_via_pec()

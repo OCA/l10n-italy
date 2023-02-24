@@ -49,8 +49,13 @@ class SdiChannel(models.Model):
             elements = self.search(domain)
             if len(elements) > 1:
                 raise exceptions.ValidationError(
-                    _("The channel %s with pec server %s already exists")
-                    % (channel.name, channel.fetch_pec_server_id.name)
+                    _(
+                        "The channel %(name)s with pec server %(server_name)s already exists"
+                    )
+                    % {
+                        "name": channel.name,
+                        "server_name": channel.fetch_pec_server_id.name,
+                    }
                 )
 
     @api.constrains("pec_server_id")
@@ -60,8 +65,13 @@ class SdiChannel(models.Model):
             elements = self.search(domain)
             if len(elements) > 1:
                 raise exceptions.ValidationError(
-                    _("The channel %s with pec server %s already exists")
-                    % (channel.name, channel.pec_server_id.name)
+                    _(
+                        "The channel %(name)s with pec server %(server_name)s already exists"
+                    )
+                    % {
+                        "name": channel.name,
+                        "server_name": channel.pec_server_id.name,
+                    }
                 )
 
     @api.constrains("email_exchange_system")

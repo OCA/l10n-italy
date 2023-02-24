@@ -4,7 +4,7 @@
     <record id="view_email_server_form_e_invoice" model="ir.ui.view">
         <field name="name">view_email_server_form_e_invoice</field>
         <field name="model">fetchmail.server</field>
-        <field name="inherit_id" ref="fetchmail.view_email_server_form" />
+        <field name="inherit_id" ref="mail.view_email_server_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='server_type']" position="after">
                 <field name="is_fatturapa_pec" />
