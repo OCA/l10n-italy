@@ -1,6 +1,7 @@
 # Copyright 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
 # Copyright 2012-15 Agile Business Group sagl (<http://www.agilebg.com>)
 # Copyright 2015 Associazione Odoo Italia (<http://www.odoo-italia.org>)
+# Copyright 2023 Gianmarco Conte - Dinamiche Aziendali Srl (<www.dinamicheaziendali.it>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import math
@@ -339,6 +340,17 @@ class AccountVatPeriodEndStatement(models.Model):
         default=lambda self: self.env.company,
     )
     annual = fields.Boolean("Annual prospect")
+    account_ids = fields.Many2many(
+        "account.account",
+        string="Accounts filter",
+        domain=lambda self: self._get_domain_account(),
+    )
+
+    def _get_domain_account(self):
+        domain = [("vat_statement_account_id", "!=", False)]
+        tax_ids = self.env["account.tax"].search(domain)
+        account_ids = tax_ids.mapped("vat_statement_account_id")
+        return [("id", "in", account_ids.ids)]
 
     def unlink(self):
         for statement in self:
@@ -732,6 +744,10 @@ class AccountVatPeriodEndStatement(models.Model):
                 ("type_tax_use", "in", ["sale", "purchase"]),
             ]
         )
+        if statement.account_ids:
+            taxes = taxes.filtered(
+                lambda tax: tax.vat_statement_account_id in statement.account_ids
+            )
         for tax in taxes:
             # se ho una tassa padre con figli cee_type, condidero le figlie
             if any(
