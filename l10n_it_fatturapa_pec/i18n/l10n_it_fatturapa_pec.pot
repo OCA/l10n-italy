@@ -162,7 +162,7 @@ msgid "PEC error count"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:65
+#: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:66
 #, python-format
 msgid "PEC message \"%s\" has been read but not processed, as not related to an e-invoice.\n"
 "Please check PEC mailbox %s, at server %s, with user %s."
