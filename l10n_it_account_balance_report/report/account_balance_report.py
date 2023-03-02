@@ -21,6 +21,7 @@ class ReportAccountBalanceReport(models.TransientModel):
         [('profit_loss', "Profit & Loss"),
          ('balance_sheet', "Balance Sheet")],
     )
+    hide_accounts_codes = fields.Boolean()
     left_col_name = fields.Char()
     right_col_name = fields.Char()
     section_credit_ids = fields.One2many(

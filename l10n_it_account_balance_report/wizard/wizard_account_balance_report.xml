@@ -29,6 +29,7 @@
                                 <field name="target_move"
                                        widget="radio"/>
                                 <field name="hide_account_at_0"/>
+                                <field name="hide_accounts_codes"/>
                                 <field name="show_partner_details"/>
                                 <field name="hierarchy_on" invisible="1"/>
                                 <field name="limit_hierarchy_level"

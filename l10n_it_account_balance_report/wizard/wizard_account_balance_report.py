@@ -13,6 +13,7 @@ class ReportAccountBalanceWizard(models.TransientModel):
          ('balance_sheet', "Balance Sheet")],
         string="Report Type"
     )
+    hide_accounts_codes = fields.Boolean()
 
     @api.onchange('show_partner_details')
     def onchange_show_partner_details(self):
@@ -63,6 +64,7 @@ class ReportAccountBalanceWizard(models.TransientModel):
         return {
             'account_balance_report_type': self.account_balance_report_type,
             'trial_balance_id': trial_balance.id,
+            'hide_accounts_codes': self.hide_accounts_codes,
         }
 
     def prepare_trial_balance_vals(self):
