@@ -136,20 +136,30 @@ class AccountInvoice(models.Model):
                     for note_line in dn.line_ids.filtered(
                         lambda l: l.invoice_status == DOMAIN_INVOICE_STATUSES[2]
                     ):
+                        if not dn_invoice_lines:
+                            for new_line in new_lines:
+                                if new_line[2]["sequence"] == (sequence - 1):
+                                    new_line[2]["name"] = _(
+                                        """{} and "{}" of {}""").format(
+                                        new_line[2]["name"],
+                                        dn.name,
+                                        dn.date.strftime(DATE_FORMAT),
+                                    )
                         for invoice_line in dn_invoice_lines:
                             if note_line in invoice_line.sale_line_ids.\
                                     delivery_note_line_ids:
                                 invoice_line.delivery_note_id = note_line.\
                                     delivery_note_id.id
-                    new_lines.append(
-                        (
-                            0,
-                            False,
-                            self._prepare_note_dn_value(
-                                sequence, dn
-                            ),
+                    if dn_invoice_lines:
+                        new_lines.append(
+                            (
+                                0,
+                                False,
+                                self._prepare_note_dn_value(
+                                    sequence, dn
+                                ),
+                            )
                         )
-                    )
                     for invoice_line in dn_invoice_lines:
                         sequence += 1
                         invoice_line.sequence = sequence
