@@ -1,7 +1,9 @@
 from datetime import datetime, timedelta
 
+from odoo.tests import new_test_user
 from odoo.tests.common import Form
 
+from ..models.stock_delivery_note import DATE_FORMAT
 from .delivery_note_common import StockDeliveryNoteCommon
 
 
@@ -1286,3 +1288,93 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         delivery_note.action_draft()
         self.assertEqual(delivery_note.invoice_status, "no")
         self.assertEqual(delivery_note.state, "draft")
+
+    def test_invoicing_multiple_dn(self):
+        user = new_test_user(
+            self.env,
+            login="test_multiple_dn",
+            groups="stock.group_stock_manager,"
+            "l10n_it_delivery_note.use_advanced_delivery_notes",
+        )
+        self.env.user = user
+        StockPicking = self.env["stock.picking"]
+        sales_order = self.create_sales_order(
+            [
+                self.right_corner_desk_line,  # 2
+                self.desk_combination_line,  # 1
+            ],
+        )
+        self.assertEqual(len(sales_order.order_line), 2)
+        sales_order.action_confirm()
+        self.assertEqual(len(sales_order.picking_ids), 1)
+        picking = sales_order.picking_ids
+        self.assertEqual(len(picking.move_lines), 2)
+
+        # deliver only half of the first product
+        picking.move_lines[0].quantity_done = 1
+        res_dict = picking.button_validate()
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))]
+            .with_user(user)
+            .with_context(res_dict["context"])
+        ).save()
+        wizard.process()
+        res_dict = picking.action_delivery_note_create()
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))]
+            .with_user(user)
+            .with_context(res_dict["context"])
+        ).save()
+        wizard.confirm()
+        self.assertTrue(picking.delivery_note_id)
+        dn = picking.delivery_note_id
+        self.assertEqual(dn.partner_id, self.recipient)
+        dn.action_confirm()
+        dn.action_done()
+        picking_backorder = StockPicking.search([("backorder_id", "=", picking.id)])
+        self.assertEqual(len(picking_backorder.move_lines), 2)
+        picking_backorder.move_lines[0].quantity_done = 1
+        picking_backorder.move_lines[1].quantity_done = 1
+        picking_backorder.button_validate()
+        self.assertEqual(picking_backorder.state, "done")
+        back_res_dict = picking_backorder.action_delivery_note_create()
+        back_wizard = Form(
+            self.env[(back_res_dict.get("res_model"))]
+            .with_user(user)
+            .with_context(back_res_dict["context"])
+        ).save()
+        back_wizard.confirm()
+        self.assertTrue(picking_backorder.delivery_note_id)
+        back_dn = picking_backorder.delivery_note_id
+        self.assertEqual(back_dn.partner_id, self.recipient)
+        back_dn.action_confirm()
+        back_dn.action_done()
+        sales_order._create_invoices()
+        self.assertTrue(len(sales_order.invoice_ids), 1)
+        invoice = sales_order.invoice_ids
+        invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
+        self.assertEqual(
+            invoice.invoice_line_ids.filtered(
+                lambda inv_line: inv_line.product_id.id
+                == self.right_corner_desk_line[2]["product_id"]
+            ).quantity,
+            2,
+        )
+        self.assertEqual(
+            invoice.invoice_line_ids.filtered(
+                lambda inv_line: inv_line.product_id.id
+                == self.desk_combination_line[2]["product_id"]
+            ).quantity,
+            1,
+        )
+        self.assertEqual(dn.invoice_status, "invoiced")
+        self.assertEqual(back_dn.invoice_status, "invoiced")
+        self.assertIn(
+            f'Delivery Note "{dn.name}" of {dn.date.strftime(DATE_FORMAT)}',
+            invoice.invoice_line_ids.mapped("name"),
+        )
+        self.assertIn(
+            f'Delivery Note "{back_dn.name}" of {back_dn.date.strftime(DATE_FORMAT)}',
+            invoice.invoice_line_ids.mapped("name"),
+        )
