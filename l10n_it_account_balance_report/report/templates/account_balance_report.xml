@@ -160,7 +160,7 @@
         <div class="act_as_row lines">
             <!-- Account code -->
             <div class="act_as_cell left">
-                <t t-if="line.account_id">
+                <t t-if="line.account_id and not o.hide_accounts_codes">
                     <t t-set="res_model" t-value="'account.account'"/>
                     <span>
                         <a t-att-data-active-id="line.account_id.id"
