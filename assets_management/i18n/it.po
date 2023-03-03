@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-26 05:37+0000\n"
-"PO-Revision-Date: 2022-12-30 11:48+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-03-04 08:06+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -649,12 +649,12 @@ msgstr "Cespiti"
 #: model:ir.model.fields,field_description:assets_management.field_account_move_line__asset_accounting_info_ids
 #: model:ir.ui.menu,name:assets_management.menu_asset_accounting_info
 msgid "Assets Accounting Info"
-msgstr "Info contabili"
+msgstr "Informazioni contabili cespiti"
 
 #. module: assets_management
 #: model:ir.actions.act_window,name:assets_management.action_asset_depreciation_mode
 msgid "Assets Depreciation Mode"
-msgstr "Metodi ammortamento"
+msgstr "Metodi ammortamento cespiti"
 
 #. module: assets_management
 #: model:ir.actions.act_window,name:assets_management.action_asset_depreciation_type
@@ -686,10 +686,11 @@ msgstr "Gestione cespiti"
 #: code:addons/assets_management/report/asset_previsional.py:315
 #, python-format
 msgid "Assets Previsional Depreciations "
-msgstr "Ammortamenti previsionali "
+msgstr "Ammortamenti previsionali cespiti "
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.asset_search_view
+#, fuzzy
 msgid "Assets asset"
 msgstr "Beni ammortizzabili"
 
@@ -798,8 +799,8 @@ msgid ""
 "Before creating new categories, please complete the assets' configuration "
 "for both depreciation types and modes."
 msgstr ""
-"Prima di creare nuove categorie, completare la configurazione per i metodi e "
-"la natura di ammortamento."
+"Prima di creare nuove categorie, completare la configurazione dei cespiti "
+"sia per le tipologie che per le modalità di ammortamento."
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_account_move_mange_asset_form_view
@@ -970,6 +971,9 @@ msgid ""
 "chosen types:\n"
 "{}"
 msgstr ""
+"Impossibile aggiornare i seguenti cespiti, contengono ammortamenti più "
+"recenti per le tipologie scelte:\n"
+"{}"
 
 #. module: assets_management
 #: code:addons/assets_management/models/asset_depreciation.py:321
@@ -979,6 +983,9 @@ msgid ""
 "chosen date and types:\n"
 "{}"
 msgstr ""
+"Impossibile aggiornare i seguenti cespiti, contengono ammortamenti "
+"confermati per data e tipologie scelte:\n"
+"{}"
 
 #. module: assets_management
 #: selection:asset.depreciation.line,move_type:0
@@ -2889,8 +2896,9 @@ msgid ""
 "The assets you are trying to delete are currently linked to accounting info. "
 "Please remove them if necessary before removing these assets:\n"
 msgstr ""
-"Stai cercando di cancellare registrazioni collegate al cespite. Occore "
-"rimuoverle per completare l'operazione:\n"
+"I cespiti che si sta tentando di eliminare sono attualmente collegati a "
+"registrazioni contabili. Se necessario, rimuoverle prima di eliminare i "
+"cespiti:\n"
 
 #. module: assets_management
 #: code:addons/assets_management/models/asset_depreciation_line.py:161
@@ -3231,12 +3239,12 @@ msgstr "o"
 #. module: assets_management
 #: model:ir.model,name:assets_management.model_report_assets_management_report_asset_journal_xlsx
 msgid "report.assets_management.report_asset_journal_xlsx"
-msgstr ""
+msgstr "report.assets_management.report_asset_journal_xlsx"
 
 #. module: assets_management
 #: model:ir.model,name:assets_management.model_report_assets_management_report_asset_previsional_xlsx
 msgid "report.assets_management.report_asset_previsional_xlsx"
-msgstr ""
+msgstr "report.assets_management.report_asset_previsional_xlsx"
 
 #. module: assets_management
 #: model:ir.model,name:assets_management.model_report_asset_journal
