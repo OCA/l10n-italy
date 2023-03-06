@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2022 Simone Rubino - TAKOBI
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+
+    <record id="view_boe_config_settings" model="ir.ui.view">
+        <field name="name">view.boe.config.setting</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='analytic']" position="after">
+            <h2>Bill of entries</h2>
+                <div
+                    class="row mt16 o_settings_container"
+                    id="bill_of_entries_settings"
+                >
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane" />
+                        <div class="o_setting_right_pane">
+                            <span
+                                class="fa fa-lg fa-building-o"
+                                title="Values set here are company-specific."
+                                aria-label="Values set here are company-specific."
+                                groups="base.group_multi_company"
+                                role="img"
+                            />
+                            <div class="content-group">
+                                <div>
+                                    <label for="bill_of_entry_journal_id" />
+                                    <div
+                                        class="text-muted"
+                                    >Journal used for reconciliation of bill of entries</div>
+                                    <field
+                                        name="bill_of_entry_journal_id"
+                                        class="o_light_label"
+                                        options="{'no_create': True}"
+                                    />
+                                </div>
+                                <div>
+                                    <label for="bill_of_entry_tax_id" />
+                                    <div
+                                        class="text-muted"
+                                    >Tax used in bill of entries generation, when product is not present</div>
+                                    <field
+                                        name="bill_of_entry_tax_id"
+                                        class="o_light_label"
+                                        options="{'no_create': True}"
+                                    />
+                                </div>
+                                <div>
+                                    <label for="bill_of_entry_partner_id" />
+                                    <div
+                                        class="text-muted"
+                                    >Supplier used in bill of entries</div>
+                                    <field
+                                        name="bill_of_entry_partner_id"
+                                        class="o_light_label"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
