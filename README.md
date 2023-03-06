@@ -30,6 +30,7 @@ addon | version | maintainers | summary
 [l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 14.0.1.1.0 |  | Gestione natura delle aliquote IVA
 [l10n_it_appointment_code](l10n_it_appointment_code/) | 14.0.1.0.0 |  | Aggiunge la tabella dei codici carica da usare nelle dichiarazioni fiscali italiane
 [l10n_it_ateco](l10n_it_ateco/) | 14.0.1.0.0 |  | ITA - Codici Ateco
+[l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 14.0.1.0.0 |  | ITA - Bolle doganali
 [l10n_it_central_journal](l10n_it_central_journal/) | 14.0.1.0.0 |  | ITA - Libro giornale
 [l10n_it_central_journal_reportlab](l10n_it_central_journal_reportlab/) | 14.0.1.0.0 |  | ITA - Libro giornale - Reportlab
 [l10n_it_declaration_of_intent](l10n_it_declaration_of_intent/) | 14.0.1.1.4 |  | Gestione dichiarazioni di intento
