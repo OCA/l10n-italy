@@ -7,24 +7,32 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-31 11:08+0000\n"
-"PO-Revision-Date: 2022-10-31 11:08+0000\n"
-"Last-Translator: Simone Rubino <sir@takobi.online>\n"
+"PO-Revision-Date: 2023-03-06 16:30+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_it_bill_of_entry
 #: model_terms:ir.ui.view,arch_db:l10n_it_bill_of_entry.view_boe_config_settings
 msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" aria-label=\"Values set here are company-specific.\" "
-"groups=\"base.group_multi_company\" role=\"img\"/>"
+"specific.\" aria-label=\"Values set here are company-specific.\" groups="
+"\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"I valori impostati qui sono "
 "specifici per azienda.\" aria-label=\"I valori impostati qui sono specifici "
 "per azienda.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+
+#. module: l10n_it_bill_of_entry
+#: model:product.product,name:l10n_it_bill_of_entry.product_product_adv_customs_expense
+#: model:product.template,name:l10n_it_bill_of_entry.product_product_adv_customs_expense_product_template
+msgid "Advance Customs Expense"
+msgstr ""
 
 #. module: l10n_it_bill_of_entry
 #: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_move_line__advance_customs_vat
@@ -64,7 +72,6 @@ msgid "Bill of entries number"
 msgstr "Numero bolle doganali"
 
 #. module: l10n_it_bill_of_entry
-#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
 #: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
 #, python-format
 msgid "Bill of entry %s is in state %s"
@@ -95,7 +102,6 @@ msgid "Bills of entry"
 msgstr "Bolle doganali"
 
 #. module: l10n_it_bill_of_entry
-#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
 #: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
 #, python-format
 msgid "Can't handle more than 1 tax for line %s"
@@ -125,18 +131,28 @@ msgid "Customs Doc Type"
 msgstr "Tipo doc Dogana"
 
 #. module: l10n_it_bill_of_entry
-#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
+#: model:product.product,name:l10n_it_bill_of_entry.product_product_customs_expense
+#: model:product.template,name:l10n_it_bill_of_entry.product_product_customs_expense_product_template
+msgid "Customs Expense"
+msgstr ""
+
+#. module: l10n_it_bill_of_entry
 #: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
 #, python-format
 msgid "Customs expenses"
 msgstr "Spese dogana"
 
 #. module: l10n_it_bill_of_entry
-#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
 #: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
 #, python-format
 msgid "Customs supplier"
 msgstr "Fornitore dogana"
+
+#. module: l10n_it_bill_of_entry
+#: model:product.product,name:l10n_it_bill_of_entry.product_product_delivery
+#: model:product.template,name:l10n_it_bill_of_entry.product_product_delivery_product_template
+msgid "Delivery Expense"
+msgstr ""
 
 #. module: l10n_it_bill_of_entry
 #: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_move__display_name
@@ -147,14 +163,12 @@ msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: l10n_it_bill_of_entry
-#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
 #: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
 #, python-format
 msgid "Extra UE expenses"
 msgstr "Spese extra UE"
 
 #. module: l10n_it_bill_of_entry
-#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
 #: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
 #, python-format
 msgid "Extra UE supplier invoice must have no taxes"
@@ -164,6 +178,12 @@ msgstr "La fattura del fornitore extra UE non deve avere imposte"
 #: model_terms:ir.ui.view,arch_db:l10n_it_bill_of_entry.invoice_supplier_boe_form
 msgid "Extra invoices"
 msgstr "Fatture extra"
+
+#. module: l10n_it_bill_of_entry
+#: model:product.product,name:l10n_it_bill_of_entry.product_product_extraEU_purchase
+#: model:product.template,name:l10n_it_bill_of_entry.product_product_extraEU_purchase_product_template
+msgid "ExtraEU Goods Purchase"
+msgstr ""
 
 #. module: l10n_it_bill_of_entry
 #: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_bank_statement_line__forwarder_bill_of_entry_ids
@@ -181,7 +201,6 @@ msgid "Forwarder Invoice"
 msgstr "Fattura spedizioniere"
 
 #. module: l10n_it_bill_of_entry
-#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
 #: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
 #, python-format
 msgid "Forwarder invoice %s does not have lines with 'Advance Customs Vat'"
@@ -204,7 +223,7 @@ msgstr "Generare bolla doganale"
 #: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_res_company__id
 #: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_res_config_settings__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_it_bill_of_entry
 #: model:ir.model,name:l10n_it_bill_of_entry.model_account_move
@@ -232,32 +251,34 @@ msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
 #. module: l10n_it_bill_of_entry
-#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
 #: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
 #, python-format
 msgid "No Bill of entry Storno journal configured"
 msgstr "Nessun registro per storno della bolla doganale configurato"
 
 #. module: l10n_it_bill_of_entry
-#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
 #: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
 #, python-format
 msgid "No bill of entries found for this invoice"
 msgstr "Nessuna bolla doganale trovata per questa fattura"
 
 #. module: l10n_it_bill_of_entry
-#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
 #: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
 #, python-format
 msgid "Please set 'Bill of entry partner' in accounting configuration"
 msgstr "Prego impostare 'Partner dogana' in configurazione contabilità"
 
 #. module: l10n_it_bill_of_entry
-#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
 #: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
 #, python-format
 msgid "Please set 'Bill of entry tax' in accounting configuration"
 msgstr "Prego impostare 'Imposta dogana' in configurazione contabilità"
+
+#. module: l10n_it_bill_of_entry
+#: model:product.product,name:l10n_it_bill_of_entry.product_product_stamp_duties
+#: model:product.template,name:l10n_it_bill_of_entry.product_product_stamp_duties_product_template
+msgid "Stamp Duties"
+msgstr ""
 
 #. module: l10n_it_bill_of_entry
 #: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_bank_statement_line__supplier_bill_of_entry_ids
@@ -309,11 +330,24 @@ msgstr "Imposta usata nelle bolle doganali"
 #: model_terms:ir.ui.view,arch_db:l10n_it_bill_of_entry.view_boe_config_settings
 msgid "Tax used in bill of entries generation, when product is not present"
 msgstr ""
-"Imposta usata nella generazione delle bolle doganali, quando il prodotto non"
-" è presente"
+"Imposta usata nella generazione delle bolle doganali, quando il prodotto non "
+"è presente"
 
 #. module: l10n_it_bill_of_entry
-#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
+#: model:product.product,uom_name:l10n_it_bill_of_entry.product_product_adv_customs_expense
+#: model:product.product,uom_name:l10n_it_bill_of_entry.product_product_customs_expense
+#: model:product.product,uom_name:l10n_it_bill_of_entry.product_product_delivery
+#: model:product.product,uom_name:l10n_it_bill_of_entry.product_product_extraEU_purchase
+#: model:product.product,uom_name:l10n_it_bill_of_entry.product_product_stamp_duties
+#: model:product.template,uom_name:l10n_it_bill_of_entry.product_product_adv_customs_expense_product_template
+#: model:product.template,uom_name:l10n_it_bill_of_entry.product_product_customs_expense_product_template
+#: model:product.template,uom_name:l10n_it_bill_of_entry.product_product_delivery_product_template
+#: model:product.template,uom_name:l10n_it_bill_of_entry.product_product_extraEU_purchase_product_template
+#: model:product.template,uom_name:l10n_it_bill_of_entry.product_product_stamp_duties_product_template
+msgid "Units"
+msgstr ""
+
+#. module: l10n_it_bill_of_entry
 #: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
 #, python-format
 msgid "You can generate bill of entry from extra UE supplier invoice only"
