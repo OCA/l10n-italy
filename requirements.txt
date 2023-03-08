@@ -4,4 +4,6 @@ codicefiscale
 elementpath
 openupgradelib
 unidecode
+xlrd
+xlsxwriter
 xmlschema>=1.7.0
