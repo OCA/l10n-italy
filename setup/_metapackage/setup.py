@@ -23,6 +23,7 @@ setuptools.setup(
         'odoo12-addon-l10n_it_account_stamp_ddt',
         'odoo12-addon-l10n_it_account_stamp_sale',
         'odoo12-addon-l10n_it_account_tax_kind',
+        'odoo12-addon-l10n_it_asset_history_import',
         'odoo12-addon-l10n_it_ateco',
         'odoo12-addon-l10n_it_bill_of_entry',
         'odoo12-addon-l10n_it_causali_pagamento',
