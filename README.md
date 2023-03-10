@@ -41,6 +41,7 @@ addon | version | maintainers | summary
 [l10n_it_pec](l10n_it_pec/) | 16.0.1.0.0 |  | Aggiunge il campo email PEC al partner
 [l10n_it_rea](l10n_it_rea/) | 16.0.1.0.0 |  | Gestisce i campi del Repertorio Economico Amministrativo
 [l10n_it_vat_payability](l10n_it_vat_payability/) | 16.0.1.0.0 |  | ITA - Esigibilità IVA
+[l10n_it_website_portal_ipa](l10n_it_website_portal_ipa/) | 16.0.1.0.0 |  | Aggiunge l'indice PA (IPA) tra i dettagli dell'utente nel portale.
 [l10n_it_withholding_tax](l10n_it_withholding_tax/) | 16.0.1.0.0 |  | ITA - Ritenute d'acconto
 [l10n_it_withholding_tax_reason](l10n_it_withholding_tax_reason/) | 16.0.1.0.0 |  | ITA - Causali pagamento per ritenute d'acconto
 
