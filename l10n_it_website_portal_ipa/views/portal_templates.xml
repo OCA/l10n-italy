@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2019 Simone Rubino - Agile Business Group
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+<odoo>
+
+    <template
+        id="portal_my_details_fields"
+        name="Add PA index in user details"
+        inherit_id="portal.portal_my_details_fields"
+    >
+        <div
+            t-attf-class="mb-3 #{error.get('state_id') and 'o_has_error' or ''} col-xl-6"
+            position="after"
+        >
+            <div class="col-xl-12" t-if="partner.company_type == 'company'">
+                <div class="row">
+                    <div
+                        t-attf-class="form-group #{error.get('is_pa') and 'o_has_error' or ''} col-xl-6"
+                    >
+                        <input
+                            type="checkbox"
+                            style="width: auto; margin:0px"
+                            name="is_pa"
+                            id="is_pa"
+                            t-att-checked="is_pa or partner.is_pa"
+                        />
+                        <label
+                            class="label-optional"
+                            style="margin-left:5px"
+                            for="is_pa"
+                        >
+                            Public administration
+                        </label>
+                    </div>
+                    <div
+                        t-attf-class="form-group #{error.get('ipa_code') and 'o_has_error' or ''} col-xl-6"
+                    >
+                        <label class="col-form-label label-optional">
+                            PA Index (IPA)
+                        </label>
+                        <input
+                            type="text"
+                            name="ipa_code"
+                            t-att-value="ipa_code or partner.ipa_code"
+                            t-attf-class="form-control #{error.get('ipa_code') and 'is-invalid' or ''}"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</odoo>
