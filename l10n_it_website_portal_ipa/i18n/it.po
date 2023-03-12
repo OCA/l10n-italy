@@ -17,11 +17,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_website_portal_ipa
-#: model_terms:ir.ui.view,arch_db:l10n_it_website_portal_ipa.portal_my_details
+#: model_terms:ir.ui.view,arch_db:l10n_it_website_portal_ipa.portal_my_details_fields
 msgid "PA Index (IPA)"
 msgstr "Indice PA (IPA)"
 
 #. module: l10n_it_website_portal_ipa
-#: model_terms:ir.ui.view,arch_db:l10n_it_website_portal_ipa.portal_my_details
+#: model_terms:ir.ui.view,arch_db:l10n_it_website_portal_ipa.portal_my_details_fields
 msgid "Public administration"
 msgstr "Pubblica amministrazione"
