@@ -105,6 +105,31 @@
                         </field>
                     </group>
                 </group>
+                <div name="creation_div" position="after">
+                    <label
+                        for="sending_user"
+                        string="Sent by"
+                        attrs="{'invisible': [('sending_user' ,'=', False)]}"
+                    />
+                    <div
+                        name="sending_user"
+                        attrs="{'invisible': [('sending_user' ,'=', False)]}"
+                    >
+                        <field name="sending_user" readonly="1" class="oe_inline" /> on
+                        <field name="sending_date" readonly="1" class="oe_inline" />
+                    </div>
+                    <label
+                        for="delivered_date"
+                        string="Delivered"
+                        attrs="{'invisible': [('delivered_date' ,'=', False)]}"
+                    />
+                    <div
+                        name="delivered_date"
+                        attrs="{'invisible': [('delivered_date' ,'=', False)]}"
+                    >
+                        <field name="delivered_date" readonly="1" class="oe_inline" />
+                    </div>
+                </div>
             </field>
         </record>
 
