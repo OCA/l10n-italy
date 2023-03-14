@@ -6,7 +6,7 @@
 import logging
 import re
 
-from odoo import api, fields, models, _
+from odoo import api, models, _
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
@@ -17,8 +17,6 @@ RESPONSE_MAIL_REGEX = '[A-Z]{2}[a-zA-Z0-9]{11,16}_[a-zA-Z0-9]{,5}_[A-Z]{2}_' \
 
 class FatturaPAAttachmentOut(models.Model):
     _inherit = 'fatturapa.attachment.out'
-
-    sending_user = fields.Many2one("res.users", "Sending User", readonly=True)
 
     @api.multi
     def parse_pec_response(self, message_dict):
