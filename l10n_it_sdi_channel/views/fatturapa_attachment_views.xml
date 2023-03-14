@@ -27,6 +27,15 @@
                     type="object"
                 />
             </header>
+            <page name="history" position="inside">
+                <group
+                    name="last_sdi_response"
+                    string="Last Response from Exchange System"
+                    attrs="{'invisible':[('state', '=', 'ready')]}"
+                >
+                    <field name="last_sdi_response" nolabel="1" />
+                </group>
+            </page>
         </field>
     </record>
 </odoo>
