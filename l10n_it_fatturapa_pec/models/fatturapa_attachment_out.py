@@ -19,8 +19,6 @@ RESPONSE_MAIL_REGEX = (
 class FatturaPAAttachmentOut(models.Model):
     _inherit = "fatturapa.attachment.out"
 
-    sending_user = fields.Many2one("res.users", readonly=True)
-
     def _message_type_ns(
         self, root, id_sdi, message_id, receipt_dt, fatturapa_attachment_out
     ):
