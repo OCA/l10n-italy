@@ -594,7 +594,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
             for move, lines in grouped_move_lines.items():
                 move_num = move.name
 
-                move_type = "out" if move.is_outbound() else "in"
+                move_type = "in" if move.is_outbound() else "out"
                 if not move_type:
                     raise ValidationError(
                         _(
