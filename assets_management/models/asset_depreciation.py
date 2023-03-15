@@ -11,12 +11,12 @@ class AssetDepreciation(models.Model):
     _name = "asset.depreciation"
     _description = "Assets Depreciations"
 
-    amount_depreciable = fields.Monetary(string="Depreciable Amount")
+    amount_depreciable = fields.Monetary(string="Initial Depreciable Amount")
 
     amount_depreciable_updated = fields.Monetary(
         compute="_compute_amounts",
         store=True,
-        string="Updated Amount",
+        string="Updated Depreciable Amount",
     )
 
     amount_depreciated = fields.Monetary(
