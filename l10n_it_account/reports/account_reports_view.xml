@@ -52,7 +52,7 @@
 
           <div class="header">
               <div class="row">
-                  <div class="col-xs-4">
+                  <div class="col-8">
                       <h3><span t-esc="company.name" /></h3>
                       <span t-esc="company.street" class="" /><br />
                       <span t-esc="company.zip" class="" /> - <span
@@ -64,10 +64,7 @@
                             class=""
                         /><br />
                   </div>
-                  <div
-                        class="col-xs-4 col-xs-offset-4 text-right"
-                        style="margin-left:10px"
-                    >
+                  <div class="col-4 text-right">
                       <h3 t-esc="title" />
                   </div>
               </div>
