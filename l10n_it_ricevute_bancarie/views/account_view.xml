@@ -72,16 +72,17 @@
     <record id="riba_filter" model="ir.ui.view">
         <field name="name">C/O filter</field>
         <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account_due_list.view_payments_filter" />
         <field name="arch" type="xml">
-            <search string="Search Journal Items">
+            <xpath expr="//search" position="inside">
                 <filter
                     name="da_emettere"
-                    string="To Issue"
+                    string="RIBA To Issue"
                     domain="[('distinta_line_ids', '=', False)]"
                 />
                 <filter
                     name="emesse"
-                    string="Issued"
+                    string="RIBA Issued"
                     domain="[('distinta_line_ids', '!=', False)]"
                 />
                 <filter
@@ -115,9 +116,8 @@
                         string="Group By Customer"
                         context="{'group_by':'partner_id'}"
                     />
-                    <!-- <filter name="filter_invoice" string="Group By Invoice" context="{'group_by':'stored_invoice_id'}"/> Matteo Boscolo-->
                 </group>
-            </search>
+            </xpath>
         </field>
     </record>
 
