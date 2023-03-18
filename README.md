@@ -39,18 +39,18 @@ addon | version | maintainers | summary
 [l10n_it_delivery_note_batch](l10n_it_delivery_note_batch/) | 14.0.1.0.0 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) [![TheMule71](https://github.com/TheMule71.png?size=30px)](https://github.com/TheMule71) | Crea i DDT partendo da gruppi di prelievi
 [l10n_it_delivery_note_customer_code](l10n_it_delivery_note_customer_code/) | 14.0.1.0.0 |  | Product Customer code for delivery note
 [l10n_it_delivery_note_order_link](l10n_it_delivery_note_order_link/) | 14.0.1.0.1 | [![andreampiovesana](https://github.com/andreampiovesana.png?size=30px)](https://github.com/andreampiovesana) | Crea collegamento tra i DDT e ordine di vendita/acquisto
-[l10n_it_fatturapa](l10n_it_fatturapa/) | 14.0.1.2.3 |  | Fatture elettroniche
+[l10n_it_fatturapa](l10n_it_fatturapa/) | 14.0.2.0.0 |  | Fatture elettroniche
 [l10n_it_fatturapa_export_zip](l10n_it_fatturapa_export_zip/) | 14.0.1.0.1 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche
-[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 14.0.1.5.0 |  | Ricezione fatture elettroniche
+[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 14.0.2.0.0 |  | Ricezione fatture elettroniche
 [l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 14.0.1.0.0 |  | Modulo ponte tra ricezione fatture elettroniche e acquisti
 [l10n_it_fatturapa_in_rc](l10n_it_fatturapa_in_rc/) | 14.0.1.1.0 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Modulo ponte tra e-fattura in acquisto e inversione contabile
-[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 14.0.2.5.0 |  | Emissione fatture elettroniche
+[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 14.0.3.0.0 |  | Emissione fatture elettroniche
 [l10n_it_fatturapa_out_di](l10n_it_fatturapa_out_di/) | 14.0.1.0.2 |  | Dichiarazioni d'intento in fatturapa
 [l10n_it_fatturapa_out_rc](l10n_it_fatturapa_out_rc/) | 14.0.1.3.0 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge
 [l10n_it_fatturapa_out_sp](l10n_it_fatturapa_out_sp/) | 14.0.1.0.4 |  | Scissione pagamenti in fatturapa
 [l10n_it_fatturapa_out_stamp](l10n_it_fatturapa_out_stamp/) | 14.0.1.0.0 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Modulo ponte tra emissione fatture elettroniche e imposta di bollo
 [l10n_it_fatturapa_out_wt](l10n_it_fatturapa_out_wt/) | 14.0.1.0.0 |  | Modulo ponte tra emissione fatture elettroniche e ritenute.
-[l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 14.0.1.1.0 |  | Invio fatture elettroniche tramite PEC
+[l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 14.0.2.0.0 |  | Invio fatture elettroniche tramite PEC
 [l10n_it_fatturapa_sale](l10n_it_fatturapa_sale/) | 14.0.1.0.3 |  | Aggiunge alcuni dati per la fatturazione elettronica nell'ordine di vendita
 [l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 14.0.1.1.1 |  | ITA - Tipi di documento fiscale per dichiarativi
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 14.0.1.1.0 |  | Condizioni di pagamento delle fatture elettroniche
@@ -68,7 +68,7 @@ addon | version | maintainers | summary
 [l10n_it_rea](l10n_it_rea/) | 14.0.1.0.4 |  | Gestisce i campi del Repertorio Economico Amministrativo
 [l10n_it_reverse_charge](l10n_it_reverse_charge/) | 14.0.1.2.0 |  | Inversione contabile
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 14.0.1.2.2 |  | Ricevute bancarie
-[l10n_it_sdi_channel](l10n_it_sdi_channel/) | 14.0.1.1.0 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI
+[l10n_it_sdi_channel](l10n_it_sdi_channel/) | 14.0.2.0.0 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI
 [l10n_it_split_payment](l10n_it_split_payment/) | 14.0.1.0.7 |  | Scissione pagamenti
 [l10n_it_vat_payability](l10n_it_vat_payability/) | 14.0.1.0.2 |  | ITA - Esigibilità IVA
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 14.0.1.0.5 |  | ITA - Registri IVA
