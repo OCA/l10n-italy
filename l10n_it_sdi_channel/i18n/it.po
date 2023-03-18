@@ -20,6 +20,15 @@ msgstr ""
 #. module: l10n_it_sdi_channel
 #: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_account_config_settings
 msgid ""
+"<span class=\"o_form_label\">E-bill creator</span>\n"
+"                            <span class=\"fa fa-lg fa-building-o\" title="
+"\"Values set here are company-specific.\" aria-label=\"Values set here are "
+"company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_account_config_settings
+msgid ""
 "<span class=\"o_form_label\">ES Channel</span>\n"
 "                            <span class=\"fa fa-lg fa-building-o\" title="
 "\"Values set here are company-specific.\" aria-label=\"Values set here are "
@@ -30,6 +39,11 @@ msgstr ""
 "valori impostati qui sono specifici per azienda.\" aria-label=\"I valori "
 "impostati qui sono specifici per azienda.\" groups=\"base.group_multi_company"
 "\" role=\"img\"/>"
+
+#. module: l10n_it_sdi_channel
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.wizard_fatturapa_send_to_sdi_view
+msgid "Cancel"
+msgstr ""
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,help:l10n_it_sdi_channel.field_res_company__sdi_channel_type
@@ -55,20 +69,30 @@ msgstr "Impostazioni di configurazione"
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__create_uid
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_wizard_fatturapa_send_to_sdi__create_uid
 msgid "Created by"
 msgstr "Creato da"
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__create_date
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_wizard_fatturapa_send_to_sdi__create_date
 msgid "Created on"
 msgstr "Creato il"
 
 #. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_fatturapa_attachment_out__display_name
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company__display_name
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__display_name
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_wizard_fatturapa_send_to_sdi__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company__e_invoice_user_id
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_config_settings__e_invoice_user_id
+msgid "E-bill creator"
+msgstr ""
 
 #. module: l10n_it_sdi_channel
 #: model:ir.actions.act_window,name:l10n_it_sdi_channel.action_sdi_channel
@@ -97,26 +121,42 @@ msgid "ES channel type"
 msgstr "Tipo canale SdI"
 
 #. module: l10n_it_sdi_channel
+#: model:ir.model,name:l10n_it_sdi_channel.model_fatturapa_attachment_out
+msgid "Electronic Invoice"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_fatturapa_attachment_out__id
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company__id
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_config_settings__id
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__id
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_wizard_fatturapa_send_to_sdi__id
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_fatturapa_attachment_out____last_update
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company____last_update
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel____last_update
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_wizard_fatturapa_send_to_sdi____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
 #. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_fatturapa_attachment_out__last_sdi_response
+msgid "Last Response from Exchange System"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__write_uid
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_wizard_fatturapa_send_to_sdi__write_uid
 msgid "Last Updated by"
 msgstr "Ultimo aggiornamento di"
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__write_date
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_wizard_fatturapa_send_to_sdi__write_date
 msgid "Last Updated on"
 msgstr "Ultimo aggiornamento il"
 
@@ -124,6 +164,49 @@ msgstr "Ultimo aggiornamento il"
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__name
 msgid "Name"
 msgstr "Nome"
+
+#. module: l10n_it_sdi_channel
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_fatturapa_out_attachment_form
+msgid "Reset to ready"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.wizard_fatturapa_send_to_sdi_view
+msgid "Selected files will be sent to the Exchange System"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.wizard_fatturapa_send_to_sdi_view
+msgid "Send"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.actions.act_window,name:l10n_it_sdi_channel.action_wizard_fatturapa_send_to_sdi
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.wizard_fatturapa_send_to_sdi_view
+msgid "Send Electronic Invoice"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_fatturapa_out_attachment_form
+msgid "Send to SdI"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_res_company__e_invoice_user_id
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_res_config_settings__e_invoice_user_id
+msgid "This user will be used at supplier e-bill creation."
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model,name:l10n_it_sdi_channel.model_wizard_fatturapa_send_to_sdi
+msgid "Wizard to send multiple e-invoice to SdI"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: code:addons/l10n_it_sdi_channel/models/fatturapa_attachment_out.py:0
+#, python-format
+msgid "You can only send files in 'Ready to Send' state."
+msgstr ""
 
 #~ msgid "E-invoice PEC server"
 #~ msgstr "Server PEC e-fattura"
