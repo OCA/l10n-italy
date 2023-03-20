@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-04 18:02+0000\n"
-"PO-Revision-Date: 2019-12-04 18:02+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2023-03-20 13:24+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/models/asset.py:131
@@ -85,7 +86,6 @@ msgstr "Righe Ammortamento"
 #: model:ir.actions.act_window,name:l10n_it_asset_history_import.action_wizard_asset_history_import
 #: model:ir.model,name:l10n_it_asset_history_import.model_wizard_asset_history_import
 #: model:ir.ui.menu,name:l10n_it_asset_history_import.menu_wizard_asset_history_import
-#, fuzzy
 msgid "Assets History Import"
 msgstr "Import Storico Cespiti"
 
@@ -154,7 +154,7 @@ msgstr "Importo Ammortizzabile"
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:183
 #, python-format
 msgid "Depreciation %"
-msgstr "% Ammortamento"
+msgstr "Ammortamento %"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:193
@@ -183,7 +183,7 @@ msgstr "Codice Import Tipo Ammortamento"
 #. module: l10n_it_asset_history_import
 #: model:ir.model.fields,field_description:l10n_it_asset_history_import.field_wizard_asset_history_import__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: l10n_it_asset_history_import
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_history_import.wizard_wizard_asset_history_import
@@ -262,7 +262,7 @@ msgstr "Ultima Modifica di"
 #. module: l10n_it_asset_history_import
 #: model:ir.model.fields,field_description:l10n_it_asset_history_import.field_wizard_asset_history_import__write_date
 msgid "Last Updated on"
-msgstr "Ultimao Aggiornamento il"
+msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:243
@@ -290,7 +290,7 @@ msgstr "Tipo Riga"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/models/asset.py:121
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Maintain columns order: change in columns positioning may results in errors "
 "while importing!"
@@ -332,7 +332,7 @@ msgstr "Data Acquisto"
 #: code:addons/l10n_it_asset_history_import/models/asset.py:120
 #, python-format
 msgid "Red columns are mandatory."
-msgstr "Le colonne in rosso sono obbligatorie"
+msgstr "Le colonne in rosso sono obbligatorie."
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:123
@@ -381,7 +381,7 @@ msgstr "Utilizzato per importare data dai file xls(x). Deve essere univoco."
 #: code:addons/l10n_it_asset_history_import/models/asset.py:116
 #, python-format
 msgid "WARNING"
-msgstr ""
+msgstr "ATTENZIONE"
 
 #. module: l10n_it_asset_history_import
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_history_import.wizard_wizard_asset_history_import
