@@ -29,7 +29,8 @@ class WebsiteSaleFiscalCode(WebsiteSale):
                 "is_company": partner_sudo.is_company,
             }
         )
-        if not dummy_partner.check_fiscalcode():
-            error["fiscalcode"] = "error"
-            error_message.append(_("Fiscal Code not valid"))
+        if dummy_partner.fiscalcode:
+            if len(dummy_partner.fiscalcode) != 16:
+                error["fiscalcode"] = "error"
+                error_message.append(_("Fiscal Code not valid"))
         return error, error_message
