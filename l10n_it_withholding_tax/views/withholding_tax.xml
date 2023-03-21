@@ -65,7 +65,7 @@
                     <field name="comment" />
                     <newline />
                     <group string="Rates">
-                        <field name="rate_ids" nolabel="1">
+                        <field name="rate_ids" nolabel="1" colspan="2">
                             <tree>
                                 <field name="base" />
                                 <field name="tax" />
