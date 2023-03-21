@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_delivery_note_rma_wizard_user_all,sale.order.rma.wizard.user.all,model_stock_delivery_note_rma_wizard,rma.rma_group_user_all,1,1,1,1
+access_delivery_note_line_rma_wizard_user_all,sale.order.line.rma.wizard.user.all,model_stock_delivery_note_line_rma_wizard,rma.rma_group_user_all,1,1,1,1
