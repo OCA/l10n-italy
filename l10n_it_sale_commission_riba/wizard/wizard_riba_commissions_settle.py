@@ -9,10 +9,10 @@ class SaleCommissionMakeSettle(models.TransientModel):
 
     def _get_agent_lines(self, agent, date_to_agent):
         """
-            Exclude outstanding invoices, those with Ri.Ba subject to collection payment
-            if at least safety days haven't passed since expiration date and those that
-            have manually set the flag 'no_commission' (for example if it has been
-            outstanding for years now).
+        Exclude outstanding invoices, those with Ri.Ba subject to collection payment
+        if at least safety days haven't passed since expiration date and those that
+        have manually set the flag 'no_commission' (for example if it has been
+        outstanding for years now).
         """
         agent_lines = super()._get_agent_lines(agent, date_to_agent)
         # rimuove righe delle fatture che hanno impostato flag "no_commission"
