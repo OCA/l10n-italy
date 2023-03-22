@@ -249,7 +249,7 @@ class AssetJournalXslx(models.AbstractModel):
                 "vstyle": report_data["formats"]["format_depreciation_value"],
             },
             {
-                "title": _("Depreciable Amount"),
+                "title": _("Initial Depreciable Amount"),
                 "field": "dep_amount_depreciable",
                 "type": "amount",
                 "tstyle": report_data["formats"]["format_depreciation_header"],
