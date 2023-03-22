@@ -1,0 +1,47 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_riba_sale_commission 
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-07 10:09+0000\n"
+"PO-Revision-Date: 2023-03-07 10:09+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_riba_sale_commission 
+#: model:ir.model,name:l10n_it_riba_sale_commission.model_riba_configuration
+msgid "Configuration parameters for Cash Orders"
+msgstr "Parametri di configurazione delle ricevute bancarie"
+
+#. module: l10n_it_riba_sale_commission 
+#: code:addons/l10n_it_riba_sale_commission/wizard/wizard_riba_commissions_settle.py:99
+#, python-format
+msgid "Created Settlements"
+msgstr "Liquidazioni create"
+
+#. module: l10n_it_riba_sale_commission 
+#: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_account_invoice__no_commission
+msgid "Without commissions"
+msgstr "Senza provvigioni"
+
+#. module: l10n_it_riba_sale_commission 
+#: model:ir.model,name:l10n_it_riba_sale_commission.model_account_invoice
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: l10n_it_riba_sale_commission 
+#: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_riba_configuration__safety_days
+msgid "Safety days"
+msgstr "Giorni di sicurezza"
+
+#. module: l10n_it_riba_sale_commission 
+#: model:ir.model,name:l10n_it_riba_sale_commission.model_sale_commission_make_settle
+msgid "Wizard for settling commissions in invoices"
+msgstr "Procedura per la liquidazione delle provvigioni nelle fatture"
