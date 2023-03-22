@@ -1,0 +1,2 @@
+# generated from manifests external_dependencies
+odoo12-addon-l10n_it_sale_commission_riba @ git+https://github.com/OCA/commission.git@refs/pull/406/head#subdirectory=setup/sale_commission
