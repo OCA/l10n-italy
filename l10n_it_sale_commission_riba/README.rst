@@ -37,6 +37,9 @@ provvigioni agente solamente trascorsi i giorni configurati nel campo
 E' possibile inserire aggiungere "Senza commissioni" ad una fattura, in modo
 che non vengano generate commissioni agente.
 
+Richiede almeno la versione 3.3.1 del modulo `sale_commission` 
+(https://github.com/OCA/commission/tree/12.0/sale_commission).
+
 **English**
 
 The module allows you to integrate the riba payment with agent commissions.
@@ -48,6 +51,9 @@ in ri.ba configuration.
 
 It is possible to add "Without commissions" to an invoice, in this way
 that no agent commissions are generated.
+
+It needs at least 3.3.1 version of `sale_commission` module
+(https://github.com/OCA/commission/tree/12.0/sale_commission).
 
 **Table of contents**
 
