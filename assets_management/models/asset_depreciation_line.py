@@ -227,11 +227,12 @@ class AssetDepreciationLine(models.Model):
         return self.asset_accounting_info_ids
 
     def get_balances_grouped(self):
-        """Groups balances of line in `self` by line.move_type"""
-        balances_grouped = {}
+        """Groups balances of line in `self` by line.move_type, adding all
+        possible type to ensure values are computed always."""
+        balances_grouped = {
+            x: 0 for x in dict(self._fields["move_type"].selection).keys()
+        }
         for line in self:
-            if line.move_type not in balances_grouped:
-                balances_grouped[line.move_type] = 0
             balances_grouped[line.move_type] += line.balance
         return balances_grouped
 
