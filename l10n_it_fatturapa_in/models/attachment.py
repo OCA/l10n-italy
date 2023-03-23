@@ -5,18 +5,10 @@ SELF_INVOICE_TYPES = ("TD16", "TD17", "TD18", "TD19", "TD20", "TD21", "TD27", "T
 
 
 class FatturaPAAttachmentIn(models.Model):
+    _inherit = "fatturapa.attachment"
     _name = "fatturapa.attachment.in"
-    _description = "E-bill import file"
-    _inherits = {"ir.attachment": "ir_attachment_id"}
-    _inherit = ["mail.thread"]
-    _order = "id desc"
+    _description = "Electronic Invoice"
 
-    ir_attachment_id = fields.Many2one(
-        "ir.attachment", "Attachment", required=True, ondelete="cascade"
-    )
-    att_name = fields.Char(
-        string="E-bill file name", related="ir_attachment_id.name", store=True
-    )
     in_invoice_ids = fields.One2many(
         "account.move",
         "fatturapa_attachment_in_id",
@@ -90,9 +82,6 @@ class FatturaPAAttachmentIn(models.Model):
                     )
                 )
             att.e_invoice_validation_message = "\n\n".join(error_messages)
-
-    def get_xml_string(self):
-        return self.ir_attachment_id.get_xml_string()
 
     def recompute_xml_fields(self):
         self._compute_xml_data()
@@ -179,6 +168,3 @@ class FatturaPAAttachmentIn(models.Model):
                                     0
                                 ].IdDocumento
                             )
-
-    def ftpa_preview(self):
-        return self.env["ir.attachment"].ftpa_preview(self)
