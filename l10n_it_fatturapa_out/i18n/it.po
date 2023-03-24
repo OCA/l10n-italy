@@ -154,6 +154,7 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa_out.selection__account_move__fatturapa_state__delivered
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa_out.selection__fatturapa_attachment_out__state__validated
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 msgid "Delivered"
 msgstr "Consegnato"
 
@@ -692,6 +693,11 @@ msgid "Sender Error"
 msgstr "Errore trasmittente"
 
 #. module: l10n_it_fatturapa_out
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__sending_user
+msgid "Sending User"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa_out.selection__account_move__fatturapa_state__sent
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa_out.selection__fatturapa_attachment_out__state__sent
 msgid "Sent"
@@ -701,6 +707,11 @@ msgstr "Inviato"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__sending_date
 msgid "Sent Date"
 msgstr "Data invio"
+
+#. module: l10n_it_fatturapa_out
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
+msgid "Sent by"
+msgstr ""
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__state
@@ -859,14 +870,16 @@ msgstr "È possibile eliminare solo file con stato «Pronto per l'invio»."
 msgid "You can only reset files in 'Sender Error' state."
 msgstr "È possibile reimpostare solo file con stato «Errore trasmittente»."
 
+#. module: l10n_it_fatturapa_out
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
+msgid "on"
+msgstr "il"
+
 #~ msgid "E-invoice file name"
 #~ msgstr "Nome file e-fattura"
 
 #~ msgid "History"
 #~ msgstr "Cronologia"
-
-#~ msgid "on"
-#~ msgstr "il"
 
 #~ msgid "99999999999"
 #~ msgstr "99999999999"
