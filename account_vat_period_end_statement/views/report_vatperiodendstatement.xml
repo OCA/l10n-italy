@@ -54,8 +54,8 @@
                     />
                            <t t-foreach="vat_accounts" t-as="account_id">
                                <tr>
-                                   <td class="text-right">Total debit vat</td>
-                                   <td class="text-right"><span
+                                   <td class="text-start">Total debit vat</td>
+                                   <td class="text-end"><span
                                     t-esc="formatLang(env, vat_accounts[account_id]['amount'])"
                                 /></td>
                                </tr>
@@ -73,8 +73,8 @@
                     />
                            <t t-foreach="vat_accounts" t-as="account_id">
                                <tr>
-                                   <td class="text-right">Total credit vat</td>
-                                   <td class="text-right"><span
+                                   <td class="text-start">Total credit vat</td>
+                                   <td class="text-end"><span
                                     t-esc="formatLang(env, vat_accounts[account_id]['amount'])"
                                 /></td>
                                </tr>
@@ -87,9 +87,9 @@
 
                            <!-- tot statement -->
                            <tr>
-                              <td class="text-right"><strong
+                              <td class="text-start"><strong
                             >Total Statement</strong></td>
-                              <td class="text-right"><strong><span
+                              <td class="text-end"><strong><span
                                     t-esc="formatLang(env, total_statement)"
                                 /></strong></td>
                           </tr>
@@ -103,8 +103,8 @@
                            <!-- previous credit -->
                            <tr>
                                <td />
-                               <td class="text-right">Previous credit vat</td>
-                               <td class="text-right">-<span
+                               <td class="text-start">Previous credit vat</td>
+                               <td class="text-end">-<span
                                 t-esc="formatLang(env, statement.previous_credit_vat_amount)"
                             /></td>
                                <!-- sum -->
@@ -116,8 +116,8 @@
                            <!-- previous debit -->
                            <tr>
                                <td />
-                               <td class="text-right">Previous debit vat</td>
-                               <td class="text-right"><span
+                               <td class="text-start">Previous debit vat</td>
+                               <td class="text-end"><span
                                 t-esc="formatLang(env, statement.previous_debit_vat_amount)"
                             /></td>
                                <!-- sum -->
@@ -129,8 +129,8 @@
                            <!-- Due interests -->
                            <tr>
                                <td />
-                               <td class="text-right">Due interests</td>
-                               <td class="text-right"><span
+                               <td class="text-start">Due interests</td>
+                               <td class="text-end"><span
                                 t-esc="formatLang(env, statement.interests_debit_vat_amount)"
                             /></td>
                                <!-- sum -->
@@ -142,8 +142,8 @@
                            <!-- tax credit -->
                            <tr>
                                <td />
-                               <td class="text-right">Tax credits</td>
-                               <td class="text-right">-<span
+                               <td class="text-start">Tax credits</td>
+                               <td class="text-end">-<span
                                 t-esc="formatLang(env, statement.tax_credit_amount)"
                             /></td>
                                <!-- sum -->
@@ -155,12 +155,12 @@
                            <!-- advance -->
                            <tr>
                                <td />
-                               <td class="text-right">Down payment<t
+                               <td class="text-start">Down payment<t
                                 t-if="statement.advance_computation_method"
                             >&amp;nbsp;(<span
                                     t-field="statement.advance_computation_method"
                                 />)</t></td>
-                               <td class="text-right">-<span
+                               <td class="text-end">-<span
                                 t-esc="formatLang(env, statement.advance_amount)"
                             /></td>
                                <!-- sum -->
@@ -176,13 +176,13 @@
                         t-as="generic_vat"
                     >
                            <tr>
-                               <td class="text-right"><span
+                               <td class="text-start"><span
                                     t-esc="generic_vat.name"
                                 /></td>
-                               <td class="text-right"><span
+                               <td class="text-start"><span
                                     t-esc="generic_vat.account_id.name"
                                 /></td>
-                               <td class="text-right"><span
+                               <td class="text-end"><span
                                     t-esc="formatLang(env, generic_vat.amount*-1)"
                                 /></td>
                                <!-- sum -->
@@ -197,18 +197,18 @@
                            <tr>
                                <span t-if="(total_to_pay >= 0)">
                                    <td />
-                                   <td class="text-right"><strong
+                                   <td class="text-start"><strong
                                 >Total To Pay</strong></td>
-                                   <td class="text-right"><strong><span
+                                   <td class="text-end"><strong><span
                                         t-esc="formatLang(env, total_to_pay)"
                                     /></strong></td>
                                </span>
 
                                <span t-if="not (total_to_pay >= 0)">
                                    <td />
-                                   <td class="text-right"><strong
+                                   <td class="text-start"><strong
                                 >Total Credit</strong></td>
-                                   <td class="text-right"><strong><span
+                                   <td class="text-end"><strong><span
                                         t-esc="formatLang(env, (total_to_pay * -1))"
                                     /></strong></td>
                                </span>
@@ -225,7 +225,7 @@
                                     t-esc="'Importo versato (Estremi del versamento: data '+ payment_line.date.strftime('%d/%m/%Y') + ' - ' +payment_line.journal_id.name+')'"
                                 />
                                     <td
-                                    class="text-right"
+                                    class="text-end"
                                     t-esc="formatLang(env, payment_line.debit)"
                                 />
                                </tr>
@@ -264,11 +264,11 @@
             <thead>
                    <tr class="text-center">
                        <th style="width:40%;">Description</th>
-                       <th style="width:15%;" class="text-right">Base</th>
-                       <th style="width:15%;" class="text-right">Vat</th>
+                       <th style="width:15%;" class="text-end">Base</th>
+                       <th style="width:15%;" class="text-end">Vat</th>
                        <span t-if="(tax_code_type == 'credit')">
-                           <th style="width:15%;" class="text-right">Deductible</th>
-                           <th style="width:15%;" class="text-right">Undeductible</th>
+                           <th style="width:15%;" class="text-end">Deductible</th>
+                           <th style="width:15%;" class="text-end">Undeductible</th>
                     </span>
                     <span t-if="not (tax_code_type == 'credit')">
                         <th style="width:15%;" />
@@ -297,17 +297,17 @@
                     t-if="tax_code_base or tax_code_vat or tax_code_vat_deductible or tax_code_vat_undeductible"
                 >
                     <td><span t-esc="code" /></td>
-                    <td class="text-right"><span
+                    <td class="text-end"><span
                             t-esc="formatLang(env, tax_code_base)"
                         /></td>
-                    <td class="text-right"><span
+                    <td class="text-end"><span
                             t-esc="formatLang(env, tax_code_vat)"
                         /></td>
                     <span t-if="(tax_code_type == 'credit')">
-                        <td class="text-right"><span
+                        <td class="text-end"><span
                                 t-esc="formatLang(env, tax_code_vat_deductible)"
                             /></td>
-                        <td class="text-right"><span
+                        <td class="text-end"><span
                                 t-esc="formatLang(env, tax_code_vat_undeductible)"
                             /></td>
                     </span>
@@ -331,18 +331,18 @@
 
             <!-- total -->
             <tr>
-                <td class="text-right"><strong>Total</strong></td>
-                <td class="text-right"><strong><span
+                <td class="text-start"><strong>Total</strong></td>
+                <td class="text-end"><strong><span
                             t-esc="formatLang(env, total_base)"
                         /></strong></td>
-                <td class="text-right"><strong><span
+                <td class="text-end"><strong><span
                             t-esc="formatLang(env, total_vat)"
                         /></strong></td>
                 <span t-if="(tax_code_type == 'credit')">
-                    <td class="text-right"><strong><span
+                    <td class="text-end"><strong><span
                                 t-esc="formatLang(env, total_vat_deductible)"
                             /></strong></td>
-                    <td class="text-right"><strong><span
+                    <td class="text-end"><strong><span
                                 t-esc="formatLang(env, total_vat_undeductible)"
                             /></strong></td>
                 </span>
