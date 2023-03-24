@@ -39,6 +39,7 @@ setuptools.setup(
         'odoo14-addon-l10n_it_fatturapa_out_wt',
         'odoo14-addon-l10n_it_fatturapa_pec',
         'odoo14-addon-l10n_it_fatturapa_sale',
+        'odoo14-addon-l10n_it_fatturapa_sdicoop',
         'odoo14-addon-l10n_it_fiscal_document_type',
         'odoo14-addon-l10n_it_fiscal_payment_term',
         'odoo14-addon-l10n_it_fiscalcode',
