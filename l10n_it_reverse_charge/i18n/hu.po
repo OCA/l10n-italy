@@ -170,6 +170,13 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_bank_statement_line__rc_original_purchase_invoice_ids
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_move__rc_original_purchase_invoice_ids
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_payment__rc_original_purchase_invoice_ids
+msgid "Original purchase invoices"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
 #: model:ir.model.fields.selection,name:l10n_it_reverse_charge.selection__account_rc_type__partner_type__other
 msgid "Other"
 msgstr ""
