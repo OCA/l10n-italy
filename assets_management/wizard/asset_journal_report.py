@@ -76,6 +76,7 @@ class WizardAssetJournalReport(models.TransientModel):
         "\nBy selecting this flag, the report will show all assets, ignoring the sold "
         "check."
     )
+    show_dismissed_assets = fields.Boolean()
 
     report_footer_year = fields.Char(
         default=get_default_report_footer_year, string="Report Footer Year"
@@ -158,6 +159,7 @@ class WizardAssetJournalReport(models.TransientModel):
             "show_totals": self.show_totals,
             "show_category_totals": self.show_category_totals,
             "show_sold_assets": self.show_sold_assets,
+            "show_dismissed_assets": self.show_dismissed_assets,
             "report_footer_year": self.report_footer_year,
             "type_ids": [(6, 0, self.type_ids.ids)],
         }
