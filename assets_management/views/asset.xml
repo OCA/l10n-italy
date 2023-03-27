@@ -117,6 +117,8 @@
                             <field name="sale_date" />
                             <field name="sale_amount" />
                             <field name="sold" />
+                            <field name="dismiss_date" />
+                            <field name="dismissed" />
                         </group>
                     </group>
                     <notebook>
