@@ -78,9 +78,12 @@ class Asset(models.Model):
 
     sale_date = fields.Date(string="Sale Date")
 
+    dismiss_date = fields.Date()
+
     sale_move_id = fields.Many2one("account.move", string="Sale Move")
 
     sold = fields.Boolean(string="Sold")
+    dismissed = fields.Boolean(string="Dismissed")
 
     state = fields.Selection(
         [

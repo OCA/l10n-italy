@@ -36,6 +36,7 @@
                             <field name="show_totals" />
                             <field name="show_category_totals" />
                             <field name="show_sold_assets" />
+                            <field name="show_dismissed_assets" />
                         </group>
                     </group>
                     <group name="report_options" string="Options">

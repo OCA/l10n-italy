@@ -61,6 +61,8 @@ class WizardAccountMoveManageAsset(models.TransientModel):
         string="Move State",
     )
 
+    dismiss_asset_without_sale = fields.Boolean()
+
     management_type = fields.Selection(
         [
             ("create", "Create New"),
@@ -187,6 +189,11 @@ class WizardAccountMoveManageAsset(models.TransientModel):
             else:
                 self.move_type = "general"
                 self.management_type = "update"
+        else:
+            if self._context.get("remove_asset_without_sale"):
+                self.dismiss_asset_without_sale = True
+                self.management_type = "dismiss"
+                self.asset_id = self._context.get("asset_ids")[0]
 
     def link_asset(self):
         self.ensure_one()
@@ -257,12 +264,15 @@ class WizardAccountMoveManageAsset(models.TransientModel):
         if not self.asset_id:
             raise ValidationError(_("Please choose an asset before continuing!"))
 
-        if not self.move_line_ids:
+        if not self.move_line_ids and not self.dismiss_asset_without_sale:
             raise ValidationError(
                 _("At least one move line is mandatory to dismiss" " an asset!")
             )
 
-        if not len(self.move_line_ids.mapped("move_id")) == 1:
+        if (
+            not len(self.move_line_ids.mapped("move_id")) == 1
+            and not self.dismiss_asset_without_sale
+        ):
             raise ValidationError(
                 _(
                     "Cannot dismiss asset if move lines come from different"
@@ -270,11 +280,14 @@ class WizardAccountMoveManageAsset(models.TransientModel):
                 )
             )
 
-        if not all(
-            [
-                line.account_id == self.asset_id.category_id.asset_account_id
-                for line in self.move_line_ids
-            ]
+        if (
+            not all(
+                [
+                    line.account_id == self.asset_id.category_id.asset_account_id
+                    for line in self.move_line_ids
+                ]
+            )
+            and not self.dismiss_asset_without_sale
         ):
             ass_name = self.asset_id.make_name()
             ass_acc = self.asset_id.category_id.asset_account_id.name_get()[0][-1]
@@ -335,7 +348,9 @@ class WizardAccountMoveManageAsset(models.TransientModel):
         self.asset_id.write(self.get_dismiss_asset_vals())
 
         for dep in self.asset_id.depreciation_ids:
-            (dep.line_ids - old_dep_lines).post_dismiss_asset()
+            (dep.line_ids - old_dep_lines).with_context(
+                {"dismiss_date": self.dismiss_date}
+            ).post_dismiss_asset()
 
         return self.asset_id
 
@@ -388,31 +403,52 @@ class WizardAccountMoveManageAsset(models.TransientModel):
                     ).format(dismiss_date, max_date)
                 )
 
-        move = self.move_line_ids.mapped("move_id")
-        move_nums = move.name
+        if self.dismiss_asset_without_sale:
+            move_nums = _("Dismiss Asset without Sale")
+            writeoff = 0
+            vals = {
+                "depreciation_ids": [],
+                "sale_amount": writeoff,
+                "dismiss_date": self.dismiss_date,
+                "dismissed": True,
+            }
+        else:
+            move = self.move_line_ids.mapped("move_id")
+            move_nums = move.name
 
-        writeoff = 0
-        for line in self.move_line_ids:
-            writeoff += line.currency_id._convert(
-                line.credit - line.debit, currency, line.company_id, line.date
-            )
-        writeoff = round(writeoff, digits)
+            writeoff = 0
+            for line in self.move_line_ids:
+                writeoff += line.currency_id._convert(
+                    line.credit - line.debit, currency, line.company_id, line.date
+                )
+            writeoff = round(writeoff, digits)
 
-        vals = {
-            "customer_id": move.partner_id.id,
-            "depreciation_ids": [],
-            "sale_amount": writeoff,
-            "sale_date": move.invoice_date or move.date,
-            "sale_move_id": move.id,
-            "sold": True,
-        }
+            vals = {
+                "customer_id": move.partner_id.id,
+                "depreciation_ids": [],
+                "sale_amount": writeoff,
+                "sale_date": move.invoice_date or move.date,
+                "sale_move_id": move.id,
+                "sold": True,
+            }
         for dep in asset.depreciation_ids:
             residual = dep.amount_residual
             dep_vals = {"line_ids": []}
             dep_writeoff = writeoff
 
-            dep_line_vals = {
-                "asset_accounting_info_ids": [
+            if self.dismiss_asset_without_sale and not self.move_line_ids:
+                asset_accounting_info_ids = [
+                    (
+                        0,
+                        0,
+                        {
+                            "relation_type": self.management_type,
+                        },
+                    )
+                ]
+                dep_name = _("Direct dismiss")
+            else:
+                asset_accounting_info_ids = [
                     (
                         0,
                         0,
@@ -422,11 +458,14 @@ class WizardAccountMoveManageAsset(models.TransientModel):
                         },
                     )
                     for line in self.move_line_ids
-                ],
+                ]
+                dep_name = _("From move(s) ") + move_nums
+            dep_line_vals = {
+                "asset_accounting_info_ids": asset_accounting_info_ids,
                 "amount": min(residual, dep_writeoff),
                 "date": dismiss_date,
                 "move_type": "out",
-                "name": _("From move(s) ") + move_nums,
+                "name": dep_name,
             }
             dep_vals["line_ids"].append((0, 0, dep_line_vals))
 

@@ -35,6 +35,11 @@
                     Sold assets: show
                 </div>
             </t>
+            <t t-if="o.show_dismissed_assets">
+                <div style="width: 100%; text-align:center;">
+                    Dismissed assets: show
+                </div>
+            </t>
         </div>
     </template>
 
