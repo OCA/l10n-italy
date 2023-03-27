@@ -145,17 +145,6 @@ class AssetDepreciationLine(models.Model):
         return res
 
     def unlink(self):
-        if self.mapped("asset_accounting_info_ids"):
-            lines = self.filtered("asset_accounting_info_ids")
-            name_list = "\n".join([line[-1] for line in lines.name_get()])
-            raise ValidationError(
-                _(
-                    "The lines you you are trying to delete are currently"
-                    " linked to accounting info. Please remove them if"
-                    " necessary before removing these lines:\n"
-                )
-                + name_list
-            )
         if any([m.state != "draft" for m in self.mapped("move_id")]):
             lines = self.filtered(
                 lambda line: line.move_id and line.move_id.state != "draft"
@@ -168,6 +157,7 @@ class AssetDepreciationLine(models.Model):
                 )
                 + name_list
             )
+        self.mapped("asset_accounting_info_ids").unlink()
         self.mapped("move_id").unlink()
         return super().unlink()
 
