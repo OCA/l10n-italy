@@ -3,10 +3,10 @@
 {
     "name": "ITA - Fattura elettronica - Inversione contabile",
     "summary": "Modulo ponte tra e-fattura in acquisto e inversione" " contabile",
-    "version": "14.0.1.1.0",
+    "version": "14.0.1.1.1",
     "development_status": "Beta",
     "category": "Hidden",
-    "website": "https://github.com/OCA/l10n-italy" "l10n_it_fatturapa_in_rc",
+    "website": "https://github.com/OCA/l10n-italy",
     "author": "Efatto.it di Sergio Corato, Odoo Community Association (OCA)",
     "maintainers": ["sergiocorato"],
     "license": "AGPL-3",
