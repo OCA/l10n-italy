@@ -1246,14 +1246,6 @@ msgid "Dep. Percentage (%)"
 msgstr ""
 
 #. module: assets_management
-#: code:addons/assets_management/report/asset_journal_xlsx.py:0
-#: code:addons/assets_management/report/asset_previsional_xlsx.py:0
-#: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__amount_depreciable
-#, python-format
-msgid "Depreciable Amount"
-msgstr ""
-
-#. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__base_coeff
 msgid "Depreciable Base Coeff"
 msgstr ""
@@ -1804,6 +1796,14 @@ msgstr ""
 #: code:addons/assets_management/models/asset_accounting_info.py:0
 #, python-format
 msgid "Incoherent move data."
+msgstr ""
+
+#. module: assets_management
+#: code:addons/assets_management/report/asset_journal_xlsx.py:0
+#: code:addons/assets_management/report/asset_previsional_xlsx.py:0
+#: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__amount_depreciable
+#, python-format
+msgid "Initial Depreciable Amount"
 msgstr ""
 
 #. module: assets_management
@@ -2851,7 +2851,7 @@ msgstr ""
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__amount_depreciable_updated
-msgid "Updated Amount"
+msgid "Updated Depreciable Amount"
 msgstr ""
 
 #. module: assets_management
