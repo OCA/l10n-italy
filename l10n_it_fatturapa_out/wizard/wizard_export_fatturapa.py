@@ -138,7 +138,7 @@ class WizardExportFatturapa(models.TransientModel):
                 "Natura": tax_line_id.kind_id.code,
                 # 'Arrotondamento':'',
                 "ImponibileImporto": tax_id.tax_base_amount,
-                "Imposta": tax_id.credit,
+                "Imposta": abs(tax_id.balance),
                 "EsigibilitaIVA": tax_line_id.payability,
             }
             if tax_line_id.law_reference:
