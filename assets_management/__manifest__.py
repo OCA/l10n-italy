@@ -8,7 +8,7 @@
     "category": "Localization/Italy",
     "summary": "Gestione Cespiti",
     "author": "Openforce, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/l10n-italy" "/tree/12.0/assets_management",
+    "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
     "depends": [
         "account",
