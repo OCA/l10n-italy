@@ -31,7 +31,7 @@ addon | version | maintainers | summary
 [l10n_it_abicab](l10n_it_abicab/) | 12.0.1.1.1 |  | Base Bank ABI/CAB codes
 [l10n_it_accompanying_invoice](l10n_it_accompanying_invoice/) | 12.0.1.0.0 |  | Stampa della fattura accompagnatoria
 [l10n_it_account](l10n_it_account/) | 12.0.1.4.5 |  | Modulo base usato come dipendenza di altri moduli contabili
-[l10n_it_account_balance_report](l10n_it_account_balance_report/) | 12.0.1.0.5 | [![SilvioGregorini](https://github.com/SilvioGregorini.png?size=30px)](https://github.com/SilvioGregorini) | Rendicontazione .pdf e .xls per stato patrimoniale e conto economico a sezioni contrapposte
+[l10n_it_account_balance_report](l10n_it_account_balance_report/) | 12.0.1.1.0 | [![SilvioGregorini](https://github.com/SilvioGregorini.png?size=30px)](https://github.com/SilvioGregorini) | Rendicontazione .pdf e .xls per stato patrimoniale e conto economico a sezioni contrapposte
 [l10n_it_account_stamp](l10n_it_account_stamp/) | 12.0.1.4.0 |  | Gestione automatica dell'imposta di bollo
 [l10n_it_account_stamp_ddt](l10n_it_account_stamp_ddt/) | 12.0.1.0.1 | [![tafaRU](https://github.com/tafaRU.png?size=30px)](https://github.com/tafaRU) | Modulo ponte tra imposta di bollo e DDT
 [l10n_it_account_stamp_sale](l10n_it_account_stamp_sale/) | 12.0.1.0.2 | [![tafaRU](https://github.com/tafaRU.png?size=30px)](https://github.com/tafaRU) | Modulo ponte tra imposta di bollo e vendite
