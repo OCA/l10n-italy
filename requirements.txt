@@ -1,0 +1,8 @@
+# generated from manifests external_dependencies
+asn1crypto
+codicefiscale
+elementpath
+fintech
+openupgradelib
+unidecode
+xmlschema>=1.7.0

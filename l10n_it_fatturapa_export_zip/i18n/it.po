@@ -1,0 +1,146 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_fatturapa_export_zip
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2020-01-07 11:13+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: l10n_it_fatturapa_export_zip
+#: code:addons/l10n_it_fatturapa_export_zip/wizard/export_fatturapa.py:0
+#, python-format
+msgid "Attachment %s already exported. Remove ZIP file first"
+msgstr "Allegato %s già esportato. Rimuovere il file ZIP prima"
+
+#. module: l10n_it_fatturapa_export_zip
+#: code:addons/l10n_it_fatturapa_export_zip/wizard/export_fatturapa.py:0
+#, python-format
+msgid "Attachment %s does not have XML file"
+msgstr "L'allegato %s non ha file XML"
+
+#. module: l10n_it_fatturapa_export_zip
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_export_zip.wizard_fatturapa_export
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: l10n_it_fatturapa_export_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_export_zip.field_wizard_fatturapa_export__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: l10n_it_fatturapa_export_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_export_zip.field_wizard_fatturapa_export__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: l10n_it_fatturapa_export_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_export_zip.field_fatturapa_attachment_in__display_name
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_export_zip.field_fatturapa_attachment_out__display_name
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_export_zip.field_wizard_fatturapa_export__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: l10n_it_fatturapa_export_zip
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_export_zip.wizard_fatturapa_export
+msgid "Download ZIP E-Invoices XML"
+msgstr "Scaricare ZIP e-fatture XML"
+
+#. module: l10n_it_fatturapa_export_zip
+#: model:ir.actions.act_window,name:l10n_it_fatturapa_export_zip.action_fatturapa_in_export
+#: model:ir.actions.act_window,name:l10n_it_fatturapa_export_zip.action_fatturapa_out_export
+msgid "Download ZIP e-invoice XML"
+msgstr "Scaricare ZIP e-fattura XML"
+
+#. module: l10n_it_fatturapa_export_zip
+#: model:ir.model,name:l10n_it_fatturapa_export_zip.model_fatturapa_attachment_in
+msgid "E-bill import file"
+msgstr "File importazione e-fattura"
+
+#. module: l10n_it_fatturapa_export_zip
+#: model:ir.model,name:l10n_it_fatturapa_export_zip.model_fatturapa_attachment_out
+msgid "E-invoice Export File"
+msgstr "File esportazione e-fattura"
+
+#. module: l10n_it_fatturapa_export_zip
+#: code:addons/l10n_it_fatturapa_export_zip/wizard/export_fatturapa.py:0
+#, python-format
+msgid "E-invoice-export"
+msgstr "Esportazione-e-fattura"
+
+#. module: l10n_it_fatturapa_export_zip
+#: code:addons/l10n_it_fatturapa_export_zip/wizard/export_fatturapa.py:0
+#, python-format
+msgid "Export E-Invoices"
+msgstr "Esportare e-fatture"
+
+#. module: l10n_it_fatturapa_export_zip
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_export_zip.wizard_fatturapa_export
+msgid "Export zip"
+msgstr "Esportare ZIP"
+
+#. module: l10n_it_fatturapa_export_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_export_zip.field_fatturapa_attachment_in__exported_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_export_zip.field_fatturapa_attachment_out__exported_zip
+msgid "Exported ZIP"
+msgstr "ZIP esportato"
+
+#. module: l10n_it_fatturapa_export_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_export_zip.field_wizard_fatturapa_export__data
+msgid "File"
+msgstr "File"
+
+#. module: l10n_it_fatturapa_export_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_export_zip.field_wizard_fatturapa_export__name
+msgid "Filename"
+msgstr "Nome file"
+
+#. module: l10n_it_fatturapa_export_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_export_zip.field_fatturapa_attachment_in__id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_export_zip.field_fatturapa_attachment_out__id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_export_zip.field_wizard_fatturapa_export__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_fatturapa_export_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_export_zip.field_fatturapa_attachment_in____last_update
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_export_zip.field_fatturapa_attachment_out____last_update
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_export_zip.field_wizard_fatturapa_export____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_fatturapa_export_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_export_zip.field_wizard_fatturapa_export__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: l10n_it_fatturapa_export_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_export_zip.field_wizard_fatturapa_export__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: l10n_it_fatturapa_export_zip
+#: model:ir.model,name:l10n_it_fatturapa_export_zip.model_wizard_fatturapa_export
+msgid "Wizard e-invoice export ZIP"
+msgstr "Procedura di esportazione ZIP e-fatture"
+
+#. module: l10n_it_fatturapa_export_zip
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_export_zip.view_fatturapa_in_attachment_search
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_export_zip.view_fatturapa_out_attachment_search
+msgid "ZIP Exported"
+msgstr "ZIP esportato"
+
+#. module: l10n_it_fatturapa_export_zip
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_export_zip.view_fatturapa_in_attachment_search
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_export_zip.view_fatturapa_out_attachment_search
+msgid "ZIP Not Exported"
+msgstr "ZIP non esportato"

@@ -1,0 +1,770 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_vat_statement_communication
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields.selection,name:l10n_it_vat_statement_communication.selection__comunicazione_liquidazione_vp__metodo_calcolo_acconto__4
+msgid "\"4\" (soggetti particolari)"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+msgid "<b>VP10</b> Auto UE payments"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+msgid "<b>VP11</b> Tax credits"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+msgid "<b>VP12</b> Due interests for quarterly statements"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+msgid "<b>VP13</b> Due down payment"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+msgid "<b>VP14</b> VAT to pay"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+msgid "<b>VP2</b> Profitable operations total (without VAT)"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+msgid "<b>VP3</b> Unprofitable operations total (without VAT)"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+msgid "<b>VP4</b> Due VAT"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+msgid "<b>VP5</b> Deducted VAT"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+msgid "<b>VP6</b> Debit VAT"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+msgid "<b>VP7</b> Previous period debit, not grater than 25,82 €"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+msgid "<b>VP8</b> Previous period credit"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+msgid "<b>VP9</b> Previous year credit"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+msgid "<span> or credit</span>"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+msgid "<span>Computation method: </span>"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields.selection,name:l10n_it_vat_statement_communication.selection__comunicazione_liquidazione_vp__metodo_calcolo_acconto__3
+msgid "Analitico - effettivo"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__versamento_auto_UE
+msgid "Auto UE payment"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.wizard_liquidazione_export_file
+msgid "Cancel"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.wizard_liquidazione_export_file
+msgid ""
+"Click on <strong>Export</strong> to generate VAT statement communication "
+"file."
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.wizard_liquidazione_export_file_exit
+msgid "Close"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields.selection,name:l10n_it_vat_statement_communication.selection__comunicazione_liquidazione_vp__exceptional_events__1
+msgid "Code 1"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields.selection,name:l10n_it_vat_statement_communication.selection__comunicazione_liquidazione_vp__exceptional_events__9
+msgid "Code 9"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__delegate_commitment
+msgid "Commitment"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__comunicazione_id
+msgid "Communication"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields.selection,name:l10n_it_vat_statement_communication.selection__comunicazione_liquidazione__delegate_commitment__2
+msgid "Communication prepared by sender"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields.selection,name:l10n_it_vat_statement_communication.selection__comunicazione_liquidazione__delegate_commitment__1
+msgid "Communication prepared by taxpayer"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
+#, python-format
+msgid "Communication with identifier {} already exists"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model,name:l10n_it_vat_statement_communication.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__company_id
+msgid "Company"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__controller_vat
+msgid "Controller TIN"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__create_uid
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_export_file__create_uid
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__create_date
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_export_file__create_date
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__iva_a_credito
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__iva_a_credito
+msgid "Credit VAT"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__iva_dovuta_credito
+msgid "Credit due VAT"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__date_commitment
+msgid "Date commitment"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__iva_dovuta_debito
+msgid "Debit VAT"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_form
+msgid "Declarant"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__declarant_fiscalcode
+msgid "Declarant Fiscalcode"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
+#, python-format
+msgid ""
+"Declarant Fiscalcode is required. You can enable the                 section"
+" with different declarant option"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__declarant_different
+msgid "Declarant different from taxpayer"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__declarant_sign
+msgid "Declarant sign"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__iva_detratta
+msgid "Deducted VAT"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__delegate_fiscalcode
+msgid "Delegate Fiscalcode"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__delegate_sign
+msgid "Delegate sign"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_account_tax__display_name
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__display_name
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_export_file__display_name
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__display_name
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_res_company__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__metodo_calcolo_acconto
+msgid "Down payment computation method"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__accounto_dovuto
+msgid "Down payment due"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__iva_esigibile
+msgid "Due VAT"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__interessi_dovuti
+msgid "Due interests for quarterly statements"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__exceptional_events
+msgid "Exceptional events"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_account_tax__vsc_exclude_vat
+msgid "Exclude from VAT payable / deducted"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_account_tax__vsc_exclude_operation
+msgid "Exclude from active / passive operations"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.wizard_liquidazione_export_file
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.wizard_liquidazione_export_file_exit
+msgid "Export"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.wizard_liquidazione_export_file
+msgid "Export File"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model,name:l10n_it_vat_statement_communication.model_comunicazione_liquidazione_export_file
+msgid "Export VAT statement communication XML file"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.actions.act_window,name:l10n_it_vat_statement_communication.action_liquidazione_export_file
+msgid "Export VAT statement communication file"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_export_file__file_export
+msgid "File"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_export_file__name
+msgid "File Name"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__declarant_fiscalcode_company
+msgid "Fiscalcode company"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
+#, python-format
+msgid "For group's statement, controller's TIN must be empty"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_form
+msgid "Frontispiece"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_form
+msgid "General data"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__liquidazione_del_gruppo
+msgid "Group's statement"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
+#, python-format
+msgid "Group's statement not valid, as fiscal code is 16 characters"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_account_tax__id
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__id
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_export_file__id
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__id
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_res_company__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_res_company__vsc_supply_code
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_vat_statement_communication_company_form
+msgid "IVP18"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__identificativo
+msgid "Identifier"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_needaction
+#: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_has_error
+#: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_account_tax____last_update
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione____last_update
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_export_file____last_update
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp____last_update
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_res_company____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__write_uid
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_export_file__write_uid
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__write_date
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_export_file__write_date
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__last_month
+msgid "Last month"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__month
+msgid "Month"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields.selection,name:l10n_it_vat_statement_communication.selection__comunicazione_liquidazione_vp__period_type__month
+msgid "Monthly"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__name
+msgid "Name"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:0
+#, python-format
+msgid "No communication selected"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__period_type
+msgid "Period type"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__credito_periodo_precedente
+msgid "Previous period credit"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__debito_periodo_precedente
+msgid "Previous period debit"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__credito_anno_precedente
+msgid "Previous year credit"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields.selection,name:l10n_it_vat_statement_communication.selection__comunicazione_liquidazione_vp__metodo_calcolo_acconto__2
+msgid "Previsionale"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__imponibile_operazioni_attive
+msgid "Profitable operations total (without VAT)"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__quarter
+msgid "Quarter"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields.selection,name:l10n_it_vat_statement_communication.selection__comunicazione_liquidazione_vp__period_type__quarter
+msgid "Quarterly"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+msgid "Recompute"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+msgid "Reference period"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__codice_carica_id
+msgid "Role code"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_form
+msgid "Signature"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
+#, python-format
+msgid "Specify role code of declarant"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_form
+msgid "Statement communication"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields.selection,name:l10n_it_vat_statement_communication.selection__comunicazione_liquidazione_vp__metodo_calcolo_acconto__1
+msgid "Storico"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__subcontracting
+msgid "Subcontracting"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model,name:l10n_it_vat_statement_communication.model_account_tax
+msgid "Tax"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__crediti_imposta
+msgid "Tax credits"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+msgid "Tax statement"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_form
+msgid "Taxpayer"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__taxpayer_fiscalcode
+msgid "Taxpayer Fiscalcode"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
+#, python-format
+msgid ""
+"Taxpayer Fiscalcode is required. It's accepted codes                     "
+"with lenght 11 or 16 chars"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_form
+msgid "Telematic communication commitment"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+msgid "This will overwrite all VP* values"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__imponibile_operazioni_passive
+msgid "Unprofitable operations total (without VAT)"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.actions.act_window,name:l10n_it_vat_statement_communication.action_comunicazione_liquidazione
+#: model:ir.model,name:l10n_it_vat_statement_communication.model_comunicazione_liquidazione
+#: model:ir.ui.menu,name:l10n_it_vat_statement_communication.menu_comunicazione_liquidazione
+msgid "VAT statement communication"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model,name:l10n_it_vat_statement_communication.model_comunicazione_liquidazione_vp
+msgid "VAT statement communication - VP table"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__liquidazioni_ids
+msgid "VAT statements"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+msgid "VAT statements to communicate"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__iva_da_versare
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__iva_da_versare
+msgid "VAT to pay"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
+msgid "VP table"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__quadri_vp_ids
+msgid "VP tables"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__taxpayer_vat
+msgid "Vat"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_res_company__vsc_supply_code
+msgid "Vat statement communication supply code"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
+#, python-format
+msgid "With delegate in commitment section, you need to check 'delegate sign'"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
+#, python-format
+msgid "With intermediary fiscal code, you need to specify commitment code"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
+#, python-format
+msgid "With intermediary fiscal code, you need to specify commitment date"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
+#, python-format
+msgid ""
+"With this role code, you need to specify fiscal code of declarant company"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__year
+msgid "Year"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
+#, python-format
+msgid "Year required"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:0
+#, python-format
+msgid "You can export only 1 communication at a time"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
+#, python-format
+msgid "month"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.wizard_liquidazione_export_file
+msgid "or"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
+#: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
+#, python-format
+msgid "quarter"
+msgstr ""

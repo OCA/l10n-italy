@@ -1,0 +1,95 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_fatturapa_in_rc
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2022-10-10 09:34+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: l10n_it_fatturapa_in_rc
+#: model:ir.model.fields,help:l10n_it_fatturapa_in_rc.field_account_rc_type__e_invoice_suppliers
+msgid "Automatically used when importing e-invoices from Italian suppliers"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in_rc
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_account_rc_type__display_name
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_fatturapa_attachment_in__display_name
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_wizard_import_fatturapa__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: l10n_it_fatturapa_in_rc
+#: model:ir.model,name:l10n_it_fatturapa_in_rc.model_fatturapa_attachment_in
+msgid "E-bill import file"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in_rc
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_account_rc_type__e_invoice_suppliers
+msgid "E-invoice suppliers"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in_rc
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_account_move_line__id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_account_rc_type__id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_fatturapa_attachment_in__id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_wizard_import_fatturapa__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_fatturapa_in_rc
+#: model:ir.model,name:l10n_it_fatturapa_in_rc.model_wizard_import_fatturapa
+msgid "Import E-bill"
+msgstr "Importa e-fattura"
+
+#. module: l10n_it_fatturapa_in_rc
+#: model:ir.model,name:l10n_it_fatturapa_in_rc.model_account_move
+msgid "Journal Entry"
+msgstr "Registrazione contabile"
+
+#. module: l10n_it_fatturapa_in_rc
+#: model:ir.model,name:l10n_it_fatturapa_in_rc.model_account_move_line
+msgid "Journal Item"
+msgstr "Movimento contabile"
+
+#. module: l10n_it_fatturapa_in_rc
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_account_move____last_update
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_account_rc_type____last_update
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_fatturapa_attachment_in____last_update
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_wizard_import_fatturapa____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_fatturapa_in_rc
+#: model:ir.model,name:l10n_it_fatturapa_in_rc.model_account_rc_type
+msgid "Reverse Charge Type"
+msgstr "Tipo inversione contabile"
+
+#. module: l10n_it_fatturapa_in_rc
+#: code:addons/l10n_it_fatturapa_in_rc/models/account_invoice.py:0
+#, python-format
+msgid ""
+"Taxed amount ({bill_amount_tax}) does not match with e-bill taxed amount "
+"({e_bill_amount_tax})"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in_rc
+#: code:addons/l10n_it_fatturapa_in_rc/models/account_invoice.py:0
+#, python-format
+msgid ""
+"Total amount ({bill_amount_total}) does not match with e-bill total amount "
+"({e_bill_amount_total})"
+msgstr ""

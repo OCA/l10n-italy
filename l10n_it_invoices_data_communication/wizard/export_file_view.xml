@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+
+        <record id="wizard_dati_iva_export_file" model="ir.ui.view">
+            <field name="name">Export file</field>
+            <field name="model">comunicazione.dati.iva.export.file</field>
+            <field name="arch" type="xml">
+                <form string="Export File">
+                    <div>
+                        <p>
+                        Click on <strong
+                            >Export</strong> to generate invoices data communication file.
+                        </p>
+                    </div>
+                    <footer>
+                        <button
+                            name="export"
+                            string="Export"
+                            type="object"
+                            class="oe_highlight"
+                        />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="wizard_dati_iva_export_file_exit" model="ir.ui.view">
+            <field name="name">Export file - Done</field>
+            <field name="model">comunicazione.dati.iva.export.file</field>
+            <field name="arch" type="xml">
+                <form string="Export">
+                    <group>
+                        <field name="file_export" readonly="1" filename="filename" />
+                        <field name="filename" invisible="1" />
+                    </group>
+                    <footer>
+                        <button string="Close" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_dati_iva_export_file" model="ir.actions.act_window">
+            <field name="name">Export invoices data file</field>
+            <field name="res_model">comunicazione.dati.iva.export.file</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wizard_dati_iva_export_file" />
+            <field name="target">new</field>
+            <field
+                name="binding_model_id"
+                ref="l10n_it_invoices_data_communication.model_comunicazione_dati_iva"
+            />
+        </record>
+
+    </data>
+</odoo>

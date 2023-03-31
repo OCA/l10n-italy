@@ -1,0 +1,313 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_central_journal
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-08 03:45+0000\n"
+"PO-Revision-Date: 2017-12-08 03:45+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_it_central_journal
+#: model:ir.actions.report,name:l10n_it_central_journal.action_report_giornale
+msgid "Account General Journal"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
+msgid "Account code"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
+msgid "Account move"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
+msgid "Account name"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: selection:wizard.giornale,target_move:0
+msgid "All"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__company_id
+msgid "Company"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__create_uid
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__create_date
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: l10n_it_central_journal
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
+msgid "Credit"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
+msgid "Date"
+msgstr "Data"
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__date_move_line_from
+msgid "Date Move Line From"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model,name:l10n_it_central_journal.model_date_range
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__daterange
+msgid "Date Range"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:149
+#, python-format
+msgid "Date already printed"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
+msgid "Dates movements"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
+msgid "Debit"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_report_l10n_it_central_journal_report_giornale__display_name
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__display_name
+msgid "Display Name"
+msgstr "Nome a Apresentar"
+
+#. module: l10n_it_central_journal
+#: selection:wizard.giornale,target_move:0
+msgid "Draft"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_account_bank_statement_import_journal_creation__central_journal_exclude
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_account_journal__central_journal_exclude
+msgid "Exclude from General Journal"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
+msgid "Final Balance"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
+msgid "Final print"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__date_move_line_from_view
+msgid "From date"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.actions.act_window,name:l10n_it_central_journal.action_giornale
+#: model:ir.ui.menu,name:l10n_it_central_journal.menu_giornale
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
+msgid "General Journal"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.view_date_range_form_inherit_view
+msgid "General Journal Info"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_report_l10n_it_central_journal_report_giornale__id
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_central_journal
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
+msgid "Initial Balance"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model,name:l10n_it_central_journal.model_account_journal
+msgid "Journal"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model,name:l10n_it_central_journal.model_report_l10n_it_central_journal_report_giornale
+msgid "Journal report"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__journal_ids
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
+msgid "Journals"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_report_l10n_it_central_journal_report_giornale____last_update
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale____last_update
+msgid "Last Modified on"
+msgstr "Modificado a última vez por"
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__write_uid
+msgid "Last Updated by"
+msgstr "Atualizado pela última vez por"
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__write_date
+msgid "Last Updated on"
+msgstr "Atualizado pela última vez em"
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__last_def_date_print
+msgid "Last definitive date print"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range__date_last_print
+msgid "Last printed date"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__fiscal_page_base
+msgid "Last printed page"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
+msgid "Layout"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
+msgid "Name"
+msgstr "Nome"
+
+#. module: l10n_it_central_journal
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:132
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:154
+#, python-format
+msgid "No documents found in the current selection"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: selection:wizard.giornale,target_move:0
+msgid "Posted"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
+msgid "Print"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: selection:wizard.giornale,print_state:0
+msgid "Printed"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range__progressive_credit
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__progressive_credit
+msgid "Progressive Credit"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range__progressive_debit
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__progressive_debit2
+msgid "Progressive Debit"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range__progressive_line_number
+msgid "Progressive line"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range__progressive_page_number
+msgid "Progressive of the page"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: selection:wizard.giornale,print_state:0
+msgid "Ready for printing"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
+msgid "Ref."
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.report_giornale
+msgid "Row"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__start_row
+msgid "Start row"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__print_state
+msgid "State"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__target_move
+msgid "Target Move"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__date_move_line_to
+msgid "To date"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,help:l10n_it_central_journal.field_wizard_giornale__year_footer
+msgid "Value printed near number of page in the footer"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model,name:l10n_it_central_journal.model_wizard_giornale
+msgid "Wizard journal report"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__year_footer
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
+msgid "Year for Footer"
+msgstr ""
+
+#. module: l10n_it_central_journal
+#: model_terms:ir.ui.view,arch_db:l10n_it_central_journal.wizard_giornale
+msgid "or"
+msgstr "ou"

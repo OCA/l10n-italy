@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_withholding_tax_form_reason" model="ir.ui.view">
+        <field name="name">view_withholding_tax_form_reason</field>
+        <field name="model">withholding.tax</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_withholding_tax.view_withholding_tax_form"
+        />
+        <field name="arch" type="xml">
+            <field name="payment_term" position="after">
+                <field name="payment_reason_id" />
+            </field>
+        </field>
+    </record>
+</odoo>

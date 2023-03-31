@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2019 Simone Rubino - Agile Business Group
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+<odoo>
+    <!--    Statement   -->
+
+    <record id="view_account_vat_period_end_statement" model="ir.ui.view">
+        <field name="name">account.vat.period.end.statement.form</field>
+        <field name="model">account.vat.period.end.statement</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Vat statement">
+                <header>
+                    <button
+                        name="create_move"
+                        attrs="{'invisible': ['|', ('annual', '=', True), ('state', '!=', 'draft')]}"
+                        type="object"
+                        string="Create Move"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="statement_draft"
+                        type="object"
+                        states="confirmed,paid"
+                        string="Set to draft"
+                    />
+                    <button
+                        type="object"
+                        name="compute_amounts"
+                        string="Recompute amounts"
+                        states="draft"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        attrs="{'invisible': [('annual', '=', True)]}"
+                    />
+                </header>
+                <group>
+                    <field name="journal_id" widget="selection" />
+                    <field name="date" />
+                    <field name="annual" />
+                    <field
+                        name="move_id"
+                        attrs="{'invisible': [('annual', '=', True)]}"
+                    />
+                    <field
+                        name="payment_term_id"
+                        attrs="{'invisible': [('annual', '=', True)]}"
+                    />
+                    <field
+                        name="authority_partner_id"
+                        widget="res_partner_many2one"
+                        context="{'res_partner_search_mode': 'supplier', 'default_is_company': True}"
+                        attrs="{'invisible': [('annual', '=', True)]}"
+                    />
+                    <field
+                        name="authority_vat_account_id"
+                        attrs="{'invisible': [('annual', '=', True)], 'required': [('annual', '=', False)]}"
+                    />
+                    <field name="company_id" groups="base.group_multi_company" />
+                    <field name="interest" />
+                <field
+                        name="interest_percent"
+                        attrs="{'invisible': [('interest', '=', False)], 'required': [('interest', '=', True)]}"
+                    />
+                </group>
+                <notebook colspan="4">
+                    <page string="Periods">
+                        <div>
+                            <button
+                                type='action'
+                                name="%(action_add_period)d"
+                                string="Add period"
+                                colspan="2"
+                                attrs="{'invisible': [('state', 'in', ('confirmed', 'paid'))]}"
+                                icon="fa-plus"
+                            />
+                            <span>&amp;nbsp;</span>
+                            <button
+                                type='action'
+                                name="%(action_remove_period)d"
+                                string="Remove period"
+                                colspan="2"
+                                attrs="{'invisible': [('state', 'in', ('confirmed', 'paid'))]}"
+                                icon="fa-minus"
+                            />
+                        </div>
+                        <group>
+                            <field
+                                name="date_range_ids"
+                                colspan="4"
+                                nolabel="1"
+                                readonly="1"
+                            />
+                        </group>
+                    </page>
+                    <page string="Accounts">
+                        <group colspan="4" col="3">
+                            <group col="2" colspan="3">
+                                <separator string="Debit Account Lines" />
+                                <separator string="Credit Account Lines" />
+                                <field name="debit_vat_account_line_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="tax_id" />
+                                        <field name="account_id" />
+                                        <field name="amount" />
+                                   </tree>
+                                    <form>
+                                        <group>
+                                            <field name="tax_id" />
+                                            <field name="account_id" />
+                                            <field name="amount" />
+                                        </group>
+                                   </form>
+                                </field>
+                                <field name="credit_vat_account_line_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="tax_id" />
+                                        <field name="account_id" />
+                                        <field name="amount" />
+                                   </tree>
+                                    <form>
+                                        <group>
+                                            <field name="tax_id" />
+                                            <field name="account_id" />
+                                            <field name="amount" />
+                                        </group>
+                                   </form>
+                                </field>
+                            </group>
+                            <group col="3" colspan="4">
+                                <separator colspan="3" string="Previous Credits VAT" />
+                                <field
+                                    name="previous_credit_vat_account_id"
+                                    attrs="{'required':[('previous_credit_vat_amount','!=',0)]}"
+                                />
+                                <field name="previous_credit_vat_amount" nolabel="1" />
+                                <field name="previous_year_credit" />
+                                <separator colspan="3" string="Previous Debits VAT" />
+                                <field
+                                    name="previous_debit_vat_account_id"
+                                    attrs="{'required':[('previous_debit_vat_amount','!=',0)]}"
+                                />
+                                <field name="previous_debit_vat_amount" nolabel="1" />
+                                <separator colspan="3" string="Due interests" />
+                                <field
+                                    name="interests_debit_vat_account_id"
+                                    attrs="{'required':[('interests_debit_vat_amount','!=',0)]}"
+                                />
+                                <field name="interests_debit_vat_amount" nolabel="1" />
+                                <separator colspan="3" string="Tax credits" />
+                                <field
+                                    name="tax_credit_account_id"
+                                    attrs="{'required':[('tax_credit_amount','!=',0)]}"
+                                />
+                                <field name="tax_credit_amount" nolabel="1" />
+                                <separator colspan="3" string="Down payment" />
+                                <field
+                                    name="advance_account_id"
+                                    attrs="{'required':[('advance_amount','!=',0)]}"
+                                />
+                                <field name="advance_amount" nolabel="1" />
+                                <field
+                                    name="advance_computation_method"
+                                    string="Computation method"
+                                />
+                            </group>
+                            <separator
+                                colspan="3"
+                                string="Other VAT Credits / Debits or Tax Compensations (Positive amounts for credits, negative for debits)"
+                            />
+                            <field
+                                name="generic_vat_account_line_ids"
+                                colspan="3"
+                                nolabel="1"
+                            >
+                                <tree editable="bottom" string="Account Lines">
+                                    <field name="account_id" />
+                                    <field name="name" />
+                                    <field name="amount" />
+                               </tree>
+                                <form>
+                                    <field name="account_id" />
+                                    <field name="name" />
+                                    <field name="amount" />
+                               </form>
+                            </field>
+                        </group>
+                        <group attrs="{'invisible': [('annual', '=', True)]}">
+                            <field name="reconciled" />
+                        </group>
+                    </page>
+                    <page
+                        string="Tax Authority"
+                        attrs="{'invisible': [('annual', '=', True)]}"
+                    >
+                        <group>
+                            <field name="authority_vat_amount" />
+                            <field name="residual" />
+                        </group>
+                        <separator string="Payments" />
+                        <field name="payment_ids" nolabel="1" />
+                    </page>
+                    <page string="Print Options">
+                        <group colspan="4" string="Page Number">
+                            <field name="fiscal_page_base" />
+                            <field name="fiscal_year" />
+                        </group>
+                    </page>
+                </notebook>
+           </form>
+        </field>
+    </record>
+
+    <record id="view_account_vat_period_end_statement_search" model="ir.ui.view">
+        <field name="name">Search view for account.vat.period.end.statement</field>
+        <field name="model">account.vat.period.end.statement</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="journal_id" />
+                <field name="date" />
+                <field name="move_id" />
+                <field name="payment_term_id" />
+                <field name="state" />
+                <filter
+                    string="Annual"
+                    name="annual_filter"
+                    domain="[('annual', '=', True)]"
+                />
+                <filter
+                    string="Periodic"
+                    name="periodic_filter"
+                    domain="[('annual', '=', False)]"
+                />
+           </search>
+        </field>
+    </record>
+
+    <record id="view_account_vat_period_end_statement_tree" model="ir.ui.view">
+        <field name="name">account.vat.period.end.statement.tree</field>
+        <field name="model">account.vat.period.end.statement</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Vat statement">
+                <field name="date" />
+                <field name="journal_id" />
+                <field name="previous_credit_vat_amount" />
+                <field name="previous_debit_vat_amount" />
+                <field name="interests_debit_vat_amount" />
+                <field name="tax_credit_amount" />
+                <field name="deductible_vat_amount" />
+                <field name="authority_vat_amount" />
+                <field name="annual" />
+                <field name="state" />
+                <field name="company_id" groups="base.group_multi_company" />
+           </tree>
+        </field>
+    </record>
+
+    <record id="action_account_vat_period_end_statement" model="ir.actions.act_window">
+        <field name="name">Vat statement</field>
+        <field name="res_model">account.vat.period.end.statement</field>
+    </record>
+
+    <menuitem
+        id="menu_account_vat_period_end_statement"
+        action="action_account_vat_period_end_statement"
+        name="VAT statements"
+        parent="account.menu_finance_entries"
+    />
+
+    <!--    tax code   -->
+
+    <record id="view_tax_form_vat" model="ir.ui.view">
+        <field name="name">view_tax_form_vat</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form" />
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="tax_group_id" position="after">
+                <field name="vat_statement_account_id" />
+            </field>
+        </field>
+    </record>
+</odoo>

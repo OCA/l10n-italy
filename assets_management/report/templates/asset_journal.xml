@@ -1,0 +1,974 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="template_asset_journal_report">
+        <div class="o_account_financial_reports_page">
+            <t t-call="account_financial_report.report_buttons" />
+            <t t-call="assets_management.template_asset_journal_base" />
+        </div>
+    </template>
+
+    <template id="template_asset_journal_qweb">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="assets_management.document_layout">
+                    <t t-call="assets_management.template_asset_journal_base" />
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="template_asset_journal_base">
+        <div class="page">
+            <t t-call="assets_management.template_asset_journal_title" />
+            <t t-call="assets_management.template_asset_journal_body" />
+        </div>
+    </template>
+
+    <template id="template_asset_journal_title">
+        <div>
+            <h1 style="text-align:center;">
+                <span t-field="o.report_name" />
+            </h1>
+        </div>
+    </template>
+
+    <template id="template_asset_journal_body">
+        <t t-set="categ_counter" t-value="1" />
+        <t t-set="category_nr" t-value="len(o.report_category_ids)" />
+        <t t-foreach="o.report_category_ids" t-as="category_section">
+            <div class="act_as_table data_table" style="width: 100%;">
+                <t t-call="assets_management.template_asset_journal_category_data" />
+                <t t-call="assets_management.template_asset_journal_asset" />
+                <t t-if="o.show_category_totals">
+                    <br />
+                    <t
+                        t-call="assets_management.template_asset_journal_category_totals"
+                    />
+                </t>
+            </div>
+            <t t-if="categ_counter &lt; category_nr">
+                <t t-set="categ_counter" t-value="categ_counter + 1" />
+                <hr />
+            </t>
+            <t t-else="">
+                <br />
+            </t>
+        </t>
+        <t t-if="o.show_totals">
+            <br />
+            <div name="category_name">
+                <h2 style="text-align: center;">
+                    <span style="margin: 5px; font-weight: bold;">
+                        <span>Totals</span>
+                    </span>
+                </h2>
+            </div>
+            <t t-set="totals_sections" t-value="o.report_total_ids" />
+            <t t-call="assets_management.template_asset_journal_totals" />
+        </t>
+    </template>
+
+    <template id="template_asset_journal_category_data">
+        <div name="category_name">
+            <h2 style="text-align: center;">
+                <t
+                    t-set="domain"
+                    t-value="[('id', 'in', category_section.report_asset_ids.mapped('asset_id').ids)]"
+                />
+                <span style="margin: 5px; font-weight: bold;">
+                    <span>Asset Category: </span>
+                    <a
+                        t-att-data-domain="domain"
+                        t-att-data-res-model="'asset.asset'"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t t-raw="category_section.category_name" />
+                    </a>
+                </span>
+            </h2>
+        </div>
+    </template>
+
+    <template id="template_asset_journal_category_totals">
+        <div name="category_name">
+            <h2 style="text-align: centerNel;">
+                <span style="margin: 5px; font-weight: bold;">
+                    <span>Totals for: </span><span
+                        t-field="category_section.category_name"
+                    />
+                </span>
+            </h2>
+        </div>
+        <div>
+            <t t-set="totals_sections" t-value="category_section.report_total_ids" />
+            <t t-call="assets_management.template_asset_journal_totals" />
+        </div>
+    </template>
+
+    <template id="template_asset_journal_asset">
+        <t t-set="asset_counter" t-value="1" />
+        <t t-foreach="category_section.report_asset_ids" t-as="asset_section">
+            <div class="act_as_table" style="width: 100%">
+                <div
+                    class="act_as_thead"
+                    style="width: 100%; font-size: 14px; margin: 3px;"
+                >
+                    <t t-call="assets_management.template_asset_journal_asset_title" />
+                    <t
+                        t-call="assets_management.template_asset_journal_asset_table_header"
+                    />
+                    <t
+                        t-call="assets_management.template_asset_journal_asset_table_data"
+                    />
+                </div>
+            </div>
+            <t t-if="asset_section.report_purchase_doc_id">
+                <div class="act_as_table" style="width: 100%">
+                    <div
+                        class="act_as_thead"
+                        style="width: 100%; font-size: 14px; margin: 3px;"
+                    >
+                        <t
+                            t-set="accounting_doc"
+                            t-value="asset_section.report_purchase_doc_id"
+                        />
+                        <t
+                            t-call="assets_management.template_asset_journal_asset_accounting_table_header"
+                        />
+                        <t
+                            t-call="assets_management.template_asset_journal_asset_accounting_table_data"
+                        />
+                    </div>
+                </div>
+            </t>
+            <t t-call="assets_management.template_asset_journal_asset_depreciations" />
+            <t t-if="asset_section.report_sale_doc_id">
+                <div class="act_as_table" style="width: 100%">
+                    <div
+                        class="act_as_thead"
+                        style="width: 100%; font-size: 14px; margin: 3px;"
+                    >
+                        <t
+                            t-set="accounting_doc"
+                            t-value="asset_section.report_sale_doc_id"
+                        />
+                        <t
+                            t-call="assets_management.template_asset_journal_asset_accounting_table_header"
+                        />
+                        <t
+                            t-call="assets_management.template_asset_journal_asset_accounting_table_data"
+                        />
+                    </div>
+                </div>
+            </t>
+            <t t-if="asset_counter &lt; len(category_section.report_asset_ids)">
+                <t t-set="asset_counter" t-value="asset_counter + 1" />
+                <br />
+            </t>
+        </t>
+    </template>
+
+    <template id="template_asset_journal_asset_title">
+        <div name="asset_name">
+            <h2 style="text-align: left;">
+                <t t-set="active_id" t-value="asset_section.asset_id.id" />
+                <span style="margin: 5px;">
+                    <span>Asset: </span>
+                    <a
+                        t-att-data-active-id="active_id"
+                        t-att-data-res-model="'asset.asset'"
+                        class="o_account_financial_reports_web_action"
+                    >
+                        <t t-raw="asset_section.asset_name" />
+                    </a>
+                </span>
+            </h2>
+        </div>
+    </template>
+
+    <template id="template_asset_journal_asset_table_header">
+        <div class="act_as_row labels">
+            <div class="act_as_cell" style="width: 25%;" name="code">
+                <span>Code</span>
+            </div>
+            <div class="act_as_cell" style="width: 25%;" name="amount">
+                <span>Purchase Amount</span>
+            </div>
+            <div class="act_as_cell" style="width: 25%;" name="used">
+                <span>Purchased as New / Used</span>
+            </div>
+            <div class="act_as_cell" style="width: 25%;" name="status">
+                <span>Status</span>
+            </div>
+        </div>
+    </template>
+
+    <template id="template_asset_journal_asset_table_data">
+        <div class="act_as_row labels">
+            <t t-set="active_id" t-value="asset_section.asset_id.id" />
+            <t t-set="res_model" t-value="'asset.asset'" />
+            <div class="act_as_cell" style="width: 25%;" name="code">
+                <span>
+                    <a
+                        t-att-data-active-id="active_id"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action"
+                    >
+                        <t t-raw="asset_section.asset_code" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" style="width: 25%;" name="amount">
+                <span>
+                    <a
+                        t-att-data-active-id="active_id"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action"
+                    >
+                        <t
+                            t-raw="asset_section.format_amount(asset_section.asset_purchase_amount)"
+                        />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" style="width: 25%;" name="used">
+                <span>
+                    <a
+                        t-att-data-active-id="active_id"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action"
+                    >
+                        <t t-raw="asset_section.asset_used" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" style="width: 25%;" name="status">
+                <span>
+                    <a
+                        t-att-data-active-id="active_id"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action"
+                    >
+                        <t t-raw="asset_section.asset_state" />
+                    </a>
+                </span>
+            </div>
+        </div>
+    </template>
+
+    <template id="template_asset_journal_asset_accounting_table_header">
+        <div class="act_as_row labels">
+            <div class="act_as_cell" style="width: 20%;" name="partner_name">
+                <span>Partner</span>
+            </div>
+            <div class="act_as_cell" style="width: 20%;" name="partner_vat">
+                <span>VAT</span>
+            </div>
+            <div class="act_as_cell" style="width: 20%;" name="account_doc_nr">
+                <span>Document Nr</span>
+            </div>
+            <div class="act_as_cell" style="width: 20%;" name="account_doc_date">
+                <span>Document Date</span>
+            </div>
+            <div
+                class="act_as_cell"
+                style="width: 20%;"
+                name="account_doc_supplier_ref"
+            >
+                <span>Ref</span>
+            </div>
+        </div>
+    </template>
+
+    <template id="template_asset_journal_asset_accounting_table_data">
+        <t t-set="active_id" t-value="accounting_doc.res_id" />
+        <t t-set="res_model" t-value="accounting_doc.res_model" />
+        <div class="act_as_row labels">
+            <div class="act_as_cell" style="width: 20%;" name="partner_name">
+                <span>
+                    <a
+                        t-att-data-active-id="active_id"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action"
+                    >
+                        <t t-raw="accounting_doc.partner_name" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" style="width: 20%;" name="partner_vat">
+                <span>
+                    <a
+                        t-att-data-active-id="active_id"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action"
+                    >
+                        <t t-raw="accounting_doc.partner_vat" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" style="width: 20%;" name="account_doc_nr">
+                <span>
+                    <a
+                        t-att-data-active-id="active_id"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action"
+                    >
+                        <t t-raw="accounting_doc.document_nr" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" style="width: 20%;" name="account_doc_date">
+                <span>
+                    <a
+                        t-att-data-active-id="active_id"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action"
+                    >
+                        <t t-raw="accounting_doc.document_date" />
+                    </a>
+                </span>
+            </div>
+            <div
+                class="act_as_cell"
+                style="width: 20%;"
+                name="account_doc_supplier_ref"
+            >
+                <span>
+                    <a
+                        t-att-data-active-id="active_id"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action"
+                    >
+                        <t t-raw="accounting_doc.partner_ref" />
+                    </a>
+                </span>
+            </div>
+        </div>
+    </template>
+
+    <template id="template_asset_journal_asset_depreciations">
+        <t t-foreach="asset_section.report_depreciation_ids" t-as="dep_section">
+            <div class="act_as_table" style="width: 100%">
+                <div class="act_as_tbody" style="width: 100%;">
+                    <t
+                        t-call="assets_management.template_asset_journal_asset_depreciation_table_header"
+                    />
+                    <t
+                        t-call="assets_management.template_asset_journal_asset_depreciation_table_data"
+                    />
+                </div>
+            </div>
+            <t t-if="dep_section.report_depreciation_year_line_ids">
+                <div class="act_as_table" style="width: 100%">
+                    <div class="act_as_tbody" style="width: 100%;">
+                        <t
+                            t-call="assets_management.template_asset_journal_asset_year_depreciation_table_header"
+                        />
+                        <t
+                            t-foreach="dep_section.report_depreciation_year_line_ids"
+                            t-as="year_section"
+                        >
+                            <t
+                                t-call="assets_management.template_asset_journal_asset_year_depreciation_table_data"
+                            />
+                        </t>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="template_asset_journal_asset_depreciation_table_header">
+        <div
+            class="act_as_row"
+            style="font-size: 12px; font-weight: bold;"
+            name="depreciations_header"
+        >
+            <div class="act_as_cell" style="width: 16.667%;" name="type">
+                <span>Depreciation Type</span>
+            </div>
+            <div class="act_as_cell" style="width: 16.667%;" name="mode">
+                <span>Depreciation Mode</span>
+            </div>
+            <div class="act_as_cell" style="width: 16.667%;" name="depreciable_amount">
+                <span>Depreciable Amount</span>
+            </div>
+            <div class="act_as_cell" style="width: 16.667%;" name="date_start">
+                <span>Starting From</span>
+            </div>
+            <div class="act_as_cell" style="width: 16.667%;" name="percentage">
+                <span>Dep. Percentage (%)</span>
+            </div>
+            <div class="act_as_cell" style="width: 16.667%;" name="pro_rata_temporis">
+                <span>Pro Rata Temporis</span>
+            </div>
+        </div>
+    </template>
+
+    <template id="template_asset_journal_asset_depreciation_table_data">
+        <t t-set="active_id" t-value="dep_section.depreciation_id.id" />
+        <t t-set="res_model" t-value="'asset.depreciation'" />
+        <div class="act_as_row" style="font-size: 12px" name="depreciations">
+            <div class="act_as_cell" style="width: 16.667%;" name="type">
+                <span>
+                    <a
+                        t-att-data-active-id="active_id"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action"
+                    >
+                        <t t-raw="dep_section.type_name" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" style="width: 16.667%;" name="mode">
+                <span>
+                    <a
+                        t-att-data-active-id="active_id"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action"
+                    >
+                        <t t-raw="dep_section.mode_name" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" style="width: 16.667%;" name="depreciable_amount">
+                <span>
+                    <a
+                        t-att-data-active-id="active_id"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action"
+                    >
+                        <t
+                            t-raw="dep_section.format_amount(dep_section.dep_amount_depreciable)"
+                        />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" style="width: 16.667%;" name="date_start">
+                <span>
+                    <a
+                        t-att-data-active-id="active_id"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action"
+                    >
+                        <t t-raw="dep_section.dep_date_start" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" style="width: 16.667%;" name="percentage">
+                <span>
+                    <a
+                        t-att-data-active-id="active_id"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action"
+                    >
+                        <t t-raw="dep_section.dep_percentage" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" style="width: 16.667%;" name="pro_rata_temporis">
+                <span>
+                    <a
+                        t-att-data-active-id="active_id"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action"
+                    >
+                        <t t-raw="dep_section.dep_pro_rata_temporis" />
+                    </a>
+                </span>
+            </div>
+        </div>
+    </template>
+
+    <template id="template_asset_journal_asset_year_depreciation_table_header">
+        <div
+            class="act_as_row"
+            style="font-size: 12px; font-weight: bold;"
+            name="depreciations_by_year_header"
+        >
+            <div class="act_as_cell" style="width: 11.11%;" name="year">
+                <span>Year</span>
+            </div>
+            <div class="act_as_cell" style="width: 11.11%;" name="amount_depreciable">
+                <span>Dep. Amount</span>
+            </div>
+            <div class="act_as_cell" style="width: 11.11%;" name="amount_in">
+                <span>In Amount</span>
+            </div>
+            <div class="act_as_cell" style="width: 11.11%;" name="amount_out">
+                <span>Out Amount</span>
+            </div>
+            <div class="act_as_cell" style="width: 11.11%;" name="dep_fund_prev_year">
+                <span>Prev. Year Dep. Fund</span>
+            </div>
+            <div class="act_as_cell" style="width: 11.11%;" name="amount_depreciated">
+                <span>Depreciation</span>
+            </div>
+            <div class="act_as_cell" style="width: 11.11%;" name="dep_fund_curr_year">
+                <span>Curr. Year Dep. Fund</span>
+            </div>
+            <div class="act_as_cell" style="width: 11.11%;" name="amount_gain_loss">
+                <span>Gain / Loss</span>
+            </div>
+            <div class="act_as_cell" style="width: 11.11%;" name="amount_residual">
+                <span>Residual</span>
+            </div>
+        </div>
+    </template>
+
+    <template id="template_asset_journal_asset_year_depreciation_table_data">
+        <t t-set="domain" t-value="[('id', 'in', year_section.dep_line_ids.ids)]" />
+        <t t-set="res_model" t-value="'asset.depreciation.line'" />
+        <div class="act_as_row" style="font-size: 12px" name="depreciations_by_year">
+            <div class="act_as_cell" name="year">
+                <span>
+                    <a
+                        t-att-data-domain="domain"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t t-raw="year_section.year" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="amount_depreciable">
+                <span>
+                    <a
+                        t-att-data-domain="domain"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t
+                            t-raw="year_section.format_amount(year_section.amount_depreciable_updated)"
+                        />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="amount_in">
+                <span>
+                    <a
+                        t-att-data-domain="domain"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t t-raw="year_section.format_amount(year_section.amount_in)" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="amount_out">
+                <span>
+                    <a
+                        t-att-data-domain="domain"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t
+                            t-raw="year_section.format_amount(year_section.amount_out)"
+                        />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="dep_fund_prev_year">
+                <span>
+                    <a
+                        t-att-data-domain="domain"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t
+                            t-raw="year_section.format_amount(year_section.amount_depreciation_fund_prev_year)"
+                        />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="amount_depreciated">
+                <span>
+                    <a
+                        t-att-data-domain="domain"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t
+                            t-raw="year_section.format_amount(year_section.amount_depreciated)"
+                        />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="dep_fund_curr_year">
+                <span>
+                    <a
+                        t-att-data-domain="domain"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t
+                            t-raw="year_section.format_amount(year_section.amount_depreciation_fund_curr_year)"
+                        />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="amount_gain_loss">
+                <span>
+                    <a
+                        t-att-data-domain="domain"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t t-raw="year_section.format_amount(year_section.gain_loss)" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="amount_residual">
+                <span>
+                    <a
+                        t-att-data-domain="domain"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t
+                            t-raw="year_section.format_amount(year_section.amount_residual)"
+                        />
+                    </a>
+                </span>
+            </div>
+        </div>
+        <t t-if="year_section.has_amount_detail">
+            <t
+                t-call="assets_management.template_asset_journal_asset_year_depreciation_amount_details"
+            />
+        </t>
+        <t t-if="year_section.report_accounting_doc_ids">
+            <t t-foreach="year_section.report_accounting_doc_ids" t-as="accounting_doc">
+                <t
+                    t-call="assets_management.template_asset_journal_asset_year_depreciation_accounting_data"
+                />
+            </t>
+        </t>
+    </template>
+
+    <template id="template_asset_journal_asset_year_depreciation_amount_details">
+        <div class="act_as_row" style="font-size: 12px" name="amount_details">
+            <div class="act_as_cell" name="amount_details_year">
+                <span>
+                    <a
+                        t-att-data-domain="domain"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t t-raw="year_section.year" /><br />
+                        <t t-raw="'In/Out Amounts Details'" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="amount_details_empty_cell">
+                <span>
+                    <a
+                        t-att-data-domain="domain"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t t-raw="''" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="amount_in_detail">
+                <t
+                    t-set="amount_in_detail_domain"
+                    t-value="[('id', 'in', year_section.dep_line_ids.filtered(lambda l: l.move_type == 'in' and l.depreciation_line_type_id).ids)]"
+                />
+                <span>
+                    <a
+                        t-att-data-domain="amount_in_detail_domain"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t t-raw="year_section.amount_in_detail" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="amount_out_detail">
+                <t
+                    t-set="amount_out_detail_domain"
+                    t-value="[('id', 'in', year_section.dep_line_ids.filtered(lambda l: l.move_type == 'out' and l.depreciation_line_type_id).ids)]"
+                />
+                <span>
+                    <a
+                        t-att-data-domain="amount_out_detail_domain"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t t-raw="year_section.amount_out_detail" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="amount_details_empty_cell">
+                <span>
+                    <a
+                        t-att-data-domain="domain"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t t-raw="''" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="amount_details_empty_cell">
+                <span>
+                    <a
+                        t-att-data-domain="domain"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t t-raw="''" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="amount_details_empty_cell">
+                <span>
+                    <a
+                        t-att-data-domain="domain"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t t-raw="''" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="amount_details_empty_cell">
+                <span>
+                    <a
+                        t-att-data-domain="domain"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t t-raw="''" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="amount_details_empty_cell">
+                <span>
+                    <a
+                        t-att-data-domain="domain"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t t-raw="''" />
+                    </a>
+                </span>
+            </div>
+        </div>
+    </template>
+
+    <template id="template_asset_journal_asset_year_depreciation_accounting_data">
+        <t t-set="active_id" t-value="accounting_doc.res_id" />
+        <t t-set="res_model" t-value="accounting_doc.res_model" />
+        <div class="act_as_row" style="font-size: 12px" name="accounting_doc_details">
+            <div class="act_as_cell" name="amount_details_year">
+                <span>
+                    <a
+                        t-att-data-domain="domain"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t t-raw="year_section.year" /><br />
+                        <t t-raw="'In/Out Amounts Details'" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="amount_details_empty_cell">
+                <span>
+                    <a
+                        t-att-data-domain="domain"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t t-raw="''" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="partner_name">
+                <span>
+                    <a
+                        t-att-data-active-id="active_id"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action"
+                    >
+                        <t t-raw="accounting_doc.partner_name" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="partner_vat">
+                <span>
+                    <a
+                        t-att-data-active-id="active_id"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action"
+                    >
+                        <t t-raw="accounting_doc.partner_vat" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="account_doc_nr">
+                <span>
+                    <a
+                        t-att-data-active-id="active_id"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action"
+                    >
+                        <t t-raw="accounting_doc.document_nr" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="account_doc_date">
+                <span>
+                    <a
+                        t-att-data-active-id="active_id"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action"
+                    >
+                        <t t-raw="accounting_doc.document_date" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="account_doc_supplier_ref">
+                <span>
+                    <a
+                        t-att-data-active-id="active_id"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action"
+                    >
+                        <t t-raw="accounting_doc.partner_ref" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="amount_details_empty_cell">
+                <span>
+                    <a
+                        t-att-data-domain="domain"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t t-raw="''" />
+                    </a>
+                </span>
+            </div>
+            <div class="act_as_cell" name="amount_details_empty_cell">
+                <span>
+                    <a
+                        t-att-data-domain="domain"
+                        t-att-data-res-model="res_model"
+                        class="o_account_financial_reports_web_action_multi"
+                    >
+                        <t t-raw="''" />
+                    </a>
+                </span>
+            </div>
+        </div>
+    </template>
+
+    <template id="template_asset_journal_totals">
+        <div
+            class="act_as_table data_table"
+            style="width: 100%; font-size: 14px; margin: 3px;"
+        >
+            <div class="act_as_thead" style="width: 100%;">
+                <t t-call="assets_management.template_asset_journal_totals_header" />
+            </div>
+            <div class="act_as_tbody" style="width: 100%;">
+                <t t-foreach="totals_sections" t-as="totals_section">
+                    <t t-call="assets_management.template_asset_journal_totals_data" />
+                </t>
+            </div>
+        </div>
+    </template>
+
+    <template id="template_asset_journal_totals_header">
+        <div
+            class="act_as_row labels"
+            style="font-weight: bold;"
+            name="totals_data_header"
+        >
+            <div class="act_as_cell" style="width: 11.11%;" name="type">
+                <span>Type</span>
+            </div>
+            <div class="act_as_cell" style="width: 11.11%;" name="amount_depreciable">
+                <span>Dep. Amount</span>
+            </div>
+            <div class="act_as_cell" style="width: 11.11%;" name="amount_in_total">
+                <span>In Amount</span>
+            </div>
+            <div class="act_as_cell" style="width: 11.11%;" name="amount_out_total">
+                <span>Out Amount</span>
+            </div>
+            <div class="act_as_cell" style="width: 11.11%;" name="dep_fund_prev_year">
+                <span>Prev. Year Dep. Fund</span>
+            </div>
+            <div class="act_as_cell" style="width: 11.11%;" name="amount_depreciated">
+                <span>Depreciation</span>
+            </div>
+            <div class="act_as_cell" style="width: 11.11%;" name="dep_fund_curr_year">
+                <span>Curr. Year Dep. Fund</span>
+            </div>
+            <div
+                class="act_as_cell"
+                style="width: 11.11%;"
+                name="amount_gain_loss_total"
+            >
+                <span>Gain / Loss</span>
+            </div>
+            <div class="act_as_cell" style="width: 11.11%;" name="amount_residual">
+                <span>Residual</span>
+            </div>
+        </div>
+    </template>
+
+    <template id="template_asset_journal_totals_data">
+        <div class="act_as_row" name="totals_data">
+            <div class="act_as_cell" name="type">
+                <span t-field="totals_section.type_name" />
+            </div>
+            <div class="act_as_cell" name="amount_depreciable">
+                <span
+                    t-raw="totals_section.format_amount(totals_section.amount_depreciable_updated)"
+                />
+            </div>
+            <div class="act_as_cell" name="amount_in_total">
+                <span
+                    t-raw="totals_section.format_amount(totals_section.amount_in_total)"
+                />
+            </div>
+            <div class="act_as_cell" name="amount_out_total">
+                <span
+                    t-raw="totals_section.format_amount(totals_section.amount_out_total)"
+                />
+            </div>
+            <div class="act_as_cell" name="dep_fund_prev_year">
+                <span
+                    t-raw="totals_section.format_amount(totals_section.amount_depreciation_fund_prev_year)"
+                />
+            </div>
+            <div class="act_as_cell" name="amount_depreciated">
+                <span
+                    t-raw="totals_section.format_amount(totals_section.amount_depreciated)"
+                />
+            </div>
+            <div class="act_as_cell" name="dep_fund_curr_year">
+                <span
+                    t-raw="totals_section.format_amount(totals_section.amount_depreciation_fund_curr_year)"
+                />
+            </div>
+            <div class="act_as_cell" name="amount_gain_loss_total">
+                <span
+                    t-raw="totals_section.format_amount(totals_section.gain_loss_total)"
+                />
+            </div>
+            <div class="act_as_cell" name="amount_residual">
+                <span
+                    t-raw="totals_section.format_amount(totals_section.amount_residual)"
+                />
+            </div>
+        </div>
+    </template>
+
+</odoo>

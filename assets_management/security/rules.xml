@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="asset_multicompany_rule" model="ir.rule">
+            <field name="name">Asset multi company rule</field>
+            <field name="model_id" ref="model_asset_asset" />
+            <field name="global" eval="True" />
+            <field name="domain_force">
+                ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            </field>
+        </record>
+
+        <record id="asset_accounting_info_multicompany_rule" model="ir.rule">
+            <field name="name">Asset accounting info multi company rule</field>
+            <field name="model_id" ref="model_asset_accounting_info" />
+            <field name="global" eval="True" />
+            <field name="domain_force">
+                ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            </field>
+        </record>
+
+        <record id="asset_category_multicompany_rule" model="ir.rule">
+            <field name="name">Asset category multi company rule</field>
+            <field name="model_id" ref="model_asset_category" />
+            <field name="global" eval="True" />
+            <field name="domain_force">
+                ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            </field>
+        </record>
+
+        <record id="asset_category_dep_type_multicompany_rule" model="ir.rule">
+            <field name="name">Asset category dep type multi company rule</field>
+            <field name="model_id" ref="model_asset_category_depreciation_type" />
+            <field name="global" eval="True" />
+            <field name="domain_force">
+                ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            </field>
+        </record>
+
+        <record id="asset_dep_multicompany_rule" model="ir.rule">
+            <field name="name">Asset depreciation multi company rule</field>
+            <field name="model_id" ref="model_asset_depreciation" />
+            <field name="global" eval="True" />
+            <field name="domain_force">
+                ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            </field>
+        </record>
+
+        <record id="asset_dep_line_multicompany_rule" model="ir.rule">
+            <field name="name">Asset depreciation line multi company rule</field>
+            <field name="model_id" ref="model_asset_depreciation_line" />
+            <field name="global" eval="True" />
+            <field name="domain_force">
+                ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            </field>
+        </record>
+
+        <record id="asset_dep_line_type_multicompany_rule" model="ir.rule">
+            <field name="name">Asset depreciation line type multi company rule</field>
+            <field name="model_id" ref="model_asset_depreciation_line_type" />
+            <field name="global" eval="True" />
+            <field name="domain_force">
+                ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            </field>
+        </record>
+
+        <record id="asset_dep_mode_multicompany_rule" model="ir.rule">
+            <field name="name">Asset depreciation mode multi company rule</field>
+            <field name="model_id" ref="model_asset_depreciation_mode" />
+            <field name="global" eval="True" />
+            <field name="domain_force">
+                ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            </field>
+        </record>
+
+        <record id="asset_dep_mode_line_multicompany_rule" model="ir.rule">
+            <field name="name">Asset depreciation mode line multi company rule</field>
+            <field name="model_id" ref="model_asset_depreciation_mode_line" />
+            <field name="global" eval="True" />
+            <field name="domain_force">
+                ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            </field>
+        </record>
+
+        <record id="asset_dep_type_multicompany_rule" model="ir.rule">
+            <field name="name">Asset depreciation type multi company rule</field>
+            <field name="model_id" ref="model_asset_depreciation_type" />
+            <field name="global" eval="True" />
+            <field name="domain_force">
+                ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            </field>
+        </record>
+
+        <record id="asset_tag_multicompany_rule" model="ir.rule">
+            <field name="name">Asset tag multi company rule</field>
+            <field name="model_id" ref="model_asset_tag" />
+            <field name="global" eval="True" />
+            <field name="domain_force">
+                ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            </field>
+        </record>
+
+    </data>
+</odoo>

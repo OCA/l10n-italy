@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="l10n_it_account_stamp_2_euro" model="product.product">
+            <field name="name">Tax Stamp 2 euro</field>
+            <field name="type">service</field>
+            <field name="list_price" eval="2.0" />
+            <field name="standard_price" eval="2.0" />
+            <field
+                name="description_sale"
+            >Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree June
+                17, 2014
+            </field>
+            <field name="is_stamp" eval="True" />
+            <field name="auto_compute" eval="True" />
+            <field name="stamp_apply_min_total_base" eval="77.47" />
+            <field name="taxes_id" eval="[(6, 0, [])]" />
+            <field name="supplier_taxes_id" eval="[(6, 0, [])]" />
+        </record>
+
+        <record id="base.main_company" model="res.company">
+            <field
+                name="tax_stamp_product_id"
+                ref="l10n_it_account_stamp.l10n_it_account_stamp_2_euro"
+            />
+        </record>
+
+    </data>
+</odoo>

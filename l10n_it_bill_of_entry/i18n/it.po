@@ -1,0 +1,324 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_bill_of_entry
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-31 11:08+0000\n"
+"PO-Revision-Date: 2023-03-06 16:30+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+
+#. module: l10n_it_bill_of_entry
+#: model_terms:ir.ui.view,arch_db:l10n_it_bill_of_entry.view_boe_config_settings
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" aria-label=\"Values set here are company-specific.\" "
+"groups=\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"I valori impostati qui sono "
+"specifici per azienda.\" aria-label=\"I valori impostati qui sono specifici "
+"per azienda.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_move_line__advance_customs_vat
+msgid "Advance Customs Vat"
+msgstr "IVA dogana anticipata"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model.fields.selection,name:l10n_it_bill_of_entry.selection__account_move__customs_doc_type__bill_of_entry
+msgid "Bill of Entry"
+msgstr "Bolla doganale"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_bank_statement_line__bill_of_entry_storno_id
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_move__bill_of_entry_storno_id
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_payment__bill_of_entry_storno_id
+msgid "Bill of Entry Storno"
+msgstr "Storno bolla doganale"
+
+#. module: l10n_it_bill_of_entry
+#: model_terms:ir.ui.view,arch_db:l10n_it_bill_of_entry.invoice_supplier_boe_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_bill_of_entry.view_boe_config_settings
+msgid "Bill of entries"
+msgstr "Bolle doganali"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_bank_statement_line__forwarder_bill_of_entries_count
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_move__forwarder_bill_of_entries_count
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_payment__forwarder_bill_of_entries_count
+msgid "Bill of entries for forwarder"
+msgstr "Bolle doganali per spedizioniere"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_bank_statement_line__bill_of_entries_count
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_move__bill_of_entries_count
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_payment__bill_of_entries_count
+msgid "Bill of entries number"
+msgstr "Numero bolle doganali"
+
+#. module: l10n_it_bill_of_entry
+#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
+#: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
+#, python-format
+msgid "Bill of entry %s is in state %s"
+msgstr "La bolla doganale %s è nello stato %s"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_res_company__bill_of_entry_journal_id
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_res_config_settings__bill_of_entry_journal_id
+msgid "Bill of entry Storno journal"
+msgstr "Registro storno bolla doganale"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_res_company__bill_of_entry_partner_id
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_res_config_settings__bill_of_entry_partner_id
+msgid "Bill of entry partner"
+msgstr "Partner bolla doganale"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_res_company__bill_of_entry_tax_id
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_res_config_settings__bill_of_entry_tax_id
+msgid "Bill of entry tax"
+msgstr "Imposta bolla doganale"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.actions.act_window,name:l10n_it_bill_of_entry.action_bill_of_entry
+#: model:ir.ui.menu,name:l10n_it_bill_of_entry.menu_action_bill_of_entry
+msgid "Bills of entry"
+msgstr "Bolle doganali"
+
+#. module: l10n_it_bill_of_entry
+#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
+#: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
+#, python-format
+msgid "Can't handle more than 1 tax for line %s"
+msgstr "Impossibile gestire più di 1 imposta per la riga %s"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model,name:l10n_it_bill_of_entry.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model,name:l10n_it_bill_of_entry.model_res_config_settings
+msgid "Config Settings"
+msgstr "Impostazioni di configurazione"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.ui.menu,name:l10n_it_bill_of_entry.customs
+#: model_terms:ir.ui.view,arch_db:l10n_it_bill_of_entry.invoice_supplier_boe_form
+msgid "Customs"
+msgstr "Dogana"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_bank_statement_line__customs_doc_type
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_move__customs_doc_type
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_payment__customs_doc_type
+msgid "Customs Doc Type"
+msgstr "Tipo doc Dogana"
+
+#. module: l10n_it_bill_of_entry
+#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
+#: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
+#, python-format
+msgid "Customs expenses"
+msgstr "Spese dogana"
+
+#. module: l10n_it_bill_of_entry
+#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
+#: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
+#, python-format
+msgid "Customs supplier"
+msgstr "Fornitore dogana"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_res_company__display_name
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: l10n_it_bill_of_entry
+#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
+#: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
+#, python-format
+msgid "Extra UE expenses"
+msgstr "Spese extra UE"
+
+#. module: l10n_it_bill_of_entry
+#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
+#: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
+#, python-format
+msgid "Extra UE supplier invoice must have no taxes"
+msgstr "La fattura del fornitore extra UE non deve avere imposte"
+
+#. module: l10n_it_bill_of_entry
+#: model_terms:ir.ui.view,arch_db:l10n_it_bill_of_entry.invoice_supplier_boe_form
+msgid "Extra invoices"
+msgstr "Fatture extra"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_bank_statement_line__forwarder_bill_of_entry_ids
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_move__forwarder_bill_of_entry_ids
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_payment__forwarder_bill_of_entry_ids
+msgid "Forward Bill of Entries"
+msgstr "Bolle doganali spedizioniere"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_bank_statement_line__forwarder_invoice_id
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_move__forwarder_invoice_id
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_payment__forwarder_invoice_id
+#: model:ir.model.fields.selection,name:l10n_it_bill_of_entry.selection__account_move__customs_doc_type__forwarder_invoice
+msgid "Forwarder Invoice"
+msgstr "Fattura spedizioniere"
+
+#. module: l10n_it_bill_of_entry
+#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
+#: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
+#, python-format
+msgid "Forwarder invoice %s does not have lines with 'Advance Customs Vat'"
+msgstr "La fattura spedizioniere %s non ha righe con 'IVA dogana anticipata'"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.actions.act_window,name:l10n_it_bill_of_entry.action_forwarder_invoice
+#: model:ir.ui.menu,name:l10n_it_bill_of_entry.menu_action_forwarder_invoice
+msgid "Forwarder invoices"
+msgstr "Fatture spedizionieri"
+
+#. module: l10n_it_bill_of_entry
+#: model_terms:ir.ui.view,arch_db:l10n_it_bill_of_entry.invoice_supplier_boe_form
+msgid "Generate bill of entry"
+msgstr "Generare bolla doganale"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_move_line__id
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_res_company__id
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_res_config_settings__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model,name:l10n_it_bill_of_entry.model_account_move
+msgid "Journal Entry"
+msgstr "Registrazione contabile"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model,name:l10n_it_bill_of_entry.model_account_move_line
+msgid "Journal Item"
+msgstr "Movimento contabile"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model.fields,help:l10n_it_bill_of_entry.field_res_company__bill_of_entry_journal_id
+#: model:ir.model.fields,help:l10n_it_bill_of_entry.field_res_config_settings__bill_of_entry_journal_id
+#: model_terms:ir.ui.view,arch_db:l10n_it_bill_of_entry.view_boe_config_settings
+msgid "Journal used for reconciliation of bill of entries"
+msgstr "Registro usato per la riconciliazione delle bolle doganali"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_move____last_update
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_res_company____last_update
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_res_config_settings____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_bill_of_entry
+#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
+#: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
+#, python-format
+msgid "No Bill of entry Storno journal configured"
+msgstr "Nessun registro per storno della bolla doganale configurato"
+
+#. module: l10n_it_bill_of_entry
+#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
+#: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
+#, python-format
+msgid "No bill of entries found for this invoice"
+msgstr "Nessuna bolla doganale trovata per questa fattura"
+
+#. module: l10n_it_bill_of_entry
+#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
+#: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
+#, python-format
+msgid "Please set 'Bill of entry partner' in accounting configuration"
+msgstr "Prego impostare 'Partner dogana' in configurazione contabilità"
+
+#. module: l10n_it_bill_of_entry
+#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
+#: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
+#, python-format
+msgid "Please set 'Bill of entry tax' in accounting configuration"
+msgstr "Prego impostare 'Imposta dogana' in configurazione contabilità"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_bank_statement_line__supplier_bill_of_entry_ids
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_move__supplier_bill_of_entry_ids
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_payment__supplier_bill_of_entry_ids
+msgid "Supplier Bill of Entries"
+msgstr "Fornitore bolle doganali"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model.fields.selection,name:l10n_it_bill_of_entry.selection__account_move__customs_doc_type__supplier_invoice
+msgid "Supplier Invoice"
+msgstr "Fattura fornitore"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_bank_statement_line__supplier_invoice_ids
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_move__supplier_invoice_ids
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_payment__supplier_invoice_ids
+msgid "Supplier Invoices"
+msgstr "Fatture fornitore"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.actions.act_window,name:l10n_it_bill_of_entry.action_supplier_invoice
+#: model:ir.ui.menu,name:l10n_it_bill_of_entry.menu_action_supplier_invoice
+#: model_terms:ir.ui.view,arch_db:l10n_it_bill_of_entry.invoice_supplier_boe_form
+msgid "Supplier invoices"
+msgstr "Fatture fornitore"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_bank_statement_line__extra_supplier_invoices_count
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_move__extra_supplier_invoices_count
+#: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_payment__extra_supplier_invoices_count
+msgid "Supplier invoices number"
+msgstr "Numero fatture fornitore"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model.fields,help:l10n_it_bill_of_entry.field_res_company__bill_of_entry_partner_id
+#: model:ir.model.fields,help:l10n_it_bill_of_entry.field_res_config_settings__bill_of_entry_partner_id
+#: model_terms:ir.ui.view,arch_db:l10n_it_bill_of_entry.view_boe_config_settings
+msgid "Supplier used in bill of entries"
+msgstr "Fornitore usato nelle bolle doganali"
+
+#. module: l10n_it_bill_of_entry
+#: model:ir.model.fields,help:l10n_it_bill_of_entry.field_res_company__bill_of_entry_tax_id
+#: model:ir.model.fields,help:l10n_it_bill_of_entry.field_res_config_settings__bill_of_entry_tax_id
+msgid "Tax used in bill of entries"
+msgstr "Imposta usata nelle bolle doganali"
+
+#. module: l10n_it_bill_of_entry
+#: model_terms:ir.ui.view,arch_db:l10n_it_bill_of_entry.view_boe_config_settings
+msgid "Tax used in bill of entries generation, when product is not present"
+msgstr ""
+"Imposta usata nella generazione delle bolle doganali, quando il prodotto non"
+" è presente"
+
+#. module: l10n_it_bill_of_entry
+#: code:addons/l10n-italy/l10n_it_bill_of_entry/models/account_move.py:0
+#: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
+#, python-format
+msgid "You can generate bill of entry from extra UE supplier invoice only"
+msgstr ""
+"È possibile generare la bolla doganale solamente da una fattura fornitore "
+"extra UE"

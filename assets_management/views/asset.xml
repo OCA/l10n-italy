@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="asset_search_view">
+        <field name="name">asset.search.view</field>
+        <field name="model">asset.asset</field>
+        <field name="arch" type="xml">
+            <search string="Assets asset">
+                <field name="name" />
+                <field name="code" />
+                <field name="category_id" />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Purchase Date"
+                        name="group_by_purchase_date"
+                        context="{'group_by':'purchase_date'}"
+                    />
+                    <filter
+                        string="Category"
+                        name="group_by_category_id"
+                        context="{'group_by':'category_id'}"
+                    />
+                    <filter
+                        string="Company"
+                        name="group_by_company_id"
+                        context="{'group_by':'company_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="asset_tree_view">
+        <field name="name">asset.tree.view</field>
+        <field name="model">asset.asset</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="code" />
+                <field name="category_id" />
+                <field name="purchase_date" />
+                <field name="purchase_amount" widget="monetary" />
+                <field name="currency_id" invisible="1" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="asset_form_view">
+        <field name="name">asset.form.view</field>
+        <field name="model">asset.asset</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="launch_wizard_generate_depreciations"
+                        string="Generate depreciations"
+                        context="{'allow_reload_window': True}"
+                        type="object"
+                        attrs="{'invisible': [('state', '=', 'totally_depreciated')]}"
+                        class="oe_highlight"
+                    />
+                    <field name="state" widget="statusbar" readonly="1" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <!-- Leaving empty for inheritance reasons -->
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Asset Name" />
+                            <field name="id" invisible="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field
+                                name="category_id"
+                                attrs="{'readonly': [('state', '!=', 'non_depreciated')]}"
+                            />
+                            <field name="code" />
+                            <field
+                                name="used"
+                                attrs="{'readonly': [('state', '!=', 'non_depreciated')]}"
+                            />
+                        </group>
+                        <group>
+                            <field
+                                name="company_id"
+                                attrs="{'readonly': [('state', '!=', 'non_depreciated')]}"
+                                groups="base.group_multi_company"
+                            />
+                            <field
+                                name="currency_id"
+                                attrs="{'readonly': [('state', '!=', 'non_depreciated')]}"
+                                groups="base.group_multi_currency"
+                            />
+                        </group>
+                    </group>
+                    <group name="sale_purchase_info">
+                        <group name="purchase_info" string="Purchase Info">
+                            <field
+                                name="purchase_move_id"
+                                attrs="{'invisible': [('purchase_move_id', '=', False)], 'readonly': [('purchase_move_id', '!=', False)]}"
+                            />
+                            <field name="supplier_id" />
+                            <field name="purchase_date" />
+                            <field name="purchase_amount" />
+                            <field name="supplier_ref" />
+                        </group>
+                        <group name="purchase_info" string="Sale Info">
+                            <field
+                                name="sale_move_id"
+                                attrs="{'invisible': [('sale_move_id', '=', False)], 'readonly': [('sale_move_id', '!=', False)]}"
+                            />
+                            <field name="customer_id" />
+                            <field name="sale_date" />
+                            <field name="sale_amount" />
+                            <field name="sold" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Depreciations" name="depreciations">
+                            <group>
+                                <field
+                                    name="depreciation_ids"
+                                    context="{'default_asset_id':id}"
+                                    nolabel="1"
+                                >
+                                    <tree>
+                                        <field name="asset_id" invisible="1" />
+                                        <field name="type_id" />
+                                        <field name="mode_id" />
+                                        <field name="pro_rata_temporis" />
+                                        <field name="date_start" />
+                                        <field name="percentage" />
+                                        <field name="base_coeff" />
+                                        <field name="amount_depreciable" />
+                                        <field name="amount_depreciable_updated" />
+                                        <field name="amount_depreciated" />
+                                        <field name="last_depreciation_date" />
+                                        <field name="amount_residual" />
+                                        <field
+                                            name="state"
+                                            invisible="1"
+                                            force_save="1"
+                                        />
+                                        <field name="currency_id" invisible="1" />
+                                        <field name="company_id" invisible="1" />
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                        <page name="accounting_info" string="Accounting Info">
+                            <field
+                                name="asset_accounting_info_ids"
+                                readonly="1"
+                                nolabel="1"
+                            >
+                                <tree>
+                                    <field name="asset_id" />
+                                    <field name="dep_line_id" />
+                                    <field name="relation_type" />
+                                    <field name="move_id" />
+                                    <field name="move_type" />
+                                    <field name="move_line_id" />
+                                    <button
+                                        name="button_unlink"
+                                        type="object"
+                                        string="Remove"
+                                        confirm="You confirm the removal of the current line? Depreciation line amounts will not be affected and will have to be updated manually."
+                                        icon="fa-trash"
+                                    />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_asset" model="ir.actions.act_window">
+        <field name="name">Assets</field>
+        <field name="res_model">asset.asset</field>
+        <field name="view_id" ref="asset_tree_view" />
+    </record>
+
+    <menuitem
+        id="menu_asset_asset"
+        name="Assets"
+        parent="menu_asset_management"
+        action="action_asset"
+        sequence="10"
+    />
+
+</odoo>

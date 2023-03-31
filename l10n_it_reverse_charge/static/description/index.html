@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.15.1: http://docutils.sourceforge.net/" />
+<title>ITA - Inversione contabile</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7952 2016-07-26 18:15:59Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="ita-inversione-contabile">
+<h1 class="title">ITA - Inversione contabile</h1>
+
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! This file is generated by oca-gen-addon-readme !!
+!! changes will be overwritten.                   !!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<p><a class="reference external" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/licence-LGPL--3-blue.png" /></a> <a class="reference external" href="https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_reverse_charge"><img alt="OCA/l10n-italy" src="https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github" /></a> <a class="reference external" href="https://translation.odoo-community.org/projects/l10n-italy-14-0/l10n-italy-14-0-l10n_it_reverse_charge"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external" href="https://runbot.odoo-community.org/runbot/122/14.0"><img alt="Try me on Runbot" src="https://img.shields.io/badge/runbot-Try%20me-875A7B.png" /></a></p>
+<p><strong>Italiano</strong></p>
+<p>Modulo per gestire l’inversione contabile (reverse charge) nelle fatture fornitore.</p>
+<p>Il modulo permette di automatizzare le registrazioni contabili derivate dalle fatture fornitori intra UE ed extra UE mediante l’inversione contabile IVA.
+Inoltre è automatizzata la procedura di annullamento e riapertura della fattura fornitore.</p>
+<p>È inoltre possibile utilizzare la modalità “con autofattura fornitore aggiuntiva”.
+Questa modalità è usata tipicamente per i fornitori extra UE per mostrare, nel registro IVA acquisti, una fattura intestata alla propria azienda (autofattura passiva).
+L’autofattura passiva verrà poi totalmente riconciliata con l’autofattura attiva, anch’essa intestata alla propria azienda.</p>
+<p><strong>English</strong></p>
+<p>Module to handle reverse charge IVA in vendor bills.</p>
+<p>The module allows you to automate the accounting entries derived from invoices of intra-EU and extra-EU suppliers through the VAT reverse charge.
+Furthermore, the vendor bill cancellation and reopening procedure is automated.</p>
+<p>It is also possible to use the “additional vendor self billing” mode.
+This mode is typically used for non-EU suppliers to show, in the purchases VAT journal, a vendor bill addressed to your own company (self-bill).
+The self-bill will then be completely reconciled with the self-invoice, which is also addressed to your own company.</p>
+<p><strong>Table of contents</strong></p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#configuration" id="id1">Configuration</a></li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="id2">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="id3">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="id4">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="id5">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="id6">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="id7">Maintainers</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="configuration">
+<h1><a class="toc-backref" href="#id1">Configuration</a></h1>
+<p><strong>Italiano</strong></p>
+<p>Creare l’imposta <strong>22% intra UE</strong> - Vendite:</p>
+<div class="figure">
+<img alt="22% intra UE - Vendite" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/tax_22_v_i_ue.png" style="width: 600px;" />
+</div>
+<p>Creare l’imposta <strong>22% intra UE</strong> - Acquisti:</p>
+<div class="figure">
+<img alt="22% intra UE - Acquisti" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/tax_22_a_i_ue.png" style="width: 600px;" />
+</div>
+<p>Creare l’imposta <strong>22% extra UE</strong> - Vendite:</p>
+<div class="figure">
+<img alt="22% extra UE - Vendite" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/tax_22_v_e_ue.png" style="width: 600px;" />
+</div>
+<p>Creare l’imposta <strong>22% extra UE</strong> - Acquisti:</p>
+<div class="figure">
+<img alt="22% extra UE - Acquisti" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/tax_22_a_e_ue.png" style="width: 600px;" />
+</div>
+<p>Creare il conto ‘Transitorio autofatturazione’:</p>
+<div class="figure">
+<img alt="conto transitorio Autofattura" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/temp_account_auto_inv.png" style="width: 600px;" />
+</div>
+<p>Il ‘Registro pagamento autofattura’ deve essere configurato con il conto ‘Transitorio autofatturazione’ appena creato:</p>
+<div class="figure">
+<img alt="Registro pagamento autofattura" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/registro_riconciliazione.png" style="width: 600px;" />
+</div>
+<div class="figure">
+<img alt="Registro pagamento autofattura (tab Configurazione)" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/registro_riconciliazione_2.png" style="width: 600px;" />
+</div>
+<p>Modificare il tipo inversione contabile <strong>Intra-UE (autofattura)</strong>:</p>
+<div class="figure">
+<img alt="inversione contabile con Autofattura" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/rc_selfinvoice.png" style="width: 600px;" />
+</div>
+<p>Il registro autofattura deve essere di tipo ‘Vendita’.</p>
+<p>Modificare il tipo inversione contabile <strong>Extra-UE (autofattura)</strong>:</p>
+<div class="figure">
+<img alt="inversione contabile con Autofattura" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/rc_selfinvoice_extra.png" style="width: 600px;" />
+</div>
+<p>Il ‘Registro autofattura passiva’ deve essere di tipo ‘Acquisto’.</p>
+<p>Nella posizione fiscale, impostare il tipo inversione contabile:</p>
+<div class="figure">
+<img alt="Impostazione posizioni fiscali Intra CEE" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/fiscal_pos_intra.png" style="width: 600px;" />
+</div>
+<div class="figure">
+<img alt="Impostazione posizioni fiscali Extra CEE" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/fiscal_pos_extra.png" style="width: 600px;" />
+</div>
+<p>La posizione fiscale deve essere salvata sui contatti dei fornitori nel campo ‘Posizione fiscale’</p>
+<div class="figure">
+<img alt="Impostazione posizioni fiscali Extra CEE" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/partner_fiscal_pos.png" style="width: 600px;" />
+</div>
+<p><strong>English</strong></p>
+<p>Create the tax <strong>22% intra EU</strong> - Sale:</p>
+<div class="figure">
+<img alt="22% intra UE - Sale" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/tax_22_v_i_ue.png" style="width: 600px;" />
+</div>
+<p>Create the tax <strong>22% intra EU</strong> - Purchase:</p>
+<div class="figure">
+<img alt="22% intra UE - Purchase" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/tax_22_a_i_ue.png" style="width: 600px;" />
+</div>
+<p>Create the tax <strong>22% extra EU</strong> - Sale:</p>
+<div class="figure">
+<img alt="22% extra UE - Sale" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/tax_22_v_e_ue.png" style="width: 600px;" />
+</div>
+<p>Create the tax <strong>22% extra EU</strong> - Purchase:</p>
+<div class="figure">
+<img alt="22% extra UE - Purchase" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/tax_22_a_e_ue.png" style="width: 600px;" />
+</div>
+<p>Create the account ‘Self Invoice Transitory’ as follows:</p>
+<div class="figure">
+<img alt="Self Invoice Transitory Account" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/temp_account_auto_inv.png" style="width: 600px;" />
+</div>
+<p>The ‘Self Invoice Payment’ Journal has to be configured with the just created ‘Self Invoice Transitory’ account:</p>
+<div class="figure">
+<img alt="Registro pagamento autofattura" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/registro_riconciliazione.png" style="width: 600px;" />
+</div>
+<div class="figure">
+<img alt="Registro pagamento autofattura (tab Configurazione)" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/registro_riconciliazione_2.png" style="width: 600px;" />
+</div>
+<p>Edit the reverse charge type <strong>Intra-EU (self-invoice)</strong>:</p>
+<div class="figure">
+<img alt="reverse charge with Self Invoice" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/rc_selfinvoice.png" style="width: 600px;" />
+</div>
+<p>The Self Invoice journal has to be of type ‘Sale’.</p>
+<p>Edit the reverse charge type <strong>Extra-EU (self-invoice)</strong> :</p>
+<div class="figure">
+<img alt="reverse charge with Self Invoice" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/rc_selfinvoice_extra.png" style="width: 600px;" />
+</div>
+<p>The ‘Supplier Self Invoice Journal’ has to be of type ‘Purchase’.</p>
+<p>In the fiscal position, set the reverse charge type:</p>
+<div class="figure">
+<img alt="Impostazione posizioni fiscali Intra CEE" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/fiscal_pos_intra.png" style="width: 600px;" />
+</div>
+<div class="figure">
+<img alt="Impostazione posizioni fiscali Extra CEE" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/fiscal_pos_extra.png" style="width: 600px;" />
+</div>
+<p>Fiscal position has to be saved on suppliers’ contact inside ‘Fiscal position’ field</p>
+<div class="figure">
+<img alt="Impostazione posizioni fiscali Extra CEE" src="https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/partner_fiscal_pos.png" style="width: 600px;" />
+</div>
+</div>
+<div class="section" id="known-issues-roadmap">
+<h1><a class="toc-backref" href="#id2">Known issues / Roadmap</a></h1>
+<p>Only the <strong>self-invoice</strong> method is managed, <strong>VAT integration</strong> method is not managed yet.</p>
+</div>
+<div class="section" id="bug-tracker">
+<h1><a class="toc-backref" href="#id3">Bug Tracker</a></h1>
+<p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-italy/issues">GitHub Issues</a>.
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us smashing it by providing a detailed and welcomed
+<a class="reference external" href="https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_reverse_charge%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<p>Do not contact contributors directly about support or help with technical issues.</p>
+</div>
+<div class="section" id="credits">
+<h1><a class="toc-backref" href="#id4">Credits</a></h1>
+<div class="section" id="authors">
+<h2><a class="toc-backref" href="#id5">Authors</a></h2>
+<ul class="simple">
+<li>Odoo Italia Network</li>
+</ul>
+</div>
+<div class="section" id="contributors">
+<h2><a class="toc-backref" href="#id6">Contributors</a></h2>
+<ul>
+<li><p class="first">Davide Corio</p>
+</li>
+<li><p class="first">Alex Comba &lt;<a class="reference external" href="mailto:alex.comba&#64;agilebg.com">alex.comba&#64;agilebg.com</a>&gt;</p>
+</li>
+<li><p class="first">Lorenzo Battistini &lt;<a class="reference external" href="mailto:lorenzo.battistini&#64;agilebg.com">lorenzo.battistini&#64;agilebg.com</a></p>
+</li>
+<li><p class="first"><a class="reference external" href="https://www.ooops404.com">Ooops</a>:</p>
+<blockquote>
+<ul class="simple">
+<li>Giovanni Serra &lt;<a class="reference external" href="mailto:giovanni&#64;gslab.it">giovanni&#64;gslab.it</a>&gt;</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="maintainers">
+<h2><a class="toc-backref" href="#id7">Maintainers</a></h2>
+<p>This module is maintained by the OCA.</p>
+<a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
+<p>OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_reverse_charge">OCA/l10n-italy</a> project on GitHub.</p>
+<p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

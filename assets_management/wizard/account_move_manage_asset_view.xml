@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="wizard_account_move_mange_asset_form_view">
+        <field name="name">wizard.account.move.manage.asset.form.view</field>
+        <field name="model">wizard.account.move.manage.asset</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div
+                        name="wrong_state_alert"
+                        class="alert alert-info"
+                        role="alert"
+                        style="margin-bottom:10px;"
+                        attrs="{'invisible': [('is_move_state_ok', '=', True)]}"
+                    >
+                        Only posted moves can be used to create, update or dismiss assets!<br
+                        />
+                        Please select posted moves only.
+                    </div>
+                    <div
+                        name="no_create_alert"
+                        class="alert alert-danger"
+                        role="alert"
+                        style="margin-bottom:10px;"
+                        attrs="{'invisible': ['|', '|', ('move_type', 'in', ('general', 'purchase')), ('is_move_state_ok', '=', False), ('management_type', '!=', 'create')]}"
+                    >
+                        Attention! You cannot create an asset from accounting moves related to sale documents.
+                    </div>
+                    <div
+                        name="no_dismiss_alert"
+                        class="alert alert-danger"
+                        role="alert"
+                        style="margin-bottom:10px;"
+                        attrs="{'invisible': ['|', '|', ('move_type', 'in', ('general', 'sale')), ('is_move_state_ok', '=', False), ('management_type', 'not in', ('dismiss', 'partial_dismiss'))]}"
+                    >
+                        Attention! You cannot dismiss an asset from accounting moves related to purchase documents.
+                    </div>
+                    <div
+                        class="oe_title"
+                        attrs="{'invisible': ['|', ('move_type', '=', 'wrong'), ('is_move_state_ok', '=', False)]}"
+                    >
+                        <field
+                            name="management_type"
+                            options="{'horizontal': true}"
+                            widget="radio"
+                        />
+                        <h1>
+                            <field
+                                name="name"
+                                placeholder="Asset Name"
+                                attrs="{'invisible': [('management_type', '!=', 'create')], 'required': [('management_type', '=', 'create')]}"
+                            />
+                            <field
+                                name="asset_id"
+                                placeholder="Choose Your Asset"
+                                options="{'no_create': True}"
+                                attrs="{'invisible': [('management_type', '=', 'create')], 'required': [('management_type', '!=', 'create')]}"
+                            />
+                        </h1>
+                    </div>
+                    <group
+                        name="create_asset_settings"
+                        attrs="{'invisible': ['|', '|', ('move_type', '=', 'wrong'), ('is_move_state_ok', '=', False), ('management_type', '!=', 'create')]}"
+                    >
+                        <group>
+                            <field
+                                name="category_id"
+                                options="{'no_create': True}"
+                                attrs="{'required': [('management_type', '=', 'create')]}"
+                            />
+                            <field name="code" />
+                            <field name="used" />
+                        </group>
+                        <group>
+                            <field name="purchase_date" />
+                            <field
+                                name="company_id"
+                                readonly="1"
+                                options="{'no_open':1, 'no_create_edit': True}"
+                                groups="base.group_multi_company"
+                            />
+                            <field
+                                name="currency_id"
+                                groups="base.group_multi_currency"
+                            />
+                            <field name="move_ids" invisible="1" />
+                            <field name="move_type" invisible="1" />
+                            <field name="is_move_state_ok" invisible="1" />
+                        </group>
+                    </group>
+                    <group
+                        name="update_asset_settings"
+                        attrs="{'invisible': ['|', '|', ('move_type', '=', 'wrong'), ('is_move_state_ok', '=', False), ('management_type', '!=', 'update')], 'required': [('management_type', '=', 'update')]}"
+                    >
+                        <group>
+                            <field
+                                name="depreciation_type_ids"
+                                options="{'no_create_edit': 1}"
+                                widget="many2many_tags"
+                            />
+                        </group>
+                    </group>
+                    <group
+                        name="partial_dismiss_asset_settings"
+                        attrs="{'invisible': ['|', '|', ('move_type', '=', 'wrong'), ('is_move_state_ok', '=', False), ('management_type', '!=', 'partial_dismiss')]}"
+                    >
+                        <group>
+                            <field
+                                name="dismiss_date"
+                                attrs="{'required': [('management_type', '=', 'dismiss')]}"
+                            />
+                            <field
+                                name="asset_purchase_amount"
+                                attrs="{'required': [('management_type', '=', 'partial_dismiss')]}"
+                            />
+                            <field
+                                name="depreciated_fund_amount"
+                                attrs="{'required': [('management_type', '=', 'partial_dismiss')]}"
+                            />
+                        </group>
+                    </group>
+                    <group
+                        name="dismiss_asset_settings"
+                        attrs="{'invisible': ['|', '|', ('move_type', '=', 'wrong'), ('is_move_state_ok', '=', False), ('management_type', '!=', 'dismiss')]}"
+                    >
+                        <group>
+                            <field
+                                name="dismiss_date"
+                                attrs="{'required': [('management_type', '=', 'dismiss')]}"
+                            />
+                        </group>
+                    </group>
+                    <group
+                        name="move_lines"
+                        string="Move Lines"
+                        attrs="{'invisible': ['|', ('move_type', '=', 'wrong'), ('is_move_state_ok', '=', False)]}"
+                    >
+                        <field
+                            name="move_line_ids"
+                            domain="[('move_id', 'in', move_ids), ('asset_accounting_info_ids', '=', False)]"
+                            nolabel="1"
+                        >
+                            <tree string="move lines" editable="bottom">
+                                <field
+                                    name="partner_id"
+                                    options="{'no_open':1}"
+                                    readonly="1"
+                                />
+                                <field
+                                    name="company_id"
+                                    options="{'no_open':1, 'no_create_edit': True}"
+                                    invisible="1"
+                                    readonly="1"
+                                />
+                                <field
+                                    name="account_id"
+                                    options="{'no_open':1}"
+                                    groups="account.group_account_user"
+                                    readonly="1"
+                                />
+                                <field name="name" readonly="1" />
+                                <field name="debit" widget="monetary" readonly="1" />
+                                <field name="credit" widget="monetary" readonly="1" />
+                                <field
+                                    name="currency_id"
+                                    options="{'no_open':1}"
+                                    invisible="1"
+                                    readonly="1"
+                                />
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+                <footer
+                    attrs="{'invisible': ['|', ('move_type', '=', 'wrong'), ('is_move_state_ok', '=', False)]}"
+                >
+                    <button
+                        name="link_asset"
+                        type="object"
+                        string="Create Asset and Show"
+                        attrs="{'invisible': ['|', ('move_type', 'not in', ('general', 'purchase')), ('management_type', '!=', 'create')]}"
+                        context="{'show_asset': 1}"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="link_asset"
+                        type="object"
+                        string="Create Asset"
+                        attrs="{'invisible': ['|', ('move_type', 'not in', ('general', 'purchase')), ('management_type', '!=', 'create')]}"
+                        context="{'show_asset': 0}"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="link_asset"
+                        type="object"
+                        string="Update Asset and Show"
+                        attrs="{'invisible': [('management_type', '!=', 'update')]}"
+                        context="{'show_asset': 1}"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="link_asset"
+                        type="object"
+                        string="Update Asset"
+                        attrs="{'invisible': [('management_type', '!=', 'update')]}"
+                        context="{'show_asset': 0}"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="link_asset"
+                        type="object"
+                        string="Partial Dismiss Asset and Show"
+                        attrs="{'invisible': ['|', ('move_type', 'not in', ('general', 'sale')), ('management_type', '!=', 'partial_dismiss')]}"
+                        context="{'show_asset': 1}"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="link_asset"
+                        type="object"
+                        string="Partial Dismiss Asset"
+                        attrs="{'invisible': ['|', ('move_type', 'not in', ('general', 'sale')), ('management_type', '!=', 'partial_dismiss')]}"
+                        context="{'show_asset': 0}"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="link_asset"
+                        type="object"
+                        string="Dismiss Asset and Show"
+                        attrs="{'invisible': ['|', ('move_type', 'not in', ('general', 'sale')), ('management_type', '!=', 'dismiss')]}"
+                        context="{'show_asset': 1}"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="link_asset"
+                        type="object"
+                        string="Dismiss Asset"
+                        attrs="{'invisible': ['|', ('move_type', 'not in', ('general', 'sale')), ('management_type', '!=', 'dismiss')]}"
+                        context="{'show_asset': 0}"
+                        class="oe_highlight"
+                    />
+                    <button special="cancel" string="Cancel" />
+                </footer>
+                <footer
+                    attrs="{'invisible': [('move_type', '!=', 'wrong'), ('is_move_state_ok', '=', True)]}"
+                >
+                    <button special="cancel" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_account_move_manage_asset" model="ir.actions.act_window">
+        <field name="name">Link to Assets</field>
+        <field name="res_model">wizard.account.move.manage.asset</field>
+        <field name="binding_view_types">form</field>
+        <field name="binding_model_id" ref="account.model_account_move" />
+        <field name="view_mode">form</field>
+        <field name="context">{'move_ids': active_ids}</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="wizard_account_move_mange_asset_form_view" />
+    </record>
+
+</odoo>

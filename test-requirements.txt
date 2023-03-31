@@ -1,0 +1,1 @@
+pdfminer.six # needed by attachment_indexation module

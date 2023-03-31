@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2020 Simone Rubino - Agile Business Group
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+<odoo>
+    <record id="sale_order_line_view_form_readonly" model="ir.ui.view">
+        <field
+            name="name"
+        >Add e-invoice fields in sale.order.line readonly form view</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group" position="inside">
+                <group name="e_invoice" string="Electronic Invoice">
+                    <field name="admin_ref" readonly="1" />
+                    <field name="related_documents" readonly="1" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

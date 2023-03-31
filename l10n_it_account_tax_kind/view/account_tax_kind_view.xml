@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="view_account_tax_kind_tree" model="ir.ui.view">
+        <field name="name">account.tax.kind.tree</field>
+        <field name="model">account.tax.kind</field>
+        <field name="arch" type="xml">
+            <tree string="Tax Exemption Kind">
+                <field name="code" />
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_account_tax_kind_form" model="ir.ui.view">
+        <field name="name">account.tax.kind.form</field>
+        <field name="model">account.tax.kind</field>
+        <field name="arch" type="xml">
+            <form string="Tax Exemption Kind">
+                <group>
+                    <field name="code" />
+                    <field name="name" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="view_account_tax_kind_action">
+        <field name="name">Tax Exemption Kind</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.tax.kind</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_account_tax_kind_tree" />
+    </record>
+
+    <menuitem
+        id="account_tax_kind_menu"
+        parent="l10n_it_account.account_italian_localization"
+        name="Tax Exemption Kind"
+        action="view_account_tax_kind_action"
+        groups="account.group_account_manager"
+        sequence="40"
+    />
+
+</odoo>

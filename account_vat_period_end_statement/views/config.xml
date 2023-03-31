@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2019 Simone Rubino - Agile Business Group
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+<odoo>
+    <record id="view_vat_period_end_statement_company_form" model="ir.ui.view">
+        <field name="name">view_vat_period_end_statement_company</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook" position="inside">
+                <page string="VAT statement">
+                    <group>
+                        <field name="of_account_end_vat_statement_interest" />
+                        <field name="of_account_end_vat_statement_interest_percent" />
+                        <field
+                            name="of_account_end_vat_statement_interest_account_id"
+                        />
+                    </group>
+                </page>
+               </xpath>
+
+        </field>
+    </record>
+</odoo>

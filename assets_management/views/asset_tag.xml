@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="asset_tag_tree_view">
+        <field name="name">asset.tag.tree.view</field>
+        <field name="model">asset.tag</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="asset_tag_form_view">
+        <field name="name">asset.tag.form.view</field>
+        <field name="model">asset.tag</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name" />
+                    <field name="company_id" groups="base.group_multi_company" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_asset_tag" model="ir.actions.act_window">
+        <field name="name">Assets tag</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">asset.tag</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="asset_tag_tree_view" />
+    </record>
+
+    <menuitem
+        id="menu_asset_tag"
+        action="action_asset_tag"
+        name="Tags"
+        parent="menu_asset_configuration"
+        sequence="25"
+    />
+
+</odoo>

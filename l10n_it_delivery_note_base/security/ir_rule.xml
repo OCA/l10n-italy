@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright (c) 2019, Link IT Europe Srl
+    @author: Matteo Bilotta <mbilotta@linkeurope.it>
+  -->
+<odoo noupdate="1">
+
+    <record id="stock_delivery_note_type_company_rule" model="ir.rule">
+        <field name="name">Delivery note type multi-company</field>
+        <field name="model_id" ref="model_stock_delivery_note_type" />
+        <field name="domain_force">
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
+        </field>
+    </record>
+
+</odoo>

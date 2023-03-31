@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.15.1: http://docutils.sourceforge.net/" />
+<title>ITA - Intrastat</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7952 2016-07-26 18:15:59Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="ita-intrastat">
+<h1 class="title">ITA - Intrastat</h1>
+
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! This file is generated by oca-gen-addon-readme !!
+!! changes will be overwritten.                   !!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<p><a class="reference external" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external" href="https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_intrastat"><img alt="OCA/l10n-italy" src="https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github" /></a> <a class="reference external" href="https://translation.odoo-community.org/projects/l10n-italy-14-0/l10n-italy-14-0-l10n_it_intrastat"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external" href="https://runbot.odoo-community.org/runbot/122/14.0"><img alt="Try me on Runbot" src="https://img.shields.io/badge/runbot-Try%20me-875A7B.png" /></a></p>
+<p><strong>Italiano</strong></p>
+<p>Questo modulo si occupa della riclassificazione delle merci e dei servizi che sono oggetto di
+transazioni comunitarie.</p>
+<p>Il modulo precarica anche le tabelle necessarie alla compilazione della dichiarazione:
+nomenclature combinate, sezioni doganali, natura delle transazioni, modalità di trasporto.</p>
+<p>Per la creazione delle dichiarazioni, degli elenchi riepilogativi e le estrazioni da
+presentare all’Agenzia delle Dogane è necessario installare il modulo <cite>l10n_it_intrastat_statement</cite>.</p>
+<p><strong>Table of contents</strong></p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#configuration" id="id1">Configuration</a></li>
+<li><a class="reference internal" href="#usage" id="id2">Usage</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="id3">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="id4">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="id5">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="id6">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="id7">Maintainers</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="configuration">
+<h1><a class="toc-backref" href="#id1">Configuration</a></h1>
+<p><strong>Italiano</strong></p>
+<p>In <em>Impostazioni → Utenti e aziende → Aziende → Nome azienda</em>
+impostare i parametri delle seguenti sezioni presenti nella scheda “Informazioni generali”.</p>
+<ol class="arabic simple">
+<li>Intrastat<ol class="loweralpha">
+<li><em>ID utente (codice UA)</em>: inserire il codice identificativo Intrastat dell’azienda (codice alfanumerico di 4 caratteri, utilizzato come identificativo per l’accesso alle applicazioni delle Dogane).</li>
+<li><em>Unità di misura per kg</em>: parametro che indica l’unità di misura che viene verificata sulla riga fattura soggetta a Intrastat. Se sulla riga il peso è espresso nell’unità di misura indicata nel parametro (o in un suo multiplo), il peso che viene riportato nella corrispondente riga Intrastat è quello preso dalla riga fattura.</li>
+<li><em>Unità supplementare da</em>:<ol class="lowerroman">
+<li><em>peso</em>: da peso dei prodotti sulla riga Intrastat</li>
+<li><em>quantità</em>: da quantità dei prodotti sulla riga Intrastat</li>
+<li><em>nulla</em></li>
+</ol>
+</li>
+<li><em>Escludere righe omaggio</em>: esclude dalle righe Intrastat le righe a valore 0.</li>
+<li><em>Delegato</em>: il nominativo della persona delegata alla presentazione della dichiarazione Intrastat.</li>
+<li><em>Partita IVA delegato</em>: la partita IVA della persona delegata alla presentazione della dichiarazione Intrastat.</li>
+<li><em>Nome file da esportare</em>: nome del file che può essere impostato per forzare quello predefinito (SCAMBI.CEE).</li>
+<li><em>Sezione doganale</em>: sezione doganale predefinita da proporre in una nuova dichiarazione.</li>
+<li><em>Ammontare minimo</em>: in caso di fatture di importo inferiore usa questo valore nella dichiarazione.</li>
+</ol>
+</li>
+<li>Valori predefiniti per cessioni (parametri Intrastat per le fatture di vendita)<ol class="loweralpha">
+<li><em>Forzare valore statistico in euro</em>: casella di selezione attualmente non gestita.</li>
+<li><em>Natura transazione</em>: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.</li>
+<li><em>Condizioni di consegna</em>: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.</li>
+<li><em>Modalità di trasporto</em>: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Modo di trasporto).</li>
+<li><em>Provincia di origine</em>: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (provincia di origine della spedizione dei beni venduti).</li>
+</ol>
+</li>
+<li>Valori predefiniti per acquisti (parametri Intrastat per le fatture di acquisto)<ol class="loweralpha">
+<li><em>Forzare valore statistico in euro</em>: casella di selezione attualmente non gestita.</li>
+<li><em>Natura transazione</em>: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.</li>
+<li><em>Condizioni di consegna</em>: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento.</li>
+<li><em>Modalità di trasporto</em>: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (Modo di trasporto).</li>
+<li><em>Provincia di destinazione</em>: indica il valore predefinito che verrà impostato nelle righe Intrastat di una fattura per il campo di riferimento (provincia di destinazione della spedizione dei beni acquistati).</li>
+</ol>
+</li>
+</ol>
+<p><strong>Tabelle di sistema</strong></p>
+<p>In <em>Fatturazione/Contabilità → Configurazione → Intrastat</em>
+sono presenti le funzionalità per la gestione delle tabelle di sistema.</p>
+<ul class="simple">
+<li>Sezioni doganali</li>
+<li>Nomenclature combinate</li>
+<li>Modalità di trasporto</li>
+<li>Natura transazione</li>
+</ul>
+<p>Tali tabelle sono pre-popolate in fase di installazione del modulo, in base ai valori ammessi per le dichiarazioni Intrastat.</p>
+<p>N.B.: Il sottomenù “Intrastat” è visibile solo se vengono abilitate le funzionalità contabili complete.</p>
+<p><strong>Posizione fiscale</strong></p>
+<p>L’assoggettamento ad Intrastat può essere gestito anche a livello generale di singolo partner, associandogli una posizione fiscale che abbia l’apposita casella “Soggetta a Intrastat” selezionata.</p>
+<p>Tutte le fatture create per il partner che ha una posizione fiscale marcata come soggetta ad Intrastat avranno l’apposito campo “Soggetta a Intrastat” selezionato automaticamente.</p>
+<p><strong>Prodotti e categorie</strong></p>
+<p>La classificazione Intrastat dei beni o dei servizi può essere fatta sia a livello di categoria che a livello di prodotto.</p>
+<p>La priorità è data al prodotto: se su un prodotto non è configurato un codice Intrastat, il sistema tenta di ricavarlo dalla categoria a cui quel prodotto è associato.</p>
+<p>Per il prodotto la sezione Intrastat si trova nella scheda «Fatturazione/Contabilità», ove è necessario inserire:</p>
+<ul class="simple">
+<li>la tipologia (Bene, Servizio, Varie, Escludere);</li>
+<li>il codice Intrastat, tra quelli censiti tramite l’apposita tabella di sistema “Nomenclature combinate” (il campo viene abilitato solo per le tipologie “Bene” e “Servizio”).</li>
+</ul>
+<p>Per le categorie di prodotti, le informazioni sono presenti in un’apposita area Intrastat della maschera di dettaglio.</p>
+</div>
+<div class="section" id="usage">
+<h1><a class="toc-backref" href="#id2">Usage</a></h1>
+<p><strong>Italiano</strong></p>
+<p><strong>Fatture e note di credito Intrastat</strong></p>
+<p>È possibile indicare l’assoggettamento di una fattura ad Intrastat attraverso l’apposito campo presente sulla maschera di modifica della fattura stessa.</p>
+<p>Sulla scheda Intrastat è presente un pulsante «Ricalcola righe Intrastat». Il pulsante permette al sistema:</p>
+<ul class="simple">
+<li>di verificare se le righe prodotto presenti in fattura (scheda “Righe fattura”) si riferiscono a prodotti che hanno un codice Intrastat assegnato, o appartengono ad una categoria che ha un codice Intrastat aggregato;</li>
+<li>di generare per questi prodotti le corrispondenti righe Intrastat: le righe accorpano prodotti omogenei per codice Intrastat, indicando nel campo “Massa netta (kg)” il peso totale dei prodotti presenti nelle corrispondenti righe. La riga Intrastat, ovviamente, raggruppa il valore economico dei prodotti;</li>
+<li>N.B.: se una riga presente in fattura si riferisce ad un prodotto che ha come tipologia Intrastat “Varie”, l’importo della riga verrà automaticamente suddiviso in maniera uguale sulle altre righe Intrastat che si riferiscono a beni o servizi. Tale automatismo permette di gestire, in maniera conforme a quanto previsto dalla normativa, il ribaltamento proporzionale dei costi sostenuti per spese accessorie (es: spese di trasporto) sui costi sostenuti per l’acquisto vero e proprio di beni o servizi.</li>
+</ul>
+<p>Nella scheda Intrastat, un clic su una riga Intrastat permette di accedere alla maschera di dettaglio.</p>
+<p>Nella maschera:</p>
+<ul class="simple">
+<li>il campo “Stato acquirente/fornitore” viene popolato in automatico dal campo “Nazione” dell’indirizzo associato al partner;</li>
+<li>i campi configurati in <em>Impostazioni → Utenti e aziende → Aziende → Nome azienda</em> (vedi “Informazioni generali” su azienda) vengono popolati in automatico con i valori predefiniti impostati, in ragione della tipologia di fattura (vendita o acquisto);</li>
+<li>se fattura di vendita:<ol class="arabic">
+<li>i campi <em>Origine → Paese di provenienza</em> e <em>Origine → Paese di origine</em> vengono popolati in automatico con la nazione presente nell’indirizzo associato all’azienda;</li>
+<li>il campo <em>Destinazione → Paese di destinazione</em> viene popolato in automatico con la nazione presente nell’indirizzo associato al partner;</li>
+</ol>
+</li>
+<li>se fattura di acquisto:<ol class="arabic">
+<li>i campi <em>Origine → Paese di provenienza</em> e <em>Origine → Paese di origine</em> vengono popolati in automatico con la nazione presente nell’indirizzo associato al partner (fornitore);</li>
+<li>il campo <em>Destinazione → Paese di destinazione</em> viene preso dai dati dell’azienda.</li>
+</ol>
+</li>
+</ul>
+<p>N.B.: tutti i campi possono ovviamente essere modificati, ma l’utilizzo del pulsante «Ricalcola righe Intrastat» ripristinerà i valori predefiniti, sui campi prelevati dalla configurazione dell’azienda o dalla riga fattura.</p>
+<p><strong>Note di credito</strong></p>
+<dl class="docutils">
+<dt>Importante:</dt>
+<dd>Se si seleziona un periodo che è lo stesso della dichiarazione, la nota di credito, per il suo importo, non confluirà nella sezione di rettifica, ma andrà a stornare direttamente il valore della fattura sulla quale è stata emessa. La verifica sulla fattura da stornare viene fatta confrontando la coppia di valori <em>Partner/Nomenclatura combinata</em>.</dd>
+</dl>
+</div>
+<div class="section" id="bug-tracker">
+<h1><a class="toc-backref" href="#id3">Bug Tracker</a></h1>
+<p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-italy/issues">GitHub Issues</a>.
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us smashing it by providing a detailed and welcomed
+<a class="reference external" href="https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_intrastat%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<p>Do not contact contributors directly about support or help with technical issues.</p>
+</div>
+<div class="section" id="credits">
+<h1><a class="toc-backref" href="#id4">Credits</a></h1>
+<div class="section" id="authors">
+<h2><a class="toc-backref" href="#id5">Authors</a></h2>
+<ul class="simple">
+<li>Openforce</li>
+<li>Link IT srl</li>
+<li>Agile Business Group</li>
+<li>Powerp network</li>
+</ul>
+</div>
+<div class="section" id="contributors">
+<h2><a class="toc-backref" href="#id6">Contributors</a></h2>
+<ul>
+<li><p class="first">Alessandro Camilli</p>
+</li>
+<li><p class="first">Lorenzo Battistini</p>
+</li>
+<li><p class="first">Lara Baggio &lt;<a class="reference external" href="mailto:lbaggio&#64;linkgroup.it">lbaggio&#64;linkgroup.it</a>&gt;</p>
+</li>
+<li><p class="first">Glauco Prina &lt;<a class="reference external" href="mailto:gprina&#64;linkgroup.it">gprina&#64;linkgroup.it</a>&gt;</p>
+</li>
+<li><p class="first">Sergio Zanchetta &lt;<a class="reference external" href="https://github.com/primes2h">https://github.com/primes2h</a>&gt;</p>
+</li>
+<li><p class="first"><a class="reference external" href="https://www.ooops404.com">Ooops</a>:</p>
+<blockquote>
+<ul class="simple">
+<li>Giovanni Serra &lt;<a class="reference external" href="mailto:giovanni&#64;gslab.it">giovanni&#64;gslab.it</a>&gt;</li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">Antonio Maria Vigliotti &lt;<a class="reference external" href="mailto:antoniomaria.vigliotti&#64;gmail.com">antoniomaria.vigliotti&#64;gmail.com</a>&gt;</p>
+</li>
+<li><p class="first">Fabio Giovannelli &lt;<a class="reference external" href="mailto:fabio.giovannelli&#64;didotech.com">fabio.giovannelli&#64;didotech.com</a>&gt;</p>
+</li>
+<li><p class="first">Alex Comba &lt;<a class="reference external" href="mailto:alex.comba&#64;agilebg.com">alex.comba&#64;agilebg.com</a>&gt;</p>
+</li>
+</ul>
+</div>
+<div class="section" id="maintainers">
+<h2><a class="toc-backref" href="#id7">Maintainers</a></h2>
+<p>This module is maintained by the OCA.</p>
+<a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
+<p>OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_intrastat">OCA/l10n-italy</a> project on GitHub.</p>
+<p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

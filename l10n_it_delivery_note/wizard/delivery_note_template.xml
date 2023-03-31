@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright (c) 2019, Link IT Europe Srl
+    @author: Matteo Bilotta <mbilotta@linkeurope.it>
+  -->
+<odoo>
+
+    <template id="stock_delivery_note_wizard_error_message_template">
+        <div class="o_horizontal_separator">
+            <t t-esc="title" />
+        </div>
+        <div class="o_horizontal_separator" />
+        <p>There are one or more problems with the pickings you've selected:</p>
+        <ul>
+            <t t-foreach="errors" t-as="error">
+                <li><t t-esc="error" /></li>
+            </t>
+        </ul>
+        <div class="o_horizontal_separator" />
+        <p>Please, check and solve these problems before trying again.</p>
+        <p>If these problems persist, don't hesitate to contact the helpdesk.</p>
+    </template>
+
+</odoo>

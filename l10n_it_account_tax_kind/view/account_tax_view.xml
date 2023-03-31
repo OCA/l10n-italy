@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="view_tax_form_account_tax_kind" model="ir.ui.view">
+        <field name="name">account.tax.form.account.tax.kind</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tax_group_id']" position="after">
+                <field name="kind_id" />
+                <field
+                    name="law_reference"
+                    attrs="{'required': [('kind_id', '!=', False),('type_tax_use', '!=', 'purchase')], 'invisible': ['|',('kind_id', '=', False),('type_tax_use', '=', 'purchase')]}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_tax_search_tax_kind" model="ir.ui.view">
+        <field name="name">view_account_tax_search_tax_kind</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_account_tax_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='inactive']" position="after">
+                <separator />
+                <field name="kind_id" />
+            </xpath>
+            <xpath expr="//filter[@name='taxapp']" position="after">
+                <filter
+                    string="Exemption Kind"
+                    name="ex_kind"
+                    domain="[]"
+                    context="{'group_by': 'kind_id'}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

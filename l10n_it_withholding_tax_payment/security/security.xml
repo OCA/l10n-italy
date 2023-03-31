@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2019 Matteo Bilotta
+  -->
+<odoo>
+    <data noupdate="1">
+
+        <record id="withholding_tax_payment_comp_rule" model="ir.rule">
+            <field name="name">Withholding Tax Payment Move</field>
+            <field name="model_id" ref="model_withholding_tax_move_payment" />
+            <field name="global" eval="True" />
+            <field
+                name="domain_force"
+            >['|',('company_id','=',False),('company_id','in',company_ids)]</field>
+        </record>
+
+    </data>
+</odoo>

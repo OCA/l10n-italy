@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright (c) 2019, Link IT Europe Srl
+    @author: Matteo Bilotta <mbilotta@linkeurope.it>
+  -->
+<odoo>
+
+    <record id="stock_delivery_note_form_view" model="ir.ui.view">
+        <field name="name">stock.delivery.note.form</field>
+        <field name="model">stock.delivery.note</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="sequence_id" invisible="True" />
+                <field name="type_code" invisible="True" />
+                <field name="picking_ids" invisible="True" />
+                <field name="sale_ids" invisible="True" />
+                <field name="sales_transport_check" invisible="True" />
+                <field name="can_change_number" invisible="True" />
+                <field name="show_product_information" invisible="True" />
+                <header>
+                    <button
+                        name="action_draft"
+                        type="object"
+                        states="cancel"
+                        class="oe_highlight"
+                        string="Reset to draft"
+                    />
+                    <button
+                        name="action_confirm"
+                        type="object"
+                        states="draft"
+                        class="oe_highlight"
+                        string="Validate"
+                    />
+                    <button
+                        name="action_invoice"
+                        type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': ['|', ('state', '!=', 'confirm'), ('sale_ids', '=', [])]}"
+                        groups="account.group_account_invoice"
+                        string="Create invoice"
+                    />
+                    <button
+                        name="action_done"
+                        type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': ['&amp;', ('state', '!=', 'invoiced'),
+                                                  '|', ('state', '!=', 'confirm'), ('sale_ids', '!=', [])]}"
+                        string="Set done"
+                    />
+                    <button
+                        name="action_print"
+                        type="object"
+                        states="draft,confirm,invoiced"
+                        string="Print"
+                    />
+                    <button
+                        name="action_print"
+                        type="object"
+                        class="oe_highlight"
+                        states="done"
+                        string="Print"
+                    />
+                    <button
+                        name="action_cancel"
+                        type="object"
+                        states="confirm,invoiced,done"
+                        string="Cancel"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,confirm"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            type="object"
+                            class="oe_stat_button"
+                            name="goto_sales"
+                            icon="fa-pencil-square-o"
+                            attrs="{'invisible': [('sale_count', '=', 0)]}"
+                        >
+                            <field
+                                name="sale_count"
+                                widget="statinfo"
+                                string="Sales orders"
+                            />
+                        </button>
+                    </div>
+                    <widget
+                        name="web_ribbon"
+                        text="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <div class="oe_title">
+                        <field name="active" invisible="1" />
+                        <div attrs="{'invisible': [('name', 'not in', [False, ''])]}">
+                            <label for="name" string="Draft document" />
+                        </div>
+                        <div attrs="{'invisible': [('name', 'in', [False, ''])]}">
+                            <label for="name" string="Document" />
+                            <h1>
+                                <field
+                                    name="name"
+                                    class="oe_inline"
+                                    attrs="{'readonly': [('can_change_number', '=', False)]}"
+                                />
+                            </h1>
+                            <div
+                                attrs="{'invisible': [('type_code', '!=', 'incoming')]}"
+                            >
+                                <label for="name" string="Partner document" />
+                                <h2>
+                                    <field name="partner_ref" class="oe_inline" />
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        attrs="{'invisible': [('sales_transport_check', '=', True)]}"
+                        class="alert alert-warning mb0"
+                        role="alert"
+                    >
+                        <p class="text-center mb0">
+                            <strong>
+                                <span class="fa fa-exclamation-triangle" />
+                                Warning!
+                            </strong>
+                            Inconsistent DN info in sale orders!
+                        </p>
+                    </div>
+                    <group>
+                        <group>
+                            <field
+                                name="company_id"
+                                options="{'no_create': True}"
+                                groups="base.group_multi_company"
+                            />
+                            <field
+                                name="partner_sender_id"
+                                attrs="{'readonly': [('pickings_picker', '!=', [])]}"
+                            />
+                            <field
+                                name="partner_id"
+                                attrs="{'readonly': [('pickings_picker', '!=', [])]}"
+                            />
+                            <field name="partner_shipping_id" />
+                        </group>
+                        <group>
+                            <field name="type_id" widget="selection" />
+                            <field name="date" />
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field
+                                name="carrier_id"
+                                domain="[('supplier_rank','>', 0)]"
+                            />
+                            <field name="delivery_method_id" />
+                        </group>
+                        <group>
+                            <label for="transport_datetime" />
+                            <div class="o_row">
+                                <field name="transport_datetime" />
+                                <button
+                                    type="object"
+                                    name="update_transport_datetime"
+                                    attrs="{'invisible': [('state', '=', 'done')]}"
+                                    class="btn-secondary"
+                                    icon="fa-clock-o"
+                                    aria-label="Update to now"
+                                    title="Update to now"
+                                />
+                            </div>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="packages" />
+                            <label for="volume" />
+                            <div class="o_row">
+                                <field name="volume" />
+                                <field
+                                    name="volume_uom_id"
+                                    groups="uom.group_uom"
+                                    widget="selection"
+                                />
+                            </div>
+                        </group>
+                        <group>
+                            <label for="gross_weight" />
+                            <div class="o_row">
+                                <field name="gross_weight" />
+                                <field
+                                    name="gross_weight_uom_id"
+                                    groups="uom.group_uom"
+                                    widget="selection"
+                                />
+                            </div>
+                            <label for="net_weight" />
+                            <div class="o_row">
+                                <field name="net_weight" />
+                                <field
+                                    name="net_weight_uom_id"
+                                    groups="uom.group_uom"
+                                    widget="selection"
+                                />
+                            </div>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="goods_appearance_id" widget="selection" />
+                            <field name="transport_reason_id" widget="selection" />
+                        </group>
+                        <group>
+                            <field name="transport_condition_id" widget="selection" />
+                            <field name="transport_method_id" widget="selection" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="details" string="Details">
+                            <field name="line_ids" widget="section_and_note_one2many">
+                                <tree
+                                    editable="bottom"
+                                    decoration-info="(not display_type and invoice_status == 'to invoice')"
+                                >
+                                    <field name="currency_id" invisible="True" />
+                                    <field name="display_type" invisible="True" />
+                                    <field name="move_id" invisible="True" />
+                                    <field name="sale_line_id" invisible="True" />
+                                    <field name="invoice_status" invisible="True" />
+                                    <control>
+                                        <create
+                                            string="Add a section"
+                                            context="{'default_display_type': 'line_section'}"
+                                        />
+                                        <create
+                                            string="Add a note"
+                                            context="{'default_display_type': 'line_note'}"
+                                        />
+                                    </control>
+                                    <field name="sequence" widget="handle" />
+                                    <field
+                                        name="product_id"
+                                        attrs="{'readonly': [('move_id', '!=', False)]}"
+                                    />
+                                    <field name="name" widget="section_and_note_text" />
+                                    <field
+                                        name="product_qty"
+                                        attrs="{'readonly': [('move_id', '!=', False)]}"
+                                    />
+                                    <field
+                                        name="product_uom_id"
+                                        groups="uom.group_uom"
+                                        options="{'no_create': True, 'no_open': True}"
+                                    />
+                                    <field
+                                        name="price_unit"
+                                        attrs="{'column_invisible': [('parent.show_product_information', '=', False)],
+                                                   'readonly': [('sale_line_id', '!=', False)]}"
+                                        sum="Total"
+                                    />
+                                    <field
+                                        name="discount"
+                                        attrs="{'column_invisible': [('parent.show_product_information', '=', False)],
+                                                   'readonly': [('sale_line_id', '!=', False)]}"
+                                        groups="product.group_discount_per_so_line"
+                                    />
+                                    <field
+                                        name="tax_ids"
+                                        domain="[('company_id', 'in', [company_id, False])]"
+                                        attrs="{'column_invisible': [('parent.show_product_information', '=', False)],
+                                                   'readonly': [('sale_line_id', '!=', False)]}"
+                                        widget="many2many_tags"
+                                    />
+                                    <field name="company_id" invisible="1" />
+                                </tree>
+                                <form>
+                                    <field name="currency_id" invisible="True" />
+                                    <field name="display_type" invisible="True" />
+                                    <div
+                                        attrs="{'invisible': [('product_id', '=', False)]}"
+                                    >
+                                        <label
+                                            for="product_id"
+                                            style="margin-bottom: 5px;"
+                                        />
+                                        <div>
+                                            <field
+                                                name="product_id"
+                                                style="margin-bottom: 0px;"
+                                            />
+                                        </div>
+                                        <div>
+                                            <field name="product_description" />
+                                        </div>
+                                    </div>
+                                    <div
+                                        attrs="{'invisible': [('product_id', '!=', False)]}"
+                                    >
+                                        <label
+                                            for="name"
+                                            string="Section name (e.g. Products, Services)"
+                                            attrs="{'invisible': [('display_type', '!=', 'line_section')]}"
+                                            style="margin-bottom: 5px;"
+                                        />
+                                        <label
+                                            for="name"
+                                            string="Note"
+                                            attrs="{'invisible': [('display_type', '!=', 'line_note')]}"
+                                            style="margin-bottom: 5px;"
+                                        />
+                                        <div>
+                                            <field name="name" />
+                                        </div>
+                                    </div>
+                                    <group
+                                        attrs="{'invisible': [('display_type', '!=', False)]}"
+                                    >
+                                        <group>
+                                            <field
+                                                name="price_unit"
+                                                attrs="{'invisible': [('parent.show_product_information', '=', False)]}"
+                                            />
+                                            <label for="product_qty" />
+                                            <div class="o_row">
+                                                <field name="product_qty" />
+                                                <field
+                                                    name="product_uom_id"
+                                                    groups="uom.group_uom"
+                                                    widget="selection"
+                                                />
+                                            </div>
+                                        </group>
+                                        <group
+                                            attrs="{'invisible': [('parent.show_product_information', '=', False)]}"
+                                        >
+                                            <field
+                                                name="discount"
+                                                groups="product.group_discount_per_so_line"
+                                            />
+                                            <field
+                                                name="tax_ids"
+                                                domain="[('company_id', 'in', [company_id, False])]"
+                                                widget="many2many_tags"
+                                            />
+                                            <field name="company_id" invisible="1" />
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                        <page name="pickings" string="Pickings">
+                            <field
+                                name="pickings_picker"
+                                context="{'from_delivery_note': True}"
+                                domain="[('delivery_note_id', '=', False),
+                                            ('state', '=', 'done'),
+                                            ('picking_type_code', '=', type_code),
+                                            '|', '|',
+                                                    '&amp;', ('picking_type_code', '=', 'incoming'), ('partner_id', '=', partner_sender_id),
+                                                    '&amp;', ('picking_type_code', '=', 'outgoing'), ('partner_id', '=', partner_id),
+                                                 ('picking_type_code', '=', 'internal'),
+                                            ]"
+                            >
+                                <tree
+                                    decoration-success="id not in parent.picking_ids"
+                                    editable="bottom"
+                                >
+                                    <button
+                                        type="object"
+                                        class="oe_button"
+                                        name="goto"
+                                        icon="fa-external-link"
+                                        aria-label="Open picking"
+                                        title="Open picking"
+                                    />
+                                    <field name="name" />
+                                    <field name="company_id" readonly="True" />
+                                    <field
+                                        name="location_dest_id"
+                                        groups="stock.group_stock_multi_locations"
+                                    />
+                                    <field name="scheduled_date" readonly="True" />
+                                    <field name="origin" />
+                                    <field name="backorder_id" />
+                                    <field name="state" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page
+                            name="invoices"
+                            string="Invoices"
+                            attrs="{'invisible': [('invoice_ids', '=', [])]}"
+                            groups="account.group_account_invoice"
+                        >
+                            <field name="invoice_ids">
+                                <tree editable="bottom">
+                                    <field name="currency_id" invisible="True" />
+                                    <button
+                                        type="object"
+                                        name="goto_invoice"
+                                        class="oe_button"
+                                        icon="fa-external-link"
+                                        aria-label="Go to invoice"
+                                        title="Go to invoice"
+                                    />
+                                    <field name="name" />
+                                    <field name="invoice_origin" readonly="True" />
+                                    <field
+                                        name="amount_untaxed"
+                                        string="Tax excluded"
+                                        sum="Total"
+                                    />
+                                    <field name="amount_tax" string="Tax" sum="Total" />
+                                    <field
+                                        name="amount_total_signed"
+                                        string="Total"
+                                        sum="Total"
+                                    />
+                                    <field
+                                        name="amount_residual_signed"
+                                        string="To pay"
+                                        sum="Total"
+                                    />
+                                    <field name="state" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="internal_notes" string="Internal notes">
+                            <field name="note" />
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="stock_delivery_note_tree_view" model="ir.ui.view">
+        <field name="name">stock.delivery.note.tree</field>
+        <field name="model">stock.delivery.note</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="state == 'cancel'">
+                <field name="display_name" string="Name" />
+                <field name="partner_sender_id" />
+                <field name="partner_id" />
+                <field name="date" />
+                <field name="state" />
+                <field name="type_code" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="stock_delivery_note_search_view" model="ir.ui.view">
+        <field name="name">stock.delivery.note.search</field>
+        <field name="model">stock.delivery.note</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="partner_ref" />
+                <field name="partner_id" />
+                <field name="partner_sender_id" />
+                <field name="carrier_id" />
+                <field name="type_id" />
+                <field name="type_code" />
+                <separator />
+                <filter
+                    name="draft"
+                    string="Draft"
+                    domain="[('state', '=', 'draft')]"
+                />
+                <filter
+                    name="confirm"
+                    string="Validated"
+                    domain="[('state', '=', 'confirm')]"
+                />
+                <filter
+                    name="invoiced"
+                    string="Invoiced"
+                    domain="[('state', '=', 'invoiced')]"
+                />
+                <filter name="done" string="Done" domain="[('state', '=', 'done')]" />
+                <filter
+                    name="cancel"
+                    string="Cancelled"
+                    domain="[('state', '=', 'cancel')]"
+                />
+                <separator />
+                <filter
+                    name="nothing_to_invoice"
+                    string="Nothing to invoice"
+                    domain="[('invoice_status', '=', 'no')]"
+                />
+                <filter
+                    name="to_invoice"
+                    string="To invoice"
+                    domain="[('invoice_status', '=', 'to invoice')]"
+                />
+                <filter
+                    name="invoiced"
+                    string="Invoiced"
+                    domain="[('invoice_status', '=', 'invoiced')]"
+                />
+                <separator />
+                <filter
+                    name="incoming"
+                    string="Incoming"
+                    domain="[('picking_type', '=', 'incoming')]"
+                />
+                <filter
+                    name="outgoing"
+                    string="Outgoing"
+                    domain="[('picking_type', '=', 'outgoing')]"
+                />
+                <filter
+                    name="internal"
+                    string="Internal"
+                    domain="[('picking_type', '=', 'internal')]"
+                />
+                <separator />
+                <filter
+                    name="inactive"
+                    string="Archived"
+                    domain="[('active', '=', False)]"
+                />
+                <separator />
+                <group>
+                    <filter
+                        name="group_by_partner_id"
+                        string="Recipients"
+                        context="{'group_by': 'partner_id'}"
+                    />
+                    <filter
+                        name="group_by_partner_sender_id"
+                        string="Senders"
+                        context="{'group_by': 'partner_sender_id'}"
+                    />
+                    <filter
+                        name="group_by_carrier_id"
+                        string="Carriers"
+                        context="{'group_by': 'carrier_id'}"
+                    />
+                    <filter
+                        name="group_by_state"
+                        string="States"
+                        context="{'group_by': 'state'}"
+                    />
+                    <filter
+                        name="group_by_type_code"
+                        string="Type codes"
+                        context="{'group_by': 'type_code'}"
+                    />
+                    <filter
+                        name="group_by_type_id"
+                        string="Types"
+                        context="{'group_by': 'type_id'}"
+                    />
+                    <filter
+                        name="group_by_invoice_status"
+                        string="Invoice statuses"
+                        context="{'group_by': 'invoice_status'}"
+                    />
+                    <filter
+                        name="group_by_picking_type"
+                        string="Picking types"
+                        context="{'group_by': 'picking_type'}"
+                    />
+                    <filter
+                        name="group_by_date"
+                        string="Dates"
+                        context="{'group_by': 'date'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="stock_delivery_note_action" model="ir.actions.act_window">
+        <field name="name">Delivery Notes</field>
+        <field name="res_model">stock.delivery.note</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="stock_delivery_note_search_view" />
+        <!--<field name="help" type="html">-->
+            <!--<p class="oe_view_nocontent_create">-->
+                <!--TODO: Scrivere una piccola descrizione.-->
+            <!--</p>-->
+            <!--<p>-->
+                <!--Bla, bla, bla...-->
+            <!--</p>-->
+        <!--</field>-->
+    </record>
+
+    <menuitem
+        id="stock_delivery_note_menu"
+        parent="stock.menu_stock_warehouse_mgmt"
+        action="stock_delivery_note_action"
+        groups="l10n_it_delivery_note.use_advanced_delivery_notes"
+        name="Delivery Notes"
+        sequence="10"
+    />
+
+    <menuitem
+        id="stock_delivery_note_config_menu"
+        parent="stock.menu_stock_config_settings"
+        name="Delivery Notes"
+        sequence="25"
+    />
+
+    <record id="stock_delivery_note_type_action" model="ir.actions.act_window">
+        <field name="name">Delivery Note Types</field>
+        <field name="res_model">stock.delivery.note.type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="stock_delivery_note_type_menu"
+        parent="stock.menu_warehouse_config"
+        action="stock_delivery_note_type_action"
+        name="Delivery Note Types"
+        sequence="10"
+    />
+
+</odoo>

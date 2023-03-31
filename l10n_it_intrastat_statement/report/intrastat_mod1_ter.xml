@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2019 Simone Rubino - Agile Business Group
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+<odoo>
+    <template id="report_intrastat_mod1_ter">
+        <t t-call="web.html_container">
+            <t t-translation="off">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.internal_layout">
+                        <div class="page">
+                            <div class="row col-12">
+                                <div class="col-3">
+                                    <p class="text-right">
+                                        <img
+                                            src="/l10n_it_intrastat_statement/static/img/agenzia_dogane.jpg"
+                                            height="80px"
+                                        />
+                                    </p>
+                                </div>
+                                <div class="col-7 col-offset-3">
+                                    <table class="table text-center table-bordered">
+
+                                        <td>
+                                            <b>
+                                                RIEPILOGO DELLE CESSIONI
+                                                INTRACOMUNITARIE
+                                                <br />
+                                                DI BENI E DEI SERVIZI RESI
+                                            </b>
+                                        </td>
+                                        <td>Mod.INTRA-1 Ter</td>
+                                    </table>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <span class="text-center col-7 col-offset-3">
+                                    <strong>
+                                        SEZIONE 2. RETTIFICHE ALLE CESSIONI DI
+                                        BENI
+                                        RELATIVE A PERIODI PRECEDENTI
+                                    </strong>
+                                    <p />
+                                </span>
+                            </div>
+                            <div class="row text-center col-12">
+                                <span>PERIODO:</span>
+
+                                <span class="col-offset-1">MESE:</span>
+                                <strong>
+                                    <t t-if="o.period_type == 'M'">
+                                        <span t-esc="o.period_number" />
+                                    </t>
+                                </strong>
+
+                                <span class="col-offset-1">TRIMESTRE:</span>
+                                <strong>
+                                    <t t-if="o.period_type == 'T'">
+                                        <span t-esc="o.period_number" />
+                                    </t>
+                                </strong>
+                                <span class="col-offset-1">ANNO:</span>
+                                <strong>
+                                    <span t-esc="o.fiscalyear" />
+                                </strong>
+
+                                <span class="col-offset-2">PARTITA IVA
+                                </span>
+                                <strong>
+                                    <span t-esc="o.company_id.vat" />
+                                </strong>
+                            </div>
+                            <div class="row col-12">
+                                <p />
+                                <table class="table table-bordered">
+                                    <col />
+                                    <colgroup span="3" />
+                                    <colgroup span="7" />
+                                    <thead class="fondo">
+                                        <tr>
+                                            <th rowspan="3">
+                                                PROGR
+                                            </th>
+                                            <th colspan="3" class="text-center">
+                                                PERIODO DI RIFERIMENTO
+                                            </th>
+                                            <th colspan="7" class="text-center">
+                                                RETTIFICHE
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-center" rowspan="2">MESE
+                                            </th>
+                                            <th
+                                                class="text-center"
+                                                rowspan="2"
+                                            >TRIMESTRE
+                                            </th>
+                                            <th class="text-center" rowspan="2">ANNO
+                                            </th>
+                                            <th colspan="2" class="text-center">
+                                                ACQUIRENTE
+                                            </th>
+                                            <th class="text-center" rowspan="2">SEGNO
+                                            </th>
+                                            <th class="text-center" rowspan="2">
+                                                AMMONTARE DELLE OPERAZIONI IN
+                                                EURO
+                                            </th>
+                                            <th
+                                                class="text-center"
+                                                rowspan="2"
+                                            >NATURA TRANS.
+                                            </th>
+                                            <th class="text-center" rowspan="2">
+                                                NOMENCLATURA COMBINATA
+                                            </th>
+                                            <th class="text-center" rowspan="2">
+                                                VALORE STATISTICO IN EURO
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-center">STATO</th>
+                                            <th class="text-center">CODICE
+                                                IVA
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="small text-center">
+                                            <td t-foreach="range(1, 12)" t-as="col_nbr">
+                                                <span t-esc="col_nbr" />
+                                            </td>
+                                        </tr>
+                                        <t t-set="total" t-value="0" />
+                                        <tr t-foreach="o.sale_section2_ids" t-as="l">
+                                            <td t-esc="l.sequence" />
+                                            <td t-esc="l.month" />
+                                            <td t-esc="l.quarterly" />
+                                            <td t-esc="l.year_id" />
+                                            <td t-esc="l.country_partner_id.code" />
+                                            <td t-esc="l.vat_code" />
+                                            <td t-esc="l.sign_variation" />
+                                            <td t-esc="l.amount_euro" />
+                                            <td t-esc="l.transaction_nature_id.code" />
+                                            <td t-esc="l.intrastat_code_id.name" />
+                                            <td t-esc="l.statistic_amount_euro" />
+                                            <t
+                                                t-set="total"
+                                                t-value="total + l.amount_euro"
+                                            />
+                                        </tr>
+                                        <tr>
+                                            <td colspan="7" class="text-right">
+                                                TOTALE
+                                            </td>
+                                            <td>
+                                                <t t-esc="total" />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

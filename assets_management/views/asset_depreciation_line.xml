@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="asset_dep_line_search_view">
+        <field name="name">asset.depreciation.line.view</field>
+        <field name="model">asset.depreciation.line</field>
+        <field name="arch" type="xml">
+            <search string="Depreciation Lines">
+                <field name="name" />
+                <separator />
+                <filter
+                    name="depreciation"
+                    string="Depreciations"
+                    domain="[('move_type','=','depreciated')]"
+                />
+                <filter
+                    name="historical"
+                    string="Historical"
+                    domain="[('move_type','=','historical')]"
+                />
+                <filter name="in" string="In" domain="[('move_type','=','in')]" />
+                <filter name="out" string="Out" domain="[('move_type','=','out')]" />
+                <filter name="loss" string="Loss" domain="[('move_type','=','loss')]" />
+                <filter name="gain" string="Gain" domain="[('move_type','=','gain')]" />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Asset"
+                        name="group_by_asset_id"
+                        context="{'group_by':'asset_id'}"
+                    />
+                    <filter
+                        string="Asset Depreciation"
+                        name="group_by_depreciation_id"
+                        context="{'group_by':'depreciation_id'}"
+                    />
+                    <filter
+                        string="Depreciation Type"
+                        name="group_by_depreciation_type_id"
+                        context="{'group_by':'depreciation_type_id'}"
+                    />
+                    <filter
+                        string="Company"
+                        name="group_by_company_id"
+                        context="{'group_by':'company_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="asset_dep_line_tree_view" model="ir.ui.view">
+        <field name="name">asset.dep.line.tree.view</field>
+        <field name="model">asset.depreciation.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="asset_id" />
+                <field name="depreciation_id" />
+                <field name="name" />
+                <field name="date" />
+                <field name="move_type" />
+                <field name="depreciation_line_type_id" string="In/Out Amount Type" />
+                <field name="force_dep_nr" invisible="1" />
+                <field name="depreciation_nr" />
+                <field name="amount" widget="monetary" />
+                <field name="asset_accounting_info_ids" invisible="1" />
+                <field name="move_id" />
+                <field name="requires_account_move" invisible="1" />
+                <field name="currency_id" invisible="1" />
+                <field name="company_id" invisible="1" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="asset_dep_line_form_view" model="ir.ui.view">
+        <field name="name">asset.dep.line.form.view</field>
+        <field name="model">asset.depreciation.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="button_generate_account_move"
+                        string="Generate Move"
+                        type="object"
+                        attrs="{'invisible': ['|', '|', '|', ('amount', '=', 0), ('move_id', '!=', False), ('move_type', 'in', ('in', 'out')), ('requires_account_move', '=', False)]}"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="button_regenerate_account_move"
+                        string="Regenerate Move"
+                        type="object"
+                        attrs="{'invisible': ['|', '|', '|', ('amount', '=', 0), ('move_id', '=', False), ('move_type', 'in', ('in', 'out')), ('requires_account_move', '=', False)]}"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="button_remove_account_move"
+                        type="object"
+                        string="Remove Move"
+                        attrs="{'invisible': ['|', '|', '|', ('amount', '=', 0), ('move_id', '=', False), ('move_type', 'in', ('in', 'out')), ('requires_account_move', '=', False)]}"
+                        class="oe_highlight"
+                    />
+                </header>
+                <sheet>
+                    <group name="info" string="General Info">
+                        <group>
+                            <field name="asset_id" readonly="1" />
+                            <field name="name" />
+                            <field name="date" />
+                            <field name="move_type" />
+                            <field
+                                name="depreciation_line_type_id"
+                                attrs="{'invisible':[('move_type', 'not in', ('in', 'out'))]}"
+                                string="In/Out Amount Type"
+                            />
+                            <field name="depreciation_nr" />
+                        </group>
+                        <group>
+                            <field name="amount" widget="monetary" />
+                            <field name="balance" widget="monetary" />
+                            <field name="move_id" />
+                            <field name="requires_account_move" invisible="1" />
+                            <field name="currency_id" invisible="1" />
+                            <field name="company_id" invisible="1" />
+                        </group>
+                    </group>
+                    <group name="accounting_info" string="Accounting Info">
+                        <field
+                            name="asset_accounting_info_ids"
+                            readonly="1"
+                            nolabel="1"
+                        >
+                            <tree>
+                                <field name="asset_id" />
+                                <field name="dep_line_id" />
+                                <field name="relation_type" />
+                                <field name="move_id" />
+                                <field name="move_line_id" />
+                                <button
+                                    name="button_unlink"
+                                    type="object"
+                                    string="Remove"
+                                    confirm="You confirm the removal of the current line? Depreciation line amounts will not be affected and will have to be updated manually."
+                                    icon="fa-trash"
+                                />
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_asset_dep_line" model="ir.actions.act_window">
+        <field name="name">Depreciation Lines</field>
+        <field name="res_model">asset.depreciation.line</field>
+        <field name="view_id" ref="asset_dep_line_tree_view" />
+        <field name="search_view_id" ref="asset_dep_line_search_view" />
+        <field
+            name="context"
+        >{'search_default_group_by_asset_id': 1, 'search_default_group_by_depreciation_id': 1}</field>
+    </record>
+
+    <menuitem
+        id="menu_asset_dep_line"
+        name="Depreciation Lines"
+        parent="menu_asset_management"
+        action="action_asset_dep_line"
+        sequence="10"
+    />
+
+</odoo>

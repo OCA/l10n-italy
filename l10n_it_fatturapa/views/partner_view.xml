@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_partner_form_fatturapa">
+        <field name="name">partner.form.fatturapa</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+            <page
+                    name="fatturapa"
+                    string="Electronic Invoice"
+                    groups="account.group_account_invoice"
+                >
+                <group name="fatturapa_group">
+                    <group>
+                        <field name="electronic_invoice_no_contact_update" />
+                    </group>
+                    <group>
+                        <field name="electronic_invoice_subjected" />
+                        <field
+                                name="electronic_invoice_obliged_subject"
+                                attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}"
+                            />
+                    </group>
+                    <group
+                            attrs="{'invisible': ['|',('electronic_invoice_subjected', '=', False), ('electronic_invoice_obliged_subject', '=', False)]}"
+                        >
+                        <field name="is_pa" invisible="True" />
+                        <field
+                                name="ipa_code"
+                                placeholder="IPA123"
+                                attrs="{'invisible': [('is_pa','=', False)]}"
+                            />
+                        <field
+                                name="codice_destinatario"
+                                attrs="{'invisible': [('is_pa', '=', True)]}"
+                            />
+                        <field
+                                name="pec_destinatario"
+                                attrs="{'invisible': ['|',('is_pa', '=', True), ('codice_destinatario', '!=', '0000000')]}"
+                            />
+                        <field name="eori_code" />
+                    </group>
+                </group>
+            </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="view_partner_ipa_form_ftpa" model="ir.ui.view">
+        <field name="name">view_partner_ipa_form_ftpa</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="l10n_it_ipa.view_partner_ipa_form" />
+        <field name="arch" type="xml">
+            <field name="ipa_code" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_partner_form_e_inv" model="ir.ui.view">
+        <field name="name">res.partner.form.e.invoice</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='div_address']/../../.." position="after">
+                <field name="electronic_invoice_obliged_subject" invisible="True" />
+                <field name="electronic_invoice_subjected" invisible="True" />
+                <group
+                    string="E-invoicing"
+                    name="e_invoice_info"
+                    groups="account.group_account_invoice"
+                    attrs="{'invisible': ['|', ('type', '=', 'contact'), '|', ('parent.electronic_invoice_subjected', '=', False), ('parent.electronic_invoice_obliged_subject', '=', False)]}"
+                >
+                    <group>
+                        <field name="electronic_invoice_use_this_address" />
+                    </group>
+                    <group
+                        attrs="{'invisible': [('electronic_invoice_use_this_address','=', False)]}"
+                    >
+                        <field
+                            name="ipa_code"
+                            placeholder="IPA123"
+                            attrs="{'invisible': [('parent.is_pa','=', False)]}"
+                        />
+                        <field
+                            name="codice_destinatario"
+                            attrs="{'invisible': [('parent.is_pa', '=', True)]}"
+                        />
+                        <field
+                            name="pec_destinatario"
+                            attrs="{'invisible': ['|',('parent.is_pa', '=', True), ('codice_destinatario', '!=', '0000000')]}"
+                        />
+                        <field name="eori_code" />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

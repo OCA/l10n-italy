@@ -1,0 +1,104 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_account_tax_kind
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Paolo Valier, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-01 08:10+0000\n"
+"PO-Revision-Date: 2018-12-07 15:08+0000\n"
+"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
+"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.3\n"
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__code
+msgid "Code"
+msgstr "Codice"
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax__display_name
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax__kind_id
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_tax_kind.view_account_tax_search_tax_kind
+msgid "Exemption Kind"
+msgstr "Natura esenzione"
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax__id
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax____last_update
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax__law_reference
+msgid "Law reference"
+msgstr "Riferimento normativo"
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model.fields,field_description:l10n_it_account_tax_kind.field_account_tax_kind__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model,name:l10n_it_account_tax_kind.model_account_tax
+msgid "Tax"
+msgstr "Imposta"
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.actions.act_window,name:l10n_it_account_tax_kind.view_account_tax_kind_action
+#: model:ir.ui.menu,name:l10n_it_account_tax_kind.account_tax_kind_menu
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_tax_kind.view_account_tax_kind_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_tax_kind.view_account_tax_kind_tree
+msgid "Tax Exemption Kind"
+msgstr "Natura esenzione imposta"
+
+#. module: l10n_it_account_tax_kind
+#: model:ir.model,name:l10n_it_account_tax_kind.model_account_tax_kind
+msgid "Tax exemption kind"
+msgstr "Natura esenzione imposta"
+
+#~ msgid "Kind"
+#~ msgstr "Tipo"
+
+#~ msgid "account.tax.kind"
+#~ msgstr "account.tax.kind"

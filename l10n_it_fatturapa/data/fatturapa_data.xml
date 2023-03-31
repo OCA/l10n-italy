@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- FatturaPA Fiscal Positions -->
+        <record id="fatturapa_RF01" model="fatturapa.fiscal_position">
+            <field name="code">RF01</field>
+            <field name="name">Regime ordinario</field>
+        </record>
+        <record id="fatturapa_RF02" model="fatturapa.fiscal_position">
+            <field name="code">RF02</field>
+            <field
+                name="name"
+            >Regime dei contribuenti minimi (art. 1,c.96-117, L. 244/2007)</field>
+        </record>
+        <record id="fatturapa_RF03" model="fatturapa.fiscal_position">
+            <field name="code">RF03</field>
+            <field
+                name="name"
+            >Regime delle nuove iniziative produttive (art. 13, L. 388/2000)</field>
+        </record>
+        <record id="fatturapa_RF04" model="fatturapa.fiscal_position">
+            <field name="code">RF04</field>
+            <field
+                name="name"
+            >Agricoltura e attività connesse e pesca (artt. 34 e 34-bis, D.P.R. 633/1972)</field>
+        </record>
+        <record id="fatturapa_RF05" model="fatturapa.fiscal_position">
+            <field name="code">RF05</field>
+            <field
+                name="name"
+            >Vendita sali e tabacchi (art. 74, c.1, D.P.R. 633/1972)</field>
+        </record>
+        <record id="fatturapa_RF06" model="fatturapa.fiscal_position">
+            <field name="code">RF06</field>
+            <field
+                name="name"
+            >Commercio dei fiammiferi (art. 74, c.1, D.P.R. 633/1972)</field>
+        </record>
+        <record id="fatturapa_RF07" model="fatturapa.fiscal_position">
+            <field name="code">RF07</field>
+            <field name="name">Editoria (art. 74, c.1, D.P.R. 633/1972)</field>
+        </record>
+        <record id="fatturapa_RF08" model="fatturapa.fiscal_position">
+            <field name="code">RF08</field>
+            <field
+                name="name"
+            >Gestione di servizi di telefonia pubblica (art. 74, c.1, D.P.R. 633/1972)</field>
+        </record>
+        <record id="fatturapa_RF09" model="fatturapa.fiscal_position">
+            <field name="code">RF09</field>
+            <field
+                name="name"
+            >Rivendita di documenti di trasporto pubblico e di sosta (art. 74, c.1, D.P.R. 633/1972)</field>
+        </record>
+        <record id="fatturapa_RF10" model="fatturapa.fiscal_position">
+            <field name="code">RF10</field>
+            <field
+                name="name"
+            >Intrattenimenti, giochi e altre attività di cui alla tariffa allegata al D.P.R. 640/72 (art. 74, c.6, D.P.R. 633/1972)</field>
+        </record>
+        <record id="fatturapa_RF11" model="fatturapa.fiscal_position">
+            <field name="code">RF11</field>
+            <field
+                name="name"
+            >Agenzie di viaggi e turismo (art. 74-ter, D.P.R. 633/1972)</field>
+        </record>
+        <record id="fatturapa_RF12" model="fatturapa.fiscal_position">
+            <field name="code">RF12</field>
+            <field name="name">Agriturismo (art. 5, c.2, L. 413/1991)</field>
+        </record>
+        <record id="fatturapa_RF13" model="fatturapa.fiscal_position">
+            <field name="code">RF13</field>
+            <field
+                name="name"
+            >Vendite a domicilio (art. 25-bis, c.6, D.P.R. 600/1973)</field>
+        </record>
+        <record id="fatturapa_RF14" model="fatturapa.fiscal_position">
+            <field name="code">RF14</field>
+            <field
+                name="name"
+            >Rivendita di beni usati, di oggetti  d’arte, d’antiquariato o da collezione (art.    36, D.L. 41/1995)</field>
+        </record>
+        <record id="fatturapa_RF15" model="fatturapa.fiscal_position">
+            <field name="code">RF15</field>
+            <field
+                name="name"
+            >Agenzie di vendite all’asta di oggetti d’arte, antiquariato o da collezione (art. 40-bis, D.L. 41/1995)</field>
+        </record>
+        <record id="fatturapa_RF16" model="fatturapa.fiscal_position">
+            <field name="code">RF16</field>
+            <field name="name">IVA per cassa P.A. (art. 6, c.5, D.P.R. 633/1972)</field>
+        </record>
+        <record id="fatturapa_RF17" model="fatturapa.fiscal_position">
+            <field name="code">RF17</field>
+            <field name="name">IVA per cassa (art. 32-bis, DL 83/2012)</field>
+        </record>
+        <record id="fatturapa_RF18" model="fatturapa.fiscal_position">
+            <field name="code">RF18</field>
+            <field name="name">Altro</field>
+        </record>
+        <record id="fatturapa_RF19" model="fatturapa.fiscal_position">
+            <field name="code">RF19</field>
+            <field name="name">Regime forfettario (art.1, c.54-89, L. 190/2014)</field>
+        </record>
+
+    </data>
+</odoo>

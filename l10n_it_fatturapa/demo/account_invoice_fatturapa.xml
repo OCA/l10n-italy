@@ -1,0 +1,519 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="tax_22" model="account.tax">
+            <field name="name">22% e-inv</field>
+            <field name="description">22</field>
+            <field name="amount">22</field>
+            <field name="type_tax_use">sale</field>
+            <field
+                name="invoice_repartition_line_ids"
+                model="account.tax.repartition.line"
+                eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                }),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                    'account_id': ref('l10n_it.2601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_payable', raise_if_not_found=False) or obj().env['account.account'].search([('user_type_id', '=', ref('account.data_account_type_current_liabilities'))], limit=1).id,
+                }),
+            ]"
+            />
+            <field
+                name="refund_repartition_line_ids"
+                model="account.tax.repartition.line"
+                eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                }),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                    'account_id': ref('l10n_it.2601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_payable', raise_if_not_found=False) or obj().env['account.account'].search([('user_type_id', '=', ref('account.data_account_type_current_liabilities'))], limit=1).id,
+                }),
+            ]"
+            />
+        </record>
+
+        <record id="tax_10" model="account.tax">
+            <field name="name">10% e-inv</field>
+            <field name="description">10</field>
+            <field name="amount">10</field>
+            <field name="type_tax_use">sale</field>
+            <field
+                name="invoice_repartition_line_ids"
+                model="account.tax.repartition.line"
+                eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                }),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                    'account_id': ref('l10n_it.2601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_payable', raise_if_not_found=False) or obj().env['account.account'].search([('user_type_id', '=', ref('account.data_account_type_current_liabilities'))], limit=1).id,
+                }),
+            ]"
+            />
+            <field
+                name="refund_repartition_line_ids"
+                model="account.tax.repartition.line"
+                eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                }),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                    'account_id': ref('l10n_it.2601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_payable', raise_if_not_found=False) or obj().env['account.account'].search([('user_type_id', '=', ref('account.data_account_type_current_liabilities'))], limit=1).id,
+                }),
+            ]"
+            />
+        </record>
+
+        <record id="tax_22_acq" model="account.tax">
+            <field name="name">22% e-bill</field>
+            <field name="description">22 pur</field>
+            <field name="amount">22</field>
+            <field name="type_tax_use">purchase</field>
+            <field
+                name="invoice_repartition_line_ids"
+                model="account.tax.repartition.line"
+                eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                }),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                    'account_id': ref('l10n_it.1601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_receivable', raise_if_not_found=False) or obj().env['account.account'].search([('user_type_id', '=', ref('account.data_account_type_current_assets'))], limit=1).id,
+                }),
+            ]"
+            />
+            <field
+                name="refund_repartition_line_ids"
+                model="account.tax.repartition.line"
+                eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                }),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                    'account_id': ref('l10n_it.1601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_receivable', raise_if_not_found=False) or obj().env['account.account'].search([('user_type_id', '=', ref('account.data_account_type_current_assets'))], limit=1).id,
+                }),
+            ]"
+            />
+        </record>
+
+        <record id="tax_22_SP" model="account.tax">
+            <field name="name">SP22%</field>
+            <field name="description">22 Split Payment</field>
+            <field name="amount">22</field>
+            <field name="payability">S</field>
+            <field name="type_tax_use">sale</field>
+            <field
+                name="invoice_repartition_line_ids"
+                model="account.tax.repartition.line"
+                eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                }),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                    'account_id': ref('l10n_it.2601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_payable', raise_if_not_found=False) or obj().env['account.account'].search([('user_type_id', '=', ref('account.data_account_type_current_liabilities'))], limit=1).id,
+                }),
+            ]"
+            />
+            <field
+                name="refund_repartition_line_ids"
+                model="account.tax.repartition.line"
+                eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                }),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                    'account_id': ref('l10n_it.2601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_payable', raise_if_not_found=False) or obj().env['account.account'].search([('user_type_id', '=', ref('account.data_account_type_current_liabilities'))], limit=1).id,
+                }),
+            ]"
+            />
+        </record>
+
+        <record id="tax_00_minimi" model="account.tax">
+            <field name="name">Exempt</field>
+            <field name="description">00</field>
+            <field name="amount">0.00</field>
+            <field name="kind_id" ref="l10n_it_account_tax_kind.n4" />
+            <field
+                name="law_reference"
+            >Minimum contributors regime art.27 c.1-2 DL.98/11</field>
+            <field name="type_tax_use">sale</field>
+            <field
+                name="invoice_repartition_line_ids"
+                eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                }),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                }),
+            ]"
+            />
+            <field
+                name="refund_repartition_line_ids"
+                eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                }),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                }),
+            ]"
+            />
+        </record>
+
+        <record id="tax_00_minimi_acq" model="account.tax">
+            <field name="name">Exempt Pur</field>
+            <field name="description">00 Pur</field>
+            <field name="amount">0.00</field>
+            <field name="kind_id" ref="l10n_it_account_tax_kind.n4" />
+            <field
+                name="law_reference"
+            >Minimum contributors regime art.27 c.1-2 DL.98/11</field>
+            <field name="type_tax_use">purchase</field>
+            <field
+                name="invoice_repartition_line_ids"
+                eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                }),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                }),
+            ]"
+            />
+            <field
+                name="refund_repartition_line_ids"
+                eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                }),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                }),
+            ]"
+            />
+        </record>
+
+        <record id="tax_00_e15" model="account.tax">
+            <field name="name">Excluding ex Art. 15</field>
+            <field name="description">00</field>
+            <field name="amount">0.00</field>
+            <field name="kind_id" ref="l10n_it_account_tax_kind.n1" />
+            <field name="law_reference">Excluding ex Article 15</field>
+            <field
+                name="invoice_repartition_line_ids"
+                eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                }),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                }),
+            ]"
+            />
+            <field
+                name="refund_repartition_line_ids"
+                eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                }),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                }),
+            ]"
+            />
+        </record>
+
+        <record id="tax_00_ns" model="account.tax">
+            <field name="name">Not Subject</field>
+            <field name="description">00</field>
+            <field name="amount">0.00</field>
+            <field name="kind_id" ref="l10n_it_account_tax_kind.n2_1" />
+            <field name="law_reference">Not subject to VAT law</field>
+            <field
+                name="invoice_repartition_line_ids"
+                eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                }),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                }),
+            ]"
+            />
+            <field
+                name="refund_repartition_line_ids"
+                eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                }),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                }),
+            ]"
+            />
+        </record>
+
+        <record id="tax_00_ni" model="account.tax">
+            <field name="name">Not Taxable</field>
+            <field name="description">00</field>
+            <field name="amount">0.00</field>
+            <field name="kind_id" ref="l10n_it_account_tax_kind.n3_1" />
+            <field name="law_reference">Not subject to VAT law</field>
+            <field
+                name="invoice_repartition_line_ids"
+                eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                }),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                }),
+            ]"
+            />
+            <field
+                name="refund_repartition_line_ids"
+                eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                }),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                }),
+            ]"
+            />
+        </record>
+
+        <record id="tax_00_rc" model="account.tax">
+            <field name="name">Reverse Charge</field>
+            <field name="description">00</field>
+            <field name="amount">0.00</field>
+            <field name="kind_id" ref="l10n_it_account_tax_kind.n6_1" />
+            <field name="law_reference">Reverse Charge</field>
+            <field
+                name="invoice_repartition_line_ids"
+                eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                }),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                }),
+            ]"
+            />
+            <field
+                name="refund_repartition_line_ids"
+                eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                }),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                }),
+            ]"
+            />
+        </record>
+
+        <record id="tax_00_enas" model="account.tax">
+            <field name="name">Escluso</field>
+            <field name="description">00</field>
+            <field name="amount">0.00</field>
+            <field name="kind_id" ref="l10n_it_account_tax_kind.n2_2" />
+            <field name="law_reference">Escluso Art. 13 5C DPR 633/72</field>
+            <field
+                name="invoice_repartition_line_ids"
+                eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                }),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                }),
+            ]"
+            />
+            <field
+                name="refund_repartition_line_ids"
+                eval="[(5, 0, 0),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'base',
+                }),
+                (0,0, {
+                    'factor_percent': 100,
+                    'repartition_type': 'tax',
+                }),
+            ]"
+            />
+        </record>
+
+        <record id="base.main_company" model="res.company">
+            <field name="street">Via Milano, 1</field>
+            <field name="zip">00100</field>
+            <field name="city">Roma</field>
+            <field name="country_id" ref="base.it" />
+            <field name="state_id" ref="base.state_us_2" />
+            <field name="phone">06543534343</field>
+            <field name="fatturapa_fiscal_position_id" ref="fatturapa_RF01" />
+            <field name="fatturapa_art73">True</field>
+            <field name="vat">IT06363391001</field>
+        </record>
+        <record id="base.main_partner" model="res.partner">
+            <field name="ipa_code">UFPQ1O</field>
+        </record>
+
+        <record
+            id="account.account_payment_term_immediate"
+            model="account.payment.term"
+        >
+            <field
+                name="fatturapa_pt_id"
+                ref="l10n_it_fiscal_payment_term.fatturapa_tp02"
+            />
+            <field
+                name="fatturapa_pm_id"
+                ref="l10n_it_fiscal_payment_term.fatturapa_mp05"
+            />
+        </record>
+
+        <record id="res_partner_fatturapa_0" model="res.partner">
+            <field name="name">Public Administration</field>
+            <field name="is_company">1</field>
+            <field name="is_pa">1</field>
+            <field name="city">Torino</field>
+            <field name="zip">10100</field>
+            <field name="country_id" ref="base.it" />
+            <field name="state_id" ref="base.state_us_2" />
+            <field name="street">Via Roma, 1</field>
+            <field name="email">info@mypa.it</field>
+            <field name="phone">003901141622023</field>
+            <field name="website">www.mypa.it</field>
+            <field name="fiscalcode">06363391001</field>
+            <field name="vat">IT06363391001</field>
+            <field name="ipa_code">UFPQ1O</field>
+        </record>
+
+        <record id="res_partner_fatturapa_1" model="res.partner">
+            <field name="name">Intermediary</field>
+            <field name="is_company">1</field>
+            <field name="city">Torino</field>
+            <field name="zip">10100</field>
+            <field name="country_id" ref="base.it" />
+            <field name="state_id" ref="base.state_us_2" />
+            <field name="street">Via Milano, 1</field>
+            <field name="email">info@mycompany.it</field>
+            <field name="phone">123456789</field>
+            <field name="fiscalcode">03297040366</field>
+            <field name="vat">IT03297040366</field>
+        </record>
+
+        <record id="res_partner_fatturapa_2" model="res.partner">
+            <field name="name">B2B Customer</field>
+            <field name="is_company">1</field>
+            <field name="is_pa">0</field>
+            <field name="city">Genova</field>
+            <field name="zip">16100</field>
+            <field name="country_id" ref="base.it" />
+            <field name="state_id" ref="base.state_us_2" />
+            <field name="street">Via Roma, 1</field>
+            <field name="email">info@mycompany.it</field>
+            <field name="fiscalcode">07973780013</field>
+            <field name="vat">IT07973780013</field>
+            <field name="codice_destinatario">0000000</field>
+            <field name="pec_destinatario">test@pec.it</field>
+        </record>
+
+        <record id="res_partner_fatturapa_3" model="res.partner">
+            <field name="name">Stable Organization</field>
+            <field name="is_company">1</field>
+            <field name="street">Via Roma, 1</field>
+            <field name="city">Milano</field>
+            <field name="zip">20100</field>
+            <field name="country_id" ref="base.it" />
+        </record>
+
+        <record id="res_partner_fatturapa_4" model="res.partner">
+            <field name="name">Foreign Customer</field>
+            <field name="is_company">1</field>
+            <field name="street">29-17 Al Thanya St</field>
+            <field name="is_pa">0</field>
+            <field name="city">Dubai</field>
+            <field name="zip">123234</field>
+            <field name="country_id" ref="base.ae" />
+            <field name="email">info@mycompany.it</field>
+        </record>
+
+        <record id="res_partner_fatturapa_5" model="res.partner">
+            <field name="name">B2B Customer Intra</field>
+            <field name="is_company">1</field>
+            <field name="street">Frankfurt Strasse, 1</field>
+            <field name="is_pa">0</field>
+            <field name="city">Frankfurt</field>
+            <field name="zip">123234</field>
+            <field name="country_id" ref="base.lv" />
+            <field name="email">info@mycompany.it</field>
+            <field name="vat">LV40003844254</field>
+            <field name="codice_destinatario">XXXXXXX</field>
+        </record>
+
+        <record id="res_partner_fatturapa_6" model="res.partner">
+            <field name="name">B2C Customer IT</field>
+            <field name="is_company">0</field>
+            <field name="street">Via Roma, 1</field>
+            <field name="is_pa">0</field>
+            <field name="city">Milano</field>
+            <field name="zip">20100</field>
+            <field name="country_id" ref="base.it" />
+            <field name="email">b2c@example.com</field>
+            <field name="fiscalcode">RSSMRA30A01H501I</field>
+        </record>
+    </data>
+</odoo>

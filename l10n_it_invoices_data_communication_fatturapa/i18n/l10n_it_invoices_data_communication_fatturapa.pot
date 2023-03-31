@@ -1,0 +1,39 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_invoices_data_communication_fatturapa
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_invoices_data_communication_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication_fatturapa.field_comunicazione_dati_iva__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_invoices_data_communication_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication_fatturapa.field_comunicazione_dati_iva__exclude_e_invoices
+msgid "Exclude e-invoices"
+msgstr ""
+
+#. module: l10n_it_invoices_data_communication_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication_fatturapa.field_comunicazione_dati_iva__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_invoices_data_communication_fatturapa
+#: model:ir.model,name:l10n_it_invoices_data_communication_fatturapa.model_comunicazione_dati_iva
+msgid "Invoices data communication"
+msgstr ""
+
+#. module: l10n_it_invoices_data_communication_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication_fatturapa.field_comunicazione_dati_iva____last_update
+msgid "Last Modified on"
+msgstr ""

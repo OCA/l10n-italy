@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2019 Simone Rubino
+  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <template
+        id="fiscalcode_details"
+        name="Add fiscalcode"
+        inherit_id="portal.portal_my_details"
+    >
+        <xpath
+            expr="//div[hasclass('o_portal_details')]/div[1]/div[1]/div[7]"
+            position="after"
+        >
+            <!-- After VAT -->
+            <div
+                t-attf-class="form-group #{error.get('fiscalcode') and 'o_has_error' or ''} col-xl-6"
+            >
+                <label
+                    class="col-form-label label-optional"
+                    for="vat"
+                >Fiscal Code</label>
+                <input
+                    type="text"
+                    name="fiscalcode"
+                    t-attf-class="form-control #{error.get('fiscalcode') and 'is-invalid' or ''}"
+                    t-att-value="fiscalcode or partner.fiscalcode"
+                    t-att-readonly="None if partner.can_edit_vat() else '1'"
+                    t-att-title="None if partner.can_edit_vat() else 'Changing Fiscal Code is not allowed once document(s) have been issued for your account. Please contact us directly for this operation.'"
+                />
+            </div>
+        </xpath>
+    </template>
+</odoo>

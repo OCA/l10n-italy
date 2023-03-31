@@ -1,0 +1,7 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_res_city_it_code_group_all","res_city_it_code group_user_all","model_res_city_it_code",,1,0,0,0
+"access_res_city_it_code_group_user","res_city_it_code group_user","model_res_city_it_code","base.group_partner_manager",1,1,1,1
+"access_res_city_it_code_distinct_group_all","res_city_it_code_distinct group_user_all","model_res_city_it_code_distinct",,1,0,0,0
+"access_res_city_it_code_distinct_group_user","res_city_it_code_distinct group_user","model_res_city_it_code_distinct","base.group_partner_manager",1,1,1,1
+"access_wizard_compute_fc_group_all","wizard_compute_fc group_user_all","model_wizard_compute_fc",,1,0,0,0
+"access_wizard_compute_fc_group_user","wizard_compute_fc group_user","model_wizard_compute_fc","base.group_partner_manager",1,1,1,1

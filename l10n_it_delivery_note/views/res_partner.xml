@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright (c) 2019, Link IT Europe Srl
+    @author: Matteo Bilotta <mbilotta@linkeurope.it>
+  -->
+<odoo>
+
+    <record id="res_partner_form_view" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales_purchases']/group" position="inside">
+                <group string="Shipping information">
+                    <field name="default_goods_appearance_id" widget="selection" />
+                    <field name="default_transport_condition_id" widget="selection" />
+                    <field name="default_transport_reason_id" widget="selection" />
+                    <field name="default_transport_method_id" widget="selection" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

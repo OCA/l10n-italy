@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+      <record id="l10n_it_account_a4_portrait" model="report.paperformat">
+        <field name="name">Italian Accounting Reports A4 Portrait</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">35</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">30</field>
+        <field name="dpi">90</field>
+      </record>
+
+      <record id="l10n_it_account_a4_landscape" model="report.paperformat">
+        <field name="name">Italian Accounting Reports A4 Landscape</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">35</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">30</field>
+        <field name="dpi">90</field>
+      </record>
+
+      <template id="l10n_it_account.internal_layout">
+          <t t-if="not o" t-set="o" t-value="docs" />
+
+          <t t-if="not company">
+              <!-- Multicompany -->
+              <t t-if="company_id">
+                  <t t-set="company" t-value="company_id" />
+              </t>
+              <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                  <t t-set="company" t-value="o.company_id.sudo()" />
+              </t>
+              <t t-else="else">
+                  <t t-set="company" t-value="res_company" />
+              </t>
+          </t>
+
+          <div class="header">
+              <div class="row">
+                  <div class="col-xs-4">
+                      <h3><span t-esc="company.name" /></h3>
+                      <span t-esc="company.street" class="" /><br />
+                      <span t-esc="company.zip" class="" /> - <span
+                            t-esc="company.city"
+                            class=""
+                        /> - <span t-esc="company.state_id.code" class="" /><br />
+                      <span class="text-right">TIN: </span><span
+                            t-esc="company.partner_id.vat"
+                            class=""
+                        /><br />
+                  </div>
+                  <div
+                        class="col-xs-4 col-xs-offset-4 text-right"
+                        style="margin-left:10px"
+                    >
+                      <h3 t-esc="title" />
+                  </div>
+              </div>
+          </div>
+          <t t-raw="0" />
+          <div class="footer">
+              <!-- The variable "l10n_it_count_fiscal_year" shall be used to set manually the fiscal year
+                in the report footer. Define it in you report as follows:
+                <t t-set="l10n_it_count_fiscal_year" t-value="<value>"/>
+                The variable "l10n_it_count_fiscal_page_base" is also available, to set the "Last printed page"
+              -->
+            <div class="text-center">
+                <div class="text-muted">
+                    <span
+                            style="display: none;"
+                            id="l10n_it_count_fiscal_page_base"
+                            t-esc="l10n_it_count_fiscal_page_base"
+                        />
+                    Page:
+                    <t t-if="l10n_it_count_fiscal_year">
+                        <span t-esc="l10n_it_count_fiscal_year" />
+                    </t>
+                    <t t-if="not l10n_it_count_fiscal_year">
+                         <li><span
+                                    t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y')"
+                                /></li>
+                    </t>
+                    <span> / </span>
+                    <span class="page" />
+                </div>
+            </div>
+          </div>
+      </template>
+
+
+        <template id="minimal_layout" inherit_id="web.minimal_layout">
+            <xpath expr="//head" position="inside">
+                <link
+                    rel="stylesheet"
+                    href="/l10n_it_account/static/src/css/l10n_it_account.css"
+                />
+            </xpath>
+            <xpath expr="//head/t[5]/script" position="replace">
+                <script>
+                    function subst() {
+                        var vars = {};
+                        var x = document.location.search.substring(1).split('&amp;');
+                        for (var i in x) {
+                            var z = x[i].split('=', 2);
+                            vars[z[0]] = unescape(z[1]);
+                        }
+
+                        // l10n_it_account
+                        fiscal_page_base = 0
+                        if (document.getElementById('l10n_it_count_fiscal_page_base')!=null){
+                            if (document.getElementById('l10n_it_count_fiscal_page_base').innerHTML){
+                                fiscal_page_base = parseInt(document.getElementById('l10n_it_count_fiscal_page_base').innerHTML);
+                            }
+                        }
+
+                        var fromPage = document.getElementsByClassName('page');
+                        for(var j = 0; j&lt;fromPage.length; j++)
+                            fromPage[j].textContent = parseInt(eval(vars['sitepage']) + fiscal_page_base);
+                        var toPage = document.getElementsByClassName('topage');
+                        for(var j = 0; j&lt;toPage.length; j++)
+                            toPage[j].textContent = parseInt(eval(vars['sitepages']) + fiscal_page_base);
+
+                        var index = vars['webpage'].split('.', 4)[3]
+                        var header = document.getElementById('minimal_layout_report_headers');
+                        if(header !== null){
+                            var companyHeader = header.children[index];
+                            header.textContent = '';
+                            header.appendChild(companyHeader);
+                        }
+                        var footer = document.getElementById('minimal_layout_report_footers');
+                        if(footer !== null){
+                            var companyFooter = footer.children[index];
+                            footer.textContent = '';
+                            footer.appendChild(companyFooter);
+                        }
+                    }
+                </script>
+            </xpath>
+        </template>
+    </data>
+</odoo>

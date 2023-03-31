@@ -1,0 +1,83 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_delivery_note_order_link
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_delivery_note_order_link
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_order_link.field_purchase_order__delivery_note_ids
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_order_link.field_sale_order__delivery_note_ids
+msgid "Delivery Note"
+msgstr ""
+
+#. module: l10n_it_delivery_note_order_link
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_order_link.field_purchase_order__delivery_note_count
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_order_link.field_sale_order__delivery_note_count
+msgid "Delivery Note Count"
+msgstr ""
+
+#. module: l10n_it_delivery_note_order_link
+#: model:ir.model,name:l10n_it_delivery_note_order_link.model_stock_delivery_note_line
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_order_link.field_purchase_order_line__delivery_note_line_ids
+msgid "Delivery Note Line"
+msgstr ""
+
+#. module: l10n_it_delivery_note_order_link
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_order_link.purchase_order_form_view_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_order_link.sale_order_form_view
+msgid "Delivery Notes"
+msgstr ""
+
+#. module: l10n_it_delivery_note_order_link
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_order_link.field_purchase_order_line__delivery_picking_id
+msgid "Delivery Picking"
+msgstr ""
+
+#. module: l10n_it_delivery_note_order_link
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_order_link.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_order_link.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_order_link.field_sale_order__display_name
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_order_link.field_stock_delivery_note_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_delivery_note_order_link
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_order_link.field_purchase_order__id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_order_link.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_order_link.field_sale_order__id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_order_link.field_stock_delivery_note_line__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_delivery_note_order_link
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_order_link.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_order_link.field_purchase_order_line____last_update
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_order_link.field_sale_order____last_update
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_order_link.field_stock_delivery_note_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_delivery_note_order_link
+#: model:ir.model,name:l10n_it_delivery_note_order_link.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: l10n_it_delivery_note_order_link
+#: model:ir.model,name:l10n_it_delivery_note_order_link.model_purchase_order_line
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_order_link.field_stock_delivery_note_line__purchase_line_id
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: l10n_it_delivery_note_order_link
+#: model:ir.model,name:l10n_it_delivery_note_order_link.model_sale_order
+msgid "Sales Order"
+msgstr ""

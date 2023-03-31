@@ -1,0 +1,80 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_fatturapa_sale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-26 09:50+0000\n"
+"PO-Revision-Date: 2022-03-04 11:54+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: l10n_it_fatturapa_sale
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_sale_order_line__admin_ref
+msgid "Admin. ref."
+msgstr "Rif. ammin."
+
+#. module: l10n_it_fatturapa_sale
+#: model:ir.model,name:l10n_it_fatturapa_sale.model_fatturapa_related_document_type
+msgid "E-invoice Related Document Type"
+msgstr "Tipo documento relativo alla e-fattura"
+
+#. module: l10n_it_fatturapa_sale
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_sale.sale_order_line_view_form_readonly
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_sale.view_order_form
+msgid "Electronic Invoice"
+msgstr "Fattura elettronica"
+
+#. module: l10n_it_fatturapa_sale
+#: model:ir.model,name:l10n_it_fatturapa_sale.model_account_invoice
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: l10n_it_fatturapa_sale
+#: model:ir.model,name:l10n_it_fatturapa_sale.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Riga fattura"
+
+#. module: l10n_it_fatturapa_sale
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_sale_order__related_documents
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_sale_order_line__related_documents
+msgid "Related Documents"
+msgstr "Documenti collegati"
+
+#. module: l10n_it_fatturapa_sale
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_fatturapa_related_document_type__invoice_id
+msgid "Related Invoice"
+msgstr "Fattura collegata"
+
+#. module: l10n_it_fatturapa_sale
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_fatturapa_related_document_type__invoice_line_id
+msgid "Related Invoice Line"
+msgstr "Riga fattura collegata"
+
+#. module: l10n_it_fatturapa_sale
+#: model:ir.model,name:l10n_it_fatturapa_sale.model_sale_order
+msgid "Sale Order"
+msgstr "Ordine di vendita"
+
+#. module: l10n_it_fatturapa_sale
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_fatturapa_related_document_type__sale_order_id
+msgid "Sale order"
+msgstr "Ordine di vendita"
+
+#. module: l10n_it_fatturapa_sale
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_fatturapa_related_document_type__sale_order_line_id
+msgid "Sale order line"
+msgstr "Riga ordine di vendita"
+
+#. module: l10n_it_fatturapa_sale
+#: model:ir.model,name:l10n_it_fatturapa_sale.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Riga ordine di vendita"

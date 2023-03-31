@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="declaration_of_intent_fattura_elettronica_body"
+        inherit_id="l10n_it_fatturapa_out.account_invoice_it_fattura_elettronica_body"
+    >
+        <xpath expr="//DatiBeniServizi/t[@t-as='line']" position="before">
+            <t t-set="force_declaration_of_intent_ids" t-value="[]" />
+        </xpath>
+        <xpath expr="//DatiBeniServizi/t[@t-as='line']" position="after">
+            <t
+                t-set="to_add"
+                t-value="record.declaration_of_intent_ids - record.declaration_of_intent_ids.browse(force_declaration_of_intent_ids)"
+            />
+            <DettaglioLinee t-if="to_add">
+                <t t-set="line_counter" t-value="line_counter + 1" />
+                <NumeroLinea t-esc="line_counter" />
+                <Descrizione>Altre lettere d'intento</Descrizione>
+                <PrezzoUnitario>0.00</PrezzoUnitario>
+                <PrezzoTotale>0.00</PrezzoTotale>
+                <AliquotaIVA>0.00</AliquotaIVA>
+                <Natura>N1</Natura>
+                <AltriDatiGestionali t-foreach="to_add" t-as="dec">
+                    <TipoDato>INTENTO</TipoDato>
+                    <RiferimentoTesto
+                        t-esc="encode_for_export(dec.telematic_protocol, 60)"
+                    />
+                    <RiferimentoData t-esc="format_date(dec.date)" />
+                </AltriDatiGestionali>
+            </DettaglioLinee>
+        </xpath>
+        <xpath expr="//DatiBeniServizi/t[@t-as='tax_data']" position="after">
+            <DatiRiepilogo t-if="to_add">
+                <AliquotaIVA>0.00</AliquotaIVA>
+                <Natura>N1</Natura>
+                <ImponibileImporto>0.00</ImponibileImporto>
+                <Imposta>0.00</Imposta>
+                <RiferimentoNormativo>Esclusa ex. Art. 15</RiferimentoNormativo>
+            </DatiRiepilogo>
+        </xpath>
+    </template>
+    <template
+        id="declaration_of_intent_line_it_FatturaPA"
+        inherit_id="l10n_it_fatturapa_out.account_invoice_line_it_FatturaPA"
+    >
+        <xpath expr="//DettaglioLinee">
+            <!-- see: https://www.agenziaentrate.gov.it/portale/documents/20143/3844127/Provvedimento+del+28+ottobre+2021_Antifrode.pdf/33cec057-3e07-f618-969d-dce631777b56 -->
+            <AltriDatiGestionali t-if="line.force_declaration_of_intent_id">
+                <t
+                    t-set="foo"
+                    t-value="force_declaration_of_intent_ids.append(line.force_declaration_of_intent_id.id)"
+                />
+                <TipoDato>INTENTO</TipoDato>
+                <RiferimentoTesto
+                    t-esc="encode_for_export(line.force_declaration_of_intent_id.telematic_protocol, 60)"
+                />
+                <RiferimentoData
+                    t-esc="format_date(line.force_declaration_of_intent_id.date)"
+                />
+            </AltriDatiGestionali>
+        </xpath>
+    </template>
+</odoo>

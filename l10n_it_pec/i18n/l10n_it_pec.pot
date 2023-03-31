@@ -1,0 +1,45 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_pec
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_pec.res_partner_kanban_pec_view
+msgid "<span> (PEC)</span>"
+msgstr ""
+
+#. module: l10n_it_pec
+#: model:ir.model,name:l10n_it_pec.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: l10n_it_pec
+#: model:ir.model.fields,field_description:l10n_it_pec.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_pec
+#: model:ir.model.fields,field_description:l10n_it_pec.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_pec
+#: model:ir.model.fields,field_description:l10n_it_pec.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_pec
+#: model:ir.model.fields,field_description:l10n_it_pec.field_res_partner__pec_mail
+#: model:ir.model.fields,field_description:l10n_it_pec.field_res_users__pec_mail
+msgid "PEC Mail"
+msgstr ""

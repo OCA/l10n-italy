@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="account_payment_line_tree_inherit" model="ir.ui.view">
+        <field name="name">account.payment.line.tree.inherit</field>
+        <field name="model">account.payment.line</field>
+        <field
+            name="inherit_id"
+            ref="account_payment_order.account_payment_line_tree"
+        />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="before">
+                <field name="line_sequence" />
+            </field>
+
+        </field>
+    </record>
+
+</odoo>

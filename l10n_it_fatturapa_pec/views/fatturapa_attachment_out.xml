@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_fatturapa_out_pec_attachment_form">
+        <field name="name">fatturapa.attachment.out.form</field>
+        <field name="model">fatturapa.attachment.out</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_fatturapa_out.view_fatturapa_out_attachment_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button
+                    name="send_via_pec"
+                    states="ready"
+                    string="Send Via PEC"
+                    type="object"
+                    class="oe_highlight"
+                />
+                <button
+                    name="reset_to_ready"
+                    states="sender_error"
+                    string="Reset to ready"
+                    type="object"
+                />
+            </xpath>
+            <xpath expr="//div/group[last()]" position="after">
+                <group
+                    name="last_sdi_response"
+                    string="Last Response from Exchange System"
+                    attrs="{'invisible':[('state', '=', 'ready')]}"
+                >
+                    <field name="last_sdi_response" nolabel="1" />
+                </group>
+            </xpath>
+            <div name="creation_div" position="after">
+                <label
+                    for="sending_user"
+                    string="Sent by"
+                    attrs="{'invisible': [('sending_user' ,'=', False)]}"
+                />
+                <div
+                    name="sending_user"
+                    attrs="{'invisible': [('sending_user' ,'=', False)]}"
+                >
+                    <field name="sending_user" readonly="1" class="oe_inline" /> on
+                    <field name="sending_date" readonly="1" class="oe_inline" />
+                </div>
+                <label
+                    for="delivered_date"
+                    string="Delivered"
+                    attrs="{'invisible': [('delivered_date' ,'=', False)]}"
+                />
+                <div
+                    name="delivered_date"
+                    attrs="{'invisible': [('delivered_date' ,'=', False)]}"
+                >
+                    <field name="delivered_date" readonly="1" class="oe_inline" />
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_fatturapa_out_pec_attachment_form_statusbar">
+        <field name="name">view_fatturapa_out_pec_attachment_form_statusbar</field>
+        <field name="model">fatturapa.attachment.out</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form"
+        />
+        <field
+            name="groups_id"
+            eval="[(4,ref('l10n_it_fatturapa_pec.group_force_e_inv_export_state'))]"
+        />
+        <field name="arch" type="xml">
+            <field name="state" position="attributes">
+                <attribute name="clickable">1</attribute>
+            </field>
+        </field>
+    </record>
+
+
+</odoo>

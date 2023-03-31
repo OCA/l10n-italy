@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_fatturapa_out_wt
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_fatturapa_out_wt
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_wt.wt_account_invoice_it_dati_cassa_previdenziale
+msgid "0.00"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_wt
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_wt.field_wizard_export_fatturapa__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_wt
+#: model:ir.model,name:l10n_it_fatturapa_out_wt.model_wizard_export_fatturapa
+msgid "Export E-invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_wt
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_wt.field_wizard_export_fatturapa__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_wt
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_wt.field_wizard_export_fatturapa____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_wt
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_wt.wt_account_invoice_line_ritenuta
+msgid "SI"
+msgstr ""

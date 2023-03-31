@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <record
+            id="view_account_journal_comunicazione_dati_iva_form"
+            model="ir.ui.view"
+        >
+            <field name="name">account.journal.comunicazione.dat.iva.form</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='refund_sequence']" position="after">
+                    <field name="comunicazione_dati_iva_escludi" />
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

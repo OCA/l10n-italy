@@ -1,0 +1,88 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_fiscal_payment_term
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_fiscal_payment_term
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_method__code
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_term__code
+msgid "Code"
+msgstr ""
+
+#. module: l10n_it_fiscal_payment_term
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_method__create_uid
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_term__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_it_fiscal_payment_term
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_method__create_date
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_term__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: l10n_it_fiscal_payment_term
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_method__name
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_term__name
+msgid "Description"
+msgstr ""
+
+#. module: l10n_it_fiscal_payment_term
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_account_payment_term__display_name
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_method__display_name
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_term__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_fiscal_payment_term
+#: model:ir.model,name:l10n_it_fiscal_payment_term.model_fatturapa_payment_method
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_account_payment_term__fatturapa_pm_id
+msgid "Fiscal Payment Method"
+msgstr ""
+
+#. module: l10n_it_fiscal_payment_term
+#: model:ir.model,name:l10n_it_fiscal_payment_term.model_fatturapa_payment_term
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_account_payment_term__fatturapa_pt_id
+msgid "Fiscal Payment Term"
+msgstr ""
+
+#. module: l10n_it_fiscal_payment_term
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_account_payment_term__id
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_method__id
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_term__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_fiscal_payment_term
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_account_payment_term____last_update
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_method____last_update
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_term____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_fiscal_payment_term
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_method__write_uid
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_term__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_it_fiscal_payment_term
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_method__write_date
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_term__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_it_fiscal_payment_term
+#: model:ir.model,name:l10n_it_fiscal_payment_term.model_account_payment_term
+msgid "Payment Terms"
+msgstr ""

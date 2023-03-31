@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fetchmail_server_invoice,fetchmail_server_invoice,model_fetchmail_server,account.group_account_invoice,1,0,0,0
+access_wizard_fatturapa_send_pec,wizard_fatturapa_send_pec,model_wizard_fatturapa_send_pec,,1,1,1,1

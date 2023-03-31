@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="wizard_compute_fc_form" model="ir.ui.view">
+        <field name="name">wizard.compute.fc.form</field>
+        <field name="model">wizard.compute.fc</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Fiscal Code">
+                <h2>Individual Data</h2>
+                <group>
+                    <group>
+                        <field name="fiscalcode_surname" default_focus="1" />
+                        <field name="fiscalcode_firstname" />
+                        <field name="sex" widget="radio" />
+                    </group>
+                    <group>
+                        <field name="birth_date" />
+                        <field
+                            name="birth_city"
+                            options="{'no_create': True,
+                                         'no_open': True}"
+                        />
+                        <field
+                            name="birth_province"
+                            options="{'no_create': True,
+                                         'no_open': True}"
+                        />
+                    </group>
+                </group>
+                <footer>
+                    <button
+                        class="btn-primary"
+                        type="object"
+                        name="compute_fc"
+                        string="Compute"
+                    />
+                    <button class="btn-default" special="cancel" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_compute_fc" model="ir.actions.act_window">
+        <field name="name">Compute Fiscal Code</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">wizard.compute.fc</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <record id="view_partner_form_fiscalcode_button" model="ir.ui.view">
+        <field name="name">res.partner.fiscalcode.button</field>
+        <field name="model">res.partner</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_fiscalcode.view_partner_form_fiscalcode_data"
+        />
+        <field name="arch" type="xml">
+            <field name="fiscalcode" position="after">
+                <button
+                    name="%(l10n_it_fiscalcode.action_compute_fc)d"
+                    string="Compute FC"
+                    type="action"
+                    icon="fa-gear"
+                    colspan="2"
+                    style="margin-left: 10px"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
