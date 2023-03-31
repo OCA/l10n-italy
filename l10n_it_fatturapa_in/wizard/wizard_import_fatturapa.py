@@ -10,7 +10,7 @@ from odoo.osv import expression
 from odoo.tools import float_is_zero, frozendict
 from odoo.tools.safe_eval import safe_eval
 from odoo.tools.translate import _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 from odoo.addons.base_iban.models.res_partner_bank import pretty_iban
 
@@ -329,7 +329,52 @@ class WizardImportFatturapa(models.TransientModel):
             vals['name'] = DatiAnagrafici.Anagrafica.Denominazione
         return vals
 
-    def getPartnerBase(self, DatiAnagrafici, supplier=True, raise_if_duplicated=True):
+    def _get_vat_not_valid_message(self, partner_values):
+        """Build the error message raised by res.partner.check_vat.
+
+        :param partner_values: Values to create the partner
+            that would raise the error.
+        """
+        not_valid_partner = self.env['res.partner'].new(partner_values)
+
+        # Extracted only message creation from res.partner.check_vat
+        vat_country_code, vat_number = not_valid_partner._split_vat(
+            not_valid_partner.vat,
+        )
+        partner_country_code = not_valid_partner.commercial_partner_id.country_id.code
+        country_code = partner_country_code or vat_country_code
+        vat_not_valid_message = not_valid_partner._construct_constraint_msg(
+            country_code.lower() if country_code else None,
+        )
+        return vat_not_valid_message
+
+    def _create_partner(self, partner_values, raise_if_vat_not_valid=True):
+        """Create the partner using `partner_values`.
+
+        :param raise_if_vat_not_valid: If False and the partner's VAT is not valid,
+            an empty partner is returned instead of raising an exception.
+        """
+        try:
+            with self.env.cr.savepoint():
+                partner = self.env['res.partner'].create(partner_values)
+        except ValidationError as ve:
+            if not raise_if_vat_not_valid:
+                # Do not raise the exception only if the partner
+                # has been discarded due to its VAT being not valid
+                ve_message = ve.args[0]
+                vat_not_valid_message = self._get_vat_not_valid_message(partner_values)
+                is_vat_not_valid = ve_message == vat_not_valid_message
+                if is_vat_not_valid:
+                    self.log_inconsistency(ve_message)
+                    partner = self.env['res.partner'].browse()
+                else:
+                    raise ve
+            else:
+                raise ve
+        return partner
+
+    def getPartnerBase(self, DatiAnagrafici, supplier=True,
+                       raise_if_duplicated=True, raise_if_vat_not_valid=True):
         if not DatiAnagrafici:
             return False
         cf = DatiAnagrafici.CodiceFiscale or False
@@ -351,7 +396,9 @@ class WizardImportFatturapa(models.TransientModel):
             else:
                 # partner to be created
                 vals = self._prepare_partner_values(DatiAnagrafici, cf, vat, supplier)
-                found_partner = self.env['res.partner'].create(vals)
+                found_partner = self._create_partner(
+                    vals, raise_if_vat_not_valid=raise_if_vat_not_valid,
+                )
         return found_partner.id
 
     def getCedPrest(self, cedPrest):
@@ -475,6 +522,7 @@ class WizardImportFatturapa(models.TransientModel):
         partner_id = self.getPartnerBase(
             Carrier.DatiAnagraficiVettore,
             raise_if_duplicated=False,
+            raise_if_vat_not_valid=False,
         )
         no_contact_update = False
         if partner_id:
@@ -1783,6 +1831,7 @@ class WizardImportFatturapa(models.TransientModel):
                         Intermediary.DatiAnagrafici,
                         supplier=False,
                         raise_if_duplicated=False,
+                        raise_if_vat_not_valid=False,
                     )
                     invoice.write(
                         {

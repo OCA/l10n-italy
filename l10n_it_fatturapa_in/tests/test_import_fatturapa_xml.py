@@ -1023,6 +1023,36 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             vat_group_2_partner,
         )
 
+    def test_57_xml_import_datitrasporto_not_valid_vat(self):
+        """Import an e-bill where the DatiTrasporto has a VAT not valid.
+        The bill is created without carrier
+        and the error is logged as an inconsistency.
+        """
+        not_valid_vat = 'IE12345678910'
+        partner_model = self.env['res.partner']
+
+        def vat_partner_exists():
+            return partner_model.search([
+                ('vat', '=', not_valid_vat),
+            ], limit=1)
+        # pre-condition: No partner exists with our not valid VAT
+        self.assertFalse(vat_partner_exists())
+
+        # Act: Import the e-bill
+        res = self.run_wizard('DatiTrasportoVAT', 'IT03309970733_DatiTrasportoVAT.xml')
+        bill_model = res.get('res_model')
+        bill_domain = res.get('domain')
+        bill = self.env[bill_model].search(bill_domain)
+
+        # Assert: The partner is not created, the bill has no carrier
+        # and the VAT issue is mentioned in the inconsistencies
+        self.assertFalse(vat_partner_exists())
+        self.assertFalse(bill.carrier_id)
+        self.assertIn(
+            not_valid_vat,
+            bill.inconsistencies,
+        )
+
     def test_01_xml_link(self):
         """
         E-invoice lines are created.
