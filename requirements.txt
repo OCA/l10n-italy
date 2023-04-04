@@ -2,6 +2,7 @@
 asn1crypto
 codicefiscale
 elementpath
+fintech>=7.2.10
 openupgradelib
 unidecode
 xmlschema>=1.7.0
