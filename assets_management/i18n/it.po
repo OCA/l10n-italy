@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-23 08:16+0000\n"
-"PO-Revision-Date: 2023-04-03 23:08+0000\n"
+"PO-Revision-Date: 2023-04-04 15:25+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -1785,7 +1785,7 @@ msgstr "Icona"
 #. module: assets_management
 #: model:ir.model.fields,help:assets_management.field_asset_asset__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr "Icona per indicare un'attività anomala."
+msgstr "Icona per indicare una attività eccezione."
 
 #. module: assets_management
 #: model:ir.model.fields,help:assets_management.field_asset_asset__message_needaction
@@ -2139,7 +2139,7 @@ msgstr "Riepilogo prossima attività"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__activity_type_id
 msgid "Next Activity Type"
-msgstr "Tipo Prossima Attività"
+msgstr "Tipo attività successiva"
 
 #. module: assets_management
 #: code:addons/assets_management/models/account_fiscal_year.py:0
@@ -2644,7 +2644,7 @@ msgstr "Importo residuo"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__activity_user_id
 msgid "Responsible User"
-msgstr "Utente Responsabile"
+msgstr "Utente responsabile"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__message_has_sms_error
