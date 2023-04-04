@@ -293,7 +293,9 @@ class WizardExportFatturapa(models.TransientModel):
             .with_context(lang=None)
             .search([("binding_model_id", "=", binding_model_id), ("name", "=", name)])
         )
-        attachment, attachment_type = report_model._render_qweb_pdf(inv.ids)
+        attachment, attachment_type = report_model._render_qweb_pdf(
+            report_model, inv.ids
+        )
         att_id = self.env["ir.attachment"].create(
             {
                 "name": "{}.pdf".format(inv.name),
