@@ -9,19 +9,19 @@ _logger = logging.getLogger(__name__)
 
 
 def pop_import_code(vals):
-    if 'import_code' in vals:
-        vals.pop('import_code')
+    if "import_code" in vals:
+        vals.pop("import_code")
         _logger.warning("Import Code can never be manually set.")
 
 
 class AssetCategory(models.Model):
-    _inherit = 'asset.category'
+    _inherit = "asset.category"
 
     import_code = fields.Char(
         copy=False,
         help="Used to import data from xls(x) files. Must be unique.",
         readonly=True,
-        string="Import Code"
+        string="Import Code",
     )
 
     @api.model_create_multi
@@ -51,8 +51,7 @@ class AssetCategory(models.Model):
     @api.model
     def get_by_import_code(self, code):
         self._cr.execute(
-            "SELECT id FROM {} WHERE import_code = %s".format(self._table),
-            (code,)
+            "SELECT id FROM {} WHERE import_code = %s".format(self._table), (code,)
         )
         res = [x[0] for x in self._cr.fetchall()]
         return self.browse(res)
@@ -61,5 +60,5 @@ class AssetCategory(models.Model):
         self.ensure_one()
         self._cr.execute(
             "UPDATE {} SET import_code = %s WHERE id = %s".format(self._table),
-            (f"ASSET-CATEGORY-{self.id}", self.id)
+            (f"ASSET-CATEGORY-{self.id}", self.id),
         )
