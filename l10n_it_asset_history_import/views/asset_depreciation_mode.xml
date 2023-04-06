@@ -1,13 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="asset_depreciation_mode_form_view_inherit">
         <field name="name">asset.depreciation.mode.form.view</field>
         <field name="model">asset.depreciation.mode</field>
-        <field name="inherit_id" ref="assets_management.asset_depreciation_mode_form_view"/>
+        <field
+            name="inherit_id"
+            ref="assets_management.asset_depreciation_mode_form_view"
+        />
         <field name="arch" type="xml">
             <xpath expr="//group/group/field[@name='name']" position="after">
-                <field name="import_code"/>
+                <field name="import_code" />
             </xpath>
         </field>
     </record>
@@ -15,10 +18,13 @@
     <record model="ir.ui.view" id="asset_depreciation_mode_tree_view_inherit">
         <field name="name">asset.depreciation.mode.tree.view</field>
         <field name="model">asset.depreciation.mode</field>
-        <field name="inherit_id" ref="assets_management.asset_depreciation_mode_tree_view"/>
+        <field
+            name="inherit_id"
+            ref="assets_management.asset_depreciation_mode_tree_view"
+        />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="after">
-                <field name="import_code"/>
+                <field name="import_code" />
             </xpath>
         </field>
     </record>

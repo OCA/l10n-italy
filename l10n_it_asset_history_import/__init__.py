@@ -6,16 +6,17 @@ from . import wizards
 
 
 CODED_MODELS = (
-    'asset.asset',
-    'asset.category',
-    'asset.depreciation.mode',
-    'asset.depreciation.type'
+    "asset.asset",
+    "asset.category",
+    "asset.depreciation.mode",
+    "asset.depreciation.type",
 )
 
 
 def set_import_codes(cr, registry):
     from odoo import SUPERUSER_ID
     from odoo.api import Environment
+
     env = Environment(cr, SUPERUSER_ID, {})
 
     for model in CODED_MODELS:

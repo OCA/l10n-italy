@@ -5,7 +5,7 @@ from odoo import fields, models
 
 
 class DepreciationLine(models.Model):
-    _inherit = 'asset.depreciation.line'
+    _inherit = "asset.depreciation.line"
 
     def get_template_file_data(self, file_headers):
         self.ensure_one()
@@ -13,20 +13,20 @@ class DepreciationLine(models.Model):
         dtparser = fields.Date.from_string
 
         model_to_rec = {
-            'asset.asset': self.asset_id,
-            'asset.category': self.asset_id.category_id,
-            'asset.depreciation': self.depreciation_id,
-            'asset.depreciation.line': self,
-            'asset.depreciation.mode': self.depreciation_id.mode_id,
-            'asset.depreciation.type': self.depreciation_id.type_id,
-            'res.currency': self.currency_id
+            "asset.asset": self.asset_id,
+            "asset.category": self.asset_id.category_id,
+            "asset.depreciation": self.depreciation_id,
+            "asset.depreciation.line": self,
+            "asset.depreciation.mode": self.depreciation_id.mode_id,
+            "asset.depreciation.type": self.depreciation_id.type_id,
+            "res.currency": self.currency_id,
         }
         type_to_method = {
-            'bool': lambda v: 'X' if v else '',
-            'date': lambda v: dtparser(v).strftime('%d/%m/%Y') if v else '',
-            'float': lambda v: float(v) if v else 0,
-            'selection': lambda v: v,
-            'str': lambda v: v,
+            "bool": lambda v: "X" if v else "",
+            "date": lambda v: dtparser(v).strftime("%d/%m/%Y") if v else "",
+            "float": lambda v: float(v) if v else 0,
+            "selection": lambda v: v,
+            "str": lambda v: v,
         }
 
         template_data = {}

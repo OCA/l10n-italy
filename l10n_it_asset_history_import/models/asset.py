@@ -18,13 +18,13 @@ _logger = logging.getLogger(__name__)
 
 
 def pop_import_code(vals):
-    if 'import_code' in vals:
-        vals.pop('import_code')
+    if "import_code" in vals:
+        vals.pop("import_code")
         _logger.warning("Import Code can never be manually set.")
 
 
 class Asset(models.Model):
-    _inherit = 'asset.asset'
+    _inherit = "asset.asset"
 
     import_code = fields.Char(
         copy=False,
@@ -60,8 +60,7 @@ class Asset(models.Model):
     @api.model
     def get_by_import_code(self, code):
         self._cr.execute(
-            "SELECT id FROM {} WHERE import_code = %s".format(self._table),
-            (code,)
+            "SELECT id FROM {} WHERE import_code = %s".format(self._table), (code,)
         )
         res = [x[0] for x in self._cr.fetchall()]
         return self.browse(res)
@@ -70,28 +69,27 @@ class Asset(models.Model):
         self.ensure_one()
         self._cr.execute(
             "UPDATE {} SET import_code = %s WHERE id = %s".format(self._table),
-            (f"ASSET-{self.id}", self.id)
+            (f"ASSET-{self.id}", self.id),
         )
 
     def make_template_file_data(self, file_headers):
         file_data = BytesIO()
         if xlsxwriter is None:
             raise ValidationError(
-                _("Cannot create xlsx file: Python package `xlsxwriter`"
-                  " is not available. Please contact your IT assistance.")
+                _(
+                    "Cannot create xlsx file: Python package `xlsxwriter`"
+                    " is not available. Please contact your IT assistance."
+                )
             )
         wb = xlsxwriter.Workbook(file_data, {})
 
         sheet = wb.add_worksheet(_("Assets Import"))
-        bg_red = wb.add_format({'bg_color': 'red'})
-        bold = wb.add_format({'bold': True})
-        bred = wb.add_format({'bold': True, 'color': 'red'})
+        bg_red = wb.add_format({"bg_color": "red"})
+        bold = wb.add_format({"bold": True})
+        bred = wb.add_format({"bold": True, "color": "red"})
         pos = 0
 
-        mandatory_headers = [
-            h for h in file_headers
-            if h.field == 'import_code'
-        ]
+        mandatory_headers = [h for h in file_headers if h.field == "import_code"]
         for header in file_headers:
             col = header.col
             style = None
@@ -103,7 +101,7 @@ class Asset(models.Model):
         if self:
             template_data_list = [
                 line.get_template_file_data(file_headers)
-                for line in self.mapped('depreciation_ids.line_ids').sorted(
+                for line in self.mapped("depreciation_ids.line_ids").sorted(
                     key=lambda l: (l.asset_id, l.depreciation_id, l.date)
                 )
             ]
@@ -118,18 +116,25 @@ class Asset(models.Model):
 
         warnings = [
             _("Red columns are mandatory."),
-            _("Maintain columns order: change in columns positioning may"
-              " results in errors while importing!"),
+            _(
+                "Maintain columns order: change in columns positioning may"
+                " results in errors while importing!"
+            ),
             _("Every cell must be formatted either as text or number."),
             _("`Line Type` column valid values are {}.").format(
-                ', '.join([
-                    '`{}`'.format(s[0])
-                    for s in self.env['asset.depreciation.line']
-                    ._fields['move_type'].selection
-                ])
+                ", ".join(
+                    [
+                        "`{}`".format(s[0])
+                        for s in self.env["asset.depreciation.line"]
+                        ._fields["move_type"]
+                        .selection
+                    ]
+                )
             ),
-            _("After using this file to create your own import file,"
-              " please delete these notes.")
+            _(
+                "After using this file to create your own import file,"
+                " please delete these notes."
+            ),
         ]
         for msg in warnings:
             sheet.write(pos, 1, msg, bred)
@@ -137,11 +142,11 @@ class Asset(models.Model):
 
         pos += 1
         fmt_msgs = {
-            _('COLUMN TYPE'): _('HOW TO FORMAT CELLS'),
-            _('Dates'): _('dd/mm/yyyy'),
-            _('Amounts'): _('Numerical amounts, no currency'),
-            _('Currency'): _('`EUR`, `USD`, or equivalent ISO 4217 code'),
-            _('True/False'): _('Set an X if True, else leave empty'),
+            _("COLUMN TYPE"): _("HOW TO FORMAT CELLS"),
+            _("Dates"): _("dd/mm/yyyy"),
+            _("Amounts"): _("Numerical amounts, no currency"),
+            _("Currency"): _("`EUR`, `USD`, or equivalent ISO 4217 code"),
+            _("True/False"): _("Set an X if True, else leave empty"),
         }
         for title, value in fmt_msgs.items():
             sheet.write(pos, 1, title, bold)
