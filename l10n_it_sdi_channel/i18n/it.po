@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 15:51+0000\n"
-"PO-Revision-Date: 2023-01-03 12:49+0000\n"
+"PO-Revision-Date: 2023-04-07 18:25+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -73,7 +73,7 @@ msgstr "Canale SdI"
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company_sdi_channel_type
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel_channel_type
 msgid "ES channel type"
-msgstr "Tipo di canale SdI"
+msgstr "Tipo canale SdI"
 
 #. module: l10n_it_sdi_channel
 #: code:addons/l10n_it_sdi_channel/models/sdi.py:67
