@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-08 14:45+0000\n"
-"PO-Revision-Date: 2023-04-07 12:46+0000\n"
+"PO-Revision-Date: 2023-04-07 18:22+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -21,19 +21,19 @@ msgstr ""
 #: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
 #, python-format
 msgid "%s hasn't sale order!"
-msgstr ""
+msgstr "%s non ha un ordine di vendita!"
 
 #. module: l10n_it_delivery_note
 #: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
 #, python-format
 msgid "%s is already invoiced!"
-msgstr ""
+msgstr "%s è già fatturato!"
 
 #. module: l10n_it_delivery_note
 #: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
 #, python-format
 msgid "%s is in draft!"
-msgstr ""
+msgstr "%s è in bozza!"
 
 #. module: l10n_it_delivery_note
 #: model:ir.actions.report,print_report_name:l10n_it_delivery_note.delivery_note_report_action
@@ -310,7 +310,7 @@ msgstr "Contatto"
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.view_stock_delivery_note_invoice_wizard
 msgid "Create Invoice"
-msgstr ""
+msgstr "Crea fattura"
 
 #. module: l10n_it_delivery_note
 #: code:addons/l10n_it_delivery_note/models/stock_picking.py:0
@@ -328,7 +328,7 @@ msgstr "Crea fattura"
 #. module: l10n_it_delivery_note
 #: model:ir.actions.act_window,name:l10n_it_delivery_note.action_stock_delivery_note_invoice_wizard
 msgid "Create invoices"
-msgstr ""
+msgstr "Crea fatture"
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_form_view
@@ -460,7 +460,7 @@ msgstr "Esiste DdT"
 #. module: l10n_it_delivery_note
 #: model:ir.model,name:l10n_it_delivery_note.model_stock_delivery_note_invoice_wizard
 msgid "Delivery Note Invoice"
-msgstr ""
+msgstr "Fattura DdT"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model,name:l10n_it_delivery_note.model_stock_delivery_note_line
@@ -713,7 +713,7 @@ msgstr "Se questi problemi persistono, non esitate a contattare l'helpdesk."
 #: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
 #, python-format
 msgid "In %s there is %s with invoicing policy 'order'"
-msgstr ""
+msgstr "In %s è presente %s con politica di fatturazione 'ordine'"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__picking_type__incoming
@@ -794,7 +794,7 @@ msgstr "Fatture"
 #: code:addons/l10n_it_delivery_note/wizard/delivery_note_invoice.py:0
 #, python-format
 msgid "Invoices from TD"
-msgstr ""
+msgstr "Fatture da DDT"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__message_is_follower
