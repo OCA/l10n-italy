@@ -506,15 +506,26 @@ class AccountMove(models.Model):
             }
             wt_statement_obj.create(val)
 
-    def _get_reconciled_info_JSON_values(self):
-        payment_vals = super(AccountMove, self)._get_reconciled_info_JSON_values()
-        for payment_val in payment_vals:
-            move_line = self.env["account.move.line"].browse(payment_val["payment_id"])
-            if move_line.withholding_tax_generated_by_move_id:
-                payment_val["wt_move_line"] = True
-            else:
-                payment_val["wt_move_line"] = False
-        return payment_vals
+    @api.depends("move_type", "line_ids.amount_residual")
+    def _compute_payments_widget_reconciled_info(self):
+        super()._compute_payments_widget_reconciled_info()
+        for move in self:
+            if move.invoice_payments_widget:
+                payment_vals = move.invoice_payments_widget["content"]
+                for payment_val in payment_vals:
+                    move_line = self.env["account.move.line"].search(
+                        [
+                            ("move_id", "=", payment_val["move_id"]),
+                            ("name", "=", payment_val["name"]),
+                        ],
+                        limit=1,
+                    )
+
+                    if move_line and move_line.withholding_tax_generated_by_move_id:
+                        payment_val["wt_move_line"] = True
+                    else:
+                        payment_val["wt_move_line"] = False
+        return
 
 
 class AccountMoveLine(models.Model):
