@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <menuitem name="C/O" parent="account.menu_finance" id="menu_riba" />
+
+    <!-- ====================================================== -->
+    <!--                     DISTINTA RIBA - FILTRI             -->
+    <!-- ====================================================== -->
+    <record model="ir.ui.view" id="view_distinta_riba_filtri">
+        <field name="name">riba.distinta.filtri</field>
+        <field name="model">riba.distinta</field>
+        <field name="arch" type="xml">
+            <search string="C/O Slips">
+                <filter
+                    name="filter_draft"
+                    string="Draft"
+                    domain="[('state','=','draft')]"
+                    help="Draft"
+                />
+                <filter
+                    name="filter_confirm"
+                    string="Confirmed"
+                    domain="[('state','=','accepted')]"
+                    help="Confirmed"
+                />
+                <filter
+                    name="filter_paid"
+                    string="Paid"
+                    domain="[('state','=','paid')]"
+                    help="Paid"
+                />
+                <separator orientation="vertical" />
+                <field name="name" />
+                <field name="config_id" />
+                <field name="date_accepted" />
+                <field name="date_paid" />
+           </search>
+        </field>
+    </record>
+
+    <!-- ====================================================== -->
+    <!--                     DISTINTA RIBA TREE                 -->
+    <!-- ====================================================== -->
+    <record model="ir.ui.view" id="view_distinta_riba_tree">
+        <field name="name">riba.distinta.tree</field>
+        <field name="model">riba.distinta</field>
+        <field name="arch" type="xml">
+            <tree string="C/O Slips">
+                <field name="name" />
+                <field name="config_id" />
+                <field name="date_accepted" />
+                <field name="date_paid" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- ====================================================== -->
+    <!--                     DISTINTA LINE FORM                 -->
+    <!-- ====================================================== -->
+    <record model="ir.ui.view" id="view_riba_distinta_line_form">
+        <field name="name">riba.distinta.line.form</field>
+        <field name="model">riba.distinta.line</field>
+        <field name="arch" type="xml">
+            <form string="Detail">
+                <notebook colspan="4">
+                    <page string="General">
+                        <group>
+                            <group>
+                                <field name="state" />
+                                <field name="type" />
+                                <field name="invoice_number" />
+                                <field name="invoice_date" />
+                                <field name="partner_id" />
+                                <field name="amount" />
+                                <field name="due_date" />
+
+                            </group>
+                            <group>
+                                <field name="amount" />
+                                <field name="due_date" />
+                                <field name="state" />
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Accounting">
+                        <separator string="Invoice Entries" colspan="4" />
+                        <field name="move_line_ids" nolabel="1" colspan="4">
+                            <tree string="Move Lines">
+                                <field name="amount" />
+                                <field name="move_line_id" />
+                            </tree>
+                            <form string="Move Line">
+                                <group>
+                                    <field name="amount" />
+                                    <field name="move_line_id" />
+                                </group>
+                            </form>
+                        </field>
+                        <group>
+                        <field name="acceptance_move_id" />
+                        <field name="unsolved_move_id" />
+                        </group>
+                        <separator string="Payments" colspan="4" />
+                        <field name="payment_ids" nolabel="1" colspan="4">
+                            <tree string="Payments">
+                                <field name="date" />
+                                <field name="move_id" />
+                                <field name="ref" />
+                                <field name="name" />
+                                <field name="journal_id" groups="base.group_user" />
+                                <field name="debit" />
+                                <field name="credit" />
+                                <field name="amount_currency" />
+                                <field name="currency_id" />
+                            </tree>
+                        </field>
+                        <field name="unsolved_move_id" />
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- ====================================================== -->
+    <!--                     DISTINTA RIBA FORM                 -->
+    <!-- ====================================================== -->
+    <record model="ir.ui.view" id="view_riba_distinta_form">
+        <field name="name">riba.distinta.form</field>
+        <field name="model">riba.distinta</field>
+        <field name="arch" type="xml">
+            <form string="C/O Slip" version="7.0">
+                <header>
+                    <button
+                        name="confirm"
+                        type='object'
+                        string="Mark as Accepted"
+                        class="oe_highlight"
+                        attrs="{'invisible':['|',('state','!=','draft'),('type','=','incasso')]}"
+                    />
+                    <button
+                        name="%(riba_accreditation_action)d"
+                        type='action'
+                        attrs="{'invisible':['|',('state','!=','accepted'),('type','=','incasso')]}"
+                        string="Mark as Credited"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="riba_cancel"
+                        type='object'
+                        attrs="{'invisible':[('state','=','cancel')]}"
+                        string="Cancel"
+                    />
+                    <button
+                        name="settle_all_line"
+                        type='object'
+                        string="Mark All as Settled"
+                        class="oe_highlight"
+                        attrs="{'invisible':[('state','!=','accredited')]}"
+                    />
+                    <button
+                        name="action_cancel_draft"
+                        attrs="{'invisible':['|',('state','!=','cancel'),('type','=','incasso')]}"
+                        string="Reset to Draft"
+                        type="object"
+                    />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <group>
+                    <field name="name" />
+                    <field name="config_id" widget="selection" />
+                    <field name="registration_date" />
+                </group>
+                <notebook colspan="4">
+                    <page string="General">
+                        <field name="line_ids" nolabel="1" colspan="4">
+                            <tree string="Detail">
+                                <field name="sequence" />
+                                <field name="invoice_number" />
+                                <field name="invoice_date" />
+                                <field name="partner_id" />
+                                <field name="iban" />
+                                <field name="amount" sum="Amount" />
+                                <field name="due_date" />
+                                <field name="state" />
+                                <button
+                                    name="%(riba_unsolved_action)d"
+                                    type='action'
+                                    attrs="{'invisible':['|',('type','=','incasso'),('state','!=','accredited')]}"
+                                    string="Mark as Past Due"
+                                    icon="fa-exclamation-triangle"
+                                />
+                                <button
+                                    name="riba_line_settlement"
+                                    type='object'
+                                    attrs="{'invisible':['|',('type','=','incasso'),('state','!=','accredited')]}"
+                                    string="Mark as Settled"
+                                    icon="fa-check"
+                                />
+                                <field name="type" invisible="1" />
+                            </tree>
+                        </field>
+                        <field name="type" invisible="1" />
+                    </page>
+                    <page string="Other Info">
+                        <group>
+                            <field name="user_id" />
+                            <field name="date_created" />
+                            <field
+                                name="date_accepted"
+                                attrs="{'readonly':[('state','!=','draft')]}"
+                            />
+                            <field
+                                name="date_accreditation"
+                                attrs="{'readonly':[('state','!=','draft'), ('state','!=','accepted')]}"
+                            />
+                            <field name="date_paid" />
+                        </group>
+                    </page>
+                    <page string="Accounting">
+                        <separator colspan="4" string="Acceptance Entries" />
+                        <field name='acceptance_move_ids' colspan="4" nolabel="1" />
+                        <separator colspan="4" string="Credit Entry" />
+                        <field name='accreditation_move_id' colspan="4" nolabel="1" />
+                        <separator colspan="4" string="Payments" />
+                        <field name='payment_ids' colspan="4" nolabel="1">
+                            <tree string="Payments">
+                                <field name="date" />
+                                <field name="move_id" />
+                                <field name="ref" />
+                                <field name="name" />
+                                <field name="journal_id" groups="base.group_user" />
+                                <field name="debit" />
+                                <field name="credit" />
+                                <field name="amount_currency" />
+                                <field name="currency_id" />
+                            </tree>
+                        </field>
+                        <separator colspan="4" string="Past Dues" />
+                        <field name='unsolved_move_ids' colspan="4" nolabel="1" />
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <!-- ====================================================== -->
+    <!--                     ACTION DISTINTA RIBA               -->
+    <!-- ====================================================== -->
+    <record id="distinta_riba_action" model="ir.actions.act_window">
+        <field name="name">C/O Slip</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">riba.distinta</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_distinta_riba_filtri" />
+    </record>
+
+    <!-- ====================================================== -->
+    <!--                     DISTINTA RIBA - MENU               -->
+    <!-- ====================================================== -->
+    <menuitem
+        name="Slips"
+        parent="menu_riba"
+        id="menu_riba_distinte"
+        action="distinta_riba_action"
+    />
+
+</odoo>

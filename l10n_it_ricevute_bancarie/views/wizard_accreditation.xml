@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="riba_accreditation" model="ir.ui.view">
+        <field name="name">riba.accreditation.wizard</field>
+        <field name="model">riba.accreditation</field>
+        <field name="arch" type="xml">
+            <form string="C/O Credit">
+                <separator
+                    string="This wizard will generate the journal entry related to credit received from the bank"
+                    colspan="4"
+                />
+                <group>
+                    <field name="accreditation_journal_id" />
+                    <field name="accreditation_account_id" />
+                    <field name="accreditation_amount" />
+                    <field name="bank_account_id" />
+                    <field name="bank_amount" />
+                    <field name="bank_expense_account_id" />
+                    <field name="expense_amount" />
+                </group>
+                <footer>
+                    <button
+                        string="Create"
+                        name="create_move"
+                        type="object"
+                        default_focus="1"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" special="cancel" class="oe_link" />
+                    <separator
+                        string="You can also skip this step and set the slip status to 'Credited' anyway"
+                        colspan="4"
+                    />
+                    <button
+                        string="Skip and Confirm Credit"
+                        name="skip"
+                        type="object"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="riba_accreditation_action" model="ir.actions.act_window">
+        <field name="name">C/O Credit</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">riba.accreditation</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="riba_accreditation" />
+
+    </record>
+
+</odoo>

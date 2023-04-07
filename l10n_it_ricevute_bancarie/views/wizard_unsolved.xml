@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="riba_unsolved" model="ir.ui.view">
+        <field name="name">riba.unsolved.wizard</field>
+        <field name="model">riba.unsolved</field>
+        <field name="arch" type="xml">
+            <form string="Past Due C/Os">
+                <separator
+                    string="This wizard will generate the journal entry related to an past due C/O"
+                    colspan="4"
+                />
+                <group>
+                    <field name="unsolved_journal_id" />
+                    <field name="effects_account_id" />
+                    <field name="effects_amount" />
+                    <field name="riba_bank_account_id" />
+                    <field name="riba_bank_amount" />
+                    <field name="overdue_effects_account_id" />
+                    <field name="overdue_effects_amount" />
+                    <field name="bank_account_id" />
+                    <field name="bank_amount" />
+                    <field name="bank_expense_account_id" />
+                    <field name="expense_amount" />
+                </group>
+                <footer>
+                    <button
+                        string="Create"
+                        name="create_move"
+                        type="object"
+                        default_focus="1"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" special="cancel" class="oe_link" />
+                    <separator
+                        string="You can also skip this step and set the line status to 'Past Due' anyway"
+                        colspan="4"
+                    />
+                    <button
+                        string="Skip and Confirm Past Due"
+                        name="skip"
+                        type="object"
+                        class="oe_link"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="riba_unsolved_action" model="ir.actions.act_window">
+        <field name="name">Past Due C/Os</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">riba.unsolved</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="riba_unsolved" />
+    </record>
+
+</odoo>

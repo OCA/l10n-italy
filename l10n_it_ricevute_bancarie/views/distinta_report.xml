@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="distinta_layout">
+        <div class="header">
+            <t t-set="company" t-value="res_company" />
+            <div class="o_clean_header">
+                <div class="row">
+                    <div class="col-6">
+                        <img
+                            t-if="company.logo"
+                            t-att-src="image_data_uri(company.logo)"
+                            alt="Logo"
+                        />
+                    </div>
+                    <div class="col-5 offset-1" name="company_address">
+                        <ul class="list-unstyled">
+                            <strong><li t-if="company.name"><span
+                                        t-field="company.name"
+                                    /></li></strong>
+                            <li t-if="company.vat"><t
+                                    t-esc="company.country_id.vat_label or 'Tax ID'"
+                                />: <span t-field="company.vat" /></li>
+                            <li t-if="company.phone">Tel: <span
+                                    class="o_force_ltr"
+                                    t-field="company.phone"
+                                /></li>
+                            <li t-if="company.email"><span
+                                    t-field="company.email"
+                                /></li>
+                            <li t-if="company.website"><span
+                                    t-field="company.website"
+                                /></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+         </div>
+
+        <div
+            class="article"
+            t-att-data-oe-model="o and o._name"
+            t-att-data-oe-id="o and o.id"
+            t-att-data-oe-lang="o and o.env.context.get('lang')"
+        >
+            <t t-call="web.address_layout" />
+            <t t-raw="0" />
+        </div>
+    </template>
+
+    <template id="distinta_qweb">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="l10n_it_ricevute_bancarie.distinta_layout">
+                    <div class="page">
+                        <div class="oe_structure" />
+
+                        <div class="row p-1">
+                            <p>
+                                Cash Order Slip No. <span
+                                    t-esc="o.name or 'Draft'"
+                                /> of <span t-field="o.registration_date" />
+                            </p>
+                        </div>
+
+                        <t t-set="tot_amount" t-value="0" />
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th name="th_number">Number</th>
+                                    <th name="th_invoice_number">Invoice Number</th>
+                                    <th name="th_invoice_date">Invoice Date</th>
+                                    <th name="th_customer">Customer</th>
+                                    <th name="th_iban">IBAN</th>
+                                    <th name="th_amount">Amount</th>
+                                    <th name="th_due_date">Due Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.line_ids" t-as="line">
+                                    <tr>
+                                        <td name="td_number"><span
+                                                t-field="line.sequence"
+                                            /></td>
+                                        <td name="td_invoice_number"><span
+                                                t-field="line.invoice_number"
+                                            /></td>
+                                        <td name="td_invoice_date"><span
+                                                t-field="line.invoice_date"
+                                            /></td>
+                                        <td name="td_customer"><span
+                                                t-field="line.partner_id"
+                                            /></td>
+                                        <td name="td_iban"><span
+                                                t-field="line.iban"
+                                            /></td>
+                                        <td name="td_amount"><span
+                                                t-field="line.amount"
+                                            /></td>
+                                        <td name="td_due_date"><span
+                                                t-field="line.due_date"
+                                            /></td>
+                                    </tr>
+                                    <t
+                                        t-set="tot_amount"
+                                        t-value="tot_amount + line.amount"
+                                    />
+                                </t>
+                            </tbody>
+                        </table>
+
+                        <div class="clearfix" name="co_total_summary">
+                            <div id="total" class="row" name="total">
+                                <div
+                                    t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto"
+                                >
+                                    <table class="table table-condensed">
+                                        <tr class="border-black o_total">
+                                            <td name="td_amount_total_label"><strong
+                                                >Total</strong></td>
+                                            <td
+                                                name="td_amount_total"
+                                                class="text-right"
+                                            >
+                                                <span t-esc="tot_amount" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="oe_structure" />
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
