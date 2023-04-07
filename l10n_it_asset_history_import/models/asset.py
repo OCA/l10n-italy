@@ -47,12 +47,10 @@ class Asset(models.Model):
         pop_import_code(vals)
         return super()._create(vals)
 
-    @api.multi
     def write(self, vals):
         pop_import_code(vals)
         return super().write(vals)
 
-    @api.multi
     def _write(self, vals):
         pop_import_code(vals)
         return super()._write(vals)

@@ -351,7 +351,6 @@ class AssetHistoryImport(models.TransientModel):
 
     template_file = fields.Binary(string="Template File")
 
-    @api.multi
     def download_template_file(self):
         """
         Retrieve an asset with any depreciation line to create a template
@@ -383,7 +382,6 @@ class AssetHistoryImport(models.TransientModel):
             ),
         }
 
-    @api.multi
     def import_file(self):
         """Imports the `file` content"""
         self.check_before_import()
@@ -394,7 +392,6 @@ class AssetHistoryImport(models.TransientModel):
 
         return self.launch_view(assets.ids)
 
-    @api.multi
     def launch_view(self, asset_ids):
         """Opens tree view upon assets"""
         act = self.env.ref("assets_management.action_asset").read(load="")[0]

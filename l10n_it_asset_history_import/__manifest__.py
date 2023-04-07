@@ -19,6 +19,7 @@
         "assets_management",
     ],
     "data": [
+        "security/ir.model.access.csv",
         "views/asset.xml",
         "views/asset_category.xml",
         "views/asset_depreciation_mode.xml",
