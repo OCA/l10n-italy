@@ -73,6 +73,11 @@ Authors
 
 * Openforce
 
+Contributors
+~~~~~~~~~~~~
+
+* Nextev Srl <odoo@nextev.it>
+
 Maintainers
 ~~~~~~~~~~~
 
