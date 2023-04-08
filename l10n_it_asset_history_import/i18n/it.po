@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-22 16:00+0000\n"
-"PO-Revision-Date: 2023-03-22 16:00+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2023-04-08 22:38+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/models/asset.py:0
@@ -23,8 +24,8 @@ msgid ""
 "After using this file to create your own import file, please delete these "
 "notes."
 msgstr ""
-"Dopo aver utilizzato questo file ed avere creato il proprio file di import, "
-"cancellare queste note dal file stesso."
+"Dopo aver utilizzato il file per creare quello personale di importazione, "
+"eliminare le note."
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/models/asset.py:0
@@ -35,24 +36,24 @@ msgstr "Importi"
 #. module: l10n_it_asset_history_import
 #: model:ir.model,name:l10n_it_asset_history_import.model_asset_category
 msgid "Asset Category"
-msgstr "Categorie beni ammortizzabili"
+msgstr "Categoria cespiti"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:0
 #, python-format
 msgid "Asset Category Import Code"
-msgstr "Codice Importazione Categoria Cespite"
+msgstr "Codice importazione categoria cespiti"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:0
 #, python-format
 msgid "Asset Code"
-msgstr "Codice Cespite"
+msgstr "Codice cespite"
 
 #. module: l10n_it_asset_history_import
 #: model:ir.model,name:l10n_it_asset_history_import.model_asset_depreciation_mode
 msgid "Asset Depreciation Mode"
-msgstr "Metodi Amm."
+msgstr "Modalità ammortamento cespiti"
 
 #. module: l10n_it_asset_history_import
 #: model:ir.model,name:l10n_it_asset_history_import.model_asset_depreciation_type
@@ -63,36 +64,36 @@ msgstr "Natura Amm."
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:0
 #, python-format
 msgid "Asset Import Code"
-msgstr "Codice Import Cespite"
+msgstr "Codice importazione cespite"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:0
 #, python-format
 msgid "Asset Name"
-msgstr "Nome Cespite"
+msgstr "Nome cespite"
 
 #. module: l10n_it_asset_history_import
 #: model:ir.model,name:l10n_it_asset_history_import.model_asset_asset
 msgid "Assets"
-msgstr "Beni ammortizzabili"
+msgstr "Cespiti"
 
 #. module: l10n_it_asset_history_import
 #: model:ir.model,name:l10n_it_asset_history_import.model_asset_depreciation_line
 msgid "Assets Depreciations Lines"
-msgstr "Linee Amm."
+msgstr "Righe ammortamento cespiti"
 
 #. module: l10n_it_asset_history_import
 #: model:ir.actions.act_window,name:l10n_it_asset_history_import.action_wizard_asset_history_import
 #: model:ir.model,name:l10n_it_asset_history_import.model_wizard_asset_history_import
 #: model:ir.ui.menu,name:l10n_it_asset_history_import.menu_wizard_asset_history_import
 msgid "Assets History Import"
-msgstr "Import Storico Cespiti"
+msgstr "Importa storico cespiti"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/models/asset.py:0
 #, python-format
 msgid "Assets Import"
-msgstr "Import Cespiti"
+msgstr "Importazione cespiti"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/models/asset.py:0
@@ -112,7 +113,7 @@ msgid ""
 "Cannot create xlsx file: Python package `xlsxwriter` is not available. "
 "Please contact your IT assistance."
 msgstr ""
-"Impossibile creare file xls(x): il pacchetto Python `xlsxwriter` non è "
+"Impossibile creare il file XLSX: il pacchetto Python `xlsxwriter` non è "
 "disponibile. Contattare l'assistenza IT."
 
 #. module: l10n_it_asset_history_import
@@ -147,7 +148,7 @@ msgstr "Date"
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:0
 #, python-format
 msgid "Depreciable Amount"
-msgstr "Importo Ammortizzabile"
+msgstr "Importo ammortizzabile"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:0
@@ -159,25 +160,25 @@ msgstr "Ammortamento %"
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:0
 #, python-format
 msgid "Depreciation Base Coeff."
-msgstr "Coefficiente Ammortamento"
+msgstr "Coeff. di base ammortamento"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:0
 #, python-format
 msgid "Depreciation Mode Import Code"
-msgstr "Codice Import Modalità Ammortamento"
+msgstr "Codice importazione modalità ammortamento"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:0
 #, python-format
 msgid "Depreciation Start Date"
-msgstr "Data Inizio Ammortamento"
+msgstr "Data inizio ammortamento"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:0
 #, python-format
 msgid "Depreciation Type Import Code"
-msgstr "Codice Import Tipo Ammortamento"
+msgstr "Codice importazione tipo ammortamento"
 
 #. module: l10n_it_asset_history_import
 #: model:ir.model.fields,field_description:l10n_it_asset_history_import.field_asset_asset__display_name
@@ -192,7 +193,7 @@ msgstr "Nome visualizzato"
 #. module: l10n_it_asset_history_import
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_history_import.wizard_wizard_asset_history_import
 msgid "Download Template File"
-msgstr "Scarica Template"
+msgstr "Scarica file modello"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/models/asset.py:0
@@ -209,12 +210,12 @@ msgstr "File"
 #. module: l10n_it_asset_history_import
 #: model:ir.model.fields,field_description:l10n_it_asset_history_import.field_wizard_asset_history_import__filename
 msgid "File Name"
-msgstr "Nome File"
+msgstr "Nome file"
 
 #. module: l10n_it_asset_history_import
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_history_import.wizard_wizard_asset_history_import
 msgid "Files will be imported following the position of every single column."
-msgstr "Il file sarà importato seguendo la posizione delle colonne."
+msgstr "Il file sarà importato seguendo la posizione di ogni singola colonna."
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/models/asset.py:0
@@ -241,9 +242,9 @@ msgid ""
 "create your own import file:"
 msgstr ""
 "Se non si è certi che il proprio file rispetti il posizionamento delle "
-"colonne necessario ad Odoo per eseguire un import corretto,\n"
-"                            si prega di scaricare il template ed utilizzarlo "
-"per generare il proprio file di import:"
+"colonne richiesto da Odoo per effettuare una corretta importazione,\n"
+"                            scaricare il modello e utilizzarlo per creare il "
+"proprio file di importazione:"
 
 #. module: l10n_it_asset_history_import
 #: model:ir.model.fields,field_description:l10n_it_asset_history_import.field_asset_asset__import_code
@@ -251,12 +252,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_asset_history_import.field_asset_depreciation_mode__import_code
 #: model:ir.model.fields,field_description:l10n_it_asset_history_import.field_asset_depreciation_type__import_code
 msgid "Import Code"
-msgstr "Codice Importazione"
+msgstr "Codice importazione"
 
 #. module: l10n_it_asset_history_import
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_history_import.wizard_wizard_asset_history_import
 msgid "Import File"
-msgstr "Importa File"
+msgstr "Importa file"
 
 #. module: l10n_it_asset_history_import
 #: model:ir.model.fields,field_description:l10n_it_asset_history_import.field_asset_asset____last_update
@@ -271,7 +272,7 @@ msgstr "Ultima modifica il"
 #. module: l10n_it_asset_history_import
 #: model:ir.model.fields,field_description:l10n_it_asset_history_import.field_wizard_asset_history_import__write_uid
 msgid "Last Updated by"
-msgstr "Ultima Modifica di"
+msgstr "Ultima modifica di"
 
 #. module: l10n_it_asset_history_import
 #: model:ir.model.fields,field_description:l10n_it_asset_history_import.field_wizard_asset_history_import__write_date
@@ -282,25 +283,25 @@ msgstr "Ultimo aggiornamento il"
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:0
 #, python-format
 msgid "Line Amount"
-msgstr "Importo Riga"
+msgstr "Importo riga"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:0
 #, python-format
 msgid "Line Date"
-msgstr "Data Riga"
+msgstr "Data riga"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:0
 #, python-format
 msgid "Line Description"
-msgstr "Descrizione Riga"
+msgstr "Descrizione riga"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:0
 #, python-format
 msgid "Line Type"
-msgstr "Tipo Riga"
+msgstr "Tipo riga"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/models/asset.py:0
@@ -309,20 +310,20 @@ msgid ""
 "Maintain columns order: change in columns positioning may results in errors "
 "while importing!"
 msgstr ""
-"L'ordine delle colonne va mantenuto: modifiche possono risultare in errori "
-"durante l'importazione!"
+"Mantenere l'ordine delle colonne: variazioni della posizione possono "
+"comportare errori durante l'importazione."
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:0
 #, python-format
 msgid "No file column for model `{}` and field `{}`"
-msgstr "Nessuna colonna trovata per model `{}` e field `{}`"
+msgstr "Nessuna colonna trovata per il modello `{}` e il campo `{}`"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/models/asset.py:0
 #, python-format
 msgid "Numerical amounts, no currency"
-msgstr "Solo importi numerici, senza valute"
+msgstr "Importi numerici, nessuna valuta"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:0
@@ -334,13 +335,13 @@ msgstr "Pro-Rata Temporis"
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:0
 #, python-format
 msgid "Purchase Amount"
-msgstr "Importo Acquisto"
+msgstr "Importo acquisto"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:0
 #, python-format
 msgid "Purchase Date"
-msgstr "Data Acquisto"
+msgstr "Data acquisto"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/models/asset.py:0
@@ -352,24 +353,24 @@ msgstr "Le colonne in rosso sono obbligatorie."
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:0
 #, python-format
 msgid "Sale Amount"
-msgstr "Importo Vendita"
+msgstr "Importo vendita"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:0
 #, python-format
 msgid "Sale Date"
-msgstr "Data Vendita"
+msgstr "Data vendita"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/models/asset.py:0
 #, python-format
 msgid "Set an X if True, else leave empty"
-msgstr "Lasciare una X se da impostare, altrimenti lasciare vuota la cella"
+msgstr "Impostare X se vero, altrimenti lasciare vuota"
 
 #. module: l10n_it_asset_history_import
 #: model:ir.model.fields,field_description:l10n_it_asset_history_import.field_wizard_asset_history_import__template_file
 msgid "Template File"
-msgstr "Template"
+msgstr "File modello"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/models/asset.py:0
@@ -389,7 +390,7 @@ msgstr "Usato"
 #: model:ir.model.fields,help:l10n_it_asset_history_import.field_asset_depreciation_mode__import_code
 #: model:ir.model.fields,help:l10n_it_asset_history_import.field_asset_depreciation_type__import_code
 msgid "Used to import data from xls(x) files. Must be unique."
-msgstr "Utilizzato per importare data dai file xls(x). Deve essere univoco."
+msgstr "Utilizzato per importare data dai file XLS(X). Deve essere univoco."
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/models/asset.py:0
@@ -403,31 +404,31 @@ msgid ""
 "Wrong column positioning can result in errors that might block the import,\n"
 "                            or that may require later manual work to fix."
 msgstr ""
-"Il posizionamento errato delle colonne può portare ad errori che blocchino "
-"l'importazione,\n"
-"                            o che richiedono lavoro manuale per sistemare i "
-"dati errati."
+"Il posizionamento errato delle colonne può portare a errori che potrebbero "
+"bloccare l'importazione\n"
+"                            o richiedere un lavoro di correzione manuale "
+"successivo."
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:0
 #, python-format
 msgid "Zero Depreciation Until"
-msgstr "Non Ammortizzare Fino Al"
+msgstr "Ammortamento a zero fino al"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/models/asset.py:0
 #, python-format
 msgid "`EUR`, `USD`, or equivalent ISO 4217 code"
-msgstr "`EUR`, `USD`, o equivalente codice ISO 4217"
+msgstr "`EUR`, `USD` o codice ISO 4217 equivalente"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/models/asset.py:0
 #, python-format
 msgid "`Line Type` column valid values are {}."
-msgstr "I valori validi per la colonna `Tipo Riga` sono {}."
+msgstr "Valori validi per la colonna `Tipo riga` sono {}."
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/models/asset.py:0
 #, python-format
 msgid "dd/mm/yyyy"
-msgstr "dd/mm/yyyy"
+msgstr "gg/mm/aaaa"
