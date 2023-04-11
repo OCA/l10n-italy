@@ -1059,12 +1059,21 @@ class WizardImportFatturapa(models.TransientModel):
             for rel_doc in causLst:
                 comment += rel_doc + "\n"
 
+        if (
+            not fatturapa_attachment.env.context.get("tz")
+            and not fatturapa_attachment.env.user.tz
+        ):
+            # Setting Italian timezone, otherwise e_invoice_received_date
+            # could be set the day before of the actual date.
+            fatturapa_attachment = fatturapa_attachment.with_context(tz="Europe/Rome")
         if fatturapa_attachment.e_invoice_received_date:
-            e_invoice_received_date = (
-                fatturapa_attachment.e_invoice_received_date.date()
-            )
+            e_invoice_received_date = fields.Datetime.context_timestamp(
+                fatturapa_attachment, fatturapa_attachment.e_invoice_received_date
+            ).date()
         else:
-            e_invoice_received_date = fatturapa_attachment.create_date.date()
+            e_invoice_received_date = fields.Datetime.context_timestamp(
+                fatturapa_attachment, fatturapa_attachment.create_date
+            ).date()
 
         e_invoice_date = datetime.strptime(
             FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data, "%Y-%m-%d"
