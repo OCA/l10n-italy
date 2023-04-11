@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-23 08:16+0000\n"
 "PO-Revision-Date: 2023-04-11 19:23+0000\n"
-"Last-Translator: Sergio Corato <sergiocorato@gmail.com>\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -1853,7 +1853,7 @@ msgstr "Data movimento anomala."
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__amount_depreciable
 #, python-format
 msgid "Initial Depreciable Amount"
-msgstr "Importo Ammortizzabile Iniziale"
+msgstr "Importo ammortizzabile iniziale"
 
 #. module: assets_management
 #: code:addons/assets_management/models/asset_depreciation_line.py:0
