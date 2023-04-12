@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: l10n-italy (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-12 02:39+0000\n"
-"PO-Revision-Date: 2016-10-24 13:00+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2023-03-31 21:24+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-italy-10-0/"
 "language/sl/)\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_it_ateco
 #: model:ir.model,name:l10n_it_ateco.model_ateco_category
@@ -72,7 +73,7 @@ msgstr "Opis"
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category__display_name
 msgid "Display Name"
-msgstr "Prikazni naziv"
+msgstr "Prikazani naziv"
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category__id

@@ -583,6 +583,7 @@ class AccountInvoiceIntrastat(models.Model):
         string="Transaction Nature B",
     )
     weight_kg = fields.Float(string="Net Mass (kg)")
+    show_weight = fields.Boolean(string="Display weight in declaration", default=True)
     additional_units = fields.Float(string="Additional Units")
     additional_units_uom = fields.Char(
         string="Additional Unit of Measure",
