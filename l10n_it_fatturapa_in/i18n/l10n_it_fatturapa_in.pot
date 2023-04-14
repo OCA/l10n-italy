@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-09 20:32+0000\n"
-"PO-Revision-Date: 2023-03-09 20:32+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -85,6 +83,7 @@ msgid "Attachment URL"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/models/attachment.py:0
 #, python-format
 msgid "Attachment without name"
@@ -96,6 +95,7 @@ msgid "Attachments"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -106,6 +106,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Bank account %s already exists"
@@ -122,6 +123,7 @@ msgid "Bill number in XML"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/link_to_existing_invoice.py:0
 #, python-format
 msgid ""
@@ -131,6 +133,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -185,6 +188,7 @@ msgid "Company"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -192,6 +196,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -215,6 +220,7 @@ msgid "Contains self invoices"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Country Code %s not found in system."
@@ -248,6 +254,7 @@ msgid "Creation"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -321,6 +328,7 @@ msgid "Default products used in electronic supplier invoices"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Define a purchase journal for this company: '%(name)s' (id: %(id)s)."
@@ -370,6 +378,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Document type %s not handled."
@@ -450,6 +459,7 @@ msgid "E-bill Inconsistencies"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/models/account.py:0
 #, python-format
 msgid ""
@@ -458,6 +468,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/models/account.py:0
 #, python-format
 msgid ""
@@ -540,6 +551,7 @@ msgid "Electronic Bill Import"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "File %s is linked to bills yet."
@@ -561,6 +573,7 @@ msgid "File Size"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "File is linked to bills yet."
@@ -589,6 +602,7 @@ msgid "General Data"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Global bill discount from document general data"
@@ -707,6 +721,7 @@ msgid "Invoice Date"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/models/account.py:0
 #, python-format
 msgid ""
@@ -864,12 +879,14 @@ msgid "Name"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Name field contains '%(name)s'. Your System contains '%(firstname)s'"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Name of Bank with BIC '%s' is not set. Can't create bank"
@@ -881,12 +898,14 @@ msgid "Nature"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "No currency found with code %s."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -895,6 +914,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -944,18 +964,21 @@ msgid "Other Administrative Data"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Payment method %s is not defined in your system."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Payment method code %s is incorrect."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Payment method code not found in document."
@@ -982,6 +1005,7 @@ msgid "Period Start Date"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -1017,6 +1041,7 @@ msgid "Progress data"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Province ( %s ) not present in your system"
@@ -1033,6 +1058,7 @@ msgid "Quantity"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "REA Office Province Code ( %s ) not present in your system"
@@ -1049,6 +1075,7 @@ msgid "Recompute XML fields"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Register Province ( %s ) not present in your system"
@@ -1109,6 +1136,7 @@ msgid "Round Up Account"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
@@ -1116,6 +1144,7 @@ msgid "Round down account is not set in Accounting Settings"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
@@ -1123,6 +1152,7 @@ msgid "Round up account is not set in Accounting Settings"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Round up and down tax is not set"
@@ -1135,6 +1165,7 @@ msgid "Rounding Tax"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
@@ -1142,6 +1173,7 @@ msgid "Rounding down"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
@@ -1196,6 +1228,7 @@ msgid "Supplier data"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -1208,6 +1241,7 @@ msgid "Tax Rate"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Tax Regime %s not present in your system."
@@ -1219,6 +1253,7 @@ msgid "Tax Withholding"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Tax kind %s not found"
@@ -1236,6 +1271,7 @@ msgid "Tax used to both round up and down bills amount."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/models/account.py:0
 #, python-format
 msgid ""
@@ -1249,6 +1285,7 @@ msgid "Text Reference"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -1257,6 +1294,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/models/account.py:0
 #, python-format
 msgid "The invoice '%s' doesn't match the related e-invoice"
@@ -1273,6 +1311,7 @@ msgid "To Register"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -1281,6 +1320,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -1294,6 +1334,7 @@ msgid "Total Price"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/models/account.py:0
 #, python-format
 msgid ""
@@ -1302,6 +1343,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -1325,6 +1367,7 @@ msgid "Unit of measure"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/models/account.py:0
 #, python-format
 msgid ""
@@ -1357,6 +1400,7 @@ msgid "Vendor invoice registration default date"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/models/account.py:0
 #: code:addons/l10n_it_fatturapa_in/models/account.py:0
 #, python-format
@@ -1381,6 +1425,7 @@ msgid "Welfare Fund"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Welfare Fund %s not present in your system."
@@ -1393,6 +1438,7 @@ msgid "Welfare Fund Data Product"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -1401,12 +1447,14 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Welfare Fund is not defined."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Welfare Fund: %s"
@@ -1423,6 +1471,7 @@ msgid "Wizard"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -1431,6 +1480,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -1445,6 +1495,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/link_to_existing_invoice.py:0
 #, python-format
 msgid "You can select only one XML file to link."
