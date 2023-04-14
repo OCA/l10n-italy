@@ -21,8 +21,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
 msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" aria-label=\"Values set here are company-specific.\" "
-"groups=\"base.group_multi_company\" role=\"img\"/>"
+"specific.\" aria-label=\"Values set here are company-specific.\" groups="
+"\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"I valori impostati qui sono "
 "specifici per azienda.\" aria-label=\"I valori impostati qui sono specifici "
@@ -32,15 +32,15 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
 msgid ""
 "<span class=\"o_form_label\">Supplier Invoices</span>\n"
-"                            <span class=\"fa fa-lg fa-building-o\" "
-"title=\"Values set here are company-specific.\" aria-label=\"Values set here "
-"are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+"                            <span class=\"fa fa-lg fa-building-o\" title="
+"\"Values set here are company-specific.\" aria-label=\"Values set here are "
+"company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
 "<span class=\"o_form_label\">Fatture fornitori</span>\n"
 "                            <span class=\"fa fa-lg fa-building-o\" title=\"I "
 "valori impostati qui sono specifici per azienda.\" aria-label=\"I valori "
-"impostati qui sono specifici per azienda.\" groups=\"base."
-"group_multi_company\" role=\"img\"/>"
+"impostati qui sono specifici per azienda.\" groups=\"base.group_multi_company"
+"\" role=\"img\"/>"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__access_token
@@ -97,6 +97,7 @@ msgid "Attachment URL"
 msgstr "URL allegato"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/models/attachment.py:0
 #, python-format
 msgid "Attachment without name"
@@ -108,6 +109,7 @@ msgid "Attachments"
 msgstr "Allegati"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, fuzzy, python-format
 msgid ""
@@ -122,6 +124,7 @@ msgstr ""
 "Nome banca: %(bank)s\n"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Bank account %s already exists"
@@ -138,6 +141,7 @@ msgid "Bill number in XML"
 msgstr "Numero fattura nell'XML"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/link_to_existing_invoice.py:0
 #, python-format
 msgid ""
@@ -150,12 +154,15 @@ msgstr ""
 "Totale imposte: {bill_tax}"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, fuzzy, python-format
 msgid ""
 "Bill total %(amount_total)s is different from document total amount "
 "%(document_total_amount)s"
-msgstr "Il totale fattura %(amount_total)s è diverso dall'importo totale del documento %(document_total_amount)s"
+msgstr ""
+"Il totale fattura %(amount_total)s è diverso dall'importo totale del "
+"documento %(document_total_amount)s"
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
@@ -204,19 +211,25 @@ msgid "Company"
 msgstr "Azienda"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, fuzzy, python-format
 msgid ""
 "Company Name field contains '%(name)s'. Your System contains '%(partner)s'"
-msgstr "Il campo nome azienda contiene \"%(name)s\", il sistema contiene \"%(partner)s\""
+msgstr ""
+"Il campo nome azienda contiene \"%(name)s\", il sistema contiene "
+"\"%(partner)s\""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, fuzzy, python-format
 msgid ""
 "Computed amount untaxed %(amount_untaxed)s is different from summary data "
 "%(summary_data)s"
-msgstr "L'imponibile calcolato %(amount_untaxed)s è diverso da quello dei dati di riepilogo %(summary_data)s"
+msgstr ""
+"L'imponibile calcolato %(amount_untaxed)s è diverso da quello dei dati di "
+"riepilogo %(summary_data)s"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model,name:l10n_it_fatturapa_in.model_res_config_settings
@@ -234,6 +247,7 @@ msgid "Contains self invoices"
 msgstr "Contiene autofatture"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Country Code %s not found in system."
@@ -267,6 +281,7 @@ msgid "Creation"
 msgstr "Creazione"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -358,10 +373,13 @@ msgid "Default products used in electronic supplier invoices"
 msgstr "Prodotti predefiniti usati nelle fatture elettroniche fornitore"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, fuzzy, python-format
 msgid "Define a purchase journal for this company: '%(name)s' (id: %(id)s)."
-msgstr "Definire un registro di acquisto per questa azienda: \"%(name)s\" (ID: %(id)s)."
+msgstr ""
+"Definire un registro di acquisto per questa azienda: \"%(name)s\" (ID: "
+"%(id)s)."
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
@@ -407,6 +425,7 @@ msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Document type %s not handled."
@@ -487,6 +506,7 @@ msgid "E-bill Inconsistencies"
 msgstr "Incongruenze e-fattura"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/models/account.py:0
 #, python-format
 msgid ""
@@ -498,12 +518,15 @@ msgstr ""
 "d'acconto\n"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/models/account.py:0
 #, fuzzy, python-format
 msgid ""
 "E-bill contains ImportoRitenuta %(amount)s but created invoice has got "
 "%(withholding_tax_amount)s\n"
-msgstr "La e-fattura contiene ImportoRitenuta %(amount)s ma la fattura creata ha %(withholding_tax_amount)s\n"
+msgstr ""
+"La e-fattura contiene ImportoRitenuta %(amount)s ma la fattura creata ha "
+"%(withholding_tax_amount)s\n"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice_line__e_invoice_descr
@@ -580,6 +603,7 @@ msgid "Electronic Bill Import"
 msgstr "Importazione fattura elettronica"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "File %s is linked to bills yet."
@@ -601,6 +625,7 @@ msgid "File Size"
 msgstr "Dimensione file"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "File is linked to bills yet."
@@ -629,6 +654,7 @@ msgid "General Data"
 msgstr "Dati generali"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Global bill discount from document general data"
@@ -751,6 +777,7 @@ msgid "Invoice Date"
 msgstr "Data fattura"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/models/account.py:0
 #, python-format
 msgid ""
@@ -919,12 +946,15 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, fuzzy, python-format
 msgid "Name field contains '%(name)s'. Your System contains '%(firstname)s'"
-msgstr "Il campo nome contiene \"%(name)s\", il sistema contiene \"%(firstname)s\""
+msgstr ""
+"Il campo nome contiene \"%(name)s\", il sistema contiene \"%(firstname)s\""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Name of Bank with BIC '%s' is not set. Can't create bank"
@@ -937,21 +967,25 @@ msgid "Nature"
 msgstr "Natura"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "No currency found with code %s."
 msgstr "Valuta con codice %s non trovata."
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, fuzzy, python-format
 msgid ""
 "No tax with percentage %(percentage)s and nature %(nature)s found. Please "
 "configure this tax."
 msgstr ""
-"Imposta con aliquota %(percentage)s e natura %(nature)s non trovata, configurare questa imposta."
+"Imposta con aliquota %(percentage)s e natura %(nature)s non trovata, "
+"configurare questa imposta."
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, fuzzy, python-format
 msgid ""
@@ -1003,18 +1037,21 @@ msgid "Other Administrative Data"
 msgstr "Altri dati gestionali"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Payment method %s is not defined in your system."
 msgstr "Modalità di pagamento %s non definita nel sistema."
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Payment method code %s is incorrect."
 msgstr "Codice modalità di pagamento %s non corretto."
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Payment method code not found in document."
@@ -1041,6 +1078,7 @@ msgid "Period Start Date"
 msgstr "Data inizio periodo"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -1082,6 +1120,7 @@ msgid "Progress data"
 msgstr "Dati stato avanzamento lavori"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Province ( %s ) not present in your system"
@@ -1098,6 +1137,7 @@ msgid "Quantity"
 msgstr "Quantità"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "REA Office Province Code ( %s ) not present in your system"
@@ -1114,6 +1154,7 @@ msgid "Recompute XML fields"
 msgstr "Ricalcola campi XML"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Register Province ( %s ) not present in your system"
@@ -1174,6 +1215,7 @@ msgid "Round Up Account"
 msgstr "Conto arrotondamenti attivi"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Round down account is not set in Accounting Settings"
@@ -1182,6 +1224,7 @@ msgstr ""
 "contabilità"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Round up account is not set in Accounting Settings"
@@ -1190,6 +1233,7 @@ msgstr ""
 "contabilità"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Round up and down tax is not set"
@@ -1202,12 +1246,14 @@ msgid "Rounding Tax"
 msgstr "Imposta arrotondamento"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Rounding down"
 msgstr "Arrotondamento passivo"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Rounding up"
@@ -1263,11 +1309,14 @@ msgid "Supplier data"
 msgstr "Dati fornitore"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, fuzzy, python-format
 msgid ""
 "Surname field contains '%(surname)s'. Your System contains '%(lastname)s'"
-msgstr "Il campo cognome contiene \"%(surname)s\", il sistema contiene \"%(lastname)s\""
+msgstr ""
+"Il campo cognome contiene \"%(surname)s\", il sistema contiene \"%(lastname)s"
+"\""
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa_in.selection__res_partner__e_invoice_detail_level__1
@@ -1275,6 +1324,7 @@ msgid "Tax Rate"
 msgstr "Aliquota fiscale"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Tax Regime %s not present in your system."
@@ -1286,6 +1336,7 @@ msgid "Tax Withholding"
 msgstr "Ritenuta d'acconto"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Tax kind %s not found"
@@ -1305,6 +1356,7 @@ msgstr ""
 "fatture."
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/models/account.py:0
 #, python-format
 msgid ""
@@ -1320,6 +1372,7 @@ msgid "Text Reference"
 msgstr "Riferimento testo"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -1330,6 +1383,7 @@ msgstr ""
 "ritenuta non è presente nel sistema, è necessario impostarla."
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/models/account.py:0
 #, python-format
 msgid "The invoice '%s' doesn't match the related e-invoice"
@@ -1346,16 +1400,19 @@ msgid "To Register"
 msgstr "Da registrare"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, fuzzy, python-format
 msgid ""
 "Too many taxes with percentage %(percentage)s and nature %(nature)s found. "
 "Tax %(tax)s with lower priority has been set on invoice lines."
 msgstr ""
-"Troppe imposte con aliquota %(percentage)s e natura %(nature)s trovate. L'imposta %(tax)s con "
-"maggiore priorità è stata impostata sulle righe fattura."
+"Troppe imposte con aliquota %(percentage)s e natura %(nature)s trovate. "
+"L'imposta %(tax)s con maggiore priorità è stata impostata sulle righe "
+"fattura."
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -1371,6 +1428,7 @@ msgid "Total Price"
 msgstr "Prezzo totale"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/models/account.py:0
 #, python-format
 msgid ""
@@ -1381,6 +1439,7 @@ msgstr ""
 "della fattura elettronica ({e_bill_amount_total})"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, fuzzy, python-format
 msgid ""
@@ -1406,6 +1465,7 @@ msgid "Unit of measure"
 msgstr "Unità di misura"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/models/account.py:0
 #, python-format
 msgid ""
@@ -1443,6 +1503,7 @@ msgid "Vendor invoice registration default date"
 msgstr "Data predefinita per la registrazione delle fatture fornitore"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/models/account.py:0
 #, python-format
 msgid ""
@@ -1468,6 +1529,7 @@ msgid "Welfare Fund"
 msgstr "Cassa previdenziale"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Welfare Fund %s not present in your system."
@@ -1480,6 +1542,7 @@ msgid "Welfare Fund Data Product"
 msgstr "Prodotto per dati cassa previdenziale"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -1490,12 +1553,14 @@ msgstr ""
 "presenti nel sistema."
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Welfare Fund is not defined."
 msgstr "Cassa previdenziale non definita."
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Welfare Fund: %s"
@@ -1512,16 +1577,18 @@ msgid "Wizard"
 msgstr "Procedura guidata"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, fuzzy, python-format
 msgid ""
 "XML contains tax %(line_tax)s. Product %(product)s has tax %(new_tax)s. "
 "Using the XML one"
 msgstr ""
-"Il file XML contiene l'imposta %(line_tax)s. il prodotto %(product)s ha l'imposta %(new_tax)s. Sta "
-"usando quello XML"
+"Il file XML contiene l'imposta %(line_tax)s. il prodotto %(product)s ha "
+"l'imposta %(new_tax)s. Sta usando quello XML"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -1540,6 +1607,7 @@ msgstr ""
 "collegamento Internet al file."
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/link_to_existing_invoice.py:0
 #, python-format
 msgid "You can select only one XML file to link."
