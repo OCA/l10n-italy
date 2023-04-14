@@ -309,7 +309,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                 <DatiAnagrafici>
                     <t
                         t-set="id_fiscale_iva"
-                        t-value="get_id_fiscale_iva(partner_id)"
+                        t-value="get_id_fiscale_iva(partner_id.commercial_partner_id)"
                     />
                     <IdFiscaleIVA>
                         <IdPaese t-esc="id_fiscale_iva['id_paese']" />
