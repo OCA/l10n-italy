@@ -511,6 +511,7 @@ class TestIntrastatStatement(TransactionCase):
         move_form.invoice_date = invoice_date or fields.Date.from_string("2019-01-01")
         move_form.partner_id = partner or self.partner_a
         move_form.intrastat = True
+        move_form.invoice_date = fields.Date.today()
 
         with move_form.invoice_line_ids.new() as line_form:
             line_form.product_id = product

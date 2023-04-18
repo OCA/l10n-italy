@@ -50,7 +50,9 @@ class IntrastatStatementSection(models.AbstractModel):
 
         # Amounts
         amount_euro = statement_id.round_min_amount(
-            inv_intra_line.amount_euro, statement_id.company_id or company_id, 0
+            inv_intra_line.invoice_id.amount_untaxed,
+            statement_id.company_id or company_id,
+            0,
         )
 
         return {
