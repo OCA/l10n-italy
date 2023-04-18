@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-21 10:38+0000\n"
-"PO-Revision-Date: 2021-12-19 12:39+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2023-04-18 23:01+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_it_account
 #: model_terms:ir.ui.view,arch_db:l10n_it_account.internal_layout
@@ -23,6 +23,8 @@ msgid ""
 "<br/>\n"
 "                    <span class=\"text-right\">TIN: </span>"
 msgstr ""
+"<br/>\n"
+"                    <span class=\"text-right\">IVA: </span>"
 
 #. module: l10n_it_account
 #: model_terms:ir.ui.view,arch_db:l10n_it_account.internal_layout
@@ -30,6 +32,8 @@ msgid ""
 "<span> / </span>\n"
 "                    <span class=\"page\"/>"
 msgstr ""
+"<span> / </span>\n"
+"                    <span class=\"page\"/>"
 
 #. module: l10n_it_account
 #: model:ir.model,name:l10n_it_account.model_account_account
@@ -79,7 +83,7 @@ msgstr "Intervalli date"
 #. module: l10n_it_account
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__deductible_balance
 msgid "Deductible Balance"
-msgstr ""
+msgstr "Saldo deducibile"
 
 #. module: l10n_it_account
 #: model:ir.ui.menu,name:l10n_it_account.menu_date_range_generator_action
@@ -131,7 +135,7 @@ msgstr "Imposta"
 #. module: l10n_it_account
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__undeductible_balance
 msgid "Undeductible Balance"
-msgstr ""
+msgstr "Saldo non deducibile"
 
 #. module: l10n_it_account
 #: model:ir.model.fields,help:l10n_it_account.field_account_tax__cee_type
