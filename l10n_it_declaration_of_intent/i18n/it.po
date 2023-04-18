@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-15 14:06+0000\n"
-"PO-Revision-Date: 2023-04-17 22:58+0000\n"
+"PO-Revision-Date: 2023-04-18 23:01+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -326,6 +326,8 @@ msgid ""
 "Limit passed for declaration {number}.\n"
 "Excess value: {symbol}{available_amount}"
 msgstr ""
+"Limite superato per dichiarazione {number}.\n"
+"Valore in eccesso: {symbol}{available_amount}"
 
 #. module: l10n_it_declaration_of_intent
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration__line_ids
@@ -351,12 +353,12 @@ msgstr "Numero documento del partner"
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration__partner_id
 #: model_terms:ir.ui.view,arch_db:l10n_it_declaration_of_intent.declaration_of_intent_search
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: l10n_it_declaration_of_intent
 #: model:ir.model,name:l10n_it_declaration_of_intent.model_product_product
 msgid "Product Variant"
-msgstr ""
+msgstr "Variante prodotto"
 
 #. module: l10n_it_declaration_of_intent
 #: model:ir.model.fields.selection,name:l10n_it_declaration_of_intent.selection__l10n_it_declaration_of_intent_declaration__type__out
@@ -366,7 +368,7 @@ msgstr "Ricevuta da clienti"
 #. module: l10n_it_declaration_of_intent
 #: model_terms:ir.ui.view,arch_db:l10n_it_declaration_of_intent.declaration_of_intent_form
 msgid "Refs"
-msgstr ""
+msgstr "Rif."
 
 #. module: l10n_it_declaration_of_intent
 #: model:ir.model,name:l10n_it_declaration_of_intent.model_sale_order
