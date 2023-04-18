@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-22 16:00+0000\n"
-"PO-Revision-Date: 2023-04-08 22:38+0000\n"
+"PO-Revision-Date: 2023-04-18 11:26+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -272,7 +272,7 @@ msgstr "Ultima modifica il"
 #. module: l10n_it_asset_history_import
 #: model:ir.model.fields,field_description:l10n_it_asset_history_import.field_wizard_asset_history_import__write_uid
 msgid "Last Updated by"
-msgstr "Ultima modifica di"
+msgstr "Ultimo aggiornamento di"
 
 #. module: l10n_it_asset_history_import
 #: model:ir.model.fields,field_description:l10n_it_asset_history_import.field_wizard_asset_history_import__write_date
