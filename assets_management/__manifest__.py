@@ -17,8 +17,8 @@
         "mail",
     ],
     "data": [
-        "security/ir.model.access.csv",
         "security/res_groups.xml",
+        "security/ir.model.access.csv",
         "security/rules.xml",
         "data/ir_cron.xml",
         "data/asset_data.xml",
