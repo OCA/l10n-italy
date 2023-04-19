@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-15 14:06+0000\n"
-"PO-Revision-Date: 2023-04-17 22:56+0000\n"
+"PO-Revision-Date: 2023-04-19 15:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -379,7 +379,7 @@ msgstr "Ricevuta da clienti"
 #. module: l10n_it_declaration_of_intent
 #: model_terms:ir.ui.view,arch_db:l10n_it_declaration_of_intent.declaration_of_intent_form
 msgid "Refs"
-msgstr ""
+msgstr "Rif."
 
 #. module: l10n_it_declaration_of_intent
 #: model:ir.model,name:l10n_it_declaration_of_intent.model_sale_order
