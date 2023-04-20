@@ -87,15 +87,7 @@ Creare il conto 'Transitorio autofatturazione':
   :alt: conto transitorio Autofattura
   :width: 600 px
 
-Il 'Registro pagamento autofattura' deve essere configurato con il conto 'Transitorio autofatturazione' appena creato:
-
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/registro_riconciliazione.png
-  :alt: Registro pagamento autofattura
-  :width: 600 px
-
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/registro_riconciliazione_2.png
-  :alt: Registro pagamento autofattura (tab Configurazione)
-  :width: 600 px
+Creare il registro 'Riconciliazione RC' di tipo Varie.
 
 Modificare il tipo inversione contabile **Intra-UE (autofattura)**:
 
@@ -162,15 +154,7 @@ Create the account 'Self Invoice Transitory' as follows:
   :alt: Self Invoice Transitory Account
   :width: 600 px
 
-The 'Self Invoice Payment' Journal has to be configured with the just created 'Self Invoice Transitory' account:
-
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/registro_riconciliazione.png
-  :alt: Registro pagamento autofattura
-  :width: 600 px
-
-.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/14.0/l10n_it_reverse_charge/static/description/registro_riconciliazione_2.png
-  :alt: Registro pagamento autofattura (tab Configurazione)
-  :width: 600 px
+Create the 'RC Reconciliation' Journal of type Miscellaneous.
 
 Edit the reverse charge type **Intra-EU (self-invoice)**:
 
@@ -237,6 +221,10 @@ Contributors
 * `Ooops <https://www.ooops404.com>`_:
 
    * Giovanni Serra <giovanni@gslab.it>
+
+* `TAKOBI <https://takobi.online>`_:
+
+  * Simone Rubino <sir@takobi.online>
 
 Maintainers
 ~~~~~~~~~~~
