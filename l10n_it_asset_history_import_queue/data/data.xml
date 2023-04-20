@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <data noupdate="1">
+        <record id="channel_asset_history_import" model="queue.job.channel">
+            <field name="name">asset_history_import</field>
+            <field name="parent_id" ref="queue_job.channel_root" />
+        </record>
+        <record id="job_function_import_file_queued" model="queue.job.function">
+            <field
+                name="model_id"
+                ref="l10n_it_asset_history_import_queue.model_wizard_asset_history_import"
+            />
+            <field name="method">import_file_queued</field>
+            <field name="retry_pattern" eval="{1: 90, 2: 180, 3: 270, 5: 360}" />
+        </record>
+    </data>
+</odoo>
