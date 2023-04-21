@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-12 11:04+0000\n"
-"PO-Revision-Date: 2019-12-21 15:02+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2023-04-21 13:42+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__additional_units_required
@@ -121,7 +121,7 @@ msgstr "Annulla"
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4__cancellation
 msgid "Cancellation"
-msgstr ""
+msgstr "Annullamento"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields.selection,name:l10n_it_intrastat_statement.selection__account_intrastat_statement__special_cases__8
@@ -142,7 +142,7 @@ msgstr "Cambio periodicità: nel trimestrale solo operazioni del primo mese"
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields.selection,name:l10n_it_intrastat_statement.selection__account_intrastat_export_file__state__choose
 msgid "Choose"
-msgstr ""
+msgstr "Scegli"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
@@ -267,12 +267,12 @@ msgstr "Nome visualizzato"
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,help:l10n_it_intrastat_statement.field_account_intrastat_statement__exclude_optional_column_sect_1_3
 msgid "Exclude supplier country, TIN and currency amount from statement"
-msgstr ""
+msgstr "Escludere nazione fornitore, IVA e valore valuta dalla dichiarazione"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__exclude_optional_column_sect_1_3
 msgid "Exclude supplier data"
-msgstr ""
+msgstr "Escludere dati fornitore"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
@@ -352,7 +352,7 @@ msgstr "Fiscale"
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields.selection,name:l10n_it_intrastat_statement.selection__account_intrastat_export_file__state__get
 msgid "Get"
-msgstr ""
+msgstr "Ottieni"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields.selection,name:l10n_it_intrastat_statement.selection__account_intrastat_statement__intrastat_code_type__good
@@ -860,7 +860,7 @@ msgstr "Numero operazioni - Cessioni sezione 4"
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section1__country_origin_id
 msgid "Origin Country"
-msgstr ""
+msgstr "Paese d'origine"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section1__province_origin_id
@@ -1102,13 +1102,13 @@ msgstr "Sequenza dichiarazione cessioni"
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_section.py:0
 #, python-format
 msgid "Section number must be overridden by every section"
-msgstr ""
+msgstr "Il numero di sezione deve essere sostituito da ogni sezione"
 
 #. module: l10n_it_intrastat_statement
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_section.py:0
 #, python-format
 msgid "Section type must be overridden by every section"
-msgstr ""
+msgstr "Il tipo di sezione deve essere sostituito da ogni sezione"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields.selection,name:l10n_it_intrastat_statement.selection__account_intrastat_statement__intrastat_code_type__service
@@ -1257,7 +1257,7 @@ msgstr "Partita IVA contribuente"
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,help:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4__cancellation
 msgid "The Adjustment is intended for cancellation"
-msgstr ""
+msgstr "La rettifica si intende per annullamento"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.view_tree_statement_purchase_section1
@@ -1283,7 +1283,7 @@ msgstr "Natura transazione"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__transaction_nature_b_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section1__transaction_nature_b_id
 msgid "Transaction Nature B"
-msgstr ""
+msgstr "Transazione Natura B"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__transport_code_id
@@ -1294,7 +1294,7 @@ msgstr "Modalità di trasporto"
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section1__triangulation
 msgid "Triangulation"
-msgstr ""
+msgstr "Triangolazione"
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,help:l10n_it_intrastat_statement.field_account_intrastat_statement__period_number
