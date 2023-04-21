@@ -170,7 +170,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                 t-call="l10n_it_fatturapa_out.account_invoice_line_it_sconto_maggiorazione"
             />
                 <PrezzoTotale
-                t-out="format_monetary(fpa_to_eur(line.price_subtotal, record), euro)"
+                t-out="format_monetary(fpa_to_eur(line.price_subtotal, line=line, field='credit'), euro)"
             />
                 <AliquotaIVA
                 t-if="not line_is_section_note"
@@ -534,7 +534,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     />
                         <ImportoTotaleDocumento
                         t-if="not record.company_id.xml_divisa_value == 'keep_orig'"
-                        t-out="format_numbers_two(fpa_to_eur(get_importo_totale(record), record))"
+                        t-out="format_numbers_two(fpa_to_eur(get_importo_totale(record), invoice=record))"
                     />
                         <!--                        <Arrotondamento t-out=""/>-->
                         <t t-foreach="get_causale(record)" t-as="causale">
@@ -580,10 +580,10 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                               <!--                <SpeseAccessorie t-out=""/>-->
                               <!--                <Arrotondamento t-out=""/>-->
                               <ImponibileImporto
-                            t-out="format_monetary(fpa_to_eur(tax_data['ImponibileImporto'], record), euro)"
+                            t-out="format_monetary(fpa_to_eur(tax_data['ImponibileImporto'], invoice=record), euro)"
                         />
                               <Imposta
-                            t-out="format_monetary(fpa_to_eur(tax_data['Imposta'], record), euro)"
+                            t-out="format_monetary(fpa_to_eur(tax_data['Imposta'], invoice=record), euro)"
                         />
                                 <EsigibilitaIVA
                             t-if="tax_data.get('EsigibilitaIVA', False)"
@@ -628,7 +628,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                         />
                             <ImportoPagamento
                             t-if="not record.company_id.xml_divisa_value == 'keep_orig'"
-                            t-out="format_numbers_two(fpa_to_eur(payment.amount_currency or payment.debit, record))"
+                            t-out="format_numbers_two(fpa_to_eur(payment.amount_currency or payment.debit, invoice=record))"
                         />
 
                             <!--                            <CodUfficioPostale t-out=""/>-->
