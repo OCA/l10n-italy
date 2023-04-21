@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-11 07:51+0000\n"
-"PO-Revision-Date: 2023-04-19 15:34+0000\n"
+"PO-Revision-Date: 2023-04-21 14:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -177,7 +177,7 @@ msgstr "Esportazione DatiCassa"
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__daticassprev_tax_id
 msgid "Daticassprev Tax"
-msgstr ""
+msgstr "Aliquota DatiCassaPrev"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax__display_name
@@ -216,7 +216,7 @@ msgstr "Errore! Le aliquote sono obbligatorie"
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
 #, python-format
 msgid "Error! You cannot have 2 rates that overlap!"
-msgstr "Errore, due aliquote non possono sovrapporsi."
+msgstr "Errore, due aliquote non possono sovrapporsi!"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model,name:l10n_it_withholding_tax.model_account_fiscal_position
@@ -246,13 +246,13 @@ msgstr "ID"
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields.selection,name:l10n_it_withholding_tax.selection__withholding_tax_statement__wt_type__in
 msgid "In"
-msgstr ""
+msgstr "Rettifica positiva"
 
 #. module: l10n_it_withholding_tax
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
 msgid "In type"
-msgstr ""
+msgstr "Tipo rettifica positiva"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields.selection,name:l10n_it_withholding_tax.selection__withholding_tax__wt_types__inps
@@ -334,6 +334,8 @@ msgid ""
 "Move {0.display_name} is reconciled ({0.full_reconcile_id.display_name}). "
 "You must unreconcile it first"
 msgstr ""
+"Il movimento {0.display_name} è riconciliato ({0.full_reconcile_id."
+"display_name}). Bisogna prima renderlo non riconciliato"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_statement__move_ids
@@ -365,13 +367,13 @@ msgstr "Altro"
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields.selection,name:l10n_it_withholding_tax.selection__withholding_tax_statement__wt_type__out
 msgid "Out"
-msgstr ""
+msgstr "Rettifica negativa"
 
 #. module: l10n_it_withholding_tax
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
 msgid "Out type"
-msgstr ""
+msgstr "Tipo rettifica negativa"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields.selection,name:l10n_it_withholding_tax.selection__withholding_tax_move__state__paid
@@ -454,6 +456,8 @@ msgid ""
 "Setting this, while exporting e-invoice XML, data will be also added to "
 "DatiCassaPrevidenziale"
 msgstr ""
+"Impostando questo, nell'esportazione dell'XML della fattura elettronica i "
+"dati verranno aggiunti anche a DatiCassaPrevidenziale"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_bank_statement_line__withholding_tax_in_print
@@ -584,14 +588,14 @@ msgstr "Riconciliazione RdA"
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
 #, python-format
 msgid "WT {0} - {1}"
-msgstr ""
+msgstr "RA {0} - {1}"
 
 #. module: l10n_it_withholding_tax
 #. odoo-python
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
 #, python-format
 msgid "WT {0} - {1} - {2}"
-msgstr ""
+msgstr "RA {0} - {1} - {2}"
 
 #. module: l10n_it_withholding_tax
 #. odoo-python
@@ -618,6 +622,8 @@ msgstr "Attenzione, movimento contabile RdA già esistente: %s"
 #, python-format
 msgid "Warning! You can not delete withholding tax move in state: {}"
 msgstr ""
+"Attenzione! Non si può cancellare il movimento della ritenuta d'acconto in "
+"stato: {}"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.actions.act_window,name:l10n_it_withholding_tax.action_withholding_tax
