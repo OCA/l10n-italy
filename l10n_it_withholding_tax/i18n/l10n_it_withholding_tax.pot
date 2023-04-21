@@ -374,7 +374,7 @@ msgstr ""
 
 #. module: l10n_it_withholding_tax
 #. odoo-javascript
-#: code:addons/l10n_it_withholding_tax/static/src/xml/account_payment.xml:0
+#: code:addons/l10n_it_withholding_tax/static/src/components/account_payment_field/account_payment.xml:0
 #, python-format
 msgid "Paid on"
 msgstr ""
@@ -531,7 +531,7 @@ msgstr ""
 
 #. module: l10n_it_withholding_tax
 #. odoo-javascript
-#: code:addons/l10n_it_withholding_tax/static/src/xml/account_payment.xml:0
+#: code:addons/l10n_it_withholding_tax/static/src/components/account_payment_field/account_payment.xml:0
 #, python-format
 msgid "W.T. Reg. on"
 msgstr ""
