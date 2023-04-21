@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-24 15:03+0000\n"
-"PO-Revision-Date: 2021-05-06 21:47+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2023-04-21 14:34+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_it_account_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings_stamp
@@ -26,6 +26,12 @@ msgid ""
 "\"Values set here are company-specific.\" aria-label=\"Values set here are "
 "company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
+"<span class=\"o_form_label\">Configurazione per l'imposta di bollo\n"
+"                             </span>\n"
+"                            <span class=\"fa fa-lg fa-building-o\" title=\"I "
+"valori impostati qui sono specifici per azienda.\" aria-label=\"I valori "
+"impostati qui sono specifici per azienda.\" groups=\"base."
+"group_multi_company\" role=\"img\"/>"
 
 #. module: l10n_it_account_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.account_move_form_stamp
@@ -70,11 +76,15 @@ msgid ""
 "used to determine\n"
 "                        the application of the account stamp."
 msgstr ""
+"La base imponibile di ogni conto imposta individuato fra quelli sopra "
+"elencati verrà sommata e utilizzata, \n"
+"                        all'interno di ciascuna fattura, per determinare "
+"l'applicabilità della marca da bollo."
 
 #. module: l10n_it_account_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move_line__is_stamp_line
 msgid "Is Stamp Line"
-msgstr ""
+msgstr "È una riga di bollo"
 
 #. module: l10n_it_account_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__is_stamp
@@ -85,12 +95,12 @@ msgstr "È un bollo"
 #. module: l10n_it_account_stamp
 #: model:ir.model,name:l10n_it_account_stamp.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Registrazione contabile"
 
 #. module: l10n_it_account_stamp
 #: model:ir.model,name:l10n_it_account_stamp.model_account_move_line
 msgid "Journal Item"
-msgstr ""
+msgstr "Movimento contabile"
 
 #. module: l10n_it_account_stamp
 #. odoo-python
@@ -109,7 +119,7 @@ msgstr "Prodotto imposta di bollo mancante nelle impostazioni dell'azienda!"
 #. module: l10n_it_account_stamp
 #: model:ir.model,name:l10n_it_account_stamp.model_product_template
 msgid "Product"
-msgstr ""
+msgstr "Prodotto"
 
 #. module: l10n_it_account_stamp
 #. odoo-python
@@ -143,6 +153,10 @@ msgid ""
 "            17, 2014\n"
 "        "
 msgstr ""
+"Assolvimento dell’imposta di bollo ai sensi dell’articolo 6, comma 2, del D."
+"M.\n"
+"            17 giugno 2014\n"
+"        "
 
 #. module: l10n_it_account_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__stamp_apply_tax_ids
