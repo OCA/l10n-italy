@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-09 20:32+0000\n"
-"PO-Revision-Date: 2023-04-21 11:33+0000\n"
+"PO-Revision-Date: 2023-04-21 14:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -111,7 +111,7 @@ msgstr "Allegati"
 #. module: l10n_it_fatturapa_in
 #. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "BIC is required and not exist in Xml\n"
 "Curr bank data is: \n"
@@ -156,7 +156,7 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Bill total %(amount_total)s is different from document total amount "
 "%(document_total_amount)s"
@@ -213,17 +213,17 @@ msgstr "Azienda"
 #. module: l10n_it_fatturapa_in
 #. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Company Name field contains '%(name)s'. Your System contains '%(partner)s'"
 msgstr ""
-"Il campo nome azienda contiene \"%(name)s\", il sistema contiene "
-"\"%(partner)s\""
+"Il campo nome azienda contiene \"%(name)s\", il sistema contiene \"%(partner)"
+"s\""
 
 #. module: l10n_it_fatturapa_in
 #. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Computed amount untaxed %(amount_untaxed)s is different from summary data "
 "%(summary_data)s"
@@ -375,10 +375,10 @@ msgstr "Prodotti predefiniti usati nelle fatture elettroniche fornitore"
 #. module: l10n_it_fatturapa_in
 #. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
-#, fuzzy, python-format
+#, python-format
 msgid "Define a purchase journal for this company: '%(name)s' (id: %(id)s)."
 msgstr ""
-"Definire un registro di acquisto per questa azienda: \"%(name)s\" (ID: "
+"Definire un registro di acquisto per questa azienda: \"%(name)s\" (Id: "
 "%(id)s)."
 
 #. module: l10n_it_fatturapa_in
@@ -520,7 +520,7 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #. odoo-python
 #: code:addons/l10n_it_fatturapa_in/models/account.py:0
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "E-bill contains ImportoRitenuta %(amount)s but created invoice has got "
 "%(withholding_tax_amount)s\n"
@@ -662,9 +662,8 @@ msgstr "Sconto globale fattura dai dati generali del documento"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__has_message
-#, fuzzy
 msgid "Has Message"
-msgstr "Messaggi"
+msgstr "Ha un messaggio"
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
@@ -948,7 +947,7 @@ msgstr "Nome"
 #. module: l10n_it_fatturapa_in
 #. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
-#, fuzzy, python-format
+#, python-format
 msgid "Name field contains '%(name)s'. Your System contains '%(firstname)s'"
 msgstr ""
 "Il campo nome contiene \"%(name)s\", il sistema contiene \"%(firstname)s\""
@@ -976,24 +975,24 @@ msgstr "Valuta con codice %s non trovata."
 #. module: l10n_it_fatturapa_in
 #. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "No tax with percentage %(percentage)s and nature %(nature)s found. Please "
 "configure this tax."
 msgstr ""
-"Imposta con aliquota %(percentage)s e natura %(nature)s non trovata, "
-"configurare questa imposta."
+"Imposta con aliquota %(percentage)s e natura %(nature)s non trovata. "
+"Configurare questa imposta."
 
 #. module: l10n_it_fatturapa_in
 #. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "No withholding tax found with document payment reason %(reason)s rate "
 "%(rate)s and type %(type)s."
 msgstr ""
-"Non è stata trovata alcuna ritenuta d'acconto per il documento con causale "
-"di pagamento %(reason)s, aliquota %(rate)s e tipologia %(type)s."
+"Non è stata trovata alcuna ritenuta d'acconto con causale di pagamento "
+"%(reason)s, aliquota %(rate)s e tipologia %(type)s."
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data__num_ref
@@ -1311,12 +1310,12 @@ msgstr "Dati fornitore"
 #. module: l10n_it_fatturapa_in
 #. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Surname field contains '%(surname)s'. Your System contains '%(lastname)s'"
 msgstr ""
-"Il campo cognome contiene \"%(surname)s\", il sistema contiene \"%(lastname)s"
-"\""
+"Il campo cognome contiene \"%(surname)s\". Il sistema contiene \"%(lastname)"
+"s\""
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa_in.selection__res_partner__e_invoice_detail_level__1
@@ -1402,14 +1401,13 @@ msgstr "Da registrare"
 #. module: l10n_it_fatturapa_in
 #. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Too many taxes with percentage %(percentage)s and nature %(nature)s found. "
 "Tax %(tax)s with lower priority has been set on invoice lines."
 msgstr ""
-"Troppe imposte con aliquota %(percentage)s e natura %(nature)s trovate. "
-"L'imposta %(tax)s con maggiore priorità è stata impostata sulle righe "
-"fattura."
+"Trovate troppe imposte con aliquota %(percentage)s e natura %(nature)s. "
+"L'imposta %(tax)s con minore priorità è stata impostata sulle righe fattura."
 
 #. module: l10n_it_fatturapa_in
 #. odoo-python
@@ -1441,7 +1439,7 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Two distinct partners with VAT number %(vat)s or Fiscal Code %(fiscalcode)s "
 "already present in db."
@@ -1579,12 +1577,12 @@ msgstr "Procedura guidata"
 #. module: l10n_it_fatturapa_in
 #. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "XML contains tax %(line_tax)s. Product %(product)s has tax %(new_tax)s. "
 "Using the XML one"
 msgstr ""
-"Il file XML contiene l'imposta %(line_tax)s. il prodotto %(product)s ha "
+"Il file XML contiene l'imposta %(line_tax)s. Il prodotto %(product)s ha "
 "l'imposta %(new_tax)s. Sta usando quello XML"
 
 #. module: l10n_it_fatturapa_in
