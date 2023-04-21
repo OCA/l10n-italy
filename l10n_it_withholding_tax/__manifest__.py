@@ -21,9 +21,11 @@
         "security/ir.model.access.csv",
         "security/security.xml",
     ],
-    "qweb": [
-        "static/src/xml/account_payment.xml",
-    ],
+    "assets": {
+        "web.assets_backend": [
+            "l10n_it_withholding_tax/static/src/components/**/*",
+        ],
+    },
     "installable": True,
     "development_status": "Beta",
 }

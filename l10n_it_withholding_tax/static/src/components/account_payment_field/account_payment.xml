@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-inherit="account.AccountPaymentField" t-inherit-mode="extension" owl="1">
+        <xpath expr="//i[hasclass('o_payment_label')]" position="replace">
+            <t t-if="line.wt_move_line">
+                <i class="o_field_widget text-start o_payment_label">W.T. Reg. on <t
+                        t-esc="line.date"
+                    /></i>
+            </t>
+            <t t-if="!line.wt_move_line">
+                <i class="o_field_widget text-start o_payment_label">Paid on <t
+                        t-esc="line.date"
+                    /></i>
+            </t>
+        </xpath>
+    </t>
+</templates>
