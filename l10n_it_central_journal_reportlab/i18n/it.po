@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-04-19 15:34+0000\n"
+"PO-Revision-Date: 2023-04-21 13:42+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -330,7 +330,7 @@ msgstr "Valore stampato nel piè di pagina vicino al numero pagina"
 #. module: l10n_it_central_journal_reportlab
 #: model:ir.model,name:l10n_it_central_journal_reportlab.model_wizard_giornale_reportlab
 msgid "Wizard journal report with reportlab"
-msgstr ""
+msgstr "Procedura guidata resoconto registro con ReportLab"
 
 #. module: l10n_it_central_journal_reportlab
 #: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_wizard_giornale_reportlab__year_footer
