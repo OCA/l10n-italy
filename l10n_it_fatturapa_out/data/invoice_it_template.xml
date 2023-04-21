@@ -219,27 +219,6 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
             </DettaglioLinee>
         </template>
 
-        <template id="account_invoice_line_it_dati_riepilogo">
-            <t t-set="tax" t-value="tax_line.tax_line_id" />
-            <DatiRiepilogo>
-                <!--2.2.2-->
-                <AliquotaIVA t-out="format_numbers(tax.amount)" />
-                <Natura t-if="tax.kind_id.code" t-out="tax.kind_id.code" />
-                <!--                <SpeseAccessorie t-out=""/>-->
-                <!--                <Arrotondamento t-out=""/>-->
-                <ImponibileImporto
-                t-out="format_monetary(fpa_to_eur(tax_line.tax_base_amount, record), euro)"
-            />
-                <Imposta
-                t-out="format_monetary(fpa_to_eur(tax_line.price_total, record), euro)"
-            />
-                <EsigibilitaIVA t-if="tax.payability" t-out="tax.payability" />
-                <RiferimentoNormativo
-                t-if="tax.law_reference"
-                t-out="encode_for_export(tax.law_reference, 100)"
-            />
-            </DatiRiepilogo>
-        </template>
         <template id="account_invoice_it_FatturaPA_sede">
             <t t-set="indirizzo"><t
                 t-if="partner_id.street2"
