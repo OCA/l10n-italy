@@ -93,6 +93,7 @@ msgid "Accounting"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_configuration_form
 #: selection:riba.configuration,type:0
 msgid "After Collection"
 msgstr ""
