@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-24 16:24+0000\n"
-"PO-Revision-Date: 2021-09-09 08:33+0000\n"
-"Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
+"PO-Revision-Date: 2023-04-26 16:05+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_it_fatturapa_out_ddt
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out_ddt.field_res_company__auto_set_deferred_invoice_type
@@ -74,7 +74,7 @@ msgstr "Includere dati trasporto"
 #. module: l10n_it_fatturapa_out_ddt
 #: model:ir.model,name:l10n_it_fatturapa_out_ddt.model_stock_picking_package_preparation
 msgid "Package Preparation"
-msgstr ""
+msgstr "Preparazione pacco"
 
 #. module: l10n_it_fatturapa_out_ddt
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out_ddt.field_wizard_export_fatturapa__include_ddt_data
