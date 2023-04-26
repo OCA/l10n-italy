@@ -16,14 +16,13 @@ msgstr ""
 #. module: l10n_it_pos_fiscalcode
 #. openerp-web
 #: code:addons/l10n_it_pos_fiscalcode/static/src/xml/pos.xml:0
-#: code:addons/l10n_it_pos_fiscalcode/static/src/xml/pos.xml:0
 #, python-format
 msgid "F.C."
 msgstr ""
 
 #. module: l10n_it_pos_fiscalcode
 #. openerp-web
-#: code:addons/l10n_it_pos_fiscalcode/static/src/xml/pos.xml:0
+#: code:addons/l10n_it_pos_fiscalcode/static/src/js/screens.js:0
 #, python-format
-msgid "N/A"
+msgid "The Fiscal code doesn't seem to be correct"
 msgstr ""
