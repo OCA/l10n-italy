@@ -39,10 +39,6 @@
     </CedentePrestatore>
     <CessionarioCommittente>
       <DatiAnagrafici>
-        <IdFiscaleIVA>
-          <IdPaese>IT</IdPaese>
-          <IdCodice>99999999999</IdCodice>
-        </IdFiscaleIVA>
         <CodiceFiscale>RSSMRA30A01H501I</CodiceFiscale>
         <Anagrafica>
           <Nome>B2C</Nome>

@@ -115,6 +115,8 @@ class EFatturaOut:
                     id_codice = partner.vat[2:]
                 else:
                     id_codice = partner.vat
+            elif partner.fiscalcode or id_paese == "IT":
+                id_codice = False
             else:
                 id_codice = "99999999999"
 
