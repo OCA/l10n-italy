@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-15 09:38+0000\n"
-"PO-Revision-Date: 2020-05-28 19:19+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2023-04-26 11:34+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: fiscal_epos_print
 #. openerp-web
@@ -172,14 +172,14 @@ msgstr "Index pagamento elettronico / ticket"
 #: code:addons/fiscal_epos_print/static/src/xml/pos.xml:87
 #, python-format
 msgid "Epson ePOS"
-msgstr "Epson ePOS"
+msgstr "ePOS Epson"
 
 #. module: fiscal_epos_print
 #. openerp-web
 #: code:addons/fiscal_epos_print/static/src/xml/pos.xml:6
 #, python-format
 msgid "Epson ePOS Operation"
-msgstr "Operazione Epson ePOS"
+msgstr "Operazione ePOS Epson"
 
 #. module: fiscal_epos_print
 #. openerp-web
@@ -522,7 +522,7 @@ msgstr ""
 #: code:addons/fiscal_epos_print/static/src/xml/pos.xml:66
 #, python-format
 msgid "RT Serial"
-msgstr "Seriale RT"
+msgstr "Seriale REA"
 
 #. module: fiscal_epos_print
 #: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_pos_pos_form_refund_info
@@ -565,7 +565,7 @@ msgstr "Reso >>> "
 #. module: fiscal_epos_print
 #: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__refund_cash_fiscal_serial
 msgid "Refund Cash Serial"
-msgstr "Matricola RT"
+msgstr "Matricola REA"
 
 #. module: fiscal_epos_print
 #. openerp-web
