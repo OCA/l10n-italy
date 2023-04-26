@@ -1,4 +1,6 @@
 # Copyright 2018 Lorenzo Battistini (https://github.com/eLBati)
+# Copyright 2023 Simone Rubino - TAKOBI
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import time
 from datetime import date, timedelta
@@ -295,3 +297,60 @@ class TestWithholdingTax(TransactionCase):
         payment_register.with_context(
             default_move_type="in_invoice"
         ).action_create_payments()
+
+    def _get_statements(self, move):
+        """Get statements linked to `move`."""
+        statements = self.env["withholding.tax.statement"].search(
+            [
+                ("move_id", "=", move.id),
+            ],
+        )
+        return statements
+
+    def _assert_recreate_statements(self, move, statements_count):
+        """Post a `move` that is Withholding Tax and has no statements,
+        it creates `statements_count` statements."""
+        # Arrange
+        statements = self._get_statements(move)
+        # pre-condition
+        self.assertFalse(statements)
+        self.assertTrue(move.withholding_tax)
+
+        # Act
+        move.action_post()
+
+        # Assert
+        posted_move_statements_count = len(self._get_statements(move))
+        self.assertEqual(posted_move_statements_count, statements_count)
+
+    def test_draft_recreate_statements(self):
+        """Set to draft and re-confirm a move: the Tax Statements are recreated."""
+        # Arrange
+        move = self.invoice
+        statements = self._get_statements(move)
+        statements_count = len(statements)
+        # pre-condition: There is a statement(s)
+        self.assertTrue(statements)
+
+        # Act
+        move.button_draft()
+
+        # Assert: The original statement is deleted and there are no statements
+        self.assertFalse(statements.exists())
+        self._assert_recreate_statements(move, statements_count)
+
+    def test_cancel_recreate_statements(self):
+        """Cancel and re-confirm a move: the Tax Statements are recreated."""
+        # Arrange
+        move = self.invoice
+        statements = self._get_statements(move)
+        statements_count = len(statements)
+        # pre-condition: There is a statement(s)
+        self.assertTrue(statements)
+
+        # Act
+        move.button_cancel()
+
+        # Assert: The original statement is deleted and there are no statements
+        self.assertFalse(statements.exists())
+        self._assert_recreate_statements(move, statements_count)
