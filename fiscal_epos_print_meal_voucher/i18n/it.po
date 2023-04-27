@@ -6,20 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-07-19 12:49+0000\n"
-"Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
+"PO-Revision-Date: 2023-04-27 14:34+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: fiscal_epos_print_meal_voucher
 #: model_terms:ir.ui.view,arch_db:fiscal_epos_print_meal_voucher.view_pos_config_form
 msgid "<span class=\"o_form_label\">Ticket credit product</span>"
-msgstr ""
+msgstr "<span class=\"o_form_label\">Prodotto buono sconto</span>"
 
 #. module: fiscal_epos_print_meal_voucher
 #: model:ir.model,name:fiscal_epos_print_meal_voucher.model_account_bank_statement_line
@@ -38,7 +38,7 @@ msgstr "Impossibile pagare con ticket più dell'importo dovuto"
 #: code:addons/fiscal_epos_print_meal_voucher/static/src/xml/pos.xml:34
 #, python-format
 msgid "Issue ticket credit"
-msgstr ""
+msgstr "Emissione buono sconto"
 
 #. module: fiscal_epos_print_meal_voucher
 #: model:ir.model,name:fiscal_epos_print_meal_voucher.model_account_journal
@@ -50,7 +50,7 @@ msgstr "Registro"
 #: code:addons/fiscal_epos_print_meal_voucher/static/src/js/screens.js:72
 #, python-format
 msgid "Missing ticket credit product"
-msgstr ""
+msgstr "Prodotto buono sconto assente"
 
 #. module: fiscal_epos_print_meal_voucher
 #: model:ir.model.fields,field_description:fiscal_epos_print_meal_voucher.field_account_bank_statement_line__pos_tickets_number
@@ -63,11 +63,12 @@ msgstr "Numero di ticket POS"
 #, python-format
 msgid "Please configure Ticket credit product in Point of sale configuration"
 msgstr ""
+"Configurare un prodotto buono sconto nella configurazione del punto vendita"
 
 #. module: fiscal_epos_print_meal_voucher
 #: model:ir.model,name:fiscal_epos_print_meal_voucher.model_pos_config
 msgid "Point of Sale Configuration"
-msgstr ""
+msgstr "Configurazione punto vendita"
 
 #. module: fiscal_epos_print_meal_voucher
 #: model:ir.model,name:fiscal_epos_print_meal_voucher.model_pos_order
@@ -81,11 +82,13 @@ msgid ""
 "Product used when issuing credit instead of giving change after receiving "
 "meal vouchers"
 msgstr ""
+"Prodotto utilizzato all'emissione di un buono sconto al posto del resto nel "
+"ricevimento buono pasto"
 
 #. module: fiscal_epos_print_meal_voucher
 #: model:ir.model.fields,field_description:fiscal_epos_print_meal_voucher.field_pos_config__ticket_credit_product_id
 msgid "Ticket credit product"
-msgstr ""
+msgstr "Prodotto buono sconto"
 
 #. module: fiscal_epos_print_meal_voucher
 #. openerp-web
