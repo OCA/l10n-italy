@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-03 10:17+0000\n"
-"PO-Revision-Date: 2022-02-03 10:17+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2023-04-27 10:53+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_it_bill_of_entry
 #: model_terms:ir.ui.view,arch_db:l10n_it_bill_of_entry.view_boe_config_settings
@@ -125,7 +126,6 @@ msgstr "Tipo doc Dogana"
 #. module: l10n_it_bill_of_entry
 #: model:product.product,name:l10n_it_bill_of_entry.product_product_customs_expense
 #: model:product.template,name:l10n_it_bill_of_entry.product_product_customs_expense_product_template
-#, fuzzy
 msgid "Customs Expense"
 msgstr "Spese dogana"
 
@@ -145,7 +145,7 @@ msgstr "Fornitore dogana"
 #: model:product.product,name:l10n_it_bill_of_entry.product_product_delivery
 #: model:product.template,name:l10n_it_bill_of_entry.product_product_delivery_product_template
 msgid "Delivery Expense"
-msgstr ""
+msgstr "Spese di consegna"
 
 #. module: l10n_it_bill_of_entry
 #: code:addons/l10n_it_bill_of_entry/models/account_invoice.py:186
@@ -168,7 +168,7 @@ msgstr "Fatture extra"
 #: model:product.product,name:l10n_it_bill_of_entry.product_product_extraEU_purchase
 #: model:product.template,name:l10n_it_bill_of_entry.product_product_extraEU_purchase_product_template
 msgid "ExtraEU Goods Purchase"
-msgstr ""
+msgstr "Acquisti di beni extra EU"
 
 #. module: l10n_it_bill_of_entry
 #: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_invoice__forwarder_bill_of_entry_ids
@@ -243,7 +243,7 @@ msgstr "Prego impostare 'Imposta dogana'"
 #: model:product.product,name:l10n_it_bill_of_entry.product_product_stamp_duties
 #: model:product.template,name:l10n_it_bill_of_entry.product_product_stamp_duties_product_template
 msgid "Stamp Duties"
-msgstr ""
+msgstr "Imposta di bollo"
 
 #. module: l10n_it_bill_of_entry
 #: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_account_invoice__supplier_bill_of_entry_ids
@@ -308,7 +308,7 @@ msgstr "Imposta usata nelle bolle doganali, quando il prodotto non è presente"
 #: model:product.template,uom_name:l10n_it_bill_of_entry.product_product_extraEU_purchase_product_template
 #: model:product.template,uom_name:l10n_it_bill_of_entry.product_product_stamp_duties_product_template
 msgid "Unit(s)"
-msgstr ""
+msgstr "Unita"
 
 #. module: l10n_it_bill_of_entry
 #: code:addons/l10n_it_bill_of_entry/models/account_invoice.py:241
@@ -330,4 +330,4 @@ msgstr ""
 #: model:product.template,weight_uom_name:l10n_it_bill_of_entry.product_product_extraEU_purchase_product_template
 #: model:product.template,weight_uom_name:l10n_it_bill_of_entry.product_product_stamp_duties_product_template
 msgid "kg"
-msgstr ""
+msgstr "kg"
