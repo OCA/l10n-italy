@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-27 08:07+0000\n"
-"PO-Revision-Date: 2023-04-21 14:34+0000\n"
+"PO-Revision-Date: 2023-04-27 14:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -189,6 +189,8 @@ msgid ""
 "Cannot import an attachment that could not be parsed.\n"
 "Please fix the parsing error first, then try again."
 msgstr ""
+"Non si può importare un allegato che non può essere elaborato.\n"
+"Correggere l'errore di elaborazione e riprovare."
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/link_to_existing_invoice.py:42
@@ -198,6 +200,8 @@ msgid ""
 "Cannot link an attachment that could not be parsed.\n"
 "Please fix the parsing error first, then try again."
 msgstr ""
+"Non si può collegare un allegato che non può essere elaborato.\n"
+"Correggere l'errore di elaborazione e riprovare."
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__checksum
@@ -428,7 +432,7 @@ msgstr "Tipo documento %s non gestito."
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__e_invoice_parsing_error
 msgid "E Invoice Parsing Error"
-msgstr ""
+msgstr "Errore elaborazione e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_invoice__e_invoice_validation_error
@@ -686,7 +690,7 @@ msgstr "Incongruenze nell'importazione"
 #: code:addons/l10n_it_fatturapa_in/models/attachment.py:112
 #, python-format
 msgid "Impossible to parse XML for {att_name}: {error_msg}"
-msgstr ""
+msgstr "Impossible elaborare XML per {att_name}: {error_msg}"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__in_invoice_ids
@@ -828,7 +832,7 @@ msgstr "Collega a fatture fornitore esistenti"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__linked_invoice_id_xml
 msgid "Linked Invoice Id Xml"
-msgstr ""
+msgstr "XML ID fattura collegata"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_main_attachment_id
@@ -896,7 +900,7 @@ msgstr "Il campo nome contiene \"%s\", il sistema contiene \"%s\""
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:942
 #, python-format
 msgid "Name of Bank with BIC '%s' is not set. Can't create bank"
-msgstr "Impossibile creare la banca con BIC \"%s\", il nome non è impostato."
+msgstr "Impossibile creare la banca con BIC \"%s\", il nome non è impostato"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line__tax_kind
@@ -1013,6 +1017,8 @@ msgid ""
 "Please configure Default Credit Account in Journal '{journal}' or check "
 "default expense account for company '{company}'."
 msgstr ""
+"Si prega di configurare il conto di credito predefinito nel registro "
+"'{journal}' o controlla il conto spese predefinito per l'azienda '{company}'."
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__ftpa_preview_link
@@ -1194,7 +1200,7 @@ msgstr "Tipo cessione prestazione"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__att_name
 msgid "SdI file name"
-msgstr ""
+msgstr "Nome file SdI"
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
@@ -1382,6 +1388,8 @@ msgid ""
 "Two distinct partners {partners} with VAT number {vat} or Fiscal Code {cf} "
 "already present in db."
 msgstr ""
+"Nel database sono già presenti due diversi partner con partita IVA o codice "
+"fiscale."
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__type
@@ -1574,7 +1582,7 @@ msgstr "È possibile selezionare solo un file XML da collegare."
 #. module: l10n_it_fatturapa_in
 #: model:ir.model,name:l10n_it_fatturapa_in.model_fatturapa_attachment_in
 msgid "fatturapa.attachment.in"
-msgstr ""
+msgstr "fatturapa.attachment.in"
 
 #, python-format
 #~ msgid ""
