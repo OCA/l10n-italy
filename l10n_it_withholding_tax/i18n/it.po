@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-11 07:51+0000\n"
-"PO-Revision-Date: 2023-04-17 22:57+0000\n"
+"PO-Revision-Date: 2023-04-27 10:53+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -27,7 +27,7 @@ msgstr " (Netto a pagare residuo: %s)"
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:84
 #, python-format
 msgid "%s (copy)"
-msgstr ""
+msgstr "%s (copia)"
 
 #. module: l10n_it_withholding_tax
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.print_withholding_tax
@@ -194,7 +194,7 @@ msgstr "Esportazione DatiCassa"
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__daticassprev_tax_id
 msgid "Daticassprev Tax"
-msgstr ""
+msgstr "Aliquota DatiCassaPrev"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax__display_name
@@ -261,13 +261,13 @@ msgstr "ID"
 #. module: l10n_it_withholding_tax
 #: selection:withholding.tax.statement,wt_type:0
 msgid "In"
-msgstr ""
+msgstr "Rettifica positiva"
 
 #. module: l10n_it_withholding_tax
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
 msgid "In type"
-msgstr ""
+msgstr "Tipo rettifica positiva"
 
 #. module: l10n_it_withholding_tax
 #: selection:withholding.tax,wt_types:0
@@ -382,13 +382,13 @@ msgstr "Altro"
 #. module: l10n_it_withholding_tax
 #: selection:withholding.tax.statement,wt_type:0
 msgid "Out"
-msgstr ""
+msgstr "Rettifica negativa"
 
 #. module: l10n_it_withholding_tax
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
 msgid "Out type"
-msgstr ""
+msgstr "Tipo rettifica negativa"
 
 #. module: l10n_it_withholding_tax
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_form
@@ -464,6 +464,8 @@ msgid ""
 "Setting this, while exporting e-invoice XML, data will be also added to "
 "DatiCassaPrevidenziale"
 msgstr ""
+"Impostando questo, nell'esportazione dell'XML della fattura elettronica i "
+"dati verranno aggiunti anche a DatiCassaPrevidenziale"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice__withholding_tax_in_print
