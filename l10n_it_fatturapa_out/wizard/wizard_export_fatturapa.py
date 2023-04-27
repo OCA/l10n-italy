@@ -38,11 +38,10 @@ class WizardExportFatturapa(models.TransientModel):
         # Get all print actions for current model
         return [
             ("binding_model_id", "=", model_name),
-            ("type", "=", "ir.actions.report"),
         ]
 
     report_print_menu = fields.Many2one(
-        comodel_name="ir.actions.actions",
+        comodel_name="ir.actions.report",
         domain=_domain_ir_values,
         help="This report will be automatically included in the created XML",
     )
@@ -284,16 +283,10 @@ class WizardExportFatturapa(models.TransientModel):
         return action
 
     def generate_attach_report(self, inv):
-        binding_model_id = self.with_context(
-            lang=None
-        ).report_print_menu.binding_model_id.id
-        name = self.report_print_menu.name
-        report_model = (
-            self.env["ir.actions.report"]
-            .with_context(lang=None)
-            .search([("binding_model_id", "=", binding_model_id), ("name", "=", name)])
+        report_model = self.report_print_menu
+        attachment, attachment_type = report_model._render_qweb_pdf(
+            report_model, inv.ids
         )
-        attachment, attachment_type = report_model._render_qweb_pdf(inv.ids)
         att_id = self.env["ir.attachment"].create(
             {
                 "name": "{}.pdf".format(inv.name),
