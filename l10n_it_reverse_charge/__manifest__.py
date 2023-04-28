@@ -6,7 +6,7 @@
 
 {
     "name": "ITA - Inversione contabile",
-    "version": "14.0.1.2.2",
+    "version": "16.0.1.0.0",
     "category": "Localization/Italy",
     "summary": "Inversione contabile",
     "author": "Odoo Italia Network, Odoo Community Association (OCA)",

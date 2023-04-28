@@ -19,7 +19,7 @@ class AccountMoveLine(models.Model):
         "tax_ids",
     )
     def _compute_rc_flag(self):
-        for line in self.filtered(lambda r: not r.exclude_from_invoice_tab):
+        for line in self.filtered(lambda r: r.display_type == "product"):
             if line.move_id.is_purchase_document():
                 line.rc = bool(line.move_id.fiscal_position_id.rc_type_id)
 
@@ -75,11 +75,11 @@ class AccountMove(models.Model):
 
         narration = _(
             "Reverse charge self invoice.\n"
-            "Supplier: %s\n"
-            "Reference: %s\n"
-            "Date: %s\n"
-            "Internal reference: %s"
-        ) % (
+            "Supplier: {}\n"
+            "Reference: {}\n"
+            "Date: {}\n"
+            "Internal reference: {}"
+        ).format(
             self.partner_id.display_name,
             self.invoice_origin or self.ref or "",
             self.date,
@@ -235,8 +235,9 @@ class AccountMove(models.Model):
                 line_tax_ids = line.tax_ids
                 if not line_tax_ids:
                     raise UserError(
-                        _("Invoice %s, line\n%s\nis RC but has not tax")
-                        % ((self.name or self.partner_id.display_name), line.name)
+                        _("Invoice {}, line\n{}\nis RC but has not tax").format(
+                            (self.name or self.partner_id.display_name), line.name
+                        )
                     )
                 mapped_taxes = rc_type.map_tax(
                     line_tax_ids,
