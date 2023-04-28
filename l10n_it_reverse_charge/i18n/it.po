@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-24 10:37+0000\n"
-"PO-Revision-Date: 2023-04-27 10:53+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-04-28 12:46+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -24,8 +24,8 @@ msgid ""
 "Can't find tax mapping for {tax_name} in Reverse Charge Type {rc_type_name}, "
 "please check the configuration."
 msgstr ""
-"Mappatura non trovata per {tax_name} nel tipo reverse charge {rc_type_name}, "
-"verificare la configurazione."
+"Impossibile trovare la mappatura per {tax_name} nel tipo di inversione "
+"contabile {rc_type_name}, controllare la configurazione."
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__company_id
@@ -167,8 +167,9 @@ msgid ""
 "Original Purchase Tax is required for Reverse Charge Type {rc_type_name} "
 "having With additional supplier self invoice enabled"
 msgstr ""
-"L'imposta acquisti originale è richiesta per il tipo reverse charge "
-"{rc_type_name} che ha \"Con autofattura passiva aggiuntiva\" abilitato"
+"L'imposta acquisti originale è obbligatoria per il tipo di inversione "
+"contabile {rc_type_name} che ha \"Con autofattura passiva aggiuntiva\" "
+"abilitato"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_invoice__rc_original_purchase_invoice_ids
@@ -224,7 +225,7 @@ msgstr "Tipo RC"
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_rc_type
 #: model_terms:ir.ui.view,arch_db:l10n_it_reverse_charge.view_rc_type_form
 msgid "Reverse Charge Type"
-msgstr "Tipo inversione contabile"
+msgstr "Tipo di inversione contabile"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.actions.act_window,name:l10n_it_reverse_charge.action_rc_type
@@ -321,8 +322,8 @@ msgid ""
 "defined only once per Reverse Charge Type."
 msgstr ""
 "La mappatura da \"Imposta acquisti originale\" a \"Imposta acquisti\" a "
-"\"Imposta vendite\" può essere definita solo una volta per tipo di reverse "
-"charge."
+"\"Imposta vendite\" può essere definita solo una volta per tipo di "
+"inversione contabile."
 
 #. module: l10n_it_reverse_charge
 #: sql_constraint:account.rc.type.tax:0
@@ -331,7 +332,7 @@ msgid ""
 "Reverse Charge Type."
 msgstr ""
 "La mappatura da \"Imposta acquisti\" a \"Imposta vendite\" può essere "
-"definita solo una volta per tipo di reverse charge."
+"definita solo una volta per tipo di inversione contabile."
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__self_invoice_text
