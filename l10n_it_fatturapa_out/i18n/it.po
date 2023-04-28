@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 10:03+0000\n"
-"PO-Revision-Date: 2023-04-21 13:42+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-04-28 11:14+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgstr "Azione richiesta"
 #. module: l10n_it_fatturapa_out
 #: model:res.groups,name:l10n_it_fatturapa_out.group_force_e_inv_export_state
 msgid "Allow to force e-invoice export state"
-msgstr "Consentire forzatura dello stato di esportazione e-fattura"
+msgstr "Consentire forzatura stato di esportazione e-fattura"
 
 #. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view
