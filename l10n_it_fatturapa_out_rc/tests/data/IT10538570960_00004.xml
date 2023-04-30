@@ -66,10 +66,10 @@
             <Causale>Supplier: Extra EU supplier</Causale>
             <Causale>Reference: EXEU-SUPPLIER-REF</Causale>
             <Causale>Date: 2020-12-01</Causale>
-            <Causale>Internal reference: BILL/2020/12/0001</Causale>
+            <Causale>Internal reference: EXCEE/2020/12/0001</Causale>
          </DatiGeneraliDocumento>
          <DatiFattureCollegate>
-            <IdDocumento>EXEU-SUPPLIER-REF</IdDocumento>
+            <IdDocumento>EXCEE/2020/12/0001</IdDocumento>
             <Data>2020-12-01</Data>
          </DatiFattureCollegate>
       </DatiGenerali>
