@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-23 08:16+0000\n"
-"PO-Revision-Date: 2023-04-28 12:46+0000\n"
+"PO-Revision-Date: 2023-05-01 13:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -492,7 +492,7 @@ msgstr "Nome Cespite"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal__asset_order_fname
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional__asset_order_fname
 msgid "Asset Order Fname"
-msgstr "Codice Cespite"
+msgstr "Codice cespite"
 
 #. module: assets_management
 #: model:ir.model.fields.selection,name:assets_management.selection__asset_accounting_info__relation_type__partial_dismiss
@@ -525,7 +525,7 @@ msgstr "Registro Previsionale XLSX"
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_journal_report__asset_order_fname
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_previsional_report__asset_order_fname
 msgid "Asset Print Order"
-msgstr "Ordine Stampa Beni Ammortizzabili"
+msgstr "Ordine stampa beni ammortizzabili"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_asset__asset_purchase_amount
@@ -808,7 +808,7 @@ msgstr "Non è possibile creare ammortamenti in base alle impostazioni scelte."
 #, python-format
 msgid "Cannot create asset if move lines come from different account moves!"
 msgstr ""
-"Non è possibile creare cespiti se le righe contabile provengono da diversi "
+"Non è possibile creare cespiti se le righe contabili provengono da diversi "
 "movimenti!"
 
 #. module: assets_management
