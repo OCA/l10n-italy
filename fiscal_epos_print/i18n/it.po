@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-15 09:38+0000\n"
-"PO-Revision-Date: 2023-04-26 11:34+0000\n"
+"PO-Revision-Date: 2023-05-01 13:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -125,18 +125,18 @@ msgstr "Connessione alla stampante fallita"
 #. module: fiscal_epos_print
 #: selection:account.journal,fiscalprinter_payment_type:0
 msgid "Credit or Credit Card"
-msgstr ""
+msgstr "Accredito o carta di credito"
 
 #. module: fiscal_epos_print
 #: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__fiscal_printer_debug_info
 msgid "Debug info"
-msgstr ""
+msgstr "Informazioni debug"
 
 #. module: fiscal_epos_print
 #: code:addons/fiscal_epos_print/models/account.py:20
 #, python-format
 msgid "Department ID number range [1 - 99]"
-msgstr ""
+msgstr "Intervallo numero ID reparto [1-99]"
 
 #. module: fiscal_epos_print
 #: model:ir.model.fields,field_description:fiscal_epos_print.field_account_tax__fpdeptax
@@ -153,7 +153,7 @@ msgstr "Sconto"
 #. module: fiscal_epos_print
 #: selection:account.journal,fiscalprinter_payment_type:0
 msgid "Discount on payment"
-msgstr ""
+msgstr "Sconto al pagamento"
 
 #. module: fiscal_epos_print
 #: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__refund_doc_num
@@ -325,7 +325,7 @@ msgstr "Registro"
 #. module: fiscal_epos_print
 #: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_pos_pos_form_refund_info
 msgid "Lottery"
-msgstr ""
+msgstr "Lotteria"
 
 #. module: fiscal_epos_print
 #. openerp-web
@@ -334,7 +334,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__lottery_code
 #, python-format
 msgid "Lottery Code"
-msgstr ""
+msgstr "Codice lotteria"
 
 #. module: fiscal_epos_print
 #. openerp-web
@@ -361,7 +361,7 @@ msgstr "Errore di rete"
 #. module: fiscal_epos_print
 #: selection:account.journal,fiscalprinter_payment_type:0
 msgid "No Paid"
-msgstr ""
+msgstr "Non pagato"
 
 #. module: fiscal_epos_print
 #. openerp-web
@@ -382,7 +382,7 @@ msgstr "Non fiscale aperto"
 #: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:430
 #, python-format
 msgid "Not paid"
-msgstr ""
+msgstr "Non pagato"
 
 #. module: fiscal_epos_print
 #. openerp-web
@@ -634,6 +634,8 @@ msgid ""
 "Reprint cannot be done for a fiscal printer yet.\n"
 "Please disable 'Reprint Orders' or unset 'Printer IP Address'."
 msgstr ""
+"La ristampa non può ancora essere eseguita per una stampante fiscale.\n"
+"Disabilitare 'Ristampa ordine' o cancellare 'Indirizzo IP stampante'."
 
 #. module: fiscal_epos_print
 #. openerp-web
@@ -674,7 +676,7 @@ msgstr "Inviare comando di chiusura fiscale alla stampante fiscale"
 #: model:ir.model.fields,help:fiscal_epos_print.field_account_bank_statement_import_journal_creation__fiscalprinter_payment_index
 #: model:ir.model.fields,help:fiscal_epos_print.field_account_journal__fiscalprinter_payment_index
 msgid "Set the index of the given payment type to specify the detail."
-msgstr ""
+msgstr "Impostare l'indice del tipo pagamento per indicare il dettaglio."
 
 #. module: fiscal_epos_print
 #: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_config__show_receipt_when_printing
@@ -734,12 +736,12 @@ msgstr ""
 #. module: fiscal_epos_print
 #: selection:account.journal,fiscalprinter_payment_type:0
 msgid "Ticket"
-msgstr "Ticket"
+msgstr "Biglietto"
 
 #. module: fiscal_epos_print
 #: selection:account.journal,fiscalprinter_payment_type:0
 msgid "Ticket with number"
-msgstr ""
+msgstr "Biglietto con numero"
 
 #. module: fiscal_epos_print
 #. openerp-web
@@ -795,14 +797,14 @@ msgstr "Errata configurazione imposte"
 #: code:addons/fiscal_epos_print/static/src/xml/lottery.xml:21
 #, python-format
 msgid "XXXXXXXX"
-msgstr ""
+msgstr "XXXXXXXX"
 
 #. module: fiscal_epos_print
 #. openerp-web
 #: code:addons/fiscal_epos_print/static/src/xml/pos.xml:61
 #, python-format
 msgid "YYYY-MM-DD"
-msgstr ""
+msgstr "YYYY-MM-DD"
 
 #. module: fiscal_epos_print
 #. openerp-web
