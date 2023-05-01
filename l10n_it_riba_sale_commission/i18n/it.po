@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-07 10:09+0000\n"
-"PO-Revision-Date: 2023-03-07 10:09+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2023-05-01 09:23+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_it_riba_sale_commission
 #: model:ir.model,name:l10n_it_riba_sale_commission.model_riba_configuration
@@ -26,26 +27,26 @@ msgstr "Parametri di configurazione delle ricevute bancarie"
 #: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_riba_configuration__display_name
 #: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_sale_commission_make_settle__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: l10n_it_riba_sale_commission
 #: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_account_move__id
 #: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_riba_configuration__id
 #: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_sale_commission_make_settle__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_it_riba_sale_commission
 #: model:ir.model,name:l10n_it_riba_sale_commission.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Registrazione contabile"
 
 #. module: l10n_it_riba_sale_commission
 #: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_account_move____last_update
 #: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_riba_configuration____last_update
 #: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_sale_commission_make_settle____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: l10n_it_riba_sale_commission
 #: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_riba_configuration__safety_days
