@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-26 05:37+0000\n"
-"PO-Revision-Date: 2023-05-01 13:34+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-05-02 10:02+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -304,7 +304,7 @@ msgstr "Valore ammortizzato"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_depreciation_line_year__amount_depreciation_fund_curr_year
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_totals__amount_depreciation_fund_curr_year
 msgid "Amount Depreciation Fund Curr Year"
-msgstr "F.do amm.to anno corrente"
+msgstr "Importo fondo amm.to anno corrente"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation_line_year__amount_depreciation_fund_prev_year
@@ -312,7 +312,7 @@ msgstr "F.do amm.to anno corrente"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_depreciation_line_year__amount_depreciation_fund_prev_year
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_totals__amount_depreciation_fund_prev_year
 msgid "Amount Depreciation Fund Prev Year"
-msgstr "F.do amm.to anno precedente"
+msgstr "Importo fondo amm.to anno precedente"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation_line_year__amount_gain
@@ -332,7 +332,7 @@ msgstr "Totale Plusvalenza"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation_line_year__amount_historical
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_depreciation_line_year__amount_historical
 msgid "Amount Historical"
-msgstr "Valore storico"
+msgstr "Storico importo"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation_line_year__amount_in
