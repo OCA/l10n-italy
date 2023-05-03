@@ -50,11 +50,6 @@ msgid "Default user used in electronic supplier bills"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
-msgid "Delivered"
-msgstr ""
-
-#. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server__is_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_ir_mail_server__is_fatturapa_pec
 msgid "E-invoice PEC server"
@@ -121,11 +116,6 @@ msgid "Last PEC Error Message"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
-msgid "Last Response from Exchange System"
-msgstr ""
-
-#. module: l10n_it_fatturapa_pec
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_email_server_form_e_invoice
 msgid "Last error message"
 msgstr ""
@@ -169,7 +159,7 @@ msgid "PEC message \"%s\" has been read but not processed, as not related to an 
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:33
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:31
 #, python-format
 msgid "PEC message \"%s\" is coming from SDI but attachments do not match SDI response format. Please check."
 msgstr ""
@@ -204,16 +194,6 @@ msgid "Sender Email Address"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out__sending_user
-msgid "Sending User"
-msgstr ""
-
-#. module: l10n_it_fatturapa_pec
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
-msgid "Sent by"
-msgstr ""
-
-#. module: l10n_it_fatturapa_pec
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_sdi_channel_form
 msgid "The ES email address must be changed ather the first invoice sent. After that, you have to set here the address indicated by the ES"
 msgstr ""
@@ -237,10 +217,5 @@ msgstr ""
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_sdi_channel__first_invoice_sent
 msgid "This is set after having sent the first e-invoice to SDI"
-msgstr ""
-
-#. module: l10n_it_fatturapa_pec
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
-msgid "on"
 msgstr ""
 
