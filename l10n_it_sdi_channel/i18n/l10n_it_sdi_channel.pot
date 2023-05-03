@@ -244,6 +244,7 @@ msgstr ""
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_fatturapa_attachment_out__last_sdi_response
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_fatturapa_out_attachment_form
 msgid "Last Response from Exchange System"
 msgstr ""
 
