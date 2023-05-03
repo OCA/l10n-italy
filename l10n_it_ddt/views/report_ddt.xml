@@ -7,7 +7,8 @@
 
             <style type="text/css">
                 table.delivery_data td h6 {
-                margin: 0;
+                margin-bottom: 5px;
+                font-size: smaller;
                 }
                  .signature {
                 min-height: 4em;
