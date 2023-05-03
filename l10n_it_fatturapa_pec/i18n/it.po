@@ -61,11 +61,6 @@ msgid "Default user used in electronic supplier bills"
 msgstr "Utente predefinito usato nelle fatture elettroniche fornitore"
 
 #. module: l10n_it_fatturapa_pec
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
-msgid "Delivered"
-msgstr "Consegnato"
-
-#. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server__is_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_ir_mail_server__is_fatturapa_pec
 msgid "E-invoice PEC server"
@@ -132,11 +127,6 @@ msgid "Last PEC Error Message"
 msgstr "Ultimo messaggio di errore PEC"
 
 #. module: l10n_it_fatturapa_pec
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
-msgid "Last Response from Exchange System"
-msgstr "Ultima risposta dal sistema di interscambio"
-
-#. module: l10n_it_fatturapa_pec
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_email_server_form_e_invoice
 msgid "Last error message"
 msgstr "Ultimo messaggio di errore"
@@ -185,7 +175,7 @@ msgstr ""
 "Prego controllare la casella PEC %s, sul server %s, con utente %s."
 
 #. module: l10n_it_fatturapa_pec
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:33
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:31
 #, python-format
 msgid ""
 "PEC message \"%s\" is coming from SDI but attachments do not match SDI "
@@ -229,16 +219,6 @@ msgid "Sender Email Address"
 msgstr "Indirizzo e-mail mittente"
 
 #. module: l10n_it_fatturapa_pec
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out__sending_user
-msgid "Sending User"
-msgstr "Utente trasmittente"
-
-#. module: l10n_it_fatturapa_pec
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
-msgid "Sent by"
-msgstr "Inviato da"
-
-#. module: l10n_it_fatturapa_pec
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_sdi_channel_form
 msgid ""
 "The ES email address must be changed ather the first invoice sent. After "
@@ -278,10 +258,20 @@ msgstr ""
 msgid "This is set after having sent the first e-invoice to SDI"
 msgstr "Viene impostato dopo aver inviato la prima e-fattura allo SDI"
 
-#. module: l10n_it_fatturapa_pec
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
-msgid "on"
-msgstr "il"
+#~ msgid "Delivered"
+#~ msgstr "Consegnato"
+
+#~ msgid "Last Response from Exchange System"
+#~ msgstr "Ultima risposta dal sistema di interscambio"
+
+#~ msgid "Sending User"
+#~ msgstr "Utente trasmittente"
+
+#~ msgid "Sent by"
+#~ msgstr "Inviato da"
+
+#~ msgid "on"
+#~ msgstr "il"
 
 #~ msgid "Allow to force e-invoice export state"
 #~ msgstr "Consentire forzatura dello stato di esportazione e-fattura"
