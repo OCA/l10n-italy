@@ -145,10 +145,13 @@ class FatturaPAAttachmentIn(models.Model):
             if fatt:
                 for invoice_body in fatt.FatturaElettronicaBody:
                     if len(invoice_body.DatiGenerali.DatiFattureCollegate) == 1:
+                        # The whole attachment is linked
+                        # to the first invoice found
                         att.linked_invoice_id_xml = (
                             invoice_body.DatiGenerali.DatiFattureCollegate[0].
                             IdDocumento
                         )
+                        break
 
     @api.multi
     @api.depends('ir_attachment_id.datas')
