@@ -101,7 +101,7 @@ msgid "Company"
 msgstr "Azienda"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:58
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:63
 #, python-format
 msgid "Company %s TIN not set."
 msgstr "Partita IVA dell'azienda %s non impostata."
@@ -217,6 +217,7 @@ msgstr "Dati database"
 #. module: l10n_it_fatturapa_out
 #: selection:account.invoice,fatturapa_state:0
 #: selection:fatturapa.attachment.out,state:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 msgid "Delivered"
 msgstr "Consegnato"
 
@@ -252,7 +253,7 @@ msgid "E-invoice State"
 msgstr "Stato e-fattura"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:125
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:130
 #, python-format
 msgid "E-invoice attachment changed"
 msgstr "Allegato e-fattura modificato"
@@ -334,7 +335,7 @@ msgstr ""
 "%s"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:87
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:92
 #, python-format
 msgid "File %s already present."
 msgstr "File %s già presente."
@@ -612,7 +613,7 @@ msgid "Out Invoices"
 msgstr "Fatture emesse"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:51
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:56
 #, python-format
 msgid "Partner %s TIN not set."
 msgstr "Partita IVA del partner %s non impostata."
@@ -741,6 +742,11 @@ msgid "Sender Error"
 msgstr "Errore trasmittente"
 
 #. module: l10n_it_fatturapa_out
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__sending_user
+msgid "Sending User"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: selection:account.invoice,fatturapa_state:0
 #: selection:fatturapa.attachment.out,state:0
 msgid "Sent"
@@ -750,6 +756,11 @@ msgstr "Inviato"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__sending_date
 msgid "Sent Date"
 msgstr "Data invio"
+
+#. module: l10n_it_fatturapa_out
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
+msgid "Sent by"
+msgstr ""
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__state
@@ -884,7 +895,7 @@ msgid "Url"
 msgstr "URL"
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:126
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:131
 #, python-format
 msgid "User %s uploaded a new e-invoice file"
 msgstr "L'utente %s ha caricato un nuovo file e-fattura"
@@ -932,13 +943,13 @@ msgstr ""
 "collegamento Internet al file."
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:135
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:140
 #, python-format
 msgid "You can only delete files in 'Ready to Send' state."
 msgstr "È possibile eliminare solo file con stato «Pronto per l'invio»."
 
 #. module: l10n_it_fatturapa_out
-#: code:addons/l10n_it_fatturapa_out/models/attachment.py:116
+#: code:addons/l10n_it_fatturapa_out/models/attachment.py:121
 #, python-format
 msgid "You can only reset files in 'Sender Error' state."
 msgstr "È possibile reimpostare solo file con stato «Errore trasmittente»."
@@ -949,14 +960,16 @@ msgstr "È possibile reimpostare solo file con stato «Errore trasmittente»."
 msgid "ZIP is not set for %s."
 msgstr "CAP non impostato per %s."
 
+#. module: l10n_it_fatturapa_out
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
+msgid "on"
+msgstr "il"
+
 #~ msgid "E-invoice file name"
 #~ msgstr "Nome file e-fattura"
 
 #~ msgid "History"
 #~ msgstr "Cronologia"
-
-#~ msgid "on"
-#~ msgstr "il"
 
 #~ msgid "Invoice %s has e-invoice export file yet."
 #~ msgstr "File e-fattura già presente per la fattura %s."
