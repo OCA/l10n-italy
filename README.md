@@ -57,7 +57,7 @@ addon | version | maintainers | summary
 [l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 12.0.3.1.6 |  | Ricezione fatture elettroniche
 [l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 12.0.1.0.2 |  | Modulo ponte tra ricezione fatture elettroniche e acquisti
 [l10n_it_fatturapa_in_rc](l10n_it_fatturapa_in_rc/) | 12.0.1.2.0 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Modulo ponte tra e-fattura in acquisto e inversione contabile
-[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 12.0.3.1.2 |  | Emissione fatture elettroniche
+[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 12.0.3.2.0 |  | Emissione fatture elettroniche
 [l10n_it_fatturapa_out_ddt](l10n_it_fatturapa_out_ddt/) | 12.0.1.4.1 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Modulo ponte tra emissione fatture elettroniche e DDT
 [l10n_it_fatturapa_out_di](l10n_it_fatturapa_out_di/) | 12.0.1.0.1 |  | Dichiarazioni d'intento in fatturapa
 [l10n_it_fatturapa_out_oss](l10n_it_fatturapa_out_oss/) | 12.0.1.0.0 |  | OSS in fatturapa
@@ -66,7 +66,7 @@ addon | version | maintainers | summary
 [l10n_it_fatturapa_out_triple_discount](l10n_it_fatturapa_out_triple_discount/) | 12.0.2.0.1 |  | Modulo ponte tra emissione fatture elettroniche e sconto triplo
 [l10n_it_fatturapa_out_welfare](l10n_it_fatturapa_out_welfare/) | 12.0.1.0.1 |  | Registrazione della cassa previdenziale nelle fatture elettroniche in uscita
 [l10n_it_fatturapa_out_wt](l10n_it_fatturapa_out_wt/) | 12.0.2.0.1 |  | Modulo ponte tra emissione fatture elettroniche e ritenute.
-[l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 12.0.2.1.1 |  | Invio fatture elettroniche tramite PEC
+[l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 12.0.2.2.0 |  | Invio fatture elettroniche tramite PEC
 [l10n_it_fatturapa_sale](l10n_it_fatturapa_sale/) | 12.0.1.1.4 |  | Aggiunge alcuni dati per la fatturazione elettronica nell'ordine di vendita
 [l10n_it_fatturapa_sdicoop](l10n_it_fatturapa_sdicoop/) | 12.0.2.2.1 |  | Invio fatture elettroniche tramite SDICoop
 [l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 12.0.2.1.2 |  | Italian Localization - Tipi di documento fiscale per dichiarativi
@@ -88,7 +88,7 @@ addon | version | maintainers | summary
 [l10n_it_rea](l10n_it_rea/) | 12.0.1.0.4 |  | Gestisce i campi del Repertorio Economico Amministrativo
 [l10n_it_reverse_charge](l10n_it_reverse_charge/) | 12.0.1.3.1 |  | Inversione contabile
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 12.0.1.9.0 |  | Ricevute bancarie
-[l10n_it_sdi_channel](l10n_it_sdi_channel/) | 12.0.2.2.4 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI
+[l10n_it_sdi_channel](l10n_it_sdi_channel/) | 12.0.2.3.0 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI
 [l10n_it_split_payment](l10n_it_split_payment/) | 12.0.1.0.2 |  | Split Payment
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 12.0.1.2.5 |  | ITA - Registri IVA
 [l10n_it_vat_registries_split_payment](l10n_it_vat_registries_split_payment/) | 12.0.1.0.2 |  | Modulo di congiunzione tra registri IVA e scissione dei pagamenti
