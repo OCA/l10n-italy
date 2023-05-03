@@ -14,13 +14,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_fatturapa_out_rc
-#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:68
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:111
 #, python-format
 msgid "A self-invoice cannot be issued with IT country code and fiscal document type in 'TD17', 'TD18', 'TD19'."
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_rc
-#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:74
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:117
 #, python-format
 msgid "Country code does not exist or it is not mapped in countries: %s"
 msgstr ""
@@ -36,7 +36,7 @@ msgid "Fiscal Document Type"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_rc
-#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:85
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:128
 #, python-format
 msgid "Impossible to set IdFiscaleIVA for %s"
 msgstr ""
@@ -47,25 +47,25 @@ msgid "Invoice"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_rc
-#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:100
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:143
 #, python-format
 msgid "Partner %s, City is not set."
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_rc
-#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:103
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:146
 #, python-format
 msgid "Partner %s, Country is not set."
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_rc
-#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:97
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:140
 #, python-format
 msgid "Partner %s, Street is not set."
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_rc
-#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:115
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:158
 #, python-format
 msgid "Partner %s, ZIP is not set."
 msgstr ""
@@ -76,19 +76,19 @@ msgid "Reverse Charge Type"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_rc
-#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:38
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:69
 #, python-format
 msgid "Select invoices are of too many fiscal document types: select invoices exclusively of type 'TD17', 'TD18', 'TD19' or exclusively of other types."
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_rc
-#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:28
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:56
 #, python-format
 msgid "Selected invoices are both with and without reverse charge. You should selected a smaller set of invoices"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_rc
-#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:45
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:79
 #, python-format
 msgid "Selected reverse charge invoices have different suppliers. Please select invoices with same supplier"
 msgstr ""
