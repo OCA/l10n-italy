@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-20 11:38+0000\n"
-"PO-Revision-Date: 2022-12-29 00:21+0000\n"
+"PO-Revision-Date: 2023-04-26 11:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -112,274 +112,273 @@ msgstr "Annullamento dei dati precedentemente inviati"
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_CodiceFiscale
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__cedente_CodiceFiscale
 msgid "Cedente Codicefiscale"
-msgstr ""
+msgstr "Cedente Codice Fiscale"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_Cognome
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__cedente_Cognome
 msgid "Cedente Cognome"
-msgstr ""
+msgstr "Cedente Cognome"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_Denominazione
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__cedente_Denominazione
 msgid "Cedente Denominazione"
-msgstr ""
+msgstr "Cedente Denominazione"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_IdFiscaleIVA_IdCodice
-#, fuzzy
 msgid "Cedente Idfiscaleiva Idcodice"
-msgstr "Codice fiscale dichiarante"
+msgstr "Cedente Id-fiscale-iva Id-codice"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_IdFiscaleIVA_IdPaese
 msgid "Cedente Idfiscaleiva Idpaese"
-msgstr ""
+msgstr "Cedente Id-fiscale-iva Id-paese"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_Nome
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__cedente_Nome
 msgid "Cedente Nome"
-msgstr ""
+msgstr "Cedente Nome"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_rf_Cognome
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__cedente_rf_Cognome
 msgid "Cedente Rf Cognome"
-msgstr ""
+msgstr "Cedente Rf Cognome"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_rf_Denominazione
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__cedente_rf_Denominazione
 msgid "Cedente Rf Denominazione"
-msgstr ""
+msgstr "Cedente Rf Denominazione"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_rf_IdFiscaleIVA_IdCodice
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__cedente_rf_IdFiscaleIVA_IdCodice
 msgid "Cedente Rf Idfiscaleiva Idcodice"
-msgstr ""
+msgstr "Cedente Rf Id-fiscale-iva Id-codice"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_rf_IdFiscaleIVA_IdPaese
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__cedente_rf_IdFiscaleIVA_IdPaese
 msgid "Cedente Rf Idfiscaleiva Idpaese"
-msgstr ""
+msgstr "Cedente Rf Id-fiscale-iva Id-paese"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_rf_Nome
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__cedente_rf_Nome
 msgid "Cedente Rf Nome"
-msgstr ""
+msgstr "Cedente Rf Nome"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_sede_Cap
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__cedente_sede_Cap
 msgid "Cedente Sede Cap"
-msgstr ""
+msgstr "Cedente Sede CAP"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_sede_Comune
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__cedente_sede_Comune
 msgid "Cedente Sede Comune"
-msgstr ""
+msgstr "Cedente Sede Comune"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_sede_Indirizzo
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__cedente_sede_Indirizzo
 msgid "Cedente Sede Indirizzo"
-msgstr ""
+msgstr "Cedente Sede Indirizzo"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_sede_Nazione
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__cedente_sede_Nazione
 msgid "Cedente Sede Nazione"
-msgstr ""
+msgstr "Cedente Sede Nazione"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_sede_NumeroCivico
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__cedente_sede_NumeroCivico
 msgid "Cedente Sede Numerocivico"
-msgstr ""
+msgstr "Cedente Sede Numero Civico"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_sede_Provincia
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__cedente_sede_Provincia
 msgid "Cedente Sede Provincia"
-msgstr ""
+msgstr "Cedente Sede Provincia"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_so_Cap
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__cedente_so_Cap
 msgid "Cedente So Cap"
-msgstr ""
+msgstr "Cedente So CAP"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_so_Comune
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__cedente_so_Comune
 msgid "Cedente So Comune"
-msgstr ""
+msgstr "Cedente So Comune"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_so_Indirizzo
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__cedente_so_Indirizzo
 msgid "Cedente So Indirizzo"
-msgstr ""
+msgstr "Cedente So Indirizzo"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_so_Nazione
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__cedente_so_Nazione
 msgid "Cedente So Nazione"
-msgstr ""
+msgstr "Cedente So Nazione"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_so_NumeroCivico
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__cedente_so_NumeroCivico
 msgid "Cedente So Numerocivico"
-msgstr ""
+msgstr "Cedente So Numero Civico"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_so_Provincia
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_ricevute__cedente_so_Provincia
 msgid "Cedente So Provincia"
-msgstr ""
+msgstr "Cedente So Provincia"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_CodiceFiscale
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__cessionario_CodiceFiscale
 msgid "Cessionario Codicefiscale"
-msgstr ""
+msgstr "Cessionario Codice Fiscale"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_Cognome
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__cessionario_Cognome
 msgid "Cessionario Cognome"
-msgstr ""
+msgstr "Cessionario Cognome"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_Denominazione
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__cessionario_Denominazione
 msgid "Cessionario Denominazione"
-msgstr ""
+msgstr "Cessionario Denominazione"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_IdFiscaleIVA_IdCodice
 msgid "Cessionario Idfiscaleiva Idcodice"
-msgstr ""
+msgstr "Cessionario Id-fiscale-iva Id-codice"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_IdFiscaleIVA_IdPaese
 msgid "Cessionario Idfiscaleiva Idpaese"
-msgstr ""
+msgstr "Cessionario Id-fiscale-iva Id-paese"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_Nome
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__cessionario_Nome
 msgid "Cessionario Nome"
-msgstr ""
+msgstr "Cessionario Nome"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_rf_Cognome
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__cessionario_rf_Cognome
 msgid "Cessionario Rf Cognome"
-msgstr ""
+msgstr "Cessionario Rf Cognome"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_rf_Denominazione
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__cessionario_rf_Denominazione
 msgid "Cessionario Rf Denominazione"
-msgstr ""
+msgstr "Cessionario Rf Denominazione"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_rf_IdFiscaleIVA_IdCodice
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__cessionario_rf_IdFiscaleIVA_IdCodice
 msgid "Cessionario Rf Idfiscaleiva Idcodice"
-msgstr ""
+msgstr "Cessionario Rf Id-fiscale-iva Id-codice"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_rf_IdFiscaleIVA_IdPaese
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__cessionario_rf_IdFiscaleIVA_IdPaese
 msgid "Cessionario Rf Idfiscaleiva Idpaese"
-msgstr ""
+msgstr "Cessionario Rf Id-fiscale-iva Id-paese"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_rf_Nome
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__cessionario_rf_Nome
 msgid "Cessionario Rf Nome"
-msgstr ""
+msgstr "Cessionario Rf Nome"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_sede_Cap
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__cessionario_sede_Cap
 msgid "Cessionario Sede Cap"
-msgstr ""
+msgstr "Cessionario Sede CAP"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_sede_Comune
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__cessionario_sede_Comune
 msgid "Cessionario Sede Comune"
-msgstr ""
+msgstr "Cessionario Sede Comune"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_sede_Indirizzo
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__cessionario_sede_Indirizzo
 msgid "Cessionario Sede Indirizzo"
-msgstr ""
+msgstr "Cessionario Sede Indirizzo"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_sede_Nazione
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__cessionario_sede_Nazione
 msgid "Cessionario Sede Nazione"
-msgstr ""
+msgstr "Cessionario Sede Nazione"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_sede_NumeroCivico
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__cessionario_sede_NumeroCivico
 msgid "Cessionario Sede Numerocivico"
-msgstr ""
+msgstr "Cessionario Sede Numero Civico"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_sede_Provincia
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__cessionario_sede_Provincia
 msgid "Cessionario Sede Provincia"
-msgstr ""
+msgstr "Cessionario Sede Provincia"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_so_Cap
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__cessionario_so_Cap
 msgid "Cessionario So Cap"
-msgstr ""
+msgstr "Cessionario So CAP"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_so_Comune
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__cessionario_so_Comune
 msgid "Cessionario So Comune"
-msgstr ""
+msgstr "Cessionario So Comune"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_so_Indirizzo
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__cessionario_so_Indirizzo
 msgid "Cessionario So Indirizzo"
-msgstr ""
+msgstr "Cessionario So Indirizzo"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_so_Nazione
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__cessionario_so_Nazione
 msgid "Cessionario So Nazione"
-msgstr ""
+msgstr "Cessionario So Nazione"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_so_NumeroCivico
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__cessionario_so_NumeroCivico
 msgid "Cessionario So Numerocivico"
-msgstr ""
+msgstr "Cessionario So Numero Civico"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cessionario_so_Provincia
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_fatture_emesse__cessionario_so_Provincia
 msgid "Cessionario So Provincia"
-msgstr ""
+msgstr "Cessionario So Provincia"
 
 #. module: l10n_it_invoices_data_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form
@@ -641,7 +640,7 @@ msgstr "Errori:"
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__esterometro
 msgid "Esterometro"
-msgstr ""
+msgstr "Esterometro"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_account_bank_statement_import_journal_creation__comunicazione_dati_iva_escludi
@@ -680,12 +679,12 @@ msgstr "Esporta file dati fatture"
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__fatture_emesse_ids
 msgid "Fatture Emesse"
-msgstr ""
+msgstr "Fatture Emesse"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__fatture_ricevute_ids
 msgid "Fatture Ricevute"
-msgstr ""
+msgstr "Fatture Ricevute"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_export_file__file_export
@@ -739,17 +738,17 @@ msgstr "Rappresentante fiscale"
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_follower_ids
 msgid "Followers"
-msgstr "Follower"
+msgstr "Seguito da"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_channel_ids
 msgid "Followers (Channels)"
-msgstr "Follower (canali)"
+msgstr "Seguito da (canali)"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Follower (partner)"
+msgstr "Seguito da (partner)"
 
 #. module: l10n_it_invoices_data_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_form
@@ -806,7 +805,7 @@ msgstr ""
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_unread
 msgid "If checked new messages require your attention."
-msgstr "Se selezionato, nuovi messaggi richiedono attenzione."
+msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_needaction
@@ -847,7 +846,7 @@ msgstr "Immediata"
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_res_country__intrastat
 msgid "Intrastat"
-msgstr ""
+msgstr "Intrastat"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model,name:l10n_it_invoices_data_communication.model_account_invoice
@@ -1076,14 +1075,13 @@ msgstr "Contatto"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__partner_cedente_id
-#, fuzzy
 msgid "Partner Cedente"
-msgstr "Partner"
+msgstr "Partner Cedente"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__partner_cessionario_id
 msgid "Partner Cessionario"
-msgstr ""
+msgstr "Partner Cessionario"
 
 #. module: l10n_it_invoices_data_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_form
@@ -1151,7 +1149,7 @@ msgstr "Rimuovere spazi intorno all'indirizzo della stabile organizzazione"
 #. module: l10n_it_invoices_data_communication
 #: code:addons/l10n_it_invoices_data_communication/models/communication.py:834
 #: code:addons/l10n_it_invoices_data_communication/models/communication.py:1029
-#, fuzzy, python-format
+#, python-format
 msgid "Remove empty characters around address of permanent establishment %s"
 msgstr "Rimuovere spazi intorno all'indirizzo della stabile organizzazione %s"
 
@@ -1499,6 +1497,8 @@ msgid ""
 "This will load invoices data, according to the selected time interval. "
 "Proceed?"
 msgstr ""
+"Questo importerà i dati delle fatture in accordo con il periodo selezionato. "
+"Procedere?"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__cedente_Cognome

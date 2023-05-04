@@ -108,7 +108,6 @@ class AccountConfigSettings(models.TransientModel):
         related="company_id.fatturapa_preview_style",
         string="Preview Format Style",
         required=True,
-        default="Foglio_di_stile_fatturaordinaria_v1.2.2.xsl",
         readonly=False,
     )
 

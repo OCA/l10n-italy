@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="invoice_no_commission_form">
+        <field name="name">account.move.invoice.no.commission.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <group id="header_right_group" position="inside">
+                <field name="no_commission" />
+            </group>
+        </field>
+    </record>
+</odoo>

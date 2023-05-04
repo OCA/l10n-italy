@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-22 20:30+0000\n"
-"PO-Revision-Date: 2022-12-29 00:21+0000\n"
+"PO-Revision-Date: 2023-04-21 13:42+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: l10n_it_vat_statement_communication
 #: selection:comunicazione.liquidazione.vp,metodo_calcolo_acconto:0
 msgid "\"4\" (soggetti particolari)"
-msgstr ""
+msgstr "\"4\" (soggetti particolari)"
 
 #. module: l10n_it_vat_statement_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
@@ -94,9 +94,8 @@ msgstr "<span> o a credito</span>"
 
 #. module: l10n_it_vat_statement_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_statement_communication.view_comunicazione_liquidazione_vp_form
-#, fuzzy
 msgid "<span>Computation method: </span>"
-msgstr "<span> o a credito</span>"
+msgstr "<span> Metodo di calcolo: </span>"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_needaction
@@ -106,7 +105,7 @@ msgstr "Azione richiesta"
 #. module: l10n_it_vat_statement_communication
 #: selection:comunicazione.liquidazione.vp,metodo_calcolo_acconto:0
 msgid "Analitico - effettivo"
-msgstr ""
+msgstr "Analitico - effettivo"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_attachment_count
@@ -277,9 +276,8 @@ msgstr "Nome visualizzato"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__metodo_calcolo_acconto
-#, fuzzy
 msgid "Down payment computation method"
-msgstr "Acconto dovuto"
+msgstr "Metodo calcolo acconto"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__accounto_dovuto
@@ -350,17 +348,17 @@ msgstr "Codice fiscale azienda"
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_follower_ids
 msgid "Followers"
-msgstr "Follower"
+msgstr "Seguito da"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_channel_ids
 msgid "Followers (Channels)"
-msgstr "Follower (canali)"
+msgstr "Seguito da (canali)"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Follower (partner)"
+msgstr "Seguito da (partner)"
 
 #. module: l10n_it_vat_statement_communication
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:181
@@ -413,7 +411,7 @@ msgstr "Identificativo"
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_unread
 msgid "If checked new messages require your attention."
-msgstr "Se selezionato, nuovi messaggi richiedono attenzione."
+msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_needaction
@@ -540,7 +538,7 @@ msgstr "Credito anno precedente"
 #. module: l10n_it_vat_statement_communication
 #: selection:comunicazione.liquidazione.vp,metodo_calcolo_acconto:0
 msgid "Previsionale"
-msgstr ""
+msgstr "Previsionale"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__imponibile_operazioni_attive
@@ -591,7 +589,7 @@ msgstr "Comunicazione liquidazione"
 #. module: l10n_it_vat_statement_communication
 #: selection:comunicazione.liquidazione.vp,metodo_calcolo_acconto:0
 msgid "Storico"
-msgstr ""
+msgstr "Storico"
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__subcontracting
