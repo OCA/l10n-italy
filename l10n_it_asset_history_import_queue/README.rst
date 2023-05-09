@@ -16,10 +16,22 @@ ITA - Gestione cespiti - Importazione storico in background
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
     :target: https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_asset_history_import_queue
     :alt: OCA/l10n-italy
+.. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
+    :target: https://translation.odoo-community.org/projects/l10n-italy-14-0/l10n-italy-14-0-l10n_it_asset_history_import_queue
+    :alt: Translate me on Weblate
+.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
+    :target: https://runbot.odoo-community.org/runbot/122/14.0
+    :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| 
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
-Cespiti: importazione storico dati in background
+**Italiano**
+
+Questo modulo permette l'uso delle code per l'importazione dello storico dei cespiti.
+
+**English**
+
+This module adds job queue support to import assets history.
 
 **Table of contents**
 
@@ -43,7 +55,6 @@ Authors
 ~~~~~~~
 
 * Ooops
-* Odoo Italia Network
 
 Contributors
 ~~~~~~~~~~~~
@@ -64,6 +75,14 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-GSLabit| image:: https://github.com/GSLabit.png?size=40px
+    :target: https://github.com/GSLabit
+    :alt: GSLabit
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-GSLabit| 
 
 This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_asset_history_import_queue>`_ project on GitHub.
 
