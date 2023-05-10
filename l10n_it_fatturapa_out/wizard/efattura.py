@@ -78,7 +78,7 @@ class EFatturaOut:
 
             # force EUR unless we want the original currency
             if not original_currency:
-                res = fpa_to_eur(res, line.move_id)
+                res = fpa_to_eur(res, line=line)
 
             # XXX arrotondamento?
             res = "{prezzo:.{precision}f}".format(
@@ -193,11 +193,17 @@ class EFatturaOut:
             wiz = self.env["wizard.export.fatturapa"]
             return wiz.getPayments(invoice)
 
-        def fpa_to_eur(amount, invoice):
+        def fpa_to_eur(amount, invoice=None, line=None, field=None):
+            if not invoice and not line:
+                return amount
+            if line and line.move_id:
+                invoice = line.move_id
             currency = invoice.currency_id
             euro = self.env.ref("base.EUR")
             if currency == euro:
                 return amount
+            if line and field and field in line._fields is not None:
+                return line[field] if amount > 0 else -line[field]
             return currency._convert(
                 amount, euro, invoice.company_id, invoice.date, False
             )

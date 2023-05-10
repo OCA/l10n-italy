@@ -177,7 +177,12 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     t-call="l10n_it_fatturapa_out.account_invoice_line_it_sconto_maggiorazione"
                 />
             <PrezzoTotale
-                    t-esc="format_monetary(fpa_to_eur(line.price_subtotal, record), euro)"
+                    t-if="line.credit > 0"
+                    t-esc="format_monetary(fpa_to_eur(line.price_subtotal, line=line, field='credit'), euro)"
+                />
+            <PrezzoTotale
+                    t-if="not line.credit > 0"
+                    t-esc="format_monetary(fpa_to_eur(line.price_subtotal, line=line, field='debit'), euro)"
                 />
             <AliquotaIVA
                     t-if="not line_is_section_note"
@@ -215,7 +220,9 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                 >
                 <TipoDato>Valuta</TipoDato>
                 <RiferimentoTesto t-esc="line.currency_id.name" />
-                <RiferimentoNumero t-esc="format_price(line, original_currency=True)" />
+                <RiferimentoNumero
+                        t-esc="format_monetary(line.price_subtotal, line.currency_id)"
+                    />
                 <RiferimentoData t-esc="format_date(record.date)" />
             </AltriDatiGestionali>
         </DettaglioLinee>
@@ -537,7 +544,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                         />
                     <ImportoTotaleDocumento
                             t-if="not record.company_id.xml_divisa_value == 'keep_orig'"
-                            t-esc="format_numbers_two(fpa_to_eur(get_importo_totale(record), record))"
+                            t-esc="format_numbers_two(fpa_to_eur(get_importo_totale(record), invoice=record))"
                         />
                     <!--                        <Arrotondamento t-esc=""/>-->
                     <t t-foreach="get_causale(record)" t-as="causale">
@@ -581,10 +588,10 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                             <!--                <SpeseAccessorie t-esc=""/>-->
                             <!--                <Arrotondamento t-esc=""/>-->
                             <ImponibileImporto
-                                t-esc="format_monetary(fpa_to_eur(tax_data['ImponibileImporto'], record), euro)"
+                                t-esc="format_monetary(tax_data['ImponibileImporto'], euro)"
                             />
                             <Imposta
-                                t-esc="format_monetary(fpa_to_eur(tax_data['Imposta'], record), euro)"
+                                t-esc="format_monetary(tax_data['Imposta'], euro)"
                             />
                             <EsigibilitaIVA
                                 t-if="tax_data.get('EsigibilitaIVA', False)"
@@ -629,7 +636,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                             />
                         <ImportoPagamento
                                 t-if="not record.company_id.xml_divisa_value == 'keep_orig'"
-                                t-esc="format_numbers_two(fpa_to_eur(payment.amount_currency or payment.debit, record))"
+                                t-esc="format_numbers_two(fpa_to_eur(payment.amount_currency or payment.debit, invoice=record))"
                             />
 
                         <!--                            <CodUfficioPostale t-esc=""/>-->
