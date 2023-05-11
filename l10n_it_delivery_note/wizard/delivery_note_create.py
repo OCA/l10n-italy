@@ -64,7 +64,15 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
 
     @api.onchange("partner_id")
     def _onchange_partner(self):
-        self.partner_shipping_id = self.partner_id
+        self.check_compliance(self.selected_picking_ids)
+        self.update(
+            {
+                "partner_shipping_id": self.partner_id,
+                "partner_id": self.selected_picking_ids.mapped("sale_id.partner_id")
+                if self.selected_picking_ids.mapped("sale_id.partner_id")
+                else self.partner_id,
+            }
+        )
 
     def confirm(self):
         self.check_compliance(self.selected_picking_ids)
@@ -75,7 +83,9 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
         delivery_note = self.env["stock.delivery.note"].create(
             {
                 "partner_sender_id": self.partner_sender_id.id,
-                "partner_id": self.partner_id.id,
+                "partner_id": self.selected_picking_ids.mapped("sale_id.partner_id").id
+                if self.selected_picking_ids.mapped("sale_id.partner_id").id
+                else self.partner_id.id,
                 "partner_shipping_id": self.partner_shipping_id.id,
                 "type_id": self.type_id.id,
                 "date": self.date,
