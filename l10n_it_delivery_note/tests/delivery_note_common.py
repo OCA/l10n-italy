@@ -6,8 +6,15 @@ DOWNPAYMENT_METHODS = ["fixed", "percentage"]
 
 
 class StockDeliveryNoteCommon(TransactionCase):
-    def create_partner(self, name, **kwargs):
-        return self.env["res.partner"].create({"name": name, **kwargs})
+    def create_commercial_partner(self, name, **kwargs):
+        return self.env["res.partner"].create(
+            {"name": name, "is_company": True, **kwargs}
+        )
+
+    def create_partner(self, name, company, **kwargs):
+        return self.env["res.partner"].create(
+            {"name": name, "parent_id": company.id, **kwargs}
+        )
 
     def create_sales_order(self, lines, **kwargs):
         vals = {"partner_id": self.recipient.id}
@@ -78,7 +85,8 @@ class StockDeliveryNoteCommon(TransactionCase):
         )
 
         self.sender = self.env.ref("base.main_partner")
-        self.recipient = self.create_partner("Mario Rossi")
+        company = self.create_commercial_partner("Azienda Rossi")
+        self.recipient = self.create_partner("Mario Rossi", company)
 
         try:
             self.desk_combination_line = self.prepare_sales_order_line(
