@@ -1,0 +1,15 @@
+{
+    "name": "ITA - Gestione cespiti - Importazione storico in background",
+    "summary": """Cespiti: importazione storico dati in background""",
+    "author": "Ooops,Odoo Community Association (OCA)",
+    "maintainers": ["GSLabit"],
+    "license": "AGPL-3",
+    "category": "Localization/Italy",
+    "development_status": "Beta",
+    "website": "https://github.com/OCA/l10n-italy",
+    "version": "14.0.1.0.0",
+    "depends": ["l10n_it_asset_history_import", "queue_job", "web_notify"],
+    "data": ["data/data.xml"],
+    "installable": True,
+    "application": False,
+}

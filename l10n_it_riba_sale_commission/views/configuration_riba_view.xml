@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="riba_safety_days">
+        <field name="name">riba.conf.form.safety.days</field>
+        <field name="model">riba.configuration</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_ricevute_bancarie.view_riba_configuration_form"
+        />
+        <field name="arch" type="xml">
+            <field name="type" position="after">
+                <field
+                    name="safety_days"
+                    attrs="{'invisible': [('type', '!=', 'sbf')]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

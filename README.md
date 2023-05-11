@@ -30,6 +30,7 @@ addon | version | maintainers | summary
 [l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 14.0.1.1.0 |  | Gestione natura delle aliquote IVA
 [l10n_it_appointment_code](l10n_it_appointment_code/) | 14.0.1.0.0 |  | Aggiunge la tabella dei codici carica da usare nelle dichiarazioni fiscali italiane
 [l10n_it_asset_history_import](l10n_it_asset_history_import/) | 14.0.1.0.0 |  | Cespiti: importazione storico dati
+[l10n_it_asset_history_import_queue](l10n_it_asset_history_import_queue/) | 14.0.1.0.0 | [![GSLabit](https://github.com/GSLabit.png?size=30px)](https://github.com/GSLabit) | Cespiti: importazione storico dati in background
 [l10n_it_ateco](l10n_it_ateco/) | 14.0.1.0.0 |  | ITA - Codici Ateco
 [l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 14.0.1.0.0 |  | ITA - Bolle doganali
 [l10n_it_central_journal](l10n_it_central_journal/) | 14.0.1.0.0 |  | ITA - Libro giornale
@@ -69,6 +70,7 @@ addon | version | maintainers | summary
 [l10n_it_pos_fiscalcode](l10n_it_pos_fiscalcode/) | 14.0.1.0.1 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Gestione codice fiscale del cliente all'interno dell'interfaccia del POS
 [l10n_it_rea](l10n_it_rea/) | 14.0.1.0.4 |  | Gestisce i campi del Repertorio Economico Amministrativo
 [l10n_it_reverse_charge](l10n_it_reverse_charge/) | 14.0.1.2.2 |  | Inversione contabile
+[l10n_it_riba_sale_commission](l10n_it_riba_sale_commission/) | 14.0.1.0.0 |  | Modulo ponte tra provvigioni agenti e RiBa
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 14.0.1.2.3 |  | Ricevute bancarie
 [l10n_it_sdi_channel](l10n_it_sdi_channel/) | 14.0.2.3.0 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI
 [l10n_it_split_payment](l10n_it_split_payment/) | 14.0.1.0.7 |  | Scissione pagamenti

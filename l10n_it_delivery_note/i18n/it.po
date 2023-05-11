@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-08 14:45+0000\n"
-"PO-Revision-Date: 2023-04-21 13:42+0000\n"
+"PO-Revision-Date: 2023-05-01 13:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -794,7 +794,7 @@ msgstr "Fatture"
 #: code:addons/l10n_it_delivery_note/wizard/delivery_note_invoice.py:0
 #, python-format
 msgid "Invoices from TD"
-msgstr "Fatture da DDT"
+msgstr "Fatture da DdT"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__message_is_follower
@@ -939,7 +939,7 @@ msgstr ""
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr "Scadenza della mia attività"
+msgstr "Scadenza mia attività"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__name
@@ -967,7 +967,7 @@ msgstr "UdM del peso netto"
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr "Scadenza attività successiva"
+msgstr "Scadenza prossima attività"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__activity_summary
@@ -993,7 +993,7 @@ msgstr "Nota"
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move_line__note_dn
 msgid "Note DN"
-msgstr "Nota DN"
+msgstr "Nota DdT"
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
@@ -1035,7 +1035,7 @@ msgstr "Numero di messaggi non letti"
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_invoice_wizard__invoice_method__dn
 msgid "Only DN"
-msgstr "Solo DN"
+msgstr "Solo DdT"
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
