@@ -106,7 +106,6 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         )
         dn = dn_form.save()
         dn.confirm()
-
         self.assertTrue(picking.delivery_note_id)
         picking.delivery_note_id.action_confirm()
         self.assertEqual(picking.delivery_note_id.state, "confirm")
