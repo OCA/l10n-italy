@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-30 21:25+0000\n"
-"PO-Revision-Date: 2023-04-26 16:33+0000\n"
+"PO-Revision-Date: 2023-05-12 12:56+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -1034,7 +1034,7 @@ msgstr "Numero di messaggi che richiedono una azione"
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_distinta__message_has_error_counter
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_distinta_line__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr "Numero di messaggi con un errore di consegna"
+msgstr "Numero di messaggi con errore di consegna"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_distinta__message_unread_counter
