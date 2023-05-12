@@ -3,3 +3,4 @@
 from . import fatturapa_common
 from . import test_fatturapa_xml_validation
 from . import test_fatturapa_out_noteline
+from . import test_fatturapa_preventive_checks
