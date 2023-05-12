@@ -926,3 +926,15 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.set_e_invoice_file_id(attachment, "IT03297040366_00019.xml")
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, "IT03297040366_00019.xml")
+
+    def test_validate_invoice(self):
+        """
+        Check that the invoice used for tests
+        is posted when validated.
+        """
+        invoice = self._create_invoice()
+        self.assertEqual(invoice.state, "draft")
+
+        invoice.action_post()
+
+        self.assertEqual(invoice.state, "posted")

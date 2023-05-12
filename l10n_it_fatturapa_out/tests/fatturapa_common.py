@@ -272,28 +272,12 @@ class FatturaPACommon(AccountTestInvoicingCommon):
         return self.getFilePath(path)
 
     def _create_invoice(self):
-        return self.invoice_model.create(
-            {
-                "name": "Test Invoice",
-                "journal_id": self.sales_journal.id,
-                "partner_id": self.res_partner_fatturapa_0.id,
-                "move_type": "out_invoice",
-                "invoice_line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "account_id": self.a_sale.id,
-                            "product_id": self.product_product_10.id,
-                            "name": self.product_product_10.name,
-                            "quantity": 1,
-                            "price_unit": 1,
-                            "tax_ids": [(6, 0, {self.tax_22.id})],
-                        },
-                    ),
-                ],
-            }
+        invoice = self.init_invoice(
+            "out_invoice",
+            partner=self.res_partner_fatturapa_0,
+            products=self.product_product_10,
         )
+        return invoice
 
     def _create_e_invoice(self):
         invoice = self._create_invoice()
