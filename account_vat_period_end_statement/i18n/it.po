@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-28 05:14+0000\n"
-"PO-Revision-Date: 2023-03-20 11:22+0000\n"
+"PO-Revision-Date: 2023-05-15 19:34+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
@@ -457,7 +457,7 @@ msgstr "Stampa Liquidazione IVA di Fine Periodo"
 #. module: account_vat_period_end_statement
 #: view:website:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
 msgid "Purchase"
-msgstr "Acquisti"
+msgstr "Acquisto"
 
 #. module: account_vat_period_end_statement
 #: view:account.vat.period.end.statement:account_vat_period_end_statement.view_account_vat_period_end_statement
