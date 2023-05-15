@@ -542,6 +542,11 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         #     SO ┘
         #
 
+        # Activate advanced setting to allow more picking in one DN
+        self.env["ir.config_parameter"].sudo().set_param(
+            "l10n_it_delivery_note.group_use_advanced_delivery_notes", True
+        )
+
         first_sales_order = self.create_sales_order(
             [
                 self.desk_combination_line,
