@@ -329,12 +329,18 @@ class StockPicking(models.Model):
     def _create_delivery_note(self):
         partners = self._get_partners()
         type_id = self.env["stock.delivery.note.type"].search(
-            [("code", "=", self.picking_type_code)], limit=1
+            [
+                ("code", "=", self.picking_type_code),
+                ("company_id", "=", self.company_id.id),
+            ],
+            limit=1,
         )
         return self.env["stock.delivery.note"].create(
             {
                 "partner_sender_id": partners[0].id,
-                "partner_id": partners[1].id,
+                "partner_id": self.sale_id.partner_id.id
+                if self.sale_id
+                else partners[0].id,
                 "partner_shipping_id": partners[1].id,
                 "type_id": type_id.id,
                 "date": self.date_done,
