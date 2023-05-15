@@ -1,5 +1,7 @@
 from odoo.tests.common import TransactionCase
 
+from odoo.addons.mail.tests.common import mail_new_test_user
+
 DOWNPAYMENT_METHODS = ["fixed", "percentage"]
 
 
@@ -63,6 +65,16 @@ class StockDeliveryNoteCommon(TransactionCase):
                     )
                 ]
             }
+        )
+
+        self.account_manager = mail_new_test_user(
+            self.env,
+            name="Adviser",
+            login="fm",
+            email="accountmanager@yourcompany.com",
+            groups="account.group_account_manager,base.group_partner_manager,"
+            "base.group_system,sales_team.group_sale_manager,stock.group_stock_manager",
+            company_ids=[(6, 0, [c.id for c in self.env["res.company"].search([])])],
         )
 
         self.sender = self.env.ref("base.main_partner")
