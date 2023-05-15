@@ -2,13 +2,11 @@
 
 {
     "name": "ITA - POS - Fattura elettronica",
-    "summary": "Gestione dati fattura elettronica del cliente all'interno "
-               "dell'interfaccia del POS",
+    "summary": "Gestione dati fattura elettronica del cliente all'interno dell'interfaccia del POS",
     "version": "14.0.0.0",
     "development_status": "Beta",
     "category": "Point Of Sale",
-    "website": "https://github.com/OCA/l10n-italy"
-               "/tree/14.0/l10n_it_pos_fatturapa",
+    "website": "https://github.com/OCA/l10n-italy",
     "author": "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
@@ -20,7 +18,7 @@
         "l10n_it_fatturapa",
     ],
     "qweb": ["static/src/xml/pos_dump.xml"],
-    'data': [
-        'views/assets.xml',
+    "data": [
+        "views/assets.xml",
     ],
 }

@@ -14,7 +14,7 @@ odoo.define("l10n_it_pos_fatturapa.ClientDetailsEdit", function (require) {
                 super.captureChange(event);
                 if (event.target.name === "electronic_invoice_subjected") {
                     const checked = event.currentTarget.checked;
-                    this.changes[event.target.name] = checked ? true: false;
+                    this.changes[event.target.name] = Boolean(checked);
                     $(".electronic_invoice_subjected")
                         .toArray()
                         .forEach(function (el) {
