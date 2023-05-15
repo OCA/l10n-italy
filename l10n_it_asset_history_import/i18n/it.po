@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-04 18:02+0000\n"
-"PO-Revision-Date: 2023-05-10 12:57+0000\n"
+"PO-Revision-Date: 2023-05-15 19:36+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -320,13 +320,13 @@ msgstr "Pro-Rata Temporis"
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:103
 #, python-format
 msgid "Purchase Amount"
-msgstr "Importo Acquisto"
+msgstr "Valore acquisto"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:93
 #, python-format
 msgid "Purchase Date"
-msgstr "Data Acquisto"
+msgstr "Data acquisto"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/models/asset.py:120
