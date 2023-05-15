@@ -63,15 +63,13 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         #     Picking ┐
         #             └ DdT
         #
-
         user = new_test_user(
             self.env,
             login="test",
             groups="stock.group_stock_manager,"
             "l10n_it_delivery_note.use_advanced_delivery_notes",
         )
-        # change user in order to automatically create delivery note
-        # when picking is validated
+        # change user in order to activate DN advanced settings
         self.env.user = user
 
         picking = self.env["stock.picking"].create(
