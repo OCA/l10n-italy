@@ -153,6 +153,7 @@ class StockDeliveryNote(models.Model):
         readonly=True,
         required=True,
         index=True,
+        check_company=True,
     )
 
     sequence_id = fields.Many2one("ir.sequence", readonly=True, copy=False)
