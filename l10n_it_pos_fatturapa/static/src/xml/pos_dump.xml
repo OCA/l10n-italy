@@ -50,9 +50,9 @@
                     <span class='label'>iPA Code</span>
                      <input
                         class='detail pa_partner_code'
-                        name='pa_partner_code'
+                        name='ipa_code'
                         t-on-change="captureChange"
-                        t-att-value="props.partner.pa_partner_code || ''"
+                        t-att-value="props.partner.ipa_code || ''"
                     />
                 </div>
             </div>

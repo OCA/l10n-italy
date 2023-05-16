@@ -8,6 +8,6 @@ odoo.define("l10n_it_pos_fatturapa.models", function (require) {
         "eori_code",
         "codice_destinatario",
         "pec_destinatario",
-        "pa_partner_code",
+        "ipa_code",
     ]);
 });
