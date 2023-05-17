@@ -9,7 +9,7 @@
         />
             <field name="arch" type="xml">
                 <xpath
-                expr="//field[@name='fatturapa_preview_style']/parent::div"
+                expr="//field[@name='fatturapa_simple_preview_style']/parent::div"
                 position="after"
             >
                     <div class="row">
