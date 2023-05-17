@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-29 10:06+0000\n"
-"PO-Revision-Date: 2023-01-03 13:44+0000\n"
+"PO-Revision-Date: 2023-05-17 16:35+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
@@ -517,7 +517,7 @@ msgstr "Partner per la spedizione"
 #. module: l10n_it_ddt
 #: view:ddt.from.pickings:l10n_it_ddt.view_ddt_from_pickings
 msgid "Picking"
-msgstr "Picking"
+msgstr "Prelievo"
 
 #. module: l10n_it_ddt
 #: code:addons/l10n_it_ddt/wizard/add_picking_to_ddt.py:31
@@ -538,7 +538,7 @@ msgstr "ID Picking"
 #. module: l10n_it_ddt
 #: view:ddt.from.pickings:l10n_it_ddt.view_ddt_from_pickings
 msgid "Pickings"
-msgstr "Picking"
+msgstr "Prelievi"
 
 #. module: l10n_it_ddt
 #: help:stock.ddt.type,restrict_pickings:0
