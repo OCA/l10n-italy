@@ -37,9 +37,17 @@ class ResCompany(models.Model):
             ("FoglioStileAssoSoftware.xsl", "AssoSoftware"),
             ("FoglioStileSouthTyrol-bilingue.xsl", "South-Tyrol"),
         ],
-        string="Preview Format Style",
+        string="Preview Format Style for Fattura Ordinaria",
         required=True,
         default="Foglio_di_stile_fatturaordinaria_v1.2.2.xsl",
+    )
+    fatturapa_simple_preview_style = fields.Selection(
+        [
+            ("fatturasemplificata_v1.0.xsl", "Fattura Semplificata"),
+        ],
+        string="Preview Format Style for Fattura Semplificata",
+        required=True,
+        default="fatturasemplificata_v1.0.xsl",
     )
 
 
@@ -107,8 +115,15 @@ class AccountConfigSettings(models.TransientModel):
     )
     fatturapa_preview_style = fields.Selection(
         related="company_id.fatturapa_preview_style",
-        string="Preview Format Style",
+        string="Preview Format Style for Fattura Ordinaria",
         required=True,
+        readonly=False,
+    )
+    fatturapa_simple_preview_style = fields.Selection(
+        related="company_id.fatturapa_simple_preview_style",
+        string="Preview Format Style for Fattura Semplificata",
+        required=True,
+        default="fatturasemplificata_v1.0.xsl",
         readonly=False,
     )
 
@@ -148,6 +163,9 @@ class AccountConfigSettings(models.TransientModel):
                 or False
             )
             self.fatturapa_preview_style = company.fatturapa_preview_style or False
+            self.fatturapa_simple_preview_style = (
+                company.fatturapa_simple_preview_style or False
+            )
         else:
             self.fatturapa_fiscal_position_id = False
             self.fatturapa_art73 = False
@@ -161,3 +179,4 @@ class AccountConfigSettings(models.TransientModel):
             self.fatturapa_sender_partner = False
             self.fatturapa_stabile_organizzazione = False
             self.fatturapa_preview_style = "Foglio_di_stile_fatturaordinaria_v1.2.2.xsl"
+            self.fatturapa_simple_preview_style = "fatturasemplificata_v1.0.xsl"
