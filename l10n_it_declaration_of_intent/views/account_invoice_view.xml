@@ -23,6 +23,17 @@
                     />
                 </div>
             </field>
+
+               <xpath
+                expr="//field[@name='line_ids']/tree/field[@name='tax_ids']"
+                position="after"
+            >
+                    <field
+                    name="force_declaration_of_intent_id"
+                    options="{'no_create': True}"
+                    invisible="True"
+                />
+                </xpath>
             <xpath
                 expr="//field[@name='invoice_line_ids']/tree/field[@name='tax_ids']"
                 position="after"
