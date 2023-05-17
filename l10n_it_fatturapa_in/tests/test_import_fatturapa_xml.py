@@ -892,6 +892,36 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice = self.invoice_model.browse(invoice_ids)
         self.assertTrue(invoice.fatturapa_attachment_in_id.is_self_invoice)
 
+    def test_52_xml_import(self):
+        # we test partner creation, too
+        # make sure a partner with the same vat is already in the DB
+        for partner in self.env["res.partner"].search([("vat", "=", "IT02780790107")]):
+            # references from aml may prevent partner unlinking
+            self.env["account.move.line"].search(
+                [("partner_id", "=", partner.id)]
+            ).with_context(dynamic_unlink=True).unlink()
+            self.env["account.move"].search([("partner_id", "=", partner.id)]).unlink()
+            partner.unlink()
+
+        res = self.run_wizard("test52", "IT02780790107_11009.xml")
+        invoice_ids = res.get("domain")[0][2]
+        invoice = self.invoice_model.browse(invoice_ids)
+
+        self.assertEqual(len(invoice.e_invoice_line_ids), 1)
+        self.assertEqual(invoice.e_invoice_line_ids[0].tax_kind, "N4")
+
+        self.assertEqual(len(invoice.invoice_line_ids), 1)
+        self.assertEqual(len(invoice.invoice_line_ids[0].tax_ids), 1)
+        self.assertEqual(invoice.invoice_line_ids[0].price_unit, 272.23)
+        kind = self.env.ref("l10n_it_account_tax_kind.n4")
+        self.assertEqual(invoice.invoice_line_ids[0].tax_ids[0].kind_id, kind)
+
+        self.assertEqual(invoice.amount_total, 272.23)
+
+        self.assertTrue(invoice.partner_id)
+        self.assertEqual(invoice.partner_id.firstname, "Mario")
+        self.assertEqual(invoice.partner_id.lastname, "Rossi")
+
     def test_53_xml_import(self):
         """
         Check that VAT of non-IT partner is not checked.
