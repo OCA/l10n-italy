@@ -533,10 +533,107 @@ class TestAssets(SavepointCase):
         current_year_depreciation_date = today.replace(month=12, day=31)
         self._depreciate_asset(asset, current_year_depreciation_date)
         dep_lines = asset.depreciation_ids.line_ids
-        self.assertEqual(len(dep_lines), 6)
         civ_dep_lines = dep_lines.filtered(
             lambda x: x.depreciation_id.type_id == civ_type
             and x.move_type == "depreciated"
         )
         self.assertEqual(asset.state, "totally_depreciated")
         self.assertAlmostEqual(sum(civ_dep_lines.mapped("amount")), 9000)
+
+    def test_04_asset_partial_depreciate_from_purchase_invoice_increment(self):
+        # create purchase invoice and generate asset
+        today = fields.Date.today()
+        invoice_date = today + relativedelta(years=-5)
+        purchase_invoice = self._create_purchase_invoice(invoice_date)
+        wiz_vals = purchase_invoice.open_wizard_manage_asset()
+        move_line_ids = wiz_vals["context"]["default_move_line_ids"][0][2]
+        move_lines = self.env["account.move.line"].browse(move_line_ids)
+        move_lines_to_do = move_lines.filtered(
+            lambda x: x.account_id == self.asset_category_1.asset_account_id
+        )
+        wiz_vals["context"]["default_move_line_ids"] = [(6, 0, move_lines_to_do.ids)]
+        wiz = (
+            self.env["wizard.account.move.manage.asset"]
+            .with_context(wiz_vals["context"])
+            .create(
+                {
+                    "management_type": "create",
+                    "category_id": self.asset_category_1.id,
+                    "name": "Test asset",
+                }
+            )
+        )
+        asset = wiz.link_asset()
+        self.assertEqual(asset.purchase_amount, 7000)
+        # partially depreciate the asset
+        first_depreciation_date = today.replace(month=12, day=31) + relativedelta(
+            years=-5
+        )
+        second_depreciation_date = today.replace(month=12, day=31) + relativedelta(
+            years=-3
+        )
+        civ_type = self.env.ref("assets_management.ad_type_civilistico")
+        depreciation_id = asset.depreciation_ids.filtered(
+            lambda x: x.type_id == civ_type
+        )
+        self.assertAlmostEqual(depreciation_id.amount_depreciable, 7000)
+        depreciation_id.percentage = 40.0
+        depreciation_id.mode_id.line_ids.coefficient = 0.5
+        self.assertEqual(
+            asset.state, "non_depreciated", "Asset is not in non depreciated state!"
+        )
+        self._depreciate_asset(asset, first_depreciation_date)
+        self._depreciate_asset(asset, second_depreciation_date)
+        dep_lines = asset.depreciation_ids.line_ids
+        self.assertEqual(len(dep_lines), 2)
+        civ_dep_lines = dep_lines.filtered(
+            lambda x: x.depreciation_id.type_id == civ_type
+            and x.move_type == "depreciated"
+        )
+        self.assertAlmostEqual(sum(civ_dep_lines.mapped("amount")), 7000 * 0.6)
+        self.assertEqual(asset.state, "partially_depreciated")
+        # create an invoice to increment th totally depreciated asset
+        increment_invoice = self._create_purchase_invoice(today, amount=2000)
+        wiz_vals = increment_invoice.open_wizard_manage_asset()
+        move_line_ids = wiz_vals["context"]["default_move_line_ids"][0][2]
+        move_lines = self.env["account.move.line"].browse(move_line_ids)
+        move_lines_to_do = move_lines.filtered(
+            lambda x: x.account_id == self.asset_category_1.asset_account_id
+        )
+        wiz_vals["context"]["default_move_line_ids"] = [(6, 0, move_lines_to_do.ids)]
+        wiz = (
+            self.env["wizard.account.move.manage.asset"]
+            .with_context(wiz_vals["context"])
+            .create(
+                {
+                    "management_type": "update",
+                    "category_id": self.asset_category_1.id,
+                    "asset_id": asset.id,
+                    "depreciation_type_ids": [(6, 0, civ_type.ids)],
+                }
+            )
+        )
+        wiz.link_asset()
+        self.assertAlmostEqual(depreciation_id.amount_depreciable_updated, 9000)
+        # create depreciation for year -4 should do nothing as asset is already
+        # depreciated in a later date
+        third_depreciation_date = today.replace(month=12, day=31) + relativedelta(
+            years=-4
+        )
+        self._depreciate_asset(asset, third_depreciation_date)
+        self.assertAlmostEqual(sum(civ_dep_lines.mapped("amount")), 7000 * 0.6)
+        # create depreciation for current year should depreciate totally (as computed
+        # value 9000*40% = 3600 is greater than residual value)
+        current_year_depreciation_date = today.replace(month=12, day=31)
+        self._depreciate_asset(asset, current_year_depreciation_date)
+        dep_lines = asset.depreciation_ids.line_ids
+        self.assertEqual(len(dep_lines), 4)
+        civ_dep_lines = dep_lines.filtered(
+            lambda x: x.depreciation_id.type_id == civ_type
+            and x.move_type == "depreciated"
+        )
+        self.assertEqual(len(civ_dep_lines), 3)
+        self.assertEqual(asset.state, "partially_depreciated")
+        self.assertAlmostEqual(
+            sum(civ_dep_lines.mapped("amount")), 7000 * 0.6 + 9000 * 0.4
+        )

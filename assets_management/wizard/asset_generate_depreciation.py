@@ -63,9 +63,17 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
         """
         self.ensure_one()
         # Add depreciation date in context just in case
-        deps = self.get_depreciations().with_context(dep_date=self.date_dep)
-        dep_lines = deps.generate_depreciation_lines(self.date_dep)
-        deps.post_generate_depreciation_lines(dep_lines)
+        deps = self.env["asset.depreciation"]
+        all_deps = self.with_context(dep_date=self.date_dep).get_depreciations()
+        for dep in all_deps:
+            if (
+                not dep.last_depreciation_date
+                or dep.last_depreciation_date < self.date_dep
+            ):
+                deps |= dep
+        if deps:
+            dep_lines = deps.generate_depreciation_lines(self.date_dep)
+            deps.post_generate_depreciation_lines(dep_lines)
         if self._context.get("reload_window"):
             return {"type": "ir.actions.client", "tag": "reload"}
 
