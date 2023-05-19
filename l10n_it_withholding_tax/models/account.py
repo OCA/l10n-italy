@@ -4,7 +4,7 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
-from odoo.tools.float_utils import float_compare, float_round
+from odoo.tools.float_utils import float_compare, float_is_zero, float_round
 
 
 class AccountFullReconcile(models.Model):
@@ -499,6 +499,22 @@ class AccountMove(models.Model):
             else:
                 payment_val["wt_move_line"] = False
         return payment_vals
+
+    def action_register_payment(self):
+        """
+        Set net to pay how default amount to pay
+        """
+        res = super().action_register_payment()
+        amount_net_pay_residual = 0
+        for am in self:
+            if am.withholding_tax_amount:
+                amount_net_pay_residual += am.amount_net_pay_residual
+        if not float_is_zero(amount_net_pay_residual):
+            ctx = res.get("context", {})
+            if ctx:
+                ctx.update({"default_amount": amount_net_pay_residual})
+            res.update({"context": ctx})
+        return res
 
 
 class AccountMoveLine(models.Model):
