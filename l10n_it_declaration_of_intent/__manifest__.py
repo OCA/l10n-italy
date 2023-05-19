@@ -6,7 +6,7 @@
 {
     "name": "ITA - Dichiarazione di intento",
     "summary": "Gestione dichiarazioni di intento",
-    "version": "14.0.1.1.4",
+    "version": "14.0.1.1.5",
     "license": "AGPL-3",
     "author": "Francesco Apruzzese, Sergio Corato, Glauco Prina, Lara Baggio, "
     "Odoo Community Association (OCA)",
