@@ -10,7 +10,15 @@
                 position="replace"
             >
                 <th class="text-left">
-                    Customer Code
+                    Code
+                </th>
+            </xpath>
+            <xpath
+                expr="//div[hasclass('page')]/table/thead/tr/th[2]"
+                position="replace"
+            >
+                <th class="text-left">
+                    Product Name
                 </th>
             </xpath>
             <xpath
@@ -19,6 +27,14 @@
             >
                 <td>
                     <span t-esc="line.product_customer_code or ''" />
+                </td>
+            </xpath>
+                        <xpath
+                expr="//div[hasclass('page')]/table/tbody/t/tr/t/td[2]"
+                position="replace"
+            >
+                <td>
+                    <span t-esc="line.product_customer_name or ''" />
                 </td>
             </xpath>
         </template>
