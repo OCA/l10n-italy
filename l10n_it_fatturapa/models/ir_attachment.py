@@ -10,8 +10,8 @@ from io import BytesIO
 import lxml.etree as ET
 
 from odoo import api, fields, models
-from odoo.exceptions import UserError
-from odoo.modules import get_module_resource
+from odoo.exceptions import UserError, ValidationError
+from odoo.modules import get_resource_path
 from odoo.tools.translate import _
 
 _logger = logging.getLogger(__name__)
@@ -142,15 +142,26 @@ class FatturaPAAttachment(models.AbstractModel):
 
     @api.model
     def get_fattura_elettronica_preview(self, attachment):
-        company = self.env.user.company_id
-        xsl_path = get_module_resource(
-            "l10n_it_fatturapa", "data", company.fatturapa_preview_style
-        )
-        xslt = ET.parse(xsl_path)
         xml_string = self.get_xml_string(attachment)
         xml_file = BytesIO(xml_string)
         recovering_parser = ET.XMLParser(recover=True)
         dom = ET.parse(xml_file, parser=recovering_parser)
+
+        # identify the schema to use by looking at the root element tag
+        root = dom.getroot()
+        index = root.tag.rfind("}") + 1
+        root_tag = root.tag[index:]
+
+        company = self.env.user.company_id
+        if root_tag == "FatturaElettronicaSemplificata":
+            preview_style = company.fatturapa_simple_preview_style
+        elif root_tag == "FatturaElettronica":
+            preview_style = company.fatturapa_preview_style
+        else:
+            raise ValidationError(_("Unexpected root element: %s", root_tag))
+
+        xsl_path = get_resource_path("l10n_it_fatturapa", "data", preview_style)
+        xslt = ET.parse(xsl_path)
         transform = ET.XSLT(xslt)
         newdom = transform(dom)
         return ET.tostring(newdom, pretty_print=True)
