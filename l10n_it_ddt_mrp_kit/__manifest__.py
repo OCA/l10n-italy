@@ -8,7 +8,7 @@
     'category': 'Localization/Italy',
     'summary': 'Fatturazione Kit dal Documento di Trasporto',
     'author': 'Giacomo Grasso, Odoo Community Association (OCA)',
-    'website': 'https://odoo-community.org/',
+    'website': 'https://github.com/OCA/l10n-italy',
     'license': 'AGPL-3',
     'depends': [
         'l10n_it_ddt',
