@@ -378,13 +378,28 @@ class AssetDepreciation(models.Model):
 
     def get_depreciable_amount(self, dep_date=None):
         types = self.line_ids.get_update_move_types()
-        return self.amount_depreciable + sum(
+        depreciable_amount = self.amount_depreciable
+        update_depreciable_amount = sum(
             [
                 line.balance
                 for line in self.line_ids
                 if line.move_type in types and (not dep_date or line.date <= dep_date)
             ]
         )
+        depreciable_amount += update_depreciable_amount
+        depreciated_amount = sum(
+            [
+                line.balance
+                for line in self.line_ids
+                if line.move_type == "depreciated"
+                and (not dep_date or line.date <= dep_date)
+            ]
+        )
+        # If the asset is fully depreciated in the dep_date requested, gives 0 as
+        # depreciable amount
+        if float_is_zero(depreciable_amount + depreciated_amount, precision_digits=2):
+            depreciable_amount = 0
+        return depreciable_amount
 
     def get_depreciation_amount(self, dep_date):
         self.ensure_one()
