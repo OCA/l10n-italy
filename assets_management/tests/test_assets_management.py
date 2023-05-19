@@ -172,7 +172,7 @@ class TestAssets(SavepointCase):
             }
         )
 
-    def _create_asset(self):
+    def _create_asset(self, asset_date):
         asset = self.env["asset.asset"].create(
             {
                 "name": "Test asset",
@@ -180,10 +180,55 @@ class TestAssets(SavepointCase):
                 "company_id": self.env.ref("base.main_company").id,
                 "currency_id": self.env.ref("base.main_company").currency_id.id,
                 "purchase_amount": 1000.0,
-                "purchase_date": fields.Date.today() + relativedelta(years=-1),
+                "purchase_date": asset_date,
             }
         )
         return asset
+
+    def _depreciate_asset(self, asset, date_dep):
+        wiz_vals = asset.with_context(
+            {"allow_reload_window": True}
+        ).launch_wizard_generate_depreciations()
+        wiz = (
+            self.env["wizard.asset.generate.depreciation"]
+            .with_context(wiz_vals["context"])
+            .create({"date_dep": date_dep})
+        )
+        wiz.do_generate()
+
+    def _create_purchase_invoice(self, invoice_date, tax_ids=False, amount=7000):
+        invoice_line_vals = {
+            "account_id": self.asset_category_1.asset_account_id.id,
+            "quantity": 1,
+            "price_unit": amount,
+        }
+        if tax_ids:
+            invoice_line_vals.update({"tax_ids": tax_ids})
+        purchase_invoice = self.env["account.move"].create(
+            {
+                "move_type": "in_invoice",
+                "invoice_date": invoice_date,
+                "partner_id": self.env.ref("base.partner_demo").id,
+                "journal_id": self.env["account.journal"]
+                .search(
+                    [
+                        ("type", "=", "purchase"),
+                    ],
+                    limit=1,
+                )
+                .id,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        invoice_line_vals,
+                    )
+                ],
+            }
+        )
+        purchase_invoice.action_post()
+        self.assertEqual(purchase_invoice.state, "posted")
+        return purchase_invoice
 
     def test_00_create_asset_depreciate_and_sale(self):
         today = fields.Date.today()
@@ -191,41 +236,26 @@ class TestAssets(SavepointCase):
             years=-1
         )
         second_depreciation_date = today.replace(month=12, day=31)
-        asset = self._create_asset()
+        asset = self._create_asset(today + relativedelta(years=-1))
         civ_type = self.env.ref("assets_management.ad_type_civilistico")
         depreciation_id = asset.depreciation_ids.filtered(
             lambda x: x.type_id == civ_type
         )
-        self.assertEqual(len(depreciation_id), 1)
+        self.assertAlmostEqual(depreciation_id.amount_depreciable, 1000)
         depreciation_id.percentage = 25.0
         depreciation_id.mode_id.line_ids.coefficient = 0.5
         self.assertEqual(
             asset.state, "non_depreciated", "Asset is not in non depreciated state!"
         )
 
-        wiz_vals = asset.with_context(
-            {"allow_reload_window": True}
-        ).launch_wizard_generate_depreciations()
-        wiz = (
-            self.env["wizard.asset.generate.depreciation"]
-            .with_context(wiz_vals["context"])
-            .create({"date_dep": first_depreciation_date})
-        )
-        wiz.do_generate()
-        wiz_vals = asset.with_context(
-            {"allow_reload_window": True}
-        ).launch_wizard_generate_depreciations()
-        wiz = (
-            self.env["wizard.asset.generate.depreciation"]
-            .with_context(wiz_vals["context"])
-            .create({"date_dep": second_depreciation_date})
-        )
-        wiz.do_generate()
+        self._depreciate_asset(asset, first_depreciation_date)
+        self._depreciate_asset(asset, second_depreciation_date)
         dep_lines = asset.depreciation_ids.line_ids
         self.assertTrue(dep_lines)
         self.assertEqual(len(dep_lines), 2)
         civ_dep_lines = dep_lines.filtered(
             lambda x: x.depreciation_id.type_id == civ_type
+            and x.move_type == "depreciated"
         )
         self.assertAlmostEqual(sum(civ_dep_lines.mapped("amount")), 375)
         self.assertEqual(asset.state, "partially_depreciated")
@@ -307,35 +337,8 @@ class TestAssets(SavepointCase):
 
     def test_01_asset_from_purchase_invoice(self):
         # create purchase invoice and generate asset
-        today = fields.Date.today()
-        purchase_invoice = self.env["account.move"].create(
-            {
-                "move_type": "in_invoice",
-                "invoice_date": today,
-                "partner_id": self.env.ref("base.partner_demo").id,
-                "journal_id": self.env["account.journal"]
-                .search(
-                    [
-                        ("type", "=", "purchase"),
-                    ],
-                    limit=1,
-                )
-                .id,
-                "invoice_line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "account_id": self.asset_category_1.asset_account_id.id,
-                            "quantity": 1,
-                            "price_unit": 7000,
-                        },
-                    )
-                ],
-            }
-        )
-        purchase_invoice.action_post()
-        self.assertEqual(purchase_invoice.state, "posted")
+        invoice_date = fields.Date.today()
+        purchase_invoice = self._create_purchase_invoice(invoice_date)
         wiz_vals = purchase_invoice.open_wizard_manage_asset()
         move_line_ids = wiz_vals["context"]["default_move_line_ids"][0][2]
         move_lines = self.env["account.move.line"].browse(move_line_ids)
@@ -404,38 +407,12 @@ class TestAssets(SavepointCase):
         wiz.link_asset()
         self.assertTrue(asset.sold)
 
-    def test_01_asset_partial_deductible_from_purchase_invoice(self):
+    def test_02_asset_partial_deductible_from_purchase_invoice(self):
         # create purchase invoice partial deductible and generate asset
-        today = fields.Date.today()
-        purchase_invoice = self.env["account.move"].create(
-            {
-                "move_type": "in_invoice",
-                "invoice_date": today,
-                "partner_id": self.env.ref("base.partner_demo").id,
-                "journal_id": self.env["account.journal"]
-                .search(
-                    [
-                        ("type", "=", "purchase"),
-                    ],
-                    limit=1,
-                )
-                .id,
-                "invoice_line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "account_id": self.asset_category_1.asset_account_id.id,
-                            "quantity": 1,
-                            "price_unit": 7000,
-                            "tax_ids": [(6, 0, [self.tax_22_partial_60.id])],
-                        },
-                    )
-                ],
-            }
+        invoice_date = fields.Date.today()
+        purchase_invoice = self._create_purchase_invoice(
+            invoice_date, tax_ids=[(6, 0, [self.tax_22_partial_60.id])]
         )
-        purchase_invoice.action_post()
-        self.assertEqual(purchase_invoice.state, "posted")
         self.assertAlmostEqual(
             sum(
                 line.debit
@@ -464,3 +441,102 @@ class TestAssets(SavepointCase):
         )
         asset = wiz.link_asset()
         self.assertAlmostEqual(asset.purchase_amount, 7000 + (7000 * 0.22 * 0.4), 2)
+
+    def test_03_asset_from_purchase_invoice_increment(self):
+        # create purchase invoice and generate asset
+        today = fields.Date.today()
+        invoice_date = today + relativedelta(years=-5)
+        purchase_invoice = self._create_purchase_invoice(invoice_date)
+        wiz_vals = purchase_invoice.open_wizard_manage_asset()
+        move_line_ids = wiz_vals["context"]["default_move_line_ids"][0][2]
+        move_lines = self.env["account.move.line"].browse(move_line_ids)
+        move_lines_to_do = move_lines.filtered(
+            lambda x: x.account_id == self.asset_category_1.asset_account_id
+        )
+        wiz_vals["context"]["default_move_line_ids"] = [(6, 0, move_lines_to_do.ids)]
+        wiz = (
+            self.env["wizard.account.move.manage.asset"]
+            .with_context(wiz_vals["context"])
+            .create(
+                {
+                    "management_type": "create",
+                    "category_id": self.asset_category_1.id,
+                    "name": "Test asset",
+                }
+            )
+        )
+        asset = wiz.link_asset()
+        self.assertEqual(asset.purchase_amount, 7000)
+        # fully depreciate the asset
+        first_depreciation_date = today.replace(month=12, day=31) + relativedelta(
+            years=-5
+        )
+        second_depreciation_date = today.replace(month=12, day=31) + relativedelta(
+            years=-4
+        )
+        third_depreciation_date = today.replace(month=12, day=31) + relativedelta(
+            years=-3
+        )
+        civ_type = self.env.ref("assets_management.ad_type_civilistico")
+        depreciation_id = asset.depreciation_ids.filtered(
+            lambda x: x.type_id == civ_type
+        )
+        self.assertAlmostEqual(depreciation_id.amount_depreciable, 7000)
+        depreciation_id.percentage = 40.0
+        depreciation_id.mode_id.line_ids.coefficient = 0.5
+        self.assertEqual(
+            asset.state, "non_depreciated", "Asset is not in non depreciated state!"
+        )
+        self._depreciate_asset(asset, first_depreciation_date)
+        self._depreciate_asset(asset, second_depreciation_date)
+        self._depreciate_asset(asset, third_depreciation_date)
+        dep_lines = asset.depreciation_ids.line_ids
+        self.assertEqual(len(dep_lines), 3)
+        civ_dep_lines = dep_lines.filtered(
+            lambda x: x.depreciation_id.type_id == civ_type
+            and x.move_type == "depreciated"
+        )
+        self.assertAlmostEqual(sum(civ_dep_lines.mapped("amount")), 7000)
+        self.assertEqual(asset.state, "totally_depreciated")
+        # create an invoice to increment th totally depreciated asset
+        increment_invoice = self._create_purchase_invoice(today, amount=2000)
+        wiz_vals = increment_invoice.open_wizard_manage_asset()
+        move_line_ids = wiz_vals["context"]["default_move_line_ids"][0][2]
+        move_lines = self.env["account.move.line"].browse(move_line_ids)
+        move_lines_to_do = move_lines.filtered(
+            lambda x: x.account_id == self.asset_category_1.asset_account_id
+        )
+        wiz_vals["context"]["default_move_line_ids"] = [(6, 0, move_lines_to_do.ids)]
+        wiz = (
+            self.env["wizard.account.move.manage.asset"]
+            .with_context(wiz_vals["context"])
+            .create(
+                {
+                    "management_type": "update",
+                    "category_id": self.asset_category_1.id,
+                    "asset_id": asset.id,
+                    "depreciation_type_ids": [(6, 0, civ_type.ids)],
+                }
+            )
+        )
+        wiz.link_asset()
+        self.assertAlmostEqual(depreciation_id.amount_depreciable_updated, 9000)
+        # create depreciation for year -2 or -1 should do nothing as asset is totally
+        # depreciated
+        fourth_depreciation_date = today.replace(month=12, day=31) + relativedelta(
+            years=-2
+        )
+        self._depreciate_asset(asset, fourth_depreciation_date)
+        self.assertAlmostEqual(sum(civ_dep_lines.mapped("amount")), 7000)
+        # create depreciation for current year should depreciate totally (as computed
+        # value 9000*40% = 3600 is greater than residual value)
+        current_year_depreciation_date = today.replace(month=12, day=31)
+        self._depreciate_asset(asset, current_year_depreciation_date)
+        dep_lines = asset.depreciation_ids.line_ids
+        self.assertEqual(len(dep_lines), 6)
+        civ_dep_lines = dep_lines.filtered(
+            lambda x: x.depreciation_id.type_id == civ_type
+            and x.move_type == "depreciated"
+        )
+        self.assertEqual(asset.state, "totally_depreciated")
+        self.assertAlmostEqual(sum(civ_dep_lines.mapped("amount")), 9000)
