@@ -75,6 +75,7 @@
         <field name="inherit_id" ref="account_due_list.view_payments_filter" />
         <field name="arch" type="xml">
             <xpath expr="//search" position="inside">
+                <separator />
                 <filter
                     name="da_emettere"
                     string="RIBA To Issue"
@@ -85,6 +86,7 @@
                     string="RIBA Issued"
                     domain="[('distinta_line_ids', '!=', False)]"
                 />
+                <separator />
                 <filter
                     name="reconciled"
                     string="Reconciled"
@@ -95,28 +97,12 @@
                     string="To Reconcile"
                     domain="[('reconciled', '=', False)]"
                 />
+                <separator />
                 <filter
                     name="unsolved"
                     string="Past Due"
                     domain="[('unsolved_invoice_ids', '!=', False)]"
                 />
-                <filter
-                    name="sale_journal"
-                    string="Sale Journals"
-                    domain="[('journal_id.type', '=', 'sale')]"
-                />
-                <field name="account_id" />
-                <field name="partner_id" />
-                <field name="move_id" />
-                <!-- TODO: field name="invoice_origin"/-->
-                <field name="date_maturity" />
-                <group expand="0" string="Group By...">
-                    <filter
-                        name="filter_customer"
-                        string="Group By Customer"
-                        context="{'group_by':'partner_id'}"
-                    />
-                </group>
             </xpath>
         </field>
     </record>
