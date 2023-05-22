@@ -329,7 +329,9 @@ class AccountMove(models.Model):
                 total_amount = sum(
                     line.amount_currency for line in invoice.intrastat_line_ids
                 )
-                subtotal = abs(invoice.amount_untaxed - excluded_amount)
+                subtotal = invoice.amount_untaxed - excluded_amount * (
+                    1 if invoice.amount_untaxed > 0 else -1
+                )
                 if not float_is_zero(
                     total_amount - subtotal, precision_digits=precision_digits
                 ):
