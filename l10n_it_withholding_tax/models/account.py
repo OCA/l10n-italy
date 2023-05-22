@@ -504,12 +504,13 @@ class AccountMove(models.Model):
         """
         Set net to pay how default amount to pay
         """
+        dp_obj = self.env["decimal.precision"]
         res = super().action_register_payment()
         amount_net_pay_residual = 0
         for am in self:
             if am.withholding_tax_amount:
                 amount_net_pay_residual += am.amount_net_pay_residual
-        if not float_is_zero(amount_net_pay_residual):
+        if not float_is_zero(amount_net_pay_residual, dp_obj.precision_get("Account")):
             ctx = res.get("context", {})
             if ctx:
                 ctx.update({"default_amount": amount_net_pay_residual})
