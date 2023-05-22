@@ -10,15 +10,16 @@ msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-28 05:14+0000\n"
-"PO-Revision-Date: 2017-12-01 20:31+0000\n"
-"Last-Translator: Paolo Valier\n"
+"PO-Revision-Date: 2023-05-22 15:08+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_it_withholding_tax_payment
 #: field:withholding.tax.move.payment,account_id:0
@@ -38,7 +39,7 @@ msgstr "Account move"
 #. module: l10n_it_withholding_tax_payment
 #: view:wizard.wt.move.payment.create:l10n_it_withholding_tax_payment.wizard_wt_move_payment_create_view
 msgid "Cancel"
-msgstr "Cancella"
+msgstr "Annulla"
 
 #. module: l10n_it_withholding_tax_payment
 #: view:withholding.tax.move.payment:l10n_it_withholding_tax_payment.view_withholding_move_payment_form
