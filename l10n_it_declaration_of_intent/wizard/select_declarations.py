@@ -23,6 +23,7 @@ class SelectManuallyDeclarations(models.TransientModel):
         domain = [
             ("partner_id", "=", invoice.partner_id.commercial_partner_id.id),
             ("type", "=", type_short),
+            ("state", "not in", ("close", "expired")),
         ]
         if invoice.invoice_date:
             date_domain = [
@@ -30,6 +31,7 @@ class SelectManuallyDeclarations(models.TransientModel):
                 ("date_end", ">=", invoice.invoice_date),
             ]
             domain = expression.AND([domain, date_domain])
+
         return declaration_model.search(domain)
 
     declaration_ids = fields.Many2many(
