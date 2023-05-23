@@ -7,8 +7,7 @@ from odoo import tests
 from odoo.tests import Form
 
 
-class TestBalanceReport (tests.SavepointCase):
-
+class TestBalanceReport(tests.SavepointCase):
     @classmethod
     def _create_invoice(cls, partner, products=None, post=False):
         """Get an invoice for `partner`, containing `products`.
@@ -16,9 +15,9 @@ class TestBalanceReport (tests.SavepointCase):
         If `post`, the invoice is opened.
         """
         if products is None:
-            products = cls.env['product.product'].browse()
+            products = cls.env["product.product"].browse()
 
-        invoice_form = Form(cls.env['account.invoice'])
+        invoice_form = Form(cls.env["account.invoice"])
         invoice_form.partner_id = partner
         for product in products:
             with invoice_form.invoice_line_ids.new() as line:
@@ -32,14 +31,18 @@ class TestBalanceReport (tests.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.customer = cls.env['res.partner'].create({
-            'name': "Test Customer",
-            'customer': True,
-        })
+        cls.customer = cls.env["res.partner"].create(
+            {
+                "name": "Test Customer",
+                "customer": True,
+            }
+        )
 
-        cls.product = cls.env['product.product'].create({
-            'name': "Test Product",
-        })
+        cls.product = cls.env["product.product"].create(
+            {
+                "name": "Test Product",
+            }
+        )
 
         cls.posted_invoice = cls._create_invoice(
             cls.customer,
@@ -50,19 +53,19 @@ class TestBalanceReport (tests.SavepointCase):
     def _get_report_content(self, wizard_values):
         """Get the PDF content from the wizard created with `wizard_values`."""
         # Get the Report Action from the Wizard
-        wiz = self.env['trial.balance.report.wizard'].create(wizard_values)
+        wiz = self.env["trial.balance.report.wizard"].create(wizard_values)
         report_action = wiz.button_export_pdf()
 
         # Get the Report from the Report Action
-        report_name = report_action['report_name']
-        context = report_action['context']
-        report_ids = context['active_ids']
-        report = self.env['ir.actions.report']._get_report_from_name(report_name)
+        report_name = report_action["report_name"]
+        context = report_action["context"]
+        report_ids = context["active_ids"]
+        report = self.env["ir.actions.report"]._get_report_from_name(report_name)
 
         # Render the Report
-        report_content, report_type = report \
-            .with_context(context) \
-            .render_qweb_pdf(report_ids)
+        report_content, report_type = report.with_context(context).render_qweb_pdf(
+            report_ids
+        )
         report_content = report_content.decode()
         return report_content
 
@@ -74,17 +77,19 @@ class TestBalanceReport (tests.SavepointCase):
         invoice = self.posted_invoice
         account = invoice.invoice_line_ids.account_id
         # pre-condition: An Invoice is posted
-        self.assertEqual(invoice.state, 'open')
+        self.assertEqual(invoice.state, "open")
 
         # Act: Print the Report containing the Invoice,
         # enabling `hide_accounts_codes`
         one_day = timedelta(days=1)
-        report_content = self._get_report_content({
-            'account_balance_report_type': 'profit_loss',
-            'hide_accounts_codes': True,
-            'date_from': invoice.date_invoice - one_day,
-            'date_to': invoice.date_invoice + one_day,
-        })
+        report_content = self._get_report_content(
+            {
+                "account_balance_report_type": "profit_loss",
+                "hide_accounts_codes": True,
+                "date_from": invoice.date_invoice - one_day,
+                "date_to": invoice.date_invoice + one_day,
+            }
+        )
 
         # Assert: The Account Code is hidden
         self.assertNotIn(account.code, report_content)
@@ -98,15 +103,17 @@ class TestBalanceReport (tests.SavepointCase):
         invoice = self.posted_invoice
         account = invoice.invoice_line_ids.account_id
         # pre-condition: An Invoice is posted
-        self.assertEqual(invoice.state, 'open')
+        self.assertEqual(invoice.state, "open")
 
         # Act: Print the Report containing the Invoice
         one_day = timedelta(days=1)
-        report_content = self._get_report_content({
-            'account_balance_report_type': 'profit_loss',
-            'date_from': invoice.date_invoice - one_day,
-            'date_to': invoice.date_invoice + one_day,
-        })
+        report_content = self._get_report_content(
+            {
+                "account_balance_report_type": "profit_loss",
+                "date_from": invoice.date_invoice - one_day,
+                "date_to": invoice.date_invoice + one_day,
+            }
+        )
 
         # Assert: The Account Code is shown
         self.assertIn(account.code, report_content)

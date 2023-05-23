@@ -8,43 +8,34 @@ from odoo.tools.safe_eval import safe_eval
 
 
 def get_xmlid(id_str):
-    id_str = id_str.replace('.', '')
-    return 'l10n_it_account_balance_report.{}'.format(id_str)
+    id_str = id_str.replace(".", "")
+    return "l10n_it_account_balance_report.{}".format(id_str)
 
 
 class ReportAccountBalanceReport(models.TransientModel):
-    _name = 'account_balance_report'
-    _inherit = 'account_financial_report_abstract'
-    _inherits = {'report_trial_balance': 'trial_balance_id'}
+    _name = "account_balance_report"
+    _inherit = "account_financial_report_abstract"
+    _inherits = {"report_trial_balance": "trial_balance_id"}
 
     account_balance_report_type = fields.Selection(
-        [('profit_loss', "Profit & Loss"),
-         ('balance_sheet', "Balance Sheet")],
+        [("profit_loss", "Profit & Loss"), ("balance_sheet", "Balance Sheet")],
     )
     hide_accounts_codes = fields.Boolean()
     left_col_name = fields.Char()
     right_col_name = fields.Char()
     section_credit_ids = fields.One2many(
-        'account_balance_report_account',
-        'report_credit_id'
+        "account_balance_report_account", "report_credit_id"
     )
     section_debit_ids = fields.One2many(
-        'account_balance_report_account',
-        'report_debit_id'
+        "account_balance_report_account", "report_debit_id"
     )
     title = fields.Char()
-    total_balance = fields.Float(
-        digits=(16, 2)
-    )
-    total_credit = fields.Float(
-        digits=(16, 2)
-    )
-    total_debit = fields.Float(
-        digits=(16, 2)
-    )
+    total_balance = fields.Float(digits=(16, 2))
+    total_credit = fields.Float(digits=(16, 2))
+    total_debit = fields.Float(digits=(16, 2))
     trial_balance_id = fields.Many2one(
-        'report_trial_balance',
-        ondelete='cascade',
+        "report_trial_balance",
+        ondelete="cascade",
         required=True,
         index=True,
     )
@@ -58,15 +49,18 @@ class ReportAccountBalanceReport(models.TransientModel):
         :param report_type: string that represents the report type
         """
         self.ensure_one()
-        report_type = report_type or 'qweb-pdf'
-        if report_type in ('qweb-pdf', 'xlsx'):
+        report_type = report_type or "qweb-pdf"
+        if report_type in ("qweb-pdf", "xlsx"):
             res = self.do_print(report_type)
-        elif report_type == 'qweb-html':
+        elif report_type == "qweb-html":
             res = self.view_report()
         elif report_type:
             raise ValidationError(
-                _("No report has been defined for report type '{}'."
-                  .format(report_type))
+                _(
+                    "No report has been defined for report type '{}'.".format(
+                        report_type
+                    )
+                )
             )
         else:
             raise ValidationError(
@@ -76,25 +70,25 @@ class ReportAccountBalanceReport(models.TransientModel):
 
     def do_print(self, report_type):
         self.ensure_one()
-        if report_type == 'qweb-pdf':
-            xml_id = get_xmlid('report_account_balance_report_pdf')
+        if report_type == "qweb-pdf":
+            xml_id = get_xmlid("report_account_balance_report_pdf")
         else:
-            xml_id = get_xmlid('report_account_balance_report_xlsx')
+            xml_id = get_xmlid("report_account_balance_report_xlsx")
         report = self.env.ref(xml_id)
         return report.report_action(self)
 
     @api.multi
     def view_report(self):
-        """ Launches view for HTML report """
+        """Launches view for HTML report"""
         self.ensure_one()
-        [act] = self.env.ref(get_xmlid('action_account_balance_report')).read()
-        ctx = act.get('context', {})
+        [act] = self.env.ref(get_xmlid("action_account_balance_report")).read()
+        ctx = act.get("context", {})
         if isinstance(ctx, string_types):
             ctx = safe_eval(ctx)
         # Call update twice to force 'active_%s' values to be overridden
         ctx.update(dict(self._context))
         ctx.update(active_id=self.id, active_ids=self.ids)
-        act['context'] = ctx
+        act["context"] = ctx
         return act
 
     @api.multi
@@ -117,8 +111,8 @@ class ReportAccountBalanceReport(models.TransientModel):
             raise ValidationError(
                 _("Unknown report type; cannot parse it into a table.")
             )
-        l_sec, l_name = cols['left']['section'], cols['left']['name']
-        r_sec, r_name = cols['right']['section'], cols['right']['name']
+        l_sec, l_name = cols["left"]["section"], cols["left"]["name"]
+        r_sec, r_name = cols["right"]["section"], cols["right"]["name"]
         valid_sections = [l_sec, r_sec]
 
         for trial_acc_line in self.trial_balance_id.account_ids:
@@ -134,18 +128,26 @@ class ReportAccountBalanceReport(models.TransientModel):
                 trial_partner_line.final_balance *= sign
 
             balance_line_vals = (
-                0, 0, {
-                    'date_from': self.date_from,
-                    'date_to': self.date_to,
-                    'report_partner_ids': [(
-                        0, 0, {
-                            'date_from': self.date_from,
-                            'date_to': self.date_to,
-                            'report_id': self.id,
-                            'trial_balance_partner_id': pid
-                        }) for pid in trial_acc_line.partner_ids.ids],
-                    'trial_balance_line_id': trial_acc_line.id,
-                }
+                0,
+                0,
+                {
+                    "date_from": self.date_from,
+                    "date_to": self.date_to,
+                    "report_partner_ids": [
+                        (
+                            0,
+                            0,
+                            {
+                                "date_from": self.date_from,
+                                "date_to": self.date_to,
+                                "report_id": self.id,
+                                "trial_balance_partner_id": pid,
+                            },
+                        )
+                        for pid in trial_acc_line.partner_ids.ids
+                    ],
+                    "trial_balance_line_id": trial_acc_line.id,
+                },
             )
 
             if section == r_sec:
@@ -160,23 +162,25 @@ class ReportAccountBalanceReport(models.TransientModel):
         curr = self.company_id.currency_id or self.company_id._get_euro()
         digits = curr.decimal_places
         if not digits:
-            digits = self.env['decimal.precision'].precision_get('Account')
+            digits = self.env["decimal.precision"].precision_get("Account")
         total_balance = 0
         if float_compare(total_credit, total_debit, digits) == 1:
             total_balance = total_credit - total_debit
         elif float_compare(total_credit, total_debit, digits) == -1:
             total_balance = total_debit - total_credit
 
-        self.write({
-            'left_col_name': l_name,
-            'right_col_name': r_name,
-            'section_credit_ids': section_credit_vals,
-            'section_debit_ids': section_debit_vals,
-            'title': cols['title'],
-            'total_balance': total_balance,
-            'total_credit': total_credit,
-            'total_debit': total_debit,
-        })
+        self.write(
+            {
+                "left_col_name": l_name,
+                "right_col_name": r_name,
+                "section_credit_ids": section_credit_vals,
+                "section_debit_ids": section_debit_vals,
+                "title": cols["title"],
+                "total_balance": total_balance,
+                "total_credit": total_credit,
+                "total_debit": total_debit,
+            }
+        )
 
     def get_column_data(self):
         """
@@ -184,32 +188,32 @@ class ReportAccountBalanceReport(models.TransientModel):
         :returns: report data grouped by report type
         """
         return {
-            'balance_sheet': {
-                'left': {
-                    'section': 'assets',
-                    'name': _("ASSETS"),
+            "balance_sheet": {
+                "left": {
+                    "section": "assets",
+                    "name": _("ASSETS"),
                 },
-                'right': {
-                    'section': 'liabilities',
-                    'name': _("LIABILITIES"),
+                "right": {
+                    "section": "liabilities",
+                    "name": _("LIABILITIES"),
                 },
-                'title': _("BALANCE SHEET")
+                "title": _("BALANCE SHEET"),
             },
-            'profit_loss': {
-                'left': {
-                    'section': 'expenses',
-                    'name': _("COSTS"),
+            "profit_loss": {
+                "left": {
+                    "section": "expenses",
+                    "name": _("COSTS"),
                 },
-                'right': {
-                    'section': 'incomes',
-                    'name': _("REVENUES"),
+                "right": {
+                    "section": "incomes",
+                    "name": _("REVENUES"),
                 },
-                'title': _("PROFIT & LOSS")
+                "title": _("PROFIT & LOSS"),
             },
         }
 
     def get_report_section(self, account=None, group=None):
-        section = ''
+        section = ""
         if not account and group and group.account_ids:
             account = group.account_ids[0]
         if account:
@@ -218,80 +222,69 @@ class ReportAccountBalanceReport(models.TransientModel):
 
     @api.model
     def get_html(self, given_context=None):
-        """ Method needed from JavaScript widget to render HTML view """
+        """Method needed from JavaScript widget to render HTML view"""
         context = dict(self.env.context)
         context.update(given_context or {})
-        report = self or self.browse(context.get('active_id'))
-        xml_id = get_xmlid('template_account_balance_report')
+        report = self or self.browse(context.get("active_id"))
+        xml_id = get_xmlid("template_account_balance_report")
 
         result = {}
         if report:
-            context['o'] = report
-            result['html'] = self.env.ref(xml_id).render(context)
+            context["o"] = report
+            result["html"] = self.env.ref(xml_id).render(context)
         return result
 
 
 class ReportAccountBalanceReportAccount(models.TransientModel):
-    _name = 'account_balance_report_account'
-    _inherit = 'account_financial_report_abstract'
-    _inherits = {'report_trial_balance_account': 'trial_balance_line_id'}
+    _name = "account_balance_report_account"
+    _inherit = "account_financial_report_abstract"
+    _inherits = {"report_trial_balance_account": "trial_balance_line_id"}
 
     date_from = fields.Date()
     date_to = fields.Date()
     report_partner_ids = fields.One2many(
-        'account_balance_report_partner',
-        'report_section_id',
+        "account_balance_report_partner",
+        "report_section_id",
     )
     report_credit_id = fields.Many2one(
-        'account_balance_report',
-        ondelete='cascade',
-        index=True
+        "account_balance_report", ondelete="cascade", index=True
     )
     report_debit_id = fields.Many2one(
-        'account_balance_report',
-        ondelete='cascade',
-        index=True
+        "account_balance_report", ondelete="cascade", index=True
     )
     trial_balance_line_id = fields.Many2one(
-        'report_trial_balance_account',
-        ondelete='cascade',
-        required=True,
-        index=True
+        "report_trial_balance_account", ondelete="cascade", required=True, index=True
     )
 
 
 class ReportAccountBalanceReportPartner(models.TransientModel):
-    _name = 'account_balance_report_partner'
-    _inherit = 'account_financial_report_abstract'
-    _inherits = {'report_trial_balance_partner': 'trial_balance_partner_id'}
+    _name = "account_balance_report_partner"
+    _inherit = "account_financial_report_abstract"
+    _inherits = {"report_trial_balance_partner": "trial_balance_partner_id"}
 
     date_from = fields.Date()
     date_to = fields.Date()
-    hide_line = fields.Boolean(
-        compute='_compute_hide_line'
-    )
+    hide_line = fields.Boolean(compute="_compute_hide_line")
     report_id = fields.Many2one(
-        'account_balance_report',
+        "account_balance_report",
     )
     report_section_id = fields.Many2one(
-        'account_balance_report_account',
-        ondelete='cascade',
-        index=True
+        "account_balance_report_account", ondelete="cascade", index=True
     )
     trial_balance_partner_id = fields.Many2one(
-        'report_trial_balance_partner',
-        ondelete='cascade',
-        required=True,
-        index=True
+        "report_trial_balance_partner", ondelete="cascade", required=True, index=True
     )
 
     @api.multi
-    @api.depends('final_balance',
-                 'report_id.hide_account_at_0',
-                 'trial_balance_partner_id.final_balance')
+    @api.depends(
+        "final_balance",
+        "report_id.hide_account_at_0",
+        "trial_balance_partner_id.final_balance",
+    )
     def _compute_hide_line(self):
-        report = self.mapped('report_section_id.report_credit_id') \
-            + self.mapped('report_section_id.report_debit_id')
+        report = self.mapped("report_section_id.report_credit_id") + self.mapped(
+            "report_section_id.report_debit_id"
+        )
         if report.hide_account_at_0:
             for partner_line in self:
                 p_bal = partner_line.final_balance
