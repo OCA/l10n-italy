@@ -34,10 +34,10 @@
                                 <field name="hide_account_at_0" />
                                 <field name="hide_accounts_codes" />
                                 <field name="show_partner_details" />
-                                <field name="hierarchy_on" invisible="1" />
+                                <field name="show_hierarchy" invisible="1" />
                                 <field
                                     name="limit_hierarchy_level"
-                                    attrs="{'invisible':[('hierarchy_on','=','none')]}"
+                                    attrs="{'invisible':[('show_hierarchy','=',False)]}"
                                 />
                                 <field
                                     name="show_hierarchy_level"
@@ -150,7 +150,7 @@
             <field name="target">new</field>
             <field
                 name="context"
-            >{'default_account_balance_report_type':'profit_loss','default_hierarchy_on':'relation'}</field>
+            >{'default_account_balance_report_type':'profit_loss','default_show_hierarchy':True}</field>
         </record>
 
         <menuitem
