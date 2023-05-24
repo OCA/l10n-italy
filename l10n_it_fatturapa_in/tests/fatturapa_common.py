@@ -3,6 +3,7 @@ import operator
 import tempfile
 from functools import reduce
 
+from odoo import fields
 from odoo.modules import get_module_resource
 from odoo.tests import Form
 from odoo.tests.common import SingleTransactionCase
@@ -291,6 +292,7 @@ class FatturapaCommon(SingleTransactionCase):
             module_name = "l10n_it_fatturapa_in"
 
         attach = self.create_attachment(name, file_name, module_name=module_name)
+        attach.e_invoice_received_date = fields.Datetime.now()
         attach_id = attach.id
         if mode == "import":
             wizard_form = Form(

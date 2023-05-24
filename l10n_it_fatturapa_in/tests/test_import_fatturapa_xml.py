@@ -2,6 +2,7 @@ from datetime import date
 
 from psycopg2 import IntegrityError
 
+from odoo import fields
 from odoo.exceptions import UserError, ValidationError
 from odoo.modules import get_module_resource
 from odoo.tests import Form
@@ -937,6 +938,13 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             ),
         )
         self.wizard_model.reset_inconsistencies()
+
+    def test_54_xml_in_invoice_registration_date_rec_date(self):
+        self.env.company.in_invoice_registration_date = "rec_date"
+        res = self.run_wizard("test55", "IT05979361218_017.xml")
+        invoice_id = res.get("domain")[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.date, fields.Date.today())
 
     def test_01_xml_link(self):
         """
