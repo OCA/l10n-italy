@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-28 05:14+0000\n"
-"PO-Revision-Date: 2023-01-03 13:44+0000\n"
+"PO-Revision-Date: 2023-05-24 18:11+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model,name:l10n_it_withholding_tax.model_account_move
@@ -41,12 +41,12 @@ msgstr "Linee Registrazione"
 #. module: l10n_it_withholding_tax
 #: field:withholding.tax,account_payable_id:0
 msgid "Account Payable"
-msgstr "Conto di Debito"
+msgstr "Conto di debito"
 
 #. module: l10n_it_withholding_tax
 #: field:withholding.tax,account_receivable_id:0
 msgid "Account Receivable"
-msgstr "Conto di Credito"
+msgstr "Conto di credito"
 
 #. module: l10n_it_withholding_tax
 #: field:withholding.tax.voucher.line,voucher_line_id:0
