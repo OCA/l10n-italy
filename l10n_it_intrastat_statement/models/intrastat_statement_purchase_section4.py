@@ -24,14 +24,13 @@ class IntrastatStatementPurchaseSection4(models.Model):
         string="Progressive to Adjust ID",
     )
     progressive_to_modify = fields.Integer(string="Progressive to Adjust")
-    invoice_number = fields.Char(string="Invoice Number")
-    invoice_date = fields.Date(string="Invoice Date")
+    invoice_number = fields.Char()
+    invoice_date = fields.Date()
     supply_method = fields.Selection(
-        selection=[("I", "Instant"), ("R", "Repeated")], string="Supply Method"
+        selection=[("I", "Instant"), ("R", "Repeated")],
     )
     payment_method = fields.Selection(
         selection=[("B", "Bank Transfer"), ("A", "Credit"), ("X", "Other")],
-        string="Payment Method",
     )
     country_payment_id = fields.Many2one(
         comodel_name="res.country", string="Payment Country"
@@ -65,7 +64,7 @@ class IntrastatStatementPurchaseSection4(models.Model):
         return res
 
     def _export_line_checks(self, section_label, section_number):
-        super(IntrastatStatementPurchaseSection4, self)._export_line_checks(
+        res = super(IntrastatStatementPurchaseSection4, self)._export_line_checks(
             section_label, section_number
         )
         if not self.year_id:
@@ -88,6 +87,7 @@ class IntrastatStatementPurchaseSection4(models.Model):
             raise ValidationError(
                 _("Missing payment country on 'Purchases - Section 4'")
             )
+        return res
 
     def _prepare_export_line(self):
         self._export_line_checks(_("Purchase"), 4)

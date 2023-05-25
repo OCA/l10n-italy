@@ -66,8 +66,13 @@ class IntrastatStatementSection(models.AbstractModel):
         self.ensure_one()
         if not self.vat_code and section_number != 4:
             raise ValidationError(
-                _("Missing vat code for %s on '%s - Section %s'")
-                % (self.partner_id.display_name, section_label, section_number)
+                _(
+                    "Missing vat code for %(display_name)s on "
+                    "'%(section_label)s - Section %(section_number)s'",
+                    display_name=self.partner_id.display_name,
+                    section_label=section_label,
+                    section_number=section_number,
+                )
             )
         country_id = self.country_partner_id or self.partner_id.country_id
         if country_id:

@@ -17,7 +17,7 @@ class IntrastatStatementSaleSection1(models.Model):
         default=lambda m: m._default_transaction_nature_id(),
     )
     weight_kg = fields.Integer(string="Net Mass (kg)")
-    additional_units = fields.Integer(string="Additional Units")
+    additional_units = fields.Integer()
     additional_units_required = fields.Boolean(
         string="Additional Unit Required",
         store=True,
@@ -49,7 +49,6 @@ class IntrastatStatementSaleSection1(models.Model):
         comodel_name="res.country", string="Origin Country"
     )
     triangulation = fields.Boolean(
-        string="Triangulation",
         default=False,
     )
 
