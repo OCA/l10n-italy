@@ -563,7 +563,6 @@ class AccountInvoiceIntrastat(models.Model):
             ("purchase_s3", "Purchases section 3"),
             ("purchase_s4", "Purchases section 4"),
         ],
-        string="Statement Section",
         compute="_compute_statement_section",
     )
 
@@ -584,7 +583,7 @@ class AccountInvoiceIntrastat(models.Model):
     )
     weight_kg = fields.Float(string="Net Mass (kg)")
     show_weight = fields.Boolean(string="Display weight in declaration", default=True)
-    additional_units = fields.Float(string="Additional Units")
+    additional_units = fields.Float()
     additional_units_uom = fields.Char(
         string="Additional Unit of Measure",
         readonly=True,
@@ -623,23 +622,16 @@ class AccountInvoiceIntrastat(models.Model):
     country_destination_id = fields.Many2one(
         comodel_name="res.country", string="Destination Country"
     )
-    invoice_number = fields.Char(
-        string="Invoice Number", compute="_compute_invoice_ref", store=True
-    )
-    invoice_date = fields.Date(
-        string="Invoice Date", compute="_compute_invoice_ref", store=True
-    )
-    supply_method = fields.Selection(
-        selection=[("I", "Instant"), ("R", "Repeated")], string="Supply Method"
-    )
+    invoice_number = fields.Char(compute="_compute_invoice_ref", store=True)
+    invoice_date = fields.Date(compute="_compute_invoice_ref", store=True)
+    supply_method = fields.Selection(selection=[("I", "Instant"), ("R", "Repeated")])
     payment_method = fields.Selection(
-        selection=[("B", "Bank Transfer"), ("A", "Credit"), ("X", "Other")],
-        string="Payment Method",
+        selection=[("B", "Bank Transfer"), ("A", "Credit"), ("X", "Other")]
     )
     country_payment_id = fields.Many2one(
         comodel_name="res.country", string="Payment Country"
     )
-    triangulation = fields.Boolean(string="Triangulation", default=False)
+    triangulation = fields.Boolean(default=False)
     invoice_type = fields.Selection(
         string="Invoice Type",
         related="invoice_id.move_type",

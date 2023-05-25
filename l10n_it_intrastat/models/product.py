@@ -17,7 +17,6 @@ class ProductCategory(models.Model):
             ("misc", "Miscellaneous"),
             ("exclude", "Exclude"),
         ],
-        string="Intrastat Type",
     )
 
 
@@ -34,7 +33,6 @@ class ProductTemplate(models.Model):
             ("misc", "Miscellaneous"),
             ("exclude", "Exclude"),
         ],
-        string="Intrastat Type",
     )
 
     def get_intrastat_data(self):
