@@ -32,7 +32,7 @@ class ReportIntrastatCode(models.Model):
         comodel_name="uom.uom", string="Additional Unit of Measure"
     )
     type = fields.Selection(selection=[("good", "Goods"), ("service", "Service")])
-    description = fields.Char(string="Description", translate=True)
+    description = fields.Char(translate=True)
 
     def name_get(self):
         res = []
@@ -71,16 +71,16 @@ class AccountIntrastatTransport(models.Model):
     _name = "account.intrastat.transport"
     _description = "Transport Mode"
 
-    code = fields.Char(string="Code", required=True)
-    name = fields.Char(string="Name")
+    code = fields.Char(required=True)
+    name = fields.Char()
 
 
 class AccountIntrastatTransationNature(models.Model):
     _name = "account.intrastat.transaction.nature"
     _description = "Transaction Nature"
 
-    code = fields.Char(string="Code", required=True)
-    name = fields.Char(string="Name")
+    code = fields.Char(required=True)
+    name = fields.Char()
     triangulation = fields.Selection(
         selection=[
             ("A", "A"),
@@ -92,7 +92,6 @@ class AccountIntrastatTransationNature(models.Model):
             ("G", "G"),
             ("H", "H"),
         ],
-        string="Triangulation",
     )
     active = fields.Boolean(default=True)
 
@@ -101,8 +100,8 @@ class AccountIntrastatTransationNatureB(models.Model):
     _name = "account.intrastat.transaction.nature.b"
     _description = "Transaction Nature B"
 
-    code = fields.Char(string="Code", required=True)
-    name = fields.Char(string="Name")
+    code = fields.Char(required=True)
+    name = fields.Char()
     nature_parent_id = fields.Many2one(
         comodel_name="account.intrastat.transaction.nature", string="Transaction Nature"
     )
