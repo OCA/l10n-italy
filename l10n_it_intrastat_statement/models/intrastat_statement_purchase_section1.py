@@ -22,7 +22,7 @@ class IntrastatStatementPurchaseSection1(models.Model):
         default=lambda m: m._default_transaction_nature_b_id(),
     )
     weight_kg = fields.Integer(string="Net Mass (kg)")
-    additional_units = fields.Integer(string="Additional Units")
+    additional_units = fields.Integer()
     additional_units_required = fields.Boolean(
         string="Additional Unit Required",
         store=True,

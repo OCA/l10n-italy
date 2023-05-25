@@ -20,20 +20,18 @@ class IntrastatStatementSaleSection4(models.Model):
     year_id = fields.Integer(string="Ref. Year")
     protocol = fields.Integer(string="Protocol Number")
     progressive_to_modify = fields.Integer(string="Progressive to Adjust")
-    invoice_number = fields.Char(string="Invoice Number")
-    invoice_date = fields.Date(string="Invoice Date")
+    invoice_number = fields.Char()
+    invoice_date = fields.Date()
     supply_method = fields.Selection(
-        selection=[("I", "Instant"), ("R", "Repeated")], string="Supply Method"
+        selection=[("I", "Instant"), ("R", "Repeated")],
     )
     payment_method = fields.Selection(
         selection=[("B", "Bank Transfer"), ("A", "Credit"), ("X", "Other")],
-        string="Payment Method",
     )
     country_payment_id = fields.Many2one(
         comodel_name="res.country", string="Payment Country"
     )
     cancellation = fields.Boolean(
-        string="Cancellation",
         help="The Adjustment is intended for cancellation",
     )
 
@@ -66,7 +64,7 @@ class IntrastatStatementSaleSection4(models.Model):
         return res
 
     def _export_line_checks(self, section_label, section_number):
-        super(IntrastatStatementSaleSection4, self)._export_line_checks(
+        res = super(IntrastatStatementSaleSection4, self)._export_line_checks(
             section_label, section_number
         )
         if not self.year_id:
@@ -81,6 +79,7 @@ class IntrastatStatementSaleSection4(models.Model):
             )
         if not self.country_payment_id and not self.cancellation:
             raise ValidationError(_("Missing payment country on 'Sales - Section 4'"))
+        return res
 
     @api.model
     def _prepare_export_line(self):

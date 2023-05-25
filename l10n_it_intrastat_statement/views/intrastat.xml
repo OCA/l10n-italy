@@ -8,7 +8,7 @@
             <field name="model">account.intrastat.statement</field>
             <field name="arch" type="xml">
 
-                <tree string="INTRASTAT Statement">
+                <tree>
                     <field name="number" />
                     <field name="date" />
                     <field name="sale" />
@@ -817,7 +817,7 @@
             <field name="name">account.intrastat.custom.view.tree</field>
             <field name="model">account.intrastat.custom</field>
             <field name="arch" type="xml">
-                <tree string="Customs Section">
+                <tree>
                     <field name="code" />
                     <field name="name" />
                     <field name="date_start" />

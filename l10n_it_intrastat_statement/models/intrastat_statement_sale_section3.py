@@ -11,14 +11,13 @@ class IntrastatStatementSaleSection3(models.Model):
     _name = "account.intrastat.statement.sale.section3"
     _description = "Intrastat Statement - Sales Section 3"
 
-    invoice_number = fields.Char(string="Invoice Number")
-    invoice_date = fields.Date(string="Invoice Date")
+    invoice_number = fields.Char()
+    invoice_date = fields.Date()
     supply_method = fields.Selection(
-        selection=[("I", "Instant"), ("R", "Repeated")], string="Supply Method"
+        selection=[("I", "Instant"), ("R", "Repeated")],
     )
     payment_method = fields.Selection(
         selection=[("B", "Bank Transfer"), ("A", "Credit"), ("X", "Other")],
-        string="Payment Method",
     )
     country_payment_id = fields.Many2one(
         comodel_name="res.country", string="Payment Country"
