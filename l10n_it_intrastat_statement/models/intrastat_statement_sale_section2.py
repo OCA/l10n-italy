@@ -71,7 +71,7 @@ class IntrastatStatementSaleSection2(models.Model):
         return res
 
     def _export_line_checks(self, section_label, section_number):
-        super(IntrastatStatementSaleSection2, self)._export_line_checks(
+        res = super(IntrastatStatementSaleSection2, self)._export_line_checks(
             section_label, section_number
         )
         if not self.year_id:
@@ -88,6 +88,7 @@ class IntrastatStatementSaleSection2(models.Model):
                 raise ValidationError(
                     _("Missing reference quarter on 'Sales - Section 2' adjustment")
                 )
+        return res
 
     @api.model
     def _prepare_export_line(self):

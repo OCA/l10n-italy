@@ -211,7 +211,6 @@ msgstr "Accredito"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4__intrastat_custom_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_res_company__intrastat_custom_id
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_custom_view_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_custom_view_tree
 msgid "Customs Section"
 msgstr "Sezione doganale"
 
@@ -253,14 +252,10 @@ msgstr "Provincia di destinazione"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section2__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section3__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section4__display_name
-#: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section1__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section2__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section3__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4__display_name
-#: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section__display_name
-#: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_section__display_name
-#: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_res_company__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
 
@@ -285,6 +280,7 @@ msgid "Export File"
 msgstr "Esporta file"
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/wizard/export_file.py:0
 #: model:ir.actions.act_window,name:l10n_it_intrastat_statement.action_wizard_wizard_account_intrastat_export_file
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
@@ -403,14 +399,10 @@ msgstr "File esportato disponibile qui:"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section2__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section3__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section4__id
-#: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section1__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section2__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section3__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4__id
-#: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section__id
-#: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_section__id
-#: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_res_company__id
 msgid "ID"
 msgstr "ID"
 
@@ -441,7 +433,6 @@ msgstr "Modello INTRA-2"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_form_view
-#: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_tree_view
 msgid "INTRASTAT Statement"
 msgstr "Dichiarazione INTRASTAT"
 
@@ -556,6 +547,7 @@ msgid "Invoice Number"
 msgstr "Numero fattura"
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:0
 #, python-format
 msgid ""
@@ -572,14 +564,10 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section2____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section3____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section4____last_update
-#: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section1____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section2____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section3____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4____last_update
-#: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section____last_update
-#: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_section____last_update
-#: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_res_company____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
@@ -612,72 +600,84 @@ msgid "Last Updated on"
 msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_section.py:0
 #, python-format
 msgid "Missing State for Partner %s"
 msgstr "Stato mancante per il partner %s"
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section2.py:0
 #, python-format
 msgid "Missing adjustment sign on 'Purchases - Section 2'"
 msgstr "Segno di rettifica mancante in \"Acquisti - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section2.py:0
 #, python-format
 msgid "Missing adjustment sign on 'Sales - Section 2'"
 msgstr "Segno di rettifica mancante in \"Cessioni - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section4.py:0
 #, python-format
 msgid "Missing customs section on 'Purchases - Section 4'"
 msgstr "Sezione doganale mancante in \"Acquisti - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section4.py:0
 #, python-format
 msgid "Missing customs section on 'Sales - Section 4'"
 msgstr "Sezione doganale mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section4.py:0
 #, python-format
 msgid "Missing payment country on 'Purchases - Section 4'"
 msgstr "Paese di pagamento mancante in \"Acquisti - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section4.py:0
 #, python-format
 msgid "Missing payment country on 'Sales - Section 4'"
 msgstr "Paese di pagamento mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section4.py:0
 #, python-format
 msgid "Missing progressive to adjust on 'Purchases - Section 4'"
 msgstr "Progressivo da rettificare mancante in \"Acquisti - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section4.py:0
 #, python-format
 msgid "Missing progressive to adjust on 'Sales - Section 4'"
 msgstr "Progressivo da rettificare mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section4.py:0
 #, python-format
 msgid "Missing protocol number on 'Purchases - Section 4'"
 msgstr "Numero di protocollo mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section4.py:0
 #, python-format
 msgid "Missing protocol number on 'Sales - Section 4'"
 msgstr "Numero di protocollo mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section2.py:0
 #, python-format
 msgid "Missing reference month on 'Purchases - Section 2' adjustment"
@@ -685,6 +685,7 @@ msgstr ""
 "Mese di riferimento mancante nella rettifica di \"Acquisti - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section2.py:0
 #, python-format
 msgid "Missing reference month on 'Sales - Section 2' adjustment"
@@ -692,6 +693,7 @@ msgstr ""
 "Mese di riferimento mancante nella rettifica di \"Cessioni - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section2.py:0
 #, python-format
 msgid "Missing reference quarter on 'Purchases - Section 2' adjustment"
@@ -699,6 +701,7 @@ msgstr ""
 "Trimestre di riferimento mancante nella rettifica di \"Acquisti - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section2.py:0
 #, python-format
 msgid "Missing reference quarter on 'Sales - Section 2' adjustment"
@@ -706,34 +709,41 @@ msgstr ""
 "Trimestre di riferimento mancante nella rettifica di \"Cessioni - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section2.py:0
 #, python-format
 msgid "Missing reference year on 'Purchases - Section 2'"
 msgstr "Anno di riferimento mancante in \"Acquisti - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section4.py:0
 #, python-format
 msgid "Missing reference year on 'Purchases - Section 4'"
 msgstr "Anno di riferimento mancante in \"Acquisti - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section2.py:0
 #, python-format
 msgid "Missing reference year on 'Sales - Section 2'"
 msgstr "Anno di riferimento mancante in \"Cessioni - Sezione 2\""
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section4.py:0
 #, python-format
 msgid "Missing reference year on 'Sales - Section 4'"
 msgstr "Anno di riferimento mancante in \"Cessioni - Sezione 4\""
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_section.py:0
 #, python-format
-msgid "Missing vat code for %s on '%s - Section %s'"
-msgstr "Codice IVA mancante per %s in \"%s - Sezione %s\""
+msgid ""
+"Missing vat code for %(display_name)s on '%(section_label)s - Section "
+"%(section_number)s'"
+msgstr ""
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields.selection,name:l10n_it_intrastat_statement.selection__account_intrastat_statement__period_type__m
@@ -757,6 +767,7 @@ msgid "Normal Period"
 msgstr "Periodo regolare"
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:0
 #, python-format
 msgid "Nothing to export"
@@ -927,12 +938,14 @@ msgid "Period"
 msgstr "Periodo"
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:0
 #, python-format
 msgid "Period Not Valid! Range accepted: from 1 to 12"
 msgstr "Periodo non valido. Intervallo ammesso: da 1 a 12"
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:0
 #, python-format
 msgid "Period Not Valid! Range accepted: from 1 to 4"
@@ -981,6 +994,7 @@ msgid "Provenance Country"
 msgstr "Paese di provenienza"
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section1.py:0
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section2.py:0
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_purchase_section3.py:0
@@ -1063,6 +1077,7 @@ msgid "Repeated"
 msgstr "A più riprese"
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section1.py:0
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section2.py:0
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_sale_section3.py:0
@@ -1099,12 +1114,14 @@ msgid "Sales Statement Sequence"
 msgstr "Sequenza dichiarazione cessioni"
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_section.py:0
 #, python-format
 msgid "Section number must be overridden by every section"
 msgstr "Il numero di sezione deve essere sostituito da ogni sezione"
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement_section.py:0
 #, python-format
 msgid "Section type must be overridden by every section"
@@ -1178,6 +1195,7 @@ msgid "Statement Sequence"
 msgstr "Sequenza dichiarazione"
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:0
 #, python-format
 msgid "Statement without lines"
@@ -1323,10 +1341,11 @@ msgid "Vat Code"
 msgstr "Codice IVA"
 
 #. module: l10n_it_intrastat_statement
+#. odoo-python
 #: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:0
 #, python-format
-msgid "Wrong section type %s or number %s"
-msgstr "Tipologia %s o numero %s errati per la sezione"
+msgid "Wrong section type %(section_type)s or number %(section_number)s"
+msgstr ""
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__fiscalyear
@@ -1337,6 +1356,14 @@ msgstr "Anno"
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.wizard_account_intrastat_export_file
 msgid "or"
 msgstr "oppure"
+
+#, python-format
+#~ msgid "Missing vat code for %s on '%s - Section %s'"
+#~ msgstr "Codice IVA mancante per %s in \"%s - Sezione %s\""
+
+#, python-format
+#~ msgid "Wrong section type %s or number %s"
+#~ msgstr "Tipologia %s o numero %s errati per la sezione"
 
 #~ msgid "Missing invoice data on 'Purchases - Section 4'"
 #~ msgstr "Data fattura mancante in \"Acquisti - Sezione 4\""
