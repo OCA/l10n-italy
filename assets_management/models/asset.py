@@ -26,10 +26,7 @@ class Asset(models.Model):
         string="Category",
     )
 
-    code = fields.Char(
-        default="",
-        string="Code",
-    )
+    code = fields.Char(default="")
 
     company_id = fields.Many2one(
         "res.company",
@@ -55,7 +52,6 @@ class Asset(models.Model):
 
     name = fields.Char(
         required=True,
-        string="Name",
         tracking=True,
     )
 
@@ -66,7 +62,6 @@ class Asset(models.Model):
 
     purchase_date = fields.Date(
         default=fields.Date.today(),
-        string="Purchase Date",
         tracking=True,
     )
 
@@ -76,11 +71,11 @@ class Asset(models.Model):
         string="Sale Value",
     )
 
-    sale_date = fields.Date(string="Sale Date")
+    sale_date = fields.Date()
 
     sale_move_id = fields.Many2one("account.move", string="Sale Move")
 
-    sold = fields.Boolean(string="Sold")
+    sold = fields.Boolean()
 
     state = fields.Selection(
         [
@@ -91,16 +86,13 @@ class Asset(models.Model):
         compute="_compute_state",
         default="non_depreciated",
         store=True,
-        string="State",
     )
 
     supplier_id = fields.Many2one("res.partner", string="Supplier")
 
     supplier_ref = fields.Char(string="Supplier Ref.")
 
-    used = fields.Boolean(
-        string="Used",
-    )
+    used = fields.Boolean()
 
     @api.model
     def create(self, vals):

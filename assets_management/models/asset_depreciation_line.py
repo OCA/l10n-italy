@@ -11,9 +11,7 @@ class AssetDepreciationLine(models.Model):
     _description = "Assets Depreciations Lines"
     _order = "date asc, name asc"
 
-    amount = fields.Monetary(
-        string="Amount",
-    )
+    amount = fields.Monetary()
 
     asset_accounting_info_ids = fields.One2many(
         "asset.accounting.info", "dep_line_id", string="Accounting Info"
@@ -30,12 +28,9 @@ class AssetDepreciationLine(models.Model):
     balance = fields.Monetary(
         compute="_compute_balance",
         store=True,
-        string="Balance",
     )
 
-    base = fields.Float(
-        string="Base",
-    )
+    base = fields.Float()
 
     company_id = fields.Many2one(
         "res.company",
@@ -49,10 +44,7 @@ class AssetDepreciationLine(models.Model):
         related="depreciation_id.currency_id",
     )
 
-    date = fields.Date(
-        required=True,
-        string="Date",
-    )
+    date = fields.Date(required=True)
 
     depreciation_id = fields.Many2one(
         "asset.depreciation",
@@ -99,12 +91,9 @@ class AssetDepreciationLine(models.Model):
         required=True,
     )
 
-    name = fields.Char(
-        required=True,
-        string="Name",
-    )
+    name = fields.Char(required=True)
 
-    partial_dismissal = fields.Boolean(string="Partial Dismissal")
+    partial_dismissal = fields.Boolean()
 
     percentage = fields.Float(string="%")
 

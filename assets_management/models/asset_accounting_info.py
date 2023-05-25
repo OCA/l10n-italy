@@ -55,7 +55,6 @@ class AssetAccountingInfo(models.Model):
             ("dismiss", "Asset Dismissal"),
         ],
         required=True,
-        string="Relation Type",
     )
 
     @api.model

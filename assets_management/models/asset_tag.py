@@ -17,4 +17,4 @@ class AssetTag(models.Model):
         "res.company", default=get_default_company_id, string="Company"
     )
 
-    name = fields.Char(string="Name", required=True)
+    name = fields.Char(required=True)

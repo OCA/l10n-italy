@@ -48,9 +48,7 @@ class AssetCategory(models.Model):
         string="Asset Account",
     )
 
-    comment = fields.Text(
-        string="Comment",
-    )
+    comment = fields.Text()
 
     company_id = fields.Many2one(
         "res.company", default=get_default_company_id, string="Company"
@@ -82,16 +80,12 @@ class AssetCategory(models.Model):
         string="Capital Loss Account",
     )
 
-    name = fields.Char(
-        required=True,
-        string="Name",
-    )
+    name = fields.Char(required=True)
 
     print_by_default = fields.Boolean(
         default=True,
         help="Defines whether a category should be added by default when"
         " printing assets' reports.",
-        string="Print By Default",
     )
 
     tag_ids = fields.Many2many(

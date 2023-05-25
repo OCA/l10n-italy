@@ -141,7 +141,7 @@
                             domain="[('move_id', 'in', move_ids), ('asset_accounting_info_ids', '=', False)]"
                             nolabel="1"
                         >
-                            <tree string="move lines" editable="bottom">
+                            <tree editable="bottom">
                                 <field
                                     name="partner_id"
                                     options="{'no_open':1}"

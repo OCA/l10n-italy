@@ -68,13 +68,11 @@ class WizardAssetPrevisionalReport(models.TransientModel):
         string="To Date",
     )
 
-    show_totals = fields.Boolean(default=True, string="Show Totals")
+    show_totals = fields.Boolean(default=True)
 
-    show_category_totals = fields.Boolean(default=True, string="Show Category Totals")
+    show_category_totals = fields.Boolean(default=True)
 
-    report_footer_year = fields.Char(
-        default=get_default_report_footer_year, string="Report Footer Year"
-    )
+    report_footer_year = fields.Char(default=get_default_report_footer_year)
 
     type_ids = fields.Many2many(
         "asset.depreciation.type",

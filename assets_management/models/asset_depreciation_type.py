@@ -19,16 +19,15 @@ class AssetDepreciationType(models.Model):
         "res.company", default=get_default_company_id, string="Company"
     )
 
-    name = fields.Char(required=True, string="Name")
+    name = fields.Char(required=True)
 
     print_by_default = fields.Boolean(
         default=True,
         help="Defines whether a category should be added by default when"
         " printing assets' reports.",
-        string="Print By Default",
     )
 
-    requires_account_move = fields.Boolean(string="Requires Account Move")
+    requires_account_move = fields.Boolean()
 
     def unlink(self):
         if (

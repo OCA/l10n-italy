@@ -28,10 +28,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
         string="Category",
     )
 
-    code = fields.Char(
-        default="",
-        string="Code",
-    )
+    code = fields.Char(default="")
 
     company_id = fields.Many2one(
         "res.company",
@@ -46,16 +43,13 @@ class WizardAccountMoveManageAsset(models.TransientModel):
         string="Currency",
     )
 
-    depreciated_fund_amount = fields.Monetary(string="Depreciated Fund Amount")
+    depreciated_fund_amount = fields.Monetary()
 
     depreciation_type_ids = fields.Many2many(
         "asset.depreciation.type", string="Depreciation Types"
     )
 
-    dismiss_date = fields.Date(
-        default=fields.Date.today(),
-        string="Dismiss Date",
-    )
+    dismiss_date = fields.Date(default=fields.Date.today())
 
     is_move_state_ok = fields.Boolean(
         string="Move State",
@@ -68,7 +62,6 @@ class WizardAccountMoveManageAsset(models.TransientModel):
             ("partial_dismiss", "Partial Dismiss"),
             ("dismiss", "Dismiss Asset"),
         ],
-        string="Management Type",
     )
 
     move_ids = fields.Many2many(
@@ -93,21 +86,13 @@ class WizardAccountMoveManageAsset(models.TransientModel):
             ("in_refund", "Vendor Credit Note"),
             ("wrong", "Wrong"),
         ],
-        string="Move Type",
     )
 
-    name = fields.Char(
-        string="Name",
-    )
+    name = fields.Char()
 
-    purchase_date = fields.Date(
-        default=fields.Date.today(),
-        string="Purchase Date",
-    )
+    purchase_date = fields.Date(default=fields.Date.today())
 
-    used = fields.Boolean(
-        string="Used",
-    )
+    used = fields.Boolean()
 
     # Mapping between move journal type and depreciation line type
     _move_journal_type_2_dep_line_type = {
