@@ -14,7 +14,6 @@ class AccountIntrastatExportFile(models.TransientModel):
     data = fields.Binary(string="File", readonly=True)
     state = fields.Selection(
         selection=[("choose", "Choose"), ("get", "Get")],
-        string="State",
         default="choose",
     )
 
@@ -29,10 +28,10 @@ class AccountIntrastatExportFile(models.TransientModel):
 
         out = base64.encodebytes(file.encode())
 
-        view = self.env["ir.model.data"].get_object_reference(
-            "l10n_it_intrastat_statement", "wizard_account_intrastat_export_file"
+        view = self.env.ref(
+            "l10n_it_intrastat_statement.wizard_account_intrastat_export_file"
         )
-        view_id = view[1] or False
+        view_id = view.id
 
         self.write({"state": "get", "data": out, "name": filename})
         return {

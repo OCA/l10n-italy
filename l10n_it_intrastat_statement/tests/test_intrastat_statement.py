@@ -19,7 +19,7 @@ class TestIntrastatStatement(TransactionCase):
                 "code": "1",
                 "name": "Debtors - (test)",
                 "reconcile": True,
-                "user_type_id": self.env.ref("account.data_account_type_receivable").id,
+                "account_type": "asset_receivable",
             }
         )
         self.account_account_payable = self.account_account_model.create(
@@ -27,7 +27,7 @@ class TestIntrastatStatement(TransactionCase):
                 "code": "2",
                 "name": "Creditors - (test)",
                 "reconcile": True,
-                "user_type_id": self.env.ref("account.data_account_type_payable").id,
+                "account_type": "liability_payable",
             }
         )
 
@@ -76,6 +76,7 @@ class TestIntrastatStatement(TransactionCase):
             .copy(default={"company_id": self.env.company.id})
         )
         self.currency_gbp = self.env.ref("base.GBP")
+        self.currency_gbp.active = True
 
         company = self.env.company
         company.partner_id.vat = "IT03339130126"
@@ -535,6 +536,7 @@ class TestIntrastatStatement(TransactionCase):
                     "date": fields.Date.from_string("2019-01-01"),
                     "reason": "no reason",
                     "refund_method": "refund",
+                    "journal_id": move.journal_id.id,
                 }
             )
         )

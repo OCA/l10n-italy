@@ -75,7 +75,7 @@ class IntrastatStatementPurchaseSection2(models.Model):
         return res
 
     def _export_line_checks(self, section_label, section_number):
-        super(IntrastatStatementPurchaseSection2, self)._export_line_checks(
+        res = super(IntrastatStatementPurchaseSection2, self)._export_line_checks(
             section_label, section_number
         )
         if not self.year_id:
@@ -102,6 +102,7 @@ class IntrastatStatementPurchaseSection2(models.Model):
                         "on 'Purchases - Section 2' adjustment"
                     )
                 )
+        return res
 
     def _prepare_export_line(self):
         self._export_line_checks(_("Purchase"), self.get_section_number())
