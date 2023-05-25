@@ -11,18 +11,12 @@
                 <page string="Intrastat">
                     <group colspan="4">
                         <group>
-                            <field name="intrastat_ua_code" options="{'size': 4}" />
+                            <field name="intrastat_ua_code" />
                             <field name="intrastat_uom_kg_id" />
                             <field name="intrastat_additional_unit_from" />
                             <field name="intrastat_exclude_free_line" />
-                            <field
-                                name="intrastat_delegated_name"
-                                options="{'size': 255}"
-                            />
-                            <field
-                                name="intrastat_delegated_vat"
-                                options="{'size': 16}"
-                            />
+                            <field name="intrastat_delegated_name" />
+                            <field name="intrastat_delegated_vat" />
                             <field name="intrastat_export_file_name" />
                             <field name="intrastat_min_amount" />
                         </group>
