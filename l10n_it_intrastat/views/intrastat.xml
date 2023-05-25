@@ -16,7 +16,7 @@
             <field name="name">account.intrastat.custom.view.tree</field>
             <field name="model">account.intrastat.custom</field>
             <field name="arch" type="xml">
-                <tree string="Customs Section">
+                <tree>
                     <field name="code" />
                     <field name="name" />
                     <field name="date_start" />
@@ -32,7 +32,7 @@
                 <form string="Customs Section">
                     <group>
                         <group>
-                            <field name="code" options="{'size': 6}" />
+                            <field name="code" />
                             <field name="name" />
                         </group>
                         <group>
@@ -66,7 +66,7 @@
             <field name="name">views.tree.report.intrastat.code</field>
             <field name="model">report.intrastat.code</field>
             <field name="arch" type="xml">
-                <tree string="Codes">
+                <tree>
                     <field name="active" />
                     <field name="type" />
                     <field name="name" />
@@ -120,7 +120,7 @@
             <field name="name">account.intrastat.transport.view.tree</field>
             <field name="model">account.intrastat.transport</field>
             <field name="arch" type="xml">
-                <tree string="Transport Mode">
+                <tree>
                     <field name="code" />
                     <field name="name" />
                 </tree>
@@ -133,7 +133,7 @@
             <field name="arch" type="xml">
                 <form string="Transport Mode">
                     <group>
-                        <field name="code" options="{'size': 4}" />
+                        <field name="code" />
                         <field name="name" />
                     </group>
                 </form>
@@ -163,7 +163,7 @@
             <field name="name">account.intrastat.transaction.nature.view.tree</field>
             <field name="model">account.intrastat.transaction.nature</field>
             <field name="arch" type="xml">
-                <tree string="Transaction Nature">
+                <tree>
                     <field name="code" />
                     <field name="name" />
                     <field name="triangulation" />
@@ -178,7 +178,7 @@
             <field name="arch" type="xml">
                 <form string="Transaction Nature">
                     <group>
-                        <field name="code" options="{'size': 1}" />
+                        <field name="code" />
                         <field name="name" />
                         <field name="triangulation" />
                         <field name="active" />
@@ -218,7 +218,7 @@
             <field name="name">account.intrastat.transaction.nature.b.view.tree</field>
             <field name="model">account.intrastat.transaction.nature.b</field>
             <field name="arch" type="xml">
-                <tree string="Transaction Nature B">
+                <tree>
                     <field name="code" />
                     <field name="name" />
                     <field name="nature_parent_id" />
@@ -235,7 +235,7 @@
             <field name="arch" type="xml">
                 <form string="Transaction Nature B">
                     <group>
-                        <field name="code" options="{'size': 1}" />
+                        <field name="code" />
                         <field name="name" />
                         <field name="nature_parent_id" />
                     </group>
