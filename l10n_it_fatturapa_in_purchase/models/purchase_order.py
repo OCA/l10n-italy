@@ -8,12 +8,11 @@ from odoo.tools import float_compare
 
 class POLine(models.Model):
     _inherit = "purchase.order.line"
-    to_invoice = fields.Boolean(
-        "To Invoice", compute="_compute_qty_invoiced", store=True
-    )
+
+    to_invoice = fields.Boolean(compute="_compute_qty_invoiced", store=True)
 
     def _compute_qty_invoiced(self):
-        super()._compute_qty_invoiced()
+        res = super()._compute_qty_invoiced()
         precision = self.env["decimal.precision"].precision_get(
             "Product Unit of Measure"
         )
@@ -22,6 +21,7 @@ class POLine(models.Model):
                 line.to_invoice = True
             else:
                 line.to_invoice = False
+        return res
 
     def name_get(self):
         res = []

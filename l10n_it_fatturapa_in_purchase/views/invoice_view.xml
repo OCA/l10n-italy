@@ -41,6 +41,9 @@
                 <attribute
                     name="attrs"
                 >{'column_invisible': [('parent.move_type', 'not in', ('in_invoice', 'in_refund'))]}</attribute>
+                <attribute
+                    name="domain"
+                >[('partner_id', '=', partner_id), ('to_invoice', '=', True)]</attribute>
             </xpath>
         </field>
     </record>

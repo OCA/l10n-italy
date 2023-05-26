@@ -7,7 +7,7 @@
 {
     "name": "ITA - Fattura elettronica - Integrazione acquisti",
     "summary": "Modulo ponte tra ricezione fatture elettroniche e acquisti",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Hidden",
     "author": "Agile Business Group, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
