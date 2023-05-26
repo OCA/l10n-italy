@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_fatturapa_attachment_out,access_fatturapa_attachment_out,model_fatturapa_attachment_out,account.group_account_invoice,1,1,1,1
 access_wizard_export_fatturapa,access_wizard_export_fatturapa,model_wizard_export_fatturapa,account.group_account_invoice,1,1,1,1
+access_ir_actions_account_invoice,access_ir_actions_account_invoice,base.model_ir_actions_actions,account.group_account_invoice,1,0,0,0
+access_ir_model_account_invoice,access_ir_model_account_invoice,base.model_ir_model,account.group_account_invoice,1,0,0,0
