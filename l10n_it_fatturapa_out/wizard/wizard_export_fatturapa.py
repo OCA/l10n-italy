@@ -53,6 +53,8 @@ class WizardExportFatturapa(models.TransientModel):
 
         attach_str = fatturapa.to_xml(self.env)
         attach_vals = {
+            "res_model": "fatturapa.attachment.out",
+            "res_id": -1,
             "name": "{}_{}.xml".format(vat, number),
             "datas": base64.encodebytes(attach_str),
         }
