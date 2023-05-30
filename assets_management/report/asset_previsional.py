@@ -286,8 +286,8 @@ class Report(models.TransientModel):
             total_curr = total.get_currency()
             total_type = total.type_id
             for fname in fnames:
-                totals_by_dep_type[total_type][fname] += total_curr.compute(
-                    total[fname], curr
+                totals_by_dep_type[total_type][fname] += total_curr._convert(
+                    total[fname], curr, self.company_id, self.date
                 )
         self.write(
             {
@@ -388,8 +388,11 @@ class ReportCategory(models.TransientModel):
                 for fname in fnames:
                     if fname == "amount_depreciation_fund_prev_year":
                         if fy_start <= report_date <= fy_end:
-                            totals_by_dep_type[dep_type][fname] += line_curr.compute(
-                                last_line[fname], curr
+                            totals_by_dep_type[dep_type][fname] += line_curr._convert(
+                                last_line[fname],
+                                curr,
+                                categ.report_id.company_id,
+                                report_date,
                             )
                     elif fname in (
                         "amount_in_total",
@@ -397,19 +400,28 @@ class ReportCategory(models.TransientModel):
                         "gain_loss_total",
                     ):
                         if fy_start <= report_date <= fy_end:
-                            totals_by_dep_type[dep_type][fname] += line_curr.compute(
-                                last_line[fname], curr
+                            totals_by_dep_type[dep_type][fname] += line_curr._convert(
+                                last_line[fname],
+                                curr,
+                                categ.report_id.company_id,
+                                report_date,
                             )
                         elif report_date < fy_start:
                             totals_by_dep_type[dep_type][fname] = 0
                     elif fname == "amount_depreciated":
                         if fy_start <= report_date <= fy_end:
-                            totals_by_dep_type[dep_type][fname] += line_curr.compute(
-                                last_line[fname], curr
+                            totals_by_dep_type[dep_type][fname] += line_curr._convert(
+                                last_line[fname],
+                                curr,
+                                categ.report_id.company_id,
+                                report_date,
                             )
                     else:
-                        totals_by_dep_type[dep_type][fname] += line_curr.compute(
-                            last_line[fname], curr
+                        totals_by_dep_type[dep_type][fname] += line_curr._convert(
+                            last_line[fname],
+                            curr,
+                            categ.report_id.company_id,
+                            report_date,
                         )
             categ.write(
                 {
