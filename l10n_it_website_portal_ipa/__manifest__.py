@@ -3,7 +3,7 @@
 {
     "name": "ITA - Codice IPA - Portale",
     "summary": "Aggiunge l'indice PA (IPA) tra i dettagli dell'utente nel portale.",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "category": "Localization/Italy",
     "website": "https://github.com/OCA/l10n-italy",
     "author": "Agile Business Group, Odoo Community Association (OCA)",
