@@ -18,6 +18,7 @@
     "license": "AGPL-3",
     "depends": [
         "account",
+        "account_due_list",
         "l10n_it_fatturapa_out",
         "l10n_it_fiscalcode",
         "base_iban",
