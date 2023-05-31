@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-23 08:16+0000\n"
-"PO-Revision-Date: 2023-05-03 13:34+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-05-31 18:10+0000\n"
+"Last-Translator: Sergio Corato <sergiocorato@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_journal_body
@@ -1804,7 +1804,7 @@ msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 #: model:ir.model.fields.selection,name:assets_management.selection__asset_depreciation_line_type__type__in
 #: model_terms:ir.ui.view,arch_db:assets_management.asset_dep_line_search_view
 msgid "In"
-msgstr "Ritenuta attiva"
+msgstr "Rettifica attiva"
 
 #. module: assets_management
 #: code:addons/assets_management/report/asset_journal_xlsx.py:0
@@ -1812,7 +1812,7 @@ msgstr "Ritenuta attiva"
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__amount_in
 #, python-format
 msgid "In Amount"
-msgstr "Valore ritenuta attiva"
+msgstr "Valore rettifiche attive"
 
 #. module: assets_management
 #: code:addons/assets_management/report/asset_journal_xlsx.py:0
