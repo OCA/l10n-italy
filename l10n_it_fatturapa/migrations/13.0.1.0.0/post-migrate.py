@@ -65,19 +65,6 @@ invoice_line_data = (
 @openupgrade.migrate()
 def migrate(env, version):
     if openupgrade.column_exists(env.cr, "account_move", "old_invoice_id"):
-        for table, column in i_m_columns:
-            openupgrade.logged_query(
-                env.cr,
-                sql.SQL(
-                    """UPDATE {0} t
-                SET {1} = m.id
-                FROM account_move m
-                WHERE m.old_invoice_id = t.{1}"""
-                ).format(
-                    sql.Identifier(table),
-                    sql.Identifier(column),
-                ),
-            )
         openupgrade.logged_query(
             env.cr,
             sql.SQL(
@@ -100,7 +87,7 @@ def migrate(env, version):
                 )
             ),
         )
-
+    # check if it is a migration from 13.0
     elif openupgrade.table_exists(env.cr, "account_invoice"):
         # rely on move_id, usually for not ('draft' or 'cancel')
         for table, column in i_m_columns:
@@ -139,22 +126,10 @@ def migrate(env, version):
             ),
         )
 
+    # check if it is a migration from 12.0
     if openupgrade.table_exists(
         env.cr, "account_invoice_line"
     ) and openupgrade.column_exists(env.cr, "account_move_line", "old_invoice_line_id"):
-        for table, column in il_ml_columns:
-            openupgrade.logged_query(
-                env.cr,
-                sql.SQL(
-                    """UPDATE {0} t
-                SET {1} = ml.id
-                FROM account_move_line ml
-                WHERE ml.old_invoice_line_id = t.{1}"""
-                ).format(
-                    sql.Identifier(table),
-                    sql.Identifier(column),
-                ),
-            )
         openupgrade.logged_query(
             env.cr,
             sql.SQL(
@@ -177,7 +152,7 @@ def migrate(env, version):
                 )
             ),
         )
-
+    # check if it is a migration from 13.0
     elif openupgrade.table_exists(env.cr, "account_invoice_line"):
         move_line_where = """
         ml.tax_line_id IS NULL
