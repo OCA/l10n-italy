@@ -678,3 +678,40 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         invoice.action_invoice_open()
 
         self.assertEqual(invoice.state, 'open')
+
+    def _get_e_invoices(self, invoices):
+        """Return the electronic invoices corresponding to `invoices`."""
+        res = self.run_wizard(invoices.ids)
+
+        # Parse wizard result
+        e_invoice_model = res['res_model']
+        e_invoice_domain = res.get('res_domain')
+        if e_invoice_domain is None:
+            e_invoice_id = res['res_id']
+            e_invoice_domain = [
+                ('id', '=', e_invoice_id),
+            ]
+        e_invoices = self.env[e_invoice_model].search(e_invoice_domain)
+        return e_invoices
+
+    def test_e_invoice_phone(self):
+        """
+        Only the Phone number dedicated to Electronic Invoicing
+        is exported in the Electronic Invoice.
+        """
+        # Arrange
+        company = self.company
+        company.phone = "1 234 5"
+        company.phone_electronic_invoice = "678910"
+        invoice = self._create_invoice()
+        invoice.action_invoice_open()
+
+        # Act
+        e_invoice = self._get_e_invoices(invoice)
+
+        # Assert
+        self.assertEqual(len(e_invoice), 1)
+        e_invoice_bytes = base64.b64decode(e_invoice.datas)
+        e_invoice_str = e_invoice_bytes.decode()
+        self.assertNotIn(company.phone, e_invoice_str)
+        self.assertIn(company.phone_electronic_invoice, e_invoice_str)
