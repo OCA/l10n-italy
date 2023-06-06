@@ -160,7 +160,7 @@
                         <group>
                             <field
                                 name="carrier_id"
-                                domain="[('supplier_rank','>', 0)]"
+                                domain="[('is_carrier','=', True)]"
                             />
                             <field name="delivery_method_id" />
                         </group>
