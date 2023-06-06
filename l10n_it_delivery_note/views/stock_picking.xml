@@ -205,7 +205,7 @@
                                         <field
                                             name="delivery_note_carrier_id"
                                             attrs="{'readonly': [('delivery_note_readonly', '=', True)]}"
-                                            domain="[('supplier_rank','>', 0)]"
+                                            domain="[('is_carrier','=', True)]"
                                             string="Carrier"
                                         />
                                         <field
