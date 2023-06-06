@@ -19,3 +19,4 @@ class ResPartner(models.Model):
     default_transport_method_id = fields.Many2one(
         "stock.picking.transport.method", string="Method of transport"
     )
+    is_carrier = fields.Boolean()
