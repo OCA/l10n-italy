@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-28 05:14+0000\n"
-"PO-Revision-Date: 2023-06-07 10:11+0000\n"
+"PO-Revision-Date: 2023-06-07 17:08+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
@@ -316,7 +316,7 @@ msgstr "Ultima modifica il"
 #: field:statement.debit.account.line,write_uid:0
 #: field:statement.generic.account.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr "Ultimo aggiornamento di"
 
 #. module: account_vat_period_end_statement
 #: field:account.vat.period.end.statement,write_date:0
