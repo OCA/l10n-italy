@@ -3,7 +3,7 @@
 
 import datetime
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 from ..mixins.picking_checker import (
