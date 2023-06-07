@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-28 05:14+0000\n"
-"PO-Revision-Date: 2023-05-22 15:08+0000\n"
+"PO-Revision-Date: 2023-06-07 10:11+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
@@ -108,7 +108,7 @@ msgstr "Data Fine"
 #: field:withholding.tax.move.payment,display_name:0
 #: field:wizard.wt.move.payment.create,display_name:0
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome visualizzato"
 
 #. module: l10n_it_withholding_tax_payment
 #: selection:withholding.tax.move.payment,state:0
