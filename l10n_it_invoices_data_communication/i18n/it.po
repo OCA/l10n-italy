@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-20 11:38+0000\n"
-"PO-Revision-Date: 2023-06-07 13:10+0000\n"
+"PO-Revision-Date: 2023-06-08 09:11+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -626,7 +626,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_write_uid
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_wizard_split_big_invoices_communication_write_uid
 msgid "Last Updated by"
-msgstr "Ultima modifica di"
+msgstr "Ultimo aggiornamento di"
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_export_file_write_date
@@ -640,7 +640,7 @@ msgstr "Ultima modifica di"
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva_write_date
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_wizard_split_big_invoices_communication_write_date
 msgid "Last Updated on"
-msgstr "Ultima modifica il"
+msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_invoices_data_communication
 #: code:addons/l10n_it_invoices_data_communication/wizard/split_big_communication.py:26
