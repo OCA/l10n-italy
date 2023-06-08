@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-20 11:38+0000\n"
-"PO-Revision-Date: 2023-06-07 13:09+0000\n"
+"PO-Revision-Date: 2023-06-08 09:09+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -640,7 +640,7 @@ msgstr "Ultimo aggiornamento di"
 #: field:comunicazione.dati.iva.ricalcolo.tipo.document.fiscale,write_date:0
 #: field:wizard.split.big.invoices.communication,write_date:0
 msgid "Last Updated on"
-msgstr "Ultima modifica il"
+msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_invoices_data_communication
 #: code:addons/l10n_it_invoices_data_communication/wizard/split_big_communication.py:27
