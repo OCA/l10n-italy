@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-29 10:06+0000\n"
-"PO-Revision-Date: 2023-06-07 10:11+0000\n"
+"PO-Revision-Date: 2023-06-08 09:08+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
@@ -396,7 +396,7 @@ msgstr "Ultimo aggiornamento di"
 #: field:stock.picking.transportation_method,write_date:0
 #: field:stock.picking.transportation_reason,write_date:0
 msgid "Last Updated on"
-msgstr "Data ultimo aggiornamento"
+msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_ddt
 #: field:stock.ddt.type,message_ids:0
