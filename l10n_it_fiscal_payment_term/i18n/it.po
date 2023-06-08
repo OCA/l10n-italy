@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-17 07:29+0000\n"
-"PO-Revision-Date: 2023-06-07 13:09+0000\n"
+"PO-Revision-Date: 2023-06-08 09:09+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -77,13 +77,13 @@ msgstr "Ultima modifica il"
 #: field:fatturapa.payment_method,write_uid:0
 #: field:fatturapa.payment_term,write_uid:0
 msgid "Last Updated by"
-msgstr "Ultima modifica di"
+msgstr "Ultimo aggiornamento di"
 
 #. module: l10n_it_fiscal_payment_term
 #: field:fatturapa.payment_method,write_date:0
 #: field:fatturapa.payment_term,write_date:0
 msgid "Last Updated on"
-msgstr "Ultima modifica il"
+msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_fiscal_payment_term
 #: model:ir.model,name:l10n_it_fiscal_payment_term.model_account_payment_term
