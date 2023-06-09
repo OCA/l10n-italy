@@ -1364,6 +1364,11 @@ msgid "Taxes"
 msgstr "Imposte"
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.constraint,message:l10n_it_delivery_note.constraint_stock_delivery_note_name_uniq
+msgid "The Delivery note must have unique numbers."
+msgstr "Il DDT deve avere un numero univoco."
+
+#. module: l10n_it_delivery_note
 #: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:0
 #, python-format
 msgid ""
