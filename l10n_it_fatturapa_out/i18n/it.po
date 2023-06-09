@@ -607,6 +607,12 @@ msgid "Preview link"
 msgstr "Collegamento di anteprima"
 
 #. module: l10n_it_fatturapa_out
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:0
+#, python-format
+msgid "Print report not found"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_it_cedente_prestatore
 msgid "RF01"
 msgstr "RF01"
@@ -791,7 +797,8 @@ msgstr "L'oggetto del database a cui verrà assegnato questo allegato"
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_res_company__e_invoice_transmitter_id
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_res_config_settings__e_invoice_transmitter_id
 msgid "This partner will be used as transmitter in out invoice."
-msgstr "Questo partner verrà utilizzato come emittente nella fattura in uscita."
+msgstr ""
+"Questo partner verrà utilizzato come emittente nella fattura in uscita."
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_wizard_export_fatturapa__report_print_menu
