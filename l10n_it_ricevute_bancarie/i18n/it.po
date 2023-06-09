@@ -677,16 +677,6 @@ msgid "General"
 msgstr "Generale"
 
 #. module: l10n_it_ricevute_bancarie
-#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_filter
-msgid "Group By Customer"
-msgstr "Raggruppa per cliente"
-
-#. module: l10n_it_ricevute_bancarie
-#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_filter
-msgid "Group By..."
-msgstr "Raggruppa per..."
-
-#. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_partner__group_riba
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_res_users__group_riba
 msgid "Group C/O"
@@ -809,11 +799,6 @@ msgstr "Emetti RiBa"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_configuration__type
 msgid "Issue Mode"
 msgstr "Modalità emissione"
-
-#. module: l10n_it_ricevute_bancarie
-#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_filter
-msgid "Issued"
-msgstr "Emessa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_move
@@ -1200,6 +1185,16 @@ msgstr "Conto spese di protesto"
 
 #. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_filter
+msgid "RIBA Issued"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_filter
+msgid "RIBA To Issue"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_filter
 msgid "Reconciled"
 msgstr "Riconciliata"
 
@@ -1229,16 +1224,6 @@ msgstr "Codice SIA"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line__message_has_sms_error
 msgid "SMS Delivery error"
 msgstr "Errore consegna SMS"
-
-#. module: l10n_it_ricevute_bancarie
-#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_filter
-msgid "Sale Journals"
-msgstr "Registri vendite"
-
-#. module: l10n_it_ricevute_bancarie
-#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_filter
-msgid "Search Journal Items"
-msgstr "Ricerca movimenti contabili"
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/models/account.py:0
@@ -1339,11 +1324,6 @@ msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_filter
-msgid "To Issue"
-msgstr "Da emettere"
-
-#. module: l10n_it_ricevute_bancarie
-#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_filter
 msgid "To Reconcile"
 msgstr "Da riconciliare"
 
@@ -1418,6 +1398,24 @@ msgstr "del"
 #, python-format
 msgid "{line_name} for {month}-{year}"
 msgstr "{line_name} per {month}-{year}"
+
+#~ msgid "Group By Customer"
+#~ msgstr "Raggruppa per cliente"
+
+#~ msgid "Group By..."
+#~ msgstr "Raggruppa per..."
+
+#~ msgid "Issued"
+#~ msgstr "Emessa"
+
+#~ msgid "Sale Journals"
+#~ msgstr "Registri vendite"
+
+#~ msgid "Search Journal Items"
+#~ msgstr "Ricerca movimenti contabili"
+
+#~ msgid "To Issue"
+#~ msgstr "Da emettere"
 
 #~ msgid "No bank has been specified for partner %s!"
 #~ msgstr "Nessuna banca specificata per il partner %s."
