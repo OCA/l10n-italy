@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="portal_my_delivery_notes" name="My Delivery Notes">
+        <t t-call="portal.portal_layout">
+            <!-- <t t-set="breadcrumbs_searchbar" t-value="True"/> -->
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Delivery Notes</t>
+            </t>
+            <t t-if="not delivery_notes">
+                <p>There are currently no delivery notes for your account.</p>
+            </t>
+            <t t-if="delivery_notes" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Delivery Note #</th>
+                        <th class="text-right">Delivery Note Date</th>
+                        <th class="text-right">Packages</th>
+                    </tr>
+                </thead>
+                <t t-foreach="delivery_notes" t-as="ddt">
+                    <tr>
+                        <td><a href="/delivery-notes/{{ ddt.id }}"><t
+                                    t-esc="ddt.name"
+                                /></a></td>
+                        <td class="text-right"><span t-field="ddt.date" /></td>
+                        <td class="text-right">
+                            <span t-field="ddt.packages" />
+                        </td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
