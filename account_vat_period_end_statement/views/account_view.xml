@@ -99,7 +99,11 @@
                     </page>
                     <page string="Accounts">
                         <group colspan="4" col="3">
-                            <group col="2" colspan="3">
+                            <group
+                                col="1"
+                                colspan="4"
+                                class="form_inner_group_auto_width"
+                            >
                                 <separator string="Debit Account Lines" />
                                 <separator string="Credit Account Lines" />
                                 <field name="debit_vat_account_line_ids" nolabel="1">
