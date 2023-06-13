@@ -4,7 +4,6 @@
 import datetime
 
 from odoo import api, fields, models
-from odoo.exceptions import UserError
 
 from ..mixins.picking_checker import (
     DOMAIN_PICKING_TYPES,
