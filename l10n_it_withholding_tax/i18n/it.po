@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-28 05:14+0000\n"
-"PO-Revision-Date: 2023-06-08 12:12+0000\n"
+"PO-Revision-Date: 2023-06-13 16:11+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
@@ -552,7 +552,7 @@ msgstr "Ritenuta Versata"
 #: code:addons/l10n_it_withholding_tax/wizard/create_wt_statement.py:27
 #, python-format
 msgid "Warning!"
-msgstr "Warning!"
+msgstr "Attenzione!"
 
 #. module: l10n_it_withholding_tax
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:359
