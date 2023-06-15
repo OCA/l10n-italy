@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-28 04:13+0000\n"
 "PO-Revision-Date: 2023-06-15 11:10+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -552,7 +552,7 @@ msgstr "Completato"
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_partner_shipping_id
 msgid "Shipping Address"
-msgstr "Indirizzo di Spedizione"
+msgstr "Indirizzo di spedizione"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_form
