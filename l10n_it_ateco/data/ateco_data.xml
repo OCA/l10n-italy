@@ -16608,6 +16608,42 @@
         >Attività di famiglie e convivenze come datori di lavoro per personale domestico</field>
         <field ref="T" name="parent_id" />
     </record>
+    <record model="ateco.category" id="T970">
+        <field name="code">T97.0</field>
+        <field
+            name="name"
+        >Attività di famiglie e convivenze come datori di lavoro per personale domestico</field>
+        <field
+            name="description"
+        >Attività di famiglie e convivenze come datori di lavoro per personale domestico</field>
+        <field ref="T97" name="parent_id" />
+    </record>
+    <record model="ateco.category" id="T9700">
+        <field name="code">T97.00</field>
+        <field
+            name="name"
+        >Attività di famiglie e convivenze come datori di lavoro per personale domestico</field>
+        <field
+            name="description"
+        >Attività di famiglie e convivenze come datori di lavoro per personale domestico</field>
+        <field ref="T970" name="parent_id" />
+    </record>
+    <record model="ateco.category" id="T97000">
+        <field name="code">T97.00.0</field>
+        <field
+            name="name"
+        >Attività di famiglie e convivenze come datori di lavoro per personale domestico</field>
+        <field
+            name="description"
+        >Attività di famiglie e convivenze come datori di lavoro per personale domestico</field>
+        <field ref="T9700" name="parent_id" />
+    </record>
+    <record model="ateco.category" id="T970002">
+        <field name="code">T97.00.02</field>
+        <field name="name">Attività di condomini</field>
+        <field name="description">Attività di condomini</field>
+        <field ref="T97000" name="parent_id" />
+    </record>
     <record model="ateco.category" id="T98">
         <field name="code">T98</field>
         <field
