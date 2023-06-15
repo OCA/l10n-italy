@@ -72,7 +72,7 @@ class Fetchmail(models.Model):
                 pop_server.list()
                 for num in range(1, min(MAX_POP_MESSAGES, num_messages) + 1):
                     (header, messages, octets) = pop_server.retr(num)
-                    message = "\n".join(messages)
+                    message = (b"\n").join(messages)
                     try:
                         MailThread.with_context(**additional_context).message_process(
                             server.object_id.model,
