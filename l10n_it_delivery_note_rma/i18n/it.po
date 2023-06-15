@@ -6,50 +6,52 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-06-15 11:08+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_it_delivery_note_rma
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_wizard_form_view
 msgid "Accept"
-msgstr ""
+msgstr "Accetta"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_rma__allowed_move_ids
 msgid "Allowed Move"
-msgstr ""
+msgstr "Movimento consentito"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_rma__allowed_picking_ids
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__allowed_picking_ids
 msgid "Allowed Picking"
-msgstr ""
+msgstr "Trasferimento consentito"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_rma__allowed_product_ids
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__allowed_product_ids
 msgid "Allowed Product"
-msgstr ""
+msgstr "Prodotto consentito"
 
 #. module: l10n_it_delivery_note_rma
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_wizard_form_view
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__uom_category_id
 msgid "Category"
-msgstr ""
+msgstr "Categoria"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_rma_wizard__commercial_partner_id
 msgid "Commercial entity"
-msgstr ""
+msgstr "Entità commerciale"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,help:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__uom_category_id
@@ -57,30 +59,33 @@ msgid ""
 "Conversion between Units of Measure can only occur if they belong to the "
 "same category. The conversion will be made based on the ratios."
 msgstr ""
+"Le conversioni tra unità di misura possono avvenire solo se appartengono "
+"alla stessa categoria. La conversione verrà effettuata in base alle "
+"proporzioni."
 
 #. module: l10n_it_delivery_note_rma
 #: code:addons/l10n_it_delivery_note_rma/models/stock_delivery_note.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.stock_delivery_note_form_view
 #, python-format
 msgid "Create RMA"
-msgstr ""
+msgstr "Crea RMA"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__create_uid
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_rma_wizard__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__create_date
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_rma_wizard__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_move__delivery_note_line_id
 msgid "Delivery Line"
-msgstr ""
+msgstr "Riga consegna"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model,name:l10n_it_delivery_note_rma.model_stock_delivery_note
@@ -88,23 +93,23 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__delivery_note_id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_rma_wizard__delivery_note_id
 msgid "Delivery Note"
-msgstr ""
+msgstr "DdT"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model,name:l10n_it_delivery_note_rma.model_stock_delivery_note_line
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__delivery_note_line_id
 msgid "Delivery Note Line"
-msgstr ""
+msgstr "Riga DdT"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line__delivery_move_ids
 msgid "Delivery Transfers"
-msgstr ""
+msgstr "Trasferimenti"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__picking_id
 msgid "Delivery order"
-msgstr ""
+msgstr "Ordine di consegna"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_rma__display_name
@@ -114,7 +119,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_rma_wizard__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_move__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_rma__id
@@ -124,12 +129,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_rma_wizard__id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_move__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__partner_invoice_id
 msgid "Invoice Address"
-msgstr ""
+msgstr "Indirizzo di fatturazione"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_rma____last_update
@@ -139,135 +144,136 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_rma_wizard____last_update
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_move____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__write_uid
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_rma_wizard__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__write_date
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_rma_wizard__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_rma_wizard__line_ids
 msgid "Lines"
-msgstr ""
+msgstr "Righe"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__move_id
 msgid "Move"
-msgstr ""
+msgstr "Movimento"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_rma__picking_id
 msgid "Origin Delivery"
-msgstr ""
+msgstr "Origine consegna"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_rma__move_id
 msgid "Origin move"
-msgstr ""
+msgstr "Origine movimento"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_rma__product_id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__product_id
 msgid "Product"
-msgstr ""
+msgstr "Prodotto"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__quantity
 msgid "Quantity"
-msgstr ""
+msgstr "Quantità"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model,name:l10n_it_delivery_note_rma.model_rma
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.stock_delivery_note_form_view
 msgid "RMA"
-msgstr ""
+msgstr "RMA"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note__rma_count
 msgid "RMA count"
-msgstr ""
+msgstr "Conteggio RMA"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_rma_wizard__location_id
 msgid "RMA location"
-msgstr ""
+msgstr "Ubicazione RMA"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note__rma_ids
 msgid "RMAs"
-msgstr ""
+msgstr "RMA"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,help:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__partner_invoice_id
 msgid "Refund address for current RMA."
-msgstr ""
+msgstr "Indirizzo di rimborso per questo RMA."
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__operation_id
 msgid "Requested operation"
-msgstr ""
+msgstr "Operazione richiesta"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__partner_shipping_id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_rma_wizard__partner_shipping_id
 msgid "Shipping Address"
-msgstr ""
+msgstr "Indirizzo di spedizione"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,help:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__partner_shipping_id
+#, fuzzy
 msgid "Shipping address for current RMA."
-msgstr ""
+msgstr "Indirizzo di spedizione per questo RMA."
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model,name:l10n_it_delivery_note_rma.model_stock_delivery_note_line_rma_wizard
 msgid "Stock Delivery Note Line Rma Wizard"
-msgstr ""
+msgstr "Wizard RMA - Riga DdT"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model,name:l10n_it_delivery_note_rma.model_stock_delivery_note_rma_wizard
 msgid "Stock Delivery Note Rma Wizard"
-msgstr ""
+msgstr "Wizard RMA - Riga DdT"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model,name:l10n_it_delivery_note_rma.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimento di magazzino"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__uom_id
 msgid "Unit of Measure"
-msgstr ""
+msgstr "Unità di misura"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note__warehouse_id
 msgid "Warehouse"
-msgstr ""
+msgstr "Magazzino"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,help:l10n_it_delivery_note_rma.field_stock_delivery_note_rma_wizard__partner_shipping_id
 msgid "Will be used to return the goods when the RMA is completed"
-msgstr ""
+msgstr "Verrà utilizzato per restituire la merce una volta completato l'RMA"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__wizard_id
 msgid "Wizard"
-msgstr ""
+msgstr "Procedura guidata"
 
 #. module: l10n_it_delivery_note_rma
 #: code:addons/l10n_it_delivery_note_rma/models/stock_delivery_note.py:0
 #, python-format
 msgid "You may only create RMAs from a confirmed or done delivery order."
-msgstr ""
+msgstr "Puoi creare RMA solo da un ordine di consegna confermato o concluso."
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.actions.act_window,name:l10n_it_delivery_note_rma.delivery_note_create_rma_action
 msgid "stock.delivery.note.rma.wizard.form"
-msgstr ""
+msgstr "stock.delivery.note.rma.wizard.form"
