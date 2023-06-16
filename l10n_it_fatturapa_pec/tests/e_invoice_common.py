@@ -100,10 +100,10 @@ class EInvoiceCommon(FatturaPACommon):
         return self.env["fetchmail.server"].create(
             {
                 "name": "Test PEC server",
-                "server_type": "pop",
+                "server_type": "imap",
                 "is_fatturapa_pec": True,
                 "server": "dummy",
-                "port": 110,
+                "port": 143,
                 "user": "dummy",
                 "password": "secret",
                 "state": "done",

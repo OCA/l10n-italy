@@ -134,8 +134,8 @@ class TestEInvoiceResponse(EInvoiceCommon):
         error_mails_nbr = outbound_mail_model.search_count(error_mail_domain)
         self.assertFalse(error_mails_nbr)
 
-        with mock.patch("odoo.addons.fetchmail.models.fetchmail.POP3") as mock_pop3:
-            instance = mock_pop3.return_value
+        with mock.patch("odoo.addons.fetchmail.models.fetchmail.IMAP4") as mock_imap4:
+            instance = mock_imap4.return_value
             instance.stat.return_value = (1, 1)
             instance.retr.return_value = ("", [incoming_mail], "")
 

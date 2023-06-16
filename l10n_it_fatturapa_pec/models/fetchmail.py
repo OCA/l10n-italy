@@ -2,10 +2,10 @@
 
 import logging
 
-from odoo import _, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
-MAX_POP_MESSAGES = 50
 
 
 class Fetchmail(models.Model):
@@ -25,6 +25,14 @@ class Fetchmail(models.Model):
         domain=[("email", "!=", False)],
         default=_default_e_inv_notify_partner_ids,
     )
+
+    @api.constrains("is_fatturapa_pec", "server_type")
+    def onchange_is_fatturapa_pec(self):
+        for server in self:
+            if server.is_fatturapa_pec and server.server_type == "pop":
+                raise ValidationError(
+                    _("FatturaPA PEC incoming mail server cannot be a POP Server")
+                )
 
     def fetch_mail_server_type_imap(
         self, server, MailThread, error_messages, **additional_context
@@ -61,42 +69,6 @@ class Fetchmail(models.Model):
                 imap_server.close()
                 imap_server.logout()
 
-    def fetch_mail_server_type_pop(
-        self, server, MailThread, error_messages, **additional_context
-    ):
-        pop_server = None
-        try:
-            while True:
-                pop_server = server.connect()
-                (num_messages, total_size) = pop_server.stat()
-                pop_server.list()
-                for num in range(1, min(MAX_POP_MESSAGES, num_messages) + 1):
-                    (header, messages, octets) = pop_server.retr(num)
-                    message = "\n".join(messages)
-                    try:
-                        MailThread.with_context(**additional_context).message_process(
-                            server.object_id.model,
-                            message,
-                            save_original=server.original,
-                            strip_attachments=(not server.attach),
-                        )
-                        pop_server.dele(num)
-                        # See the comments in the IMAP part
-                        server.last_pec_error_message = ""
-                    except Exception as e:
-                        server.manage_pec_failure(e, error_messages)
-                        continue
-                    # pylint: disable=invalid-commit
-                    self._cr.commit()
-                if num_messages < MAX_POP_MESSAGES:
-                    break
-                pop_server.quit()
-        except Exception as e:
-            server.manage_pec_failure(e, error_messages)
-        finally:
-            if pop_server:
-                pop_server.quit()
-
     def fetch_mail(self):
         for server in self:
             if not server.is_fatturapa_pec:
@@ -119,10 +91,6 @@ class Fetchmail(models.Model):
                 error_messages = list()
                 if server.server_type == "imap":
                     server.fetch_mail_server_type_imap(
-                        server, MailThread, error_messages, **additional_context
-                    )
-                elif server.server_type == "pop":
-                    server.fetch_mail_server_type_pop(
                         server, MailThread, error_messages, **additional_context
                     )
                 if error_messages:
