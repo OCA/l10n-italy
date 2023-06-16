@@ -1211,6 +1211,11 @@ msgid "Taxes"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.constraint,message:l10n_it_delivery_note.constraint_stock_delivery_note_name_uniq
+msgid "The Delivery note must have unique numbers."
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #. odoo-python
 #: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:0
 #, python-format
