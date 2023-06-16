@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_city_it_region_tree" model="ir.ui.view">
+            <field name="name">res.city.it.region.tree</field>
+            <field name="model">res.city</field>
+            <field name="inherit_id" ref="base_location.view_city_tree_inherit"/>
+            <field name="arch" type="xml">
+                <field name="country_id" position="after">
+                    <field name="it_region_id" options="{'no_create_edit': True,'no_quick_create':True,'no_create':True,'no_open':True}"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_city_it_region_form" model="ir.ui.view">
+            <field name="name">res.city.it.region.form</field>
+            <field name="model">res.city</field>
+            <field name="inherit_id" ref="base_location.view_city_form"/>
+            <field name="arch" type="xml">
+                <field name="country_id" position="after">
+                    <field name="it_region_id" options="{'no_create_edit': True,'no_quick_create':True,'no_create':True,'no_open':True}"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>
