@@ -18,17 +18,12 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
-            <field name="fiscal_position_id" position="after">
+            <xpath
+                expr="//group[@name='accounting_info_group']/field[@name='fiscal_position_id']"
+                position="after"
+            >
                 <field name="split_payment" invisible="1" />
-            </field>
-            <field name="amount_tax" position="after">
-                <field
-                    name="amount_sp"
-                    widget="monetary"
-                    options="{'currency_field': 'currency_id'}"
-                    attrs="{'invisible': [('split_payment', '=', False)]}"
-                />
-            </field>
+            </xpath>
             <xpath
                 expr="//sheet/notebook/page/field[@name='line_ids']/tree"
                 position="inside"

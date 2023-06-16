@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <record id="tax_group_split_payment" model="account.tax.group">
+        <field name="name">Split Payment</field>
+        <field name="country_id" ref="base.it" />
+    </record>
+
+</odoo>

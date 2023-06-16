@@ -49,19 +49,18 @@ class TestSP(TestAccountAccount):
         self.company.sp_account_id = self.env["account.account"].search(
             [
                 (
-                    "user_type_id",
+                    "account_type",
                     "=",
-                    self.env.ref("account.data_account_type_current_assets").id,
+                    "asset_current",
                 )
             ],
             limit=1,
         )
-        account_user_type = self.env.ref("account.data_account_type_receivable")
         self.a_recv = self.account_model.create(
             dict(
-                code="cust_acc",
+                code="cust.acc",
                 name="customer account",
-                user_type_id=account_user_type.id,
+                account_type="asset_receivable",
                 reconcile=True,
             )
         )
@@ -71,16 +70,16 @@ class TestSP(TestAccountAccount):
         self.a_sale = self.env["account.account"].search(
             [
                 (
-                    "user_type_id",
+                    "account_type",
                     "=",
-                    self.env.ref("account.data_account_type_revenue").id,
+                    "income",
                 )
             ],
             limit=1,
         )
         self.sales_journal = self.env["account.journal"].search(
-            [("type", "=", "sale"), ("company_id", "=", self.company.id)]
-        )[0]
+            [("type", "=", "sale"), ("company_id", "=", self.company.id)], limit=1
+        )
         self.term_15_30 = self.term_model.create(
             {
                 "name": "15 30",
@@ -92,7 +91,6 @@ class TestSP(TestAccountAccount):
                             "value": "percent",
                             "value_amount": 50,
                             "days": 15,
-                            "sequence": 1,
                         },
                     ),
                     (
@@ -101,7 +99,6 @@ class TestSP(TestAccountAccount):
                         {
                             "value": "balance",
                             "days": 30,
-                            "sequence": 2,
                         },
                     ),
                 ],
