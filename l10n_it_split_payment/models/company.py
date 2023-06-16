@@ -7,12 +7,12 @@
 from odoo import fields, models
 
 
-class AccountConfigSettings(models.TransientModel):
-    _inherit = "res.config.settings"
+class ResCompany(models.Model):
+    _inherit = "res.company"
 
     sp_account_id = fields.Many2one(
-        related="company_id.sp_account_id",
-        string="Split Payment Write-off account",
+        "account.account",
+        string="Split Payment Write-off Account",
         help="Account used to write off the VAT amount",
         readonly=False,
     )
