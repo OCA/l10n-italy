@@ -262,6 +262,14 @@ class StockDeliveryNote(models.Model):
     show_product_information = fields.Boolean(compute="_compute_boolean_flags")
     company_id = fields.Many2one("res.company", required=True, default=_default_company)
 
+    _sql_constraints = [
+        (
+            "name_uniq",
+            "unique(name, company_id)",
+            "The Delivery note must have unique numbers.",
+        )
+    ]
+
     @api.depends("name", "partner_id", "partner_ref", "partner_id.display_name")
     def name_get(self):
         result = []
