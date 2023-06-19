@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_saleorder_document_fiscal_fields_ext"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <xpath expr="//p[@t-if='doc.partner_id.vat']" position="attributes">
+            <attribute name="style">margin-bottom:0</attribute>
+        </xpath>
+        <xpath expr="//p[@t-if='doc.partner_id.vat']" position="after">
+            <p
+                t-if="doc.partner_id.fiscalcode and (not doc.partner_id.vat or (doc.partner_id.vat and doc.partner_id.vat[2:] != doc.partner_id.fiscalcode))"
+                style="margin: 0"
+            >
+                <span>Fiscal code: </span><span t-esc="doc.partner_id.fiscalcode" />
+            </p>
+        </xpath>
+    </template>
+</odoo>
