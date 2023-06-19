@@ -177,7 +177,7 @@ class Report(models.TransientModel):
             dep_lines = dep_lines.filtered(lambda dl: dl.date <= self.date)
         categories = assets.mapped("category_id")
 
-        if not (categories and assets and deps and dep_lines):
+        if not (categories and assets and deps):
             raise ValidationError(
                 _("There is nothing to print according to current settings!")
             )
