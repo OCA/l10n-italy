@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-15 11:08+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-06-19 17:09+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -228,7 +228,6 @@ msgstr "Indirizzo di spedizione"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,help:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__partner_shipping_id
-#, fuzzy
 msgid "Shipping address for current RMA."
 msgstr "Indirizzo di spedizione per questo RMA."
 

@@ -1,21 +1,29 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
-from odoo import http
-from odoo.http import request
+from odoo import _
+from odoo.exceptions import AccessError, MissingError
+from odoo.http import request, route
 
 from odoo.addons.portal.controllers.portal import CustomerPortal, pager as portal_pager
 
 
-class DDTCustomerPortal(CustomerPortal):
+class DNCustomerPortal(CustomerPortal):
+    def _get_delivery_note_domain(self):
+        return [("state", "in", ["confirm", "invoiced", "done"])]
+
     def _prepare_home_portal_values(self, counters):
         values = super()._prepare_home_portal_values(counters)
-        partner_id = request.env.user.partner_id.id
-        ddt_count = request.env["stock.delivery.note"].search_count(
-            [("partner_id", "=", partner_id)]
+        dn_count = (
+            request.env["stock.delivery.note"].search_count(
+                self._get_delivery_note_domain()
+            )
+            if request.env["stock.delivery.note"].check_access_rights(
+                "read", raise_exception=False
+            )
+            else 0
         )
-        values.update({"ddt_count": ddt_count})
+        values["dn_count"] = dn_count
         return values
 
-    @http.route(
+    @route(
         ["/my/delivery-notes", "/my/delivery-notes/page/<int:page>"],
         type="http",
         auth="user",
@@ -25,49 +33,77 @@ class DDTCustomerPortal(CustomerPortal):
         self, page=1, date_begin=None, date_end=None, sortby=None, **kw
     ):
         values = self._prepare_portal_layout_values()
-        partner = request.env.user.partner_id
         DeliveryNote = request.env["stock.delivery.note"]
 
-        domain = [("partner_id", "=", partner.id)]
-
-        self._get_sale_searchbar_sortings()
+        searchbar_sortings = {
+            "date": {"label": _("Delivery Note Date"), "order": "date desc"},
+            "name": {"label": _("Delivery Note #"), "order": "name"},
+        }
 
         # default sortby order
         if not sortby:
             sortby = "date"
-        # searchbar_sortings[sortby]
-
-        # if date_begin and date_end:
-        #     domain += [
-        #         ("create_date", ">", date_begin),
-        #         ("create_date", "<=", date_end),
-        #     ]
+        sort_order = searchbar_sortings[sortby]["order"]
 
         # count for pager
-        ddt_count = DeliveryNote.search_count(domain)
+        dn_count = DeliveryNote.search_count(self._get_delivery_note_domain())
         # make pager
         pager = portal_pager(
             url="/my/delivery-notes",
-            # url_args={"date_begin": date_begin, "date_end": date_end, "sortby": sortby},
-            total=ddt_count,
+            url_args={"sortby": sortby},
+            total=dn_count,
             page=page,
-            # step=self._items_per_page,
+            step=self._items_per_page,
         )
         # search the count to display, according to the pager data
-        ddt = DeliveryNote.search(domain)
-        # request.session["my_quotations_history"] = quotations.ids[:100]
+        delivery_note = DeliveryNote.search(
+            self._get_delivery_note_domain(),
+            order=sort_order,
+            limit=self._items_per_page,
+            offset=pager["offset"],
+        )
 
         values.update(
             {
                 "date": date_begin,
-                "delivery_notes": ddt.sudo(),
-                "page_name": "ddt",
+                "delivery_notes": delivery_note,
+                "page_name": "delivery_notes",
                 "pager": pager,
                 "default_url": "/my/delivery-notes",
-                # "searchbar_sortings": searchbar_sortings,
-                # "sortby": sortby,
+                "searchbar_sortings": searchbar_sortings,
+                "sortby": sortby,
             }
         )
-        return request.render(
-            "l10n_it_delivery_note_rma.portal_my_delivery_notes", values
+        return request.render("l10n_it_delivery_note.portal_my_delivery_notes", values)
+
+    def _dn_get_page_view_values(self, dn, access_token, **kwargs):
+        values = {
+            "page_name": "delivery_note",
+            "dn": dn,
+        }
+        return self._get_page_view_values(
+            dn, access_token, values, "my_dn_history", False, **kwargs
         )
+
+    @route(["/my/delivery-notes/<int:dn_id>"], type="http", auth="user", website=True)
+    def portal_my_delivery_note_detail(
+        self, dn_id, access_token=None, report_type=None, download=False, **kw
+    ):
+        try:
+            delivery_note_sudo = self._document_check_access(
+                "stock.delivery.note", dn_id, access_token
+            )
+        except (AccessError, MissingError):
+            return request.redirect("/my")
+
+        if report_type in ("html", "pdf", "text"):
+            return self._show_report(
+                model=delivery_note_sudo,
+                report_type=report_type,
+                report_ref="l10n_it_delivery_note.delivery_note_report_action",
+                download=download,
+            )
+
+        values = self._dn_get_page_view_values(delivery_note_sudo, access_token, **kw)
+
+        return request.render("l10n_it_delivery_note.portal_delivery_note_page", values)

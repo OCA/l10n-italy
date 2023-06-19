@@ -11,7 +11,7 @@
             <t t-call="portal.portal_docs_entry">
                 <t t-set="title">Delivery Notes</t>
                 <t t-set="url" t-value="'/my/delivery-notes'" />
-                <t t-set="placeholder_count" t-value="'ddt_count'" />
+                <t t-set="placeholder_count" t-value="'dn_count'" />
             </t>
         </xpath>
     </template>
