@@ -46,6 +46,7 @@ setuptools.setup(
         'odoo14-addon-l10n_it_fiscal_document_type',
         'odoo14-addon-l10n_it_fiscal_payment_term',
         'odoo14-addon-l10n_it_fiscalcode',
+        'odoo14-addon-l10n_it_fiscalcode_sale',
         'odoo14-addon-l10n_it_intrastat',
         'odoo14-addon-l10n_it_intrastat_statement',
         'odoo14-addon-l10n_it_invoices_data_communication',
