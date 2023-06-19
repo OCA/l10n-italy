@@ -40,7 +40,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.env["uom.uom"].search([("name", "=", "Units")]).name = "Unit(s)"
 
     def test_4_xml_export(self):
-        self.set_sequences(16, "2016-06-15")
         invoice = self.invoice_model.create(
             {
                 "name": "INV/2016/0016",

@@ -35,9 +35,9 @@ class FatturaPACommon(_FatturaPACommon):
         self.company.sp_account_id = self.env["account.account"].search(
             [
                 (
-                    "user_type_id",
+                    "account_type",
                     "=",
-                    self.env.ref("account.data_account_type_current_assets").id,
+                    "asset_current",
                 )
             ],
             limit=1,
