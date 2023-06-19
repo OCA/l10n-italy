@@ -23,7 +23,6 @@ class TestTaxSP(AccountTestInvoicingCommon):
         cls.account_model = cls.env["account.account"]
         cls.term_line_model = cls.env["account.payment.term.line"]
         cls.vat_statement_model = cls.env["account.vat.period.end.statement"]
-        account_user_type = cls.env.ref("account.data_account_type_receivable")
         today = datetime.now().date()
 
         cls.range_type = cls.env["date.range.type"].create(
@@ -50,9 +49,9 @@ class TestTaxSP(AccountTestInvoicingCommon):
             .search(
                 [
                     (
-                        "user_type_id",
+                        "account_type",
                         "=",
-                        cls.env.ref("account.data_account_type_current_assets").id,
+                        "asset_current",
                     )
                 ],
                 limit=1,
@@ -64,9 +63,9 @@ class TestTaxSP(AccountTestInvoicingCommon):
             .search(
                 [
                     (
-                        "user_type_id",
+                        "account_type",
                         "=",
-                        cls.env.ref("account.data_account_type_current_liabilities").id,
+                        "liability_current",
                     )
                 ],
                 limit=1,
@@ -129,37 +128,37 @@ class TestTaxSP(AccountTestInvoicingCommon):
         cls.company.sp_account_id = cls.env["account.account"].search(
             [
                 (
-                    "user_type_id",
+                    "account_type",
                     "=",
-                    cls.env.ref("account.data_account_type_current_assets").id,
+                    "asset_current",
                 )
             ],
             limit=1,
         )
         cls.a_recv = cls.account_model.create(
             dict(
-                code="cust_acc",
+                code="cust.acc",
                 name="customer account",
-                user_type_id=account_user_type.id,
+                account_type="asset_receivable",
                 reconcile=True,
             )
         )
         cls.a_sale = cls.env["account.account"].search(
             [
                 (
-                    "user_type_id",
+                    "account_type",
                     "=",
-                    cls.env.ref("account.data_account_type_revenue").id,
+                    "income",
                 )
             ],
             limit=1,
         )
         cls.vat_authority = cls.account_model.create(
             {
-                "code": "VAT AUTH",
+                "code": "VAT.AUTH",
                 "name": "VAT Authority",
                 "reconcile": True,
-                "user_type_id": cls.env.ref("account.data_account_type_payable").id,
+                "account_type": "liability_payable",
             }
         )
 
@@ -173,7 +172,6 @@ class TestTaxSP(AccountTestInvoicingCommon):
             {
                 "value": "balance",
                 "days": 16,
-                "option": "after_invoice_month",
                 "payment_id": cls.account_payment_term.id,
             }
         )
@@ -188,7 +186,6 @@ class TestTaxSP(AccountTestInvoicingCommon):
                             "value": "percent",
                             "value_amount": 50,
                             "days": 15,
-                            "sequence": 1,
                         },
                     ),
                     (
@@ -197,7 +194,6 @@ class TestTaxSP(AccountTestInvoicingCommon):
                         {
                             "value": "balance",
                             "days": 30,
-                            "sequence": 2,
                         },
                     ),
                 ],
@@ -252,17 +248,6 @@ class TestTaxSP(AccountTestInvoicingCommon):
         self.assertEqual(self.vat_statement.generic_vat_account_line_ids.amount, 22.0)
 
     def test_account_sp_company(self):
-        account_user_type = self.env.ref("account.data_account_type_receivable")
-        account_sp = self.account_model.create(
-            dict(
-                code="split_payment_acc",
-                name="Split payment account",
-                user_type_id=account_user_type.id,
-                reconcile=True,
-            )
-        )
-        self.company.sp_account_id = account_sp.id
-
         invoice = self.move_model.with_context(default_move_type="out_invoice").create(
             {
                 "invoice_date": self.recent_date,
@@ -296,5 +281,6 @@ class TestTaxSP(AccountTestInvoicingCommon):
         self.current_period.vat_statement_id = self.vat_statement
         self.vat_statement.compute_amounts()
         self.assertEqual(
-            self.vat_statement.generic_vat_account_line_ids.account_id.id, account_sp.id
+            self.vat_statement.generic_vat_account_line_ids.account_id.id,
+            self.company.sp_account_id.id,
         )
