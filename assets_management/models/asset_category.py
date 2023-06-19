@@ -122,7 +122,7 @@ class AssetCategory(models.Model):
     def unlink(self):
         if self.env["asset.asset"].sudo().search([("category_id", "in", self.ids)]):
             raise UserError(
-                _("Cannot delete categories while they're still linked" " to an asset.")
+                _("Cannot delete categories while they're still linked to an asset.")
             )
         return super().unlink()
 

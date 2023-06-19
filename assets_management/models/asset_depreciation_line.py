@@ -437,13 +437,27 @@ class AssetDepreciationLine(models.Model):
 
     def get_historical_account_move_line_vals(self):
         raise NotImplementedError(
-            _("Cannot create account move lines for lines of type" " `Historical`")
+            _("Cannot create account move lines for lines of type `Historical`")
         )
 
     def get_in_account_move_line_vals(self):
-        raise NotImplementedError(
-            _("Cannot create account move lines for lines of type `In`")
-        )
+        self.ensure_one()
+        credit_line_vals = {
+            "account_id": self.asset_id.category_id.gain_account_id.id,
+            "credit": self.amount,
+            "debit": 0.0,
+            "currency_id": self.currency_id.id,
+            "name": " - ".join((self.asset_id.make_name(), self.name)),
+        }
+
+        debit_line_vals = {
+            "account_id": self.asset_id.category_id.asset_account_id.id,
+            "credit": 0.0,
+            "debit": self.amount,
+            "currency_id": self.currency_id.id,
+            "name": " - ".join((self.asset_id.make_name(), self.name)),
+        }
+        return [credit_line_vals, debit_line_vals]
 
     def get_loss_account_move_line_vals(self):
         self.ensure_one()
@@ -464,9 +478,22 @@ class AssetDepreciationLine(models.Model):
         return [credit_line_vals, debit_line_vals]
 
     def get_out_account_move_line_vals(self):
-        raise NotImplementedError(
-            _("Cannot create account move lines for lines of type `Out`")
-        )
+        self.ensure_one()
+        credit_line_vals = {
+            "account_id": self.asset_id.category_id.asset_account_id.id,
+            "credit": self.amount,
+            "debit": 0.0,
+            "currency_id": self.currency_id.id,
+            "name": " - ".join((self.asset_id.make_name(), self.name)),
+        }
+        debit_line_vals = {
+            "account_id": self.asset_id.category_id.loss_account_id.id,
+            "credit": 0.0,
+            "debit": self.amount,
+            "currency_id": self.currency_id.id,
+            "name": " - ".join((self.asset_id.make_name(), self.name)),
+        }
+        return [credit_line_vals, debit_line_vals]
 
     def needs_account_move(self):
         self.ensure_one()
