@@ -747,7 +747,9 @@ class ReportDepreciationLineByYear(models.TransientModel):
         self.ensure_one()
         dep = self.report_depreciation_id.depreciation_id
         to_date = min(self.fiscal_year_id.date_to, self.report_id.date)
-        previsional_lines = dep.generate_depreciation_lines(to_date)
+        previsional_lines = dep.with_context(
+            previsional=True
+        ).generate_depreciation_lines(to_date)
         self.dep_line_ids += previsional_lines
         self.report_id.previsional_line_ids += previsional_lines
 
