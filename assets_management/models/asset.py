@@ -121,17 +121,7 @@ class Asset(models.Model):
         return super().write(vals)
 
     def unlink(self):
-        if self.mapped("asset_accounting_info_ids"):
-            assets = self.filtered("asset_accounting_info_ids")
-            name_list = "\n".join([a[-1] for a in assets.name_get()])
-            raise ValidationError(
-                _(
-                    "The assets you are trying to delete are currently linked"
-                    " to accounting info. Please remove them if necessary"
-                    " before removing these assets:\n"
-                )
-                + name_list
-            )
+        self.mapped("asset_accounting_info_ids").unlink()
         self.mapped("depreciation_ids").unlink()
         return super().unlink()
 
