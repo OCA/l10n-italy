@@ -126,9 +126,9 @@ class TestSP(AccountTestInvoicingCommon):
         cls.company.sp_account_id = cls.env["account.account"].search(
             [
                 (
-                    "user_type_id",
+                    "account_type",
                     "=",
-                    cls.env.ref("account.data_account_type_current_assets").id,
+                    "asset_current",
                 )
             ],
             limit=1,
@@ -136,9 +136,9 @@ class TestSP(AccountTestInvoicingCommon):
         cls.a_sale = cls.env["account.account"].search(
             [
                 (
-                    "user_type_id",
+                    "account_type",
                     "=",
-                    cls.env.ref("account.data_account_type_revenue").id,
+                    "income",
                 )
             ],
             limit=1,
