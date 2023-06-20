@@ -210,6 +210,7 @@ msgstr "Importo effetti"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_move_line__riba
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_account_payment_term__riba
 #: model:ir.ui.menu,name:l10n_it_ricevute_bancarie.menu_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_partner_form_riba
 #, python-format
 msgid "C/O"
 msgstr "RiBa"
