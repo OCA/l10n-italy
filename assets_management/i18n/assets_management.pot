@@ -881,14 +881,6 @@ msgstr ""
 #: code:addons/assets_management/models/asset_depreciation.py:0
 #, python-format
 msgid ""
-"Cannot update the following assets which contain newer depreciations for the chosen types:\n"
-"{}"
-msgstr ""
-
-#. module: assets_management
-#: code:addons/assets_management/models/asset_depreciation.py:0
-#, python-format
-msgid ""
 "Cannot update the following assets which contain posted depreciation for the chosen date and types:\n"
 "{}"
 msgstr ""
