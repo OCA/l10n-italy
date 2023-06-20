@@ -7,13 +7,14 @@
     <record id="view_partner_form_riba" model="ir.ui.view">
         <field name="name">res.parner.form.riba</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="inherit_id" ref="account.view_partner_property_form" />
         <field name="groups_id" eval="[(4, ref('account.group_account_user'))]" />
         <field name="arch" type="xml">
-            <field name="parent_id" position="after">
-                <label for="group_riba" />
-                <field name="group_riba" />
-            </field>
+            <group name="accounting_entries" position="after">
+                <group string="C/O" name="riba">
+                    <field name="group_riba" />
+                </group>
+            </group>
         </field>
     </record>
 
