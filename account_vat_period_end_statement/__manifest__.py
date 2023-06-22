@@ -32,7 +32,8 @@
     ],
     "assets": {
         "web.assets_backend": [
-            "account_vat_period_end_statement/static/src/css/l10n_it_vat_registries.css",
+            "account_vat_period_end_statement/static/src/css/"
+            "account_vat_period_end_statement.css",
         ],
     },
     "installable": True,
