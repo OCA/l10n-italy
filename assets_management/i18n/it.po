@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-23 08:16+0000\n"
-"PO-Revision-Date: 2023-06-22 10:10+0000\n"
+"PO-Revision-Date: 2023-06-26 14:10+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -2940,7 +2940,7 @@ msgstr "Svuota info contabili cespiti vuote"
 #. module: assets_management
 #: model:ir.model.fields.selection,name:assets_management.selection__wizard_account_move_manage_asset__move_type__in_invoice
 msgid "Vendor Bill"
-msgstr "Fattura Fornitore"
+msgstr "Fattura fornitore"
 
 #. module: assets_management
 #: model:ir.model.fields.selection,name:assets_management.selection__wizard_account_move_manage_asset__move_type__in_refund
