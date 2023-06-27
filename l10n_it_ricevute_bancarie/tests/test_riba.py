@@ -525,3 +525,14 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         riba_txt = base64.decodebytes(wizard_riba_export.riba_txt)
         self.assertTrue(b"CIG: 7987210EG5 CUP: H71N17000690124" in riba_txt)
         self.assertTrue(b"CIG: 7987210EG5 CUP: H71N17000690125" in riba_txt)
+
+    def test_riba_presentation(self):
+        total_amount = 200000
+        wizard_riba_issue = self.env["presentation.riba.issue"].create(
+            {"presentation_amount": total_amount}
+        )
+        domain = wizard_riba_issue.action_presentation_riba()["domain"]
+        total_issue_amount = sum(
+            self.env["account.move.line"].search(domain).mapped("amount_residual")
+        )
+        self.assertTrue(total_amount - total_issue_amount >= 0)
