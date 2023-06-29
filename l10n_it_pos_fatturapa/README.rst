@@ -23,7 +23,7 @@ ITA - POS - Fattura elettronica
     :target: https://runbot.odoo-community.org/runbot/122/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 **Italiano**
 
@@ -62,6 +62,8 @@ Contributors
 ~~~~~~~~~~~~
 
 * Roberto Fichera <roberto.fichera@levelprime.com>
+* berim <info@berim.it>
+* Ooops404 <info@ooops404.com>
 
 Maintainers
 ~~~~~~~~~~~
@@ -82,7 +84,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-robyf70| 
+|maintainer-robyf70|
 
 This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/12.0/l10n_it_pos_fatturapa>`_ project on GitHub.
 

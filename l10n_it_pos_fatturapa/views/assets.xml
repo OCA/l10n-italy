@@ -9,7 +9,7 @@
             />
             <script
                 type="text/javascript"
-                src="/l10n_it_pos_fatturapa/static/src/js/screens.js"
+                src="/l10n_it_pos_fatturapa/static/src/js/ClientDetailsEdit.js"
             />
         </xpath>
     </template>
