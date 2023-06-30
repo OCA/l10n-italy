@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 10:03+0000\n"
-"PO-Revision-Date: 2023-06-15 07:09+0000\n"
+"PO-Revision-Date: 2023-06-30 15:09+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -325,7 +325,7 @@ msgstr "Forza euro"
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Ha un messaggio"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_bank_statement_line__has_pdf_invoice_print
@@ -406,6 +406,8 @@ msgid ""
 "Invoice %(name)s fiscal payment method must be set for the selected payment "
 "term %(term)s"
 msgstr ""
+"Il metodo pagamento fiscale della fattura %(name)s deve essere impostato per "
+"il termine di pagamento %(term)s selezionato"
 
 #. module: l10n_it_fatturapa_out
 #. odoo-python
@@ -415,6 +417,8 @@ msgid ""
 "Invoice %(name)s fiscal payment term must be set for the selected payment "
 "term %(term)s"
 msgstr ""
+"La scadenza del pagamento fiscale della fattura %(name)s deve essere "
+"impostato per il termine di pagamento %(term)s selezionato"
 
 #. module: l10n_it_fatturapa_out
 #. odoo-python
@@ -704,7 +708,7 @@ msgstr "Data invio"
 #. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 msgid "Show preview"
-msgstr ""
+msgstr "Mostra anteprima"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__state
@@ -748,6 +752,8 @@ msgstr ""
 #, python-format
 msgid "The max number of invoice to group can't be negative for partner %s"
 msgstr ""
+"Il numero massimo di fatture da raggruppare non può essere negativo per il "
+"partner %s"
 
 #. module: l10n_it_fatturapa_out
 #. odoo-python
