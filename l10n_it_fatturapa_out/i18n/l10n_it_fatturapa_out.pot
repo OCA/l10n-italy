@@ -721,7 +721,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_fatturapa_out/models/partner.py:0
 #, python-format
-msgid "The max number of invoice to group can't be negative"
+msgid "The max number of invoice to group can't be negative for partner %s"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
