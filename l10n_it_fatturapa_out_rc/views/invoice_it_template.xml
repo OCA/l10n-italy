@@ -55,12 +55,12 @@
             </xpath>
             <xpath expr="//DatiRiepilogo/ImponibileImporto" position="replace">
                 <ImponibileImporto
-                t-esc="format_monetary(fpa_to_eur(get_sign(record) * tax_data['ImponibileImporto'], record), euro)"
+                t-esc="format_monetary(get_sign(record) * tax_data['ImponibileImporto'], euro)"
             />
             </xpath>
             <xpath expr="//DatiRiepilogo/Imposta" position="replace">
                 <Imposta
-                t-esc="format_monetary(get_sign(record) * tax_data['Imposta'], currency)"
+                t-esc="format_monetary(get_sign(record) * tax_data['Imposta'], euro)"
             />
             </xpath>
         </template>
@@ -74,9 +74,22 @@
                 t-esc="format_price(line, get_sign(line.move_id))"
             />
                 </xpath>
-                <xpath expr="//PrezzoTotale" position="replace">
+                <xpath
+            expr="//PrezzoTotale[@t-if='line.credit &gt; 0']"
+            position="replace"
+        >
                     <PrezzoTotale
-                t-esc="format_monetary(fpa_to_eur(get_sign(line.move_id) * line.price_subtotal, record), euro)"
+                t-if="line.credit > 0"
+                t-esc="format_monetary(fpa_to_eur(get_sign(line.move_id) * line.price_subtotal, line=line, field='credit'), euro)"
+            />
+                </xpath>
+                <xpath
+            expr="//PrezzoTotale[@t-if='not line.credit &gt; 0']"
+            position="replace"
+        >
+                    <PrezzoTotale
+                t-if="not line.credit > 0"
+                t-esc="format_monetary(fpa_to_eur(get_sign(line.move_id) * line.price_subtotal, line=line, field='debit'), euro)"
             />
                 </xpath>
         </template>
