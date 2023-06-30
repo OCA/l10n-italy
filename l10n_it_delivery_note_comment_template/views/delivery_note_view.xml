@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="stock_picking_form_add_comment">
+      <field name="name">comment.template.stock.picking.form</field>
+      <field name="model">stock.delivery.note</field>
+      <field name="inherit_id" ref="l10n_it_delivery_note.stock_delivery_note_form_view" />
+      <field name="arch" type="xml">
+        <xpath expr="//notebook" position="inside">
+          <page string="Comments">
+            <field name="comment_template_ids" />
+          </page>
+        </xpath>
+      </field>
+    </record>
+</odoo>
