@@ -23,9 +23,7 @@ class AccountMoveLine(models.Model):
             if line.move_id.is_purchase_document():
                 line.rc = bool(line.move_id.fiscal_position_id.rc_type_id)
 
-    rc = fields.Boolean(
-        "RC", compute="_compute_rc_flag", store=True, readonly=False, default=False
-    )
+    rc = fields.Boolean("RC", compute="_compute_rc_flag", store=True, readonly=False)
 
 
 class AccountMove(models.Model):
