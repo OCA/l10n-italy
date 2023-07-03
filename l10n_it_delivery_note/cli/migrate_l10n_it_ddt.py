@@ -276,13 +276,21 @@ class MigrateL10nItDdt(EasyCommand):
                     record.weight_manual_uom_id.id or
                     self._default_weight_uom.id,
                 'goods_appearance_id':
-                    self._goods_descriptions[record.goods_description_id].id,
+                    self._goods_descriptions[record.goods_description_id].id if
+                    record.goods_description_id and record.goods_description_id
+                    in self._goods_descriptions else False,
                 'transport_reason_id':
-                    self._transportation_reasons[record.transportation_reason_id].id,
+                    self._transportation_reasons[record.transportation_reason_id].id if
+                    record.transportation_reason_id and record.transportation_reason_id
+                    in self._transportation_reasons else False,
                 'transport_condition_id':
-                    self._carriage_conditions[record.carriage_condition_id].id,
+                    self._carriage_conditions[record.carriage_condition_id].id if
+                    record.carriage_condition_id and record.carriage_condition_id
+                    in self._carriage_conditions else False,
                 'transport_method_id':
-                    self._transportation_methods[record.transportation_method_id].id,
+                    self._transportation_methods[record.transportation_method_id].id if
+                    record.transportation_method_id and record.transportation_method_id
+                    in self._transportation_methods else False,
                 'picking_ids': [(4, p.id) for p in record.picking_ids],
                 'invoice_ids':
                     [(4, record.invoice_id.id)] if record.invoice_id else [],
