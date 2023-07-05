@@ -9,7 +9,7 @@
             <xpath expr="//field[@name='state']" position="before">
                 <field
                     name="fatturapa_state"
-                    invisible="context.get('default_move_type') not in ('out_invoice', 'in_refund')"
+                    invisible="context.get('default_move_type') not in ('out_invoice', 'out_refund')"
                 />
             </xpath>
         </field>
@@ -30,7 +30,7 @@
                     attrs="{
                         'invisible': [
                             '|',
-                                ('move_type', 'not in', ('out_invoice', 'in_refund')),
+                                ('move_type', 'not in', ('out_invoice', 'out_refund')),
                                 '|',
                                     '|',
                                         ('fatturapa_attachment_out_id', '!=', False),
@@ -47,7 +47,7 @@
                     attrs="{
                         'invisible': [
                             '|',
-                                ('move_type', 'not in', ('out_invoice', 'in_refund')),
+                                ('move_type', 'not in', ('out_invoice', 'out_refund')),
                                 '|',
                                     '|',
                                         ('fatturapa_attachment_out_id', '=', False),
@@ -65,7 +65,7 @@
                     name="fatturapa_state"
                     attrs="{
                         'invisible': [
-                            ('move_type', 'not in', ('out_invoice', 'in_refund')),
+                            ('move_type', 'not in', ('out_invoice', 'out_refund')),
                         ],
                     }"
                 />
@@ -77,7 +77,7 @@
                     attrs="{
                         'invisible': [
                             '|',
-                                ('move_type', 'not in', ('out_invoice', 'in_refund')),
+                                ('move_type', 'not in', ('out_invoice', 'out_refund')),
                                 ('electronic_invoice_subjected', '=', False),
                         ],
                     }"
@@ -101,7 +101,7 @@
                     attrs="{
                         'invisible': [
                             '|',
-                                ('move_type', 'not in', ('out_invoice', 'in_refund')),
+                                ('move_type', 'not in', ('out_invoice', 'out_refund')),
                                 '&amp;',
                                     ('electronic_invoice_subjected', '=', False),
                                     ('fatturapa_attachment_out_id', '=', False),
@@ -123,7 +123,7 @@
                     attrs="{
                         'invisible': [
                             '|',
-                                ('move_type', 'not in', ('out_invoice', 'in_refund')),
+                                ('move_type', 'not in', ('out_invoice', 'out_refund')),
                                 '&amp;',
                                     ('electronic_invoice_subjected', '=', False),
                                     ('fatturapa_attachment_out_id', '=', False),
