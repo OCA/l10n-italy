@@ -6,7 +6,6 @@ from odoo.osv import expression
 
 
 class SelectManuallyDeclarations(models.TransientModel):
-
     _name = "l10n_it_declaration_of_intent.select_declarations"
     _description = "Set declaration of intent manually on invoice"
 
@@ -17,6 +16,10 @@ class SelectManuallyDeclarations(models.TransientModel):
         if not invoice_id:
             return declaration_model.browse()
         invoice = self.env["account.move"].browse(invoice_id)
+
+        if invoice.declaration_of_intent_ids:
+            return invoice.declaration_of_intent_ids
+
         type_short = invoice.get_type_short()
         if not type_short:
             return declaration_model.browse()
@@ -47,6 +50,7 @@ class SelectManuallyDeclarations(models.TransientModel):
         if not invoice_id:
             return res
         invoice = self.env["account.move"].browse(invoice_id)
-        for declaration in self.declaration_ids:
-            invoice.declaration_of_intent_ids = [(4, declaration.id)]
+        invoice.declaration_of_intent_ids = [
+            fields.Command.set(self.declaration_ids.ids)
+        ]
         return True
