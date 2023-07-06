@@ -24,6 +24,7 @@
         "views/account_move_view.xml",
         "views/product_view.xml",
         "views/company_view.xml",
+        "views/account_move_report.xml",
     ],
     "installable": True,
 }
