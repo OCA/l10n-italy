@@ -29,7 +29,21 @@
             >
                 <field
                     name="force_declaration_of_intent_id"
-                    domain="[('partner_id', '=', parent.partner_id), ('state', '!=', 'close'), ('date_start', '&lt;=', parent.invoice_date), ('date_end', '&gt;=', parent.invoice_date)]"
+                    attrs="{'column_invisible': [('parent.invoice_date', '=', False)]}"
+                    domain="[
+                    ('partner_id', '=', parent.partner_id),
+                    ('state', '!=', 'close'),
+                    ('date_start', '&lt;=', parent.invoice_date),
+                    ('date_end', '&gt;=', parent.invoice_date),
+                    ]"
+                />
+                <field
+                    name="force_declaration_of_intent_id"
+                    attrs="{'column_invisible': [('parent.invoice_date', '!=', False)]}"
+                    domain="[
+                    ('partner_id', '=', parent.partner_id),
+                    ('state', '!=', 'close'),
+                    ]"
                 />
             </xpath>
         </field>
