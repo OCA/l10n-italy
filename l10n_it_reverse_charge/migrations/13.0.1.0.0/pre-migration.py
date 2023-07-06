@@ -62,7 +62,7 @@ def migrate(env, version):
             select am.currency_id, am.partner_id, am.create_uid, aml.account_id
             from account_move am join account_move_line aml
             on am.id = aml.move_id
-            where am.id = {supp_inv}
+            where am.old_invoice_id = {supp_inv}
             and aml.account_id in (
                 select aa.id from account_account aa
                 where aa.internal_type = 'payable'
