@@ -86,6 +86,7 @@ class AccountMove(models.Model):
                 "analytic_account_id": None,
             }
             inv.write({"invoice_line_ids": [(0, 0, invoice_line_vals)]})
+            inv._recompute_tax_lines()
 
     def _move_autocomplete_invoice_lines_values(self):
         # Load line names in cache,
