@@ -321,7 +321,6 @@ class StockDeliveryNote(models.Model):
             else:
                 note.invoice_status = DOMAIN_INVOICE_STATUSES[0]
 
-    @api.multi
     def _compute_get_pickings(self):
         for note in self:
             note.pickings_picker = note.picking_ids
