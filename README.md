@@ -26,7 +26,7 @@ addon | version | maintainers | summary
 [fiscal_epos_print](fiscal_epos_print/) | 14.0.1.0.1 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | ePOS-Print XML Fiscal Printer Driver - Stampanti Epson compatibili: FP81II, FP90III
 [l10n_it_abicab](l10n_it_abicab/) | 14.0.1.0.2 | [![Borruso](https://github.com/Borruso.png?size=30px)](https://github.com/Borruso) | Base Bank ABI/CAB codes
 [l10n_it_account](l10n_it_account/) | 14.0.1.3.0 |  | Modulo base usato come dipendenza di altri moduli contabili
-[l10n_it_account_stamp](l10n_it_account_stamp/) | 14.0.1.1.1 |  | Gestione automatica dell'imposta di bollo
+[l10n_it_account_stamp](l10n_it_account_stamp/) | 14.0.1.1.2 |  | Gestione automatica dell'imposta di bollo
 [l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 14.0.1.1.0 |  | Gestione natura delle aliquote IVA
 [l10n_it_appointment_code](l10n_it_appointment_code/) | 14.0.1.0.0 |  | Aggiunge la tabella dei codici carica da usare nelle dichiarazioni fiscali italiane
 [l10n_it_asset_history_import](l10n_it_asset_history_import/) | 14.0.1.0.0 |  | Cespiti: importazione storico dati
