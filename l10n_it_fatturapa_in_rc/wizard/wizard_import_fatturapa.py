@@ -4,7 +4,7 @@ from odoo import models
 class WizardImportFatturapa(models.TransientModel):
     _inherit = "wizard.import.fatturapa"
 
-    def _prepare_generic_line_data(self, line):
+    def _prepare_generic_line_data(self, line, invoice_type="purchase"):
         retLine = {}
         account_tax_model = self.env["account.tax"]
         if float(line.AliquotaIVA) == 0.0 and line.Natura.startswith("N6"):
@@ -27,13 +27,21 @@ class WizardImportFatturapa(models.TransientModel):
                 retLine["tax_ids"] = [(6, 0, [account_taxes[0].id])]
             return retLine
         else:
-            return super(WizardImportFatturapa, self)._prepare_generic_line_data(line)
+            return super(WizardImportFatturapa, self)._prepare_generic_line_data(
+                line, invoice_type
+            )
 
     def set_invoice_line_ids(
-        self, FatturaBody, credit_account_id, partner, wt_found, invoice
+        self,
+        FatturaBody,
+        credit_account_id,
+        partner,
+        wt_found,
+        invoice,
+        invoice_type="purchase",
     ):
         res = super(WizardImportFatturapa, self).set_invoice_line_ids(
-            FatturaBody, credit_account_id, partner, wt_found, invoice
+            FatturaBody, credit_account_id, partner, wt_found, invoice, invoice_type
         )
         if not invoice.invoice_line_ids:
             return res
