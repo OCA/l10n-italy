@@ -100,6 +100,7 @@ Contributors
 * Simone Rubino <simone.rubino@agilebg.com>
 * Arcadio Pinto <pinto.a@stesi.eu>
 * Alex Comba <alex.comba@agilebg.com>
+* Michele Rusticucci <michele.rusticucci@agilebg.com>
 
 Maintainers
 ~~~~~~~~~~~
