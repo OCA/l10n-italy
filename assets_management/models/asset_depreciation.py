@@ -255,33 +255,10 @@ class AssetDepreciation(models.Model):
         # Check if self is a valid recordset
         if not self:
             raise ValidationError(
-                _("Cannot create any depreciation according to current" " settings.")
+                _("Cannot create any depreciation according to current settings.")
             )
 
         lines = self.mapped("line_ids")
-
-        # Check if any depreciation already has newer depreciation lines
-        # than the given date
-        newer_lines = lines.filtered(
-            lambda line: line.move_type == "depreciated"
-            and not line.partial_dismissal
-            and line.date > dep_date
-        )
-        if newer_lines:
-            asset_names = ", ".join(
-                [
-                    asset_name
-                    for asset_id, asset_name in newer_lines.mapped(
-                        "depreciation_id.asset_id"
-                    ).name_get()
-                ]
-            )
-            raise ValidationError(
-                _(
-                    "Cannot update the following assets which contain"
-                    " newer depreciations for the chosen types:\n{}"
-                ).format(asset_names)
-            )
 
         posted_lines = lines.filtered(
             lambda line: line.date == dep_date
@@ -316,14 +293,17 @@ class AssetDepreciation(models.Model):
 
     def generate_depreciation_lines_single(self, dep_date):
         self.ensure_one()
-
+        res = self.env["asset.depreciation.line"]
+        if self.last_depreciation_date and self.last_depreciation_date > dep_date:
+            return res
         dep_nr = self.get_max_depreciation_nr() + 1
         dep = self.with_context(dep_nr=dep_nr, used_asset=self.asset_id.used)
         dep_amount = dep.get_depreciation_amount(dep_date)
         dep = dep.with_context(dep_amount=dep_amount)
 
         vals = dep.prepare_depreciation_line_vals(dep_date)
-        return self.env["asset.depreciation.line"].create(vals)
+        res = self.env["asset.depreciation.line"].create(vals)
+        return res
 
     def generate_dismiss_account_move(self):
         self.ensure_one()
@@ -378,13 +358,28 @@ class AssetDepreciation(models.Model):
 
     def get_depreciable_amount(self, dep_date=None):
         types = self.line_ids.get_update_move_types()
-        return self.amount_depreciable + sum(
+        depreciable_amount = self.amount_depreciable
+        update_depreciable_amount = sum(
             [
                 line.balance
                 for line in self.line_ids
                 if line.move_type in types and (not dep_date or line.date <= dep_date)
             ]
         )
+        depreciable_amount += update_depreciable_amount
+        depreciated_amount = sum(
+            [
+                line.balance
+                for line in self.line_ids
+                if line.move_type == "depreciated"
+                and (not dep_date or line.date <= dep_date)
+            ]
+        )
+        # If the asset is fully depreciated in the dep_date requested, gives 0 as
+        # depreciable amount
+        if float_is_zero(depreciable_amount + depreciated_amount, precision_digits=2):
+            depreciable_amount = 0
+        return depreciable_amount
 
     def get_depreciation_amount(self, dep_date):
         self.ensure_one()
