@@ -59,17 +59,17 @@
          <DatiGeneraliDocumento>
             <TipoDocumento>TD17</TipoDocumento>
             <Divisa>EUR</Divisa>
-            <Data>2020-12-01</Data>
-            <Numero>SLFEX/2020/12/0001</Numero>
+            <Data>2020-12-31</Data>
+            <Numero>SLFEX/2020/00001</Numero>
             <ImportoTotaleDocumento>122.00</ImportoTotaleDocumento>
             <Causale>Reverse charge self invoice.</Causale>
             <Causale>Supplier: Extra EU supplier</Causale>
             <Causale>Reference: EXEU-SUPPLIER-REF</Causale>
-            <Causale>Date: 2020-12-01</Causale>
-            <Causale>Internal reference: EXCEE/2020/12/0001</Causale>
+            <Causale>Date: 2020-12-31</Causale>
+            <Causale>Internal reference: BILL/2020/12/0001</Causale>
          </DatiGeneraliDocumento>
          <DatiFattureCollegate>
-            <IdDocumento>EXCEE/2020/12/0001</IdDocumento>
+            <IdDocumento>EXEU-SUPPLIER-REF</IdDocumento>
             <Data>2020-12-01</Data>
          </DatiFattureCollegate>
       </DatiGenerali>
