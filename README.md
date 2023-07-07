@@ -31,7 +31,7 @@ addon | version | maintainers | summary
 [l10n_it_declaration_of_intent](l10n_it_declaration_of_intent/) | 16.0.1.0.1 |  | Gestione dichiarazioni di intento
 [l10n_it_delivery_note](l10n_it_delivery_note/) | 16.0.1.0.3 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) | Crea, gestisce e fattura i DDT partendo dalle consegne
 [l10n_it_delivery_note_base](l10n_it_delivery_note_base/) | 16.0.1.0.0 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) [![Byloth](https://github.com/Byloth.png?size=30px)](https://github.com/Byloth) | Crea e gestisce tabelle principali per gestire i DDT
-[l10n_it_fatturapa](l10n_it_fatturapa/) | 16.0.1.0.1 |  | Fatture elettroniche
+[l10n_it_fatturapa](l10n_it_fatturapa/) | 16.0.1.0.2 |  | Fatture elettroniche
 [l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 16.0.1.0.0 |  | Ricezione fatture elettroniche
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 16.0.1.0.7 |  | Emissione fatture elettroniche
 [l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 16.0.1.0.0 |  | ITA - Tipi di documento fiscale per dichiarativi
