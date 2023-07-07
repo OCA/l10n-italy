@@ -13,8 +13,6 @@ from odoo.tools.translate import _
 
 from odoo.addons.base_iban.models.res_partner_bank import pretty_iban
 
-from . import efattura
-
 _logger = logging.getLogger(__name__)
 
 WT_CODES_MAPPING = {
@@ -1690,10 +1688,6 @@ class WizardImportFatturapa(models.TransientModel):
                     % (invoice.amount_untaxed, amount_untaxed)
                 )
 
-    def get_invoice_obj(self, fatturapa_attachment):
-        xml_string = fatturapa_attachment.get_xml_string()
-        return efattura.CreateFromDocument(xml_string)
-
     def create_and_get_line_id(self, invoice_line_ids, invoice_line_model, upd_vals):
         invoice_line_id = (
             invoice_line_model.with_context(check_move_validity=False)
@@ -1765,7 +1759,15 @@ class WizardImportFatturapa(models.TransientModel):
             if fatturapa_attachment.in_invoice_ids:
                 raise UserError(_("File is linked to bills yet."))
 
-            fatt = self.get_invoice_obj(fatturapa_attachment)
+            fatt = fatturapa_attachment.get_invoice_obj()
+            if not fatt:
+                raise UserError(
+                    _(
+                        "Cannot import an attachment that could not be parsed.\n"
+                        "Please fix the parsing error first, then try again."
+                    )
+                )
+
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             # 1.2
             partner_id = self.getCedPrest(cedentePrestatore)

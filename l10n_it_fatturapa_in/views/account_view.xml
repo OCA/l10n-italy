@@ -27,6 +27,14 @@
                          <field name="inconsistencies" nolabel="1" />
                      </bold>
                 </div>
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    style="margin-bottom:0px;"
+                    attrs="{'invisible': [('e_invoice_parsing_error','=',False)]}"
+                >
+                     <bold><field name="e_invoice_parsing_error" nolabel="1" /></bold>
+                </div>
                 <field name="e_invoice_validation_error" invisible="1" />
             </xpath>
             <button name="ftpa_preview" position="after">
