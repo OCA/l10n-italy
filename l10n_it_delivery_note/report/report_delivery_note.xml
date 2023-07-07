@@ -200,7 +200,12 @@
                             >
                                 <t t-if="not line.display_type">
                                     <td>
-                                        <span t-field="line.product_id.default_code" />
+                                        <t t-if="line.product_id.default_code">
+                                            [<span
+                                                t-field="line.product_id.default_code"
+                                            />] -
+                                        </t>
+                                        <span t-field="line.product_id.name" />
                                     </td>
                                     <td>
                                         <span t-field="line.name" />
