@@ -57,10 +57,19 @@ class AccountInvoice(models.Model):
     def _compute_amount(self):
         super(AccountInvoice, self)._compute_amount()
         for inv in self:
+            direction_sign = 1 if inv.move_type == "entry" or inv.is_outbound() else -1
+
             if inv.efatt_rounding != 0:
+                # see super()
+                # XXX we assume currency EUR
+
+                # direction_sign * sum(account.move.line.amount_currency)
+                # amount_total è positivo per fatture attive e passive
                 inv.amount_total += inv.efatt_rounding
-                sign = inv.move_type in ["in_refund", "out_refund"] and -1 or 1
-                inv.amount_total_signed = inv.amount_total * sign
+
+                # amount_total_signed = -sum(account.move.line.balance)
+                # amount_total è negativo per fatture passive (e positivo per attive)
+                inv.amount_total_signed += direction_sign * inv.efatt_rounding
 
     def action_post(self):
         for invoice in self:
