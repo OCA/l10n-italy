@@ -139,7 +139,10 @@ class TestEInvoiceResponse(EInvoiceCommon):
             instance.stat.return_value = (1, 1)
             instance.retr.return_value = ("", [incoming_mail], "")
 
-            with mute_logger("odoo.addons.l10n_it_fatturapa_pec.models.fetchmail"):
+            with mute_logger(
+                "odoo.addons.l10n_it_fatturapa_in.models.attachment",
+                "odoo.addons.l10n_it_fatturapa_pec.models.fetchmail",
+            ):
                 self.PEC_server.fetch_mail()
 
         error_mails = outbound_mail_model.search(error_mail_domain)
