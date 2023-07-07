@@ -158,6 +158,26 @@ msgid "Name"
 msgstr "Naziv"
 
 #. module: l10n_it_reverse_charge
+#: code:addons/l10n_it_reverse_charge/models/account_move.py:0
+#, python-format
+msgid ""
+"No line found to reconcile between reverse charge invoice {invoice} and "
+"reverse charge payment {payment}."
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: code:addons/l10n_it_reverse_charge/models/account_move.py:0
+#, python-format
+msgid "No line to reconcile for reverse charge in {move}"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: code:addons/l10n_it_reverse_charge/models/account_move.py:0
+#, python-format
+msgid "Only inbound and outbound moves are supported"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax__original_purchase_tax_id
 msgid "Original Purchase Tax"
 msgstr ""
@@ -195,6 +215,13 @@ msgstr ""
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_move_line__rc
 msgid "RC"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_bank_statement_line__rc_payment_move_id
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_move__rc_payment_move_id
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_payment__rc_payment_move_id
+msgid "RC Payment Move"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
@@ -339,14 +366,6 @@ msgstr ""
 #. module: l10n_it_reverse_charge
 #: model_terms:ir.ui.view,arch_db:l10n_it_reverse_charge.view_rc_type_form
 msgid "Text on Self Invoice"
-msgstr ""
-
-#. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_move.py:0
-#, python-format
-msgid ""
-"There is no default credit account defined \n"
-"on journal \"%s\"."
 msgstr ""
 
 #. module: l10n_it_reverse_charge
