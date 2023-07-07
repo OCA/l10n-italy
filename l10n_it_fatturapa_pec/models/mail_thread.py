@@ -233,4 +233,11 @@ class MailThread(models.AbstractModel):
             dict(),  # Not managing metadata files for now
             **default_values,
         )
+
+        # Notify if there was an error
+        # during automatic import of invoices from PEC.
+        for attachment in attachments:
+            parsing_error = attachment.e_invoice_parsing_error
+            if parsing_error:
+                raise Exception(parsing_error)
         return attachments
