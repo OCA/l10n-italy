@@ -27,22 +27,37 @@
                         name="manually_apply_tax_stamp"
                         attrs="{'invisible': [('auto_compute_stamp', '=', True)]}"
                     />
+                    <field name="tax_stamp_line_present" invisible="1" />
                 </xpath>
                 <field name="narration" position="before">
-                    <img
-                        src="/l10n_it_account_stamp/static/description/icon.png"
-                        alt="Tax stamp"
+                    <div
+                        name="stamp_applicability"
                         attrs="{'invisible': [('tax_stamp', '=', False)]}"
-                    />
-                    <button
-                        class="oe_edit_only"
-                        type="object"
-                        string="Add tax stamp line"
-                        name="add_tax_stamp_line"
-                        attrs="{'invisible': ['|',('tax_stamp', '=', False),('state', 'not in', 'draft')]}"
-                    />
-                    <!--move narration down-->
-                    <div />
+                    >
+                        <img
+                            src="/l10n_it_account_stamp/static/description/icon.png"
+                            alt="Tax stamp"
+                        />
+                        <span
+                            attrs="{'invisible': [('tax_stamp_line_present', '=', True)]}"
+                        >
+                            <span attrs="{'invisible': [('state', 'not in', 'draft')]}">
+                                <button
+                                    type="object"
+                                    string="Charge stamp to customer"
+                                    name="add_tax_stamp_line"
+                                />
+                            </span>
+                            <span attrs="{'invisible': [('state', '=', 'draft')]}">
+                                Stamp can only be charged to customer when invoice is in draft state
+                            </span>
+                        </span>
+                        <span
+                            attrs="{'invisible': [('tax_stamp_line_present', '=', False)]}"
+                        >
+                            Stamp charged to customer
+                        </span>
+                    </div>
                 </field>
                 <xpath
                     expr="//form/sheet/notebook/page[@id='invoice_tab']/field/form/sheet/group/field[@name='product_id']"
