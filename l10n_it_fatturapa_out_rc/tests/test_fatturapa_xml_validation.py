@@ -202,7 +202,6 @@ class TestFatturaPAXMLValidation(ReverseChargeCommon, FatturaPACommon):
     def test_extra_EU(self):
         self.set_sequences(27, "2020-12-01", sequence_name=self.bill_sequence_name)
         self.supplier_extraEU.property_payment_term_id = self.term_15_30.id
-        self.rc_type_eeu.with_supplier_self_invoice = False
 
         invoice_form = self._create_invoice(
             move_type="in_invoice",
@@ -210,27 +209,26 @@ class TestFatturaPAXMLValidation(ReverseChargeCommon, FatturaPACommon):
             name="BILL/2021/12/0005",
             invoice_date="2020-12-01",
             ref="EXEU-SUPPLIER-REF",
-            taxes=self.tax_22ae,
+            taxes=self.tax_0_pur,
         )
         invoice = invoice_form.save()
         invoice.action_post()
+        self_invoice = invoice.rc_self_purchase_invoice_id.rc_self_invoice_id
 
-        self.assertEqual(
-            invoice.rc_self_invoice_id.fiscal_document_type_id.code, "TD17"
-        )
+        self.assertEqual(self_invoice.fiscal_document_type_id.code, "TD17")
         with self.assertRaises(UserError):
             # Impossible to set IdFiscaleIVA
-            self.run_wizard(invoice.rc_self_invoice_id.id)
+            self.run_wizard(self_invoice.id)
         self.supplier_extraEU.vat = "US484762844"
         with self.assertRaises(UserError):
             # Street is not set
-            self.run_wizard(invoice.rc_self_invoice_id.id)
+            self.run_wizard(self_invoice.id)
         self.supplier_extraEU.street = "Street"
         self.supplier_extraEU.zip = "12345"
         self.supplier_extraEU.city = "city"
         self.supplier_extraEU.country_id = self.env.ref("base.us")
         self.supplier_extraEU.is_company = True
-        res = self.run_wizard(invoice.rc_self_invoice_id.id)
+        res = self.run_wizard(self_invoice.id)
         attachment = self.attach_model.browse(res["res_id"])
         self.set_e_invoice_file_id(attachment, "IT10538570960_00004.xml")
         xml_content = base64.decodebytes(attachment.datas)
