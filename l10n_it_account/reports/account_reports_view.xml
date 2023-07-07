@@ -54,52 +54,43 @@
 
         <div class="header">
             <div class="row">
-                <div class="col-xs-4">
+                <div class="col-4">
                     <h3><span t-esc="company.name" /></h3>
-                    <span t-esc="company.street" class="" /><br />
-                    <span t-esc="company.zip" class="" /> - <span
-                        t-esc="company.city"
-                        class=""
-                    /> - <span t-esc="company.state_id.code" class="" /><br />
-                    <span class="text-right">TIN: </span><span
-                        t-esc="company.partner_id.vat"
-                        class=""
-                    /><br />
+                    <small
+                        t-field="company.partner_id"
+                        t-options='{"widget": "contact", "fields": ["address", "vat"], "no_marker": True}'
+                    />
                 </div>
-                <div
-                    class="col-xs-4 col-xs-offset-4 text-right"
-                    style="margin-left:10px"
-                >
+                <div class="offset-4 col-4 text-end" style="margin-left:10px">
                     <h3 t-esc="title" />
                 </div>
             </div>
+            <div class="mb8" />
         </div>
-        <t t-out="0" />
+        <t t-out="0" class="pt-5" />
         <div class="footer">
             <!-- The variable "l10n_it_count_fiscal_year" shall be used to set manually the fiscal year
               in the report footer. Define it in you report as follows:
               <t t-set="l10n_it_count_fiscal_year" t-value="<value>"/>
               The variable "l10n_it_count_fiscal_page_base" is also available, to set the "Last printed page"
             -->
-            <div class="text-center">
-                <div class="text-muted">
-                    <span
-                        style="display: none;"
-                        id="l10n_it_count_fiscal_page_base"
-                        t-esc="l10n_it_count_fiscal_page_base"
-                    />
-                    Page:
-                    <t t-if="l10n_it_count_fiscal_year">
-                        <span t-esc="l10n_it_count_fiscal_year" />
-                    </t>
-                    <t t-if="not l10n_it_count_fiscal_year">
-                         <li><span
-                                t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y')"
-                            /></li>
-                    </t>
-                    <span> / </span>
-                    <span class="page" />
-                </div>
+            <div class="text-center text-muted">
+                <span
+                    style="display: none;"
+                    id="l10n_it_count_fiscal_page_base"
+                    t-esc="l10n_it_count_fiscal_page_base"
+                />
+                Page:
+                <t t-if="l10n_it_count_fiscal_year">
+                    <span t-esc="l10n_it_count_fiscal_year" />
+                </t>
+                <t t-if="not l10n_it_count_fiscal_year">
+                     <li><span
+                            t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y')"
+                        /></li>
+                </t>
+                <span> / </span>
+                <span class="page" />
             </div>
         </div>
     </template>

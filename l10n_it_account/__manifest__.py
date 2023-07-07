@@ -31,8 +31,8 @@
         "views/account_view.xml",
     ],
     "assets": {
-        "web.minimal_layout": [
-            "l10n_it_account/static/src/css/*.css",
+        "web.report_assets_common": [
+            "l10n_it_account/static/src/scss/*.scss",
         ]
     },
     "external_dependencies": {

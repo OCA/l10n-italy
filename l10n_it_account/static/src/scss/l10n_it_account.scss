@@ -1,8 +1,10 @@
 table {
-    border: 0px;
+    border: 0px solid transparent !important;
 }
+
 thead {
     background: #f5f5f5;
+    border: 0px solid transparent !important;
 }
 
 .left_with_line {
@@ -20,11 +22,13 @@ thead {
 .left_without_line {
     text-align: left;
     vertical-align: text-top;
+    border: 0px solid transparent !important;
     padding: 5px;
 }
 .right_without_line {
     text-align: right;
     vertical-align: text-top;
+    border: 0px solid transparent !important;
     padding: 5px;
 }
 .left_with_line_bottom {
@@ -42,12 +46,14 @@ thead {
 .left_without_line_bold {
     text-align: left;
     vertical-align: text-top;
+    border: 0px solid transparent !important;
     padding: 5px;
     font-weight: bold;
 }
 .right_without_line_bold {
     text-align: right;
     vertical-align: text-top;
+    border: 0px solid transparent !important;
     padding: 5px;
     font-weight: bold;
     white-space: nowrap;
