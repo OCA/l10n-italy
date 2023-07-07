@@ -37,7 +37,7 @@
             <field name="name">withholding.tax.move.payment.view.tree</field>
             <field name="model">withholding.tax.move.payment</field>
             <field name="arch" type="xml">
-                <tree string="Withholding Payment Move">
+                <tree>
                     <field name="name" />
                     <field name="date" />
                     <field name="date_start" />
@@ -72,6 +72,7 @@
                         string="Create Account Move"
                         type="object"
                         attrs="{'invisible': ['|', ('state', '!=', 'confirmed'), ('move_id', '!=', False)]}"
+                        class="oe_highlight"
                     />
                         <field
                         name="state"
@@ -80,8 +81,10 @@
                     />
                     </header>
                     <sheet string="Withholding Payment Move">
+                        <div class="oe_title">
+                            <h1><field name="name" readonly="1" /></h1>
+                        </div>
                         <group>
-                            <field name="name" />
                             <field name="date" />
                             <field
                             name="company_id"
@@ -96,10 +99,22 @@
                                 <field name="date_stop" />
                             </group>
                             <group string="Account Setting">
-                                <field name="date_payment" />
-                                <field name="journal_id" />
-                                <field name="account_id" />
-                                <field name="move_id" />
+                                <field
+                                name="date_payment"
+                                required="1"
+                                attrs="{'readonly': [('state', '=', 'confirmed')]}"
+                            />
+                                <field
+                                name="journal_id"
+                                required="1"
+                                attrs="{'readonly': [('state', '=', 'confirmed')]}"
+                            />
+                                <field
+                                name="account_id"
+                                required="1"
+                                attrs="{'readonly': [('state', '=', 'confirmed')]}"
+                            />
+                                <field name="move_id" readonly="1" />
                             </group>
                         </group>
                         <newline />
