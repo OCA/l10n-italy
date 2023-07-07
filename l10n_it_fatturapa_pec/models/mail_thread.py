@@ -246,7 +246,7 @@ class MailThread(models.AbstractModel):
                                 % fatturapa_atts.mapped("name")
                             )
                         else:
-                            fatturapa_attachment_in.create(
+                            attachments = fatturapa_attachment_in.create(
                                 {
                                     "name": file_name,
                                     "datas": base64.encodebytes(inv_file.read()),
@@ -254,6 +254,7 @@ class MailThread(models.AbstractModel):
                                     "e_invoice_received_date": received_date,
                                 }
                             )
+                            MailThread._raise_if_parsing_error(attachments)
         else:
             fatturapa_atts = fatturapa_attachment_in.search(
                 [("name", "=", attachment.name)]
@@ -264,10 +265,20 @@ class MailThread(models.AbstractModel):
                     % fatturapa_atts.mapped("name")
                 )
             else:
-                fatturapa_attachment_in.create(
+                attachments = fatturapa_attachment_in.create(
                     {
                         "ir_attachment_id": attachment.id,
                         "company_id": company_id,
                         "e_invoice_received_date": received_date,
                     }
                 )
+                MailThread._raise_if_parsing_error(attachments)
+
+    @staticmethod
+    def _raise_if_parsing_error(attachments):
+        # Notify if there was an error
+        # during automatic import of invoices from PEC.
+        for attachment in attachments:
+            parsing_error = attachment.e_invoice_parsing_error
+            if parsing_error:
+                raise Exception(parsing_error)
