@@ -41,6 +41,11 @@
                     <field name="related_documents" nolabel="1" />
                 </group>
             </xpath>
+            <!-- Adding these fields here to enforce saving them  -->
+            <xpath expr="//field[@name='line_ids']/tree" position="inside">
+                <field name="admin_ref" invisible="1" />
+                <field name="related_documents" invisible="1" />
+            </xpath>
         </field>
     </record>
 
