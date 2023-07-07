@@ -142,7 +142,9 @@ repos:
         args:
           - --rcfile=.pylintrc
           - --exit-zero
+          - --ignore=l10n_it_fatturapa_in/tests/data/
         verbose: true
       - id: pylint_odoo
         args:
           - --rcfile=.pylintrc-mandatory
+          - --ignore=l10n_it_fatturapa_in/tests/data/
