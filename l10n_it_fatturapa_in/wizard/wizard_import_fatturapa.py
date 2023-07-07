@@ -580,7 +580,7 @@ class WizardImportFatturapa(models.TransientModel):
                 "name": "Riepilogo Aliquota {}".format(line.AliquotaIVA),
                 "sequence": nline,
                 "account_id": credit_account_id,
-                "price_unit": float(abs(line.ImponibileImporto)),
+                "price_unit": float(line.ImponibileImporto),
             }
         )
         return retLine
