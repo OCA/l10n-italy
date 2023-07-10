@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-04-26 11:35+0000\n"
+"PO-Revision-Date: 2023-07-10 10:11+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: fiscal_epos_print
 #. openerp-web
@@ -654,7 +654,7 @@ msgstr "File rifiutati: "
 #: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
 #, python-format
 msgid "Reports"
-msgstr "Rendiconto"
+msgstr "Rendiconti"
 
 #. module: fiscal_epos_print
 #. openerp-web
