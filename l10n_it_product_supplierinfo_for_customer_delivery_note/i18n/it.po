@@ -24,7 +24,7 @@ msgstr "Codice cliente"
 #. module: l10n_it_product_supplierinfo_for_customer_delivery_note
 #: model:ir.model,name:l10n_it_product_supplierinfo_for_customer_delivery_note.model_stock_delivery_note_line
 msgid "Delivery Note Line"
-msgstr "Riga documento di trasporto"
+msgstr "Riga DdT"
 
 #. module: l10n_it_product_supplierinfo_for_customer_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_product_supplierinfo_for_customer_delivery_note.field_stock_delivery_note_line__display_name
