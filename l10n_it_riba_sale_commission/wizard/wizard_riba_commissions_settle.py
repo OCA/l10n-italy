@@ -17,12 +17,10 @@ class SaleCommissionMakeSettle(models.TransientModel):
         """
         # removes invoice lines with flag "no_commission" and that have
         # payment term set on Ri.Ba from those get with the original method
-        agent_lines = (
-            super()
-            ._get_agent_lines(agent, date_to_agent)
-            .filtered(lambda al: not al.invoice_id.no_commission)
-            .filtered(lambda r: r.invoice_payment_term_id.riba)
-        )
+        all_agent_lines = super()._get_agent_lines(agent, date_to_agent)
+        agent_lines = all_agent_lines.filtered(
+            lambda al: not al.invoice_id.no_commission
+        ).filtered(lambda r: r.invoice_id.invoice_payment_term_id.riba)
         for line in agent_lines:
             # removes lines if RiBa is past due or in case it is subject to collection
             # and at least the safety days have not passed since the payment due date,
@@ -44,5 +42,5 @@ class SaleCommissionMakeSettle(models.TransientModel):
                     and riba_type == "sbf"
                 )
             ):
-                agent_lines -= line
-        return agent_lines
+                all_agent_lines -= line
+        return all_agent_lines
