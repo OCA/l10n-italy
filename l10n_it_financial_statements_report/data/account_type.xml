@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <!--
+        Assets = "Receivable", "Bank and Cash", "Current Assets",
+            "Non-current Assets", "Fixed Assets"
+        -->
+        <record model="account.account.type" id="account.data_account_type_receivable">
+            <field name="financial_statements_report_section" eval="'assets'" />
+        </record>
+        <record model="account.account.type" id="account.data_account_type_liquidity">
+            <field name="financial_statements_report_section" eval="'assets'" />
+        </record>
+        <record
+            model="account.account.type"
+            id="account.data_account_type_current_assets"
+        >
+            <field name="financial_statements_report_section" eval="'assets'" />
+        </record>
+        <record
+            model="account.account.type"
+            id="account.data_account_type_non_current_assets"
+        >
+            <field name="financial_statements_report_section" eval="'assets'" />
+        </record>
+        <record
+            model="account.account.type"
+            id="account.data_account_type_fixed_assets"
+        >
+            <field name="financial_statements_report_section" eval="'assets'" />
+        </record>
+
+        <!--
+        Expenses = "Expenses", "Cost of Revenue", "Depreciation"
+        -->
+        <record model="account.account.type" id="account.data_account_type_expenses">
+            <field name="financial_statements_report_section" eval="'expenses'" />
+        </record>
+        <record
+            model="account.account.type"
+            id="account.data_account_type_direct_costs"
+        >
+            <field name="financial_statements_report_section" eval="'expenses'" />
+        </record>
+        <record
+            model="account.account.type"
+            id="account.data_account_type_depreciation"
+        >
+            <field name="financial_statements_report_section" eval="'expenses'" />
+        </record>
+
+        <!--
+        Incomes = "Income", "Other Income"
+        -->
+        <record model="account.account.type" id="account.data_account_type_revenue">
+            <field name="financial_statements_report_section" eval="'incomes'" />
+        </record>
+        <record
+            model="account.account.type"
+            id="account.data_account_type_other_income"
+        >
+            <field name="financial_statements_report_section" eval="'incomes'" />
+        </record>
+
+        <!--
+        Liabilities = "Current Year Earnings", "Payable", "Credit Card", "Prepayments",
+            "Current Liabilities", "Non-current Liabilities", "Equity"
+        -->
+        <record model="account.account.type" id="account.data_unaffected_earnings">
+            <field name="financial_statements_report_section" eval="'liabilities'" />
+        </record>
+        <record model="account.account.type" id="account.data_account_type_payable">
+            <field name="financial_statements_report_section" eval="'liabilities'" />
+        </record>
+        <record model="account.account.type" id="account.data_account_type_credit_card">
+            <field name="financial_statements_report_section" eval="'liabilities'" />
+        </record>
+        <record model="account.account.type" id="account.data_account_type_prepayments">
+            <field name="financial_statements_report_section" eval="'liabilities'" />
+        </record>
+        <record
+            model="account.account.type"
+            id="account.data_account_type_current_liabilities"
+        >
+            <field name="financial_statements_report_section" eval="'liabilities'" />
+        </record>
+        <record
+            model="account.account.type"
+            id="account.data_account_type_non_current_liabilities"
+        >
+            <field name="financial_statements_report_section" eval="'liabilities'" />
+        </record>
+        <record model="account.account.type" id="account.data_account_type_equity">
+            <field name="financial_statements_report_section" eval="'liabilities'" />
+        </record>
+
+    </data>
+</odoo>
