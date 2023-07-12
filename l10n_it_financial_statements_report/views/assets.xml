@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - TAKOBI
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <template
+        id="assets_backend"
+        name="Assets for ITA - Stato patrimoniale e conto economico"
+        inherit_id="web.assets_backend"
+    >
+        <xpath expr="." position="inside">
+            <script
+                type="text/javascript"
+                src="/l10n_it_financial_statements_report/static/src/js/action_manager_report.js"
+            />
+            <script
+                type="text/javascript"
+                src="/l10n_it_financial_statements_report/static/src/js/client_action.js"
+            />
+        </xpath>
+    </template>
+</odoo>

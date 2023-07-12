@@ -1,0 +1,506 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_financial_statements_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-13 14:52+0000\n"
+"PO-Revision-Date: 2023-07-13 14:52+0000\n"
+"Last-Translator: Simone Rubino <sir@takobi.online>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#, python-format
+msgid "%s BALANCE: %s %s"
+msgstr "%s SALDO: %s %s"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report.py:0
+#, python-format
+msgid "ASSETS"
+msgstr "ATTIVITÀ"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: model:ir.model,name:l10n_it_financial_statements_report.model_account_account
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_lines_header
+#, python-format
+msgid "Account"
+msgstr "Conto"
+
+#. module: l10n_it_financial_statements_report
+#: model:ir.model,name:l10n_it_financial_statements_report.model_account_account_type
+msgid "Account Type"
+msgstr "Tipo conto"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_filters
+#, python-format
+msgid "Account at 0 filter"
+msgstr "Filtro conto a 0"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_filters
+#, python-format
+msgid "All entries"
+msgstr "Tutte le registrazioni"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_filters
+#, python-format
+msgid "All posted entries"
+msgstr "Tutte le registrazioni confermate"
+
+#. module: l10n_it_financial_statements_report
+#: model:ir.model.fields.selection,name:l10n_it_financial_statements_report.selection__account_account_type__financial_statements_report_section__assets
+msgid "Assets"
+msgstr "Attività"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report.py:0
+#, python-format
+msgid "BALANCE SHEET"
+msgstr "STATO PATRIMONIALE"
+
+#. module: l10n_it_financial_statements_report
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_totals
+msgid "BALANCE:"
+msgstr "SALDO:"
+
+#. module: l10n_it_financial_statements_report
+#: model:ir.model.fields.selection,name:l10n_it_financial_statements_report.selection__trial_balance_report_wizard__financial_statements_report_type__balance_sheet
+msgid "Balance Sheet"
+msgstr "Stato patrimoniale"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report.py:0
+#, python-format
+msgid "COSTS"
+msgstr "COSTI"
+
+#. module: l10n_it_financial_statements_report
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.wizard_report_financial_statements_report
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#, python-format
+msgid "Cannot filter lines with attribute `%s`."
+msgstr "Impossibile filtrare righe con attributo `%s`."
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#, python-format
+msgid "Cannot filter lines with function `%s(%s)`."
+msgstr "Impossibile filtrare righe con la funzione `%s(%s)`."
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#, python-format
+msgid "Cannot filter lines with unknown parameter."
+msgstr "Impossibile filtrare righe con parametro sconosciuto."
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_lines_header
+#, python-format
+msgid "Code"
+msgstr "Codice"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#, python-format
+msgid ""
+"Could not retrieve table datas for report '%s': no lines found to be "
+"printed."
+msgstr ""
+"Impossibile recuperare i dati tabella per il rendiconto \"%s\": nessuna riga"
+" da stampare trovata."
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#, python-format
+msgid ""
+"Could not retrieve table datas for report '%s': unknown columns to be "
+"printed."
+msgstr ""
+"Impossibile recuperare i dati tabella per il rendiconto \"%s\": colonne da "
+"stampare sconosciute."
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_lines_header
+#, python-format
+msgid "Cur."
+msgstr "Val."
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#, python-format
+msgid "DEFICIT"
+msgstr "DISAVANZO"
+
+#. module: l10n_it_financial_statements_report
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_totals
+msgid "DEFICIT:"
+msgstr "DISAVANZO:"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_filters
+#, python-format
+msgid "Date range filter"
+msgstr "Filtro intervallo date"
+
+#. module: l10n_it_financial_statements_report
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_account_account__display_name
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_account_account_type__display_name
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_report_l10n_it_financial_statements_report_report__display_name
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_report_l10n_it_financial_statements_report_report_xlsx__display_name
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_trial_balance_report_wizard__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: l10n_it_financial_statements_report
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_lines_header
+msgid "Ending balance"
+msgstr "Saldo finale"
+
+#. module: l10n_it_financial_statements_report
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_lines_header
+msgid "Ending balance cur."
+msgstr "Valuta saldo finale"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#, python-format
+msgid "Ending balance in cur."
+msgstr "Saldo finale in valuta"
+
+#. module: l10n_it_financial_statements_report
+#: model:ir.model.fields.selection,name:l10n_it_financial_statements_report.selection__account_account_type__financial_statements_report_section__expenses
+msgid "Expenses"
+msgstr "Spese"
+
+#. module: l10n_it_financial_statements_report
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.wizard_report_financial_statements_report
+msgid "Export PDF"
+msgstr "Esporta PDF"
+
+#. module: l10n_it_financial_statements_report
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.wizard_report_financial_statements_report
+msgid "Export XLSX"
+msgstr "Esporta XLSX"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#, python-format
+msgid "Field %s not set"
+msgstr "Campo %s non impostato"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#, python-format
+msgid "Final balance"
+msgstr "Saldo finale"
+
+#. module: l10n_it_financial_statements_report
+#: model:ir.model,name:l10n_it_financial_statements_report.model_report_l10n_it_financial_statements_report_report
+msgid "Financial Statements QWeb Report"
+msgstr "Stampa QWeb del Bilancio Contabile"
+
+#. module: l10n_it_financial_statements_report
+#: model:ir.actions.act_window,name:l10n_it_financial_statements_report.action_financial_statements_wizard
+#: model:ir.ui.menu,name:l10n_it_financial_statements_report.menu_financial_statements_wizard
+msgid "Financial Statements Report"
+msgstr "Stampa Bilancio Contabile"
+
+#. module: l10n_it_financial_statements_report
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_account_account__financial_statements_report_section
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_account_account_type__financial_statements_report_section
+msgid "Financial Statements Report - Section"
+msgstr "Bilancio Contabile - Sezione"
+
+#. module: l10n_it_financial_statements_report
+#: model:ir.actions.report,name:l10n_it_financial_statements_report.report_financial_statements_report_html
+msgid "Financial Statements Report HTML"
+msgstr "Bilancio Contabile in HTML"
+
+#. module: l10n_it_financial_statements_report
+#: model:ir.actions.report,name:l10n_it_financial_statements_report.report_financial_statements_report_pdf
+msgid "Financial Statements Report PDF"
+msgstr "Bilancio Contabile in PDF"
+
+#. module: l10n_it_financial_statements_report
+#: model:ir.actions.report,name:l10n_it_financial_statements_report.report_financial_statements_report_xlsx
+msgid "Financial Statements Report XLSX"
+msgstr "Bilancio contabile in XLSX"
+
+#. module: l10n_it_financial_statements_report
+#: model:ir.model,name:l10n_it_financial_statements_report.model_report_l10n_it_financial_statements_report_report_xlsx
+msgid "Financial Statements XLSX Report"
+msgstr "Stampa XLSX del Bilancio Contabile"
+
+#. module: l10n_it_financial_statements_report
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.wizard_report_financial_statements_report
+msgid ""
+"Financial Statements can be computed only if selected\n"
+"                            company have only one unaffected earnings account."
+msgstr ""
+"Il Bilancio Contabile può essere calcolato solo se l'azienda selezionata\n"
+"                            ha un solo conto di risultato economico."
+
+#. module: l10n_it_financial_statements_report
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_filters
+msgid "From:"
+msgstr "Da:"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#, python-format
+msgid "From: %s To: %s"
+msgstr "Da: %s A: %s"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_filters
+#, python-format
+msgid "Hide"
+msgstr "Nascondi"
+
+#. module: l10n_it_financial_statements_report
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_trial_balance_report_wizard__hide_accounts_codes
+msgid "Hide Accounts Codes"
+msgstr "Nascondi codici conti"
+
+#. module: l10n_it_financial_statements_report
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_account_account__id
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_account_account_type__id
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_report_l10n_it_financial_statements_report_report__id
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_report_l10n_it_financial_statements_report_report_xlsx__id
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_trial_balance_report_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_financial_statements_report
+#: model:ir.model.fields.selection,name:l10n_it_financial_statements_report.selection__account_account_type__financial_statements_report_section__incomes
+msgid "Incomes"
+msgstr "Entrate"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report.py:0
+#, python-format
+msgid "LIABILITIES"
+msgstr "PASSIVITÀ"
+
+#. module: l10n_it_financial_statements_report
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_account_account____last_update
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_account_account_type____last_update
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_report_l10n_it_financial_statements_report_report____last_update
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_report_l10n_it_financial_statements_report_report_xlsx____last_update
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_trial_balance_report_wizard____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_financial_statements_report
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_filters
+msgid "Level"
+msgstr "Livello"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#, python-format
+msgid "Level %s"
+msgstr "Livello %s"
+
+#. module: l10n_it_financial_statements_report
+#: model:ir.model.fields.selection,name:l10n_it_financial_statements_report.selection__account_account_type__financial_statements_report_section__liabilities
+msgid "Liabilities"
+msgstr "Passività"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_filters
+#, python-format
+msgid "Limit hierarchy levels"
+msgstr "Limite livelli gerarchia"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#, python-format
+msgid "No"
+msgstr ""
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_filters
+#, python-format
+msgid "No limit"
+msgstr "Nessun limite"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#, python-format
+msgid "No partner allocated"
+msgstr "Nessuno partner allocato"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report.py:0
+#, python-format
+msgid "No report has been defined for report type '{}'."
+msgstr "Nessun rendiconto definito per la tipologia \"%s\"."
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report.py:0
+#, python-format
+msgid "No report type has been declared for current print."
+msgstr ""
+"Non è stato dichiarato alcun tipo di rendiconto per la stampa corrente."
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report.py:0
+#, python-format
+msgid "PROFIT & LOSS"
+msgstr "CONTO ECONOMICO"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#, python-format
+msgid "Partner"
+msgstr ""
+
+#. module: l10n_it_financial_statements_report
+#: model:ir.model.fields.selection,name:l10n_it_financial_statements_report.selection__trial_balance_report_wizard__financial_statements_report_type__profit_loss
+msgid "Profit & Loss"
+msgstr "Conto economico"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report.py:0
+#, python-format
+msgid "REVENUES"
+msgstr "RICAVI"
+
+#. module: l10n_it_financial_statements_report
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_trial_balance_report_wizard__financial_statements_report_type
+msgid "Report Type"
+msgstr "Tipo di rendiconto"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#, python-format
+msgid "SURPLUS"
+msgstr "ECCEDENZA"
+
+#. module: l10n_it_financial_statements_report
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_totals
+msgid "SURPLUS:"
+msgstr "ECCEDENZA:"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_filters
+#, python-format
+msgid "Show"
+msgstr "Mostra"
+
+#. module: l10n_it_financial_statements_report
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.wizard_report_financial_statements_report
+msgid "Show Ending Balance in Currency"
+msgstr "Mostra saldo finale in valuta"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#, python-format
+msgid "Show foreign currency"
+msgstr "Mostra valuta estera"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_filters
+#, python-format
+msgid "Target moves filter"
+msgstr "Filtro movimenti obiettivo"
+
+#. module: l10n_it_financial_statements_report
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_filters
+msgid "To:"
+msgstr "A:"
+
+#. module: l10n_it_financial_statements_report
+#: model:ir.model,name:l10n_it_financial_statements_report.model_trial_balance_report_wizard
+msgid "Trial Balance Report Wizard"
+msgstr "Procedura guidata bilancio di verifica"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report.py:0
+#, python-format
+msgid "Unknown report type; cannot parse it into a table."
+msgstr "Tipo report sconosciuto; impossibile convertirlo in tabella."
+
+#. module: l10n_it_financial_statements_report
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.wizard_report_financial_statements_report
+msgid "View"
+msgstr "Visualizza"
+
+#. module: l10n_it_financial_statements_report
+#: code:addons/l10n-italy/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
+#, python-format
+msgid "Yes"
+msgstr "Sì"
+
+#. module: l10n_it_financial_statements_report
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.wizard_report_financial_statements_report
+msgid "or"
+msgstr "oppure"

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_account_type_form_sign" model="ir.ui.view">
+        <field name="name">account.account.type.form.sign</field>
+        <field name="model">account.account.type</field>
+        <field name="inherit_id" ref="account.view_account_type_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group/group/field[@name='type']" position="after">
+                <field name="financial_statements_report_section" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
