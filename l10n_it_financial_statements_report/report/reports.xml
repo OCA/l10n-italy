@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="report_financial_statements_report_html" model="ir.actions.report">
+        <field name="model">trial.balance.report.wizard</field>
+        <field name="name">Financial Statements Report HTML</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">l10n_it_financial_statements_report.report</field>
+        <field name="report_file">l10n_it_financial_statements_report.report</field>
+    </record>
+
+    <record id="report_financial_statements_report_pdf" model="ir.actions.report">
+        <field name="model">trial.balance.report.wizard</field>
+        <field name="name">Financial Statements Report PDF</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="paperformat_id"
+            ref="l10n_it_account.l10n_it_account_a4_landscape"
+        />
+        <field name="report_name">l10n_it_financial_statements_report.report</field>
+        <field name="report_file">l10n_it_financial_statements_report.report</field>
+    </record>
+
+    <record id="report_financial_statements_report_xlsx" model="ir.actions.report">
+        <field name="model">trial.balance.report.wizard</field>
+        <field name="name">Financial Statements Report XLSX</field>
+        <field name="report_type">xlsx</field>
+        <field
+            name="report_name"
+        >l10n_it_financial_statements_report.report_xlsx</field>
+        <field
+            name="report_file"
+        >l10n_it_financial_statements_report.report_xlsx</field>
+    </record>
+
+</odoo>
