@@ -8,11 +8,9 @@ class StockDeliveryNoteLine(models.Model):
 
     _inherit = "stock.delivery.note.line"
     product_customer_code = fields.Char(
-        "Product Customer Code", compute="_compute_customer_code"
+        string="Product Customer Code", related="move_id.product_customer_code"
     )
 
-    def _compute_customer_code(self):
-        for line in self:
-            line.product_customer_code = line.product_id.default_code
-            if line.move_id and line.move_id.product_customer_code:
-                line.product_customer_code = line.move_id.product_customer_code
+    product_customer_name = fields.Char(
+        string="Product Customer Name", related="move_id.product_customer_name"
+    )
