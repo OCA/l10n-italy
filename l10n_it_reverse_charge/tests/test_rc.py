@@ -32,7 +32,7 @@ class TestReverseCharge(ReverseChargeCommon):
         self.assertIsNot(bool(invoice.rc_self_invoice_id), False)
         self.assertIsNot(bool(invoice.rc_self_invoice_id.invoice_payment_term_id), True)
         self.assertEqual(invoice.rc_self_invoice_id.state, "posted")
-        self.assertEqual(invoice.rc_self_invoice_id.payment_id.move_id.state, "posted")
+        self.assertEqual(invoice.rc_self_invoice_id.rc_payment_move_id.state, "posted")
         self.assertTrue("Intra EU supplier" in invoice.rc_self_invoice_id.narration)
 
     def test_intra_EU_2_mixed_lines(self):
@@ -61,7 +61,7 @@ class TestReverseCharge(ReverseChargeCommon):
         self.assertIsNot(bool(invoice.rc_self_invoice_id), False)
         self.assertIsNot(bool(invoice.rc_self_invoice_id.invoice_payment_term_id), True)
         self.assertEqual(invoice.rc_self_invoice_id.state, "posted")
-        self.assertEqual(invoice.rc_self_invoice_id.payment_id.move_id.state, "posted")
+        self.assertEqual(invoice.rc_self_invoice_id.rc_payment_move_id.state, "posted")
         # compare amount_tax with amount show on paymenys_widget
         info = invoice.invoice_payments_widget["content"][0]
         self.assertEqual(info["amount"], invoice.amount_tax)
@@ -74,7 +74,7 @@ class TestReverseCharge(ReverseChargeCommon):
         self.assertIsNot(bool(invoice.rc_self_purchase_invoice_id), False)
         self.assertEqual(invoice.rc_self_purchase_invoice_id.state, "posted")
         self.assertEqual(
-            invoice.rc_self_purchase_invoice_id.payment_id.move_id.state,
+            invoice.rc_self_purchase_invoice_id.rc_payment_move_id.state,
             "posted",
         )
 
@@ -142,15 +142,34 @@ class TestReverseCharge(ReverseChargeCommon):
             self.supplier_intraEU, amounts=[100], taxes=self.tax_22ai
         )
 
-        inv_payment = invoice.payment_id
-        rc_payment = invoice.rc_self_invoice_id.payment_id
+        inv_payment = invoice.rc_payment_move_id
+        rc_payment = invoice.rc_self_invoice_id.rc_payment_move_id
         invoice.button_draft()
 
         self.assertEqual(invoice.rc_self_invoice_id.state, "draft")
-        self.assertEqual(bool(invoice.payment_id), False)
-        self.assertEqual(bool(invoice.rc_self_invoice_id.payment_id), False)
+        self.assertEqual(bool(invoice.rc_payment_move_id), False)
+        self.assertEqual(bool(invoice.rc_self_invoice_id.rc_payment_move_id), False)
 
         invoice.action_post()
         self.assertEqual(invoice.rc_self_invoice_id.state, "posted")
-        self.assertIsNot(invoice.payment_id, inv_payment)
-        self.assertIsNot(invoice.rc_self_invoice_id.payment_id, rc_payment)
+        self.assertIsNot(invoice.rc_payment_move_id, inv_payment)
+        self.assertIsNot(invoice.rc_self_invoice_id.rc_payment_move_id, rc_payment)
+
+    def test_supplier_extraEU_no_outstanding_payment(self):
+        """The Generated Payments are reconciled."""
+        invoice = self.create_invoice(
+            self.supplier_extraEU,
+            amounts=[100],
+            taxes=self.tax_0_pur,
+        )
+
+        self_purchase_invoice = invoice.rc_self_purchase_invoice_id
+        self_purchase_payment = self_purchase_invoice.rc_payment_move_id
+        self.assertTrue(self_purchase_payment)
+
+        self_purchase_rc_invoice = self_purchase_invoice.rc_self_invoice_id
+        self_purchase_rc_payment = self_purchase_rc_invoice.rc_payment_move_id
+        self.assertTrue(self_purchase_rc_payment)
+
+        payments_lines = (self_purchase_payment | self_purchase_rc_payment).line_ids
+        self.assertTrue(all(payments_lines.mapped("reconciled")))

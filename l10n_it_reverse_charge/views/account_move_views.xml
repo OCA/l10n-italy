@@ -18,6 +18,7 @@
                     widget="many2many_tags"
                 />
                 <field name="rc_purchase_invoice_id" readonly="True" />
+                <field name="rc_payment_move_id" />
             </group>
             <xpath
                 expr="//field[@name='invoice_line_ids']/tree/field[@name='tax_ids']"

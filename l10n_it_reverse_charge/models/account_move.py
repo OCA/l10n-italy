@@ -54,6 +54,12 @@ class AccountMove(models.Model):
         copy=False,
         readonly=True,
     )
+    rc_payment_move_id = fields.Many2one(
+        comodel_name="account.move",
+        string="RC Payment Move",
+        copy=False,
+        readonly=True,
+    )
 
     def rc_inv_line_vals(self, line):
         return {
@@ -99,13 +105,32 @@ class AccountMove(models.Model):
             "narration": narration,
         }
 
-    def get_inv_line_to_reconcile(self):
-        for inv_line in self.line_ids:
-            if ((self.move_type == "in_invoice") and inv_line.credit) or (
-                (self.move_type == "in_refund") and inv_line.debit
-            ):
-                return inv_line
-        return False
+    def _rc_get_move_line_to_reconcile(self):
+        """Get the line to be reconciled in `self`.
+
+        If this move is outbound, then it is the first line having a credit.
+        If this move is inbound, then it is the first line having a debit.
+        If the line is not found, an exception is raised.
+        """
+        if self.is_outbound():
+            line_field = "credit"
+        elif self.is_inbound():
+            line_field = "debit"
+        else:
+            raise UserError(_("Only inbound and outbound moves are supported"))
+
+        is_zero = self.currency_id.is_zero
+        for move_line in self.line_ids:
+            field_value = getattr(move_line, line_field)
+            if not is_zero(field_value):
+                break
+        else:
+            raise UserError(
+                _("No line to reconcile for reverse charge in {move}").format(
+                    move=self.display_name,
+                )
+            )
+        return move_line
 
     def _get_original_suppliers(self):
         rc_purchase_invoices = self.mapped("rc_purchase_invoice_id")
@@ -120,106 +145,213 @@ class AccountMove(models.Model):
                 supplier_invoices |= rc_purchase_invoice
         return supplier_invoices.mapped("partner_id")
 
-    def get_rc_inv_line_to_reconcile(self, invoice):
-        for inv_line in invoice.line_ids:
-            if ((self.move_type == "out_invoice") and inv_line.debit) or (
-                (self.move_type == "out_refund") and inv_line.credit
-            ):
-                return inv_line
-        return False
+    def compute_rc_amount_tax_main_currency(self):
+        """Get Tax for all RC lines in Invoice's Company Currency.
 
-    def compute_rc_amount_tax(self):
-        rc_amount_tax = 0.0
-        round_curr = self.currency_id.round
-        rc_lines = self.invoice_line_ids.filtered(lambda l: l.rc)
-        for rc_line in rc_lines:
-            price_unit = rc_line.price_unit * (1 - (rc_line.discount or 0.0) / 100.0)
-            taxes = rc_line.tax_ids.compute_all(
-                price_unit,
-                self.currency_id,
-                rc_line.quantity,
-                product=rc_line.product_id,
-                partner=rc_line.partner_id,
-            )["taxes"]
-            rc_amount_tax += sum([tax["amount"] for tax in taxes])
+        The result is converted and rounded based on Company Currency
+        because this value is used for credit/debit.
+        """
+        rc_tax_amount = self.get_tax_amount_added_for_rc()
 
-        # convert the amount to main company currency, as
-        # compute_rc_amount_tax is used for debit/credit fields
-        invoice_currency = self.currency_id.with_context(date=self.invoice_date)
-        main_currency = self.company_currency_id.with_context(date=self.invoice_date)
-        if invoice_currency != main_currency:
-            round_curr = main_currency.round
-            rc_amount_tax = invoice_currency.compute(rc_amount_tax, main_currency)
+        invoice_currency = self.currency_id
+        company_currency = self.company_currency_id
+        if invoice_currency != company_currency:
+            rc_tax_amount = invoice_currency._convert(
+                rc_tax_amount, company_currency, self.company_id, self.invoice_date
+            )
 
-        return round_curr(rc_amount_tax)
+        return rc_tax_amount
+
+    def rc_payment_vals(self, rc_type):
+        """Values for the RC Payment Move."""
+        return {
+            "move_type": "entry",
+            "journal_id": rc_type.payment_journal_id.id,
+            "date": self.date,
+        }
+
+    def _rc_line_values(self, account, credit, debit):
+        """Base Values for the RC Payment Move lines."""
+        return {
+            "name": self.name,
+            "credit": credit,
+            "debit": debit,
+            "account_id": account.id,
+        }
+
+    def _rc_credit_line_amounts(self, amount):
+        if self.is_inbound():
+            credit, debit = 0, amount
+        else:
+            credit, debit = amount, 0
+        return credit, debit
+
+    def _rc_debit_line_amounts(self, amount):
+        if self.is_inbound():
+            credit, debit = amount, 0
+        else:
+            credit, debit = 0, amount
+        return credit, debit
+
+    def rc_payment_credit_line_vals(self, line_to_reconcile):
+        """Values for the credit line of the RC Payment Move."""
+        credit, debit = self._rc_debit_line_amounts(
+            abs(line_to_reconcile.balance),
+        )
+        account = line_to_reconcile.account_id
+
+        line_values = self._rc_line_values(account, credit, debit)
+        line_values.update(
+            {
+                "partner_id": self.partner_id.id,
+            }
+        )
+        return line_values
+
+    def rc_payment_debit_line_vals(self, line_to_reconcile, account):
+        """Values for the debit line of the RC Payment Move."""
+        credit, debit = self._rc_credit_line_amounts(
+            abs(line_to_reconcile.balance),
+        )
+
+        line_values = self._rc_line_values(account, credit, debit)
+        return line_values
+
+    def rc_credit_line_vals(self, account, amount):
+        credit, debit = self._rc_credit_line_amounts(amount)
+        return self._rc_line_values(account, credit, debit)
+
+    def rc_debit_line_vals(self, account, amount):
+        credit, debit = self._rc_debit_line_amounts(amount)
+        line_values = self._rc_line_values(account, credit, debit)
+        line_values.update(
+            {
+                "partner_id": self.partner_id.id,
+            }
+        )
+        return line_values
+
+    def _prepare_rc_supplier_invoice_payment(self, rc_invoice, rc_type):
+        """Create RC Payment when there is the supplier invoice.
+
+        The RC Payment has the following lines:
+        - one to be reconciled with the RC Invoice
+        - one to be reconciled with the original supplier invoice
+        """
+        rc_payment_data = self.rc_payment_vals(rc_type)
+        # Line to be reconciled with the generated RC Invoice
+        payment_credit_line_data = rc_invoice.rc_payment_credit_line_vals(
+            rc_invoice._rc_get_move_line_to_reconcile(),
+        )
+        # Line to be reconciled with the original Invoice (self)
+        line_to_reconcile = self._rc_get_move_line_to_reconcile()
+        payment_debit_line_data = self.rc_debit_line_vals(
+            line_to_reconcile.account_id,
+            payment_credit_line_data["credit"],
+        )
+        rc_payment_data["line_ids"] = [
+            (0, 0, payment_debit_line_data),
+            (0, 0, payment_credit_line_data),
+        ]
+        return rc_payment_data
 
     def reconcile_supplier_invoice(self):
         rc_type = self.fiscal_position_id.rc_type_id
-        payment_reg = (
-            self.env["account.payment.register"]
-            .with_context(
-                active_model="account.move",
-                active_ids=[self.id, self.rc_self_invoice_id.id],
-            )
-            .create(
-                {
-                    "payment_date": self.date,
-                    "amount": self.amount_total,
-                    "journal_id": rc_type.payment_journal_id.id,
-                    "currency_id": self.currency_id.id,
-                    "group_payment": True,
-                }
-            )
+        rc_invoice = self.rc_self_invoice_id
+
+        rc_payment_data = self._prepare_rc_supplier_invoice_payment(rc_invoice, rc_type)
+        rc_payment = self.env["account.move"].create(rc_payment_data)
+        rc_payment.action_post()
+        self.rc_payment_move_id = rc_invoice.rc_payment_move_id = rc_payment
+
+        self._reconcile_rc_invoice_payment(rc_invoice, rc_payment)
+
+    def _prepare_rc_invoice_payment(self, rc_invoice, rc_type):
+        """Create RC Payment when there is no supplier invoice.
+
+        The RC Payment has the following lines:
+        - two lines to be reconciled with the RC Invoice
+        - two lines to be reconciled with the original supplier invoice
+
+        Note that one line of each group is on the RC transitory account.
+        """
+        rc_payment_data = self.rc_payment_vals(rc_type)
+
+        # Lines to be reconciled with the generated RC Invoice
+        rc_invoice_line_to_reconcile = rc_invoice._rc_get_move_line_to_reconcile()
+        rc_payment_credit_line_data = rc_invoice.rc_payment_credit_line_vals(
+            rc_invoice_line_to_reconcile,
         )
-        self.payment_id = payment_reg._create_payments()
-
-        return True
-
-    def partially_reconcile_supplier_invoice(self):
-        rc_type = self.fiscal_position_id.rc_type_id
-        amount = self.get_tax_amount_added_for_rc()
-        payment_reg = (
-            self.env["account.payment.register"]
-            .with_context(active_model="account.move", active_ids=self.ids)
-            .create(
-                {
-                    "payment_date": self.date,
-                    "amount": amount,
-                    "journal_id": rc_type.payment_journal_id.id,
-                    "currency_id": self.currency_id.id,
-                }
-            )
+        rc_payment_debit_line_data = rc_invoice.rc_payment_debit_line_vals(
+            rc_invoice_line_to_reconcile,
+            rc_type.transitory_account_id,
         )
-        self.payment_id = payment_reg._create_payments()
 
-        return True
+        # Lines to be reconciled with the original supplier Invoice (self)
+        rc_tax_amount = self.compute_rc_amount_tax_main_currency()
+        payment_credit_line_data = self.rc_credit_line_vals(
+            rc_type.transitory_account_id,
+            rc_tax_amount,
+        )
+        line_to_reconcile = self._rc_get_move_line_to_reconcile()
+        payment_debit_line_data = self.rc_debit_line_vals(
+            line_to_reconcile.account_id,
+            rc_tax_amount,
+        )
+
+        rc_payment_data["line_ids"] = [
+            (0, 0, payment_debit_line_data),
+            (0, 0, payment_credit_line_data),
+            (0, 0, rc_payment_debit_line_data),
+            (0, 0, rc_payment_credit_line_data),
+        ]
+        return rc_payment_data
+
+    def _rc_reconcile_same_account_line(self, payment):
+        """Reconcile `self` with `payment`.
+
+        The move line of `self` to be reconciled is chosen by
+        `_rc_get_move_line_to_reconcile`.
+        """
+        line_to_reconcile = self._rc_get_move_line_to_reconcile()
+        if not self.currency_id.is_zero(line_to_reconcile.balance):
+            for move_line in payment.line_ids:
+                if move_line.account_id == line_to_reconcile.account_id:
+                    payment_line_to_reconcile = move_line
+                    break
+            else:
+                raise UserError(
+                    _(
+                        "No line found to reconcile between "
+                        "reverse charge invoice {invoice} "
+                        "and reverse charge payment {payment}."
+                    ).format(
+                        invoice=self.display_name,
+                        payment=payment.display_name,
+                    )
+                )
+
+            rc_lines_to_rec = line_to_reconcile | payment_line_to_reconcile
+            rc_lines_to_rec.filtered(lambda x: not x.reconciled).reconcile()
+
+    def _reconcile_rc_invoice_payment(self, rc_invoice, rc_payment):
+        """Reconcile the RC Payment."""
+        self._rc_reconcile_same_account_line(rc_payment)
+        rc_invoice._rc_reconcile_same_account_line(rc_payment)
 
     def reconcile_rc_invoice(self):
         rc_type = self.fiscal_position_id.rc_type_id
         rc_invoice = self.rc_self_invoice_id
-        payment_reg = (
-            self.env["account.payment.register"]
-            .with_context(active_model="account.move", active_ids=rc_invoice.ids)
-            .create(
-                {
-                    "payment_date": rc_invoice.date,
-                    "amount": rc_invoice.amount_total,
-                    "journal_id": rc_type.payment_journal_id.id,
-                    "currency_id": rc_invoice.currency_id.id,
-                }
-            )
-        )
-        rc_invoice.payment_id = payment_reg._create_payments()
 
-        return True
+        rc_payment_data = self._prepare_rc_invoice_payment(rc_invoice, rc_type)
+        rc_payment = self.env["account.move"].create(rc_payment_data)
+        rc_payment.action_post()
+        self.rc_payment_move_id = rc_invoice.rc_payment_move_id = rc_payment
+
+        self._reconcile_rc_invoice_payment(rc_invoice, rc_payment)
 
     def generate_self_invoice(self):
         rc_type = self.fiscal_position_id.rc_type_id
-        if not rc_type.payment_journal_id.default_account_id:
-            raise UserError(
-                _("There is no default credit account defined \n" 'on journal "%s".')
-                % rc_type.payment_journal_id.name
-            )
         if rc_type.partner_type == "other":
             rc_partner = rc_type.partner_id
         else:
@@ -270,11 +402,9 @@ class AccountMove(models.Model):
             if self.amount_total:
                 # No need to reconcile invoices with total = 0
                 if rc_type.with_supplier_self_invoice:
-                    self.reconcile_rc_invoice()
                     self.reconcile_supplier_invoice()
                 else:
                     self.reconcile_rc_invoice()
-                    self.partially_reconcile_supplier_invoice()
 
     def generate_supplier_self_invoice(self):
         rc_type = self.fiscal_position_id.rc_type_id
@@ -353,14 +483,14 @@ class AccountMove(models.Model):
         if delete_self_invoice:
             # unlink self invoice
             self_invoice = self.with_context(force_delete=True).browse(rc_invoice.id)
+            self_invoice.line_ids.remove_move_reconcile()
             self_invoice.unlink()
 
     def remove_invoice_payment(self):
-        if self.payment_id:
-            move = self.payment_id.move_id
-            for line in move.line_ids:
-                line.remove_move_reconcile()
-            self.payment_id.unlink()
+        payment_move = self.rc_payment_move_id
+        if payment_move:
+            payment_move.line_ids.remove_move_reconcile()
+            payment_move.with_context(force_delete=True).unlink()
 
     def button_cancel(self):
         for inv in self:
@@ -379,7 +509,7 @@ class AccountMove(models.Model):
     def button_draft(self):
         new_self = self.with_context(rc_set_to_draft=True)
         invoice_model = new_self.env["account.move"]
-        for inv in new_self.filtered(lambda i: i != i.payment_id.move_id):
+        for inv in new_self.filtered(lambda i: i != i.rc_payment_move_id):
             # remove payments without deleting self invoice
             inv.remove_rc_payment(delete_self_invoice=False)
             inv.remove_invoice_payment()

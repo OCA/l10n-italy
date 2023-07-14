@@ -182,9 +182,8 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
         cls.journal_reconciliation = journal_model.create(
             {
                 "name": "RC reconciliation",
-                "type": "bank",
+                "type": "general",
                 "code": "SLFRC",
-                "default_account_id": cls.account_selfinvoice.id,
             }
         )
 
