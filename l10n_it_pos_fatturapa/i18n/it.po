@@ -19,8 +19,7 @@ msgstr ""
 
 #. module: l10n_it_pos_fatturapa
 #. openerp-web
-#: code:addons/l10n_it_pos_fatturapa/static/src/xml/pos.xml:15
-#: code:addons/l10n_it_pos_fatturapa/static/src/xml/pos.xml:43
+#: code:addons/l10n_it_pos_fatturapa/static/src/xml/pos_dump.xml:0
 #, python-format
 msgid "Code"
 msgstr "Codice"
@@ -31,33 +30,44 @@ msgid "Contact"
 msgstr "Contatto"
 
 #. module: l10n_it_pos_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_pos_fatturapa.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_pos_fatturapa
 #. openerp-web
-#: code:addons/l10n_it_pos_fatturapa/static/src/xml/pos.xml:21
-#: code:addons/l10n_it_pos_fatturapa/static/src/xml/pos.xml:49
+#: code:addons/l10n_it_pos_fatturapa/static/src/xml/pos_dump.xml:0
 #, python-format
 msgid "EORI"
 msgstr "EORI"
 
 #. module: l10n_it_pos_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_pos_fatturapa.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_pos_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_pos_fatturapa.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_pos_fatturapa
 #. openerp-web
-#: code:addons/l10n_it_pos_fatturapa/static/src/xml/pos.xml:18
-#: code:addons/l10n_it_pos_fatturapa/static/src/xml/pos.xml:46
+#: code:addons/l10n_it_pos_fatturapa/static/src/xml/pos_dump.xml:0
 #, python-format
 msgid "PEC"
 msgstr "PEC"
 
 #. module: l10n_it_pos_fatturapa
 #. openerp-web
-#: code:addons/l10n_it_pos_fatturapa/static/src/xml/pos.xml:8
-#: code:addons/l10n_it_pos_fatturapa/static/src/xml/pos.xml:36
+#: code:addons/l10n_it_pos_fatturapa/static/src/xml/pos_dump.xml:0
 #, python-format
 msgid "e-Invoice"
 msgstr "E-fattura"
 
 #. module: l10n_it_pos_fatturapa
 #. openerp-web
-#: code:addons/l10n_it_pos_fatturapa/static/src/xml/pos.xml:24
-#: code:addons/l10n_it_pos_fatturapa/static/src/xml/pos.xml:52
+#: code:addons/l10n_it_pos_fatturapa/static/src/xml/pos_dump.xml:0
 #, python-format
 msgid "iPA Code"
 msgstr "Codice iPA"
