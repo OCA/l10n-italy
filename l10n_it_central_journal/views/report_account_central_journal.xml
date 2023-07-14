@@ -38,7 +38,12 @@
                             </tr>
                         </thead>
 
-                        <t t-set="counter" t-value="start_row" />
+                        <t t-if="start_row > 0">
+                            <t t-set="counter" t-value="start_row" />
+                        </t>
+                        <t t-else="">
+                            <t t-set="counter" t-value="1" />
+                        </t>
                         <t t-set="save_move_id" t-value="0" />
                         <t t-set="tot_credit" t-value="progressive_credit" />
                         <t t-set="tot_debit" t-value="progressive_debit" />
@@ -71,7 +76,11 @@
                             </tr>
 
                             <t t-foreach="get_move(data['ids'])" t-as="line">
-                                <t t-set="counter" t-value="counter + 1" />
+                                <t
+                                    t-set="counter"
+                                    t-value="counter + 1"
+                                    t-if="not line_first"
+                                />
                                 <t
                                     t-set="tot_credit"
                                     t-value="tot_credit + line.credit"
