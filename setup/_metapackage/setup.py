@@ -33,6 +33,7 @@ setuptools.setup(
         'odoo12-addon-l10n_it_corrispettivi_fatturapa_out',
         'odoo12-addon-l10n_it_corrispettivi_sale',
         'odoo12-addon-l10n_it_ddt',
+        'odoo12-addon-l10n_it_ddt_mrp_kit',
         'odoo12-addon-l10n_it_delivery_note',
         'odoo12-addon-l10n_it_delivery_note_base',
         'odoo12-addon-l10n_it_delivery_note_batch',
