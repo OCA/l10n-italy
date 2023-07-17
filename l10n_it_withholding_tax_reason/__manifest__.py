@@ -17,6 +17,6 @@
     "data": [
         "views/withholding_tax.xml",
     ],
-    "pre_init_hook": "rename_old_italian_module",
+    "pre_init_hook": "pre_absorb_old_module",
     "auto_install": True,
 }
