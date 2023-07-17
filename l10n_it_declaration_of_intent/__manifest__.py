@@ -25,6 +25,6 @@
         "views/company_view.xml",
         "views/account_invoice_view.xml",
     ],
-    "pre_init_hook": "rename_old_italian_module",
+    "pre_init_hook": "pre_absorb_old_module",
     "post_init_hook": "copy_m2m_values",
 }
