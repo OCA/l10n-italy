@@ -11,8 +11,13 @@
         <field name="inherit_id" ref="stock.view_picking_form" />
         <field name="arch" type="xml">
             <data>
-                <xpath expr="//form/sheet" position="before">
-                    <field name="picking_type_code" invisible="True" />
+                <xpath
+                    expr="//form/sheet/group/group/div[hasclass('o_td_label')]"
+                    position="attributes"
+                >
+                    <attribute
+                        name="attrs"
+                    >{'required': [('picking_type_code', '!=', 'internal')], 'invisible': [('picking_type_code', '=', 'internal')]}</attribute>
                 </xpath>
                 <xpath
                     expr="//form/sheet/group/group/field[@name='partner_id']"
