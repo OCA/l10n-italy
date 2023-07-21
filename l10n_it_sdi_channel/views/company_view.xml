@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_account_config_settings">
+        <field name="name">view_account_config_settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="l10n_it_fatturapa.view_account_config_settings" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='fatturapa_settings']" position="after">
+                <div
+                    class="row mt16 o_settings_container"
+                    id="supplier_fatturapa_settings"
+                >
+                    <div class="col-12 col-lg-12 o_setting_box">
+                        <div class="o_setting_left_pane" />
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">ES Channel</span>
+                            <span
+                                class="fa fa-lg fa-building-o"
+                                title="Values set here are company-specific."
+                                aria-label="Values set here are company-specific."
+                                groups="base.group_multi_company"
+                                role="img"
+                            />
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <field name="sdi_channel_id" class="col-lg-6" />
+                                    <field name="sdi_channel_type" invisible="1" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_company_form_e_invoice_sdi" model="ir.ui.view">
+        <field name="name">view_company_form_e_invoice_sdi</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="l10n_it_fatturapa.view_company_form_e_invoice" />
+        <field name="arch" type="xml">
+            <field name="fatturapa_fiscal_position_id" position="after">
+                <field name="sdi_channel_id" required="0" />
+            </field>
+        </field>
+    </record>
+</odoo>

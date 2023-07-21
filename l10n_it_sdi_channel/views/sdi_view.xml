@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_sdi_channel_tree" model="ir.ui.view">
+        <field name="model">sdi.channel</field>
+        <field name="name">view_sdi_channel_tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="channel_type" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sdi_channel_form" model="ir.ui.view">
+        <field name="model">sdi.channel</field>
+        <field name="name">view_sdi_channel_form</field>
+        <field name="arch" type="xml">
+            <form string="ES Channel">
+                <header>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="channel_type" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                        <newline />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sdi_channel" model="ir.actions.act_window">
+        <field name="name">ES Channel</field>
+        <field name="res_model">sdi.channel</field>
+        <field name="view_id" ref="view_sdi_channel_tree" />
+    </record>
+
+    <menuitem
+        id="menu_sdi_channel"
+        name="ES Channels"
+        action="action_sdi_channel"
+        parent="account.account_account_menu"
+        groups="account.group_account_manager"
+        sequence="50"
+    />
+</odoo>
