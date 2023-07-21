@@ -64,8 +64,6 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: l10n_it_sdi_channel
-#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company__display_name
-#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
@@ -73,7 +71,6 @@ msgstr "Nome visualizzato"
 #. module: l10n_it_sdi_channel
 #: model:ir.actions.act_window,name:l10n_it_sdi_channel.action_sdi_channel
 #: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_sdi_channel_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_sdi_channel_tree
 msgid "ES Channel"
 msgstr "Canale SdI"
 
@@ -97,15 +94,11 @@ msgid "ES channel type"
 msgstr "Tipo canale SdI"
 
 #. module: l10n_it_sdi_channel
-#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company__id
-#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_config_settings__id
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__id
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_sdi_channel
-#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company____last_update
-#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
