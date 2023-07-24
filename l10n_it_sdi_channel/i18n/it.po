@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 15:51+0000\n"
-"PO-Revision-Date: 2020-01-07 11:13+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2023-07-24 09:10+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_it_sdi_channel
 #: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_account_config_settings
@@ -36,7 +36,7 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_it_sdi_channel.field_res_config_settings__sdi_channel_type
 #: model:ir.model.fields,help:l10n_it_sdi_channel.field_sdi_channel__channel_type
 msgid "Channels (Pec, Web, Sftp) could be provided by external modules."
-msgstr ""
+msgstr "I canali (PEC, Web, SFTP) possono essere forniti da moduli esterni."
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model,name:l10n_it_sdi_channel.model_res_company
