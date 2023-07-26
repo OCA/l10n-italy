@@ -133,8 +133,11 @@ class AccountMove(models.Model):
         else:
             raise UserError(_("Only inbound and outbound moves are supported"))
 
+        to_reconcile_move_lines = self.line_ids.filtered(
+            lambda ml: ml.account_id.reconcile
+        )
         is_zero = self.currency_id.is_zero
-        for move_line in self.line_ids:
+        for move_line in to_reconcile_move_lines:
             field_value = getattr(move_line, line_field)
             if not is_zero(field_value) and move_line.account_internal_type in (
                 "receivable",
