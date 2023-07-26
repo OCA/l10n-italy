@@ -19,9 +19,15 @@ class AccountMoveLine(models.Model):
         "tax_ids",
     )
     def _compute_rc_flag(self):
-        for line in self.filtered(lambda r: not r.exclude_from_invoice_tab):
-            if line.move_id.is_purchase_document():
-                line.rc = bool(line.move_id.fiscal_position_id.rc_type_id)
+        for line in self:
+            move = line.move_id
+            is_rc = (
+                move.is_purchase_document()
+                and move.fiscal_position_id.rc_type_id
+                and not line.display_type
+                and not line.exclude_from_invoice_tab
+            )
+            line.rc = is_rc
 
     rc = fields.Boolean(
         "RC", compute="_compute_rc_flag", store=True, readonly=False, default=False
@@ -386,7 +392,8 @@ class AccountMove(models.Model):
                 )
                 if line_tax_ids and mapped_taxes:
                     rc_invoice_line["tax_ids"] = [(6, False, mapped_taxes.ids)]
-                rc_invoice_line["account_id"] = rc_type.transitory_account_id.id
+                if line.account_id:
+                    rc_invoice_line["account_id"] = rc_type.transitory_account_id.id
                 rc_invoice_lines.append([0, False, rc_invoice_line])
         if rc_invoice_lines:
             inv_vals = self.rc_inv_vals(
@@ -455,7 +462,8 @@ class AccountMove(models.Model):
                 line_vals["tax_ids"] = [
                     (6, False, mapped_taxes.ids),
                 ]
-            line_vals["account_id"] = rc_type.transitory_account_id.id
+            if inv_line.account_id:
+                line_vals["account_id"] = rc_type.transitory_account_id.id
             invoice_line_vals.append((0, 0, line_vals))
         supplier_invoice.write({"invoice_line_ids": invoice_line_vals})
         self.rc_self_purchase_invoice_id = supplier_invoice.id
