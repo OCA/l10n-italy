@@ -28,7 +28,7 @@ class FatturapaCommon(SingleTransactionCase):
             {
                 "name": "1040",
                 "code": "1040",
-                "account_receivable_id": cls.payable_account_id,
+                "account_receivable_id": cls.receivable_account.id,
                 "account_payable_id": cls.payable_account_id,
                 "payment_term": cls.env.ref(
                     "account.account_payment_term_immediate"
@@ -44,7 +44,7 @@ class FatturapaCommon(SingleTransactionCase):
             {
                 "name": "2320",
                 "code": "2320",
-                "account_receivable_id": cls.payable_account_id,
+                "account_receivable_id": cls.receivable_account.id,
                 "account_payable_id": cls.payable_account_id,
                 "payment_term": cls.env.ref(
                     "account.account_payment_term_immediate"
@@ -60,7 +60,7 @@ class FatturapaCommon(SingleTransactionCase):
             {
                 "name": "2320",
                 "code": "2320",
-                "account_receivable_id": cls.payable_account_id,
+                "account_receivable_id": cls.receivable_account.id,
                 "account_payable_id": cls.payable_account_id,
                 "payment_term": cls.env.ref(
                     "account.account_payment_term_immediate"
@@ -76,7 +76,7 @@ class FatturapaCommon(SingleTransactionCase):
             {
                 "name": "2620q",
                 "code": "2620q",
-                "account_receivable_id": cls.payable_account_id,
+                "account_receivable_id": cls.receivable_account.id,
                 "account_payable_id": cls.payable_account_id,
                 "payment_term": cls.env.ref(
                     "account.account_payment_term_immediate"
@@ -92,7 +92,7 @@ class FatturapaCommon(SingleTransactionCase):
             {
                 "name": "2640q",
                 "code": "2640q",
-                "account_receivable_id": cls.payable_account_id,
+                "account_receivable_id": cls.receivable_account.id,
                 "account_payable_id": cls.payable_account_id,
                 "payment_term": cls.env.ref(
                     "account.account_payment_term_immediate"
@@ -108,7 +108,7 @@ class FatturapaCommon(SingleTransactionCase):
             {
                 "name": "2720q",
                 "code": "2720q",
-                "account_receivable_id": cls.payable_account_id,
+                "account_receivable_id": cls.receivable_account.id,
                 "account_payable_id": cls.payable_account_id,
                 "payment_term": cls.env.ref(
                     "account.account_payment_term_immediate"
@@ -125,13 +125,141 @@ class FatturapaCommon(SingleTransactionCase):
                 "name": "4q",
                 "code": "4q",
                 "wt_types": "enasarco",
-                "account_receivable_id": cls.payable_account_id,
+                "account_receivable_id": cls.receivable_account.id,
                 "account_payable_id": cls.payable_account_id,
                 "payment_term": cls.env.ref(
                     "account.account_payment_term_immediate"
                 ).id,
                 "rate_ids": [(0, 0, {"tax": 4.0, "base": 1.0})],
                 "payment_reason_id": cls.env.ref("l10n_it_payment_reason.q").id,
+            }
+        )
+
+    @classmethod
+    def create_misc_journal(cls):
+        return cls.env["account.journal"].create(
+            {
+                "name": "Test Miscellaneous Journal",
+                "code": "TMJ",
+                "type": "general",
+            }
+        )
+
+    def create_wt_115_r(self):
+        return self.env["withholding.tax"].create(
+            {
+                "name": "1040 R",
+                "code": "1040R",
+                "account_receivable_id": self.receivable_account.id,
+                "account_payable_id": self.payable_account.id,
+                "journal_id": self.misc_journal.id,
+                "payment_term": self.env.ref("account.account_payment_term_advance").id,
+                "wt_types": "ritenuta",
+                "payment_reason_id": self.env.ref("l10n_it_payment_reason.r").id,
+                "rate_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "tax": 11.50,
+                            "base": 1.0,
+                        },
+                    )
+                ],
+            }
+        )
+
+    def create_wt_enasarco_115_a(self):
+        return self.env["withholding.tax"].create(
+            {
+                "name": "1040/3",
+                "code": "1040",
+                "account_receivable_id": self.receivable_account.id,
+                "account_payable_id": self.payable_account.id,
+                "journal_id": self.misc_journal.id,
+                "payment_term": self.env.ref("account.account_payment_term_advance").id,
+                "wt_types": "ritenuta",
+                "payment_reason_id": self.env.ref("l10n_it_payment_reason.a").id,
+                "rate_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "tax": 11.50,
+                            "base": 1.0,
+                        },
+                    )
+                ],
+            }
+        )
+
+    def create_wt_enasarco_85_r(self):
+        return self.env["withholding.tax"].create(
+            {
+                "name": "Enasarco 8,50",
+                "code": "TC07",
+                "account_receivable_id": self.receivable_account.id,
+                "account_payable_id": self.payable_account.id,
+                "journal_id": self.misc_journal.id,
+                "payment_term": self.env.ref("account.account_payment_term_advance").id,
+                "wt_types": "enasarco",
+                "payment_reason_id": self.env.ref("l10n_it_payment_reason.r").id,
+                "rate_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "tax": 8.5,
+                            "base": 1.0,
+                        },
+                    )
+                ],
+            }
+        )
+
+    def create_wt_enasarco_157_r(self):
+        return self.env["withholding.tax"].create(
+            {
+                "name": "Enasarco",
+                "code": "TC07",
+                "account_receivable_id": self.receivable_account.id,
+                "account_payable_id": self.payable_account.id,
+                "journal_id": self.misc_journal.id,
+                "payment_term": self.env.ref("account.account_payment_term_advance").id,
+                "wt_types": "enasarco",
+                "payment_reason_id": self.env.ref("l10n_it_payment_reason.r").id,
+                "rate_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "tax": 1.57,
+                            "base": 1.0,
+                        },
+                    )
+                ],
+            }
+        )
+
+    @classmethod
+    def create_receivable_account(cls):
+        return cls.env["account.account"].create(
+            {
+                "name": "Test WH tax",
+                "code": "whtaxrec2",
+                "account_type": "asset_receivable",
+                "reconcile": True,
+            }
+        )
+
+    @classmethod
+    def create_payable_account(cls):
+        return cls.env["account.account"].create(
+            {
+                "name": "Test WH tax",
+                "code": "whtaxpay2",
+                "account_type": "liability_payable",
+                "reconcile": True,
             }
         )
 
@@ -189,18 +317,27 @@ class FatturapaCommon(SingleTransactionCase):
     def run_wizard_multi(self, file_name_list, module_name=None):
         if module_name is None:
             module_name = "l10n_it_fatturapa_in"
-        active_ids = []
-        for file_name in file_name_list:
-            active_ids.append(
-                self.attach_model.create(
-                    {
-                        "name": file_name,
-                        "datas": self.getFile(file_name, module_name)[1],
-                    }
-                ).id
-            )
-        wizard = self.wizard_model.with_context(active_ids=active_ids).create({})
+
+        attachments = self.attach_model.create(
+            [
+                {
+                    "name": file_name,
+                    "datas": self.getFile(file_name, module_name=module_name)[1],
+                }
+                for file_name in file_name_list
+            ]
+        )
+
+        wizard = self.wizard_model.with_context(
+            active_model=attachments._name,
+            active_ids=attachments.ids,
+        ).create({})
+
         return wizard.importFatturaPA()
+
+    @classmethod
+    def _setup_journals(cls):
+        cls.misc_journal = cls.create_misc_journal()
 
     @classmethod
     def _setup_taxes(cls):
@@ -303,20 +440,9 @@ class FatturapaCommon(SingleTransactionCase):
         cls.env.company.arrotondamenti_passivi_account_id = (
             arrotondamenti_passivi_account_id
         )
-        cls.payable_account_id = (
-            cls.env["account.account"]
-            .search(
-                [
-                    (
-                        "account_type",
-                        "=",
-                        "liability_payable",
-                    )
-                ],
-                limit=1,
-            )
-            .id
-        )
+        cls.payable_account = cls.create_payable_account()
+        cls.payable_account_id = cls.payable_account.id
+        cls.receivable_account = cls.create_receivable_account()
         cls.tax_receivable_account = cls.env["account.account"].search(
             [
                 ("code", "=", "251000"),  # Tax receivable
@@ -365,8 +491,9 @@ class FatturapaCommon(SingleTransactionCase):
             }
         )
 
-        cls._setup_taxes()
         cls._setup_accounts()
+        cls._setup_journals()
+        cls._setup_taxes()
 
         cls.wizard_model = cls.env["wizard.import.fatturapa"]
         cls.wizard_link_model = cls.env["wizard.link.to.invoice"]
