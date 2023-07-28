@@ -8,6 +8,7 @@ from datetime import datetime
 from odoo import api, fields, models, registry
 from odoo.exceptions import UserError
 from odoo.fields import first
+from odoo.osv import expression
 from odoo.tools import float_is_zero, frozendict
 from odoo.tools.translate import _
 
@@ -66,9 +67,28 @@ class WizardImportFatturapa(models.TransientModel):
         help='Decimal digits used for discount field. See "Prices decimal digits".',
     )
 
+    def _get_selected_model(self):
+        context = self.env.context
+        model_name = context.get("active_model")
+        return model_name
+
+    def _get_selected_records(self):
+        context = self.env.context
+        ids = context.get("active_ids", [])
+        model_name = self._get_selected_model()
+        attachments = self.env[model_name].browse(ids)
+        return attachments
+
+    def _check_attachment(self, attachment):
+        if attachment.in_invoice_ids:
+            raise UserError(_("File %s is linked to bills yet.", attachment.name))
+
+    def _extract_supplier(self, fatturapa_attachment):
+        return fatturapa_attachment.xml_supplier_id
+
     @api.model
-    def default_get(self, fields):
-        res = super(WizardImportFatturapa, self).default_get(fields)
+    def default_get(self, fields_list):
+        res = super().default_get(fields_list)
         res["price_decimal_digits"] = self.env["decimal.precision"].precision_get(
             "Product Price"
         )
@@ -79,18 +99,12 @@ class WizardImportFatturapa(models.TransientModel):
             "Discount"
         )
         res["e_invoice_detail_level"] = "2"
-        fatturapa_attachment_ids = self.env.context.get("active_ids", False)
-        fatturapa_attachment_obj = self.env["fatturapa.attachment.in"]
-        partners = self.env["res.partner"]
-        for fatturapa_attachment_id in fatturapa_attachment_ids:
-            fatturapa_attachment = fatturapa_attachment_obj.browse(
-                fatturapa_attachment_id
-            )
-            if fatturapa_attachment.in_invoice_ids:
-                raise UserError(
-                    _("File %s is linked to bills yet.") % fatturapa_attachment.name
-                )
-            partners |= fatturapa_attachment.xml_supplier_id
+
+        fatturapa_attachments = self._get_selected_records()
+        partners = self.env["res.partner"].browse()
+        for fatturapa_attachment in fatturapa_attachments:
+            self._check_attachment(fatturapa_attachment)
+            partners |= self._extract_supplier(fatturapa_attachment)
             if len(partners) == 1:
                 res["e_invoice_detail_level"] = partners[0].e_invoice_detail_level
                 if partners[0].e_invoice_price_decimal_digits >= 0:
@@ -415,7 +429,6 @@ class WizardImportFatturapa(models.TransientModel):
             partner_model.browse(partner_id).write(vals)
         return partner_id
 
-    # move_line.tax_ids
     def _prepare_generic_line_data(self, line):
         retLine = {}
         account_taxes = self.get_account_taxes(line.AliquotaIVA, line.Natura)
@@ -423,79 +436,117 @@ class WizardImportFatturapa(models.TransientModel):
             retLine["tax_ids"] = [(6, 0, [account_taxes[0].id])]
         return retLine
 
-    def get_account_taxes(self, AliquotaIVA, Natura):
-        account_tax_model = self.env["account.tax"]
-        # check if a default tax exists and generate def_purchase_tax object
-        ir_values = self.env["ir.default"]
-        company_id = self.env.company.id
-        supplier_taxes_ids = ir_values.get(
-            "product.product", "supplier_taxes_id", company_id=company_id
+    def _get_default_product_taxes(self, tax_field_name):
+        """Return default tax for field `product.product.<tax_field_name>`."""
+        company = self.env.company
+        default_taxes_ids = self.env["ir.default"].get(
+            "product.product",
+            tax_field_name,
+            company_id=company.id,
         )
-        def_purchase_tax = False
-        if supplier_taxes_ids:
-            def_purchase_tax = account_tax_model.browse(supplier_taxes_ids)[0]
-        if float(AliquotaIVA) == 0.0 and Natura:
-            account_taxes = account_tax_model.search(
-                [
-                    ("type_tax_use", "=", "purchase"),
-                    ("kind_id.code", "=", Natura),
-                    ("amount", "=", 0.0),
-                ],
-                order="sequence",
-            )
-            if not account_taxes:
-                self.log_inconsistency(
-                    _(
-                        "No tax with percentage "
-                        "%s and nature %s found. Please configure this tax."
-                    )
-                    % (AliquotaIVA, Natura)
-                )
-            if len(account_taxes) > 1:
-                self.log_inconsistency(
-                    _(
-                        "Too many taxes with percentage "
-                        "%s and nature %s found. Tax %s with lower priority has "
-                        "been set on invoice lines."
-                    )
-                    % (AliquotaIVA, Natura, account_taxes[0].description)
-                )
+        tax_model = self.env["account.tax"]
+        if default_taxes_ids is not None:
+            default_taxes = tax_model.browse(default_taxes_ids)
+            default_tax = first(default_taxes)
         else:
-            account_taxes = account_tax_model.search(
+            default_tax = tax_model.browse()
+        return default_tax
+
+    def _get_account_tax_domain(self, amount):
+        return [
+            ("type_tax_use", "=", "purchase"),
+            ("amount", "=", amount),
+        ]
+
+    def _get_zero_kind_account_tax(self, Natura):
+        tax_amount = 0
+        tax_domain = self._get_account_tax_domain(tax_amount)
+        tax_domain = expression.AND(
+            [
+                tax_domain,
                 [
-                    ("type_tax_use", "=", "purchase"),
-                    ("amount", "=", float(AliquotaIVA)),
+                    ("kind_id.code", "=", Natura),
+                ],
+            ]
+        )
+        account_taxes = self.env["account.tax"].search(
+            tax_domain,
+            order="sequence",
+        )
+        account_tax = first(account_taxes)
+        if not account_taxes:
+            self.log_inconsistency(
+                _(
+                    "No tax with percentage "
+                    "%s and nature %s found. Please configure this tax.",
+                    tax_amount,
+                    Natura,
+                )
+            )
+        elif len(account_taxes) > 1:
+            self.log_inconsistency(
+                _(
+                    "Too many taxes with percentage "
+                    "%s and nature %s found. Tax %s with lower priority has "
+                    "been set on invoice lines.",
+                    tax_amount,
+                    Natura,
+                    account_tax.description,
+                )
+            )
+        return account_tax
+
+    def _get_amount_account_tax(self, tax_amount):
+        tax_domain = self._get_account_tax_domain(tax_amount)
+        tax_domain = expression.AND(
+            [
+                tax_domain,
+                [
                     ("price_include", "=", False),
                     # partially deductible VAT must be set by user
                     ("children_tax_ids", "=", False),
                 ],
-                order="sequence",
+            ]
+        )
+        account_taxes = self.env["account.tax"].search(
+            tax_domain,
+            order="sequence",
+        )
+        account_tax = first(account_taxes)
+        if not account_taxes:
+            self.log_inconsistency(
+                _(
+                    "XML contains tax with percentage '%s' "
+                    "but it does not exist in your system",
+                    tax_amount,
+                )
             )
-            if not account_taxes:
-                self.log_inconsistency(
-                    _(
-                        "XML contains tax with percentage '%s' "
-                        "but it does not exist in your system"
-                    )
-                    % AliquotaIVA
+        # check if there are multiple taxes with
+        # same percentage
+        elif len(account_taxes) > 1:
+            # just logging because this is an usual case: see split payment
+            _logger.warning(
+                _(
+                    "Too many taxes with percentage equals "
+                    "to '%s'.\nFix it if required",
+                    tax_amount,
                 )
-            # check if there are multiple taxes with
-            # same percentage
-            if len(account_taxes) > 1:
-                # just logging because this is an usual case: see split payment
-                _logger.warning(
-                    _(
-                        "Too many taxes with percentage equals "
-                        "to '%s'.\nFix it if required"
-                    )
-                    % AliquotaIVA
-                )
-                # if there are multiple taxes with same percentage
-                # and there is a default tax with this percentage,
-                # set taxes list equal to supplier_taxes_id, loaded before
-                if def_purchase_tax and def_purchase_tax.amount == (float(AliquotaIVA)):
-                    account_taxes = def_purchase_tax
-        return account_taxes
+            )
+            # if there are multiple taxes with same percentage
+            # and there is a default tax with this percentage,
+            # set taxes list equal to supplier_taxes_id
+            default_tax = self._get_default_product_taxes("supplier_taxes_id")
+            if default_tax and default_tax.amount == tax_amount:
+                account_tax = default_tax
+        return account_tax
+
+    def get_account_taxes(self, AliquotaIVA, Natura):
+        tax_amount = float(AliquotaIVA)
+        if tax_amount == 0.0 and Natura:
+            account_tax = self._get_zero_kind_account_tax(Natura)
+        else:
+            account_tax = self._get_amount_account_tax(tax_amount)
+        return account_tax
 
     def get_line_product(self, line, partner):
         product = self.env["product.product"].browse()
@@ -912,17 +963,31 @@ class WizardImportFatturapa(models.TransientModel):
                 CedentePrestatore.StabileOrganizzazione.Nazione
             )
 
-    def get_purchase_journal(self, company):
-        journal_model = self.env["account.journal"]
-        journals = journal_model.search(
-            [("type", "=", "purchase"), ("company_id", "=", company.id)], limit=1
+    def _get_journal_domain(self, company):
+        return [
+            ("type", "=", "purchase"),
+            ("company_id", "=", company.id),
+        ]
+
+    def get_journal(self, company):
+        domain = self._get_journal_domain(company)
+        journal = self.env["account.journal"].search(
+            domain,
+            limit=1,
         )
-        if not journals:
-            raise UserError(
-                _("Define a purchase journal " "for this company: '%s' (id: %d).")
-                % (company.name, company.id)
+        if not journal:
+            exception = self._get_missing_journal_exception(company)
+            raise exception
+        return journal
+
+    def _get_missing_journal_exception(self, company):
+        return UserError(
+            _(
+                "Define a purchase journal for this company: '%s' (id: %d).",
+                company.name,
+                company.id,
             )
-        return journals[0]
+        )
 
     def create_e_invoice_line(self, line):
         vals = {
@@ -974,7 +1039,7 @@ class WizardImportFatturapa(models.TransientModel):
         Try to get default credit account for invoice line looking in
 
         1) product (if provided)
-        2) purchase journal
+        2) journal
         3) company default.
 
         :param product: Product whose expense account will be used
@@ -989,8 +1054,8 @@ class WizardImportFatturapa(models.TransientModel):
             credit_account = accounts_dict["expense"]
 
         company = self.env.company
-        # Search in purchase journal
-        journal = self.get_purchase_journal(company)
+        # Search in journal
+        journal = self.get_journal(company)
         if not credit_account:
             credit_account = journal.default_account_id
 
@@ -1017,65 +1082,82 @@ class WizardImportFatturapa(models.TransientModel):
 
         return credit_account
 
-    def invoiceCreate(self, fatt, fatturapa_attachment, FatturaBody, partner_id):
-        partner_model = self.env["res.partner"]
-        invoice_model = self.env["account.move"]
-        currency_model = self.env["res.currency"]
-        ftpa_doctype_model = self.env["fiscal.document.type"]
-        rel_docs_model = self.env["fatturapa.related_document_type"]
-
-        company = self.env.company
-        partner = partner_model.browse(partner_id)
-
+    def _get_currency(self, FatturaBody):
         # currency 2.1.1.2
-        currency = currency_model.search(
-            [("name", "=", FatturaBody.DatiGenerali.DatiGeneraliDocumento.Divisa)]
+        currency_code = FatturaBody.DatiGenerali.DatiGeneraliDocumento.Divisa
+        currency = self.env["res.currency"].search(
+            [
+                ("name", "=", currency_code),
+            ]
         )
         if not currency:
             raise UserError(
                 _(
-                    "No currency found with code %s."
-                    % FatturaBody.DatiGenerali.DatiGeneraliDocumento.Divisa
+                    "No currency found with code %s.",
+                    currency_code,
                 )
             )
-        purchase_journal = self.get_purchase_journal(company)
-        credit_account = self.get_credit_account()
+        return currency
+
+    def _get_fiscal_document_type(self, FatturaBody):
+        fiscal_document_type_code = (
+            FatturaBody.DatiGenerali.DatiGeneraliDocumento.TipoDocumento
+        )
+        if fiscal_document_type_code:
+            fiscal_document_type = self.env["fiscal.document.type"].search(
+                [
+                    ("code", "=", fiscal_document_type_code),
+                ],
+                limit=1,
+            )
+            if not fiscal_document_type:
+                raise UserError(
+                    _(
+                        "Document type %s not handled.",
+                        fiscal_document_type_code,
+                    )
+                )
+        else:
+            fiscal_document_type = self.env["fiscal.document.type"].browse()
+        return fiscal_document_type
+
+    def _get_invoice_type(self, fiscal_document_type):
+        if fiscal_document_type.code == "TD04":
+            invoice_type = "in_refund"
+        else:
+            invoice_type = "in_invoice"
+        return invoice_type
+
+    def _get_received_date(self, attachment):
+        received_date = attachment.e_invoice_received_date
+        if not received_date:
+            received_date = attachment.create_date
+        received_date = received_date.date()
+        return received_date
+
+    def _prepare_invoice_values(self, fatt, fatturapa_attachment, FatturaBody, partner):
+        company = self.env.company
+        currency = self._get_currency(FatturaBody)
+        purchase_journal = self.get_journal(company)
         comment = ""
+
         # 2.1.1
-        docType_id = False
-        invtype = "in_invoice"
-        docType = FatturaBody.DatiGenerali.DatiGeneraliDocumento.TipoDocumento
-        if docType:
-            docType_record = ftpa_doctype_model.search([("code", "=", docType)])
-            if docType_record:
-                docType_id = docType_record[0].id
-            else:
-                raise UserError(_("Document type %s not handled.") % docType)
-            if docType == "TD04":
-                invtype = "in_refund"
+        fiscal_document_type = self._get_fiscal_document_type(FatturaBody)
+        invoice_type = self._get_invoice_type(fiscal_document_type)
+
         # 2.1.1.11
         causLst = FatturaBody.DatiGenerali.DatiGeneraliDocumento.Causale
         if causLst:
             for rel_doc in causLst:
                 comment += rel_doc + "\n"
-
-        if fatturapa_attachment.e_invoice_received_date:
-            e_invoice_received_date = (
-                fatturapa_attachment.e_invoice_received_date.date()
-            )
-        else:
-            e_invoice_received_date = fatturapa_attachment.create_date.date()
-
+        e_invoice_received_date = self._get_received_date(fatturapa_attachment)
         e_invoice_date = datetime.strptime(
             FatturaBody.DatiGenerali.DatiGeneraliDocumento.Data, "%Y-%m-%d"
         ).date()
-
         delivery_partner_id = partner.address_get(["delivery"])["delivery"]
-        fiscal_position_id = (
-            self.env["account.fiscal.position"]
-            .get_fiscal_position(partner_id, delivery_id=delivery_partner_id)
-            .id
-            or False
+        fiscal_position = self.env["account.fiscal.position"].get_fiscal_position(
+            partner.id,
+            delivery_id=delivery_partner_id,
         )
 
         invoice_data = {
@@ -1083,14 +1165,14 @@ class WizardImportFatturapa(models.TransientModel):
             "date": e_invoice_received_date
             if company.in_invoice_registration_date == "rec_date"
             else e_invoice_date,
-            "fiscal_document_type_id": docType_id,
+            "fiscal_document_type_id": fiscal_document_type.id,
             "sender": fatt.FatturaElettronicaHeader.SoggettoEmittente or False,
-            "move_type": invtype,
-            "partner_id": partner_id,
-            "currency_id": currency[0].id,
+            "move_type": invoice_type,
+            "partner_id": partner.id,
+            "currency_id": currency.id,
             "journal_id": purchase_journal.id,
             # 'origin': xmlData.datiOrdineAcquisto,
-            "fiscal_position_id": fiscal_position_id,
+            "fiscal_position_id": fiscal_position.id,
             "invoice_payment_term_id": partner.property_supplier_payment_term_id.id,
             "company_id": company.id,
             "fatturapa_attachment_in_id": fatturapa_attachment.id,
@@ -1100,24 +1182,42 @@ class WizardImportFatturapa(models.TransientModel):
         # 2.1.1.12
         self.set_art73(FatturaBody, invoice_data)
 
-        # 2.1.1.5
-        wt_founds = self.set_withholding_tax(FatturaBody, invoice_data)
-
         self.set_e_invoice_lines(FatturaBody, invoice_data)
+        return invoice_data
 
-        invoice = invoice_model.create(invoice_data)
+    def invoiceCreate(self, fatt, fatturapa_attachment, FatturaBody, partner_id):
+        partner_model = self.env["res.partner"]
+        partner = partner_model.browse(partner_id)
+        invoice_data = self._prepare_invoice_values(
+            fatt,
+            fatturapa_attachment,
+            FatturaBody,
+            partner,
+        )
+
+        # 2.1.1.5
+        found_withholding_taxes = self.set_withholding_tax(FatturaBody, invoice_data)
+
+        invoice = self.env["account.move"].create(invoice_data)
+        credit_account = self.get_credit_account()
 
         invoice_lines = []
         # 2.2.1
         invoice_lines.extend(
             self.set_invoice_line_ids(
-                FatturaBody, credit_account.id, partner, wt_founds, invoice
+                FatturaBody,
+                credit_account.id,
+                partner,
+                found_withholding_taxes,
+                invoice,
             )
         )
 
         # 2.1.1.7
         invoice_lines.extend(
-            self.set_welfares_fund(FatturaBody, credit_account.id, invoice, wt_founds)
+            self.set_welfares_fund(
+                FatturaBody, credit_account.id, invoice, found_withholding_taxes
+            )
         )
 
         # 2.1.1.10
@@ -1151,7 +1251,7 @@ class WizardImportFatturapa(models.TransientModel):
                 doc_datas = self._prepareRelDocsLine(invoice.id, rel_doc, rel_doc_key)
                 for doc_data in doc_datas:
                     # Note for v12: must take advantage of batch creation
-                    rel_docs_model.create(doc_data)
+                    self.env["fatturapa.related_document_type"].create(doc_data)
 
         # 2.1.7
         self.set_activity_progress(FatturaBody, invoice)
@@ -1449,53 +1549,58 @@ class WizardImportFatturapa(models.TransientModel):
         Withholdings = FatturaBody.DatiGenerali.DatiGeneraliDocumento.DatiRitenuta
         if not Withholdings:
             return None
-        invoice_data["ftpa_withholding_ids"] = []
-        wt_founds = []
+
+        withholding_tax_model = self.env["withholding.tax"]
+        found_withholding_taxes = withholding_tax_model.browse()
+        e_withholding_taxes_values = []
         for Withholding in Withholdings:
-            wts = self.env["withholding.tax"].search(
-                [("payment_reason_id.code", "=", Withholding.CausalePagamento)]
+            payment_reason_code = Withholding.CausalePagamento
+            withholding_taxes = withholding_tax_model.search(
+                [("payment_reason_id.code", "=", payment_reason_code)],
             )
-            if not wts:
+            if not withholding_taxes:
                 raise UserError(
                     _(
                         "The bill contains withholding tax with "
                         "payment reason %s, "
                         "but such a tax is not found in your system. Please "
-                        "set it."
+                        "set it.",
+                        payment_reason_code,
                     )
-                    % Withholding.CausalePagamento
                 )
 
-            for wt in wts:
+            withholding_tax_amount = Withholding.AliquotaRitenuta
+            e_withholding_tax_type = Withholding.TipoRitenuta
+            withholding_tax_type = WT_CODES_MAPPING[e_withholding_tax_type]
+            for withholding_tax in withholding_taxes:
                 if (
-                    wt.tax == float(Withholding.AliquotaRitenuta)
-                    and WT_CODES_MAPPING[Withholding.TipoRitenuta] == wt.wt_types
+                    withholding_tax.tax == float(withholding_tax_amount)
+                    and withholding_tax_type == withholding_tax.wt_types
                 ):
-                    wt_founds.append(wt)
+                    found_withholding_taxes |= withholding_tax
                     break
             else:
                 raise UserError(
                     _(
                         "No withholding tax found with "
-                        "document payment reason %s, rate %s and type %s."
-                    )
-                    % (
-                        Withholding.CausalePagamento,
-                        Withholding.AliquotaRitenuta,
-                        WT_CODES_MAPPING[Withholding.TipoRitenuta],
+                        "document payment reason %s, rate %s and type %s.",
+                        payment_reason_code,
+                        withholding_tax_amount,
+                        withholding_tax_type,
                     )
                 )
-            invoice_data["ftpa_withholding_ids"].append(
-                (
-                    0,
-                    0,
-                    {
-                        "name": Withholding.TipoRitenuta,
-                        "amount": Withholding.ImportoRitenuta,
-                    },
-                )
-            )
-        return wt_founds
+
+            e_withholding_tax_values = {
+                "name": e_withholding_tax_type,
+                "amount": Withholding.ImportoRitenuta,
+            }
+            e_withholding_taxes_values.append(e_withholding_tax_values)
+
+        invoice_data["ftpa_withholding_ids"] = [
+            (0, 0, withholding_tax_values)
+            for withholding_tax_values in e_withholding_taxes_values
+        ]
+        return found_withholding_taxes
 
     def set_welfares_fund(self, FatturaBody, credit_account_id, invoice, wt_founds):
         invoice_line_model = self.env["account.move.line"]
@@ -1733,8 +1838,6 @@ class WizardImportFatturapa(models.TransientModel):
 
     def importFatturaPA(self):
         self.ensure_one()
-        fatturapa_attachment_obj = self.env["fatturapa.attachment.in"]
-        fatturapa_attachment_ids = self.env.context.get("active_ids", False)
 
         (
             price_precision,
@@ -1756,14 +1859,11 @@ class WizardImportFatturapa(models.TransientModel):
 
         new_invoices = []
         # convert to dict in order to be able to modify context
+        fatturapa_attachments = self._get_selected_records()
         self.env.context = dict(self.env.context)
-        for fatturapa_attachment_id in fatturapa_attachment_ids:
+        for fatturapa_attachment in fatturapa_attachments:
             self.reset_inconsistencies()
-            fatturapa_attachment = fatturapa_attachment_obj.browse(
-                fatturapa_attachment_id
-            )
-            if fatturapa_attachment.in_invoice_ids:
-                raise UserError(_("File is linked to bills yet."))
+            self._check_attachment(fatturapa_attachment)
 
             fatt = self.get_invoice_obj(fatturapa_attachment)
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
