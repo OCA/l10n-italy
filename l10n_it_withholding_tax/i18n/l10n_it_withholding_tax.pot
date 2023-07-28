@@ -270,6 +270,13 @@ msgid "Invoice reconciliation"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
+#. odoo-python
+#: code:addons/l10n_it_withholding_tax/models/account.py:0
+#, python-format
+msgid "Invoices must have the same currency"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
 #: model:ir.model,name:l10n_it_withholding_tax.model_account_move
 msgid "Journal Entry"
 msgstr ""
