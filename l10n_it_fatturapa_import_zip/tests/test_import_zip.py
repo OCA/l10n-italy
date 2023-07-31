@@ -7,6 +7,11 @@ from odoo.addons.l10n_it_fatturapa_in.tests.fatturapa_common import FatturapaCom
 
 
 class TestImportZIP(FatturapaCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env.company.vat = "IT06363391001"
+
     def setUp(self):
         super(TestImportZIP, self).setUp()
         self.attachment_import_model = self.env["fatturapa.attachment.import.zip"]
@@ -27,7 +32,7 @@ class TestImportZIP(FatturapaCommon):
 
     def cleanPartners(self):
         # VAT number used in tests, assigned to other partners by demo data, probably
-        main_company = self.env.ref("base.main_company")
+        main_company = self.env.company
         partners = self.env["res.partner"].search([("vat", "=", "IT06363391001")])
         for partner in partners:
             if partner.id != main_company.partner_id.id:
