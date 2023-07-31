@@ -35,7 +35,6 @@ class FatturaPAAttachmentImportZIP(models.Model):
             ("draft", "Draft"),
             ("done", "Completed"),
         ],
-        string="State",
         default="draft",
         required=True,
         readonly=True,
@@ -49,12 +48,8 @@ class FatturaPAAttachmentImportZIP(models.Model):
     xml_in_count = fields.Integer(
         string="XML In Count", compute="_compute_invoices_data", readonly=True
     )
-    invoices_out_count = fields.Integer(
-        string="Invoices Out Count", compute="_compute_invoices_data", readonly=True
-    )
-    invoices_in_count = fields.Integer(
-        string="Invoices In Count", compute="_compute_invoices_data", readonly=True
-    )
+    invoices_out_count = fields.Integer(compute="_compute_invoices_data", readonly=True)
+    invoices_in_count = fields.Integer(compute="_compute_invoices_data", readonly=True)
     attachment_out_ids = fields.One2many(
         "fatturapa.attachment.out",
         "attachment_import_zip_id",
