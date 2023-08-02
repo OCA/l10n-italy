@@ -41,6 +41,9 @@ class StockDeliveryNoteRmaWizard(models.TransientModel):
         string="Shipping Address",
         help="Will be used to return the goods when the RMA is completed",
     )
+    custom_description = fields.Text(
+        help="Values coming from portal RMA request form custom fields",
+    )
 
     def create_rma(self):
         self.ensure_one()
@@ -143,6 +146,10 @@ class StockDeliveryNoteLineRmaWizard(models.TransientModel):
     delivery_note_line_id = fields.Many2one(
         comodel_name="stock.delivery.note.line",
     )
+    sale_line_id = fields.Many2one(
+        comodel_name="sale.order.line",
+    )
+    description = fields.Text()
 
     @api.onchange("product_id")
     def onchange_product_id(self):
@@ -177,6 +184,9 @@ class StockDeliveryNoteLineRmaWizard(models.TransientModel):
 
     def _prepare_rma_values(self):
         self.ensure_one()
+        description = (self.description or "") + (
+            self.wizard_id.custom_description or ""
+        )
         partner_invoice_id = False
         partner_shipping_id = False
         if self.delivery_note_id.partner_id:
@@ -211,4 +221,5 @@ class StockDeliveryNoteLineRmaWizard(models.TransientModel):
             "product_uom_qty": self.quantity,
             "product_uom": self.uom_id.id,
             "operation_id": self.operation_id.id,
+            "description": description,
         }
