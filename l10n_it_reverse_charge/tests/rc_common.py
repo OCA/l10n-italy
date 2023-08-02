@@ -1,6 +1,21 @@
-from odoo.tests import tagged
+#  Copyright 2023 Simone Rubino - TAKOBI
+#  License LGPG-3.0 or later (https://www.gnu.org/licenses/lgpg).
+
+from odoo.tests import Form, tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
+
+
+def _create_form_record(model, record_values, view=None):
+    """Create a record using Form.
+
+    This allows to check required/invisible fields
+    as if the user were creating the record.
+    """
+    form = Form(model, view=view)
+    for field, value in record_values.items():
+        setattr(form, field, value)
+    return form.save()
 
 
 @tagged("post_install", "-at_install")
@@ -43,9 +58,9 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
             cls.env["account.account"].search(
                 [
                     (
-                        "user_type_id",
+                        "account_type",
                         "=",
-                        cls.env.ref("account.data_account_type_payable").id,
+                        "liability_payable",
                     )
                 ],
                 limit=1,
@@ -54,9 +69,9 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
         cls.invoice_line_account = cls.env["account.account"].search(
             [
                 (
-                    "user_type_id",
+                    "account_type",
                     "=",
-                    cls.env.ref("account.data_account_type_expenses").id,
+                    "expense",
                 )
             ],
             limit=1,
@@ -72,7 +87,6 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
                             "value": "percent",
                             "value_amount": 50,
                             "days": 15,
-                            "sequence": 1,
                         },
                     ),
                     (
@@ -81,7 +95,6 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
                         {
                             "value": "balance",
                             "days": 30,
-                            "sequence": 2,
                         },
                     ),
                 ],
@@ -104,9 +117,7 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
             {
                 "code": "295000",
                 "name": "selfinvoice temporary",
-                "user_type_id": cls.env.ref(
-                    "account.data_account_type_current_liabilities"
-                ).id,
+                "account_type": "liability_current",
             }
         )
 
@@ -146,24 +157,43 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
     @classmethod
     def _create_journals(cls):
         journal_model = cls.env["account.journal"]
-        cls.journal_selfinvoice = journal_model.create(
-            {"name": "selfinvoice", "type": "sale", "code": "SLF"}
+        cls.journal_selfinvoice = _create_form_record(
+            journal_model,
+            {
+                "name": "selfinvoice",
+                "type": "sale",
+                "code": "SLF",
+                "default_account_id": cls.account_selfinvoice,
+            },
         )
 
-        cls.journal_reconciliation = journal_model.create(
+        cls.journal_reconciliation = _create_form_record(
+            journal_model,
             {
                 "name": "RC reconciliation",
                 "type": "general",
                 "code": "SLFRC",
-            }
+            },
         )
 
-        cls.journal_selfinvoice_extra = journal_model.create(
-            {"name": "Extra selfinvoice", "type": "sale", "code": "SLFEX"}
+        cls.journal_selfinvoice_extra = _create_form_record(
+            journal_model,
+            {
+                "name": "Extra selfinvoice",
+                "type": "sale",
+                "code": "SLFEX",
+                "default_account_id": cls.account_selfinvoice,
+            },
         )
 
-        cls.journal_cee_extra = journal_model.create(
-            {"name": "Extra CEE", "type": "purchase", "code": "EXCEE"}
+        cls.journal_cee_extra = _create_form_record(
+            journal_model,
+            {
+                "name": "Extra CEE",
+                "type": "purchase",
+                "code": "EXCEE",
+                "default_account_id": cls.account_selfinvoice,
+            },
         )
 
     @classmethod

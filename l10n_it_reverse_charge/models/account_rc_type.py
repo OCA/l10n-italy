@@ -2,6 +2,7 @@
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
 # Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl
+# Copyright 2023 Simone Rubino - TAKOBI
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
@@ -63,10 +64,9 @@ class AccountRCType(models.Model):
     _name = "account.rc.type"
     _description = "Reverse Charge Type"
 
-    name = fields.Char("Name", required=True)
+    name = fields.Char(required=True)
     method = fields.Selection(
         selection=[("integration", "VAT Integration"), ("selfinvoice", "Self Invoice")],
-        string="Method",
         required=True,
     )
     partner_type = fields.Selection(
@@ -113,7 +113,7 @@ class AccountRCType(models.Model):
         string="Self Invoice Tax Mapping",
         copy=False,
     )
-    description = fields.Text("Description")
+    description = fields.Text()
     self_invoice_text = fields.Text("Text in Self Invoice")
     company_id = fields.Many2one(
         "res.company",

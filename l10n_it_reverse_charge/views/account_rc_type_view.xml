@@ -2,7 +2,9 @@
 <!-- Copyright 2017 Davide Corio
      Copyright 2017 Alex Comba - Agile Business Group
      Copyright 2017 Lorenzo Battistini - Agile Business Group
-     Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl -->
+     Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl
+     Copyright 2023 Simone Rubino - TAKOBI
+     -->
 <odoo>
 
     <record id="view_rc_type_form" model="ir.ui.view">
@@ -79,7 +81,7 @@
                                     'readonly': [('method', '!=', 'selfinvoice')],
                                     'required': [('method', '=', 'selfinvoice')]}"
                         >
-                            <tree string="Tax Mapping" editable="bottom">
+                            <tree editable="bottom">
                                 <field name="original_purchase_tax_id" />
                                 <field name="purchase_tax_id" />
                                 <field name="sale_tax_id" />
@@ -102,7 +104,7 @@
         <field name="model">account.rc.type</field>
         <field name="type">tree</field>
         <field name="arch" type="xml">
-            <tree string="Reverse Charge Types">
+            <tree>
                 <field name="name" />
                 <field name="method" />
                 <field name="partner_type" />

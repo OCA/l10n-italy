@@ -2,6 +2,7 @@
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
 # Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl
+# Copyright 2023 Simone Rubino - TAKOBI
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
@@ -19,9 +20,15 @@ class AccountMoveLine(models.Model):
         "tax_ids",
     )
     def _compute_rc_flag(self):
-        for line in self.filtered(lambda r: not r.exclude_from_invoice_tab):
-            if line.move_id.is_purchase_document():
-                line.rc = bool(line.move_id.fiscal_position_id.rc_type_id)
+        for line in self:
+            move = line.move_id
+            is_invoice_line = line in move.invoice_line_ids
+            is_rc = (
+                move.is_purchase_document()
+                and move.fiscal_position_id.rc_type_id
+                and is_invoice_line
+            )
+            line.rc = is_rc
 
     rc = fields.Boolean(
         "RC", compute="_compute_rc_flag", store=True, readonly=False, default=False
@@ -87,15 +94,14 @@ class AccountMove(models.Model):
 
         narration = _(
             "Reverse charge self invoice.\n"
-            "Supplier: %s\n"
-            "Reference: %s\n"
-            "Date: %s\n"
-            "Internal reference: %s"
-        ) % (
-            supplier.display_name,
-            self.invoice_origin or self.ref or "",
-            self.date,
-            self.name,
+            "Supplier: %(supplier)s\n"
+            "Reference: %(reference)s\n"
+            "Date: %(date)s\n"
+            "Internal reference: %(internal_reference)s",
+            supplier=supplier.display_name,
+            reference=self.invoice_origin or self.ref or "",
+            date=self.date,
+            internal_reference=self.name,
         )
         return {
             "partner_id": partner.id,
@@ -339,8 +345,11 @@ class AccountMove(models.Model):
                     )
                 )
 
-            rc_lines_to_rec = line_to_reconcile | payment_line_to_reconcile
-            rc_lines_to_rec.reconcile()
+            if not payment_line_to_reconcile.reconciled:
+                # In some cases the payment line is already reconciled
+                # simply because it has 0 amount
+                rc_lines_to_rec = line_to_reconcile | payment_line_to_reconcile
+                rc_lines_to_rec.reconcile()
 
     def _reconcile_rc_invoice_payment(self, rc_invoice, rc_payment):
         """Reconcile the RC Payment."""
@@ -373,8 +382,13 @@ class AccountMove(models.Model):
                 line_tax_ids = line.tax_ids
                 if not line_tax_ids:
                     raise UserError(
-                        _("Invoice %s, line\n%s\nis RC but has not tax")
-                        % ((self.name or self.partner_id.display_name), line.name)
+                        _(
+                            "Invoice %(invoice)s, line\n"
+                            " %(line)s\n"
+                            " is RC but has not tax",
+                            invoice=self.name or self.partner_id.display_name,
+                            line=line.name,
+                        )
                     )
                 mapped_taxes = rc_type.map_tax(
                     line_tax_ids,
@@ -421,7 +435,7 @@ class AccountMove(models.Model):
             supplier_invoice = self.rc_self_purchase_invoice_id
             for line in supplier_invoice.line_ids:
                 line.remove_move_reconcile()
-            supplier_invoice.line_ids.unlink()
+            supplier_invoice.line_ids.with_context(dynamic_unlink=True).unlink()
             # temporary disabling self invoice automations
             supplier_invoice.fiscal_position_id = False
 
