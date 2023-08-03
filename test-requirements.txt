@@ -1,0 +1,2 @@
+# https://github.com/OCA/l10n-italy/pull/3514
+odoo-addon-l10n_it_reverse_charge @ git+https://github.com/OCA/l10n-italy.git@refs/pull/3514/head#subdirectory=setup/l10n_it_reverse_charge
