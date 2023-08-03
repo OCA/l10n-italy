@@ -1,10 +1,11 @@
 # Copyright 2020 Lorenzo Battistini @ TAKOBI
 # Copyright 2021 Alex Comba - Agile Business Group
+# Copyright 2023 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "ITA - Emissione e-fattura con reverse charge",
     "summary": "Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge",
-    "version": "14.0.1.3.1",
+    "version": "16.0.1.0.0",
     "development_status": "Beta",
     "category": "Hidden",
     "website": "https://github.com/OCA/l10n-italy",
