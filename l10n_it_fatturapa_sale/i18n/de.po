@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-08-03 14:10+0000\n"
+"Last-Translator: Matteo <matteomircoli@openforce.it>\n"
 "Language-Team: none\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_it_fatturapa_sale
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_sale_order_line__admin_ref
@@ -31,13 +33,13 @@ msgstr ""
 #. module: l10n_it_fatturapa_sale
 #: model:ir.model,name:l10n_it_fatturapa_sale.model_fatturapa_related_document_type
 msgid "E-invoice Related Document Type"
-msgstr ""
+msgstr "E-Rechnung Zugehörige Dokument Art"
 
 #. module: l10n_it_fatturapa_sale
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_sale.sale_order_line_view_form_readonly
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_sale.view_order_form
 msgid "Electronic Invoice"
-msgstr ""
+msgstr "Elektronische Rechnung"
 
 #. module: l10n_it_fatturapa_sale
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_account_move__id
@@ -51,12 +53,12 @@ msgstr ""
 #. module: l10n_it_fatturapa_sale
 #: model:ir.model,name:l10n_it_fatturapa_sale.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Buchungssatz"
 
 #. module: l10n_it_fatturapa_sale
 #: model:ir.model,name:l10n_it_fatturapa_sale.model_account_move_line
 msgid "Journal Item"
-msgstr ""
+msgstr "Buchungszeile"
 
 #. module: l10n_it_fatturapa_sale
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_account_move____last_update
@@ -71,34 +73,34 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_sale_order__related_documents
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_sale_order_line__related_documents
 msgid "Related Documents"
-msgstr ""
+msgstr "Zugehörige Dokumente"
 
 #. module: l10n_it_fatturapa_sale
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_fatturapa_related_document_type__invoice_id
 msgid "Related Invoice"
-msgstr ""
+msgstr "Zugehörige Rechnung"
 
 #. module: l10n_it_fatturapa_sale
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_fatturapa_related_document_type__invoice_line_id
 msgid "Related Invoice Line"
-msgstr ""
+msgstr "Zugehörige Rechnungszeile"
 
 #. module: l10n_it_fatturapa_sale
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_fatturapa_related_document_type__sale_order_id
 msgid "Sale order"
-msgstr ""
+msgstr "Auftrage"
 
 #. module: l10n_it_fatturapa_sale
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_fatturapa_related_document_type__sale_order_line_id
 msgid "Sale order line"
-msgstr ""
+msgstr "Bestellzeile"
 
 #. module: l10n_it_fatturapa_sale
 #: model:ir.model,name:l10n_it_fatturapa_sale.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Auftrag"
 
 #. module: l10n_it_fatturapa_sale
 #: model:ir.model,name:l10n_it_fatturapa_sale.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Bestellzeile"
