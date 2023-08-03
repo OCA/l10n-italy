@@ -60,7 +60,7 @@
             <TipoDocumento>TD17</TipoDocumento>
             <Divisa>EUR</Divisa>
             <Data>2020-12-01</Data>
-            <Numero>SLFEX/2020/12/0001</Numero>
+            <Numero>SLFEX/2020/00001</Numero>
             <ImportoTotaleDocumento>122.00</ImportoTotaleDocumento>
             <Causale>Reverse charge self invoice.</Causale>
             <Causale>Supplier: Extra EU supplier</Causale>

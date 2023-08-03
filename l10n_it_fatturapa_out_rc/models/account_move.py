@@ -1,3 +1,6 @@
+#  Copyright 2023 Simone Rubino - TAKOBI
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from odoo import _, models
 from odoo.exceptions import UserError
 
@@ -31,7 +34,7 @@ class AccountMove(models.Model):
         return res
 
     def button_draft(self):
-        super().button_draft()
+        res = super().button_draft()
         for inv in self:
             if not inv.env.context.get(
                 "rc_set_to_draft"
@@ -43,6 +46,7 @@ class AccountMove(models.Model):
                         "Validate vendor invoice before."
                     )
                 )
+        return res
 
     def preventive_checks(self):
         super().preventive_checks()

@@ -1,4 +1,5 @@
 # Copyright 2021 Alex Comba - Agile Business Group
+# Copyright 2023 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import base64
@@ -58,16 +59,18 @@ class TestFatturaPAXMLValidation(ReverseChargeCommon, FatturaPACommon):
         self.selfinvoice_sequence_name = "selfinvoice : Check Number Sequence"
 
     @classmethod
-    def _create_invoice(cls, move_type, partner, name, invoice_date, ref, taxes):
+    def _create_out_rc_invoice(cls, move_type, partner, name, invoice_date, ref, taxes):
         invoice_form = Form(
-            cls.env["account.move"].with_context({"default_move_type": move_type})
+            cls.env["account.move"].with_context(default_move_type=move_type)
         )
         invoice_form.partner_id = partner
         invoice_form.name = name
         invoice_form.invoice_date = fields.Date.from_string(invoice_date)
-        invoice_form.date = fields.Date.from_string(invoice_date)
+        # Date is not always visible
+        if not invoice_form._get_modifier("date", "invisible"):
+            invoice_form.date = fields.Date.from_string(invoice_date)
         invoice_form.ref = ref
-        with invoice_form.line_ids.new() as line_form:
+        with invoice_form.invoice_line_ids.new() as line_form:
             line_form.product_id = cls.env.ref("product.product_product_4c")
             line_form.name = "Invoice for sample product"
             line_form.price_unit = 100
@@ -76,13 +79,9 @@ class TestFatturaPAXMLValidation(ReverseChargeCommon, FatturaPACommon):
         return invoice_form
 
     def test_intra_EU(self):
-        self.set_sequences(
-            15, "2020-12-01", sequence_name=self.selfinvoice_sequence_name
-        )
-        self.set_sequences(25, "2020-12-01", sequence_name=self.bill_sequence_name)
         self.supplier_intraEU.property_payment_term_id = self.term_15_30.id
 
-        invoice_form = self._create_invoice(
+        invoice_form = self._create_out_rc_invoice(
             move_type="in_invoice",
             partner=self.supplier_intraEU,
             name="BILL/2021/12/0001",
@@ -117,13 +116,9 @@ class TestFatturaPAXMLValidation(ReverseChargeCommon, FatturaPACommon):
         )
 
     def test_intra_EU_customer(self):
-        self.set_sequences(
-            15, "2020-12-01", sequence_name=self.selfinvoice_sequence_name
-        )
-        self.set_sequences(25, "2020-12-01", sequence_name=self.bill_sequence_name)
         self.supplier_intraEU.property_payment_term_id = self.term_15_30.id
 
-        invoice_form = self._create_invoice(
+        invoice_form = self._create_out_rc_invoice(
             move_type="out_invoice",
             partner=self.supplier_intraEU,
             name="BILL/2021/12/0002",
@@ -136,13 +131,9 @@ class TestFatturaPAXMLValidation(ReverseChargeCommon, FatturaPACommon):
         self.assertFalse(invoice.rc_self_invoice_id)
 
     def test_intra_EU_draft(self):
-        self.set_sequences(
-            15, "2020-12-01", sequence_name=self.selfinvoice_sequence_name
-        )
-        self.set_sequences(25, "2020-12-01", sequence_name=self.bill_sequence_name)
         self.supplier_intraEU.property_payment_term_id = self.term_15_30.id
 
-        invoice_form = self._create_invoice(
+        invoice_form = self._create_out_rc_invoice(
             move_type="in_invoice",
             partner=self.supplier_intraEU,
             name="BILL/2021/12/0003",
@@ -160,13 +151,9 @@ class TestFatturaPAXMLValidation(ReverseChargeCommon, FatturaPACommon):
         self.assertEqual(invoice.state, "draft")
 
     def test_intra_EU_supplier_refund(self):
-        self.set_sequences(
-            16, "2020-12-01", sequence_name=self.selfinvoice_sequence_name
-        )
-        self.set_sequences(26, "2020-12-01", sequence_name=self.bill_sequence_name)
         self.supplier_intraEU.property_payment_term_id = self.term_15_30.id
 
-        invoice_form = self._create_invoice(
+        invoice_form = self._create_out_rc_invoice(
             move_type="in_refund",
             partner=self.supplier_intraEU,
             name="BILL/2021/12/0004",
@@ -200,10 +187,9 @@ class TestFatturaPAXMLValidation(ReverseChargeCommon, FatturaPACommon):
         )
 
     def test_extra_EU(self):
-        self.set_sequences(27, "2020-12-01", sequence_name=self.bill_sequence_name)
         self.supplier_extraEU.property_payment_term_id = self.term_15_30.id
 
-        invoice_form = self._create_invoice(
+        invoice_form = self._create_out_rc_invoice(
             move_type="in_invoice",
             partner=self.supplier_extraEU,
             name="BILL/2021/12/0005",
