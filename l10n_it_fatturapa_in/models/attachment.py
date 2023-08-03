@@ -137,16 +137,17 @@ class FatturaPAAttachmentIn(models.Model):
                 name = _("Attachment without name")
             else:
                 name = attach.NomeAttachment
-            content = attach.Attachment.encode()
-            _attach_dict = {
-                "name": name,
-                "datas": content,
-                "description": attach.DescrizioneAttachment or "",
-                "compression": attach.AlgoritmoCompressione or "",
-                "format": attach.FormatoAttachment or "",
-                "invoice_id": invoice_id,
-            }
-            AttachModel.create(_attach_dict)
+            if attach.Attachment:
+                content = attach.Attachment.encode()
+                _attach_dict = {
+                    "name": name,
+                    "datas": content,
+                    "description": attach.DescrizioneAttachment or "",
+                    "compression": attach.AlgoritmoCompressione or "",
+                    "format": attach.FormatoAttachment or "",
+                    "invoice_id": invoice_id,
+                }
+                AttachModel.create(_attach_dict)
 
     @api.depends("ir_attachment_id.datas")
     def _compute_linked_invoice_id_xml(self):
