@@ -664,7 +664,7 @@ msgid "Assets Depreciations"
 msgstr "Ammortamenti beni"
 
 #. module: assets_management
-#: code:addons/assets_management/report/asset_journal.py:288
+#: code:addons/assets_management/report/asset_journal.py:289
 #, python-format
 msgid "Assets Depreciations "
 msgstr "Ammortamenti beni "
@@ -680,7 +680,7 @@ msgid "Assets Management"
 msgstr "Gestione cespiti"
 
 #. module: assets_management
-#: code:addons/assets_management/report/asset_previsional.py:315
+#: code:addons/assets_management/report/asset_previsional.py:316
 #, python-format
 msgid "Assets Previsional Depreciations "
 msgstr "Ammortamenti previsionali cespiti "
@@ -877,7 +877,8 @@ msgstr ""
 #: code:addons/assets_management/models/account_account.py:26
 #, python-format
 msgid "Cannot delete accounts while they're still used by asset categories."
-msgstr "Non è possibile eliminare conti ancora utilizzati da categorie cespiti."
+msgstr ""
+"Non è possibile eliminare conti ancora utilizzati da categorie cespiti."
 
 #. module: assets_management
 #: code:addons/assets_management/models/asset_category.py:133
@@ -1814,8 +1815,8 @@ msgid "General Info"
 msgstr "Info generali"
 
 #. module: assets_management
-#: code:addons/assets_management/report/asset_journal.py:265
-#: code:addons/assets_management/report/asset_previsional.py:294
+#: code:addons/assets_management/report/asset_journal.py:266
+#: code:addons/assets_management/report/asset_previsional.py:295
 #, python-format
 msgid "General Total"
 msgstr "Totale generale"
@@ -2291,8 +2292,8 @@ msgid "Needs Previsional"
 msgstr "Richiede previsionali"
 
 #. module: assets_management
-#: code:addons/assets_management/report/asset_journal.py:456
-#: code:addons/assets_management/report/asset_previsional.py:487
+#: code:addons/assets_management/report/asset_journal.py:463
+#: code:addons/assets_management/report/asset_previsional.py:494
 #, python-format
 msgid "New"
 msgstr "Nuovo"
@@ -2325,15 +2326,15 @@ msgid "No fiscal year defined for date {}"
 msgstr "Nessun anno fiscale definito per la data {}"
 
 #. module: assets_management
-#: code:addons/assets_management/report/asset_journal.py:116
-#: code:addons/assets_management/report/asset_previsional.py:121
+#: code:addons/assets_management/report/asset_journal.py:117
+#: code:addons/assets_management/report/asset_previsional.py:122
 #, python-format
 msgid "No report has been defined for type `{}`."
 msgstr "Nessun report è stato definito per il tipo `{}`."
 
 #. module: assets_management
-#: code:addons/assets_management/report/asset_journal.py:121
-#: code:addons/assets_management/report/asset_previsional.py:126
+#: code:addons/assets_management/report/asset_journal.py:122
+#: code:addons/assets_management/report/asset_previsional.py:127
 #, python-format
 msgid "No report type has been declared for current print."
 msgstr "Nessun tipo di report è stato dichiarato per la stampa corrente."
@@ -2960,8 +2961,8 @@ msgstr ""
 "ancora!"
 
 #. module: assets_management
-#: code:addons/assets_management/report/asset_journal.py:196
-#: code:addons/assets_management/report/asset_previsional.py:199
+#: code:addons/assets_management/report/asset_journal.py:197
+#: code:addons/assets_management/report/asset_previsional.py:200
 #, python-format
 msgid "There is nothing to print according to current settings!"
 msgstr "Non c’è nulla da stampare in base ai parametri scelti!"
@@ -3014,8 +3015,8 @@ msgid "Type Name"
 msgstr "Nome tipo"
 
 #. module: assets_management
-#: code:addons/assets_management/report/asset_journal.py:455
-#: code:addons/assets_management/report/asset_previsional.py:486
+#: code:addons/assets_management/report/asset_journal.py:462
+#: code:addons/assets_management/report/asset_previsional.py:493
 #, python-format
 msgid "Unknown"
 msgstr "Non definito"
@@ -3060,8 +3061,8 @@ msgid "Updated Amount"
 msgstr "Importo aggiornato"
 
 #. module: assets_management
-#: code:addons/assets_management/report/asset_journal.py:456
-#: code:addons/assets_management/report/asset_previsional.py:487
+#: code:addons/assets_management/report/asset_journal.py:463
+#: code:addons/assets_management/report/asset_previsional.py:494
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__used
 #: model:ir.model.fields,field_description:assets_management.field_wizard_account_move_manage_asset__used
 #: model:ir.model.fields,field_description:assets_management.field_wizard_invoice_manage_asset__used
@@ -3379,8 +3380,8 @@ msgid "report_asset_previsional_totals"
 msgstr "report_asset_previsional_totals"
 
 #. module: assets_management
-#: code:addons/assets_management/report/asset_journal.py:290
-#: code:addons/assets_management/report/asset_previsional.py:317
+#: code:addons/assets_management/report/asset_journal.py:291
+#: code:addons/assets_management/report/asset_previsional.py:318
 #, python-format
 msgid "to date {}"
 msgstr "alla data {}"
