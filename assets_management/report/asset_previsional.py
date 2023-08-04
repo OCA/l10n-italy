@@ -1,5 +1,6 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
+# Copyright 2022 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from collections import OrderedDict
@@ -391,6 +392,12 @@ class ReportCategory(models.TransientModel):
                         if fy_start <= report_date <= fy_end:
                             totals_by_dep_type[dep_type][fname] += \
                                 line_curr.compute(last_line[fname], curr)
+                        elif fy_end < report_date:
+                            totals_by_dep_type[dep_type][fname] += \
+                                line_curr.compute(
+                                    last_line['amount_depreciation_fund_curr_year'],
+                                    curr,
+                                )
                     elif fname in (
                         'amount_in_total',
                         'amount_out_total',
