@@ -536,6 +536,8 @@ class WizardImportFatturapa(models.TransientModel):
 
         if not product and partner.e_invoice_default_product_id:
             product = partner.e_invoice_default_product_id
+        elif not product and self.env.company.e_invoice_product_id:
+            product = self.env.company.e_invoice_product_id
         return product
 
     def adjust_accounting_data(self, product, line_vals):

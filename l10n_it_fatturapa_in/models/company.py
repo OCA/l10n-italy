@@ -41,6 +41,7 @@ class ResCompany(models.Model):
         string="Vendor invoice registration default date",
         default="inv_date",
     )
+    e_invoice_product_id = fields.Many2one("product.product", "Default Product")
 
 
 class AccountConfigSettings(models.TransientModel):
@@ -63,4 +64,7 @@ class AccountConfigSettings(models.TransientModel):
     )
     in_invoice_registration_date = fields.Selection(
         related="company_id.in_invoice_registration_date", readonly=False
+    )
+    e_invoice_product_id = fields.Many2one(
+        related="company_id.e_invoice_product_id", readonly=False
     )
