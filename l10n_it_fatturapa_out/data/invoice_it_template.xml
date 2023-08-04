@@ -438,7 +438,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     t-set="id_fiscale_iva"
                     t-value="get_id_fiscale_iva(partner_id.commercial_partner_id)"
                 />
-                    <IdFiscaleIVA>
+                    <IdFiscaleIVA t-if="id_fiscale_iva['id_codice']">
                         <IdPaese t-out="id_fiscale_iva['id_paese']" />
                         <IdCodice t-out="id_fiscale_iva['id_codice']" />
                     </IdFiscaleIVA>
