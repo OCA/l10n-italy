@@ -34,6 +34,7 @@ addon | version | maintainers | summary
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 16.0.1.0.2 |  | Fatture elettroniche
 [l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 16.0.1.0.0 |  | Ricezione fatture elettroniche
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 16.0.1.0.8 |  | Emissione fatture elettroniche
+[l10n_it_fatturapa_out_di](l10n_it_fatturapa_out_di/) | 16.0.1.0.0 |  | Dichiarazioni d'intento in fatturapa
 [l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 16.0.1.0.0 |  | ITA - Tipi di documento fiscale per dichiarativi
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 16.0.1.0.0 |  | Condizioni di pagamento delle fatture elettroniche
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 16.0.1.0.0 |  | ITA - Codice fiscale
