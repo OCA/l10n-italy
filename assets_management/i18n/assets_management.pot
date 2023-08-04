@@ -2721,19 +2721,8 @@ msgid "Technical Data"
 msgstr ""
 
 #. module: assets_management
-#: code:addons/assets_management/models/asset.py:0
-#, python-format
-msgid ""
-"The assets you are trying to delete are currently linked to accounting info."
-" Please remove them if necessary before removing these assets:\n"
-msgstr ""
-
-#. module: assets_management
-#: code:addons/assets_management/models/asset_depreciation_line.py:0
-#, python-format
-msgid ""
-"The lines you you are trying to delete are currently linked to accounting "
-"info. Please remove them if necessary before removing these lines:\n"
+#: model:ir.model.fields,help:assets_management.field_asset_accounting_info__move_id
+msgid "The move of this entry line."
 msgstr ""
 
 #. module: assets_management
