@@ -2764,26 +2764,9 @@ msgid "Technical Data"
 msgstr "Dati tecnici"
 
 #. module: assets_management
-#: code:addons/assets_management/models/asset.py:0
-#, python-format
-msgid ""
-"The assets you are trying to delete are currently linked to accounting info. "
-"Please remove them if necessary before removing these assets:\n"
+#: model:ir.model.fields,help:assets_management.field_asset_accounting_info__move_id
+msgid "The move of this entry line."
 msgstr ""
-"I cespiti che si sta tentando di eliminare sono collegati a registrazioni "
-"contabili. Si prega di rimuoverle se necessario prima di rimuovere questi "
-"cespiti:\n"
-
-#. module: assets_management
-#: code:addons/assets_management/models/asset_depreciation_line.py:0
-#, python-format
-msgid ""
-"The lines you you are trying to delete are currently linked to accounting "
-"info. Please remove them if necessary before removing these lines:\n"
-msgstr ""
-"Le righe che si sta tentando di eliminare sono collegati a registrazioni "
-"contabili. Si prega di rimuoverle se necessario prima di rimuovere queste "
-"righe:\n"
 
 #. module: assets_management
 #: code:addons/assets_management/models/asset_depreciation_mode.py:0
@@ -3094,6 +3077,24 @@ msgstr "alla data {}"
 #, python-format
 msgid "{} - Depreciation"
 msgstr "{} - Ammortamento"
+
+#, python-format
+#~ msgid ""
+#~ "The assets you are trying to delete are currently linked to accounting "
+#~ "info. Please remove them if necessary before removing these assets:\n"
+#~ msgstr ""
+#~ "I cespiti che si sta tentando di eliminare sono collegati a registrazioni "
+#~ "contabili. Si prega di rimuoverle se necessario prima di rimuovere questi "
+#~ "cespiti:\n"
+
+#, python-format
+#~ msgid ""
+#~ "The lines you you are trying to delete are currently linked to accounting "
+#~ "info. Please remove them if necessary before removing these lines:\n"
+#~ msgstr ""
+#~ "Le righe che si sta tentando di eliminare sono collegati a registrazioni "
+#~ "contabili. Si prega di rimuoverle se necessario prima di rimuovere queste "
+#~ "righe:\n"
 
 #, python-format
 #~ msgid ""
