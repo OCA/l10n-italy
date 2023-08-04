@@ -656,7 +656,7 @@ msgid "Assets Depreciations"
 msgstr ""
 
 #. module: assets_management
-#: code:addons/assets_management/report/asset_journal.py:288
+#: code:addons/assets_management/report/asset_journal.py:289
 #, python-format
 msgid "Assets Depreciations "
 msgstr ""
@@ -672,7 +672,7 @@ msgid "Assets Management"
 msgstr ""
 
 #. module: assets_management
-#: code:addons/assets_management/report/asset_previsional.py:315
+#: code:addons/assets_management/report/asset_previsional.py:316
 #, python-format
 msgid "Assets Previsional Depreciations "
 msgstr ""
@@ -1705,8 +1705,8 @@ msgid "General Info"
 msgstr ""
 
 #. module: assets_management
-#: code:addons/assets_management/report/asset_journal.py:265
-#: code:addons/assets_management/report/asset_previsional.py:294
+#: code:addons/assets_management/report/asset_journal.py:266
+#: code:addons/assets_management/report/asset_previsional.py:295
 #, python-format
 msgid "General Total"
 msgstr ""
@@ -2182,8 +2182,8 @@ msgid "Needs Previsional"
 msgstr ""
 
 #. module: assets_management
-#: code:addons/assets_management/report/asset_journal.py:456
-#: code:addons/assets_management/report/asset_previsional.py:487
+#: code:addons/assets_management/report/asset_journal.py:463
+#: code:addons/assets_management/report/asset_previsional.py:494
 #, python-format
 msgid "New"
 msgstr ""
@@ -2216,15 +2216,15 @@ msgid "No fiscal year defined for date {}"
 msgstr ""
 
 #. module: assets_management
-#: code:addons/assets_management/report/asset_journal.py:116
-#: code:addons/assets_management/report/asset_previsional.py:121
+#: code:addons/assets_management/report/asset_journal.py:117
+#: code:addons/assets_management/report/asset_previsional.py:122
 #, python-format
 msgid "No report has been defined for type `{}`."
 msgstr ""
 
 #. module: assets_management
-#: code:addons/assets_management/report/asset_journal.py:121
-#: code:addons/assets_management/report/asset_previsional.py:126
+#: code:addons/assets_management/report/asset_journal.py:122
+#: code:addons/assets_management/report/asset_previsional.py:127
 #, python-format
 msgid "No report type has been declared for current print."
 msgstr ""
@@ -2826,8 +2826,8 @@ msgid "There is no archive about assets, invoices and account moves... yet!"
 msgstr ""
 
 #. module: assets_management
-#: code:addons/assets_management/report/asset_journal.py:196
-#: code:addons/assets_management/report/asset_previsional.py:199
+#: code:addons/assets_management/report/asset_journal.py:197
+#: code:addons/assets_management/report/asset_previsional.py:200
 #, python-format
 msgid "There is nothing to print according to current settings!"
 msgstr ""
@@ -2880,8 +2880,8 @@ msgid "Type Name"
 msgstr ""
 
 #. module: assets_management
-#: code:addons/assets_management/report/asset_journal.py:455
-#: code:addons/assets_management/report/asset_previsional.py:486
+#: code:addons/assets_management/report/asset_journal.py:462
+#: code:addons/assets_management/report/asset_previsional.py:493
 #, python-format
 msgid "Unknown"
 msgstr ""
@@ -2926,8 +2926,8 @@ msgid "Updated Amount"
 msgstr ""
 
 #. module: assets_management
-#: code:addons/assets_management/report/asset_journal.py:456
-#: code:addons/assets_management/report/asset_previsional.py:487
+#: code:addons/assets_management/report/asset_journal.py:463
+#: code:addons/assets_management/report/asset_previsional.py:494
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__used
 #: model:ir.model.fields,field_description:assets_management.field_wizard_account_move_manage_asset__used
 #: model:ir.model.fields,field_description:assets_management.field_wizard_invoice_manage_asset__used
@@ -3195,8 +3195,8 @@ msgid "report_asset_previsional_totals"
 msgstr ""
 
 #. module: assets_management
-#: code:addons/assets_management/report/asset_journal.py:290
-#: code:addons/assets_management/report/asset_previsional.py:317
+#: code:addons/assets_management/report/asset_journal.py:291
+#: code:addons/assets_management/report/asset_previsional.py:318
 #, python-format
 msgid "to date {}"
 msgstr ""
