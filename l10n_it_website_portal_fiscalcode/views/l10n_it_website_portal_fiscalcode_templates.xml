@@ -19,7 +19,7 @@
             >
                 <label
                     class="col-form-label label-optional"
-                    for="vat"
+                    for="fiscalcode"
                 >Fiscal Code</label>
                 <input
                     type="text"
