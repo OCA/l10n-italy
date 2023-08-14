@@ -8,7 +8,7 @@
         <xpath expr="//div[hasclass('o_portal_details')]/div[1]/div[1]/div[7]" position="after">
             <!-- After VAT -->
             <div t-attf-class="form-group #{error.get('fiscalcode') and 'o_has_error' or ''} col-xl-6">
-                <label class="col-form-label label-optional" for="vat">Fiscal Code</label>
+                <label class="col-form-label label-optional" for="fiscalcode">Fiscal Code</label>
                 <input type="text" name="fiscalcode"
                        t-attf-class="form-control #{error.get('fiscalcode') and 'is-invalid' or ''}"
                        t-att-value="fiscalcode or partner.fiscalcode"
