@@ -98,7 +98,7 @@ addon | version | maintainers | summary
 [l10n_it_website_portal_corrispettivi](l10n_it_website_portal_corrispettivi/) | 12.0.1.0.0 |  | Aggiunge ricevuta o fattura come opzione nel profilo dell'utente portale
 [l10n_it_website_portal_fatturapa](l10n_it_website_portal_fatturapa/) | 12.0.1.3.0 |  | Add fatturapa fields and checks in frontend user's details
 [l10n_it_website_portal_fatturapa_sale](l10n_it_website_portal_fatturapa_sale/) | 12.0.1.1.1 |  | Controlli per la fattura elettronica nel portale vendite
-[l10n_it_website_portal_fiscalcode](l10n_it_website_portal_fiscalcode/) | 12.0.1.0.2 |  | Add fiscal code to details of frontend user
+[l10n_it_website_portal_fiscalcode](l10n_it_website_portal_fiscalcode/) | 12.0.1.0.3 |  | Add fiscal code to details of frontend user
 [l10n_it_website_portal_ipa](l10n_it_website_portal_ipa/) | 12.0.1.1.1 |  | Aggiunge l'indice PA (IPA) tra i dettagli dell'utente nel portale.
 [l10n_it_website_sale_corrispettivi](l10n_it_website_sale_corrispettivi/) | 12.0.1.0.1 |  | Aggiunge la ricevuta come opzione per l'utente e-commerce
 [l10n_it_website_sale_fatturapa](l10n_it_website_sale_fatturapa/) | 12.0.1.0.3 |  | Aggiunge i campi necessari alla fatturazione elettronica nel form del checkout
