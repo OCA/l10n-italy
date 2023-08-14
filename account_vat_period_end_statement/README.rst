@@ -166,7 +166,9 @@ Contributors
 * Giacomo Grasso <giacomo.grasso.82@gmail.com>
 * Lara Baggio <http://linkgroup.it/>
 * Gianmarco Conte <gconte@dinamicheaziendali.it>
+* `TAKOBI <https://takobi.online>`_:
 
+  * Simone Rubino <sir@takobi.online>
 
 Maintainers
 ~~~~~~~~~~~
