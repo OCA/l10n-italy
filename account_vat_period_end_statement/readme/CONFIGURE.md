@@ -26,6 +26,8 @@ Per calcolare gli interessi, è possibile aggiungere le informazioni da
 utilizzare (conto e percentuale) nei dati aziendali, nella scheda
 'Liquidazione IVA'.
 
+Per impostare la "Data di blocco dichiarazione fiscale" alla conferma della dichiarazione, abilitare "Impostare data di chiusura per non-consulenti" nella scheda "Liquidazione IVA" della vista scheda dell'azienda.
+
 **English**
 
 In order to generate VAT statement's periods, open Accounting \>
@@ -52,3 +54,5 @@ associated to the account involved in the statement:
 If you need to calculate interest, you can add default information in
 your company data (percentage and account), in the 'VAT statement'
 tab.
+
+In order to set the "Tax Return Lock Date" when a statement is confirmed, enable "Set Lock Date on Confirmation" in the "VAT statement" tab of the Company form view.

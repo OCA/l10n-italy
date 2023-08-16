@@ -4,6 +4,7 @@
 #  Copyright 2015 Associazione Odoo Italia (<http://www.odoo-italia.org>)
 #  Copyright 2021 Gianmarco Conte
 #                 - Dinamiche Aziendali Srl (<www.dinamicheaziendali.it>)
+#  Copyright 2022 ~ 2023 Simone Rubino - TAKOBI
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {

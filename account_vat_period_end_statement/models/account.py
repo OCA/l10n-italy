@@ -2,7 +2,7 @@
 # Copyright 2012-15 Agile Business Group sagl (<http://www.agilebg.com>)
 # Copyright 2015 Associazione Odoo Italia (<http://www.odoo-italia.org>)
 # Copyright 2021 Gianmarco Conte - Dinamiche Aziendali Srl (<www.dinamicheaziendali.it>)
-# Copyright 2022 Simone Rubino - TAKOBI
+# Copyright 2022 ~ 2023 Simone Rubino - TAKOBI
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -393,9 +393,31 @@ class AccountVatPeriodEndStatement(models.Model):
         for statement in self:
             statement.state = "paid"
 
+    def _get_end_date(self):
+        self.ensure_one()
+        periods = self.date_range_ids
+        end_date = max(
+            periods.mapped("date_end"),
+            default=None,
+        )
+        return end_date
+
+    def _set_company_lock_date(self):
+        self.ensure_one()
+        company = self.company_id or self.env.company
+        if company.account_vat_period_end_statement_set_lock_date:
+            end_date = self._get_end_date()
+            if end_date:
+                lock_date_values = {
+                    "tax_lock_date": end_date,
+                }
+                company.update(lock_date_values)
+        return True
+
     def statement_confirmed(self):
         for statement in self:
             statement.state = "confirmed"
+            statement._set_company_lock_date()
 
     def _prepare_account_move_line(
         self, name, account_id, move_id, statement, statement_date, partner_id=False
@@ -453,7 +475,7 @@ class AccountVatPeriodEndStatement(models.Model):
 
             move.line_ids = lines_to_create
             move.action_post()
-            statement.state = "confirmed"
+            statement.statement_confirmed()
 
         return True
 

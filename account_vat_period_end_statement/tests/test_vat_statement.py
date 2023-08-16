@@ -328,3 +328,36 @@ class TestTax(TestVATStatementCommon):
             report_content.decode(),
         )
         self.assertEqual(len(payment_infos), 1)
+
+    def test_set_lock_date(self):
+        """
+        Confirming the statement sets the lock date.
+        """
+        # Arrange
+        period = self.current_period
+        self.init_invoice(
+            "out_invoice",
+            invoice_date=self.recent_date,
+            amounts=[100],
+            taxes=self.account_tax_22,
+            post=True,
+        )
+        statement = self._get_statement(
+            period,
+            self.last_year_date,
+            self.env["account.account"].browse(),
+            payment_term=self.env.ref("account.account_payment_term_advance_60days"),
+        )
+        company = statement.company_id
+        company.account_vat_period_end_statement_set_lock_date = True
+        # pre-condition
+        self.assertFalse(company.tax_lock_date)
+
+        # Act
+        statement.create_move()
+
+        # Assert
+        self.assertEqual(
+            period.date_end,
+            company.tax_lock_date,
+        )

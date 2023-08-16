@@ -18,6 +18,7 @@
                         <field
                             name="of_account_end_vat_statement_interest_account_id"
                         />
+                        <field name="account_vat_period_end_statement_set_lock_date" />
                     </group>
                 </page>
                </xpath>
