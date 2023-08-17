@@ -12,6 +12,7 @@
     "license": "AGPL-3",
     "depends": [
         "account",
+        "account_payment_register_keep_amount",
         "l10n_it_fatturapa",
     ],
     "data": [

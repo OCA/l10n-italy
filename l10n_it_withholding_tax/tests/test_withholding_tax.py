@@ -354,3 +354,33 @@ class TestWithholdingTax(TransactionCase):
         # Assert: The original statement is deleted and there are no statements
         self.assertFalse(statements.exists())
         self._assert_recreate_statements(move, statements_count)
+
+    def _get_payment_wizard(self, invoice):
+        wizard_action = invoice.action_register_payment()
+        wizard_model = wizard_action["res_model"]
+        wizard_context = wizard_action["context"]
+        wizard = self.env[wizard_model].with_context(**wizard_context).create({})
+        return wizard
+
+    def test_keep_amount(self):
+        """The amount to pay is preserved when the Journal is changed."""
+        # Arrange: Pay an invoice
+        invoice = self.invoice
+        wizard = self._get_payment_wizard(invoice)
+        # pre-condition
+        self.assertEqual(
+            wizard.amount,
+            invoice.amount_net_pay_residual,
+        )
+        self.assertTrue(
+            invoice.withholding_tax_amount,
+        )
+
+        # Act: Change Journal
+        wizard.journal_id = self.journal_bank
+
+        # Assert: Amount is kept
+        self.assertEqual(
+            wizard.amount,
+            invoice.amount_net_pay_residual,
+        )

@@ -514,7 +514,12 @@ class AccountMove(models.Model):
         if not float_is_zero(amount_net_pay_residual, dp_obj.precision_get("Account")):
             ctx = res.get("context", {})
             if ctx:
-                ctx.update({"default_amount": amount_net_pay_residual})
+                ctx.update(
+                    {
+                        "default_amount": amount_net_pay_residual,
+                        "default_keep_previous_amount": True,
+                    }
+                )
             res.update({"context": ctx})
         return res
 
