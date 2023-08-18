@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_delivery_document" inherit_id="stock.report_delivery_document">
+        <xpath expr="//div[hasclass('page')]" position="before">
+            <t
+                t-set="has_intrastat_code"
+                t-value="o.move_lines.filtered(lambda l: l.product_id.intrastat_code_id)"
+            />
+        </xpath>
+        <xpath
+            expr="//table[@name='stock_move_table']/thead/tr/th[@name='th_sm_product']"
+            position="before"
+        >
+            <th name="th_sm_hs_code" t-if="has_intrastat_code">
+                <strong>HS Code</strong>
+            </th>
+        </xpath>
+        <xpath
+            expr="//table[@name='stock_move_line_table']/thead/tr/th[@name='th_sml_product']"
+            position="before"
+        >
+            <th name="th_sml_hs_code" t-if="has_intrastat_code">
+                <strong>HS Code</strong>
+            </th>
+        </xpath>
+        <xpath
+            expr="//table[@name='stock_backorder_table']/thead/tr/th[@name='th_sb_product']"
+            position="before"
+        >
+            <th name="th_sb_hs_code" t-if="has_intrastat_code">
+                <strong>HS Code</strong>
+            </th>
+        </xpath>
+
+        <!-- old HS Code invisible -->
+        <xpath
+            expr="//table[@name='stock_move_table']/thead/tr/th[@t-if='has_hs_code']"
+            position="attributes"
+        >
+            <attribute name="t-if">0</attribute>
+        </xpath>
+
+        <xpath
+            expr="//table[@name='stock_move_line_table']/thead/tr/th[@t-if='has_hs_code']"
+            position="attributes"
+        >
+            <attribute name="t-if">0</attribute>
+        </xpath>
+    </template>
+
+
+    <!--  Intrastat Code to table rows-->
+    <template
+        id="stock_report_delivery_has_serial_move_line_inherit_delivery"
+        inherit_id="stock.stock_report_delivery_has_serial_move_line"
+    >
+        <xpath expr="//td" position="before">
+            <td t-if="has_intrastat_code">
+                <span t-field="move_line.product_id.intrastat_code_id.name" />
+            </td>
+        </xpath>
+
+        <!-- old HS Code invisible -->
+        <xpath expr="//td[@t-if='has_hs_code']" position="attributes">
+            <attribute name="t-if">0</attribute>
+        </xpath>
+    </template>
+
+    <template
+        id="stock_report_delivery_aggregated_move_lines_inherit_delivery"
+        inherit_id="stock.stock_report_delivery_aggregated_move_lines"
+    >
+        <xpath expr="//td" position="before">
+            <td t-if="has_intrastat_code">
+                <span t-esc="aggregated_lines[line]['intrastat_code_id']" />
+            </td>
+        </xpath>
+
+        <!-- old HS Code invisible -->
+        <xpath expr="//td[@t-if='has_hs_code']" position="attributes">
+            <attribute name="t-if">0</attribute>
+        </xpath>
+    </template>
+
+
+</odoo>

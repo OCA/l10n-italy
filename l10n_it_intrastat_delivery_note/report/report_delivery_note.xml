@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="delivery_note_report_template"
+        inherit_id="l10n_it_delivery_note.delivery_note_report_template"
+    >
+        <xpath expr="//table[@id='product_data']//th" position="before">
+            <t
+                t-set="has_intrastat_code"
+                t-value="doc.line_ids.filtered(lambda l: l.product_id.intrastat_code_id)"
+            />
+            <th class="text-left" t-if="has_intrastat_code">
+                HS Code
+            </th>
+        </xpath>
+        <xpath
+            expr="//tbody[hasclass('sale_tbody')]//td[span[@t-field='line.product_id.default_code']]"
+            position="before"
+        >
+            <td t-if="has_intrastat_code">
+                <span t-field="line.product_id.intrastat_code_id.name" />
+            </td>
+        </xpath>
+    </template>
+</odoo>
