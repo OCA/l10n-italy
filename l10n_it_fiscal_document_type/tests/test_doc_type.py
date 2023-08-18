@@ -1,6 +1,10 @@
 # Copyright 2017 Lorenzo Battistini
+# Copyright 2023 Simone Rubino - TAKOBI
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import TransactionCase
+from odoo.addons.test_mail.tests.common import mail_new_test_user
+from odoo.exceptions import AccessError
+from odoo.tests.common import TransactionCase, users
 
 
 class TestDocType(TransactionCase):
@@ -20,6 +24,11 @@ class TestDocType(TransactionCase):
             "name": "FP",
             "fiscal_document_type_id": self.TD01.id,
         })
+        self.adviser = mail_new_test_user(
+            self.env,
+            login="Adviser",
+            groups='account.group_account_manager',
+        )
 
     def test_doc_type(self):
         self.TD01.journal_ids = [self.journalrec.id]
@@ -80,3 +89,59 @@ class TestDocType(TransactionCase):
             invoice.journal_id.id
         )
         self.assertEqual(refund.fiscal_document_type_id.id, self.TD04.id)
+
+    @users("Adviser", "admin")
+    def test_access(self):
+        """Users can only read fiscal documents,
+        Users can't create/update/delete fiscal documents."""
+        # Arrange
+        user = self.env.user
+        doc_type_model = self.doc_type_model
+        doc_type = self.TD01
+        user_doc_type_model = doc_type_model.sudo(user=user.id)
+        user_doc_type = user_doc_type_model.browse(doc_type.id)
+        # pre-condition: user_* objects are linked to current user
+        root_user = self.env.ref("base.user_root")
+        self.assertEqual(doc_type_model.env.uid, root_user.id)
+        self.assertEqual(doc_type.env.uid, root_user.id)
+        self.assertEqual(user_doc_type.env.uid, user.id)
+        self.assertEqual(user_doc_type_model.env.uid, user.id)
+
+        # Act: Read
+        code = user_doc_type.code
+
+        # Assert: Read
+        self.assertEqual(code, "TD01")
+
+        # Act: Create
+        with self.assertRaises(AccessError) as ae, self.env.cr.savepoint():
+            user_doc_type_model.create({
+                "code": "TC04",
+                "name": "Test Code",
+            })
+
+        # Assert: Create
+        exc_message = ae.exception.args[0]
+        self.assertIn("not allowed", exc_message)
+        self.assertIn("Operation: create", exc_message)
+        self.assertIn("Document model: " + user_doc_type_model._name, exc_message)
+
+        # Act: Update
+        with self.assertRaises(AccessError) as ae, self.env.cr.savepoint():
+            user_doc_type.name = "Update is forbidden"
+
+        # Assert: Update
+        exc_message = ae.exception.args[0]
+        self.assertIn("not allowed", exc_message)
+        self.assertIn("Operation: write", exc_message)
+        self.assertIn("Document model: " + user_doc_type_model._name, exc_message)
+
+        # Act: Delete
+        with self.assertRaises(AccessError) as ae, self.env.cr.savepoint():
+            user_doc_type.unlink()
+
+        # Assert: Delete
+        exc_message = ae.exception.args[0]
+        self.assertIn("not allowed", exc_message)
+        self.assertIn("Operation: unlink", exc_message)
+        self.assertIn("Document model: " + user_doc_type_model._name, exc_message)
