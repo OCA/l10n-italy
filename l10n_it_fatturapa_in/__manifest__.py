@@ -3,6 +3,7 @@
 # Copyright 2018 Lorenzo Battistini
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2022 Marco Colombo (<marco.colombo@phi.technology>)
+# Copyright 2023 Simone Rubino - TAKOBI
 # Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -18,6 +19,7 @@
     "depends": [
         "base_vat",
         "mail",
+        "l10n_it_fiscalcode",
         "l10n_it_fatturapa",
         "l10n_it_fiscal_document_type",
         "l10n_it_withholding_tax_reason",
