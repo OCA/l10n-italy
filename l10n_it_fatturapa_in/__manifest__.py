@@ -2,6 +2,7 @@
 # Copyright 2015 innoviu Srl <http://www.innoviu.com>
 # Copyright 2018 Lorenzo Battistini
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
+# Copyright 2023 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
@@ -18,6 +19,7 @@
     "depends": [
         'base_vat_sanitized',
         'l10n_it_fatturapa',
+        'l10n_it_fiscalcode',
         'l10n_it_withholding_tax_causali',
         ],
     "data": [
