@@ -7,6 +7,14 @@ from odoo import _, models, fields, api
 from odoo.exceptions import ValidationError
 
 
+def _check_company_fiscal_code(fiscal_code):
+    """`fiscal_code` is the Fiscal Code of a Company."""
+    if len(fiscal_code) != 11:
+        # Check fiscalcode length of a person
+        msg = _("The fiscal code must have 11 characters.")
+        raise ValidationError(msg)
+
+
 def _check_person_fiscal_code(fiscal_code):
     """`fiscal_code` is the Fiscal Code of a Person."""
     if len(fiscal_code) != 16:
@@ -35,9 +43,10 @@ class ResPartner(models.Model):
                 if partner.company_name:
                     # In E-commerce, if there is company_name,
                     # the user might insert VAT in fiscalcode field.
-                    # Perform the same check as Company case
-                    continue
+                    _check_company_fiscal_code(fiscal_code)
                 _check_person_fiscal_code(fiscal_code)
+            elif partner.company_type == 'company':
+                _check_company_fiscal_code(fiscal_code)
         return True
 
     fiscalcode = fields.Char(

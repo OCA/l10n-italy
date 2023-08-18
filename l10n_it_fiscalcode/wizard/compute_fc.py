@@ -1,3 +1,4 @@
+# Copyright 2023 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
@@ -195,6 +196,6 @@ class WizardComputeFc(models.TransientModel):
                     ' the computed one, remove the existing one' % {
                         'partner_fiscalcode': partner.fiscalcode,
                         'compute': c_f}))
-            partner.fiscalcode = c_f
             partner.company_type = 'person'
+            partner.fiscalcode = c_f
         return {'type': 'ir.actions.act_window_close'}
